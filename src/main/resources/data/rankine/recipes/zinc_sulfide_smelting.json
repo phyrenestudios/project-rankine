@@ -1,0 +1,1 @@
+{ "type": "minecraft:smelting", "ingredient": { "item": "rankine:zinc_sulfide"},"result": { "item": "rankine:zinc_ingot"},"experience": 1, "cookingTime": 200 }

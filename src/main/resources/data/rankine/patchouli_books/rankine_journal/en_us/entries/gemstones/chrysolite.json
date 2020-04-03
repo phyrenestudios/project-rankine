@@ -1,0 +1,11 @@
+{
+  "name": "Chrysolite",
+  "icon": "rankine:chrysolite",
+  "category": "gemstones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A green gemstone. No known traces"
+    }
+  ]
+}

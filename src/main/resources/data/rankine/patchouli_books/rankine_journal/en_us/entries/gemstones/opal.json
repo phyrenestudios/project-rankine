@@ -1,0 +1,11 @@
+{
+  "name": "Opal",
+  "icon": "rankine:opal",
+  "category": "gemstones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A white gemstone. Traces found in $(l:sphalerite)Sphalerite Ore$()."
+    }
+  ]
+}

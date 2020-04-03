@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:feldspar_block" } ], "result": { "item": "rankine:feldspar", "count": 9 } }

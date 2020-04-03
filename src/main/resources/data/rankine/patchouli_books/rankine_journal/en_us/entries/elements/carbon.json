@@ -1,0 +1,26 @@
+{
+  "name": "Element 6: Carbon",
+  "icon": "minecraft:coal",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Many forms exist in nature."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:coal",
+      "text": "Mainly found in $(l:lignite_ore)Lignite Ore$(), $(l:lignite_ore)Sub-bituminous Coal Ore$(), $(l:lignite_ore)Bituminous Coal Ore$(), $(l:anthracite_ore)Anthracite Ore$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond",
+      "text": "Mainly found in $(l:diamond_ore)Diamond Ore$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:graphite",
+      "text": "Mainly found in $(l:plumbago_ore)Plumbago Ore$()."
+    }
+  ]
+}

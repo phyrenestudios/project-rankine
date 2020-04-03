@@ -1,0 +1,11 @@
+{
+  "name": "Element 83: Bismuth",
+  "icon": "rankine:bismuth_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:bismuth_ore)Bismuth Ore$()."
+    }
+  ]
+}

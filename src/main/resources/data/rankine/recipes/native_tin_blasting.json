@@ -1,0 +1,1 @@
+{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:native_tin_ore"},"result": { "item": "rankine:tin_ingot"},"experience": 1, "cookingTime": 200 }

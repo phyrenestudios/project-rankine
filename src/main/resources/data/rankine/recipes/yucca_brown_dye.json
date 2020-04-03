@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:banana_yucca"
+    },
+    {
+      "item": "rankine:banana_yucca"
+    },
+    {
+      "item": "rankine:banana_yucca"
+    },
+    {
+      "item": "rankine:banana_yucca"
+    }
+  ],
+  "result": {
+    "item": "minecraft:brown_dye",
+    "count": 1
+  }
+}

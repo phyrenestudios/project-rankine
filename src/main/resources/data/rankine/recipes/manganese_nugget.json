@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:manganese_ingot" } ], "result": { "item": "rankine:manganese_nugget", "count": 9 } }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " b ",
+    "bcb",
+    " b "
+  ],
+  "key": {
+    "b": {
+      "item": "rankine:refractory_bricks"
+    },
+    "c": {
+      "item": "minecraft:coal_block"
+    }
+  },
+  "result": {
+    "item": "rankine:beehive_oven_pit",
+    "count": 1
+  }
+}

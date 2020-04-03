@@ -1,0 +1,11 @@
+{
+  "name": "Bronze Alloy",
+  "icon": "rankine:bronze_alloy",
+  "category": "metallurgy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: Made by alloying 8 $(l:copper)Copper Ingots$() and 2 $(l:tin)Tin Ingots$()."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "rankine:block/coconut_palm_planks"
+  }
+}

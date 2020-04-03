@@ -1,0 +1,56 @@
+package com.cannolicatfish.rankine.blocks;
+
+import com.cannolicatfish.rankine.entities.BeaverEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+
+public class StickBlock extends Block {
+    public StickBlock(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return false;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return 250;
+    }
+
+    @Override
+    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
+        return true;
+    }
+
+    @Override
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+        if (fallDistance > 5 && (entityIn instanceof PlayerEntity))
+        {
+            if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
+                float f = 0.5F;
+                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.STICK, 2 + worldIn.rand.nextInt(2)));
+                itementity.setDefaultPickupDelay();
+                worldIn.addEntity(itementity);
+                worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                worldIn.removeBlock(pos,false);
+            }
+        }
+    }
+}

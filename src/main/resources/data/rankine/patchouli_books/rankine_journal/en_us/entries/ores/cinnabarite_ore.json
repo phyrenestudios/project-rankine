@@ -1,0 +1,11 @@
+{
+  "name": "Cinnabarite Ore",
+  "icon": "rankine:cinnabarite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Redstone and $(l:sulfur)Sulfur$()."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Element 13: Aluminum",
+  "icon": "rankine:aluminum_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:bauxite_ore)Bauxite Ore$()."
+    }
+  ]
+}

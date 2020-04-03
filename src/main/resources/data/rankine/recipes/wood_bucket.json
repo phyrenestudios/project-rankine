@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xax",
+    "x x",
+    " x "
+  ],
+  "key":
+  {
+    "a":
+    {
+      "item": "rankine:rope"
+    },
+    "x":
+    {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:wood_bucket",
+    "count": 1
+  }
+}

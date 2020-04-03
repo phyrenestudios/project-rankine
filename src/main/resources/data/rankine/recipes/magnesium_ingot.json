@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:magnesium_block" } ], "result": { "item": "rankine:magnesium_ingot", "count": 9 } }

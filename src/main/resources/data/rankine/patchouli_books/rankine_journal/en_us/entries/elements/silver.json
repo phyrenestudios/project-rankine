@@ -1,0 +1,11 @@
+{
+  "name": "Element 47: Silver",
+  "icon": "rankine:silver_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:acanthite_ore)Acanthite Ore$()."
+    }
+  ]
+}

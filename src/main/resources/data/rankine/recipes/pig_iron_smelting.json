@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": { "item": "minecraft:iron_ingot"},
+  "result": { "item": "rankine:pig_iron_ingot"},
+  "experience": 1,
+  "cookingTime": 200
+}

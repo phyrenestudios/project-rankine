@@ -1,0 +1,11 @@
+{
+  "name": "Molybdenite Ore",
+  "icon": "rankine:molybdenite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Molybdenum Oxide and traces of Iron Oxide."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:rhyolite",
+    "rankine:granite",
+    "rankine:diorite",
+    "rankine:andesite",
+    "rankine:limestone",
+    "rankine:shale",
+    "rankine:gneiss",
+    "rankine:marble",
+    "rankine:basalt",
+    "rankine:peridotite",
+    "rankine:kimberlite",
+    "rankine:komatiite",
+    "rankine:ringwoodite",
+    "rankine:wadsleyite",
+    "rankine:ferropericlase",
+    "rankine:perovskite"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "rankine:block/cedar_log",
+    "down": "rankine:block/cedar_log_top",
+    "up": "rankine:block/cedar_log_top",
+    "east": "rankine:block/cedar_log",
+    "west": "rankine:block/cedar_log",
+    "north": "rankine:block/cedar_log",
+    "south": "rankine:block/cedar_log"
+  }
+}

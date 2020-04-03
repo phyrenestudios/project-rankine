@@ -1,0 +1,11 @@
+{
+  "name": "Element 78: Platinum",
+  "icon": "rankine:platinum_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "No known sources."
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{ "type": "minecraft:smelting", "ingredient": { "item": "minecraft:diorite"},"result": { "item": "minecraft:smooth_stone"},"experience": 1, "cookingTime": 200 }

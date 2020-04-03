@@ -1,0 +1,11 @@
+{
+  "name": "Ilmenite Ore",
+  "icon": "rankine:ilmenite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Titania and traces of $(l:copper)Copper$()."
+    }
+  ]
+}

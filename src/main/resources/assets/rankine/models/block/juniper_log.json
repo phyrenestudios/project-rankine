@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "rankine:block/juniper_log",
+    "down": "rankine:block/juniper_log_top",
+    "up": "rankine:block/juniper_log_top",
+    "east": "rankine:block/juniper_log",
+    "west": "rankine:block/juniper_log",
+    "north": "rankine:block/juniper_log",
+    "south": "rankine:block/juniper_log"
+  }
+}

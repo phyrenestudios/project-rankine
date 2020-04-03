@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cedar_sapling",
+    "rankine:coconut_palm_sapling",
+    "rankine:pinyon_pine_sapling"
+  ]
+}

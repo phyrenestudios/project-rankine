@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx ",
+    " a ",
+    " a "
+  ],
+  "key":
+  {
+    "a":
+    {
+      "item": "minecraft:stick"
+    },
+    "x":
+    {
+      "item": "rankine:steel_alloy"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:steel_hoe",
+    "count": 1
+  }
+}

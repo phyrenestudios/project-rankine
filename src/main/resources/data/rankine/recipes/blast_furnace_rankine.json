@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bbb",
+    "bfb",
+    "sss"
+  ],
+  "key": {
+    "b": {
+      "item": "rankine:bronze_alloy"
+    },
+    "s": {
+      "item": "minecraft:smooth_stone"
+    },
+    "f": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "result": {
+    "item": "minecraft:blast_furnace",
+    "count": 1
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    " a ",
+    " a "
+  ],
+  "key":
+  {
+    "a":
+    {
+      "item": "minecraft:stick"
+    },
+    "x":
+    {
+      "item": "rankine:bronze_alloy"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:bronze_pickaxe",
+    "count": 1
+  }
+}

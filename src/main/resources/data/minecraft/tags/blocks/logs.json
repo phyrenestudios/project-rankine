@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cedar_log",
+    "rankine:coconut_palm_log",
+    "rankine:pinyon_pine_log",
+    "rankine:juniper_log"
+  ]
+}

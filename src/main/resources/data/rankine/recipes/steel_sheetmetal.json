@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["i i","i i","i i"],"key": { "i":{ "item": "rankine:steel_alloy"} }, "result": { "item": "rankine:steel_sheetmetal", "count": 2 } }

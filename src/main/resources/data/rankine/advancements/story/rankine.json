@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "rankine:overworld_core"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.root.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.root.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "rankine:textures/gui/advancements/backgrounds/refractory.png"
+  },
+  "criteria": {
+    "rope": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "patchouli:guide_book"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rope"
+    ]
+  ]
+}

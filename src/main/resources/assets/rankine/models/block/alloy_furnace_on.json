@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "rankine:block/alloy_furnace_top",
+    "front": "rankine:block/alloy_furnace_front_on",
+    "side": "rankine:block/refractory_bricks"
+  }
+}

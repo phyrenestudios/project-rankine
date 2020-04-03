@@ -1,0 +1,11 @@
+{
+  "name": "Galena Ore",
+  "icon": "rankine:galena_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Lead Sulfide and traces of Silver Sulfide."
+    }
+  ]
+}

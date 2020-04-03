@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:rope"
+    ]
+  },
+  "criteria": {
+    "found_grass1": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:grass"
+      }
+    },
+    "knife_used": {
+      "trigger": "minecraft:item_durability_changed",
+      "conditions": {
+        "delta": -1,
+        "item": {
+          "item": "rankine:flint_knife",
+          "durability": {
+            "max": 63
+          }
+        }
+      }
+    },
+    "has_the_recipe1": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:vine_rope"
+      }
+    },
+    "has_the_recipe2": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:grass_rope"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "found_grass1",
+      "knife_used",
+      "has_the_recipe1",
+      "has_the_recipe2"
+    ]
+  ]
+}

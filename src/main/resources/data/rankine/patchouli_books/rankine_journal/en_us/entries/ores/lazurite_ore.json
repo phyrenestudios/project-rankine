@@ -1,0 +1,11 @@
+{
+  "name": "Lazurite Ore",
+  "icon": "rankine:lazurite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Contains Lapis."
+    }
+  ]
+}

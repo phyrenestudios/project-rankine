@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": { "item": "rankine:clay_brick"},
+  "result": { "item": "rankine:refractory_brick"},
+  "experience": 1,
+  "cookingTime": 200
+}

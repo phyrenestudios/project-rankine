@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:opal_block" } ], "result": { "item": "rankine:opal", "count": 9 } }

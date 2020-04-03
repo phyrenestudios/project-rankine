@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:purple_gold_block" } ], "result": { "item": "rankine:purple_gold_alloy", "count": 9 } }

@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": [ "xxx", "xxx", "xxx" ], "key": { "x": { "item": "rankine:opal" } }, "result": { "item": "rankine:opal_block", "count": 1 } }

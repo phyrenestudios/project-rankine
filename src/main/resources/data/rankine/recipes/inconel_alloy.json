@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:inconel_block" } ], "result": { "item": "rankine:inconel_alloy", "count": 9 } }

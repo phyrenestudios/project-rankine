@@ -1,0 +1,11 @@
+{
+  "name": "Cassiterite Ore",
+  "icon": "rankine:cassiterite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Tin Oxide and can contain small amounts of Iron Oxide."
+    }
+  ]
+}

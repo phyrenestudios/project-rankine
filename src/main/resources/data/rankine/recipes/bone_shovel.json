@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " x ",
+    " r ",
+    " a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:bone"
+    },
+    "r":
+    {
+      "item": "rankine:rope"
+    },
+    "x":
+    {
+      "item": "minecraft:bone_block"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:bone_shovel",
+    "count": 1
+  }
+}

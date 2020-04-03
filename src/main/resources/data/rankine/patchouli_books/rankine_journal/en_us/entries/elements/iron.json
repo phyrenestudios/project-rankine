@@ -1,0 +1,11 @@
+{
+  "name": "Element 26: Iron",
+  "icon": "minecraft:iron_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:meteorites)Meteorites$() and $(l:magnetite_ore)Magnetite Ore$()."
+    }
+  ]
+}

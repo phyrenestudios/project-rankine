@@ -1,0 +1,11 @@
+{
+  "name": "Garnet",
+  "icon": "rankine:gaarnet",
+  "category": "gemstones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A red gemstone. No known traces."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "rankine:block/cedar_planks",
+    "top": "rankine:block/cedar_planks",
+    "side": "rankine:block/cedar_planks"
+  }
+}

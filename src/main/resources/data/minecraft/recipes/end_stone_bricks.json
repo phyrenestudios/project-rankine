@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:mortar" },"b": { "item": "minecraft:end_stone"} }, "result": { "item": "minecraft:end_stone_bricks", "count": 4 } }

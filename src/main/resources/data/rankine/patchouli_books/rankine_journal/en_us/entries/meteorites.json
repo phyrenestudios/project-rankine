@@ -1,0 +1,11 @@
+{
+  "name": "Meteorites",
+  "icon": "rankine:meteoric_iron_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Meteors appear randomly on the surface. They contain Iron Oxide and Sulfur."
+    }
+  ]
+}

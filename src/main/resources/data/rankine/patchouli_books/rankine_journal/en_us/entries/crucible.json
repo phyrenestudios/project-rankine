@@ -1,0 +1,11 @@
+{
+  "name": "Crucible",
+  "icon": "rankine:crucible",
+  "category": "metallurgy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to make steel. Requires a heat source underneath the Crucible. Then, insert a Pig Iron Ingot to make Molten Pig Iron. Placing Wrought Iron in Molten Pig Iron will produce Steel Alloy."
+    }
+  ]
+}

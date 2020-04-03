@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "rankine:block/coconut_palm_sapling"
+  }
+}

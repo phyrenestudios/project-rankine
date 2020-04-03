@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "rankine:block/concrete_pipe_junction" },
+    "axis=z":   { "model": "rankine:block/concrete_pipe_junction", "x": 90 },
+    "axis=x":   { "model": "rankine:block/concrete_pipe_junction", "x": 90, "y": 90 }
+  }
+}

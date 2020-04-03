@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "level=0": {"model": "rankine:block/liquid_pig_iron"},
+    "level=1": {"model": "rankine:block/liquid_pig_iron"},
+    "level=2": {"model": "rankine:block/liquid_pig_iron"},
+    "level=3": {"model": "rankine:block/liquid_pig_iron"},
+    "level=4": {"model": "rankine:block/liquid_pig_iron"},
+    "level=5": {"model": "rankine:block/liquid_pig_iron"},
+    "level=6": {"model": "rankine:block/liquid_pig_iron"},
+    "level=7": {"model": "rankine:block/liquid_pig_iron"},
+    "level=8": {"model": "rankine:block/liquid_pig_iron"},
+    "level=9": {"model": "rankine:block/liquid_pig_iron"},
+    "level=10": {"model": "rankine:block/liquid_pig_iron"},
+    "level=11": {"model": "rankine:block/liquid_pig_iron"},
+    "level=12": {"model": "rankine:block/liquid_pig_iron"},
+    "level=13": {"model": "rankine:block/liquid_pig_iron"},
+    "level=14": {"model": "rankine:block/liquid_pig_iron"},
+    "level=15": {"model": "rankine:block/liquid_pig_iron"}
+  }
+}

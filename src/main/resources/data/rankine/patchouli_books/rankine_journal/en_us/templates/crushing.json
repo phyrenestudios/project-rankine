@@ -1,0 +1,24 @@
+{
+  "components": [
+    {
+      "type": "text",
+      "text": "#text",
+      "x": 20,
+      "y": 30
+    },
+    {
+      "type": "item",
+      "item": "#item1",
+      "framed": "true",
+      "x": 20,
+      "y": 60
+    },
+    {
+      "type": "item",
+      "item": "#item2",
+      "framed": "true",
+      "x": 40,
+      "y": 60
+    }
+  ]
+}

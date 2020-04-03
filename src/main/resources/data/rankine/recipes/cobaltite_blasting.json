@@ -1,0 +1,1 @@
+{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:cobaltite"},"result": { "item": "rankine:cobalt_ingot"},"experience": 1, "cookingTime": 200 }

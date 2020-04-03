@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "rankine:block/cedar_log" },
+    "axis=z":   { "model": "rankine:block/cedar_log", "x": 90 },
+    "axis=x":   { "model": "rankine:block/cedar_log", "x": 90, "y": 90 }
+  }
+}

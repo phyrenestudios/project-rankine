@@ -1,0 +1,11 @@
+{
+  "name": "Sphalerite Ore",
+  "icon": "rankine:sphalerite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Zinc Sulfide and traces of Opal."
+    }
+  ]
+}

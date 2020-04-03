@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "bmb",
+    "mbm",
+    "bmb"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "item": "minecraft:gravel"
+    },
+    "m":
+    {
+      "item": "rankine:mortar"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:gravel_concrete",
+    "count": 6
+  }
+}

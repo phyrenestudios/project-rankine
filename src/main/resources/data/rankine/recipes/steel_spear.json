@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " bb",
+    " sb",
+    "s  "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "b":
+    {
+      "item": "rankine:steel_alloy"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:steel_spear",
+    "count": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Element 80: Mercury",
+  "icon": "rankine:cinnabar",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Traces in Cinnabar."
+    }
+  ]
+}

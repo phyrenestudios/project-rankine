@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "brb",
+    "bpb",
+    "bhb"
+  ],
+  "key": {
+    "b": {
+      "item": "rankine:bronze_sheetmetal"
+    },
+    "r": {
+      "item": "minecraft:redstone_block"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    },
+    "h": {
+      "item": "rankine:cast_iron_block"
+    }
+  },
+  "result": {
+    "item": "rankine:piston_crusher",
+    "count": 1
+  }
+}

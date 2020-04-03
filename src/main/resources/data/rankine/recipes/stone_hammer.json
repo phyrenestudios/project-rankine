@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xrx",
+    "xrx",
+    " a "
+  ],
+  "key":
+  {
+    "a":
+    {
+      "item": "minecraft:stick"
+    },
+    "x":
+    {
+      "item": "minecraft:cobblestone"
+    },
+    "r":
+    {
+      "item": "rankine:rope"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:stone_hammer",
+    "count": 1
+  }
+}

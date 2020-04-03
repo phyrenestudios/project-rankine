@@ -1,0 +1,1 @@
+{ "type": "minecraft:smelting", "ingredient": { "item": "rankine:magnesia"},"result": { "item": "rankine:magnesium_ingot"},"experience": 1, "cookingTime": 200 }

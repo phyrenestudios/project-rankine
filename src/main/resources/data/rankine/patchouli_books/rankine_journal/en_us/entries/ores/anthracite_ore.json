@@ -1,0 +1,11 @@
+{
+  "name": "Anthracite Ore",
+  "icon": "rankine:anthracite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A very condensed form of coal."
+    }
+  ]
+}

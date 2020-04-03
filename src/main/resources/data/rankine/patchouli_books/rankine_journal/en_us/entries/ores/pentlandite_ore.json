@@ -1,0 +1,11 @@
+{
+  "name": "Pentlandite Ore",
+  "icon": "rankine:pentlandite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Nickel Sulfide and traces of $(l:silver)Silver$()."
+    }
+  ]
+}

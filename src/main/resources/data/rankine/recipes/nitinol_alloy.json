@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:nitinol_block" } ], "result": { "item": "rankine:nitinol_alloy", "count": 9 } }

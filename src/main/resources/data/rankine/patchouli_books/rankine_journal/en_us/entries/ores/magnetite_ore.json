@@ -1,0 +1,17 @@
+{
+  "name": "Magnetite Ore",
+  "icon": "rankine:magnetite_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Needs to be crushed. Contains Iron Oxide."
+    },
+    {
+      "type": "crushing",
+      "text": "This is a test.",
+      "item1": "rankine:iron_oxide",
+      "item2": "minecraft:iron_ingot"
+    }
+  ]
+}

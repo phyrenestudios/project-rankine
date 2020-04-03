@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "rankine:block/snowberry_bush_stage1"
+  }
+}

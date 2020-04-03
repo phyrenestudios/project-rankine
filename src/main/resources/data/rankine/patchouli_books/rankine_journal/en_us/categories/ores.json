@@ -1,0 +1,6 @@
+{
+  "name": "Ores Found in the World",
+  "description": "Notes about various minerals discovered in the world.",
+  "icon": "rankine:malachite_ore",
+  "parent": "world_exploration"
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "rankine:block/pinyon_pine_log",
+    "down": "rankine:block/pinyon_pine_log_top",
+    "up": "rankine:block/pinyon_pine_log_top",
+    "east": "rankine:block/pinyon_pine_log",
+    "west": "rankine:block/pinyon_pine_log",
+    "north": "rankine:block/pinyon_pine_log",
+    "south": "rankine:block/pinyon_pine_log"
+  }
+}

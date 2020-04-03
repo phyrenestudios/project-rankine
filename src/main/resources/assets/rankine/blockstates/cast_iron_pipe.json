@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "rankine:block/cast_iron_pipe" },
+    "axis=z":   { "model": "rankine:block/cast_iron_pipe", "x": 90 },
+    "axis=x":   { "model": "rankine:block/cast_iron_pipe", "x": 90, "y": 90 }
+  }
+}

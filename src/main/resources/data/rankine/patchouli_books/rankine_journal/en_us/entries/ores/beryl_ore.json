@@ -1,0 +1,11 @@
+{
+  "name": "Beryl Ore",
+  "icon": "rankine:beryl_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Contains Emerald."
+    }
+  ]
+}

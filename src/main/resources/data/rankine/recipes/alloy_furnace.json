@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#t#",
+    "#f#",
+    "#t#"
+  ],
+  "key": {
+    "t": {
+      "item": "rankine:tin_sheetmetal"
+    },
+    "#": {
+      "item": "rankine:refractory_bricks"
+    },
+    "f": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_furnace",
+    "count": 1
+  }
+}

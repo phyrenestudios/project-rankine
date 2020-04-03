@@ -1,0 +1,11 @@
+{
+  "name": "Plumbago Ore",
+  "icon": "rankine:plumbago",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Found in the Mantle. Yeilds Graphite"
+    }
+  ]
+}

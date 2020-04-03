@@ -1,0 +1,11 @@
+{
+  "name": "Native Gold Ore",
+  "icon": "rankine:native_gold_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can be smelted directly to obtain $(l:gold)Gold$()."
+    }
+  ]
+}

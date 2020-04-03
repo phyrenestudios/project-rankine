@@ -1,0 +1,11 @@
+{
+  "name": "Overworld Ores",
+  "icon": "rankine:native_gold_ore",
+  "category": "world_exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Place ore pages here when template is made"
+    }
+  ]
+}

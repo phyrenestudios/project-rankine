@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": [ "xxx", "xxx", "xxx" ], "key": { "x": { "item": "rankine:manganese_nugget" } }, "result": { "item": "rankine:manganese_ingot", "count": 1 } }

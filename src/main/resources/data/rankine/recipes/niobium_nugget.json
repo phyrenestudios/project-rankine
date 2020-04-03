@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:niobium_ingot" } ], "result": { "item": "rankine:niobium_nugget", "count": 9 } }

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "rankine:block/graphite_block"}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "type=0": {"model": "rankine:block/columbite_ore0"},
+    "type=1": {"model": "rankine:block/columbite_ore1"},
+    "type=2": {"model": "rankine:block/columbite_ore2"},
+    "type=3": {"model": "rankine:block/columbite_ore3"},
+    "type=4": {"model": "rankine:block/columbite_ore4"},
+    "type=5": {"model": "rankine:block/columbite_ore5"},
+    "type=6": {"model": "rankine:block/columbite_ore6"},
+    "type=7": {"model": "rankine:block/columbite_ore7"},
+    "type=8": {"model": "rankine:block/columbite_ore8"},
+    "type=9": {"model": "rankine:block/columbite_ore9"},
+    "type=10": {"model": "rankine:block/columbite_ore10"},
+    "type=11": {"model": "rankine:block/columbite_ore11"},
+    "type=12": {"model": "rankine:block/columbite_ore12"}
+  }
+}

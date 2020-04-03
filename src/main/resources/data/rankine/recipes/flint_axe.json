@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xr ",
+    "xa ",
+    "   "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:stick"
+    },
+    "r":
+    {
+      "item": "rankine:rope"
+    },
+    "x":
+    {
+      "item": "minecraft:flint"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:flint_axe",
+    "count": 1
+  }
+}

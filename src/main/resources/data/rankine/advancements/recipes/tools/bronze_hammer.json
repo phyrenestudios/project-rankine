@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:bronze_hammer"
+    ]
+  },
+  "criteria": {
+    "has_bronze_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bronze_alloy"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:bronze_hammer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bronze_alloy",
+      "has_the_recipe"
+    ]
+  ]
+}

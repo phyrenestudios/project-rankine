@@ -1,0 +1,11 @@
+{
+  "name": "Alloy Furnace",
+  "icon": "rankine:alloy_furnace",
+  "category": "metallurgy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to make alloys. Requires fuel."
+    }
+  ]
+}

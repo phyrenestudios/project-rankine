@@ -1,0 +1,52 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:blast_furnace_rankine",
+      "minecraft:blast_furnace"
+    ]
+  },
+  "criteria": {
+    "has_smooth_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:smooth_stone"
+          }
+        ]
+      }
+    },
+    "has_crushed_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "rankine:crushed_ores"
+          }
+        ]
+      }
+    },
+    "has_the_other_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:blast_furnace"
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:blast_furnace_rankine"
+      }
+    }
+  },
+
+  "requirements": [
+    [
+      "has_smooth_stone",
+      "has_crushed_ore",
+      "has_the_recipe",
+      "has_the_other_recipe"
+    ]
+  ]
+}

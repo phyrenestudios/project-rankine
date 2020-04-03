@@ -1,0 +1,11 @@
+{
+  "name": "Element 79: Gold",
+  "icon": "minecraft:gold_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:magnetite_ore)Native Gold Ore$()."
+    }
+  ]
+}

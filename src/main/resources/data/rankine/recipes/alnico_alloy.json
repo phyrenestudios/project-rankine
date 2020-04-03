@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:alnico_block" } ], "result": { "item": "rankine:alnico_alloy", "count": 9 } }

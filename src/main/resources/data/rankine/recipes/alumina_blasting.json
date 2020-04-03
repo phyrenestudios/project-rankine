@@ -1,0 +1,1 @@
+{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:alumina"},"result": { "item": "rankine:aluminum_ingot"},"experience": 1, "cookingTime": 200 }

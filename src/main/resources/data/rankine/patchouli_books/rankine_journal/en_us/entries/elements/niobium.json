@@ -1,0 +1,11 @@
+{
+  "name": "Element 41: Niobium",
+  "icon": "rankine:niobium_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:columbite_ore)Columbite Ore$()."
+    }
+  ]
+}

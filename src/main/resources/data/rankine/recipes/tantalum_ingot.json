@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:tantalum_block" } ], "result": { "item": "rankine:tantalum_ingot", "count": 9 } }
