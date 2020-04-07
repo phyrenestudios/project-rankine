@@ -14,7 +14,6 @@ public class RankineSapling extends SaplingBlock {
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE_0_1;
     private final Tree tree;
     private int type;
-    //majong made it protected
     public RankineSapling(Tree treeIn, Properties properties, int type) {
         super(treeIn, properties);
         this.tree = treeIn;

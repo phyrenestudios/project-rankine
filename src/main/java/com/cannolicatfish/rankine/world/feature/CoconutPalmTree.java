@@ -22,6 +22,7 @@ public class CoconutPalmTree extends Tree {
     }
 
 
+
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {

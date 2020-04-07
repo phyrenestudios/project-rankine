@@ -91,7 +91,6 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
             return 4;
         }
     };
-
     @Override
     public void tick(){
         if (!this.world.isRemote) {

@@ -37,7 +37,7 @@ public class FelsenmeerBiome extends Biome {
       DefaultBiomeFeatures.addLakes(this);
       DefaultBiomeFeatures.addMonsterRooms(this);
       DefaultBiomeFeatures.addForestTrees(this);
-      DefaultBiomeFeatures.func_222283_Y(this);
+      DefaultBiomeFeatures.addPlainsTallGrass(this);
       DefaultBiomeFeatures.addStoneVariants(this);
       DefaultBiomeFeatures.addOres(this);
       DefaultBiomeFeatures.addSedimentDisks(this);

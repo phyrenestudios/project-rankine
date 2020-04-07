@@ -19,6 +19,72 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class ModBlocks {
 
+    @ObjectHolder("rankine:juniper_sapling")
+    public static Block JUNIPER_SAPLING;
+
+    @ObjectHolder("rankine:smooth_andesite")
+    public static Block SMOOTH_ANDESITE;
+
+    @ObjectHolder("rankine:smooth_granite")
+    public static Block SMOOTH_GRANITE;
+
+    @ObjectHolder("rankine:smooth_diorite")
+    public static Block SMOOTH_DIORITE;
+
+    @ObjectHolder("rankine:smooth_rhyolite")
+    public static Block SMOOTH_RHYOLITE;
+
+    @ObjectHolder("rankine:smooth_basalt")
+    public static Block SMOOTH_BASALT;
+
+    @ObjectHolder("rankine:smooth_gneiss")
+    public static Block SMOOTH_GNEISS;
+
+    @ObjectHolder("rankine:smooth_marble")
+    public static Block SMOOTH_MARBLE;
+
+    @ObjectHolder("rankine:smooth_limestone")
+    public static Block SMOOTH_LIMESTONE;
+
+    @ObjectHolder("rankine:smooth_shale")
+    public static Block SMOOTH_SHALE;
+
+    @ObjectHolder("rankine:smooth_peridotite")
+    public static Block SMOOTH_PERIDOTITE;
+
+    @ObjectHolder("rankine:smooth_kimberlite")
+    public static Block SMOOTH_KIMBERLITE;
+
+    @ObjectHolder("rankine:smooth_komatiite")
+    public static Block SMOOTH_KOMATIITE;
+
+    @ObjectHolder("rankine:smooth_ringwoodite")
+    public static Block SMOOTH_RINGWOODITE;
+
+    @ObjectHolder("rankine:smooth_wadsleyite")
+    public static Block SMOOTH_WADSLEYITE;
+
+    @ObjectHolder("rankine:smooth_ferropericlase")
+    public static Block SMOOTH_FERROPERICLASE;
+
+    @ObjectHolder("rankine:smooth_bridgmanite")
+    public static Block SMOOTH_BRIDGMANITE;
+
+    @ObjectHolder("rankine:smooth_perovskite")
+    public static Block SMOOTH_PEROVSKITE;
+
+    @ObjectHolder("rankine:lignite_block")
+    public static Block LIGNITE_BLOCK;
+
+    @ObjectHolder("rankine:bituminous_coal_block")
+    public static Block BITUMINOUS_COAL_BLOCK;
+
+    @ObjectHolder("rankine:anthracite_coal_block")
+    public static Block ANTHRACITE_COAL_BLOCK;
+
+    @ObjectHolder("rankine:vanadium_block")
+    public static Block VANADIUM_BLOCK;
+
     @ObjectHolder("rankine:beehive_oven_pit")
     public static Block BEEHIVE_OVEN_PIT;
 

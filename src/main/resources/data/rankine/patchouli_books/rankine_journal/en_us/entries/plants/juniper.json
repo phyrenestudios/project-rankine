@@ -1,0 +1,11 @@
+{
+  "name": "Juniper Trees",
+  "icon": "rankine:juniper_sapling",
+  "category": "plants",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Tree, nom nom."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Yucca",
+  "icon": "rankine:banana_yucca",
+  "category": "plants",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Yucca, nom nom."
+    }
+  ]
+}

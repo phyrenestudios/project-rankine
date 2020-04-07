@@ -1,0 +1,11 @@
+{
+  "name": "Pinyon Pine Trees",
+  "icon": "rankine:pinyon_pine_sapling",
+  "category": "plants",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Tree, nom nom."
+    }
+  ]
+}

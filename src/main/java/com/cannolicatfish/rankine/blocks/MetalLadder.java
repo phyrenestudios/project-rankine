@@ -21,7 +21,7 @@ public class MetalLadder extends LadderBlock {
     public MetalLadder(Properties builder) {
         super(builder);
     }
-
+    
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         int n = 1;

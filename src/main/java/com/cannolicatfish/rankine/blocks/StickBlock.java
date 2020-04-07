@@ -21,6 +21,8 @@ public class StickBlock extends Block {
         super(properties);
     }
 
+
+
     @Override
     public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return false;

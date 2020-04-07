@@ -109,7 +109,7 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_SAPLING, RenderType.getCutout());
 
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.FELSENMEER,100));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.FELSENMEER,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(ModBiomes.OASIS,1));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.HIGHLAND_PLATEAU,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.PINYON_JUNIPER_WOODLANDS,10));
@@ -118,6 +118,7 @@ public class ClientProxy implements IProxy {
         BiomeManager.addSpawnBiome(ModBiomes.PINYON_JUNIPER_WOODLANDS);
         BiomeManager.addSpawnBiome(ModBiomes.CEDAR_FOREST);
         BiomeManager.addSpawnBiome(ModBiomes.HIGHLAND_PLATEAU);
+        BiomeManager.addSpawnBiome(ModBiomes.FELSENMEER);
 
 
 

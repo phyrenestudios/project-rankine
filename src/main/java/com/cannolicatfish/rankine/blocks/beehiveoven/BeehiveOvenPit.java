@@ -33,6 +33,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class BeehiveOvenPit extends Block {
@@ -87,6 +89,28 @@ public class BeehiveOvenPit extends Block {
         {
             if (rand.nextFloat() <= 0.2f)
             {
+                List<Block> surroundingBlocks = Arrays.asList(world.getBlockState(uppos.north()).getBlock(),world.getBlockState(uppos.south()).getBlock(),world.getBlockState(uppos.east()).getBlock(),world.getBlockState(uppos.west()).getBlock(),
+                        world.getBlockState(uppos.north().east()).getBlock(), world.getBlockState(uppos.north().west()).getBlock(),world.getBlockState(uppos.south().east()).getBlock(),world.getBlockState(uppos.south().west()).getBlock(),
+                        world.getBlockState(uppos.north().up()).getBlock(),world.getBlockState(uppos.south().up()).getBlock(),world.getBlockState(uppos.east().up()).getBlock(),world.getBlockState(uppos.west().up()).getBlock(),
+                        world.getBlockState(uppos.north().east().up()).getBlock(), world.getBlockState(uppos.north().west().up()).getBlock(),world.getBlockState(uppos.south().east().up()).getBlock(),world.getBlockState(uppos.south().west().up()).getBlock());
+                List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
+                        uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
+                        uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
+                int firstCoalBlock = surroundingBlocks.indexOf(Blocks.COAL_BLOCK);
+                int firstBCoalBlock = surroundingBlocks.indexOf(ModBlocks.BITUMINOUS_COAL_BLOCK);
+                if (firstCoalBlock != -1 && firstCoalBlock > firstBCoalBlock)
+                {
+                    world.setBlockState(surroundingBlockPos.get(firstCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
+                }
+                if (firstBCoalBlock != -1 && firstBCoalBlock > firstCoalBlock)
+                {
+                    world.setBlockState(surroundingBlockPos.get(firstBCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
+                }
+                if (firstCoalBlock == -1 && firstBCoalBlock == -1)
+                {
+                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
+                }
+                /*
                 int choice = rand.nextInt(4);
                 System.out.println("SUCCESSFUL TICK");
                 if (choice == 0 && world.getBlockState(uppos.north()).getBlock() == Blocks.COAL_BLOCK)
@@ -114,6 +138,7 @@ public class BeehiveOvenPit extends Block {
                 {
                     world.setBlockState(uppos.west(), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
                 }
+                 */
 
             }
         }
@@ -130,7 +155,9 @@ public class BeehiveOvenPit extends Block {
             }
         }
         if (canSeeSky && world.getBlockState(pos.north()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.south()).getBlock() == ModBlocks.REFRACTORY_BRICKS
-                && world.getBlockState(pos.east()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.west()).getBlock() == ModBlocks.REFRACTORY_BRICKS)
+                && world.getBlockState(pos.east()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.west()).getBlock() == ModBlocks.REFRACTORY_BRICKS
+                && world.getBlockState(pos.north().west()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.north().east()).getBlock() == ModBlocks.REFRACTORY_BRICKS
+                && world.getBlockState(pos.south().west()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.south().east()).getBlock() == ModBlocks.REFRACTORY_BRICKS)
         {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
             return true;
