@@ -1,6 +1,27 @@
 {
   "replace": false,
   "values": [
-    "rankine:lead_shot"
+    "rankine:iron_oxide",
+    "rankine:copper_hydroxide",
+    "rankine:alumina",
+    "rankine:tin_oxide",
+    "rankine:zinc_sulfide",
+    "rankine:cinnabar",
+    "rankine:nickel_sulfide",
+    "rankine:magnesia",
+    "rankine:lead_sulfide",
+    "rankine:silver_sulfide",
+    "rankine:magnanese_oxide",
+    "rankine:bismuth_oxide",
+    "rankine:titania",
+    "rankine:molybdenum_oxide",
+    "rankine:chromium_oxide",
+    "rankine:niobium_oxide",
+    "rankine:tantalum_oxide",
+    "rankine:tungsten_oxide",
+    "rankine:cobaltite",
+    "rankine:osmiridium_alloy",
+    "rankine:platinum_arsenide",
+    "rankine:silicon_carbide"
   ]
 }

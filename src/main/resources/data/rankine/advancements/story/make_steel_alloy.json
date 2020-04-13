@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_crucible",
+  "display": {
+    "icon": {
+      "item": "rankine:steel_alloy"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_steel_alloy.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_steel_alloy.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "steel_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:steel_alloy"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "steel_alloy"
+    ]
+  ]
+}

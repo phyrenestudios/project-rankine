@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:smooth_stone",
+    "rankine:smooth_granite",
+    "rankine:smooth_andesite",
+    "rankine:smooth_diorite",
+    "rankine:smooth_basalt",
+    "rankine:smooth_gneiss",
+    "rankine:smooth_marble",
+    "rankine:smooth_limestone",
+    "rankine:smooth_shale",
+    "rankine:smooth_rhyolite",
+    "rankine:smooth_peridotite",
+    "rankine:smooth_kimberlite",
+    "rankine:smooth_komatiite",
+    "rankine:smooth_ringwoodite",
+    "rankine:smooth_wadsleyite",
+    "rankine:smooth_ferropericlase",
+    "rankine:smooth_bridgmanite",
+    "rankine:smooth_perovskite"
+  ]
+}

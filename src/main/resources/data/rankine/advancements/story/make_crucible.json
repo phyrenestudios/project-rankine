@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_piston_crusher",
+  "display": {
+    "icon": {
+      "item": "rankine:crucible"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_crucible.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_crucible.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:crucible"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "crucible"
+    ]
+  ]
+}

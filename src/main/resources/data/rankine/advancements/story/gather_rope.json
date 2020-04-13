@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/rankine",
+  "display": {
+    "icon": {
+      "item": "rankine:rope"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.gather_rope.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.gather_rope.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "get_rope": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rope"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_rope"
+    ]
+  ]
+}

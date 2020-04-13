@@ -19,8 +19,8 @@ public class ModBiomes  {
     @ObjectHolder("rankine:cedar_forest")
     public static Biome CEDAR_FOREST;
 
-    @ObjectHolder("rankine:oasis")
-    public static Biome OASIS;
+    //@ObjectHolder("rankine:shoal")
+    //public static Biome SHOAL;
 
     @ObjectHolder("rankine:highland_plateau")
     public static Biome HIGHLAND_PLATEAU;

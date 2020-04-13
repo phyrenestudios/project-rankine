@@ -1,0 +1,215 @@
+{
+  "parent": "rankine:story/rankine",
+  "display": {
+    "icon": {
+      "item": "rankine:wadsleyite"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.rock_collector.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.rock_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rankine:granite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:granite"
+          }
+        ]
+      }
+    },
+    "rankine:andesite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:andesite"
+          }
+        ]
+      }
+    },
+    "rankine:diorite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:diorite"
+          }
+        ]
+      }
+    },
+    "rankine:limestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:limestone"
+          }
+        ]
+      }
+    },
+    "rankine:shale": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:shale"
+          }
+        ]
+      }
+    },
+    "rankine:gneiss": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gneiss"
+          }
+        ]
+      }
+    },
+    "rankine:marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:marble"
+          }
+        ]
+      }
+    },
+    "rankine:basalt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:basalt"
+          }
+        ]
+      }
+    },
+    "rankine:peridotite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:peridotite"
+          }
+        ]
+      }
+    },
+    "rankine:kimberlite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:kimberlite"
+          }
+        ]
+      }
+    },
+    "rankine:komatiite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:komatiite"
+          }
+        ]
+      }
+    },
+    "rankine:ringwoodite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ringwoodite"
+          }
+        ]
+      }
+    },
+    "rankine:wadsleyite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:wadsleyite"
+          }
+        ]
+      }
+    },
+    "rankine:ferropericlase": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ferropericlase"
+          }
+        ]
+      }
+    },
+    "rankine:perovskite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:perovskite"
+          }
+        ]
+      }
+    },
+    "rankine:rhyolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rhyolite"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rankine:rhyolite"
+    ], [
+      "rankine:granite"
+    ], [
+      "rankine:diorite"
+    ], [
+      "rankine:andesite"
+    ], [
+      "rankine:limestone"
+    ], [
+      "rankine:shale"
+    ], [
+      "rankine:gneiss"
+    ], [
+      "rankine:marble"
+    ], [
+      "rankine:basalt"
+    ], [
+      "rankine:peridotite"
+    ], [
+      "rankine:kimberlite"
+    ], [
+      "rankine:komatiite"
+    ], [
+      "rankine:ringwoodite"
+    ], [
+      "rankine:wadsleyite"
+    ], [
+      "rankine:ferropericlase"
+    ], [
+      "rankine:perovskite"
+    ]
+  ]
+}

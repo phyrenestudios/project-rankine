@@ -15,7 +15,6 @@ public class FineryForgeRecipes {
     }
 
     public ItemStack getResult(ItemStack input1) {
-
         if ((input1.getItem() == ModItems.PIG_IRON_INGOT)) {
             return new ItemStack(ModItems.BLOOM_IRON, 1);
         }

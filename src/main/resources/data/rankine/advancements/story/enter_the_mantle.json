@@ -1,0 +1,31 @@
+{
+  "parent": "rankine:story/make_steel_alloy",
+  "display": {
+    "icon": {
+      "item": "rankine:peridotite"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.enter_the_mantle.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.enter_the_mantle.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "entered_mantle": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "rankine:mantle"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entered_mantle"
+    ]
+  ]
+}

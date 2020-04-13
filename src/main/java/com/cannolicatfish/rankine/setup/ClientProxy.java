@@ -86,6 +86,7 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.SUBBITUMINOUS_ORE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.TANTALITE_ORE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.WOLFRAMITE_ORE, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.VANADINITE_ORE, RenderType.getCutoutMipped());
 
         RenderTypeLookup.setRenderLayer(ModBlocks.CAST_IRON_BEAM, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CAST_IRON_PIPE, RenderType.getCutoutMipped());
@@ -110,7 +111,6 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_SAPLING, RenderType.getCutout());
 
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.FELSENMEER,10));
-        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(ModBiomes.OASIS,1));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.HIGHLAND_PLATEAU,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.PINYON_JUNIPER_WOODLANDS,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.CEDAR_FOREST,10));

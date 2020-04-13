@@ -1,4 +1,5 @@
 package com.cannolicatfish.rankine;
+import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.AtomizeEnchantment;
 import com.cannolicatfish.rankine.enchantment.BlastEnchantment;
 import com.cannolicatfish.rankine.blocks.*;
@@ -16,9 +17,6 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
-import com.cannolicatfish.rankine.client.renders.BeaverRenderer;
-import com.cannolicatfish.rankine.client.renders.DesmoxyteRenderer;
-import com.cannolicatfish.rankine.client.renders.MantleGolemRenderer;
 import com.cannolicatfish.rankine.dimension.MantleBiome;
 import com.cannolicatfish.rankine.dimension.MantleModDimension;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
@@ -28,7 +26,6 @@ import com.cannolicatfish.rankine.items.alloys.AlloySword;
 import com.cannolicatfish.rankine.world.biome.*;
 import com.cannolicatfish.rankine.dimension.ModDimensions;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
-import com.cannolicatfish.rankine.client.renders.SpearRenderFactory;
 import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.tools.*;
@@ -151,7 +148,7 @@ public class ProjectRankine {
             event.getRegistry().register(new Block(Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"clay_bricks"));
             event.getRegistry().register(new SandyDirtBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName(ProjectRankine.MODID,"sandy_dirt"));
             event.getRegistry().register(new NoduleBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"limestone_nodule"));
-            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"vanadinite_ore"));
+            event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"vanadinite_ore"));
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.ALUMINUM_NUGGET).setRegistryName(ProjectRankine.MODID,"bauxite_ore"));
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.COPPER_NUGGET).setRegistryName(ProjectRankine.MODID,"malachite_ore"));
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.TIN_NUGGET).setRegistryName(ProjectRankine.MODID,"cassiterite_ore"));
@@ -637,7 +634,7 @@ public class ProjectRankine {
             event.getRegistry().register(new ItemKnife(RankineToolMaterials.FLINT, 1, -2F, (new Item.Properties()).maxDamage(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"flint_knife"));
             event.getRegistry().register(new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_sword"));
             event.getRegistry().register(new ShovelItem(RankineToolMaterials.BRONZE, 1.5F, -3.0F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_shovel"));
-            event.getRegistry().register(new AlloyPickaxe(RankineToolMaterials.BRONZE, 1, -2.8F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_pickaxe"));
+            event.getRegistry().register(new PickaxeItem(RankineToolMaterials.BRONZE, 1, -2.8F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_pickaxe"));
             //event.getRegistry().register(new ProspectingPickaxe(RankineToolMaterials.BRONZE, 1, -3F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_prospecting_pickaxe"));
             event.getRegistry().register(new AxeItem(RankineToolMaterials.BRONZE, 4.0F, -3.2F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_axe"));
             event.getRegistry().register(new HoeItem(RankineToolMaterials.BRONZE, -2.0F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bronze_hoe"));
@@ -680,8 +677,14 @@ public class ProjectRankine {
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"tungsten_nugget"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"zinc_nugget"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"overworld_core"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"beaver_pelt"));
             event.getRegistry().register(new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "mantle_golem_egg"));
+            event.getRegistry().register(new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "diamond_mantle_golem_egg"));
+            event.getRegistry().register(new SpawnEggItem(ModEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "peridot_mantle_golem_egg"));
             event.getRegistry().register(new SpawnEggItem(ModEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "desmoxyte_spawn_egg"));
+            event.getRegistry().register(new SpawnEggItem(ModEntityTypes.DEMONYTE,0x161617, 0x512259,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "demonyte_spawn_egg"));
+            event.getRegistry().register(new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "dragonyte_spawn_egg"));
+            event.getRegistry().register(new SpawnEggItem(ModEntityTypes.STEAMER,0xE7E7E7, 0x6B0000,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "steamer_spawn_egg"));
             event.getRegistry().register(new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "beaver_spawn_egg"));
         }
 
@@ -703,7 +706,12 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.IRON_SPEAR);
             event.getRegistry().register(ModEntityTypes.STEEL_SPEAR);
             event.getRegistry().register(ModEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
+            event.getRegistry().register(ModEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
+            event.getRegistry().register(ModEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
+            event.getRegistry().register(ModEntityTypes.STEAMER.setRegistryName(ProjectRankine.MODID,"steamer"));
             event.getRegistry().register(ModEntityTypes.DESMOXYTE.setRegistryName(ProjectRankine.MODID,"desmoxyte"));
+            event.getRegistry().register(ModEntityTypes.DEMONYTE.setRegistryName(ProjectRankine.MODID,"demonyte"));
+            event.getRegistry().register(ModEntityTypes.DRAGONYTE.setRegistryName(ProjectRankine.MODID,"dragonyte"));
             event.getRegistry().register(ModEntityTypes.BEAVER.setRegistryName(ProjectRankine.MODID,"beaver"));
         }
 
@@ -715,7 +723,12 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEEL_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PERIDOT_MANTLE_GOLEM,PeridotMantleGolemRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEAMER,SteamerRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DESMOXYTE, DesmoxyteRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DEMONYTE, DemonyteRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEAVER, BeaverRenderer.instance);
         }
         @SubscribeEvent
@@ -767,7 +780,6 @@ public class ProjectRankine {
             event.getRegistry().register(new MantleBiome().setRegistryName(ModBiomes.BIOME_ID));
             event.getRegistry().register(new PinyonJuniperWoodlandBiome().setRegistryName(ProjectRankine.MODID,"pinyon_juniper_woodlands"));
             event.getRegistry().register(new CedarForestBiome().setRegistryName(ProjectRankine.MODID,"cedar_forest"));
-            event.getRegistry().register(new OasisBiome().setRegistryName(ProjectRankine.MODID,"oasis"));
             event.getRegistry().register(new HighlandPlateauBiome().setRegistryName(ProjectRankine.MODID,"highland_plateau"));
             event.getRegistry().register(new FelsenmeerBiome().setRegistryName(ProjectRankine.MODID,"felsenmeer"));
         }

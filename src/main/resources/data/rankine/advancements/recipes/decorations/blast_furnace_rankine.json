@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:smooth_stone"
+            "tag": "rankine:smooth_stone"
           }
         ]
       }

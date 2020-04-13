@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:peridotite"
+  },
+  "result": "rankine:smooth_peridotite",
+  "experience": 0.1,
+  "cookingtime": 200
+}

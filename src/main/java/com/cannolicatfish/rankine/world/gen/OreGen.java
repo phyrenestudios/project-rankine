@@ -30,7 +30,7 @@ public class OreGen {
         addCrystal();
 
 
-        intrusionGenDef(ModBlocks.KIMBERLITE, Collections.emptyList(),false,0, 35, .05f);
+        intrusionGenDef(ModBlocks.KIMBERLITE, Collections.emptyList(),false,0, 25, .05f);
 
         replaceGenDef(Blocks.RED_SANDSTONE, Collections.singletonList(Biome.Category.MESA), true, 61, 80);
         replaceGenDef(ModBlocks.GNEISS, Arrays.asList(Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), true, 0, 10);
@@ -47,38 +47,39 @@ public class OreGen {
 
 
 
-        chunkGenDef(ModBlocks.NATIVE_COPPER_ORE, Arrays.asList(0,1,2,3,4),15,1F,51,70, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE);
-        chunkGenDef(ModBlocks.NATIVE_TIN_ORE, Arrays.asList(0,1,2,3,4),15,1F,51,70, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE);
-        chunkGenDef(ModBlocks.NATIVE_COPPER_ORE, Arrays.asList(0,1,2,3,4),15,1F,71,128, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_HIGH);
-        chunkGenDef(ModBlocks.NATIVE_TIN_ORE, Arrays.asList(0,1,2,3,4),15,1F,71,128, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_HIGH);
-        chunkGenDef(ModBlocks.NATIVE_GOLD_ORE, Arrays.asList(0,1,2,3,4,5),15,.5F,11,128, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_GOLD);
-        chunkGenDef(ModBlocks.MAGNETITE_ORE, Arrays.asList(0,1,2,3,4,5),50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.ONEFIVE);
-        chunkGenDef(ModBlocks.MALACHITE_ORE, Arrays.asList(0,1,2,3,4,5),50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.ONEFIVE);
-        chunkGenDef(ModBlocks.CASSITERITE_ORE, Arrays.asList(0,1,2,3,4,5),50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.ONEFIVE);
-        chunkGenDef(ModBlocks.SPHALERITE_ORE, Arrays.asList(0,1,2,3,4,5),50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.ONEFIVE);
-        chunkGenDef(ModBlocks.BAUXITE_ORE, Arrays.asList(0,1,2,3,4,5),50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.PENTLANDITE_ORE,Arrays.asList(0,1,2,3,4,5), 50, 0.05F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.MAGNESITE_ORE,Arrays.asList(0,1,2,3,4,5), 50, 0.05F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.GALENA_ORE,Arrays.asList(0,1,2,3,4,5), 50, 0.05F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.ACANTHITE_ORE,Arrays.asList(0,1,2,3,4,5), 40, 0.05F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.BISMITE_ORE,Arrays.asList(0,1,2,3,4,5), 40, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.PYROLUSITE_ORE,Arrays.asList(0,1,2,3,4,5), 40, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.CINNABAR_ORE,Arrays.asList(0,1,2,3,4,5), 30, 0.2F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.LIGNITE_ORE,Arrays.asList(0,1,2,3,4), 30, 0.5F, 51, 128, RankineOreFeatureConfig.RankineFillerBlockType.ONEFOUR);
-        chunkGenDef(ModBlocks.SUBBITUMINOUS_ORE,Arrays.asList(0,1,2,3,4), 25, 0.5F, 31, 50, RankineOreFeatureConfig.RankineFillerBlockType.ONEFOUR);
-        chunkGenDef(ModBlocks.BITUMINOUS_ORE,Arrays.asList(0,1,2,3,4,5), 20, 0.5F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.LAZURITE_ORE,Arrays.asList(0,1,2,3,4,5), 20, 0.1F, 31, 128, RankineOreFeatureConfig.RankineFillerBlockType.ONEFIVE);
-        chunkGenDef(ModBlocks.EMERALD_ORE,Arrays.asList(0,1,2,3,4,5), 15, 0.15F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.ONESIX);
-        chunkGenDef(ModBlocks.CHROMITE_ORE,Arrays.asList(7,8), 15, 0.02F, 0, 10, RankineOreFeatureConfig.RankineFillerBlockType.SEVENEIGHT);;
+        chunkGenDef(ModBlocks.NATIVE_COPPER_ORE,15,1F,51,70, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_LOW);
+        chunkGenDef(ModBlocks.NATIVE_TIN_ORE,15,1F,51,70, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_LOW);
+        chunkGenDef(ModBlocks.NATIVE_COPPER_ORE,15,1F,71,128, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_HIGH);
+        chunkGenDef(ModBlocks.NATIVE_TIN_ORE,15,1F,71,128, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_HIGH);
+        chunkGenDef(ModBlocks.NATIVE_GOLD_ORE,15,.5F,11,128, RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_GOLD);
+        chunkGenDef(ModBlocks.MAGNETITE_ORE,50,0.1F,0,70, RankineOreFeatureConfig.RankineFillerBlockType.OW_MARBLE_NOTOP);
+        chunkGenDef(ModBlocks.MALACHITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_BASIC_B);
+        chunkGenDef(ModBlocks.CASSITERITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_BASIC_B);
+        chunkGenDef(ModBlocks.BAUXITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_BASIC_B);
+        chunkGenDef(ModBlocks.SPHALERITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.MAGNESITE_ORE, 30, 0.07F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.PENTLANDITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.GALENA_ORE, 40, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.ACANTHITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.PYROLUSITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.CINNABAR_ORE, 30, 0.2F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_IGNEOUS);
+        chunkGenDef(ModBlocks.LIGNITE_ORE, 30, 0.5F, 51, 128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_BASIC);
+        chunkGenDef(ModBlocks.SUBBITUMINOUS_ORE, 25, 0.5F, 31, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_BASIC);
+        chunkGenDef(ModBlocks.BITUMINOUS_ORE, 20, 0.5F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.LAZURITE_ORE, 20, 0.1F, 31, 128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_BASIC_B);
+        chunkGenDef(ModBlocks.EMERALD_ORE, 15, 0.15F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkGenDef(ModBlocks.PLUMBAGO_ORE, 8, 0.10F, 0, 11, RankineOreFeatureConfig.RankineFillerBlockType.MARBLE);
 
-        rockGenDef(ModBlocks.LIMESTONE_NODULE.getDefaultState(),Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false, ModBlocks.LIMESTONE,6,10,31,70);
-        rockGenDef(ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),Collections.emptyList(),false, ModBlocks.KIMBERLITE,5,3,0,35);
-        rockGenDef(ModBlocks.VANADINITE_ORE.getDefaultState(),Collections.emptyList(),false, ModBlocks.GALENA_ORE,8,1,31,50);
+        rockGenDef(ModBlocks.LIMESTONE_NODULE.getDefaultState(),Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false, ModBlocks.LIMESTONE.getDefaultState(),6,10,31,70);
+        rockGenDef(ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),Collections.emptyList(),false, ModBlocks.KIMBERLITE.getDefaultState(),5,3,0,25);
+        rockGenDef(ModBlocks.VANADINITE_ORE.getDefaultState().with(RankineOre.TYPE,4),Collections.emptyList(),false, ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,4),8,1,31,50);
+        rockGenDef(ModBlocks.BISMITE_ORE.getDefaultState().with(RankineOre.TYPE,1),Collections.emptyList(),false, ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,1),8,1,11,50);
+        rockGenDef(Blocks.CLAY.getDefaultState(),Collections.emptyList(),false, Blocks.DIRT.getDefaultState(),10,1,55,70);
     }
 
 
 
-    private static void rockGenDef(BlockState block, List<Biome.Category> biomes, boolean genType, Block replace, int veinSize, int count, int minHeight, int maxHeight)
+    private static void rockGenDef(BlockState block, List<Biome.Category> biomes, boolean genType, BlockState replace, int veinSize, int count, int minHeight, int maxHeight)
     {
         final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig::deserialize,replace);
         for (Biome biome : ForgeRegistries.BIOMES) {
@@ -145,7 +146,7 @@ public class OreGen {
 
     }
 
-    private static void chunkGenDef(RankineOre block, List<Integer> rocksSpawn, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
+    private static void chunkGenDef(RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE) {
                     biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, RANKINE_ORE.withConfiguration(

@@ -15,6 +15,10 @@ public class MantleGolemEntity extends IronGolemEntity {
         super(type, worldIn);
     }
 
+    @Override
+    protected boolean isDespawnPeaceful() {
+        return true;
+    }
 
     @Override
     protected void registerGoals() {
@@ -34,7 +38,7 @@ public class MantleGolemEntity extends IronGolemEntity {
         if (this.isPlayerCreated() && typeIn == EntityType.PLAYER) {
             return true;
         } else {
-            return typeIn == EntityType.CREEPER ? false : super.canAttack(typeIn);
+            return typeIn != EntityType.CREEPER && typeIn != ModEntityTypes.DESMOXYTE && typeIn != ModEntityTypes.DIAMOND_MANTLE_GOLEM && typeIn != ModEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttack(typeIn);
         }
     }
 

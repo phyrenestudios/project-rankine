@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 
 public class MantleDimension extends Dimension {
 
-
     public MantleDimension(World worldIn, DimensionType typeIn) {
         super(worldIn, typeIn, 0.0f);
     }

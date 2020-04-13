@@ -16,12 +16,12 @@
     "background": "rankine:textures/gui/advancements/backgrounds/refractory.png"
   },
   "criteria": {
-    "rope": {
+    "get_flint": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "patchouli:guide_book"
+            "item": "minecraft:flint"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "rope"
+      "get_flint"
     ]
   ]
 }

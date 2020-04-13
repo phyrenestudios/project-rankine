@@ -20,6 +20,16 @@ public class MantleWorldCarver extends CaveWorldCarver {
 
     @Override
     protected int generateCaveStartY(Random p_222726_1_) {
-        return p_222726_1_.nextInt(p_222726_1_.nextInt(248) + 8);
+        return p_222726_1_.nextInt(p_222726_1_.nextInt(252) + 3);
+    }
+
+    @Override
+    protected float generateCaveRadius(Random p_222722_1_) {
+        float lvt_2_1_ = p_222722_1_.nextFloat() * 8.0F + p_222722_1_.nextFloat();
+        if (p_222722_1_.nextInt(10) == 0) {
+            lvt_2_1_ *= p_222722_1_.nextFloat() * p_222722_1_.nextFloat() * 3.0F + 1.0F;
+        }
+
+        return lvt_2_1_;
     }
 }

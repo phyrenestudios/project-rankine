@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_refractory_brick",
+  "display": {
+    "icon": {
+      "item": "rankine:alloy_furnace"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_alloy_furnace.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_alloy_furnace.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "alloy_furnace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:alloy_furnace"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "alloy_furnace"
+    ]
+  ]
+}

@@ -225,7 +225,7 @@ public class BeaverEntity extends AnimalEntity {
          * method as well.
          */
         public boolean shouldExecute() {
-            return !BeaverEntity.this.isSleeping() && super.shouldExecute();
+            return !BeaverEntity.this.isSleeping() && BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).isEmpty() && super.shouldExecute();
         }
 
         /**

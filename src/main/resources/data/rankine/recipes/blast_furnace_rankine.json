@@ -10,7 +10,7 @@
       "item": "rankine:bronze_alloy"
     },
     "s": {
-      "item": "minecraft:smooth_stone"
+      "tag": "rankine:smooth_stone"
     },
     "f": {
       "item": "minecraft:furnace"

@@ -36,6 +36,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.PistonEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -81,6 +82,13 @@ public class RankineEventHandler {
             event.setNewSpeed(0f);
         }
     }
+
+    @SubscribeEvent
+    public static void portalModified(BlockEvent.PortalSpawnEvent event)
+    {
+        event.setCanceled(true);
+    }
+
 
     @SubscribeEvent
     public static void onPistonCrush(PistonEvent event)

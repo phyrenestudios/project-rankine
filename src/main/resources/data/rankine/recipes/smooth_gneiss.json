@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:gneiss"
+  },
+  "result": "rankine:smooth_gneiss",
+  "experience": 0.1,
+  "cookingtime": 200
+}

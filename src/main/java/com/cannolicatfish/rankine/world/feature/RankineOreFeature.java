@@ -117,7 +117,7 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                         if (!bitset.get(k2)) {
                                             bitset.set(k2);
                                             blockpos$mutableblockpos.setPos(l1, i2, j2);
-                                            if (config.target.func_214738_b().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
+                                            if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.STONE)
                                                 {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,0), 2);

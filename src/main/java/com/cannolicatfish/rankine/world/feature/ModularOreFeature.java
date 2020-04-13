@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.feature;
 
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.util.math.BlockPos;
@@ -16,8 +17,8 @@ import java.util.function.Function;
 
 public class ModularOreFeature extends OreFeature {
 
-    private Block target;
-    public ModularOreFeature(Function<Dynamic<?>, ? extends OreFeatureConfig> configFactoryIn, Block target) {
+    private BlockState target;
+    public ModularOreFeature(Function<Dynamic<?>, ? extends OreFeatureConfig> configFactoryIn, BlockState target) {
         super(configFactoryIn);
         this.target = target;
     }
@@ -88,7 +89,7 @@ public class ModularOreFeature extends OreFeature {
                                         if (!bitset.get(k2)) {
                                             bitset.set(k2);
                                             blockpos$mutable.setPos(l1, i2, j2);
-                                            if (worldIn.getBlockState(blockpos$mutable).getBlock() == target) {
+                                            if (worldIn.getBlockState(blockpos$mutable) == target) {
                                                 worldIn.setBlockState(blockpos$mutable, config.state, 2);
                                                 ++i;
                                             }

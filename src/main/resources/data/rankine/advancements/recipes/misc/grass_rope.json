@@ -7,9 +7,13 @@
   },
   "criteria": {
     "found_grass1": {
-      "trigger": "minecraft:enter_block",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "block": "minecraft:grass"
+        "items": [
+          {
+            "item": "minecraft:grass"
+          }
+        ]
       }
     },
     "knife_used": {

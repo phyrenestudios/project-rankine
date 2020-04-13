@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:alloy_furnace"
+    ]
+  },
+  "criteria": {
+    "has_refractory_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:refractory_brick"
+          }
+        ]
+      }
+    },
+    "has_furnace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:furnace"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:alloy_furnace"
+      }
+    }
+  },
+
+  "requirements": [
+    [
+      "has_refractory_brick",
+      "has_furnace",
+      "has_the_recipe"
+    ]
+  ]
+}
