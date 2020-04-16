@@ -207,8 +207,11 @@
     ], [
       "rankine:wadsleyite"
     ], [
+      "rankine:bridgmanite"
+    ],[
       "rankine:ferropericlase"
-    ], [
+    ],
+    [
       "rankine:perovskite"
     ]
   ]

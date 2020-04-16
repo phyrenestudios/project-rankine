@@ -21,9 +21,6 @@ public class ModItems {
     @ObjectHolder("rankine:sphagnum_moss")
     public static Item SPHAGNUM_MOSS;
 
-    @ObjectHolder("rankine:rankine_journal")
-    public static Item RANKINE_JOURNAL;
-
     @ObjectHolder("rankine:copper_ingot")
     public static Item COPPER_INGOT;
 

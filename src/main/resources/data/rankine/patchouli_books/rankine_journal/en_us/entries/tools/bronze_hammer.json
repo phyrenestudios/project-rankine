@@ -1,0 +1,15 @@
+{
+  "name": "Bronze Hammer",
+  "icon": "rankine:bronze_hammer",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:bronze_hammer"
+    }
+  ]
+}

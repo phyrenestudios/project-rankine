@@ -1,0 +1,16 @@
+{
+  "name": "Ringwoodite",
+  "icon": "rankine:ringwoodite",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Ringwoodite is a blue rock.$(br2)Found in the Mantle between y61 and y120.$(br2)Classification: Mantle"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:ringwoodite",
+	  "item2": "rankine:Olivine"
+    }
+  ]
+}

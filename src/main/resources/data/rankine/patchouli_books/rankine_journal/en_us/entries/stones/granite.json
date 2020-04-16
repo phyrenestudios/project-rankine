@@ -1,0 +1,16 @@
+{
+  "name": "Granite",
+  "icon": "rankine:granite",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Granite is a pinkish rock.$(br2)Found in continental biomes of the Overworld between y31 and y50.$(br2)Classification: Igneous"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:granite",
+	  "item2": "rankine:feldspar"
+    }
+  ]
+}

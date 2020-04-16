@@ -1,0 +1,15 @@
+{
+  "name": "Steel Spear",
+  "icon": "rankine:steel_spear",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The steel spear.$(br2)Stats:$(li)Weapon Class: Mixed"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:steel_spear"
+    }
+  ]
+}

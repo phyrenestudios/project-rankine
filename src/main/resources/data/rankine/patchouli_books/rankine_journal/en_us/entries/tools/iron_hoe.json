@@ -1,0 +1,15 @@
+{
+  "name": "Iron Hoe",
+  "icon": "rankine:iron_hoe",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The iron hoe$(br2)Stats:$(li)"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:iron_hoe"
+    }
+  ]
+}

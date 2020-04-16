@@ -92,7 +92,7 @@ public class PistonCrusherRecipes {
             return new Pair<>(new ItemStack(ModItems.TIN_OXIDE), new Float[]{1f,0f});
         }
         if (input1.getItem() == new ItemStack(ModBlocks.SPHALERITE_ORE).getItem()) {
-            return new Pair<>(new ItemStack(ModItems.NICKEL_SULFIDE), new Float[]{1f,0f});
+            return new Pair<>(new ItemStack(ModItems.ZINC_SULFIDE), new Float[]{1f,0f});
         }
         if (input1.getItem() == new ItemStack(ModBlocks.CINNABAR_ORE).getItem()) {
             return new Pair<>(new ItemStack(Items.REDSTONE), new Float[]{4f, 0f});
@@ -102,6 +102,9 @@ public class PistonCrusherRecipes {
         }
         if (input1.getItem() == new ItemStack(ModBlocks.ILMENITE_ORE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.TITANIA), new Float[]{1f,0f});
+        }
+        if (input1.getItem() == new ItemStack(ModBlocks.PENTLANDITE_ORE).getItem()) {
+            return new Pair<>(new ItemStack(ModItems.NICKEL_SULFIDE), new Float[]{1f,0f});
         }
         if (input1.getItem() == new ItemStack(ModBlocks.GALENA_ORE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.LEAD_SULFIDE), new Float[]{1f,0f});

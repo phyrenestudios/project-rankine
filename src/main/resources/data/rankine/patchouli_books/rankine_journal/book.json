@@ -1,6 +1,6 @@
 {
   "name": "Rankine's Journal",
-  "landing_text": "A log of the world.",
+  "landing_text": "A scattering of nonsense. Yet pieced together, it makes sense. Almost.",
   "version": 1,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",

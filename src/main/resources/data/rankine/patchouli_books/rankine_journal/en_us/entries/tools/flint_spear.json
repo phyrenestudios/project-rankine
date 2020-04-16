@@ -1,0 +1,15 @@
+{
+  "name": "Flint Spear",
+  "icon": "rankine:flint_spear",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The flint spear is a sharp stone on a sharp stick. A good starter weapon. Best to have multiple.$(br2)Stats:$(li)Weapon Class: Mixed$(li)Damage: Depends"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_spear"
+    }
+  ]
+}

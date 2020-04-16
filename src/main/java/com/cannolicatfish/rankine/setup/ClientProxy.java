@@ -32,6 +32,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ModBlocks.FINERY_FORGE_CONTAINER, FineryForgeScreen::new);
         ScreenManager.registerFactory(ModBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
 
+        /*
         BlockColors blockColors = Minecraft.getInstance().getBlockColors();
         blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) -> {
             return p_210229_1_ != null && p_210229_2_ != null ? BiomeColors.getFoliageColor(p_210229_1_, p_210229_2_) : FoliageColors.getDefault();
@@ -53,6 +54,8 @@ public class ClientProxy implements IProxy {
             return blockColors.getColor(blockstate, (ILightReader)null, (BlockPos)null, p_210235_2_);
         }, ModBlocks.COCONUT_PALM_LEAVES, ModBlocks.PINYON_PINE_LEAVES, ModBlocks.CEDAR_LEAVES, ModBlocks.JUNIPER_LEAVES);
         net.minecraftforge.client.ForgeHooksClient.onItemColorsInit(itemColors, blockColors);
+
+         */
 
         RenderTypeLookup.setRenderLayer(ModBlocks.ACANTHITE_ORE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.ANTHRACITE_ORE, RenderType.getCutoutMipped());
@@ -88,12 +91,14 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.WOLFRAMITE_ORE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.VANADINITE_ORE, RenderType.getCutoutMipped());
 
+        /*
         RenderTypeLookup.setRenderLayer(ModBlocks.CAST_IRON_BEAM, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CAST_IRON_PIPE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CAST_IRON_PIPE_JUNCTION, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.BRASS_PIPE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CONCRETE_PIPE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CONCRETE_PIPE_JUNCTION, RenderType.getCutoutMipped());
+         */
         RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_YUCCA_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SPHAGNUM_MOSS, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.ELDERBERRY_BUSH, RenderType.getCutoutMipped());

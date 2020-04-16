@@ -1,0 +1,15 @@
+{
+  "name": "Bronze Spear",
+  "icon": "rankine:bronze_spear",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The bronze spear.!$(br2)Stats:$(li)Weapon Class: Mixed"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:bronze_spear"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Bronze Shovel",
+  "icon": "rankine:bronze_shovel",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:bronze_shovel"
+    }
+  ]
+}

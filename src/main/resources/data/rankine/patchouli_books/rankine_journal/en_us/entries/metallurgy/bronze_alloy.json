@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Alloy Furnace: Made by alloying 8 $(l:copper)Copper Ingots$() and 2 $(l:tin)Tin Ingots$()."
+      "text": "Alloy Furnace: $(li)8 $(l:29_copper)Copper Ingots $(li)2 $(l:50_tin)Tin Ingots"
     }
   ]
 }

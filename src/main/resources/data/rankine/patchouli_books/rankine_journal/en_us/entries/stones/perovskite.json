@@ -1,0 +1,16 @@
+{
+  "name": "Perovskite",
+  "icon": "rankine:perovskite",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Perovskite is a pinkish rock.$(br2)Found in the Mantle between y0 and y60.$(br2)Classification: Mantle"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:perovskite",
+	  "item2": "rankine:pyroxene"
+    }
+  ]
+}

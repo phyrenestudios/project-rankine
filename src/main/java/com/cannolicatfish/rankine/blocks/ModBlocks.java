@@ -205,6 +205,7 @@ public class ModBlocks {
     @ObjectHolder("rankine:alloy_furnace")
     public static TileEntityType<AlloyFurnaceTile> ALLOYFURNACE_TILE;
 
+    /*
     @ObjectHolder("rankine:brass_pipe")
     public static PipeBlock BRASS_PIPE;
 
@@ -222,6 +223,7 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:cast_iron_beam")
     public static SupportBlock CAST_IRON_BEAM;
+     */
 
     @ObjectHolder("rankine:refractory_bricks")
     public static Block REFRACTORY_BRICKS;

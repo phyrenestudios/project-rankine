@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": [
+      {
+        "item": "rankine:bituminous_coal"
+      }
+    ]
+  },
+  "result": {
+    "item": "minecraft:torch",
+    "count": 6
+  }
+}

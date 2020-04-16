@@ -1,0 +1,16 @@
+{
+  "name": "Shale",
+  "icon": "rankine:shale",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Shale is a blackish rock.$(br2)Found in watery biomes of the Overworld between y51 and y70.$(br2)Classification: Sedimentary"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:shale",
+	  "item2": "minecraft:clay_ball"
+    }
+  ]
+}

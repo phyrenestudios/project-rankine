@@ -1,0 +1,15 @@
+{
+  "name": "Bronze Hoe",
+  "icon": "rankine:bronze_hoe",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The bronze hoe.$(br2)Stats:$(li)"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:bronze_hoe"
+    }
+  ]
+}

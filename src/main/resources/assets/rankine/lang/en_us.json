@@ -229,6 +229,7 @@
   "item.rankine.platinum_ingot": "Platinum Ingot",
   "item.rankine.tungsten_ingot": "Tungsten Ingot",
   "item.rankine.zinc_ingot": "Zinc Ingot",
+  "item.rankine.arsenic_ingot": "Arsenic Ingot",
   "item.rankine.pig_iron_ingot": "Pig Iron Ingot",
   "item.rankine.wrought_iron_ingot": "Wrought Iron Ingot",
   "item.rankine.cast_iron_ingot": "Cast Iron Alloy Ingot",
@@ -376,6 +377,7 @@
   "item.rankine.titanium_nugget": "Titanium Nugget",
   "item.rankine.tungsten_nugget": "Tungsten Nugget",
   "item.rankine.zinc_nugget": "Zinc Nugget",
+  "item.rankine.element": "Element",
   "item.rankine.beaver_pelt": "Beaver Pelt",
   "item.rankine.mantle_golem_egg": "Garnet Mantle Golem Spawn Egg",
   "entity.rankine.mantle_golem": "Garnet Mantle Golem",
@@ -402,6 +404,8 @@
   "rankine.advancements.story.root.description": "Begin delving into the changed world",
   "rankine.advancements.story.gather_rope.title": "Knot Likely",
   "rankine.advancements.story.gather_rope.description": "Gather rope by obtaining a flint knife and harvesting grass",
+  "rankine.advancements.story.get_flint_axe.title": "Hard Wood",
+  "rankine.advancements.story.get_flint_axe.description": "Make a Flint Handaxe to harvest wood early and more easily",
   "rankine.advancements.story.get_flint_tools.title": "Sharp Beginnings",
   "rankine.advancements.story.get_flint_tools.description": "Construct a Flint Pickaxe to begin mining",
   "rankine.advancements.story.get_flint_spear.title": "Getting the Point",
@@ -433,6 +437,6 @@
   "rankine.advancements.story.enter_the_mantle.title": "The Mantlorian",
   "rankine.advancements.story.enter_the_mantle.description": "Build a Heart of the Mantle and interact with it while standing on it",
   "rankine.advancements.story.rock_collector.title": "We Have the Rockiest Rocks",
-  "rankine.advancements.story.rock_collector.description": "Have each of the 16 new rocks in your inventory"
+  "rankine.advancements.story.rock_collector.description": "Have each of the 17 new rocks in your inventory"
 
 }

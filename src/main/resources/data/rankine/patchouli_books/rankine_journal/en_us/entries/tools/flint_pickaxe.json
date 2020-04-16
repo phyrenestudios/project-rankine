@@ -1,0 +1,15 @@
+{
+  "name": "Flint Pickaxe",
+  "icon": "rankine:flint_pickaxe",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The flint pickaxe is the first stone breaking device that you can craft. Albeit fragile, it can mine the necesary materials for advancing.$(br2)Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_pickaxe"
+    }
+  ]
+}

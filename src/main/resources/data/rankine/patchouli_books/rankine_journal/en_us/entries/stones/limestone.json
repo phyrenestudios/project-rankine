@@ -1,0 +1,16 @@
+{
+  "name": "Limestone",
+  "icon": "rankine:limestone",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Limestone is a tanish rock.$(br2)Found in continental biomes of the Overworld between y51 and y70 and in oceanic biomes of the Overworld between y31 and y50.$(br2)Classification: Sedimentary"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:limestone",
+	  "item2": "rankine:calcite"
+    }
+  ]
+}

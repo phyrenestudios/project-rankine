@@ -1,0 +1,15 @@
+{
+  "name": "Bronze Sword",
+  "icon": "rankine:bronze_sword",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The bronze sword.$(br2)Stats:$(li)Weapon Class: Melee"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:bronze_sword"
+    }
+  ]
+}

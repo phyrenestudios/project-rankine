@@ -1,0 +1,15 @@
+{
+  "name": "Steel Axe",
+  "icon": "rankine:steel_axe",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The steel axe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:steel_axe"
+    }
+  ]
+}

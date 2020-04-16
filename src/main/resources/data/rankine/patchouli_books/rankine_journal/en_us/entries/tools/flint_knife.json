@@ -1,0 +1,15 @@
+{
+  "name": "Flint Knife",
+  "icon": "rankine:flint_knife",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The flint knife is one sharp stone. Sharp enough to cut through flesh, bone, grass, you name it!$(br2)Stats:$(li)Weapon Class: Melee$(li)Damage: TBD"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_knife"
+    }
+  ]
+}

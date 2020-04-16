@@ -1,0 +1,15 @@
+{
+  "name": "Steel Sword",
+  "icon": "rankine:steel_sword",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The steel sword.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:steel_sword"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Ferropericlase",
+  "icon": "rankine:ferropericlase",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Ferropericlase is a whiteish rock.$(br2)Found in the Mantle between y0 and y40.$(br2)Classification: Mantle"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:ferropericlase",
+	  "item2": "rankine:iron_oxide"
+    }
+  ]
+}

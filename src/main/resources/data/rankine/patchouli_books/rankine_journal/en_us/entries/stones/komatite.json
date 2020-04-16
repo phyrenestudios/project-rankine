@@ -1,0 +1,16 @@
+{
+  "name": "Komatite",
+  "icon": "rankine:komatite",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Komatite is a redish rock.$(br2)Found in the Mantle between y101 and y160.$(br2)Classification: Igneous"
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:komatite",
+	  "item2": "rankine:pyroxene"
+    }
+  ]
+}
