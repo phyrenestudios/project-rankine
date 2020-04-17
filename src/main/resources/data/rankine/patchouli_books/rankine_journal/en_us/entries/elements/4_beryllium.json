@@ -1,0 +1,11 @@
+{
+  "name": "Element 004: Beryllium",
+  "icon": "rankine:element",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Significant data has yet to be encountered."
+    }
+  ]
+}

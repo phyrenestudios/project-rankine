@@ -1,7 +1,7 @@
 {
   "name": "Limestone",
   "icon": "rankine:limestone",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

@@ -1,0 +1,15 @@
+{
+  "name": "Finery Forge",
+  "icon": "rankine:finery_forge",
+  "category": "machines",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to make sponge iron and wrought iron. Requires fuel and a redstone signal."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:finery_forge"
+    }
+  ]
+}

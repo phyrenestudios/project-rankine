@@ -1,7 +1,7 @@
 {
   "name": "Peridotite",
   "icon": "rankine:peridotite",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

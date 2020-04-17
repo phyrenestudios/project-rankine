@@ -1,7 +1,7 @@
 {
   "name": "Perovskite",
   "icon": "rankine:perovskite",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

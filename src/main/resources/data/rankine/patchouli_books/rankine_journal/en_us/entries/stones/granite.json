@@ -1,7 +1,7 @@
 {
   "name": "Granite",
   "icon": "rankine:granite",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

@@ -11,9 +11,6 @@ import com.cannolicatfish.rankine.blocks.crucible.Crucible;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnace;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
@@ -21,7 +18,6 @@ import com.cannolicatfish.rankine.dimension.MantleBiome;
 import com.cannolicatfish.rankine.dimension.MantleModDimension;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyPickaxe;
 import com.cannolicatfish.rankine.items.alloys.AlloySword;
 import com.cannolicatfish.rankine.world.biome.*;
 import com.cannolicatfish.rankine.dimension.ModDimensions;
@@ -39,7 +35,6 @@ import com.cannolicatfish.rankine.world.gen.TreeGen;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -186,7 +181,6 @@ public class ProjectRankine {
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"diamond_ore"));
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"emerald_ore"));
             event.getRegistry().register(new PistonCrusher());
-            event.getRegistry().register(new InductionFurnace());
             event.getRegistry().register(new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"granite"));
             event.getRegistry().register(new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"andesite"));
             event.getRegistry().register(new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"diorite"));
@@ -352,11 +346,10 @@ public class ProjectRankine {
             event.getRegistry().register(new BlockItem(ModBlocks.WROUGHT_IRON_SHEETMETAL,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"wrought_iron_sheetmetal"));
             event.getRegistry().register(new BlockItem(ModBlocks.STEEL_SHEETMETAL,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_sheetmetal"));
             event.getRegistry().register(new BlockItem(ModBlocks.BEEHIVE_OVEN_PIT,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"beehive_oven_pit"));
-            event.getRegistry().register(new BlockItem(ModBlocks.ALLOYFURNACE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
+            event.getRegistry().register(new BlockItem(ModBlocks.ALLOY_FURNACE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
             event.getRegistry().register(new BlockItem(ModBlocks.PISTON_CRUSHER,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
             event.getRegistry().register(new BlockItem(ModBlocks.FINERY_FORGE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"finery_forge"));
             event.getRegistry().register(new BlockItem(ModBlocks.CRUCIBLE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"crucible"));
-            event.getRegistry().register(new BlockItem(ModBlocks.INDUCTION_FURNACE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
 
             /*
             event.getRegistry().register(new BlockItem(ModBlocks.BRASS_PIPE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"brass_pipe"));
@@ -687,6 +680,8 @@ public class ProjectRankine {
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"titanium_nugget"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"tungsten_nugget"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"zinc_nugget"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"pig_iron_nugget"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"wrought_iron_nugget"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"overworld_core"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"element"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"beaver_pelt"));
@@ -703,11 +698,10 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
-            event.getRegistry().register(TileEntityType.Builder.create(AlloyFurnaceTile::new,ModBlocks.ALLOYFURNACE).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
+            event.getRegistry().register(TileEntityType.Builder.create(AlloyFurnaceTile::new,ModBlocks.ALLOY_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
             //event.getRegistry().register(TileEntityType.Builder.create(LimeKilnTile::new,ModBlocks.LIME_KILN).build(null).setRegistryName(ProjectRankine.MODID,"lime_kiln"));
             event.getRegistry().register(TileEntityType.Builder.create(PistonCrusherTile::new,ModBlocks.PISTON_CRUSHER).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(FineryForgeTile::new,ModBlocks.FINERY_FORGE).build(null).setRegistryName(ProjectRankine.MODID,"finery_forge"));
-            event.getRegistry().register(TileEntityType.Builder.create(InductionFurnaceTile::new,ModBlocks.INDUCTION_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
         }
 
         @SubscribeEvent
@@ -761,10 +755,6 @@ public class ProjectRankine {
                 return new FineryForgeContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"finery_forge"));
 
-            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                return new InductionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
-            }).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
 
         }
 

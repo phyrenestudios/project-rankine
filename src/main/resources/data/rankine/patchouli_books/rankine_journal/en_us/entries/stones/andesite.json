@@ -1,7 +1,7 @@
 {
   "name": "Andesite",
   "icon": "rankine:andesite",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

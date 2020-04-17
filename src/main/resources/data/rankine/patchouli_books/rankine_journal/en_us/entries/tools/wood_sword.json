@@ -1,0 +1,15 @@
+{
+  "name": "Wood Sword",
+  "icon": "minecraft:wood_sword",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The wood sword is a broad plank that smacks fairly hard.$(br2)Stats:$(li)Weapon Class: Melee"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:wood_sword"
+    }
+  ]
+}

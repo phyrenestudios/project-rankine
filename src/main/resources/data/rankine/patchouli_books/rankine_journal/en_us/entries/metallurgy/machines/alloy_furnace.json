@@ -1,0 +1,15 @@
+{
+  "name": "Alloy Furnace",
+  "icon": "rankine:alloy_furnace",
+  "category": "machines",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to make alloys. Requires fuel."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:alloy_furnace"
+    }
+  ]
+}

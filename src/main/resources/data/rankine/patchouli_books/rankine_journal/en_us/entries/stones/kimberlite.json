@@ -1,7 +1,7 @@
 {
   "name": "Kimberlite",
   "icon": "rankine:kimberlite",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

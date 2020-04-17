@@ -2,38 +2,25 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
-import com.cannolicatfish.rankine.setup.CustomEnergyStorage;
-import com.google.common.collect.Lists;
-import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
-import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import org.lwjgl.system.CallbackI;
 
-import java.util.List;
-
-import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOYFURNACE_CONTAINER;
+import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_CONTAINER;
 
 public class AlloyFurnaceContainer extends Container {
     private TileEntity tileEntity;
@@ -42,27 +29,28 @@ public class AlloyFurnaceContainer extends Container {
     private final IIntArray data;
 
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new IntArray(4));
+        this(windowId,world,pos,playerInventory,player,new IntArray(7));
 
 
 
     }
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IIntArray furnaceData) {
-        super(ALLOYFURNACE_CONTAINER, windowId);
+        super(ALLOY_FURNACE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertIntArraySize(furnaceData, 4);
+        assertIntArraySize(furnaceData, 7);
         this.playerEntity = player;
         this.data = furnaceData;
         this.playerInventory = new InvWrapper(playerInventory);
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 43, 31));
-            addSlot(new SlotItemHandler(h, 1, 66,31));
-            addSlot(new SlotItemHandler(h, 2, 10,37));
-            addSlot(new SlotItemHandler(h, 3, 124,31));
+            addSlot(new SlotItemHandler(h, 0, 33, 31));
+            addSlot(new SlotItemHandler(h, 1, 55,31));
+            addSlot(new SlotItemHandler(h, 2, 77,31));
+            addSlot(new SlotItemHandler(h, 3, 10,37));
+            addSlot(new SlotItemHandler(h, 4, 134,31));
         });
 
-        layoutPlayerInventorySlots(10, 70);
+        layoutPlayerInventorySlots(8, 70);
 
         this.trackIntArray(furnaceData);
     }
@@ -84,9 +72,19 @@ public class AlloyFurnaceContainer extends Container {
         return this.data.get(3);
     }
 
+    public String getPercentSlot1(){
+        return Integer.toString(this.data.get(4));
+    }
+    public String getPercentSlot2(){
+        return Integer.toString(this.data.get(5));
+    }
+    public String getPercentSlot3(){
+        return Integer.toString(this.data.get(6));
+    }
+
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.ALLOYFURNACE);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.ALLOY_FURNACE);
     }
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)

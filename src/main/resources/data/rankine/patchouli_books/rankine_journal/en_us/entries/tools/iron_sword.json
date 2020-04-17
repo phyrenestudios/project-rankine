@@ -1,6 +1,6 @@
 {
   "name": "Iron Sword",
-  "icon": "rankine:iron_sword",
+  "icon": "minecraft:iron_sword",
   "category": "tools",
   "pages": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:iron_sword"
+      "recipe": "minecraft:iron_sword"
     }
   ]
 }

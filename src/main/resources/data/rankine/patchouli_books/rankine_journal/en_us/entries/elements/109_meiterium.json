@@ -1,0 +1,11 @@
+{
+  "name": "Element 109: Polonium",
+  "icon": "rankine:element",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Significant data has yet to be encountered."
+    }
+  ]
+}

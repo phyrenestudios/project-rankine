@@ -1,0 +1,15 @@
+{
+  "name": "Piston Crusher",
+  "icon": "rankine:piston_crusher",
+  "category": "machines",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to crush ores and other blocks. Requires fuel and a redstone signal."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:piston_crusher"
+    }
+  ]
+}

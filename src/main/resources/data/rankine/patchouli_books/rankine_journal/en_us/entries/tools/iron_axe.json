@@ -1,6 +1,6 @@
 {
   "name": "Iron Axe",
-  "icon": "rankine:iron_axe",
+  "icon": "minecraft:iron_axe",
   "category": "tools",
   "pages": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:iron_axe"
+      "recipe": "minecraft:iron_axe"
     }
   ]
 }

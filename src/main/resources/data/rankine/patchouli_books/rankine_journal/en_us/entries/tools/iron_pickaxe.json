@@ -1,6 +1,6 @@
 {
   "name": "Iron Pickaxe",
-  "icon": "rankine:iron_pickaxe",
+  "icon": "minecraft:iron_pickaxe",
   "category": "tools",
   "pages": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:iron_pickaxe"
+      "recipe": "minecraft:iron_pickaxe"
     }
   ]
 }

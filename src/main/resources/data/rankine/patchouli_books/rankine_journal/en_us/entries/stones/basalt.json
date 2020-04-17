@@ -1,7 +1,7 @@
 {
   "name": "Basalt",
   "icon": "rankine:basalt",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

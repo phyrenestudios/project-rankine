@@ -1,7 +1,7 @@
 {
   "name": "Marble",
   "icon": "rankine:marble",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

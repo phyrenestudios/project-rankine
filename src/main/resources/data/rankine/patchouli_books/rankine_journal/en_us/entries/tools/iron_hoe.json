@@ -1,6 +1,6 @@
 {
   "name": "Iron Hoe",
-  "icon": "rankine:iron_hoe",
+  "icon": "minecraft:iron_hoe",
   "category": "tools",
   "pages": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:iron_hoe"
+      "recipe": "minecraft:iron_hoe"
     }
   ]
 }

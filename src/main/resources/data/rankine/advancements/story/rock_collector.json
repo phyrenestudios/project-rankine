@@ -166,6 +166,16 @@
         ]
       }
     },
+    "rankine:bridgmanite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bridgmanite"
+          }
+        ]
+      }
+    },
     "rankine:rhyolite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

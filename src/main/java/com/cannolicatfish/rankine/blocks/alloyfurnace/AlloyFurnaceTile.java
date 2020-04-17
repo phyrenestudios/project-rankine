@@ -1,22 +1,17 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.items.ModItems;
-import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
+import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IRecipeHelperPopulator;
-import net.minecraft.inventory.IRecipeHolder;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.RecipeItemHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -38,21 +33,25 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOYFURNACE_TILE;
-public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_TILE;
+
+public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
     private LazyOptional<IItemHandlerModifiable> handler = LazyOptional.of(this::createHandler);
     private IItemHandlerModifiable handler2 = handler.orElseGet(this::createHandler);
     private ItemStack smelting = ItemStack.EMPTY;
     private int smeltingamt = 1;
     public AlloyFurnaceTile() {
-        super(ALLOYFURNACE_TILE);
+        super(ALLOY_FURNACE_TILE);
     }
     private boolean hasProduct = false;
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
     private int cookTimeTotal = 800;
+    private int percentSlot1 = 0;
+    private int percentSlot2 = 0;
+    private int percentSlot3 = 0;
     private final IIntArray furnaceData = new IIntArray(){
         public int get(int index)
         {
@@ -66,6 +65,12 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
                     return AlloyFurnaceTile.this.cookTime;
                 case 3:
                     return AlloyFurnaceTile.this.cookTimeTotal;
+                case 4:
+                    return AlloyFurnaceTile.this.percentSlot1;
+                case 5:
+                    return AlloyFurnaceTile.this.percentSlot2;
+                case 6:
+                    return AlloyFurnaceTile.this.percentSlot3;
                 default:
                     return 0;
             }
@@ -85,84 +90,100 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
                     break;
                 case 3:
                     AlloyFurnaceTile.this.cookTimeTotal = value;
+                    break;
+                case 4:
+                    AlloyFurnaceTile.this.percentSlot1 = value;
+                    break;
+                case 5:
+                    AlloyFurnaceTile.this.percentSlot2 = value;
+                    break;
+                case 6:
+                    AlloyFurnaceTile.this.percentSlot3 = value;
+                    break;
             }
         }
         public int size() {
-            return 4;
+            return 7;
         }
     };
-    @Override
-    public void tick(){
+
+    public void tick() {
+        boolean flag = this.isBurning();
+        boolean flag1 = false;
+        if (this.isBurning()) {
+            --this.burnTime;
+        }
+
         if (!this.world.isRemote) {
-            BlockState blockState = world.getBlockState(pos);
-            if (this.isBurning()) {
-                --this.burnTime;
-                world.setBlockState(pos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(true)), 11);
-            } else {
-                world.setBlockState(pos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(false)), 11);
-            }
-            if (!this.canSmelt())
-            {
-                //System.out.println("Can't smelt");
-            }
-            ItemStack[] inputs = new ItemStack[]{this.handler2.getStackInSlot(0), this.handler2.getStackInSlot(1)};
-            ItemStack fuel = this.handler2.getStackInSlot(2);
-            if (!this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty() || this.handler2.getStackInSlot(1).isEmpty()) {
+            ItemStack[] inputs = new ItemStack[]{this.handler2.getStackInSlot(0), this.handler2.getStackInSlot(1), this.handler2.getStackInSlot(2)};
+            ItemStack fuel = this.handler2.getStackInSlot(3);
+            if (this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty() && !this.handler2.getStackInSlot(1).isEmpty()) {
                 if (!this.isBurning() && this.canSmelt()) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
-                    //System.out.println("lad");
-
-                    if (this.isBurning() && !fuel.isEmpty()) {
-                        Item item = fuel.getItem();
-                        fuel.shrink(1);
-
-                        if (fuel.isEmpty()) {
-                            ItemStack item1 = item.getContainerItem(fuel);
-                            this.handler2.setStackInSlot(2, item1);
+                    if (this.isBurning()) {
+                        flag1 = true;
+                        if (fuel.hasContainerItem())
+                            this.handler2.setStackInSlot(3, fuel.getContainerItem());
+                        else
+                        if (!fuel.isEmpty()) {
+                            Item item = fuel.getItem();
+                            fuel.shrink(1);
+                            if (fuel.isEmpty()) {
+                                this.handler2.setStackInSlot(3, fuel.getContainerItem());
+                            }
                         }
                     }
                 }
-            }
-            if (this.isBurning() && this.cookTime > 0) {
-                this.cookTime++;
-                if (this.cookTime == this.cookTimeTotal) {
-                    if (this.handler2.getStackInSlot(3).getCount() > 0) {
-                        this.handler2.getStackInSlot(3).grow(smeltingamt);
-                    } else {
-                        this.handler2.insertItem(3, smelting, false);
-                    }
 
-                    smelting = ItemStack.EMPTY;
-                    hasProduct = false;
-                    smeltingamt = 1;
+                if (this.isBurning() && this.canSmelt()) {
+                    ++this.cookTime;
+                    if (this.cookTime == this.cookTimeTotal) {
+                        ItemStack output = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getKey();
+
+                        if (!output.isEmpty()) {
+                            smelting = output;
+                            this.cookTime++;
+                            int[] x = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getValue();
+                            smeltingamt = x[2];
+                            this.handler2.setStackInSlot(0, inputs[0]);
+                            this.handler2.setStackInSlot(1, inputs[1]);
+                            this.handler2.setStackInSlot(2, inputs[2]);
+                            this.hasProduct = true;
+                        }
+                        if (this.handler2.getStackInSlot(4).getCount() > 0) {
+                            this.handler2.getStackInSlot(4).grow(smeltingamt);
+                        } else {
+                            this.handler2.insertItem(4, smelting, false);
+                        }
+                        int[] x = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getValue();
+                        inputs[0].shrink(x[0]);
+                        inputs[1].shrink(x[1]);
+                        inputs[2].shrink(x[2]);
+                        smelting = ItemStack.EMPTY;
+                        hasProduct = false;
+                        smeltingamt = 1;
+                        this.cookTime = 0;
+                        flag1 = true;
+                        return;
+                    }
+                } else {
                     this.cookTime = 0;
-                    return;
                 }
-            } else {
-                if (this.canSmelt() && this.isBurning()) {
-                    ItemStack output = AlloyFurnaceRecipes.getInstance().getAlloyResult(inputs[0], inputs[1]);
-                    if (!output.isEmpty()) {
-                        smelting = output;
-                        this.cookTime++;
-                        //write code that: returns shrink amount for inputs and smeltingamt
-                        int x[] = AlloyFurnaceRecipes.getInstance().returnStackAmount(inputs[0],inputs[1]);
-                        smeltingamt = x[2];
-                        if (!hasProduct)
-                        {
-                            inputs[0].shrink(x[0]);
-                            inputs[1].shrink(x[1]);
-                        }
-                        this.handler2.setStackInSlot(0, inputs[0]);
-                        this.handler2.setStackInSlot(1, inputs[1]);
-                        this.hasProduct = true;
-                    }
-                }
-                if (!this.isBurning() && this.cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-                }
+            } else if (!this.isBurning() && this.cookTime > 0) {
+                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            }
+
+            if (flag != this.isBurning()) {
+                flag1 = true;
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
             }
         }
+
+        if (flag1) {
+            this.markDirty();
+        }
+
     }
 
     @Override
@@ -194,27 +215,28 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
 
 
     private IItemHandlerModifiable createHandler() {
-        return new ItemStackHandler(4) {
+        return new ItemStackHandler(5) {
 
             @Override
             protected void onContentsChanged(int slot) {
                 super.onContentsChanged(slot);
+                canSmelt();
                 markDirty();
             }
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if (slot == 0 || slot == 1)
+                if (slot == 0 || slot == 1 || slot == 2)
                 {
                     //return stack.getItem() == ModItems.COPPER_INGOT || stack.getItem() == ModItems.TIN_INGOT;
                     return true;
                 }
-                if (slot == 2 && isFuel(stack))
+                if (slot == 3 && isFuel(stack))
                 {
-                    System.out.println("AlloyFurnaceTile.isFuel");
+                    //System.out.println("AlloyFurnaceTile.isFuel");
                     return true;
                 }
-                if (slot == 3 && stack.getItem() == ModItems.BRONZE_ALLOY || stack.getItem() == ModItems.BRASS_ALLOY || stack.getItem() == ModItems.CAST_IRON_INGOT || stack.getItem() == Items.GLASS )
+                if (slot == 4 && stack.getItem() instanceof AlloyItem)
                 {
                     return true;
                 }
@@ -260,11 +282,17 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
     {
         if(((ItemStack)this.handler2.getStackInSlot(0)).isEmpty() || ((ItemStack)this.handler2.getStackInSlot(1)).isEmpty())
         {
+            this.percentSlot1 = 0;
+            this.percentSlot2 = 0;
+            this.percentSlot3 = 0;
             return false;
         }
         else
         {
-            ItemStack result = AlloyFurnaceRecipes.getInstance().getAlloyResult((ItemStack)this.handler2.getStackInSlot(0), (ItemStack)this.handler2.getStackInSlot(1));
+            ItemStack result = AlloyingRecipesComplex.getInstance().getAlloyResult((ItemStack)this.handler2.getStackInSlot(0), (ItemStack)this.handler2.getStackInSlot(1), (ItemStack)this.handler2.getStackInSlot(2)).getKey();
+            this.percentSlot1 = AlloyingRecipesComplex.getInstance().getPercent((ItemStack)this.handler2.getStackInSlot(0), (ItemStack)this.handler2.getStackInSlot(1), (ItemStack)this.handler2.getStackInSlot(2), 0);
+            this.percentSlot2 = AlloyingRecipesComplex.getInstance().getPercent((ItemStack)this.handler2.getStackInSlot(0), (ItemStack)this.handler2.getStackInSlot(1), (ItemStack)this.handler2.getStackInSlot(2), 1);
+            this.percentSlot3 = AlloyingRecipesComplex.getInstance().getPercent((ItemStack)this.handler2.getStackInSlot(0), (ItemStack)this.handler2.getStackInSlot(1), (ItemStack)this.handler2.getStackInSlot(2), 2);
             if(result.isEmpty())
             {
                 /*
@@ -275,7 +303,8 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
             }
             else
             {
-                ItemStack output = (ItemStack)this.handler2.getStackInSlot(3);
+                ItemStack output = (ItemStack)this.handler2.getStackInSlot(4);
+
                 if(output.isEmpty()) return true;
 
                 if(!output.isItemEqual(result))
@@ -310,3 +339,4 @@ public class  AlloyFurnaceTile extends TileEntity implements ITickableTileEntity
 
 
 }
+

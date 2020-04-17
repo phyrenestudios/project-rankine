@@ -1,36 +1,25 @@
 package com.cannolicatfish.rankine.setup;
 
-import com.cannolicatfish.rankine.blocks.ModColors;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.world.biome.ModBiomes;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.FoliageColors;
-import net.minecraft.world.ILightReader;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.common.BiomeManager;
 
 public class ClientProxy implements IProxy {
 
     @Override
     public void init() {
-        ScreenManager.registerFactory(ModBlocks.ALLOYFURNACE_CONTAINER, AlloyFurnaceScreen::new);
+        ScreenManager.registerFactory(ModBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
         ScreenManager.registerFactory(ModBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
         ScreenManager.registerFactory(ModBlocks.FINERY_FORGE_CONTAINER, FineryForgeScreen::new);
-        ScreenManager.registerFactory(ModBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
 
         /*
         BlockColors blockColors = Minecraft.getInstance().getBlockColors();

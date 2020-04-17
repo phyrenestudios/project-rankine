@@ -6,9 +6,6 @@ import com.cannolicatfish.rankine.blocks.crucible.Crucible;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnace;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
@@ -182,7 +179,7 @@ public class ModBlocks {
     public static Block SANDY_DIRT;
 
     @ObjectHolder("rankine:alloy_furnace")
-    public static Block ALLOYFURNACE;
+    public static Block ALLOY_FURNACE;
 
     @ObjectHolder("rankine:wrought_iron_sheetmetal")
     public static Block WROUGHT_IRON_SHEETMETAL;
@@ -200,10 +197,10 @@ public class ModBlocks {
     public static Block STEEL_SHEETMETAL;
 
     @ObjectHolder("rankine:alloy_furnace")
-    public static ContainerType<AlloyFurnaceContainer> ALLOYFURNACE_CONTAINER;
+    public static ContainerType<AlloyFurnaceContainer> ALLOY_FURNACE_CONTAINER;
 
     @ObjectHolder("rankine:alloy_furnace")
-    public static TileEntityType<AlloyFurnaceTile> ALLOYFURNACE_TILE;
+    public static TileEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
 
     /*
     @ObjectHolder("rankine:brass_pipe")
@@ -415,7 +412,7 @@ public class ModBlocks {
     @ObjectHolder("rankine:finery_forge")
     public static TileEntityType<FineryForgeTile> FINERY_FORGE_TILE;
 
-
+/*
     @ObjectHolder("rankine:induction_furnace")
     public static InductionFurnace INDUCTION_FURNACE;
 
@@ -425,8 +422,6 @@ public class ModBlocks {
     @ObjectHolder("rankine:induction_furnace")
     public static TileEntityType<InductionFurnaceTile> INDUCTION_FURNACE_TILE;
 
-
-    /*
     @ObjectHolder("rankine:piston_steam_engine")
     public static PistonSteamEngine PISTON_STEAM_ENGINE;
 

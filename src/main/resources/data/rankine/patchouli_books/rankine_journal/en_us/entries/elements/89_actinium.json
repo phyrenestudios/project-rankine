@@ -1,0 +1,11 @@
+{
+  "name": "Element 089: Actinium",
+  "icon": "rankine:element",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Significant data has yet to be encountered."
+    }
+  ]
+}

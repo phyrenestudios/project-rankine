@@ -1,7 +1,7 @@
 {
   "name": "Diorite",
   "icon": "rankine:diorite",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

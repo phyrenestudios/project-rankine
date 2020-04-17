@@ -1,0 +1,1 @@
+{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:silver_sulfide"},"result": { "item": "rankine:silver_ingot"},"experience": 1, "cookingTime": 200 }

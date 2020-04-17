@@ -129,11 +129,7 @@ public class BlastingPowderBlock extends FallingBlock {
 
     @Override
     public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState) {
-        Random random = new Random();
-        if (random.nextFloat() <= 0.55f)
-        {
-            catchFire(this.getDefaultState(), worldIn, pos, null, null);
-        }
+        catchFire(this.getDefaultState(), worldIn, pos, null, null);
     }
 
 

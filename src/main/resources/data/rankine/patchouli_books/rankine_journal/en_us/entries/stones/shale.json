@@ -1,7 +1,7 @@
 {
   "name": "Shale",
   "icon": "rankine:shale",
-  "category": "ores",
+  "category": "stones",
   "pages": [
     {
       "type": "text",

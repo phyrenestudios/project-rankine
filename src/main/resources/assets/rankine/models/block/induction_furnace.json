@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "rankine:block/induction_furnace_top",
-    "front": "rankine:block/induction_furnace_front",
-    "side": "rankine:block/induction_furnace_side"
-  }
-}

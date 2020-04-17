@@ -1,0 +1,11 @@
+{
+  "name": "Cast Iron Alloy",
+  "icon": "rankine:cast_iron_alloy",
+  "category": "alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)9 $(l:pig_iron)Pig Iron Ingots $(li)1 $(l:beehive_oven)Coke"
+    }
+  ]
+}

@@ -1,15 +1,12 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
+
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
-import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloy_furnace.png");
@@ -26,8 +23,10 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Alloy Furnace", 92, 10, 0xffffff);
-
+        drawCenteredString(Minecraft.getInstance().fontRenderer, "Alloy Furnace", 92, 10, 0xffffff);
+        drawCenteredString(Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 50, 0xffffff);
+        drawCenteredString(Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 50, 0xffffff);
+        drawCenteredString(Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() + "%", 86, 50, 0xffffff);
     }
 
     @Override
@@ -42,14 +41,15 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         {
 
             int k = this.container.getBurnLeftScaled(13);
-            this.blit(this.guiLeft + 11, this.guiTop + 21 + 12 - k, 180, 12 - k, 14, k + 1);
+            this.blit(this.guiLeft + 11, this.guiTop + 21 + 12 - k, 176, 12 - k, 14, k + 1);
 
         }
 
         int l = this.container.getCookProgressScaled(24);
-        this.blit(this.guiLeft + 88, this.guiTop + 32, 180, 14, l + 1, 16);
+        this.blit(this.guiLeft + 98, this.guiTop + 32, 176, 14, l + 1, 16);
     }
 
 
 
 }
+
