@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:pig_iron_ingot" } ], "result": { "item": "rankine:pig_iron_nugget", "count": 9 } }
