@@ -1,0 +1,11 @@
+{
+  "name": "Element 030: Zinc",
+  "icon": "rankine:zinc_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:sphalerite_ore)Sphalerite Ore$()."
+    }
+  ]
+}

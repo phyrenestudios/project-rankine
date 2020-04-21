@@ -1,0 +1,11 @@
+{
+  "name": "Element 012: Magnesium",
+  "icon": "rankine:magnesium_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:magnesite_ore)Magnesite Ore$()."
+    }
+  ]
+}

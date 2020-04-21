@@ -1,0 +1,11 @@
+{
+  "name": "Purple Gold Alloy",
+  "icon": "rankine:purple_gold_alloy",
+  "category": "alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:materials)Gold$() 79%-81%% $(li)$(l:materials)Aluminum$() 19%-21%"
+    }
+  ]
+}

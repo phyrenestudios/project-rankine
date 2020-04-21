@@ -1,0 +1,11 @@
+{
+  "name": "Element 027: Cobalt",
+  "icon": "rankine:cobalt_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Traces found in $(l:cassiterite_ore)Cassiterite Ore$()."
+    }
+  ]
+}

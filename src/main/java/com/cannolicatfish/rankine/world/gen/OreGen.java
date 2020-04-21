@@ -22,6 +22,7 @@ import java.util.List;
 public class OreGen {
 
     public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig::deserialize);
+    public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig::deserialize);
 
     public static void setupOreGeneration() {
 
@@ -59,7 +60,7 @@ public class OreGen {
         chunkGenDef(ModBlocks.SPHALERITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
         chunkGenDef(ModBlocks.MAGNESITE_ORE, 30, 0.07F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
         chunkGenDef(ModBlocks.PENTLANDITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
-        chunkGenDef(ModBlocks.GALENA_ORE, 40, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
+        chunkMultiGenDef(ModBlocks.GALENA_ORE, 40, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE, 0.3f);
         chunkGenDef(ModBlocks.ACANTHITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
         chunkGenDef(ModBlocks.PYROLUSITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_TOP_NOSHALE);
         chunkGenDef(ModBlocks.CINNABAR_ORE, 30, 0.2F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_IGNEOUS);
@@ -72,8 +73,6 @@ public class OreGen {
 
         rockGenDef(ModBlocks.LIMESTONE_NODULE.getDefaultState(),Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false, ModBlocks.LIMESTONE.getDefaultState(),6,10,31,70);
         rockGenDef(ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),Collections.emptyList(),false, ModBlocks.KIMBERLITE.getDefaultState(),5,3,0,25);
-        rockGenDef(ModBlocks.VANADINITE_ORE.getDefaultState().with(RankineOre.TYPE,4),Collections.emptyList(),false, ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,4),8,1,31,50);
-        rockGenDef(ModBlocks.BISMITE_ORE.getDefaultState().with(RankineOre.TYPE,1),Collections.emptyList(),false, ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,1),8,1,11,50);
         rockGenDef(Blocks.CLAY.getDefaultState(),Collections.emptyList(),false, Blocks.DIRT.getDefaultState(),10,1,55,70);
     }
 
@@ -151,6 +150,16 @@ public class OreGen {
             if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE) {
                     biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, RANKINE_ORE.withConfiguration(
                             new RankineOreFeatureConfig(type, block.getStateContainer().getBaseState(), veinSize)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
+            }
+        }
+
+    }
+
+    private static void chunkMultiGenDef(RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type, float replaceChance) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE) {
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MULTI_RANKINE_ORE.withConfiguration(
+                        new RankineMultiOreFeatureConfig(type, block.getStateContainer().getBaseState(), veinSize, replaceChance)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
             }
         }
 

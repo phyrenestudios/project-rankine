@@ -1,0 +1,11 @@
+{
+  "name": "Element 074: Tungsten",
+  "icon": "rankine:tungsten_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from $(l:wolframite_ore)Wolframite Ore$()."
+    }
+  ]
+}

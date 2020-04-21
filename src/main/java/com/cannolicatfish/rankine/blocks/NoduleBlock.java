@@ -38,4 +38,18 @@ public class NoduleBlock extends Block {
         }
     }
 
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
+        {
+            float f = 0.5F;
+            double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+            double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+            double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+            ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.FLINT));
+            itementity.setDefaultPickupDelay();
+            worldIn.addEntity(itementity);
+        }
+        super.onBlockHarvested(worldIn, pos, state, player);
+    }
 }

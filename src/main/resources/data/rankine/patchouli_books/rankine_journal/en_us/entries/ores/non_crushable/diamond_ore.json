@@ -1,0 +1,16 @@
+{
+  "name": "Diamond Ore",
+  "icon": "minecraft:diamond_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Diamond is a tier 3 ore. $(br2)Found in Kimberlite intrusions."
+    },
+    {
+      "type": "non_crushable_ores",
+	  "item1": "minecraft:diamond_ore",
+	  "item2": "minecraft:diamond"
+    }
+  ]
+}

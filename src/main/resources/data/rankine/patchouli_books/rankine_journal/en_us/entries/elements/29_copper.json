@@ -1,0 +1,11 @@
+{
+  "name": "Element 029: Copper",
+  "icon": "rankine:copper_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:native_copper_ore)Native Copper Ore$() and $(l:malachite_ore)Malachite Ore$()."
+    }
+  ]
+}

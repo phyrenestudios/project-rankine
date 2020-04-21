@@ -1,0 +1,16 @@
+{
+  "name": "Plumbago Ore",
+  "icon": "rankine:plumbago_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Plumbago is a tier 3 ore. $(br2)Found in the Mantle Kimberlite between y61 and y220."
+    },
+    {
+      "type": "non_crushable_ores",
+	  "item1": "rankine:plumbago_ore",
+	  "item2": "rankine:graphite"
+    }
+  ]
+}

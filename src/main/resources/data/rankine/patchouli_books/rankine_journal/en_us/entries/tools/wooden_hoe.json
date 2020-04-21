@@ -1,0 +1,15 @@
+{
+  "name": "Wooden Hoe",
+  "icon": "minecraft:wooden_hoe",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The wooden hoe is a gnarled stick that moves dirt.$(br2)Stats:$(li)"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:wooden_hoe"
+    }
+  ]
+}

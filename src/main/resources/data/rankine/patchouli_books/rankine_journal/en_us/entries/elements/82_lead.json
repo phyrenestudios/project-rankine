@@ -1,0 +1,11 @@
+{
+  "name": "Element 082: Lead",
+  "icon": "rankine:lead_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from $(l:galena_ore)Galena Ore$()."
+    }
+  ]
+}

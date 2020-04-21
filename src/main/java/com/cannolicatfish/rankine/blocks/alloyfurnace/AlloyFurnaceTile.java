@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.items.ModItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -33,6 +34,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_TILE;
 
 public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
@@ -44,7 +49,6 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
     public AlloyFurnaceTile() {
         super(ALLOY_FURNACE_TILE);
     }
-    private boolean hasProduct = false;
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
@@ -52,6 +56,9 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
     private int percentSlot1 = 0;
     private int percentSlot2 = 0;
     private int percentSlot3 = 0;
+    private int recipeLocked = 0;
+    private int redstonePower = 0;
+    private List<ItemStack> setRecipe = Collections.emptyList();
     private final IIntArray furnaceData = new IIntArray(){
         public int get(int index)
         {
@@ -71,6 +78,10 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                     return AlloyFurnaceTile.this.percentSlot2;
                 case 6:
                     return AlloyFurnaceTile.this.percentSlot3;
+                case 7:
+                    return AlloyFurnaceTile.this.recipeLocked;
+                case 8:
+                    return AlloyFurnaceTile.this.redstonePower;
                 default:
                     return 0;
             }
@@ -100,10 +111,17 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                 case 6:
                     AlloyFurnaceTile.this.percentSlot3 = value;
                     break;
+                case 7:
+                    AlloyFurnaceTile.this.recipeLocked = value;
+                    getRecipe();
+                    break;
+                case 8:
+                    AlloyFurnaceTile.this.redstonePower = value;
+                    break;
             }
         }
         public int size() {
-            return 7;
+            return 9;
         }
     };
 
@@ -117,7 +135,7 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
         if (!this.world.isRemote) {
             ItemStack[] inputs = new ItemStack[]{this.handler2.getStackInSlot(0), this.handler2.getStackInSlot(1), this.handler2.getStackInSlot(2)};
             ItemStack fuel = this.handler2.getStackInSlot(3);
-            if (this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty() && !this.handler2.getStackInSlot(1).isEmpty()) {
+            if ((this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty() && !this.handler2.getStackInSlot(1).isEmpty()) && redstoneCheck()) {
                 if (!this.isBurning() && this.canSmelt()) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
@@ -149,7 +167,6 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                             this.handler2.setStackInSlot(0, inputs[0]);
                             this.handler2.setStackInSlot(1, inputs[1]);
                             this.handler2.setStackInSlot(2, inputs[2]);
-                            this.hasProduct = true;
                         }
                         if (this.handler2.getStackInSlot(4).getCount() > 0) {
                             this.handler2.getStackInSlot(4).grow(smeltingamt);
@@ -161,7 +178,6 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                         inputs[1].shrink(x[1]);
                         inputs[2].shrink(x[2]);
                         smelting = ItemStack.EMPTY;
-                        hasProduct = false;
                         smeltingamt = 1;
                         this.cookTime = 0;
                         flag1 = true;
@@ -170,7 +186,7 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                 } else {
                     this.cookTime = 0;
                 }
-            } else if (!this.isBurning() && this.cookTime > 0) {
+            } else if ((!this.isBurning() || !redstoneCheck()) && this.cookTime > 0) {
                 this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
 
@@ -184,6 +200,20 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
             this.markDirty();
         }
 
+    }
+
+    private boolean redstoneCheck()
+    {
+        int x = world.getRedstonePowerFromNeighbors(pos);
+        if (x > 0)
+        {
+            redstonePower = 1;
+            return true;
+        } else
+        {
+            redstonePower = 0;
+            return false;
+        }
     }
 
     @Override
@@ -280,6 +310,13 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
 
     private boolean canSmelt()
     {
+        /*
+        System.out.println(recipeLocked);
+        if (recipeLocked == 1 && (this.handler2.getStackInSlot(0) != setRecipe.get(0) || this.handler2.getStackInSlot(1) != setRecipe.get(1) || this.handler2.getStackInSlot(2) != setRecipe.get(2)))
+        {
+            System.out.println(setRecipe);
+            return false;
+        }*/
         if(((ItemStack)this.handler2.getStackInSlot(0)).isEmpty() || ((ItemStack)this.handler2.getStackInSlot(1)).isEmpty())
         {
             this.percentSlot1 = 0;
@@ -315,6 +352,11 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                 return res <= 64 && res <= output.getMaxStackSize();
             }
         }
+    }
+
+    private void getRecipe()
+    {
+        setRecipe = Arrays.asList((ItemStack)this.handler2.getStackInSlot(0), (ItemStack)this.handler2.getStackInSlot(1), (ItemStack)this.handler2.getStackInSlot(2));
     }
 
     @Nonnull

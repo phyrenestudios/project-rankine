@@ -1,0 +1,11 @@
+{
+  "name": "Element 050: Tin",
+  "icon": "rankine:tin_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from $(l:native_tin_ore)Native Tin Ore$() and $(l:cassiterite_ore)Cassiterite Ore$()."
+    }
+  ]
+}

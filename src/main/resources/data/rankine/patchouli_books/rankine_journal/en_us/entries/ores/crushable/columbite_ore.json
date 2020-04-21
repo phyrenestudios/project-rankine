@@ -1,0 +1,16 @@
+{
+  "name": "Columbite Ore",
+  "icon": "rankine:columbite_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Columbite is a tier 3 ore. $(br2)Found in the Mantle between y61 and y256."
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:columbite_ore",
+	  "item2": "rankine:niobium_oxide"
+    }
+  ]
+}

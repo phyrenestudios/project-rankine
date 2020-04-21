@@ -1,0 +1,16 @@
+{
+  "name": "Molybdenite Ore",
+  "icon": "rankine:molybdenite_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Molybdenite is a tier 3 ore. $(br2)Found in the Mantle between y61 and y256."
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:molybdenite_ore",
+	  "item2": "rankine:molybdenum_oxide"
+    }
+  ]
+}

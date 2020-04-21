@@ -1,0 +1,15 @@
+{
+  "name": "Native Tin Ore",
+  "icon": "rankine:native_tin_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Native Tin Ore is a tier 0 ore. $(br2)Found in the Overworld between y51 and y128."
+    },
+    {
+      "type": "smelting",
+	  "recipe": "rankine:native_tin_ore"
+    }
+  ]
+}

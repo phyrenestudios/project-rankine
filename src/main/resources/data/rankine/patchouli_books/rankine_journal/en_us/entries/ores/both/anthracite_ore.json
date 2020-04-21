@@ -1,0 +1,17 @@
+{
+  "name": "Anthracite Ore",
+  "icon": "rankine:anthracite_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Anthracite Ore is a tier 3 ore. $(br2)Found in the Mantle between y61 and y256."
+    },
+    {
+      "type": "mixed_ores",
+	  "item1": "rankine:anthracite_ore",
+	  "item2": "rankine:anthracite_coal",
+	  "item3": "rankine:crushed_coal"
+    }
+  ]
+}

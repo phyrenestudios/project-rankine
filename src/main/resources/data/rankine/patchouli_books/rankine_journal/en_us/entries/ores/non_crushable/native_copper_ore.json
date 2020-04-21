@@ -1,0 +1,15 @@
+{
+  "name": "Native Copper Ore",
+  "icon": "rankine:native_copper_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Native Copper Ore is a tier 0 ore. $(br2)Found in the Overworld between y51 and y128."
+    },
+    {
+      "type": "smelting",
+	  "recipe": "rankine:native_copper_ore"
+    }
+  ]
+}
