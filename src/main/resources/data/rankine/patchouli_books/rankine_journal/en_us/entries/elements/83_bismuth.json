@@ -1,0 +1,11 @@
+{
+  "name": "Element 083: Bismuth",
+  "icon": "rankine:bismuth_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from $(l:bismuth_ore)Bismuth Ore$()."
+    }
+  ]
+}

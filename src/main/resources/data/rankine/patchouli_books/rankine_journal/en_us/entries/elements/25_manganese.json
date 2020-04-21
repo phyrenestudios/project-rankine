@@ -1,0 +1,11 @@
+{
+  "name": "Element 025: Manganese",
+  "icon": "rankine:manganese_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:pyrolusite_ore)Pyrolusite Ore$()."
+    }
+  ]
+}

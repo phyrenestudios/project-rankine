@@ -1,0 +1,36 @@
+{
+  "components": [
+	{
+      "type": "header",
+	  "text": "Drops"
+    },
+    {
+      "type": "item",
+      "item": "#item1",
+      "framed": "true",
+      "x": 20,
+      "y": 20
+    },
+    {
+      "type": "item",
+      "item": "#item2",
+      "framed": "true",
+      "x": 80,
+      "y": 20
+    },
+    {
+      "type": "item",
+      "item": "#item1",
+      "framed": "true",
+      "x": 20,
+      "y": 60
+    },
+    {
+      "type": "item",
+      "item": "#item3",
+      "framed": "true",
+      "x": 80,
+      "y": 60
+    }
+  ]
+}

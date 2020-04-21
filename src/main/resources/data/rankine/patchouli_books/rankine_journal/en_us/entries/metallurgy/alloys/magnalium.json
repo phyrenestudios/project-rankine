@@ -1,0 +1,11 @@
+{
+  "name": "Magnalium Alloy",
+  "icon": "rankine:magnalium_alloy",
+  "category": "alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:materials)Aluminum$() 94%-96% $(li)$(l:materials)Magnesium$() 4%-6%"
+    }
+  ]
+}

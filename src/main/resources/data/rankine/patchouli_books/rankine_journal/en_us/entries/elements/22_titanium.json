@@ -1,0 +1,11 @@
+{
+  "name": "Element 022: Titanium",
+  "icon": "rankine:titanium_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:ilmenite_ore)Ilmenite Ore$()."
+    }
+  ]
+}

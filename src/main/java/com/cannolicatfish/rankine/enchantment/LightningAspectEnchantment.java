@@ -1,12 +1,14 @@
 package com.cannolicatfish.rankine.enchantment;
 
+import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
 public class LightningAspectEnchantment extends Enchantment {
     public LightningAspectEnchantment(Enchantment.Rarity p_i46730_1_, EquipmentSlotType... p_i46730_2_) {
-        super(p_i46730_1_, EnchantmentType.WEAPON, p_i46730_2_);
+        super(p_i46730_1_, EnchantmentType.create("hammer", (itemIn) -> {
+            return itemIn instanceof ItemHammer; }), p_i46730_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {

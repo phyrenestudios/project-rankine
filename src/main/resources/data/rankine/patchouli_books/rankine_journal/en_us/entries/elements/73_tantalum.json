@@ -1,0 +1,11 @@
+{
+  "name": "Element 073: Tantalum",
+  "icon": "rankine:tantalum_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from $(l:tantalite_ore)Tantalite Ore$()."
+    }
+  ]
+}

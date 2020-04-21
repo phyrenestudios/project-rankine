@@ -1,0 +1,11 @@
+{
+  "name": "Element 023: Vanadium",
+  "icon": "rankine:vanadium_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly found in $(l:vanadinite_ore)Vanadinite Ore$()."
+    }
+  ]
+}

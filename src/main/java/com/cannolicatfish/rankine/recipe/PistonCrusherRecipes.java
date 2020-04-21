@@ -145,7 +145,7 @@ public class PistonCrusherRecipes {
         if (input1.getItem() == new ItemStack(ModBlocks.ANTHRACITE_ORE).getItem() || input1.getItem() == ModItems.ANTHRACITE_COAL) {
             return new Pair<>(new ItemStack(ModItems.CRUSHED_COAL), new Float[]{3f,0f});
         }
-        return new Pair<>(ItemStack.EMPTY, new Float[]{1f,0f});
+        return new Pair<>(ItemStack.EMPTY, new Float[]{0f,0f});
     }
 
     public Pair<ItemStack, Float> getSecondaryResult(ItemStack input) {

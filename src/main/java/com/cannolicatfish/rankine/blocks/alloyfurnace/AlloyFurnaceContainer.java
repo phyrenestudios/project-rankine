@@ -19,6 +19,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import org.lwjgl.system.CallbackI;
 
 import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_CONTAINER;
 
@@ -29,7 +30,7 @@ public class AlloyFurnaceContainer extends Container {
     private final IIntArray data;
 
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new IntArray(7));
+        this(windowId,world,pos,playerInventory,player,new IntArray(9));
 
 
 
@@ -37,7 +38,7 @@ public class AlloyFurnaceContainer extends Container {
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IIntArray furnaceData) {
         super(ALLOY_FURNACE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertIntArraySize(furnaceData, 7);
+        assertIntArraySize(furnaceData, 9);
         this.playerEntity = player;
         this.data = furnaceData;
         this.playerInventory = new InvWrapper(playerInventory);
@@ -55,31 +56,53 @@ public class AlloyFurnaceContainer extends Container {
         this.trackIntArray(furnaceData);
     }
 
-
+    @OnlyIn(Dist.CLIENT)
     public int getBurnTime(){
         return this.data.get(0);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public int getCurrentBurnTime(){
         return this.data.get(1);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public int getCookTime(){
         return this.data.get(2);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public int getTotalCookTime(){
         return this.data.get(3);
     }
 
+    @OnlyIn(Dist.CLIENT)
     public String getPercentSlot1(){
         return Integer.toString(this.data.get(4));
     }
+    @OnlyIn(Dist.CLIENT)
     public String getPercentSlot2(){
         return Integer.toString(this.data.get(5));
     }
+    @OnlyIn(Dist.CLIENT)
     public String getPercentSlot3(){
         return Integer.toString(this.data.get(6));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void toggleRecipeLock(){
+        this.data.set(7,this.data.get(7) != 1 ? 1 : 0); // if data is 1; returns 1
+    }
+    @OnlyIn(Dist.CLIENT)
+    public boolean isRecipeLocked()
+    {
+        return this.data.get(7) == 1;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public boolean isRSPower()
+    {
+        return this.data.get(8) == 1;
     }
 
     @Override

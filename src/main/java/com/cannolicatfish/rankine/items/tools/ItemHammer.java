@@ -60,8 +60,8 @@ public class ItemHammer extends ToolItem {
 
                 if (getBlastModifier(stack) > 0)
                 {
-                    worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2F, Explosion.Mode.DESTROY);
-                    if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+                    worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.25F + 0.25F*getBlastModifier(stack), Explosion.Mode.DESTROY);
+                    if (state.getBlockHardness(worldIn, pos) != 0.0F) {
                         stack.damageItem(2 + 2*getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                         });

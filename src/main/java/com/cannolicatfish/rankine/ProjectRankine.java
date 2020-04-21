@@ -535,7 +535,7 @@ public class ProjectRankine {
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"zinc_ingot"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"pig_iron_ingot"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"wrought_iron_ingot"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"cast_iron_ingot"));
+            event.getRegistry().register(new AlloyItem("cast_iron_ingot"));
             event.getRegistry().register(new AlloyItem("brass_alloy"));
             event.getRegistry().register(new AlloyItem("bronze_alloy"));
             event.getRegistry().register(new AlloyItem("aluminum_bronze_alloy"));

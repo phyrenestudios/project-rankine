@@ -1,0 +1,11 @@
+{
+  "name": "Element 080: Mercury",
+  "icon": "rankine:mercury",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from cinnabarite."
+    }
+  ]
+}

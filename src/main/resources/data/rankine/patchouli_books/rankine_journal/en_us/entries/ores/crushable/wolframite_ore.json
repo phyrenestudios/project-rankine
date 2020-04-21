@@ -1,0 +1,16 @@
+{
+  "name": "Wolframite Ore",
+  "icon": "rankine:wolframite_ore",
+  "category": "ores",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Wolframite is a tier 3 ore. $(br2)Found in the Mantle between y61 and y256."
+    },
+    {
+      "type": "crushable_ores",
+	  "item1": "rankine:wolframite_ore",
+	  "item2": "rankine:tungsten_oxide"
+    }
+  ]
+}

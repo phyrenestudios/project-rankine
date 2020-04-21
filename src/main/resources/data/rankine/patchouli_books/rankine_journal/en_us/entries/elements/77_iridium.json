@@ -1,0 +1,16 @@
+{
+  "name": "Element 077: Iridium",
+  "icon": "rankine:iridium_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Found in close association with $(l:osmium)Osmium$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:osmiridium_alloy",
+      "text": "Naturally occurring alloy between Iridium and $(l:osmium)Osmium$() mainly found in $(l:mantle_ores)Sperrylite Ore$()."
+    }
+  ]
+}

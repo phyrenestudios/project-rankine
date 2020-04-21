@@ -1,0 +1,11 @@
+{
+  "name": "Green Gold Alloy",
+  "icon": "rankine:green_gold_alloy",
+  "category": "alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:materials)Gold$() 30%-90% $(li)$(l:materials)Silver$() 10%-70% $(li)$(l:materials)Additive$() <=10%"
+    }
+  ]
+}

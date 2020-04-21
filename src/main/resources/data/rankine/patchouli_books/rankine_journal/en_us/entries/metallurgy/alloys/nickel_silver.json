@@ -1,0 +1,11 @@
+{
+  "name": "Nickel Silver Alloy",
+  "icon": "rankine:nickel_silver_alloy",
+  "category": "alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:materials)Copper$() 50%-70% $(li)$(l:materials)Nickel$() 15%-25% $(li)$(l:materials)Zinc$() 15%-25%"
+    }
+  ]
+}

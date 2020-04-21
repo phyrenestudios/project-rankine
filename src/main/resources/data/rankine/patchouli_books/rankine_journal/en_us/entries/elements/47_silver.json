@@ -1,0 +1,11 @@
+{
+  "name": "Element 047: Silver",
+  "icon": "rankine:silver_ingot",
+  "category": "elements",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mainly derived from $(l:acanthite_ore)Acanthite Ore$()."
+    }
+  ]
+}

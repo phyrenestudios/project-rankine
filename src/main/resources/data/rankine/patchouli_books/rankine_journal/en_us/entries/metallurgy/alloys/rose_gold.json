@@ -1,0 +1,11 @@
+{
+  "name": "Rose Gold Alloy",
+  "icon": "rankine:rose_gold_alloy",
+  "category": "alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:materials)Gold$() 74%-76% $(li)$(l:materials)Copper$() 20%-25% $(li)$(l:materials)Additive$() <=5%"
+    }
+  ]
+}
