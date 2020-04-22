@@ -4,9 +4,11 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import javafx.util.Pair;
+import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -52,13 +54,6 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
 
     private LazyOptional<IItemHandlerModifiable> handler = LazyOptional.of(this::createHandler);
     private IItemHandlerModifiable handler2 = handler.orElseGet(this::createHandler);
-    private ItemStack smelting = ItemStack.EMPTY;
-    private ItemStack smelting2 = ItemStack.EMPTY;
-
-    private boolean hasProduct = false;
-    private int smeltingamt = 1;
-    private float output1chance = 0f;
-    private float output2chance = 1f;
     public PistonCrusherTile() {
         super(PISTON_CRUSHER_TILE);
     }
@@ -113,6 +108,90 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
         }
     };
 
+    public void tick() {
+        boolean flag = this.isBurning();
+        boolean flag1 = false;
+        if (this.isBurning()) {
+            --this.burnTime;
+        }
+
+        if (!this.world.isRemote) {
+            ItemStack input = this.handler2.getStackInSlot(0);
+            ItemStack fuel = this.handler2.getStackInSlot(1);
+            if ((this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty()) && redstoneCheck()) {
+                if (!this.isBurning() && this.canSmelt()) {
+                    this.burnTime = ForgeHooks.getBurnTime(fuel);
+                    this.currentBurnTime = this.burnTime;
+                    if (this.isBurning()) {
+                        flag1 = true;
+                        if (fuel.hasContainerItem())
+                            this.handler2.setStackInSlot(1, fuel.getContainerItem());
+                        else
+                        if (!fuel.isEmpty()) {
+                            Item item = fuel.getItem();
+                            fuel.shrink(1);
+                            if (fuel.isEmpty()) {
+                                this.handler2.setStackInSlot(1, fuel.getContainerItem());
+                            }
+                        }
+                    }
+                }
+
+                if (this.isBurning() && this.canSmelt()) {
+                    cookTime++;
+                    if (cookTime >= cookTimeTotal) {
+                        int smeltingamt = PistonCrusherRecipes.getInstance().getPrimaryResult(input).getValue()[0].intValue();
+                        float output1chance = PistonCrusherRecipes.getInstance().getPrimaryResult(input).getValue()[1];
+                        ItemStack smelting = new ItemStack(PistonCrusherRecipes.getInstance().getPrimaryResult(input).getKey().getItem(), smeltingamt);
+
+
+                        if (this.handler2.getStackInSlot(2).getCount() > 0) {
+                            this.handler2.getStackInSlot(2).grow(smeltingamt);
+                        } if (this.handler2.getStackInSlot(2).getCount() <= 0) {
+                            this.handler2.insertItem(2, smelting, false);
+                        }
+                        Random random = new Random();
+                        if (random.nextFloat() < output1chance)
+                        {
+                            if (this.handler2.getStackInSlot(2).getCount() > 0) {
+                                this.handler2.getStackInSlot(2).grow(1);
+                            } if (this.handler2.getStackInSlot(2).getCount() <= 0) {
+                            this.handler2.insertItem(2, smelting, false);
+                        }
+                        }
+                        float output2chance = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getValue();
+                        if (random.nextFloat() < output2chance)
+                        {
+                            ItemStack smelting2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getKey();
+                            if (this.handler2.getStackInSlot(3).getCount() > 0) {
+                                this.handler2.getStackInSlot(3).grow(1);
+                            } else {
+                                this.handler2.insertItem(3, smelting2, false);
+                            }
+                        }
+                        input.shrink(1);
+                        cookTime = 0;
+                        return;
+                    }
+                } else {
+                    this.cookTime = 0;
+                }
+            } else if ((!this.isBurning() || !redstoneCheck()) && this.cookTime > 0) {
+                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            }
+
+            if (flag != this.isBurning()) {
+                flag1 = true;
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+            }
+        }
+
+        if (flag1) {
+            this.markDirty();
+        }
+
+    }
+    /*
     @Override
     public void tick(){
         if (!this.world.isRemote) {
@@ -213,6 +292,8 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
         }
     }
 
+     */
+
     @Override
     public void read(CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
@@ -237,7 +318,7 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
         return super.write(tag);
     }
 
-    public boolean redstoneCheck(BlockState block)
+    public boolean redstoneCheck()
     {
         int x = world.getRedstonePowerFromNeighbors(pos);
         if (x > 0)
@@ -269,17 +350,16 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                 }
                 if (slot == 1 && isFuel(stack))
                 {
-                    System.out.println("PistonCrusherTile.isFuel");
                     return true;
                 }
                 if (slot == 2)
                 {
-                    // ADD VALIDITY FOR SLOTS 2 AND 3
-                    return true;
+                    return PistonCrusherRecipes.getInstance().getPrimaryResult(getStackInSlot(0)).getKey().getItem() == stack.getItem();
+
                 }
                 if (slot == 3)
                 {
-                    return true;
+                    return PistonCrusherRecipes.getInstance().getSecondaryResult(getStackInSlot(0)).getKey().getItem() == stack.getItem();
                 }
                 return false;
             }
@@ -321,10 +401,6 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
 
     private boolean canSmelt()
     {
-        if (!redstoneCheck(world.getBlockState(pos)))
-        {
-            return false;
-        }
         if(((ItemStack)this.handler2.getStackInSlot(0)).isEmpty())
         {
             return false;
@@ -353,8 +429,9 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                 {
                     return false;
                 }
-                int res = output.getCount() + result.getCount();
-                return res <= 64 && res <= output.getMaxStackSize();
+                int res = output.getCount() + preresult.getValue()[0].intValue();
+                int res2 = output2.getCount() + preresult2.getValue().intValue();
+                return res <= 64 && res <= output.getMaxStackSize() && res2 <= 64 && res2 <= output2.getMaxStackSize();
             }
         }
     }

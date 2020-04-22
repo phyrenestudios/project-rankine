@@ -169,7 +169,7 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                             this.handler2.setStackInSlot(2, inputs[2]);
                         }
                         if (this.handler2.getStackInSlot(4).getCount() > 0) {
-                            this.handler2.getStackInSlot(4).grow(smeltingamt);
+                            this.handler2.getStackInSlot(4).grow(smelting.getCount());
                         } else {
                             this.handler2.insertItem(4, smelting, false);
                         }
