@@ -591,4 +591,10 @@ public class AlloyingRecipesComplex {
         return Math.round(percent * 100);
     }
 
+    public String getComposition(ItemStack input1, ItemStack input2, ItemStack input3)
+    {
+        return getPercent(input1,input2,input3,0) + returnItemMaterial(input1).getKey() + "-" + getPercent(input1,input2,input3,1) + returnItemMaterial(input2).getKey() +
+                "-" + getPercent(input1,input2,input3,2) + returnItemMaterial(input3).getKey();
+    }
+
 }

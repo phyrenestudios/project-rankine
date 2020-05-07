@@ -85,13 +85,6 @@ public class RankineEventHandler {
 
 
     @SubscribeEvent
-    public static void portalModified(BlockEvent.PortalSpawnEvent event)
-    {
-        event.setCanceled(true);
-    }
-
-
-    @SubscribeEvent
     public static void onPistonCrush(PistonEvent event)
     {
         Direction pistonDir = event.getDirection();

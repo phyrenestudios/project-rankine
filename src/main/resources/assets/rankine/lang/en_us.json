@@ -399,6 +399,8 @@
   "entity.rankine.steamer": "Steamer",
   "item.rankine.beaver_spawn_egg": "Beaver Spawn Egg",
   "entity.rankine.beaver": "Beaver",
+  "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
+  "entity.rankine.shrouded_king": "Shrouded King",
   "enchantment.rankine.blast": "Blast",
   "enchantment.rankine.blast.desc": "Causes the hammer to explode blocks in a radius.",
   "enchantment.rankine.atomize": "Atomize",

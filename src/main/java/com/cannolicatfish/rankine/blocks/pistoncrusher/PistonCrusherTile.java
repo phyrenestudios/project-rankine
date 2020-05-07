@@ -430,7 +430,7 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                     return false;
                 }
                 int res = output.getCount() + preresult.getValue()[0].intValue();
-                int res2 = output2.getCount() + preresult2.getValue().intValue();
+                int res2 = output2.getCount() + 1;
                 return res <= 64 && res <= output.getMaxStackSize() && res2 <= 64 && res2 <= output2.getMaxStackSize();
             }
         }

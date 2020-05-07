@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -18,6 +19,7 @@ public class ModEntityTypes {
     public static final EntityType<DragonyteEntity> DRAGONYTE = EntityType.Builder.create(DragonyteEntity::new, EntityClassification.MONSTER).size(0.5F, 0.3F).build(ProjectRankine.MODID + ":dragonyte");
     public static final EntityType<SteamerEntity> STEAMER = EntityType.Builder.create(SteamerEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":steamer");
     public static final EntityType<BeaverEntity> BEAVER = EntityType.Builder.create(BeaverEntity::new, EntityClassification.CREATURE).build(ProjectRankine.MODID + ":beaver");
+    public static final EntityType<ShroudedKingEntity> SHROUDED_KING = EntityType.Builder.create(ShroudedKingEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":shrouded_king");
 
     public static <T extends Entity> EntityType<T> prepareEntity(EntityType.Builder builder, String name)
     {

@@ -19,6 +19,7 @@ import com.cannolicatfish.rankine.dimension.MantleModDimension;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.AlloySword;
+import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
 import com.cannolicatfish.rankine.world.biome.*;
 import com.cannolicatfish.rankine.dimension.ModDimensions;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
@@ -533,30 +534,30 @@ public class ProjectRankine {
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"zinc_ingot"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"pig_iron_ingot"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"wrought_iron_ingot"));
-            event.getRegistry().register(new AlloyItem("cast_iron_ingot"));
-            event.getRegistry().register(new AlloyItem("brass_alloy"));
+            event.getRegistry().register(new OldAlloyItem("cast_iron_ingot"));
+            event.getRegistry().register(new OldAlloyItem("brass_alloy"));
             event.getRegistry().register(new AlloyItem("bronze_alloy"));
-            event.getRegistry().register(new AlloyItem("aluminum_bronze_alloy"));
-            event.getRegistry().register(new AlloyItem("nichrome_alloy"));
-            event.getRegistry().register(new AlloyItem("steel_alloy"));
-            event.getRegistry().register(new AlloyItem("stainless_steel_alloy"));
-            event.getRegistry().register(new AlloyItem("solder_alloy"));
-            event.getRegistry().register(new AlloyItem("alnico_alloy"));
-            event.getRegistry().register(new AlloyItem("nitinol_alloy"));
-            event.getRegistry().register(new AlloyItem("amalgam_alloy"));
-            event.getRegistry().register(new AlloyItem("cupronickel_alloy"));
-            event.getRegistry().register(new AlloyItem("nickel_silver_alloy"));
-            event.getRegistry().register(new AlloyItem("invar_alloy"));
-            event.getRegistry().register(new AlloyItem("inconel_alloy"));
-            event.getRegistry().register(new AlloyItem("rose_metal_alloy"));
-            event.getRegistry().register(new AlloyItem("magnalium_alloy"));
-            event.getRegistry().register(new AlloyItem("duralumin_alloy"));
-            event.getRegistry().register(new AlloyItem("osmiridium_alloy"));
-            event.getRegistry().register(new AlloyItem("rose_gold_alloy"));
-            event.getRegistry().register(new AlloyItem("white_gold_alloy"));
-            event.getRegistry().register(new AlloyItem("green_gold_alloy"));
-            event.getRegistry().register(new AlloyItem("blue_gold_alloy"));
-            event.getRegistry().register(new AlloyItem("purple_gold_alloy"));
+            event.getRegistry().register(new OldAlloyItem("aluminum_bronze_alloy"));
+            event.getRegistry().register(new OldAlloyItem("nichrome_alloy"));
+            event.getRegistry().register(new OldAlloyItem("steel_alloy"));
+            event.getRegistry().register(new OldAlloyItem("stainless_steel_alloy"));
+            event.getRegistry().register(new OldAlloyItem("solder_alloy"));
+            event.getRegistry().register(new OldAlloyItem("alnico_alloy"));
+            event.getRegistry().register(new OldAlloyItem("nitinol_alloy"));
+            event.getRegistry().register(new OldAlloyItem("amalgam_alloy"));
+            event.getRegistry().register(new OldAlloyItem("cupronickel_alloy"));
+            event.getRegistry().register(new OldAlloyItem("nickel_silver_alloy"));
+            event.getRegistry().register(new OldAlloyItem("invar_alloy"));
+            event.getRegistry().register(new OldAlloyItem("inconel_alloy"));
+            event.getRegistry().register(new OldAlloyItem("rose_metal_alloy"));
+            event.getRegistry().register(new OldAlloyItem("magnalium_alloy"));
+            event.getRegistry().register(new OldAlloyItem("duralumin_alloy"));
+            event.getRegistry().register(new OldAlloyItem("osmiridium_alloy"));
+            event.getRegistry().register(new OldAlloyItem("rose_gold_alloy"));
+            event.getRegistry().register(new OldAlloyItem("white_gold_alloy"));
+            event.getRegistry().register(new OldAlloyItem("green_gold_alloy"));
+            event.getRegistry().register(new OldAlloyItem("blue_gold_alloy"));
+            event.getRegistry().register(new OldAlloyItem("purple_gold_alloy"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"clay_brick"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"refractory_brick"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_brick"));
@@ -650,7 +651,7 @@ public class ProjectRankine {
             event.getRegistry().register(new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_pickaxe"));
             event.getRegistry().register(new AxeItem(RankineToolMaterials.STEEL, 4.0F, -3.2F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_axe"));
             event.getRegistry().register(new ItemHammer(2, -3.2F, RankineToolMaterials.STEEL, new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_hammer"));
-            event.getRegistry().register(new HoeItem(RankineToolMaterials.STEEL, -2.0F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_hoe"));
+            event.getRegistry().register(new HoeItem(RankineToolMaterials.STEEL, 0.0F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_hoe"));
             event.getRegistry().register(new ItemSpear(RankineToolMaterials.STEEL, 2, -2.9F, 3, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"steel_spear"));
             event.getRegistry().register(new FlintlockPistol(new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"flintlock_pistol"));
             event.getRegistry().register(new LeadShotItem(new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"lead_shot"));
@@ -691,6 +692,7 @@ public class ProjectRankine {
             event.getRegistry().register(new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "dragonyte_spawn_egg"));
             event.getRegistry().register(new SpawnEggItem(ModEntityTypes.STEAMER,0xE7E7E7, 0x6B0000,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "steamer_spawn_egg"));
             event.getRegistry().register(new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "beaver_spawn_egg"));
+            event.getRegistry().register(new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID, "shrouded_king_spawn_egg"));
         }
 
 
@@ -717,6 +719,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.DEMONYTE.setRegistryName(ProjectRankine.MODID,"demonyte"));
             event.getRegistry().register(ModEntityTypes.DRAGONYTE.setRegistryName(ProjectRankine.MODID,"dragonyte"));
             event.getRegistry().register(ModEntityTypes.BEAVER.setRegistryName(ProjectRankine.MODID,"beaver"));
+            event.getRegistry().register(ModEntityTypes.SHROUDED_KING.setRegistryName(ProjectRankine.MODID,"shrouded_king"));
         }
 
         @SubscribeEvent
@@ -734,6 +737,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DEMONYTE, DemonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEAVER, BeaverRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SHROUDED_KING, ShroudedKingRenderer.instance);
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {

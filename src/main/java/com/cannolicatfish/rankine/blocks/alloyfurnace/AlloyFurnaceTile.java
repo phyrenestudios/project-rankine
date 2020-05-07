@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import net.minecraft.block.AbstractFurnaceBlock;
@@ -158,7 +159,11 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                     ++this.cookTime;
                     if (this.cookTime == this.cookTimeTotal) {
                         ItemStack output = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getKey();
-
+                        if (output.getItem() instanceof AlloyItem)
+                        {
+                            int[] v = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getValue();
+                            AlloyItem.addAlloy(output,new AlloyData(AlloyingRecipesComplex.getInstance().getComposition(inputs[0], inputs[1], inputs[2])));
+                        }
                         if (!output.isEmpty()) {
                             smelting = output;
                             this.cookTime++;

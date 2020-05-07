@@ -41,4 +41,5 @@ public class MantleGolemRenderer extends LivingRenderer<MantleGolemEntity, Mantl
         }
 
     }
+
 }
