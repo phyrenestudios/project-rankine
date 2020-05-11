@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
 import com.cannolicatfish.rankine.items.tools.*;
 import net.minecraft.item.*;
 import net.minecraftforge.registries.ObjectHolder;
@@ -157,67 +158,67 @@ public class ModItems {
     public static Item COPPER_WIRE;
 
     @ObjectHolder("rankine:brass_alloy")
-    public static AlloyItem BRASS_ALLOY;
+    public static OldAlloyItem BRASS_ALLOY;
 
     @ObjectHolder("rankine:bronze_alloy")
     public static AlloyItem BRONZE_ALLOY;
 
     @ObjectHolder("rankine:nichrome_alloy")
-    public static AlloyItem NICHROME_ALLOY;
+    public static OldAlloyItem NICHROME_ALLOY;
 
     @ObjectHolder("rankine:steel_alloy")
-    public static AlloyItem STEEL_ALLOY;
+    public static OldAlloyItem STEEL_ALLOY;
 
     @ObjectHolder("rankine:stainless_steel_alloy")
-    public static AlloyItem STAINLESS_STEEL_ALLOY;
+    public static OldAlloyItem STAINLESS_STEEL_ALLOY;
 
     @ObjectHolder("rankine:solder_alloy")
-    public static AlloyItem SOLDER_ALLOY;
+    public static OldAlloyItem SOLDER_ALLOY;
 
     @ObjectHolder("rankine:alnico_alloy")
-    public static AlloyItem ALNICO_ALLOY;
+    public static OldAlloyItem ALNICO_ALLOY;
 
     @ObjectHolder("rankine:nitinol_alloy")
-    public static AlloyItem NITINOL_ALLOY;
+    public static OldAlloyItem NITINOL_ALLOY;
 
     @ObjectHolder("rankine:cupronickel_alloy")
-    public static AlloyItem CUPRONICKEL_ALLOY;
+    public static OldAlloyItem CUPRONICKEL_ALLOY;
 
     @ObjectHolder("rankine:amalgam_alloy")
-    public static AlloyItem AMALGAM_ALLOY;
+    public static OldAlloyItem AMALGAM_ALLOY;
 
     @ObjectHolder("rankine:rose_metal_alloy")
-    public static AlloyItem ROSE_METAL_ALLOY;
+    public static OldAlloyItem ROSE_METAL_ALLOY;
 
     @ObjectHolder("rankine:nickel_silver_alloy")
-    public static AlloyItem NICKEL_SILVER_ALLOY;
+    public static OldAlloyItem NICKEL_SILVER_ALLOY;
 
     @ObjectHolder("rankine:invar_alloy")
-    public static AlloyItem INVAR_ALLOY;
+    public static OldAlloyItem INVAR_ALLOY;
 
     @ObjectHolder("rankine:magnalium_alloy")
-    public static AlloyItem MAGNALIUM_ALLOY;
+    public static OldAlloyItem MAGNALIUM_ALLOY;
 
     @ObjectHolder("rankine:duralumin_alloy")
-    public static AlloyItem DURALUMIN_ALLOY;
+    public static OldAlloyItem DURALUMIN_ALLOY;
 
     @ObjectHolder("rankine:aluminum_bronze_alloy")
-    public static AlloyItem ALUMINUM_BRONZE_ALLOY;
+    public static OldAlloyItem ALUMINUM_BRONZE_ALLOY;
 
     @ObjectHolder("rankine:rose_gold_alloy")
-    public static AlloyItem ROSE_GOLD_ALLOY;
+    public static OldAlloyItem ROSE_GOLD_ALLOY;
 
     @ObjectHolder("rankine:white_gold_alloy")
-    public static AlloyItem WHITE_GOLD_ALLOY;
+    public static OldAlloyItem WHITE_GOLD_ALLOY;
 
     @ObjectHolder("rankine:green_gold_alloy")
-    public static AlloyItem GREEN_GOLD_ALLOY;
+    public static OldAlloyItem GREEN_GOLD_ALLOY;
 
     @ObjectHolder("rankine:blue_gold_alloy")
-    public static AlloyItem BLUE_GOLD_ALLOY;
+    public static OldAlloyItem BLUE_GOLD_ALLOY;
 
     @ObjectHolder("rankine:purple_gold_alloy")
-    public static AlloyItem PURPLE_GOLD_ALLOY;
+    public static OldAlloyItem PURPLE_GOLD_ALLOY;
 
     @ObjectHolder("rankine:clay_brick")
     public static Item CLAY_BRICKS;

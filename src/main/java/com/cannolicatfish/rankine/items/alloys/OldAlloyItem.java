@@ -3,34 +3,34 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.ModItems;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistry;
 
 import javax.annotation.Nullable;
+import javax.xml.soap.Text;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
-public abstract class AbstractAlloyItem extends Item {
-
-    private static Random rand = new Random();
-
-    public AbstractAlloyItem() {
+public class OldAlloyItem extends Item {
+    String registryName;
+    public OldAlloyItem(String registryName) {
         super(new Item.Properties().group(ProjectRankine.setup.itemGroup).maxStackSize(64));
+        setRegistryName(ProjectRankine.MODID, registryName);
+        this.registryName = registryName;
     }
 
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add((new TranslationTextComponent("item.rankine." + "bronze_alloy").applyTextStyle(TextFormatting.GRAY)));
-    }
 
 }

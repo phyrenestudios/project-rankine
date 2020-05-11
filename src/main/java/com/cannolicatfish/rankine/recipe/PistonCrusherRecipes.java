@@ -51,7 +51,7 @@ public class PistonCrusherRecipes {
             return new Pair<>(new ItemStack(ModItems.CALCITE), new Float[]{3f,0f});
         }
         if ((input1.getItem() == new ItemStack(ModBlocks.RHYOLITE).getItem())) {
-            return new Pair<>(new ItemStack(Items.FLINT), new Float[]{2f,0f});
+            return new Pair<>(new ItemStack(ModItems.FELDSPAR), new Float[]{2f,0f});
         }
         if ((input1.getItem() == new ItemStack(ModBlocks.SHALE).getItem())) {
             return new Pair<>(new ItemStack(Items.CLAY_BALL), new Float[]{2f,0f});
