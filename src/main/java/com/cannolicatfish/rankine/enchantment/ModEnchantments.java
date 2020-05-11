@@ -13,4 +13,5 @@ public class ModEnchantments {
 
     @ObjectHolder("rankine:lightning_aspect")
     public static Enchantment LIGHTNING_ASPECT;
+
 }

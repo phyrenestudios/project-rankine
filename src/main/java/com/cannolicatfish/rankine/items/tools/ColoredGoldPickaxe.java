@@ -1,9 +1,12 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 public class ColoredGoldPickaxe extends PickaxeItem {
@@ -22,7 +25,7 @@ public class ColoredGoldPickaxe extends PickaxeItem {
 
         if (type == 2) // White Gold
         {
-            stack.addEnchantment(Enchantments.SILK_TOUCH, 1);
+            stack.addEnchantment(Enchantments.FORTUNE, 2);
         }
 
         if (type == 3) // Green Gold
@@ -37,8 +40,37 @@ public class ColoredGoldPickaxe extends PickaxeItem {
 
         if (type == 5) // Purple Gold
         {
-            stack.addEnchantment(Enchantments.FORTUNE, 2);
+            stack.addEnchantment(Enchantments.SILK_TOUCH, 1);
         }
     }
+        public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+            if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.itemGroup) {
+                ItemStack pick = new ItemStack(this.getItem());
+                if (type == 1) // Rose Gold
+                {
+                    pick.addEnchantment(Enchantments.EFFICIENCY, 2);
+                }
 
+                if (type == 2) // White Gold
+                {
+                    pick.addEnchantment(Enchantments.FORTUNE, 2);
+                }
+
+                if (type == 3) // Green Gold
+                {
+                    pick.addEnchantment(Enchantments.MENDING, 2);
+                }
+
+                if (type == 4) // Blue Gold
+                {
+                    pick.addEnchantment(Enchantments.UNBREAKING, 2);
+                }
+
+                if (type == 5) // Purple Gold
+                {
+                    pick.addEnchantment(Enchantments.SILK_TOUCH, 1);
+                }
+                items.add(pick);
+            }
+        }
 }
