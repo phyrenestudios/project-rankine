@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:pentlandite_ore)Pentlandite Ore$()."
+      "text": "Mainly found in $(l:ores/both/pentlandite_ore)Pentlandite Ore$()."
     }
   ]
 }
