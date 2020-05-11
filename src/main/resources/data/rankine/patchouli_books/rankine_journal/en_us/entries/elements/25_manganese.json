@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:pyrolusite_ore)Pyrolusite Ore$()."
+      "text": "Mainly found in $(l:ores/both/pyrolusite_ore)Pyrolusite Ore$()."
     }
   ]
 }

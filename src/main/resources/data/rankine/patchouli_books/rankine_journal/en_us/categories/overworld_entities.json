@@ -1,0 +1,6 @@
+{
+  "name": "Overworld Entities",
+  "description": "More fuctional than turtles.",
+  "icon": "rankine:beaver_pelt",
+  "parent": "world_explorration"
+}

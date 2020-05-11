@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:molybdenite_ore)Molybdenite Ore$()."
+      "text": "Mainly found in $(l:ores/both/molybdenite_ore)Molybdenite Ore$()."
     }
   ]
 }

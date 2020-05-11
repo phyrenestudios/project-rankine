@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly derived from $(l:galena_ore)Galena Ore$()."
+      "text": "Mainly derived from $(l:ores/both/galena_ore)Galena Ore$()."
     }
   ]
 }

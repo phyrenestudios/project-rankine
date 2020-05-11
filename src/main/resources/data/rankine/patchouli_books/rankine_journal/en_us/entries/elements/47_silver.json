@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly derived from $(l:acanthite_ore)Acanthite Ore$()."
+      "text": "Mainly derived from $(l:ores/both/acanthite_ore)Acanthite Ore$()."
     }
   ]
 }

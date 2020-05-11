@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:sphalerite_ore)Sphalerite Ore$()."
+      "text": "Mainly found in $(l:ores/both/sphalerite_ore)Sphalerite Ore$()."
     }
   ]
 }

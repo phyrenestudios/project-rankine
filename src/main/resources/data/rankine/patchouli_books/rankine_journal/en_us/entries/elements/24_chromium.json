@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:chromite_ore)Chromite Ore$()."
+      "text": "Mainly found in $(l:ores/both/chromite_ore)Chromite Ore$()."
     }
   ]
 }

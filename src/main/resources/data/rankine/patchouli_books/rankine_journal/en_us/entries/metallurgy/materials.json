@@ -1,71 +1,77 @@
 {
   "name": "Alloying Materials",
   "icon": "rankine:element",
-  "category": "alloys",
+  "category": "metallurgy",
   "pages": [
     {
       "type": "text",
-      "text": "Alloys are created by mixing various materials."
+      "text": "Alloys are created by mixing various resources. Alloys are created on a percentage basis. Exact percentages are outlined in the respective entries, and they are auto calculated in the $(l:metallurgy/machines/alloy_furnace)Alloy Furnace$(). Different resources exist with varying levels of material worth."
     },
     {
       "type": "text",
 	  "title": "Copper",
-      "text": "Suitable materials for alloying with copper include: $(li)$(l:29_copper)Copper$()"
+	  "anchor": "copper",
+      "text": "Suitable materials for alloying with copper include: $(li)$(l:elements/29_copper)Copper Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/29_copper)Copper Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/29_copper)Copper Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Tin",
-      "text": "Suitable materials for alloying with tin include: $(li)$(l:50_tin)Tin$()"
+  	  "anchor": "tin",
+      "text": "Suitable materials for alloying with tin include: $(li)$(l:elements/50_tin)Tin Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/50_tin)Tin Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/50_tin)Tin Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Iron",
-      "text": "Suitable materials for alloying with iron include: $(li)$(l:26_iron)Iron$() $(li)$(l:26_iron)Sponge Iron$()"
-    },
-    {
-      "type": "text",
-	  "title": "Carbon",
-      "text": "Suitable materials for alloying with carbon include: $(li)$(l:6_carbon)Coal$()"
+	  "anchor": "iron",
+      "text": "Suitable materials for alloying with iron include: $(li)$(l:elements/26_iron)Iron Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/26_iron)Iron Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/26_iron)Iron Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Pure Carbon",
-      "text": "Suitable materials for alloying with pure carbon include: $(li)$(l:6_carbon)Coke$() $(li)$(l:6_carbon)Graphite$()"
+	  "anchor": "pure_carbon",
+      "text": "Suitable materials for alloying with pure carbon include: $(li)$(l:elements/6_carbon)Coke$() $(li2)Material weight: 1 $(li)$(l:elements/6_carbon)Graphite$() $(li2)Material weight: 3"
     },
     {
       "type": "text",
 	  "title": "Aluminum",
-      "text": "Suitable materials for alloying with aluminum include: $(li)$(l:13_aluminum)Aluminum$()"
+	  "anchor": "aluminum",
+      "text": "Suitable materials for alloying with aluminum include: $(li)$(l:elements/13_aluminum)Aluminum Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/13_aluminum)Aluminum Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/13_aluminum)Aluminum Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Chromium",
-      "text": "Suitable materials for alloying with chromium include: $(li)$(l:24_chromium)Chromium$()"
+	  "anchor": "chromium",
+      "text": "Suitable materials for alloying with chromium include: $(li)$(l:elements/24_chromium)Chromium Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/24_chromium)Chromium Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/24_chromium)Chromium Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Gold",
-      "text": "Suitable materials for alloying with gold include: $(li)$(l:79_gold)Gold$()"
+	  "anchor": "gold",
+      "text": "Suitable materials for alloying with gold include: $(li)$(l:elements/79_gold)Gold Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/79_gold)Gold Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/79_gold)Gold Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Silver",
-      "text": "Suitable materials for alloying with silver include: $(li)$(l:47_silver)Silver$()"
+	  "anchor": "silver",
+      "text": "Suitable materials for alloying with silver include: $(li)$(l:elements/47_silver)Silver Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/47_silver)Silver Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/47_silver)Silver Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Nickel",
-      "text": "Suitable materials for alloying with nickel include: $(li)$(l:28_nickel)Nickel$()"
+	  "anchor": "nickel",
+      "text": "Suitable materials for alloying with nickel include: $(li)$(l:elements/28_nickel)Nickel Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/28_nickel)Nickel Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/28_nickel)Nickel Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Zinc",
-      "text": "Suitable materials for alloying with zinc include: $(li)$(l:30_zinc)Zinc$()"
+	  "anchor": "zinc",
+      "text": "Suitable materials for alloying with zinc include: $(li)$(l:elements/30_zinc)Zinc Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/30_zinc)Zinc Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/30_zinc)Zinc Blocks$() $(li2)Material weight: 81"
     },
     {
       "type": "text",
 	  "title": "Magnesium",
-      "text": "Suitable materials for alloying with magnesium include: $(li)$(l:12_magnesium)Magnesium$()"
+	  "anchor": "magnesium",
+      "text": "Suitable materials for alloying with magnesium include: $(li)$(l:elements/12_magnesium)Magnesium Nuggets$() $(li2)Material weight: 1 $(li)$(l:elements/12_magnesium)Magnesium Ingots$() $(li2)Material weight: 9 $(li)$(l:elements/12_magnesium)Magnesium Blocks$() $(li2)Material weight: 81"
     }
   ]
 }

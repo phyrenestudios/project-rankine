@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:magnesite_ore)Magnesite Ore$()."
+      "text": "Mainly found in $(l:ores/both/magnesite_ore)Magnesite Ore$()."
     }
   ]
 }
