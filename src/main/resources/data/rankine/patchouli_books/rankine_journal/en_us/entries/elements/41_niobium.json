@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:columbite_ore)Columbite Ore$()."
+      "text": "Mainly found in $(l:ores/both/columbite_ore)Columbite Ore$()."
     }
   ]
 }

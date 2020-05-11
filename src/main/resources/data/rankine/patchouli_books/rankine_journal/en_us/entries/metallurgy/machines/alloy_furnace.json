@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Used to make alloys. Requires fuel."
+      "text": "Used to make alloys. Requires fuel. Requires fuel and a redstone signal."
     },
     {
       "type": "crafting",

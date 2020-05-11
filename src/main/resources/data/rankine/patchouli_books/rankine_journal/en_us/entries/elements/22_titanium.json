@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:ilmenite_ore)Ilmenite Ore$()."
+      "text": "Mainly found in $(l:ores/both/ilmenite_ore)Ilmenite Ore$()."
     }
   ]
 }

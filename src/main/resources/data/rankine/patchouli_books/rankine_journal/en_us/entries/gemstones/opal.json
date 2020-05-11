@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "A white gemstone. Traces found in $(l:sphalerite)Sphalerite Ore$()."
+      "text": "A white gemstone. Traces found in $(l:ores/crushable/sphalerite)Sphalerite Ore$()."
     }
   ]
 }

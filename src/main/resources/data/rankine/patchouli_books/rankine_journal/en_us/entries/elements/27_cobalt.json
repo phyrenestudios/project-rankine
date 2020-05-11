@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Traces found in $(l:cassiterite_ore)Cassiterite Ore$()."
+      "text": "Traces found in $(l:ores/both/cassiterite_ore)Cassiterite Ore$()."
     }
   ]
 }

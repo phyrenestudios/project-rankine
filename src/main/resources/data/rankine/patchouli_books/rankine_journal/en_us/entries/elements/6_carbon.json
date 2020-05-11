@@ -1,6 +1,6 @@
 {
   "name": "Element 006: Carbon",
-  "icon": "minecraft:coal",
+  "icon": "rankine:graphite",
   "category": "elements",
   "pages": [
     {
@@ -10,32 +10,32 @@
     {
       "type": "spotlight",
       "item": "rankine:lignite",
-      "text": "Found in $(l:lignite_ore)Lignite Ore$()."
+      "text": "Found in $(l:ores/both/lignite_ore)Lignite Ore$()."
     },
     {
       "type": "spotlight",
       "item": "minecraft:coal",
-      "text": "Found in $(l:subbituminous_ore)Sub-bituminous Coal Ore$()."
+      "text": "Found in $(l:ores/both/subbituminous_ore)Sub-bituminous Coal Ore$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:bituminous_coal",
-      "text": "Found in $(l:bituminous_ore)Bituminous Coal Ore$()."
+      "text": "Found in $(l:ores/both/bituminous_ore)Bituminous Coal Ore$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:anthracite_coal",
-      "text": "Found in $(l:anthracite_ore)Anthracite Ore$()."
+      "text": "Found in $(l:ores/both/anthracite_ore)Anthracite Ore$()."
     },
     {
       "type": "spotlight",
       "item": "minecraft:diamond",
-      "text": "Mainly found in $(l:diamond_ore)Diamond Ore$()."
+      "text": "Mainly found in $(l:ores/both/diamond_ore)Diamond Ore$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:graphite",
-      "text": "Mainly found in $(l:plumbago_ore)Plumbago Ore$()."
+      "text": "Mainly found in $(l:ores/both/plumbago_ore)Plumbago Ore$()."
     }
   ]
 }

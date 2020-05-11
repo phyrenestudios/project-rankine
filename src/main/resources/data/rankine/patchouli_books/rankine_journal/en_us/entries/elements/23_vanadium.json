@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:vanadinite_ore)Vanadinite Ore$()."
+      "text": "Mainly found in $(l:ores/both/vanadinite_ore)Vanadinite Ore$()."
     }
   ]
 }

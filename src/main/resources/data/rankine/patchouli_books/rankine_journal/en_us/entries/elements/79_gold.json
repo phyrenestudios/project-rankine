@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly derived from $(l:magnetite_ore)Native Gold Ore$()."
+      "text": "Mainly derived from $(l:ores/non_crushable/native_gold_ore)Native Gold Ore$()."
     }
   ]
 }

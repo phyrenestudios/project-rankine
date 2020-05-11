@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:meteorites)Meteorites$() and $(l:magnetite_ore)Magnetite Ore$()."
+      "text": "Mainly found in $(l:meteorites)Meteorites$() and $(l:ores/both/magnetite_ore)Magnetite Ore$()."
     }
   ]
 }

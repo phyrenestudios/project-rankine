@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly found in $(l:native_copper_ore)Native Copper Ore$() and $(l:malachite_ore)Malachite Ore$()."
+      "text": "Mainly found in $(l:ores/native_copper_ore)Native Copper Ore$() and $(l:ores/malachite_ore)Malachite Ore$()."
     }
   ]
 }

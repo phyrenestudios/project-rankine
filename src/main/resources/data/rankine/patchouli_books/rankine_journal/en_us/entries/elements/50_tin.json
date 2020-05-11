@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Mainly derived from $(l:native_tin_ore)Native Tin Ore$() and $(l:cassiterite_ore)Cassiterite Ore$()."
+      "text": "Mainly derived from $(l:ores/non_crushable/native_tin_ore)Native Tin Ore$() and $(l:ores/both/cassiterite_ore)Cassiterite Ore$()."
     }
   ]
 }
