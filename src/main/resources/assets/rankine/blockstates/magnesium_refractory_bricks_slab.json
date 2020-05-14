@@ -1,0 +1,7 @@
+{
+"variants": {
+    "type=bottom": { "model": "rankine:block/magnesium_refractory_bricks_slab" },
+    "type=top": { "model": "rankine:block/magnesium_refractory_bricks_slab_top" },
+    "type=double": { "model": "rankine:block/magnesium_refractory_bricks" }
+    }
+}

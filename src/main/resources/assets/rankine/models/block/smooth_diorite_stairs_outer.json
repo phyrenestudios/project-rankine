@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "bottom": "rankine:block/smooth_diorite",
+    "top": "rankine:block/smooth_diorite",
+    "side": "rankine:block/smooth_diorite"
+  }
+}

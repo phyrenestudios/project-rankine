@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "rankine:block/smooth_basalt",
+    "top": "rankine:block/smooth_basalt",
+    "side": "rankine:block/smooth_basalt"
+  }
+}

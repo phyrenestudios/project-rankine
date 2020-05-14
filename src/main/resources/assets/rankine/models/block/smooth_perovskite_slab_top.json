@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "bottom": "rankine:block/smooth_perovskite",
+    "top": "rankine:block/smooth_perovskite",
+    "side": "rankine:block/smooth_perovskite_slab_side"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "rankine:block/magnesium_refractory_bricks",
+    "side": "rankine:block/magnesium_refractory_bricks"
+  }
+}
