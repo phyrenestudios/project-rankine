@@ -2,12 +2,16 @@ package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.blocks.ModColors;
 import com.cannolicatfish.rankine.items.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.GlassBlock;
 import net.minecraft.block.LogBlock;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -15,6 +19,7 @@ import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -25,8 +30,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.ILightReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -70,6 +79,8 @@ public class RankineEventHandler {
         }
     }
  */
+
+
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)
     {
