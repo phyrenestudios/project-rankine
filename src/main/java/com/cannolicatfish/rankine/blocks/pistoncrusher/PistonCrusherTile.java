@@ -1,30 +1,17 @@
 package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
-import com.cannolicatfish.rankine.items.ModItems;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
-import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import javafx.util.Pair;
 import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -48,7 +35,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 import static com.cannolicatfish.rankine.blocks.ModBlocks.PISTON_CRUSHER_TILE;
-import static com.cannolicatfish.rankine.blocks.ModBlocks.PISTON_CRUSHER;
 
 public class PistonCrusherTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 

@@ -1,0 +1,11 @@
+{
+  "name": "The Mantle",
+  "icon": "rankine:heart_of_the_mantle",
+  "category": "mantle",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mantle_Desc"
+    }
+  ]
+}

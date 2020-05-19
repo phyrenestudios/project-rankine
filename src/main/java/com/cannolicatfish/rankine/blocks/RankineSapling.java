@@ -26,9 +26,17 @@ public class RankineSapling extends SaplingBlock {
         Block block = state.getBlock();
         if (type == 2)
         {
-            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
+            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.SAND || block == Blocks.RED_SAND ||  block == Blocks.COARSE_DIRT  || block == ModBlocks.SANDY_DIRT;
         }
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
+        if (type == 3)
+        {
+            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == ModBlocks.MUDDY_DIRT || block == ModBlocks.MUDDY_GRASS;
+        }
+        if (type == 4)
+        {
+            return block == Blocks.GRASS_BLOCK;
+        }
+        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.SAND || block == Blocks.RED_SAND || block == ModBlocks.SANDY_DIRT || block == ModBlocks.MUDDY_DIRT || block == ModBlocks.MUDDY_GRASS;
     }
 
 }

@@ -1,0 +1,11 @@
+{
+  "name": "Aluminum Bronze Alloy",
+  "icon": "rankine:aluminum_bronze_alloy",
+  "category": "alloy_furnace_alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/metallurgy/materials#copper)Copper$() 74%-93% $(li)$(l:metallurgy/metallurgy/materials#aluminum)Aluminum$() 4%-12% $(li)$(l:metallurgy/metallurgy/materials)Additive$() <=14%%"
+    }
+  ]
+}

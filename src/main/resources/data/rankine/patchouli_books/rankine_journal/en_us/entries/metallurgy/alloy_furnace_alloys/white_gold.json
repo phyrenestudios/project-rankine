@@ -1,0 +1,11 @@
+{
+  "name": "White Gold Alloy",
+  "icon": "rankine:white_gold_alloy",
+  "category": "alloy_furnace_alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#gold)Gold$() 74%-76% $(li)$(l:metallurgy/materials#zinc)Zinc$() 5%-15% $(li)$(l:metallurgy/materials)Additive$() 5%-15%"
+    }
+  ]
+}

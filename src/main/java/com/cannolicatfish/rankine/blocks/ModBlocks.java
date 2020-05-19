@@ -16,8 +16,55 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class ModBlocks {
 
+
+
+    @ObjectHolder("rankine:potted_cedar_sapling")
+    public static FlowerPotBlock POTTED_CEDAR_SAPLING;
+
+    @ObjectHolder("rankine:potted_pinyon_pine_sapling")
+    public static FlowerPotBlock POTTED_PINYON_PINE_SAPLING;
+
+    @ObjectHolder("rankine:potted_coconut_palm_sapling")
+    public static FlowerPotBlock POTTED_COCONUT_PALM_SAPLING;
+
+    @ObjectHolder("rankine:potted_juniper_sapling")
+    public static FlowerPotBlock POTTED_JUNIPER_SAPLING;
+
+    @ObjectHolder("rankine:potted_balsam_fir_sapling")
+    public static FlowerPotBlock POTTED_BALSAM_FIR_SAPLING;
+
+    @ObjectHolder("rankine:swamp_grass")
+    public static SwampGrassBlock SWAMP_GRASS;
+
+    @ObjectHolder("rankine:duckweed")
+    public static DuckweedBlock DUCKWEED;
+
+    @ObjectHolder("rankine:permafrost")
+    public static PermafrostBlock PERMAFROST;
+
+    @ObjectHolder("rankine:vegetated_permafrost")
+    public static VegetatedPermafrostBlock VEGETATED_PERMAFROST;
+
+    @ObjectHolder("rankine:opal_ore")
+    public static Block OPAL_ORE;
+
+    @ObjectHolder("rankine:ironstone")
+    public static Block IRONSTONE;
+
+    @ObjectHolder("rankine:smooth_ironstone")
+    public static Block SMOOTH_IRONSTONE;
+
+    @ObjectHolder("rankine:ironstone_bricks")
+    public static Block IRONSTONE_BRICKS;
+
+    @ObjectHolder("rankine:muddy_dirt")
+    public static Block MUDDY_DIRT;
+
+    @ObjectHolder("rankine:muddy_grass")
+    public static Block MUDDY_GRASS;
+
     @ObjectHolder("rankine:juniper_sapling")
-    public static Block JUNIPER_SAPLING;
+    public static RankineSapling JUNIPER_SAPLING;
 
     @ObjectHolder("rankine:smooth_andesite")
     public static Block SMOOTH_ANDESITE;
@@ -103,8 +150,47 @@ public class ModBlocks {
     @ObjectHolder("rankine:cedar_planks")
     public static Block CEDAR_PLANKS;
 
+    @ObjectHolder("rankine:balsam_fir_log")
+    public static LogBlock BALSAM_FIR_LOG;
+
+    @ObjectHolder("rankine:balsam_fir_wood")
+    public static RotatedPillarBlock BALSAM_FIR_WOOD;
+
+    @ObjectHolder("rankine:juniper_wood")
+    public static RotatedPillarBlock JUNIPER_WOOD;
+
+    @ObjectHolder("rankine:pinyon_pine_wood")
+    public static RotatedPillarBlock PINYON_PINE_WOOD;
+
+    @ObjectHolder("rankine:coconut_palm_wood")
+    public static RotatedPillarBlock COCONUT_PALM_WOOD;
+
     @ObjectHolder("rankine:cedar_log")
     public static LogBlock CEDAR_LOG;
+
+    @ObjectHolder("rankine:stripped_balsam_fir_log")
+    public static RotatedPillarBlock STRIPPED_BALSAM_FIR_LOG;
+
+    @ObjectHolder("rankine:stripped_balsam_fir_wood")
+    public static RotatedPillarBlock STRIPPED_BALSAM_FIR_WOOD;
+
+    @ObjectHolder("rankine:stripped_juniper_log")
+    public static RotatedPillarBlock STRIPPED_JUNIPER_LOG;
+
+    @ObjectHolder("rankine:stripped_juniper_wood")
+    public static RotatedPillarBlock STRIPPED_JUNIPER_WOOD;
+
+    @ObjectHolder("rankine:stripped_pinyon_pine_log")
+    public static RotatedPillarBlock STRIPPED_PINYON_PINE_LOG;
+
+    @ObjectHolder("rankine:stripped_pinyon_pine_wood")
+    public static RotatedPillarBlock STRIPPED_PINYON_PINE_WOOD;
+
+    @ObjectHolder("rankine:stripped_coconut_palm_log")
+    public static RotatedPillarBlock STRIPPED_COCONUT_PALM_LOG;
+
+    @ObjectHolder("rankine:stripped_coconut_palm_wood")
+    public static RotatedPillarBlock STRIPPED_COCONUT_PALM_WOOD;
 
     @ObjectHolder("rankine:stripped_cedar_log")
     public static RotatedPillarBlock STRIPPED_CEDAR_LOG;
@@ -114,6 +200,9 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:cedar_leaves")
     public static LeavesBlock CEDAR_LEAVES;
+
+    @ObjectHolder("rankine:balsam_fir_leaves")
+    public static LeavesBlock BALSAM_FIR_LEAVES;
 
     @ObjectHolder("rankine:cedar_door")
     public static DoorBlock CEDAR_DOOR;
@@ -145,8 +234,17 @@ public class ModBlocks {
     @ObjectHolder("rankine:cedar_sapling")
     public static RankineSapling CEDAR_SAPLING;
 
+    @ObjectHolder("rankine:balsam_fir_sapling")
+    public static RankineSapling BALSAM_FIR_SAPLING;
+
     @ObjectHolder("rankine:coconut_palm_planks")
     public static Block COCONUT_PALM_PLANKS;
+
+    @ObjectHolder("rankine:balsam_fir_planks")
+    public static Block BALSAM_FIR_PLANKS;
+
+    @ObjectHolder("rankine:juniper_planks")
+    public static Block JUNIPER_PLANKS;
 
     @ObjectHolder("rankine:coconut_palm_sapling")
     public static RankineSapling COCONUT_PALM_SAPLING;

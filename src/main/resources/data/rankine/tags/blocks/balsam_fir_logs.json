@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:balsam_fir_log",
+    "rankine:balsam_fir_wood",
+    "rankine:stripped_balsam_fir_log",
+    "rankine:stripped_balsam_fir_wood"
+  ]
+}

@@ -2,9 +2,7 @@ package com.cannolicatfish.rankine.blocks.fineryforge;
 
 
 import com.cannolicatfish.rankine.items.ModItems;
-import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
 import com.cannolicatfish.rankine.recipe.FineryForgeRecipes;
-import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import javafx.util.Pair;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;

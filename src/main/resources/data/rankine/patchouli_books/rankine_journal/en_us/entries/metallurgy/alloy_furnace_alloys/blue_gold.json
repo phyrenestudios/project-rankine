@@ -1,0 +1,11 @@
+{
+  "name": "Blue Gold Alloy",
+  "icon": "rankine:blue_gold_alloy",
+  "category": "alloy_furnace_alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#gold)Gold$() 74%-76% $(li)$(l:metallurgy/materials#iron)Iron$() 19%-21% $(li)$(l:metallurgy/materials)Additive$() 5%"
+    }
+  ]
+}

@@ -1,25 +1,18 @@
 package com.cannolicatfish.rankine.world.biome;
 
 import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.world.feature.PinyonPineTree;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class PinyonJuniperWoodlandBiome extends Biome {
     public PinyonJuniperWoodlandBiome() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(ModBlocks.SANDY_DIRT.getDefaultState(),ModBlocks.SANDY_DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState())).precipitation(RainType.RAIN).category(Biome.Category.SAVANNA).depth(0.8F).scale(0.05F).temperature(1.5F).downfall(0.1F).waterColor(4159177).waterFogColor(329011).parent((String)null));
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(ModBlocks.SANDY_DIRT.getDefaultState(), ModBlocks.SANDY_DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState())).precipitation(RainType.RAIN).category(Biome.Category.SAVANNA).depth(0.8F).scale(0.05F).temperature(1.5F).downfall(0.1F).waterColor(4159177).waterFogColor(329011).parent((String)null));
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
@@ -29,7 +22,8 @@ public class PinyonJuniperWoodlandBiome extends Biome {
         DefaultBiomeFeatures.addStoneVariants(this);
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addSedimentDisks(this);
-        addPinyonTrees(this);
+        ModBiomeFeatures.addPinyonTrees(this);
+        DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addExtraDefaultFlowers(this);
         DefaultBiomeFeatures.addVeryDenseGrass(this);
         DefaultBiomeFeatures.addMushrooms(this);
@@ -51,9 +45,7 @@ public class PinyonJuniperWoodlandBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 10, 1, 4));
         this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.WITCH, 5, 1, 1));
     }
-    public static void addPinyonTrees(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.ACACIA_TREE.withConfiguration(PinyonPineTree.PINYON_TREE_CONFIG).func_227227_a_(0.8F)), Feature.ACACIA_TREE.withConfiguration(PinyonPineTree.JUNIPER_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
-    }
+
 
     @Override
     public Biome getRiver() {

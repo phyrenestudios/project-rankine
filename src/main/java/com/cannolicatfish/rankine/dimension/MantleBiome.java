@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.dimension;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
-import com.cannolicatfish.rankine.world.biome.ModBiomes;
 import com.cannolicatfish.rankine.world.feature.*;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
@@ -13,26 +12,19 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.carver.UnderwaterCaveWorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class MantleBiome extends Biome {
     private static final RankineOreFeature MANTLE_ORE = new RankineOreFeature(RankineOreFeatureConfig::deserialize);
-    private static final ModifiedOreFeature MANTLE_ORELIKE = new ModifiedOreFeature(OreFeatureConfig::deserialize,ModBlocks.PERIDOTITE);
+    private static final ModifiedOreFeature MANTLE_ORELIKE = new ModifiedOreFeature(OreFeatureConfig::deserialize, ModBlocks.PERIDOTITE);
 
     public MantleBiome() {
-        super((new Biome.Builder()).surfaceBuilder(new MantleSurfaceBuilder(SurfaceBuilderConfig::deserialize),new MantleSurfaceBuilderConfig(ModBlocks.PERIDOTITE.getDefaultState(),ModBlocks.PERIDOTITE.getDefaultState(),Blocks.MAGMA_BLOCK.getDefaultState())).precipitation(RainType.NONE).category(Category.NONE).depth(0.125F).scale(0.05F).temperature(0.8F).downfall(0.4F).waterColor(4159204).waterFogColor(329011).parent((String)null));
+        super((new Biome.Builder()).surfaceBuilder(new MantleSurfaceBuilder(SurfaceBuilderConfig::deserialize),new MantleSurfaceBuilderConfig(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),Blocks.MAGMA_BLOCK.getDefaultState())).precipitation(RainType.NONE).category(Category.NONE).depth(0.125F).scale(0.05F).temperature(0.8F).downfall(0.4F).waterColor(4159204).waterFogColor(329011).parent((String)null));
         this.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(new MantleWorldCarver(ProbabilityConfig::deserialize, 256), new ProbabilityConfig(0.7285715F)));
-        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SPRING_FEATURE.withConfiguration( new LiquidsConfig(Fluids.LAVA.getDefaultState(), true, 4, 1, ImmutableSet.of(ModBlocks.BRIDGMANITE,ModBlocks.KIMBERLITE,ModBlocks.PEROVSKITE,ModBlocks.KOMATIITE,ModBlocks.PERIDOTITE,ModBlocks.WADSLEYITE,ModBlocks.FERROPERICLASE)))
+        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SPRING_FEATURE.withConfiguration( new LiquidsConfig(Fluids.LAVA.getDefaultState(), true, 4, 1, ImmutableSet.of(ModBlocks.BRIDGMANITE, ModBlocks.KIMBERLITE, ModBlocks.PEROVSKITE, ModBlocks.KOMATIITE, ModBlocks.PERIDOTITE, ModBlocks.WADSLEYITE, ModBlocks.FERROPERICLASE)))
                 .withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(200, 8, 16, 256))));
 
 
@@ -49,9 +41,9 @@ public class MantleBiome extends Biome {
         intrusionGenDef(ModBlocks.KIMBERLITE,this,70,256,0.15f);
 
         rockGenDef(this, ModBlocks.GNEISS.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),40,0.2f,221,256);
-        rockGenDef(this, ModBlocks.KOMATIITE.getDefaultState(),ModBlocks.PERIDOTITE.getDefaultState(),100,1,101,160);
-        rockGenDef(this, ModBlocks.RINGWOODITE.getDefaultState(),ModBlocks.PERIDOTITE.getDefaultState(),50,0.5f,61,120);
-        rockGenDef(this, ModBlocks.PEROVSKITE.getDefaultState(),ModBlocks.PERIDOTITE.getDefaultState(),50,0.5f,0,60);
+        rockGenDef(this, ModBlocks.KOMATIITE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),100,1,101,160);
+        rockGenDef(this, ModBlocks.RINGWOODITE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),50,0.5f,61,120);
+        rockGenDef(this, ModBlocks.PEROVSKITE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),50,0.5f,0,60);
 
         mantleReplaceGen(ModBlocks.MARBLE,this, 221, 256);
         mantleReplaceGen(ModBlocks.WADSLEYITE,this, 41, 120);
@@ -74,10 +66,10 @@ public class MantleBiome extends Biome {
         mantleGenDef(this, ModBlocks.DIAMOND_ORE,30,1f,71,220, RankineOreFeatureConfig.RankineFillerBlockType.KIMBERLITE);
         mantleGenDef(this, ModBlocks.MOISSANITE_ORE,30,0.30f,71,220, RankineOreFeatureConfig.RankineFillerBlockType.KIMBERLITE);
 
-        rockGenDef(this, ModBlocks.RINGWOODITE.getDefaultState(),ModBlocks.PERIDOTITE.getDefaultState(),50,1f,61,120);
-        rockGenDef(this, ModBlocks.PEROVSKITE.getDefaultState(),ModBlocks.PERIDOTITE.getDefaultState(),50,1f,0,60);
-        rockGenDef(this,ModBlocks.VANADINITE_ORE.getDefaultState().with(RankineOre.TYPE,10),ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,10),8,1,121,220);
-        rockGenDef(this,ModBlocks.BISMITE_ORE.getDefaultState().with(RankineOre.TYPE,10), ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,10),8,1,121,220);
+        rockGenDef(this, ModBlocks.RINGWOODITE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),50,1f,61,120);
+        rockGenDef(this, ModBlocks.PEROVSKITE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState(),50,1f,0,60);
+        rockGenDef(this, ModBlocks.VANADINITE_ORE.getDefaultState().with(RankineOre.TYPE,10), ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,10),8,1,121,220);
+        rockGenDef(this, ModBlocks.BISMITE_ORE.getDefaultState().with(RankineOre.TYPE,10), ModBlocks.GALENA_ORE.getDefaultState().with(RankineOre.TYPE,10),8,1,121,220);
     }
     private static void mantleGenDef(Biome biome, RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
         biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MANTLE_ORE.withConfiguration(

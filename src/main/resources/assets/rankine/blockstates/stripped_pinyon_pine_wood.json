@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "axis=y": { "model": "rankine:block/stripped_pinyon_pine_log" },
+    "axis=z": { "model": "rankine:block/stripped_pinyon_pine_log", "x": 90 },
+    "axis=x": { "model": "rankine:block/stripped_pinyon_pine_log", "x": 90, "y": 90 }
+  }
+}
+
