@@ -1,0 +1,11 @@
+{
+  "name": "Bronze Alloy",
+  "icon": "rankine:bronze_alloy",
+  "category": "alloy_furnace_alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#copper)Copper$() 80%-90% $(li)$(l:metallurgy/materials#tin)Tin$() 10%-20%"
+    }
+  ]
+}

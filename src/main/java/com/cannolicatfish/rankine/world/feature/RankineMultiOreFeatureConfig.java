@@ -1,20 +1,11 @@
 package com.cannolicatfish.rankine.world.feature;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.pattern.BlockMatcher;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class RankineMultiOreFeatureConfig implements IFeatureConfig {
     public final RankineOreFeatureConfig.RankineFillerBlockType target;

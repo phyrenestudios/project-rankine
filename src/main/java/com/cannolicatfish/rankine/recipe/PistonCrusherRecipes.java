@@ -6,14 +6,10 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 import javafx.util.Pair;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraftforge.common.Tags;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Random;
 
 public class PistonCrusherRecipes {
     private static final PistonCrusherRecipes INSTANCE = new PistonCrusherRecipes();

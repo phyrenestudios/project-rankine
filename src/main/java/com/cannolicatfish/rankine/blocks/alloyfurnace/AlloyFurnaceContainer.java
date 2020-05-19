@@ -19,7 +19,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import org.lwjgl.system.CallbackI;
 
 import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_CONTAINER;
 

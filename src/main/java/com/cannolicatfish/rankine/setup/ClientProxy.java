@@ -90,6 +90,8 @@ public class ClientProxy implements IProxy {
          */
         RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_YUCCA_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SPHAGNUM_MOSS, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.SWAMP_GRASS, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.DUCKWEED, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.ELDERBERRY_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SNOWBERRY_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_LEAVES,RenderType.getCutoutMipped());
@@ -101,18 +103,34 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.SALT_BLOCK, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.NITER, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.BALSAM_FIR_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_CEDAR_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_JUNIPER_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_COCONUT_PALM_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_PINYON_PINE_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_BALSAM_FIR_SAPLING, RenderType.getCutout());
+
+
+
 
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.FELSENMEER,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.HIGHLAND_PLATEAU,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.PINYON_JUNIPER_WOODLANDS,10));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.CEDAR_FOREST,10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.DEAD_SWAMP,10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(ModBiomes.SHOAL,10));
+
 
         BiomeManager.addSpawnBiome(ModBiomes.PINYON_JUNIPER_WOODLANDS);
         BiomeManager.addSpawnBiome(ModBiomes.CEDAR_FOREST);
         BiomeManager.addSpawnBiome(ModBiomes.HIGHLAND_PLATEAU);
         BiomeManager.addSpawnBiome(ModBiomes.FELSENMEER);
+        BiomeManager.addSpawnBiome(ModBiomes.DEAD_SWAMP);
+        BiomeManager.addSpawnBiome(ModBiomes.SHOAL);
+
 
 
 

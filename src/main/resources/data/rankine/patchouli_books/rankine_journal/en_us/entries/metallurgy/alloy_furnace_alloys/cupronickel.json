@@ -1,0 +1,11 @@
+{
+  "name": "Cupronickel Alloy",
+  "icon": "rankine:cupronickel_alloy",
+  "category": "alloy_furnace_alloys",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#copper)Copper$() 71%-90% $(li)$(l:metallurgy/materials#nickel)Nickel$() 10%-30% $(li)$(l:metallurgy/materials)Additive$() <=5%"
+    }
+  ]
+}

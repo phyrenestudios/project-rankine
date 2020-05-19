@@ -19,12 +19,15 @@ public class ModBiomes  {
     @ObjectHolder("rankine:cedar_forest")
     public static Biome CEDAR_FOREST;
 
-    //@ObjectHolder("rankine:shoal")
-    //public static Biome SHOAL;
+    @ObjectHolder("rankine:shoal")
+    public static Biome SHOAL;
 
     @ObjectHolder("rankine:highland_plateau")
     public static Biome HIGHLAND_PLATEAU;
 
     @ObjectHolder("rankine:felsenmeer")
     public static Biome FELSENMEER;
+
+    @ObjectHolder("rankine:dead_swamp")
+    public static Biome DEAD_SWAMP;
 }

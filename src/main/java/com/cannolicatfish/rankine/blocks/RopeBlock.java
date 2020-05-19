@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.util.Direction;

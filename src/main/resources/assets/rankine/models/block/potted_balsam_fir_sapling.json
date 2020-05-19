@@ -1,0 +1,6 @@
+{
+  "parent": "block/flower_pot_cross",
+  "textures": {
+    "plant": "rankine:block/balsam_fir_sapling"
+  }
+}

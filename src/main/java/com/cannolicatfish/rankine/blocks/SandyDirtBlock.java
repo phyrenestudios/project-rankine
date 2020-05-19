@@ -27,6 +27,7 @@ public class SandyDirtBlock extends Block {
     public SandyDirtBlock(Properties properties) {
         super(properties);
     }
+
     @Override
     public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
         BlockState plant = plantable.getPlant(world, pos.offset(facing));

@@ -7,6 +7,9 @@ import net.minecraft.item.*;
 import net.minecraftforge.registries.ObjectHolder;
 public class ModItems {
 
+    @ObjectHolder("rankine:coconut")
+    public static Item COCONUT;
+
     @ObjectHolder("rankine:vanadinite")
     public static Item VANADINITE;
 

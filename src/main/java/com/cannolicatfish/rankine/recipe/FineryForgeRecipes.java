@@ -1,10 +1,8 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.items.ModItems;
 import javafx.util.Pair;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 public class FineryForgeRecipes {
 

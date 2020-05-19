@@ -1,22 +1,15 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.items.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-
-import java.util.Set;
 
 public class ItemScraper extends Item {
     public ItemScraper(Properties builder) {

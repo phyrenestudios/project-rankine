@@ -3,13 +3,10 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.goal.*;
-import com.cannolicatfish.rankine.entities.BeaverEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -208,6 +205,31 @@ public class BeaverEntity extends AnimalEntity {
                     if (blockstate.getBlock() == Blocks.SPRUCE_LOG)
                     {
                         world.setBlockState(this.destinationBlock, Blocks.STRIPPED_SPRUCE_LOG.getDefaultState(),2);
+                        BeaverEntity.this.heal(1f);
+                    }
+                    if (blockstate.getBlock() == ModBlocks.CEDAR_LOG)
+                    {
+                        world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_CEDAR_LOG.getDefaultState(),2);
+                        BeaverEntity.this.heal(1f);
+                    }
+                    if (blockstate.getBlock() == ModBlocks.PINYON_PINE_LOG)
+                    {
+                        world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_PINYON_PINE_LOG.getDefaultState(),2);
+                        BeaverEntity.this.heal(1f);
+                    }
+                    if (blockstate.getBlock() == ModBlocks.JUNIPER_LOG)
+                    {
+                        world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_JUNIPER_LOG.getDefaultState(),2);
+                        BeaverEntity.this.heal(1f);
+                    }
+                    if (blockstate.getBlock() == ModBlocks.COCONUT_PALM_LOG)
+                    {
+                        world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_COCONUT_PALM_LOG.getDefaultState(),2);
+                        BeaverEntity.this.heal(1f);
+                    }
+                    if (blockstate.getBlock() == ModBlocks.BALSAM_FIR_LOG)
+                    {
+                        world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_BALSAM_FIR_LOG.getDefaultState(),2);
                         BeaverEntity.this.heal(1f);
                     }
                 }

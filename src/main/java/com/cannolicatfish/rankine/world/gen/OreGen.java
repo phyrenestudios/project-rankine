@@ -13,7 +13,6 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,18 +32,18 @@ public class OreGen {
 
         intrusionGenDef(ModBlocks.KIMBERLITE, Collections.emptyList(),false,0, 25, .05f);
 
-        replaceGenDef(Blocks.RED_SANDSTONE, Collections.singletonList(Biome.Category.MESA), true, 61, 80);
-        replaceGenDef(ModBlocks.GNEISS, Arrays.asList(Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), true, 0, 10);
-        replaceGenDef(ModBlocks.MARBLE, Arrays.asList(Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), false, 0, 10);
-        replaceGenDef(ModBlocks.BASALT, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true, 11, 30);
-        replaceGenDef(ModBlocks.LIMESTONE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true, 31, 50);
-        replaceGenDef(ModBlocks.SHALE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM, Biome.Category.RIVER, Biome.Category.SWAMP), true, 51, 70);
-        replaceGenDef(ModBlocks.RHYOLITE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false, 11, 30);
-        replaceGenDef(ModBlocks.GRANITE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false, 31, 50);
-        replaceGenDef(ModBlocks.LIMESTONE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM, Biome.Category.RIVER, Biome.Category.SWAMP), false, 51,70);
-        replaceGenDef(ModBlocks.ANDESITE, Collections.emptyList(), false, 71, 90);
-        replaceGenDef(ModBlocks.DIORITE, Collections.emptyList(), false, 91, 128);
-
+        replaceGenDef(Blocks.STONE,Blocks.RED_SANDSTONE, Collections.singletonList(Biome.Category.MESA), true, 61, 80);
+        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, Arrays.asList(Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), true, 0, 10);
+        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, Arrays.asList(Biome.Category.MUSHROOM, Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), false, 0, 10);
+        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true, 11, 30);
+        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true, 31, 50);
+        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM, Biome.Category.RIVER, Biome.Category.SWAMP), true, 51, 70);
+        replaceGenDef(Blocks.STONE, ModBlocks.RHYOLITE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false, 11, 30);
+        replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false, 31, 50);
+        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM, Biome.Category.RIVER, Biome.Category.SWAMP), false, 51,70);
+        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, Collections.emptyList(), false, 71, 90);
+        replaceGenDef(Blocks.STONE, ModBlocks.DIORITE, Collections.emptyList(), false, 91, 128);
+        replaceGenDef(Blocks.DIRT, ModBlocks.PERMAFROST, Collections.singletonList(Biome.Category.ICY), true, 50, 128);
 
 
 
@@ -73,7 +72,10 @@ public class OreGen {
 
         rockGenDef(ModBlocks.LIMESTONE_NODULE.getDefaultState(),Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false, ModBlocks.LIMESTONE.getDefaultState(),6,10,31,70);
         rockGenDef(ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),Collections.emptyList(),false, ModBlocks.KIMBERLITE.getDefaultState(),5,3,0,25);
-        rockGenDef(Blocks.CLAY.getDefaultState(),Collections.emptyList(),false, Blocks.DIRT.getDefaultState(),10,1,55,70);
+        rockGenDef(Blocks.CLAY.getDefaultState(),Arrays.asList(Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.PLAINS),true, Blocks.DIRT.getDefaultState(),10,1,55,70);
+        rockGenDef(ModBlocks.IRONSTONE.getDefaultState(), Collections.singletonList(Biome.Category.DESERT),true, Blocks.SANDSTONE.getDefaultState(),60,4,50,100);
+        rockGenDef(ModBlocks.IRONSTONE.getDefaultState(), Collections.singletonList(Biome.Category.MESA),true, Blocks.RED_SANDSTONE.getDefaultState(),60,4,50,100);
+        rockGenDef(ModBlocks.OPAL_ORE.getDefaultState(), Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true, ModBlocks.IRONSTONE.getDefaultState(),4, 7,50,100);
     }
 
 
@@ -101,13 +103,37 @@ public class OreGen {
         }
     }
 
-    private static void replaceGenDef(Block block, List<Biome.Category> biomes, boolean genType, int lowerBound, int upperBound) {
+    private static void rockGenDef(BlockState block, List<Biome.Category> biomes, boolean genType, BlockState replace, int veinSize, float chance, int minHeight, int maxHeight)
+    {
+        final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig::deserialize,replace);
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE) {
+                if (biomes.contains(biome.getCategory())) // if biome is supposed to be included (reverse)
+                {
+                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MODULE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, block, veinSize))
+                            .withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
+                }
+            }
+            if (!genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE)
+            {
+                if (!biomes.contains(biome.getCategory())) // if biomes in biomesExcluded are not supposed to be included
+                {
+                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MODULE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, block, veinSize))
+                            .withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
+                }
+            }
+
+        }
+    }
+
+
+    private static void replaceGenDef(Block oldBlock, Block newBlock, List<Biome.Category> biomes, boolean genType, int lowerBound, int upperBound) {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE) {
                 if (biomes.contains(biome.getCategory())) // if biome is supposed to be included (reverse)
                 {
                     biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                            new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
                 }
             }
             if (!genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE)
@@ -115,7 +141,7 @@ public class OreGen {
                 if (!biomes.contains(biome.getCategory())) // if biomes in biomesExcluded are not supposed to be included
                 {
                     biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                            new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
                 }
             }
 

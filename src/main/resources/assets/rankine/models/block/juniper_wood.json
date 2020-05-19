@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "rankine:block/juniper_log",
+    "side": "rankine:block/juniper_log"
+  }
+}

@@ -1,16 +1,13 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.items.ModItems;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import java.util.Map;
-import java.util.Map.Entry;
+
 import com.google.common.collect.Table;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-
-import java.util.Map;
 
 public class AlloyFurnaceRecipes {
     private static final AlloyFurnaceRecipes INSTANCE = new AlloyFurnaceRecipes();
