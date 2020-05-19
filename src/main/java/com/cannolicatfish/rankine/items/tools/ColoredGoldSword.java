@@ -7,22 +7,22 @@ import net.minecraft.item.*;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
-public class ColoredGoldShovel extends ShovelItem {
+public class ColoredGoldSword extends SwordItem {
     private int type;
-    public ColoredGoldShovel(Properties builder, int type) {
-        super(ItemTier.GOLD, 1.5F, -3.0F, builder);
+    public ColoredGoldSword(Item.Properties builder, int type) {
+        super(ItemTier.GOLD, 3, -2.4F, builder);
         this.type = type;
     }
     @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (type == 1) // Rose Gold
         {
-            stack.addEnchantment(Enchantments.EFFICIENCY, 2);
+            stack.addEnchantment(Enchantments.SHARPNESS, 2);
         }
 
         if (type == 2) // White Gold
         {
-            stack.addEnchantment(Enchantments.FORTUNE, 2);
+            stack.addEnchantment(Enchantments.LOOTING, 2);
         }
 
         if (type == 3) // Green Gold
@@ -37,38 +37,38 @@ public class ColoredGoldShovel extends ShovelItem {
 
         if (type == 5) // Purple Gold
         {
-            stack.addEnchantment(Enchantments.SILK_TOUCH, 1);
+            stack.addEnchantment(Enchantments.KNOCKBACK, 2);
         }
     }
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.itemGroup) {
-            ItemStack shovel = new ItemStack(this.getItem());
+            ItemStack sword = new ItemStack(this.getItem());
             if (type == 1) // Rose Gold
             {
-                shovel.addEnchantment(Enchantments.EFFICIENCY, 2);
+                sword.addEnchantment(Enchantments.SHARPNESS, 2);
             }
 
             if (type == 2) // White Gold
             {
-                shovel.addEnchantment(Enchantments.FORTUNE, 2);
+                sword.addEnchantment(Enchantments.LOOTING, 2);
             }
 
             if (type == 3) // Green Gold
             {
-                shovel.addEnchantment(Enchantments.MENDING, 2);
+                sword.addEnchantment(Enchantments.MENDING, 1);
             }
 
             if (type == 4) // Blue Gold
             {
-                shovel.addEnchantment(Enchantments.UNBREAKING, 2);
+                sword.addEnchantment(Enchantments.UNBREAKING, 2);
             }
 
             if (type == 5) // Purple Gold
             {
-                shovel.addEnchantment(Enchantments.SILK_TOUCH, 1);
+                sword.addEnchantment(Enchantments.KNOCKBACK, 2);
             }
-            items.add(shovel);
+            items.add(sword);
         }
     }
 }

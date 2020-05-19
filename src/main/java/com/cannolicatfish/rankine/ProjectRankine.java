@@ -620,16 +620,36 @@ public class ProjectRankine {
             event.getRegistry().register(new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"lava_brass_bucket"));
             event.getRegistry().register(new BrassBucket(() -> ModFluids.LIQUID_PIG_IRON, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"liquid_pig_iron_brass_bucket"));
             event.getRegistry().register(new MilkBrassBucket(new Item.Properties().group(setup.itemGroup).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)).setRegistryName(ProjectRankine.MODID,"milk_brass_bucket"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_pickaxe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_shovel"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_hoe"));
             event.getRegistry().register(new BoneShovel(ItemTier.STONE, 1.5F, -3.0F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bone_shovel"));
 
             event.getRegistry().register(new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"stone_hammer"));

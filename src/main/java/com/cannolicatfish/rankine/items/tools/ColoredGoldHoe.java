@@ -7,10 +7,10 @@ import net.minecraft.item.*;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
-public class ColoredGoldShovel extends ShovelItem {
+public class ColoredGoldHoe extends HoeItem {
     private int type;
-    public ColoredGoldShovel(Properties builder, int type) {
-        super(ItemTier.GOLD, 1.5F, -3.0F, builder);
+    public ColoredGoldHoe(Item.Properties builder, int type) {
+        super(ItemTier.GOLD, -3.0F, builder);
         this.type = type;
     }
     @Override
@@ -43,32 +43,33 @@ public class ColoredGoldShovel extends ShovelItem {
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.itemGroup) {
-            ItemStack shovel = new ItemStack(this.getItem());
+            ItemStack hoe = new ItemStack(this.getItem());
             if (type == 1) // Rose Gold
             {
-                shovel.addEnchantment(Enchantments.EFFICIENCY, 2);
+                hoe.addEnchantment(Enchantments.EFFICIENCY, 2);
             }
 
             if (type == 2) // White Gold
             {
-                shovel.addEnchantment(Enchantments.FORTUNE, 2);
+                hoe.addEnchantment(Enchantments.FORTUNE, 2);
             }
 
             if (type == 3) // Green Gold
             {
-                shovel.addEnchantment(Enchantments.MENDING, 2);
+                hoe.addEnchantment(Enchantments.MENDING, 1);
             }
 
             if (type == 4) // Blue Gold
             {
-                shovel.addEnchantment(Enchantments.UNBREAKING, 2);
+                hoe.addEnchantment(Enchantments.UNBREAKING, 2);
             }
 
             if (type == 5) // Purple Gold
             {
-                shovel.addEnchantment(Enchantments.SILK_TOUCH, 1);
+                hoe.addEnchantment(Enchantments.SILK_TOUCH, 1);
             }
-            items.add(shovel);
+            items.add(hoe);
         }
     }
 }
+
