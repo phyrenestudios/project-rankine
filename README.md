@@ -8,4 +8,5 @@ Project Rankine is under the MIT license.
 # Credits #
 * CannoliCatfish
 * tritespartan17
+* patn8092
 * checked01
