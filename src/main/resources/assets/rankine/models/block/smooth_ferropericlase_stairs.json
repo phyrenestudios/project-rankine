@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "rankine:block/smooth_ferropericlase",
+    "top": "rankine:block/smooth_ferropericlase",
+    "side": "rankine:block/smooth_ferropericlase"
+  }
+}
