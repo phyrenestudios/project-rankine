@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "rankine:block/smooth_andesite_slab" },
+    "type=top": { "model": "rankine:block/smooth_andesite_slab_top" },
+    "type=double": { "model": "rankine:block/smooth_andesite_slab_double" }
+  }
+}

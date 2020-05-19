@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "bottom": "rankine:block/smooth_rhyolite",
+    "top": "rankine:block/smooth_rhyolite",
+    "side": "rankine:block/smooth_rhyolite"
+  }
+}

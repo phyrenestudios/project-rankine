@@ -1,16 +1,28 @@
 package com.cannolicatfish.rankine.setup;
 
+import com.cannolicatfish.rankine.blocks.ModColors;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.world.biome.ModBiomes;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.FoliageColors;
+import net.minecraft.world.ILightReader;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColors;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeManager;
 
 public class ClientProxy implements IProxy {
@@ -21,30 +33,6 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ModBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
         ScreenManager.registerFactory(ModBlocks.FINERY_FORGE_CONTAINER, FineryForgeScreen::new);
 
-        /*
-        BlockColors blockColors = Minecraft.getInstance().getBlockColors();
-        blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) -> {
-            return p_210229_1_ != null && p_210229_2_ != null ? BiomeColors.getFoliageColor(p_210229_1_, p_210229_2_) : FoliageColors.getDefault();
-        }, ModBlocks.COCONUT_PALM_LEAVES);
-        blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) -> {
-            return ModColors.getPinyon();
-        }, ModBlocks.PINYON_PINE_LEAVES);
-        blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) -> {
-            return p_210229_1_ != null && p_210229_2_ != null ? BiomeColors.getFoliageColor(p_210229_1_, p_210229_2_) : ModColors.getCedar();
-        }, ModBlocks.JUNIPER_LEAVES);
-        blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) -> {
-            return p_210229_1_ != null && p_210229_2_ != null ? BiomeColors.getFoliageColor(p_210229_1_, p_210229_2_) : ModColors.getCedar();
-        }, ModBlocks.CEDAR_LEAVES);
-        net.minecraftforge.client.ForgeHooksClient.onBlockColorsInit(blockColors);
-
-        ItemColors itemColors = Minecraft.getInstance().getItemColors();
-        itemColors.register((p_210235_1_, p_210235_2_) -> {
-            BlockState blockstate = ((BlockItem)p_210235_1_.getItem()).getBlock().getDefaultState();
-            return blockColors.getColor(blockstate, (ILightReader)null, (BlockPos)null, p_210235_2_);
-        }, ModBlocks.COCONUT_PALM_LEAVES, ModBlocks.PINYON_PINE_LEAVES, ModBlocks.CEDAR_LEAVES, ModBlocks.JUNIPER_LEAVES);
-        net.minecraftforge.client.ForgeHooksClient.onItemColorsInit(itemColors, blockColors);
-
-         */
 
         RenderTypeLookup.setRenderLayer(ModBlocks.ACANTHITE_ORE, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.ANTHRACITE_ORE, RenderType.getCutoutMipped());
@@ -130,7 +118,6 @@ public class ClientProxy implements IProxy {
         BiomeManager.addSpawnBiome(ModBiomes.FELSENMEER);
         BiomeManager.addSpawnBiome(ModBiomes.DEAD_SWAMP);
         BiomeManager.addSpawnBiome(ModBiomes.SHOAL);
-
 
 
 

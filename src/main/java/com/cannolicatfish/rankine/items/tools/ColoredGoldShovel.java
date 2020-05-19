@@ -27,7 +27,7 @@ public class ColoredGoldShovel extends ShovelItem {
 
         if (type == 3) // Green Gold
         {
-            stack.addEnchantment(Enchantments.MENDING, 2);
+            stack.addEnchantment(Enchantments.MENDING, 1);
         }
 
         if (type == 4) // Blue Gold

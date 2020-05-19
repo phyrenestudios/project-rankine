@@ -200,8 +200,9 @@ public class ProjectRankine {
 
             event.getRegistry().register(new RankineWoodDoor().setRegistryName(ProjectRankine.MODID,"cedar_door"));
             event.getRegistry().register(new RankineWoodTrapDoor().setRegistryName(ProjectRankine.MODID,"cedar_trapdoor"));
-            event.getRegistry().register(new ModStairsBlock(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"cedar_stairs"));
-            event.getRegistry().register(new RankineWoodSlab().setRegistryName(ProjectRankine.MODID,"cedar_slab"));
+            event.getRegistry().register(new RotatedPillarBlock(Block.Properties.create(Material.WOOD)).setRegistryName(ProjectRankine.MODID, "cedar_wood"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"cedar_stairs"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"cedar_slab"));
             event.getRegistry().register(new RankineWoodFence().setRegistryName(ProjectRankine.MODID,"cedar_fence"));
             event.getRegistry().register(new RankineWoodFenceGate().setRegistryName(ProjectRankine.MODID,"cedar_fence_gate"));
             event.getRegistry().register(new RankineWoodButton().setRegistryName(ProjectRankine.MODID,"cedar_button"));
@@ -243,15 +244,16 @@ public class ProjectRankine {
             event.getRegistry().register(new SupportBlock(Block.Properties.create(Material.IRON)).setRegistryName(ProjectRankine.MODID,"cast_iron_beam"));
              */
             event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)).setRegistryName(ProjectRankine.MODID,"refractory_bricks"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"refractory_bricks_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"refractory_bricks_stairs"));
             event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_bricks"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_bricks_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_bricks_stairs"));
             event.getRegistry().register(new Crucible(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F).lightValue(7)).setRegistryName(ProjectRankine.MODID,"crucible"));
             event.getRegistry().register(new Block(Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"clay_bricks"));
-
-
-
-
-
-            //ores
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"clay_bricks_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)).setRegistryName(ProjectRankine.MODID,"clay_bricks_stairs"));
+            event.getRegistry().register(new SandyDirtBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)).setRegistryName(ProjectRankine.MODID,"sandy_dirt"));
             event.getRegistry().register(new NoduleBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"limestone_nodule"));
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)).setRegistryName(ProjectRankine.MODID,"vanadinite_ore"));
             event.getRegistry().register(new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.ALUMINUM_NUGGET).setRegistryName(ProjectRankine.MODID,"bauxite_ore"));
@@ -355,7 +357,57 @@ public class ProjectRankine {
             event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)).setRegistryName(ProjectRankine.MODID,"lignite_block"));
             event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)).setRegistryName(ProjectRankine.MODID,"bituminous_coal_block"));
             event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)).setRegistryName(ProjectRankine.MODID,"anthracite_coal_block"));
-
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_granite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_granite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_granite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_andesite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_andesite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_andesite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_diorite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_diorite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_diorite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_limestone"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_limestone_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_limestone_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_shale"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_shale_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_shale_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)).setRegistryName(ProjectRankine.MODID,"smooth_basalt"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_basalt_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_basalt_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)).setRegistryName(ProjectRankine.MODID,"smooth_gneiss"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_gneiss_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_gneiss_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)).setRegistryName(ProjectRankine.MODID,"smooth_marble"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_marble_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_marble_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)).setRegistryName(ProjectRankine.MODID,"smooth_rhyolite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_rhyolite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_rhyolite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_peridotite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_peridotite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_peridotite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_kimberlite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_kimberlite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_kimberlite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_komatiite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_komatiite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_komatiite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_ringwoodite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_ringwoodite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_ringwoodite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_wadsleyite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_wadsleyite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_wadsleyite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_ferropericlase"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_ferropericlase_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_ferropericlase_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_bridgmanite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_bridgmanite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_bridgmanite_stairs"));
+            event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)).setRegistryName(ProjectRankine.MODID,"smooth_perovskite"));
+            event.getRegistry().register(new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)).setRegistryName(ProjectRankine.MODID,"smooth_perovskite_slab"));
+            event.getRegistry().register(new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)).setRegistryName(ProjectRankine.MODID,"smooth_perovskite_stairs"));
 
 
             event.getRegistry().register(new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)).setRegistryName(ProjectRankine.MODID,"niter"));
@@ -392,52 +444,94 @@ public class ProjectRankine {
             event.getRegistry().register(new BlockItem(ModBlocks.VEGETATED_PERMAFROST,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"vegetated_permafrost"));
             event.getRegistry().register(new BlockItem(ModBlocks.CLAY_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"clay_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.REFRACTORY_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"refractory_bricks"));
+            event.getRegistry().register(new BlockItem(ModBlocks.REFRACTORY_BRICKS_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"refractory_bricks_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.REFRACTORY_BRICKS_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"refractory_bricks_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_bricks"));
+            event.getRegistry().register(new BlockItem(ModBlocks.MAGNESIUM_REFRACTORY_BRICKS_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_bricks_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.MAGNESIUM_REFRACTORY_BRICKS_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"magnesium_refractory_bricks_stairs"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SANDY_DIRT,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"sandy_dirt"));
             event.getRegistry().register(new BlockItem(ModBlocks.GRANITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"granite"));
             event.getRegistry().register(new BlockItem(ModBlocks.GRANITE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"granite_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_GRANITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_granite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_GRANITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_granite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_GRANITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_granite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.DIORITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"diorite"));
             event.getRegistry().register(new BlockItem(ModBlocks.DIORITE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"diorite_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_DIORITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_diorite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_DIORITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_diorite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_DIORITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_diorite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.ANDESITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"andesite"));
             event.getRegistry().register(new BlockItem(ModBlocks.ANDESITE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"andesite_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_ANDESITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_andesite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_ANDESITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_andesite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_ANDESITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_andesite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.LIMESTONE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"limestone"));
             event.getRegistry().register(new BlockItem(ModBlocks.LIMESTONE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"limestone_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_LIMESTONE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_limestone"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_LIMESTONE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_limestone_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_LIMESTONE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_limestone_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.BASALT,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"basalt"));
             event.getRegistry().register(new BlockItem(ModBlocks.BASALT_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"basalt_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_BASALT,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_basalt"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_BASALT_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_basalt_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_BASALT_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_basalt_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.RHYOLITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"rhyolite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RHYOLITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_rhyolite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RHYOLITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_rhyolite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RHYOLITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_rhyolite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.MARBLE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"marble"));
             event.getRegistry().register(new BlockItem(ModBlocks.MARBLE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"marble_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_MARBLE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_marble"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_MARBLE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_marble_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_MARBLE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_marble_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.GNEISS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"gneiss"));
             event.getRegistry().register(new BlockItem(ModBlocks.GNEISS_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"gneiss_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_GNEISS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_gneiss"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_GNEISS_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_gneiss_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_GNEISS_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_gneiss_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.SHALE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"shale"));
             event.getRegistry().register(new BlockItem(ModBlocks.SHALE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"shale_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_SHALE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_shale"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_SHALE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_shale_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_SHALE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_shale_stairs"));
+            event.getRegistry().register(new BlockItem(ModBlocks.CLAY_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"clay_bricks"));
+            event.getRegistry().register(new BlockItem(ModBlocks.CLAY_BRICKS_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"clay_bricks_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.CLAY_BRICKS_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"clay_bricks_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.IRONSTONE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"ironstone"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_IRONSTONE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ironstone"));
             event.getRegistry().register(new BlockItem(ModBlocks.IRONSTONE_BRICKS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"ironstone_bricks"));
             event.getRegistry().register(new BlockItem(ModBlocks.PERIDOTITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"peridotite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_PERIDOTITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_peridotite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_PERIDOTITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_peridotite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_PERIDOTITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_peridotite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.RINGWOODITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"ringwoodite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RINGWOODITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ringwoodite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RINGWOODITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ringwoodite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_RINGWOODITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ringwoodite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.WADSLEYITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"wadsleyite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_WADSLEYITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_wadsleyite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_WADSLEYITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_wadsleyite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_WADSLEYITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_wadsleyite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.BRIDGMANITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bridgmanite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_BRIDGMANITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_bridgmanite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_BRIDGMANITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_bridgmanite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_BRIDGMANITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_bridgmanite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.KOMATIITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"komatiite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_KOMATIITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_komatiite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_KOMATIITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_komatiite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_KOMATIITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_komatiite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.KIMBERLITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"kimberlite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_KIMBERLITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_kimberlite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_KIMBERLITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_kimberlite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_KIMBERLITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_kimberlite_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.FERROPERICLASE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"ferropericlase"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_FERROPERICLASE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ferropericlase"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_FERROPERICLASE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ferropericlase_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_FERROPERICLASE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_ferropericlase_stairs"));
             event.getRegistry().register(new BlockItem(ModBlocks.PEROVSKITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"perovskite"));
             event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_PEROVSKITE,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_perovskite"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_PEROVSKITE_SLAB,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_perovskite_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.SMOOTH_PEROVSKITE_STAIRS,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"smooth_perovskite_stairs"));
 
 
 
@@ -742,16 +836,36 @@ public class ProjectRankine {
             event.getRegistry().register(new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"lava_brass_bucket"));
             event.getRegistry().register(new BrassBucket(() -> ModFluids.LIQUID_PIG_IRON, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"liquid_pig_iron_brass_bucket"));
             event.getRegistry().register(new MilkBrassBucket(new Item.Properties().group(setup.itemGroup).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)).setRegistryName(ProjectRankine.MODID,"milk_brass_bucket"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_pickaxe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),1).setRegistryName(ProjectRankine.MODID,"rose_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),2).setRegistryName(ProjectRankine.MODID,"white_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),3).setRegistryName(ProjectRankine.MODID,"green_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_shovel"));
-            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),4).setRegistryName(ProjectRankine.MODID,"blue_gold_hoe"));
+
+            event.getRegistry().register(new ColoredGoldSword(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_sword"));
             event.getRegistry().register(new ColoredGoldShovel(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_shovel"));
+            event.getRegistry().register(new ColoredGoldPickaxe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_pickaxe"));
+            event.getRegistry().register(new ColoredGoldAxe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_axe"));
+            event.getRegistry().register(new ColoredGoldHoe(new Item.Properties().group(setup.itemGroup),5).setRegistryName(ProjectRankine.MODID,"purple_gold_hoe"));
             event.getRegistry().register(new BoneShovel(ItemTier.STONE, 1.5F, -3.0F, (new Item.Properties()).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"bone_shovel"));
 
             event.getRegistry().register(new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"stone_hammer"));

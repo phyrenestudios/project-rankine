@@ -69,53 +69,155 @@ public class ModBlocks {
     @ObjectHolder("rankine:smooth_andesite")
     public static Block SMOOTH_ANDESITE;
 
+    @ObjectHolder("rankine:smooth_andesite_slab")
+    public static Block SMOOTH_ANDESITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_andesite_stairs")
+    public static Block SMOOTH_ANDESITE_STAIRS;
+
     @ObjectHolder("rankine:smooth_granite")
     public static Block SMOOTH_GRANITE;
+
+    @ObjectHolder("rankine:smooth_granite_slab")
+    public static Block SMOOTH_GRANITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_granite_stairs")
+    public static Block SMOOTH_GRANITE_STAIRS;
 
     @ObjectHolder("rankine:smooth_diorite")
     public static Block SMOOTH_DIORITE;
 
+    @ObjectHolder("rankine:smooth_diorite_slab")
+    public static Block SMOOTH_DIORITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_diorite_stairs")
+    public static Block SMOOTH_DIORITE_STAIRS;
+
     @ObjectHolder("rankine:smooth_rhyolite")
     public static Block SMOOTH_RHYOLITE;
+
+    @ObjectHolder("rankine:smooth_rhyolite_slab")
+    public static Block SMOOTH_RHYOLITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_rhyolite_stairs")
+    public static Block SMOOTH_RHYOLITE_STAIRS;
 
     @ObjectHolder("rankine:smooth_basalt")
     public static Block SMOOTH_BASALT;
 
+    @ObjectHolder("rankine:smooth_basalt_slab")
+    public static Block SMOOTH_BASALT_SLAB;
+
+    @ObjectHolder("rankine:smooth_basalt_stairs")
+    public static Block SMOOTH_BASALT_STAIRS;
+
     @ObjectHolder("rankine:smooth_gneiss")
     public static Block SMOOTH_GNEISS;
+
+    @ObjectHolder("rankine:smooth_gneiss_slab")
+    public static Block SMOOTH_GNEISS_SLAB;
+
+    @ObjectHolder("rankine:smooth_gneiss_stairs")
+    public static Block SMOOTH_GNEISS_STAIRS;
 
     @ObjectHolder("rankine:smooth_marble")
     public static Block SMOOTH_MARBLE;
 
+    @ObjectHolder("rankine:smooth_marble_slab")
+    public static Block SMOOTH_MARBLE_SLAB;
+
+    @ObjectHolder("rankine:smooth_marble_stairs")
+    public static Block SMOOTH_MARBLE_STAIRS;
+
     @ObjectHolder("rankine:smooth_limestone")
     public static Block SMOOTH_LIMESTONE;
+
+    @ObjectHolder("rankine:smooth_limestone_slab")
+    public static Block SMOOTH_LIMESTONE_SLAB;
+
+    @ObjectHolder("rankine:smooth_limestone_stairs")
+    public static Block SMOOTH_LIMESTONE_STAIRS;
 
     @ObjectHolder("rankine:smooth_shale")
     public static Block SMOOTH_SHALE;
 
+    @ObjectHolder("rankine:smooth_shale_slab")
+    public static Block SMOOTH_SHALE_SLAB;
+
+    @ObjectHolder("rankine:smooth_shale_stairs")
+    public static Block SMOOTH_SHALE_STAIRS;
+
     @ObjectHolder("rankine:smooth_peridotite")
     public static Block SMOOTH_PERIDOTITE;
+
+    @ObjectHolder("rankine:smooth_peridotite_slab")
+    public static Block SMOOTH_PERIDOTITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_peridotite_stairs")
+    public static Block SMOOTH_PERIDOTITE_STAIRS;
 
     @ObjectHolder("rankine:smooth_kimberlite")
     public static Block SMOOTH_KIMBERLITE;
 
+    @ObjectHolder("rankine:smooth_kimberlite_slab")
+    public static Block SMOOTH_KIMBERLITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_kimberlite_stairs")
+    public static Block SMOOTH_KIMBERLITE_STAIRS;
+
     @ObjectHolder("rankine:smooth_komatiite")
     public static Block SMOOTH_KOMATIITE;
+
+    @ObjectHolder("rankine:smooth_komatiite_slab")
+    public static Block SMOOTH_KOMATIITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_komatiite_stairs")
+    public static Block SMOOTH_KOMATIITE_STAIRS;
 
     @ObjectHolder("rankine:smooth_ringwoodite")
     public static Block SMOOTH_RINGWOODITE;
 
+    @ObjectHolder("rankine:smooth_ringwoodite_slab")
+    public static Block SMOOTH_RINGWOODITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_ringwoodite_stairs")
+    public static Block SMOOTH_RINGWOODITE_STAIRS;
+
     @ObjectHolder("rankine:smooth_wadsleyite")
     public static Block SMOOTH_WADSLEYITE;
+
+    @ObjectHolder("rankine:smooth_wadsleyite_slab")
+    public static Block SMOOTH_WADSLEYITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_wadsleyite_stairs")
+    public static Block SMOOTH_WADSLEYITE_STAIRS;
 
     @ObjectHolder("rankine:smooth_ferropericlase")
     public static Block SMOOTH_FERROPERICLASE;
 
+    @ObjectHolder("rankine:smooth_ferropericlase_slab")
+    public static Block SMOOTH_FERROPERICLASE_SLAB;
+
+    @ObjectHolder("rankine:smooth_ferropericlase_stairs")
+    public static Block SMOOTH_FERROPERICLASE_STAIRS;
+
     @ObjectHolder("rankine:smooth_bridgmanite")
     public static Block SMOOTH_BRIDGMANITE;
 
+    @ObjectHolder("rankine:smooth_bridgmanite_slab")
+    public static Block SMOOTH_BRIDGMANITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_bridgmanite_stairs")
+    public static Block SMOOTH_BRIDGMANITE_STAIRS;
+
     @ObjectHolder("rankine:smooth_perovskite")
     public static Block SMOOTH_PEROVSKITE;
+
+    @ObjectHolder("rankine:smooth_perovskite_slab")
+    public static Block SMOOTH_PEROVSKITE_SLAB;
+
+    @ObjectHolder("rankine:smooth_perovskite_stairs")
+    public static Block SMOOTH_PEROVSKITE_STAIRS;
 
     @ObjectHolder("rankine:lignite_block")
     public static Block LIGNITE_BLOCK;
@@ -323,8 +425,20 @@ public class ModBlocks {
     @ObjectHolder("rankine:refractory_bricks")
     public static Block REFRACTORY_BRICKS;
 
+    @ObjectHolder("rankine:refractory_bricks_slab")
+    public static Block REFRACTORY_BRICKS_SLAB;
+
+    @ObjectHolder("rankine:refractory_bricks_stairs")
+    public static Block REFRACTORY_BRICKS_STAIRS;
+
     @ObjectHolder("rankine:magnesium_refractory_bricks")
     public static Block MAGNESIUM_REFRACTORY_BRICKS;
+
+    @ObjectHolder("rankine:magnesium_refractory_bricks_slab")
+    public static Block MAGNESIUM_REFRACTORY_BRICKS_SLAB;
+
+    @ObjectHolder("rankine:magnesium_refractory_bricks_stairs")
+    public static Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS;
 
     @ObjectHolder("rankine:limestone")
     public static Block LIMESTONE;
@@ -377,6 +491,11 @@ public class ModBlocks {
     @ObjectHolder("rankine:clay_bricks")
     public static Block CLAY_BRICKS;
 
+    @ObjectHolder("rankine:clay_bricks_slab")
+    public static Block CLAY_BRICKS_SLAB;
+
+    @ObjectHolder("rankine:clay_bricks_stairs")
+    public static Block CLAY_BRICKS_STAIRS;
 
     @ObjectHolder("rankine:andesite_bricks")
     public static Block ANDESITE_BRICKS;
