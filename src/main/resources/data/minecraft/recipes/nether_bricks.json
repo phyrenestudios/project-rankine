@@ -1,1 +1,1 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:mortar" },"b": { "item": "minecraft:nether_brick"} }, "result": { "item": "minecraft:nether_bricks", "count": 2 } }
+{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:mortar" },"b": { "item": "minecraft:nether_brick"} }, "result": { "item": "minecraft:nether_bricks", "count": 4 } }

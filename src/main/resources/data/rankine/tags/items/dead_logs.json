@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:dead_log",
-    "rankine:dead_wood",
-    "rankine:stripped_dead_log",
-    "rankine:stripped_dead_wood"
-  ]
-}

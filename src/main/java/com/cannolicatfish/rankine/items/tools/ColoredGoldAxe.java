@@ -42,7 +42,7 @@ public class ColoredGoldAxe extends AxeItem {
     }
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.itemGroup) {
+        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
             ItemStack axe = new ItemStack(this.getItem());
             if (type == 1) // Rose Gold
             {

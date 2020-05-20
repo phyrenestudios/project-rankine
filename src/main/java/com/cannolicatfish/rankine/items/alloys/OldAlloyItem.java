@@ -26,7 +26,7 @@ import java.util.List;
 public class OldAlloyItem extends Item {
     String registryName;
     public OldAlloyItem(String registryName) {
-        super(new Item.Properties().group(ProjectRankine.setup.itemGroup).maxStackSize(64));
+        super(new Item.Properties().group(ProjectRankine.setup.rankineMetals).maxStackSize(64));
         setRegistryName(ProjectRankine.MODID, registryName);
         this.registryName = registryName;
     }

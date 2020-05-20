@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "rankine:dead_logs"
+      "tag": "rankine:balsam_fir_logs"
     }
   ],
   "result": {
-    "item": "rankine:dead_planks",
+    "item": "rankine:balsam_fir_planks",
     "count": 4
   }
 }
