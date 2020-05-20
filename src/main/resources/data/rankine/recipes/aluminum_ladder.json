@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "a a",
+    "aaa",
+    "a a"
+  ],
+  "key":
+  {
+    "a":
+    {
+      "item": "rankine:aluminum_ingot"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:aluminum_ladder",
+    "count": 5
+  }
+}

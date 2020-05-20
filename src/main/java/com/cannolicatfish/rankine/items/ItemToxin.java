@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class ItemToxin extends Item {
     private static int type;
     public ItemToxin(String registryName, int type) {
-        super(new Item.Properties().group(ProjectRankine.setup.itemGroup).maxStackSize(64));
+        super(new Item.Properties().group(ProjectRankine.setup.rankineMetals).maxStackSize(64));
         this.type = type;
         setRegistryName(ProjectRankine.MODID, registryName);
     }
@@ -24,7 +24,7 @@ public class ItemToxin extends Item {
             ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.WEAKNESS, 7 * 20, 0));
             ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.MINING_FATIGUE, 7 * 20, 0));
             ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 7 * 20, 0));
-            if (isSelected == true)
+            if (isSelected)
             {
                 ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.POISON, 7 * 20, 0));
             }

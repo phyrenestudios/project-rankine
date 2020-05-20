@@ -73,7 +73,7 @@ public class AlloyItem extends Item {
      */
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.itemGroup) {
+        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineMetals) {
             items.add(getAlloyItemStack(new AlloyData("80Cu-20Sn")));
         }
     }

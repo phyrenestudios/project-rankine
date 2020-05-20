@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx",
+    "ax",
+    "a "
+  ],
+  "key":
+  {
+    "a":
+    {
+      "item": "minecraft:stick"
+    },
+    "x":
+    {
+      "item": "rankine:purple_gold_alloy"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:purple_gold_axe",
+    "count": 1
+  }
+}

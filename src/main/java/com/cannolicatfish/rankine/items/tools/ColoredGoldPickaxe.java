@@ -44,7 +44,7 @@ public class ColoredGoldPickaxe extends PickaxeItem {
         }
     }
         public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-            if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.itemGroup) {
+            if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
                 ItemStack pick = new ItemStack(this.getItem());
                 if (type == 1) // Rose Gold
                 {
