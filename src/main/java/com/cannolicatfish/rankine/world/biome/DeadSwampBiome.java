@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.biome;
 
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
+import com.cannolicatfish.rankine.world.feature.RankineFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -20,7 +21,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DeadSwampBiome extends Biome {
     public DeadSwampBiome() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG).precipitation(Biome.RainType.RAIN).category(Biome.Category.SWAMP).depth(-0.1F).scale(0.15F).temperature(0.8F).downfall(0.9F).waterColor(6388580).waterFogColor(2302743).parent((String)null));
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
+                .precipitation(Biome.RainType.RAIN)
+                .category(Biome.Category.SWAMP)
+                .depth(-0.1F)
+                .scale(0.15F)
+                .temperature(0.8F
+                ).downfall(0.9F)
+                .waterColor(6388580)
+                .waterFogColor(2302743)
+                .parent((String)null));
+
         this.addStructure(Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
         DefaultBiomeFeatures.addCarvers(this);
@@ -36,8 +47,8 @@ public class DeadSwampBiome extends Biome {
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEAGRASS.withConfiguration(new SeaGrassConfig(64, 0.6D)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
         DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
+        RankineBiomeFeatures.addDeadSwampVegetation(this);
 
-        ModBiomeFeatures.addDeadSwampVegetation(this);
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.SHEEP, 6, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.PIG, 6, 4, 4));
        this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(ModEntityTypes.BEAVER, 12, 4, 4));

@@ -266,6 +266,8 @@
   "block.rankine.limestone_nodule": "Limestone Nodule",
   "block.rankine.elderberry_bush": "Elderberry Bush",
   "item.rankine.elderberries": "Elderberries",
+  "block.rankine.pineapple_bush": "Pineapple Bush",
+  "item.rankine.pineapple": "Pineapple",
   "item.rankine.sphagnum_moss": "Sphagnum Moss",
   "block.rankine.banana_yucca_bush": "Banana Yucca Bush",
   "item.rankine.banana_yucca": "Banana Yucca",
@@ -454,6 +456,7 @@
   "block.minecraft.diorite": "Quartz Diorite",
   "block.minecraft.andesite": "Gray Andesite",
   "item.rankine.coconut": "Coconut",
+  "item.rankine.pina_colada": "Pina Colada",
   "item.rankine.copper_nugget": "Copper Nugget",
   "item.rankine.cobalt_nugget": "Cobalt Nugget",
   "item.rankine.tin_nugget": "Tin Nugget",
@@ -554,6 +557,7 @@
   "biome.rankine.cedar_forest": "Cedar Forest",
   "biome.rankine.dead_swamp": "Dead Swamp",
   "biome.rankine.felsenmeer": "Felsenmeer",
-  "biome.rankine.shoal": "Shoal"
+  "biome.rankine.shoal": "Shoal",
+  "biome.rankine.tropics": "Tropics"
 
 }

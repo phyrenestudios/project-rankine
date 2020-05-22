@@ -879,6 +879,9 @@ public class ModBlocks {
     @ObjectHolder("rankine:snowberry_bush")
     public static RankineBerryBushBlock SNOWBERRY_BUSH;
 
+    @ObjectHolder("rankine:pineapple_bush")
+    public static RankineBerryBushBlock PINEAPPLE_BUSH;
+
     @ObjectHolder("rankine:banana_yucca_bush")
     public static RankineBerryBushBlock BANANA_YUCCA_BUSH;
 }

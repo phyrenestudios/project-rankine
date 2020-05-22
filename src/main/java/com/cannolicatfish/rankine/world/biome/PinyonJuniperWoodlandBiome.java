@@ -12,7 +12,17 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class PinyonJuniperWoodlandBiome extends Biome {
     public PinyonJuniperWoodlandBiome() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(ModBlocks.SANDY_DIRT.getDefaultState(), ModBlocks.SANDY_DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState())).precipitation(RainType.RAIN).category(Biome.Category.SAVANNA).depth(0.8F).scale(0.05F).temperature(1.5F).downfall(0.1F).waterColor(4159177).waterFogColor(329011).parent((String)null));
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(ModBlocks.SANDY_DIRT.getDefaultState(), ModBlocks.SANDY_DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))
+                .precipitation(RainType.RAIN)
+                .category(Biome.Category.SAVANNA)
+                .depth(0.8F)
+                .scale(0.05F)
+                .temperature(1.5F)
+                .downfall(0.1F)
+                .waterColor(4159177)
+                .waterFogColor(329011)
+                .parent((String)null));
+
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
@@ -22,13 +32,14 @@ public class PinyonJuniperWoodlandBiome extends Biome {
         DefaultBiomeFeatures.addStoneVariants(this);
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addSedimentDisks(this);
-        ModBiomeFeatures.addPinyonTrees(this);
+        RankineBiomeFeatures.addPinyonTrees(this);
         DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addExtraDefaultFlowers(this);
         DefaultBiomeFeatures.addVeryDenseGrass(this);
         DefaultBiomeFeatures.addMushrooms(this);
         DefaultBiomeFeatures.addReedsAndPumpkins(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
+
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.PIG, 10, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.CHICKEN, 10, 4, 4));

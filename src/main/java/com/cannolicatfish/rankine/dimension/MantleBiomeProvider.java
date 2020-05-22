@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.dimension;
 
-import com.cannolicatfish.rankine.world.biome.ModBiomes;
+import com.cannolicatfish.rankine.world.biome.RankineBiomes;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -12,11 +12,11 @@ import java.util.*;
 
 public class MantleBiomeProvider extends BiomeProvider {
     public final Biome biome;
-    private static final List<Biome> SPAWN = Collections.singletonList(ModBiomes.MANTLE);
+    private static final List<Biome> SPAWN = Collections.singletonList(RankineBiomes.MANTLE);
     public MantleBiomeProvider()
     {
         super(new HashSet<>(SPAWN));
-        biome = ModBiomes.MANTLE;
+        biome = RankineBiomes.MANTLE;
     }
 
     @Override

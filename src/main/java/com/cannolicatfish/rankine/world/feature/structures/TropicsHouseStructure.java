@@ -22,41 +22,25 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
-    public BeaverLodgeStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
+public class TropicsHouseStructure extends Structure<NoFeatureConfig>
+{
+    public TropicsHouseStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config)
+    {
         super(config);
     }
 
-    @Override
-    public String getStructureName() {
-        return ProjectRankine.MODID + ":beaver_lodge";
-    }
-
-    @Override
-    public int getSize() {
-        return 0;
-    }
-
-    @Override
-    public Structure.IStartFactory getStartFactory() {
-        return BeaverLodgeStructure.Start::new;
-    }
-
-    protected int getSeedModifier() {
-        return 17171717;
-    }
 
     @Override
     protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ)
     {
 
-        int maxDistance = 12;
-        int minDistance = 6;
+        int maxDistance = 25;
+        int minDistance = 15;
 
         int xTemp = x + maxDistance * spacingOffsetsX;
-        int ztemp = z + maxDistance * spacingOffsetsZ;
+        int zTemp = z + maxDistance * spacingOffsetsZ;
         int xTemp2 = xTemp < 0 ? xTemp - maxDistance + 1 : xTemp;
-        int zTemp2 = ztemp < 0 ? ztemp - maxDistance + 1 : ztemp;
+        int zTemp2 = zTemp < 0 ? zTemp - maxDistance + 1 : zTemp;
         int validChunkX = xTemp2 / maxDistance;
         int validChunkZ = zTemp2 / maxDistance;
 
@@ -68,6 +52,30 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
 
         return new ChunkPos(validChunkX, validChunkZ);
     }
+
+    @Override
+    public String getStructureName()
+    {
+        return ProjectRankine.MODID + ":tropics_house";
+    }
+
+    @Override
+    public int getSize()
+    {
+        return 0;
+    }
+
+    @Override
+    public IStartFactory getStartFactory()
+    {
+        return TropicsHouseStructure.Start::new;
+    }
+
+    protected int getSeedModifier()
+    {
+        return 1717171;
+    }
+
 
     @Override
     public boolean func_225558_a_(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome)
@@ -90,8 +98,10 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
     /*
      * Handles calling up the structure's pieces class and height that structure will spawn at.
      */
-    public static class Start extends StructureStart {
-        public Start(Structure<?> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn) {
+    public static class Start extends StructureStart
+    {
+        public Start(Structure<?> structureIn, int chunkX, int chunkZ, MutableBoundingBox mutableBoundingBox, int referenceIn, long seedIn)
+        {
             super(structureIn, chunkX, chunkZ, mutableBoundingBox, referenceIn, seedIn);
         }
 
@@ -111,12 +121,12 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
 
             //Now adds the structure pieces to this.components with all details such as where each part goes
             //so that the structure can be added to the world by worldgen.
-            BeaverLodgePieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
+            TropicsHousePieces.start(templateManagerIn, blockpos, rotation, this.components, this.rand);
 
             //Sets the bounds of the structure.
             this.recalculateStructureSize();
 
-            //   StructureTutorialMain.LOGGER.log(Level.DEBUG, "Rundown House at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
+         //   StructureTutorialMain.LOGGER.log(Level.DEBUG, "Rundown House at " + (blockpos.getX()) + " " + blockpos.getY() + " " + (blockpos.getZ()));
         }
 
     }

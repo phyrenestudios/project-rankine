@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class BeaverLodgePieces
+public class TropicsHousePieces
 {
     /*
      * Here is a video on how to save a structure with structure blocks. https://www.youtube.com/watch?v=ylGFb4F4xVk&t=1s
@@ -37,7 +37,8 @@ public class BeaverLodgePieces
      * Here, I have two structure nbt files named run_down_house_left_side.nbt and run_down_house_right_side.nbt and I
      * access them with the following resource locations below. The MODID and ':' are important too.
      */
-    private static final ResourceLocation LEFT_SIDE = new ResourceLocation(ProjectRankine.MODID + ":beaver_lodge_left");
+    private static final ResourceLocation LEFT_SIDE = new ResourceLocation(ProjectRankine.MODID + ":tropics_house");
+//    private static final ResourceLocation RIGHT_SIDE = new ResourceLocation(ProjectRankine.MODID + ":beaver_lodge_right");
     private static final Map<ResourceLocation, BlockPos> OFFSET = ImmutableMap.of(LEFT_SIDE, new BlockPos(0, 1, 0));
 
 
@@ -59,11 +60,11 @@ public class BeaverLodgePieces
         //Lots of trial and error may be needed to get this right for your structure.
         BlockPos rotationOffSet = new BlockPos(0, 0, 0).rotate(rotation);
         BlockPos blockpos = rotationOffSet.add(x, pos.getY(), z);
-        pieceList.add(new BeaverLodgePieces.Piece(templateManager, LEFT_SIDE, blockpos, rotation));
+        pieceList.add(new TropicsHousePieces.Piece(templateManager, LEFT_SIDE, blockpos, rotation));
 
-        //   rotationOffSet = new BlockPos(-5, 0, 0).rotate(rotation);
-        //   blockpos = rotationOffSet.add(x, pos.getY(), z);
-        //    pieceList.add(new BeaverLodgePieces.Piece(templateManager, RIGHT_SIDE, blockpos, rotation));
+     //   rotationOffSet = new BlockPos(-5, 0, 0).rotate(rotation);
+     //   blockpos = rotationOffSet.add(x, pos.getY(), z);
+    //    pieceList.add(new BeaverLodgePieces.Piece(templateManager, RIGHT_SIDE, blockpos, rotation));
     }
 
     /*
@@ -80,9 +81,9 @@ public class BeaverLodgePieces
 
         public Piece(TemplateManager templateManagerIn, ResourceLocation resourceLocationIn, BlockPos pos, Rotation rotationIn)
         {
-            super(RankineFeatures.BEAVER_LODGE_PIECE, 0);
+            super(RankineFeatures.TROPICS_HOUSE_PIECE, 0);
             this.resourceLocation = resourceLocationIn;
-            BlockPos blockpos = BeaverLodgePieces.OFFSET.get(resourceLocation);
+            BlockPos blockpos = TropicsHousePieces.OFFSET.get(resourceLocation);
             this.templatePosition = pos.add(blockpos.getX(), blockpos.getY(), blockpos.getZ());
             this.rotation = rotationIn;
             this.setupPiece(templateManagerIn);
@@ -91,7 +92,7 @@ public class BeaverLodgePieces
 
         public Piece(TemplateManager templateManagerIn, CompoundNBT tagCompound)
         {
-            super(RankineFeatures.BEAVER_LODGE_PIECE, tagCompound);
+            super(RankineFeatures.TROPICS_HOUSE_PIECE, tagCompound);
             this.resourceLocation = new ResourceLocation(tagCompound.getString("Template"));
             this.rotation = Rotation.valueOf(tagCompound.getString("Rot"));
             this.setupPiece(templateManagerIn);
@@ -150,7 +151,7 @@ public class BeaverLodgePieces
         public boolean func_225577_a_(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos)
         {
             PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.rotation).setMirror(Mirror.NONE);
-            BlockPos blockpos = BeaverLodgePieces.OFFSET.get(this.resourceLocation);
+            BlockPos blockpos = TropicsHousePieces.OFFSET.get(this.resourceLocation);
             this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(0 - blockpos.getX(), 0, 0 - blockpos.getZ())));
 
             return super.func_225577_a_(worldIn, p_225577_2_, randomIn, structureBoundingBoxIn, chunkPos);

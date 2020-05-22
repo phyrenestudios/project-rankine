@@ -32,15 +32,15 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
     public RankineBerryBushBlock(Properties p_i49971_1_, int type) {
         super(p_i49971_1_);
         this.type = type;
-        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)));
+        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0));
     }
 
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        if (type == 2)
+        if (type == 2 || type == 3)
         {
-            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
+            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == ModBlocks.SANDY_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
         }
         return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
     }
@@ -60,6 +60,10 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             {
                 return new ItemStack(ModItems.BANANA_YUCCA);
             }
+            case 3:
+            {
+            return new ItemStack(ModItems.PINEAPPLE);
+            }
         }
         return null;
     }
@@ -77,7 +81,7 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
         super.tick(state, worldIn, pos, rand);
         int i = state.get(AGE);
         if (i < 3 && worldIn.getLightSubtracted(pos.up(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt(5) == 0)) {
-            worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(i + 1)), 2);
+            worldIn.setBlockState(pos, state.with(AGE, i + 1), 2);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
         }
 
@@ -108,8 +112,7 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             int j = 1 + worldIn.rand.nextInt(2);
             if (type == 0)
             {
-
-                    spawnAsEntity(worldIn, pos, new ItemStack(ModItems.ELDERBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.ELDERBERRIES, j + (flag ? 1 : 0)));
             }
             if (type == 1)
             {
@@ -119,8 +122,12 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             {
                 spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BANANA_YUCCA, j + (flag ? 1 : 0)));
             }
+            if (type == 3)
+            {
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.PINEAPPLE, j + (flag ? 1 : 0)));
+            }
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-            worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)), 2);
+            worldIn.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResultType.SUCCESS;
         } else {
             return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
@@ -147,6 +154,6 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
 
     public void grow(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
         int i = Math.min(3, p_225535_4_.get(AGE) + 1);
-        p_225535_1_.setBlockState(p_225535_3_, p_225535_4_.with(AGE, Integer.valueOf(i)), 2);
+        p_225535_1_.setBlockState(p_225535_3_, p_225535_4_.with(AGE, i), 2);
     }
 }

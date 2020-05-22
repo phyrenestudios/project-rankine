@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineBerryBushBlock;
-import com.cannolicatfish.rankine.world.biome.ModBiomes;
+import com.cannolicatfish.rankine.world.biome.RankineBiomes;
 import com.cannolicatfish.rankine.world.feature.CustomScatteredPlantFeature;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -27,6 +27,10 @@ public class TreeGen
         addBerryBushes(ModBlocks.ELDERBERRY_BUSH, Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),Arrays.asList(0,0), Collections.singletonList(Blocks.GRASS_BLOCK));
         addBerryBushes(ModBlocks.SNOWBERRY_BUSH, Arrays.asList(Biome.Category.PLAINS, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA, Biome.Category.ICY),Arrays.asList(0,1,0,1), Arrays.asList(Blocks.GRASS_BLOCK));
         addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),Arrays.asList(1,0,0), Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND));
+        addBerryBushes(ModBlocks.PINEAPPLE_BUSH, Collections.singletonList(Biome.Category.BEACH), Collections.singletonList(1), Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND));
+
+
+
         /*for(Biome biome : ForgeRegistries.BIOMES)
         {
             if (biome.getCategory() == Biome.Category.RIVER || biome.getCategory() == Biome.Category.SWAMP) {
@@ -47,7 +51,7 @@ public class TreeGen
     public static void addBerryBushes(RankineBerryBushBlock bush, List<Biome.Category> biomes, List<Integer> type, List<Block> blocks)
     {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (biomes.contains(biome.getCategory()) && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != ModBiomes.MANTLE) {
+            if (biomes.contains(biome.getCategory()) && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
                 int index = biomes.indexOf(biome.getCategory());
                 int retrieve = type.get(index);
                 if (retrieve == 0) {
