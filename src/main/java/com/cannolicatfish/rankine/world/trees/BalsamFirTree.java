@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.trees;
 
 import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
+import com.cannolicatfish.rankine.world.feature.RankineFeatures;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.SaplingBlock;
@@ -26,6 +27,6 @@ public class BalsamFirTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return new TreeFeature(TreeFeatureConfig::func_227338_a_).withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG);
+        return RankineFeatures.BALSAM_FIR_TREE.withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG);
     }
 }

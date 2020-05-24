@@ -1101,7 +1101,7 @@ public class ProjectRankine {
             //registers the structures/features.
             //If you don't do this, you'll crash.
             RankineFeatures.registerFeatures(event);
-            LOGGER.log(Level.INFO, "features/structures registered.");
+  //          LOGGER.log(Level.INFO, "features/structures registered.");
         }
     }
 
