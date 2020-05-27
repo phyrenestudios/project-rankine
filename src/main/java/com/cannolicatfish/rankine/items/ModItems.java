@@ -7,6 +7,28 @@ import net.minecraft.item.*;
 import net.minecraftforge.registries.ObjectHolder;
 public class ModItems {
 
+
+    @ObjectHolder("rankine:axe_template")
+    public static Item AXE_TEMPLATE;
+
+    @ObjectHolder("rankine:shovel_template")
+    public static Item SHOVEL_TEMPLATE;
+
+    @ObjectHolder("rankine:pickaxe_template")
+    public static Item PICKAXE_TEMPLATE;
+
+    @ObjectHolder("rankine:hammer_template")
+    public static Item HAMMER_TEMPLATE;
+
+    @ObjectHolder("rankine:spear_template")
+    public static Item SPEAR_TEMPLATE;
+
+    @ObjectHolder("rankine:hoe_template")
+    public static Item HOE_TEMPLATE;
+
+    @ObjectHolder("rankine:sword_template")
+    public static Item SWORD_TEMPLATE;
+
     @ObjectHolder("rankine:coconut")
     public static Item COCONUT;
 
@@ -358,6 +380,14 @@ public class ModItems {
 
     @ObjectHolder("rankine:rose_gold_pickaxe")
     public static ColoredGoldPickaxe ROSE_GOLD_PICKAXE;
+    @ObjectHolder("rankine:rose_gold_axe")
+    public static ColoredGoldAxe ROSE_GOLD_AXE;
+    @ObjectHolder("rankine:rose_gold_shovel")
+    public static ColoredGoldShovel ROSE_GOLD_SHOVEL;
+    @ObjectHolder("rankine:rose_gold_sword")
+    public static ColoredGoldSword ROSE_GOLD_SWORD;
+    @ObjectHolder("rankine:rose_gold_hoe")
+    public static ColoredGoldHoe ROSE_GOLD_HOE;
 
 
     @ObjectHolder("rankine:wood_bucket")

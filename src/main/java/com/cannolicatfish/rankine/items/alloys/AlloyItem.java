@@ -36,7 +36,7 @@ public class AlloyItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (getComposition(stack).size() != 0)
         {
-            tooltip.add((new StringTextComponent(getComposition(stack).get(0).toString())).applyTextStyle(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent(getComposition(stack).getCompound(0).get("comp").getString())).applyTextStyle(TextFormatting.GRAY));
         }
     }
 

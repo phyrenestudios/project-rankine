@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " r ",
+    "rxr",
+    " r "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:paper"
+    },
+    "r":
+    {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:sword_template"
+  }
+}

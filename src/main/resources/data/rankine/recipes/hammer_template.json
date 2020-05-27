@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " r ",
+    "rxr",
+    " r "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:paper"
+    },
+    "r":
+    {
+      "tag": "rankine:crushed_rocks"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:hammer_template"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " r ",
+    "rxr",
+    " r "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:paper"
+    },
+    "r":
+    {
+      "tag": "forge:stone"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:pickaxe_template"
+  }
+}

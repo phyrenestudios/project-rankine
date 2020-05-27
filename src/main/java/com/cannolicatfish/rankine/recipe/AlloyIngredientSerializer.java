@@ -17,19 +17,12 @@ public class AlloyIngredientSerializer implements IIngredientSerializer<NBTIngre
     @Override
     public NBTIngredient parse(final JsonObject json) {
         final ItemStack stack = CraftingHelper.getItemStack(json, true);
+        final String composition = JSONUtils.getString(json, "data");
+        final CompoundNBT tileEntityData = stack.getOrCreateChildTag("StoredComposition");
 
-        final ResourceLocation entityRegistryName = new ResourceLocation(JSONUtils.getString(json, "entity"));
-        if (!ForgeRegistries.ENTITIES.containsKey(entityRegistryName)) {
-            throw new JsonSyntaxException("Unknown entity type '" + entityRegistryName.toString() + "'");
-        }
-
-        final CompoundNBT tileEntityData = stack.getOrCreateChildTag("BlockEntityTag");
-
-        final CompoundNBT spawnData = tileEntityData.getCompound("SpawnData");
-        spawnData.putString("id", entityRegistryName.toString());
-        tileEntityData.put("SpawnData", spawnData);
-
-        tileEntityData.put("SpawnPotentials", tileEntityData.getList("SpawnPotentials", Constants.NBT.TAG_COMPOUND));
+        final CompoundNBT alloyData = tileEntityData.getCompound("comp");
+        alloyData.putString("id", composition);
+        tileEntityData.put("AlloyData", alloyData);
 
         return new IngredientRankineNBT(stack);
     }
