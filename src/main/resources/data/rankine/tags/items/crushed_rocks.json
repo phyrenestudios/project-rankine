@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:calcite",
+    "rankine:feldspar",
+    "rankine:dolomite",
+    "rankine:olivine",
+    "rankine:pyroxene"
+  ]
+}

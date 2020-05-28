@@ -2,6 +2,9 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.blocks.crucible.Crucible;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
@@ -619,6 +622,15 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:crucible")
     public static Crucible CRUCIBLE;
+
+    @ObjectHolder("rankine:coal_forge")
+    public static CoalForge COAL_FORGE;
+
+    @ObjectHolder("rankine:coal_forge")
+    public static ContainerType<CoalForgeContainer> COAL_FORGE_CONTAINER;
+
+    @ObjectHolder("rankine:coal_forge")
+    public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
 
     @ObjectHolder("rankine:finery_forge")
     public static FineryForge FINERY_FORGE;

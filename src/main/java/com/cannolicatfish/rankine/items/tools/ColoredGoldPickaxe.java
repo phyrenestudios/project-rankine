@@ -58,7 +58,7 @@ public class ColoredGoldPickaxe extends PickaxeItem {
 
                 if (type == 3) // Green Gold
                 {
-                    pick.addEnchantment(Enchantments.MENDING, 2);
+                    pick.addEnchantment(Enchantments.MENDING, 1);
                 }
 
                 if (type == 4) // Blue Gold
