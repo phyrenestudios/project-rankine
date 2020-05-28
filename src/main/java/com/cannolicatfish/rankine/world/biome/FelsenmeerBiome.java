@@ -20,13 +20,24 @@ import java.util.Random;
 
 public class FelsenmeerBiome extends Biome {
     public FelsenmeerBiome() {
-        super((new Biome.Builder()).surfaceBuilder(new FelsenmeerSurfaceBuilder(SurfaceBuilderConfig::deserialize), new SurfaceBuilderConfig(ModBlocks.RHYOLITE.getDefaultState(), Blocks.STONE.getDefaultState(), Blocks.GRAVEL.getDefaultState())).precipitation(Biome.RainType.RAIN).category(Category.FOREST).depth(0.15F).scale(0.075F).temperature(0.8F).downfall(0.4F).waterColor(4159204).waterFogColor(329011).parent((String)null));
+        super((new Biome.Builder()).surfaceBuilder(new FelsenmeerSurfaceBuilder(SurfaceBuilderConfig::deserialize), new SurfaceBuilderConfig(ModBlocks.RHYOLITE.getDefaultState(), Blocks.STONE.getDefaultState(), Blocks.GRAVEL.getDefaultState()))
+                .precipitation(Biome.RainType.RAIN)
+                .category(Category.FOREST)
+                .depth(0.15F)
+                .scale(0.075F)
+                .temperature(0.8F)
+                .downfall(0.4F)
+                .waterColor(4159204)
+                .waterFogColor(329011)
+                .parent((String)null));
+
       this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
       this.addStructure(Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
       this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.ANDESITE.getDefaultState(),new Random().nextInt(2)))
               .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
       this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.DIORITE.getDefaultState(),new Random().nextInt(2)))
               .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
+
       DefaultBiomeFeatures.addCarvers(this);
       DefaultBiomeFeatures.addStructures(this);
       DefaultBiomeFeatures.addLakes(this);
@@ -41,6 +52,7 @@ public class FelsenmeerBiome extends Biome {
       DefaultBiomeFeatures.addReedsAndPumpkins(this);
       DefaultBiomeFeatures.addSprings(this);
       DefaultBiomeFeatures.addFreezeTopLayer(this);
+
       this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
       this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.PIG, 10, 4, 4));
       this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.CHICKEN, 10, 4, 4));

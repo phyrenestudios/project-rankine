@@ -1,6 +1,6 @@
-package com.cannolicatfish.rankine.blocks.trees;
+package com.cannolicatfish.rankine.world.trees;
 
-import com.cannolicatfish.rankine.world.biome.ModBiomeFeatures;
+import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.SaplingBlock;
@@ -24,6 +24,6 @@ public class CoconutPalmTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.ACACIA_TREE.withConfiguration(ModBiomeFeatures.COCONUT_PALM_TREE_CONFIG);
+        return Feature.ACACIA_TREE.withConfiguration(RankineBiomeFeatures.COCONUT_PALM_TREE_CONFIG);
     }
 }

@@ -12,9 +12,19 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 public class HighlandPlateauBiome extends Biome {
     public HighlandPlateauBiome(){
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG).precipitation(Biome.RainType.RAIN).category(Biome.Category.EXTREME_HILLS).depth(0.9F).scale(0.1F).temperature(0.2F).downfall(0.3F).waterColor(4159204).waterFogColor(329011).parent((String)null));
+        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
+                .precipitation(Biome.RainType.RAIN)
+                .category(Biome.Category.EXTREME_HILLS)
+                .depth(0.9F).scale(0.1F)
+                .temperature(0.2F
+                ).downfall(0.3F)
+                .waterColor(4159204)
+                .waterFogColor(329011)
+                .parent((String)null));
+
         this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
         this.addStructure(Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
@@ -31,6 +41,7 @@ public class HighlandPlateauBiome extends Biome {
         DefaultBiomeFeatures.addExtraEmeraldOre(this);
         DefaultBiomeFeatures.addInfestedStone(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
+
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.SHEEP, 12, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.PIG, 10, 4, 4));
         this.addSpawn(EntityClassification.CREATURE, new Biome.SpawnListEntry(EntityType.CHICKEN, 10, 4, 4));

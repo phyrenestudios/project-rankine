@@ -1,6 +1,6 @@
-package com.cannolicatfish.rankine.blocks.trees;
+package com.cannolicatfish.rankine.world.trees;
 
-import com.cannolicatfish.rankine.world.biome.ModBiomeFeatures;
+import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.SaplingBlock;
@@ -12,12 +12,12 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class JuniperTree extends Tree {
+public class PinyonPineTree extends Tree {
     public final LogBlock log;
     public final LeavesBlock leaf;
     public final SaplingBlock sapling;
 
-    public JuniperTree(LogBlock log, LeavesBlock leaf, SaplingBlock sapling) {
+    public PinyonPineTree(LogBlock log, LeavesBlock leaf, SaplingBlock sapling) {
         this.log = log;
         this.leaf = leaf;
         this.sapling = sapling;
@@ -26,6 +26,6 @@ public class JuniperTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.ACACIA_TREE.withConfiguration(ModBiomeFeatures.JUNIPER_TREE_CONFIG);
+        return Feature.ACACIA_TREE.withConfiguration(RankineBiomeFeatures.PINYON_TREE_CONFIG);
     }
 }

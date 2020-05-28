@@ -1,29 +1,17 @@
 package com.cannolicatfish.rankine.setup;
 
-import com.cannolicatfish.rankine.blocks.ModColors;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeScreen;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
-import com.cannolicatfish.rankine.world.biome.ModBiomes;
-import net.minecraft.block.BlockState;
+import com.cannolicatfish.rankine.world.biome.RankineBiomes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.FoliageColors;
-import net.minecraft.world.ILightReader;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColors;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BiomeManager;
 
 public class ClientProxy implements IProxy {
@@ -84,6 +72,7 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.DUCKWEED, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.ELDERBERRY_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SNOWBERRY_BUSH, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PINEAPPLE_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_LEAVES,RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_LEAVES, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_LEAVES, RenderType.getCutoutMipped());
@@ -104,22 +93,26 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_BALSAM_FIR_SAPLING, RenderType.getCutout());
 
 
+/*
+
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FELSENMEER,10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.HIGHLAND_PLATEAU,10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.PINYON_JUNIPER_WOODLANDS,10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.CEDAR_FOREST,10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.DEAD_SWAMP,40));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RankineBiomes.SHOAL,5));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RankineBiomes.TROPICS,40));
 
 
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.FELSENMEER,10));
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.HIGHLAND_PLATEAU,10));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.PINYON_JUNIPER_WOODLANDS,10));
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(ModBiomes.CEDAR_FOREST,10));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(ModBiomes.DEAD_SWAMP,10));
-        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(ModBiomes.SHOAL,10));
+        BiomeManager.addSpawnBiome(RankineBiomes.PINYON_JUNIPER_WOODLANDS);
+        BiomeManager.addSpawnBiome(RankineBiomes.CEDAR_FOREST);
+        BiomeManager.addSpawnBiome(RankineBiomes.HIGHLAND_PLATEAU);
+        BiomeManager.addSpawnBiome(RankineBiomes.FELSENMEER);
+        BiomeManager.addSpawnBiome(RankineBiomes.DEAD_SWAMP);
+        BiomeManager.addSpawnBiome(RankineBiomes.SHOAL);
+        BiomeManager.addSpawnBiome(RankineBiomes.TROPICS);
 
-
-        BiomeManager.addSpawnBiome(ModBiomes.PINYON_JUNIPER_WOODLANDS);
-        BiomeManager.addSpawnBiome(ModBiomes.CEDAR_FOREST);
-        BiomeManager.addSpawnBiome(ModBiomes.HIGHLAND_PLATEAU);
-        BiomeManager.addSpawnBiome(ModBiomes.FELSENMEER);
-        BiomeManager.addSpawnBiome(ModBiomes.DEAD_SWAMP);
-        BiomeManager.addSpawnBiome(ModBiomes.SHOAL);
+ */
 
 
 

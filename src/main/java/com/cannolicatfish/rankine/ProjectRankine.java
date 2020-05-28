@@ -1,4 +1,6 @@
 package com.cannolicatfish.rankine;
+import com.cannolicatfish.rankine.world.gen.StructureGen;
+import com.cannolicatfish.rankine.world.trees.*;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
@@ -36,7 +38,7 @@ import com.cannolicatfish.rankine.setup.ClientProxy;
 import com.cannolicatfish.rankine.setup.IProxy;
 import com.cannolicatfish.rankine.setup.ModSetup;
 import com.cannolicatfish.rankine.setup.ServerProxy;
-import com.cannolicatfish.rankine.world.feature.PRFeatures;
+import com.cannolicatfish.rankine.world.feature.RankineFeatures;
 import com.cannolicatfish.rankine.world.gen.OreGen;
 import com.cannolicatfish.rankine.world.gen.TreeGen;
 import net.minecraft.block.*;
@@ -53,10 +55,16 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.placement.IPlacementConfig;
+import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
@@ -65,16 +73,18 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.function.Supplier;
+import java.lang.reflect.Type;
 
 @Mod("rankine")
 public class ProjectRankine {
@@ -84,11 +94,16 @@ public class ProjectRankine {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public ProjectRankine() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-common.toml"));
 
         MinecraftForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::setup);
+        RankineBiomes.BIOMES.register(modEventBus);
+
+
     }
 
 
@@ -96,8 +111,10 @@ public class ProjectRankine {
     {
         setup.init();
         proxy.init();
+        RankineBiomes.registerBiomesToDictionary();
         TreeGen.setupTreeGeneration();
         OreGen.setupOreGeneration();
+        StructureGen.setupStructureGen();
     }
 
 
@@ -406,6 +423,7 @@ public class ProjectRankine {
             event.getRegistry().register(new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0).setRegistryName(ProjectRankine.MODID,"elderberry_bush"));
             event.getRegistry().register(new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),1).setRegistryName(ProjectRankine.MODID,"snowberry_bush"));
             event.getRegistry().register(new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),2).setRegistryName(ProjectRankine.MODID,"banana_yucca_bush"));
+            event.getRegistry().register(new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),3).setRegistryName(ProjectRankine.MODID,"pineapple_bush"));
             event.getRegistry().register(new SphagnumMossBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.NETHER_WART)).setRegistryName(ProjectRankine.MODID,"sphagnum_moss"));
             event.getRegistry().register(new SwampGrassBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)).setRegistryName(ProjectRankine.MODID,"swamp_grass"));
             event.getRegistry().register(new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)).setRegistryName(ProjectRankine.MODID,"duckweed"));
@@ -583,8 +601,12 @@ public class ProjectRankine {
             event.getRegistry().register(new DuckweedItem(ModBlocks.DUCKWEED,new Item.Properties().maxStackSize(64).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"duckweed"));
             event.getRegistry().register(new BlockNamedItem(ModBlocks.ELDERBERRY_BUSH,new Item.Properties().maxStackSize(64).food(ModFoods.ELDERBERRIES).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"elderberries"));
             event.getRegistry().register(new BlockNamedItem(ModBlocks.SNOWBERRY_BUSH,new Item.Properties().maxStackSize(64).food(ModFoods.SNOWBERRIES).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"snowberries"));
+            event.getRegistry().register(new BlockNamedItem(ModBlocks.PINEAPPLE_BUSH,new Item.Properties().maxStackSize(64).food(ModFoods.PINEAPPLE).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"pineapple"));
             event.getRegistry().register(new BlockNamedItem(ModBlocks.BANANA_YUCCA_BUSH,new Item.Properties().maxStackSize(64).food(ModFoods.YUCCA).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"banana_yucca"));
             event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).food(ModFoods.COCONUT).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"coconut"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).food(ModFoods.PINA_COLADA).group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"pina_colada"));
+
+
 
             //ITEMS
             event.getRegistry().register(new BlockItem(ModBlocks.ALUMINUM_LADDER,new Item.Properties().group(setup.itemGroup)).setRegistryName(ProjectRankine.MODID,"aluminum_ladder"));
@@ -1059,17 +1081,39 @@ public class ProjectRankine {
             event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
         }
 
+        /*
+        @SubscribeEvent
+        public static void onRegisterBiome(RegistryEvent.Register<Biome> event)
+        {
+            registerBiome(event, new CedarForestBiome(), "cedar_forest", 10,
+                    BiomeManager.BiomeType.COOL, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+            registerBiome(event, new CedarForestBiome(), "pinyon_juniper_woodlands", 10,
+                    BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+            registerBiome(event, new CedarForestBiome(), "pinyon_juniper_woodlands", 10,
+                    BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+            registerBiome(event, new CedarForestBiome(), "pinyon_juniper_woodlands", 10,
+                    BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+            registerBiome(event, new CedarForestBiome(), "pinyon_juniper_woodlands", 10,
+                    BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+            registerBiome(event, new CedarForestBiome(), "pinyon_juniper_woodlands", 10,
+                    BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+            registerBiome(event, new CedarForestBiome(), "pinyon_juniper_woodlands", 10,
+                    BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+        }
+
+        private static void registerBiome(RegistryEvent.Register<Biome> event, Biome biome, String registryName, int spawnWeight, BiomeManager.BiomeType spawnType, BiomeDictionary.Type... types)
+        {
+            event.getRegistry().register(biome.setRegistryName(new ResourceLocation(MODID, registryName)));
+            BiomeDictionary.addTypes(biome, types);
+            BiomeManager.addBiome(spawnType, new BiomeManager.BiomeEntry(biome, spawnWeight));
+        }
+
+
+         */
 
         @SubscribeEvent
         public static void registerBiomes(final RegistryEvent.Register<Biome> event) {
-
-            event.getRegistry().register(new MantleBiome().setRegistryName(ModBiomes.BIOME_ID));
-            event.getRegistry().register(new PinyonJuniperWoodlandBiome().setRegistryName(ProjectRankine.MODID,"pinyon_juniper_woodlands"));
-            event.getRegistry().register(new CedarForestBiome().setRegistryName(ProjectRankine.MODID,"cedar_forest"));
-            event.getRegistry().register(new HighlandPlateauBiome().setRegistryName(ProjectRankine.MODID,"highland_plateau"));
-            event.getRegistry().register(new FelsenmeerBiome().setRegistryName(ProjectRankine.MODID,"felsenmeer"));
-            event.getRegistry().register(new DeadSwampBiome().setRegistryName(ProjectRankine.MODID,"dead_swamp"));
-            event.getRegistry().register(new ShoalBiome().setRegistryName(ProjectRankine.MODID,"shoal"));
+            event.getRegistry().register(new MantleBiome().setRegistryName(RankineBiomes.BIOME_ID));
         }
 
         @SubscribeEvent
@@ -1082,8 +1126,7 @@ public class ProjectRankine {
         {
             //registers the structures/features.
             //If you don't do this, you'll crash.
-            PRFeatures.registerFeatures(event);
-
+            RankineFeatures.registerFeatures(event);
             LOGGER.log(Level.INFO, "features/structures registered.");
         }
     }
