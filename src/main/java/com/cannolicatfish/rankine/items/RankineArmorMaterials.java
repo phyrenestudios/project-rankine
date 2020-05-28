@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum RankineArmorMaterials implements IArmorMaterial {
-    BRIGANDINE("leather", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, () -> {
+    BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, () -> {
         return Ingredient.fromItems(Items.LEATHER, ModItems.STEEL_ALLOY);
     });
 

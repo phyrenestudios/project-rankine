@@ -1,13 +1,14 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.util.ElementUtils;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 import javafx.util.Pair;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -593,8 +594,70 @@ public class AlloyingRecipesComplex {
 
     public String getComposition(ItemStack input1, ItemStack input2, ItemStack input3)
     {
-        return getPercent(input1,input2,input3,0) + returnItemMaterial(input1).getKey() + "-" + getPercent(input1,input2,input3,1) + returnItemMaterial(input2).getKey() +
-                "-" + getPercent(input1,input2,input3,2) + returnItemMaterial(input3).getKey();
+        ElementUtils a = new ElementUtils();
+        List<Integer> percents = getPercents(input1,input2,input3).getKey();
+        List<ItemStack> inputs = getPercents(input1,input2,input3).getValue();
+        /*
+        if (percents.get(2) != 0)
+        {
+            return getPercent(input1,input2,input3,0) + a.getElementbyMaterial(returnItemMaterial(input1).getKey()) + "-" + getPercent(input1,input2,input3,1) +
+                    a.getElementbyMaterial(returnItemMaterial(input2).getKey()) + "-" + getPercent(input1,input2,input3,2) + a.getElementbyMaterial(returnItemMaterial(input3).getKey());
+        } else {
+            return getPercent(input1,input2,input3,0) + a.getElementbyMaterial(returnItemMaterial(input1).getKey()) + "-" + getPercent(input1,input2,input3,1) +
+                    a.getElementbyMaterial(returnItemMaterial(input2).getKey());
+        }*/
+        if (percents.get(2) != 0)
+        {
+            return percents.get(0) + a.getElementbyMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +
+                    a.getElementbyMaterial(returnItemMaterial(inputs.get(1)).getKey()) + "-" + percents.get(2) + a.getElementbyMaterial(returnItemMaterial(inputs.get(2)).getKey());
+        } else {
+            return percents.get(0) + a.getElementbyMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +
+                    a.getElementbyMaterial(returnItemMaterial(inputs.get(1)).getKey());
+        }
+
+    }
+
+    public Pair<List<Integer>,List<ItemStack>> getPercents(ItemStack input1, ItemStack input2, ItemStack input3)
+    {
+        int percent1 = getPercent(input1,input2,input3,0);
+        int percent2 = getPercent(input1,input2,input3,1);
+        int percent3 = getPercent(input1,input2,input3,2);
+        if (percent1 + percent2 + percent3 == 101)
+        {
+            percent1 -= 1;
+        }
+        if (percent1 >= percent2 && percent1 >= percent3)
+        {
+            if (percent2 >= percent3)
+            {
+                return new Pair<>(Arrays.asList(percent1,percent2,percent3),Arrays.asList(input1,input2,input3));
+            } else {
+                return new Pair<>(Arrays.asList(percent1,percent3,percent2),Arrays.asList(input1,input3,input2));
+            }
+        }
+        else if (percent2 >= percent1 && percent2 >= percent3)
+        {
+            if (percent1 >= percent3)
+            {
+                return new Pair<>(Arrays.asList(percent2,percent1,percent3),Arrays.asList(input2,input1,input3));
+            } else {
+                return new Pair<>(Arrays.asList(percent2,percent3,percent1),Arrays.asList(input2,input3,input1));
+            }
+        }
+        else
+        {
+            if (percent1 >= percent2)
+            {
+                return new Pair<>(Arrays.asList(percent3,percent1,percent2),Arrays.asList(input3,input1,input2));
+            } else {
+                return new Pair<>(Arrays.asList(percent3,percent2,percent1),Arrays.asList(input3,input2,input2));
+            }
+        }
+    }
+
+    public String getCompositionAlloy(CompoundNBT nbt)
+    {
+        return nbt.getString();
     }
 
 }

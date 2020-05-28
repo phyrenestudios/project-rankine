@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "zrz",
+    "zbz",
+    "z z"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "item": "rankine:brass_block"
+    },
+    "z":
+    {
+      "item": "minecraft:stone"
+    },
+    "r":
+    {
+      "item": "minecraft:stick"
+    }
+  },
+  "result":
+  {
+    "item": "minecraft:bell",
+    "count": 1
+  }
+}

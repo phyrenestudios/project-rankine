@@ -18,6 +18,9 @@ public enum RankineToolMaterials implements IItemTier {
     BRONZE(1, 131, 4.0F, 1.0F, 10, () -> {
         return Ingredient.fromItems(ModItems.BRONZE_ALLOY);
     }),
+    AMALGAM(0, 63, 2.0F, 0.0F, 0, () -> {
+        return Ingredient.fromItems(ModItems.AMALGAM_ALLOY);
+    }),
     STEEL(3, 1561, 8.0F, 3.0F, 10, () -> {
         return Ingredient.fromItems(ModItems.STEEL_ALLOY);
     });
