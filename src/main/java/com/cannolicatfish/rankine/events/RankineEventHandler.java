@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.blocks.ModColors;
 import com.cannolicatfish.rankine.items.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
+import javafx.util.Pair;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.GlassBlock;
@@ -92,7 +93,7 @@ public class RankineEventHandler {
         }
     }
 
-
+/*
     @SubscribeEvent
     public static void onPistonCrush(PistonEvent event)
     {
@@ -107,18 +108,19 @@ public class RankineEventHandler {
             world.destroyBlock(end, false);
             if (!worldIn.isRemote() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
             {
+                Pair<ItemStack, Float[]> p = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(world.getBlockState(end).getBlock()));
                 float f = 0.5F;
                 Random rand = new Random();
                 double d0 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double)(rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)end.getX() + d0, (double)end.getY() + d1, (double)end.getZ() + d2, new ItemStack(ModItems.FELDSPAR,2));
+                ItemEntity itementity = new ItemEntity(worldIn, (double)end.getX() + d0, (double)end.getY() + d1, (double)end.getZ() + d2, new ItemStack(p.getKey().getItem(),p.getValue()[0].intValue()));
                 itementity.setDefaultPickupDelay();
                 worldIn.addEntity(itementity);
             }
         }
     }
-/*
+
     @SubscribeEvent
     public static void glassCheck(ProjectileImpactEvent event)
     {

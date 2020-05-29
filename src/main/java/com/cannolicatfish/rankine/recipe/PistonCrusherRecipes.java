@@ -34,6 +34,11 @@ public class PistonCrusherRecipes {
             return new Pair<>(new ItemStack(ModItems.FELDSPAR), new Float[]{3f,0f});
         }
 
+        if ((input1.getItem() == new ItemStack(ModBlocks.STICK_BLOCK).getItem()))
+        {
+            return new Pair<>(new ItemStack(Items.STICK), new Float[]{2f,0f});
+        }
+
         if ((input1.getItem() == Items.SANDSTONE))
         {
             return new Pair<>(new ItemStack(Items.SAND), new Float[]{3f,0f});
