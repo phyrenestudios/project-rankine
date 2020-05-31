@@ -26,13 +26,10 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class AlloyFurnace extends Block {
-    public AlloyFurnace() {
-        super(Properties.create(Material.IRON)
-                .sound(SoundType.METAL)
-                .hardnessAndResistance(2.0f)
-                .lightValue(13)
-        );
-        setRegistryName(ProjectRankine.MODID,"alloy_furnace");
+
+
+    public AlloyFurnace(Properties properties) {
+        super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)

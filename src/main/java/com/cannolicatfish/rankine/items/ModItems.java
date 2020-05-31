@@ -1,12 +1,281 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.entities.ModEntityTypes;
+import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.AlloySword;
 import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
 import com.cannolicatfish.rankine.items.tools.*;
+import com.cannolicatfish.rankine.setup.ModSetup;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 public class ModItems {
 
+    public static final DeferredRegister<Item> REGISTRY = new DeferredRegister<>(ForgeRegistries.ITEMS, ProjectRankine.MODID);
+
+    private static <T extends Item> T add(String name, T item) {
+        REGISTRY.register(name, () -> item);
+        return item;
+    }
+
+    //Creative Tabs
+
+
+     public static final Item  MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item DIAMOND_MANTLE_GOLEM = add("diamond_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item PERIDOT_MANTLE_GOLEM = add("peridot_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item DESMOXYTE = add("desmoxyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item DEMONYTE = add("demonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DEMONYTE,0x161617, 0x512259,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item DRAGONYTE = add("dragonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item STEAMER = add("steamer_spawn_egg", new SpawnEggItem(ModEntityTypes.STEAMER,0xE7E7E7, 0x6B0000,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item SHROUDED_KING = add("shrouded_king_spawn_egg", new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+
+    public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.PINEAPPLE_SLEEVES)));
+    public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.COCONUT)));
+    public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.PINA_COLADA)));
+    public static final Item OVERWORLD_CORE = add("overworld_core", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+    public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+
+
+
+    //CRUSHED ORES
+    public static final Item COPPER_HYDROXIDE = add("copper_hydroxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TIN_OXIDE = add("tin_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ALUMINA = add("alumina", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ZINC_SULFIDE = add("zinc_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item IRON_OXIDE = add("iron_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NICKEL_SULFIDE = add("nickel_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESIA = add("magnesia", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LEAD_SULFIDE = add("lead_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item VANADINITE = add("vanadinite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BISMUTH_OXIDE = add("bismuth_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SILVER_SULFIDE = add("silver_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MANGANESE_OXIDE = add("manganese_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CHROMIUM_OXIDE = add("chromium_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MOLYBDENUM_OXIDE = add("molybdenum_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TUNGSTEN_OXIDE = add("tungsten_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TITANIA = add("titania", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NIOBIUM_OXIDE = add("niobium_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TANTALUM_OXIDE = add("tantalum_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COBALTITE = add("cobaltite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PLATINUM_ARSENIDE = add("platinum_arsenide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+
+    //ELEMENT NUGGETS
+    public static final Item COPPER_NUGGET = add("copper_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TIN_NUGGET = add("tin_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ALUMINUM_NUGGET = add("aluminum_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ZINC_NUGGET = add("zinc_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NICKEL_NUGGET = add("nickel_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESIUM_NUGGET = add("magnesium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LEAD_NUGGET = add("lead_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    //vanadium nugget
+    public static final Item BISMUTH_NUGGET = add("bismuth_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SILVER_NUGGET = add("silver_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MANGANESE_NUGGET = add("manganese_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CHROMIUM_NUGGET = add("chromium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MOLYBDENUM_NUGGET = add("molybdenum_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TUNGSTEN_NUGGET = add("tungsten_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TITANIUM_NUGGET = add("titanium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NIOBIUM_NUGGET = add("niobium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TANTALUM_NUGGET = add("tantalum_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COBALT_NUGGET = add("cobalt_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item IRIDIUM_NUGGET = add("iridium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PLATINUM_NUGGET = add("platinum_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item OSMIUM_NUGGET = add("osmium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    //arsenic nugget
+    public static final Item PIG_IRON_NUGGET = add("pig_iron_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item WROUGHT_IRON_NUGGET = add("wrought_iron_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+
+    //ELEMENT INGOTS
+    public static final Item COPPER_INGOT = add("copper_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TIN_INGOT = add("tin_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ALUMINUM_INGOT = add("aluminum_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ZINC_INGOT = add("zinc_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NICKEL_INGOT = add("nickel_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESIUM_INGOT = add("magnesium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LEAD_INGOT = add("lead_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BISMUTH_INGOT = add("bismuth_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item VANADIUM_INGOT = add("vanadium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SILVER_INGOT = add("silver_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MANGANESE_INGOT = add("manganese_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CHROMIUM_INGOT = add("chromium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MOLYBDENUM_INGOT = add("molybdenum_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TUNGSTEN_INGOT = add("tungsten_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TITANIUM_INGOT = add("titanium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NIOBIUM_INGOT = add("niobium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TANTALUM_INGOT = add("tantalum_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COBALT_INGOT = add("cobalt_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item IRIDIUM_INGOT = add("iridium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item OSMIUM_INGOT = add("osmium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PLATINUM_INGOT = add("platinum_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ARSENIC = add("arsenic_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MERCURY = add("mercury", new ItemToxin(0, (new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals))));
+    public static final Item PIG_IRON_INGOT = add("pig_iron_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item WROUGHT_IRON_INGOT = add("wrought_iron_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+
+    //ALLOY INGOTS
+    public static final OldAlloyItem CAST_IRON_INGOT = add("cast_iron_ingot", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final AlloyItem BRONZE_ALLOY = add("bronze_alloy", new AlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem BRASS_ALLOY = add("brass_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem NICHROME_ALLOY = add("nichrome_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem STEEL_ALLOY = add("steel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem STAINLESS_STEEL_ALLOY = add("stainless_steel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem SOLDER_ALLOY = add("solder_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem ALNICO_ALLOY = add("alnico_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem NITINOL_ALLOY = add("nitinol_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem AMALGAM_ALLOY = add("amalgam_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem CUPRONICKEL_ALLOY = add("cupronickel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem NICKEL_SILVER_ALLOY = add("nickel_silver_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));;
+    public static final OldAlloyItem INVAR_ALLOY = add("invar_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem ICONEL_ALLOY = add("inconel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem ROSE_METAL_ALLOY = add("rose_metal_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem MAGNALIUM_ALLOY = add("magnalium_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem DURALUMIN_ALLOY = add("duralumin_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem OSMIRIDIUM_ALLOY = add("osmiridium_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem ROSE_GOLD_ALLOY = add("rose_gold_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem WHITE_GOLD_ALLOY = add("white_gold_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem GREEN_GOLD_ALLOY = add("green_gold_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem BLUE_GOLD_ALLOY = add("blue_gold_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem PURPLE_GOLD_ALLOY = add("purple_gold_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+
+
+
+    public static final Item CLAY_BRICK = add("clay_brick", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item REFRACTORY_BRICK = add("refractory_brick", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESIUM_REFRACTORY_BRICK = add("magnesium_refractory_brick", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ZIRCON_REFRACTORY_BRICK = add("zircon_refractory_brick", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LIGNITE = add("lignite", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),1200));
+    public static final Item BITUMINOUS_COAL = add("bituminous_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),2000));
+    public static final Item COKE = add("coke", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 2400));
+    public static final Item ANTHRACITE_COAL = add("anthracite_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 2400));
+    public static final Item CALCITE = add("calcite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item DOLOMITE = add("dolomite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item FELDSPAR = add("feldspar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item OLIVINE = add("olivine", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PYROXENE = add("pyroxene", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BLOOM_IRON = add("bloom_iron", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SLAG = add("slag", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SALT = add("salt", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SILICON = add("silicon", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SULFUR = add("sulfur", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SALTPETER = add("saltpeter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GRAPHITE = add("graphite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CALCIUM_SILICATE = add("calcium_silicate", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SILICON_CARBIDE = add("silicon_carbide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CRUSHED_COAL = add("crushed_coal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CINNABAR = add("cinnabar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item OPAL = add("opal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GARNET = add("garnet", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PERIDOT = add("peridot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MORTAR = add("mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item QUICKLIME = add("quicklime", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ELEMENT = add("element", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMetals)));
+
+
+
+    public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CAST_IRON_PANEL = add("cast_iron_panel", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item INCONEL_TURBINE_BLADE = add("inconel_turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BATTERY = add("battery0", new ItemBattery(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+
+
+
+//RANKINE TOOLS CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //NORMAL TOOLS
+             public static final Item  STONE_HAMMER = add("stone_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BONE_SHOVEL = add("bone_shovel", new BoneShovel(ItemTier.STONE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  FLINT_PICKAXE = add("flint_pickaxe", new PickaxeItem(RankineToolMaterials.FLINT, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  FLINT_AXE = add("flint_axe", new AxeItem(RankineToolMaterials.FLINT, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  FLINT_SPEAR = add("flint_spear", new ItemSpear(RankineToolMaterials.FLINT, 2, -2.9F, 0,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  FLINT_KNIFE = add("flint_knife", new ItemKnife(RankineToolMaterials.FLINT, 1, -2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_SWORD = add("bronze_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_SHOVEL = add("bronze_shovel", new ShovelItem(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_PICKAXE = add("bronze_pickaxe", new PickaxeItem(RankineToolMaterials.BRONZE, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_AXE = add("bronze_axe", new AxeItem(RankineToolMaterials.BRONZE, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_HOE = add("bronze_hoe", new HoeItem(RankineToolMaterials.BRONZE, -2.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_HAMMER = add("bronze_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.BRONZE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  BRONZE_SPEAR = add("bronze_spear", new ItemSpear(RankineToolMaterials.BRONZE, 2, -2.9F, 1, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  IRON_SPEAR = add("iron_spear", new ItemSpear(ItemTier.IRON, 2, -2.9F, 2, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  IRON_HAMMER = add("iron_hammer", new ItemHammer(2, -3.2F, ItemTier.IRON, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  IRON_SCRAPER = add("iron_scraper", new ItemScraper(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_SWORD = add("steel_sword", new SwordItem(RankineToolMaterials.STEEL, 3, -2.4F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_SHOVEL = add("steel_shovel", new ShovelItem(RankineToolMaterials.STEEL, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_AXE = add("steel_axe", new AxeItem(RankineToolMaterials.STEEL, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_HAMMER = add("steel_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.STEEL, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_HOE = add("steel_hoe", new HoeItem(RankineToolMaterials.STEEL, 0.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  STEEL_SPEAR = add("steel_spear", new ItemSpear(RankineToolMaterials.STEEL, 2, -2.9F, 3, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+    //GOLD TOOLS
+             public static final Item  ROSE_GOLD_SWORRD = add("rose_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+             public static final Item  ROSE_GOLD_SHOVEL = add("rose_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+             public static final Item  ROSE_GOLD_PICKAXE = add("rose_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+             public static final Item  ROSE_GOLD_AXE = add("rose_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+             public static final Item  ROSE_GOLD_HOE = add("rose_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+             public static final Item  WHITE_GOLD_SWORD = add("white_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+             public static final Item  WHITE_GOLD_SHOVEL = add("white_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+             public static final Item  WHITE_GOLD_PICKAXE = add("white_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+             public static final Item  WHITE_GOLD_AXE = add("white_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+             public static final Item  WHITE_GOLD_HOE = add("white_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+             public static final Item  GREEN_GOLD_SWORD = add("green_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+             public static final Item  GREEN_GOLD_SHOVEL = add("green_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+             public static final Item  GREEN_GOLD_PICKAXE = add("green_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+             public static final Item  GREEN_GOLD_AXE = add("green_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+             public static final Item  GREEN_GOLD_HOE = add("green_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+             public static final Item  BLUE_GOLD_SWORD = add("blue_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+             public static final Item  BLUE_GOLD_SHOVEL = add("blue_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+             public static final Item  BLUE_GOLD_PICKAXE = add("blue_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+             public static final Item  BLUE_GOLD_AXE = add("blue_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+             public static final Item  BLUE_GOLD_HOE = add("blue_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+             public static final Item  PURPLE_GOLD_SWORD = add("purple_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+             public static final Item  PURPLE_GOLD_SHOVEL = add("purple_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+             public static final Item  PURPLE_GOLD_PICKAXE = add("purple_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+             public static final Item  PURPLE_GOLD_AXE = add("purple_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+             public static final Item  PURPLE_GOLD_HOE = add("purple_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+
+             public static final Item  FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+             public static final Item  METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+
+             public static final Item  WOOD_BUCKET = add("wood_bucket", new WoodBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
+             public static final Item  WATER_WOOD_BUCKET = add("water_wood_bucket", new WoodBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+             public static final Item  MILK_WOOD_BUCKET = add("milk_wood_bucket", new MilkWoodBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
+             public static final Item  BRASS_BUCKET = add("brass_bucket", new BrassBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
+             public static final Item  WATER_BRASS_BUCKET = add("water_brass_bucket", new BrassBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+             public static final Item  LAVA_BRASS_BUCKET = add("lava_brass_bucket", new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+             public static final Item  LIQUID_PIG_IRON_BRASS_BUCKET = add("liquid_pig_iron_brass_bucket", new BrassBucket(() -> ModFluids.LIQUID_PIG_IRON, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1)));
+             public static final Item  MILK_BRASS_BUCKET = add("milk_brass_bucket", new MilkBrassBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
+
+
+
+
+    @ObjectHolder("rankine:sphagnum_moss")
+    public static Item SPHAGNUM_MOSS;
+
+    @ObjectHolder("rankine:elderberries")
+    public static Item ELDERBERRIES;
+
+    @ObjectHolder("rankine:snowberries")
+    public static Item SNOWBERRIES;
+
+    @ObjectHolder("rankine:pineapple")
+    public static Item PINEAPPLE;
+
+    @ObjectHolder("rankine:banana_yucca")
+    public static Item BANANA_YUCCA;
 
     @ObjectHolder("rankine:axe_template")
     public static Item AXE_TEMPLATE;
@@ -28,437 +297,4 @@ public class ModItems {
 
     @ObjectHolder("rankine:sword_template")
     public static Item SWORD_TEMPLATE;
-
-    @ObjectHolder("rankine:coconut")
-    public static Item COCONUT;
-
-    @ObjectHolder("rankine:vanadinite")
-    public static Item VANADINITE;
-
-    @ObjectHolder("rankine:lignite")
-    public static Item LIGNITE;
-
-    @ObjectHolder("rankine:bituminous_coal")
-    public static Item BITUMINOUS_COAL;
-
-    @ObjectHolder("rankine:anthracite_coal")
-    public static Item ANTHRACITE_COAL;
-
-    @ObjectHolder("rankine:sphagnum_moss")
-    public static Item SPHAGNUM_MOSS;
-
-    @ObjectHolder("rankine:copper_ingot")
-    public static Item COPPER_INGOT;
-
-    @ObjectHolder("rankine:tin_ingot")
-    public static Item TIN_INGOT;
-
-    @ObjectHolder("rankine:nickel_ingot")
-    public static Item NICKEL_INGOT;
-
-    @ObjectHolder("rankine:silver_ingot")
-    public static Item SILVER_INGOT;
-
-    @ObjectHolder("rankine:lead_ingot")
-    public static Item LEAD_INGOT;
-
-    @ObjectHolder("rankine:aluminum_ingot")
-    public static Item ALUMINUM_INGOT;
-
-    @ObjectHolder("rankine:chromium_ingot")
-    public static Item CHROMIUM_INGOT;
-
-    @ObjectHolder("rankine:molybdenum_ingot")
-    public static Item MOLYBDENUM_INGOT;
-
-    @ObjectHolder("rankine:niobium_ingot")
-    public static Item NIOBIUM_INGOT;
-
-    @ObjectHolder("rankine:magnesium_ingot")
-    public static Item MAGNESIUM_INGOT;
-
-    @ObjectHolder("rankine:manganese_ingot")
-    public static Item MANGANESE_INGOT;
-
-    @ObjectHolder("rankine:titanium_ingot")
-    public static Item TITANIUM_INGOT;
-
-    @ObjectHolder("rankine:cobalt_ingot")
-    public static Item COBALT_INGOT;
-
-    @ObjectHolder("rankine:bismuth_ingot")
-    public static Item BISMUTH_INGOT;
-
-    @ObjectHolder("rankine:tantalum_ingot")
-    public static Item TANTALUM_INGOT;
-
-    @ObjectHolder("rankine:tungsten_ingot")
-    public static Item TUNGSTEN_INGOT;
-
-    @ObjectHolder("rankine:zinc_ingot")
-    public static Item ZINC_INGOT;
-
-    @ObjectHolder("rankine:copper_nugget")
-    public static Item COPPER_NUGGET;
-
-    @ObjectHolder("rankine:tin_nugget")
-    public static Item TIN_NUGGET;
-
-    @ObjectHolder("rankine:nickel_nugget")
-    public static Item NICKEL_NUGGET;
-
-    @ObjectHolder("rankine:silver_nugget")
-    public static Item SILVER_NUGGET;
-
-    @ObjectHolder("rankine:lead_nugget")
-    public static Item LEAD_NUGGET;
-
-    @ObjectHolder("rankine:aluminum_nugget")
-    public static Item ALUMINUM_NUGGET;
-
-    @ObjectHolder("rankine:chromium_nugget")
-    public static Item CHROMIUM_NUGGET;
-
-    @ObjectHolder("rankine:molybdenum_nugget")
-    public static Item MOLYBDENUM_NUGGET;
-
-    @ObjectHolder("rankine:niobium_nugget")
-    public static Item NIOBIUM_NUGGET;
-
-    @ObjectHolder("rankine:magnesium_nugget")
-    public static Item MAGNESIUM_NUGGET;
-
-    @ObjectHolder("rankine:manganese_nugget")
-    public static Item MANGANESE_NUGGET;
-
-    @ObjectHolder("rankine:titanium_nugget")
-    public static Item TITANIUM_NUGGET;
-
-    @ObjectHolder("rankine:cobalt_nugget")
-    public static Item COBALT_NUGGET;
-
-    @ObjectHolder("rankine:bismuth_nugget")
-    public static Item BISMUTH_NUGGET;
-
-    @ObjectHolder("rankine:tantalum_nugget")
-    public static Item TANTALUM_NUGGET;
-
-    @ObjectHolder("rankine:tungsten_nugget")
-    public static Item TUNGSTEN_NUGGET;
-
-    @ObjectHolder("rankine:zinc_nugget")
-    public static Item ZINC_NUGGET;
-
-    @ObjectHolder("rankine:osmium_nugget")
-    public static Item OSMIUM_NUGGET;
-
-    @ObjectHolder("rankine:platinum_nugget")
-    public static Item PLATINUM_NUGGET;
-
-    @ObjectHolder("rankine:iridium_nugget")
-    public static Item IRIDIUM_NUGGET;
-
-    @ObjectHolder("rankine:pig_iron_ingot")
-    public static Item PIG_IRON_INGOT;
-
-    @ObjectHolder("rankine:coke")
-    public static Item COKE;
-
-    @ObjectHolder("rankine:bloom_iron")
-    public static Item BLOOM_IRON;
-
-    @ObjectHolder("rankine:slag")
-    public static Item SLAG;
-
-    @ObjectHolder("rankine:wrought_iron_ingot")
-    public static Item WROUGHT_IRON_INGOT;
-
-    @ObjectHolder("rankine:graphite")
-    public static Item GRAPHITE;
-
-    @ObjectHolder("rankine:graphite_electrode")
-    public static Item GRAPHITE_ELECTRODE;
-
-    @ObjectHolder("rankine:copper_wire")
-    public static Item COPPER_WIRE;
-
-    @ObjectHolder("rankine:brass_alloy")
-    public static OldAlloyItem BRASS_ALLOY;
-
-    @ObjectHolder("rankine:bronze_alloy")
-    public static AlloyItem BRONZE_ALLOY;
-
-    @ObjectHolder("rankine:nichrome_alloy")
-    public static OldAlloyItem NICHROME_ALLOY;
-
-    @ObjectHolder("rankine:steel_alloy")
-    public static OldAlloyItem STEEL_ALLOY;
-
-    @ObjectHolder("rankine:stainless_steel_alloy")
-    public static OldAlloyItem STAINLESS_STEEL_ALLOY;
-
-    @ObjectHolder("rankine:solder_alloy")
-    public static OldAlloyItem SOLDER_ALLOY;
-
-    @ObjectHolder("rankine:alnico_alloy")
-    public static OldAlloyItem ALNICO_ALLOY;
-
-    @ObjectHolder("rankine:nitinol_alloy")
-    public static OldAlloyItem NITINOL_ALLOY;
-
-    @ObjectHolder("rankine:cupronickel_alloy")
-    public static OldAlloyItem CUPRONICKEL_ALLOY;
-
-    @ObjectHolder("rankine:amalgam_alloy")
-    public static OldAlloyItem AMALGAM_ALLOY;
-
-    @ObjectHolder("rankine:rose_metal_alloy")
-    public static OldAlloyItem ROSE_METAL_ALLOY;
-
-    @ObjectHolder("rankine:nickel_silver_alloy")
-    public static OldAlloyItem NICKEL_SILVER_ALLOY;
-
-    @ObjectHolder("rankine:invar_alloy")
-    public static OldAlloyItem INVAR_ALLOY;
-
-    @ObjectHolder("rankine:magnalium_alloy")
-    public static OldAlloyItem MAGNALIUM_ALLOY;
-
-    @ObjectHolder("rankine:duralumin_alloy")
-    public static OldAlloyItem DURALUMIN_ALLOY;
-
-    @ObjectHolder("rankine:aluminum_bronze_alloy")
-    public static OldAlloyItem ALUMINUM_BRONZE_ALLOY;
-
-    @ObjectHolder("rankine:rose_gold_alloy")
-    public static OldAlloyItem ROSE_GOLD_ALLOY;
-
-    @ObjectHolder("rankine:white_gold_alloy")
-    public static OldAlloyItem WHITE_GOLD_ALLOY;
-
-    @ObjectHolder("rankine:green_gold_alloy")
-    public static OldAlloyItem GREEN_GOLD_ALLOY;
-
-    @ObjectHolder("rankine:blue_gold_alloy")
-    public static OldAlloyItem BLUE_GOLD_ALLOY;
-
-    @ObjectHolder("rankine:purple_gold_alloy")
-    public static OldAlloyItem PURPLE_GOLD_ALLOY;
-
-    @ObjectHolder("rankine:clay_brick")
-    public static Item CLAY_BRICKS;
-
-    @ObjectHolder("rankine:refractory_brick")
-    public static Item REFRACTORY_BRICK;
-
-    @ObjectHolder("rankine:iron_scraper")
-    public static ItemScraper IRON_SCRAPER;
-
-
-    @ObjectHolder("rankine:lead_shot")
-    public static LeadShotItem LEAD_SHOT;
-
-    @ObjectHolder("rankine:flintlock_pistol")
-    public static FlintlockPistol FLINTLOCK_PISTOL;
-
-    @ObjectHolder("rankine:steel_spear")
-    public static ItemSpear STEEL_SPEAR;
-
-    @ObjectHolder("rankine:mortar")
-    public static Item MORTAR;
-
-    @ObjectHolder("rankine:iron_oxide")
-    public static Item IRON_OXIDE;
-
-    @ObjectHolder("rankine:tin_oxide")
-    public static Item TIN_OXIDE;
-
-    @ObjectHolder("rankine:manganese_oxide")
-    public static Item MANGANESE_OXIDE;
-
-    @ObjectHolder("rankine:alumina")
-    public static Item ALUMINA;
-
-    @ObjectHolder("rankine:magnesia")
-    public static Item MAGNESIA;
-
-    @ObjectHolder("rankine:titania")
-    public static Item TITANIA;
-
-    @ObjectHolder("rankine:lead_sulfide")
-    public static Item LEAD_SULFIDE;
-
-    @ObjectHolder("rankine:silver_sulfide")
-    public static Item SILVER_SULFIDE;
-
-    @ObjectHolder("rankine:molybdenum_oxide")
-    public static Item MOLYBDENUM_OXIDE;
-
-    @ObjectHolder("rankine:copper_hydroxide")
-    public static Item COPPER_HYDROXIDE;
-
-    @ObjectHolder("rankine:zinc_sulfide")
-    public static Item ZINC_SULFIDE;
-
-    @ObjectHolder("rankine:nickel_sulfide")
-    public static Item NICKEL_SULFIDE;
-
-    @ObjectHolder("rankine:cobaltite")
-    public static Item COBALTITE;
-
-    @ObjectHolder("rankine:bismuth_oxide")
-    public static Item BISMUTH_OXIDE;
-
-    @ObjectHolder("rankine:chromium_oxide")
-    public static Item CHROMIUM_OXIDE;
-
-    @ObjectHolder("rankine:niobium_oxide")
-    public static Item NIOBIUM_OXIDE;
-
-    @ObjectHolder("rankine:tantalum_oxide")
-    public static Item TANTALUM_OXIDE;
-
-    @ObjectHolder("rankine:tungsten_oxide")
-    public static Item TUNGSTEN_OXIDE;
-
-    @ObjectHolder("rankine:calcium_silicate")
-    public static Item CALCIUM_SILICATE;
-
-    @ObjectHolder("rankine:crushed_coal")
-    public static Item CRUSHED_COAL;
-
-    @ObjectHolder("rankine:quicklime")
-    public static Item QUICKLIME;
-
-    @ObjectHolder("rankine:mercury")
-    public static Item MERCURY;
-
-    @ObjectHolder("rankine:cinnabar")
-    public static Item CINNABAR;
-
-    @ObjectHolder("rankine:opal")
-    public static Item OPAL;
-
-    @ObjectHolder("rankine:garnet")
-    public static Item GARNET;
-
-    @ObjectHolder("rankine:peridot")
-    public static Item PERIDOT;
-
-    @ObjectHolder("rankine:olivine")
-    public static Item OLIVINE;
-
-    @ObjectHolder("rankine:pyroxene")
-    public static Item PYROXENE;
-
-    @ObjectHolder("rankine:calcite")
-    public static Item CALCITE;
-
-    @ObjectHolder("rankine:dolomite")
-    public static Item DOLOMITE;
-
-    @ObjectHolder("rankine:feldspar")
-    public static Item FELDSPAR;
-
-    @ObjectHolder("rankine:salt")
-    public static Item SALT;
-
-    @ObjectHolder("rankine:silicon")
-    public static Item SILICON;
-
-    @ObjectHolder("rankine:sulfur")
-    public static Item SULFUR;
-
-    @ObjectHolder("rankine:inconel_turbine_blade")
-    public static Item INCONEL_TURBINE_BLADE;
-
-    @ObjectHolder("rankine:cast_iron_ingot")
-    public static Item CAST_IRON_INGOT;
-
-    @ObjectHolder("rankine:bronze_hammer")
-    public static ItemHammer BRONZE_HAMMER;
-
-    @ObjectHolder("rankine:rose_gold_pickaxe")
-    public static ColoredGoldPickaxe ROSE_GOLD_PICKAXE;
-    @ObjectHolder("rankine:rose_gold_axe")
-    public static ColoredGoldAxe ROSE_GOLD_AXE;
-    @ObjectHolder("rankine:rose_gold_shovel")
-    public static ColoredGoldShovel ROSE_GOLD_SHOVEL;
-    @ObjectHolder("rankine:rose_gold_sword")
-    public static ColoredGoldSword ROSE_GOLD_SWORD;
-    @ObjectHolder("rankine:rose_gold_hoe")
-    public static ColoredGoldHoe ROSE_GOLD_HOE;
-
-
-    @ObjectHolder("rankine:wood_bucket")
-    public static WoodBucket WOOD_BUCKET;
-
-    @ObjectHolder("rankine:water_wood_bucket")
-    public static WoodBucket WATER_WOOD_BUCKET;
-
-    @ObjectHolder("rankine:milk_wood_bucket")
-    public static MilkWoodBucket MILK_WOOD_BUCKET;
-
-
-    @ObjectHolder("rankine:brass_bucket")
-    public static BrassBucket BRASS_BUCKET;
-
-    @ObjectHolder("rankine:water_brass_bucket")
-    public static BrassBucket WATER_BRASS_BUCKET;
-
-    @ObjectHolder("rankine:lava_brass_bucket")
-    public static BrassBucket LAVA_BRASS_BUCKET;
-
-    @ObjectHolder("rankine:milk_brass_bucket")
-    public static MilkBrassBucket MILK_BRASS_BUCKET;
-
-    @ObjectHolder("rankine:liquid_pig_iron_brass_bucket")
-    public static BrassBucket LIQUID_PIG_IRON_BRASS_BUCKET;
-
-    @ObjectHolder("rankine:bronze_spear")
-    public static ItemSpear BRONZE_SPEAR;
-
-    @ObjectHolder("rankine:bronze_pickaxe")
-    public static PickaxeItem BRONZE_PICKAXE;
-
-    @ObjectHolder("rankine:bronze_axe")
-    public static AxeItem BRONZE_AXE;
-
-    @ObjectHolder("rankine:bronze_hoe")
-    public static HoeItem BRONZE_HOE;
-
-    @ObjectHolder("rankine:bronze_shovel")
-    public static ShovelItem BRONZE_SHOVEL;
-
-    @ObjectHolder("rankine:bronze_sword")
-    public static SwordItem BRONZE_SWORD;
-
-    @ObjectHolder("rankine:flint_spear")
-    public static ItemSpear FLINT_SPEAR;
-
-    @ObjectHolder("rankine:flint_knife")
-    public static ItemKnife FLINT_KNIFE;
-
-    @ObjectHolder("rankine:flint_pickaxe")
-    public static PickaxeItem FLINT_PICKAXE;
-
-    @ObjectHolder("rankine:flint_axe")
-    public static AxeItem FLINT_AXE;
-
-    @ObjectHolder("rankine:metal_detector")
-    public static MetalDetector METAL_DETECTOR;
-
-    @ObjectHolder("rankine:elderberries")
-    public static Item ELDERBERRIES;
-
-    @ObjectHolder("rankine:snowberries")
-    public static Item SNOWBERRIES;
-
-    @ObjectHolder("rankine:pineapple")
-    public static Item PINEAPPLE;
-
-    @ObjectHolder("rankine:banana_yucca")
-    public static Item BANANA_YUCCA;
-
-
 }

@@ -190,6 +190,9 @@ public class BeaverEntity extends AnimalEntity {
                         BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).grow(1);
                     }
 
+                }
+                if (blockstate.getBlock() instanceof LogBlock) {
+                    BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.STICK_BLOCK));
                     System.out.println("Beaver should now have stick block");
                     System.out.println(BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
                     BeaverEntity.this.playSound(SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, 1.0F, 1.0F);

@@ -1,10 +1,13 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnace;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
+import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
 import com.cannolicatfish.rankine.blocks.crucible.Crucible;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
@@ -12,616 +15,415 @@ import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
+import com.cannolicatfish.rankine.fluids.ModFluids;
+import com.cannolicatfish.rankine.items.*;
+import com.cannolicatfish.rankine.setup.ModSetup;
+import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.trees.OakTree;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.common.ToolType;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 
 public class ModBlocks {
 
-
-
-    @ObjectHolder("rankine:potted_cedar_sapling")
-    public static FlowerPotBlock POTTED_CEDAR_SAPLING;
-
-    @ObjectHolder("rankine:potted_pinyon_pine_sapling")
-    public static FlowerPotBlock POTTED_PINYON_PINE_SAPLING;
-
-    @ObjectHolder("rankine:potted_coconut_palm_sapling")
-    public static FlowerPotBlock POTTED_COCONUT_PALM_SAPLING;
-
-    @ObjectHolder("rankine:potted_juniper_sapling")
-    public static FlowerPotBlock POTTED_JUNIPER_SAPLING;
-
-    @ObjectHolder("rankine:potted_balsam_fir_sapling")
-    public static FlowerPotBlock POTTED_BALSAM_FIR_SAPLING;
-
-    @ObjectHolder("rankine:swamp_grass")
-    public static SwampGrassBlock SWAMP_GRASS;
-
-    @ObjectHolder("rankine:duckweed")
-    public static DuckweedBlock DUCKWEED;
-
-    @ObjectHolder("rankine:permafrost")
-    public static PermafrostBlock PERMAFROST;
-
-    @ObjectHolder("rankine:vegetated_permafrost")
-    public static VegetatedPermafrostBlock VEGETATED_PERMAFROST;
-
-    @ObjectHolder("rankine:opal_ore")
-    public static Block OPAL_ORE;
-
-    @ObjectHolder("rankine:ironstone")
-    public static Block IRONSTONE;
-
-    @ObjectHolder("rankine:smooth_ironstone")
-    public static Block SMOOTH_IRONSTONE;
-
-    @ObjectHolder("rankine:ironstone_bricks")
-    public static Block IRONSTONE_BRICKS;
-
-    @ObjectHolder("rankine:muddy_dirt")
-    public static Block MUDDY_DIRT;
-
-    @ObjectHolder("rankine:muddy_grass")
-    public static Block MUDDY_GRASS;
-
-    @ObjectHolder("rankine:juniper_sapling")
-    public static RankineSapling JUNIPER_SAPLING;
-
-    @ObjectHolder("rankine:smooth_andesite")
-    public static Block SMOOTH_ANDESITE;
-
-    @ObjectHolder("rankine:smooth_andesite_slab")
-    public static Block SMOOTH_ANDESITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_andesite_stairs")
-    public static Block SMOOTH_ANDESITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_granite")
-    public static Block SMOOTH_GRANITE;
-
-    @ObjectHolder("rankine:smooth_granite_slab")
-    public static Block SMOOTH_GRANITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_granite_stairs")
-    public static Block SMOOTH_GRANITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_diorite")
-    public static Block SMOOTH_DIORITE;
-
-    @ObjectHolder("rankine:smooth_diorite_slab")
-    public static Block SMOOTH_DIORITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_diorite_stairs")
-    public static Block SMOOTH_DIORITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_rhyolite")
-    public static Block SMOOTH_RHYOLITE;
-
-    @ObjectHolder("rankine:smooth_rhyolite_slab")
-    public static Block SMOOTH_RHYOLITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_rhyolite_stairs")
-    public static Block SMOOTH_RHYOLITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_basalt")
-    public static Block SMOOTH_BASALT;
-
-    @ObjectHolder("rankine:smooth_basalt_slab")
-    public static Block SMOOTH_BASALT_SLAB;
-
-    @ObjectHolder("rankine:smooth_basalt_stairs")
-    public static Block SMOOTH_BASALT_STAIRS;
-
-    @ObjectHolder("rankine:smooth_gneiss")
-    public static Block SMOOTH_GNEISS;
-
-    @ObjectHolder("rankine:smooth_gneiss_slab")
-    public static Block SMOOTH_GNEISS_SLAB;
-
-    @ObjectHolder("rankine:smooth_gneiss_stairs")
-    public static Block SMOOTH_GNEISS_STAIRS;
-
-    @ObjectHolder("rankine:smooth_marble")
-    public static Block SMOOTH_MARBLE;
-
-    @ObjectHolder("rankine:smooth_marble_slab")
-    public static Block SMOOTH_MARBLE_SLAB;
-
-    @ObjectHolder("rankine:smooth_marble_stairs")
-    public static Block SMOOTH_MARBLE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_limestone")
-    public static Block SMOOTH_LIMESTONE;
-
-    @ObjectHolder("rankine:smooth_limestone_slab")
-    public static Block SMOOTH_LIMESTONE_SLAB;
-
-    @ObjectHolder("rankine:smooth_limestone_stairs")
-    public static Block SMOOTH_LIMESTONE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_shale")
-    public static Block SMOOTH_SHALE;
-
-    @ObjectHolder("rankine:smooth_shale_slab")
-    public static Block SMOOTH_SHALE_SLAB;
-
-    @ObjectHolder("rankine:smooth_shale_stairs")
-    public static Block SMOOTH_SHALE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_peridotite")
-    public static Block SMOOTH_PERIDOTITE;
-
-    @ObjectHolder("rankine:smooth_peridotite_slab")
-    public static Block SMOOTH_PERIDOTITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_peridotite_stairs")
-    public static Block SMOOTH_PERIDOTITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_kimberlite")
-    public static Block SMOOTH_KIMBERLITE;
-
-    @ObjectHolder("rankine:smooth_kimberlite_slab")
-    public static Block SMOOTH_KIMBERLITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_kimberlite_stairs")
-    public static Block SMOOTH_KIMBERLITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_komatiite")
-    public static Block SMOOTH_KOMATIITE;
-
-    @ObjectHolder("rankine:smooth_komatiite_slab")
-    public static Block SMOOTH_KOMATIITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_komatiite_stairs")
-    public static Block SMOOTH_KOMATIITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_ringwoodite")
-    public static Block SMOOTH_RINGWOODITE;
-
-    @ObjectHolder("rankine:smooth_ringwoodite_slab")
-    public static Block SMOOTH_RINGWOODITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_ringwoodite_stairs")
-    public static Block SMOOTH_RINGWOODITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_wadsleyite")
-    public static Block SMOOTH_WADSLEYITE;
-
-    @ObjectHolder("rankine:smooth_wadsleyite_slab")
-    public static Block SMOOTH_WADSLEYITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_wadsleyite_stairs")
-    public static Block SMOOTH_WADSLEYITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_ferropericlase")
-    public static Block SMOOTH_FERROPERICLASE;
-
-    @ObjectHolder("rankine:smooth_ferropericlase_slab")
-    public static Block SMOOTH_FERROPERICLASE_SLAB;
-
-    @ObjectHolder("rankine:smooth_ferropericlase_stairs")
-    public static Block SMOOTH_FERROPERICLASE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_bridgmanite")
-    public static Block SMOOTH_BRIDGMANITE;
-
-    @ObjectHolder("rankine:smooth_bridgmanite_slab")
-    public static Block SMOOTH_BRIDGMANITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_bridgmanite_stairs")
-    public static Block SMOOTH_BRIDGMANITE_STAIRS;
-
-    @ObjectHolder("rankine:smooth_perovskite")
-    public static Block SMOOTH_PEROVSKITE;
-
-    @ObjectHolder("rankine:smooth_perovskite_slab")
-    public static Block SMOOTH_PEROVSKITE_SLAB;
-
-    @ObjectHolder("rankine:smooth_perovskite_stairs")
-    public static Block SMOOTH_PEROVSKITE_STAIRS;
-
-    @ObjectHolder("rankine:lignite_block")
-    public static Block LIGNITE_BLOCK;
-
-    @ObjectHolder("rankine:bituminous_coal_block")
-    public static Block BITUMINOUS_COAL_BLOCK;
-
-    @ObjectHolder("rankine:anthracite_coal_block")
-    public static Block ANTHRACITE_COAL_BLOCK;
-
-    @ObjectHolder("rankine:vanadium_block")
-    public static Block VANADIUM_BLOCK;
-
-    @ObjectHolder("rankine:beehive_oven_pit")
-    public static Block BEEHIVE_OVEN_PIT;
-
-    @ObjectHolder("rankine:limestone_nodule")
-    public static Block LIMESTONE_NODULE;
-
-    @ObjectHolder("rankine:stick_block")
-    public static Block STICK_BLOCK;
-
-    @ObjectHolder("rankine:sphagnum_moss")
-    public static Block SPHAGNUM_MOSS;
-
-    @ObjectHolder("rankine:blasting_powder")
-    public static Block BLASTING_POWDER;
-
-    @ObjectHolder("rankine:heart_of_the_mantle")
-    public static Block HEART_OF_THE_MANTLE;
-
-    @ObjectHolder("rankine:cedar_planks")
-    public static Block CEDAR_PLANKS;
-
-    @ObjectHolder("rankine:balsam_fir_log")
-    public static LogBlock BALSAM_FIR_LOG;
-
-    @ObjectHolder("rankine:balsam_fir_wood")
-    public static RotatedPillarBlock BALSAM_FIR_WOOD;
-
-    @ObjectHolder("rankine:juniper_wood")
-    public static RotatedPillarBlock JUNIPER_WOOD;
-
-    @ObjectHolder("rankine:pinyon_pine_wood")
-    public static RotatedPillarBlock PINYON_PINE_WOOD;
-
-    @ObjectHolder("rankine:coconut_palm_wood")
-    public static RotatedPillarBlock COCONUT_PALM_WOOD;
-
-    @ObjectHolder("rankine:cedar_log")
-    public static LogBlock CEDAR_LOG;
-
-    @ObjectHolder("rankine:stripped_balsam_fir_log")
-    public static RotatedPillarBlock STRIPPED_BALSAM_FIR_LOG;
-
-    @ObjectHolder("rankine:stripped_balsam_fir_wood")
-    public static RotatedPillarBlock STRIPPED_BALSAM_FIR_WOOD;
-
-    @ObjectHolder("rankine:stripped_juniper_log")
-    public static RotatedPillarBlock STRIPPED_JUNIPER_LOG;
-
-    @ObjectHolder("rankine:stripped_juniper_wood")
-    public static RotatedPillarBlock STRIPPED_JUNIPER_WOOD;
-
-    @ObjectHolder("rankine:stripped_pinyon_pine_log")
-    public static RotatedPillarBlock STRIPPED_PINYON_PINE_LOG;
-
-    @ObjectHolder("rankine:stripped_pinyon_pine_wood")
-    public static RotatedPillarBlock STRIPPED_PINYON_PINE_WOOD;
-
-    @ObjectHolder("rankine:stripped_coconut_palm_log")
-    public static RotatedPillarBlock STRIPPED_COCONUT_PALM_LOG;
-
-    @ObjectHolder("rankine:stripped_coconut_palm_wood")
-    public static RotatedPillarBlock STRIPPED_COCONUT_PALM_WOOD;
-
-    @ObjectHolder("rankine:stripped_cedar_log")
-    public static RotatedPillarBlock STRIPPED_CEDAR_LOG;
-
-    @ObjectHolder("rankine:stripped_cedar_wood")
-    public static RotatedPillarBlock STRIPPED_CEDAR_WOOD;
-
-    @ObjectHolder("rankine:cedar_leaves")
-    public static LeavesBlock CEDAR_LEAVES;
-
-    @ObjectHolder("rankine:balsam_fir_leaves")
-    public static LeavesBlock BALSAM_FIR_LEAVES;
-
-    @ObjectHolder("rankine:cedar_door")
-    public static DoorBlock CEDAR_DOOR;
-
-    @ObjectHolder("rankine:cedar_trapdoor")
-    public static TrapDoorBlock CEDAR_TRAPDOOR;
-
-    @ObjectHolder("rankine:cedar_wood")
-    public static RotatedPillarBlock CEDAR_WOOD;
-
-    @ObjectHolder("rankine:cedar_stairs")
-    public static StairsBlock CEDAR_STAIRS;
-
-    @ObjectHolder("rankine:cedar_slab")
-    public static SlabBlock CEDAR_SLAB;
-
-    @ObjectHolder("rankine:cedar_fence")
-    public static FenceBlock CEDAR_FENCE;
-
-    @ObjectHolder("rankine:cedar_fence_gate")
-    public static FenceGateBlock CEDAR_FENCE_GATE;
-
-    @ObjectHolder("rankine:cedar_button")
-    public static WoodButtonBlock CEDAR_BUTTON;
-
-    @ObjectHolder("rankine:cedar_pressure_plate")
-    public static PressurePlateBlock CEDAR_PRESSURE_PLATE;
-
-    @ObjectHolder("rankine:cedar_sapling")
-    public static RankineSapling CEDAR_SAPLING;
-
-    @ObjectHolder("rankine:balsam_fir_sapling")
-    public static RankineSapling BALSAM_FIR_SAPLING;
-
-    @ObjectHolder("rankine:coconut_palm_planks")
-    public static Block COCONUT_PALM_PLANKS;
-
-    @ObjectHolder("rankine:balsam_fir_planks")
-    public static Block BALSAM_FIR_PLANKS;
-
-    @ObjectHolder("rankine:juniper_planks")
-    public static Block JUNIPER_PLANKS;
-
-    @ObjectHolder("rankine:coconut_palm_sapling")
-    public static RankineSapling COCONUT_PALM_SAPLING;
-
-    @ObjectHolder("rankine:coconut_palm_log")
-    public static LogBlock COCONUT_PALM_LOG;
-
-    @ObjectHolder("rankine:coconut_palm_leaves") 
-    public static LeavesBlock COCONUT_PALM_LEAVES;
-
-    @ObjectHolder("rankine:pinyon_pine_planks")
-    public static Block PINYON_PINE_PLANKS;
-
-    @ObjectHolder("rankine:pinyon_pine_log")
-    public static LogBlock PINYON_PINE_LOG;
-
-    @ObjectHolder("rankine:pinyon_pine_leaves")
-    public static LeavesBlock PINYON_PINE_LEAVES;
-
-    @ObjectHolder("rankine:pinyon_pine_sapling")
-    public static RankineSapling PINYON_PINE_SAPLING;
-
-    @ObjectHolder("rankine:juniper_log")
-    public static LogBlock JUNIPER_LOG;
-
-    @ObjectHolder("rankine:juniper_leaves")
-    public static LeavesBlock JUNIPER_LEAVES;
-
-    @ObjectHolder("rankine:sandy_dirt")
-    public static Block SANDY_DIRT;
-
-    @ObjectHolder("rankine:alloy_furnace")
-    public static Block ALLOY_FURNACE;
-
-    @ObjectHolder("rankine:wrought_iron_sheetmetal")
-    public static Block WROUGHT_IRON_SHEETMETAL;
-
-    @ObjectHolder("rankine:copper_sheetmetal")
-    public static Block COPPER_SHEETMETAL;
-
-    @ObjectHolder("rankine:tin_sheetmetal")
-    public static Block TIN_SHEETMETAL;
-
-    @ObjectHolder("rankine:bronze_sheetmetal")
-    public static Block BRONZE_SHEETMETAL;
-
-    @ObjectHolder("rankine:steel_sheetmetal")
-    public static Block STEEL_SHEETMETAL;
-
+    public static final DeferredRegister<Block> REGISTRY = new DeferredRegister<>(ForgeRegistries.BLOCKS, ProjectRankine.MODID);
+
+    //Register a block without an item, add("name", new Block(...))
+    private static <T extends Block> T add(String name, T block) {
+        return add(name, block, null);
+    }
+
+    //Register a block with an item, add("name", new Block(...), new Item.Properties())
+    private static <T extends Block> T add(String name, T block, Item.Properties properties) {
+        return add(name, block, properties, BlockItem::new);
+    }
+
+    //Register a block with a custom item, add("name", new Block(...), new Item.Properties(), ItemName::new)
+    private static <T extends Block> T add(String name, T block, Item.Properties properties, BiFunction<Block, Item.Properties, BlockItem> itemConstructor) {
+        REGISTRY.register(name, () -> block);
+        if (itemConstructor != null && properties != null) ModItems.REGISTRY.register(name, () -> itemConstructor.apply(block, properties));
+        return block;
+    }
+
+    //Register a block with a FuelBlockItem, add("name", new Block(...), new Item.Properties(), fuelValue)
+    private static <T extends Block> T add(String name, T block, Item.Properties properties, int fuelValue) {
+        REGISTRY.register(name, () -> block);
+        if (properties != null) ModItems.REGISTRY.register(name, () -> new FuelBlockItem(block, properties, fuelValue));
+        return block;
+    }
+
+    //Register a block with a BlockNamedItem, add("name", "itemName", new Block(...), new Item.Properties(), BlockNamedItem::new)
+    private static <T extends Block> T add(String name, String itemName, T block, Item.Properties properties, BiFunction<Block, Item.Properties, BlockItem> itemConstructor) {
+        REGISTRY.register(name, () -> block);
+        if (itemConstructor != null && properties != null) ModItems.REGISTRY.register(itemName, () -> itemConstructor.apply(block, properties));
+        return block;
+    }
+
+
+    //Creative Tabs
+    public static Item.Properties METALS = new Item.Properties().group(ProjectRankine.setup.rankineMetals);
+    public static Item.Properties MAIN = new Item.Properties().group(ProjectRankine.setup.itemGroup);
+
+
+    //MAIN CREATIVE TAB------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+    //EARTHY BLOCKS
+    public static final Block SANDY_DIRT = add("sandy_dirt", new SandyDirtBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
+    public static final Block MUDDY_DIRT = add("muddy_dirt", new  Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
+    public static final Block MUDDY_GRASS = add("muddy_grass", new MuddyGrassBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
+    public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
+    public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
+    public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new EntityModifierBlock(Block.Properties.create(Material.SAND).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), MAIN);
+
+
+    //STONE BLOCKS
+    public static final Block GRANITE = add("granite", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_GRANITE = add("smooth_granite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block GRANITE_BRICKS = add("granite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block DIORITE = add("diorite", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_DIORITE = add("smooth_diorite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block DIORITE_BRICKS = add("diorite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block ANDESITE = add("andesite", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_ANDESITE = add("smooth_andesite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block ANDESITE_BRICKS = add("andesite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block LIMESTONE = add("limestone", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_LIMESTONE = add("smooth_limestone", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block LIMESTONE_BRICKS = add("limestone_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block BASALT = add("basalt", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_BASALT = add("smooth_basalt", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
+    public static final Block BASALT_BRICKS = add("basalt_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1)), MAIN);
+    public static final Block RHYOLITE = add("rhyolite", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_RHYOLITE = add("smooth_rhyolite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
+
+    public static final Block MARBLE = add("marble", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_MARBLE = add("smooth_marble", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
+    public static final Block MARBLE_BRICKS = add("marble_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
+    public static final Block GNEISS = add("gneiss", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_GNEISS = add("smooth_gneiss", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
+    public static final Block GNEISS_BRICKS = add("gneiss_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
+    public static final Block SHALE = add("shale", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_SHALE = add("smooth_shale", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SHALE_BRICKS = add("shale_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block IRONSTONE = add("ironstone", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_IRONSTONE = add("smooth_ironstone", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block IRONSTONE_BRICKS = add("ironstone_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PERIDOTITE = add("peridotite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_PERIDOTITE = add("smooth_peridotite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block RINGWOODITE = add("ringwoodite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_RINGWOODITE = add("smooth_ringwoodite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block WADSLEYITE = add("wadsleyite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_WADSLEYITE = add("smooth_wadsleyite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block BRIDGMANITE = add("bridgmanite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_BRIDGMANITE = add("smooth_bridgmanite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block KOMATIITE = add("komatiite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_KOMATIITE = add("smooth_komatiite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block KIMBERLITE = add("kimberlite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_KIMBERLITE = add("smooth_kimberlite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block FERROPERICLASE = add("ferropericlase", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_FERROPERICLASE = add("smooth_ferropericlase", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block PEROVSKITE = add("perovskite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_PEROVSKITE = add("smooth_perovskite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
+
+    public static final Block CLAY_BRICKS = add("clay_bricks", new Block(Block.Properties.create(Material.CLAY)), MAIN);
+    public static final Block REFRACTORY_BRICKS = add("refractory_bricks", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block MAGNESIUM_REFRACTORY_BRICKS = add("magnesium_refractory_bricks", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)), MAIN);
+
+
+    public static final Block SMOOTH_GRANITE_SLAB = add("smooth_granite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_DIORITE_SLAB = add("smooth_diorite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_ANDESITE_SLAB = add("smooth_andesite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_LIMESTONE_SLAB = add("smooth_limestone_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_BASALT_SLAB = add("smooth_basalt_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_RHYOLITE_SLAB = add("smooth_rhyolite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_MARBLE_SLAB = add("smooth_marble_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_GNEISS_SLAB = add("smooth_gneiss_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_SHALE_SLAB = add("smooth_shale_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_PERIDOTITE_SLAB = add("smooth_peridotite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_RINGWOODITE_SLAB = add("smooth_ringwoodite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_WADSLEYITE_SLAB = add("smooth_wadsleyite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_BRIDGMANITE_SLAB = add("smooth_bridgmanite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_KOMATIITE_SLAB = add("smooth_komatiite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_KIMBERLITE_SLAB = add("smooth_kimberlite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_FERROPERICLASE_SLAB = add("smooth_ferropericlase_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block SMOOTH_PEROVSKITE_SLAB = add("smooth_perovskite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+    public static final Block CLAY_BRICKS_SLAB = add("clay_bricks_slab", new RankineSlab(Block.Properties.create(Material.CLAY)), MAIN);
+    public static final Block REFRACTORY_BRICKS_SLAB = add("refractory_bricks_slab", new RankineSlab(Block.Properties.create(Material.CLAY)), MAIN);
+    public static final Block MAGNESIUM_REFRACTORY_BRICKS_SLAB = add("magnesium_refractory_bricks_slab", new RankineSlab(Block.Properties.create(Material.CLAY)), MAIN);
+
+    public static final Block SMOOTH_GRANITE_STAIRS = add("smooth_granite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_DIORITE_STAIRS = add("smooth_diorite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_ANDESITE_STAIRS = add("smooth_andesite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_LIMESTONE_STAIRS = add("smooth_limestone_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_BASALT_STAIRS = add("smooth_basalt_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_RHYOLITE_STAIRS = add("smooth_rhyolite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_MARBLE_STAIRS = add("smooth_marble_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_GNEISS_STAIRS = add("smooth_gneiss_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_SHALE_STAIRS = add("smooth_shale_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_PERIDOTITE_STAIRS = add("smooth_peridotite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_RINGWOODITE_STAIRS = add("smooth_ringwoodite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_BRIDGMANITE_STAIRS = add("smooth_bridgmanite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_WADSLEYITE_STAIRS = add("smooth_wadsleyite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_KOMATIITE_STAIRS = add("smooth_komatiite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_KIMBERLITE_STAIRS = add("smooth_kimberlite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_FERROPERICLASE_STAIRS = add("smooth_ferropericlase_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block SMOOTH_PEROVSKITE_STAIRS = add("smooth_perovskite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block CLAY_BRICKS_STAIRS = add("clay_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)), MAIN);
+    public static final Block REFRACTORY_BRICKS_STAIRS = add("refractory_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)), MAIN);
+    public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)), MAIN);
+
+
+
+                /*
+            static final Block PEROVSKITE = add("perovskite", new PipeBlock(Block.Properties.create(Material.IRON)),"brass_pipe"));
+            static final Block PEROVSKITE = add("perovskite", new PipeBlock(Block.Properties.create(Material.ROCK)),"concrete_pipe"));
+            static final Block PEROVSKITE = add("perovskite", new PipeBlock(Block.Properties.create(Material.ROCK)),"concrete_pipe_junction"));
+            static final Block PEROVSKITE = add("perovskite", new PipeBlock(Block.Properties.create(Material.IRON)),"cast_iron_pipe"));
+            static final Block PEROVSKITE = add("perovskite", new PipeBlock(Block.Properties.create(Material.IRON)),"cast_iron_pipe_junction"));
+            static final Block PEROVSKITE = add("perovskite", new SupportBlock(Block.Properties.create(Material.IRON)),"cast_iron_beam"));
+             */
+
+
+
+    //WOOD BLOCKS
+    public static final Block CEDAR_LOG = add("cedar_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block PINYON_PINE_LOG = add("pinyon_pine_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block JUNIPER_LOG = add("juniper_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block COCONUT_PALM_LOG = add("coconut_palm_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block BALSAM_FIR_LOG = add("balsam_fir_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block JUNIPER_WOOD = add("juniper_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block COCONUT_PALM_WOOD = add("coconut_palm_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block BALSAM_FIR_WOOD = add("balsam_fir_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_CEDAR_LOG = add("stripped_cedar_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_PINYON_PINE_LOG = add("stripped_pinyon_pine_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_JUNIPER_LOG = add("stripped_juniper_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_COCONUT_PALM_LOG = add("stripped_coconut_palm_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_JUNIPER_WOOD = add("stripped_juniper_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_COCONUT_PALM_WOOD = add("stripped_coconut_palm_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block JUNIPER_PLANKS = add("juniper_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block COCONUT_PALM_PLANKS = add("coconut_palm_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block BALSAM_FIR_PLANKS = add("balsam_fir_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), MAIN);
+
+
+    public static final Block CEDAR_LEAVES = add("cedar_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
+    public static final Block COCONUT_PALM_LEAVES = add("coconut_palm_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
+    public static final Block PINYON_PINE_LEAVES = add("pinyon_pine_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
+    public static final Block JUNIPER_LEAVES = add("juniper_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
+    public static final Block BALSAM_FIR_LEAVES = add("balsam_fir_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
+    public static final Block MAGNOLIA_LEAVES = add("magnolia_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
+
+    private static final Block.Properties sapling = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
+    public static final Block CEDAR_SAPLING = add("cedar_sapling", new RankineSapling(new CedarTree(), sapling, 3), MAIN, 200);
+    public static final Block COCONUT_PALM_SAPLING = add("coconut_palm_sapling", new RankineSapling(new CoconutPalmTree(), sapling, 2), MAIN, 200);
+    public static final Block PINYON_PINE_SAPLING = add("pinyon_pine_sapling", new RankineSapling(new PinyonPineTree(), sapling, 2), MAIN, 200);
+    public static final Block JUNIPER_SAPLING = add("juniper_sapling", new RankineSapling(new JuniperTree(), sapling, 2), MAIN, 200);
+    public static final Block BALSAM_FIR_SAPLING = add("balsam_fir_sapling", new RankineSapling(new BalsamFirTree(), sapling, 3), MAIN, 200);
+    public static final Block MAGNOLIA_SAPLING = add("magnolia_sapling", new RankineSapling(new MagnoliaTree(), sapling, 3), MAIN, 200);
+    public static final FlowerPotBlock POTTED_CEDAR_SAPLING = add("potted_cedar_sapling", new FlowerPotBlock(null, () -> CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_PINYON_PINE_SAPLING = add("potted_pinyon_pine_sapling", new FlowerPotBlock(null, () -> PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_JUNIPER_SAPLING = add("potted_juniper_sapling", new FlowerPotBlock(null, () -> JUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_COCONUT_PALM_SAPLING = add("potted_coconut_palm_sapling", new FlowerPotBlock(null, () -> COCONUT_PALM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_BALSAM_FIR_SAPLING = add("potted_balsam_fir_sapling", new FlowerPotBlock(null, () -> BALSAM_FIR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_MAGNOLIA_SAPLING = add("potted_magnolia_sapling", new FlowerPotBlock(null, () -> MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+
+
+    public static final Block CEDAR_STAIRS = add("cedar_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block CEDAR_SLAB = add("cedar_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block CEDAR_FENCE = add("cedar_fence", new RankineWoodFence(), MAIN);
+    public static final Block CEDAR_FENCE_GATE = add("cedar_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block CEDAR_BUTTON = add("cedar_button", new RankineWoodButton(), MAIN);
+    public static final Block CEDAR_PRESSURE_PLATE = add("cedar_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block CEDAR_DOOR = add("cedar_door", new RankineWoodDoor(), MAIN);
+    public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodTrapDoor(), MAIN);
+    public static final Block PINYON_PINE_STAIRS = add("pinyon_pine_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block PINYON_PINE_SLAB = add("pinyon_pine_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block PINYON_PINE_FENCE = add("pinyon_pine_fence", new RankineWoodFence(), MAIN);
+    public static final Block PINYON_PINE_FENCE_GATE = add("pinyon_pine_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block PINYON_PINE_BUTTON = add("pinyon_pine_button", new RankineWoodButton(), MAIN);
+    public static final Block PINYON_PINE_PRESSURE_PLATE = add("pinyon_pine_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.CARPET)), MAIN);
+    public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MAIN, RopeItem::new);
+    public static final SphagnumMossBlock SPHAGNUM_MOSS = add("sphagnum_moss", new SphagnumMossBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.NETHER_WART)), MAIN);
+    public static final SwampGrassBlock SWAMP_GRASS = add("swamp_grass", new SwampGrassBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MAIN);
+    public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MAIN, DuckweedItem::new);
+
+    //PROCESSING--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //ORES
+    public static final Block METEORIC_IRON_ORE = add("meteoric_iron_ore", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre NATIVE_COPPER_ORE = add("native_copper_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE), ModItems.COPPER_NUGGET), METALS);
+    public static final RankineOre NATIVE_TIN_ORE = add("native_tin_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE), ModItems.TIN_NUGGET), METALS);
+    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre MALACHITE_ORE = add("malachite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.COPPER_NUGGET), METALS);
+    public static final RankineOre CASSITERITE_ORE = add("cassiterite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.TIN_NUGGET), METALS);
+    public static final RankineOre BAUXITE_ORE = add("bauxite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.ALUMINUM_NUGGET), METALS);
+    public static final RankineOre SPHALERITE_ORE = add("sphalerite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), ModItems.ZINC_NUGGET), METALS);
+    public static final RankineOre MAGNETITE_ORE = add("magnetite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), Items.IRON_NUGGET), METALS);
+    public static final RankineOre CINNABAR_ORE = add("cinnabar_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE), Items.REDSTONE), METALS);
+    public static final RankineOre PENTLANDITE_ORE = add("pentlandite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), ModItems.NICKEL_NUGGET), METALS);
+    public static final RankineOre MAGNESITE_ORE = add("magnesite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), ModItems.MAGNESIUM_NUGGET), METALS);
+    public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), ModItems.LEAD_NUGGET), METALS);
+    public static final RankineOre VANADINITE_ORE = add("vanadinite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre BISMITE_ORE = add("bismite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), ModItems.BISMUTH_NUGGET), METALS);
+    public static final RankineOre ACANTHITE_ORE = add("acanthite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), ModItems.SILVER_NUGGET), METALS);
+    public static final RankineOre PYROLUSITE_ORE = add("pyrolusite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE), ModItems.MANGANESE_NUGGET), METALS);
+    public static final RankineOre CHROMITE_ORE = add("chromite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE), ModItems.CHROMIUM_NUGGET), METALS);
+    public static final RankineOre MOLYBDENITE_ORE = add("molybdenite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE), ModItems.MOLYBDENUM_NUGGET), METALS);
+    public static final RankineOre WOLFRAMITE_ORE = add("wolframite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE), ModItems.TITANIUM_NUGGET), METALS);
+    public static final RankineOre ILMENITE_ORE = add("ilmenite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE), ModItems.TITANIUM_NUGGET), METALS);
+    public static final RankineOre COLUMBITE_ORE = add("columbite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE), ModItems.NIOBIUM_NUGGET), METALS);
+    public static final RankineOre TANTALITE_ORE = add("tantalite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE), ModItems.TANTALUM_NUGGET), METALS);
+    public static final RankineOre PLUMBAGO_ORE = add("plumbago_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre MOISSANITE_ORE = add("moissanite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre SPERRYLITE_ORE = add("sperrylite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre LIGNITE_ORE = add("lignite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre SUBBITUMINOUS_ORE = add("subbituminous_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre BITUMINOUS_ORE = add("bituminous_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre ANTHRACITE_ORE = add("anthracite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre REDSTONE_ORE = add("redstone_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre LAZURITE_ORE = add("lazurite_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre DIAMOND_ORE = add("diamond_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final RankineOre EMERALD_ORE = add("emerald_ore", new RankineOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final Block OPAL_ORE = add("opal_ore", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+
+
+    //metal blocks
+    public static final Block ROSE_GOLD_BLOCK = add("rose_gold_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block WHITE_GOLD_BLOCK = add("white_gold_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block GREEN_GOLD_BLOCK = add("green_gold_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block BLUE_GOLD_BLOCK = add("blue_gold_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block PURPLE_GOLD_BLOCK = add("purple_gold_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block CHROMIUM_BLOCK = add("chromium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block TITANIUM_BLOCK = add("titanium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block SILVER_BLOCK = add("silver_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block PLATINUM_BLOCK = add("platinum_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block OSMIUM_BLOCK = add("osmium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block IRIDIUM_BLOCK = add("iridium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block ZINC_BLOCK = add("zinc_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block MAGNESIUM_BLOCK = add("magnesium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block MANGANESE_BLOCK = add("manganese_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block MOLYBDENUM_BLOCK = add("molybdenum_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block NICKEL_BLOCK = add("nickel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block COBALT_BLOCK = add("cobalt_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block TUNGSTEN_BLOCK = add("tungsten_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block INVAR_BLOCK = add("invar_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block BRONZE_BLOCK = add("bronze_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block STEEL_BLOCK = add("steel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block STAINLESS_STEEL_BLOCK = add("stainless_steel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block PIG_IRON_BLOCK = add("pig_iron_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block ALNICO_BLOCK = add("alnico_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block MAGNALIUM_BLOCK = add("magnalium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block DURALUMIN_BLOCK = add("duralumin_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block BRASS_BLOCK = add("brass_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block CUPRONICKEL_BLOCK = add("cupronickel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block NICHROME_BLOCK = add("nichrome_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block NICKEL_SILVER_BLOCK = add("nickel_silver_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block NITINOL_BLOCK = add("nitinol_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block AMALGAM_BLOCK = add("amalgam_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block ROSE_METAL_BLOCK = add("rose_metal_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block WROUGHT_IRON_BLOCK = add("wrought_iron_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block CAST_IRON_BLOCK = add("cast_iron_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block COPPER_BLOCK = add("copper_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block TIN_BLOCK = add("tin_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block NIOBIUM_BLOCK = add("niobium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block ALUMINUM_BLOCK = add("aluminum_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block VANADIUM_BLOCK = add("vanadium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block LEAD_BLOCK = add("lead_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block BISMUTH_BLOCK = add("bismuth_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block TANTALUM_BLOCK = add("tantalum_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block OPAL_BLOCK = add("opal_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block GARNET_BLOCK = add("garnet_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block FELDSPAR_BLOCK = add("feldspar_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block DOLOMITE_BLOCK = add("dolomite_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block CALCITE_BLOCK = add("calcite_block", new RankineTransparent(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1).notSolid()), METALS);
+    public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block INCONEL_BLOCK = add("inconel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block SALT_BLOCK = add("salt_block", new RankineTransparent(Block.Properties.create(Material.SAND).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1).notSolid()), METALS);
+    public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new RankineTransparent(Block.Properties.create(Material.EARTH).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1).notSolid()), METALS);
+    public static final Block SILICON_BLOCK = add("silicon_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block SILICON_CARBIDE_BLOCK = add("silicon_carbide_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block COKE_BLOCK = add("coke_block", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS, 2400*9);
+    public static final Block LIGNITE_BLOCK = add("lignite_block", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS, 1200*9);
+    public static final Block BITUMINOUS_COAL_BLOCK = add("bituminous_coal_block", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS, 2000*9);
+    public static final Block ANTHRACITE_COAL_BLOCK = add("anthracite_coal_block", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS, 2400*9);
+    public static final CrystalBlock NITER = add("niter", new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+
+
+
+
+    public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2).harvestLevel(2).harvestTool(ToolType.PICKAXE)), METALS);
+    public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), METALS);
+
+    public static final BlastingPowderBlock BLASTING_POWDER = add("blasting_powder", new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1)), METALS);
+    public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F)), METALS);
+    public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F).lightValue(7)), METALS);
+    public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(13)), METALS);
+    public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALS);
+    public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALS);
+
+
+    public static final RankineBerryBushBlock ELDERBERRY_BUSH = add("elderberry_bush", "elderberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0), new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.ELDERBERRIES), BlockNamedItem::new);
+    public static final RankineBerryBushBlock SNOWBERRY_BUSH = add("snowberry_bush", "snowberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),1), new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.SNOWBERRIES), BlockNamedItem::new);
+    public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),2), new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.YUCCA), BlockNamedItem::new);
+    public static final RankineBerryBushBlock PINEAPPLE_BUSH = add("pineapple_bush", "pineapple",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),3), new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.PINEAPPLE), BlockNamedItem::new);
+
+
+    public static final FlowingFluidBlock LIQUID_PIG_IRON_BLOCK = add("liquid_pig_iron_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_PIG_IRON,Block.Properties.create(Material.LAVA).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+
+
+
+
+    //OTHER STUFFS
     @ObjectHolder("rankine:alloy_furnace")
     public static ContainerType<AlloyFurnaceContainer> ALLOY_FURNACE_CONTAINER;
 
     @ObjectHolder("rankine:alloy_furnace")
     public static TileEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
 
-    /*
-    @ObjectHolder("rankine:brass_pipe")
-    public static PipeBlock BRASS_PIPE;
 
-    @ObjectHolder("rankine:concrete_pipe")
-    public static PipeBlock CONCRETE_PIPE;
-
-    @ObjectHolder("rankine:concrete_pipe_junction")
-    public static PipeBlock CONCRETE_PIPE_JUNCTION;
-
-    @ObjectHolder("rankine:cast_iron_pipe")
-    public static PipeBlock CAST_IRON_PIPE;
-
-    @ObjectHolder("rankine:cast_iron_pipe_junction")
-    public static PipeBlock CAST_IRON_PIPE_JUNCTION;
-
-    @ObjectHolder("rankine:cast_iron_beam")
-    public static SupportBlock CAST_IRON_BEAM;
-     */
-
-    @ObjectHolder("rankine:refractory_bricks")
-    public static Block REFRACTORY_BRICKS;
-
-    @ObjectHolder("rankine:refractory_bricks_slab")
-    public static Block REFRACTORY_BRICKS_SLAB;
-
-    @ObjectHolder("rankine:refractory_bricks_stairs")
-    public static Block REFRACTORY_BRICKS_STAIRS;
-
-    @ObjectHolder("rankine:magnesium_refractory_bricks")
-    public static Block MAGNESIUM_REFRACTORY_BRICKS;
-
-    @ObjectHolder("rankine:magnesium_refractory_bricks_slab")
-    public static Block MAGNESIUM_REFRACTORY_BRICKS_SLAB;
-
-    @ObjectHolder("rankine:magnesium_refractory_bricks_stairs")
-    public static Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS;
-
-    @ObjectHolder("rankine:limestone")
-    public static Block LIMESTONE;
-
-    @ObjectHolder("rankine:limestone_bricks")
-    public static Block LIMESTONE_BRICKS;
-
-    @ObjectHolder("rankine:basalt")
-    public static Block BASALT;
-
-    @ObjectHolder("rankine:basalt_bricks")
-    public static Block BASALT_BRICKS;
-
-    @ObjectHolder("rankine:rhyolite")
-    public static Block RHYOLITE;
-
-    @ObjectHolder("rankine:granite")
-    public static Block GRANITE;
-
-    @ObjectHolder("rankine:diorite")
-    public static Block DIORITE;
-
-    @ObjectHolder("rankine:andesite")
-    public static Block ANDESITE;
-
-    @ObjectHolder("rankine:marble")
-    public static Block MARBLE;
-
-    @ObjectHolder("rankine:marble_bricks")
-    public static Block MARBLE_BRICKS;
-
-    @ObjectHolder("rankine:gneiss")
-    public static Block GNEISS;
-
-    @ObjectHolder("rankine:gneiss_bricks")
-    public static Block GNEISS_BRICKS;
-
-    @ObjectHolder("rankine:shale")
-    public static Block SHALE;
-
-    @ObjectHolder("rankine:niter")
-    public static CrystalBlock NITER;
-
-    @ObjectHolder("rankine:gravel_concrete")
-    public static EntityModifierBlock GRAVEL_CONCRETE;
-
-    @ObjectHolder("rankine:shale_bricks")
-    public static Block SHALE_BRICKS;
-
-    @ObjectHolder("rankine:clay_bricks")
-    public static Block CLAY_BRICKS;
-
-    @ObjectHolder("rankine:clay_bricks_slab")
-    public static Block CLAY_BRICKS_SLAB;
-
-    @ObjectHolder("rankine:clay_bricks_stairs")
-    public static Block CLAY_BRICKS_STAIRS;
-
-    @ObjectHolder("rankine:andesite_bricks")
-    public static Block ANDESITE_BRICKS;
-
-    @ObjectHolder("rankine:granite_bricks")
-    public static Block GRANITE_BRICKS;
-
-    @ObjectHolder("rankine:diorite_bricks")
-    public static Block DIORITE_BRICKS;
-
-    @ObjectHolder("rankine:bauxite_ore")
-    public static RankineOre BAUXITE_ORE;
-
-    @ObjectHolder("rankine:malachite_ore")
-    public static RankineOre MALACHITE_ORE;
-
-    @ObjectHolder("rankine:cassiterite_ore")
-    public static RankineOre CASSITERITE_ORE;
-
-    @ObjectHolder("rankine:sphalerite_ore")
-    public static RankineOre SPHALERITE_ORE;
-
-    @ObjectHolder("rankine:cinnabar_ore")
-    public static RankineOre CINNABAR_ORE;
-
-    @ObjectHolder("rankine:magnesite_ore")
-    public static RankineOre MAGNESITE_ORE;
-
-    @ObjectHolder("rankine:magnetite_ore")
-    public static RankineOre MAGNETITE_ORE;
-
-    @ObjectHolder("rankine:ilmenite_ore")
-    public static RankineOre ILMENITE_ORE;
-
-    @ObjectHolder("rankine:galena_ore")
-    public static RankineOre GALENA_ORE;
-
-    @ObjectHolder("rankine:acanthite_ore")
-    public static RankineOre ACANTHITE_ORE;
-
-    @ObjectHolder("rankine:molybdenite_ore")
-    public static RankineOre MOLYBDENITE_ORE;
-
-    @ObjectHolder("rankine:pyrolusite_ore")
-    public static RankineOre PYROLUSITE_ORE;
-
-    @ObjectHolder("rankine:chromite_ore")
-    public static RankineOre CHROMITE_ORE;
-
-    @ObjectHolder("rankine:columbite_ore")
-    public static RankineOre COLUMBITE_ORE;
-
-    @ObjectHolder("rankine:tantalite_ore")
-    public static RankineOre TANTALITE_ORE;
-
-    @ObjectHolder("rankine:wolframite_ore")
-    public static RankineOre WOLFRAMITE_ORE;
-
-    @ObjectHolder("rankine:bismite_ore")
-    public static RankineOre BISMITE_ORE;
-
-    @ObjectHolder("rankine:pentlandite_ore")
-    public static RankineOre PENTLANDITE_ORE;
-
-    @ObjectHolder("rankine:native_copper_ore")
-    public static RankineOre NATIVE_COPPER_ORE;
-
-    @ObjectHolder("rankine:native_tin_ore")
-    public static RankineOre NATIVE_TIN_ORE;
-
-    @ObjectHolder("rankine:lignite_ore")
-    public static RankineOre LIGNITE_ORE;
-
-    @ObjectHolder("rankine:subbituminous_ore")
-    public static RankineOre SUBBITUMINOUS_ORE;
-
-    @ObjectHolder("rankine:bituminous_ore")
-    public static RankineOre BITUMINOUS_ORE;
-
-    @ObjectHolder("rankine:vanadinite_ore")
-    public static Block VANADINITE_ORE;
-
-    @ObjectHolder("rankine:anthracite_ore")
-    public static RankineOre ANTHRACITE_ORE;
-
-    @ObjectHolder("rankine:meteoric_iron_ore")
-    public static Block METEORIC_IRON_ORE;
-
-    @ObjectHolder("rankine:native_gold_ore")
-    public static RankineOre NATIVE_GOLD_ORE;
-
-    @ObjectHolder("rankine:diamond_ore")
-    public static RankineOre DIAMOND_ORE;
-
-    @ObjectHolder("rankine:emerald_ore")
-    public static RankineOre EMERALD_ORE;
-
-    @ObjectHolder("rankine:redstone_ore")
-    public static RankineOre REDSTONE_ORE;
-
-    @ObjectHolder("rankine:lazurite_ore")
-    public static RankineOre LAZURITE_ORE;
-
-    @ObjectHolder("rankine:plumbago_ore")
-    public static RankineOre PLUMBAGO_ORE;
-
-    @ObjectHolder("rankine:moissanite_ore")
-    public static RankineOre MOISSANITE_ORE;
-
-    @ObjectHolder("rankine:sperrylite_ore")
-    public static RankineOre SPERRYLITE_ORE;
-
-    @ObjectHolder("rankine:piston_crusher")
-    public static PistonCrusher PISTON_CRUSHER;
 
     @ObjectHolder("rankine:piston_crusher")
     public static ContainerType<PistonCrusherContainer> PISTON_CRUSHER_CONTAINER;
 
     @ObjectHolder("rankine:piston_crusher")
     public static TileEntityType<PistonCrusherTile> PISTON_CRUSHER_TILE;
-
-    @ObjectHolder("rankine:crucible")
-    public static Crucible CRUCIBLE;
 
     @ObjectHolder("rankine:coal_forge")
     public static CoalForge COAL_FORGE;
@@ -633,267 +435,8 @@ public class ModBlocks {
     public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
 
     @ObjectHolder("rankine:finery_forge")
-    public static FineryForge FINERY_FORGE;
-
-    @ObjectHolder("rankine:finery_forge")
     public static ContainerType<FineryForgeContainer> FINERY_FORGE_CONTAINER;
 
     @ObjectHolder("rankine:finery_forge")
     public static TileEntityType<FineryForgeTile> FINERY_FORGE_TILE;
-
-/*
-    @ObjectHolder("rankine:induction_furnace")
-    public static InductionFurnace INDUCTION_FURNACE;
-
-    @ObjectHolder("rankine:induction_furnace")
-    public static ContainerType<InductionFurnaceContainer> INDUCTION_FURNACE_CONTAINER;
-
-    @ObjectHolder("rankine:induction_furnace")
-    public static TileEntityType<InductionFurnaceTile> INDUCTION_FURNACE_TILE;
-
-    @ObjectHolder("rankine:piston_steam_engine")
-    public static PistonSteamEngine PISTON_STEAM_ENGINE;
-
-    @ObjectHolder("rankine:piston_steam_engine")
-    public static ContainerType<PistonSteamEngineContainer> PISTON_STEAM_ENGINE_CONTAINER;
-
-    @ObjectHolder("rankine:piston_steam_engine")
-    public static TileEntityType<PistonSteamEngineTile> PISTON_STEAM_ENGINE_TILE;
-
-    @ObjectHolder("rankine:steam_turbine")
-    public static SteamTurbine STEAM_TURBINE;
-
-    @ObjectHolder("rankine:steam_turbine")
-    public static ContainerType<SteamTurbineContainer> STEAM_TURBINE_CONTAINER;
-
-    @ObjectHolder("rankine:steam_turbine")
-    public static TileEntityType<SteamTurbineTile> STEAM_TURBINE_TILE;
-
-     */
-
-    @ObjectHolder("rankine:rose_gold_block")
-    public static Block ROSE_GOLD_BLOCK;
-
-    @ObjectHolder("rankine:white_gold_block")
-    public static Block WHITE_GOLD_BLOCK;
-
-    @ObjectHolder("rankine:green_gold_block")
-    public static Block GREEN_GOLD_BLOCK;
-
-    @ObjectHolder("rankine:blue_gold_block")
-    public static Block BLUE_GOLD_BLOCK;
-
-    @ObjectHolder("rankine:purple_gold_block")
-    public static Block PURPLE_GOLD_BLOCK;
-
-    @ObjectHolder("rankine:platinum_block")
-    public static Block PLATINUM_BLOCK;
-
-
-    @ObjectHolder("rankine:osmium_block")
-    public static Block OSMIUM_BLOCK;
-
-
-    @ObjectHolder("rankine:iridium_block")
-    public static Block IRIDIUM_BLOCK;
-
-
-    @ObjectHolder("rankine:pig_iron_block")
-    public static Block PIG_IRON_BLOCK;
-
-    @ObjectHolder("rankine:wrought_iron_block")
-    public static Block WROUGHT_IRON_BLOCK;
-
-    @ObjectHolder("rankine:cast_iron_block")
-    public static Block CAST_IRON_BLOCK;
-
-    @ObjectHolder("rankine:chromium_block")
-    public static Block CHROMIUM_BLOCK;
-
-    @ObjectHolder("rankine:titanium_block")
-    public static Block TITANIUM_BLOCK;
-
-    @ObjectHolder("rankine:silver_block")
-    public static Block SILVER_BLOCK;
-
-    @ObjectHolder("rankine:steel_block")
-    public static Block STEEL_BLOCK;
-
-    @ObjectHolder("rankine:stainless_steel_block")
-    public static Block STAINLESS_STEEL_BLOCK;
-
-    @ObjectHolder("rankine:nitinol_block")
-    public static Block NITINOL_BLOCK;
-
-    @ObjectHolder("rankine:duralumin_block")
-    public static Block DURALUMIN_BLOCK;
-
-    @ObjectHolder("rankine:brass_block")
-    public static Block BRASS_BLOCK;
-
-    @ObjectHolder("rankine:amalgam_block")
-    public static Block AMALGAM_BLOCK;
-
-    @ObjectHolder("rankine:cupronickel_block")
-    public static Block CUPRONICKEL_BLOCK;
-
-    @ObjectHolder("rankine:nickel_silver_block")
-    public static Block NICKEL_SILVER_BLOCK;
-
-    @ObjectHolder("rankine:nichrome_block")
-    public static Block NICHROME_BLOCK;
-
-    @ObjectHolder("rankine:alnico_block")
-    public static Block ALNICO_BLOCK;
-
-    @ObjectHolder("rankine:copper_block")
-    public static Block COPPER_BLOCK;
-
-    @ObjectHolder("rankine:tin_block")
-    public static Block TIN_BLOCK;
-
-    @ObjectHolder("rankine:nickel_block")
-    public static Block NICKEL_BLOCK;
-
-    @ObjectHolder("rankine:magnesium_block")
-    public static Block MAGNESIUM_BLOCK;
-
-    @ObjectHolder("rankine:molybdenum_block")
-    public static Block MOLYBDENUM_BLOCK;
-
-    @ObjectHolder("rankine:zinc_block")
-    public static Block ZINC_BLOCK;
-
-    @ObjectHolder("rankine:cobalt_block")
-    public static Block COBALT_BLOCK;
-
-    @ObjectHolder("rankine:invar_block")
-    public static Block INVAR_BLOCK;
-
-    @ObjectHolder("rankine:tungsten_block")
-    public static Block TUNGSTEN_BLOCK;
-
-    @ObjectHolder("rankine:bronze_block")
-    public static Block BRONZE_BLOCK;
-
-    @ObjectHolder("rankine:aluminum_bronze_block")
-    public static Block ALUMINUM_BRONZE_BLOCK;
-
-    @ObjectHolder("rankine:manganese_block")
-    public static Block MANGANESE_BLOCK;
-
-    @ObjectHolder("rankine:niobium_block")
-    public static Block NIOBIUM_BLOCK;
-
-    @ObjectHolder("rankine:aluminum_block")
-    public static Block ALUMINUM_BLOCK;
-
-    @ObjectHolder("rankine:lead_block")
-    public static Block LEAD_BLOCK;
-
-    @ObjectHolder("rankine:magnalium_block")
-    public static Block MAGNALIUM_BLOCK;
-
-    @ObjectHolder("rankine:tantalum_block")
-    public static Block TANTALUM_BLOCK;
-
-    @ObjectHolder("rankine:graphite_block")
-    public static Block GRAPHITE_BLOCK;
-
-    @ObjectHolder("rankine:bismuth_block")
-    public static Block BISMUTH_BLOCK;
-
-    @ObjectHolder("rankine:opal_block")
-    public static Block OPAL_BLOCK;
-
-    @ObjectHolder("rankine:garnet_block")
-    public static Block GARNET_BLOCK;
-
-    @ObjectHolder("rankine:olivine_block")
-    public static Block OLIVINE_BLOCK;
-
-    @ObjectHolder("rankine:feldspar_block")
-    public static Block FELDSPAR_BLOCK;
-
-    @ObjectHolder("rankine:dolomite_block")
-    public static Block DOLOMITE_BLOCK;
-
-    @ObjectHolder("rankine:calcite_block")
-    public static RankineTransparent CALCITE_BLOCK;
-
-    @ObjectHolder("rankine:salt_block")
-    public static RankineTransparent SALT_BLOCK;
-
-    @ObjectHolder("rankine:pyroxene_block")
-    public static Block PYROXENE_BLOCK;
-
-    @ObjectHolder("rankine:sulfur_block")
-    public static Block SULFUR_BLOCK;
-
-    @ObjectHolder("rankine:coke_block")
-    public static Block COKE_BLOCK;
-
-    @ObjectHolder("rankine:inconel_block")
-    public static Block INCONEL_BLOCK;
-
-    @ObjectHolder("rankine:rose_metal_block")
-    public static Block ROSE_METAL_BLOCK;
-
-    @ObjectHolder("rankine:calcium_silicate_block")
-    public static Block CALCIUM_SILICATE_BLOCK;
-
-    @ObjectHolder("rankine:silicon_block")
-    public static Block SILICON_BLOCK;
-
-    @ObjectHolder("rankine:silicon_carbide_block")
-    public static Block SILICON_CARBIDE_BLOCK;
-
-    @ObjectHolder("rankine:peridot_block")
-    public static Block PERIDOT_BLOCK;
-
-    @ObjectHolder("rankine:rope")
-    public static RopeBlock ROPE;
-
-
-    @ObjectHolder("rankine:peridotite")
-    public static Block PERIDOTITE;
-
-    @ObjectHolder("rankine:ringwoodite")
-    public static Block RINGWOODITE;
-
-    @ObjectHolder("rankine:wadsleyite")
-    public static Block WADSLEYITE;
-
-    @ObjectHolder("rankine:bridgmanite")
-    public static Block BRIDGMANITE;
-
-    @ObjectHolder("rankine:komatiite")
-    public static Block KOMATIITE;
-
-    @ObjectHolder("rankine:kimberlite")
-    public static Block KIMBERLITE;
-
-    @ObjectHolder("rankine:ferropericlase")
-    public static Block FERROPERICLASE;
-
-    @ObjectHolder("rankine:perovskite")
-    public static Block PEROVSKITE;
-
-    @ObjectHolder("rankine:aluminum_ladder")
-    public static MetalLadder ALUMINUM_LADDER;
-
-    @ObjectHolder("rankine:liquid_pig_iron_block")
-    public static FlowingFluidBlock LIQUID_PIG_IRON_BLOCK;
-
-    @ObjectHolder("rankine:elderberry_bush")
-    public static RankineBerryBushBlock ELDERBERRY_BUSH;
-
-    @ObjectHolder("rankine:snowberry_bush")
-    public static RankineBerryBushBlock SNOWBERRY_BUSH;
-
-    @ObjectHolder("rankine:pineapple_bush")
-    public static RankineBerryBushBlock PINEAPPLE_BUSH;
-
-    @ObjectHolder("rankine:banana_yucca_bush")
-    public static RankineBerryBushBlock BANANA_YUCCA_BUSH;
 }

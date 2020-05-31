@@ -29,13 +29,10 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class FineryForge extends Block  {
-    public FineryForge() {
-        super(Block.Properties.create(Material.ROCK)
-                .sound(SoundType.STONE)
-                .hardnessAndResistance(2.0f)
-                .lightValue(7)
-        );
-        setRegistryName(ProjectRankine.MODID,"finery_forge");
+
+
+    public FineryForge(Properties properties) {
+        super(properties);
     }
 
     @Override

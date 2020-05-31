@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.world.biome;
 
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
-import com.cannolicatfish.rankine.world.feature.RankineFeatures;
+import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.Biome;
@@ -34,8 +34,10 @@ public class DeadSwampBiome extends Biome {
 
         this.addStructure(Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
+        this.addStructure(RankineFeatures.BEAVER_LODGE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         DefaultBiomeFeatures.addCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
+        RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);

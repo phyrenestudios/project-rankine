@@ -1,13 +1,10 @@
 package com.cannolicatfish.rankine.world.biome;
 
 import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.world.feature.RankineFeatures;
+import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HugeMushroomBlock;
-import net.minecraft.block.SweetBerryBushBlock;
+import net.minecraft.block.*;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -30,6 +27,7 @@ import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.treedecorator.CocoaTreeDecorator;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
+import net.minecraftforge.common.IPlantable;
 
 public class RankineBiomeFeatures {
 
@@ -158,18 +156,73 @@ public class RankineBiomeFeatures {
     public static final BigMushroomFeatureConfig BIG_BROWN_MUSHROOM = new BigMushroomFeatureConfig(new SimpleBlockStateProvider(BROWN_MUSHROOM_BLOCK), new SimpleBlockStateProvider(MUSHROOM_STEM), 3);
 
 
-    //Mod Trees
-    public static final TreeFeatureConfig CEDAR_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.CEDAR_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.CEDAR_LEAVES.getDefaultState()), new SpruceFoliagePlacer(2, 1))).baseHeight(8).heightRandA(3).trunkHeight(1).trunkHeightRandom(1).trunkTopOffsetRandom(2).ignoreVines().setSapling(ModBlocks.CEDAR_SAPLING).build();
+    //MOD TREES
     public static final TreeFeatureConfig SMALL_SPRUCE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()), new PineFoliagePlacer(1, 0))).baseHeight(3).heightRandA(4).trunkTopOffset(1).foliageHeight(3).foliageHeightRandom(1).ignoreVines().setSapling((net.minecraftforge.common.IPlantable)Blocks.SPRUCE_SAPLING).build();
-    public static final TreeFeatureConfig PINYON_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PINYON_PINE_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.PINYON_PINE_LEAVES.getDefaultState()), new AcaciaFoliagePlacer(2, 0))).baseHeight(5).heightRandA(2).heightRandB(2).trunkHeight(0).ignoreVines().setSapling(ModBlocks.PINYON_PINE_SAPLING).build();
-    public static final TreeFeatureConfig JUNIPER_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.JUNIPER_LEAVES.getDefaultState()), new AcaciaFoliagePlacer(1, 0))).baseHeight(1).heightRandA(1).heightRandB(0).trunkHeight(0).ignoreVines().setSapling(ModBlocks.JUNIPER_SAPLING).build();
-    public static final TreeFeatureConfig BALSAM_FIR_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LEAVES.getDefaultState()), new SpruceFoliagePlacer(1, 0))).baseHeight(6).heightRandA(3).trunkHeight(1).trunkHeightRandom(1).trunkTopOffsetRandom(2).ignoreVines().setSapling(ModBlocks.BALSAM_FIR_SAPLING).build();
-    public static final TreeFeatureConfig DEAD_BALSAM_FIR_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()), new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()), new SpruceFoliagePlacer(2, 1))).baseHeight(6).heightRandA(5).trunkHeight(1).trunkHeightRandom(1).trunkTopOffsetRandom(2).decorators(ImmutableList.of(new TrunkVineTreeDecorator())).ignoreVines().setSapling(ModBlocks.CEDAR_SAPLING).build();
-    public static final TreeFeatureConfig COCONUT_PALM_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.COCONUT_PALM_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.COCONUT_PALM_LEAVES.getDefaultState()), new AcaciaFoliagePlacer(1, 0))).baseHeight(11).heightRandA(2).heightRandB(2).trunkHeight(0).ignoreVines().setSapling(ModBlocks.COCONUT_PALM_SAPLING).build();
+    public static final TreeFeatureConfig PINYON_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PINYON_PINE_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.PINYON_PINE_LEAVES.getDefaultState()), new AcaciaFoliagePlacer(2, 0))).baseHeight(5).heightRandA(2).heightRandB(2).trunkHeight(0).ignoreVines().setSapling((IPlantable) ModBlocks.PINYON_PINE_SAPLING).build();
+    public static final TreeFeatureConfig JUNIPER_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.JUNIPER_LEAVES.getDefaultState()), new AcaciaFoliagePlacer(1, 0))).baseHeight(1).heightRandA(1).heightRandB(0).trunkHeight(0).ignoreVines().setSapling((IPlantable) ModBlocks.JUNIPER_SAPLING).build();
+    public static final TreeFeatureConfig COCONUT_PALM_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.COCONUT_PALM_LOG.getDefaultState()), new SimpleBlockStateProvider(ModBlocks.COCONUT_PALM_LEAVES.getDefaultState()), new AcaciaFoliagePlacer(1, 0))).baseHeight(11).heightRandA(2).heightRandB(2).trunkHeight(0).ignoreVines().setSapling((IPlantable) ModBlocks.COCONUT_PALM_SAPLING).build();
+
+    public static final TreeFeatureConfig CEDAR_TREE_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.CEDAR_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.CEDAR_LEAVES.getDefaultState()),
+            new SpruceFoliagePlacer(2, 1)))
+            .baseHeight(8)
+            .heightRandA(3)
+            .trunkHeight(1)
+            .trunkHeightRandom(1)
+            .trunkTopOffsetRandom(2)
+            .ignoreVines()
+            .setSapling((IPlantable) ModBlocks.CEDAR_SAPLING).build();
+
+    public static final TreeFeatureConfig DEAD_BALSAM_FIR_TREE_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
+            new SpruceFoliagePlacer(1, 0)))
+            .baseHeight(8).heightRandA(5).foliageHeight(3).foliageHeightRandom(2).maxWaterDepth(2).ignoreVines()
+            .decorators(ImmutableList.of(new TrunkVineTreeDecorator()))
+            .setSapling((IPlantable) ModBlocks.BALSAM_FIR_SAPLING).build();
+
+    public static final TreeFeatureConfig BALSAM_FIR_TREE_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LEAVES.getDefaultState()),
+            new SpruceFoliagePlacer(1, 0)))
+            .baseHeight(6).heightRandA(5).foliageHeight(3).foliageHeightRandom(2).ignoreVines()
+            .setSapling((IPlantable) ModBlocks.BALSAM_FIR_SAPLING).build();
+
+    public static final TreeFeatureConfig MAGNOLIA_TREE_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LEAVES.getDefaultState()),
+            new AcaciaFoliagePlacer(1, 0)))
+            .baseHeight(1).heightRandA(3).heightRandB(2).trunkHeight(0).ignoreVines().setSapling((IPlantable) ModBlocks.MAGNOLIA_SAPLING).build();
+
+    public static final TreeFeatureConfig LAGOON_OAK_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
+            new AcaciaFoliagePlacer(1, 0)))
+            .baseHeight(2).heightRandA(3).heightRandB(0).trunkHeight(0).ignoreVines()
+            .setSapling((net.minecraftforge.common.IPlantable)Blocks.OAK_SAPLING).build();
+
+    public static final TreeFeatureConfig LAGOON_OAK2_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
+            new SpruceFoliagePlacer(1, 0)))
+            .baseHeight(2).heightRandA(2).heightRandB(0).trunkHeight(0).ignoreVines()
+            .setSapling((net.minecraftforge.common.IPlantable)Blocks.OAK_SAPLING).build();
 
 
+
+    //OTHER
     public static final BlockClusterFeatureConfig SWAMP_GRASS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.SWAMP_GRASS.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig DUCKWEED_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.DUCKWEED.getDefaultState()), new SimpleBlockPlacer())).tries(10).build();
+
+
+    public static void addModStructures(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.BEAVER_LODGE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.TROPICS_HOUSE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.LAGOON_FOUNTAIN.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+
+    }
+
 
 
 
@@ -184,12 +237,6 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.ACACIA_TREE.withConfiguration(PINYON_TREE_CONFIG).func_227227_a_(0.8F)), Feature.ACACIA_TREE.withConfiguration(JUNIPER_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(8, 0.1F, 1))));
     }
 
-    public static void addTropicsDecor(Biome biomeIn) {
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.DESERT_WELL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(100))));
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(COCONUT_PALM_TREE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
-        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BAMBOO.withConfiguration(new ProbabilityConfig(0.2F)).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
-    }
-
 
 
     public static void addDeadSwampVegetation(Biome biomeIn) {
@@ -202,13 +249,27 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GRASS_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(20))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(DEAD_BUSH_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(10))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(LILY_PAD_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(10))));
-      //  biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(DUCKWEED_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(10))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(DUCKWEED_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(10))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(BROWN_MUSHROOM_CONFIG).withPlacement(Placement.COUNT_CHANCE_HEIGHTMAP.configure(new HeightWithChanceConfig(8, 0.5F))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(RED_MUSHROOM_CONFIG).withPlacement(Placement.COUNT_CHANCE_HEIGHTMAP_DOUBLE.configure(new HeightWithChanceConfig(8, 0.5F))));
     }
 
+    public static void addTropicsDecor(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.DESERT_WELL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(100))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(COCONUT_PALM_TREE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BAMBOO.withConfiguration(new ProbabilityConfig(0.2F)).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
+    }
 
+    public static void addLagoonDecor(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(MAGNOLIA_TREE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(3))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(LAGOON_OAK_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(4))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(LAGOON_OAK2_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(4))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(GRASS_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(20))));
+        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(WATER)).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(DEFAULT_FLOWER_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(3))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(LILY_OF_THE_VALLEY_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(4))));
 
+    }
 
 
 

@@ -31,13 +31,9 @@ import java.util.Random;
 
 public class PistonCrusher extends Block {
 
-    public PistonCrusher() {
-        super(Properties.create(Material.ROCK)
-                .sound(SoundType.STONE)
-                .hardnessAndResistance(2.0f)
-                .lightValue(7)
-        );
-        setRegistryName(ProjectRankine.MODID,"piston_crusher");
+
+    public PistonCrusher(Properties properties) {
+        super(properties);
     }
 
     @Override

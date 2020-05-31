@@ -8,6 +8,8 @@
   "block.rankine.potted_juniper_sapling": "Potted Juniper Sapling",
   "block.rankine.potted_coconut_palm_sapling": "Potted Coconut Palm Sapling",
   "block.rankine.potted_pinyon_pine_sapling": "Potted Pinyon Pine Sapling",
+  "block.rankine.potted_magnolia_sapling": "Potted Magnolia Sapling",
+
   "block.rankine.balsam_fir_log": "Balsam Fir Log",
   "block.rankine.balsam_fir_wood": "Balsam Fir Wood",
   "block.rankine.coconut_palm_wood": "Coconut Palm Wood",
@@ -24,7 +26,7 @@
   "block.rankine.cedar_planks": "Cedar Planks",
   "block.rankine.juniper_planks": "Juniper Planks",
   "block.rankine.balsam_fir_planks": "Balsam Fir Planks",
-  "item.rankine.swamp_grass": "Swamp Grass",
+  "block.rankine.swamp_grass": "Swamp Grass",
   "block.rankine.duckweed": "Duckweed",
   "block.rankine.cedar_log": "Cedar Log",
   "block.rankine.cedar_leaves": "Cedar Leaves",
@@ -40,6 +42,13 @@
   "block.rankine.cedar_pressure_plate": "Cedar Pressure Plate",
   "block.rankine.cedar_stairs": "Cedar Stairs",
   "block.rankine.cedar_button": "Cedar Button",
+  "block.rankine.pinyon_pine_slab": "Pinyon Pine Slab",
+  "block.rankine.pinyon_pine_fence": "Pinyon Pine Fence",
+  "block.rankine.pinyon_pine_fence_gate": "Pinyon Pine Fence Gate",
+  "block.rankine.pinyon_pine_pressure_plate": "Pinyon Pine Pressure Plate",
+  "block.rankine.pinyon_pine_stairs": "Pinyon Pine Stairs",
+  "block.rankine.pinyon_pine_button": "Pinyon Pine Button",
+  
   "block.rankine.cedar_sapling": "Cedar Sapling",
   "block.rankine.balsam_fir_sapling": "Balsam Fir Sapling",
   "block.rankine.sandy_dirt": "Sandy Dirt",
@@ -250,6 +259,7 @@
   "block.rankine.clay_bricks_stairs": "Clay Brick Stairs",
   "block.rankine.coconut_palm_sapling": "Coconut Palm Sapling",
   "block.rankine.coconut_palm_leaves": "Coconut Palm Leaves",
+  "block.rankine.magnolia_leaves": "Magnolia Leaves",
   "block.rankine.coconut_palm_planks": "Coconut Palm Planks",
   "block.rankine.coconut_palm_log": "Coconut Palm Log",
   "block.rankine.pinyon_pine_leaves": "Pinyon Pine Leaves",
@@ -257,6 +267,7 @@
   "block.rankine.pinyon_pine_log": "Pinyon Pine Log",
   "block.rankine.pinyon_pine_sapling": "Pinyon Pine Sapling",
   "block.rankine.juniper_sapling": "Juniper Sapling",
+  "block.rankine.magnolia_sapling": "Magnolia Sapling",
   "block.rankine.stick_block": "Block of Sticks",
   "block.rankine.blasting_powder": "Blasting Powder",
   "block.rankine.limestone": "Limestone",
@@ -269,7 +280,9 @@
   "item.rankine.elderberries": "Elderberries",
   "block.rankine.pineapple_bush": "Pineapple Bush",
   "item.rankine.pineapple": "Pineapple",
-  "item.rankine.sphagnum_moss": "Sphagnum Moss",
+  "item.rankine.pineapple_sleeves": "Pineapple With Sleeves",
+
+  "block.rankine.sphagnum_moss": "Sphagnum Moss",
   "block.rankine.banana_yucca_bush": "Banana Yucca Bush",
   "item.rankine.banana_yucca": "Banana Yucca",
   "block.rankine.snowberry_bush": "Snowberry Bush",
@@ -521,6 +534,7 @@
   "itemGroup.rankine_blocks": "Project Rankine Main",
   "itemGroup.rankine_metals": "Project Rankine Processing",
   "itemGroup.rankine_tools": "Project Rankine Tools",
+  "itemGroup.rankine_test": "Project Rankine Test",
 
   "rankine.advancements.story.root.title": "Project Rankine",
   "rankine.advancements.story.root.description": "Begin delving into the changed world",
@@ -570,6 +584,8 @@
   "biome.rankine.dead_swamp": "Dead Swamp",
   "biome.rankine.felsenmeer": "Felsenmeer",
   "biome.rankine.shoal": "Shoal",
-  "biome.rankine.tropics": "Tropics"
+  "biome.rankine.tropics": "Tropics",
+  "biome.rankine.forested_lagoon": "Forested Lagoon"
+
 
 }

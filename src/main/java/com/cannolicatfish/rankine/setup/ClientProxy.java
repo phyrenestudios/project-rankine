@@ -77,20 +77,32 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_LEAVES, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_LEAVES, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_LEAVES, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_LEAVES, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.BALSAM_FIR_SAPLING, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.MAGNOLIA_LEAVES, RenderType.getCutoutMipped());
+
         RenderTypeLookup.setRenderLayer(ModBlocks.CALCITE_BLOCK, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.CALCIUM_SILICATE_BLOCK, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.SALT_BLOCK, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.NITER, RenderType.getCutout());
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_DOOR, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_TRAPDOOR, RenderType.getCutoutMipped());
+
+
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.BALSAM_FIR_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.MAGNOLIA_SAPLING, RenderType.getCutout());
+
         RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_CEDAR_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_JUNIPER_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_COCONUT_PALM_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_PINYON_PINE_SAPLING, RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_BALSAM_FIR_SAPLING, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.POTTED_MAGNOLIA_SAPLING, RenderType.getCutout());
 
 
 /*

@@ -38,6 +38,6 @@ public class CrystalBlock extends Block {
 
     @OnlyIn(Dist.CLIENT)
     public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
-        return adjacentBlockState.getBlock() == this ? true : super.isSideInvisible(state, adjacentBlockState, side);
+        return adjacentBlockState.getBlock() == this || super.isSideInvisible(state, adjacentBlockState, side);
     }
 }

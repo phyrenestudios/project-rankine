@@ -11,11 +11,12 @@ import net.minecraft.world.World;
 
 public class ItemToxin extends Item {
     private static int type;
-    public ItemToxin(String registryName, int type) {
-        super(new Item.Properties().group(ProjectRankine.setup.rankineMetals).maxStackSize(64));
-        this.type = type;
-        setRegistryName(ProjectRankine.MODID, registryName);
+
+    public ItemToxin(int type, Properties properties) {
+        super(properties);
+        ItemToxin.type = type;
     }
+
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {

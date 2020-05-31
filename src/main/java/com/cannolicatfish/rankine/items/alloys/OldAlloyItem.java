@@ -24,13 +24,9 @@ import javax.xml.soap.Text;
 import java.util.List;
 
 public class OldAlloyItem extends Item {
-    String registryName;
-    public OldAlloyItem(String registryName) {
-        super(new Item.Properties().group(ProjectRankine.setup.rankineMetals).maxStackSize(64));
-        setRegistryName(ProjectRankine.MODID, registryName);
-        this.registryName = registryName;
+
+    public OldAlloyItem(Properties properties) {
+        super(properties);
     }
-
-
 
 }

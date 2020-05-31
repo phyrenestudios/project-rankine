@@ -11,11 +11,7 @@ import net.minecraft.world.World;
 
 public class ItemBattery extends Item {
 
-    public ItemBattery(String registryName) {
-        super(new Item.Properties().group(ProjectRankine.setup.rankineMetals).maxStackSize(64));
-        setRegistryName(ProjectRankine.MODID, registryName);
+    public ItemBattery(Properties properties) {
+        super(properties);
     }
-
-
-
 }

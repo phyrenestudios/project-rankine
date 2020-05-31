@@ -25,7 +25,7 @@ public class ItemScraper extends Item {
             iworld.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
             iworld.removeBlock(blockpos,false);
             if (playerentity != null) {
-                playerentity.addItemStackToInventory(new ItemStack(ModItems.CLAY_BRICKS,4));
+                playerentity.addItemStackToInventory(new ItemStack(ModItems.CLAY_BRICK,4));
                 context.getItem().damageItem(1, playerentity, (p_219998_1_) -> {
                     p_219998_1_.sendBreakAnimation(context.getHand());
                 });
