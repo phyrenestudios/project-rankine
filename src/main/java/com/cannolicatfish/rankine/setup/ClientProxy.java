@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.setup;
 
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeScreen;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.world.biome.RankineBiomes;
@@ -19,6 +20,7 @@ public class ClientProxy implements IProxy {
     public void init() {
         ScreenManager.registerFactory(ModBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
         ScreenManager.registerFactory(ModBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
+        ScreenManager.registerFactory(ModBlocks.COAL_FORGE_CONTAINER, CoalForgeScreen::new);
         ScreenManager.registerFactory(ModBlocks.FINERY_FORGE_CONTAINER, FineryForgeScreen::new);
 
 

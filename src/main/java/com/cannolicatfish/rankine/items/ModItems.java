@@ -25,7 +25,7 @@ public class ModItems {
 
     //Creative Tabs
 
-    
+
      public static final Item  MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
      public static final Item DIAMOND_MANTLE_GOLEM = add("diamond_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
      public static final Item PERIDOT_MANTLE_GOLEM = add("peridot_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
@@ -187,7 +187,7 @@ public class ModItems {
     public static final Item INCONEL_TURBINE_BLADE = add("inconel_turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item BATTERY = add("battery0", new ItemBattery(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
-    
+
 
 //RANKINE TOOLS CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -277,5 +277,24 @@ public class ModItems {
     @ObjectHolder("rankine:banana_yucca")
     public static Item BANANA_YUCCA;
 
+    @ObjectHolder("rankine:axe_template")
+    public static Item AXE_TEMPLATE;
 
+    @ObjectHolder("rankine:shovel_template")
+    public static Item SHOVEL_TEMPLATE;
+
+    @ObjectHolder("rankine:pickaxe_template")
+    public static Item PICKAXE_TEMPLATE;
+
+    @ObjectHolder("rankine:hammer_template")
+    public static Item HAMMER_TEMPLATE;
+
+    @ObjectHolder("rankine:spear_template")
+    public static Item SPEAR_TEMPLATE;
+
+    @ObjectHolder("rankine:hoe_template")
+    public static Item HOE_TEMPLATE;
+
+    @ObjectHolder("rankine:sword_template")
+    public static Item SWORD_TEMPLATE;
 }

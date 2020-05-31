@@ -4,6 +4,9 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnace;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
 import com.cannolicatfish.rankine.blocks.crucible.Crucible;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
@@ -422,6 +425,14 @@ public class ModBlocks {
     @ObjectHolder("rankine:piston_crusher")
     public static TileEntityType<PistonCrusherTile> PISTON_CRUSHER_TILE;
 
+    @ObjectHolder("rankine:coal_forge")
+    public static CoalForge COAL_FORGE;
+
+    @ObjectHolder("rankine:coal_forge")
+    public static ContainerType<CoalForgeContainer> COAL_FORGE_CONTAINER;
+
+    @ObjectHolder("rankine:coal_forge")
+    public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
 
     @ObjectHolder("rankine:finery_forge")
     public static ContainerType<FineryForgeContainer> FINERY_FORGE_CONTAINER;

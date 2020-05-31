@@ -1,6 +1,11 @@
 package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.world.gen.StructureGen;
+import com.cannolicatfish.rankine.world.trees.*;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
+import com.cannolicatfish.rankine.blocks.trees.*;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.AtomizeEnchantment;
 import com.cannolicatfish.rankine.enchantment.BlastEnchantment;
@@ -18,7 +23,10 @@ import com.cannolicatfish.rankine.dimension.MantleBiome;
 import com.cannolicatfish.rankine.dimension.MantleModDimension;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyPickaxe;
+import com.cannolicatfish.rankine.items.alloys.AlloySword;
 import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
+import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
 import com.cannolicatfish.rankine.world.biome.*;
 import com.cannolicatfish.rankine.dimension.ModDimensions;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
@@ -111,10 +119,42 @@ public class ProjectRankine {
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
+
+        @SubscribeEvent
+        public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
+            event.getRegistry().register(new CoalForge());
+
+
+        }
+
+        @SubscribeEvent
+        public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
+
+            event.getRegistry().register(new BlockItem(ModBlocks.COAL_FORGE,new Item.Properties().group(setup.rankineMetals)).setRegistryName(ProjectRankine.MODID,"coal_forge"));
+
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"shovel_template"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"hoe_template"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"spear_template"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"pickaxe_template"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"sword_template"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"axe_template"));
+            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"hammer_template"));
+
+            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_helmet"));
+            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_chestplate"));
+            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_leggings"));
+            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_boots"));
+        }
+
+
+
+
+
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().register(TileEntityType.Builder.create(AlloyFurnaceTile::new, ModBlocks.ALLOY_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(PistonCrusherTile::new, ModBlocks.PISTON_CRUSHER).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
+            event.getRegistry().register(TileEntityType.Builder.create(CoalForgeTile::new, ModBlocks.COAL_FORGE).build(null).setRegistryName(ProjectRankine.MODID,"coal_forge"));
             event.getRegistry().register(TileEntityType.Builder.create(FineryForgeTile::new, ModBlocks.FINERY_FORGE).build(null).setRegistryName(ProjectRankine.MODID,"finery_forge"));
         }
 
@@ -164,6 +204,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new PistonCrusherContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new CoalForgeContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"coal_forge"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " r ",
+    "rxr",
+    " r "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:paper"
+    },
+    "r":
+    {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:axe_template"
+  }
+}
