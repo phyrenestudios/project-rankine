@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.dimension;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
-import com.cannolicatfish.rankine.world.feature.*;
+import com.cannolicatfish.rankine.world.gen.feature.*;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -51,7 +51,7 @@ public class SphagnumMossBlock extends BushBlock {
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(new IProperty[]{AGE});
+        builder.add(AGE);
     }
 
     static {

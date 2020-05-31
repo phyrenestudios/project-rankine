@@ -1,13 +1,12 @@
 package com.cannolicatfish.rankine.world.biome;
 
-import com.cannolicatfish.rankine.world.feature.RankineFeatures;
+import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
@@ -30,14 +29,16 @@ public class TropicsBiome extends Biome {
 
         this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
         this.addStructure(Feature.SHIPWRECK.withConfiguration(new ShipwreckConfig(true)));
+        this.addStructure(RankineFeatures.TROPICS_HOUSE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         DefaultBiomeFeatures.addOceanCarvers(this);
         DefaultBiomeFeatures.addStructures(this);
+        RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addReedsAndPumpkins(this);
         DefaultBiomeFeatures.addSprings(this);
-        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEA_PICKLE.withConfiguration(new CountConfig(20)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(16))));
+        this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEA_PICKLE.withConfiguration(new CountConfig(14)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(16))));
         DefaultBiomeFeatures.func_222320_ai(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
         RankineBiomeFeatures.addTropicsDecor(this);

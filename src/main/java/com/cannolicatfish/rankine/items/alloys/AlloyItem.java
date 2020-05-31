@@ -24,11 +24,9 @@ import javax.xml.soap.Text;
 import java.util.List;
 
 public class AlloyItem extends Item {
-    String registryName;
-    public AlloyItem(String registryName) {
-        super(new Item.Properties().maxStackSize(64));
-        setRegistryName(ProjectRankine.MODID, registryName);
-        this.registryName = registryName;
+
+    public AlloyItem(Properties properties) {
+        super(properties);
     }
 
     @Override

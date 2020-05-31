@@ -3,14 +3,13 @@ package com.cannolicatfish.rankine.world.gen;
 import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.world.biome.RankineBiomes;
-import com.cannolicatfish.rankine.world.feature.*;
+import com.cannolicatfish.rankine.world.gen.feature.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -78,17 +77,22 @@ public class OreGen {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------
 
-    private static List<Biome> getBiomesFromCategory(List<Biome.Category> biomes, boolean include) {
+    private static List<Biome> getBiomesFromCategory(List<Biome.Category> biomeCats, boolean include) {
         List<Biome> b = new ArrayList<>();
         for (Biome biome : ForgeRegistries.BIOMES) {
-            for (Biome.Category cat : biomes) {
-                if (biome.getCategory() == cat && include){
-                    b.add(biome);
-                }
-                if (!include && biome.getCategory() != cat && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
-                    b.add(biome);
+            if (!biomeCats.isEmpty()) {
+                for (Biome.Category cat : biomeCats) {
+                    if (biome.getCategory() == cat && include){
+                        b.add(biome);
+                    }
+                    if (!include && biome.getCategory() != cat && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
+                        b.add(biome);
+                    }
                 }
             }
+            else if (!include && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
+                    b.add(biome);
+                }
         }
         return b;
     }

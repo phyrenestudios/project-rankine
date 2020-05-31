@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cedar_pressure_plate",
+    "rankine:pinyon_pine_pressure_plate"
+  ]
+}

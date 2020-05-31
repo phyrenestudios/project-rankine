@@ -6,6 +6,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,27 +14,61 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 
-@Mod.EventBusSubscriber(modid = "rankine", bus = Mod.EventBusSubscriber.Bus.MOD)
+
 public class RankineBiomes {
-    public static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, ProjectRankine.MODID);
-    public static final RegistryObject<Biome> CEDAR_FOREST = BIOMES.register("cedar_forest", CedarForestBiome::new);
-    public static final RegistryObject<Biome> PINYON_JUNIPER_WOODLANDS = BIOMES.register("pinyon_juniper_woodlands", PinyonJuniperWoodlandBiome::new);
-    public static final RegistryObject<Biome> HIGHLAND_PLATEAU = BIOMES.register("highland_plateau", HighlandPlateauBiome::new);
-    public static final RegistryObject<Biome> FELSENMEER = BIOMES.register("felsenmeer", FelsenmeerBiome::new);
-    public static final RegistryObject<Biome> SHOAL = BIOMES.register("shoal", ShoalBiome::new);
-    public static final RegistryObject<Biome> DEAD_SWAMP_REG = BIOMES.register("dead_swamp", DeadSwampBiome::new);
-    public static final RegistryObject<Biome> TROPICS_REG = BIOMES.register("tropics", TropicsBiome::new);
+    public static final DeferredRegister<Biome> REGISTRY = new DeferredRegister<>(ForgeRegistries.BIOMES, ProjectRankine.MODID);
+
+    public static final Biome CEDAR_FOREST = add("cedar_forest", new CedarForestBiome());
+    public static final Biome PINYON_JUNIPER_WOODLANDS = add("pinyon_juniper_woodlands", new PinyonJuniperWoodlandBiome());
+    public static final Biome HIGHLAND_PLATEAU = add("highland_plateau", new HighlandPlateauBiome());
+    public static final Biome FELSENMEER = add("felsenmeer", new FelsenmeerBiome());
+    public static final Biome SHOAL = add("shoal", new ShoalBiome());
+    public static final Biome DEAD_SWAMP = add("dead_swamp", new DeadSwampBiome());
+    public static final Biome TROPICS = add("tropics", new TropicsBiome());
+    public static final Biome FORESTED_LAGOON = add("forested_lagoon", new ForestedLagoonBiome());
 
 
-    @ObjectHolder("rankine:dead_swamp")
-    public static DeadSwampBiome DEAD_SWAMP;
+    private static <T extends Biome> T add(String name, T biome) {
+        REGISTRY.register(name, () -> biome);
+        return biome;
+    }
 
-    @ObjectHolder("rankine:tropics")
-    public static TropicsBiome TROPICS;
+    public static void registerTypes(RegistryEvent.Register<?> event) {
+        if (event.getRegistry().getRegistrySuperType() == Biome.class) {
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.CEDAR_FOREST, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.CEDAR_FOREST);
+            BiomeDictionary.addTypes(RankineBiomes.CEDAR_FOREST, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
 
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.PINYON_JUNIPER_WOODLANDS, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.PINYON_JUNIPER_WOODLANDS);
+            BiomeDictionary.addTypes(RankineBiomes.PINYON_JUNIPER_WOODLANDS, BiomeDictionary.Type.SAVANNA, BiomeDictionary.Type.OVERWORLD);
 
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.HIGHLAND_PLATEAU, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.HIGHLAND_PLATEAU);
+            BiomeDictionary.addTypes(RankineBiomes.HIGHLAND_PLATEAU, BiomeDictionary.Type.PLATEAU, BiomeDictionary.Type.MOUNTAIN, BiomeDictionary.Type.OVERWORLD);
 
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FELSENMEER, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.FELSENMEER);
+            BiomeDictionary.addTypes(RankineBiomes.FELSENMEER, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.OVERWORLD);
 
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.SHOAL, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.SHOAL);
+            BiomeDictionary.addTypes(RankineBiomes.SHOAL, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.DEAD_SWAMP, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.DEAD_SWAMP);
+            BiomeDictionary.addTypes(RankineBiomes.DEAD_SWAMP, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
+
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.TROPICS, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.TROPICS);
+            BiomeDictionary.addTypes(RankineBiomes.TROPICS, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FORESTED_LAGOON, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.FORESTED_LAGOON);
+            BiomeDictionary.addTypes(RankineBiomes.FORESTED_LAGOON, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+
+        }
+    }
 
 
     public static final ResourceLocation BIOME_ID = new ResourceLocation(ProjectRankine.MODID, "mantle");
@@ -41,46 +76,4 @@ public class RankineBiomes {
     public static Biome MANTLE;
 
 
-
-
-    public static void registerBiomesToDictionary() {
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(CEDAR_FOREST.get(), 10));
-   //     BiomeDictionary.addTypes(CEDAR_FOREST.get(),
-   //             BiomeDictionary.Type.FOREST,
-  //              BiomeDictionary.Type.CONIFEROUS,
-   //             BiomeDictionary.Type.OVERWORLD);
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(PINYON_JUNIPER_WOODLANDS.get(), 10));
-    //    BiomeDictionary.addTypes(PINYON_JUNIPER_WOODLANDS.get(),
-  //              BiomeDictionary.Type.SAVANNA,
-   //             BiomeDictionary.Type.OVERWORLD);
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(HIGHLAND_PLATEAU.get(), 10));
- //       BiomeDictionary.addTypes(HIGHLAND_PLATEAU.get(),
-  //              BiomeDictionary.Type.PLATEAU,
-  //              BiomeDictionary.Type.OVERWORLD);
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(FELSENMEER.get(), 10));
-    //    BiomeDictionary.addTypes(FELSENMEER.get(),
-           //     BiomeDictionary.Type.SPARSE,
-         //       BiomeDictionary.Type.FOREST,
-       //         BiomeDictionary.Type.OVERWORLD);
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(SHOAL.get(), 10));
-     //   BiomeDictionary.addTypes(SHOAL.get(),
-          //      BiomeDictionary.Type.BEACH,
-        //        BiomeDictionary.Type.OVERWORLD);
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(DEAD_SWAMP_REG.get(), 10));
-      //  BiomeDictionary.addTypes(DEAD_SWAMP_REG.get(),
-      //          BiomeDictionary.Type.SWAMP,
-    //            BiomeDictionary.Type.OVERWORLD);
-
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(TROPICS_REG.get(), 10));
-     //   BiomeDictionary.addTypes(TROPICS_REG.get(),
-   //             BiomeDictionary.Type.BEACH,
- //               BiomeDictionary.Type.OVERWORLD);
-
-    }
 }

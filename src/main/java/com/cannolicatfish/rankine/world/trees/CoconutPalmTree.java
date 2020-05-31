@@ -11,15 +11,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class CoconutPalmTree extends Tree {
-    public final LogBlock log;
-    public final LeavesBlock leaf;
-    public final SaplingBlock sapling;
-
-    public CoconutPalmTree(LogBlock log, LeavesBlock leaf, SaplingBlock sapling) {
-        this.log = log;
-        this.leaf = leaf;
-        this.sapling = sapling;
-    }
 
     @Nullable
     @Override
