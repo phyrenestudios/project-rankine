@@ -5,12 +5,12 @@ import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import java.util.Arrays;
 import java.util.List;
 
-public class AmalgamAlloyUtils implements AlloyUtils{
+public class AmalgamAlloyUtils implements AlloyUtils {
     public ElementUtils elem;
     public List<String> restrict = Arrays.asList("Fe", "Pt", "W", "Ta");
     public List<Integer> emin = Arrays.asList(50,0,0);
     public List<Integer> emax = Arrays.asList(80,50,50);
-    public RankineToolMaterials material = RankineToolMaterials.BRONZE;
+    public RankineToolMaterials material = RankineToolMaterials.AMALGAM;
 
     @Override
     public int getDurability(String c) {

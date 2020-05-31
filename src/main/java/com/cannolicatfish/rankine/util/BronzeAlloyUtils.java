@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
-public final class BronzeAlloyUtils implements AlloyUtils{
+public final class BronzeAlloyUtils implements AlloyUtils {
     public ElementUtils elem;
     public List<String> possible = Arrays.asList("Cu", "Sn", "Al", "Mn", "Ni", "Zn");
     public List<Integer> emin = Arrays.asList(80,10,0,0,0,0);
@@ -103,4 +103,21 @@ public final class BronzeAlloyUtils implements AlloyUtils{
         return "80Cu-20Sn";
     }
 
+    /*
+
+public float getCorrResistance(List<Pair<String, Float>> list)
+(String = name, Float = weight)
+
+variable resistance;
+
+for i in list:
+	find max/min (1: alMin, 2: znMin, 3: snMin)
+	get weight
+	get amount in composition (elementComp)
+	ex. (elementComp - elementMin) * weight
+	resistance += (elementComp - elementMin) * weight
+
+return resistance;
+
+     */
 }
