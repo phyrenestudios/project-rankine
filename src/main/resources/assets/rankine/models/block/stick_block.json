@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "rankine:block/stick_block"
+    "particle": "rankine:block/stick_block",
+    "down": "rankine:block/stick_block_top",
+    "up": "rankine:block/stick_block_top",
+    "east": "rankine:block/stick_block",
+    "west": "rankine:block/stick_block",
+    "north": "rankine:block/stick_block",
+    "south": "rankine:block/stick_block"
   }
 }
