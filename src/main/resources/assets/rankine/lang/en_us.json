@@ -48,6 +48,27 @@
   "block.rankine.pinyon_pine_pressure_plate": "Pinyon Pine Pressure Plate",
   "block.rankine.pinyon_pine_stairs": "Pinyon Pine Stairs",
   "block.rankine.pinyon_pine_button": "Pinyon Pine Button",
+
+  "block.rankine.juniper_slab": "Juniper Slab",
+  "block.rankine.juniper_fence": "Juniper Fence",
+  "block.rankine.juniper_fence_gate": "Juniper Fence Gate",
+  "block.rankine.juniper_pressure_plate": "Juniper Pressure Plate",
+  "block.rankine.juniper_stairs": "Juniper Stairs",
+  "block.rankine.juniper_button": "Juniper Button",
+
+  "block.rankine.coconut_palm_slab": "Coconut Palm Slab",
+  "block.rankine.coconut_palm_fence": "Coconut Palm Fence",
+  "block.rankine.coconut_palm_fence_gate": "Coconut Palm Fence Gate",
+  "block.rankine.coconut_palm_pressure_plate": "Coconut Palm Pressure Plate",
+  "block.rankine.coconut_palm_stairs": "Coconut Palm Stairs",
+  "block.rankine.coconut_palm_button": "Coconut Palm Button",
+
+  "block.rankine.balsam_fir_slab": "Balsam Fir Slab",
+  "block.rankine.balsam_fir_fence": "Balsam Fir Fence",
+  "block.rankine.balsam_fir_fence_gate": "Balsam Fir Fence Gate",
+  "block.rankine.balsam_fir_pressure_plate": "Balsam Fir Pressure Plate",
+  "block.rankine.balsam_fir_stairs": "Balsam Fir Stairs",
+  "block.rankine.balsam_fir_button": "Balsam Fir Button",
   
   "block.rankine.cedar_sapling": "Cedar Sapling",
   "block.rankine.balsam_fir_sapling": "Balsam Fir Sapling",

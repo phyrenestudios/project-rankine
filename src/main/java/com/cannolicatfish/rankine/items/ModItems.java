@@ -10,6 +10,7 @@ import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
 import com.cannolicatfish.rankine.items.tools.*;
 import com.cannolicatfish.rankine.setup.ModSetup;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -192,74 +193,90 @@ public class ModItems {
 //RANKINE TOOLS CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //NORMAL TOOLS
-             public static final Item  STONE_HAMMER = add("stone_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BONE_SHOVEL = add("bone_shovel", new BoneShovel(ItemTier.STONE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  FLINT_PICKAXE = add("flint_pickaxe", new PickaxeItem(RankineToolMaterials.FLINT, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  FLINT_AXE = add("flint_axe", new AxeItem(RankineToolMaterials.FLINT, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  FLINT_SPEAR = add("flint_spear", new ItemSpear(RankineToolMaterials.FLINT, 2, -2.9F, 0,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  FLINT_KNIFE = add("flint_knife", new ItemKnife(RankineToolMaterials.FLINT, 1, -2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_SWORD = add("bronze_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_SHOVEL = add("bronze_shovel", new ShovelItem(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_PICKAXE = add("bronze_pickaxe", new PickaxeItem(RankineToolMaterials.BRONZE, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_AXE = add("bronze_axe", new AxeItem(RankineToolMaterials.BRONZE, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_HOE = add("bronze_hoe", new HoeItem(RankineToolMaterials.BRONZE, -2.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_HAMMER = add("bronze_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.BRONZE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  BRONZE_SPEAR = add("bronze_spear", new ItemSpear(RankineToolMaterials.BRONZE, 2, -2.9F, 1, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  IRON_SPEAR = add("iron_spear", new ItemSpear(ItemTier.IRON, 2, -2.9F, 2, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  IRON_HAMMER = add("iron_hammer", new ItemHammer(2, -3.2F, ItemTier.IRON, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  IRON_SCRAPER = add("iron_scraper", new ItemScraper(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_SWORD = add("steel_sword", new SwordItem(RankineToolMaterials.STEEL, 3, -2.4F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_SHOVEL = add("steel_shovel", new ShovelItem(RankineToolMaterials.STEEL, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_AXE = add("steel_axe", new AxeItem(RankineToolMaterials.STEEL, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_HAMMER = add("steel_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.STEEL, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_HOE = add("steel_hoe", new HoeItem(RankineToolMaterials.STEEL, 0.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  STEEL_SPEAR = add("steel_spear", new ItemSpear(RankineToolMaterials.STEEL, 2, -2.9F, 3, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-
+     public static final Item  STONE_HAMMER = add("stone_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BONE_SHOVEL = add("bone_shovel", new BoneShovel(ItemTier.STONE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  FLINT_PICKAXE = add("flint_pickaxe", new PickaxeItem(RankineToolMaterials.FLINT, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  FLINT_AXE = add("flint_axe", new AxeItem(RankineToolMaterials.FLINT, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  FLINT_SPEAR = add("flint_spear", new ItemSpear(RankineToolMaterials.FLINT, 2, -2.9F, 0,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  FLINT_KNIFE = add("flint_knife", new ItemKnife(RankineToolMaterials.FLINT, 1, -2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_SWORD = add("bronze_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_SHOVEL = add("bronze_shovel", new ShovelItem(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_PICKAXE = add("bronze_pickaxe", new PickaxeItem(RankineToolMaterials.BRONZE, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_AXE = add("bronze_axe", new AxeItem(RankineToolMaterials.BRONZE, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_HOE = add("bronze_hoe", new HoeItem(RankineToolMaterials.BRONZE, -2.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_HAMMER = add("bronze_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.BRONZE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRONZE_SPEAR = add("bronze_spear", new ItemSpear(RankineToolMaterials.BRONZE, 2, -2.9F, 1, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  IRON_SPEAR = add("iron_spear", new ItemSpear(ItemTier.IRON, 2, -2.9F, 2, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  IRON_HAMMER = add("iron_hammer", new ItemHammer(2, -3.2F, ItemTier.IRON, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  IRON_SCRAPER = add("iron_scraper", new ItemScraper(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_SWORD = add("steel_sword", new SwordItem(RankineToolMaterials.STEEL, 3, -2.4F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_SHOVEL = add("steel_shovel", new ShovelItem(RankineToolMaterials.STEEL, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_AXE = add("steel_axe", new AxeItem(RankineToolMaterials.STEEL, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_HAMMER = add("steel_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.STEEL, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_HOE = add("steel_hoe", new HoeItem(RankineToolMaterials.STEEL, 0.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  STEEL_SPEAR = add("steel_spear", new ItemSpear(RankineToolMaterials.STEEL, 2, -2.9F, 3, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    
     //GOLD TOOLS
-             public static final Item  ROSE_GOLD_SWORRD = add("rose_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
-             public static final Item  ROSE_GOLD_SHOVEL = add("rose_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
-             public static final Item  ROSE_GOLD_PICKAXE = add("rose_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
-             public static final Item  ROSE_GOLD_AXE = add("rose_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
-             public static final Item  ROSE_GOLD_HOE = add("rose_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
-             public static final Item  WHITE_GOLD_SWORD = add("white_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
-             public static final Item  WHITE_GOLD_SHOVEL = add("white_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
-             public static final Item  WHITE_GOLD_PICKAXE = add("white_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
-             public static final Item  WHITE_GOLD_AXE = add("white_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
-             public static final Item  WHITE_GOLD_HOE = add("white_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
-             public static final Item  GREEN_GOLD_SWORD = add("green_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
-             public static final Item  GREEN_GOLD_SHOVEL = add("green_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
-             public static final Item  GREEN_GOLD_PICKAXE = add("green_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
-             public static final Item  GREEN_GOLD_AXE = add("green_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
-             public static final Item  GREEN_GOLD_HOE = add("green_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
-             public static final Item  BLUE_GOLD_SWORD = add("blue_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
-             public static final Item  BLUE_GOLD_SHOVEL = add("blue_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
-             public static final Item  BLUE_GOLD_PICKAXE = add("blue_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
-             public static final Item  BLUE_GOLD_AXE = add("blue_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
-             public static final Item  BLUE_GOLD_HOE = add("blue_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
-             public static final Item  PURPLE_GOLD_SWORD = add("purple_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
-             public static final Item  PURPLE_GOLD_SHOVEL = add("purple_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
-             public static final Item  PURPLE_GOLD_PICKAXE = add("purple_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
-             public static final Item  PURPLE_GOLD_AXE = add("purple_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
-             public static final Item  PURPLE_GOLD_HOE = add("purple_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
-
-             public static final Item  FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-             public static final Item  METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-
-
-             public static final Item  WOOD_BUCKET = add("wood_bucket", new WoodBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
-             public static final Item  WATER_WOOD_BUCKET = add("water_wood_bucket", new WoodBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-             public static final Item  MILK_WOOD_BUCKET = add("milk_wood_bucket", new MilkWoodBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
-             public static final Item  BRASS_BUCKET = add("brass_bucket", new BrassBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
-             public static final Item  WATER_BRASS_BUCKET = add("water_brass_bucket", new BrassBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-             public static final Item  LAVA_BRASS_BUCKET = add("lava_brass_bucket", new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-             public static final Item  LIQUID_PIG_IRON_BRASS_BUCKET = add("liquid_pig_iron_brass_bucket", new BrassBucket(() -> ModFluids.LIQUID_PIG_IRON, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1)));
-             public static final Item  MILK_BRASS_BUCKET = add("milk_brass_bucket", new MilkBrassBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
+     public static final Item  ROSE_GOLD_SWORD = add("rose_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+     public static final Item  ROSE_GOLD_SHOVEL = add("rose_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+     public static final Item  ROSE_GOLD_PICKAXE = add("rose_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+     public static final Item  ROSE_GOLD_AXE = add("rose_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+     public static final Item  ROSE_GOLD_HOE = add("rose_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),1));
+     public static final Item  WHITE_GOLD_SWORD = add("white_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+     public static final Item  WHITE_GOLD_SHOVEL = add("white_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+     public static final Item  WHITE_GOLD_PICKAXE = add("white_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+     public static final Item  WHITE_GOLD_AXE = add("white_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+     public static final Item  WHITE_GOLD_HOE = add("white_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),2));
+     public static final Item  GREEN_GOLD_SWORD = add("green_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+     public static final Item  GREEN_GOLD_SHOVEL = add("green_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+     public static final Item  GREEN_GOLD_PICKAXE = add("green_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+     public static final Item  GREEN_GOLD_AXE = add("green_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+     public static final Item  GREEN_GOLD_HOE = add("green_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),3));
+     public static final Item  BLUE_GOLD_SWORD = add("blue_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+     public static final Item  BLUE_GOLD_SHOVEL = add("blue_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+     public static final Item  BLUE_GOLD_PICKAXE = add("blue_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+     public static final Item  BLUE_GOLD_AXE = add("blue_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+     public static final Item  BLUE_GOLD_HOE = add("blue_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),4));
+     public static final Item  PURPLE_GOLD_SWORD = add("purple_gold_sword", new ColoredGoldSword(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+     public static final Item  PURPLE_GOLD_SHOVEL = add("purple_gold_shovel", new ColoredGoldShovel(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+     public static final Item  PURPLE_GOLD_PICKAXE = add("purple_gold_pickaxe", new ColoredGoldPickaxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+     public static final Item  PURPLE_GOLD_AXE = add("purple_gold_axe", new ColoredGoldAxe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+     public static final Item  PURPLE_GOLD_HOE = add("purple_gold_hoe", new ColoredGoldHoe(new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
+    
+     public static final Item  FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRIGADINE_HELMET = add("brigandine_helmet", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRIGADINE_CHESTPLATE = add("brigandine_chestplate", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRIGADINE_LEGGINGS = add("brigandine_leggings", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+     public static final Item  BRIGADINE_BOOTS = add("brigandine_boots", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
 
+
+    //BUCKETS
+     public static final Item  WOOD_BUCKET = add("wood_bucket", new WoodBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  WATER_WOOD_BUCKET = add("water_wood_bucket", new WoodBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  MILK_WOOD_BUCKET = add("milk_wood_bucket", new MilkWoodBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
+     public static final Item  BRASS_BUCKET = add("brass_bucket", new BrassBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  WATER_BRASS_BUCKET = add("water_brass_bucket", new BrassBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  LAVA_BRASS_BUCKET = add("lava_brass_bucket", new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  LIQUID_PIG_IRON_BRASS_BUCKET = add("liquid_pig_iron_brass_bucket", new BrassBucket(() -> ModFluids.LIQUID_PIG_IRON, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1)));
+     public static final Item  MILK_BRASS_BUCKET = add("milk_brass_bucket", new MilkBrassBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
+
+     
+     //TEMPLATES
+     public static final Item  SHOVEL_TEMPLATE = add("shovel_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  HOE_TEMPLATE = add("hoe_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  SPEAR_TEMPLATE = add("spear_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  PICKAXE_TEMPLATE = add("pickaxe_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  SWORD_TEMPLATE = add("sword_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  AXE_TEMPLATE = add("axe_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+     public static final Item  HAMMER_TEMPLATE = add("hammer_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+
+ 
 
 
     @ObjectHolder("rankine:sphagnum_moss")
@@ -277,24 +294,4 @@ public class ModItems {
     @ObjectHolder("rankine:banana_yucca")
     public static Item BANANA_YUCCA;
 
-    @ObjectHolder("rankine:axe_template")
-    public static Item AXE_TEMPLATE;
-
-    @ObjectHolder("rankine:shovel_template")
-    public static Item SHOVEL_TEMPLATE;
-
-    @ObjectHolder("rankine:pickaxe_template")
-    public static Item PICKAXE_TEMPLATE;
-
-    @ObjectHolder("rankine:hammer_template")
-    public static Item HAMMER_TEMPLATE;
-
-    @ObjectHolder("rankine:spear_template")
-    public static Item SPEAR_TEMPLATE;
-
-    @ObjectHolder("rankine:hoe_template")
-    public static Item HOE_TEMPLATE;
-
-    @ObjectHolder("rankine:sword_template")
-    public static Item SWORD_TEMPLATE;
 }

@@ -26,13 +26,10 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class CoalForge extends Block {
-    public CoalForge() {
-        super(Properties.create(Material.ROCK)
-                .sound(SoundType.STONE)
-                .hardnessAndResistance(2.0f)
-                .lightValue(13)
-        );
-        setRegistryName(ProjectRankine.MODID,"coal_forge");
+
+
+    public CoalForge(Properties properties) {
+        super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
