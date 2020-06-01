@@ -229,6 +229,47 @@ public class ModBlocks {
     public static final Block JUNIPER_PLANKS = add("juniper_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block COCONUT_PALM_PLANKS = add("coconut_palm_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block BALSAM_FIR_PLANKS = add("balsam_fir_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block CEDAR_SLAB = add("cedar_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block PINYON_PINE_SLAB = add("pinyon_pine_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block JUNIPER_SLAB = add("juniper_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block COCONUT_PALM_SLAB = add("coconut_palm_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block BALSAM_FIR_SLAB = add("balsam_fir_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block CEDAR_STAIRS = add("cedar_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block PINYON_PINE_STAIRS = add("pinyon_pine_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block JUNIPER_STAIRS = add("juniper_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block COCONUT_PALM_STAIRS = add("coconut_palm_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block BALSAM_FIR_STAIRS = add("balsam_fir_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block CEDAR_FENCE = add("cedar_fence", new RankineWoodFence(), MAIN);
+    public static final Block PINYON_PINE_FENCE = add("pinyon_pine_fence", new RankineWoodFence(), MAIN);
+    public static final Block JUNIPER_FENCE = add("juniper_fence", new RankineWoodFence(), MAIN);
+    public static final Block COCONUT_PALM_FENCE = add("coconut_palm_fence", new RankineWoodFence(), MAIN);
+    public static final Block BALSAM_FIR_FENCE = add("balsam_fir_fence", new RankineWoodFence(), MAIN);
+
+    public static final Block CEDAR_FENCE_GATE = add("cedar_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block PINYON_PINE_FENCE_GATE = add("pinyon_pine_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block JUNIPER_FENCE_GATE = add("juniper_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block COCONUT_PALM_FENCE_GATE = add("coconut_palm_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block BALSAM_FIR_FENCE_GATE = add("balsam_fir_fence_gate", new RankineWoodFenceGate(), MAIN);
+
+    public static final Block CEDAR_PRESSURE_PLATE = add("cedar_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block PINYON_PINE_PRESSURE_PLATE = add("pinyon_pine_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block JUNIPER_PRESSURE_PLATE = add("juniper_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block COCONUT_PALM_PRESSURE_PLATE = add("coconut_palm_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block BALSAM_FIR_PRESSURE_PLATE = add("balsam_fir_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+
+    public static final Block CEDAR_BUTTON = add("cedar_button", new RankineWoodButton(), MAIN);
+    public static final Block PINYON_PINE_BUTTON = add("pinyon_pine_button", new RankineWoodButton(), MAIN);
+    public static final Block JUNIPER_BUTTON = add("juniper_button", new RankineWoodButton(), MAIN);
+    public static final Block COCONUT_PALM_BUTTON = add("coconut_palm_button", new RankineWoodButton(), MAIN);
+    public static final Block BALSAM_FIR_BUTTON = add("balsam_fir_button", new RankineWoodButton(), MAIN);
+
+    public static final Block CEDAR_DOOR = add("cedar_door", new RankineWoodDoor(), MAIN);
+
+    public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodTrapDoor(), MAIN);
+
     public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), MAIN);
 
 
@@ -254,20 +295,6 @@ public class ModBlocks {
     public static final FlowerPotBlock POTTED_MAGNOLIA_SAPLING = add("potted_magnolia_sapling", new FlowerPotBlock(null, () -> MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
 
 
-    public static final Block CEDAR_STAIRS = add("cedar_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
-    public static final Block CEDAR_SLAB = add("cedar_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
-    public static final Block CEDAR_FENCE = add("cedar_fence", new RankineWoodFence(), MAIN);
-    public static final Block CEDAR_FENCE_GATE = add("cedar_fence_gate", new RankineWoodFenceGate(), MAIN);
-    public static final Block CEDAR_BUTTON = add("cedar_button", new RankineWoodButton(), MAIN);
-    public static final Block CEDAR_PRESSURE_PLATE = add("cedar_pressure_plate", new RankineWoodPressurePlate(), MAIN);
-    public static final Block CEDAR_DOOR = add("cedar_door", new RankineWoodDoor(), MAIN);
-    public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodTrapDoor(), MAIN);
-    public static final Block PINYON_PINE_STAIRS = add("pinyon_pine_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
-    public static final Block PINYON_PINE_SLAB = add("pinyon_pine_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
-    public static final Block PINYON_PINE_FENCE = add("pinyon_pine_fence", new RankineWoodFence(), MAIN);
-    public static final Block PINYON_PINE_FENCE_GATE = add("pinyon_pine_fence_gate", new RankineWoodFenceGate(), MAIN);
-    public static final Block PINYON_PINE_BUTTON = add("pinyon_pine_button", new RankineWoodButton(), MAIN);
-    public static final Block PINYON_PINE_PRESSURE_PLATE = add("pinyon_pine_pressure_plate", new RankineWoodPressurePlate(), MAIN);
     public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.CARPET)), MAIN);
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MAIN, RopeItem::new);
     public static final SphagnumMossBlock SPHAGNUM_MOSS = add("sphagnum_moss", new SphagnumMossBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.NETHER_WART)), MAIN);
@@ -395,6 +422,7 @@ public class ModBlocks {
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F)), METALS);
     public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F).lightValue(7)), METALS);
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(13)), METALS);
+    public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(13)), METALS);
     public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALS);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALS);
 
@@ -418,21 +446,19 @@ public class ModBlocks {
     public static TileEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
 
 
-
     @ObjectHolder("rankine:piston_crusher")
     public static ContainerType<PistonCrusherContainer> PISTON_CRUSHER_CONTAINER;
 
     @ObjectHolder("rankine:piston_crusher")
     public static TileEntityType<PistonCrusherTile> PISTON_CRUSHER_TILE;
 
-    @ObjectHolder("rankine:coal_forge")
-    public static CoalForge COAL_FORGE;
 
     @ObjectHolder("rankine:coal_forge")
     public static ContainerType<CoalForgeContainer> COAL_FORGE_CONTAINER;
 
     @ObjectHolder("rankine:coal_forge")
     public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
+
 
     @ObjectHolder("rankine:finery_forge")
     public static ContainerType<FineryForgeContainer> FINERY_FORGE_CONTAINER;

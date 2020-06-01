@@ -1,32 +1,21 @@
 package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.world.gen.StructureGen;
-import com.cannolicatfish.rankine.world.trees.*;
-import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
-import com.cannolicatfish.rankine.blocks.trees.*;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.AtomizeEnchantment;
 import com.cannolicatfish.rankine.enchantment.BlastEnchantment;
 import com.cannolicatfish.rankine.blocks.*;
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnace;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.dimension.MantleBiome;
 import com.cannolicatfish.rankine.dimension.MantleModDimension;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyPickaxe;
-import com.cannolicatfish.rankine.items.alloys.AlloySword;
-import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
-import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
 import com.cannolicatfish.rankine.world.biome.*;
 import com.cannolicatfish.rankine.dimension.ModDimensions;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
@@ -39,14 +28,11 @@ import com.cannolicatfish.rankine.setup.ServerProxy;
 import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import com.cannolicatfish.rankine.world.gen.OreGen;
 import com.cannolicatfish.rankine.world.gen.TreeGen;
-import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -65,10 +51,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.registries.ObjectHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -118,37 +102,6 @@ public class ProjectRankine {
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
-
-
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-            event.getRegistry().register(new CoalForge());
-
-
-        }
-
-        @SubscribeEvent
-        public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
-
-            event.getRegistry().register(new BlockItem(ModBlocks.COAL_FORGE,new Item.Properties().group(setup.rankineMetals)).setRegistryName(ProjectRankine.MODID,"coal_forge"));
-
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"shovel_template"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"hoe_template"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"spear_template"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"pickaxe_template"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"sword_template"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"axe_template"));
-            event.getRegistry().register(new Item(new Item.Properties().maxStackSize(64).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"hammer_template"));
-
-            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_helmet"));
-            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_chestplate"));
-            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_leggings"));
-            event.getRegistry().register(new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, (new Item.Properties()).group(setup.rankineTools)).setRegistryName(ProjectRankine.MODID,"brigandine_boots"));
-        }
-
-
-
-
 
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {

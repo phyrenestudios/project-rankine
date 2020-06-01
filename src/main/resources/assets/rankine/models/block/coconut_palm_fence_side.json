@@ -1,0 +1,6 @@
+{
+  "parent": "block/fence_side",
+  "textures": {
+    "texture": "rankine:block/coconut_palm_planks"
+  }
+}

@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "rankine:cedar_pressure_plate",
-    "rankine:pinyon_pine_pressure_plate"
+    "rankine:pinyon_pine_pressure_plate",
+    "rankine:juniper_pressure_plate",
+    "rankine:coconut_palm_pressure_plate",
+    "rankine:balsam_fir_pressure_plate"
   ]
 }

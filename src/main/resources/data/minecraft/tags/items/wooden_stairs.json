@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "rankine:cedar_stairs",
-    "rankine:pinyon_pine_stairs"
+    "rankine:pinyon_pine_stairs",
+    "rankine:juniper_stairs",
+    "rankine:coconut_palm_stairs",
+    "rankine:balsam_fir_stairs"
   ]
 }

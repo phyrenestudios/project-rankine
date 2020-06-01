@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:balsam_fir_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:balsam_fir_pressure_plate"
+  }
+}

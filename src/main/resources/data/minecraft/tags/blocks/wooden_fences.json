@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "rankine:cedar_fence",
-    "rankine:pinyon_pine_fence"
+    "rankine:pinyon_pine_fence",
+    "rankine:juniper_fence",
+    "rankine:coconut_palm_fence",
+    "rankine:balsam_fir_fence"
   ]
 }
