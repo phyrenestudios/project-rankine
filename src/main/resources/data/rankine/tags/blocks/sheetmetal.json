@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:copper_sheetmetal",
+    "rankine:tin_sheetmetal",
+    "rankine:bronze_sheetmetal",
+    "rankine:wrough_iron_sheetmetal",
+    "rankine:steel_sheetmetal"
+  ]
+}
