@@ -85,7 +85,7 @@ public class ModBlocks {
     public static final Block MUDDY_GRASS = add("muddy_grass", new MuddyGrassBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
     public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
     public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
-    public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new EntityModifierBlock(Block.Properties.create(Material.SAND).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), MAIN);
+    public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new EntityModifierBlock(Block.Properties.create(Material.SAND).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), MAIN);
 
 
     //STONE BLOCKS
@@ -271,7 +271,9 @@ public class ModBlocks {
     public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodTrapDoor(), MAIN);
 
     public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), MAIN);
-
+    public static final Block BAMBOO_BLOCK = add("bamboo_block", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0).harvestTool(ToolType.AXE)), MAIN);
+    public static final Block BAMBOO_SLAB = add("bamboo_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0).harvestTool(ToolType.AXE)), MAIN);
+    public static final Block BAMBOO_STAIRS = add("bamboo_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0).harvestTool(ToolType.AXE)), MAIN);
 
     public static final Block CEDAR_LEAVES = add("cedar_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);
     public static final Block COCONUT_PALM_LEAVES = add("coconut_palm_leaves", new LeavesBlock(Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid()), MAIN);

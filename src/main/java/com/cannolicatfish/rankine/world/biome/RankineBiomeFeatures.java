@@ -166,12 +166,7 @@ public class RankineBiomeFeatures {
             new SimpleBlockStateProvider(ModBlocks.CEDAR_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.CEDAR_LEAVES.getDefaultState()),
             new SpruceFoliagePlacer(2, 1)))
-            .baseHeight(8)
-            .heightRandA(3)
-            .trunkHeight(1)
-            .trunkHeightRandom(1)
-            .trunkTopOffsetRandom(2)
-            .ignoreVines()
+            .baseHeight(8).heightRandA(3).trunkHeight(1).trunkHeightRandom(1).trunkTopOffsetRandom(2).ignoreVines()
             .setSapling((IPlantable) ModBlocks.CEDAR_SAPLING).build();
 
     public static final TreeFeatureConfig DEAD_BALSAM_FIR_TREE_CONFIG = (new TreeFeatureConfig.Builder(
