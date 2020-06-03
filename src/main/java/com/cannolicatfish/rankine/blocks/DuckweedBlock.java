@@ -37,7 +37,7 @@ public class DuckweedBlock extends LilyPadBlock{
     }
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (rand.nextInt(20) == 1 ) {
+        if (rand.nextInt(3) == 1 ) {
             BlockPos blockpos1 = pos.add(rand.nextInt(2) - 1, 0, rand.nextInt(2) - 1);
             if (worldIn.isAirBlock(blockpos1) && state.isValidPosition(worldIn, blockpos1)) {
                 worldIn.setBlockState(blockpos1, state, 2);
