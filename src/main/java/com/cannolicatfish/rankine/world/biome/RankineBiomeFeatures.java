@@ -190,7 +190,7 @@ public class RankineBiomeFeatures {
             .setSapling((IPlantable) ModBlocks.BALSAM_FIR_SAPLING).build();
 
     public static final TreeFeatureConfig MAGNOLIA_TREE_CONFIG = (new TreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LEAVES.getDefaultState()),
             new AcaciaFoliagePlacer(1, 0)))
             .baseHeight(1).heightRandA(3).heightRandB(2).trunkHeight(0).ignoreVines().setSapling((IPlantable) ModBlocks.MAGNOLIA_SAPLING).build();

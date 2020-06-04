@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "x x",
+    "sss",
+    "sss"
+  ],
+  "key":
+  {
+    "s":
+    {
+      "item": "rankine:steel_alloy"
+    },
+    "x":
+    {
+      "item": "minecraft:leather"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:brigandine_chestplate",
+    "count": 1
+  }
+}

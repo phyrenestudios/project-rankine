@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.item.BoatEntity;
 
 public class ModEntityTypes {
     public static final EntityType<SpearEntity> FLINT_SPEAR = prepareEntity(EntityType.Builder.<SpearEntity>create(EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> new SpearEntity(spawnEntity,world,ModEntityTypes.FLINT_SPEAR,0)).size(0.5F, 0.5F),"flint_spear");
@@ -20,6 +21,7 @@ public class ModEntityTypes {
     public static final EntityType<SteamerEntity> STEAMER = EntityType.Builder.create(SteamerEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":steamer");
     public static final EntityType<BeaverEntity> BEAVER = EntityType.Builder.create(BeaverEntity::new, EntityClassification.CREATURE).size(1F, 0.4F).build(ProjectRankine.MODID + ":beaver");
     public static final EntityType<ShroudedKingEntity> SHROUDED_KING = EntityType.Builder.create(ShroudedKingEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":shrouded_king");
+    public static final EntityType<RankineBoatEntity> RANKINE_BOAT = EntityType.Builder.<RankineBoatEntity>create(RankineBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F).build(ProjectRankine.MODID + ":rankine_boat");
 
     public static <T extends Entity> EntityType<T> prepareEntity(EntityType.Builder builder, String name)
     {

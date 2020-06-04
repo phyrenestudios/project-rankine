@@ -3,8 +3,8 @@
   "values": [
     "rankine:cedar_slab",
     "rankine:pinyon_pine_slab",
-    "rankine:juniper_slabs",
-    "rankine:coconut_palm_slabs",
-    "rankine:balsam_fir_slabs"
+    "rankine:juniper_slab",
+    "rankine:coconut_palm_slab",
+    "rankine:balsam_fir_slab"
   ]
 }
