@@ -1,0 +1,8 @@
+{
+          "parent": "block/inner_stairs",
+          "textures": {
+            "bottom": "rankine:block/andesite",
+            "top": "rankine:block/andesite",
+            "side": "rankine:block/andesite"
+          }
+        }

@@ -1,0 +1,16 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "###",
+            "###"
+          ],
+          "key": {
+            "#": {
+              "item": "rankine:smooth_perovskite"
+            }
+          },
+          "result": {
+            "item": "rankine:smooth_perovskite_wall",
+            "count": 6
+          }
+        }

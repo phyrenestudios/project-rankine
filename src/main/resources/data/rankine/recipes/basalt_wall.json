@@ -1,0 +1,16 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "###",
+            "###"
+          ],
+          "key": {
+            "#": {
+              "item": "rankine:basalt"
+            }
+          },
+          "result": {
+            "item": "rankine:basalt_wall",
+            "count": 6
+          }
+        }

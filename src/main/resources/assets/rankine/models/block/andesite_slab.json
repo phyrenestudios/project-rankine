@@ -1,0 +1,8 @@
+{
+          "parent": "block/slab",
+          "textures": {
+            "bottom": "rankine:block/andesite",
+            "top": "rankine:block/andesite",
+            "side": "rankine:block/andesite"
+          }
+        }

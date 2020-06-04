@@ -30,9 +30,9 @@ public class RankineSapling extends SaplingBlock {
         }
         if (type == 3)
         {
-            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == ModBlocks.MUDDY_DIRT || block == ModBlocks.MUDDY_GRASS;
+            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL;
         }
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.SAND || block == Blocks.RED_SAND || block == ModBlocks.SANDY_DIRT || block == ModBlocks.MUDDY_DIRT || block == ModBlocks.MUDDY_GRASS;
+        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.SAND || block == Blocks.RED_SAND || block == ModBlocks.SANDY_DIRT;
     }
 
 }

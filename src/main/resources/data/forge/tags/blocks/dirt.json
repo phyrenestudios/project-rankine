@@ -2,9 +2,6 @@
   "replace": false,
   "values": [
     "rankine:sandy_dirt",
-    "rankine:muddy_dirt",
-    "rankine:muddy_grass",
-    "rankine:permafrost",
-    "rankine:vegetated_permafrost"
+    "rankine:permafrost"
   ]
 }

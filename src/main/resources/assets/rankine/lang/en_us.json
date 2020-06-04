@@ -5,15 +5,6 @@
   "block.rankine.vegetated_permafrost": "Vegetated Permafrost",
 
 
-
-
-
-
-  "block.rankine.bamboo_block": "Bamboo Block",
-  "block.rankine.bamboo_slab": "Bamboo Slab",
-  "block.rankine.bamboo_stairs": "Bamboo Stairs",
-
-
   "block.rankine.potted_cedar_sapling": "Potted Cedar Sapling",
   "block.rankine.potted_balsam_fir_sapling": "Potted Balsam Fir Sapling",
   "block.rankine.potted_juniper_sapling": "Potted Juniper Sapling",
@@ -80,7 +71,7 @@
   "block.rankine.balsam_fir_pressure_plate": "Balsam Fir Pressure Plate",
   "block.rankine.balsam_fir_stairs": "Balsam Fir Stairs",
   "block.rankine.balsam_fir_button": "Balsam Fir Button",
-  
+
   "block.rankine.cedar_sapling": "Cedar Sapling",
   "block.rankine.balsam_fir_sapling": "Balsam Fir Sapling",
   "block.rankine.sandy_dirt": "Sandy Dirt",
@@ -164,6 +155,162 @@
   "block.rankine.kimberlite": "Kimberlite",
   "block.rankine.ferropericlase": "Ferropericlase",
   "block.rankine.perovskite": "Perovskite",
+
+
+  "block.rankine.bamboo_block": "Bamboo Block",
+  "block.rankine.bamboo_slab": "Bamboo Slab",
+  "block.rankine.bamboo_stairs": "Bamboo Stairs",
+  "block.rankine.smooth_ironstone_slab": "Smooth Ironstone Slab",
+  "block.rankine.smooth_ironstone_stairs": "Smooth Ironstone Stairs",
+  
+  "block.rankine.granite_slab": "Granite Slab",
+  "block.rankine.diorite_slab": "Diorite Slab",
+  "block.rankine.andesite_slab": "Andesite Slab",
+  "block.rankine.limestone_slab": "Limestone Slab",
+  "block.rankine.basalt_slab": "Basalt Slab",
+  "block.rankine.rhyolite_slab": "Rhyolite Slab",
+  "block.rankine.marble_slab": "Marble Slab",
+  "block.rankine.gneiss_slab": "Gneiss Slab",
+  "block.rankine.shale_slab": "Shale Slab",
+  "block.rankine.ironstone_slab": "Ironstone Slab",
+  "block.rankine.peridotite_slab": "Peridotite Slab",
+  "block.rankine.ringwoodite_slab": "Ringwoodite Slab",
+  "block.rankine.wadsleyite_slab": "Wadsleyite Slab",
+  "block.rankine.bridgmanite_slab": "Bridgmanite Slab",
+  "block.rankine.komatiite_slab": "Komatiite Slab",
+  "block.rankine.kimberlite_slab": "Kimberlite Slab",
+  "block.rankine.ferropericlase_slab": "Ferropericlase Slab",
+  "block.rankine.perovskite_slab": "Perovskite Slab",
+
+  "block.rankine.granite_stairs": "Granite Stairs",
+  "block.rankine.diorite_stairs": "Diorite Stairs",
+  "block.rankine.andesite_stairs": "Andesite Stairs",
+  "block.rankine.limestone_stairs": "Limestone Stairs",
+  "block.rankine.basalt_stairs": "Basalt Stairs",
+  "block.rankine.rhyolite_stairs": "Rhyolite Stairs",
+  "block.rankine.marble_stairs": "Marble Stairs",
+  "block.rankine.gneiss_stairs": "Gneiss Stairs",
+  "block.rankine.shale_stairs": "Shale Stairs",
+  "block.rankine.ironstone_stairs": "Ironstone Stairs",
+  "block.rankine.peridotite_stairs": "Peridotite Stairs",
+  "block.rankine.ringwoodite_stairs": "Ringwoodite Stairs",
+  "block.rankine.wadsleyite_stairs": "Wadsleyite Stairs",
+  "block.rankine.bridgmanite_stairs": "Bridgmanite Stairs",
+  "block.rankine.komatiite_stairs": "Komatiite Stairs",
+  "block.rankine.kimberlite_stairs": "Kimberlite Stairs",
+  "block.rankine.ferropericlase_stairs": "Ferropericlase Stairs",
+  "block.rankine.perovskite_stairs": "Perovskite Stairs",
+  
+  "block.rankine.granite_wall": "Granite Wall",
+  "block.rankine.diorite_wall": "Diorite Wall",
+  "block.rankine.andesite_wall": "Andesite Wall",
+  "block.rankine.limestone_wall": "Limestone Wall",
+  "block.rankine.basalt_wall": "Basalt Wall",
+  "block.rankine.rhyolite_wall": "Rhyolite Wall",
+  "block.rankine.marble_wall": "Marble Wall",
+  "block.rankine.gneiss_wall": "Gneiss Wall",
+  "block.rankine.shale_wall": "Shale Wall",
+  "block.rankine.ironstone_wall": "Ironstone Wall",
+  "block.rankine.peridotite_wall": "Peridotite Wall",
+  "block.rankine.ringwoodite_wall": "Ringwoodite Wall",
+  "block.rankine.wadsleyite_wall": "Wadsleyite Wall",
+  "block.rankine.bridgmanite_wall": "Bridgmanite Wall",
+  "block.rankine.komatiite_wall": "Komatiite Wall",
+  "block.rankine.kimberlite_wall": "Kimberlite Wall",
+  "block.rankine.ferropericlase_wall": "Ferropericlase Wall",
+  "block.rankine.perovskite_wall": "Perovskite Wall",
+
+  "block.rankine.smooth_granite_wall": "Smooth Granite Wall",
+  "block.rankine.smooth_diorite_wall": "Smooth Diorite Wall",
+  "block.rankine.smooth_andesite_wall": "Smooth Andesite Wall",
+  "block.rankine.smooth_limestone_wall": "Smooth Limestone Wall",
+  "block.rankine.smooth_basalt_wall": "Smooth Basalt Wall",
+  "block.rankine.smooth_rhyolite_wall": "Smooth Rhyolite Wall",
+  "block.rankine.smooth_marble_wall": "Smooth Marble Wall",
+  "block.rankine.smooth_gneiss_wall": "Smooth Gneiss Wall",
+  "block.rankine.smooth_shale_wall": "Smooth Shale Wall",
+  "block.rankine.smooth_ironstone_wall": "Smooth Ironstone Wall",
+  "block.rankine.smooth_peridotite_wall": "Smooth Peridotite Wall",
+  "block.rankine.smooth_ringwoodite_wall": "Smooth Ringwoodite Wall",
+  "block.rankine.smooth_wadsleyite_wall": "Smooth Wadsleyite Wall",
+  "block.rankine.smooth_bridgmanite_wall": "Smooth Bridgmanite Wall",
+  "block.rankine.smooth_komatiite_wall": "Smooth Komatiite Wall",
+  "block.rankine.smooth_kimberlite_wall": "Smooth Kimberlite Wall",
+  "block.rankine.smooth_ferropericlase_wall": "Smooth Ferropericlase Wall",
+  "block.rankine.smooth_perovskite_wall": "Smooth Perovskite Wall",
+
+  "block.rankine.granite_bricks_slab": "Granite Bricks Slab",
+  "block.rankine.diorite_bricks_slab": "Diorite Bricks Slab",
+  "block.rankine.andesite_bricks_slab": "Andesite Bricks Slab",
+  "block.rankine.limestone_bricks_slab": "Limestone Bricks Slab",
+  "block.rankine.basalt_bricks_slab": "Basalt Bricks Slab",
+  "block.rankine.rhyolite_bricks_slab": "Rhyolite Bricks Slab",
+  "block.rankine.marble_bricks_slab": "Marble Bricks Slab",
+  "block.rankine.gneiss_bricks_slab": "Gneiss Bricks Slab",
+  "block.rankine.shale_bricks_slab": "Shale Bricks Slab",
+  "block.rankine.ironstone_bricks_slab": "Ironstone Bricks Slab",
+  "block.rankine.peridotite_bricks_slab": "Peridotite Bricks Slab",
+  "block.rankine.ringwoodite_bricks_slab": "Ringwoodite Bricks Slab",
+  "block.rankine.wadsleyite_bricks_slab": "Wadsleyite Bricks Slab",
+  "block.rankine.bridgmanite_bricks_slab": "Bridgmanite Bricks Slab",
+  "block.rankine.komatiite_bricks_slab": "Komatiite Bricks Slab",
+  "block.rankine.kimberlite_bricks_slab": "Kimberlite Bricks Slab",
+  "block.rankine.ferropericlase_bricks_slab": "Ferropericlase Bricks Slab",
+  "block.rankine.perovskite_bricks_slab": "Perovskite Bricks Slab",
+
+  "block.rankine.granite_bricks_stairs": "Granite Bricks Stairs",
+  "block.rankine.diorite_bricks_stairs": "Diorite Bricks Stairs",
+  "block.rankine.andesite_bricks_stairs": "Andesite Bricks Stairs",
+  "block.rankine.limestone_bricks_stairs": "Limestone Bricks Stairs",
+  "block.rankine.basalt_bricks_stairs": "Basalt Bricks Stairs",
+  "block.rankine.rhyolite_bricks_stairs": "Rhyolite Bricks Stairs",
+  "block.rankine.marble_bricks_stairs": "Marble Bricks Stairs",
+  "block.rankine.gneiss_bricks_stairs": "Gneiss Bricks Stairs",
+  "block.rankine.shale_bricks_stairs": "Shale Bricks Stairs",
+  "block.rankine.ironstone_bricks_stairs": "Ironstone Bricks Stairs",
+  "block.rankine.peridotite_bricks_stairs": "Peridotite Bricks Stairs",
+  "block.rankine.ringwoodite_bricks_stairs": "Ringwoodite Bricks Stairs",
+  "block.rankine.wadsleyite_bricks_stairs": "Wadsleyite Bricks Stairs",
+  "block.rankine.bridgmanite_bricks_stairs": "Bridgmanite Bricks Stairs",
+  "block.rankine.komatiite_bricks_stairs": "Komatiite Bricks Stairs",
+  "block.rankine.kimberlite_bricks_stairs": "Kimberlite Bricks Stairs",
+  "block.rankine.ferropericlase_bricks_stairs": "Ferropericlase Bricks Stairs",
+  "block.rankine.perovskite_bricks_stairs": "Perovskite Bricks Stairs",
+
+  "block.rankine.granite_bricks_wall": "Granite Bricks Wall",
+  "block.rankine.diorite_bricks_wall": "Diorite Bricks Wall",
+  "block.rankine.andesite_bricks_wall": "Andesite Bricks Wall",
+  "block.rankine.limestone_bricks_wall": "Limestone Bricks Wall",
+  "block.rankine.basalt_bricks_wall": "Basalt Bricks Wall",
+  "block.rankine.rhyolite_bricks_wall": "Rhyolite Bricks Wall",
+  "block.rankine.marble_bricks_wall": "Marble Bricks Wall",
+  "block.rankine.gneiss_bricks_wall": "Gneiss Bricks Wall",
+  "block.rankine.shale_bricks_wall": "Shale Bricks Wall",
+  "block.rankine.ironstone_bricks_wall": "Ironstone Bricks Wall",
+  "block.rankine.peridotite_bricks_wall": "Peridotite Bricks Wall",
+  "block.rankine.ringwoodite_bricks_wall": "Ringwoodite Bricks Wall",
+  "block.rankine.wadsleyite_bricks_wall": "Wadsleyite Bricks Wall",
+  "block.rankine.bridgmanite_bricks_wall": "Bridgmanite Bricks Wall",
+  "block.rankine.komatiite_bricks_wall": "Komatiite Bricks Wall",
+  "block.rankine.kimberlite_bricks_wall": "Kimberlite Bricks Wall",
+  "block.rankine.ferropericlase_bricks_wall": "Ferropericlase Bricks Wall",
+  "block.rankine.perovskite_bricks_wall": "Perovskite Bricks Wall",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   "block.rankine.garnet_block": "Block of Garnet",
   "block.rankine.opal_block": "Block of Opal",
   "block.rankine.peridot_block": "Block of Chrysolite",

@@ -35,6 +35,7 @@ public class MuddyGrassBlock extends GrassBlock {
         return func_220257_b(p_220256_0_, p_220256_1_, p_220256_2_) && !p_220256_1_.getFluidState(blockpos).isTagged(FluidTags.WATER);
     }
 
+    /*
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (!func_220257_b(state, worldIn, pos)) {
             if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
@@ -53,6 +54,8 @@ public class MuddyGrassBlock extends GrassBlock {
 
         }
     }
+
+     */
 
     @Override
     public boolean ticksRandomly(BlockState state) {

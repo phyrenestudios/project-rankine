@@ -81,10 +81,10 @@ public class ModBlocks {
 
     //EARTHY BLOCKS
     public static final Block SANDY_DIRT = add("sandy_dirt", new SandyDirtBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
-    public static final Block MUDDY_DIRT = add("muddy_dirt", new  Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
-    public static final Block MUDDY_GRASS = add("muddy_grass", new MuddyGrassBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
+    //public static final Block MUDDY_DIRT = add("muddy_dirt", new  Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
+    //public static final Block MUDDY_GRASS = add("muddy_grass", new MuddyGrassBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN);
     public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
-    public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
+    //public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN);
     public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new EntityModifierBlock(Block.Properties.create(Material.SAND).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), MAIN);
 
 
@@ -147,49 +147,178 @@ public class ModBlocks {
     public static final Block REFRACTORY_BRICKS = add("refractory_bricks", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)), MAIN);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS = add("magnesium_refractory_bricks", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)), MAIN);
 
-
+    public static final Block GRANITE_SLAB = add("granite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_GRANITE_SLAB = add("smooth_granite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block DIORITE_SLAB = add("diorite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_DIORITE_SLAB = add("smooth_diorite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block ANDESITE_SLAB = add("andesite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_ANDESITE_SLAB = add("smooth_andesite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block LIMESTONE_SLAB = add("limestone_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_LIMESTONE_SLAB = add("smooth_limestone_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block BASALT_SLAB = add("basalt_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_BASALT_SLAB = add("smooth_basalt_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block RHYOLITE_SLAB = add("rhyolite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_RHYOLITE_SLAB = add("smooth_rhyolite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block MARBLE_SLAB = add("marble_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_MARBLE_SLAB = add("smooth_marble_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block GNEISS_SLAB = add("gneiss_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_GNEISS_SLAB = add("smooth_gneiss_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block SHALE_SLAB = add("shale_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_SHALE_SLAB = add("smooth_shale_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block IRONSTONE_SLAB = add("ironstone_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_IRONSTONE_SLAB = add("smooth_ironstone_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block PERIDOTITE_SLAB = add("peridotite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_PERIDOTITE_SLAB = add("smooth_peridotite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block RINGWOODITE_SLAB = add("ringwoodite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_RINGWOODITE_SLAB = add("smooth_ringwoodite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block WADSLEYITE_SLAB = add("wadsleyite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_WADSLEYITE_SLAB = add("smooth_wadsleyite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block BRIDGMANITE_SLAB = add("bridgmanite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_BRIDGMANITE_SLAB = add("smooth_bridgmanite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block KOMATIITE_SLAB = add("komatiite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_KOMATIITE_SLAB = add("smooth_komatiite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block KIMBERLITE_SLAB = add("kimberlite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_KIMBERLITE_SLAB = add("smooth_kimberlite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block FERROPERICLASE_SLAB = add("ferropericlase_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_FERROPERICLASE_SLAB = add("smooth_ferropericlase_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+    public static final Block PEROVSKITE_SLAB = add("perovskite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_PEROVSKITE_SLAB = add("smooth_perovskite_slab", new RankineSlab(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
+
+
     public static final Block CLAY_BRICKS_SLAB = add("clay_bricks_slab", new RankineSlab(Block.Properties.create(Material.CLAY)), MAIN);
     public static final Block REFRACTORY_BRICKS_SLAB = add("refractory_bricks_slab", new RankineSlab(Block.Properties.create(Material.CLAY)), MAIN);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_SLAB = add("magnesium_refractory_bricks_slab", new RankineSlab(Block.Properties.create(Material.CLAY)), MAIN);
 
+    public static final Block GRANITE_STAIRS = add("granite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_GRANITE_STAIRS = add("smooth_granite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block DIORITE_STAIRS = add("diorite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_DIORITE_STAIRS = add("smooth_diorite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block ANDESITE_STAIRS = add("andesite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_ANDESITE_STAIRS = add("smooth_andesite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block LIMESTONE_STAIRS = add("limestone_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_LIMESTONE_STAIRS = add("smooth_limestone_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block BASALT_STAIRS = add("basalt_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_BASALT_STAIRS = add("smooth_basalt_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block RHYOLITE_STAIRS = add("rhyolite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_RHYOLITE_STAIRS = add("smooth_rhyolite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block MARBLE_STAIRS = add("marble_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_MARBLE_STAIRS = add("smooth_marble_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block GNEISS_STAIRS = add("gneiss_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_GNEISS_STAIRS = add("smooth_gneiss_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block SHALE_STAIRS = add("shale_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_SHALE_STAIRS = add("smooth_shale_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block IRONSTONE_STAIRS = add("ironstone_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_IRONSTONE_STAIRS = add("smooth_ironstone_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block PERIDOTITE_STAIRS = add("peridotite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_PERIDOTITE_STAIRS = add("smooth_peridotite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block RINGWOODITE_STAIRS = add("ringwoodite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_RINGWOODITE_STAIRS = add("smooth_ringwoodite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
-    public static final Block SMOOTH_BRIDGMANITE_STAIRS = add("smooth_bridgmanite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block WADSLEYITE_STAIRS = add("wadsleyite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_WADSLEYITE_STAIRS = add("smooth_wadsleyite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
-    public static final Block SMOOTH_KOMATIITE_STAIRS = add("smooth_komatiite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block BRIDGMANITE_STAIRS = add("bridgmanite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_BRIDGMANITE_STAIRS = add("smooth_bridgmanite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block KIMBERLITE_STAIRS = add("kimberlite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_KIMBERLITE_STAIRS = add("smooth_kimberlite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block KOMATIITE_STAIRS = add("komatiite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_KOMATIITE_STAIRS = add("smooth_komatiite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block FERROPERICLASE_STAIRS = add("ferropericlase_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_FERROPERICLASE_STAIRS = add("smooth_ferropericlase_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+    public static final Block PEROVSKITE_STAIRS = add("perovskite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_PEROVSKITE_STAIRS = add("smooth_perovskite_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+
+
     public static final Block CLAY_BRICKS_STAIRS = add("clay_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)), MAIN);
     public static final Block REFRACTORY_BRICKS_STAIRS = add("refractory_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)), MAIN);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.CLAY)), MAIN);
 
+
+    public static final Block GRANITE_WALL = add("granite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_GRANITE_WALL = add("smooth_granite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block DIORITE_WALL = add("diorite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_DIORITE_WALL = add("smooth_diorite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block ANDESITE_WALL = add("andesite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_ANDESITE_WALL = add("smooth_andesite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block LIMESTONE_WALL = add("limestone_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_LIMESTONE_WALL = add("smooth_limestone_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block BASALT_WALL = add("basalt_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_BASALT_WALL = add("smooth_basalt_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block RHYOLITE_WALL = add("rhyolite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_RHYOLITE_WALL = add("smooth_rhyolite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block MARBLE_WALL = add("marble_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_MARBLE_WALL = add("smooth_marble_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block GNEISS_WALL = add("gneiss_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_GNEISS_WALL = add("smooth_gneiss_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block SHALE_WALL = add("shale_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_SHALE_WALL = add("smooth_shale_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block IRONSTONE_WALL = add("ironstone_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_IRONSTONE_WALL = add("smooth_ironstone_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block PERIDOTITE_WALL = add("peridotite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_PERIDOTITE_WALL = add("smooth_peridotite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block RINGWOODITE_WALL = add("ringwoodite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_RINGWOODITE_WALL = add("smooth_ringwoodite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block WADSLEYITE_WALL = add("wadsleyite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_WADSLEYITE_WALL = add("smooth_wadsleyite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block BRIDGMANITE_WALL = add("bridgmanite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_BRIDGMANITE_WALL = add("smooth_bridgmanite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block KOMATIITE_WALL = add("komatiite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_KOMATIITE_WALL = add("smooth_komatiite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block KIMBERLITE_WALL = add("kimberlite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_KIMBERLITE_WALL = add("smooth_kimberlite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block FERROPERICLASE_WALL = add("ferropericlase_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_FERROPERICLASE_WALL = add("smooth_ferropericlase_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+
+    public static final Block PEROVSKITE_WALL = add("perovskite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SMOOTH_PEROVSKITE_WALL = add("smooth_perovskite_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
 
 
                 /*
