@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "rankine:cedar_door"
+    "rankine:cedar_door",
+    "rankine:coconut_palm_door",
+    "rankine:pinyon_pine_door",
+    "rankine:juniper_door",
+    "rankine:magnolia_door",
+    "rankine:balsam_fir_door"
   ]
 }

@@ -5,5 +5,5 @@
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",
   "filler_texture": "rankine:textures/gui/filler.png",
-  "creative_tab": "rankine"
+  "creative_tab": "rankineTools"
 }

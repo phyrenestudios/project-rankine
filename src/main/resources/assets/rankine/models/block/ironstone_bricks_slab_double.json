@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+            "end": "rankine:block/ironstone_bricks",
+            "side": "rankine:block/ironstone_bricks"
+          }
+        }
