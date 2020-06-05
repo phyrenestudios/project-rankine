@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:potted_cedar_sapling",
+    "rankine:potted_coconut_palm_sapling",
+    "rankine:potted_magnolia_sapling",
+    "rankine:potted_pinyon_pine_sapling",
+    "rankine:potted_juniper_sapling",
+    "rankine:potted_balsam_fir_sapling"
+  ]
+}
