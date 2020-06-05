@@ -1,0 +1,17 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "#  ",
+            "## ",
+            "###"
+          ],
+          "key": {
+            "#": {
+              "item": "rankine:rhyolite_bricks"
+            }
+          },
+          "result": {
+            "item": "rankine:rhyolite_bricks_stairs",
+            "count": 4
+          }
+        }

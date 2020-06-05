@@ -1,0 +1,8 @@
+{
+          "parent": "block/slab",
+          "textures": {
+            "bottom": "rankine:block/ironstone_bricks",
+            "top": "rankine:block/ironstone_bricks",
+            "side": "rankine:block/ironstone_bricks"
+          }
+        }

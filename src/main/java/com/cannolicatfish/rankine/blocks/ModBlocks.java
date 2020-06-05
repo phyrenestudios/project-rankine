@@ -89,6 +89,9 @@ public class ModBlocks {
 
 
     //STONE BLOCKS
+    public static final Block RED_GRANITE_BRICKS = add("red_granite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block QUARTZ_DIORITE_BRICKS = add("quartz_diorite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRAY_ANDESITE_BRICKS = add("gray_andesite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block GRANITE = add("granite", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_GRANITE = add("smooth_granite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
     public static final Block GRANITE_BRICKS = add("granite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0)), MAIN);
@@ -106,7 +109,7 @@ public class ModBlocks {
     public static final Block BASALT_BRICKS = add("basalt_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1)), MAIN);
     public static final Block RHYOLITE = add("rhyolite", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_RHYOLITE = add("smooth_rhyolite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
-
+    public static final Block RHYOLITE_BRICKS = add("rhyolite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block MARBLE = add("marble", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_MARBLE = add("smooth_marble", new Block(Block.Properties.create(Material.ROCK).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
     public static final Block MARBLE_BRICKS = add("marble_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(2)), MAIN);
@@ -121,28 +124,28 @@ public class ModBlocks {
     public static final Block IRONSTONE_BRICKS = add("ironstone_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(1).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block PERIDOTITE = add("peridotite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_PERIDOTITE = add("smooth_peridotite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block PERIDOTITE_BRICKS = add("peridotite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block RINGWOODITE = add("ringwoodite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_RINGWOODITE = add("smooth_ringwoodite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block RINGWOODITE_BRICKS = add("ringwoodite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block WADSLEYITE = add("wadsleyite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_WADSLEYITE = add("smooth_wadsleyite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block WADSLEYITE_BRICKS = add("wadsleyite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block BRIDGMANITE = add("bridgmanite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_BRIDGMANITE = add("smooth_bridgmanite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block BRIDGMANITE_BRICKS = add("bridgmanite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block KOMATIITE = add("komatiite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_KOMATIITE = add("smooth_komatiite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block KOMATIITE_BRICKS = add("komatiite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block KIMBERLITE = add("kimberlite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_KIMBERLITE = add("smooth_kimberlite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block KIMBERLITE_BRICKS = add("kimberlite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block FERROPERICLASE = add("ferropericlase", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_FERROPERICLASE = add("smooth_ferropericlase", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block FERROPERICLASE_BRICKS = add("ferropericlase_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block PEROVSKITE = add("perovskite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2).harvestLevel(3).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block SMOOTH_PEROVSKITE = add("smooth_perovskite", new Block(Block.Properties.create(Material.ROCK).harvestLevel(3).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(3)), MAIN);
-
+    public static final Block PEROVSKITE_BRICKS = add("perovskite_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
     public static final Block CLAY_BRICKS = add("clay_bricks", new Block(Block.Properties.create(Material.CLAY)), MAIN);
     public static final Block REFRACTORY_BRICKS = add("refractory_bricks", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)), MAIN);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS = add("magnesium_refractory_bricks", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F)), MAIN);
@@ -209,67 +212,88 @@ public class ModBlocks {
     public static final Block JUNIPER_LOG = add("juniper_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block COCONUT_PALM_LOG = add("coconut_palm_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block BALSAM_FIR_LOG = add("balsam_fir_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block MAGNOLIA_LOG = add("magnolia_log", new LogBlock(MaterialColor.AIR,Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block JUNIPER_WOOD = add("juniper_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block COCONUT_PALM_WOOD = add("coconut_palm_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block BALSAM_FIR_WOOD = add("balsam_fir_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block MAGNOLIA_WOOD = add("magnolia_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_CEDAR_LOG = add("stripped_cedar_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_PINYON_PINE_LOG = add("stripped_pinyon_pine_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_JUNIPER_LOG = add("stripped_juniper_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_COCONUT_PALM_LOG = add("stripped_coconut_palm_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_JUNIPER_WOOD = add("stripped_juniper_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_COCONUT_PALM_WOOD = add("stripped_coconut_palm_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
+    public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F)), MAIN);
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block JUNIPER_PLANKS = add("juniper_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block COCONUT_PALM_PLANKS = add("coconut_palm_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block BALSAM_FIR_PLANKS = add("balsam_fir_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block MAGNOLIA_PLANKS = add("magnolia_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
 
     public static final Block CEDAR_SLAB = add("cedar_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block PINYON_PINE_SLAB = add("pinyon_pine_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block JUNIPER_SLAB = add("juniper_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block COCONUT_PALM_SLAB = add("coconut_palm_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block BALSAM_FIR_SLAB = add("balsam_fir_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block MAGNOLIA_SLAB = add("magnolia_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
 
     public static final Block CEDAR_STAIRS = add("cedar_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block PINYON_PINE_STAIRS = add("pinyon_pine_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block JUNIPER_STAIRS = add("juniper_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block COCONUT_PALM_STAIRS = add("coconut_palm_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
     public static final Block BALSAM_FIR_STAIRS = add("balsam_fir_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
+    public static final Block MAGNOLIA_STAIRS = add("magnolia_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F)), MAIN);
 
     public static final Block CEDAR_FENCE = add("cedar_fence", new RankineWoodFence(), MAIN);
     public static final Block PINYON_PINE_FENCE = add("pinyon_pine_fence", new RankineWoodFence(), MAIN);
     public static final Block JUNIPER_FENCE = add("juniper_fence", new RankineWoodFence(), MAIN);
     public static final Block COCONUT_PALM_FENCE = add("coconut_palm_fence", new RankineWoodFence(), MAIN);
     public static final Block BALSAM_FIR_FENCE = add("balsam_fir_fence", new RankineWoodFence(), MAIN);
+    public static final Block MAGNOLIA_FENCE = add("magnolia_fence", new RankineWoodFence(), MAIN);
 
     public static final Block CEDAR_FENCE_GATE = add("cedar_fence_gate", new RankineWoodFenceGate(), MAIN);
     public static final Block PINYON_PINE_FENCE_GATE = add("pinyon_pine_fence_gate", new RankineWoodFenceGate(), MAIN);
     public static final Block JUNIPER_FENCE_GATE = add("juniper_fence_gate", new RankineWoodFenceGate(), MAIN);
     public static final Block COCONUT_PALM_FENCE_GATE = add("coconut_palm_fence_gate", new RankineWoodFenceGate(), MAIN);
     public static final Block BALSAM_FIR_FENCE_GATE = add("balsam_fir_fence_gate", new RankineWoodFenceGate(), MAIN);
+    public static final Block MAGNOLIA_FENCE_GATE = add("magnolia_fence_gate", new RankineWoodFenceGate(), MAIN);
 
     public static final Block CEDAR_PRESSURE_PLATE = add("cedar_pressure_plate", new RankineWoodPressurePlate(), MAIN);
     public static final Block PINYON_PINE_PRESSURE_PLATE = add("pinyon_pine_pressure_plate", new RankineWoodPressurePlate(), MAIN);
     public static final Block JUNIPER_PRESSURE_PLATE = add("juniper_pressure_plate", new RankineWoodPressurePlate(), MAIN);
     public static final Block COCONUT_PALM_PRESSURE_PLATE = add("coconut_palm_pressure_plate", new RankineWoodPressurePlate(), MAIN);
     public static final Block BALSAM_FIR_PRESSURE_PLATE = add("balsam_fir_pressure_plate", new RankineWoodPressurePlate(), MAIN);
+    public static final Block MAGNOLIA_PRESSURE_PLATE = add("magnolia_pressure_plate", new RankineWoodPressurePlate(), MAIN);
 
     public static final Block CEDAR_BUTTON = add("cedar_button", new RankineWoodButton(), MAIN);
     public static final Block PINYON_PINE_BUTTON = add("pinyon_pine_button", new RankineWoodButton(), MAIN);
     public static final Block JUNIPER_BUTTON = add("juniper_button", new RankineWoodButton(), MAIN);
     public static final Block COCONUT_PALM_BUTTON = add("coconut_palm_button", new RankineWoodButton(), MAIN);
     public static final Block BALSAM_FIR_BUTTON = add("balsam_fir_button", new RankineWoodButton(), MAIN);
+    public static final Block MAGNOLIA_BUTTON = add("magnolia_button", new RankineWoodButton(), MAIN);
 
     public static final Block CEDAR_DOOR = add("cedar_door", new RankineWoodDoor(), MAIN);
+    public static final Block PINYON_PINE_DOOR = add("pinyon_pine_door", new RankineWoodDoor(), MAIN);
+    public static final Block JUNIPER_DOOR = add("juniper_door", new RankineWoodDoor(), MAIN);
+    public static final Block COCONUT_PALM_DOOR = add("coconut_palm_door", new RankineWoodDoor(), MAIN);
+    public static final Block BALSAM_FIR_DOOR = add("balsam_fir_door", new RankineWoodDoor(), MAIN);
+    public static final Block MAGNOLIA_DOOR = add("magnolia_door", new RankineWoodDoor(), MAIN);
 
     public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodTrapDoor(), MAIN);
-
+    public static final Block PINYON_PINE_TRAPDOOR = add("pinyon_pine_trapdoor", new RankineWoodTrapDoor(), MAIN);
+    public static final Block JUNIPER_TRAPDOOR = add("juniper_trapdoor", new RankineWoodTrapDoor(), MAIN);
+    public static final Block COCONUT_PALM_TRAPDOOR = add("coconut_palm_trapdoor", new RankineWoodTrapDoor(), MAIN);
+    public static final Block BALSAM_FIR_TRAPDOOR = add("balsam_fir_trapdoor", new RankineWoodTrapDoor(), MAIN);
+    public static final Block MAGNOLIA_TRAPDOOR = add("magnolia_trapdoor", new RankineWoodTrapDoor(), MAIN);
+    public static final Block BAMBOO_PLANKS = add("bamboo_planks", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0).harvestTool(ToolType.AXE)), MAIN);
     public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), MAIN);
     public static final Block BAMBOO_BLOCK = add("bamboo_block", new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0).harvestTool(ToolType.AXE)), MAIN);
     public static final Block BAMBOO_SLAB = add("bamboo_slab", new RankineSlab(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0).harvestTool(ToolType.AXE)), MAIN);
@@ -389,6 +413,13 @@ public class ModBlocks {
     public static final Block LEAD_BLOCK = add("lead_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block BISMUTH_BLOCK = add("bismuth_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block TANTALUM_BLOCK = add("tantalum_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block ARSENIC_BLOCK = add("arsenic_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block LANTHANUM_BLOCK = add("lanthanum_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block RHODIUM_BLOCK = add("rhodium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block RUTHENIUM_BLOCK = add("ruthenium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block SODIUM_BLOCK = add("sodium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block POTASSIUM_BLOCK = add("potassium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block PALLADIUM_BLOCK = add("palladium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block OPAL_BLOCK = add("opal_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block GARNET_BLOCK = add("garnet_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
@@ -436,6 +467,69 @@ public class ModBlocks {
 
 
     public static final FlowingFluidBlock LIQUID_PIG_IRON_BLOCK = add("liquid_pig_iron_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_PIG_IRON,Block.Properties.create(Material.LAVA).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final Block RED_GRANITE_BRICKS_SLAB = add("red_granite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RED_GRANITE_BRICKS_STAIRS = add("red_granite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RED_GRANITE_BRICKS_WALL = add("red_granite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block QUARTZ_DIORITE_BRICKS_SLAB = add("quartz_diorite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block QUARTZ_DIORITE_BRICKS_STAIRS = add("quartz_diorite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block QUARTZ_DIORITE_BRICKS_WALL = add("quartz_diorite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRAY_ANDESITE_BRICKS_SLAB = add("gray_andesite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRAY_ANDESITE_BRICKS_STAIRS = add("gray_andesite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRAY_ANDESITE_BRICKS_WALL = add("gray_andesite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRANITE_BRICKS_SLAB = add("granite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRANITE_BRICKS_STAIRS = add("granite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GRANITE_BRICKS_WALL = add("granite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block DIORITE_BRICKS_SLAB = add("diorite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block DIORITE_BRICKS_STAIRS = add("diorite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block DIORITE_BRICKS_WALL = add("diorite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block ANDESITE_BRICKS_SLAB = add("andesite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block ANDESITE_BRICKS_STAIRS = add("andesite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block ANDESITE_BRICKS_WALL = add("andesite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block LIMESTONE_BRICKS_SLAB = add("limestone_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block LIMESTONE_BRICKS_STAIRS = add("limestone_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block LIMESTONE_BRICKS_WALL = add("limestone_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block BASALT_BRICKS_SLAB = add("basalt_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block BASALT_BRICKS_STAIRS = add("basalt_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block BASALT_BRICKS_WALL = add("basalt_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RHYOLITE_BRICKS_SLAB = add("rhyolite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RHYOLITE_BRICKS_STAIRS = add("rhyolite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RHYOLITE_BRICKS_WALL = add("rhyolite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block MARBLE_BRICKS_SLAB = add("marble_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block MARBLE_BRICKS_STAIRS = add("marble_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block MARBLE_BRICKS_WALL = add("marble_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GNEISS_BRICKS_SLAB = add("gneiss_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GNEISS_BRICKS_STAIRS = add("gneiss_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block GNEISS_BRICKS_WALL = add("gneiss_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SHALE_BRICKS_SLAB = add("shale_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SHALE_BRICKS_STAIRS = add("shale_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block SHALE_BRICKS_WALL = add("shale_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block IRONSTONE_BRICKS_SLAB = add("ironstone_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block IRONSTONE_BRICKS_STAIRS = add("ironstone_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block IRONSTONE_BRICKS_WALL = add("ironstone_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PERIDOTITE_BRICKS_SLAB = add("peridotite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PERIDOTITE_BRICKS_STAIRS = add("peridotite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PERIDOTITE_BRICKS_WALL = add("peridotite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RINGWOODITE_BRICKS_SLAB = add("ringwoodite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RINGWOODITE_BRICKS_STAIRS = add("ringwoodite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block RINGWOODITE_BRICKS_WALL = add("ringwoodite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block WADSLEYITE_BRICKS_SLAB = add("wadsleyite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block WADSLEYITE_BRICKS_STAIRS = add("wadsleyite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block WADSLEYITE_BRICKS_WALL = add("wadsleyite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block BRIDGMANITE_BRICKS_SLAB = add("bridgmanite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block BRIDGMANITE_BRICKS_STAIRS = add("bridgmanite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block BRIDGMANITE_BRICKS_WALL = add("bridgmanite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block KOMATIITE_BRICKS_SLAB = add("komatiite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block KOMATIITE_BRICKS_STAIRS = add("komatiite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block KOMATIITE_BRICKS_WALL = add("komatiite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block KIMBERLITE_BRICKS_SLAB = add("kimberlite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block KIMBERLITE_BRICKS_STAIRS = add("kimberlite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block KIMBERLITE_BRICKS_WALL = add("kimberlite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block FERROPERICLASE_BRICKS_SLAB = add("ferropericlase_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block FERROPERICLASE_BRICKS_STAIRS = add("ferropericlase_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block FERROPERICLASE_BRICKS_WALL = add("ferropericlase_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PEROVSKITE_BRICKS_SLAB = add("perovskite_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PEROVSKITE_BRICKS_STAIRS = add("perovskite_bricks_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
+    public static final Block PEROVSKITE_BRICKS_WALL = add("perovskite_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), MAIN);
 
 
 

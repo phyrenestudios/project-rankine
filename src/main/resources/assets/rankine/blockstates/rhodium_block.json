@@ -1,0 +1,5 @@
+{
+    "variants": {
+    "": { "model": "rankine:block/rhodium_block" }
+    }
+}

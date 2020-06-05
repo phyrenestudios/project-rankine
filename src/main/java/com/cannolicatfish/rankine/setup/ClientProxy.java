@@ -87,7 +87,18 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.NITER, RenderType.getCutout());
 
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_DOOR, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_DOOR, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_DOOR, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_DOOR, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.MAGNOLIA_DOOR, RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.BALSAM_FIR_DOOR, RenderType.getCutout());
+
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_TRAPDOOR, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.COCONUT_PALM_TRAPDOOR, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PINYON_PINE_TRAPDOOR, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.JUNIPER_TRAPDOOR, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.MAGNOLIA_TRAPDOOR, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.BALSAM_FIR_TRAPDOOR, RenderType.getCutoutMipped());
 
 
         RenderTypeLookup.setRenderLayer(ModBlocks.CEDAR_SAPLING, RenderType.getCutout());

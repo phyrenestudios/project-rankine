@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:arsenic_block" } ], "result": { "item": "rankine:arsenic_ingot", "count": 9 } }
