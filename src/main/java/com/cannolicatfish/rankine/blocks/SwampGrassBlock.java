@@ -15,7 +15,7 @@ public class SwampGrassBlock extends BushBlock {
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == ModBlocks.MUDDY_GRASS || block == ModBlocks.MUDDY_DIRT;
+        return block == Blocks.GRASS_BLOCK;
     }
 
 }

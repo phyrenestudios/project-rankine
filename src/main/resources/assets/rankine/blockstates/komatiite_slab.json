@@ -1,0 +1,7 @@
+{
+        "variants": {
+            "type=bottom": { "model": "rankine:block/komatiite_slab" },
+            "type=top": { "model": "rankine:block/komatiite_slab_top" },
+            "type=double": { "model": "rankine:block/komatiite" }
+            }
+        }

@@ -123,7 +123,7 @@ public class ModItems {
     public static final Item OSMIUM_INGOT = add("osmium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PLATINUM_INGOT = add("platinum_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ARSENIC_INGOT = add("arsenic_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MERCURY = add("mercury", new ItemToxin(0, (new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals))));
+    public static final Item MERCURY_INGOT = add("mercury_ingot", new ItemToxin(0, (new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals))));
     public static final Item PIG_IRON_INGOT = add("pig_iron_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item WROUGHT_IRON_INGOT = add("wrought_iron_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item RHODIUM_INGOT = add("rhodium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -148,7 +148,7 @@ public class ModItems {
     public static final OldAlloyItem CUPRONICKEL_ALLOY = add("cupronickel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final OldAlloyItem NICKEL_SILVER_ALLOY = add("nickel_silver_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));;
     public static final OldAlloyItem INVAR_ALLOY = add("invar_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final OldAlloyItem ICONEL_ALLOY = add("inconel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final OldAlloyItem INCONEL_ALLOY = add("inconel_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final OldAlloyItem ROSE_METAL_ALLOY = add("rose_metal_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final OldAlloyItem MAGNALIUM_ALLOY = add("magnalium_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final OldAlloyItem DURALUMIN_ALLOY = add("duralumin_alloy", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

@@ -1,0 +1,15 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "###"
+          ],
+          "key": {
+            "#": {
+              "item": "rankine:ironstone"
+            }
+          },
+          "result": {
+            "item": "rankine:ironstone_slab",
+            "count": 6
+          }
+        }

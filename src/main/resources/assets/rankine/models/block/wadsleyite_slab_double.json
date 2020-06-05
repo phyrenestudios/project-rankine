@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+            "end": "rankine:block/wadsleyite",
+            "side": "rankine:block/wadsleyite"
+          }
+        }

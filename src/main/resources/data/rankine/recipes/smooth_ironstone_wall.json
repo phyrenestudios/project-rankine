@@ -1,0 +1,16 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "###",
+            "###"
+          ],
+          "key": {
+            "#": {
+              "item": "rankine:smooth_ironstone"
+            }
+          },
+          "result": {
+            "item": "rankine:smooth_ironstone_wall",
+            "count": 6
+          }
+        }
