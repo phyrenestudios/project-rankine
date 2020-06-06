@@ -1,6 +1,6 @@
 {
       "parent": "block/template_fence_gate_wall",
       "textures": {
-        "texture": "rankine:block/bamboo_block"
+        "texture": "rankine:block/bamboo_planks"
       }
     }

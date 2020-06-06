@@ -180,11 +180,22 @@
   "block.rankine.ferropericlase": "Ferropericlase",
   "block.rankine.perovskite": "Perovskite",
 
-  "block.rankine.bamboo_fence": "Bamboo Fence",
-  "block.rankine.bamboo_fence_gate": "Bamboo Fence Gate",
-  "block.rankine.bamboo_block": "Bamboo Block",
+
+  "block.rankine.bamboo_clums": "Bamboo Clums",
+  "block.rankine.bamboo_clums_slab": "Bamboo Clums Slab",
+  "block.rankine.bamboo_clums_stairs": "Bamboo Clums Stairs",
+  "block.rankine.bamboo_clums_wall": "Bamboo Clums Wall",
+  "block.rankine.bamboo_clums_fence": "Bamboo Clums Fence",
+  "block.rankine.bamboo_clums_fence_gate": "Bamboo Clums Fence Gate",
+
   "block.rankine.bamboo_slab": "Bamboo Slab",
   "block.rankine.bamboo_stairs": "Bamboo Stairs",
+  "block.rankine.bamboo_wall": "Bamboo Wall",
+  "block.rankine.bamboo_fence": "Bamboo Fence",
+  "block.rankine.bamboo_fence_gate": "Bamboo Fence Gate",
+
+
+
   "block.rankine.smooth_ironstone_slab": "Smooth Ironstone Slab",
   "block.rankine.smooth_ironstone_stairs": "Smooth Ironstone Stairs",
   

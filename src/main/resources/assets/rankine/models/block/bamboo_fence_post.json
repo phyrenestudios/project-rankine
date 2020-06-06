@@ -1,6 +1,6 @@
 {
       "parent": "block/fence_post",
       "textures": {
-        "texture": "rankine:block/bamboo_block"
+        "texture": "rankine:block/bamboo_planks"
       }
     }

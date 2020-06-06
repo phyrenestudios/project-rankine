@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:bamboo_block"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:bamboo"
+        }
+      },
+      "result": {
+        "item": "rankine:bamboo_stairs",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:bamboo_stairs",
-    "count": 4
-  }
-}
