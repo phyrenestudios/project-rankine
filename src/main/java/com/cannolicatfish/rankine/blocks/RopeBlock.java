@@ -20,7 +20,7 @@ public class RopeBlock extends ScaffoldingBlock {
     private static final VoxelShape field_220124_g = VoxelShapes.fullCube().withOffset(0.0D, -1.0D, 0.0D);
     public RopeBlock(Properties p_i49976_1_) {
         super(p_i49976_1_);
-        this.setDefaultState(this.stateContainer.getBaseState().with(field_220118_a, Integer.valueOf(7)).with(WATERLOGGED, Boolean.valueOf(false)).with(field_220120_c, Boolean.valueOf(false)));
+        this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, Integer.valueOf(7)).with(WATERLOGGED, Boolean.valueOf(false)).with(BOTTOM, Boolean.valueOf(false)));
     }
 
     @Override
@@ -42,9 +42,9 @@ public class RopeBlock extends ScaffoldingBlock {
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         int i = func_220117_a(worldIn, pos);
-        BlockState blockstate = state.with(field_220118_a, Integer.valueOf(i)).with(field_220120_c, Boolean.valueOf(this.func_220116_a(worldIn, pos, i)));
-        if (blockstate.get(field_220118_a) == 7) {
-            if (state.get(field_220118_a) == 7) {
+        BlockState blockstate = state.with(DISTANCE, Integer.valueOf(i)).with(BOTTOM, Boolean.valueOf(this.func_220116_a(worldIn, pos, i)));
+        if (blockstate.get(DISTANCE) == 7) {
+            if (state.get(DISTANCE) == 7) {
                 worldIn.addEntity(new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, blockstate.with(WATERLOGGED, Boolean.valueOf(false))));
             } /*else {
                 worldIn.destroyBlock(pos, true);
@@ -64,7 +64,7 @@ public class RopeBlock extends ScaffoldingBlock {
         BlockState blockstate = p_220117_0_.getBlockState(blockpos$mutable);
         int i = 7;
         if (blockstate.getBlock() == ModBlocks.ROPE) {
-            i = blockstate.get(field_220118_a);
+            i = blockstate.get(DISTANCE);
         } else if (blockstate.isSolidSide(p_220117_0_, blockpos$mutable, Direction.UP)) {
             return 0;
         }
@@ -72,7 +72,7 @@ public class RopeBlock extends ScaffoldingBlock {
         for(Direction direction : Direction.Plane.HORIZONTAL) {
             BlockState blockstate1 = p_220117_0_.getBlockState(blockpos$mutable.setPos(p_220117_1_).move(direction));
             if (blockstate1.getBlock() == ModBlocks.ROPE) {
-                i = Math.min(i, blockstate1.get(field_220118_a) + 1);
+                i = Math.min(i, blockstate1.get(DISTANCE) + 1);
                 if (i == 1) {
                     break;
                 }

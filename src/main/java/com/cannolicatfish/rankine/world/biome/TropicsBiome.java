@@ -39,7 +39,7 @@ public class TropicsBiome extends Biome {
         DefaultBiomeFeatures.addReedsAndPumpkins(this);
         DefaultBiomeFeatures.addSprings(this);
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEA_PICKLE.withConfiguration(new CountConfig(14)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(16))));
-        DefaultBiomeFeatures.func_222320_ai(this);
+        DefaultBiomeFeatures.addSeagrass(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
         RankineBiomeFeatures.addTropicsDecor(this);
 

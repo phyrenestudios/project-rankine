@@ -17,6 +17,6 @@ public class CedarTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return new TreeFeature(TreeFeatureConfig::func_227338_a_).withConfiguration(RankineBiomeFeatures.CEDAR_TREE_CONFIG);
+        return new TreeFeature(TreeFeatureConfig::deserializeFoliage).withConfiguration(RankineBiomeFeatures.CEDAR_TREE_CONFIG);
     }
 }
