@@ -42,7 +42,7 @@ public class ShoalBiome extends Biome {
         DefaultBiomeFeatures.addSprings(this);
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEAGRASS.withConfiguration(new SeaGrassConfig(48, 0.3D)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEA_PICKLE.withConfiguration(new CountConfig(20)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(16))));
-        DefaultBiomeFeatures.func_222320_ai(this);
+        DefaultBiomeFeatures.addSeagrass(this);
         DefaultBiomeFeatures.addExtraKelp(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
 

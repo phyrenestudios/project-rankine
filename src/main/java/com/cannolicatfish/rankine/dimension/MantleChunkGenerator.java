@@ -19,7 +19,7 @@ public class MantleChunkGenerator extends ChunkGenerator<MantleChunkGenerator.Co
     }
 
     @Override
-    public void func_225551_a_(WorldGenRegion region, IChunk chunk) {
+    public void generateSurface(WorldGenRegion region, IChunk chunk) {
         BlockState bedrock = Blocks.BEDROCK.getDefaultState();
         BlockState stone = ModBlocks.PERIDOTITE.getDefaultState();
         ChunkPos chunkpos = chunk.getPos();

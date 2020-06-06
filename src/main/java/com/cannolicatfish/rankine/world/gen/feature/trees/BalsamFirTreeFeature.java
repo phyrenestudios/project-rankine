@@ -17,7 +17,7 @@ public class BalsamFirTreeFeature extends AbstractSmallTreeFeature<TreeFeatureCo
         super(p_i225820_1_);
     }
 
-    public boolean func_225557_a_(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> p_225557_4_, Set<BlockPos> p_225557_5_, MutableBoundingBox boundsIn, TreeFeatureConfig config) {
+    public boolean place(IWorldGenerationReader world, Random rand, BlockPos pos, Set<BlockPos> p_225557_4_, Set<BlockPos> p_225557_5_, MutableBoundingBox boundsIn, TreeFeatureConfig config) {
         int i = config.baseHeight + rand.nextInt(config.heightRandA + 1) + rand.nextInt(config.heightRandB + 1);
         int j = config.trunkHeight >= 0 ? config.trunkHeight + rand.nextInt(config.trunkHeightRandom + 1) : i - (config.foliageHeight + rand.nextInt(config.foliageHeightRandom + 1));
         int k = config.foliagePlacer.func_225573_a_(rand, j, i, config);

@@ -20,7 +20,7 @@ public abstract class RankineFeatures<FC extends IFeatureConfig> extends net.min
     public static IStructurePieceType TROPICS_HOUSE_PIECE = TropicsHousePieces.Piece::new;
     public static IStructurePieceType LAGOON_FOUNTAIN_PIECE = LagoonFountainPieces.Piece::new;
 
-    public static final Feature<TreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::func_227338_a_));
+    public static final Feature<TreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::deserializeFoliage));
     public static final Structure<NoFeatureConfig> BEAVER_LODGE = register("beaver_lodge", new BeaverLodgeStructure(NoFeatureConfig::deserialize));
     public static final Structure<NoFeatureConfig> TROPICS_HOUSE = register("tropics_house", new TropicsHouseStructure(NoFeatureConfig::deserialize));
     public static final Structure<NoFeatureConfig> LAGOON_FOUNTAIN = register("lagoon_fountain", new LagoonFountainStructure(NoFeatureConfig::deserialize));
