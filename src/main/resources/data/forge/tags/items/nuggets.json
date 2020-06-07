@@ -25,7 +25,6 @@
 
     "rankine:osmium_nugget",
     "rankine:wrought_iron_nugget",
-    "rankine:pig_iron_nugget",
-    "rankine:cast_iron_nugget"
+    "rankine:pig_iron_nugget"
   ]
 }
