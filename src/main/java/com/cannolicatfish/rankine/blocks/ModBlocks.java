@@ -542,6 +542,7 @@ public class ModBlocks {
     public static final Block INVAR_BLOCK = add("invar_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block BRONZE_BLOCK = add("bronze_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
+    public static final Block OSMIRIDIUM_BLOCK = add("osmiridium_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block STEEL_BLOCK = add("steel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block STAINLESS_STEEL_BLOCK = add("stainless_steel_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);
     public static final Block PIG_IRON_BLOCK = add("pig_iron_block", new Block(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALS);

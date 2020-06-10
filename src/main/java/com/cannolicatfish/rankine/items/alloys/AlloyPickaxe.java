@@ -42,7 +42,7 @@ public class AlloyPickaxe extends PickaxeItem {
     private float heat_resistance;
     private float corr_resistance;
     private float toughness;
-    public AlloyPickaxe(IItemTier tier, int attackDamageIn, float attackSpeedIn, float corr_resistance, float heat_resistance, float toughness, Properties builder, AlloyUtils alloy) {
+    public AlloyPickaxe(IItemTier tier, int attackDamageIn, float attackSpeedIn, float corr_resistance, float heat_resistance, float toughness, AlloyUtils alloy, Properties builder) {
         super(tier, attackDamageIn, attackSpeedIn, builder);
         this.heat_resistance = heat_resistance;
         this.toughness = toughness;
