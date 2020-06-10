@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:bamboo_clums"
+        }
+      },
+      "result": {
+        "item": "rankine:bamboo_clums_wall",
+        "count": 6
+      }
+    }
