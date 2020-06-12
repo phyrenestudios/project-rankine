@@ -20,6 +20,6 @@ public class LightningAspectEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 2;
+        return 1;
     }
 }

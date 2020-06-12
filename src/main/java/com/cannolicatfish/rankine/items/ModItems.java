@@ -12,6 +12,7 @@ import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
 import com.cannolicatfish.rankine.items.tools.*;
 import com.cannolicatfish.rankine.setup.ModSetup;
 import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
+import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -30,7 +31,7 @@ public class ModItems {
     //Creative Tabs
 
 
-     public static final Item  MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
+     public static final Item MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
      public static final Item DIAMOND_MANTLE_GOLEM = add("diamond_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
      public static final Item PERIDOT_MANTLE_GOLEM = add("peridot_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
      public static final Item DESMOXYTE = add("desmoxyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
@@ -315,4 +316,9 @@ public class ModItems {
     @ObjectHolder("rankine:banana_yucca")
     public static Item BANANA_YUCCA;
 
+    public static Item getBlockAsItem(Block block)
+    {
+        ItemStack stack = new ItemStack(block);
+        return stack.getItem();
+    }
 }

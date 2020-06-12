@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.items.ModItems;
 import com.cannolicatfish.rankine.util.ElementUtils;
+import com.cannolicatfish.rankine.util.RankineAlloyMaterial;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
@@ -34,6 +35,7 @@ public class AlloyingRecipesComplex {
 
     public Pair<String,Integer> returnItemMaterial(ItemStack stack)
     {
+        System.out.println(RankineAlloyMaterial.getMaterial(stack.getItem()).toString());
         if (stack.isEmpty())
         {
             return new Pair<>("none",0);
