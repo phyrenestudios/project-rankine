@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
+import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -51,9 +52,21 @@ public class IntrusionReplacerFeature extends Feature<ReplacerFeatureConfig> {
                             worldIn.setBlockState(new BlockPos(x, y + 2, z), config.state, 2);
                         }
                     }
-                    if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        worldIn.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                    if (config.target.getBlock() == ModBlocks.KIMBERLITE) {
+                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                            worldIn.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                        }
+                    } else {
+                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                            if (rand.nextInt(4) != 1) {
+                                worldIn.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                            }
+                        }
                     }
+
+
+
+
                 }
             }
         }

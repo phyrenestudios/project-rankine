@@ -125,12 +125,12 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,1), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.ANDESITE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.DIORITE)
                                                 {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,2), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.DIORITE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.ANDESITE)
                                                 {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,3), 2);
                                                     ++i;
@@ -180,7 +180,11 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,12), 2);
                                                     ++i;
                                                 }
-
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.ANORTHOSITE)
+                                                {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,13), 2);
+                                                    ++i;
+                                                }
                                             }
                                         }
                                     }

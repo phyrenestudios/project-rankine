@@ -185,6 +185,16 @@
           }
         ]
       }
+    },
+    "rankine:anorthosite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:anorthosite"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -221,8 +231,7 @@
     ],[
       "rankine:ferropericlase"
     ],
-    [
-      "rankine:perovskite"
-    ]
+    ["rankine:perovskite"],
+    ["rankine:anorthosite"]
   ]
 }

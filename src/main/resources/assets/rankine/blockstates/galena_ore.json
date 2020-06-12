@@ -12,6 +12,7 @@
     "type=9": {"model": "rankine:block/galena_ore9"},
     "type=10": {"model": "rankine:block/galena_ore0"},
     "type=11": {"model": "rankine:block/galena_ore0"},
-    "type=12": {"model": "rankine:block/galena_ore0"}
+    "type=12": {"model": "rankine:block/galena_ore0"},
+    "type=13": {"model": "rankine:block/galena_ore13"}
   }
 }

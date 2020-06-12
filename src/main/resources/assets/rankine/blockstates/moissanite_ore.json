@@ -12,6 +12,7 @@
     "type=9": {"model": "rankine:block/moissanite_ore10"},
     "type=10": {"model": "rankine:block/moissanite_ore10"},
     "type=11": {"model": "rankine:block/moissanite_ore11"},
-    "type=12": {"model": "rankine:block/moissanite_ore12"}
+    "type=12": {"model": "rankine:block/moissanite_ore12"},
+    "type=13": {"model": "rankine:block/moissanite_ore13"}
   }
 }

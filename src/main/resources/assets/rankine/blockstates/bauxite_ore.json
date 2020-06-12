@@ -12,6 +12,7 @@
     "type=9": {"model": "rankine:block/bauxite_ore0"},
     "type=10": {"model": "rankine:block/bauxite_ore0"},
     "type=11": {"model": "rankine:block/bauxite_ore0"},
-    "type=12": {"model": "rankine:block/bauxite_ore0"}
+    "type=12": {"model": "rankine:block/bauxite_ore0"},
+	"type=13": {"model": "rankine:block/bauxite_ore13"}
   }
 }
