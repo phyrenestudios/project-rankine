@@ -228,7 +228,11 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,12), 2);
                                                     ++i;
                                                 }
-
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.ANORTHOSITE)
+                                                {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,13), 2);
+                                                    ++i;
+                                                }
                                             }
                                         }
                                     }

@@ -12,6 +12,7 @@
     "type=9": {"model": "rankine:block/sperrylite_ore10"},
     "type=10": {"model": "rankine:block/sperrylite_ore10"},
     "type=11": {"model": "rankine:block/sperrylite_ore11"},
-    "type=12": {"model": "rankine:block/sperrylite_ore12"}
+    "type=12": {"model": "rankine:block/sperrylite_ore12"},
+    "type=13": {"model": "rankine:block/sperrylite_ore13"}
   }
 }

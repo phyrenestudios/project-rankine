@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "group": "wooden_button",
+      "ingredients": [
+        {
+          "item": "rankine:bamboo_clums"
+        }
+      ],
+      "result": {
+        "item": "rankine:bamboo_clums_button"
+      }
+    }

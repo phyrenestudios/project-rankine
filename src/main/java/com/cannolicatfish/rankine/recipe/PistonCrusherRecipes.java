@@ -57,11 +57,15 @@ public class PistonCrusherRecipes {
         if ((input1.getItem() == new ItemStack(ModBlocks.SHALE).getItem())) {
             return new Pair<>(new ItemStack(Items.CLAY_BALL), new Float[]{2f,0f});
         }
-
+        if ((input1.getItem() == new ItemStack(ModBlocks.IRONSTONE).getItem())) {
+            return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{1f,0f});
+        }
+        if ((input1.getItem() == new ItemStack(ModBlocks.ANORTHOSITE).getItem())) {
+            return new Pair<>(new ItemStack(ModItems.FELDSPAR), new Float[]{2f,0f});
+        }
         if ((input1.getItem() == new ItemStack(ModBlocks.PERIDOTITE).getItem()) || input1.getItem() == new ItemStack(ModBlocks.KOMATIITE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.PYROXENE), new Float[]{2f,0f});
         }
-
         if ((input1.getItem() == new ItemStack(ModBlocks.RINGWOODITE).getItem()) || input1.getItem() == new ItemStack(ModBlocks.WADSLEYITE).getItem() || input1.getItem() == new ItemStack(ModBlocks.BRIDGMANITE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.MAGNESIA), new Float[]{0f,0.5f});
         }

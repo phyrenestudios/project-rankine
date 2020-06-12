@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:bamboo_clums_fence_inventory"
+              "name": "rankine:bamboo_clums_fence"
             }
           ],
           "conditions":

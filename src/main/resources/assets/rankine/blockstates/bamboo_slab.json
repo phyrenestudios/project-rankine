@@ -2,6 +2,6 @@
     "variants": {
         "type=bottom": { "model": "rankine:block/bamboo_slab" },
         "type=top": { "model": "rankine:block/bamboo_slab_top" },
-        "type=double": { "model": "rankine:block/bamboo" }
+        "type=double": { "model": "rankine:block/bamboo_planks" }
         }
     }

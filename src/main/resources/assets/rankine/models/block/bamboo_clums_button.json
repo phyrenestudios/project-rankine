@@ -1,0 +1,6 @@
+{
+      "parent": "block/button",
+      "textures": {
+        "texture": "rankine:block/bamboo_clums"
+      }
+    }
