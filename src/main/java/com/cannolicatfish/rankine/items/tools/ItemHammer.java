@@ -132,7 +132,7 @@ public class ItemHammer extends ToolItem {
     }
 
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-        entityLiving.swingArm(Hand.MAIN_HAND);
+        entityLiving.swing(Hand.MAIN_HAND,false);
         RayTraceResult raytraceresult = rayTrace(worldIn, (PlayerEntity) entityLiving, RayTraceContext.FluidMode.ANY);
         BlockPos pos;
         if (raytraceresult instanceof BlockRayTraceResult)
@@ -143,7 +143,6 @@ public class ItemHammer extends ToolItem {
         {
             pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
         }
-
         System.out.println(this.getUseDuration(stack));
         System.out.println(timeLeft);
         System.out.println(this.getUseDuration(stack) - timeLeft);
@@ -162,9 +161,6 @@ public class ItemHammer extends ToolItem {
 
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(1, attacker, (p_220045_0_) -> {
-            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
         if (target.getEntityWorld().isRainingAt(target.getPosition()) && getLightningModifier(stack) == 1)
         {
             ((ServerWorld)target.getEntityWorld()).addLightningBolt(new LightningBoltEntity(target.world,target.getPosX(),target.getPosY(),target.getPosZ(), false));
@@ -185,6 +181,9 @@ public class ItemHammer extends ToolItem {
         {
             target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,5*20, 2));
         }
+        stack.damageItem(1, attacker, (p_220045_0_) -> {
+            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
         return true;
     }
 
