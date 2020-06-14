@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/diorite"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/diorite" }
+        }
+    }

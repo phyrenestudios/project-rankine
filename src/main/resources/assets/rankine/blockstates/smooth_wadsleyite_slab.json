@@ -1,7 +1,7 @@
 {
-"variants": {
-    "type=bottom": { "model": "rankine:block/smooth_wadsleyite_slab" },
-    "type=top": { "model": "rankine:block/smooth_wadsleyite_slab_top" },
-    "type=double": { "model": "rankine:block/smooth_wadsleyite_slab_double" }
-    }
-}
+        "variants": {
+            "type=bottom": { "model": "rankine:block/smooth_wadsleyite_slab" },
+            "type=top": { "model": "rankine:block/smooth_wadsleyite_slab_top" },
+            "type=double": { "model": "rankine:block/smooth_wadsleyite_slab_double" }
+            }
+        }

@@ -1,0 +1,20 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+                "bmb",
+                "mbm",
+                "bmb"
+          ],
+          "key": {
+                "b": {
+                  "item": "rankine:pumice"
+                },
+                "m": {
+                  "item": "rankine:mortar"
+                }
+          },
+          "result": {
+                "item": "rankine:pumice_bricks",
+                "count": 6
+          }
+        }

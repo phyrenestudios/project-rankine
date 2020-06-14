@@ -1,8 +1,8 @@
 {
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "rankine:block/smooth_bridgmanite",
-    "top": "rankine:block/smooth_bridgmanite",
-    "side": "rankine:block/smooth_bridgmanite"
-  }
-}
+      "parent": "block/inner_stairs",
+      "textures": {
+        "bottom": "rankine:block/smooth_bridgmanite",
+        "top": "rankine:block/smooth_bridgmanite",
+        "side": "rankine:block/smooth_bridgmanite"
+      }
+    }

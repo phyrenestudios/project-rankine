@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:smooth_granite"
+      },
+      "result": "rankine:smooth_granite_wall",
+      "count": 1
+    }

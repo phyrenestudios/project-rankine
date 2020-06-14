@@ -1,8 +1,8 @@
 {
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "rankine:block/smooth_perovskite",
-    "top": "rankine:block/smooth_perovskite",
-    "side": "rankine:block/smooth_perovskite"
-  }
-}
+      "parent": "block/stairs",
+      "textures": {
+        "bottom": "rankine:block/smooth_perovskite",
+        "top": "rankine:block/smooth_perovskite",
+        "side": "rankine:block/smooth_perovskite"
+      }
+    }

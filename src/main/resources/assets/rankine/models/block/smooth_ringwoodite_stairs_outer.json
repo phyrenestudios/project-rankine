@@ -1,8 +1,8 @@
 {
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "rankine:block/smooth_ringwoodite",
-    "top": "rankine:block/smooth_ringwoodite",
-    "side": "rankine:block/smooth_ringwoodite"
-  }
-}
+      "parent": "block/outer_stairs",
+      "textures": {
+        "bottom": "rankine:block/smooth_ringwoodite",
+        "top": "rankine:block/smooth_ringwoodite",
+        "side": "rankine:block/smooth_ringwoodite"
+      }
+    }

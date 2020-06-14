@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/smooth_ironstone"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/smooth_ironstone" }
+        }
+    }

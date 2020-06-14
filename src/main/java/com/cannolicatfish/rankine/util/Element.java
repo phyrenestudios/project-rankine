@@ -80,4 +80,5 @@ public enum Element {
     public float getCorrResist() {
         return this.corrResist;
     }
+
 }

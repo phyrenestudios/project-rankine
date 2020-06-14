@@ -3,12 +3,9 @@ package com.cannolicatfish.rankine.world.biome;
 import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
@@ -66,7 +63,6 @@ public class RankineBiomes {
             BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FORESTED_LAGOON, 10));
             BiomeManager.addSpawnBiome(RankineBiomes.FORESTED_LAGOON);
             BiomeDictionary.addTypes(RankineBiomes.FORESTED_LAGOON, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
-
         }
     }
 

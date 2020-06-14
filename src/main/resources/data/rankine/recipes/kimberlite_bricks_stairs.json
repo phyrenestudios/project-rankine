@@ -1,17 +1,17 @@
 {
-          "type": "minecraft:crafting_shaped",
-          "pattern": [
-            "#  ",
-            "## ",
-            "###"
-          ],
-          "key": {
-            "#": {
-              "item": "rankine:kimberlite_bricks"
-            }
-          },
-          "result": {
-            "item": "rankine:kimberlite_bricks_stairs",
-            "count": 4
-          }
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:kimberlite_bricks"
         }
+      },
+      "result": {
+        "item": "rankine:kimberlite_bricks_stairs",
+        "count": 4
+      }
+    }

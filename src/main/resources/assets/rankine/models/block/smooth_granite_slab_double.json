@@ -1,7 +1,7 @@
 {
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "rankine:block/smooth_granite",
-    "side": "rankine:block/smooth_granite_slab_side"
-  }
-}
+          "parent": "block/cube_column",
+          "textures": {
+                "end": "rankine:block/smooth_granite",
+                "side": "rankine:block/smooth_granite_slab_side"
+          }
+        }

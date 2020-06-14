@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/limestone_bricks"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/limestone_bricks" }
+        }
+    }

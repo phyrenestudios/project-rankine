@@ -1,8 +1,8 @@
 {
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "rankine:block/smooth_basalt",
-    "top": "rankine:block/smooth_basalt",
-    "side": "rankine:block/smooth_basalt_slab_side"
-  }
-}
+      "parent": "block/slab",
+      "textures": {
+        "bottom": "rankine:block/smooth_basalt",
+        "top": "rankine:block/smooth_basalt",
+        "side": "rankine:block/smooth_basalt"
+      }
+    }

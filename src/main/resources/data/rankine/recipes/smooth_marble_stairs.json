@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:smooth_marble"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_marble"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_marble_stairs",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:smooth_marble_stairs",
-    "count": 4
-  }
-}

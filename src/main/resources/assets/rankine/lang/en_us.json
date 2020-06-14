@@ -334,19 +334,31 @@
   "block.rankine.ferropericlase_bricks_wall": "Ferropericlase Bricks Wall",
   "block.rankine.perovskite_bricks_wall": "Perovskite Bricks Wall",
 
+  "block.rankine.scoria": "Scoria",
+  "block.rankine.scoria_slab": "Scoria Slab",
+  "block.rankine.scoria_stairs": "Scoria Stairs",
+  "block.rankine.scoria_wall": "Scoria Wall",
+  "block.rankine.smooth_scoria": "Smooth Scoria",
+  "block.rankine.smooth_scoria_slab": "Smooth Scoria Slab",
+  "block.rankine.smooth_scoria_stairs": "Smooth Scoria Stairs",
+  "block.rankine.smooth_scoria_wall": "Smooth Scoria Wall",
+  "block.rankine.scoria_bricks": "Scoria Bricks",
+  "block.rankine.scoria_bricks_slab": "Scoria Bricks Slab",
+  "block.rankine.scoria_bricks_stairs": "Scoria Bricks Stairs",
+  "block.rankine.scoria_bricks_wall": "Scoria Bricks Wall",
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "block.rankine.pumice": "Pumice",
+  "block.rankine.pumice_slab": "Pumice Slab",
+  "block.rankine.pumice_stairs": "Pumice Stairs",
+  "block.rankine.pumice_wall": "Pumice Wall",
+  "block.rankine.smooth_pumice": "Smooth Pumice",
+  "block.rankine.smooth_pumice_slab": "Smooth Pumice Slab",
+  "block.rankine.smooth_pumice_stairs": "Smooth Pumice Stairs",
+  "block.rankine.smooth_pumice_wall": "Smooth Pumice Wall",
+  "block.rankine.pumice_bricks": "Pumice Bricks",
+  "block.rankine.pumice_bricks_slab": "Pumice Bricks Slab",
+  "block.rankine.pumice_bricks_stairs": "Pumice Bricks Stairs",
+  "block.rankine.pumice_bricks_wall": "Pumice Bricks Wall",
 
 
   "block.rankine.garnet_block": "Block of Garnet",

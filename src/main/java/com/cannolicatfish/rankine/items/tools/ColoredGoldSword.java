@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 public class ColoredGoldSword extends SwordItem {
     private int type;
-    public ColoredGoldSword(Item.Properties builder, int type) {
-        super(ItemTier.GOLD, 3, -2.4F, builder);
+    public ColoredGoldSword(IItemTier tier, Item.Properties builder, int type) {
+        super(tier, 3, -2.4F, builder);
         this.type = type;
     }
     @Override

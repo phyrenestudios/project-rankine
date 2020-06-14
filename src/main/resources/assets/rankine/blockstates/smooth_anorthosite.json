@@ -1,5 +1,5 @@
 {
-    "variants": {
-    "": { "model": "rankine:block/smooth_anorthosite" }
+        "variants": {
+        "": { "model": "rankine:block/smooth_anorthosite" }
+        }
     }
-}

@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:smooth_shale"
+      },
+      "result": "rankine:smooth_shale_slab",
+      "count": 2
+    }

@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:smooth_gneiss"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_gneiss"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_gneiss_stairs",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:smooth_gneiss_stairs",
-    "count": 4
-  }
-}

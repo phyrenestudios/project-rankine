@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:smooth_kimberlite"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_kimberlite"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_kimberlite_stairs",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:smooth_kimberlite_stairs",
-    "count": 4
-  }
-}

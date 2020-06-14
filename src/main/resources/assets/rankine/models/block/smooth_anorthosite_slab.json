@@ -3,6 +3,6 @@
       "textures": {
         "bottom": "rankine:block/smooth_anorthosite",
         "top": "rankine:block/smooth_anorthosite",
-        "side": "rankine:block/smooth_anorthosite_slab_side"
+        "side": "rankine:block/smooth_anorthosite"
       }
     }

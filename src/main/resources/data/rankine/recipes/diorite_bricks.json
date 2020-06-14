@@ -1,1 +1,20 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:mortar" },"b": { "item": "minecraft:diorite"} }, "result": { "item": "rankine:diorite_bricks", "count": 4 } }
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+                "bmb",
+                "mbm",
+                "bmb"
+          ],
+          "key": {
+                "b": {
+                  "item": "rankine:diorite"
+                },
+                "m": {
+                  "item": "rankine:mortar"
+                }
+          },
+          "result": {
+                "item": "rankine:diorite_bricks",
+                "count": 6
+          }
+        }
