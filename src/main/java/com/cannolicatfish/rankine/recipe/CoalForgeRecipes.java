@@ -25,6 +25,36 @@ public class CoalForgeRecipes {
                 AlloyPickaxe.addAlloy(result,new AlloyData(input2.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString()));
                 return result;
             }
+            if (template.getItem() == ModItems.AXE_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 3)
+            {
+                result = new ItemStack(ModItems.AXE_TEMPLATE);
+                return result;
+            }
+            if (template.getItem() == ModItems.SHOVEL_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 1)
+            {
+                result = new ItemStack(ModItems.SHOVEL_TEMPLATE);
+                return result;
+            }
+            if (template.getItem() == ModItems.HOE_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 2)
+            {
+                result = new ItemStack(ModItems.BRONZE_PICKAXE);
+                return result;
+            }
+            if (template.getItem() == ModItems.SWORD_TEMPLATE && input1.getCount() >= 1 && input2.getCount() >= 2)
+            {
+                result = new ItemStack(ModItems.BRONZE_PICKAXE);
+                return result;
+            }
+            if (template.getItem() == ModItems.HAMMER_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 5)
+            {
+                result = new ItemStack(ModItems.BRONZE_HAMMER);
+                return result;
+            }
+            if (template.getItem() == ModItems.SPEAR_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 3)
+            {
+                result = new ItemStack(ModItems.BRONZE_SPEAR);
+                return result;
+            }
 
         }
         if (input1.getItem() == Items.STICK && input2.getItem() == ModItems.ROSE_GOLD_ALLOY)

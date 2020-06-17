@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WhiteGoldAlloyUtils implements AlloyUtils {
-    public ElementUtils elem;
+    public PeriodicTableUtils elem;
     public List<String> restrict = Arrays.asList("Fe", "Pt", "W", "Ta");
     public List<Integer> emin = Arrays.asList(50,0,0);
     public List<Integer> emax = Arrays.asList(80,50,50);

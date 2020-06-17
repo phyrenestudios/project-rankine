@@ -1,11 +1,12 @@
 package com.cannolicatfish.rankine.util;
 
+import com.cannolicatfish.rankine.util.elements.*;
 import com.sun.jna.platform.mac.Carbon;
 
 import java.util.Arrays;
 import java.util.List;
 
-public final class ElementUtils {
+public final class PeriodicTableUtils {
 
     public final List<String> names = Arrays.asList("None","Hydrogen","Helium","Lithium","Beryllium","Boron","Carbon","Nitrogen ","Oxygen","Flourine","Neon","Sodium","Magnesium","Aluminum","Silicon","Phosphorus","Sulfur","Chlorine",
             "Argon", "Potassium","Calcium","Scandium", "Titanium","Vanadium","Chromium","Manganese","Iron","Cobalt","Nickel","Copper","Zinc","Gallium","Germanium","Arsenic","Selenium","Bromine","Krypton","Rubidium","Strontium",
@@ -39,13 +40,25 @@ public final class ElementUtils {
         }
     }
 
-    public String getElementNamebySymbol(String symbol)
+    public String getElementNameBySymbol(String symbol)
     {
         int index = symbols.indexOf(symbol);
         return names.get(index);
     }
 
-    public String getElementbyMaterial(String material)
+    public Element getElementBySymbol(String symbol)
+    {
+        for (Element i: Element.values())
+        {
+            if (i.symbol.contains(symbol))
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public String getElementByMaterial(String material)
     {
         if (material.equals("none") || material.equals("nope"))
         {
@@ -65,5 +78,71 @@ public final class ElementUtils {
             index++;
         }
         return "";
+    }
+
+    public int calcDurability(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        int durability = 0;
+        for (Element e: elements)
+        {
+            durability += e.element.getDurabilityFromPercent(percents.get(index));
+            index++;
+        }
+
+        return durability;
+    }
+
+    public float calcMiningSpeed(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        float miningSpeed = 0f;
+        for (Element e: elements)
+        {
+            miningSpeed += e.element.getMiningSpeedFromPercent(percents.get(index));
+            index++;
+        }
+
+        return miningSpeed;
+    }
+
+    public int calcEnchantability(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        int enchant = 0;
+        for (Element e: elements)
+        {
+            enchant += e.element.getEnchantabilityFromPercent(percents.get(index));
+            index++;
+        }
+
+        return enchant;
+    }
+
+    public enum Element {
+        CARBON(6,"C",new CarbonElement()),
+        ALUMINUM(13, "Al", new AluminumElement()),
+        SULFUR(16,"S",new SulfurElement()),
+        MANGANESE(25, "Mn", new ManganeseElement()),
+        IRON(26, "Fe", new IronElement()),
+        NICKEL(28,"Ni", new NickelElement()),
+        COPPER(29, "Cu", new CopperElement()),
+        ZINC(30, "Zn", new ZincElement()),
+        TIN(50, "Sn", new TinElement()),
+        GOLD(79, "Au", new GoldElement());
+
+        public final int atomicNumber;
+        public final String symbol;
+        public final ElementInterface element;
+
+
+
+        private Element(int atomicNumber, String symbol, ElementInterface element)
+        {
+            this.atomicNumber = atomicNumber;
+            this.symbol = symbol;
+            this.element = element;
+        }
+
     }
 }

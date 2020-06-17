@@ -831,6 +831,8 @@
   "rankine.advancements.story.make_refractory_brick.description": "Make Refractory Bricks by finding clay and using mortar",
   "rankine.advancements.story.make_alloy_furnace.title": "Combined Strength",
   "rankine.advancements.story.make_alloy_furnace.description": "Make an Alloy Furnace by using tin sheetmetal and refractory bricks",
+  "rankine.advancements.story.make_coal_forge.title": "Automated Tools",
+  "rankine.advancements.story.make_coal_forge.description": "Make a Coal Forge to make alloy tools",
   "rankine.advancements.story.get_bronze_tools.title": "Bronze Age",
   "rankine.advancements.story.get_bronze_tools.description": "Make a Bronze Hammer to begin crushing ores",
   "rankine.advancements.story.find_meteorite.title": "Iron in Space",

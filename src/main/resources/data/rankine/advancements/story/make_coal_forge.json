@@ -1,14 +1,14 @@
 {
-  "parent": "rankine:story/make_coal_forge",
+  "parent": "rankine:story/make_alloy_furnace",
   "display": {
     "icon": {
-      "item": "rankine:bronze_hammer"
+      "item": "rankine:coal_forge"
     },
     "title": {
-      "translate": "rankine.advancements.story.get_bronze_tools.title"
+      "translate": "rankine.advancements.story.make_coal_forge.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.get_bronze_tools.description"
+      "translate": "rankine.advancements.story.make_coal_forge.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "bronze_hammer": {
+    "coal_forge": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:bronze_hammer"
+            "item": "rankine:coal_forge"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "bronze_hammer"
+      "coal_forge"
     ]
   ]
 }

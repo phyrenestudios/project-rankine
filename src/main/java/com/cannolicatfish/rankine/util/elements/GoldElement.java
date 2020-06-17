@@ -2,22 +2,20 @@ package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 
-import javax.xml.bind.Element;
-
-public class CopperElement implements ElementInterface {
+public class GoldElement implements ElementInterface{
     @Override
     public PeriodicTableUtils.Element getReference() {
-        return PeriodicTableUtils.Element.COPPER;
+        return PeriodicTableUtils.Element.GOLD;
     }
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        if (x >= 50)
+        if (x >= 60)
         {
-            return (4+(x/5 - 10))^2;
+            return 8*(x/10 - 5);
         } else
         {
-            return x/10;
+            return 0;
         }
     }
 
@@ -25,10 +23,10 @@ public class CopperElement implements ElementInterface {
     public float getMiningSpeedFromPercent(int x) {
         if (x >= 50)
         {
-            return 2.5f;
+            return 4.5f + 1.5f*(x/10f - 5);
         } else
         {
-            return x/20f;
+            return x/10f;
         }
     }
 
@@ -36,10 +34,10 @@ public class CopperElement implements ElementInterface {
     public int getEnchantabilityFromPercent(int x) {
         if (x >= 50)
         {
-            return 7;
+            return 12 + (x/5 - 5);
         } else
         {
-            return x/10 + 3;
+            return x/5;
         }
     }
 }
