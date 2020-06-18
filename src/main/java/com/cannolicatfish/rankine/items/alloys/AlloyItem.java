@@ -44,6 +44,7 @@ public class AlloyItem extends Item {
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
             tooltip.add(new StringTextComponent(comp).applyTextStyle(TextFormatting.GRAY));
+            /*
             if (Screen.hasShiftDown())
             {
                 List<PeriodicTableUtils.Element> elements = getElements(comp);
@@ -56,7 +57,7 @@ public class AlloyItem extends Item {
             {
                 tooltip.add((new StringTextComponent("Hold shift for details...").applyTextStyle(TextFormatting.GRAY).applyTextStyle(TextFormatting.ITALIC)));
             }
-
+            */
         }
     }
 
@@ -92,7 +93,7 @@ public class AlloyItem extends Item {
     {
         //String c = getComposition(stack).getCompound(0).get("comp").getString();
         PeriodicTableUtils utils = new PeriodicTableUtils();
-        List<String> comp = Arrays.asList(c.split("-"));
+        String[] comp = c.split("-");
         List<PeriodicTableUtils.Element> list = new ArrayList<>();
         for (String e: comp)
         {
@@ -104,7 +105,7 @@ public class AlloyItem extends Item {
 
     public List<Integer> getPercents(String c)
     {
-        List<String> comp = Arrays.asList(c.split("-"));
+        String[] comp = c.split("-");
         List<Integer> list = new ArrayList<>();
         for (String e: comp)
         {
