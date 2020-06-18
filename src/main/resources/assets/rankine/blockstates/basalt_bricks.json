@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/basalt_bricks"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/basalt_bricks" }
+        }
+    }

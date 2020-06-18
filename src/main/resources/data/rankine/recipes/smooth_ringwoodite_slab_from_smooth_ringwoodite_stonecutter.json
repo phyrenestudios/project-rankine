@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:smooth_ringwoodite"
+      },
+      "result": "rankine:smooth_ringwoodite_slab",
+      "count": 2
+    }

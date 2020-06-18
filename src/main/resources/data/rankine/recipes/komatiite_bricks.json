@@ -1,0 +1,20 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+                "bmb",
+                "mbm",
+                "bmb"
+          ],
+          "key": {
+                "b": {
+                  "item": "rankine:komatiite"
+                },
+                "m": {
+                  "item": "rankine:mortar"
+                }
+          },
+          "result": {
+                "item": "rankine:komatiite_bricks",
+                "count": 6
+          }
+        }

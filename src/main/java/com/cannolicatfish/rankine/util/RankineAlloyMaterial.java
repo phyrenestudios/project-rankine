@@ -19,25 +19,25 @@ import java.util.List;
 public enum RankineAlloyMaterial {
 
     LIGNITE("rankine:materials/lignite",Arrays.asList(ModItems.LIGNITE, ModItems.getBlockAsItem(ModBlocks.LIGNITE_BLOCK)),
-            Arrays.asList(Element.CARBON, Element.SULFUR),Arrays.asList(5,4),false),
+            Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(5,4),false),
     SUBBITUMINOUS("rankine:materials/subbituminous_coal",Arrays.asList(Items.COAL, ModItems.getBlockAsItem(Blocks.COAL_BLOCK)),
-            Arrays.asList(Element.CARBON, Element.SULFUR),Arrays.asList(6,3),false),
+            Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(6,3),false),
     BITUMINOUS("rankine:materials/bituminous_coal",Arrays.asList(ModItems.BITUMINOUS_COAL, ModItems.getBlockAsItem(ModBlocks.BITUMINOUS_COAL_BLOCK)),
-            Arrays.asList(Element.CARBON, Element.SULFUR),Arrays.asList(8,1),false),
+            Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(8,1),false),
     ANTHRACITE("rankine:materials/anthracite_coal",Arrays.asList(ModItems.ANTHRACITE_COAL, ModItems.getBlockAsItem(ModBlocks.ANTHRACITE_COAL_BLOCK)),
-            Arrays.asList(Element.CARBON, Element.SULFUR),Arrays.asList(16,2),false),
-    COKE("rankine:materials/coke",Arrays.asList(ModItems.COKE, ModItems.getBlockAsItem(ModBlocks.COKE_BLOCK)),Collections.singletonList(Element.CARBON),
+            Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(16,2),false),
+    COKE("rankine:materials/coke",Arrays.asList(ModItems.COKE, ModItems.getBlockAsItem(ModBlocks.COKE_BLOCK)),Collections.singletonList(PeriodicTableUtils.Element.CARBON),
             Collections.singletonList(18),false),
-    CHARCOAL("rankine:materials/charcoal",Collections.singletonList(Items.CHARCOAL),Collections.singletonList(Element.CARBON),
+    CHARCOAL("rankine:materials/charcoal",Collections.singletonList(Items.CHARCOAL),Collections.singletonList(PeriodicTableUtils.Element.CARBON),
             Collections.singletonList(9),false);
 
     private final String tag;
     private final List<Item> items;
-    private final List<Element> elements;
+    private final List<PeriodicTableUtils.Element> elements;
     private final List<Integer> amounts;
     private final boolean containsNugget;
 
-    private RankineAlloyMaterial(String tag, List<Item> items, List<Element> elements, List<Integer> amounts, boolean containsNugget)
+    private RankineAlloyMaterial(String tag, List<Item> items, List<PeriodicTableUtils.Element> elements, List<Integer> amounts, boolean containsNugget)
     {
         this.tag = tag;
         this.items = items;
@@ -46,7 +46,7 @@ public enum RankineAlloyMaterial {
         this.containsNugget = containsNugget;
     }
 
-    private RankineAlloyMaterial(String tag, List<Element> elements, List<Integer> amounts, boolean containsNugget)
+    private RankineAlloyMaterial(String tag, List<PeriodicTableUtils.Element> elements, List<Integer> amounts, boolean containsNugget)
     {
         this.tag = tag;
         this.items = null;
@@ -55,7 +55,7 @@ public enum RankineAlloyMaterial {
         this.containsNugget = containsNugget;
     }
 
-    public static Pair<List<Element>,List<Integer>> getMaterial(Item item)
+    public static Pair<List<PeriodicTableUtils.Element>,List<Integer>> getMaterial(Item item)
     {
         System.out.println(item.getTags());
         for (RankineAlloyMaterial mat: RankineAlloyMaterial.values()) {

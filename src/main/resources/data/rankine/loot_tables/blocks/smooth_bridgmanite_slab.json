@@ -1,32 +1,32 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
+      "type": "minecraft:block",
+      "pools": [
         {
-          "type": "minecraft:item",
-          "functions": [
+          "rolls": 1,
+          "entries": [
             {
-              "function": "minecraft:set_count",
-              "conditions": [
+              "type": "minecraft:item",
+              "functions": [
                 {
-                  "condition": "minecraft:block_state_property",
-                  "block": "rankine:smooth_bridgmanite_slab",
-                  "properties": {
-                    "type": "double"
-                  }
+                  "function": "minecraft:set_count",
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "rankine:smooth_bridgmanite_slab",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 2
+                },
+                {
+                  "function": "minecraft:explosion_decay"
                 }
               ],
-              "count": 2
-            },
-            {
-              "function": "minecraft:explosion_decay"
+              "name": "rankine:smooth_bridgmanite_slab"
             }
-          ],
-          "name": "rankine:smooth_bridgmanite_slab"
+          ]
         }
       ]
     }
-  ]
-}

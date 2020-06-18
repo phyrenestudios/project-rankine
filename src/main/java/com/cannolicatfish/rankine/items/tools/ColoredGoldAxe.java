@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 public class ColoredGoldAxe extends AxeItem {
     private int type;
-    public ColoredGoldAxe(Item.Properties builder, int type) {
-        super(ItemTier.GOLD, 4.0F, -3.2F, builder);
+    public ColoredGoldAxe(IItemTier tier, Item.Properties builder, int type) {
+        super(tier, 4.0F, -3.2F, builder);
         this.type = type;
     }
     @Override

@@ -1,5 +1,5 @@
 {
-    "variants": {
-    "": { "model": "rankine:block/rhyolite_bricks" }
+        "variants": {
+        "": { "model": "rankine:block/rhyolite_bricks" }
+        }
     }
-}

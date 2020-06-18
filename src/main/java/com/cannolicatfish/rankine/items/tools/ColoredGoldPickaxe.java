@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 
 public class ColoredGoldPickaxe extends PickaxeItem {
     private int type;
-    public ColoredGoldPickaxe(Properties p_i48478_4_, int type) {
-        super(ItemTier.GOLD, 1, -2.8F, p_i48478_4_);
+    public ColoredGoldPickaxe(IItemTier tier, Properties p_i48478_4_, int type) {
+        super(tier, 1, -2.8F, p_i48478_4_);
         this.type = type;
     }
 

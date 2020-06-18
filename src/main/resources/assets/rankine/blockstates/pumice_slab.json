@@ -1,0 +1,7 @@
+{
+        "variants": {
+            "type=bottom": { "model": "rankine:block/pumice_slab" },
+            "type=top": { "model": "rankine:block/pumice_slab_top" },
+            "type=double": { "model": "rankine:block/pumice" }
+            }
+        }

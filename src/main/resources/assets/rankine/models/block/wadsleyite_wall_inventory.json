@@ -1,6 +1,6 @@
 {
-            "parent": "block/wall_inventory",
-            "textures": {
-                "wall": "rankine:block/wadsleyite"
-            }
+        "parent": "block/wall_inventory",
+        "textures": {
+            "wall": "rankine:block/wadsleyite"
         }
+    }

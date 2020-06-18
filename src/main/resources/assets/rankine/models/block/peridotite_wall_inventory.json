@@ -1,6 +1,6 @@
 {
-            "parent": "block/wall_inventory",
-            "textures": {
-                "wall": "rankine:block/peridotite"
-            }
+        "parent": "block/wall_inventory",
+        "textures": {
+            "wall": "rankine:block/peridotite"
         }
+    }

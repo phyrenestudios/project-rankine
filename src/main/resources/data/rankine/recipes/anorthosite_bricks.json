@@ -1,0 +1,20 @@
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+                "bmb",
+                "mbm",
+                "bmb"
+          ],
+          "key": {
+                "b": {
+                  "item": "rankine:anorthosite"
+                },
+                "m": {
+                  "item": "rankine:mortar"
+                }
+          },
+          "result": {
+                "item": "rankine:anorthosite_bricks",
+                "count": 6
+          }
+        }

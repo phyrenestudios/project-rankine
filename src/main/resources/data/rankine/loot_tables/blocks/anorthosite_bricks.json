@@ -1,21 +1,21 @@
 {
-  "type": "minecraft:block",
-  "pools":
-  [
-    { "rolls": 1,
-      "entries":
+      "type": "minecraft:block",
+      "pools":
       [
-        {
-          "type": "minecraft:item",
-          "name": "rankine:anorthosite_bricks"
-        }
-      ],
-      "conditions":
-      [
-        {
-          "condition": "minecraft:survives_explosion"
+        { "rolls": 1,
+          "entries":
+          [
+            {
+              "type": "minecraft:item",
+              "name": "rankine:anorthosite_bricks"
+            }
+          ],
+          "conditions":
+          [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ]
         }
       ]
     }
-  ]
-}

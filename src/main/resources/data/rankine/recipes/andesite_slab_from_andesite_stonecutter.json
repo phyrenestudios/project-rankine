@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:andesite"
+      },
+      "result": "rankine:andesite_slab",
+      "count": 2
+    }

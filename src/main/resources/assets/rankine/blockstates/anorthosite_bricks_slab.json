@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "type=bottom": { "model": "rankine:block/anorthosite_bricks_slab" },
-        "type=top": { "model": "rankine:block/anorthosite_bricks_slab_top" },
-        "type=double": { "model": "rankine:block/anorthosite_bricks" }
+        "variants": {
+            "type=bottom": { "model": "rankine:block/anorthosite_bricks_slab" },
+            "type=top": { "model": "rankine:block/anorthosite_bricks_slab_top" },
+            "type=double": { "model": "rankine:block/anorthosite_bricks" }
+            }
         }
-    }

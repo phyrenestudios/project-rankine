@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_pumice"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_pumice_slab",
+        "count": 6
+      }
+    }
