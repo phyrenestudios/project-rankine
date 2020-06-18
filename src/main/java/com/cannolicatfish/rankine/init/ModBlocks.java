@@ -160,6 +160,12 @@ public class ModBlocks {
     public static final Block PEROVSKITE = add("perovskite", new RankineStone(DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block SMOOTH_PEROVSKITE = add("smooth_perovskite", new Block(DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block PEROVSKITE_BRICKS = add("perovskite_bricks", new Block(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PUMICE = add("pumice", new RankineStone(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_PUMICE = add("smooth_pumice", new Block(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block PUMICE_BRICKS = add("pumice_bricks", new Block(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA = add("scoria", new RankineStone(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_SCORIA = add("smooth_scoria", new Block(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_BRICKS = add("scoria_bricks", new Block(DEF_STONE.harvestLevel(1)), BLOCKS);
     public static final Block CLAY_BRICKS = add("clay_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS = add("refractory_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS = add("magnesium_refractory_bricks", new Block(DEF_STONE.harvestLevel(2)), BLOCKS);
@@ -225,6 +231,12 @@ public class ModBlocks {
     public static final Block PEROVSKITE_SLAB = add("perovskite_slab", new RankineSlab(DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block SMOOTH_PEROVSKITE_SLAB = add("smooth_perovskite_slab", new RankineSlab(DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_SLAB = add("perovskite_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PUMICE_SLAB = add("pumice_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_PUMICE_SLAB = add("smooth_pumice_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block PUMICE_BRICKS_SLAB = add("pumice_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_SLAB = add("scoria_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_SCORIA_SLAB = add("smooth_scoria_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_BRICKS_SLAB = add("scoria_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
     public static final Block CLAY_BRICKS_SLAB = add("clay_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS_SLAB = add("refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_SLAB = add("magnesium_refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(3)), BLOCKS);
@@ -290,6 +302,12 @@ public class ModBlocks {
     public static final Block PEROVSKITE_STAIRS = add("perovskite_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block SMOOTH_PEROVSKITE_STAIRS = add("smooth_perovskite_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_STAIRS = add("perovskite_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PUMICE_STAIRS = add("pumice_stairs", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_PUMICE_STAIRS = add("smooth_pumice_stairs", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block PUMICE_BRICKS_STAIRS = add("pumice_bricks_stairs", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_STAIRS = add("scoria_stairs", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_SCORIA_STAIRS = add("smooth_scoria_stairs", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_BRICKS_STAIRS = add("scoria_bricks_stairs", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
     public static final Block CLAY_BRICKS_STAIRS = add("clay_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS_STAIRS = add("refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
@@ -355,6 +373,12 @@ public class ModBlocks {
     public static final Block PEROVSKITE_WALL = add("perovskite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block SMOOTH_PEROVSKITE_WALL = add("smooth_perovskite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_WALL = add("perovskite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PUMICE_WALL = add("pumice_wall", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_PUMICE_WALL = add("smooth_pumice_wall", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block PUMICE_BRICKS_WALL = add("pumice_bricks_wall", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_WALL = add("scoria_wall", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_SCORIA_WALL = add("smooth_scoria_wall", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_BRICKS_WALL = add("scoria_bricks_wall", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
 
     //WOOD BLOCKS
     public static final Block CEDAR_LOG = add("cedar_log", new LogBlock(MaterialColor.RED, DEF_WOOD), BLOCKS, 300);
