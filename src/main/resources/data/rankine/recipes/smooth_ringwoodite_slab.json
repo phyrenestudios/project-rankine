@@ -1,15 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:smooth_ringwoodite"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_ringwoodite"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_ringwoodite_slab",
+        "count": 6
+      }
     }
-  },
-  "result": {
-    "item": "rankine:smooth_ringwoodite_slab",
-    "count": 6
-  }
-}

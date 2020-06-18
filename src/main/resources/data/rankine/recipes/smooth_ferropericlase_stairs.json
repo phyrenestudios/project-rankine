@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:smooth_ferropericlase"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_ferropericlase"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_ferropericlase_stairs",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:smooth_ferropericlase_stairs",
-    "count": 4
-  }
-}

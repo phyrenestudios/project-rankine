@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/gneiss_bricks"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/gneiss_bricks" }
+        }
+    }

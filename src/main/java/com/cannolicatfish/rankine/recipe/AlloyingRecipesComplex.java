@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.util.ElementUtils;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.RankineAlloyMaterial;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
@@ -596,7 +596,7 @@ public class AlloyingRecipesComplex {
 
     public String getComposition(ItemStack input1, ItemStack input2, ItemStack input3)
     {
-        ElementUtils a = new ElementUtils();
+        PeriodicTableUtils a = new PeriodicTableUtils();
         List<Integer> percents = getPercents(input1,input2,input3).getKey();
         List<ItemStack> inputs = getPercents(input1,input2,input3).getValue();
         /*
@@ -610,11 +610,11 @@ public class AlloyingRecipesComplex {
         }*/
         if (percents.get(2) != 0)
         {
-            return percents.get(0) + a.getElementbyMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +
-                    a.getElementbyMaterial(returnItemMaterial(inputs.get(1)).getKey()) + "-" + percents.get(2) + a.getElementbyMaterial(returnItemMaterial(inputs.get(2)).getKey());
+            return percents.get(0) + a.getElementByMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +
+                    a.getElementByMaterial(returnItemMaterial(inputs.get(1)).getKey()) + "-" + percents.get(2) + a.getElementByMaterial(returnItemMaterial(inputs.get(2)).getKey());
         } else {
-            return percents.get(0) + a.getElementbyMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +
-                    a.getElementbyMaterial(returnItemMaterial(inputs.get(1)).getKey());
+            return percents.get(0) + a.getElementByMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +
+                    a.getElementByMaterial(returnItemMaterial(inputs.get(1)).getKey());
         }
 
     }

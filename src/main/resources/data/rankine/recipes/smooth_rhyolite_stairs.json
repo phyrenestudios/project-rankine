@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:smooth_rhyolite"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:smooth_rhyolite"
+        }
+      },
+      "result": {
+        "item": "rankine:smooth_rhyolite_stairs",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:smooth_rhyolite_stairs",
-    "count": 4
-  }
-}

@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "rankine:komatiite"
-  },
-  "result": "rankine:smooth_komatiite",
-  "experience": 0.1,
-  "cookingtime": 200
-}
+          "type": "minecraft:smelting",
+          "ingredient": {
+                  "item": "rankine:komatiite"
+          },
+          "result": "rankine:smooth_komatiite",
+          "experience": 0.1,
+          "cookingtime": 200
+        }

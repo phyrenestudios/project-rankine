@@ -2,25 +2,39 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistry;
 
 import javax.annotation.Nullable;
+import javax.xml.soap.Text;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AlloyItem extends Item {
 
-    public AlloyItem(Properties properties) {
+    String defComp;
+    public AlloyItem(String composition, Properties properties) {
         super(properties);
+        this.defComp = composition;
     }
 
     @Override
@@ -28,7 +42,21 @@ public class AlloyItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (getComposition(stack).size() != 0)
         {
-            tooltip.add((new StringTextComponent(getComposition(stack).getCompound(0).get("comp").getString())).applyTextStyle(TextFormatting.GRAY));
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            tooltip.add(new StringTextComponent(comp).applyTextStyle(TextFormatting.GRAY));
+            if (Screen.hasShiftDown())
+            {
+                List<PeriodicTableUtils.Element> elements = getElements(comp);
+                List<Integer> percents = getPercents(comp);
+                for (int i = 0; i < elements.size(); i++)
+                {
+                    tooltip.add(new StringTextComponent(elements.get(i).toString() + ": " + percents.get(i) + "%").applyTextStyle(TextFormatting.GRAY));
+                }
+            } else
+            {
+                tooltip.add((new StringTextComponent("Hold shift for details...").applyTextStyle(TextFormatting.GRAY).applyTextStyle(TextFormatting.ITALIC)));
+            }
+
         }
     }
 
@@ -54,10 +82,36 @@ public class AlloyItem extends Item {
     /**
      * Returns the ItemStack of an enchanted version of this item.
      */
-    public static ItemStack getAlloyItemStack(AlloyData p_92111_0_) {
-        ItemStack itemstack = new ItemStack(ModItems.BRONZE_ALLOY);
+    public ItemStack getAlloyItemStack(AlloyData p_92111_0_) {
+        ItemStack itemstack = new ItemStack(this.getItem());
         addAlloy(itemstack, p_92111_0_);
         return itemstack;
+    }
+
+    public List<PeriodicTableUtils.Element> getElements(String c)
+    {
+        //String c = getComposition(stack).getCompound(0).get("comp").getString();
+        PeriodicTableUtils utils = new PeriodicTableUtils();
+        List<String> comp = Arrays.asList(c.split("-"));
+        List<PeriodicTableUtils.Element> list = new ArrayList<>();
+        for (String e: comp)
+        {
+            String str = e.replaceAll("[^A-Za-z]+", "");
+            list.add(utils.getElementBySymbol(str));
+        }
+        return list;
+    }
+
+    public List<Integer> getPercents(String c)
+    {
+        List<String> comp = Arrays.asList(c.split("-"));
+        List<Integer> list = new ArrayList<>();
+        for (String e: comp)
+        {
+            String str = e.replaceAll("\\D+", "");
+            list.add(Integer.parseInt(str));
+        }
+        return list;
     }
 
     /**
@@ -66,7 +120,7 @@ public class AlloyItem extends Item {
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineMetals) {
-            items.add(getAlloyItemStack(new AlloyData("80Cu-20Sn")));
+            items.add(getAlloyItemStack(new AlloyData(defComp)));
         }
     }
 

@@ -7,8 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public final class BronzeAlloyUtils implements AlloyUtils {
-    public ElementUtils elem;
+    public PeriodicTableUtils elem;
     public List<String> possible = Arrays.asList("Cu", "Sn", "Al", "Mn", "Ni", "Zn");
+    public List<PeriodicTableUtils.Element> elementsList = Arrays.asList(PeriodicTableUtils.Element.COPPER, PeriodicTableUtils.Element.TIN, PeriodicTableUtils.Element.ALUMINUM,
+            PeriodicTableUtils.Element.MANGANESE, PeriodicTableUtils.Element.NICKEL, PeriodicTableUtils.Element.ZINC);
     public List<Integer> emin = Arrays.asList(80,10,0,0,0,0);
     public List<Integer> emax = Arrays.asList(90,20,10,10,10,10);
     public RankineToolMaterials material = RankineToolMaterials.BRONZE;

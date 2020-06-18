@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "type=bottom": { "model": "rankine:block/smooth_ironstone_slab" },
-        "type=top": { "model": "rankine:block/smooth_ironstone_slab_top" },
-        "type=double": { "model": "rankine:block/smooth_ironstone" }
+        "variants": {
+            "type=bottom": { "model": "rankine:block/smooth_ironstone_slab" },
+            "type=top": { "model": "rankine:block/smooth_ironstone_slab_top" },
+            "type=double": { "model": "rankine:block/smooth_ironstone_slab_double" }
+            }
         }
-    }

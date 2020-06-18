@@ -1,8 +1,8 @@
 {
-          "parent": "block/outer_stairs",
-          "textures": {
-            "bottom": "rankine:block/kimberlite",
-            "top": "rankine:block/kimberlite",
-            "side": "rankine:block/kimberlite"
-          }
-        }
+      "parent": "block/outer_stairs",
+      "textures": {
+        "bottom": "rankine:block/kimberlite",
+        "top": "rankine:block/kimberlite",
+        "side": "rankine:block/kimberlite"
+      }
+    }

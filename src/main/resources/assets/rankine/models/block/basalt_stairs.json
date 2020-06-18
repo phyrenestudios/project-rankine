@@ -1,8 +1,8 @@
 {
-          "parent": "block/stairs",
-          "textures": {
-            "bottom": "rankine:block/basalt",
-            "top": "rankine:block/basalt",
-            "side": "rankine:block/basalt"
-          }
-        }
+      "parent": "block/stairs",
+      "textures": {
+        "bottom": "rankine:block/basalt",
+        "top": "rankine:block/basalt",
+        "side": "rankine:block/basalt"
+      }
+    }

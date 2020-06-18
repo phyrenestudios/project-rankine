@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 public class ColoredGoldShovel extends ShovelItem {
     private int type;
-    public ColoredGoldShovel(Properties builder, int type) {
-        super(ItemTier.GOLD, 1.5F, -3.0F, builder);
+    public ColoredGoldShovel(IItemTier tier, Properties builder, int type) {
+        super(tier, 1.5F, -3.0F, builder);
         this.type = type;
     }
     @Override

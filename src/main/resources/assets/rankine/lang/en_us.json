@@ -344,19 +344,31 @@
   "block.rankine.ferropericlase_bricks_wall": "Ferropericlase Bricks Wall",
   "block.rankine.perovskite_bricks_wall": "Perovskite Bricks Wall",
 
+  "block.rankine.scoria": "Scoria",
+  "block.rankine.scoria_slab": "Scoria Slab",
+  "block.rankine.scoria_stairs": "Scoria Stairs",
+  "block.rankine.scoria_wall": "Scoria Wall",
+  "block.rankine.smooth_scoria": "Smooth Scoria",
+  "block.rankine.smooth_scoria_slab": "Smooth Scoria Slab",
+  "block.rankine.smooth_scoria_stairs": "Smooth Scoria Stairs",
+  "block.rankine.smooth_scoria_wall": "Smooth Scoria Wall",
+  "block.rankine.scoria_bricks": "Scoria Bricks",
+  "block.rankine.scoria_bricks_slab": "Scoria Bricks Slab",
+  "block.rankine.scoria_bricks_stairs": "Scoria Bricks Stairs",
+  "block.rankine.scoria_bricks_wall": "Scoria Bricks Wall",
 
-
-
-
-
-
-
-
-
-
-
-
-
+  "block.rankine.pumice": "Pumice",
+  "block.rankine.pumice_slab": "Pumice Slab",
+  "block.rankine.pumice_stairs": "Pumice Stairs",
+  "block.rankine.pumice_wall": "Pumice Wall",
+  "block.rankine.smooth_pumice": "Smooth Pumice",
+  "block.rankine.smooth_pumice_slab": "Smooth Pumice Slab",
+  "block.rankine.smooth_pumice_stairs": "Smooth Pumice Stairs",
+  "block.rankine.smooth_pumice_wall": "Smooth Pumice Wall",
+  "block.rankine.pumice_bricks": "Pumice Bricks",
+  "block.rankine.pumice_bricks_slab": "Pumice Bricks Slab",
+  "block.rankine.pumice_bricks_stairs": "Pumice Bricks Stairs",
+  "block.rankine.pumice_bricks_wall": "Pumice Bricks Wall",
 
   "block.rankine.short_grass": "Short Grass",
   "block.rankine.garnet_block": "Block of Garnet",
@@ -832,6 +844,8 @@
   "rankine.advancements.story.make_refractory_brick.description": "Make Refractory Bricks by finding clay and using mortar",
   "rankine.advancements.story.make_alloy_furnace.title": "Combined Strength",
   "rankine.advancements.story.make_alloy_furnace.description": "Make an Alloy Furnace by using tin sheetmetal and refractory bricks",
+  "rankine.advancements.story.make_coal_forge.title": "Automated Tools",
+  "rankine.advancements.story.make_coal_forge.description": "Make a Coal Forge to make alloy tools",
   "rankine.advancements.story.get_bronze_tools.title": "Bronze Age",
   "rankine.advancements.story.get_bronze_tools.description": "Make a Bronze Hammer to begin crushing ores",
   "rankine.advancements.story.find_meteorite.title": "Iron in Space",

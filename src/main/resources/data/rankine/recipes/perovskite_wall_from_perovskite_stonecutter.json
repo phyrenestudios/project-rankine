@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:perovskite"
+      },
+      "result": "rankine:perovskite_wall",
+      "count": 1
+    }
