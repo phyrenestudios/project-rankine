@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fineryforge;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -20,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.FINERY_FORGE_CONTAINER;
+import static com.cannolicatfish.rankine.init.ModBlocks.FINERY_FORGE_CONTAINER;
 
 public class FineryForgeContainer extends Container {
     private TileEntity tileEntity;

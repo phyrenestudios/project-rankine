@@ -1,10 +1,8 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.state.IProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;

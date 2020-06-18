@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 
 import java.util.Random;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.PISTON_CRUSHER_TILE;
+import static com.cannolicatfish.rankine.init.ModBlocks.PISTON_CRUSHER_TILE;
 
 public class PistonCrusherTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 

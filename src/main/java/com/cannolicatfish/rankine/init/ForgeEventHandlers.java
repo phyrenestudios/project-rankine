@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.setup;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.dimension.ModDimensions;
 import net.minecraftforge.common.DimensionManager;

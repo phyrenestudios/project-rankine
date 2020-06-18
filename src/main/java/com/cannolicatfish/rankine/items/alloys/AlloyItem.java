@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.gui.screen.Screen;

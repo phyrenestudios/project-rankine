@@ -1,18 +1,15 @@
-package com.cannolicatfish.rankine.setup;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
-import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeScreen;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
-import com.cannolicatfish.rankine.world.biome.RankineBiomes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeManager;
 
 public class ClientProxy implements IProxy {
 
@@ -69,6 +66,7 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.BANANA_YUCCA_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SPHAGNUM_MOSS, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SWAMP_GRASS, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ModBlocks.SHORT_GRASS, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.DUCKWEED, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.ELDERBERRY_BUSH, RenderType.getCutoutMipped());
         RenderTypeLookup.setRenderLayer(ModBlocks.SNOWBERRY_BUSH, RenderType.getCutoutMipped());

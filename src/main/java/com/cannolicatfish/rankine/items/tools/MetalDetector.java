@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

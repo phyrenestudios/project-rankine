@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

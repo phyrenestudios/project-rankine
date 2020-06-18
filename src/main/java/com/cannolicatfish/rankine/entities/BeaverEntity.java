@@ -1,21 +1,17 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.fluids.ModFluids;
-import javafx.scene.shape.MoveTo;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.IWorld;
@@ -178,6 +174,12 @@ public class BeaverEntity extends AnimalEntity {
                 if (blockstate.getBlock() == ModBlocks.BALSAM_FIR_LOG)
                 {
                     world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_BALSAM_FIR_LOG.getDefaultState(),2);
+                    BeaverEntity.this.heal(1f);
+                    completed = true;
+                }
+                if (blockstate.getBlock() == ModBlocks.MAGNOLIA_LOG)
+                {
+                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_MAGNOLIA_LOG.getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }

@@ -1,12 +1,7 @@
 package com.cannolicatfish.rankine.blocks.coalforge;
 
-import com.cannolicatfish.rankine.items.ModItems;
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
-import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
-import javafx.util.Pair;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -14,7 +9,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -37,9 +31,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import java.util.Random;
-
-import static com.cannolicatfish.rankine.blocks.ModBlocks.COAL_FORGE_TILE;
+import static com.cannolicatfish.rankine.init.ModBlocks.COAL_FORGE_TILE;
 
 public class CoalForgeTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 
