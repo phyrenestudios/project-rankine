@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;

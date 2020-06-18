@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.util;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;

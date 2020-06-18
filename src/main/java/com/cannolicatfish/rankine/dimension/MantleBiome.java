@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.dimension;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.world.gen.feature.*;

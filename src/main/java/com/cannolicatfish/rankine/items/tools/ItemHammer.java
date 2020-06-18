@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.enchantment.ModEnchantments;
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;

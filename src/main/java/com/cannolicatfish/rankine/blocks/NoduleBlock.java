@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;

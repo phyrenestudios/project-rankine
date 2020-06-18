@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.items.ModItems;
 import com.cannolicatfish.rankine.util.AlloyUtils;
-import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -27,10 +25,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;

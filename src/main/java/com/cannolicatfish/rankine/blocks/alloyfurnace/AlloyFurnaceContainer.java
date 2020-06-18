@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_CONTAINER;
+import static com.cannolicatfish.rankine.init.ModBlocks.ALLOY_FURNACE_CONTAINER;
 
 public class AlloyFurnaceContainer extends Container {
     private TileEntity tileEntity;

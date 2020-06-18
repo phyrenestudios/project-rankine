@@ -35,6 +35,11 @@
       "type": "entity",
 	  "entity": "rankine:demonyte",
       "text": "Mantle_Desc"
+    },
+    {
+      "type": "entity",
+      "entity": "rankine:steamer",
+      "text": "Mantle_Desc"
     }
   ]
 }

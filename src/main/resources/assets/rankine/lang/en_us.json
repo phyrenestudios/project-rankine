@@ -165,7 +165,17 @@
   "block.rankine.shale_bricks": "Shale Bricks",
   "block.rankine.andesite_bricks": "Andesite Bricks",
   "block.rankine.diorite_bricks": "Diorite Bricks",
+  "block.rankine.rhyolite_bricks": "Rhyolite Bricks",
   "block.rankine.granite_bricks": "Granite Bricks",
+  "block.rankine.peridotite_bricks": "Peridotite Bricks",
+  "block.rankine.wadsleyite_bricks": "Wadsleyite Bricks",
+  "block.rankine.ringwoodite_bricks": "Ringwoodite Bricks",
+  "block.rankine.bridgmanite_bricks": "Bridgmanite Bricks",
+  "block.rankine.ferropericlase_bricks": "Ferropericlase Bricks",
+  "block.rankine.perovskite_bricks": "Perovskite Bricks",
+  "block.rankine.kimberlite_bricks": "Kimberlite Bricks",
+  "block.rankine.komatiite_bricks": "Komatiite Bricks",
+
   "block.rankine.basalt": "Basalt",
   "block.rankine.rhyolite": "Rhyolite",
   "block.rankine.marble": "Marble",
@@ -348,7 +358,7 @@
 
 
 
-
+  "block.rankine.short_grass": "Short Grass",
   "block.rankine.garnet_block": "Block of Garnet",
   "block.rankine.opal_block": "Block of Opal",
   "block.rankine.peridot_block": "Block of Chrysolite",
@@ -793,17 +803,20 @@
   "entity.rankine.beaver": "Beaver",
   "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
   "entity.rankine.shrouded_king": "Shrouded King",
+
+
   "enchantment.rankine.blast": "Blast",
   "enchantment.rankine.blast.desc": "Causes the hammer to explode blocks in a radius.",
   "enchantment.rankine.atomize": "Atomize",
   "enchantment.rankine.atomize.desc": "Gives the secondary product when crushing.",
   "enchantment.rankine.lightning_aspect": "Lightning Aspect",
   "enchantment.rankine.lightning_aspect.desc": "Causes lightning to strike when attacking mobs.",
+
+
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",
-  "itemGroup.rankine_blocks": "Project Rankine Main",
-  "itemGroup.rankine_metals": "Project Rankine Processing",
-  "itemGroup.rankine_tools": "Project Rankine Tools",
-  "itemGroup.rankine_test": "Project Rankine Test",
+  "itemGroup.rankine_blocks": "Project Rankine Blocks",
+  "itemGroup.rankine_metallurgy": "Project Rankine Metallurgy",
+  "itemGroup.rankine_misc": "Project Rankine Miscellaneous",
 
   "rankine.advancements.story.root.title": "Project Rankine",
   "rankine.advancements.story.root.description": "Begin delving into the changed world",

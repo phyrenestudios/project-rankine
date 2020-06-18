@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.world.biome.RankineBiomes;
 import com.cannolicatfish.rankine.world.gen.feature.*;
@@ -26,7 +26,6 @@ public class OreGen {
     public static void setupOreGeneration() {
 
         removeFeatures();
-        addMeteoricIron();
         addCrystal();
 
         intrusionGenDef(ModBlocks.KIMBERLITE, Collections.emptyList(),false,0, 25, .05f);
@@ -194,16 +193,6 @@ public class OreGen {
                     biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
                             new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, lowerBound, 0, upperBound))));
                 }
-            }
-        }
-    }
-
-    private static void addMeteoricIron()
-    {
-        for (Biome biome : ForgeRegistries.BIOMES) {
-            if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
-                biome.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.METEORIC_IRON_ORE.getDefaultState(),2))
-                        .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(100))));
             }
         }
     }
