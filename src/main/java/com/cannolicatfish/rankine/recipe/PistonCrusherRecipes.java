@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
@@ -82,7 +82,7 @@ public class PistonCrusherRecipes {
             return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{1f,0f});
         }
         if (input1.getItem() == new ItemStack(ModBlocks.METEORIC_IRON_ORE).getItem()) {
-            return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{1f,0f});
+            return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{0.5f,0f});
         }
         if (input1.getItem() == new ItemStack(ModBlocks.MALACHITE_ORE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.COPPER_HYDROXIDE), new Float[]{1f,0f});

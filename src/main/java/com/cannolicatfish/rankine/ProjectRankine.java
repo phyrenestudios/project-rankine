@@ -1,12 +1,14 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.world.gen.StructureGen;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.enchantment.AtomizeEnchantment;
 import com.cannolicatfish.rankine.enchantment.BlastEnchantment;
-import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
@@ -20,14 +22,9 @@ import com.cannolicatfish.rankine.world.biome.*;
 import com.cannolicatfish.rankine.dimension.ModDimensions;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.fluids.ModFluids;
-import com.cannolicatfish.rankine.items.*;
-import com.cannolicatfish.rankine.setup.ClientProxy;
-import com.cannolicatfish.rankine.setup.IProxy;
-import com.cannolicatfish.rankine.setup.ModSetup;
-import com.cannolicatfish.rankine.setup.ServerProxy;
 import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import com.cannolicatfish.rankine.world.gen.OreGen;
-import com.cannolicatfish.rankine.world.gen.TreeGen;
+import com.cannolicatfish.rankine.world.gen.DecorationGen;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
@@ -61,7 +58,7 @@ public class ProjectRankine {
     public static final String MODID = "rankine";
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     public static ModSetup setup = new ModSetup();
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public ProjectRankine() {
         IEventBus Bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -87,15 +84,15 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         setup.init();
         proxy.init();
-        TreeGen.setupTreeGeneration();
+        DecorationGen.setupDecoration();
         OreGen.setupOreGeneration();
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
-
     }
 
     private void LoadComplete(FMLLoadCompleteEvent event) {
         LOGGER.debug("Rankine: \"Load Complete Event\" Starting...");
         StructureGen.setupStructureGen();
+        RankineCompostables.compostableThings();
         LOGGER.info("Rankine: \"Load Complete\" Event Complete!");
     }
 

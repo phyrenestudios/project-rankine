@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.coalforge;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
-import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -20,7 +19,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.COAL_FORGE_CONTAINER;
+import static com.cannolicatfish.rankine.init.ModBlocks.COAL_FORGE_CONTAINER;
 
 public class CoalForgeContainer extends Container {
     private TileEntity tileEntity;

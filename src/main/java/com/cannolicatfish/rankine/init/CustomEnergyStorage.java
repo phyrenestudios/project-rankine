@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.setup;
+package com.cannolicatfish.rankine.init;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;

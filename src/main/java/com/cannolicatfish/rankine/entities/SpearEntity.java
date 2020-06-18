@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

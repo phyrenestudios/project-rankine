@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fineryforge;
 
 
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.FineryForgeRecipes;
 import javafx.util.Pair;
 import net.minecraft.block.BlockState;
@@ -35,7 +35,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.FINERY_FORGE_TILE;
+import static com.cannolicatfish.rankine.init.ModBlocks.FINERY_FORGE_TILE;
 
 public class FineryForgeTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 

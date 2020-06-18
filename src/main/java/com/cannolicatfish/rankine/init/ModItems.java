@@ -1,16 +1,15 @@
-package com.cannolicatfish.rankine.items;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.ModBlocks;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import com.cannolicatfish.rankine.fluids.ModFluids;
+import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxe;
 import com.cannolicatfish.rankine.items.alloys.AlloySword;
 import com.cannolicatfish.rankine.items.alloys.OldAlloyItem;
 import com.cannolicatfish.rankine.items.tools.*;
-import com.cannolicatfish.rankine.setup.ModSetup;
 import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluids;
@@ -28,27 +27,8 @@ public class ModItems {
         return item;
     }
 
-    //Creative Tabs
-
-
-     public static final Item MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item DIAMOND_MANTLE_GOLEM = add("diamond_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item PERIDOT_MANTLE_GOLEM = add("peridot_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item DESMOXYTE = add("desmoxyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item DEMONYTE = add("demonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DEMONYTE,0x161617, 0x512259,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item DRAGONYTE = add("dragonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item STEAMER = add("steamer_spawn_egg", new SpawnEggItem(ModEntityTypes.STEAMER,0xE7E7E7, 0x6B0000,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-     public static final Item SHROUDED_KING = add("shrouded_king_spawn_egg", new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-
-    public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.PINEAPPLE_SLEEVES)));
-    public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.COCONUT)));
-    public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup).food(ModFoods.PINA_COLADA)));
-    public static final Item OVERWORLD_CORE = add("overworld_core", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-    public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.itemGroup)));
-
-
-
+//METALLURGY TAB
+//=============================================================================
     //CRUSHED ORES
     public static final Item COPPER_HYDROXIDE = add("copper_hydroxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item TIN_OXIDE = add("tin_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -197,12 +177,6 @@ public class ModItems {
 
 
 
-    public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CAST_IRON_PANEL = add("cast_iron_panel", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item INCONEL_TURBINE_BLADE = add("inconel_turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item BATTERY = add("battery0", new ItemBattery(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
 
 
@@ -300,6 +274,30 @@ public class ModItems {
     public static final Item  BALSAM_FIR_BOAT = add("balsam_fir_boat", new RankineBoatItem(RankineBoatEntity.Type.BALSAM_FIR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  MAGNOLIA_BOAT = add("magnolia_boat", new RankineBoatItem(RankineBoatEntity.Type.MAGNOLIA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
+    public static final Item MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item DIAMOND_MANTLE_GOLEM = add("diamond_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item PERIDOT_MANTLE_GOLEM = add("peridot_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.PERIDOT_MANTLE_GOLEM,0xFF423C, 0x6BBE1F,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item DESMOXYTE = add("desmoxyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item DEMONYTE = add("demonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DEMONYTE,0x161617, 0x512259,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item DRAGONYTE = add("dragonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item STEAMER = add("steamer_spawn_egg", new SpawnEggItem(ModEntityTypes.STEAMER,0xE7E7E7, 0x6B0000,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item SHROUDED_KING = add("shrouded_king_spawn_egg", new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+    public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE_SLEEVES)));
+    public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));
+    public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINA_COLADA)));
+    public static final Item OVERWORLD_CORE = add("overworld_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+    public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item CAST_IRON_PANEL = add("cast_iron_panel", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item INCONEL_TURBINE_BLADE = add("inconel_turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item BATTERY = add("battery0", new ItemBattery(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+
+
 
     @ObjectHolder("rankine:sphagnum_moss")
     public static Item SPHAGNUM_MOSS;
@@ -322,3 +320,4 @@ public class ModItems {
         return stack.getItem();
     }
 }
+

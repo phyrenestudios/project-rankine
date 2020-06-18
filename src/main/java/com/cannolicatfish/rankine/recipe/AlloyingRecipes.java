@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;

@@ -1,12 +1,9 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.items.ModItems;
-import net.minecraft.block.Blocks;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.LazyValue;
 
 import java.util.function.Supplier;

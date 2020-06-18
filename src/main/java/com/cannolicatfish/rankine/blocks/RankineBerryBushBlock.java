@@ -1,12 +1,12 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.items.ModItems;
+import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.IntegerProperty;
@@ -45,8 +45,8 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
         return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
     }
 
-    @Override
-    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
+
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state, Random rand) {
         switch (type) {
             case 0:
             {
@@ -62,7 +62,11 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             }
             case 3:
             {
-            return new ItemStack(ModItems.PINEAPPLE);
+                if (rand.nextInt(50) == 1) {
+                    return new ItemStack(ModItems.PINEAPPLE_SLEEVES);
+                 } else {
+                    return new ItemStack(ModItems.PINEAPPLE);
+                }
             }
         }
         return null;

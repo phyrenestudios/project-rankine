@@ -36,7 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.blocks.ModBlocks.ALLOY_FURNACE_TILE;
+import static com.cannolicatfish.rankine.init.ModBlocks.ALLOY_FURNACE_TILE;
 
 public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
 

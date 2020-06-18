@@ -1,6 +1,5 @@
 {
   "name": "Tools n Things",
   "description": "Notes about various implements used in the world.",
-  "icon": "rankine:flint_pickaxe",
-  "parent": "world_exploration"
+  "icon": "rankine:flint_pickaxe"
 }

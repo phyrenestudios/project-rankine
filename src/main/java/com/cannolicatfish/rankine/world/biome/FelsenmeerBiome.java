@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.biome;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

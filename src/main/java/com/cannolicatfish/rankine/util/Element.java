@@ -1,11 +1,5 @@
 package com.cannolicatfish.rankine.util;
 
-import com.cannolicatfish.rankine.items.ModItems;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
-
-import java.util.function.Supplier;
-
 public enum Element {
     CARBON("C", 2,400, 1.0F, 3.0F, 2, 0.0F, 0.0F, 1F, 1F),
     ALUMINUM("Al", 1,100, 10.0F, 1.2F, 10, 0.0F, 0.0F, 1F, 1F),

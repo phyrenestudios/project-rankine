@@ -19,6 +19,7 @@
     "rankine:wadsleyite_wall",
     "rankine:ferropericlase_wall",
     "rankine:perovskite_wall",
+    "rankine:bridgmanite_wall",
 
     "rankine:smooth_rhyolite_wall",
     "rankine:smooth_granite_wall",
@@ -38,6 +39,7 @@
     "rankine:smooth_wadsleyite_wall",
     "rankine:smooth_ferropericlase_wall",
     "rankine:smooth_perovskite_wall",
+    "rankine:smooth_bridgmanite_wall",
 
     "rankine:rhyolite_bricks_wall",
     "rankine:granite_bricks_wall",
@@ -57,6 +59,8 @@
     "rankine:wadsleyite_bricks_wall",
     "rankine:ferropericlase_bricks_wall",
     "rankine:perovskite_bricks_wall",
+    "rankine:bridgmanite_bricks_wall",
+
 
     "rankine:bamboo_wall",
     "rankine:bamboo_clums_wall"

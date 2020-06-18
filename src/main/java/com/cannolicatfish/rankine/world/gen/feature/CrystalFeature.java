@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.blocks.ModBlocks;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;

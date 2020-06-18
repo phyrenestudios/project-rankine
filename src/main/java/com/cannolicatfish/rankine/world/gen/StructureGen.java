@@ -29,7 +29,6 @@ public class StructureGen {
             b.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
                     .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
             b.addStructure(structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-
         }
     }
 

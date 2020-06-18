@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.setup;
+package com.cannolicatfish.rankine.init;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
