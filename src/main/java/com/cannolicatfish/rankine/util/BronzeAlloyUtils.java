@@ -16,7 +16,20 @@ public final class BronzeAlloyUtils implements AlloyUtils {
     public RankineToolMaterials material = RankineToolMaterials.BRONZE;
 
 
+    @Override
+    public int getDurabilityBonus() {
+        return 51;
+    }
 
+    @Override
+    public float getMiningSpeedBonus() {
+        return 0f;
+    }
+
+    @Override
+    public int getEnchantabilityBonus() {
+        return 0;
+    }
 
     public int getDurability(String c)
     {

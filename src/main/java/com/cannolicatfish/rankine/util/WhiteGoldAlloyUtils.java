@@ -13,6 +13,21 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
     public RankineToolMaterials material = RankineToolMaterials.AMALGAM;
 
     @Override
+    public int getDurabilityBonus() {
+        return 0;
+    }
+
+    @Override
+    public float getMiningSpeedBonus() {
+        return 0;
+    }
+
+    @Override
+    public int getEnchantabilityBonus() {
+        return 0;
+    }
+
+    @Override
     public int getDurability(String c) {
         return 0;
     }

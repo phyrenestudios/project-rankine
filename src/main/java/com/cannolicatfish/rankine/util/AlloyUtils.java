@@ -3,6 +3,13 @@ package com.cannolicatfish.rankine.util;
 import net.minecraft.item.crafting.Ingredient;
 
 public interface AlloyUtils {
+
+        public int getDurabilityBonus();
+
+        public float getMiningSpeedBonus();
+
+        public int getEnchantabilityBonus();
+
         public int getDurability(String c);
 
         public float getEfficiency(String c);

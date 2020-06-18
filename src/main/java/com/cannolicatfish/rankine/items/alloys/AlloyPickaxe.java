@@ -2,6 +2,8 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.util.AlloyUtils;
+import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -35,6 +37,7 @@ import java.util.*;
 public class AlloyPickaxe extends PickaxeItem {
     private float wmodifier;
     private final AlloyUtils alloy;
+    private final PeriodicTableUtils utils = new PeriodicTableUtils();
     private float heat_resistance;
     private float corr_resistance;
     private float toughness;
@@ -46,7 +49,7 @@ public class AlloyPickaxe extends PickaxeItem {
         this.alloy = alloy;
     }
 
-    @Override
+    /*@Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
             return getDamage(stack) * 1f / alloy.getDurability(getComposition(stack).getCompound(0).get("comp").getString());
@@ -68,6 +71,23 @@ public class AlloyPickaxe extends PickaxeItem {
         }
 
 
+    }*/
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        if (getComposition(stack).size() != 0) {
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return getDamage(stack) * 1f / this.getMaxDamage(stack);
+        } else {
+            return getDamage(stack) * 1f / this.getTier().getMaxUses();
+        }
+    }
+
+    @Override
+    public final int getMaxDamage(ItemStack stack)
+    {
+        String comp = getComposition(stack).getCompound(0).get("comp").getString();
+        return utils.calcDurability(getElements(comp),getPercents(comp)) + this.alloy.getDurabilityBonus();
     }
 
     @Override
@@ -265,6 +285,32 @@ public class AlloyPickaxe extends PickaxeItem {
         ItemStack itemstack = new ItemStack(this.getItem());
         addAlloy(itemstack, p_92111_0_);
         return itemstack;
+    }
+
+    public List<PeriodicTableUtils.Element> getElements(String c)
+    {
+        //String c = getComposition(stack).getCompound(0).get("comp").getString();
+        PeriodicTableUtils utils = new PeriodicTableUtils();
+        String[] comp = c.split("-");
+        List<PeriodicTableUtils.Element> list = new ArrayList<>();
+        for (String e: comp)
+        {
+            String str = e.replaceAll("[^A-Za-z]+", "");
+            list.add(utils.getElementBySymbol(str));
+        }
+        return list;
+    }
+
+    public List<Integer> getPercents(String c)
+    {
+        String[] comp = c.split("-");
+        List<Integer> list = new ArrayList<>();
+        for (String e: comp)
+        {
+            String str = e.replaceAll("\\D+", "");
+            list.add(Integer.parseInt(str));
+        }
+        return list;
     }
 
     /**

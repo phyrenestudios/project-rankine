@@ -12,13 +12,15 @@ public class CopperElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        if (x >= 50)
+        /*if (x >= 50)
         {
             return (4+(x/5 - 10))^2;
         } else
         {
             return x/10;
-        }
+        }*/
+        long e = Math.round(Math.pow(2,x/13f) - 1f);
+        return (int) e;
     }
 
     @Override
@@ -39,7 +41,7 @@ public class CopperElement implements ElementInterface {
             return 7;
         } else
         {
-            return x/10 + 3;
+            return Math.round(x/10f + 3);
         }
     }
 }
