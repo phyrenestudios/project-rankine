@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.enchantment.Enchantment;
 
 import javax.xml.bind.Element;
 
@@ -19,8 +20,17 @@ public class CopperElement implements ElementInterface {
         {
             return x/10;
         }*/
-        long e = Math.round(Math.pow(2,x/13f) - 1f);
-        return (int) e;
+        return (int) Math.round(Math.pow(2,x/13f) - 1f);
+    }
+
+    @Override
+    public int getDamageFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getAttackSpeedFromPercent(int x) {
+        return 0;
     }
 
     @Override
@@ -43,5 +53,25 @@ public class CopperElement implements ElementInterface {
         {
             return Math.round(x/10f + 3);
         }
+    }
+
+    @Override
+    public float getCorrResistFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getHeatResistFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getToughnessFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public Enchantment getEnchantments(int x) {
+        return null;
     }
 }

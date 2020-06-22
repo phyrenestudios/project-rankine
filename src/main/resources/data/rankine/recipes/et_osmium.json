@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " w ",
+    " m ",
+    " w "
+  ],
+  "key": {
+    "w": {
+      "item": "rankine:osmiridium_alloy"
+    },
+    "m": {
+      "item": "rankine:element_transmuter"
+    }
+  },
+  "result": {
+    "item": "rankine:osmium_ingot",
+    "count": 2
+  }
+}

@@ -3,14 +3,18 @@ package com.cannolicatfish.rankine.util.elements;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 
-public class SulfurElement implements ElementInterface{
+public class PlatinumElement implements ElementInterface{
     @Override
     public PeriodicTableUtils.Element getReference() {
-        return null;
+        return PeriodicTableUtils.Element.PLATINUM;
     }
 
     @Override
     public int getDurabilityFromPercent(int x) {
+        if (x >= 80)
+        {
+            return (int) Math.round(Math.pow(2,x/10f - 4) - 10);
+        }
         return 0;
     }
 
@@ -26,12 +30,18 @@ public class SulfurElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/20f * 3/2f;
     }
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        if (x >= 50)
+        {
+            return Math.round(3 * x/10f + 10);
+        } else
+        {
+            return Math.round(x/2f);
+        }
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.enchantment.Enchantment;
 
-public class IronElement implements ElementInterface{
+public class IronElement implements ElementInterface {
     @Override
     public PeriodicTableUtils.Element getReference() {
         return PeriodicTableUtils.Element.IRON;
@@ -14,10 +15,20 @@ public class IronElement implements ElementInterface{
     }
 
     @Override
+    public int getDamageFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getAttackSpeedFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
     public float getMiningSpeedFromPercent(int x) {
         if (x >= 50)
         {
-            return x/10f - 6;
+            return Math.round(x/10f - 6);
         } else
         {
             return 0;
@@ -28,16 +39,31 @@ public class IronElement implements ElementInterface{
     public int getEnchantabilityFromPercent(int x) {
         if (x >= 50)
         {
-            return 4 + 2*(x/10 - 5);
+            return Math.round(4 + 2*(x/10f - 5));
         } else
         {
-            if (x/10 - 1 <= 0)
-            {
-                return 0;
-            } else
-            {
-                return x/10 - 1;
-            }
+            return Math.max(x / 10 - 1, 0);
         }
     }
+
+    @Override
+    public float getCorrResistFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getHeatResistFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getToughnessFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public Enchantment getEnchantments(int x) {
+        return null;
+    }
+
 }

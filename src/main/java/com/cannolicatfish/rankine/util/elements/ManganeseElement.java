@@ -1,8 +1,9 @@
 package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.enchantment.Enchantment;
 
-public class ManganeseElement implements ElementInterface{
+public class ManganeseElement implements ElementInterface {
     @Override
     public PeriodicTableUtils.Element getReference() {
         return PeriodicTableUtils.Element.MANGANESE;
@@ -14,8 +15,18 @@ public class ManganeseElement implements ElementInterface{
         {
             return 100;
         } else {
-            return x*10;
+            return Math.round(x*10);
         }
+    }
+
+    @Override
+    public int getDamageFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getAttackSpeedFromPercent(int x) {
+        return 0;
     }
 
     @Override
@@ -30,7 +41,27 @@ public class ManganeseElement implements ElementInterface{
             return -4;
         } else
         {
-            return -2;
+            return Math.round(-x/5f);
         }
+    }
+
+    @Override
+    public float getCorrResistFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getHeatResistFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public float getToughnessFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
+    public Enchantment getEnchantments(int x) {
+        return null;
     }
 }

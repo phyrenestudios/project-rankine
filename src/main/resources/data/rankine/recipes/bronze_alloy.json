@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:bronze_block" } ], "result": { "item": "rankine:bronze_alloy", "count": 9 } }
