@@ -13,8 +13,8 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 import java.util.function.Function;
 
-public class IntrusionReplacerFeature extends Feature<ReplacerFeatureConfig> {
-    public IntrusionReplacerFeature(Function<Dynamic<?>, ? extends ReplacerFeatureConfig> configFactoryIn) {
+public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
+    public IntrusionFeature(Function<Dynamic<?>, ? extends ReplacerFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 

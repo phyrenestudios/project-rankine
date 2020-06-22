@@ -86,7 +86,7 @@ public class MantleBiome extends Biome {
     }
 
     private static void intrusionGenDef(Block block, Biome biome, int lowerBound, int upperBound, float chance) {
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
                         new ReplacerFeatureConfig(ModBlocks.PERIDOTITE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, lowerBound, 0, upperBound))));
 
     }

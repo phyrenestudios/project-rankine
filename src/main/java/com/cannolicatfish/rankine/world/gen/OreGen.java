@@ -13,24 +13,20 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class OreGen {
 
     public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig::deserialize);
     public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig::deserialize);
 
+
     public static void setupOreGeneration() {
 
         removeFeatures();
         addCrystal();
+        IntrusionGen.addIntrusions();
 
-        intrusionGenDef(ModBlocks.KIMBERLITE, Collections.emptyList(),false,0, 25, .05f);
-        intrusionGenDef(ModBlocks.GRANITE, Collections.emptyList(),false,0, 90, .2f);
-        intrusionGenDef(ModBlocks.DIORITE, Collections.emptyList(),false,51, 256, .1f);
 
         //Extras
         replaceGenDef(Blocks.DIRT, ModBlocks.PERMAFROST, 50, 128, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY), true));
@@ -38,14 +34,15 @@ public class OreGen {
         replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 51, 70, getBiomesFromCategory(Arrays.asList(Biome.Category.SWAMP, Biome.Category.RIVER), true));
 
         //Ocean
-        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 15, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 36, 60, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 61, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 11, 35, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 36, 60, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 61, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
 
         //Beach
-        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 15, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 16, 30, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 10, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 11, 30, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
         replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, 31, 40, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
         replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 41, 55, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
         replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 56, 90, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
@@ -175,27 +172,6 @@ public class OreGen {
 
     // ---------------------------------------------------------------
 
-
-
-    private static void intrusionGenDef(Block block, List<Biome.Category> biomes, boolean genType, int lowerBound, int upperBound, float chance) {
-        for (Biome biome : ForgeRegistries.BIOMES) {
-            if (genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
-                if (biomes.contains(biome.getCategory())) // if biome is supposed to be included (reverse)
-                {
-                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, lowerBound, 0, upperBound))));
-                }
-            }
-            if (!genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE)
-            {
-                if (!biomes.contains(biome.getCategory())) // if biomes in biomesExcluded are not supposed to be included
-                {
-                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, lowerBound, 0, upperBound))));
-                }
-            }
-        }
-    }
 
     private static void addCrystal()
     {

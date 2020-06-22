@@ -75,9 +75,8 @@ public class DecorationGen
 
     private static void addErratics(Feature<BlockBlobConfig> feature, BlockState blockstate, int radius, int chance, List<Biome> biomes) {
         for (Biome b: biomes) {
-            b.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, feature.withConfiguration(new BlockBlobConfig(blockstate, radius))
-                    .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
-
+            b.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, feature.withConfiguration(
+                    new BlockBlobConfig(blockstate, radius)).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(chance))));
         }
     }
 
