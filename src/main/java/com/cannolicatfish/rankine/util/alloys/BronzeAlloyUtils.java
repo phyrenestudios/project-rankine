@@ -1,6 +1,9 @@
-package com.cannolicatfish.rankine.util;
+package com.cannolicatfish.rankine.util.alloys;
 
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Item;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -30,6 +33,27 @@ public final class BronzeAlloyUtils implements AlloyUtils {
     public int getEnchantabilityBonus() {
         return 0;
     }
+
+    @Override
+    public float getCorrResistBonus() {
+        return 0;
+    }
+
+    @Override
+    public float getHeatResistBonus() {
+        return 0;
+    }
+
+    @Override
+    public Enchantment getEnchantmentBonus(Item item) {
+        return null;
+    }
+
+    @Override
+    public int getEnchantmentLevel(Enchantment en, int enchantability) {
+        return 1;
+    }
+
 
     public int getDurability(String c)
     {

@@ -183,7 +183,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("iron") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("zinc") || materials.get(x3).equals("arsenic")
+            if (materials.get(x3).equals("iron") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("zinc") || materials.get(x3).equals("arsenic") || materials.get(x3).equals("lead")
                     || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;

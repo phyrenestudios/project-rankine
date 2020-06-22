@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "w  ",
+    " m ",
+    "  w"
+  ],
+  "key": {
+    "w": {
+      "item": "rankine:sperrylite_ore"
+    },
+    "m": {
+      "item": "rankine:element_transmuter"
+    }
+  },
+  "result": {
+    "item": "rankine:ruthenium_ingot",
+    "count": 1
+  }
+}

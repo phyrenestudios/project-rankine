@@ -1,5 +1,7 @@
-package com.cannolicatfish.rankine.util;
+package com.cannolicatfish.rankine.util.alloys;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 
 public interface AlloyUtils {
@@ -10,15 +12,17 @@ public interface AlloyUtils {
 
         public int getEnchantabilityBonus();
 
-        public int getDurability(String c);
+        public float getCorrResistBonus();
 
-        public float getEfficiency(String c);
+        public float getHeatResistBonus();
+
+        public Enchantment getEnchantmentBonus(Item item);
+
+        public int getEnchantmentLevel(Enchantment en, int enchantability);
 
         public float getAttackSpeedMod(String c);
 
         public float getAttackDamageMod(String c);
-
-        public int getEnchantability(String c);
 
         public float getCorrResistance(String c);
 

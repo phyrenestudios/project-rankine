@@ -2,7 +2,9 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.util.elements.*;
 import com.sun.jna.platform.mac.Carbon;
+import net.minecraft.enchantment.Enchantment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -119,6 +121,49 @@ public final class PeriodicTableUtils {
         return enchant;
     }
 
+    public float calcCorrResist(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        float corrResist = 0f;
+        for (Element e: elements)
+        {
+            corrResist += e.element.getCorrResistFromPercent(percents.get(index));
+            index++;
+        }
+
+        return corrResist;
+    }
+
+    public float calcHeatResist(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        float heatResist = 0f;
+        for (Element e: elements)
+        {
+            heatResist += e.element.getCorrResistFromPercent(percents.get(index));
+            index++;
+        }
+
+        return heatResist;
+    }
+
+    public List<Enchantment> getEnchantments(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        List<Enchantment> enchantments = new ArrayList<>();
+        for (Element e: elements)
+        {
+            Enchantment en = e.element.getEnchantments(percents.get(index));
+            if (en != null)
+            {
+                enchantments.add(en);
+            }
+            index++;
+        }
+
+        return enchantments;
+    }
+
     public enum Element {
         CARBON(6,"C",new CarbonElement()),
         ALUMINUM(13, "Al", new AluminumElement()),
@@ -128,8 +173,13 @@ public final class PeriodicTableUtils {
         NICKEL(28,"Ni", new NickelElement()),
         COPPER(29, "Cu", new CopperElement()),
         ZINC(30, "Zn", new ZincElement()),
+        ARSENIC(33,"As",new ArsenicElement()),
+        PALLADIUM(46,"Pd",new PalladiumElement()),
+        SILVER(47,"Ag",new SilverElement()),
         TIN(50, "Sn", new TinElement()),
-        GOLD(79, "Au", new GoldElement());
+        PLATINUM(78,"Pt", new PlatinumElement()),
+        GOLD(79, "Au", new GoldElement()),
+        LEAD(82,"Pb", new LeadElement());
 
         public final int atomicNumber;
         public final String symbol;

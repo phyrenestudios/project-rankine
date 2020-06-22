@@ -1,14 +1,15 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.util.AlloyUtils;
-import com.cannolicatfish.rankine.util.BronzeAlloyUtils;
+import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.cannolicatfish.rankine.util.alloys.BronzeAlloyUtils;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -49,30 +50,6 @@ public class AlloyPickaxe extends PickaxeItem {
         this.alloy = alloy;
     }
 
-    /*@Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        if (getComposition(stack).size() != 0) {
-            return getDamage(stack) * 1f / alloy.getDurability(getComposition(stack).getCompound(0).get("comp").getString());
-        } else {
-            return getDamage(stack) * 1f / this.getTier().getMaxUses();
-        }
-    }
-
-
-    @Override
-    public final int getMaxDamage(ItemStack stack) {
-
-        //System.out.println(alloy.getDurability(getComposition(stack).getCompound(0).get("comp").getString()));
-        if (getComposition(stack).size() != 0)
-        {
-            return alloy.getDurability(getComposition(stack).getCompound(0).get("comp").getString());
-        } else {
-            return this.getTier().getMaxUses();
-        }
-
-
-    }*/
-
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
@@ -86,8 +63,13 @@ public class AlloyPickaxe extends PickaxeItem {
     @Override
     public final int getMaxDamage(ItemStack stack)
     {
-        String comp = getComposition(stack).getCompound(0).get("comp").getString();
-        return utils.calcDurability(getElements(comp),getPercents(comp)) + this.alloy.getDurabilityBonus();
+        if (getComposition(stack).size() != 0) {
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return utils.calcDurability(getElements(comp),getPercents(comp)) + this.alloy.getDurabilityBonus();
+        } else
+        {
+            return this.getTier().getMaxUses();
+        }
     }
 
     @Override
@@ -125,7 +107,8 @@ public class AlloyPickaxe extends PickaxeItem {
     public float getEfficiency(ItemStack stack)
     {
         if (getComposition(stack).size() != 0) {
-            return alloy.getEfficiency(getComposition(stack).getCompound(0).get("comp").getString());
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return utils.calcMiningSpeed(getElements(comp), getPercents(comp)) + this.alloy.getMiningSpeedBonus();
         } else {
             return this.efficiency;
         }
@@ -171,25 +154,25 @@ public class AlloyPickaxe extends PickaxeItem {
 
     public float getCorrResist(ItemStack stack)
     {
-        if (getComposition(stack).size() != 0) {
-            return alloy.getCorrResistance(getComposition(stack).getCompound(0).get("comp").getString());
-        } else {
+        if (getComposition(stack).size() != 0)
+        {
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus();
+        } else
+        {
             return this.corr_resistance;
         }
+
     }
 
-    public float getHeatResist(ItemStack stack)
+    public float getHeatResist()
     {
-        if (getComposition(stack).size() != 0) {
-            return alloy.getHeatResistance(getComposition(stack).getCompound(0).get("comp").getString());
-        } else {
-            return this.heat_resistance;
-        }
+        return this.heat_resistance;
     }
 
-    public boolean isCorrResistant(ItemStack stack)
+    public float getToughness()
     {
-        return false;
+        return this.toughness;
     }
 
     public int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
@@ -197,7 +180,7 @@ public class AlloyPickaxe extends PickaxeItem {
         Random rand = new Random();
         int i = 1;
         i += rand.nextFloat() < toughness ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist(stack) && (worldIn.getDimension().getType() == DimensionType.THE_NETHER || entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        if (rand.nextFloat() > getHeatResist() && (worldIn.getDimension().getType() == DimensionType.THE_NETHER || entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
@@ -224,7 +207,8 @@ public class AlloyPickaxe extends PickaxeItem {
     @Override
     public int getItemEnchantability(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
-            return alloy.getEnchantability(getComposition(stack).getCompound(0).get("comp").getString());
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return utils.calcEnchantability(getElements(comp), getPercents(comp)) + this.alloy.getEnchantabilityBonus();
         } else {
             return this.getTier().getEnchantability();
         }
@@ -249,12 +233,13 @@ public class AlloyPickaxe extends PickaxeItem {
         {
             DecimalFormat df = new DecimalFormat("#.#");
             tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())).applyTextStyle(TextFormatting.GOLD));
-            tooltip.add((new StringTextComponent("Efficiency: " + Math.round(getWearAsPercent(stack)) + "%").applyTextStyle(getWearColor(stack))));
-            tooltip.add((new StringTextComponent("Mining Speed: " + getEfficiency(stack)).applyTextStyle(TextFormatting.WHITE)));
+            tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%").applyTextStyle(getWearColor(stack))));
+            tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack)))).applyTextStyle(TextFormatting.WHITE)));
             //tooltip.add((new StringTextComponent("Attack Speed: " + Float.parseFloat(df.format((4 + getAttackSpeed(stack))))).applyTextStyle(TextFormatting.WHITE)));
             tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack)).applyTextStyle(TextFormatting.WHITE)));
-            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (getCorrResist(stack) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
-            tooltip.add((new StringTextComponent("Heat Resistance: " + (getHeatResist(stack) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
+            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack))) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
+            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist())) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
+            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness())) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
         }
 
     }
@@ -313,13 +298,37 @@ public class AlloyPickaxe extends PickaxeItem {
         return list;
     }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
+    public List<Enchantment> getEnchantments(String c)
+    {
+        List<Enchantment> enchantments = new ArrayList<>();
+        List<Enchantment> elementEn = utils.getEnchantments(getElements(c),getPercents(c));
+        for (Enchantment e: elementEn)
+        {
+            if (e != null)
+            {
+                enchantments.add(e);
+            }
+        }
+        Enchantment en = alloy.getEnchantmentBonus(this.getItem());
+        if (en != null)
+        {
+            enchantments.add(en);
+        }
+        return enchantments;
+    }
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
-            items.add(getAlloyItemStack(new AlloyData(alloy.getDefComposition())));
+            ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()));
+            if (getComposition(stack).size() != 0)
+            {
+                for (Enchantment e: getEnchantments(getComposition(stack).getCompound(0).get("comp").getString()))
+                {
+                    stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getItemEnchantability(stack)));
+                }
+            }
+
+            items.add(stack);
         }
     }
 

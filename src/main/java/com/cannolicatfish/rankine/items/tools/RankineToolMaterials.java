@@ -15,19 +15,19 @@ public enum RankineToolMaterials implements IItemTier {
     BRONZE(1, 150, 4.0F, 1.0F, 10, () -> {
         return Ingredient.fromItems(ModItems.BRONZE_ALLOY);
     }),
-    ROSE_GOLD(0, 60, 11.0F, 0.0F, 22, () -> {
+    ROSE_GOLD(1, 60, 11.0F, 0.0F, 22, () -> {
         return Ingredient.fromItems(ModItems.ROSE_GOLD_ALLOY);
     }),
-    WHITE_GOLD(0, 48, 12.0F, 0.0F, 22, () -> {
+    WHITE_GOLD(1, 48, 12.0F, 0.0F, 22, () -> {
         return Ingredient.fromItems(ModItems.WHITE_GOLD_ALLOY);
     }),
-    GREEN_GOLD(0, 52, 12.0F, 1.0F, 24, () -> {
+    GREEN_GOLD(1, 52, 12.0F, 1.0F, 24, () -> {
         return Ingredient.fromItems(ModItems.GREEN_GOLD_ALLOY);
     }),
-    BLUE_GOLD(1, 78, 9.0F, 0.0F, 20, () -> {
+    BLUE_GOLD(2, 78, 9.0F, 0.0F, 20, () -> {
         return Ingredient.fromItems(ModItems.BLUE_GOLD_ALLOY);
     }),
-    PURPLE_GOLD(0, 40, 14.0F, 0.0F, 22, () -> {
+    PURPLE_GOLD(1, 40, 14.0F, 0.0F, 22, () -> {
         return Ingredient.fromItems(ModItems.PURPLE_GOLD_ALLOY);
     }),
     AMALGAM(0, 63, 2.0F, 0.0F, 0, () -> {

@@ -61,7 +61,7 @@ public enum RankineAlloyMaterial {
         for (RankineAlloyMaterial mat: RankineAlloyMaterial.values()) {
             if (mat.items.contains(item) && (mat.items.size() == 2 || mat.items.size() == 3))
             {
-                System.out.println("Material directly found!");
+                //System.out.println("Material directly found!");
                 switch (mat.items.indexOf(item)){
                     case 0:
                         if (mat.containsNugget)
@@ -108,7 +108,7 @@ public enum RankineAlloyMaterial {
 
                 if (item.getRegistryName().toString().contains("nugget"))
                 {
-                    System.out.println("Material (nugget) found!");
+                    //System.out.println("Material (nugget) found!");
                     List<Integer> newamts = new ArrayList<>();
                     for (int i: mat.amounts)
                     {
@@ -125,7 +125,7 @@ public enum RankineAlloyMaterial {
                 }
                 else if (item.getRegistryName().toString().contains("block"))
                 {
-                    System.out.println("Material (block) found!");
+                    //System.out.println("Material (block) found!");
                     List<Integer> newamts = new ArrayList<>();
                     for (int i: mat.amounts)
                     {
@@ -135,7 +135,7 @@ public enum RankineAlloyMaterial {
                 }
                 else
                 {
-                    System.out.println("Material (base item) found!");
+                    //System.out.println("Material (base item) found!");
                     return new Pair<>(mat.elements,mat.amounts);
                 }
             }
