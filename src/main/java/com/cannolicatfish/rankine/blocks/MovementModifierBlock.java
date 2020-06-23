@@ -1,20 +1,14 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class RankineSlab extends SlabBlock {
-    private final Double modifier;
-    public RankineSlab(Properties properties) {
-        super(properties);
-        this.modifier = 1.0D;
-    }
+public class MovementModifierBlock extends Block {
 
-    public RankineSlab(Double modifier, Properties properties) {
+    private final Double modifier;
+    public MovementModifierBlock(double modifier, Properties properties) {
         super(properties);
         this.modifier = modifier;
     }

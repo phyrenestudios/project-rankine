@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "rs",
+    "qp"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "rankine:basalt"
+    },
+    "s":
+    {
+      "item": "rankine:shale"
+    },
+    "q":
+    {
+      "item": "rankine:calcite"
+    },
+    "p":
+    {
+      "tag": "forge:sandstone"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:basaltic_tuff",
+    "count": 4
+  }
+}

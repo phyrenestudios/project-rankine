@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "rs",
+    "qp"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "tag": "rankine:andesite"
+    },
+    "s":
+    {
+      "item": "rankine:scoria"
+    },
+    "q":
+    {
+      "item": "minecraft:quartz"
+    },
+    "p":
+    {
+      "item": "rankine:calcite"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:andesitic_tuff",
+    "count": 4
+  }
+}
