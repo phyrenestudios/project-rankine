@@ -78,6 +78,10 @@ public class PistonCrusherRecipes {
         if (input1.getItem() == new ItemStack(ModBlocks.PEROVSKITE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.CALCIUM_SILICATE), new Float[]{1f,0f});
         }
+        if ((input1.getItem() == new ItemStack(ModBlocks.PUMICE).getItem()))
+        {
+            return new Pair<>(new ItemStack(ModItems.POZZOLAN), new Float[]{2f,0f});
+        }
         if (input1.getItem() == new ItemStack(ModBlocks.MAGNETITE_ORE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{1f,0f});
         }

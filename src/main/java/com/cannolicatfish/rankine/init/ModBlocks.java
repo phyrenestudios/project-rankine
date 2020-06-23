@@ -97,6 +97,7 @@ public class ModBlocks {
     public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), BLOCKS);
     //public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
     public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new EntityModifierBlock(Block.Properties.create(Material.SAND).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), BLOCKS);
+    public static final Block QUICKLIME_BLOCK = add("quicklime_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
 
 
     //Stone Blocks

@@ -173,8 +173,10 @@ public class ModItems {
     public static final Item OPAL = add("opal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item GARNET = add("garnet", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PERIDOT = add("peridot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MORTAR = add("mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item QUICKLIME = add("quicklime", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item POZZOLAN = add("pozzolan", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MORTAR = add("mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item POZZOLANIC_MORTAR = add("pozzolanic_mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ELEMENT = add("element", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMetals)));
 
 
@@ -238,7 +240,7 @@ public class ModItems {
     public static final Item  PURPLE_GOLD_AXE = add("purple_gold_axe", new ColoredGoldAxe(RankineToolMaterials.PURPLE_GOLD,new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
     public static final Item  PURPLE_GOLD_HOE = add("purple_gold_hoe", new ColoredGoldHoe(RankineToolMaterials.PURPLE_GOLD,new Item.Properties().group(ProjectRankine.setup.rankineTools),5));
 
-    public static final Item  FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
