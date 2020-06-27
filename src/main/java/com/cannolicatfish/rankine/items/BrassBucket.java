@@ -151,10 +151,6 @@ public class BrassBucket extends BucketItem {
         {
             ((LivingEntity) entityIn).setFire(2);
         }
-        if (stack.getItem() == ModItems.LIQUID_PIG_IRON_BRASS_BUCKET)
-        {
-            ((LivingEntity) entityIn).setFire(1);
-        }
 
 
     }
