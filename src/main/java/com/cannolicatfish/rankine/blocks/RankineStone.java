@@ -106,22 +106,14 @@ public class RankineStone extends Block {
     public ItemStack getNugget(Pair<Block,BlockPos> ore)
     {
         Random random = new Random();
-        if (ore.getKey() == ModBlocks.MAGNETITE_ORE)
-        {
-            return new ItemStack(Items.IRON_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.MALACHITE_ORE || ore.getKey() == ModBlocks.NATIVE_COPPER_ORE)
-        {
-            return new ItemStack(ModItems.COPPER_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.BAUXITE_ORE)
-        {
-            return new ItemStack(ModItems.ALUMINUM_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.NATIVE_GOLD_ORE)
-        {
-            return new ItemStack(Items.GOLD_NUGGET);
-        }
+        if (ore.getKey() == ModBlocks.MAGNETITE_ORE) {
+            return new ItemStack(Items.IRON_NUGGET); }
+        if (ore.getKey() == ModBlocks.MALACHITE_ORE || ore.getKey() == ModBlocks.NATIVE_COPPER_ORE) {
+            return new ItemStack(ModItems.COPPER_NUGGET); }
+        if (ore.getKey() == ModBlocks.BAUXITE_ORE) {
+            return new ItemStack(ModItems.ALUMINUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_GOLD_ORE) {
+            return new ItemStack(Items.GOLD_NUGGET); }
         if (ore.getKey() == ModBlocks.CASSITERITE_ORE || ore.getKey() == ModBlocks.NATIVE_TIN_ORE)
         {
             return new ItemStack(ModItems.TIN_NUGGET);

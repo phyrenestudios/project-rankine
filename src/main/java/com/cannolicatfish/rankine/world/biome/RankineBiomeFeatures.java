@@ -217,11 +217,37 @@ public class RankineBiomeFeatures {
             .baseHeight(2)
             .setSapling((net.minecraftforge.common.IPlantable)Blocks.SPRUCE_SAPLING).build();
 
+    public static final TreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
+            new BlobFoliagePlacer(2, 0)))
+            .baseHeight(6).heightRandA(2).foliageHeight(3).ignoreVines()
+            .setSapling((IPlantable) Blocks.BIRCH_SAPLING).build();
+
+    public static final TreeFeatureConfig HEMLOCK_TREE_CONFIG = (new TreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LEAVES.getDefaultState()),
+            new SpruceFoliagePlacer(1, 1)))
+            .baseHeight(5).heightRandA(2).trunkHeight(1).trunkHeightRandom(1).trunkTopOffsetRandom(2).ignoreVines()
+            .setSapling((IPlantable) ModBlocks.EASTERN_HEMLOCK_SAPLING).build();
+
+    public static final HugeTreeFeatureConfig LARGE_HEMLOCK_TREE_CONFIG = (new HugeTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LEAVES.getDefaultState())))
+            .baseHeight(13).heightInterval(15).crownHeight(13)
+            .decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))
+            .setSapling((IPlantable) ModBlocks.EASTERN_HEMLOCK_SAPLING).build();
+
+
+
+
 
     //OTHER
+    public static final BlockClusterFeatureConfig FERN_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(FERN), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig SWAMP_GRASS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.SWAMP_GRASS.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig DUCKWEED_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.DUCKWEED.getDefaultState()), new SimpleBlockPlacer())).tries(10).build();
     public static final BlockClusterFeatureConfig SHORT_GRASS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.SHORT_GRASS.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig CLOVER_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).addWeightedBlockstate(ModBlocks.WHITE_CLOVER.getDefaultState(), 4).addWeightedBlockstate(ModBlocks.PURPLE_CLOVER.getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
 
 
 
@@ -236,6 +262,15 @@ public class RankineBiomeFeatures {
     public static void addCedarForestTrees(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.NORMAL_TREE.withConfiguration(SMALL_SPRUCE_CONFIG).withChance(0.33333334F)), Feature.NORMAL_TREE.withConfiguration(CEDAR_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(8, 0.1F, 1))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.NORMAL_TREE.withConfiguration(BALSAM_FIR_TREE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(6))));
+    }
+
+    public static void addHemlockGroveTrees(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.MEGA_SPRUCE_TREE.withConfiguration(LARGE_HEMLOCK_TREE_CONFIG).withChance(0.1F), Feature.NORMAL_TREE.withConfiguration(BIRCH_TREE_CONFIG).withChance(0.04F), Feature.NORMAL_TREE.withConfiguration(YELLOW_BIRCH_TREE_CONFIG).withChance(0.04F), Feature.NORMAL_TREE.withConfiguration(BALSAM_FIR_TREE_CONFIG).withChance(0.08F)), Feature.NORMAL_TREE.withConfiguration(HEMLOCK_TREE_CONFIG))).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(40))));
+    }
+
+    public static void addDenseFerns(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(LARGE_FERN_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(40))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(FERN_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(30))));
     }
 
     public static void addPinyonTrees(Biome biomeIn) {
@@ -277,8 +312,7 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.JUNGLE_GROUND_BUSH.withConfiguration(HIGHLAND_OAK_BUSH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(3))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.JUNGLE_GROUND_BUSH.withConfiguration(HIGHLAND_SPRUCE_BUSH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(2))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(SHORT_GRASS_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(10))));
-        biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, RankineFeatures.LARGE_ERRATIC.withConfiguration(new BlockBlobConfig(ModBlocks.ANORTHOSITE.getDefaultState(), 1)).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(20))));
-   //     biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, RankineFeatures.LARGE_ERRATIC.withConfiguration(new BlockBlobConfig(ModBlocks.GRANITE.getDefaultState(), 1)).withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(20))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(CLOVER_PATCH_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(4))));
 
     }
 

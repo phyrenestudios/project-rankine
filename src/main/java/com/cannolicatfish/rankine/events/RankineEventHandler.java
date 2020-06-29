@@ -3,15 +3,26 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.LogBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
@@ -145,5 +156,45 @@ public class RankineEventHandler {
             }
         }
     }
+
+
+    public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
+
+    @SubscribeEvent
+    public static void axeStrip(PlayerInteractEvent.RightClickBlock event)
+    {
+        ItemStack stack = event.getItemStack();
+        Item item = stack.getItem();
+        World world = event.getWorld();
+        Direction direction = event.getFace();
+        BlockPos pos = event.getPos();
+        BlockPos posWithOffset = pos.offset(direction);
+        PlayerEntity player = event.getPlayer();
+
+        if(item instanceof AxeItem) {
+        BlockState activatedBlock = world.getBlockState(pos);
+        if(stripping_map.get(activatedBlock.getBlock()) != null) {
+            Block block = activatedBlock.getBlock();
+            if(block instanceof RotatedPillarBlock) {
+                Direction.Axis axis = activatedBlock.get(RotatedPillarBlock.AXIS);
+                world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, stripping_map.get(activatedBlock.getBlock()).getDefaultState().with(LogBlock.AXIS, axis), 2);
+                stack.damageItem(1, player, (entity) -> {
+                    entity.sendBreakAnimation(event.getHand());
+                });
+                player.swingArm(event.getHand());
+                event.setResult(Event.Result.ALLOW);
+            }
+        }
+
+
+        }
+    }
+
+
+
+
+
+
 
 }

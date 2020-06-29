@@ -1,3 +1,4 @@
 {
-  "parent": "rankine:block/gold_ore0"
-}
+      "parent": "rankine:block/native_gold_ore0"
+    }
+    

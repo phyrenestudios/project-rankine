@@ -23,6 +23,7 @@ public class RankineBiomes {
     public static final Biome DEAD_SWAMP = add("dead_swamp", new DeadSwampBiome());
     public static final Biome TROPICS = add("tropics", new TropicsBiome());
     public static final Biome FORESTED_LAGOON = add("forested_lagoon", new ForestedLagoonBiome());
+    public static final Biome HEMLOCK_GROVE = add("hemlock_grove", new HemlockGroveBiome());
 
 
     private static <T extends Biome> T add(String name, T biome) {
@@ -50,7 +51,7 @@ public class RankineBiomes {
 
             BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.SHOAL, 10));
             BiomeManager.addSpawnBiome(RankineBiomes.SHOAL);
-            BiomeDictionary.addTypes(RankineBiomes.SHOAL, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+            BiomeDictionary.addTypes(RankineBiomes.SHOAL, BiomeDictionary.Type.OCEAN, BiomeDictionary.Type.OVERWORLD);
 
             BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.DEAD_SWAMP, 10));
             BiomeManager.addSpawnBiome(RankineBiomes.DEAD_SWAMP);
@@ -63,6 +64,11 @@ public class RankineBiomes {
             BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FORESTED_LAGOON, 10));
             BiomeManager.addSpawnBiome(RankineBiomes.FORESTED_LAGOON);
             BiomeDictionary.addTypes(RankineBiomes.FORESTED_LAGOON, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.HEMLOCK_GROVE, 10));
+            BiomeManager.addSpawnBiome(RankineBiomes.HEMLOCK_GROVE);
+            BiomeDictionary.addTypes(RankineBiomes.HEMLOCK_GROVE, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
+
         }
     }
 

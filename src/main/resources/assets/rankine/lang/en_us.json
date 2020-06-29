@@ -13,6 +13,7 @@
   "block.rankine.potted_magnolia_sapling": "Potted Magnolia Sapling",
 
   "block.rankine.balsam_fir_log": "Balsam Fir Log",
+  "block.rankine.yellow_birch_log": "Yellow Birch Log",
   "block.rankine.balsam_fir_wood": "Balsam Fir Wood",
   "block.rankine.coconut_palm_wood": "Coconut Palm Wood",
   "block.rankine.pinyon_pine_wood": "Pinyon Pine Wood",
@@ -129,31 +130,9 @@
   "block.rankine.brass_pipe": "Brass Pipe",
   "block.rankine.concrete_pipe": "Concrete Pipe",
   "block.rankine.concrete_pipe_junction": "Concrete Pipe Junction",
-  "block.rankine.bauxite_ore": "Bauxite Ore",
-  "block.rankine.malachite_ore": "Malachite Ore",
-  "block.rankine.cassiterite_ore": "Cassiterite Ore",
-  "block.rankine.sphalerite_ore": "Sphalerite Ore",
-  "block.rankine.magnesite_ore": "Magnesite Ore",
-  "block.rankine.magnetite_ore": "Magnetite Ore",
-  "block.rankine.ilmenite_ore": "Ilmenite Ore",
-  "block.rankine.galena_ore": "Galena Ore",
-  "block.rankine.acanthite_ore": "Acanthite Ore",
-  "block.rankine.molybdenite_ore": "Molybdenite Ore",
-  "block.rankine.pyrolusite_ore": "Pyrolusite Ore",
-  "block.rankine.chromite_ore": "Chromite Ore",
-  "block.rankine.columbite_ore": "Columbite Ore",
-  "block.rankine.tantalite_ore": "Tantalite Ore",
-  "block.rankine.wolframite_ore": "Wolframite Ore",
-  "block.rankine.bismite_ore": "Bismite Ore",
-  "block.rankine.pentlandite_ore": "Pentlandite Ore",
-  "block.rankine.native_copper_ore": "Native Copper Ore",
-  "block.rankine.native_tin_ore": "Native Tin Ore",
-  "block.rankine.native_gold_ore": "Native Gold Ore",
+
+
   "block.rankine.meteoric_iron_ore": "Meteorite",
-  "block.rankine.lazurite_ore": "Lazurite Ore",
-  "block.rankine.diamond_ore": "Diamond Ore",
-  "block.rankine.emerald_ore": "Beryl Ore",
-  "block.rankine.redstone_ore": "Redstone Ore",
   "block.rankine.olivine_block": "Block of Olivine",
   "block.rankine.feldspar_block": "Block of Feldspar",
   "block.rankine.dolomite_block": "Block of Dolomite",
@@ -373,6 +352,11 @@
   "block.rankine.pumice_bricks_stairs": "Pumice Bricks Stairs",
   "block.rankine.pumice_bricks_wall": "Pumice Bricks Wall",
 
+
+
+
+
+
   "block.rankine.short_grass": "Short Grass",
   "block.rankine.garnet_block": "Block of Garnet",
   "block.rankine.opal_block": "Block of Opal",
@@ -434,15 +418,6 @@
   "block.rankine.anthracite_coal_block": "Block of Anthracite Coal",
   "block.rankine.silicon_carbide_block": "Block of Silicon Carbide",
   "block.rankine.calcium_silicate_block": "Block of Calcium Silicate",
-  "block.rankine.cinnabar_ore": "Cinnabarite Ore",
-  "block.rankine.vanadinite_ore": "Vanadinite Ore",
-  "block.rankine.plumbago_ore": "Plumbago Ore",
-  "block.rankine.moissanite_ore": "Moissanite Ore",
-  "block.rankine.sperrylite_ore": "Sperrylite Ore",
-  "block.rankine.lignite_ore": "Lignite Ore",
-  "block.rankine.subbituminous_ore": "Sub-bituminous Coal Ore",
-  "block.rankine.bituminous_ore": "Bituminous Coal Ore",
-  "block.rankine.anthracite_ore": "Anthracite Coal Ore",
   "block.rankine.copper_block": "Block of Copper",
   "block.rankine.tin_block": "Block of Tin",
   "block.rankine.niobium_block": "Block of Niobium",
@@ -862,8 +837,6 @@
   "item.minecraft.coal": "Sub-bituminous Coal",
   "block.minecraft.coal_ore": "Sub-bituminous Coal Ore",
   "block.minecraft.coal_block": "Sub-bituminous Coal Block",
-  "block.minecraft.gold_ore": "Native Gold Ore",
-  "block.minecraft.iron_ore": "Meteoric Iron Ore",
   "block.minecraft.granite": "Red Granite",
   "block.minecraft.diorite": "Quartz Diorite",
   "block.minecraft.andesite": "Gray Andesite",
@@ -951,6 +924,119 @@
   "entity.rankine.shrouded_king": "Shrouded King",
 
 
+  "block.rankine.white_clover": "White Clover",
+  "block.rankine.purple_clover": "Purple Clover",
+  "item.rankine.four_leafed_clover": "Four Leafed Clover",
+  "block.rankine.eastern_hemlock_door": "Eastern Hemlock Door",
+  "block.rankine.eastern_hemlock_slab": "Eastern Hemlock Slab",
+  "block.rankine.eastern_hemlock_stairs": "Eastern Hemlock Stairs",
+  "block.rankine.eastern_hemlock_fence": "Eastern Hemlock Fence",
+  "block.rankine.eastern_hemlock_fence_gate": "Eastern Hemlock Fence Gate",
+  "block.rankine.eastern_hemlock_pressure_plate": "Eastern Hemlock Pressure Plate",
+  "block.rankine.eastern_hemlock_button": "Eastern Hemlock Button",
+  "block.rankine.eastern_hemlock_planks": "Eastern Hemlock Planks",
+  "block.rankine.eastern_hemlock_sapling": "Eastern Hemlock Sapling",
+  "block.rankine.potted_eastern_hemlock_sapling": "Potted Eastern Hemlock Sapling",
+  "block.rankine.eastern_hemlock_leaves": "Eastern Hemlock Leaves",
+  "block.rankine.eastern_hemlock_log": "Eastern Hemlock Log",
+  "block.rankine.eastern_hemlock_wood": "Eastern Hemlock Wood",
+  "block.rankine.stripped_eastern_hemlock_log": "Stripped Eastern Hemlock Log",
+  "block.rankine.stripped_eastern_hemlock_wood": "Stripped Eastern Hemlock Log",
+  "item.rankine.hemlock_bark": "Hemlock Bark",
+  "item.rankine.herbal_remedy": "Herbal Remedy",
+  "item.rankine.berry_remedy": "Berry Remedy",
+  "item.rankine.wintergreen_remedy": "Wintergreen Remedy",
+  "item.rankine.cedar_remedy": "Cedar Remedy",
+  "item.rankine.tellurium_nugget": "Tellurium Nugget",
+  "item.rankine.tellurium_ingot": "Tellurium Ingot",
+  "item.rankine.selenium_nugget": "Selenium Nugget",
+  "item.rankine.selenium_ingot": "Selenium Ingot",
+  "item.rankine.cadmium_nugget": "Cadmium Nugget",
+  "item.rankine.cadmium_ingot": "Cadmium Ingot",
+  "item.rankine.indium_nugget": "Indium Nugget",
+  "item.rankine.indium_ingot": "Indium Ingot",
+  "item.rankine.gallium_ingot": "Gallium Ingot",
+  "item.rankine.gallium_nugget": "Gallium Nugget",
+  "item.rankine.pumice_soap": "Pumice Soap",
+  "block.rankine.bamboo_door": "Bamboo Door",
+  "item.rankine.dried_bamboo": "Dried Bamboo",
+  "item.rankine.birch_bark": "Birch Bark",
+  "item.rankine.yellow_birch_bark": "Yellow Birch Bark",
+  "item.rankine.cedar_bark": "Cedar Bark",
+  "item.rankine.bismuth_remedy": "Bismuth Remedy",
+  "item.rankine.cobalt_remedy": "Cobalt Remedy",
+  "item.rankine.silver_remedy": "Silver Remedy",
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "block.rankine.native_indium_ore": "Native Indium Ore",
+  "block.rankine.native_selenium_ore": "Native Selenium Ore",
+  "block.rankine.native_tellurium_ore": "Native Tellurium Ore",
+  "block.rankine.native_gallium_ore": "Native Gallium Ore",
+  "block.rankine.native_bismuth_ore": "Native Bismuth Ore",
+  "block.rankine.native_sulfur_ore": "Native Sulfur Ore",
+  "block.rankine.native_arsenic_ore": "Native Arsenic Ore",
+  "block.rankine.cassiterite_ore": "Cassiterite Ore",
+  "block.rankine.malachite_ore": "Malachite Ore",
+  "block.rankine.bauxite_ore": "Bauxite Ore",
+  "block.rankine.sphalerite_ore": "Sphalerite Ore",
+  "block.rankine.magnetite_ore": "Magnetite Ore",
+  "block.rankine.cinnabar_ore": "Cinnabar Ore",
+  "block.rankine.pentlandite_ore": "Pentlandite Ore",
+  "block.rankine.magnesite_ore": "Magnesite Ore",
+  "block.rankine.galena_ore": "Galena Ore",
+  "block.rankine.vanadinite_ore": "Vanadinite Ore",
+  "block.rankine.bismite_ore": "Bismite Ore",
+  "block.rankine.acanthite_ore": "Acanthite Ore",
+  "block.rankine.pyrolusite_ore": "Pyrolusite Ore",
+  "block.rankine.chromite_ore": "Chromite Ore",
+  "block.rankine.molybdenite_ore": "Molybdenite Ore",
+  "block.rankine.ilmenite_ore": "Ilmenite Ore",
+  "block.rankine.columbite_ore": "Columbite Ore",
+  "block.rankine.wolframite_ore": "Wolframite Ore",
+  "block.rankine.tantalite_ore": "Tantalite Ore",
+  "block.rankine.plumbago_ore": "Plumbago Ore",
+  "block.rankine.moissanite_ore": "Moissanite Ore",
+  "block.rankine.sperrylite_ore": "Sperrylite Ore",
+  "block.rankine.lignite_ore": "Lignite Ore",
+  "block.rankine.subbituminous_ore": "Subbituminous Ore",
+  "block.rankine.bituminous_ore": "Bituminous Ore",
+  "block.rankine.anthracite_ore": "Anthracite Ore",
+  "block.rankine.lazurite_ore": "Lazurite Ore",
+  "block.rankine.diamond_ore": "Diamond Ore",
+  "block.rankine.greenockite_ore": "Greenockite Ore",
+  "block.rankine.emerald_ore": "Emerald Ore",
+  "block.rankine.aquamarine_ore": "Aquamarine Ore",
+  "block.rankine.native_copper_ore": "Native Copper Ore",
+  "block.rankine.native_tin_ore": "Native Tin Ore",
+  "block.rankine.native_gold_ore": "Native Gold Ore",
+  "block.rankine.native_aluminum_ore": "Native Aluminum Ore",
+  "block.rankine.native_lead_ore": "Native Lead Ore",
+  "block.rankine.native_silver_ore": "Native Silver Ore",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   "enchantment.rankine.blast": "Blast",
   "enchantment.rankine.blast.desc": "Causes the hammer to explode blocks in a radius.",
   "enchantment.rankine.atomize": "Atomize",
@@ -1017,7 +1103,7 @@
   "biome.rankine.felsenmeer": "Felsenmeer",
   "biome.rankine.shoal": "Shoal",
   "biome.rankine.tropics": "Tropics",
-  "biome.rankine.forested_lagoon": "Forested Lagoon"
-
+  "biome.rankine.forested_lagoon": "Forested Lagoon",
+  "biome.rankine.hemlock_grove": "Hemlock Grove"
 
 }

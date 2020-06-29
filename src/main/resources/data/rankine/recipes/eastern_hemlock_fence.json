@@ -1,0 +1,19 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#S#",
+        "#S#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:eastern_hemlock_planks"
+        },
+        "S": {
+          "item": "minecraft:stick"
+        }
+      },
+      "result": {
+        "item": "rankine:eastern_hemlock_fence",
+        "count": 3
+      }
+    }

@@ -29,7 +29,7 @@ import java.util.List;
 public class RankineOre extends Block {
     public int type = 0;
     public Item nugget;
-    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,13);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,21);
     public RankineOre(Properties properties, Item nugget) {
         super(properties);
         this.nugget = nugget;

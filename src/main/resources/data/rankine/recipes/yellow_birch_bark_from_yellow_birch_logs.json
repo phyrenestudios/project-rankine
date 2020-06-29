@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:yellow_birch_logs"
+    },
+    {
+      "item": "rankine:flint_knife"
+    }
+  ],
+  "result": {
+    "item": "rankine:yellow_birch_bark",
+    "count": 1
+  }
+}

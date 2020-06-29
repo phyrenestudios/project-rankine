@@ -37,7 +37,7 @@ public class BeaverLodgePieces
      * Here, I have two structure nbt files named run_down_house_left_side.nbt and run_down_house_right_side.nbt and I
      * access them with the following resource locations below. The MODID and ':' are important too.
      */
-    private static final ResourceLocation LEFT_SIDE = new ResourceLocation(ProjectRankine.MODID + ":beaver_lodge_left");
+    private static final ResourceLocation LEFT_SIDE = new ResourceLocation(ProjectRankine.MODID + ":beaver_lodge");
     private static final Map<ResourceLocation, BlockPos> OFFSET = ImmutableMap.of(LEFT_SIDE, new BlockPos(0, 1, 0));
 
 

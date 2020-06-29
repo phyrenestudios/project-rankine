@@ -8,29 +8,25 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class OreGen {
 
     public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig::deserialize);
     public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig::deserialize);
 
+
     public static void setupOreGeneration() {
 
         removeFeatures();
         addCrystal();
-
-        intrusionGenDef(ModBlocks.KIMBERLITE, Collections.emptyList(),false,0, 25, .05f);
-        intrusionGenDef(ModBlocks.GRANITE, Collections.emptyList(),false,0, 90, .2f);
-        intrusionGenDef(ModBlocks.DIORITE, Collections.emptyList(),false,51, 256, .1f);
+        intrusionGenDef();
 
         //Extras
         replaceGenDef(Blocks.DIRT, ModBlocks.PERMAFROST, 50, 128, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY), true));
@@ -38,54 +34,59 @@ public class OreGen {
         replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 51, 70, getBiomesFromCategory(Arrays.asList(Biome.Category.SWAMP, Biome.Category.RIVER), true));
 
         //Ocean
-        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 15, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 36, 60, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 61, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 11, 35, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 36, 60, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 61, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
 
         //Beach
-        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 15, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 16, 30, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 10, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 11, 30, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
         replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, 31, 40, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
         replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 41, 55, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
         replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 56, 90, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 91, 256, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 91, 256, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
 
         //Continental
         replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), true));
         replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.RHYOLITE, 11, 30, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, 31, 45, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 46, 60, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANORTHOSITE, 61, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
+        replaceGenDef(Blocks.STONE, ModBlocks.RHYOLITE, 11, 25, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
+        replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, 26, 40, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
+        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 41, 55, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
+        replaceGenDef(Blocks.STONE, ModBlocks.ANORTHOSITE, 56, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
         replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
 
+        chunkGenDefCount(ModBlocks.NATIVE_COPPER_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
+        chunkGenDefCount(ModBlocks.NATIVE_TIN_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
+        chunkGenDefCount(ModBlocks.NATIVE_LEAD_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
+        chunkGenDefCount(ModBlocks.NATIVE_SILVER_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
+        chunkGenDefCount(ModBlocks.NATIVE_ALUMINUM_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
+        chunkGenDefCount(ModBlocks.NATIVE_GOLD_ORE,10,4,15,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
 
-        chunkGenDef(ModBlocks.NATIVE_COPPER_ORE,17,1F,51,70, RankineOreFeatureConfig.RankineFillerBlockType.ALL);
-        chunkGenDef(ModBlocks.NATIVE_TIN_ORE,17,1F,51,70, RankineOreFeatureConfig.RankineFillerBlockType.ALL);
-        chunkGenDef(ModBlocks.NATIVE_COPPER_ORE,17,1F,71,128, RankineOreFeatureConfig.RankineFillerBlockType.ALL);
-        chunkGenDef(ModBlocks.NATIVE_TIN_ORE,17,1F,71,128, RankineOreFeatureConfig.RankineFillerBlockType.ALL);
-        chunkGenDef(ModBlocks.NATIVE_GOLD_ORE,17,0.8F,11,128, RankineOreFeatureConfig.RankineFillerBlockType.ALL);
-        chunkGenDef(ModBlocks.MAGNETITE_ORE,50,0.1F,0,70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.MALACHITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.CASSITERITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.BAUXITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.SPHALERITE_ORE,50,0.07F,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.MAGNESITE_ORE, 30, 0.07F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.PENTLANDITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkMultiGenDef(ModBlocks.GALENA_ORE, 40, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE, 0.3f);
-        chunkGenDef(ModBlocks.ACANTHITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.PYROLUSITE_ORE, 30, 0.02F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.CINNABAR_ORE, 30, 0.2F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_IGNEOUS);
-        chunkGenDef(ModBlocks.LIGNITE_ORE, 30, 0.5F, 51, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.SUBBITUMINOUS_ORE, 25, 0.5F, 31, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.BITUMINOUS_ORE, 20, 0.5F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.LAZURITE_ORE, 20, 0.1F, 31, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.EMERALD_ORE, 15, 0.15F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
-        chunkGenDef(ModBlocks.PLUMBAGO_ORE, 8, 0.10F, 0, 11, RankineOreFeatureConfig.RankineFillerBlockType.MARBLE);
+        chunkGenDefCount(ModBlocks.MAGNETITE_ORE,20,4,0,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefCount(ModBlocks.MALACHITE_ORE,20,1,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefCount(ModBlocks.CASSITERITE_ORE,20,1,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefCount(ModBlocks.BAUXITE_ORE,20,1,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefCount(ModBlocks.SPHALERITE_ORE,20,1,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.MAGNESITE_ORE, 20, 0.8F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.PENTLANDITE_ORE, 15, 0.5F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkMultiGenDef(ModBlocks.GALENA_ORE, 20, 053F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE, 0.3f);
+        chunkGenDefChance(ModBlocks.ACANTHITE_ORE, 20, 0.5F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.BISMITE_ORE, 10, 0.5F, 11, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.PYROLUSITE_ORE, 20, 0.5F, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefCount(ModBlocks.CINNABAR_ORE, 20, 2, 11, 50, RankineOreFeatureConfig.RankineFillerBlockType.OW_IGNEOUS);
+
+        chunkGenDefChance(ModBlocks.LIGNITE_ORE, 30, 1.0F, 51, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.SUBBITUMINOUS_ORE, 25, 1.0F, 31, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.BITUMINOUS_ORE, 20, 1.0F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.LAZURITE_ORE, 20, 1.0F, 31, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
+        chunkGenDefChance(ModBlocks.EMERALD_ORE, 15, 0.5F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
+        chunkGenDefChance(ModBlocks.PLUMBAGO_ORE, 8, 1.0F, 0, 11, RankineOreFeatureConfig.RankineFillerBlockType.MARBLE);
+        chunkGenDefChance(ModBlocks.AQUAMARINE_ORE, 5, 0.5F, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
 
         rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.LIMESTONE_NODULE.getDefaultState(),6,20,31,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false));
-        rockGenCountDef(ModBlocks.KIMBERLITE.getDefaultState(), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),9,3,0,25, getBiomesFromCategory(Collections.emptyList(),true));
+    //    rockGenCountDef(ModBlocks.KIMBERLITE.getDefaultState(), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),9,3,0,25, getBiomesFromCategory(Collections.emptyList(),true));
         rockGenCountDef(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(),10,1,55,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),true));
         rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),60,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState(),6,20,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
@@ -121,11 +122,20 @@ public class OreGen {
         }
     }
 
-    private static void chunkGenDef(RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
+    private static void chunkGenDefChance(RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
                 biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, RANKINE_ORE.withConfiguration(
                         new RankineOreFeatureConfig(type, block.getStateContainer().getBaseState(), veinSize)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
+            }
+        }
+    }
+
+    private static void chunkGenDefCount(RankineOre block, int veinSize, int count, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, RANKINE_ORE.withConfiguration(
+                        new RankineOreFeatureConfig(type, block.getStateContainer().getBaseState(), veinSize)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(count, minHeight, 0, maxHeight))));
             }
         }
     }
@@ -170,30 +180,12 @@ public class OreGen {
         }
     }
 
-
-
-
     // ---------------------------------------------------------------
 
-
-
-    private static void intrusionGenDef(Block block, List<Biome.Category> biomes, boolean genType, int lowerBound, int upperBound, float chance) {
+    private static void intrusionGenDef() {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
-                if (biomes.contains(biome.getCategory())) // if biome is supposed to be included (reverse)
-                {
-                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, lowerBound, 0, upperBound))));
-                }
-            }
-            if (!genType && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE)
-            {
-                if (!biomes.contains(biome.getCategory())) // if biomes in biomesExcluded are not supposed to be included
-                {
-                    biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), block.getDefaultState(), lowerBound, upperBound)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, lowerBound, 0, upperBound))));
-                }
-            }
+            biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
+                    new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 90)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(1, 1, 0, 90))));
         }
     }
 

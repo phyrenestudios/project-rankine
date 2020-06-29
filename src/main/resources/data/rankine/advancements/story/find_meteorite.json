@@ -2,7 +2,7 @@
   "parent": "rankine:story/get_bronze_tools",
   "display": {
     "icon": {
-      "item": "rankine:meteoric_iron_ore"
+      "item": "rankine:meteorite"
     },
     "title": {
       "translate": "rankine.advancements.story.find_meteorite.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meteoric_iron_ore"
+            "item": "rankine:meteorite"
           }
         ]
       }
@@ -39,7 +39,7 @@
   },
   "requirements": [
     [
-      "get_meteoric_iron_ore",
+      "get_meteorite",
       "get_iron_oxide"
     ]
   ]

@@ -75,7 +75,7 @@ public class ModBlocks {
     public static Block.Properties DEF_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(1.5F, 6.0F);
     public static Block.Properties DEF_ORE = Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F, 3.0F);
     public static Block.Properties DEF_METAL_BLOCK = Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL).harvestLevel(0);
-    public static Block.Properties DEF_WOOD = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0);
+    public static Block.Properties DEF_WOOD = Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0);
     public static Block.Properties DEF_LEAVES = Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid();
 
     //Creative Tabs
@@ -401,6 +401,8 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_LOG = add("coconut_palm_log", new LogBlock(MaterialColor.ORANGE_TERRACOTTA, DEF_WOOD), BLOCKS, 300);
     public static final Block BALSAM_FIR_LOG = add("balsam_fir_log", new LogBlock(MaterialColor.WOOD, DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_LOG = add("magnolia_log", new LogBlock(MaterialColor.SAND, DEF_WOOD), BLOCKS, 300);
+    public static final Block EASTERN_HEMLOCK_LOG = add("eastern_hemlock_log", new LogBlock(MaterialColor.ORANGE_TERRACOTTA, DEF_WOOD), BLOCKS, 300);
+    public static final Block YELLOW_BIRCH_LOG = add("yellow_birch_log", new LogBlock(MaterialColor.SAND, DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -408,6 +410,8 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_WOOD = add("coconut_palm_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block BALSAM_FIR_WOOD = add("balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_WOOD = add("magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block EASTERN_HEMLOCK_WOOD = add("eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block YELLOW_BIRCH_WOOD = add("yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block STRIPPED_CEDAR_LOG = add("stripped_cedar_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_LOG = add("stripped_pinyon_pine_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -415,6 +419,7 @@ public class ModBlocks {
     public static final Block STRIPPED_COCONUT_PALM_LOG = add("stripped_coconut_palm_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_EASTERN_HEMLOCK_LOG = add("stripped_eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -422,6 +427,7 @@ public class ModBlocks {
     public static final Block STRIPPED_COCONUT_PALM_WOOD = add("stripped_coconut_palm_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);;
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_EASTERN_HEMLOCK_WOOD = add("stripped_eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(DEF_WOOD), BLOCKS, 300);
@@ -429,8 +435,9 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_PLANKS = add("coconut_palm_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block BALSAM_FIR_PLANKS = add("balsam_fir_planks",new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_PLANKS = add("magnolia_planks", new Block(DEF_WOOD), BLOCKS, 300);
-    public static final Block BAMBOO_PLANKS = add("bamboo_planks",new Block(DEF_WOOD), BLOCKS, 900);
-    public static final Block BAMBOO_CLUMS = add("bamboo_clums", new Block(DEF_WOOD), BLOCKS, 900);
+    public static final Block EASTERN_HEMLOCK_PLANKS = add("eastern_hemlock_planks", new Block(DEF_WOOD), BLOCKS, 300);
+    public static final Block BAMBOO_PLANKS = add("bamboo_planks",new Block(DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS = add("bamboo_clums", new Block(DEF_WOOD), BLOCKS, 400);
 
     public static final Block CEDAR_SLAB = add("cedar_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block PINYON_PINE_SLAB = add("pinyon_pine_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
@@ -438,8 +445,9 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_SLAB = add("coconut_palm_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block BALSAM_FIR_SLAB = add("balsam_fir_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block MAGNOLIA_SLAB = add("magnolia_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
-    public static final Block BAMBOO_SLAB = add("bamboo_slab", new RankineSlab(DEF_WOOD), BLOCKS, 400);
-    public static final Block BAMBOO_CLUMS_SLAB = add("bamboo_clums_slab", new RankineSlab(DEF_WOOD), BLOCKS, 400);
+    public static final Block EASTERN_HEMLOCK_SLAB = add("eastern_hemlock_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block BAMBOO_SLAB = add("bamboo_slab", new RankineSlab(DEF_WOOD), BLOCKS, 200);
+    public static final Block BAMBOO_CULMS_SLAB = add("bamboo_clums_slab", new RankineSlab(DEF_WOOD), BLOCKS, 200);
 
     public static final Block CEDAR_STAIRS = add("cedar_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_STAIRS = add("pinyon_pine_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
@@ -447,8 +455,9 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_STAIRS = add("coconut_palm_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block BALSAM_FIR_STAIRS = add("balsam_fir_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_STAIRS = add("magnolia_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
-    public static final Block BAMBOO_STAIRS = add("bamboo_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 900);
-    public static final Block BAMBOO_CLUMS_STAIRS = add("bamboo_clums_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 900);
+    public static final Block EASTERN_HEMLOCK_STAIRS = add("eastern_hemlock_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
+    public static final Block BAMBOO_STAIRS = add("bamboo_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS_STAIRS = add("bamboo_clums_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
 
     public static final Block CEDAR_FENCE = add("cedar_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_FENCE = add("pinyon_pine_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
@@ -456,8 +465,9 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_FENCE = add("coconut_palm_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block BALSAM_FIR_FENCE = add("balsam_fir_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_FENCE = add("magnolia_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
-    public static final Block BAMBOO_FENCE = add("bamboo_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 900);
-    public static final Block BAMBOO_CLUMS_FENCE = add("bamboo_clums_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 900);
+    public static final Block EASTERN_HEMLOCK_FENCE = add("eastern_hemlock_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
+    public static final Block BAMBOO_FENCE = add("bamboo_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS_FENCE = add("bamboo_clums_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 400);
 
     public static final Block CEDAR_FENCE_GATE = add("cedar_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_FENCE_GATE = add("pinyon_pine_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
@@ -465,11 +475,12 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_FENCE_GATE = add("coconut_palm_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block BALSAM_FIR_FENCE_GATE = add("balsam_fir_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_FENCE_GATE = add("magnolia_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
-    public static final Block BAMBOO_FENCE_GATE = add("bamboo_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 900);
-    public static final Block BAMBOO_CLUMS_FENCE_GATE = add("bamboo_clums_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 900);
+    public static final Block EASTERN_HEMLOCK_FENCE_GATE = add("eastern_hemlock_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
+    public static final Block BAMBOO_FENCE_GATE = add("bamboo_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS_FENCE_GATE = add("bamboo_clums_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
 
-    public static final Block BAMBOO_WALL = add("bamboo_wall", new RankineWall(DEF_WOOD), BLOCKS, 900);
-    public static final Block BAMBOO_CLUMS_WALL = add("bamboo_clums_wall", new RankineWall(DEF_WOOD), BLOCKS, 900);
+    public static final Block BAMBOO_WALL = add("bamboo_wall", new RankineWall(DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS_WALL = add("bamboo_clums_wall", new RankineWall(DEF_WOOD), BLOCKS, 400);
 
     public static final Block CEDAR_PRESSURE_PLATE = add("cedar_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block PINYON_PINE_PRESSURE_PLATE = add("pinyon_pine_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
@@ -477,8 +488,9 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_PRESSURE_PLATE = add("coconut_palm_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block BALSAM_FIR_PRESSURE_PLATE = add("balsam_fir_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block MAGNOLIA_PRESSURE_PLATE = add("magnolia_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
-    public static final Block BAMBOO_PRESSURE_PLATE = add("bamboo_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 1800);
-    public static final Block BAMBOO_CLUMS_PRESSURE_PLATE = add("bamboo_clums_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 1800);
+    public static final Block EASTERN_HEMLOCK_PRESSURE_PLATE = add("eastern_hemlock_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
+    public static final Block BAMBOO_PRESSURE_PLATE = add("bamboo_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 800);
+    public static final Block BAMBOO_CULMS_PRESSURE_PLATE = add("bamboo_clums_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 1800);
 
     public static final Block CEDAR_BUTTON = add("cedar_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block PINYON_PINE_BUTTON = add("pinyon_pine_button", new RankineWoodenButton(), BLOCKS, 300);
@@ -486,15 +498,18 @@ public class ModBlocks {
     public static final Block COCONUT_PALM_BUTTON = add("coconut_palm_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block BALSAM_FIR_BUTTON = add("balsam_fir_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block MAGNOLIA_BUTTON = add("magnolia_button", new RankineWoodenButton(), BLOCKS, 300);
-    public static final Block BAMBOO_BUTTON = add("bamboo_button", new RankineWoodenButton(), BLOCKS, 900);
-    public static final Block BAMBOO_CLUMS_BUTTON = add("bamboo_clums_button", new RankineWoodenButton(), BLOCKS, 900);
+    public static final Block EASTERN_HEMLOCK_BUTTON = add("eastern_hemlock_button", new RankineWoodenButton(), BLOCKS, 300);
+    public static final Block BAMBOO_BUTTON = add("bamboo_button", new RankineWoodenButton(), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS_BUTTON = add("bamboo_clums_button", new RankineWoodenButton(), BLOCKS, 900);
 
-    public static final Block CEDAR_DOOR = add("cedar_door", new RankineWoodenDoor(), BLOCKS, 300);
-    public static final Block PINYON_PINE_DOOR = add("pinyon_pine_door", new RankineWoodenDoor(), BLOCKS, 300);
-    public static final Block JUNIPER_DOOR = add("juniper_door", new RankineWoodenDoor(), BLOCKS, 300);
-    public static final Block COCONUT_PALM_DOOR = add("coconut_palm_door", new RankineWoodenDoor(), BLOCKS, 300);
-    public static final Block BALSAM_FIR_DOOR = add("balsam_fir_door", new RankineWoodenDoor(), BLOCKS, 300);
-    public static final Block MAGNOLIA_DOOR = add("magnolia_door", new RankineWoodenDoor(), BLOCKS, 300);
+    public static final Block CEDAR_DOOR = add("cedar_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block PINYON_PINE_DOOR = add("pinyon_pine_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block JUNIPER_DOOR = add("juniper_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block COCONUT_PALM_DOOR = add("coconut_palm_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block BALSAM_FIR_DOOR = add("balsam_fir_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block EASTERN_HEMLOCK_DOOR = add("eastern_hemlock_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block MAGNOLIA_DOOR = add("magnolia_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block BAMBOO_DOOR = add("bamboo_door", new RankineWoodenDoor(), BLOCKS, 600);
 
     public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block PINYON_PINE_TRAPDOOR = add("pinyon_pine_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
@@ -511,6 +526,7 @@ public class ModBlocks {
     public static final Block JUNIPER_LEAVES = add("juniper_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
     public static final Block BALSAM_FIR_LEAVES = add("balsam_fir_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
     public static final Block MAGNOLIA_LEAVES = add("magnolia_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
+    public static final Block EASTERN_HEMLOCK_LEAVES = add("eastern_hemlock_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
 
     private static final Block.Properties sapling = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
     public static final Block CEDAR_SAPLING = add("cedar_sapling", new RankineSapling(new CedarTree(), sapling, 3), BLOCKS);
@@ -519,23 +535,25 @@ public class ModBlocks {
     public static final Block JUNIPER_SAPLING = add("juniper_sapling", new RankineSapling(new JuniperTree(), sapling, 2), BLOCKS);
     public static final Block BALSAM_FIR_SAPLING = add("balsam_fir_sapling", new RankineSapling(new BalsamFirTree(), sapling, 3), BLOCKS);
     public static final Block MAGNOLIA_SAPLING = add("magnolia_sapling", new RankineSapling(new MagnoliaTree(), sapling, 3), BLOCKS);
+    public static final Block EASTERN_HEMLOCK_SAPLING = add("eastern_hemlock_sapling", new RankineSapling(new EasternHemlockTree(), sapling, 3), BLOCKS);
     public static final FlowerPotBlock POTTED_CEDAR_SAPLING = add("potted_cedar_sapling", new FlowerPotBlock(null, () -> CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_PINYON_PINE_SAPLING = add("potted_pinyon_pine_sapling", new FlowerPotBlock(null, () -> PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_JUNIPER_SAPLING = add("potted_juniper_sapling", new FlowerPotBlock(null, () -> JUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_COCONUT_PALM_SAPLING = add("potted_coconut_palm_sapling", new FlowerPotBlock(null, () -> COCONUT_PALM_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_BALSAM_FIR_SAPLING = add("potted_balsam_fir_sapling", new FlowerPotBlock(null, () -> BALSAM_FIR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_MAGNOLIA_SAPLING = add("potted_magnolia_sapling", new FlowerPotBlock(null, () -> MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
-
-
-
+    public static final FlowerPotBlock POTTED_EASTERN_HEMLOCK_SAPLING = add("potted_eastern_hemlock_sapling", new FlowerPotBlock(null, () -> EASTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     //ORES
-    public static final Block METEORIC_IRON_ORE = add("meteoric_iron_ore", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block METEORITE = add("meteorite", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre NATIVE_COPPER_ORE = add("native_copper_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.COPPER_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_TIN_ORE = add("native_tin_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.TIN_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre NATIVE_ALUMINUM_ORE = add("native_aluminum_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre NATIVE_SILVER_ORE = add("native_silver_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre MALACHITE_ORE = add("malachite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.COPPER_NUGGET), METALLURGY);
     public static final RankineOre CASSITERITE_ORE = add("cassiterite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.TIN_NUGGET), METALLURGY);
     public static final RankineOre BAUXITE_ORE = add("bauxite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.ALUMINUM_NUGGET), METALLURGY);
@@ -562,10 +580,19 @@ public class ModBlocks {
     public static final RankineOre SUBBITUMINOUS_ORE = add("subbituminous_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre BITUMINOUS_ORE = add("bituminous_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre ANTHRACITE_ORE = add("anthracite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
-    public static final RankineOre REDSTONE_ORE = add("redstone_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+//    public static final RankineOre REDSTONE_ORE = add("redstone_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre LAZURITE_ORE = add("lazurite_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre DIAMOND_ORE = add("diamond_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
     public static final RankineOre EMERALD_ORE = add("emerald_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre AQUAMARINE_ORE = add("aquamarine_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre GREENOCKITE_ORE = add("greenockite_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final Block NATIVE_ARSENIC_ORE = add("native_arsenic_ore", new Block(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final Block NATIVE_SULFUR_ORE = add("native_sulfur_ore", new Block(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final Block NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new Block(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final Block NATIVE_GALLIUM_ORE = add("native_gallium_ore", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block NATIVE_INDIUM_ORE = add("native_indium_ore", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block NATIVE_TELLURIUM_ORE = add("native_tellurium_ore", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block NATIVE_SELENIUM_ORE = add("native_selenium_ore", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block OPAL_ORE = add("opal_ore", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(DEF_ORE.harvestLevel(1)), METALLURGY);
 
@@ -670,6 +697,8 @@ public class ModBlocks {
     public static final SphagnumMossBlock SPHAGNUM_MOSS = add("sphagnum_moss", new SphagnumMossBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.NETHER_WART)), MISC);
     public static final SwampGrassBlock SWAMP_GRASS = add("swamp_grass", new SwampGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock SHORT_GRASS = add("short_grass", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
+    public static final ShortGrassBlock WHITE_CLOVER = add("white_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
+    public static final ShortGrassBlock PURPLE_CLOVER = add("purple_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC, DuckweedItem::new);
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));

@@ -98,7 +98,7 @@ public class ProjectRankine {
     private void LoadComplete(FMLLoadCompleteEvent event) {
         LOGGER.debug("Rankine: \"Load Complete Event\" Starting...");
         StructureGen.setupStructureGen();
-        RankineCompostables.compostableThings();
+        VanillaIntegration.init();
         LOGGER.info("Rankine: \"Load Complete\" Event Complete!");
     }
 

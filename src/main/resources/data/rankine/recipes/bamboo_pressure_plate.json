@@ -1,12 +1,18 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "group": "wooden_button",
-      "ingredients": [
-        {
+      "type": "minecraft:crafting_shaped",
+      "group": "wooden_door",
+      "pattern": [
+        "##",
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
           "item": "rankine:bamboo_planks"
         }
-      ],
+      },
       "result": {
-        "item": "rankine:bamboo_button"
+        "item": "rankine:bamboo_door",
+        "count": 3
       }
     }
