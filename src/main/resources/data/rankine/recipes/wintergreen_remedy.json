@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:water_buckets"
+    },
+    {
+      "item": "rankine:yellow_birch_bark"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "result": {
+    "item": "rankine:wintergreen_remedy",
+    "count": 1
+  }
+}

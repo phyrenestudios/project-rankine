@@ -6,6 +6,8 @@
     "#rankine:pinyon_pine_logs",
     "#rankine:juniper_logs",
     "#rankine:balsam_fir_logs",
-    "#rankine:magnolia_logs"
+    "#rankine:magnolia_logs",
+    "#rankine:yellow_birch_logs",
+    "#rankine:eastern_hemlock_logs"
   ]
 }

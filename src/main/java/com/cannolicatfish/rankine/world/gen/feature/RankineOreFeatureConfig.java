@@ -38,7 +38,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
     }
 
     public static enum RankineFillerBlockType implements net.minecraftforge.common.IExtensibleEnum {
-        ALL("all", (blockstate) -> {
+        OVERWORLD_STONES("overworld_stones", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:water_buckets"
+    },
+    {
+      "tag": "minecraft:small_flowers"
+    },
+    {
+      "item": "rankine:four_leafed_clover"
+    },
+    {
+      "item": "minecraft:bamboo"
+    }
+  ],
+  "result": {
+    "item": "rankine:herbal_remedy",
+    "count": 1
+  }
+}

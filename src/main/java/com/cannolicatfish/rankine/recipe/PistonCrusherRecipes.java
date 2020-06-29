@@ -81,7 +81,7 @@ public class PistonCrusherRecipes {
         if (input1.getItem() == new ItemStack(ModBlocks.MAGNETITE_ORE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{1f,0f});
         }
-        if (input1.getItem() == new ItemStack(ModBlocks.METEORIC_IRON_ORE).getItem()) {
+        if (input1.getItem() == new ItemStack(ModBlocks.METEORITE).getItem()) {
             return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), new Float[]{0.5f,0f});
         }
         if (input1.getItem() == new ItemStack(ModBlocks.MALACHITE_ORE).getItem()) {
@@ -293,7 +293,7 @@ public class PistonCrusherRecipes {
             chance = 0.25f;
             return new Pair<>(new ItemStack(ModItems.SULFUR), chance);
         }
-        if (input.getItem() == new ItemStack(ModBlocks.METEORIC_IRON_ORE).getItem())
+        if (input.getItem() == new ItemStack(ModBlocks.METEORITE).getItem())
         {
             chance = 0.75f;
             return new Pair<>(new ItemStack(ModItems.SULFUR), chance);

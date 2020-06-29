@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:water_buckets"
+    },
+    {
+      "item": "rankine:cobalt_nugget"
+    },
+    {
+      "item": "rankine:cedar_bark"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "result": {
+    "item": "rankine:cobalt_remedy",
+    "count": 1
+  }
+}

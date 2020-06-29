@@ -183,6 +183,18 @@ public class BeaverEntity extends AnimalEntity {
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
+                if (blockstate.getBlock() == ModBlocks.EASTERN_HEMLOCK_LOG)
+                {
+                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_EASTERN_HEMLOCK_LOG.getDefaultState(),2);
+                    BeaverEntity.this.heal(1f);
+                    completed = true;
+                }
+                if (blockstate.getBlock() == ModBlocks.YELLOW_BIRCH_LOG)
+                {
+                    world.setBlockState(this.destinationBlock, Blocks.BIRCH_LOG.getDefaultState(),2);
+                    BeaverEntity.this.heal(1f);
+                    completed = true;
+                }
                 if (completed) {
                     if (BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).isEmpty())
                     {

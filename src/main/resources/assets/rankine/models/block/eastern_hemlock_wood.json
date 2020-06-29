@@ -1,0 +1,7 @@
+{
+      "parent": "block/cube_column",
+      "textures": {
+        "end": "rankine:block/eastern_hemlock_log",
+        "side": "rankine:block/eastern_hemlock_log"
+      }
+    }

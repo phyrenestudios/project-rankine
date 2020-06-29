@@ -1,18 +1,26 @@
 {
-  "variants": {
-    "type=0": {"model": "rankine:block/galena_ore0"},
-    "type=1": {"model": "rankine:block/galena_ore1"},
-    "type=2": {"model": "rankine:block/galena_ore2"},
-    "type=3": {"model": "rankine:block/galena_ore3"},
-    "type=4": {"model": "rankine:block/galena_ore4"},
-    "type=5": {"model": "rankine:block/galena_ore5"},
-    "type=6": {"model": "rankine:block/galena_ore6"},
-    "type=7": {"model": "rankine:block/galena_ore7"},
-    "type=8": {"model": "rankine:block/galena_ore8"},
-    "type=9": {"model": "rankine:block/galena_ore9"},
-    "type=10": {"model": "rankine:block/galena_ore0"},
-    "type=11": {"model": "rankine:block/galena_ore0"},
-    "type=12": {"model": "rankine:block/galena_ore0"},
-    "type=13": {"model": "rankine:block/galena_ore13"}
-  }
-}
+      "variants": {
+        "type=0": {"model": "rankine:block/galena_ore0"},
+        "type=1": {"model": "rankine:block/galena_ore1"},
+        "type=2": {"model": "rankine:block/galena_ore2"},
+        "type=3": {"model": "rankine:block/galena_ore3"},
+        "type=4": {"model": "rankine:block/galena_ore4"},
+        "type=5": {"model": "rankine:block/galena_ore5"},
+        "type=6": {"model": "rankine:block/galena_ore6"},
+        "type=7": {"model": "rankine:block/galena_ore7"},
+        "type=8": {"model": "rankine:block/galena_ore8"},
+        "type=9": {"model": "rankine:block/galena_ore9"},
+        "type=10": {"model": "rankine:block/galena_ore10"},
+        "type=11": {"model": "rankine:block/galena_ore11"},
+        "type=12": {"model": "rankine:block/galena_ore12"},
+        "type=13": {"model": "rankine:block/galena_ore13"},
+        "type=14": {"model": "rankine:block/galena_ore14"},
+        "type=15": {"model": "rankine:block/galena_ore15"},
+        "type=16": {"model": "rankine:block/galena_ore16"},
+        "type=17": {"model": "rankine:block/galena_ore17"},
+        "type=18": {"model": "rankine:block/galena_ore18"},
+        "type=19": {"model": "rankine:block/galena_ore19"},
+        "type=20": {"model": "rankine:block/galena_ore20"},
+        "type=21": {"model": "rankine:block/galena_ore21"}
+      }
+    }

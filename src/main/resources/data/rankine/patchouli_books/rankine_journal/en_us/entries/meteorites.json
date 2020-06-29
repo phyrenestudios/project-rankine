@@ -1,6 +1,6 @@
 {
   "name": "Meteorites",
-  "icon": "rankine:meteoric_iron_ore",
+  "icon": "rankine:meteorite",
   "category": "world_exploration",
   "pages": [
     {

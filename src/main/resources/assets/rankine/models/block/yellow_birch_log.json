@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "rankine:block/yellow_birch_log",
+    "down": "rankine:block/yellow_birch_log_top",
+    "up": "rankine:block/yellow_birch_log_top",
+    "east": "rankine:block/yellow_birch_log",
+    "west": "rankine:block/yellow_birch_log",
+    "north": "rankine:block/yellow_birch_log",
+    "south": "rankine:block/yellow_birch_log"
+  }
+}

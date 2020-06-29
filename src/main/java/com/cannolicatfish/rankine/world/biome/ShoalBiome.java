@@ -20,7 +20,7 @@ public class ShoalBiome extends Biome {
     public ShoalBiome() {
         super((new Builder()).surfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.SAND_SAND_GRAVEL_CONFIG)
                 .precipitation(RainType.RAIN)
-                .category(Category.BEACH)
+                .category(Category.OCEAN)
                 .depth(-0.25F).scale(0.05F)
                 .temperature(0.7F)
                 .downfall(0.5F)

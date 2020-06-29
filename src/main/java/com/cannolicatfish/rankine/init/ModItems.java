@@ -83,6 +83,13 @@ public class ModItems {
     public static final Item POTASSIUM_NUGGET = add("potassium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CALCIUM_NUGGET = add("calcium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PALLADIUM_NUGGET = add("palladium_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GALLIUM_NUGGET = add("gallium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item INDIUM_NUGGET = add("indium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CADMIUM_NUGGET = add("cadmium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SELENIUM_NUGGET = add("selenium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TELLURIUM_NUGGET = add("tellurium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+
+
 
     //ELEMENT INGOTS
     public static final Item COPPER_INGOT = add("copper_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -117,6 +124,12 @@ public class ModItems {
     public static final Item POTASSIUM_INGOT = add("potassium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CALCIUM_INGOT = add("calcium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PALLADIUM_INGOT = add("palladium_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GALLIUM_INGOT = add("gallium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item INDIUM_INGOT = add("indium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CADMIUM_INGOT = add("cadmium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SELENIUM_INGOT = add("selenium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TELLURIUM_INGOT = add("tellurium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+
 
     //ALLOY INGOTS
     public static final OldAlloyItem CAST_IRON_INGOT = add("cast_iron_ingot", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -287,12 +300,28 @@ public class ModItems {
     public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item SHROUDED_KING = add("shrouded_king_spawn_egg", new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE_SLEEVES)));
+    public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));
     public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINA_COLADA)));
     public static final Item OVERWORLD_CORE = add("overworld_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item CEDAR_BARK = add("cedar_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item EASTERN_HEMLOCK_BARK = add("eastern_hemlock_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.HEMLOCK_BARK)));
+    public static final Item BIRCH_BARK = add("birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item YELLOW_BIRCH_BARK = add("yellow_birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 100));
+    public static final Item FOUR_LEAFED_CLOVER = add("four_leafed_clover", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
+    public static final Item CEDAR_REMEDY = add("cedar_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item WINTERGREEN_REMEDY = add("wintergreen_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item HERBAL_REMEDY = add("herbal_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BERRY_REMEDY = add("berry_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BISMUTH_REMEDY = add("bismuth_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item COBALT_REMEDY = add("cobalt_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item SILVER_REMEDY = add("silver_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+
+    public static final Item PUMICE_SOAP = add("pumice_soap", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item CAST_IRON_PANEL = add("cast_iron_panel", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
@@ -300,7 +329,6 @@ public class ModItems {
     public static final Item INCONEL_TURBINE_BLADE = add("inconel_turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item BATTERY = add("battery0", new ItemBattery(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-
 
 
     @ObjectHolder("rankine:sphagnum_moss")

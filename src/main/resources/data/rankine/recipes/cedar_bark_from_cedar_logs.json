@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:cedar_logs"
+    },
+    {
+      "item": "rankine:flint_knife"
+    }
+  ],
+  "result": {
+    "item": "rankine:cedar_bark",
+    "count": 1
+  }
+}
