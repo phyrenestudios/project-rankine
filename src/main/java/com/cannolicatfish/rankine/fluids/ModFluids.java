@@ -7,9 +7,9 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class ModFluids {
 
-    @ObjectHolder("rankine:liquid_pig_iron")
-    public static FlowingFluid LIQUID_PIG_IRON;
+    @ObjectHolder("rankine:liquid_mercury")
+    public static FlowingFluid LIQUID_MERCURY;
 
-    @ObjectHolder("rankine:liquid_pig_iron_flowing")
-    public static FlowingFluid LIQUID_PIG_IRON_FLOWING;
+    @ObjectHolder("rankine:liquid_mercury_flowing")
+    public static FlowingFluid LIQUID_MERCURY_FLOWING;
 }

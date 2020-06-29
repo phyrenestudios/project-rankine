@@ -33,22 +33,22 @@ public class CoalForgeRecipes {
             }
             if (template.getItem() == ModItems.AXE_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 3)
             {
-                result = new ItemStack(ModItems.AXE_TEMPLATE);
+                result = new ItemStack(ModItems.BRONZE_AXE);
                 return result;
             }
             if (template.getItem() == ModItems.SHOVEL_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 1)
             {
-                result = new ItemStack(ModItems.SHOVEL_TEMPLATE);
+                result = new ItemStack(ModItems.BRONZE_SHOVEL);
                 return result;
             }
             if (template.getItem() == ModItems.HOE_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 2)
             {
-                result = new ItemStack(ModItems.BRONZE_PICKAXE);
+                result = new ItemStack(ModItems.BRONZE_HOE);
                 return result;
             }
             if (template.getItem() == ModItems.SWORD_TEMPLATE && input1.getCount() >= 1 && input2.getCount() >= 2)
             {
-                result = new ItemStack(ModItems.BRONZE_PICKAXE);
+                result = new ItemStack(ModItems.BRONZE_SWORD);
                 return result;
             }
             if (template.getItem() == ModItems.HAMMER_TEMPLATE && input1.getCount() >= 2 && input2.getCount() >= 5)

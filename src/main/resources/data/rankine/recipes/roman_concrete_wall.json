@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:roman_concrete"
+        }
+      },
+      "result": {
+        "item": "rankine:roman_concrete_wall",
+        "count": 6
+      }
+    }
