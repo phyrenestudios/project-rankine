@@ -3,6 +3,9 @@ package com.cannolicatfish.rankine;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.potion.MercuryPoisonEffect;
+import com.cannolicatfish.rankine.potion.ModEffects;
+import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.world.gen.StructureGen;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
@@ -30,6 +33,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
+import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -171,13 +177,27 @@ public class ProjectRankine {
         }
 
         @SubscribeEvent
+        public static void registerEffects(final RegistryEvent.Register<Effect> event) {
+            event.getRegistry().registerAll(
+                    ModEffects.MERCURY_POISONING
+            );
+        }
+
+        @SubscribeEvent
+        public static void registerPotions(final RegistryEvent.Register<Potion> event) {
+            event.getRegistry().registerAll(
+                    ModPotions.MERCURY_POISON
+            );
+        }
+
+        @SubscribeEvent
         public static void registerFluids(final RegistryEvent.Register<Fluid> event) {
-            final ResourceLocation FLUID_STILL = new ResourceLocation("rankine:block/liquid_pig_iron_still");
-            final ResourceLocation FLUID_FLOWING = new ResourceLocation("rankine:block/liquid_pig_iron");
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_PIG_IRON, () -> ModFluids.LIQUID_PIG_IRON_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xEEBD4900))
-                    .bucket(() -> ModItems.LIQUID_PIG_IRON_BRASS_BUCKET).block(() -> ModBlocks.LIQUID_PIG_IRON_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_pig_iron"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_PIG_IRON, () -> ModFluids.LIQUID_PIG_IRON_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xEEBD4900))
-                    .bucket(() -> ModItems.LIQUID_PIG_IRON_BRASS_BUCKET).block(() -> ModBlocks.LIQUID_PIG_IRON_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_pig_iron_flowing"));
+            final ResourceLocation FLUID_STILL = new ResourceLocation("rankine:block/liquid_mercury_still");
+            final ResourceLocation FLUID_FLOWING = new ResourceLocation("rankine:block/liquid_mercury_flow");
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_MERCURY, () -> ModFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF))
+                    .bucket(() -> ModItems.LIQUID_MERCURY_BRASS_BUCKET).block(() -> ModBlocks.LIQUID_MERCURY_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_MERCURY, () -> ModFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF))
+                    .bucket(() -> ModItems.LIQUID_MERCURY_BRASS_BUCKET).block(() -> ModBlocks.LIQUID_MERCURY_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
         }
 
         @SubscribeEvent

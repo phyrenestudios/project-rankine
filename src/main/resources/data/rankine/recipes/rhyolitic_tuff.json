@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "rs",
+    "qp"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "rankine:rhyolite"
+    },
+    "s":
+    {
+      "item": "rankine:scoria"
+    },
+    "q":
+    {
+      "item": "minecraft:quartz"
+    },
+    "p":
+    {
+      "item": "rankine:pumice"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:rhyolitic_tuff",
+    "count": 4
+  }
+}

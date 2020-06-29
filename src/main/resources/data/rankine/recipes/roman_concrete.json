@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "bmb",
+    "mbm",
+    "bmb"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "tag": "rankine:tuff"
+    },
+    "m":
+    {
+      "item": "rankine:pozzolanic_mortar"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:roman_concrete",
+    "count": 6
+  }
+}

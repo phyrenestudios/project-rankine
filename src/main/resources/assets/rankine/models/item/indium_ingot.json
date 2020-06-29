@@ -1,6 +1,6 @@
 {
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "rankine:item/indium_ingot"
+    "parent": "item/generated",
+    "textures": {
+      "layer0": "rankine:item/indium_ingot"
+    }
   }
-}

@@ -78,7 +78,6 @@ public class BeehiveOvenPit extends Block {
         BlockPos uppos = pos.up();
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         getBeehiveOven(world,pos);
-        System.out.println("tick");
         if (state.get((LIT)))
         {
             if (rand.nextFloat() <= 0.2f)
@@ -92,6 +91,11 @@ public class BeehiveOvenPit extends Block {
                         uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
                 int firstCoalBlock = surroundingBlocks.indexOf(Blocks.COAL_BLOCK);
                 int firstBCoalBlock = surroundingBlocks.indexOf(ModBlocks.BITUMINOUS_COAL_BLOCK);
+                int firstLimestoneBlock = surroundingBlocks.indexOf(ModBlocks.LIMESTONE);
+                if (firstLimestoneBlock != -1)
+                {
+                    world.setBlockState(surroundingBlockPos.get(firstLimestoneBlock), ModBlocks.QUICKLIME_BLOCK.getDefaultState(), 2);
+                }
                 if (firstCoalBlock != -1 && firstCoalBlock > firstBCoalBlock)
                 {
                     world.setBlockState(surroundingBlockPos.get(firstCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
@@ -100,7 +104,7 @@ public class BeehiveOvenPit extends Block {
                 {
                     world.setBlockState(surroundingBlockPos.get(firstBCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
                 }
-                if (firstCoalBlock == -1 && firstBCoalBlock == -1)
+                if (firstCoalBlock == -1 && firstBCoalBlock == -1 && firstLimestoneBlock == -1)
                 {
                     world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
                 }

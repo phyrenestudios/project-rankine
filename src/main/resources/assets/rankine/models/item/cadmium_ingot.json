@@ -1,6 +1,7 @@
 {
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "rankine:item/cadmium_ingot"
-  }
+    "parent": "item/generated",
+    "textures": {
+      "layer0": "rankine:item/cadmium_ingot"
+    }
 }
+

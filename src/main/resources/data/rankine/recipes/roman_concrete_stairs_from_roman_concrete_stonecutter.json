@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:roman_concrete"
+      },
+      "result": "rankine:roman_concrete_stairs",
+      "count": 1
+    }

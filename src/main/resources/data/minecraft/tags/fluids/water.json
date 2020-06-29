@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:liquid_mercury",
+    "rankine:liquid_mercury_flowing"
+  ]
+}
