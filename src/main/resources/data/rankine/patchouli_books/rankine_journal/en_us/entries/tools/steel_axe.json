@@ -1,7 +1,7 @@
 {
   "name": "Steel Axe",
   "icon": "rankine:steel_axe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

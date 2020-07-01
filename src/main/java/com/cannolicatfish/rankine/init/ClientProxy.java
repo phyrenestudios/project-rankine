@@ -129,6 +129,7 @@ public class ClientProxy implements IProxy {
         RenderTypeLookup.setRenderLayer(ModBlocks.CALCITE_BLOCK, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.CALCIUM_SILICATE_BLOCK, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.SALT_BLOCK, RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModBlocks.PINK_SALT_BLOCK, RenderType.getTranslucent());
     }
 
 

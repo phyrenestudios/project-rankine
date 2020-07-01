@@ -1,7 +1,7 @@
 {
   "name": "Bronze Pickaxe",
   "icon": "rankine:bronze_pickaxe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

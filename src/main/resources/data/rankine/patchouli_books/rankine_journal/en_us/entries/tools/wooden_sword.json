@@ -1,7 +1,7 @@
 {
   "name": "Wooden Sword",
   "icon": "minecraft:wooden_sword",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

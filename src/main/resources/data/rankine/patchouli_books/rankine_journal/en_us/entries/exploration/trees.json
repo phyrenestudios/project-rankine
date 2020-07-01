@@ -1,0 +1,42 @@
+{
+  "name": "Trees",
+  "icon": "rankine:elderberries",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "spotlight",
+	  "item": "rankine:cedar_sapling",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:pinyon_pine_sapling",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:juniper_sapling",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:coconut_palm_sapling",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:balsam_fir_sapling",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:magnolia_sapling",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:eastern_hemlock_sapling",
+      "text": "nom nom"
+    }
+  ]
+}

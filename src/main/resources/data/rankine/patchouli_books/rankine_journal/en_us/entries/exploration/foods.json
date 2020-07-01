@@ -1,0 +1,17 @@
+{
+  "name": "Foods",
+  "icon": "rankine:pina_colada",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "spotlight",
+	  "item": "rankine:coconut",
+      "text": "nom nom"
+    },
+	{
+      "type": "crafting",
+	  "recipe": "rankine:pina_colada",
+      "text": "nom nom"
+    }
+  ]
+}

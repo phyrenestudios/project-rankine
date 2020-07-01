@@ -1,7 +1,7 @@
 {
   "name": "Iron Shovel",
   "icon": "minecraft:iron_shovel",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

@@ -90,8 +90,8 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         setup.init();
         proxy.init();
-        DecorationGen.setupDecoration();
         OreGen.setupOreGeneration();
+        DecorationGen.setupDecoration();
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
 

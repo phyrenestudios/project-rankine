@@ -1,0 +1,6 @@
+{
+  "name": "Tools n Things",
+  "description": "Notes about various implements used in the world.",
+  "icon": "rankine:flint_pickaxe",
+  "parent": "technology/technology"
+}

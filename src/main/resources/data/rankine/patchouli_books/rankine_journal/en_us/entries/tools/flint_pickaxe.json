@@ -1,7 +1,7 @@
 {
   "name": "Flint Pickaxe",
   "icon": "rankine:flint_pickaxe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

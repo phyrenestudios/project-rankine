@@ -1,7 +1,7 @@
 {
   "name": "Iron Hammer",
   "icon": "rankine:iron_hammer",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

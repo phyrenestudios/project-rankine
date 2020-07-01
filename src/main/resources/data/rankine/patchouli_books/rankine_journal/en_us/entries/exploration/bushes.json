@@ -1,0 +1,32 @@
+{
+  "name": "Ground Plants",
+  "icon": "rankine:elderberries",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "spotlight",
+	  "item": "minecraft:sweet_berries",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:elderberries",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:snowberries",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:pineapple",
+      "text": "nom nom"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:banana_yucca",
+      "text": "nom nom"
+    }
+  ]
+}

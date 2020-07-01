@@ -24,6 +24,8 @@ public class RankineBiomes {
     public static final Biome TROPICS = add("tropics", new TropicsBiome());
     public static final Biome FORESTED_LAGOON = add("forested_lagoon", new ForestedLagoonBiome());
     public static final Biome HEMLOCK_GROVE = add("hemlock_grove", new HemlockGroveBiome());
+    public static final Biome SALT_PLAINS = add("salt_plains", new SaltPlainsBiome());
+    public static final Biome SALT_SPIKES = add("salt_spikes", new SaltSpikesBiome());
 
 
     private static <T extends Biome> T add(String name, T biome) {
@@ -57,17 +59,25 @@ public class RankineBiomes {
             BiomeManager.addSpawnBiome(RankineBiomes.DEAD_SWAMP);
             BiomeDictionary.addTypes(RankineBiomes.DEAD_SWAMP, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
 
-            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.TROPICS, 10));
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.TROPICS, 7));
             BiomeManager.addSpawnBiome(RankineBiomes.TROPICS);
             BiomeDictionary.addTypes(RankineBiomes.TROPICS, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
 
-            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FORESTED_LAGOON, 10));
+            BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(RankineBiomes.FORESTED_LAGOON, 5));
             BiomeManager.addSpawnBiome(RankineBiomes.FORESTED_LAGOON);
             BiomeDictionary.addTypes(RankineBiomes.FORESTED_LAGOON, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
 
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.HEMLOCK_GROVE, 10));
             BiomeManager.addSpawnBiome(RankineBiomes.HEMLOCK_GROVE);
             BiomeDictionary.addTypes(RankineBiomes.HEMLOCK_GROVE, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
+
+            BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RankineBiomes.SALT_PLAINS, 5));
+            BiomeManager.addSpawnBiome(RankineBiomes.SALT_PLAINS);
+            BiomeDictionary.addTypes(RankineBiomes.SALT_PLAINS, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.OVERWORLD);
+
+            BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RankineBiomes.SALT_SPIKES, 1));
+            BiomeManager.addSpawnBiome(RankineBiomes.SALT_SPIKES);
+            BiomeDictionary.addTypes(RankineBiomes.SALT_SPIKES, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.OVERWORLD);
 
         }
     }

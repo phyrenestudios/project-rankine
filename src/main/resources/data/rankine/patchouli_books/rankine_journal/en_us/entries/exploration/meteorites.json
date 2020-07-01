@@ -1,0 +1,11 @@
+{
+  "name": "Meteorites",
+  "icon": "rankine:meteorite",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Meteorites are extraterrestrial objects that have landed on the surface. Initial investigations determined the pressence of iron."
+    }
+  ]
+}

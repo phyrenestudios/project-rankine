@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.world.gen.feature.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.GlassBlock;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
@@ -25,10 +26,16 @@ public class OreGen {
     public static void setupOreGeneration() {
 
         removeFeatures();
+
+        FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 64, Arrays.asList(RankineBiomes.SALT_PLAINS, RankineBiomes.SALT_SPIKES));
+
         addCrystal();
         intrusionGenDef();
 
         //Extras
+        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SALT_BLOCK.getDefaultState(),30,1,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
+        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PINK_SALT_BLOCK.getDefaultState(),30,1,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
+
         replaceGenDef(Blocks.DIRT, ModBlocks.PERMAFROST, 50, 128, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY), true));
         replaceGenDef(Blocks.STONE, Blocks.RED_SANDSTONE, 61, 80, getBiomesFromCategory(Collections.singletonList(Biome.Category.MESA), true));
         replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 51, 70, getBiomesFromCategory(Arrays.asList(Biome.Category.SWAMP, Biome.Category.RIVER), true));
@@ -89,7 +96,8 @@ public class OreGen {
     //    rockGenCountDef(ModBlocks.KIMBERLITE.getDefaultState(), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,11),9,3,0,25, getBiomesFromCategory(Collections.emptyList(),true));
         rockGenCountDef(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(),10,1,55,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),true));
         rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),60,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
-        rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState(),6,20,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
+        rockGenCountDef(Blocks.RED_SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),60,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
+        rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState(),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
 
     }
 
@@ -113,6 +121,13 @@ public class OreGen {
                 }
         }
         return b;
+    }
+
+    private static void FlatReplaceGenDef(Block oldBlock, Block newBlock, int lowerBound, int upperBound, List<Biome> biomes) {
+        for (Biome b: biomes) {
+            b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new FlatReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
+                    new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+        }
     }
 
     private static void replaceGenDef(Block oldBlock, Block newBlock, int lowerBound, int upperBound, List<Biome> biomes) {
@@ -193,7 +208,7 @@ public class OreGen {
     {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.MESA || biome.getCategory() == Biome.Category.SAVANNA) {
-                biome.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,new CrystalFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(4))));
+                biome.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,new CrystalFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(6))));
             }
         }
     }

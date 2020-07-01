@@ -655,13 +655,14 @@ public class ModBlocks {
     public static final Block GARNET_BLOCK = add("garnet_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block FELDSPAR_BLOCK = add("feldspar_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block DOLOMITE_BLOCK = add("dolomite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block CALCITE_BLOCK = add("calcite_block", new RankineTransparent(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block CALCITE_BLOCK = add("calcite_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
     public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block INCONEL_BLOCK = add("inconel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block SALT_BLOCK = add("salt_block", new RankineTransparent(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new RankineTransparent(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block SALT_BLOCK = add("salt_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
+    public static final Block PINK_SALT_BLOCK = add("pink_salt_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
+    public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
     public static final Block SILICON_BLOCK = add("silicon_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block SULFUR_BLOCK = add("sulfur_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block SILICON_CARBIDE_BLOCK = add("silicon_carbide_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -686,7 +687,8 @@ public class ModBlocks {
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(13)), METALLURGY);
     public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALLURGY);
-
+    public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
+    public static final Block AGED_CHEESE = add("aged_cheese", new Block(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final RankineBerryBushBlock ELDERBERRY_BUSH = add("elderberry_bush", "elderberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.ELDERBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock SNOWBERRY_BUSH = add("snowberry_bush", "snowberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),1), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.SNOWBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),2), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);

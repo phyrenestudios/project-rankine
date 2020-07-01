@@ -1,7 +1,7 @@
 {
   "name": "Alloying Materials",
   "icon": "rankine:element",
-  "category": "metallurgy",
+  "category": "technology/metallurgy",
   "pages": [
     {
       "type": "text",

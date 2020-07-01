@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:unlockables/root",
+  "display": {
+    "icon": {
+      "item": "rankine:malachite_ore"
+    },
+    "title": {
+      "translate": "rankine.advancements.unlockables.find_malachite.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.unlockables.find_malachite.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "find_malachite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:malachite_ore"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "find_malachite"
+    ]
+  ]
+}

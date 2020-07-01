@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:eastern_hemlock_fence_inventory"
+              "name": "rankine:eastern_hemlock_fence"
             }
           ],
           "conditions":

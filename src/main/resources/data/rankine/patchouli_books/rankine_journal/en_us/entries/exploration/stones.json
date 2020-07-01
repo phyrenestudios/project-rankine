@@ -1,0 +1,112 @@
+{
+  "name": "Stones",
+  "icon": "rankine:granite",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "spotlight",
+	  "item": "rankine:granite",
+      "text": "Classification: Igneous$(br2)Found in continental biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:diorite",
+      "text": "Classification: Igneous$(br2)Found in all biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:andesite",
+      "text": "Classification: Igneous$(br2)Found in all biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:limestone",
+      "text": "Classification: Sedimentary$(br2)Found in all biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:shale",
+      "text": "Classification: Sedimentary$(br2)Found in watery biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:anorthosite",
+      "text": "Classification: Igneous$(br2)Found in all continetal biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:ironstone",
+      "text": "Classification: Sedimentary$(br2)Found in Desert and Mesa biomes"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:basalt",
+      "text": "Classification: Igneous$(br2)Found in all oceanic biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:rhyolite",
+      "text": "Classification: Igneous$(br2)Found in all continetal biomes of the Overworld"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:marble",
+      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld and Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:gneiss",
+      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld and Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:pumice",
+      "text": "Classification: Igneous$(br2)Found near volcanoes"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:scoria",
+      "text": "Classification: Igneous$(br2)Found near volcanoes"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:peridotite",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:ringwoodite",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:wadsleyite",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:bridgmanite",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:komatiite",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:kimberlite",
+      "text": "Classification: Metamorphic$(br2)Found in intrusions in the Overworld and Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:ferropericlase",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:perovskite",
+      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+    }
+  ]
+}

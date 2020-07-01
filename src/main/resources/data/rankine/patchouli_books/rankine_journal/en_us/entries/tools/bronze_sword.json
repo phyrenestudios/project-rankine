@@ -1,7 +1,7 @@
 {
   "name": "Bronze Sword",
   "icon": "rankine:bronze_sword",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

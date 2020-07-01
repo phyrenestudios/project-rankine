@@ -1,7 +1,7 @@
 {
   "name": "Bronze Hoe",
   "icon": "rankine:bronze_hoe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

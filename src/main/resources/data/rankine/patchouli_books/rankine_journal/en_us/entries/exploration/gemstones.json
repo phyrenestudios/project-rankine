@@ -1,0 +1,37 @@
+{
+  "name": "Gemstones",
+  "icon": "rankine:opal",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "spotlight",
+	  "item": "rankine:peridot",
+      "text": "Found who knows where"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:opal",
+      "text": "Found in Ironstone"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:garnet",
+      "text": "Found who knows where"
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:aquamarine",
+      "text": "Found throughout the Overworld"
+	  },
+	{
+      "type": "spotlight",
+	  "item": "minecraft:diamond",
+      "text": "Found in kimberlite"
+    },
+	{
+      "type": "spotlight",
+	  "item": "minecraft:emerald",
+      "text": "Found throughout the Overworld"
+    }
+  ]
+}

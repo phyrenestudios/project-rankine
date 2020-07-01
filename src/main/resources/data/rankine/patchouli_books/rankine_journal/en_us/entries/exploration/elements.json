@@ -1,0 +1,12 @@
+{
+  "name": "Elements",
+  "icon": "rankine:element",
+  "category": "exploration/exploration",
+  "pages": [
+    {
+      "type": "spotlight",
+	  "item": "rankine:hydrogen_ingot",
+      "text": "No known traces"
+    }
+  ]
+}
