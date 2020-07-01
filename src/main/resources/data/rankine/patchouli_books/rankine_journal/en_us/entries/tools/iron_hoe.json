@@ -1,7 +1,7 @@
 {
   "name": "Iron Hoe",
   "icon": "minecraft:iron_hoe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

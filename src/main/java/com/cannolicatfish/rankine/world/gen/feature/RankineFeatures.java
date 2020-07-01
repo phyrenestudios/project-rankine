@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.world.gen.feature.erratics.LargeErraticFeature;
-import com.cannolicatfish.rankine.world.gen.feature.erratics.MeteorFeature;
 import com.cannolicatfish.rankine.world.gen.feature.structures.*;
 import com.cannolicatfish.rankine.world.gen.feature.trees.BalsamFirTreeFeature;
 import net.minecraft.util.registry.Registry;
@@ -20,7 +19,7 @@ public abstract class RankineFeatures<FC extends IFeatureConfig> extends net.min
     public static IStructurePieceType LAGOON_FOUNTAIN_PIECE = LagoonFountainPieces.Piece::new;
 
 
-    public static final Feature<BlockBlobConfig> METEOR = register("meteor", new MeteorFeature(BlockBlobConfig::deserialize));
+    public static final Feature<BlockBlobConfig> METEOR = register("meteor", new MeteoriteFeature(BlockBlobConfig::deserialize));
     public static final Feature<BlockBlobConfig> LARGE_ERRATIC = register("large_erratic", new LargeErraticFeature(BlockBlobConfig::deserialize));
     public static final Feature<TreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::deserializeFoliage));
     public static final Structure<NoFeatureConfig> BEAVER_LODGE = register("beaver_lodge", new BeaverLodgeStructure(NoFeatureConfig::deserialize));

@@ -1,7 +1,7 @@
 {
   "name": "Bronze Hammer",
   "icon": "rankine:bronze_hammer",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:unlockables/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:gold_nugget"
+    },
+    "title": {
+      "translate": "rankine.advancements.unlockables.find_gold.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.unlockables.find_gold.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "find_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:gold_nugget"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "find_gold"
+    ]
+  ]
+}

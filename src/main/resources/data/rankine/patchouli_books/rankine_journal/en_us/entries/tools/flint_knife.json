@@ -1,7 +1,7 @@
 {
   "name": "Flint Knife",
   "icon": "rankine:flint_knife",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

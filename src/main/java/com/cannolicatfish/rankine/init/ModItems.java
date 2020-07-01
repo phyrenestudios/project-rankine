@@ -256,6 +256,7 @@ public class ModItems {
     public static final Item BLOOM_IRON = add("bloom_iron", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SLAG = add("slag", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SALT = add("salt", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PINK_SALT = add("pink_salt", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SALTPETER = add("saltpeter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item GRAPHITE = add("graphite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CALCIUM_SILICATE = add("calcium_silicate", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -263,6 +264,7 @@ public class ModItems {
     public static final Item CRUSHED_COAL = add("crushed_coal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CINNABAR = add("cinnabar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OPAL = add("opal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item AQUAMARINE = add("aquamarine", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item GARNET = add("garnet", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PERIDOT = add("peridot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item QUICKLIME = add("quicklime", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -383,6 +385,7 @@ public class ModItems {
 
     public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));
+    public static final Item CHEESE = add("cheese", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.CHEESE)));
     public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINA_COLADA)));
     public static final Item OVERWORLD_CORE = add("overworld_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

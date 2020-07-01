@@ -1,7 +1,7 @@
 {
   "name": "Bronze Spear",
   "icon": "rankine:bronze_spear",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

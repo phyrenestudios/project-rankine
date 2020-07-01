@@ -13,5 +13,8 @@ public class ModFoods {
     public static final Food PINEAPPLE = (new Food.Builder()).hunger(2).saturation(0.1F).build();
     public static final Food PINEAPPLE_SLEEVES = (new Food.Builder()).hunger(10).saturation(1F).build();
     public static final Food PINA_COLADA = (new Food.Builder()).hunger(4).saturation(0.5F).effect(new EffectInstance(Effects.SLOWNESS,5 * 20,0),0.5f).build();
-    public static final Food HEMLOCK_BARK = (new Food.Builder()).hunger(1).saturation(0.5F).build();
+    public static final Food HEMLOCK_BARK = (new Food.Builder()).hunger(1).saturation(0.05F).build();
+    public static final Food CHEESE = (new Food.Builder()).hunger(2).saturation(0.2F).build();
+
+
 }

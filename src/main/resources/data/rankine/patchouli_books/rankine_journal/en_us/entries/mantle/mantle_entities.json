@@ -1,7 +1,7 @@
 {
   "name": "Mantle Entities",
-  "icon": "rankine:garnet_block",
-  "category": "mantle",
+  "icon": "rankine:demonyte_spawn_egg",
+  "category": "mantle/mantle",
   "pages": [
     {
       "type": "entity",

@@ -1,7 +1,7 @@
 {
   "name": "Flint Spear",
   "icon": "rankine:flint_spear",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

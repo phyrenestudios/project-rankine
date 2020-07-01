@@ -1,7 +1,7 @@
 {
   "name": "Stone Hammer",
   "icon": "rankine:stone_hammer",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

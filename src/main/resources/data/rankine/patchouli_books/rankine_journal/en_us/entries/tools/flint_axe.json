@@ -1,7 +1,7 @@
 {
   "name": "Flint Axe",
   "icon": "rankine:flint_axe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,7 @@
 {
   "name": "Iron Pickaxe",
   "icon": "minecraft:iron_pickaxe",
-  "category": "tools",
+  "category": "technology/tools",
   "pages": [
     {
       "type": "text",
