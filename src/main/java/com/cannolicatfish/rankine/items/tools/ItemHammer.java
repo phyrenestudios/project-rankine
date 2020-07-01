@@ -123,6 +123,15 @@ public class ItemHammer extends ToolItem {
         }
     }
 
+    @Override
+    public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
+        if (this.getUseDuration(stack) - count == 15)
+        {
+            BlockPos pos = player.getPosition();
+            player.getEntityWorld().playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS,1.0F, 1.0F, false);
+        }
+    }
+
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.SPEAR;
     }
@@ -152,8 +161,8 @@ public class ItemHammer extends ToolItem {
             onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, entityLiving);
         } else
         {
+            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,1.0F, 4.0F, false);
             worldIn.sendBlockBreakProgress(-1,pos,1);
-            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,0.2F, 0.5F, false);
         }
 
 
