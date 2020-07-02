@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.biome;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -8,10 +9,13 @@ import net.minecraft.world.biome.BambooJungleBiome;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.biome.ErodedBadlandsBiome;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftStructure;
+import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
@@ -20,7 +24,7 @@ public class SaltSpikesBiome extends Biome {
         super((new Biome.Builder()).surfaceBuilder(new SaltSpikesSurfaceBuilder(SurfaceBuilderConfig::deserialize), SurfaceBuilder.SAND_CONFIG)
                 .precipitation(Biome.RainType.NONE)
                 .category(Category.DESERT)
-                .depth(0.1F)
+                .depth(0.0F)
                 .scale(0.1F)
                 .temperature(2.0F)
                 .downfall(0.0F)
@@ -40,6 +44,7 @@ public class SaltSpikesBiome extends Biome {
         DefaultBiomeFeatures.addDesertFeatures(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
         RankineBiomeFeatures.addModStructures(this);
+        RankineBiomeFeatures.addSaltSpikes(this);
         this.addSpawn(EntityClassification.CREATURE, new SpawnListEntry(EntityType.RABBIT, 4, 2, 3));
         this.addSpawn(EntityClassification.AMBIENT, new SpawnListEntry(EntityType.BAT, 10, 8, 8));
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SPIDER, 100, 4, 4));

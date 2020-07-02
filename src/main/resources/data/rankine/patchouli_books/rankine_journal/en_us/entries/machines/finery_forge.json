@@ -1,0 +1,14 @@
+{
+  "name": "Finery Forge",
+  "icon": "rankine:finery_forge",
+  "category": "technology/machines",
+  "pages": [
+	{
+      "type": "crafting",
+	  "title": "Finery Forge",
+	  "anchor": "finery_forge",
+	  "recipe": "rankine:finery_forge",
+      "text": "aaa"
+    }
+  ]
+}

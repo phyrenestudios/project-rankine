@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:magnalium_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_aluminum",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Magnalium",
+	  "anchor": "magnalium",
+	  "item": "rankine:magnalium_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#aluminum)Aluminum$() 94%-96% $(li)$(l:metallurgy/materials#magnesium)Magnesium$() 4%-6%"
+    }
+  ]
+}

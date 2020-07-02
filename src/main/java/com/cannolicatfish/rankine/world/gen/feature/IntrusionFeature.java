@@ -17,9 +17,6 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
-
-    //   private static final BlockState INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
-
     public IntrusionFeature(Function<Dynamic<?>, ? extends ReplacerFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }

@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:aluminum_bronze_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_copper",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Aluminum Bronze",
+	  "anchor": "aluminum_bronze",
+	  "item": "rankine:aluminum_bronze_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/metallurgy/materials#copper)Copper$() 74%-93% $(li)$(l:metallurgy/metallurgy/materials#aluminum)Aluminum$() 4%-12% $(li)$(l:metallurgy/metallurgy/materials)Additive$() <=14%%"
+    }
+  ]
+}

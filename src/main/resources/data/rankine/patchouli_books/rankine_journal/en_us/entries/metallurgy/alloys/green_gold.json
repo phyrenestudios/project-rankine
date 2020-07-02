@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:green_gold_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_gold",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Green Gold",
+	  "anchor": "green_gold",
+	  "item": "rankine:green_gold_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#gold)Gold$() 30%-90% $(li)$(l:metallurgy/materials#silver)Silver$() 10%-70% $(li)$(l:metallurgy/materials)Additive$() <=10%"
+    }
+  ]
+}

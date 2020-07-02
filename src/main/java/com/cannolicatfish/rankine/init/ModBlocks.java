@@ -678,6 +678,7 @@ public class ModBlocks {
     public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
 
+    public static final Block CREEPER_BLOCK = add("creeper_block", new CreepingBlock(1.0F,Block.Properties.create(Material.SAND).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1)), METALLURGY);
     public static final BlastingPowderBlock BLASTING_POWDER = add("blasting_powder", new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1)), METALLURGY);
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 

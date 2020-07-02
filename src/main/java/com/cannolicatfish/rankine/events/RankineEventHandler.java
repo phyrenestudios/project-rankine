@@ -198,8 +198,6 @@ public class RankineEventHandler {
                 event.setResult(Event.Result.ALLOW);
             }
         }
-
-
         }
     }
 

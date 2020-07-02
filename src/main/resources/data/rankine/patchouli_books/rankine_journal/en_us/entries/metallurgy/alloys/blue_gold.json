@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:blue_gold_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_gold",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Blue Gold",
+	  "anchor": "blue_gold",
+	  "item": "rankine:blue_gold_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#gold)Gold$() 74%-76% $(li)$(l:metallurgy/materials#iron)Iron$() 19%-21% $(li)$(l:metallurgy/materials)Additive$() 5%"
+    }
+  ]
+}

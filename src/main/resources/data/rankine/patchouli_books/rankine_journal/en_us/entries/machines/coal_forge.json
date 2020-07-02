@@ -1,0 +1,14 @@
+{
+  "name": "Coal Forge",
+  "icon": "rankine:coal_forge",
+  "category": "technology/machines",
+  "pages": [
+	{
+      "type": "crafting",
+	  "title": "Coal Forge",
+	  "anchor": "coal_forge",
+	  "recipe": "rankine:coal_forge",
+      "text": "aaa"
+    }
+  ]
+}

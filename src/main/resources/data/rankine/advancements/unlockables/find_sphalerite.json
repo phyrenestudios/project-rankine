@@ -2,13 +2,13 @@
   "parent": "rankine:unlockables/root",
   "display": {
     "icon": {
-      "item": "minecraft:iron_ingot"
+      "item": "rankine:sphalerite_ore"
     },
     "title": {
-      "translate": "rankine.advancements.unlockables.find_iron.title"
+      "translate": "rankine.advancements.unlockables.find_sphalerite.title"
     },
     "description": {
-      "translate": "rankine.advancements.unlockables.find_iron.description"
+      "translate": "rankine.advancements.unlockables.find_sphalerite.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "find_iron": {
+    "find_sphalerite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:iron_ingot"
+            "item": "rankine:sphalerite_ore"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "find_iron"
+      "find_sphalerite"
     ]
   ]
 }

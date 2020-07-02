@@ -210,10 +210,8 @@ public class ModItems {
     public static final Item OGANESSON_INGOT = add("oganesson_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item PIG_IRON_INGOT = add("pig_iron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item WROUGHT_IRON_INGOT = add("wrought_iron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-
-
-    //ALLOY INGOTS
     public static final OldAlloyItem CAST_IRON_INGOT = add("cast_iron_ingot", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    //ALLOY INGOTS
     public static final AlloyItem BRONZE_ALLOY = add("bronze_alloy", new AlloyItem(new BronzeAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRASS_ALLOY = add("brass_alloy", new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

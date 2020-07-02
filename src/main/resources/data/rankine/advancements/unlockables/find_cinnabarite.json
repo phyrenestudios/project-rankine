@@ -2,13 +2,13 @@
   "parent": "rankine:unlockables/root",
   "display": {
     "icon": {
-      "item": "minecraft:gold_nugget"
+      "item": "rankine:cinnabarite_ore"
     },
     "title": {
-      "translate": "rankine.advancements.unlockables.find_gold.title"
+      "translate": "rankine.advancements.unlockables.find_cinnabarite.title"
     },
     "description": {
-      "translate": "rankine.advancements.unlockables.find_gold.description"
+      "translate": "rankine.advancements.unlockables.find_cinnabarite.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "find_gold": {
+    "find_cinnabarite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:gold_nugget"
+            "item": "rankine:cinnabarite_ore"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "find_gold"
+      "find_cinnabarite"
     ]
   ]
 }
