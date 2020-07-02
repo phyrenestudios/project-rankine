@@ -12,6 +12,7 @@
   "block.rankine.potted_pinyon_pine_sapling": "Potted Pinyon Pine Sapling",
   "block.rankine.potted_magnolia_sapling": "Potted Magnolia Sapling",
 
+  "block.rankine.red_grapevine": "Red Grapevine",
   "block.rankine.balsam_fir_log": "Balsam Fir Log",
   "block.rankine.yellow_birch_log": "Yellow Birch Log",
   "block.rankine.balsam_fir_wood": "Balsam Fir Wood",
@@ -894,6 +895,7 @@
   "item.rankine.potassium_nugget": "Potassium Nugget",
   "item.rankine.calcium_nugget": "Calcium Nugget",
   "item.rankine.cheese": "Cheese",
+  "item.rankine.red_grapes": "Red Grapes",
   "item.rankine.tantalum_nugget": "Tantalum Nugget",
   "item.rankine.titanium_nugget": "Titanium Nugget",
   "item.rankine.tungsten_nugget": "Tungsten Nugget",
