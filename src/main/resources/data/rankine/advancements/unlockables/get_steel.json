@@ -16,14 +16,6 @@
     "hidden": false
   },
   "criteria": {
-    "get_steel_nugget": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {"item": "rankine:steel_nugget"}
-        ]
-      }
-    },
     "get_steel_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -43,7 +35,6 @@
   },
   "requirements": [
     [
-      "get_steel_nugget",
       "get_steel_alloy",
       "get_steel_block"
     ]
