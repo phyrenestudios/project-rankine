@@ -703,6 +703,8 @@ public class ModBlocks {
     public static final ShortGrassBlock WHITE_CLOVER = add("white_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock PURPLE_CLOVER = add("purple_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC, DuckweedItem::new);
+    public static final FoxfireBlock BLUE_FOXFIRE = add("blue_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).lightValue(4)), MISC);
+
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 

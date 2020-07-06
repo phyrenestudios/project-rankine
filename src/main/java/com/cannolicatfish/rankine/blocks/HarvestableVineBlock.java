@@ -36,22 +36,8 @@ public class HarvestableVineBlock extends VineBlock implements IGrowable {
         builder.add(UP, NORTH, EAST, SOUTH, WEST, AGE);
     }
 
-    public IntegerProperty getAgeProperty() {
-        return AGE;
-    }
 
-    public int getMaxAge() {
-        return 7;
-    }
-
-    protected int getAge(BlockState state) {
-        return state.get(this.getAgeProperty());
-    }
-
-    public BlockState withAge(int age) {
-        return this.getDefaultState().with(this.getAgeProperty(), age);
-    }
-
+    //harvesting max aged grapes
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (isMaxAge(state) && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
@@ -68,35 +54,8 @@ public class HarvestableVineBlock extends VineBlock implements IGrowable {
         return ActionResultType.PASS;
     }
 
-    public boolean isMaxAge(BlockState state) {
-        return state.get(this.getAgeProperty()) >= this.getMaxAge();
-    }
-
+    //aging of vines
     @Override
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
-        return true;
-    }
-
-    @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
-        return true;
-    }
-
-    @Override
-    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
-        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-        int j = this.getMaxAge();
-        if (i > j) {
-            i = j;
-        }
-
-        worldIn.setBlockState(pos, this.withAge(i), 2);
-    }
-
-    protected int getBonemealAgeIncrease(World worldIn) {
-        return MathHelper.nextInt(worldIn.rand, 2, 5);
-    }
-
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         super.tick(state, worldIn, pos, rand);
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
@@ -110,10 +69,56 @@ public class HarvestableVineBlock extends VineBlock implements IGrowable {
                 }
             }
         }
+    }
 
+
+
+    public IntegerProperty getAgeProperty() {
+        return AGE;
+    }
+
+    public int getMaxAge() {
+        return 7;
+    }
+
+    protected int getAge(BlockState state) {
+        return state.get(this.getAgeProperty());
+    }
+
+    public BlockState withAge(int age) {
+        return this.getDefaultState().with(this.getAgeProperty(), age);
+    }
+
+    public boolean isMaxAge(BlockState state) { return state.get(this.getAgeProperty()) >= this.getMaxAge(); }
+
+    protected int getBonemealAgeIncrease(World worldIn) {
+        return MathHelper.nextInt(worldIn.rand, 2, 5);
     }
 
     protected static float getGrowthChance(Block blockIn, IBlockReader worldIn, BlockPos pos) {
         return 1.0F;
     }
+
+    @Override
+    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+        return true;
+    }
+
+    @Override
+    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    //using bonemeal
+    @Override
+    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+        int j = this.getMaxAge();
+        if (i > j) {
+            i = j;
+        }
+
+        worldIn.setBlockState(pos, this.withAge(i), 2);
+    }
+
 }
