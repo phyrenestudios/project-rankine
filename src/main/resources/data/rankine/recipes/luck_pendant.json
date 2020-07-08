@@ -1,0 +1,26 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        " S ",
+        "GRG",
+        "GFG"
+      ],
+      "key": {
+        "S": {
+          "item": "minecraft:string"
+        },
+        "G": {
+          "item": "minecraft:gold_ingot"
+        },
+        "R": {
+          "item": "minecraft:rabbit_foot"
+        },
+        "F": {
+          "item": "rankine:four_leafed_clover"
+        }
+      },
+      "result": {
+        "item": "rankine:luck_pendant",
+        "count": 1
+      }
+    }

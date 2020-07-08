@@ -12,6 +12,10 @@
   "block.rankine.potted_pinyon_pine_sapling": "Potted Pinyon Pine Sapling",
   "block.rankine.potted_magnolia_sapling": "Potted Magnolia Sapling",
 
+
+  "item.rankine.luck_pendant": "Luck Pendant",
+  "item.rankine.jar_blue_foxfire": "Jar Blue Foxfire",
+  "item.rankine.jar_green_foxfire": "Jar Green Foxfire",
   "block.rankine.red_grapevine": "Red Grapevine",
   "block.rankine.balsam_fir_log": "Balsam Fir Log",
   "block.rankine.yellow_birch_log": "Yellow Birch Log",
@@ -19,6 +23,7 @@
   "block.rankine.coconut_palm_wood": "Coconut Palm Wood",
   "block.rankine.pinyon_pine_wood": "Pinyon Pine Wood",
   "block.rankine.blue_foxfire": "Blue Foxfire",
+  "block.rankine.green_foxfire": "Green Foxfire",
   "block.rankine.juniper_wood": "Juniper Wood",
   "block.rankine.stripped_balsam_fir_log": "Stripped Balsam Fir Log",
   "block.rankine.stripped_balsam_fir_wood": "Stripped Balsam Fir Wood",

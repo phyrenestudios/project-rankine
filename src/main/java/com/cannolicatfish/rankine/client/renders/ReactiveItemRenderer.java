@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.items.ReactiveItemEntity;
+import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

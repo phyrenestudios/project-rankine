@@ -104,7 +104,7 @@ public class WoodBucket extends BucketItem {
     }
 
     private ItemStack fillBucket(ItemStack emptyBuckets, PlayerEntity player, Item fullBucket) {
-        System.out.println(fullBucket);
+//        System.out.println(fullBucket);
         if (fullBucket.getItem() == Items.WATER_BUCKET)
         {
             fullBucket = ModItems.WATER_WOOD_BUCKET;

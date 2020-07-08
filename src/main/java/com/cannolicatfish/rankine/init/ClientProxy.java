@@ -114,6 +114,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.WHITE_CLOVER,
                 ModBlocks.PURPLE_CLOVER,
                 ModBlocks.BLUE_FOXFIRE,
+                ModBlocks.GREEN_FOXFIRE,
                 ModBlocks.DUCKWEED,
                 ModBlocks.RED_GRAPEVINE,
                 ModBlocks.ELDERBERRY_BUSH,
