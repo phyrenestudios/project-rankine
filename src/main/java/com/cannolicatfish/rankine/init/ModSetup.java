@@ -16,13 +16,19 @@ public class ModSetup {
         public ItemStack createIcon() { return new ItemStack(ModItems.NIOBIUM_INGOT); }
     };
 
+    public ItemGroup rankineMagic = new ItemGroup("rankine_magic") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ModItems.BONE_HOURGLASS);
+        }
+    };
+
     public ItemGroup rankineTools = new ItemGroup("rankine_misc") {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(ModItems.STEEL_SPEAR);
         }
     };
-
     public void init() {
         MinecraftForge.EVENT_BUS.register(new ForgeEventHandlers());
     }

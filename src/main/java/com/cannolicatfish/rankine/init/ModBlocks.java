@@ -82,6 +82,7 @@ public class ModBlocks {
     public static Item.Properties BLOCKS = new Item.Properties().group(ProjectRankine.setup.rankineBlocks);
     public static Item.Properties METALLURGY = new Item.Properties().group(ProjectRankine.setup.rankineMetals);
     public static Item.Properties MISC = new Item.Properties().group(ProjectRankine.setup.rankineTools);
+    public static Item.Properties MAGIC = new Item.Properties().group(ProjectRankine.setup.rankineMagic);
 
 
 
@@ -705,7 +706,7 @@ public class ModBlocks {
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
-
+    public static final Block MYSTICAL_SUNDIAL =  add("mystical_sundial", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F, 1.0F).harvestLevel(1)), MAGIC);
 
 
 
