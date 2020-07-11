@@ -426,6 +426,21 @@ public class ModItems {
     @ObjectHolder("rankine:snowberries")
     public static Item SNOWBERRIES;
 
+    @ObjectHolder("rankine:blueberries")
+    public static Item BLUEBERRIES;
+
+    @ObjectHolder("rankine:raspberries")
+    public static Item RASPBERRIES;
+
+    @ObjectHolder("rankine:blackberries")
+    public static Item BLACKBERRIES;
+
+    @ObjectHolder("rankine:cranberries")
+    public static Item CRANBERRIES;
+
+    @ObjectHolder("rankine:strawberries")
+    public static Item STRAWBERRIES;
+
     @ObjectHolder("rankine:pineapple")
     public static Item PINEAPPLE;
 

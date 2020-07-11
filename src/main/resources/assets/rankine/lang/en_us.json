@@ -12,7 +12,16 @@
   "block.rankine.potted_pinyon_pine_sapling": "Potted Pinyon Pine Sapling",
   "block.rankine.potted_magnolia_sapling": "Potted Magnolia Sapling",
 
-
+  "block.rankine.blueberry_bush": "Blueberry Bush",
+  "block.rankine.blackberry_bush": "Blackberry Bush",
+  "block.rankine.raspberry_bush": "Raspberry Bush",
+  "block.rankine.cranberry_bush": "Cranberry Bush",
+  "block.rankine.strawberry_bush": "Strawberry Bush",
+  "item.rankine.blueberries": "Blueberries",
+  "item.rankine.blackberries": "Blackberries",
+  "item.rankine.raspberries": "Raspberries",
+  "item.rankine.cranberries": "Cranberries",
+  "item.rankine.strawberries": "Strawberries",
   "item.rankine.luck_pendant": "Luck Pendant",
   "item.rankine.jar_blue_foxfire": "Jar Blue Foxfire",
   "item.rankine.jar_green_foxfire": "Jar Green Foxfire",

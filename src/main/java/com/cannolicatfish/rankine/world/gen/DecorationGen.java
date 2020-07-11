@@ -27,9 +27,14 @@ public class DecorationGen
     public static void setupDecoration()
     {
         addBerryBushes(ModBlocks.ELDERBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS), true));
-        addBerryBushes(ModBlocks.SNOWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.PLAINS, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA, Biome.Category.ICY), true));
-        addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true));
+        addBerryBushes(ModBlocks.SNOWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY), true));
+        addBerryBushes(ModBlocks.BLUEBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.EXTREME_HILLS), true));
+        addBerryBushes(ModBlocks.RASPBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
+        addBerryBushes(ModBlocks.BLACKBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
+        addBerryBushes(ModBlocks.CRANBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true));
+        addBerryBushes(ModBlocks.STRAWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true));
         addBerryBushes(ModBlocks.PINEAPPLE_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), Collections.singletonList(RankineBiomes.TROPICS));
+        addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true));
 
         addErratics(RankineFeatures.METEOR, ModBlocks.METEORITE.getDefaultState(), 2, 250, getBiomesFromCategory(Collections.emptyList(),false));
        // addErratics(RankineFeatures.LARGE_ERRATIC, ModBlocks.ANORTHOSITE.getDefaultState(), 6, 300, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS),false));
