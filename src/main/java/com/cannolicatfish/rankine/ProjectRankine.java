@@ -135,6 +135,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.DRAGONYTE.setRegistryName(ProjectRankine.MODID,"dragonyte"));
             event.getRegistry().register(ModEntityTypes.BEAVER.setRegistryName(ProjectRankine.MODID,"beaver"));
             event.getRegistry().register(ModEntityTypes.SHROUDED_KING.setRegistryName(ProjectRankine.MODID,"shrouded_king"));
+            event.getRegistry().register(ModEntityTypes.SOLAR_FLARE.setRegistryName(ProjectRankine.MODID,"solar_flare"));
             event.getRegistry().register(ModEntityTypes.RANKINE_BOAT.setRegistryName(ProjectRankine.MODID,"cedar_boat"));
         }
 
@@ -155,6 +156,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEAVER, BeaverRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SHROUDED_KING, ShroudedKingRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SOLAR_FLARE, SolarFlareRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
         }
         @SubscribeEvent

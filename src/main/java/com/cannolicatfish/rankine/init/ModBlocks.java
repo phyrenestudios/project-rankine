@@ -82,6 +82,7 @@ public class ModBlocks {
     public static Item.Properties BLOCKS = new Item.Properties().group(ProjectRankine.setup.rankineBlocks);
     public static Item.Properties METALLURGY = new Item.Properties().group(ProjectRankine.setup.rankineMetals);
     public static Item.Properties MISC = new Item.Properties().group(ProjectRankine.setup.rankineTools);
+    public static Item.Properties MAGIC = new Item.Properties().group(ProjectRankine.setup.rankineMagic);
 
 
 
@@ -693,7 +694,7 @@ public class ModBlocks {
     public static final RankineBerryBushBlock SNOWBERRY_BUSH = add("snowberry_bush", "snowberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),1), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.SNOWBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),2), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);
     public static final RankineBerryBushBlock PINEAPPLE_BUSH = add("pineapple_bush", "pineapple",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),3), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE), BlockNamedItem::new);
-
+    public static final HarvestableVineBlock RED_GRAPEVINE = add("red_grapevine", new HarvestableVineBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT)), MISC);
     public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.CARPET)), MISC);
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
     public static final SphagnumMossBlock SPHAGNUM_MOSS = add("sphagnum_moss", new SphagnumMossBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.NETHER_WART)), MISC);
@@ -705,7 +706,7 @@ public class ModBlocks {
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
-
+    public static final Block MYSTICAL_SUNDIAL =  add("mystical_sundial", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F, 1.0F).harvestLevel(1)), MAGIC);
 
 
 

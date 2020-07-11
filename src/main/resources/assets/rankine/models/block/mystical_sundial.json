@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "rankine:block/mystical_sundial_top",
+    "down": "rankine:block/mystical_sundial_top",
+    "up": "rankine:block/mystical_sundial_top",
+    "north": "rankine:block/mystical_sundial_side",
+    "east": "rankine:block/mystical_sundial_side",
+    "south": "rankine:block/mystical_sundial_side",
+    "west": "rankine:block/mystical_sundial_side"
+  }
+}
