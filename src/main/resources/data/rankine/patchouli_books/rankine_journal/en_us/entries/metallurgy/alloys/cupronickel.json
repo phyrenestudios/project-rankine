@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:cupronickel_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_nickel",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Cupronickel",
+	  "anchor": "cupronickel",
+	  "item": "rankine:cupronickel_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#copper)Copper$() 71%-90% $(li)$(l:metallurgy/materials#nickel)Nickel$() 10%-30% $(li)$(l:metallurgy/materials)Additive$() <=5%"
+    }
+  ]
+}

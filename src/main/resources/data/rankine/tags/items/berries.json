@@ -3,6 +3,11 @@
   "values": [
     "rankine:snowberries",
     "rankine:elderberries",
+    "rankine:blueberries",
+    "rankine:raspberries",
+    "rankine:blackberries",
+    "rankine:cranberries",
+    "rankine:strawberries",
     "minecraft:sweet_berries"
   ]
 }

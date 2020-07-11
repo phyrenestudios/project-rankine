@@ -1,0 +1,6 @@
+{
+  "name": "Alloys",
+  "description": "Notes about the production of alloys.",
+  "icon": "rankine:alloy_furnace",
+  "parent": "technology/metallurgy"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:pig_iron_ingot",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_iron",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Pig Iron",
+	  "anchor": "pig_iron",
+	  "item": "rankine:pig_iron_ingot",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#copper)Copper$() 65%-70% $(li)$(l:metallurgy/materials#pure_carbon)Pure Carbon$() <=2% $(li)$(l:metallurgy/materials#chromium)Chromium$() 11%-18%"
+    }
+  ]
+}

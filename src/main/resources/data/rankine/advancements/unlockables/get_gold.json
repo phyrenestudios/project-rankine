@@ -1,0 +1,51 @@
+{
+  "parent": "rankine:unlockables/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:gold_ingot"
+    },
+    "title": {
+      "translate": "rankine.advancements.unlockables.get_gold.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.unlockables.get_gold.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "get_gold_nugget": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {"item": "minecraft:gold_nugget"}
+        ]
+      }
+    },
+    "get_gold_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {"item": "minecraft:gold_ingot"}
+        ]
+      }
+    },
+    "get_gold_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {"item": "minecraft:gold_block"}
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_gold_nugget",
+      "get_gold_ingot",
+      "get_gold_block"
+    ]
+  ]
+}

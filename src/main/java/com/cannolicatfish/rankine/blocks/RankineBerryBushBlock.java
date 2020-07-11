@@ -38,9 +38,9 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        if (type == 2 || type == 3)
+        if (type == 7 || type == 8)
         {
-            return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == ModBlocks.SANDY_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
+            return block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == ModBlocks.SANDY_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
         }
         return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
     }
@@ -58,15 +58,35 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             }
             case 2:
             {
-                return new ItemStack(ModItems.BANANA_YUCCA);
+                return new ItemStack(ModItems.BLUEBERRIES);
             }
             case 3:
+            {
+                return new ItemStack(ModItems.RASPBERRIES);
+            }
+            case 4:
+            {
+                return new ItemStack(ModItems.BLACKBERRIES);
+            }
+            case 5:
+            {
+                return new ItemStack(ModItems.CRANBERRIES);
+            }
+            case 6:
+            {
+                return new ItemStack(ModItems.STRAWBERRIES);
+            }
+            case 7:
             {
                 if (rand.nextInt(50) == 1) {
                     return new ItemStack(ModItems.PINEAPPLE_SLEEVES);
                  } else {
                     return new ItemStack(ModItems.PINEAPPLE);
                 }
+            }
+            case 8:
+            {
+                return new ItemStack(ModItems.BANANA_YUCCA);
             }
         }
         return null;
@@ -124,11 +144,31 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             }
             if (type == 2)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BANANA_YUCCA, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BLUEBERRIES, j + (flag ? 1 : 0)));
             }
             if (type == 3)
             {
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.RASPBERRIES, j + (flag ? 1 : 0)));
+            }
+            if (type == 4)
+            {
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BLACKBERRIES, j + (flag ? 1 : 0)));
+            }
+            if (type == 5)
+            {
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.CRANBERRIES, j + (flag ? 1 : 0)));
+            }
+            if (type == 6)
+            {
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.STRAWBERRIES, j + (flag ? 1 : 0)));
+            }
+            if (type == 7)
+            {
                 spawnAsEntity(worldIn, pos, new ItemStack(ModItems.PINEAPPLE, j + (flag ? 1 : 0)));
+            }
+            if (type == 8)
+            {
+                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BANANA_YUCCA, j + (flag ? 1 : 0)));
             }
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
             worldIn.setBlockState(pos, state.with(AGE, 1), 2);

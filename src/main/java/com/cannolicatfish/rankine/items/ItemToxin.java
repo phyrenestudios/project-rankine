@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -34,6 +33,7 @@ public class ItemToxin extends Item {
         {
             ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.WITHER, 7 * 20, 0));
         }
-
     }
+
+
 }

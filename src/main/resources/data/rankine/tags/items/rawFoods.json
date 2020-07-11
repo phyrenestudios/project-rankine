@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:snowberries",
+    "rankine:elderberries",
+    "rankine:blueberries",
+    "rankine:raspberries",
+    "rankine:blackberries",
+    "rankine:cranberries",
+    "rankine:strawberries",
+    "rankine:banana_yucca",
+    "rankine:pineapple",
+    "rankine:coconut"
+  ]
+}

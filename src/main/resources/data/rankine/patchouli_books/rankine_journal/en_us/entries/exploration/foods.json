@@ -12,6 +12,11 @@
       "type": "crafting",
 	  "recipe": "rankine:pina_colada",
       "text": "nom nom"
+    },
+	{
+      "type": "crafting",
+	  "recipe": "rankine:cheese",
+      "text": "nom nom"
     }
   ]
 }

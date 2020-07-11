@@ -18,7 +18,7 @@ public abstract class RankineFeatures<FC extends IFeatureConfig> extends net.min
     public static IStructurePieceType TROPICS_HOUSE_PIECE = TropicsHousePieces.Piece::new;
     public static IStructurePieceType LAGOON_FOUNTAIN_PIECE = LagoonFountainPieces.Piece::new;
 
-
+    public static final Feature<NoFeatureConfig> SPIKE = register("spike", new SpikesFeature(NoFeatureConfig::deserialize));
     public static final Feature<BlockBlobConfig> METEOR = register("meteor", new MeteoriteFeature(BlockBlobConfig::deserialize));
     public static final Feature<BlockBlobConfig> LARGE_ERRATIC = register("large_erratic", new LargeErraticFeature(BlockBlobConfig::deserialize));
     public static final Feature<TreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::deserializeFoliage));

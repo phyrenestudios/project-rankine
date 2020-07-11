@@ -1,17 +1,13 @@
 {
-  "name": "Machines",
+  "name": "Alloy Furnace",
   "icon": "rankine:alloy_furnace",
-  "category": "technology/metallurgy",
+  "category": "technology/machines",
   "pages": [
-    {
-      "type": "text",
-      "text": "vrrrmmm"
-    },
 	{
       "type": "crafting",
 	  "title": "Alloy Furnace",
 	  "anchor": "alloy_furnace",
-	  "recipe": "alloy_furnace",
+	  "recipe": "rankine:alloy_furnace",
       "text": "aaa"
     }
   ]

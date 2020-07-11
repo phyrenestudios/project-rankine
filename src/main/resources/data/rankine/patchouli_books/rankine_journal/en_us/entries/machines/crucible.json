@@ -1,0 +1,14 @@
+{
+  "name": "Crucible",
+  "icon": "rankine:crucible",
+  "category": "technology/machines",
+  "pages": [
+	{
+      "type": "crafting",
+	  "title": "Crucible",
+	  "anchor": "crucible",
+	  "recipe": "rankine:crucible",
+      "text": "aaa"
+    }
+  ]
+}

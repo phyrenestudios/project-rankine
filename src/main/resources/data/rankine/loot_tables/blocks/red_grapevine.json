@@ -12,7 +12,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "minecraft:wheat",
+                  "block": "rankine:red_grapevine",
                   "properties": {
                     "age": "7"
                   }
@@ -22,7 +22,20 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:wheat_seeds"
+              "conditions": [
+                {
+                  "condition": "minecraft:alternative",
+                  "terms": [
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "item": "minecraft:shears"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "name": "rankine:red_grapevine"
             }
           ]
         }
@@ -35,22 +48,29 @@
           "type": "minecraft:item",
           "functions": [
             {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            },
+            {
               "function": "minecraft:apply_bonus",
               "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
+              "formula": "minecraft:uniform_bonus_count",
               "parameters": {
-                "extra": 3,
-                "probability": 0.5714286
+                "bonusMultiplier": 1
               }
             }
           ],
-          "name": "minecraft:wheat_seeds"
+          "name": "rankine:red_grapes"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "minecraft:wheat",
+          "block": "rankine:red_grapevine",
           "properties": {
             "age": "7"
           }

@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:unlockables/root",
+  "display": {
+    "icon": {
+      "item": "rankine:magnetite_ore"
+    },
+    "title": {
+      "translate": "rankine.advancements.unlockables.find_magnetite.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.unlockables.find_magnetite.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "find_magnetite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:magnetite_ore"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "find_magnetite"
+    ]
+  ]
+}

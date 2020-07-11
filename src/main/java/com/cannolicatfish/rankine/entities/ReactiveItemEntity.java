@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.items;
+package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.init.ModItems;

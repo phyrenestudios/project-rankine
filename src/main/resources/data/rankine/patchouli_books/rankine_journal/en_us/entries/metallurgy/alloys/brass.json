@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:brass_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_copper",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Brass",
+	  "anchor": "brass",
+	  "item": "rankine:brass_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#copper)Copper$() 30%-70% $(li)$(l:metallurgy/materials#zinc)Zinc$() 15%-60% $(li)$(l:metallurgy/materials)Additive$() <=10%"
+    }
+  ]
+}

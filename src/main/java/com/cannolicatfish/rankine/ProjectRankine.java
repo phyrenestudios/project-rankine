@@ -120,12 +120,13 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void onEntityRegistry(final RegistryEvent.Register<EntityType<?>> event) {
-            //event.getRegistry().register(ModEntityTypes.RANKINE_BOAT);
             event.getRegistry().register(ModEntityTypes.FLINT_SPEAR);
             event.getRegistry().register(ModEntityTypes.BRONZE_SPEAR);
             event.getRegistry().register(ModEntityTypes.IRON_SPEAR);
             event.getRegistry().register(ModEntityTypes.STEEL_SPEAR);
             event.getRegistry().register(ModEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
+      //      event.getRegistry().register(ModEntityTypes.JAR_BLUE_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_blue_foxfire"));
+      //      event.getRegistry().register(ModEntityTypes.JAR_GREEN_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_green_foxfire"));
             event.getRegistry().register(ModEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(ModEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
             event.getRegistry().register(ModEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
@@ -147,6 +148,8 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEEL_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
+        //    RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_BLUE_FOXFIRE, ReactiveItemRenderer::new);
+       //     RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_GREEN_FOXFIRE, ReactiveItemRenderer::new);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PERIDOT_MANTLE_GOLEM,PeridotMantleGolemRenderer.instance);

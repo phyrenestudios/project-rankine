@@ -210,10 +210,8 @@ public class ModItems {
     public static final Item OGANESSON_INGOT = add("oganesson_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item PIG_IRON_INGOT = add("pig_iron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item WROUGHT_IRON_INGOT = add("wrought_iron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-
-
-    //ALLOY INGOTS
     public static final OldAlloyItem CAST_IRON_INGOT = add("cast_iron_ingot", new OldAlloyItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    //ALLOY INGOTS
     public static final AlloyItem BRONZE_ALLOY = add("bronze_alloy", new AlloyItem(new BronzeAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRASS_ALLOY = add("brass_alloy", new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -397,6 +395,8 @@ public class ModItems {
     public static final Item YELLOW_BIRCH_BARK = add("yellow_birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 100));
     public static final Item FOUR_LEAFED_CLOVER = add("four_leafed_clover", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item JAR_BLUE_FOXFIRE = add("jar_blue_foxfire", new BlueFoxfireJarItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item JAR_GREEN_FOXFIRE = add("jar_green_foxfire", new GreenFoxfireJarItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item CEDAR_REMEDY = add("cedar_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item WINTERGREEN_REMEDY = add("wintergreen_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -405,6 +405,7 @@ public class ModItems {
     public static final Item BISMUTH_REMEDY = add("bismuth_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item COBALT_REMEDY = add("cobalt_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item SILVER_REMEDY = add("silver_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item LUCK_PENDANT = add("luck_pendant", new LuckPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
 
     public static final Item PUMICE_SOAP = add("pumice_soap", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -432,6 +433,21 @@ public class ModItems {
 
     @ObjectHolder("rankine:snowberries")
     public static Item SNOWBERRIES;
+
+    @ObjectHolder("rankine:blueberries")
+    public static Item BLUEBERRIES;
+
+    @ObjectHolder("rankine:raspberries")
+    public static Item RASPBERRIES;
+
+    @ObjectHolder("rankine:blackberries")
+    public static Item BLACKBERRIES;
+
+    @ObjectHolder("rankine:cranberries")
+    public static Item CRANBERRIES;
+
+    @ObjectHolder("rankine:strawberries")
+    public static Item STRAWBERRIES;
 
     @ObjectHolder("rankine:pineapple")
     public static Item PINEAPPLE;

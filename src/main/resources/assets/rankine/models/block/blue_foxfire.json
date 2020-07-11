@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "rankine:block/blue_foxfire"
+  }
+}

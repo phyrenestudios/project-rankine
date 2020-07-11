@@ -1,0 +1,15 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:purple_gold_alloy",
+  "category": "technology/alloys",
+  "advancement": "rankine:unlockables/get_gold",
+  "pages": [
+	{
+      "type": "spotlight",
+	  "title": "Purple Gold",
+	  "anchor": "purple_gold",
+	  "item": "rankine:purple_gold_alloy",
+      "text": "Alloy Furnace: $(li)$(l:metallurgy/materials#gold)Gold$() 79%-81%% $(li)$(l:metallurgy/materials#aluminum)Aluminum$() 19%-21%"
+    }
+  ]
+}
