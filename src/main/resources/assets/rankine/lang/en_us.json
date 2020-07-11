@@ -29,6 +29,7 @@
   "block.rankine.red_grapevine": "Red Grapevine",
   "block.rankine.balsam_fir_log": "Balsam Fir Log",
   "block.rankine.yellow_birch_log": "Yellow Birch Log",
+  "block.rankine.yellow_birch_wood": "Yellow Birch Wood",
   "block.rankine.balsam_fir_wood": "Balsam Fir Wood",
   "block.rankine.coconut_palm_wood": "Coconut Palm Wood",
   "block.rankine.pinyon_pine_wood": "Pinyon Pine Wood",
@@ -137,6 +138,7 @@
   "item.rankine.ruthenium_block": "Block of Ruthenium",
   "item.rankine.palladium_block": "Block of Palladium",
   "block.rankine.osmium_block": "Block of Osmium",
+  "block.rankine.osmiridium_block": "Block of Osmiridium",
   "block.rankine.iridium_block": "Block of Iridium",
   "block.rankine.coal_forge": "Coal Forge",
   "block.rankine.finery_forge": "Finery Forge",
@@ -150,7 +152,7 @@
   "block.rankine.concrete_pipe_junction": "Concrete Pipe Junction",
 
 
-  "block.rankine.meteoric_iron_ore": "Meteorite",
+  "block.rankine.meteorite": "Meteorite",
   "block.rankine.olivine_block": "Block of Olivine",
   "block.rankine.feldspar_block": "Block of Feldspar",
   "block.rankine.dolomite_block": "Block of Dolomite",
@@ -831,7 +833,7 @@
   "item.rankine.water_brass_bucket": "Water Brass Bucket",
   "item.rankine.lava_brass_bucket": "Lava Brass Bucket",
   "item.rankine.milk_brass_bucket": "Milk Brass Bucket",
-  "item.rankine.liquid_pig_iron_brass_bucket": "Molten Pig Iron Brass Bucket",
+  "item.rankine.liquid_mercury_brass_bucket": "Liquid Mercury Brass Bucket",
   "item.rankine.flint_spear": "Flint Spear",
   "item.rankine.flint_knife": "Flint Knife",
   "item.rankine.flint_shovel": "Flint Shovel",
@@ -934,26 +936,7 @@
   "item.rankine.brigandine_chestplate": "Brigandine Chestplate",
   "item.rankine.brigandine_leggings": "Brigandine Leggings",
   "item.rankine.brigandine_boots": "Brigandine Boots",
-  "item.rankine.mantle_golem_egg": "Garnet Mantle Golem Spawn Egg",
-  "entity.rankine.mantle_golem": "Garnet Mantle Golem",
-  "item.rankine.diamond_mantle_golem_egg": "Diamond Mantle Golem Spawn Egg",
-  "entity.rankine.diamond_mantle_golem": "Diamond Mantle Golem",
-  "item.rankine.peridot_mantle_golem_egg": "Peridot Mantle Golem Spawn Egg",
-  "entity.rankine.peridot_mantle_golem": "Peridot Mantle Golem",
-  "item.rankine.desmoxyte_spawn_egg": "Desmoxyte Spawn Egg",
-  "entity.rankine.desmoxyte": "Desmoxyte",
-  "item.rankine.demonyte_spawn_egg": "Demonxyte Spawn Egg",
-  "entity.rankine.demonyte": "Demonxyte",
-  "item.rankine.dragonyte_spawn_egg": "Dragonxyte Spawn Egg",
-  "entity.rankine.dragonyte": "Dragonxyte",
-  "item.rankine.steamer_spawn_egg": "Steamer Spawn Egg",
-  "entity.rankine.steamer": "Steamer",
-  "item.rankine.beaver_spawn_egg": "Beaver Spawn Egg",
-  "entity.rankine.beaver": "Beaver",
-  "item.rankine.solar_flare_spawn_egg": "Solar Flare Spawn Egg",
-  "entity.rankine.solar_flare": "Solar Flare",
-  "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
-  "entity.rankine.shrouded_king": "Shrouded King",
+
 
 
   "block.rankine.white_clover": "White Clover",
@@ -980,14 +963,9 @@
   "item.rankine.wintergreen_remedy": "Wintergreen Remedy",
   "item.rankine.cedar_remedy": "Cedar Remedy",
   "item.rankine.tellurium_nugget": "Tellurium Nugget",
-  "item.rankine.tellurium_ingot": "Tellurium Ingot",
   "item.rankine.selenium_nugget": "Selenium Nugget",
-  "item.rankine.selenium_ingot": "Selenium Ingot",
   "item.rankine.cadmium_nugget": "Cadmium Nugget",
-  "item.rankine.cadmium_ingot": "Cadmium Ingot",
   "item.rankine.indium_nugget": "Indium Nugget",
-  "item.rankine.indium_ingot": "Indium Ingot",
-  "item.rankine.gallium_ingot": "Gallium Ingot",
   "item.rankine.gallium_nugget": "Gallium Nugget",
   "item.rankine.pumice_soap": "Pumice Soap",
   "block.rankine.bamboo_door": "Bamboo Door",
@@ -1063,10 +1041,30 @@
 
 
 
+  "fluid.rankine.liquid_mercury": "Liquid Mercury",
 
 
 
-
+  "item.rankine.mantle_golem_egg": "Garnet Mantle Golem Spawn Egg",
+  "entity.rankine.mantle_golem": "Garnet Mantle Golem",
+  "item.rankine.diamond_mantle_golem_egg": "Diamond Mantle Golem Spawn Egg",
+  "entity.rankine.diamond_mantle_golem": "Diamond Mantle Golem",
+  "item.rankine.peridot_mantle_golem_egg": "Peridot Mantle Golem Spawn Egg",
+  "entity.rankine.peridot_mantle_golem": "Peridot Mantle Golem",
+  "item.rankine.desmoxyte_spawn_egg": "Desmoxyte Spawn Egg",
+  "entity.rankine.desmoxyte": "Desmoxyte",
+  "item.rankine.demonyte_spawn_egg": "Demonxyte Spawn Egg",
+  "entity.rankine.demonyte": "Demonxyte",
+  "item.rankine.dragonyte_spawn_egg": "Dragonxyte Spawn Egg",
+  "entity.rankine.dragonyte": "Dragonxyte",
+  "item.rankine.steamer_spawn_egg": "Steamer Spawn Egg",
+  "entity.rankine.steamer": "Steamer",
+  "item.rankine.beaver_spawn_egg": "Beaver Spawn Egg",
+  "entity.rankine.beaver": "Beaver",
+  "item.rankine.solar_flare_spawn_egg": "Solar Flare Spawn Egg",
+  "entity.rankine.solar_flare": "Solar Flare",
+  "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
+  "entity.rankine.shrouded_king": "Shrouded King",
 
 
   "enchantment.rankine.blast": "Blast",

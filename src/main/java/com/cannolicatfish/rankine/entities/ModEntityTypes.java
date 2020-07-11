@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
 import com.cannolicatfish.rankine.entities.projectiles.JarBlueFoxfireEntity;
 import com.cannolicatfish.rankine.entities.projectiles.JarGreenFoxfireEntity;
 import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
-import com.cannolicatfish.rankine.items.ReactiveItemEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
