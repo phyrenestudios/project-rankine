@@ -4,6 +4,7 @@
   "block.rankine.permafrost": "Permafrost",
   "block.rankine.vegetated_permafrost": "Vegetated Permafrost",
 
+  "block.rankine.mystical_sundial": "Mystical Sundial",
 
   "block.rankine.potted_cedar_sapling": "Potted Cedar Sapling",
   "block.rankine.potted_balsam_fir_sapling": "Potted Balsam Fir Sapling",
@@ -922,6 +923,12 @@
   "item.rankine.lanthanum_nugget": "Lanthanum Nugget",
   "item.rankine.element": "Element",
   "item.rankine.element_transmuter": "Element Transmuter",
+  "item.rankine.wooden_hourglass": "Wooden Hourglass",
+  "item.rankine.golden_hourglass": "Golden Hourglass",
+  "item.rankine.bone_hourglass": "Bone Hourglass",
+  "item.rankine.phantom_hourglass": "Phantom Hourglass",
+  "item.rankine.blaze_hourglass": "Blaze Hourglass",
+  "item.rankine.ender_hourglass": "Ender Hourglass",
   "item.rankine.beaver_pelt": "Beaver Pelt",
   "item.rankine.brigandine_helmet": "Brigandine Helmet",
   "item.rankine.brigandine_chestplate": "Brigandine Chestplate",
@@ -943,6 +950,8 @@
   "entity.rankine.steamer": "Steamer",
   "item.rankine.beaver_spawn_egg": "Beaver Spawn Egg",
   "entity.rankine.beaver": "Beaver",
+  "item.rankine.solar_flare_spawn_egg": "Solar Flare Spawn Egg",
+  "entity.rankine.solar_flare": "Solar Flare",
   "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
   "entity.rankine.shrouded_king": "Shrouded King",
 
@@ -1071,6 +1080,7 @@
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",
   "itemGroup.rankine_blocks": "Project Rankine Blocks",
   "itemGroup.rankine_metallurgy": "Project Rankine Metallurgy",
+  "itemGroup.rankine_magic": "Project Rankine Magic",
   "itemGroup.rankine_misc": "Project Rankine Miscellaneous",
 
   "rankine.advancements.story.root.title": "Project Rankine",
