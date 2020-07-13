@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.world.biome;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -20,7 +21,7 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class SaltSpikesSurfaceBuilder extends ErodedBadlandsSurfaceBuilder {
-    public SaltSpikesSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51303_1_) {
+    public SaltSpikesSurfaceBuilder(Codec<SurfaceBuilderConfig> p_i51303_1_) {
         super(p_i51303_1_);
     }
 
@@ -123,7 +124,7 @@ public class SaltSpikesSurfaceBuilder extends ErodedBadlandsSurfaceBuilder {
         this.field_215432_a = new BlockState[64];
         Arrays.fill(this.field_215432_a, RED_SANDSTONE);
         SharedSeedRandom sharedseedrandom = new SharedSeedRandom(p_215430_1_);
-        this.field_215439_e = new PerlinNoiseGenerator(sharedseedrandom, 0, 0);
+        this.field_215439_e = new PerlinNoiseGenerator(sharedseedrandom,Arrays.asList(0,0));
 
         for(int l1 = 0; l1 < 64; ++l1) {
             l1 += sharedseedrandom.nextInt(5) + 1;

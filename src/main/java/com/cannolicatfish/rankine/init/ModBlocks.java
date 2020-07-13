@@ -37,7 +37,7 @@ import java.util.function.BiFunction;
 
 public class ModBlocks {
 
-    public static final DeferredRegister<Block> REGISTRY = new DeferredRegister<>(ForgeRegistries.BLOCKS, ProjectRankine.MODID);
+    public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, ProjectRankine.MODID);
 
     //Register a block without an item, add("name", new Block(...))
     private static <T extends Block> T add(String name, T block) {
@@ -105,15 +105,15 @@ public class ModBlocks {
     public static final Block ROMAN_CONCRETE = add("roman_concrete", new MovementModifierBlock(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_SLAB = add("roman_concrete_slab", new RankineSlab(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_STAIRS = add("roman_concrete_stairs", new RankineStairs(1.4D,Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
-    public static final Block ROMAN_CONCRETE_WALL = add("roman_concrete_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
+    public static final Block ROMAN_CONCRETE_WALL = add("roman_concrete_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block SMOOTH_ROMAN_CONCRETE = add("smooth_roman_concrete", new MovementModifierBlock(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block SMOOTH_ROMAN_CONCRETE_SLAB = add("smooth_roman_concrete_slab", new RankineSlab(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block SMOOTH_ROMAN_CONCRETE_STAIRS = add("smooth_roman_concrete_stairs", new RankineStairs(1.4D,Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_ROMAN_CONCRETE_WALL = add("smooth_roman_concrete_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_ROMAN_CONCRETE_WALL = add("smooth_roman_concrete_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS = add("roman_concrete_bricks", new MovementModifierBlock(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS_SLAB = add("roman_concrete_bricks_slab", new RankineSlab(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS_STAIRS = add("roman_concrete_bricks_stairs", new RankineStairs(1.4D,Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
-    public static final Block ROMAN_CONCRETE_BRICKS_WALL = add("roman_concrete_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
+    public static final Block ROMAN_CONCRETE_BRICKS_WALL = add("roman_concrete_bricks_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     //Stone Blocks
     public static final Block RED_GRANITE_BRICKS = add("red_granite_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block QUARTZ_DIORITE_BRICKS = add("quartz_diorite_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -328,82 +328,82 @@ public class ModBlocks {
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
     
     //Stone Walls
-    public static final Block RED_GRANITE_BRICKS_WALL = add("red_granite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block QUARTZ_DIORITE_BRICKS_WALL = add("quartz_diorite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block GRAY_ANDESITE_BRICKS_WALL = add("gray_andesite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block GRANITE_WALL = add("granite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_GRANITE_WALL = add("smooth_granite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block GRANITE_BRICKS_WALL = add("granite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block DIORITE_WALL = add("diorite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_DIORITE_WALL = add("smooth_diorite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block DIORITE_BRICKS_WALL = add("diorite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block ANDESITE_WALL = add("andesite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_ANDESITE_WALL = add("smooth_andesite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block ANDESITE_BRICKS_WALL = add("andesite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block LIMESTONE_WALL = add("limestone_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_LIMESTONE_WALL = add("smooth_limestone_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block LIMESTONE_BRICKS_WALL = add("limestone_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SHALE_WALL = add("shale_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_SHALE_WALL = add("smooth_shale_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SHALE_BRICKS_WALL = add("shale_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block ANORTHOSITE_WALL = add("anorthosite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block SMOOTH_ANORTHOSITE_WALL = add("smooth_anorthosite_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block ANORTHOSITE_BRICKS_WALL = add("anorthosite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block IRONSTONE_WALL = add("ironstone_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block SMOOTH_IRONSTONE_WALL = add("smooth_ironstone_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block IRONSTONE_BRICKS_WALL = add("ironstone_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block BASALT_WALL = add("basalt_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block SMOOTH_BASALT_WALL = add("smooth_basalt_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block BASALT_BRICKS_WALL = add("basalt_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block RHYOLITE_WALL = add("rhyolite_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block SMOOTH_RHYOLITE_WALL = add("smooth_rhyolite_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block RHYOLITE_BRICKS_WALL = add("rhyolite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block MARBLE_WALL = add("marble_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block SMOOTH_MARBLE_WALL = add("smooth_marble_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block MARBLE_BRICKS_WALL = add("marble_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block GNEISS_WALL = add("gneiss_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block SMOOTH_GNEISS_WALL = add("smooth_gneiss_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block GNEISS_BRICKS_WALL = add("gneiss_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(2)), BLOCKS);
-    public static final Block PERIDOTITE_WALL = add("peridotite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_PERIDOTITE_WALL = add("smooth_peridotite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block PERIDOTITE_BRICKS_WALL = add("peridotite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block RINGWOODITE_WALL = add("ringwoodite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_RINGWOODITE_WALL = add("smooth_ringwoodite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block RINGWOODITE_BRICKS_WALL = add("ringwoodite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block WADSLEYITE_WALL = add("wadsleyite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_WADSLEYITE_WALL = add("smooth_wadsleyite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block WADSLEYITE_BRICKS_WALL = add("wadsleyite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block BRIDGMANITE_WALL = add("bridgmanite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_BRIDGMANITE_WALL = add("smooth_bridgmanite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block BRIDGMANITE_BRICKS_WALL = add("bridgmanite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block KOMATIITE_WALL = add("komatiite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_KOMATIITE_WALL = add("smooth_komatiite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block KOMATIITE_BRICKS_WALL = add("komatiite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block KIMBERLITE_WALL = add("kimberlite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_KIMBERLITE_WALL = add("smooth_kimberlite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block KIMBERLITE_BRICKS_WALL = add("kimberlite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block FERROPERICLASE_WALL = add("ferropericlase_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_FERROPERICLASE_WALL = add("smooth_ferropericlase_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block FERROPERICLASE_BRICKS_WALL = add("ferropericlase_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block PEROVSKITE_WALL = add("perovskite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block SMOOTH_PEROVSKITE_WALL = add("smooth_perovskite_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block PEROVSKITE_BRICKS_WALL = add("perovskite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(3)), BLOCKS);
-    public static final Block PUMICE_WALL = add("pumice_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block SMOOTH_PUMICE_WALL = add("smooth_pumice_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block PUMICE_BRICKS_WALL = add("pumice_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block SCORIA_WALL = add("scoria_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block SMOOTH_SCORIA_WALL = add("smooth_scoria_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
-    public static final Block SCORIA_BRICKS_WALL = add("scoria_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block RED_GRANITE_BRICKS_WALL = add("red_granite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block QUARTZ_DIORITE_BRICKS_WALL = add("quartz_diorite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block GRAY_ANDESITE_BRICKS_WALL = add("gray_andesite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block GRANITE_WALL = add("granite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_GRANITE_WALL = add("smooth_granite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block GRANITE_BRICKS_WALL = add("granite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block DIORITE_WALL = add("diorite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_DIORITE_WALL = add("smooth_diorite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block DIORITE_BRICKS_WALL = add("diorite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block ANDESITE_WALL = add("andesite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_ANDESITE_WALL = add("smooth_andesite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block ANDESITE_BRICKS_WALL = add("andesite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block LIMESTONE_WALL = add("limestone_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_LIMESTONE_WALL = add("smooth_limestone_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block LIMESTONE_BRICKS_WALL = add("limestone_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SHALE_WALL = add("shale_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_SHALE_WALL = add("smooth_shale_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SHALE_BRICKS_WALL = add("shale_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block ANORTHOSITE_WALL = add("anorthosite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block SMOOTH_ANORTHOSITE_WALL = add("smooth_anorthosite_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block ANORTHOSITE_BRICKS_WALL = add("anorthosite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block IRONSTONE_WALL = add("ironstone_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_IRONSTONE_WALL = add("smooth_ironstone_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block IRONSTONE_BRICKS_WALL = add("ironstone_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block BASALT_WALL = add("basalt_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block SMOOTH_BASALT_WALL = add("smooth_basalt_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block BASALT_BRICKS_WALL = add("basalt_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block RHYOLITE_WALL = add("rhyolite_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block SMOOTH_RHYOLITE_WALL = add("smooth_rhyolite_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block RHYOLITE_BRICKS_WALL = add("rhyolite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block MARBLE_WALL = add("marble_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block SMOOTH_MARBLE_WALL = add("smooth_marble_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block MARBLE_BRICKS_WALL = add("marble_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block GNEISS_WALL = add("gneiss_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block SMOOTH_GNEISS_WALL = add("smooth_gneiss_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block GNEISS_BRICKS_WALL = add("gneiss_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block PERIDOTITE_WALL = add("peridotite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_PERIDOTITE_WALL = add("smooth_peridotite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PERIDOTITE_BRICKS_WALL = add("peridotite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block RINGWOODITE_WALL = add("ringwoodite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_RINGWOODITE_WALL = add("smooth_ringwoodite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block RINGWOODITE_BRICKS_WALL = add("ringwoodite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block WADSLEYITE_WALL = add("wadsleyite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_WADSLEYITE_WALL = add("smooth_wadsleyite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block WADSLEYITE_BRICKS_WALL = add("wadsleyite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block BRIDGMANITE_WALL = add("bridgmanite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_BRIDGMANITE_WALL = add("smooth_bridgmanite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block BRIDGMANITE_BRICKS_WALL = add("bridgmanite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block KOMATIITE_WALL = add("komatiite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_KOMATIITE_WALL = add("smooth_komatiite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block KOMATIITE_BRICKS_WALL = add("komatiite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block KIMBERLITE_WALL = add("kimberlite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_KIMBERLITE_WALL = add("smooth_kimberlite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block KIMBERLITE_BRICKS_WALL = add("kimberlite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block FERROPERICLASE_WALL = add("ferropericlase_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_FERROPERICLASE_WALL = add("smooth_ferropericlase_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block FERROPERICLASE_BRICKS_WALL = add("ferropericlase_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PEROVSKITE_WALL = add("perovskite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block SMOOTH_PEROVSKITE_WALL = add("smooth_perovskite_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PEROVSKITE_BRICKS_WALL = add("perovskite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block PUMICE_WALL = add("pumice_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_PUMICE_WALL = add("smooth_pumice_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block PUMICE_BRICKS_WALL = add("pumice_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_WALL = add("scoria_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SMOOTH_SCORIA_WALL = add("smooth_scoria_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
+    public static final Block SCORIA_BRICKS_WALL = add("scoria_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(1)), BLOCKS);
 
     //WOOD BLOCKS
-    public static final Block CEDAR_LOG = add("cedar_log", new LogBlock(MaterialColor.RED, DEF_WOOD), BLOCKS, 300);
-    public static final Block PINYON_PINE_LOG = add("pinyon_pine_log", new LogBlock(MaterialColor.SAND, DEF_WOOD), BLOCKS, 300);
-    public static final Block JUNIPER_LOG = add("juniper_log", new LogBlock(MaterialColor.QUARTZ, DEF_WOOD), BLOCKS, 300);
-    public static final Block COCONUT_PALM_LOG = add("coconut_palm_log", new LogBlock(MaterialColor.ORANGE_TERRACOTTA, DEF_WOOD), BLOCKS, 300);
-    public static final Block BALSAM_FIR_LOG = add("balsam_fir_log", new LogBlock(MaterialColor.WOOD, DEF_WOOD), BLOCKS, 300);
-    public static final Block MAGNOLIA_LOG = add("magnolia_log", new LogBlock(MaterialColor.SAND, DEF_WOOD), BLOCKS, 300);
-    public static final Block EASTERN_HEMLOCK_LOG = add("eastern_hemlock_log", new LogBlock(MaterialColor.ORANGE_TERRACOTTA, DEF_WOOD), BLOCKS, 300);
-    public static final Block YELLOW_BIRCH_LOG = add("yellow_birch_log", new LogBlock(MaterialColor.SAND, DEF_WOOD), BLOCKS, 300);
+    public static final Block CEDAR_LOG = add("cedar_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block PINYON_PINE_LOG = add("pinyon_pine_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block JUNIPER_LOG = add("juniper_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block COCONUT_PALM_LOG = add("coconut_palm_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block BALSAM_FIR_LOG = add("balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAGNOLIA_LOG = add("magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block EASTERN_HEMLOCK_LOG = add("eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block YELLOW_BIRCH_LOG = add("yellow_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -480,8 +480,8 @@ public class ModBlocks {
     public static final Block BAMBOO_FENCE_GATE = add("bamboo_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_FENCE_GATE = add("bamboo_clums_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
 
-    public static final Block BAMBOO_WALL = add("bamboo_wall", new RankineWall(DEF_WOOD), BLOCKS, 400);
-    public static final Block BAMBOO_CULMS_WALL = add("bamboo_clums_wall", new RankineWall(DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_WALL = add("bamboo_wall", new WallBlock(DEF_WOOD), BLOCKS, 400);
+    public static final Block BAMBOO_CULMS_WALL = add("bamboo_clums_wall", new WallBlock(DEF_WOOD), BLOCKS, 400);
 
     public static final Block CEDAR_PRESSURE_PLATE = add("cedar_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block PINYON_PINE_PRESSURE_PLATE = add("pinyon_pine_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
@@ -684,11 +684,11 @@ public class ModBlocks {
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F)), METALLURGY);
-    public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F).lightValue(7)), METALLURGY);
-    public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(13)), METALLURGY);
-    public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(13)), METALLURGY);
-    public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALLURGY);
-    public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).lightValue(7)), METALLURGY);
+    public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0F).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
+    public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
+    public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
+    public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
+    public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0f).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final Block AGED_CHEESE = add("aged_cheese", new Block(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final RankineBerryBushBlock ELDERBERRY_BUSH = add("elderberry_bush", "elderberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.ELDERBERRIES), BlockNamedItem::new);
@@ -709,8 +709,8 @@ public class ModBlocks {
     public static final ShortGrassBlock WHITE_CLOVER = add("white_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock PURPLE_CLOVER = add("purple_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC, DuckweedItem::new);
-    public static final FoxfireBlock BLUE_FOXFIRE = add("blue_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).lightValue(4)), MISC);
-    public static final FoxfireBlock GREEN_FOXFIRE = add("green_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).lightValue(4)), MISC);
+    public static final FoxfireBlock BLUE_FOXFIRE = add("blue_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
+    public static final FoxfireBlock GREEN_FOXFIRE = add("green_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
 
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));

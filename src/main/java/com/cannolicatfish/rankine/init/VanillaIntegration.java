@@ -51,7 +51,7 @@ public class VanillaIntegration {
         addFlowerPot(ModBlocks.MAGNOLIA_SAPLING, ModBlocks.POTTED_MAGNOLIA_SAPLING);
         addFlowerPot(ModBlocks.EASTERN_HEMLOCK_SAPLING, ModBlocks.POTTED_EASTERN_HEMLOCK_SAPLING);
 
-
+/*
         registerFlamables(ModBlocks.CEDAR_LEAVES,30,60);
         registerFlamables(ModBlocks.EASTERN_HEMLOCK_LEAVES,30,60);
         registerFlamables(ModBlocks.BALSAM_FIR_LEAVES,30,60);
@@ -180,7 +180,7 @@ public class VanillaIntegration {
         registerFlamables(ModBlocks.BAMBOO_CULMS_STAIRS,5,20);
         registerFlamables(ModBlocks.BAMBOO_CULMS_WALL,5,20);
 
-
+*/
 
 
 
@@ -205,7 +205,7 @@ public class VanillaIntegration {
     }
 
     public static void registerFlamables(Block block, int encouragement, int flammability) {
-        ((FireBlock)Blocks.FIRE).setFireInfo(block, encouragement, flammability);
+       // ((FireBlock)Blocks.FIRE).setFireInfo(block, encouragement, flammability);
     }
 
     /*

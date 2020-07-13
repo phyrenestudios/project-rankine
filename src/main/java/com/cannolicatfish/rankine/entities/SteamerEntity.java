@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.entities;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.monster.BlazeEntity;
-import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.OcelotEntity;
@@ -15,13 +15,10 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,8 +26,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Collection;
 import java.util.EnumSet;
-import java.util.Iterator;
-import java.util.List;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -74,9 +69,8 @@ public class SteamerEntity extends MonsterEntity implements IChargeableMob {
         }
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+    public static AttributeModifierMap.MutableAttribute func_234278_m_() {
+        return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
 
@@ -231,7 +225,7 @@ public class SteamerEntity extends MonsterEntity implements IChargeableMob {
         super.onStruckByLightning(lightningBolt);
         this.dataManager.set(POWERED, true);
     }
-
+/*
     protected boolean processInteract(PlayerEntity player, Hand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
@@ -248,6 +242,8 @@ public class SteamerEntity extends MonsterEntity implements IChargeableMob {
             return super.processInteract(player, hand);
         }
     }
+   
+ */
 
     /**
      * Creates an explosion as determined by this creeper's power and explosion radius.

@@ -3,9 +3,9 @@ package com.cannolicatfish.rankine.entities.boss;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -21,7 +21,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
@@ -55,12 +55,8 @@ public class SolarFlareEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
-        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48.0D);
+    public static AttributeModifierMap.MutableAttribute func_234258_eI_() {
+        return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MAX_HEALTH, 300.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, (double)0.6F).func_233815_a_(Attributes.FOLLOW_RANGE, 40.0D).func_233815_a_(Attributes.ARMOR, 4.0D);
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -139,7 +135,7 @@ public class SolarFlareEntity extends MonsterEntity {
 
         LivingEntity livingentity = this.getAttackTarget();
         if (livingentity != null && livingentity.getPosYEye() > this.getPosYEye() + (double)this.heightOffset && this.canAttack(livingentity)) {
-            Vec3d vec3d = this.getMotion();
+            Vector3d vec3d = this.getMotion();
             this.setMotion(this.getMotion().add(0.0D, ((double)0.3F - vec3d.y) * (double)0.3F, 0.0D));
             this.isAirBorne = true;
         }
@@ -272,7 +268,7 @@ public class SolarFlareEntity extends MonsterEntity {
 
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-                            this.flare.world.playEvent((PlayerEntity)null, 1018, new BlockPos(this.flare), 0);
+                            this.flare.world.playEvent((PlayerEntity)null, 1018, new BlockPos(this.flare.func_233580_cy_()), 0);
 
                             for(int i = 0; i < 1; ++i) {
                                 FireballEntity fireballentity = new FireballEntity(this.flare.world, this.flare, d1 + this.flare.getRNG().nextGaussian() * (double)f, d2, d3 + this.flare.getRNG().nextGaussian() * (double)f);
@@ -292,7 +288,7 @@ public class SolarFlareEntity extends MonsterEntity {
         }
 
         private double getFollowDistance() {
-            return this.flare.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getValue();
+            return this.flare.getAttribute(Attributes.FOLLOW_RANGE).getValue();
         }
     }
 }

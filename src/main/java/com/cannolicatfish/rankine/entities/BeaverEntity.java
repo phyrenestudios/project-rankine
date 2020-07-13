@@ -3,11 +3,13 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -35,7 +37,7 @@ public class BeaverEntity extends AnimalEntity {
 
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new BeaverSwimGoal(this));
+        this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(2, new StripLogGoal((double)1.2F, 32, 2));
         this.goalSelector.addGoal(3, new PlaceSticksGoal((double)1.2F, 32, 2));
@@ -53,10 +55,8 @@ public class BeaverEntity extends AnimalEntity {
         return null;
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+    public static AttributeModifierMap.MutableAttribute func_234215_eI_() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.MAX_HEALTH, 8.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
 
@@ -205,7 +205,7 @@ public class BeaverEntity extends AnimalEntity {
                     }
 
                 }
-                if (blockstate.getBlock() instanceof LogBlock) {
+                if (blockstate.getBlock().getTags().contains(new ResourceLocation("minecraft/logs"))) {
                     BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.STICK_BLOCK));
                     System.out.println("Beaver should now have stick block");
                     System.out.println(BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
@@ -286,8 +286,8 @@ public class BeaverEntity extends AnimalEntity {
             BlockPos blockpos1 = blockpos.down();
             BlockState blockstate1 = iworld.getBlockState(blockpos1);
             BlockState blockstate2 = ModBlocks.STICK_BLOCK.getDefaultState();
-            if ((iworld.getFluidState(blockpos).getFluid() == Fluids.WATER || iworld.getBlockState(blockpos).getBlock() == Blocks.WATER) && blockpos != this.beaver.getPosition() &&
-                    !ForgeEventFactory.onBlockPlace(this.beaver, new BlockSnapshot(iworld, blockpos, blockstate1), Direction.UP)) {
+            if ((iworld.getFluidState(blockpos).getFluid() == Fluids.WATER || iworld.getBlockState(blockpos).getBlock() == Blocks.WATER) && blockpos != this.beaver.getOnPosition() &&
+                    !ForgeEventFactory.onBlockPlace(this.beaver, BlockSnapshot.create(iworld, blockpos), Direction.UP)) {
                 iworld.setBlockState(blockpos, blockstate2, 3);
                 System.out.println("STICK BLOCK PLACED");
                 BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
@@ -295,42 +295,14 @@ public class BeaverEntity extends AnimalEntity {
         }
         @Override
         protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos) {
-            IFluidState fluid = worldIn.getFluidState(pos);
+            FluidState fluid = worldIn.getFluidState(pos);
             BlockState blockState = worldIn.getBlockState(pos);
             return fluid.getFluid() == Fluids.WATER || blockState.getBlock() == Blocks.WATER;
         }
 
         private boolean func_220836_a(IWorldReader p_220836_1_, BlockPos p_220836_2_, BlockState p_220836_3_, BlockState p_220836_4_, BlockState p_220836_5_, BlockPos p_220836_6_) {
-            return p_220836_4_.isAir(p_220836_1_, p_220836_2_) && !p_220836_5_.isAir(p_220836_1_, p_220836_6_) && p_220836_5_.isCollisionShapeOpaque(p_220836_1_, p_220836_6_) && p_220836_3_.isValidPosition(p_220836_1_, p_220836_2_);
+            return p_220836_4_.isAir(p_220836_1_, p_220836_2_) && !p_220836_5_.isAir(p_220836_1_, p_220836_6_) && !p_220836_5_.isCollisionShapeLargerThanFullBlock() && p_220836_3_.isValidPosition(p_220836_1_, p_220836_2_);
         }
     }
 
-    public class BeaverSwimGoal extends Goal {
-        private final MobEntity entity;
-
-        public BeaverSwimGoal(MobEntity entityIn) {
-            this.entity = entityIn;
-            this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP));
-            entityIn.getNavigator().setCanSwim(true);
-        }
-
-        /**
-         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-         * method as well.
-         */
-        public boolean shouldExecute() {
-            double d0 = (double)this.entity.getEyeHeight() < 0.4D ? 0.2D : 0.4D;
-            return this.entity.isInWater() && this.entity.getSubmergedHeight() > d0 || this.entity.isInLava();
-        }
-
-        /**
-         * Keep ticking a continuous task that has already been started
-         */
-        public void tick() {
-            if (this.entity.getRNG().nextFloat() < 0.8F) {
-                this.entity.getJumpController().setJumping();
-            }
-
-        }
-    }
 }

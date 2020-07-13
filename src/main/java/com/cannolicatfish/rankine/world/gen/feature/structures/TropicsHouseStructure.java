@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.world.gen.feature.structures;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
@@ -21,14 +23,14 @@ import java.util.function.Function;
 
 public class TropicsHouseStructure extends Structure<NoFeatureConfig>
 {
-    public TropicsHouseStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config)
+    public TropicsHouseStructure(Codec<NoFeatureConfig> config)
     {
         super(config);
     }
 
-
+/*
     @Override
-    protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ)
+    protected ChunkPos getStartPositionForPosition(ChunkGenerator chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ)
     {
 
         int maxDistance = 25;
@@ -41,14 +43,14 @@ public class TropicsHouseStructure extends Structure<NoFeatureConfig>
         int validChunkX = xTemp2 / maxDistance;
         int validChunkZ = zTemp2 / maxDistance;
 
-        ((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), validChunkX, validChunkZ, this.getSeedModifier());
+        //((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), validChunkX, validChunkZ, this.getSeedModifier());
         validChunkX = validChunkX * maxDistance;
         validChunkZ = validChunkZ * maxDistance;
         validChunkX = validChunkX + random.nextInt(maxDistance - minDistance);
         validChunkZ = validChunkZ + random.nextInt(maxDistance - minDistance);
 
         return new ChunkPos(validChunkX, validChunkZ);
-    }
+    }*/
 
     @Override
     public String getStructureName()
@@ -56,11 +58,6 @@ public class TropicsHouseStructure extends Structure<NoFeatureConfig>
         return ProjectRankine.MODID + ":tropics_house";
     }
 
-    @Override
-    public int getSize()
-    {
-        return 0;
-    }
 
     @Override
     public IStartFactory getStartFactory()
@@ -73,7 +70,7 @@ public class TropicsHouseStructure extends Structure<NoFeatureConfig>
         return 1717171;
     }
 
-
+/*
     @Override
     public boolean canBeGenerated(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome)
     {
@@ -104,7 +101,7 @@ public class TropicsHouseStructure extends Structure<NoFeatureConfig>
 
 
         @Override
-        public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn)
+        public void func_230364_a_(ChunkGenerator generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, IFeatureConfig config)
         {
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
 

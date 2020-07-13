@@ -4,9 +4,7 @@ import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
@@ -19,12 +17,11 @@ public class PinyonJuniperWoodlandBiome extends Biome {
                 .scale(0.05F)
                 .temperature(1.5F)
                 .downfall(0.1F)
-                .waterColor(4159177)
-                .waterFogColor(329011)
+                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4159177).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
                 .parent((String)null));
 
         DefaultBiomeFeatures.addCarvers(this);
-        DefaultBiomeFeatures.addStructures(this);
+        //DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addSprings(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
@@ -33,7 +30,7 @@ public class PinyonJuniperWoodlandBiome extends Biome {
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addSedimentDisks(this);
         RankineBiomeFeatures.addPinyonTrees(this);
-        DefaultBiomeFeatures.addFossils(this);
+        //DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addExtraDefaultFlowers(this);
         DefaultBiomeFeatures.addVeryDenseGrass(this);
         DefaultBiomeFeatures.addMushrooms(this);

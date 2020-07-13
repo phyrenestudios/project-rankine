@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.dimension.ModDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,9 +15,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.WorldInfo;
+import net.minecraft.world.storage.IWorldInfo;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.fml.hooks.BasicEventHooks;
@@ -29,7 +28,7 @@ public class MantleTeleporterBlock extends Block {
     public MantleTeleporterBlock(Properties properties) {
         super(properties);
     }
-
+/*
     public static void changeDim(ServerPlayerEntity player, BlockPos pos, DimensionType type) { // copy from ServerPlayerEntity#changeDimension
         if (!ForgeHooks.onTravelToDimension(player, type)) return;
         DimensionType dimensiontype = player.dimension;
@@ -38,8 +37,8 @@ public class MantleTeleporterBlock extends Block {
         player.dimension = type;
         player.setInvulnerable(true);
         ServerWorld serverworld1 = player.server.getWorld(type);
-        WorldInfo worldinfo = player.world.getWorldInfo();
-        player.connection.sendPacket(new SRespawnPacket(type, WorldInfo.byHashing(worldinfo.getSeed()), worldinfo.getGenerator(), player.interactionManager.getGameType()));
+        IWorldInfo worldinfo = player.world.getWorldInfo();
+        player.connection.sendPacket(new SRespawnPacket(type, IWorldInfo.byHashing(worldinfo.getSeed()), worldinfo.getGenerator(), player.interactionManager.getGameType()));
         player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
         PlayerList playerlist = player.server.getPlayerList();
         playerlist.updatePermissionLevel(player);
@@ -91,22 +90,7 @@ public class MantleTeleporterBlock extends Block {
                 BlockPos x2 = new BlockPos(player.getPosX(), player.getPosY(), player.getPosZ());
                 BlockPos x3 = new BlockPos(player.getPosX(), player.getPosY() + 1, player.getPosZ());
                 BlockPos x4 = new BlockPos(player.getPosX(), player.getPosY() + 2, player.getPosZ());
-                /*
-                for (int k = 0; k < 3; k++) {
-                    for (int s = 0; s < 3; s++) {
-                        newworld.setBlockState(new BlockPos(player.getPosX() + k, player.getPosY() - 1, player.getPosZ() + s), ModBlocks.PERIDOTITE.getDefaultState(), 2);
-                        newworld.setBlockState(new BlockPos(player.getPosX() - k, player.getPosY() - 1, player.getPosZ() - s), ModBlocks.PERIDOTITE.getDefaultState(), 2);
-                    }
-                }
-                for (int k = 0; k < 3; k++) {
-                    for (int s = 0; s < 3; s++) {
-                        for (int y = 0; y < 3; y++) {
-                            newworld.setBlockState(new BlockPos(player.getPosX() + k, player.getPosY() + y, player.getPosZ() + k), Blocks.AIR.getDefaultState(), 2);
-                            newworld.setBlockState(new BlockPos(player.getPosX() - k, player.getPosY() + y, player.getPosZ() - k), Blocks.AIR.getDefaultState(), 2);
-                        }
-                    }
-                }
-                */
+
                 newworld.setBlockState(x2, Blocks.AIR.getDefaultState(), 2);
                 newworld.setBlockState(x3, Blocks.AIR.getDefaultState(), 2);
                 newworld.setBlockState(x4, Blocks.AIR.getDefaultState(), 2);
@@ -117,4 +101,5 @@ public class MantleTeleporterBlock extends Block {
         }
         return ActionResultType.FAIL;
     }
+    */
 }

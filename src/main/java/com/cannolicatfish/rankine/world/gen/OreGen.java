@@ -2,14 +2,12 @@ package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
-import com.cannolicatfish.rankine.world.biome.RankineBiomes;
+import com.cannolicatfish.rankine.init.RankineBiomes;
 import com.cannolicatfish.rankine.world.gen.feature.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.GlassBlock;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
@@ -19,8 +17,8 @@ import java.util.*;
 
 public class OreGen {
 
-    public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig::deserialize);
-    public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig::deserialize);
+    public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.field_236566_a_);
+    public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig.field_236566_a_);
 
 
     public static void setupOreGeneration() {
@@ -125,15 +123,15 @@ public class OreGen {
 
     private static void FlatReplaceGenDef(Block oldBlock, Block newBlock, int lowerBound, int upperBound, List<Biome> biomes) {
         for (Biome b: biomes) {
-            b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new FlatReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                    new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+            b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new FlatReplacerFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
+                    new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
         }
     }
 
     private static void replaceGenDef(Block oldBlock, Block newBlock, int lowerBound, int upperBound, List<Biome> biomes) {
         for (Biome b: biomes) {
-            b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                    new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+            b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
+                    new ReplacerFeatureConfig(oldBlock.getDefaultState(), newBlock.getDefaultState(), lowerBound, upperBound)).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
         }
     }
 
@@ -165,7 +163,7 @@ public class OreGen {
     }
 
     private static void rockGenCountDef(BlockState oldBlock, BlockState newBlock, int veinSize, int count, int minHeight, int maxHeight, List<Biome> biomes) {
-        final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig::deserialize,oldBlock);
+        final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig.field_236566_a_,oldBlock);
         for (Biome b: biomes) {
             b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MODULE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, newBlock, veinSize))
                     .withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(count, minHeight, 0, maxHeight))));
@@ -173,7 +171,7 @@ public class OreGen {
     }
 
     private static void rockGenChanceDef(BlockState oldBlock, BlockState newBlock, int veinSize, float chance, int minHeight, int maxHeight, List<Biome> biomes) {
-        final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig::deserialize,oldBlock);
+        final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig.field_236566_a_,oldBlock);
         for (Biome b: biomes) {
             b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MODULE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, newBlock, veinSize))
                     .withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
@@ -184,13 +182,13 @@ public class OreGen {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (biome.getCategory() == Biome.Category.NETHER) // if biome is supposed to be included (reverse)
             {
-                final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig::deserialize,Blocks.NETHERRACK.getDefaultState());
+                final Feature<OreFeatureConfig> MODULE = new ModularOreFeature(OreFeatureConfig.field_236566_a_,Blocks.NETHERRACK.getDefaultState());
                 biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, MODULE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.PEROVSKITE.getDefaultState(), 40))
                         .withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(.2f, 100, 0, 128))));
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                        new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), ModBlocks.FERROPERICLASE.getDefaultState(), 115,128)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
-                        new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), ModBlocks.BRIDGMANITE.getDefaultState(), 100, 114)).withPlacement(new ReplacerPlacement(NoPlacementConfig::deserialize).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
+                        new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), ModBlocks.FERROPERICLASE.getDefaultState(), 115,128)).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new ReplacerFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
+                        new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), ModBlocks.BRIDGMANITE.getDefaultState(), 100, 114)).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
             }
         }
     }
@@ -199,7 +197,7 @@ public class OreGen {
 
     private static void intrusionGenDef() {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionFeature(ReplacerFeatureConfig::deserialize).withConfiguration(
+            biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new IntrusionFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
                     new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 90)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(1, 1, 0, 90))));
         }
     }
@@ -208,7 +206,7 @@ public class OreGen {
     {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.MESA || biome.getCategory() == Biome.Category.SAVANNA) {
-                biome.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,new CrystalFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(6))));
+                biome.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,new CrystalFeature(NoFeatureConfig.field_236558_a_).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(6))));
             }
         }
     }

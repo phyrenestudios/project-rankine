@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.world.biome.RankineBiomes;
+import com.cannolicatfish.rankine.init.RankineBiomes;
 import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -19,16 +19,16 @@ import java.util.List;
 
 public class StructureGen {
     public static void setupStructureGen() {
-        structureGenDef(RankineFeatures.BEAVER_LODGE, Arrays.asList(RankineBiomes.DEAD_SWAMP, Biomes.SWAMP));
-        structureGenDef(RankineFeatures.TROPICS_HOUSE, Collections.singletonList(RankineBiomes.TROPICS));
-        structureGenDef(RankineFeatures.LAGOON_FOUNTAIN, Arrays.asList(RankineBiomes.FORESTED_LAGOON, Biomes.FLOWER_FOREST));
+        //structureGenDef(RankineFeatures.BEAVER_LODGE, Arrays.asList(RankineBiomes.DEAD_SWAMP, Biomes.SWAMP));
+        //structureGenDef(RankineFeatures.TROPICS_HOUSE, Collections.singletonList(RankineBiomes.TROPICS));
+        //structureGenDef(RankineFeatures.LAGOON_FOUNTAIN, Arrays.asList(RankineBiomes.FORESTED_LAGOON, Biomes.FLOWER_FOREST));
     }
 
     private static void structureGenDef(Structure<NoFeatureConfig> structure, List<Biome> biomes) {
         for (Biome b: biomes) {
-            b.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
-                    .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-            b.addStructure(structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+            //b.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+                    //.withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+            //b.addStructure(structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
     }
 

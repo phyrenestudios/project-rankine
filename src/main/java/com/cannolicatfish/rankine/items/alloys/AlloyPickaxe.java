@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.cannolicatfish.rankine.util.alloys.BronzeAlloyUtils;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -11,9 +10,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemGroup;
@@ -26,8 +25,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -114,10 +113,10 @@ public class AlloyPickaxe extends PickaxeItem {
         }
     }
 
-    public float getCurrentAttackDamage(ItemStack stack)
+    /*public float getCurrentAttackDamage(ItemStack stack)
     {
         return this.attackDamage - getWearModifier(stack);
-    }
+    }*/
 
     public float getAttackSpeed(ItemStack stack)
     {
@@ -180,7 +179,7 @@ public class AlloyPickaxe extends PickaxeItem {
         Random rand = new Random();
         int i = 1;
         i += rand.nextFloat() < toughness ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist() && (worldIn.getDimension().getType() == DimensionType.THE_NETHER || entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        if (rand.nextFloat() > getHeatResist() && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
@@ -227,19 +226,19 @@ public class AlloyPickaxe extends PickaxeItem {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (!Screen.hasShiftDown() && getComposition(stack).size() != 0)
         {
-            tooltip.add((new StringTextComponent("Hold shift for details...").applyTextStyle(TextFormatting.GRAY).applyTextStyle(TextFormatting.ITALIC)));
+            tooltip.add((new StringTextComponent("Hold shift for details...")));
         }
         if (Screen.hasShiftDown() && getComposition(stack).size() != 0)
         {
             DecimalFormat df = new DecimalFormat("#.#");
-            tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())).applyTextStyle(TextFormatting.GOLD));
-            tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%").applyTextStyle(getWearColor(stack))));
-            tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack)))).applyTextStyle(TextFormatting.WHITE)));
+            tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())));
+            tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%")));
+            tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack))))));
             //tooltip.add((new StringTextComponent("Attack Speed: " + Float.parseFloat(df.format((4 + getAttackSpeed(stack))))).applyTextStyle(TextFormatting.WHITE)));
-            tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack)).applyTextStyle(TextFormatting.WHITE)));
-            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack))) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
-            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist())) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
-            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness())) * 100) + "%").applyTextStyle(TextFormatting.WHITE)));
+            tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))));
+            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack))) * 100) + "%")));
+            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist())) * 100) + "%")));
+            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness())) * 100) + "%")));
         }
 
     }
@@ -331,19 +330,19 @@ public class AlloyPickaxe extends PickaxeItem {
             items.add(stack);
         }
     }
-
+/*
     @Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
         Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
         if (equipmentSlot == EquipmentSlotType.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
+            multimap.put(Attributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
+            multimap.put(Attributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
         }
 
         return multimap;
     }
 
-    private void replaceAttackModifier(Multimap<String, AttributeModifier> modifierMultimap, IAttribute attribute, UUID id, double multiplier)
+    private void replaceAttackModifier(Multimap<String, AttributeModifier> modifierMultimap, Attribute attribute, UUID id, double multiplier)
     {
         final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute.getName());
         final Optional<AttributeModifier> modifierOptional = modifiers.stream().filter(attributeModifier -> attributeModifier.getID().equals(id)).findFirst();
@@ -359,7 +358,7 @@ public class AlloyPickaxe extends PickaxeItem {
         }
     }
 
-    private void replaceAttackSpeedModifier(Multimap<String, AttributeModifier> modifierMultimap, IAttribute attribute, UUID id, double attspeed)
+    private void replaceAttackSpeedModifier(Multimap<String, AttributeModifier> modifierMultimap, Attribute attribute, UUID id, double attspeed)
     {
         final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute.getName());
         final Optional<AttributeModifier> modifierOptional = modifiers.stream().filter(attributeModifier -> attributeModifier.getID().equals(id)).findFirst();
@@ -374,4 +373,5 @@ public class AlloyPickaxe extends PickaxeItem {
             System.out.println(attspeed);
         }
     }
+ */
 }

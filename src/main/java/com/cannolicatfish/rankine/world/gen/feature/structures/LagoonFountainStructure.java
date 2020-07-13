@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.world.gen.feature.structures;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +12,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructureStart;
@@ -21,12 +23,12 @@ import java.util.function.Function;
 
 public class LagoonFountainStructure extends Structure<NoFeatureConfig>
 {
-    public LagoonFountainStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config)
+    public LagoonFountainStructure(Codec<NoFeatureConfig> config)
     {
         super(config);
     }
 
-
+/*
     @Override
     protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ)
     {
@@ -49,6 +51,7 @@ public class LagoonFountainStructure extends Structure<NoFeatureConfig>
 
         return new ChunkPos(validChunkX, validChunkZ);
     }
+ */
 
     @Override
     public String getStructureName()
@@ -56,11 +59,6 @@ public class LagoonFountainStructure extends Structure<NoFeatureConfig>
         return ProjectRankine.MODID + ":lagoon_fountain";
     }
 
-    @Override
-    public int getSize()
-    {
-        return 0;
-    }
 
     @Override
     public IStartFactory getStartFactory()
@@ -73,7 +71,7 @@ public class LagoonFountainStructure extends Structure<NoFeatureConfig>
         return 1717171;
     }
 
-
+/*
     @Override
     public boolean canBeGenerated(BiomeManager p_225558_1_, ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ, Biome biome)
     {
@@ -104,7 +102,7 @@ public class LagoonFountainStructure extends Structure<NoFeatureConfig>
 
 
         @Override
-        public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn)
+        public void func_230364_a_(ChunkGenerator generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, IFeatureConfig config)
         {
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
 

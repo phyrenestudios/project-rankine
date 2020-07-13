@@ -1,23 +1,25 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
 import java.util.function.Function;
 
 public class FlatReplacerFeature extends Feature<ReplacerFeatureConfig> {
-    public FlatReplacerFeature(Function<Dynamic<?>, ? extends ReplacerFeatureConfig> configFactoryIn) {
+    public FlatReplacerFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
+    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
         IChunk chunk = worldIn.getChunk(pos);
         int startX = chunk.getPos().getXStart();
         int startZ = chunk.getPos().getZStart();

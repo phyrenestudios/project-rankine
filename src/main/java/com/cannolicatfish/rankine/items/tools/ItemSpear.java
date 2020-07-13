@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.entities.SpearEntity;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -9,7 +10,8 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -19,7 +21,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class ItemSpear extends Item {
@@ -27,15 +29,15 @@ public class ItemSpear extends Item {
     private final float attackSpeed;
     public int type;
     private IItemTier tier;
-    public ItemSpear(IItemTier tier, int attackDamageIn, float attackSpeedIn, int type, Properties builder) {
-        super(builder.defaultMaxDamage(tier.getMaxUses()));
+    public ItemSpear(IItemTier tier, int attackDamageIn, float attackSpeedIn, int type, Properties properties) {
+        super(properties.defaultMaxDamage(tier.getMaxUses()));
         this.attackSpeed = attackSpeedIn;
         this.attackDamage = (float) attackDamageIn + tier.getAttackDamage();
         this.type = type;
         this.tier = tier;
-        this.addPropertyOverride(new ResourceLocation("throwing"), (p_210315_0_, p_210315_1_, p_210315_2_) -> {
-            return p_210315_2_ != null && p_210315_2_.isHandActive() && p_210315_2_.getActiveItemStack() == p_210315_0_ ? 1.0F : 0.0F;
-        });
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
     }
 
     public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
@@ -55,17 +57,6 @@ public class ItemSpear extends Item {
 
     public boolean hasEffect(ItemStack stack) {
         return stack.isEnchanted();
-    }
-
-    @Override
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-        Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
-        if (equipmentSlot == EquipmentSlotType.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", attackDamage, AttributeModifier.Operation.ADDITION));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)attackSpeed, AttributeModifier.Operation.ADDITION));
-        }
-
-        return multimap;
     }
 
     @Override
@@ -109,7 +100,7 @@ public class ItemSpear extends Item {
                             {
                                 spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.STEEL_SPEAR, 3);
                             }
-                            spearentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
+                            spearentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
                             if (playerentity.abilities.isCreativeMode) {
                                 spearentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                             }
@@ -136,9 +127,9 @@ public class ItemSpear extends Item {
                         f3 = f3 * (f5 / f4);
                         playerentity.addVelocity((double)f1, (double)f2, (double)f3);
                         playerentity.startSpinAttack(20);
-                        if (playerentity.onGround) {
+                        if (playerentity.func_233570_aj_()) {
                             float f6 = 1.1999999F;
-                            playerentity.move(MoverType.SELF, new Vec3d(0.0D, (double)1.1999999F, 0.0D));
+                            playerentity.move(MoverType.SELF, new Vector3d(0.0D, (double)1.1999999F, 0.0D));
                         }
 
                         SoundEvent soundevent;

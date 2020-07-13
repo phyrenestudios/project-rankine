@@ -1,13 +1,27 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.DynamicOps;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.world.gen.feature.BlockBlobConfig;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class ReplacerFeatureConfig implements IFeatureConfig {
+    public static final Codec<ReplacerFeatureConfig> field_236449_a_ = RecordCodecBuilder.create((p_236451_0_) -> {
+        return p_236451_0_.group(BlockState.field_235877_b_.fieldOf("target").forGetter((p_236452_0_) -> {
+            return p_236452_0_.target;
+        }), BlockState.field_235877_b_.fieldOf("state").forGetter((p_236569_0_) -> {
+            return p_236569_0_.state;
+        }), Codec.INT.fieldOf("bottom_bound").withDefault(0).forGetter((p_236450_0_) -> {
+            return p_236450_0_.bottomBound;
+        }),Codec.INT.fieldOf("top_bound").withDefault(0).forGetter((p_236450_0_) -> {
+            return p_236450_0_.topBound;
+        })).apply(p_236451_0_, ReplacerFeatureConfig::new);
+    });
     public final BlockState target;
     public final BlockState state;
     public final int bottomBound;
@@ -20,16 +34,4 @@ public class ReplacerFeatureConfig implements IFeatureConfig {
         this.topBound = topBound;
     }
 
-    @Override
-    public <T> Dynamic<T> serialize(DynamicOps<T> ops) {
-        return new Dynamic<>(ops, ops.createMap(ImmutableMap.of(ops.createString("target"), BlockState.serialize(ops, this.target).getValue(), ops.createString("state"), BlockState.serialize(ops, this.state).getValue(),ops.createString("bottom_bound"), ops.createInt(this.bottomBound), ops.createString("top_bound"), ops.createInt(this.topBound))));
-    }
-
-    public static ReplacerFeatureConfig deserialize(Dynamic<?> p_214733_0_) {
-        BlockState blockstate = p_214733_0_.get("target").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        BlockState blockstate1 = p_214733_0_.get("state").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        int j = p_214733_0_.get("bottom_bound").asInt(0);
-        int k = p_214733_0_.get("top_bound").asInt(0);
-        return new ReplacerFeatureConfig(blockstate, blockstate1, j,k);
-    }
 }

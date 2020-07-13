@@ -13,8 +13,10 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
@@ -148,13 +150,13 @@ public class TropicsHousePieces
 
 
         @Override
-        public boolean create(IWorld worldIn, ChunkGenerator<?> p_225577_2_, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos)
+        public boolean func_230383_a_(ISeedReader worldIn, StructureManager structureManagerIn, ChunkGenerator chunkGeneratorIn, Random random, MutableBoundingBox structureBoundingBoxIn, ChunkPos chunkPos, BlockPos pos)
         {
             PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.rotation).setMirror(Mirror.NONE);
             BlockPos blockpos = TropicsHousePieces.OFFSET.get(this.resourceLocation);
             this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(0 - blockpos.getX(), 0, 0 - blockpos.getZ())));
 
-            return super.create(worldIn, p_225577_2_, randomIn, structureBoundingBoxIn, chunkPos);
+            return super.func_230383_a_(worldIn, structureManagerIn, chunkGeneratorIn, random, structureBoundingBoxIn, chunkPos, pos);
         }
     }
 

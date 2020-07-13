@@ -1,19 +1,18 @@
 package com.cannolicatfish.rankine.world.gen.feature.trees;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.AbstractSmallTreeFeature;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
 
-public class BalsamFirTreeFeature extends AbstractSmallTreeFeature<TreeFeatureConfig> {
-    public BalsamFirTreeFeature(Function<Dynamic<?>, ? extends TreeFeatureConfig> p_i225820_1_) {
+public class BalsamFirTreeFeature {/*extends AbstractSmallTreeFeature<BaseTreeFeatureConfig> {
+    public BalsamFirTreeFeature(Function<Dynamic<?>, ? extends BaseTreeFeatureConfig> p_i225820_1_) {
         super(p_i225820_1_);
     }
 
@@ -31,5 +30,5 @@ public class BalsamFirTreeFeature extends AbstractSmallTreeFeature<TreeFeatureCo
             this.func_227213_a_(world, rand, i, blockpos, config.trunkTopOffset + rand.nextInt(config.trunkTopOffsetRandom + 1), p_225557_4_, boundsIn, config);
             return true;
         }
-    }
+    }*/
 }

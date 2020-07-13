@@ -28,7 +28,7 @@ public class BlueFoxfireJarItem extends Item {
         if (!worldIn.isRemote) {
             JarBlueFoxfireEntity entity = new JarBlueFoxfireEntity(worldIn, playerIn);
             entity.setItem(itemstack);
-            entity.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+            entity.shoot(playerIn.getPosX(), playerIn.rotationPitch, playerIn.rotationYaw, 1.5F, 1.0F);
             worldIn.addEntity(entity);
         }
 

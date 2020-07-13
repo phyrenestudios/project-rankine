@@ -1,6 +1,7 @@
-package com.cannolicatfish.rankine.world.biome;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.world.biome.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -13,7 +14,7 @@ import net.minecraftforge.registries.ObjectHolder;
 
 
 public class RankineBiomes {
-    public static final DeferredRegister<Biome> REGISTRY = new DeferredRegister<>(ForgeRegistries.BIOMES, ProjectRankine.MODID);
+    public static final DeferredRegister<Biome> REGISTRY = DeferredRegister.create(ForgeRegistries.BIOMES, ProjectRankine.MODID);
 
     public static final Biome CEDAR_FOREST = add("cedar_forest", new CedarForestBiome());
     public static final Biome PINYON_JUNIPER_WOODLANDS = add("pinyon_juniper_woodlands", new PinyonJuniperWoodlandBiome());

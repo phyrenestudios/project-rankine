@@ -66,7 +66,7 @@ public class JarBlueFoxfireEntity extends ProjectileItemEntity {
      * Called when this EntityThrowable hits a block or entity.
      */
     protected void onImpact(RayTraceResult result) {
-        BlockPos pos = this.getPosition();
+        BlockPos pos = this.func_233580_cy_();
         if (!this.world.isRemote) {
             this.getEntityWorld().getWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.0F, Explosion.Mode.BREAK);
             this.remove();

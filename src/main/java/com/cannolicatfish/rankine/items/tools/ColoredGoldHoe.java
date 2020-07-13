@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 public class ColoredGoldHoe extends HoeItem {
     private int type;
     public ColoredGoldHoe(IItemTier tier, Item.Properties builder, int type) {
-        super(tier, -3.0F, builder);
+        super(tier, 0,-3.0F, builder);
         this.type = type;
     }
     @Override

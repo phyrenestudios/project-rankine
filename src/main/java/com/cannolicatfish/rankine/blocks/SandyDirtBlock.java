@@ -41,7 +41,7 @@ public class SandyDirtBlock extends Block {
 
         if (plantable instanceof BushBlock)
             return true;
-
+/*
         switch (type) {
             case Desert: return true;
             case Nether: return this.getBlock() == Blocks.SOUL_SAND;
@@ -56,7 +56,7 @@ public class SandyDirtBlock extends Block {
                         world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
                         world.getBlockState(pos.south()).getMaterial() == Material.WATER);
                 return isBeach && hasWater;
-        }
+        }*/
         return false;
     }
 

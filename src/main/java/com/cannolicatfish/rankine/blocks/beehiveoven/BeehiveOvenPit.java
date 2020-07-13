@@ -20,6 +20,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -69,6 +70,11 @@ public class BeehiveOvenPit extends Block {
             return false;
         }
 
+    }
+
+    @Override
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Override
@@ -165,11 +171,6 @@ public class BeehiveOvenPit extends Block {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
             return false;
         }
-    }
-
-    @Override
-    public int getLightValue(BlockState state) {
-        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state) : 0;
     }
 
     public static void spawnSmokeParticles(World worldIn, BlockPos pos, boolean spawnExtraSmoke) {

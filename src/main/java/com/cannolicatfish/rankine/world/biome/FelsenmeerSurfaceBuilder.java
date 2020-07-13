@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.biome;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.SharedSeedRandom;
@@ -16,7 +17,7 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class FelsenmeerSurfaceBuilder extends WoodedBadlandsSurfaceBuilder {
-    public FelsenmeerSurfaceBuilder(Function<Dynamic<?>, ? extends SurfaceBuilderConfig> p_i51303_1_) {
+    public FelsenmeerSurfaceBuilder(Codec<SurfaceBuilderConfig> p_i51303_1_) {
         super(p_i51303_1_);
     }
     public void buildSurface(Random random, IChunk chunkIn, Biome biomeIn, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
@@ -117,7 +118,7 @@ public class FelsenmeerSurfaceBuilder extends WoodedBadlandsSurfaceBuilder {
         this.field_215432_a = new BlockState[64];
         Arrays.fill(this.field_215432_a, DIRT);
         SharedSeedRandom sharedseedrandom = new SharedSeedRandom(p_215430_1_);
-        this.field_215439_e = new PerlinNoiseGenerator(sharedseedrandom, 0, 0);
+        this.field_215439_e = new PerlinNoiseGenerator(sharedseedrandom, Arrays.asList(0,0));
 
         for(int l1 = 0; l1 < 64; ++l1) {
             l1 += sharedseedrandom.nextInt(5) + 1;

@@ -2,26 +2,28 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.BitSet;
 import java.util.Random;
 import java.util.function.Function;
 
 public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
-    public RankineOreFeature(Function<Dynamic<?>, ? extends RankineOreFeatureConfig> configFactoryIn) {
+    public RankineOreFeature(Codec<RankineOreFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
+    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, RankineOreFeatureConfig config) {
         float f = rand.nextFloat() * (float)Math.PI;
         float f1 = (float)config.size / 8.0F;
         int i = MathHelper.ceil(((float)config.size / 16.0F * 2.0F + 1.0F) / 2.0F);

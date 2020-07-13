@@ -17,18 +17,18 @@ public class ThermometerItem extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity playerEntity, Hand p_77659_3_) {
-        if (!world.isRemote) {
-            playerEntity.sendMessage(new StringTextComponent("Biome Air Temperature: " + world.getBiome(playerEntity.getPosition()).getDefaultTemperature()));
-        }
+        /*if (!world.isRemote) {
+            playerEntity.sendMessage(new StringTextComponent("Biome Air Temperature: " + world.getBiome(playerEntity.func_233580_cy_()).getDefaultTemperature()));
+        }*/
         return ActionResult.resultSuccess(new ItemStack(this));
     }
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
-        if (!world.isRemote)
+        /*if (!world.isRemote)
         {
             context.getPlayer().sendMessage(new StringTextComponent("Block Temperature: " + world.getBiome(context.getPos()).getTemperature(context.getPos())));
-        }
+        }*/
 
 
         return ActionResultType.SUCCESS;

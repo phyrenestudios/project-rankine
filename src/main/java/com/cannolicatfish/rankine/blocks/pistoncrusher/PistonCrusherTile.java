@@ -4,6 +4,7 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import javafx.util.Pair;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -281,10 +282,10 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
      */
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void read(BlockState state, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
-        super.read(tag);
+        super.read(state,tag);
         this.burnTime = tag.getInt("BurnTime");
         this.cookTime = tag.getInt("CookTime");
         this.cookTimeTotal = tag.getInt("CookTimeTotal");
