@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.BoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -38,11 +37,11 @@ public class RankineBoatItem extends Item {
         if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
             return ActionResult.resultPass(itemstack);
         } else {
-            Vec3d vec3d = playerIn.getLook(1.0F);
+            Vector3d vec3d = playerIn.getLook(1.0F);
             double d0 = 5.0D;
             List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vec3d.scale(5.0D)).grow(1.0D), field_219989_a);
             if (!list.isEmpty()) {
-                Vec3d vec3d1 = playerIn.getEyePosition(1.0F);
+                Vector3d vec3d1 = playerIn.getEyePosition(1.0F);
 
                 for(Entity entity : list) {
                     AxisAlignedBB axisalignedbb = entity.getBoundingBox().grow((double)entity.getCollisionBorderSize());

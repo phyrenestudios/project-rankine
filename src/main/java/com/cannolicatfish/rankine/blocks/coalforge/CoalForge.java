@@ -59,6 +59,11 @@ public class CoalForge extends Block {
         return true;
     }
 
+    @Override
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
+    }
+
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
@@ -67,11 +72,6 @@ public class CoalForge extends Block {
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite()).with(BlockStateProperties.LIT, false);
-    }
-
-    @Override
-    public int getLightValue(BlockState state) {
-        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state) : 0;
     }
 
     @Override

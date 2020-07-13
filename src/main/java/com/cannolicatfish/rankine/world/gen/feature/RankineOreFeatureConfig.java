@@ -2,13 +2,16 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.pattern.BlockMatcher;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -16,6 +19,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class RankineOreFeatureConfig implements IFeatureConfig {
+    public static final Codec<RankineOreFeatureConfig> field_236566_a_ = RecordCodecBuilder.create((p_236568_0_) -> {
+        return p_236568_0_.group(RankineOreFeatureConfig.RankineFillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> {
+            return p_236570_0_.target;
+        }), BlockState.field_235877_b_.fieldOf("state").forGetter((p_236569_0_) -> {
+            return p_236569_0_.state;
+        }), Codec.INT.fieldOf("size").withDefault(0).forGetter((p_236567_0_) -> {
+            return p_236567_0_.size;
+        })).apply(p_236568_0_, RankineOreFeatureConfig::new);
+    });
     public final RankineOreFeatureConfig.RankineFillerBlockType target;
     public final int size;
     public final BlockState state;
@@ -26,18 +38,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
         this.target = target;
     }
 
-    public <T> Dynamic<T> serialize(DynamicOps<T> ops) {
-        return new Dynamic<>(ops, ops.createMap(ImmutableMap.of(ops.createString("size"), ops.createInt(this.size), ops.createString("target"), ops.createString(this.target.returnName()), ops.createString("state"), BlockState.serialize(ops, this.state).getValue())));
-    }
-
-    public static RankineOreFeatureConfig deserialize(Dynamic<?> p_214641_0_) {
-        int i = p_214641_0_.get("size").asInt(0);
-        RankineOreFeatureConfig.RankineFillerBlockType rankineorefeatureconfig$fillerblocktype = RankineOreFeatureConfig.RankineFillerBlockType.targetString(p_214641_0_.get("target").asString(""));
-        BlockState blockstate = p_214641_0_.get("state").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        return new RankineOreFeatureConfig(rankineorefeatureconfig$fillerblocktype, blockstate, i);
-    }
-
-    public static enum RankineFillerBlockType implements net.minecraftforge.common.IExtensibleEnum {
+    public static enum RankineFillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
         OVERWORLD_STONES("overworld_stones", (blockstate) -> {
             if (blockstate == null) {
                 return false;
@@ -156,8 +157,10 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
         KOMATIITE("komatiite", new BlockMatcher(ModBlocks.KOMATIITE)),
         KIMBERLITE("kimberlite", new BlockMatcher(ModBlocks.KIMBERLITE));;
 
-        private static final Map<String, RankineOreFeatureConfig.RankineFillerBlockType> map = Arrays.stream(values()).collect(Collectors.toMap(RankineOreFeatureConfig.RankineFillerBlockType::returnName, (getData) -> {
-            return getData;
+        public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = IStringSerializable.createEnumCodec(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
+        /** maps the filler block type name to the corresponding enum value. */
+        private static final Map<String, RankineOreFeatureConfig.RankineFillerBlockType> VALUES_MAP = Arrays.stream(values()).collect(Collectors.toMap(RankineOreFeatureConfig.RankineFillerBlockType::getName, (p_236573_0_) -> {
+            return p_236573_0_;
         }));
         private final String name;
         private final Predicate<BlockState> predicate;
@@ -171,8 +174,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             return this.name;
         }
 
-        public static RankineOreFeatureConfig.RankineFillerBlockType targetString(String target) {
-            return map.get(target);
+        public static RankineOreFeatureConfig.RankineFillerBlockType byName(String nameIn) {
+            return VALUES_MAP.get(nameIn);
         }
 
         public Predicate<BlockState> getPredicate() {
@@ -183,10 +186,19 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             throw new IllegalStateException("Enum not extended");
         }
 
+        public String getName() {
+            return this.name;
+        }
+
         @Override
         @Deprecated
         public void init() {
-            map.put(returnName(), this);
+            VALUES_MAP.put(getName(), this);
+        }
+
+        @Override
+        public String getString() {
+            return this.name;
         }
     }
 }

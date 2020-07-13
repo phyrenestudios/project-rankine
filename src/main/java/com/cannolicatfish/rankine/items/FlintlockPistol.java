@@ -15,25 +15,20 @@ import java.util.function.Predicate;
 
 public class FlintlockPistol extends ShootableItem {
     public static final Predicate<ItemStack> BULLETS = (p_220002_0_) -> {
-        return p_220002_0_.getItem().isIn(ModItemTags.BULLETS);
+        return p_220002_0_.getItem().getTags().contains(new ResourceLocation("rankine/bullets"));
     };
     public FlintlockPistol(Properties p_i50040_1_) {
         super(p_i50040_1_);
-        this.addPropertyOverride(new ResourceLocation("pull"), (p_210310_0_, p_210310_1_, p_210310_2_) -> {
-            if (p_210310_2_ == null) {
-                return 0.0F;
-            } else {
-                return !(p_210310_2_.getActiveItemStack().getItem() instanceof BowItem) ? 0.0F : (float)(p_210310_0_.getUseDuration() - p_210310_2_.getItemInUseCount()) / 1.0F;
-            }
-        });
-        this.addPropertyOverride(new ResourceLocation("pulling"), (p_210309_0_, p_210309_1_, p_210309_2_) -> {
-            return p_210309_2_ != null && p_210309_2_.isHandActive() && p_210309_2_.getActiveItemStack() == p_210309_0_ ? 1.0F : 0.0F;
-        });
     }
 
     @Override
     public Predicate<ItemStack> getInventoryAmmoPredicate() {
         return BULLETS;
+    }
+
+    @Override
+    public int func_230305_d_() {
+        return 15;
     }
 
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
@@ -58,7 +53,7 @@ public class FlintlockPistol extends ShootableItem {
                         LeadShotItem arrowitem = (LeadShotItem)(itemstack.getItem() instanceof LeadShotItem ? itemstack.getItem() : ModItems.LEAD_SHOT);
                         AbstractArrowEntity abstractarrowentity = arrowitem.createArrow(worldIn, itemstack, playerentity);
                         abstractarrowentity = customeArrow(abstractarrowentity);
-                        abstractarrowentity.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, random.nextFloat() * 4f );
+                        abstractarrowentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, random.nextFloat() * 4f );
                         if (f >= 0.5F) {
                             abstractarrowentity.setIsCritical(true);
                         }

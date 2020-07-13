@@ -23,15 +23,16 @@ public class TropicsBiome extends Biome {
                .depth(-0.1F).scale(0.05F)
                .temperature(0.9F)
                .downfall(0.2F)
-               .waterColor(4445678)
-               .waterFogColor(329011)
+               .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4445678).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
                .parent((String)null));
+     //.waterColor(4445678)
+     //.waterFogColor(329011)
 
-        this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        this.addStructure(Feature.SHIPWRECK.withConfiguration(new ShipwreckConfig(true)));
-        this.addStructure(RankineFeatures.TROPICS_HOUSE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        //this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
+        //this.addStructure(Feature.SHIPWRECK.withConfiguration(new ShipwreckConfig(true)));
+        //this.addStructure(RankineFeatures.TROPICS_HOUSE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         DefaultBiomeFeatures.addOceanCarvers(this);
-        DefaultBiomeFeatures.addStructures(this);
+        //DefaultBiomeFeatures.addStructures(this);
         RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);

@@ -18,14 +18,14 @@ public abstract class RankineFeatures<FC extends IFeatureConfig> extends net.min
     public static IStructurePieceType TROPICS_HOUSE_PIECE = TropicsHousePieces.Piece::new;
     public static IStructurePieceType LAGOON_FOUNTAIN_PIECE = LagoonFountainPieces.Piece::new;
 
-    public static final Feature<NoFeatureConfig> SPIKE = register("spike", new SpikesFeature(NoFeatureConfig::deserialize));
-    public static final Feature<BlockBlobConfig> METEOR = register("meteor", new MeteoriteFeature(BlockBlobConfig::deserialize));
-    public static final Feature<BlockBlobConfig> LARGE_ERRATIC = register("large_erratic", new LargeErraticFeature(BlockBlobConfig::deserialize));
-    public static final Feature<TreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::deserializeFoliage));
-    public static final Structure<NoFeatureConfig> BEAVER_LODGE = register("beaver_lodge", new BeaverLodgeStructure(NoFeatureConfig::deserialize));
-    public static final Structure<NoFeatureConfig> TROPICS_HOUSE = register("tropics_house", new TropicsHouseStructure(NoFeatureConfig::deserialize));
-    public static final Structure<NoFeatureConfig> LAGOON_FOUNTAIN = register("lagoon_fountain", new LagoonFountainStructure(NoFeatureConfig::deserialize));
 
+    public static final Feature<NoFeatureConfig> SPIKE = register("spike", new SpikesFeature(NoFeatureConfig.field_236558_a_));
+    public static final Feature<BlockBlobConfig> METEOR = register("meteor", new MeteoriteFeature(BlockBlobConfig.field_236449_a_));
+    public static final Feature<BlockBlobConfig> LARGE_ERRATIC = register("large_erratic", new LargeErraticFeature(BlockBlobConfig.field_236449_a_));
+    //public static final Feature<BaseTreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::deserializeFoliage));
+    //public static final Structure<NoFeatureConfig> BEAVER_LODGE = register("beaver_lodge", new BeaverLodgeStructure(NoFeatureConfig::deserialize));
+    //public static final Structure<NoFeatureConfig> TROPICS_HOUSE = register("tropics_house", new TropicsHouseStructure(NoFeatureConfig::deserialize));
+    //public static final Structure<NoFeatureConfig> LAGOON_FOUNTAIN = register("lagoon_fountain", new LagoonFountainStructure(NoFeatureConfig::deserialize));
 
     public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
         IForgeRegistry<Feature<?>> registry = event.getRegistry();

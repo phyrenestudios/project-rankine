@@ -3,8 +3,10 @@ package com.cannolicatfish.rankine.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
@@ -25,21 +27,8 @@ public class DesmoxyteEntity extends SilverfishEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, PlayerEntity.class, true));
     }
 
-    @Override
-    protected void registerAttributes() {
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.MAX_HEALTH);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ARMOR);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS);
-        this.getAttributes().registerAttribute(SWIM_SPEED);
-        this.getAttributes().registerAttribute(NAMETAG_DISTANCE);
-        this.getAttributes().registerAttribute(ENTITY_GRAVITY);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(16.0D);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_KNOCKBACK);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
+    public static AttributeModifierMap.MutableAttribute func_234301_m_() {
+        return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MAX_HEALTH, 8.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D).func_233815_a_(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
     public boolean attackEntityAsMob(Entity entityIn) {

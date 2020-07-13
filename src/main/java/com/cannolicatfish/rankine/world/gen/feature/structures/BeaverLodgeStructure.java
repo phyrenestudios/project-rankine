@@ -2,19 +2,23 @@ package com.cannolicatfish.rankine.world.gen.feature.structures;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.google.common.collect.Lists;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
@@ -27,7 +31,7 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
     private static final List<Biome.SpawnListEntry> LODGE_SPAWNS = Lists.newArrayList(new Biome.SpawnListEntry(EntityType.CAT, 1, 1, 1));
 
 
-    public BeaverLodgeStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
+    public BeaverLodgeStructure(Codec<NoFeatureConfig> config) {
         super(config);
     }
 
@@ -36,10 +40,6 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
         return ProjectRankine.MODID + ":beaver_lodge";
     }
 
-    @Override
-    public int getSize() {
-        return 0;
-    }
 
     @Override
     public Structure.IStartFactory getStartFactory() {
@@ -53,7 +53,7 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
     public List<Biome.SpawnListEntry> getCreatureSpawnList() {
         return LODGE_SPAWNS;
     }
-
+/*
     @Override
     protected ChunkPos getStartPositionForPosition(ChunkGenerator<?> chunkGenerator, Random random, int x, int z, int spacingOffsetsX, int spacingOffsetsZ)
     {
@@ -105,7 +105,7 @@ public class BeaverLodgeStructure extends Structure<NoFeatureConfig> {
 
 
         @Override
-        public void init(ChunkGenerator<?> generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn)
+        public void func_230364_a_(ChunkGenerator generator, TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn, IFeatureConfig config)
         {
             Rotation rotation = Rotation.values()[this.rand.nextInt(Rotation.values().length)];
 

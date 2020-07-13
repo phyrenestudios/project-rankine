@@ -52,8 +52,8 @@ public class FineryForge extends Block  {
     }
 
     @Override
-    public int getLightValue(BlockState state) {
-        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state) : 0;
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Override

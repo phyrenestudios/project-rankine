@@ -36,20 +36,15 @@ public class Crucible extends Block {
         this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
 
     }
-
-    @Override
-    public int getLightValue(BlockState state) {
-        return state.get(LEVEL) > 0 ? super.getLightValue(state) : 0;
-    }
-
+    
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
     @Override
-    public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return false;
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Override

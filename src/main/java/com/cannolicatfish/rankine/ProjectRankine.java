@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.potion.MercuryPoisonEffect;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.world.gen.StructureGen;
@@ -18,32 +17,21 @@ import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
-import com.cannolicatfish.rankine.dimension.MantleBiome;
-import com.cannolicatfish.rankine.dimension.MantleModDimension;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
-import com.cannolicatfish.rankine.world.biome.*;
-import com.cannolicatfish.rankine.dimension.ModDimensions;
 import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.fluids.ModFluids;
-import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import com.cannolicatfish.rankine.world.gen.OreGen;
 import com.cannolicatfish.rankine.world.gen.DecorationGen;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -217,23 +205,13 @@ public class ProjectRankine {
             event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
             event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
         }
-
-        @SubscribeEvent
-        public static void registerBiomes(final RegistryEvent.Register<Biome> event) {
-            event.getRegistry().register(new MantleBiome().setRegistryName(RankineBiomes.BIOME_ID));
-        }
-
-        @SubscribeEvent
-        public static void registerModDimensions(final RegistryEvent.Register<ModDimension> event) {
-            event.getRegistry().register(new MantleModDimension().setRegistryName(ModDimensions.DIMENSION_ID));
-        }
-
+        
         @SubscribeEvent
         public static void onRegisterFeatures(final RegistryEvent.Register<Feature<?>> event)
         {
             //registers the structures/features.
             //If you don't do this, you'll crash.
-            RankineFeatures.registerFeatures(event);
+            //RankineFeatures.registerFeatures(event);
   //          LOGGER.log(Level.INFO, "features/structures registered.");
         }
     }

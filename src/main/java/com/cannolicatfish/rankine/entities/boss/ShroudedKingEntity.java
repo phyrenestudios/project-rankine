@@ -1,8 +1,11 @@
 package com.cannolicatfish.rankine.entities.boss;
 
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
@@ -42,11 +45,7 @@ public class ShroudedKingEntity extends WitherEntity {
         }
     }
 
-    protected void registerAttributes() {
-        super.registerAttributes();
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
-        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
-        this.getAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
+    public static AttributeModifierMap.MutableAttribute func_234258_eI_() {
+        return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MAX_HEALTH, 300.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, (double)0.6F).func_233815_a_(Attributes.FOLLOW_RANGE, 40.0D).func_233815_a_(Attributes.ARMOR, 4.0D);
     }
 }

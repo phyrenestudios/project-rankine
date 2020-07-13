@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.placement.NoPlacementConfig;
 import net.minecraft.world.gen.placement.SimplePlacement;
@@ -11,8 +12,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class ReplacerPlacement extends SimplePlacement<NoPlacementConfig> {
-    public ReplacerPlacement(Function<Dynamic<?>, ? extends NoPlacementConfig> p_i51374_1_) {
-        super(p_i51374_1_);
+    public ReplacerPlacement(Codec<NoPlacementConfig> p_i232085_1_) {
+        super(p_i232085_1_);
     }
 
     public Stream<BlockPos> getPositions(Random random, NoPlacementConfig p_212852_2_, BlockPos pos) {

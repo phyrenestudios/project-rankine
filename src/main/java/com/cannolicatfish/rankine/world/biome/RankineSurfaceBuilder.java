@@ -17,7 +17,7 @@ public abstract class RankineSurfaceBuilder<C extends ISurfaceBuilderConfig> ext
 
     public static final SurfaceBuilderConfig SALT_SAND_SAND_CONFIG = new SurfaceBuilderConfig(SALT, SAND, SAND);
 
-    public static final SurfaceBuilder<SurfaceBuilderConfig> SALT_SPIKES = new SaltSpikesSurfaceBuilder(SurfaceBuilderConfig::deserialize);
+    public static final SurfaceBuilder<SurfaceBuilderConfig> SALT_SPIKES = new SaltSpikesSurfaceBuilder(SurfaceBuilderConfig.field_237203_a_);
 
 
 }

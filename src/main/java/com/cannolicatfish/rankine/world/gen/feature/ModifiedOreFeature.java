@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -14,7 +15,7 @@ import java.util.function.Function;
 
 public class ModifiedOreFeature extends OreFeature {
     Block targetBlock;
-    public ModifiedOreFeature(Function<Dynamic<?>, ? extends OreFeatureConfig> configFactoryIn, Block targetBlock) {
+    public ModifiedOreFeature(Codec<OreFeatureConfig> configFactoryIn, Block targetBlock) {
         super(configFactoryIn);
         this.targetBlock = targetBlock;
     }

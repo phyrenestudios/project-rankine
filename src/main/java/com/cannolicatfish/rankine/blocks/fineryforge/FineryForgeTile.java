@@ -256,10 +256,10 @@ public class FineryForgeTile extends TileEntity implements ITickableTileEntity, 
         }
     }
     @Override
-    public void read(CompoundNBT tag) {
+    public void read(BlockState stateIn, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
-        super.read(tag);
+        super.read(stateIn, tag);
         this.burnTime = tag.getInt("BurnTime");
         this.cookTime = tag.getInt("CookTime");
         this.cookTimeTotal = tag.getInt("CookTimeTotal");

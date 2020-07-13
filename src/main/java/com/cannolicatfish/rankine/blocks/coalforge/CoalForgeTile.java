@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.coalforge;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -179,10 +180,10 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void read(BlockState stateIn,  CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
-        super.read(tag);
+        super.read(stateIn,tag);
         this.burnTime = tag.getInt("BurnTime");
         this.cookTime = tag.getInt("CookTime");
         this.cookTimeTotal = tag.getInt("CookTimeTotal");

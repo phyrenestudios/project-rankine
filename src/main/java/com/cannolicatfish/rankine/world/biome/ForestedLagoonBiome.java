@@ -25,14 +25,13 @@ public class ForestedLagoonBiome extends Biome {
                .depth(-0.2F).scale(0.05F)
                .temperature(0.8F)
                .downfall(0.2F)
-               .waterColor(686230)
-               .waterFogColor(329011)
+               .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(686230).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
                .parent((String)null));
 
-        this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        this.addStructure(RankineFeatures.LAGOON_FOUNTAIN.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        //this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
+        //this.addStructure(RankineFeatures.LAGOON_FOUNTAIN.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         DefaultBiomeFeatures.addOceanCarvers(this);
-        DefaultBiomeFeatures.addStructures(this);
+        //DefaultBiomeFeatures.addStructures(this);
         RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);

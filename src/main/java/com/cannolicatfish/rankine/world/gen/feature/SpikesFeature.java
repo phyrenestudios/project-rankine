@@ -1,28 +1,31 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.IceSpikeFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.structure.StructureManager;
+import net.minecraft.world.gen.placement.NoPlacementConfig;
 
 import java.util.Random;
 import java.util.function.Function;
 
 public class SpikesFeature extends IceSpikeFeature {
-    public SpikesFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> p_i51493_1_) {
+    public SpikesFeature(Codec<NoFeatureConfig> p_i51493_1_) {
         super(p_i51493_1_);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, NoFeatureConfig p_230362_6_) {
         while(worldIn.isAirBlock(pos) && pos.getY() > 2 && pos.getY() < 65) {
             pos = pos.down();
         }
@@ -50,14 +53,14 @@ public class SpikesFeature extends IceSpikeFeature {
                             BlockState blockstate = worldIn.getBlockState(pos.add(i1, k, j1));
                             Block block = blockstate.getBlock();
                             if (blockstate.isAir(worldIn, pos.add(i1, k, j1)) || block == ModBlocks.SALT_BLOCK) {
-                                this.setBlockState(worldIn, pos.add(i1, k, j1), ModBlocks.SALT_BLOCK.getDefaultState());
+                                this.func_230367_a_(worldIn, pos.add(i1, k, j1), ModBlocks.SALT_BLOCK.getDefaultState());
                             }
 
                             if (k != 0 && l > 1) {
                                 blockstate = worldIn.getBlockState(pos.add(i1, -k, j1));
                                 block = blockstate.getBlock();
                                 if (blockstate.isAir(worldIn, pos.add(i1, -k, j1))  || block == ModBlocks.SALT_BLOCK) {
-                                    this.setBlockState(worldIn, pos.add(i1, -k, j1), ModBlocks.SALT_BLOCK.getDefaultState());
+                                    this.func_230367_a_(worldIn, pos.add(i1, -k, j1), ModBlocks.SALT_BLOCK.getDefaultState());
                                 }
                             }
                         }
@@ -87,7 +90,7 @@ public class SpikesFeature extends IceSpikeFeature {
                             break;
                         }*/
 
-                        this.setBlockState(worldIn, blockpos, ModBlocks.SALT_BLOCK.getDefaultState());
+                        this.func_230367_a_(worldIn, blockpos, ModBlocks.SALT_BLOCK.getDefaultState());
                         blockpos = blockpos.down();
                         --j2;
                         if (j2 <= 0) {

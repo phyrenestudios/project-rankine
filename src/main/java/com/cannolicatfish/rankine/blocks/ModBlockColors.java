@@ -7,10 +7,10 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.state.IProperty;
+import net.minecraft.state.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GrassColors;
-import net.minecraft.world.ILightReader;
+import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,7 +23,7 @@ import java.util.Set;
 @OnlyIn(Dist.CLIENT)
 public class ModBlockColors {
     private final java.util.Map<net.minecraftforge.registries.IRegistryDelegate<Block>, IBlockColor> colors = new java.util.HashMap<>();
-    private final Map<Block, Set<IProperty<?>>> colorStates = Maps.newHashMap();
+    private final Map<Block, Set<Property<?>>> colorStates = Maps.newHashMap();
 
     public static BlockColors init() {
         BlockColors blockcolors = new BlockColors();
@@ -38,14 +38,14 @@ public class ModBlockColors {
     public int getColorOrMaterialColor(BlockState state, World worldIn, BlockPos blockPosIn) {
         IBlockColor iblockcolor = this.colors.get(state.getBlock().delegate);
         if (iblockcolor != null) {
-            return iblockcolor.getColor(state, (ILightReader)null, (BlockPos)null, 0);
+            return iblockcolor.getColor(state, (IBlockDisplayReader)null, (BlockPos)null, 0);
         } else {
             MaterialColor materialcolor = state.getMaterialColor(worldIn, blockPosIn);
             return materialcolor != null ? materialcolor.colorValue : -1;
         }
     }
 
-    public int getColor(BlockState blockStateIn, @Nullable ILightReader lightReaderIn, @Nullable BlockPos blockPosIn, int tintIndexIn) {
+    public int getColor(BlockState blockStateIn, @Nullable IBlockDisplayReader lightReaderIn, @Nullable BlockPos blockPosIn, int tintIndexIn) {
         IBlockColor iblockcolor = this.colors.get(blockStateIn.getBlock().delegate);
         return iblockcolor == null ? -1 : iblockcolor.getColor(blockStateIn, lightReaderIn, blockPosIn, tintIndexIn);
     }
@@ -57,18 +57,18 @@ public class ModBlockColors {
 
     }
 
-    private void addColorStates(Set<IProperty<?>> propertiesIn, Block... blocksIn) {
+    private void addColorStates(Set<Property<?>> propertiesIn, Block... blocksIn) {
         for(Block block : blocksIn) {
             this.colorStates.put(block, propertiesIn);
         }
 
     }
 
-    private void addColorState(IProperty<?> propertyIn, Block... blocksIn) {
+    private void addColorState(Property<?> propertyIn, Block... blocksIn) {
         this.addColorStates(ImmutableSet.of(propertyIn), blocksIn);
     }
 
-    public Set<IProperty<?>> getColorProperties(Block blockIn) {
+    public Set<Property<?>> getColorProperties(Block blockIn) {
         return this.colorStates.getOrDefault(blockIn, ImmutableSet.of());
     }
 

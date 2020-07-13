@@ -4,9 +4,7 @@ import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -26,17 +24,16 @@ public class DeadSwampBiome extends Biome {
                 .category(Biome.Category.SWAMP)
                 .depth(-0.1F)
                 .scale(0.15F)
-                .temperature(0.8F
-                ).downfall(0.9F)
-                .waterColor(6388580)
-                .waterFogColor(2302743)
+                .temperature(0.8F)
+                .downfall(0.9F)
+                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(6388580).func_235248_c_(2302743).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
                 .parent((String)null));
 
-        this.addStructure(Feature.SWAMP_HUT.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-        this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        this.addStructure(RankineFeatures.BEAVER_LODGE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        this.func_235063_a_(DefaultBiomeFeatures.field_235172_j_);
+        this.func_235063_a_(DefaultBiomeFeatures.field_235150_b_);
+        this.func_235063_a_(DefaultBiomeFeatures.field_235130_B_);
         DefaultBiomeFeatures.addCarvers(this);
-        DefaultBiomeFeatures.addStructures(this);
+        DefaultBiomeFeatures.func_235191_ai_(this);
         RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
@@ -47,7 +44,6 @@ public class DeadSwampBiome extends Biome {
         DefaultBiomeFeatures.addExtraReedsAndPumpkins(this);
         DefaultBiomeFeatures.addSprings(this);
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEAGRASS.withConfiguration(new SeaGrassConfig(64, 0.6D)).withPlacement(Placement.TOP_SOLID_HEIGHTMAP.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-        DefaultBiomeFeatures.addFossils(this);
         DefaultBiomeFeatures.addFreezeTopLayer(this);
         RankineBiomeFeatures.addDeadSwampVegetation(this);
 

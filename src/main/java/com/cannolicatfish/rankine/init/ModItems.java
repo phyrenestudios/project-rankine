@@ -20,7 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 public class ModItems {
 
-    public static final DeferredRegister<Item> REGISTRY = new DeferredRegister<>(ForgeRegistries.ITEMS, ProjectRankine.MODID);
+    public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
 
     private static <T extends Item> T add(String name, T item) {
         REGISTRY.register(name, () -> item);
@@ -290,7 +290,7 @@ public class ModItems {
     public static final Item  BRONZE_SHOVEL = add("bronze_shovel", new ShovelItem(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_PICKAXE = add("bronze_pickaxe", new AlloyPickaxe(RankineToolMaterials.BRONZE, 1, -2.8F, 0f,0.25f,0.05f, new BronzeAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_AXE = add("bronze_axe", new AxeItem(RankineToolMaterials.BRONZE, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BRONZE_HOE = add("bronze_hoe", new HoeItem(RankineToolMaterials.BRONZE, -2.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BRONZE_HOE = add("bronze_hoe", new HoeItem(RankineToolMaterials.BRONZE, -1,-2.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_HAMMER = add("bronze_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.BRONZE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_SPEAR = add("bronze_spear", new ItemSpear(RankineToolMaterials.BRONZE, 2, -2.9F, 1, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  IRON_SPEAR = add("iron_spear", new ItemSpear(ItemTier.IRON, 2, -2.9F, 2, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -301,7 +301,7 @@ public class ModItems {
     public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  STEEL_AXE = add("steel_axe", new AxeItem(RankineToolMaterials.STEEL, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  STEEL_HAMMER = add("steel_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.STEEL, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_HOE = add("steel_hoe", new HoeItem(RankineToolMaterials.STEEL, 0.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_HOE = add("steel_hoe", new HoeItem(RankineToolMaterials.STEEL, -3,0.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  STEEL_SPEAR = add("steel_spear", new ItemSpear(RankineToolMaterials.STEEL, 2, -2.9F, 3, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     //GOLD TOOLS

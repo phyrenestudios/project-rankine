@@ -1,19 +1,13 @@
 package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.BigMushroomFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
@@ -47,15 +41,15 @@ public class DuckweedBlock extends LilyPadBlock{
 
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        IFluidState placedOn = worldIn.getFluidState(pos.down());
-        IFluidState under = worldIn.getFluidState(pos.down(2));
+        FluidState placedOn = worldIn.getFluidState(pos.down());
+        FluidState under = worldIn.getFluidState(pos.down(2));
         return placedOn.getFluid() == Fluids.WATER && under.getFluid() != Fluids.WATER;
     }
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        IFluidState placedOn = worldIn.getFluidState(pos.down());
-        IFluidState under = worldIn.getFluidState(pos.down(2));
+        FluidState placedOn = worldIn.getFluidState(pos.down());
+        FluidState under = worldIn.getFluidState(pos.down(2));
         return placedOn.getFluid() == Fluids.WATER && under.getFluid() != Fluids.WATER;
     }
 }

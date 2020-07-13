@@ -2,18 +2,16 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -41,17 +39,17 @@ public class AlloySword extends SwordItem {
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         Random rand = new Random();
         int i = rand.nextFloat() < toughness ? 1 : 0;
-        if ((!heat_resistant && (attacker.getEntityWorld().getDimension().getType() == DimensionType.THE_NETHER || attacker.isInLava() || attacker.getFireTimer() > 0)) || (!corr_resistant && attacker.isWet()))
+        if ((!heat_resistant && (attacker.isInLava() || attacker.getFireTimer() > 0)) || (!corr_resistant && attacker.isWet()))
         {
             stack.damageItem(2 + i, attacker, (p_220038_0_) -> {
                 p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
             });
-            replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND),SharedMonsterAttributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
+            replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND), Attributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
         } else {
             stack.damageItem(1 + i, attacker, (p_220038_0_) -> {
                 p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
             });
-            replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND),SharedMonsterAttributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
+            replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND), Attributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
         }
         return true;
     }
@@ -61,17 +59,17 @@ public class AlloySword extends SwordItem {
         Random rand = new Random();
         int i = rand.nextFloat() < toughness ? 1 : 0;
         if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            if ((!heat_resistant && (worldIn.getDimension().getType() == DimensionType.THE_NETHER || entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) || (!corr_resistant && entityLiving.isWet()))
+            if ((!heat_resistant && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) || (!corr_resistant && entityLiving.isWet()))
             {
                 stack.damageItem(4 + i, entityLiving, (p_220038_0_) -> {
                     p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                 });
-                replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND),SharedMonsterAttributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
+                replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND), Attributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
             } else {
                 stack.damageItem(2 + i, entityLiving, (p_220038_0_) -> {
                     p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                 });
-                replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND),SharedMonsterAttributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
+                replaceModifier(getAttributeModifiers(EquipmentSlotType.MAINHAND),Attributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MODIFIER,getWear(stack));
             }
 
         }
@@ -87,10 +85,10 @@ public class AlloySword extends SwordItem {
         return wear_modifier;
     }
 
-    private void replaceModifier(Multimap<String, AttributeModifier> modifierMultimap, IAttribute attribute, UUID id, double multiplier)
+    private void replaceModifier(Multimap<Attribute, AttributeModifier> modifierMultimap, Attribute attribute, UUID id, double multiplier)
     {
         // Get the modifiers for the specified attribute
-        final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute.getName());
+        final Collection<AttributeModifier> modifiers = modifierMultimap.get(attribute);
 
         // Find the modifier with the specified ID, if any
         final Optional<AttributeModifier> modifierOptional = modifiers.stream().filter(attributeModifier -> attributeModifier.getID().equals(id)).findFirst();

@@ -50,7 +50,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)
     {
-        if (!(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && event.getState().getBlock() instanceof LogBlock && Config.MANDATORY_AXE.get())
+        if (!(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && event.getState().getBlock().getTags().contains(new ResourceLocation("minecraft/logs")) && Config.MANDATORY_AXE.get())
         {
             event.setNewSpeed(0f);
         }
@@ -174,7 +174,7 @@ public class RankineEventHandler {
             if(block instanceof RotatedPillarBlock) {
                 Direction.Axis axis = activatedBlock.get(RotatedPillarBlock.AXIS);
                 world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, stripping_map.get(activatedBlock.getBlock()).getDefaultState().with(LogBlock.AXIS, axis), 2);
+                world.setBlockState(pos, stripping_map.get(activatedBlock.getBlock()).getDefaultState().with(RotatedPillarBlock.AXIS, axis), 2);
                 stack.damageItem(1, player, (entity) -> {
                     entity.sendBreakAnimation(event.getHand());
                 });

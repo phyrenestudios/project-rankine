@@ -2,7 +2,8 @@ package com.cannolicatfish.rankine.entities;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.IMob;
@@ -42,21 +43,7 @@ public class PeridotMantleGolemEntity extends IronGolemEntity {
         }
     }
 
-    @Override
-    protected void registerAttributes() {
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.MAX_HEALTH);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ARMOR);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS);
-        this.getAttributes().registerAttribute(SWIM_SPEED);
-        this.getAttributes().registerAttribute(NAMETAG_DISTANCE);
-        this.getAttributes().registerAttribute(ENTITY_GRAVITY);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(10.0D);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_KNOCKBACK);
-        this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.6D);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+    public static AttributeModifierMap.MutableAttribute func_234200_m_() {
+        return MobEntity.func_233666_p_().func_233815_a_(Attributes.MAX_HEALTH, 100.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D).func_233815_a_(Attributes.KNOCKBACK_RESISTANCE, 1.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 15.0D);
     }
 }

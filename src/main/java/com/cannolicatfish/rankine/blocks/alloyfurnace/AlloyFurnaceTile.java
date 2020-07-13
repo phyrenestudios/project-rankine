@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -219,10 +220,10 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
     }
 
     @Override
-    public void read(CompoundNBT tag) {
+    public void read(BlockState stateIn, CompoundNBT tag) {
         CompoundNBT invTag = tag.getCompound("inv");
         handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
-        super.read(tag);
+        super.read(stateIn,tag);
         this.burnTime = tag.getInt("BurnTime");
         this.currentBurnTime = tag.getInt("CurrentBurnTime");
         this.cookTime = tag.getInt("CookTime");

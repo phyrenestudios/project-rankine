@@ -38,15 +38,15 @@ public class ReactiveItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (radius <= 1f)
         {
-            tooltip.add(new StringTextComponent("Warning! Reactive with water!").applyTextStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Warning! Reactive with water!"));
         }
         else if (radius <= 2f)
         {
-            tooltip.add(new StringTextComponent("Warning! Highly reactive with water!").applyTextStyle(TextFormatting.YELLOW));
+            tooltip.add(new StringTextComponent("Warning! Highly reactive with water!"));
         }
         else if (radius > 2f)
         {
-            tooltip.add(new StringTextComponent("Warning! Exercise caution near water with this item!").applyTextStyle(TextFormatting.RED));
+            tooltip.add(new StringTextComponent("Warning! Exercise caution near water with this item!"));
         }
     }
 
@@ -71,7 +71,7 @@ public class ReactiveItem extends Item {
             if (canExplode)
             {
                 stack.shrink(1);
-                BlockPos pos = entityIn.getPosition();
+                BlockPos pos = entityIn.func_233580_cy_();
                 if (canBreakBlocks)
                 {
                     entityIn.getEntityWorld().getWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);

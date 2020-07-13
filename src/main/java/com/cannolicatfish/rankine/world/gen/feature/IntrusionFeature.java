@@ -2,27 +2,29 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.init.ModBlocks;
-import com.mojang.datafixers.Dynamic;
-import net.minecraft.block.Block;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
 import java.util.function.Function;
 
 public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
-    public IntrusionFeature(Function<Dynamic<?>, ? extends ReplacerFeatureConfig> configFactoryIn) {
+    public IntrusionFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 
     @Override
-    public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
+    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
 
         BlockState INTRUSION = null;
         float CHANCE = rand.nextFloat();
@@ -50,7 +52,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         int endZ = chunk.getPos().getZEnd() - rand.nextInt(6);
         int startY;
         int endY;
-        if (worldIn.getDimension().getType() == DimensionType.OVERWORLD) {
+        if (worldIn.getBiome(pos).getCategory() != Biome.Category.THEEND && worldIn.getBiome(pos).getCategory() != Biome.Category.NETHER) {
             startY = BOT;
             endY = TOP - rand.nextInt(10);
         } else {

@@ -20,7 +20,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -61,7 +61,7 @@ public class SpearEntity extends AbstractArrowEntity {
 
     @Override
     public IPacket<?> createSpawnPacket() {
-        Entity entity = this.getShooter();
+        Entity entity = this.func_234616_v_();
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -75,7 +75,7 @@ public class SpearEntity extends AbstractArrowEntity {
             this.dealtDamage = true;
         }
 
-        Entity entity = this.getShooter();
+        Entity entity = this.func_234616_v_();
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
             int i = this.dataManager.get(LOYALTY_LEVEL);
             if (i > 0 && !this.shouldReturnToThrower()) {
@@ -86,7 +86,7 @@ public class SpearEntity extends AbstractArrowEntity {
                 this.remove();
             } else if (i > 0) {
                 this.setNoClip(true);
-                Vec3d vec3d = new Vec3d(entity.getPosX() - this.getPosX(), entity.getPosY() + (double)entity.getEyeHeight() - this.getPosY(), entity.getPosZ() - this.getPosZ());
+                Vector3d vec3d = new Vector3d(entity.getPosX() - this.getPosX(), entity.getPosY() + (double)entity.getEyeHeight() - this.getPosY(), entity.getPosZ() - this.getPosZ());
                 this.setRawPosition(this.getPosX(), this.getPosY() + vec3d.y * 0.015D * (double)i, this.getPosZ());
                 if (this.world.isRemote) {
                     this.lastTickPosY = this.getPosY();
@@ -106,7 +106,7 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     private boolean shouldReturnToThrower() {
-        Entity entity = this.getShooter();
+        Entity entity = this.func_234616_v_();
         if (entity != null && entity.isAlive()) {
             return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
         } else {
@@ -122,7 +122,7 @@ public class SpearEntity extends AbstractArrowEntity {
      * Gets the EntityRayTraceResult representing the entity hit
      */
     @Nullable
-    protected EntityRayTraceResult rayTraceEntities(Vec3d startVec, Vec3d endVec) {
+    protected EntityRayTraceResult rayTraceEntities(Vector3d startVec, Vector3d endVec) {
         return this.dealtDamage ? null : super.rayTraceEntities(startVec, endVec);
     }
 
@@ -137,7 +137,7 @@ public class SpearEntity extends AbstractArrowEntity {
             f += EnchantmentHelper.getModifierForCreature(this.thrownStack, livingentity.getCreatureAttribute());
         }
 
-        Entity entity1 = this.getShooter();
+        Entity entity1 = this.func_234616_v_();
         DamageSource damagesource = DamageSource.causeTridentDamage(this, (Entity)(entity1 == null ? this : entity1));
         this.dealtDamage = true;
         SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
@@ -153,8 +153,9 @@ public class SpearEntity extends AbstractArrowEntity {
 
         this.setMotion(this.getMotion().mul(-0.01D, -0.1D, -0.01D));
         float f1 = 1.0F;
+        /*
         if (this.world instanceof ServerWorld && this.world.isThundering() && EnchantmentHelper.hasChanneling(this.thrownStack)) {
-            BlockPos blockpos = entity.getPosition();
+            BlockPos blockpos = entity.func_233580_cy_();
             if (this.world.canSeeSky(blockpos)) {
                 LightningBoltEntity lightningboltentity = new LightningBoltEntity(this.world, (double)blockpos.getX() + 0.5D, (double)blockpos.getY(), (double)blockpos.getZ() + 0.5D, false);
                 lightningboltentity.setCaster(entity1 instanceof ServerPlayerEntity ? (ServerPlayerEntity)entity1 : null);
@@ -162,7 +163,7 @@ public class SpearEntity extends AbstractArrowEntity {
                 soundevent = SoundEvents.ITEM_TRIDENT_THUNDER;
                 f1 = 5.0F;
             }
-        }
+        }*/
 
         this.playSound(soundevent, f1, 1.0F);
     }
@@ -178,7 +179,7 @@ public class SpearEntity extends AbstractArrowEntity {
      * Called by a player entity when they collide with an entity
      */
     public void onCollideWithPlayer(PlayerEntity entityIn) {
-        Entity entity = this.getShooter();
+        Entity entity = this.func_234616_v_();
         if (entity == null || entity.getUniqueID() == entityIn.getUniqueID()) {
             super.onCollideWithPlayer(entityIn);
         }

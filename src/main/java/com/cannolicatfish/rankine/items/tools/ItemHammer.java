@@ -36,9 +36,6 @@ public class ItemHammer extends ToolItem {
 
     public ItemHammer(float attackDamageIn, float attackSpeedIn, IItemTier tier, Properties builder) {
         super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder);
-        this.addPropertyOverride(new ResourceLocation("throwing"), (p_210315_0_, p_210315_1_, p_210315_2_) -> {
-            return p_210315_2_ != null && p_210315_2_.isHandActive() && p_210315_2_.getActiveItemStack() == p_210315_0_ ? 1F : 0.0F;
-        });
     }
 
     @Override
@@ -127,7 +124,7 @@ public class ItemHammer extends ToolItem {
     public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
         if (this.getUseDuration(stack) - count == 15)
         {
-            BlockPos pos = player.getPosition();
+            BlockPos pos = player.func_233580_cy_();
             player.getEntityWorld().playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS,1.0F, 1.0F, false);
         }
     }
@@ -170,9 +167,9 @@ public class ItemHammer extends ToolItem {
 
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.getPosition()) && getLightningModifier(stack) == 1)
+        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
         {
-            ((ServerWorld)target.getEntityWorld()).addLightningBolt(new LightningBoltEntity(target.world,target.getPosX(),target.getPosY(),target.getPosZ(), false));
+            //((ServerWorld)target.getEntityWorld()).addLightningBolt(new LightningBoltEntity(target.world,target.getPosX(),target.getPosY(),target.getPosZ(), false));
         }
         if (getTier().getHarvestLevel() == 0)
         {

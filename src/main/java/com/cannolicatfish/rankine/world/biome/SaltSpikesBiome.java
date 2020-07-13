@@ -5,10 +5,7 @@ import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.world.biome.BambooJungleBiome;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.ErodedBadlandsBiome;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -21,20 +18,22 @@ import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class SaltSpikesBiome extends Biome {
     public SaltSpikesBiome() {
-        super((new Biome.Builder()).surfaceBuilder(new SaltSpikesSurfaceBuilder(SurfaceBuilderConfig::deserialize), SurfaceBuilder.SAND_CONFIG)
+        super((new Biome.Builder()).surfaceBuilder(new SaltSpikesSurfaceBuilder(SurfaceBuilderConfig.field_237203_a_), SurfaceBuilder.SAND_CONFIG)
                 .precipitation(Biome.RainType.NONE)
                 .category(Category.DESERT)
                 .depth(0.0F)
                 .scale(0.1F)
                 .temperature(2.0F)
                 .downfall(0.0F)
-                .waterColor(4159204)
-                .waterFogColor(329011)
+                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4159204).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
                 .parent("salt_plains"));
-        this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        this.addStructure(Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        //.waterColor(4159204)
+        //.waterFogColor(329011)
+
+        //this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
+        //this.addStructure(Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         DefaultBiomeFeatures.addCarvers(this);
-        DefaultBiomeFeatures.addStructures(this);
+        //DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addDesertLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);

@@ -1,13 +1,25 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.Dynamic;
-import com.mojang.datafixers.types.DynamicOps;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class RankineMultiOreFeatureConfig implements IFeatureConfig {
+    public static final Codec<RankineMultiOreFeatureConfig> field_236566_a_ = RecordCodecBuilder.create((p_236568_0_) -> {
+        return p_236568_0_.group(RankineOreFeatureConfig.RankineFillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> {
+            return p_236570_0_.target;
+        }), BlockState.field_235877_b_.fieldOf("state").forGetter((p_236569_0_) -> {
+            return p_236569_0_.state;
+        }), Codec.INT.fieldOf("size").withDefault(0).forGetter((p_236567_0_) -> {
+            return p_236567_0_.size;
+        }), Codec.FLOAT.fieldOf("chance").withDefault(0f).forGetter((p_236567_0_) -> {
+            return p_236567_0_.chance;
+        })).apply(p_236568_0_, RankineMultiOreFeatureConfig::new);
+    });
     public final RankineOreFeatureConfig.RankineFillerBlockType target;
     public final int size;
     public final BlockState state;
@@ -18,18 +30,6 @@ public class RankineMultiOreFeatureConfig implements IFeatureConfig {
         this.state = state;
         this.target = target;
         this.chance = chance;
-    }
-
-    public <T> Dynamic<T> serialize(DynamicOps<T> ops) {
-        return new Dynamic<>(ops, ops.createMap(ImmutableMap.of(ops.createString("size"), ops.createInt(this.size), ops.createString("target"), ops.createString(this.target.returnName()), ops.createString("state"), BlockState.serialize(ops, this.state).getValue(), ops.createString("chance"), ops.createFloat(this.chance))));
-    }
-
-    public static RankineMultiOreFeatureConfig deserialize(Dynamic<?> p_214641_0_) {
-        int i = p_214641_0_.get("size").asInt(0);
-        RankineOreFeatureConfig.RankineFillerBlockType rankineorefeatureconfig$fillerblocktype = RankineOreFeatureConfig.RankineFillerBlockType.targetString(p_214641_0_.get("target").asString(""));
-        BlockState blockstate = p_214641_0_.get("state").map(BlockState::deserialize).orElse(Blocks.AIR.getDefaultState());
-        float f = p_214641_0_.get("chance").asFloat(0.0F);
-        return new RankineMultiOreFeatureConfig(rankineorefeatureconfig$fillerblocktype, blockstate, i, f);
     }
 
 }
