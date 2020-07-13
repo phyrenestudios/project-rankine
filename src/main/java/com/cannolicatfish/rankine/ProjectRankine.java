@@ -1,5 +1,8 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.entities.*;
+import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
+import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
@@ -18,12 +21,12 @@ import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.enchantment.LightningAspectEnchantment;
-import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.world.gen.OreGen;
 import com.cannolicatfish.rankine.world.gen.DecorationGen;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
@@ -40,6 +43,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -84,6 +88,18 @@ public class ProjectRankine {
         proxy.init();
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();
+        DeferredWorkQueue.runLater(() -> {
+            GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.STEAMER, SteamerEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DESMOXYTE, DesmoxyteEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DEMONYTE, DemonyteEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SHROUDED_KING, ShroudedKingEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().func_233813_a_());
+        });
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
 

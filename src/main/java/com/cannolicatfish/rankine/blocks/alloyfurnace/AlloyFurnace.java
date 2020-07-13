@@ -83,9 +83,11 @@ public class AlloyFurnace extends Block {
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
+            return ActionResultType.CONSUME;
+        } else
+        {
             return ActionResultType.SUCCESS;
         }
-        return super.onBlockActivated(state, world, pos, player, hand, result);
     }
 
     @Override

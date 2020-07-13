@@ -21,14 +21,6 @@ public class CoalForgeScreen extends ContainerScreen<CoalForgeContainer> {
         super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
         //this.renderHoveredToolTip(mouseX, mouseY);
     }
-/*
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawCenteredString(Minecraft.getInstance().fontRenderer, "Coal Forge", 92, 10, 0xffffff);
-        /*this.addButton((new ImageButton(this.guiLeft + 53, this.guiTop + 6, 20, 18, 0, 0, 19, button, (p_214087_1_) -> {
-            this.container.toggleRecipeLock();
-        })));
-    }*/
 
     @Override
     protected void func_230450_a_(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
@@ -36,20 +28,24 @@ public class CoalForgeScreen extends ContainerScreen<CoalForgeContainer> {
         this.minecraft.getTextureManager().bindTexture(GUI);
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
-        //this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+        this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
         if(this.container.isBurning())
         {
 
             int k = this.container.getBurnLeftScaled(13);
-            //this.blit(this.guiLeft + 11, this.guiTop + 21 + 12 - k, 176, 12 - k, 14, k + 1);
+            this.blit(p_230450_1_,this.guiLeft + 11, this.guiTop + 21 + 12 - k, 176, 12 - k, 14, k + 1);
 
         }
 
         int l = this.container.getCookProgressScaled(24);
-        //this.blit(this.guiLeft + 113, this.guiTop + 37, 176, 14, l + 1, 16);
+        this.blit(p_230450_1_,this.guiLeft + 113, this.guiTop + 37, 176, 14, l + 1, 16);
 
     }
 
+    @Override
+    protected void func_230451_b_(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+        drawCenteredString(p_230451_1_,Minecraft.getInstance().fontRenderer, "Coal Forge", 92, 10, 0xffffff);
+    }
 
 
 }

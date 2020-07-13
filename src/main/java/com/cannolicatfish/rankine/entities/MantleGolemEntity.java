@@ -43,7 +43,7 @@ public class MantleGolemEntity extends IronGolemEntity {
         }
     }
 
-    public static AttributeModifierMap.MutableAttribute func_234200_m_() {
+    public static AttributeModifierMap.MutableAttribute getAttributes() {
         return MobEntity.func_233666_p_().func_233815_a_(Attributes.MAX_HEALTH, 100.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D).func_233815_a_(Attributes.KNOCKBACK_RESISTANCE, 1.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 15.0D);
     }
 }
