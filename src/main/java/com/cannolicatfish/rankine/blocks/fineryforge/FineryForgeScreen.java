@@ -22,11 +22,10 @@ public class FineryForgeScreen extends ContainerScreen<FineryForgeContainer> {
         //this.renderHoveredToolTip(mouseX, mouseY);
     }
 
-    /*
     @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Finery Forge", 10, 10, 0xffffff);
-    }*/
+    protected void func_230451_b_(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+        drawString(p_230451_1_,Minecraft.getInstance().fontRenderer, "Finery Forge", 10, 10, 0xffffff);
+    }
 
     @Override
     protected void func_230450_a_(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
@@ -35,23 +34,23 @@ public class FineryForgeScreen extends ContainerScreen<FineryForgeContainer> {
             this.minecraft.getTextureManager().bindTexture(GUI);
             int relX = (this.width - this.xSize) / 2;
             int relY = (this.height - this.ySize) / 2;
-            //this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+            this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
             if (this.container.isBurning()) {
 
                 int k = this.container.getBurnLeftScaled(13);
-                //this.blit(this.guiLeft + 11, this.guiTop + 21 + 12 - k, 180, 12 - k, 14, k + 1);
+                this.blit(p_230450_1_,this.guiLeft + 11, this.guiTop + 21 + 12 - k, 180, 12 - k, 14, k + 1);
             }
 
             int l = this.container.getCookProgressScaled(24);
-            //this.blit(this.guiLeft + 58, this.guiTop + 32, 180, 14, l + 1, 16);
+            this.blit(p_230450_1_,this.guiLeft + 58, this.guiTop + 32, 180, 14, l + 1, 16);
 
             int r = this.container.getCrushProgressScaled(24);
-            //this.blit(this.guiLeft + 117, this.guiTop + 20, 180, 53, r + 1, 38);
+            this.blit(p_230450_1_,this.guiLeft + 117, this.guiTop + 20, 180, 53, r + 1, 38);
             if (r % 2 == 0) {
-                //this.blit(this.guiLeft + 94, this.guiTop + 4, 180, 31, 16, 22);
+                this.blit(p_230450_1_,this.guiLeft + 94, this.guiTop + 4, 180, 31, 16, 22);
             }
             if (this.container.isRSPower()) {
-                //this.blit(this.guiLeft + 94, this.guiTop + 52, 180, 91, 16, 16);
+                this.blit(p_230450_1_,this.guiLeft + 94, this.guiTop + 52, 180, 91, 16, 16);
             }
         }
     }

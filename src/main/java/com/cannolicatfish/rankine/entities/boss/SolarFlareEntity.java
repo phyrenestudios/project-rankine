@@ -55,7 +55,7 @@ public class SolarFlareEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
     }
 
-    public static AttributeModifierMap.MutableAttribute func_234258_eI_() {
+    public static AttributeModifierMap.MutableAttribute getAttributes() {
         return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MAX_HEALTH, 300.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, (double)0.6F).func_233815_a_(Attributes.FOLLOW_RANGE, 40.0D).func_233815_a_(Attributes.ARMOR, 4.0D);
     }
 
