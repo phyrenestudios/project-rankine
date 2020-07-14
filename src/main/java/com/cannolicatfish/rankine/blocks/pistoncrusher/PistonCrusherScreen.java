@@ -21,15 +21,11 @@ public class PistonCrusherScreen extends ContainerScreen<PistonCrusherContainer>
         super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
         //this.renderHoveredToolTip(mouseX, mouseY);
     }
-/*
+
     @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawString(Minecraft.getInstance().fontRenderer, "Piston Crusher", 92, 10, 0xffffff);
-        /*if (AlloyFurnaceTile.isBurning())
-        {
-            drawString(Minecraft.getInstance().fontRenderer,"Burning",92,0,0xffffff);
-        }
-    }*/
+    protected void func_230451_b_(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+        drawString(p_230451_1_,Minecraft.getInstance().fontRenderer, "Piston Crusher", 92, 10, 0xffffff);
+    }
 
     @Override
     protected void func_230450_a_(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
@@ -37,25 +33,25 @@ public class PistonCrusherScreen extends ContainerScreen<PistonCrusherContainer>
         this.minecraft.getTextureManager().bindTexture(GUI);
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
-        //this.blit(relX, relY, 0, 0, this.xSize, this.ySize);
+        this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
         if(this.container.isBurning())
         {
 
             int k = this.container.getBurnLeftScaled(13);
-            //this.blit(this.guiLeft + 11, this.guiTop + 21 + 12 - k, 180, 12 - k, 14, k + 1);
+            this.blit(p_230450_1_,this.guiLeft + 11, this.guiTop + 21 + 12 - k, 180, 12 - k, 14, k + 1);
         }
 
         int l = this.container.getCookProgressScaled(24);
         if (l % 2 == 0)
         {
-            //this.blit(this.guiLeft + 56, this.guiTop + 8, 180, 31, 16, 22);
+            this.blit(p_230450_1_,this.guiLeft + 56, this.guiTop + 8, 180, 31, 16, 22);
         }
 
         if (this.container.isRSPower())
         {
-            //this.blit(this.guiLeft + 56, this.guiTop + 48, 180, 53, 16, 16);
+            this.blit(p_230450_1_,this.guiLeft + 56, this.guiTop + 48, 180, 53, 16, 16);
         }
-        //this.blit(this.guiLeft + 88, this.guiTop + 32, 180, 14, l + 1, 16);
+        this.blit(p_230450_1_,this.guiLeft + 88, this.guiTop + 32, 180, 14, l + 1, 16);
     }
 
 
