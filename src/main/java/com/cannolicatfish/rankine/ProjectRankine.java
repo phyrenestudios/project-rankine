@@ -73,9 +73,6 @@ public class ProjectRankine {
         Bus.addListener(this::setup);
         ModBlocks.REGISTRY.register(Bus);
         ModItems.REGISTRY.register(Bus);
-        RankineBiomes.REGISTRY.register(Bus);
-
-        Bus.addListener(RankineBiomes::registerTypes);
         Bus.addListener(this::LoadComplete);
 
     }
@@ -86,6 +83,7 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         setup.init();
         proxy.init();
+        RankineBiomes.addRankineBiomes();
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {

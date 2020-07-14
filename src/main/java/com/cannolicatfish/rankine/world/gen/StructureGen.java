@@ -38,7 +38,7 @@ public class StructureGen {
             if (biome.getCategory() == cat && include) {
                 b.add(biome);
             }
-            if (!include && biome.getCategory() != cat && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome != RankineBiomes.MANTLE) {
+            if (!include && biome.getCategory() != cat && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
                 b.add(biome);
             }
         }
