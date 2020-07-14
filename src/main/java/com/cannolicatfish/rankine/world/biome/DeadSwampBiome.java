@@ -13,27 +13,30 @@ import net.minecraft.world.gen.feature.structure.MineshaftConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DeadSwampBiome extends Biome {
-    public DeadSwampBiome() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
-                .precipitation(Biome.RainType.RAIN)
-                .category(Biome.Category.SWAMP)
-                .depth(-0.1F)
-                .scale(0.15F)
-                .temperature(0.8F)
-                .downfall(0.9F)
-                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(6388580).func_235248_c_(2302743).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
-                .parent((String)null));
+    static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
+    static final RainType PRECIPATATION = RainType.RAIN;
+    static final Category CATEGORY = Category.SWAMP;
+    static final float DEPTH = -0.1F;
+    static final float SCALE = 0.15F;
+    static final float TEMPERATURE = 0.8F;
+    static final float DOWNFALL = 0.9F;
+    static final int WATER_COLOR = 6388580;
+    static final int WATER_FOG_COLOR = 2302743;
+    static final int FOG_COLOR = 11184740;
+    static final String PARENT = null;
 
-        this.func_235063_a_(DefaultBiomeFeatures.field_235172_j_);
-        this.func_235063_a_(DefaultBiomeFeatures.field_235150_b_);
-        this.func_235063_a_(DefaultBiomeFeatures.field_235130_B_);
+    public DeadSwampBiome() {
+        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
+        DefaultBiomeFeatures.func_235196_b_(this);      //mineshaft and stronghold
+        this.func_235063_a_(DefaultBiomeFeatures.field_235172_j_);  //swamp hut
+        this.func_235063_a_(DefaultBiomeFeatures.field_235130_B_);  //portal
         DefaultBiomeFeatures.addCarvers(this);
-        DefaultBiomeFeatures.func_235191_ai_(this);
         RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
@@ -75,6 +78,7 @@ public class DeadSwampBiome extends Biome {
 
     @Override
     public Biome getRiver() {
-        return Biomes.RIVER;
+        return this;
     }
+
 }

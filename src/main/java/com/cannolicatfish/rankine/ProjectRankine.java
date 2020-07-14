@@ -75,9 +75,9 @@ public class ProjectRankine {
         ModItems.REGISTRY.register(Bus);
         RankineBiomes.REGISTRY.register(Bus);
 
-
-        Bus.addListener(this::LoadComplete);
         Bus.addListener(RankineBiomes::registerTypes);
+        Bus.addListener(this::LoadComplete);
+
     }
 
 
