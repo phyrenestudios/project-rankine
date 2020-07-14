@@ -17,8 +17,6 @@ public class JuniperTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        //return Feature.ACACIA_TREE.withConfiguration(RankineBiomeFeatures.JUNIPER_TREE_CONFIG);
-        return randomIn.nextInt(10) == 0 ? Feature.field_236291_c_.withConfiguration(p_225546_2_ ? DefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG : DefaultBiomeFeatures.FANCY_TREE_CONFIG) : Feature.field_236291_c_.withConfiguration(p_225546_2_ ? DefaultBiomeFeatures.OAK_TREE_WITH_MORE_BEEHIVES_CONFIG : DefaultBiomeFeatures.OAK_TREE_CONFIG);
-
+        return Feature.field_236291_c_.withConfiguration(RankineBiomeFeatures.JUNIPER_TREE_CONFIG);
     }
 }

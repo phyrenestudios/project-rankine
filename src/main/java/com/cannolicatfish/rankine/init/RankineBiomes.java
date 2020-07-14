@@ -30,12 +30,14 @@ public class RankineBiomes {
 
 
     private static <T extends Biome> T add(String name, T biome) {
+        System.out.print("Registering Biomes");
         REGISTRY.register(name, () -> biome);
         return biome;
     }
 
     public static void registerTypes(RegistryEvent.Register<?> event) {
         if (event.getRegistry().getRegistrySuperType() == Biome.class) {
+            System.out.print("Registring Bipme Types");
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(RankineBiomes.CEDAR_FOREST, 10));
             BiomeManager.addSpawnBiome(RankineBiomes.CEDAR_FOREST);
             BiomeDictionary.addTypes(RankineBiomes.CEDAR_FOREST, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);

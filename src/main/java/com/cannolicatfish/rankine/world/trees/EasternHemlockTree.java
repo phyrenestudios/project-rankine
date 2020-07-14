@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.trees;
 
 import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
+import net.minecraft.block.trees.SpruceTree;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
@@ -15,8 +16,6 @@ public class EasternHemlockTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        //return Feature.NORMAL_TREE.withConfiguration(RankineBiomeFeatures.HEMLOCK_TREE_CONFIG);
-        return randomIn.nextInt(10) == 0 ? Feature.field_236291_c_.withConfiguration(p_225546_2_ ? DefaultBiomeFeatures.FANCY_TREE_WITH_MORE_BEEHIVES_CONFIG : DefaultBiomeFeatures.FANCY_TREE_CONFIG) : Feature.field_236291_c_.withConfiguration(p_225546_2_ ? DefaultBiomeFeatures.OAK_TREE_WITH_MORE_BEEHIVES_CONFIG : DefaultBiomeFeatures.OAK_TREE_CONFIG);
-
+        return Feature.field_236291_c_.withConfiguration(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG);
     }
 }
