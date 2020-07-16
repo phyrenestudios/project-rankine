@@ -73,6 +73,7 @@ public class ProjectRankine {
         Bus.addListener(this::setup);
         ModBlocks.REGISTRY.register(Bus);
         ModItems.REGISTRY.register(Bus);
+        ModRecipes.REGISTRY.register(Bus);
         Bus.addListener(this::LoadComplete);
 
     }
@@ -83,6 +84,7 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         setup.init();
         proxy.init();
+        ModRecipes.init();
         RankineBiomes.addRankineBiomes();
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();

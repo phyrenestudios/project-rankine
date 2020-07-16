@@ -175,7 +175,7 @@ public class PistonCrusherRecipes {
         if (input.getItem() == new ItemStack(ModBlocks.ANDESITE).getItem())
         {
             chance = 0.1f;
-            return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), chance);
+            return new Pair<>(new ItemStack(ModItems.PYROXENE), chance);
         }
         if (input.getItem() == new ItemStack(ModBlocks.LIMESTONE).getItem())
         {
@@ -250,7 +250,7 @@ public class PistonCrusherRecipes {
         if (input.getItem() == new ItemStack(ModBlocks.ILMENITE_ORE).getItem())
         {
             chance = 0.1f;
-            return new Pair<>(new ItemStack(ModItems.COPPER_HYDROXIDE), chance);
+            return new Pair<>(new ItemStack(ModItems.MANGANESE_OXIDE), chance);
         }
         if (input.getItem() == new ItemStack(ModBlocks.GALENA_ORE).getItem())
         {
