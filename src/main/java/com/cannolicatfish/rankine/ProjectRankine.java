@@ -70,7 +70,8 @@ public class ProjectRankine {
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        Bus.addListener(this::setup);
+        Bus.addListener(this::CommonSetup);
+        Bus.addListener(this::ClientSetup);
         ModBlocks.REGISTRY.register(Bus);
         ModItems.REGISTRY.register(Bus);
         Bus.addListener(this::LoadComplete);
@@ -78,10 +79,9 @@ public class ProjectRankine {
     }
 
 
-    private void setup(final FMLCommonSetupEvent event)
+    private void CommonSetup(final FMLCommonSetupEvent event)
     {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
-        setup.init();
         proxy.init();
         RankineBiomes.addRankineBiomes();
         OreGen.setupOreGeneration();
@@ -99,6 +99,12 @@ public class ProjectRankine {
             GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().func_233813_a_());
         });
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
+    }
+
+    private void ClientSetup(FMLClientSetupEvent event) {
+        LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
+
+        LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 
     private void LoadComplete(FMLLoadCompleteEvent event) {

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.items.LuckPendantItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.CowEntity;
@@ -14,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -169,26 +171,21 @@ public class RankineEventHandler {
 
         if(item instanceof AxeItem) {
         BlockState activatedBlock = world.getBlockState(pos);
-        if(stripping_map.get(activatedBlock.getBlock()) != null) {
-            Block block = activatedBlock.getBlock();
-            if(block instanceof RotatedPillarBlock) {
-                Direction.Axis axis = activatedBlock.get(RotatedPillarBlock.AXIS);
-                world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                world.setBlockState(pos, stripping_map.get(activatedBlock.getBlock()).getDefaultState().with(RotatedPillarBlock.AXIS, axis), 2);
-                stack.damageItem(1, player, (entity) -> {
-                    entity.sendBreakAnimation(event.getHand());
-                });
-                player.swingArm(event.getHand());
-                event.setResult(Event.Result.ALLOW);
+            if(stripping_map.get(activatedBlock.getBlock()) != null) {
+                Block block = activatedBlock.getBlock();
+                if(block instanceof RotatedPillarBlock) {
+                    Direction.Axis axis = activatedBlock.get(RotatedPillarBlock.AXIS);
+                    world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.setBlockState(pos, stripping_map.get(activatedBlock.getBlock()).getDefaultState().with(RotatedPillarBlock.AXIS, axis), 2);
+                    stack.damageItem(1, player, (entity) -> {
+                        entity.sendBreakAnimation(event.getHand());
+                    });
+                    player.swingArm(event.getHand());
+                    event.setResult(Event.Result.ALLOW);
+                }
             }
         }
-        }
     }
-
-
-
-
-
 
 
 }

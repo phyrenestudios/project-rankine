@@ -41,7 +41,7 @@ public class DecorationGen
       //  addErratics(RankineFeatures.LARGE_ERRATIC, ModBlocks.ANORTHOSITE.getDefaultState(), 1, 200, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS),false));
 
         addTrees(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG, 2, Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.FOREST, Biomes.FLOWER_FOREST));
-        //addTrees(RankineBiomeFeatures.HEMLOCK_TREE_CONFIG, 3, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
+        addTrees(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG, 3, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
 
 
     }
@@ -77,10 +77,9 @@ public class DecorationGen
 
     public static void addTrees(BaseTreeFeatureConfig Tree, int chance,  List<Biome> biomes)
     {
-        /*
         for (Biome b: biomes) {
-            b.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.NORMAL_TREE.withConfiguration(Tree).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
-        }*/
+            b.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(Tree).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(chance))));
+        }
     }
 
     private static void addErratics(Feature<BlockBlobConfig> feature, BlockState blockstate, int radius, int chance, List<Biome> biomes) {
