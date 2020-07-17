@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
+import javafx.util.Pair;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ClientRecipeBook;
 import net.minecraft.item.Item;
@@ -91,7 +92,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("sphalerite_ore_crushing",ModBlocks.SPHALERITE_ORE.asItem(), new ItemStack(ModItems.ZINC_SULFIDE,1), new ItemStack(ModItems.OPAL,1),0.05f));
         recipes.add(crushingRecipe("cinnabarite_ore_crushing",ModBlocks.CINNABAR_ORE.asItem(), new ItemStack(Items.REDSTONE,4), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("pentlandite_ore_crushing",ModBlocks.PENTLANDITE_ORE.asItem(), new ItemStack(ModItems.NICKEL_SULFIDE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
-        recipes.add(crushingRecipe("magnesite_ore_crushing",ModBlocks.MAGNESITE_ORE.asItem(), new ItemStack(ModItems.MAGNESIA,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
+        recipes.add(crushingRecipe("magnesite_ore_crushing",ModBlocks.MAGNESITE_ORE.asItem(), new ItemStack(ModItems.MAGNESITE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
         recipes.add(crushingRecipe("galena_ore_crushing",ModBlocks.GALENA_ORE.asItem(), new ItemStack(ModItems.LEAD_SULFIDE,1), new ItemStack(ModItems.SILVER_SULFIDE,1),0.1f));
         recipes.add(crushingRecipe("acanthite_ore_crushing",ModBlocks.ACANTHITE_ORE.asItem(), new ItemStack(ModItems.SILVER_SULFIDE,1), new ItemStack(ModItems.LEAD_SULFIDE,1),0.1f));
         recipes.add(crushingRecipe("pyrolusite_ore_crushing",ModBlocks.PYROLUSITE_ORE.asItem(), new ItemStack(ModItems.MANGANESE_OXIDE,1), new ItemStack(ModItems.TANTALUM_OXIDE,1),0.05f));
@@ -111,6 +112,32 @@ public class ModRecipes {
         // Example of using tags for recipe (don""t use unless necessary, i.e. large list of blocks)
         // recipes.addAll(groupCrushingRecipe("andesite_crushing","rankine:andesite",new ItemStack(ModItems.FELDSPAR),new ItemStack(ModItems.PYROXENE), 0.2f));
         return recipes;
+    }
+
+    public static Pair<ItemStack,ItemStack> getCrushingOutputs(ItemStack input)
+    {
+        List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
+        for (IPistonCrusherRecipe recipe: recipes)
+        {
+            if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input.getItem())
+            {
+                return new Pair<>(recipe.getRecipeOutput(), recipe.getSecondaryOutput());
+            }
+        }
+        return null;
+    }
+
+    public static Pair<ItemStack,Float> getCrushingSecondaryOutputs(ItemStack input)
+    {
+        List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
+        for (IPistonCrusherRecipe recipe: recipes)
+        {
+            if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input.getItem())
+            {
+                return new Pair<>(recipe.getSecondaryOutput(), recipe.getSecondaryChance());
+            }
+        }
+        return null;
     }
 
     public static IPistonCrusherRecipe crushingRecipe(String registry, Item input, ItemStack output, ItemStack secondary, float chance)

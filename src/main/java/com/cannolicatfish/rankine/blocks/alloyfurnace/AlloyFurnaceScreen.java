@@ -24,7 +24,7 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
         this.renderBackground(p_230430_1_);
         super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
-        //this.renderHoveredToolTip(mouseX, mouseY);
+        this.func_230459_a_(p_230430_1_, p_230430_2_, p_230430_3_);
     }
 
     protected void func_238807_a_(MatrixStack p_238807_1_, @Nullable MapData p_238807_2_, boolean p_238807_3_, boolean p_238807_4_, boolean p_238807_5_, boolean p_238807_6_) {

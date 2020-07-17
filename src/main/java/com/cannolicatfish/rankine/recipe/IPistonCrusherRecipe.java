@@ -104,6 +104,10 @@ public class IPistonCrusherRecipe implements IRecipe<IInventory> {
         return getOutputs();
     }
 
+    public float getSecondaryChance() {
+        return chance;
+    }
+
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<IPistonCrusherRecipe> {
 
         @Override

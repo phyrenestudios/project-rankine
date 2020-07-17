@@ -19,9 +19,9 @@ public abstract class RankineFeatures<FC extends IFeatureConfig> extends net.min
     public static IStructurePieceType LAGOON_FOUNTAIN_PIECE = LagoonFountainPieces.Piece::new;
 
 
-    public static final Feature<NoFeatureConfig> SPIKE = register("spike", new SpikesFeature(NoFeatureConfig.field_236558_a_));
-    public static final Feature<BlockBlobConfig> METEOR = register("meteor", new MeteoriteFeature(BlockBlobConfig.field_236449_a_));
-    public static final Feature<BlockBlobConfig> LARGE_ERRATIC = register("large_erratic", new LargeErraticFeature(BlockBlobConfig.field_236449_a_));
+    public static final Feature<NoFeatureConfig> SPIKE = register("rankine:spike", new SpikesFeature(NoFeatureConfig.field_236558_a_));
+    public static final Feature<BlockBlobConfig> METEOR = register("rankine:meteor", new MeteoriteFeature(BlockBlobConfig.field_236449_a_));
+    public static final Feature<BlockBlobConfig> LARGE_ERRATIC = register("rankine:large_erratic", new LargeErraticFeature(BlockBlobConfig.field_236449_a_));
     //public static final Feature<BaseTreeFeatureConfig> BALSAM_FIR_TREE = register("balsam_tree", new BalsamFirTreeFeature(TreeFeatureConfig::deserializeFoliage));
     //public static final Structure<NoFeatureConfig> BEAVER_LODGE = register("beaver_lodge", new BeaverLodgeStructure(NoFeatureConfig::deserialize));
     //public static final Structure<NoFeatureConfig> TROPICS_HOUSE = register("tropics_house", new TropicsHouseStructure(NoFeatureConfig::deserialize));
@@ -29,9 +29,9 @@ public abstract class RankineFeatures<FC extends IFeatureConfig> extends net.min
 
     public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
         IForgeRegistry<Feature<?>> registry = event.getRegistry();
-        register(BEAVER_LODGE_PIECE, "beaver_lodge_piece");
-        register(TROPICS_HOUSE_PIECE, "tropics_house_piece");
-        register(LAGOON_FOUNTAIN_PIECE, "lagoon_fountain_piece");
+        register(BEAVER_LODGE_PIECE, "rankine:beaver_lodge_piece");
+        register(TROPICS_HOUSE_PIECE, "rankine:tropics_house_piece");
+        register(LAGOON_FOUNTAIN_PIECE, "rankine:lagoon_fountain_piece");
     }
 
     private static <C extends IFeatureConfig, F extends Feature<C>> F register(String key, F value) {
