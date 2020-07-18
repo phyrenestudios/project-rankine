@@ -37,11 +37,11 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
             TOP = 25;
         } else if (CHANCE < 0.12f) {
             INTRUSION = ModBlocks.GRANITE.getDefaultState();
-            BOT = 41;
+            BOT = 0;
             TOP = 256;
         } else if (CHANCE < 0.2f) {
             INTRUSION = ModBlocks.DIORITE.getDefaultState();
-            BOT = 41;
+            BOT = 0;
             TOP = 256;
         }
 
@@ -61,9 +61,15 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         }
 
         if (INTRUSION != null) {
-            for (int x = startX; x <= endX; ++x) {
+            for (int y = startY; y <= endY; ++y) {
+                if (rand.nextFloat() < 0.04) {
+                    startZ += 1;
+                    endZ -= 1;
+                    startX += 1;
+                    endX -= 1;
+                }
                 for (int z = startZ; z <= endZ; ++z) {
-                    for (int y = startY; y <= endY; ++y) {
+                    for (int x = startX; x <= endX; ++x) {
                         if (y == startY && y - 1 > 0 && worldIn.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
                             worldIn.setBlockState(new BlockPos(x, y - 1, z), INTRUSION, 2);
                             if (y - 2 > 0 && worldIn.getBlockState(new BlockPos(x, y - 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {

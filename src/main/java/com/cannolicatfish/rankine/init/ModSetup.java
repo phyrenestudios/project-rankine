@@ -29,8 +29,5 @@ public class ModSetup {
             return new ItemStack(ModItems.STEEL_SPEAR);
         }
     };
-    public void init() {
-        MinecraftForge.EVENT_BUS.register(new ForgeEventHandlers());
-    }
 
 }
