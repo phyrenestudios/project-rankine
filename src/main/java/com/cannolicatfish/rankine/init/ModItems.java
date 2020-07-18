@@ -31,12 +31,14 @@ public class ModItems {
 //=============================================================================
     //CRUSHED ORES
     public static final Item COPPER_HYDROXIDE = add("copper_hydroxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item AZURITE = add("azurite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item TIN_OXIDE = add("tin_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ALUMINA = add("alumina", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ZINC_SULFIDE = add("zinc_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item IRON_OXIDE = add("iron_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item IRON_OXIDE = add("iron_oxide", new SimpleTooltipItem("Fe3O4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NICKEL_SULFIDE = add("nickel_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MAGNESIA = add("magnesia", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESIA = add("magnesia", new SimpleTooltipItem("MgO",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESITE = add("magnesite", new SimpleTooltipItem("MgCO3",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item LEAD_SULFIDE = add("lead_sulfide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item VANADINITE = add("vanadinite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item BISMUTH_OXIDE = add("bismuth_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -48,10 +50,10 @@ public class ModItems {
     public static final Item TITANIA = add("titania", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NIOBIUM_OXIDE = add("niobium_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item TANTALUM_OXIDE = add("tantalum_oxide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item COBALTITE = add("cobaltite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COBALTITE = add("cobaltite", new SimpleTooltipItem("CoAsS",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PLATINUM_ARSENIDE = add("platinum_arsenide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MONAZITE = add("monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item ZIRCON = add("zircon", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ZIRCON = add("zircon", new SimpleTooltipItem("ZrSiO4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     //ELEMENT NUGGETS
     public static final Item COPPER_NUGGET = add("copper_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item TIN_NUGGET = add("tin_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -267,6 +269,7 @@ public class ModItems {
     public static final Item SAPPHIRE = add("sapphire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OPAL = add("opal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item AQUAMARINE = add("aquamarine", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TIGER_IRON = add("tiger_iron", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item GARNET = add("garnet", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PERIDOT = add("peridot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item QUICKLIME = add("quicklime", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

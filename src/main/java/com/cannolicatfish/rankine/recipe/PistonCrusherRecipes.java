@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.ModRecipes;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
@@ -9,6 +10,7 @@ import javafx.util.Pair;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
+import java.util.List;
 import java.util.Map;
 
 public class PistonCrusherRecipes {
@@ -28,6 +30,12 @@ public class PistonCrusherRecipes {
 
     public Pair<ItemStack, Float[]> getPrimaryResult(ItemStack input1) {
 
+        Pair<ItemStack,ItemStack> stacks = ModRecipes.getCrushingOutputs(input1);
+        if (stacks != null)
+        {
+            return new Pair<>(new ItemStack(stacks.getKey().getItem()),new Float[]{stacks.getKey().getCount()*1f,0f});
+        }
+/*
         if ((input1.getItem() == Items.STONE || input1.getItem() == Items.COBBLESTONE || input1.getItem() == new ItemStack(ModBlocks.GRANITE).getItem() || input1.getItem() == new ItemStack(ModBlocks.ANDESITE).getItem() || input1.getItem() == new ItemStack(ModBlocks.DIORITE).getItem() || input1.getItem() == new ItemStack(ModBlocks.BASALT).getItem()
                 || input1.getItem() == new ItemStack(ModBlocks.GNEISS).getItem() || input1.getItem() == new ItemStack(ModBlocks.RHYOLITE).getItem() || input1.getItem() == Items.SMOOTH_STONE
                 || input1.getItem() == new ItemStack(ModBlocks.MARBLE).getItem())) {
@@ -156,11 +164,17 @@ public class PistonCrusherRecipes {
         }
         if (input1.getItem() == new ItemStack(ModBlocks.NITER).getItem()) {
             return new Pair<>(new ItemStack(ModItems.SALTPETER), new Float[]{1f,0f});
-        }
+        }*/
         return new Pair<>(ItemStack.EMPTY, new Float[]{0f,0f});
     }
 
     public Pair<ItemStack, Float> getSecondaryResult(ItemStack input) {
+        Pair<ItemStack,Float> stacks = ModRecipes.getCrushingSecondaryOutputs(input);
+        if (stacks != null)
+        {
+            return new Pair<>(new ItemStack(stacks.getKey().getItem()),stacks.getValue());
+        }
+        /*
         float chance = 1.0f;
         if (input.getItem() == Items.STONE)
         {
@@ -175,7 +189,7 @@ public class PistonCrusherRecipes {
         if (input.getItem() == new ItemStack(ModBlocks.ANDESITE).getItem())
         {
             chance = 0.1f;
-            return new Pair<>(new ItemStack(ModItems.IRON_OXIDE), chance);
+            return new Pair<>(new ItemStack(ModItems.PYROXENE), chance);
         }
         if (input.getItem() == new ItemStack(ModBlocks.LIMESTONE).getItem())
         {
@@ -250,7 +264,7 @@ public class PistonCrusherRecipes {
         if (input.getItem() == new ItemStack(ModBlocks.ILMENITE_ORE).getItem())
         {
             chance = 0.1f;
-            return new Pair<>(new ItemStack(ModItems.COPPER_HYDROXIDE), chance);
+            return new Pair<>(new ItemStack(ModItems.MANGANESE_OXIDE), chance);
         }
         if (input.getItem() == new ItemStack(ModBlocks.GALENA_ORE).getItem())
         {
@@ -301,7 +315,7 @@ public class PistonCrusherRecipes {
         {
             chance = 0.75f;
             return new Pair<>(new ItemStack(ModItems.SULFUR), chance);
-        }
-        return new Pair<>(ItemStack.EMPTY, chance);
+        }*/
+        return new Pair<>(ItemStack.EMPTY, 0f);
     }
 }
