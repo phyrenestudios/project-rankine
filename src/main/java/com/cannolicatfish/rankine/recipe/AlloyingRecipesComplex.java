@@ -579,6 +579,44 @@ public class AlloyingRecipesComplex {
                 }
             }
         }
+        if (materials.contains("mercury") && materials.contains("gold") && total >= 10) // Magnalium
+        {
+            int x1 = materials.indexOf("mercury");
+            int x2 = materials.indexOf("gold");
+            int x3;
+            if (x1 == 0 && x2 == 1 || x2 == 0 && x1 == 1)
+            {
+                x3 = 2;
+            }
+            else if (x1 == 2 && x2 == 0 || x2 == 2 && x1 == 0)
+            {
+                x3 = 1;
+            }
+            else
+            {
+                x3 = 0;
+            }
+            if (!materials.get(x3).equals("iron") && !materials.get(x3).equals("platinum") && !materials.get(x3).equals("tungsten") && !materials.get(x3).equals("tantalum")
+                    && !materials.get(x3).equals("mercury") && !materials.get(x3).equals("gold") && (new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)) || materials.get(x3).equals("none"))) {
+
+                float propx1 = amounts.get(x1)/total;
+                float propx2 = amounts.get(x2)/total;
+                float propx3 = amounts.get(x3)/total;
+                /*
+                System.out.println(propx1);
+                System.out.println(propx2);
+                System.out.println(propx3);
+                System.out.println(Math.round(total/10));
+                 */
+                if (propx1 >= .25f && propx1 <= .8f && propx2 >= .25f && propx2 <= .5f && Math.round(total/10) <= 64) {
+                    int[] ar = new int[3];
+                    ar[0] = input1.getCount();
+                    ar[1] = input2.getCount();
+                    ar[2] = input3.getCount();
+                    return new Pair<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
+                }
+            }
+        }
         int[] ar = new int[3];
         ar[0] = 1;
         ar[1] = 1;

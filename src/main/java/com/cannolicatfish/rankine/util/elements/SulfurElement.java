@@ -30,6 +30,11 @@ public class SulfurElement implements ElementInterface{
     }
 
     @Override
+    public int getMiningLevelFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
     public int getEnchantabilityFromPercent(int x) {
         return 0;
     }

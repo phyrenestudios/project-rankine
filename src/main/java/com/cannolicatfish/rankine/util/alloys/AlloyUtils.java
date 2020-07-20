@@ -3,32 +3,59 @@ package com.cannolicatfish.rankine.util.alloys;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.text.TextFormatting;
 
 public interface AlloyUtils {
 
-        public int getDurabilityBonus();
+        default int getDurabilityBonus(){
+                return 0;
+        }
 
-        public float getMiningSpeedBonus();
+        default float getMiningSpeedBonus(){
+                return 0;
+        }
 
-        public int getEnchantabilityBonus();
+        default int getMiningLevelBonus(){
+                return 0;
+        }
 
-        public float getCorrResistBonus();
+        default int getEnchantabilityBonus(){
+                return 0;
+        }
 
-        public float getHeatResistBonus();
+        default float getCorrResistBonus(){
+                return 0;
+        }
 
-        public Enchantment getEnchantmentBonus(Item item);
+        default float getHeatResistBonus(){
+                return 0;
+        }
 
-        public int getEnchantmentLevel(Enchantment en, int enchantability);
+        default float getAttackSpeedBonus(){
+                return 0;
+        }
 
-        public float getAttackSpeedMod(String c);
+        default float getAttackDamageBonus(){
+                return 0;
+        }
 
-        public float getAttackDamageMod(String c);
+        default Enchantment getEnchantmentBonus(Item item){
+                return null;
+        }
 
-        public float getCorrResistance(String c);
-
-        public float getHeatResistance(String c);
+        default int getEnchantmentLevel(Enchantment en, int enchantability){
+                if (enchantability >= 25 && en.getMaxLevel() >= 2)
+                {
+                        return 2;
+                }
+                return 1;
+        }
 
         public String getDefComposition();
+
+        default TextFormatting getAlloyGroupColor() {
+                return TextFormatting.WHITE;
+        }
 
 
 }

@@ -35,6 +35,19 @@ public class ManganeseElement implements ElementInterface {
     }
 
     @Override
+    public int getMiningLevelFromPercent(int x) {
+        if (x >= 5)
+        {
+            return 2;
+        } else if (x > 0)
+        {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
     public int getEnchantabilityFromPercent(int x) {
         if (x >= 50)
         {

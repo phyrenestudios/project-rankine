@@ -30,6 +30,11 @@ public class SilverElement implements ElementInterface{
     }
 
     @Override
+    public int getMiningLevelFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
     public int getEnchantabilityFromPercent(int x) {
         return Math.round(3*x/10f * 2/3f);
     }
