@@ -7,6 +7,7 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructureManager;
@@ -26,8 +27,9 @@ public class ReplacerFeature extends Feature<ReplacerFeatureConfig> {
         int startZ = chunk.getPos().getZStart();
         int endX = chunk.getPos().getXEnd();
         int endZ = chunk.getPos().getZEnd();
-        int startY = config.bottomBound;
         int endY = config.topBound;
+        int startY = config.bottomBound;
+
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 for (int y = startY; y <= endY; ++y) {
@@ -37,7 +39,7 @@ public class ReplacerFeature extends Feature<ReplacerFeatureConfig> {
                             worldIn.setBlockState(new BlockPos(x, y - 2, z), config.state, 2);
                         }
                     }
-                    if (y == endY && y + 1 < 128 && worldIn.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
+                    if (y == endY && y + 1 < 256 && worldIn.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
                         worldIn.setBlockState(new BlockPos(x, y + 1, z), config.state, 2);
                         if (y + 2 < 128 && worldIn.getBlockState(new BlockPos(x, y + 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
                             worldIn.setBlockState(new BlockPos(x, y + 2, z), config.state, 2);

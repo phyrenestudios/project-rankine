@@ -34,33 +34,15 @@ public class OreGen {
         rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SALT_BLOCK.getDefaultState(),30,1,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
         rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PINK_SALT_BLOCK.getDefaultState(),30,1,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
 
+
+
+
         replaceGenDef(Blocks.DIRT, ModBlocks.PERMAFROST, 50, 128, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY), true));
         replaceGenDef(Blocks.STONE, Blocks.RED_SANDSTONE, 61, 80, getBiomesFromCategory(Collections.singletonList(Biome.Category.MESA), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 51, 70, getBiomesFromCategory(Arrays.asList(Biome.Category.SWAMP, Biome.Category.RIVER), true));
 
-        //Ocean
-        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 11, 35, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 36, 60, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 61, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
-
-        //Beach
-        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 10, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.BASALT, 11, 30, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, 31, 40, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 41, 55, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.SHALE, 56, 90, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 91, 256, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
-
-        //Continental
-        replaceGenDef(Blocks.STONE, ModBlocks.GNEISS, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), true));
-        replaceGenDef(Blocks.STONE, ModBlocks.MARBLE, 0, 10, getBiomesFromCategory(Arrays.asList(Biome.Category.JUNGLE, Biome.Category.FOREST, Biome.Category.EXTREME_HILLS, Biome.Category.TAIGA), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.RHYOLITE, 11, 25, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.GRANITE, 26, 40, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.LIMESTONE, 41, 55, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANORTHOSITE, 56, 80, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
-        replaceGenDef(Blocks.STONE, ModBlocks.ANDESITE, 81, 256, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
+        stoneGen(1, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
+        stoneGen(2, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        stoneGen(0, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
 
         chunkGenDefCount(ModBlocks.NATIVE_COPPER_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
         chunkGenDefCount(ModBlocks.NATIVE_TIN_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD_STONES);
@@ -120,6 +102,14 @@ public class OreGen {
         }
         return b;
     }
+
+    private static void stoneGen(int biomeType, List<Biome> biomes) {
+        for (Biome b: biomes) {
+            b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new StoneReplacerFeature(StoneReplacerFeatureConfig.field_236449_a_).withConfiguration(
+                    new StoneReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 0, biomeType)).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+        }
+    }
+
 
     private static void FlatReplaceGenDef(Block oldBlock, Block newBlock, int lowerBound, int upperBound, List<Biome> biomes) {
         for (Biome b: biomes) {
@@ -210,6 +200,8 @@ public class OreGen {
             }
         }
     }
+
+
 
     private static void removeFeatures() {
         for (Biome biome : ForgeRegistries.BIOMES) {

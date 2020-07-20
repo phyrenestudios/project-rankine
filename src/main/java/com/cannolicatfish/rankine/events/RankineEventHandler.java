@@ -1,18 +1,24 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.blocks.RankineStone;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.LuckPendantItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -22,9 +28,31 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import static net.minecraft.block.Block.spawnAsEntity;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
+
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        event.getPlayer().addExhaustion(Config.GLOBAL_BREAK_EXHAUSTION.get().floatValue());
+    }
+
+    @SubscribeEvent
+    public static void luckyBreak(BlockEvent.BreakEvent event) {
+        PlayerEntity player = event.getPlayer();
+        if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
+            if (event.getState().getBlock().asItem().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
+                if (new Random().nextFloat() < 0.3f) {
+                    for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld().getWorld(), event.getPos(), null)) {
+                        spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
+                    }
+                }
+            }
+        }
+    }
 
 /*
     private static final String NBT_KEY = "rankine.firstjoin";
