@@ -29,7 +29,11 @@ public enum RankineAlloyMaterial {
     COKE("rankine:materials/coke",Arrays.asList(ModItems.COKE, ModItems.getBlockAsItem(ModBlocks.COKE_BLOCK)),Collections.singletonList(PeriodicTableUtils.Element.CARBON),
             Collections.singletonList(18),false),
     CHARCOAL("rankine:materials/charcoal",Collections.singletonList(Items.CHARCOAL),Collections.singletonList(PeriodicTableUtils.Element.CARBON),
-            Collections.singletonList(9),false);
+            Collections.singletonList(9),false),
+    PIG_IRON("rankine:materials/pig_iron",Arrays.asList(ModItems.PIG_IRON_INGOT, ModItems.getBlockAsItem(ModBlocks.PIG_IRON_BLOCK)),
+            Arrays.asList(PeriodicTableUtils.Element.IRON, PeriodicTableUtils.Element.CARBON),Arrays.asList(7,2),false),
+    WROUGHT_IRON("rankine:materials/wrought_iron",Arrays.asList(ModItems.ANTHRACITE_COAL, ModItems.getBlockAsItem(ModBlocks.ANTHRACITE_COAL_BLOCK)),
+            Arrays.asList(PeriodicTableUtils.Element.IRON, PeriodicTableUtils.Element.CARBON),Arrays.asList(8,1),false);
 
     private final String tag;
     private final List<Item> items;
@@ -57,7 +61,7 @@ public enum RankineAlloyMaterial {
 
     public static Pair<List<PeriodicTableUtils.Element>,List<Integer>> getMaterial(Item item)
     {
-        System.out.println(item.getTags());
+        //System.out.println(item.getTags());
         for (RankineAlloyMaterial mat: RankineAlloyMaterial.values()) {
             if (mat.items.contains(item) && (mat.items.size() == 2 || mat.items.size() == 3))
             {

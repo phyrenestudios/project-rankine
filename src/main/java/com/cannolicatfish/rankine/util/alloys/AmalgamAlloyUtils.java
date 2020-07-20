@@ -4,15 +4,12 @@ import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class AmalgamAlloyUtils implements AlloyUtils {
-    public PeriodicTableUtils elem;
-    public List<String> restrict = Arrays.asList("Fe", "Pt", "W", "Ta");
-    public List<Integer> emin = Arrays.asList(50,0,0);
-    public List<Integer> emax = Arrays.asList(80,50,50);
     public RankineToolMaterials material = RankineToolMaterials.AMALGAM;
 
     @Override
@@ -23,6 +20,11 @@ public class AmalgamAlloyUtils implements AlloyUtils {
     @Override
     public float getMiningSpeedBonus() {
         return 0f;
+    }
+
+    @Override
+    public int getMiningLevelBonus() {
+        return 0;
     }
 
     @Override
@@ -55,27 +57,12 @@ public class AmalgamAlloyUtils implements AlloyUtils {
     }
 
     @Override
-    public float getAttackSpeedMod(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getAttackDamageMod(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getCorrResistance(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getHeatResistance(String c) {
-        return 0;
-    }
-
-    @Override
     public String getDefComposition() {
         return "80Hg-20Au";
+    }
+
+    @Override
+    public TextFormatting getAlloyGroupColor() {
+        return TextFormatting.WHITE;
     }
 }

@@ -8,6 +8,8 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolItem;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +24,11 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getMiningSpeedBonus() {
+        return 0;
+    }
+
+    @Override
+    public int getMiningLevelBonus() {
         return 0;
     }
 
@@ -42,7 +49,7 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
-        if (item instanceof PickaxeItem)
+        if (item instanceof ToolItem)
         {
             return Enchantments.FORTUNE;
         } else if (item instanceof SwordItem)
@@ -64,29 +71,13 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
         return 1;
     }
 
-
-    @Override
-    public float getAttackSpeedMod(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getAttackDamageMod(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getCorrResistance(String c) {
-        return 0.25f;
-    }
-
-    @Override
-    public float getHeatResistance(String c) {
-        return 0.1f;
-    }
-
     @Override
     public String getDefComposition() {
         return "90Au-10Ni";
+    }
+
+    @Override
+    public TextFormatting getAlloyGroupColor() {
+        return TextFormatting.YELLOW;
     }
 }

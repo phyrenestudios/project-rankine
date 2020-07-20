@@ -15,6 +15,8 @@ public interface ElementInterface {
 
     public float getMiningSpeedFromPercent(int x);
 
+    public int getMiningLevelFromPercent(int x);
+
     public int getEnchantabilityFromPercent(int x);
 
     public float getCorrResistFromPercent(int x);

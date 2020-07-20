@@ -36,6 +36,11 @@ public class ZincElement implements ElementInterface {
     }
 
     @Override
+    public int getMiningLevelFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
     public int getEnchantabilityFromPercent(int x) {
         return Math.round(x/20f);
     }

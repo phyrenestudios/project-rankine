@@ -45,6 +45,16 @@ public class CopperElement implements ElementInterface {
     }
 
     @Override
+    public int getMiningLevelFromPercent(int x) {
+        if (x >= 75)
+        {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
     public int getEnchantabilityFromPercent(int x) {
         if (x >= 50)
         {

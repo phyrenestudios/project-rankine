@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.enchantment.ModEnchantments;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -10,8 +11,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -20,12 +21,15 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 
 public class ItemHammer extends ToolItem {
 
@@ -122,10 +126,10 @@ public class ItemHammer extends ToolItem {
 
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-        if (this.getUseDuration(stack) - count == 15)
+        if (this.getUseDuration(stack) - count == 13)
         {
             BlockPos pos = player.func_233580_cy_();
-            player.getEntityWorld().playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS,1.0F, 1.0F, false);
+            player.getEntityWorld().playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS,0.4F, 1.0F, false);
         }
     }
 
@@ -152,7 +156,7 @@ public class ItemHammer extends ToolItem {
         System.out.println(this.getUseDuration(stack));
         System.out.println(timeLeft);
         System.out.println(this.getUseDuration(stack) - timeLeft);
-        if (this.getUseDuration(stack) - timeLeft >= 15)
+        if (this.getUseDuration(stack) - timeLeft >= 13)
         {
             worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,1.0F, 1.0F, false);
             onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, entityLiving);
@@ -161,7 +165,6 @@ public class ItemHammer extends ToolItem {
             worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,1.0F, 4.0F, false);
             worldIn.sendBlockBreakProgress(-1,pos,1);
         }
-
 
     }
 

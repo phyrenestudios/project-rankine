@@ -4,9 +4,7 @@ import com.cannolicatfish.rankine.util.elements.*;
 import com.sun.jna.platform.mac.Carbon;
 import net.minecraft.enchantment.Enchantment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public final class PeriodicTableUtils {
 
@@ -24,6 +22,16 @@ public final class PeriodicTableUtils {
 
     public List<String> getElementNames() {
         return names;
+    }
+
+    public List<String> getImplementedElementNames() {
+        List<String> elements = new ArrayList<>();
+        for (Element e: Element.values())
+        {
+            elements.add(e.toString().toLowerCase());
+        }
+        System.out.println(elements);
+        return elements;
     }
 
     public List<String> getElementSymbols() {
@@ -108,6 +116,19 @@ public final class PeriodicTableUtils {
         return miningSpeed;
     }
 
+    public int calcMiningLevel(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        List<Integer> levels = new ArrayList<>();
+        for (Element e: elements)
+        {
+            levels.add(e.element.getMiningLevelFromPercent(percents.get(index)));
+            index++;
+        }
+
+        return Collections.max(levels);
+    }
+
     public int calcEnchantability(List<Element> elements, List<Integer> percents)
     {
         int index = 0;
@@ -168,6 +189,7 @@ public final class PeriodicTableUtils {
         CARBON(6,"C",new CarbonElement()),
         ALUMINUM(13, "Al", new AluminumElement()),
         SULFUR(16,"S",new SulfurElement()),
+        CHROMIUM(24, "Cr", new ChromiumElement()),
         MANGANESE(25, "Mn", new ManganeseElement()),
         IRON(26, "Fe", new IronElement()),
         NICKEL(28,"Ni", new NickelElement()),
@@ -179,6 +201,7 @@ public final class PeriodicTableUtils {
         TIN(50, "Sn", new TinElement()),
         PLATINUM(78,"Pt", new PlatinumElement()),
         GOLD(79, "Au", new GoldElement()),
+        MERCURY(80, "Hg", new MercuryElement()),
         LEAD(82,"Pb", new LeadElement());
 
         public final int atomicNumber;

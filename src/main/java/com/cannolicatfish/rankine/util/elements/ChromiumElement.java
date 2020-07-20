@@ -3,10 +3,10 @@ package com.cannolicatfish.rankine.util.elements;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 
-public class IronElement implements ElementInterface {
+public class ChromiumElement implements ElementInterface{
     @Override
     public PeriodicTableUtils.Element getReference() {
-        return PeriodicTableUtils.Element.IRON;
+        return PeriodicTableUtils.Element.CHROMIUM;
     }
 
     @Override
@@ -78,5 +78,4 @@ public class IronElement implements ElementInterface {
     public Enchantment getEnchantments(int x) {
         return null;
     }
-
 }

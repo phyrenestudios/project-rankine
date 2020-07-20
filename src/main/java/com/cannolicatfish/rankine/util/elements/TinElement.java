@@ -36,6 +36,11 @@ public class TinElement implements ElementInterface {
     }
 
     @Override
+    public int getMiningLevelFromPercent(int x) {
+        return 0;
+    }
+
+    @Override
     public int getEnchantabilityFromPercent(int x) {
         if (x >= 50)
         {

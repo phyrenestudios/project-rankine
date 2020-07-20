@@ -4,18 +4,13 @@ import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class RoseGoldAlloyUtils implements AlloyUtils {
-    public PeriodicTableUtils elem;
-    public List<String> restrict = Arrays.asList("Fe", "Pt", "W", "Ta");
-    public List<Integer> emin = Arrays.asList(50,0,0);
-    public List<Integer> emax = Arrays.asList(80,50,50);
     public RankineToolMaterials material = RankineToolMaterials.ROSE_GOLD;
 
     @Override
@@ -25,6 +20,11 @@ public class RoseGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getMiningSpeedBonus() {
+        return 0;
+    }
+
+    @Override
+    public int getMiningLevelBonus() {
         return 0;
     }
 
@@ -45,7 +45,7 @@ public class RoseGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
-        if (item instanceof PickaxeItem)
+        if (item instanceof ToolItem)
         {
             return Enchantments.EFFICIENCY;
         } else if (item instanceof SwordItem)
@@ -69,27 +69,12 @@ public class RoseGoldAlloyUtils implements AlloyUtils {
 
 
     @Override
-    public float getAttackSpeedMod(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getAttackDamageMod(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getCorrResistance(String c) {
-        return 0;
-    }
-
-    @Override
-    public float getHeatResistance(String c) {
-        return 0;
-    }
-
-    @Override
     public String getDefComposition() {
         return "75Au-22Cu-3Ni";
+    }
+
+    @Override
+    public TextFormatting getAlloyGroupColor() {
+        return TextFormatting.YELLOW;
     }
 }
