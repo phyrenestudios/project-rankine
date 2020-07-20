@@ -39,6 +39,12 @@ public class Config {
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_GENERATE;
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_SEND;
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_TICKS;
+
+
+
+    public static ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
+
+
     static {
 
         COMMON_BUILDER.comment("General settings").push(CATEGORY_GENERAL);
@@ -64,6 +70,9 @@ public class Config {
 
         STARTING_BOOK = COMMON_BUILDER.comment("Enables the Rankine Journal (a guide to the mod)")
                 .define("startingBook",true);
+
+        GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
+                .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
 
         COMMON_BUILDER.pop();
     }

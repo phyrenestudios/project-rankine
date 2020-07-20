@@ -46,15 +46,19 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         }
 
         IChunk chunk = worldIn.getChunk(pos);
-        int startX = chunk.getPos().getXStart() + rand.nextInt(6);
-        int startZ = chunk.getPos().getZStart() + rand.nextInt(6);
-        int endX = chunk.getPos().getXEnd() - rand.nextInt(6);
-        int endZ = chunk.getPos().getZEnd() - rand.nextInt(6);
+        int startX = chunk.getPos().getXStart();
+        int startZ = chunk.getPos().getZStart();
+        int endX = chunk.getPos().getXEnd();
+        int endZ = chunk.getPos().getZEnd();
         int startY;
         int endY;
         if (worldIn.getBiome(pos).getCategory() != Biome.Category.THEEND && worldIn.getBiome(pos).getCategory() != Biome.Category.NETHER) {
             startY = BOT;
-            endY = TOP - rand.nextInt(10);
+            if (worldIn.getHeight() > TOP) {
+                endY = TOP - rand.nextInt(10);
+            } else {
+                endY = worldIn.getHeight() - rand.nextInt(10);
+            }
         } else {
             startY = BOT + rand.nextInt(60);
             endY = TOP;
@@ -62,7 +66,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
 
         if (INTRUSION != null) {
             for (int y = startY; y <= endY; ++y) {
-                if (rand.nextFloat() < 0.04) {
+                if (rand.nextFloat() < 0.05) {
                     startZ += 1;
                     endZ -= 1;
                     startX += 1;
