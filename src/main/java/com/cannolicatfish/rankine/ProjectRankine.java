@@ -84,8 +84,8 @@ public class ProjectRankine {
     {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         proxy.init();
-        ModRecipes.init();
         RankineBiomes.addRankineBiomes();
+        ModRecipes.init();
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {

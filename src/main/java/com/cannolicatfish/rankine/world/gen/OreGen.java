@@ -31,8 +31,8 @@ public class OreGen {
         intrusionGenDef();
 
         //Extras
-        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SALT_BLOCK.getDefaultState(),30,1,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
-        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PINK_SALT_BLOCK.getDefaultState(),30,1,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
+        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SALT_BLOCK.getDefaultState(),30,2,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
+        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PINK_SALT_BLOCK.getDefaultState(),30,2,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
 
 
 
