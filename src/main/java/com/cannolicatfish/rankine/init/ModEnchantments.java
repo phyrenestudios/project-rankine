@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.enchantment;
+package com.cannolicatfish.rankine.init;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.registries.ObjectHolder;
@@ -13,5 +13,11 @@ public class ModEnchantments {
 
     @ObjectHolder("rankine:lightning_aspect")
     public static Enchantment LIGHTNING_ASPECT;
+
+    @ObjectHolder("rankine:swing")
+    public static Enchantment SWING;
+
+    @ObjectHolder("rankine:daze")
+    public static Enchantment DAZE;
 
 }

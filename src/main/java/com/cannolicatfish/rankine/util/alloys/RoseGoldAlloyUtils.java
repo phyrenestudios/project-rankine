@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.init.ModEnchantments;
+import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
@@ -47,7 +49,7 @@ public class RoseGoldAlloyUtils implements AlloyUtils {
     public Enchantment getEnchantmentBonus(Item item) {
         if (item instanceof ToolItem)
         {
-            return Enchantments.EFFICIENCY;
+            return item instanceof ItemHammer ? ModEnchantments.SWING : Enchantments.EFFICIENCY;
         } else if (item instanceof SwordItem)
         {
             return Enchantments.SHARPNESS;

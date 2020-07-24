@@ -1,9 +1,8 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.enchantment.ModEnchantments;
+import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,25 +10,23 @@ import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class ItemHammer extends ToolItem {
 
@@ -114,6 +111,95 @@ public class ItemHammer extends ToolItem {
         return block == ModBlocks.LIMESTONE;
     }
 
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
+        {
+            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
+            ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            ((ServerWorld)target.getEntityWorld()).addEntity(ent);
+        }
+        if (getDazeModifier(stack) != 0)
+        {
+            if (attacker instanceof PlayerEntity)
+            {
+                PlayerEntity player = (PlayerEntity) attacker;
+                if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
+                {
+                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 2));
+                } else {
+                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+                }
+            } else {
+                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+            }
+
+        }
+        stack.damageItem(1, attacker, (p_220045_0_) -> {
+            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity)
+    {
+        if (entity instanceof PlayerEntity)
+        {
+            PlayerEntity player = (PlayerEntity) entity;
+            World worldIn = player.getEntityWorld();
+            RayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
+            BlockPos pos;
+            if (raytraceresult instanceof BlockRayTraceResult)
+            {
+                final BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) raytraceresult;
+                pos = rayTraceResult.getPos();
+            } else
+            {
+                pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
+            }
+            if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
+            {
+                player.resetCooldown();
+                onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
+            }
+        }
+        return false;
+    }
+
+    public static int getBlastModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.BLAST, stack);
+    }
+
+    public static int getAtomizeModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.ATOMIZE, stack);
+    }
+
+    public static int getLightningModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.LIGHTNING_ASPECT, stack);
+    }
+
+    public static int getSwingModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SWING, stack);
+    }
+
+    public static int getDazeModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.DAZE, stack);
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == Enchantments.MENDING || enchantment == Enchantments.VANISHING_CURSE)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /*
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
@@ -166,59 +252,5 @@ public class ItemHammer extends ToolItem {
             worldIn.sendBlockBreakProgress(-1,pos,1);
         }
 
-    }
-
-    @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
-        {
-            //((ServerWorld)target.getEntityWorld()).addLightningBolt(new LightningBoltEntity(target.world,target.getPosX(),target.getPosY(),target.getPosZ(), false));
-        }
-        if (getTier().getHarvestLevel() == 0)
-        {
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,2*20, 1));
-        }
-        else if (getTier().getHarvestLevel() == 1)
-        {
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,4*20, 1));
-        }
-        else if (getTier().getHarvestLevel() == 2)
-        {
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,3*20, 2));
-        }
-        else if (getTier().getHarvestLevel() == 3)
-        {
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,5*20, 2));
-        }
-        stack.damageItem(1, attacker, (p_220045_0_) -> {
-            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
-        return true;
-    }
-
-    public static int getBlastModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.BLAST, stack);
-    }
-
-    public static int getAtomizeModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.ATOMIZE, stack);
-    }
-
-    public static int getLightningModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.LIGHTNING_ASPECT, stack);
-    }
-
-
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == Enchantments.MENDING || enchantment == Enchantments.VANISHING_CURSE)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    }*/
 }
