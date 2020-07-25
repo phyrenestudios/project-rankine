@@ -132,6 +132,12 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.BRONZE_SPEAR);
             event.getRegistry().register(ModEntityTypes.IRON_SPEAR);
             event.getRegistry().register(ModEntityTypes.STEEL_SPEAR);
+            event.getRegistry().register(ModEntityTypes.ROSE_GOLD_SPEAR);
+            event.getRegistry().register(ModEntityTypes.WHITE_GOLD_SPEAR);
+            event.getRegistry().register(ModEntityTypes.GREEN_GOLD_SPEAR);
+            event.getRegistry().register(ModEntityTypes.BLUE_GOLD_SPEAR);
+            event.getRegistry().register(ModEntityTypes.PURPLE_GOLD_SPEAR);
+            event.getRegistry().register(ModEntityTypes.AMALGAM_SPEAR);
             event.getRegistry().register(ModEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
       //      event.getRegistry().register(ModEntityTypes.JAR_BLUE_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_blue_foxfire"));
       //      event.getRegistry().register(ModEntityTypes.JAR_GREEN_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_green_foxfire"));
@@ -155,6 +161,12 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRONZE_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEEL_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ROSE_GOLD_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WHITE_GOLD_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GREEN_GOLD_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BLUE_GOLD_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PURPLE_GOLD_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.AMALGAM_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
         //    RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_BLUE_FOXFIRE, ReactiveItemRenderer::new);
        //     RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_GREEN_FOXFIRE, ReactiveItemRenderer::new);
@@ -221,6 +233,7 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
+            event.getRegistry().register(new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"puncture"));
             event.getRegistry().register(new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"swing"));
             event.getRegistry().register(new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"daze"));
             event.getRegistry().register(new BlastEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"blast"));

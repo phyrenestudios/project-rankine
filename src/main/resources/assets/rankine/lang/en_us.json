@@ -777,6 +777,11 @@
   "item.rankine.green_gold_hammer": "Green Gold Hammer",
   "item.rankine.blue_gold_hammer": "Blue Gold Hammer",
   "item.rankine.purple_gold_hammer": "Purple Gold Hammer",
+  "item.rankine.rose_gold_spear": "Rose Gold Spear",
+  "item.rankine.white_gold_spear": "White Gold Spear",
+  "item.rankine.green_gold_spear": "Green Gold Spear",
+  "item.rankine.blue_gold_spear": "Blue Gold Spear",
+  "item.rankine.purple_gold_spear": "Purple Gold Spear",
   "item.rankine.clay_brick": "Clay Brick",
   "item.rankine.graphite": "Graphite",
   "item.rankine.graphite_electrode": "Graphite Electrode",
@@ -1091,7 +1096,8 @@
   "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
   "entity.rankine.shrouded_king": "Shrouded King",
 
-
+  "enchantment.rankine.puncture": "Puncture",
+  "enchantment.rankine.puncture.desc": "Deals extra armor-piercing damage on direct attacks.",
   "enchantment.rankine.blast": "Blast",
   "enchantment.rankine.blast.desc": "Causes the hammer to explode blocks in a radius.",
   "enchantment.rankine.atomize": "Atomize",

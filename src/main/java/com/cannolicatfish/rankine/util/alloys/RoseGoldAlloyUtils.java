@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util.alloys;
 
 import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.items.tools.ItemSpear;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
@@ -53,7 +54,10 @@ public class RoseGoldAlloyUtils implements AlloyUtils {
         } else if (item instanceof SwordItem)
         {
             return Enchantments.SHARPNESS;
-        } else
+        } else if (item instanceof ItemSpear)
+        {
+            return ModEnchantments.PUNCTURE;
+        }  else
         {
             return null;
         }

@@ -16,6 +16,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.IndirectEntityDamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -35,17 +36,19 @@ public class SpearEntity extends AbstractArrowEntity {
     private ItemStack thrownStack = new ItemStack(ModItems.BRONZE_SPEAR);
     public int type;
     private boolean dealtDamage;
+    private float attackDamage;
     public int returningTicks;
 
     public SpearEntity(EntityType<? extends SpearEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, int type) {
+    public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, int type, float damage) {
         super(e, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.type = type;
+        this.attackDamage = damage;
     }
 
 
@@ -131,7 +134,11 @@ public class SpearEntity extends AbstractArrowEntity {
      */
     protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
         Entity entity = p_213868_1_.getEntity();
-        float f = 8.0F;
+        float f = this.attackDamage;
+        if (f == 0)
+        {
+            f = 4;
+        }
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)entity;
             f += EnchantmentHelper.getModifierForCreature(this.thrownStack, livingentity.getCreatureAttribute());
@@ -204,7 +211,7 @@ public class SpearEntity extends AbstractArrowEntity {
         compound.putBoolean("DealtDamage", this.dealtDamage);
     }
 
-    protected void tryDespawn() {
+    protected void func_225516_i_() {
         int i = this.dataManager.get(LOYALTY_LEVEL);
         if (this.pickupStatus != AbstractArrowEntity.PickupStatus.ALLOWED || i <= 0) {
             super.func_225516_i_();

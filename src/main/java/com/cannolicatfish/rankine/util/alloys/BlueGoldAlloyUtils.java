@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.items.tools.ItemSpear;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
@@ -48,16 +49,7 @@ public class BlueGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
-        if (item instanceof ToolItem)
-        {
-            return Enchantments.UNBREAKING;
-        } else if (item instanceof SwordItem)
-        {
-            return Enchantments.UNBREAKING;
-        } else
-        {
-            return null;
-        }
+        return Enchantments.UNBREAKING;
 
     }
 

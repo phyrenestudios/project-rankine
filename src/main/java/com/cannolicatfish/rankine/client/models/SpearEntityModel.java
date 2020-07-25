@@ -14,11 +14,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class IronSpearEntityModel extends Model {
+public class SpearEntityModel extends Model {
     public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("rankine:textures/entity/iron_spear.png");
     private final ModelRenderer modelRenderer;
 
-    public IronSpearEntityModel() {
+    public SpearEntityModel() {
         super(RenderType::getEntitySolid);
         this.textureWidth = 32;
         this.textureHeight = 32;

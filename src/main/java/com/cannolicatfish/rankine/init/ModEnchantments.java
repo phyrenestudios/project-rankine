@@ -20,4 +20,7 @@ public class ModEnchantments {
     @ObjectHolder("rankine:daze")
     public static Enchantment DAZE;
 
+    @ObjectHolder("rankine:puncture")
+    public static Enchantment PUNCTURE;
+
 }

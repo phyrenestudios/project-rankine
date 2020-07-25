@@ -12,6 +12,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -51,7 +52,7 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
     }
 
 
-
+    @Nonnull
     private static BlockState getStone(int biome_type, int y, int endY) {
         if (biome_type == 1) {
             STONES = Arrays.asList(ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.GNEISS.getDefaultState());
@@ -123,7 +124,7 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                 return STONES.get(0);
             }
         }
-        return null;
+        return ModBlocks.SHALE.getDefaultState();
     }
 
 
