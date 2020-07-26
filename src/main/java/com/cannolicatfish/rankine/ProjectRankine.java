@@ -84,7 +84,7 @@ public class ProjectRankine {
     {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         proxy.init();
-        RankineBiomes.addRankineBiomes();
+        //RankineBiomes.addRankineBiomes();
         ModRecipes.init();
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();
@@ -111,7 +111,7 @@ public class ProjectRankine {
 
     private void LoadComplete(FMLLoadCompleteEvent event) {
         LOGGER.debug("Rankine: \"Load Complete Event\" Starting...");
-        StructureGen.setupStructureGen();
+        //StructureGen.setupStructureGen();
         VanillaIntegration.init();
         LOGGER.info("Rankine: \"Load Complete\" Event Complete!");
     }

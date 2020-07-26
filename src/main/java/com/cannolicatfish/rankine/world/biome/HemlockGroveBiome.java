@@ -70,11 +70,13 @@ public class HemlockGroveBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.WITCH, 5, 1, 1));
     }
 
+    /*
     @Nullable
     @Override
     public Biome getHill(INoiseRandom rand) {
         return RankineBiomes.CEDAR_FOREST;
     }
+*/
 
     @Override
     public Biome getRiver() {

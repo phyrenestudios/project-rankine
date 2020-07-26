@@ -33,15 +33,18 @@ public class DecorationGen
         addBerryBushes(ModBlocks.BLACKBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
         addBerryBushes(ModBlocks.CRANBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true));
         addBerryBushes(ModBlocks.STRAWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true));
-        addBerryBushes(ModBlocks.PINEAPPLE_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), Collections.singletonList(RankineBiomes.TROPICS));
+        addBerryBushes(ModBlocks.PINEAPPLE_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true));
         addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true));
 
-        addErratics(RankineFeatures.METEOR, ModBlocks.METEORITE.getDefaultState(), 2, 250, getBiomesFromCategory(Collections.emptyList(),false));
+        //addErratics(RankineFeatures.METEOR, ModBlocks.METEORITE.getDefaultState(), 2, 250, getBiomesFromCategory(Collections.emptyList(),false));
        // addErratics(RankineFeatures.LARGE_ERRATIC, ModBlocks.ANORTHOSITE.getDefaultState(), 6, 300, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS),false));
       //  addErratics(RankineFeatures.LARGE_ERRATIC, ModBlocks.ANORTHOSITE.getDefaultState(), 1, 200, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS),false));
 
         addTreesChance(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG, 2, Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.FOREST, Biomes.FLOWER_FOREST));
         addTreesCount(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
+        addTreesCount(RankineBiomeFeatures.CEDAR_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
+        //addTreesCount(RankineBiomeFeatures.COCNUT_PALM_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
+        //addTreesCount(RankineBiomeFeatures.CEDAR_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
 
     }
 

@@ -47,9 +47,7 @@ public class JarBlueFoxfireEntity extends ProjectileItemEntity {
         return (IParticleData)(itemstack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleData(ParticleTypes.ITEM, itemstack));
     }
 
-    /**
-     * Handler for {@link World#setEntityState}
-     */
+
     @OnlyIn(Dist.CLIENT)
     public void handleStatusUpdate(byte id) {
         if (id == 3) {
@@ -62,9 +60,7 @@ public class JarBlueFoxfireEntity extends ProjectileItemEntity {
 
     }
 
-    /**
-     * Called when this EntityThrowable hits a block or entity.
-     */
+
     protected void onImpact(RayTraceResult result) {
         BlockPos pos = this.func_233580_cy_();
         if (!this.world.isRemote) {

@@ -1,17 +1,16 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ElytraItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class LuckPendantItem extends Item{
+public class PendantItem extends Item{
 
-    public LuckPendantItem(Properties properties) {
+    public PendantItem(Properties properties) {
         super(properties);
     }
 
@@ -19,7 +18,13 @@ public class LuckPendantItem extends Item{
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
-            if (player.getHeldItemOffhand() == stack) {
+            if (player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
+                if (random.nextFloat() < 0.05) {
+                    stack.damageItem(1, player, (livingEntity) -> livingEntity.sendBreakAnimation(EquipmentSlotType.OFFHAND));
+                }
+            }
+            if (player.getHeldItemOffhand().getItem() == ModItems.SPEED_PENDANT) {
+                entityIn.setMotion(entityIn.getMotion().mul(1.2D, 1.0D, 1.2D));
                 if (random.nextFloat() < 0.05) {
                     stack.damageItem(1, player, (livingEntity) -> livingEntity.sendBreakAnimation(EquipmentSlotType.OFFHAND));
                 }

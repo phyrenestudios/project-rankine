@@ -25,7 +25,7 @@ public class OreGen {
 
         removeFeatures();
 
-        FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 64, Arrays.asList(RankineBiomes.SALT_PLAINS, RankineBiomes.SALT_SPIKES));
+        //FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 64, Arrays.asList(RankineBiomes.SALT_PLAINS, RankineBiomes.SALT_SPIKES));
 
         addCrystal();
         intrusionGenDef();
@@ -109,7 +109,6 @@ public class OreGen {
                     new StoneReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 0, biomeType)).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
         }
     }
-
 
     private static void FlatReplaceGenDef(Block oldBlock, Block newBlock, int lowerBound, int upperBound, List<Biome> biomes) {
         for (Biome b: biomes) {
