@@ -5,6 +5,8 @@
   "block.rankine.vegetated_permafrost": "Vegetated Permafrost",
 
   "block.rankine.mystical_sundial": "Mystical Sundial",
+  "item.rankine.speed_pendant": "Speed Pendant",
+  "item.rankine.gem_core": "Gem Core",
 
   "block.rankine.potted_cedar_sapling": "Potted Cedar Sapling",
   "block.rankine.potted_balsam_fir_sapling": "Potted Balsam Fir Sapling",
@@ -12,6 +14,9 @@
   "block.rankine.potted_coconut_palm_sapling": "Potted Coconut Palm Sapling",
   "block.rankine.potted_pinyon_pine_sapling": "Potted Pinyon Pine Sapling",
   "block.rankine.potted_magnolia_sapling": "Potted Magnolia Sapling",
+  "item.rankine.transformation_staff": "Transformation Staff",
+  "item.rankine.glass_cutter": "Glass Cutter",
+  "item.rankine.cast_iron_rod": "Cast Iron Rod",
 
   "block.rankine.black_sand": "Black Sand",
   "block.rankine.alluvium": "Alluvium",

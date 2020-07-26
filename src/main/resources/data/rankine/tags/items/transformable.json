@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:stone",
+    "#forge:dirt",
+    "#forge:glass",
+    "#forge:glass_panes",
+    "#forge:sand",
+    "#minecraft:logs",
+    "#minecraft:planks",
+    "#minecraft:walls"
+  ]
+}

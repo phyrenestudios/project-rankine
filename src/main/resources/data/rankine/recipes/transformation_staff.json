@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  X",
+    " C ",
+    "C  "
+  ],
+  "key": {
+    "X": {
+      "item": "rankine:gem_core"
+    },
+    "C": {
+      "item": "rankine:cast_iron_rod"
+    }
+  },
+  "result": {
+    "item": "rankine:transformation_staff",
+    "count": 1
+  }
+}

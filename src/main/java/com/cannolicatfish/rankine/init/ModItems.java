@@ -432,8 +432,11 @@ public class ModItems {
     public static final Item BISMUTH_REMEDY = add("bismuth_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item COBALT_REMEDY = add("cobalt_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item SILVER_REMEDY = add("silver_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item LUCK_PENDANT = add("luck_pendant", new LuckPendantItem(new Item.Properties().maxDamage(300).group(ProjectRankine.setup.rankineTools)));
-
+    public static final Item GEM_CORE = add("gem_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item LUCK_PENDANT = add("luck_pendant", new PendantItem(new Item.Properties().maxDamage(300).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SPEED_PENDANT = add("speed_pendant", new PendantItem(new Item.Properties().maxDamage(300).group(ProjectRankine.setup.rankineTools)));
+    public static final Item TRANSFORMATION_STAFF = add("transformation_staff", new TransformationStaffItem(new Item.Properties().maxDamage(1024).group(ProjectRankine.setup.rankineTools)));
+    public static final Item GLASS_CUTTER = add("glass_cutter", new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
 
     public static final Item PUMICE_SOAP = add("pumice_soap", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
@@ -441,6 +444,8 @@ public class ModItems {
     public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item TURBINE_BLADE = add("turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item BATTERY = add("battery0", new ItemBattery(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item CAST_IRON_ROD = add("cast_iron_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
 
     public static final Item WOODEN_HOURGLASS = add("wooden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
     public static final Item GOLDEN_HOURGLASS = add("golden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));

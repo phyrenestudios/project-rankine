@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " XX",
+    " CX",
+    "C  "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:quartz"
+    },
+    "C": {
+      "item": "rankine:cast_iron_rod"
+    }
+  },
+  "result": {
+    "item": "rankine:glass_cutter",
+    "count": 1
+  }
+}

@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.world.biome.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DesertBiome;
 import net.minecraft.world.biome.ForestBiome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -19,9 +20,9 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = ProjectRankine.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+//@Mod.EventBusSubscriber(modid = ProjectRankine.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RankineBiomes {
-
+/*
     public static final Biome CEDAR_FOREST = new CedarForestBiome();
     public static final Biome PINYON_JUNIPER_WOODLANDS = new PinyonJuniperWoodlandBiome();
     public static final Biome HIGHLAND_PLATEAU = new HighlandPlateauBiome();
@@ -55,6 +56,21 @@ public class RankineBiomes {
     }
 
     public static void addRankineBiomes() {
+        ProjectRankine.LOGGER.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(CEDAR_FOREST, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(PINYON_JUNIPER_WOODLANDS, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(HIGHLAND_PLATEAU, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(FELSENMEER, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(SHOAL, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(DEAD_SWAMP, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(TROPICS, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(FORESTED_LAGOON, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(HEMLOCK_GROVE, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(SALT_PLAINS, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(SALT_SPIKES, 10));
+
+
+
         addBiomeEntry(CEDAR_FOREST, 10, BiomeManager.BiomeType.COOL);
         addBiomeEntry(PINYON_JUNIPER_WOODLANDS, 10, BiomeManager.BiomeType.WARM);
         addBiomeEntry(HIGHLAND_PLATEAU, 10, BiomeManager.BiomeType.COOL);
@@ -66,6 +82,8 @@ public class RankineBiomes {
         addBiomeEntry(HEMLOCK_GROVE, 10, BiomeManager.BiomeType.COOL);
         addBiomeEntry(SALT_PLAINS, 10, BiomeManager.BiomeType.DESERT);
         addBiomeEntry(SALT_SPIKES, 10, BiomeManager.BiomeType.DESERT);
+
+
     }
 
     private static void registerBiome(IForgeRegistry<Biome> registry, Biome biome, String name, boolean spawn, BiomeDictionary.Type... types) {
@@ -75,6 +93,7 @@ public class RankineBiomes {
         }
         BiomeDictionary.addTypes(biome, types);
     }
+
 
     public static List<Integer> HOT = new ArrayList<>();
     public static List<Integer> COOL = new ArrayList<>();
@@ -94,8 +113,11 @@ public class RankineBiomes {
             if (type == BiomeManager.BiomeType.ICY)
                 ICY.add(Registry.BIOME.getId(biome));
         }
+
+
     }
 
 
-
+        */
 }
+

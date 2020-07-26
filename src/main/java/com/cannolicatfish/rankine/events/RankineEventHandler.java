@@ -1,20 +1,16 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.blocks.RankineStone;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.items.LuckPendantItem;
+import com.cannolicatfish.rankine.init.ModTags;
+import com.cannolicatfish.rankine.items.TransformationStaffItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
+import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -32,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static net.minecraft.block.Block.nudgeEntitiesWithNewState;
 import static net.minecraft.block.Block.spawnAsEntity;
 
 @Mod.EventBusSubscriber
@@ -46,7 +43,7 @@ public class RankineEventHandler {
     public static void luckyBreak(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
-            if (event.getState().getBlock().asItem().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
+            if (event.getState().getBlock().isIn(ModTags.LUCK_PENDANT)) {
                 if (new Random().nextFloat() < 0.3f) {
                     for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld().getWorld(), event.getPos(), null)) {
                         spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
@@ -217,6 +214,42 @@ public class RankineEventHandler {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void transformBlocks(PlayerInteractEvent.RightClickBlock event)
+    {
+        ItemStack stack = event.getItemStack();
+        Item item = stack.getItem();
+        World world = event.getWorld();
+        BlockPos pos = event.getPos();
+        PlayerEntity player = event.getPlayer();
+        ItemStack newBlock = player.getHeldItemOffhand();
+
+        if(item instanceof TransformationStaffItem) {
+            BlockState activatedBlock = world.getBlockState(pos);
+            Block block = activatedBlock.getBlock();
+            if (newBlock.getItem() instanceof BlockItem) {
+                if (((BlockItem) newBlock.getItem()).getBlock().isIn(ModTags.TRANSFORMABLE)) {
+                    for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, -2, -2), pos.add(2, 2, 2))) {
+                        if (world.getBlockState(blockpos).getBlock() == block) {
+                            world.setBlockState(blockpos, ((BlockItem) newBlock.getItem()).getBlock().getDefaultState());
+                            stack.damageItem(1, player, (entity) -> {
+                                entity.sendBreakAnimation(event.getHand());
+                            });
+                            if (!player.abilities.isCreativeMode) {
+                                newBlock.shrink(1);
+                            }
+                        }
+
+                    }
+                    world.playSound(player, pos, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    player.swingArm(event.getHand());
+                    //event.setResult(Event.Result.ALLOW);
+                }
+            }
+        }
+    }
+
 
 
 }
