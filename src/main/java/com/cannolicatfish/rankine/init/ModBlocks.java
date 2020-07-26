@@ -664,7 +664,7 @@ public class ModBlocks {
     public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block INCONEL_BLOCK = add("inconel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block NICKEL_SUPERALLOY_BLOCK = add("nickel_superalloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block SALT_BLOCK = add("salt_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
     public static final Block PINK_SALT_BLOCK = add("pink_salt_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
     public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);

@@ -11,7 +11,7 @@ public class SilverElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return (int) Math.round(Math.log(x/2f + 1)*x/10f);
+        return (int) Math.round(Math.log(4f*x + 1)*x/10f);
     }
 
     @Override

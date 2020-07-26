@@ -1,5 +1,8 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.init.ModEnchantments;
+import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.items.tools.ItemSpear;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
@@ -51,11 +54,14 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
     public Enchantment getEnchantmentBonus(Item item) {
         if (item instanceof ToolItem)
         {
-            return Enchantments.FORTUNE;
+            return item instanceof ItemHammer ? ModEnchantments.BLAST : Enchantments.FORTUNE;
         } else if (item instanceof SwordItem)
         {
             return Enchantments.LOOTING;
-        } else
+        } else if (item instanceof ItemSpear)
+        {
+            return Enchantments.IMPALING;
+        }  else
         {
             return null;
         }

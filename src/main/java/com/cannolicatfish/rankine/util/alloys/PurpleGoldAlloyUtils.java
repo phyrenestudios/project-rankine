@@ -1,5 +1,8 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.init.ModEnchantments;
+import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.items.tools.ItemSpear;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
@@ -50,10 +53,13 @@ public class PurpleGoldAlloyUtils implements AlloyUtils {
     public Enchantment getEnchantmentBonus(Item item) {
         if (item instanceof ToolItem)
         {
-            return Enchantments.SILK_TOUCH;
+            return item instanceof ItemHammer ? ModEnchantments.ATOMIZE : Enchantments.SILK_TOUCH;
         } else if (item instanceof SwordItem)
         {
             return Enchantments.KNOCKBACK;
+        } else if (item instanceof ItemSpear)
+        {
+            return Enchantments.LOYALTY;
         } else
         {
             return null;

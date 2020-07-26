@@ -48,16 +48,7 @@ public class GreenGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
-        if (item instanceof ToolItem)
-        {
-            return Enchantments.MENDING;
-        } else if (item instanceof SwordItem)
-        {
-            return Enchantments.MENDING;
-        } else
-        {
-            return null;
-        }
+        return Enchantments.MENDING;
 
     }
 

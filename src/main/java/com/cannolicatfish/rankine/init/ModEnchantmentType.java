@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.enchantment;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import net.minecraft.enchantment.EnchantmentType;
