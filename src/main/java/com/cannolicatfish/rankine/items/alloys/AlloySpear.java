@@ -99,37 +99,37 @@ public class AlloySpear extends ItemSpear {
                             switch (this.type)
                             {
                                 case 0:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.FLINT_SPEAR, 0, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.FLINT_SPEAR, 0, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 1:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.BRONZE_SPEAR, 1, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.BRONZE_SPEAR, 1, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 2:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.IRON_SPEAR, 2, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.IRON_SPEAR, 2, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 3:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.STEEL_SPEAR, 3, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.STEEL_SPEAR, 3, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 4:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.ROSE_GOLD_SPEAR, 4, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.ROSE_GOLD_SPEAR, 4, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 5:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.WHITE_GOLD_SPEAR, 5, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.WHITE_GOLD_SPEAR, 5, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 6:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.GREEN_GOLD_SPEAR, 6, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.GREEN_GOLD_SPEAR, 6, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 7:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.BLUE_GOLD_SPEAR, 7, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.BLUE_GOLD_SPEAR, 7, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 8:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.PURPLE_GOLD_SPEAR, 8, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.PURPLE_GOLD_SPEAR, 8, this.attackDamage - getWearModifier(stack));
                                     break;
                                 case 9:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.AMALGAM_SPEAR, 9, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.AMALGAM_SPEAR, 9, this.attackDamage - getWearModifier(stack));
                                     break;
                                 default:
-                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.IRON_SPEAR, 2, this.attackDamage - getWear(stack));
+                                    spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.IRON_SPEAR, 2, this.attackDamage - getWearModifier(stack));
                                     break;
                             }
                             spearentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
@@ -186,7 +186,7 @@ public class AlloySpear extends ItemSpear {
         stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (p_220039_0_) -> {
             p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
-        replaceModifier(getWear(stack));
+        replaceModifier(getWearModifier(stack));
         return true;
     }
 
@@ -195,7 +195,7 @@ public class AlloySpear extends ItemSpear {
         stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (p_220039_0_) -> {
             p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
-        replaceModifier(getWear(stack));
+        replaceModifier(getWearModifier(stack));
         return true;
     }
 
@@ -225,25 +225,25 @@ public class AlloySpear extends ItemSpear {
 
     public float getWearModifier(ItemStack stack)
     {
-        float eff = getEfficiency(stack);
+        float dmg = getAttackDamage(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        this.wmodifier = eff * .25f;
+        this.wmodifier = dmg * .25f;
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
     public float getWearAsPercent(ItemStack stack)
     {
-        float eff = getEfficiency(stack);
+        float dmg = getAttackDamage(stack);
         float wear_mod = getWearModifier(stack);
-        return (eff - wear_mod)/eff * 100;
+        return (dmg - wear_mod)/dmg * 100;
     }
 
     public float getMaxWearPercent(ItemStack stack)
     {
-        float eff = getEfficiency(stack);
+        float dmg = getAttackDamage(stack);
         float wear_mod = getWearModifier(stack);
-        return (eff - wmodifier)/eff * 100;
+        return (dmg - wmodifier)/dmg * 100;
     }
 
     public float getEfficiency(ItemStack stack)
@@ -269,22 +269,36 @@ public class AlloySpear extends ItemSpear {
 
     }
 
-    public float getHeatResist()
+    public float getHeatResist(ItemStack stack)
     {
-        return this.heat_resistance;
+        if (getComposition(stack).size() != 0)
+        {
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return this.heat_resistance + utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
+        } else
+        {
+            return this.heat_resistance;
+        }
     }
 
-    public float getToughness()
+    public float getToughness(ItemStack stack)
     {
-        return this.toughness;
+        if (getComposition(stack).size() != 0)
+        {
+            String comp = getComposition(stack).getCompound(0).get("comp").getString();
+            return this.toughness + utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
+        } else
+        {
+            return this.toughness;
+        }
     }
 
     public int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
         Random rand = new Random();
         int i = 1;
-        i += rand.nextFloat() < toughness ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist() && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        i += rand.nextFloat() < getToughness(stack) ? 1 : 0;
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
@@ -351,7 +365,7 @@ public class AlloySpear extends ItemSpear {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        DecimalFormat df = new DecimalFormat("#.#");
+        DecimalFormat df = new DecimalFormat("##.#");
         if (!Screen.hasShiftDown() && getComposition(stack).size() != 0)
         {
             tooltip.add((new StringTextComponent("Hold shift for details...")).func_240701_a_(TextFormatting.GRAY));
@@ -366,15 +380,15 @@ public class AlloySpear extends ItemSpear {
                 tooltip.add((new StringTextComponent("Durability: " + (getMaxDamage(stack) - getDamage(stack)) + "/" + getMaxDamage(stack))).func_240701_a_(TextFormatting.DARK_GREEN));
             }
             tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).func_240701_a_(TextFormatting.GRAY));
-            //tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack))))).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack))))).func_240701_a_(TextFormatting.GRAY));
             tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist())) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness())) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
         }
         tooltip.add((new StringTextComponent("" )));
         tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));
-        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWear(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
+        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWearModifier(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
         tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((4 + getAttackSpeed(stack)))) + " Attack Speed").func_240701_a_(TextFormatting.DARK_GREEN)));
 
     }
@@ -466,15 +480,6 @@ public class AlloySpear extends ItemSpear {
 
             items.add(stack);
         }
-    }
-
-    private float getWear(ItemStack stack)
-    {
-        float current_dur = this.getDamage(stack);
-        float max_dur = this.tier.getMaxUses();
-        float wear_modifier = wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
-        //System.out.println(wear_modifier);
-        return wear_modifier;
     }
 
     private void replaceModifier(double multiplier)

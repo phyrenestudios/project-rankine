@@ -39,6 +39,10 @@ public interface AlloyUtils {
                 return 0;
         }
 
+        default float getToughnessBonus(){
+                return 0;
+        }
+
         default Enchantment getEnchantmentBonus(Item item){
                 return null;
         }

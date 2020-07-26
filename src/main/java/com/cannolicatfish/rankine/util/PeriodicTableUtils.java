@@ -116,13 +116,39 @@ public final class PeriodicTableUtils {
         return miningSpeed;
     }
 
-    public int calcMiningLevel(List<Element> elements, List<Integer> percents)
+    public int calcMiningLevel(List<Element> elements, List<Integer> percents) // takes max; 0 -> 4 (best)
     {
         int index = 0;
         List<Integer> levels = new ArrayList<>();
         for (Element e: elements)
         {
             levels.add(e.element.getMiningLevelFromPercent(percents.get(index)));
+            index++;
+        }
+
+        return Collections.max(levels);
+    }
+
+    public int calcDamage(List<Element> elements, List<Integer> percents) // takes max; 0 -> 4 (strongest)
+    {
+        int index = 0;
+        List<Integer> levels = new ArrayList<>();
+        for (Element e: elements)
+        {
+            levels.add(e.element.getDamageFromPercent(percents.get(index)));
+            index++;
+        }
+
+        return Collections.max(levels);
+    }
+
+    public float calcAttackSpeed(List<Element> elements, List<Integer> percents) // takes max; 0 -> 3 adds to preexisting attack speed (-3 -> 0 maximum attack speed);
+    {
+        int index = 0;
+        List<Float> levels = new ArrayList<>();
+        for (Element e: elements)
+        {
+            levels.add(e.element.getAttackSpeedFromPercent(percents.get(index)));
             index++;
         }
 
@@ -161,11 +187,24 @@ public final class PeriodicTableUtils {
         float heatResist = 0f;
         for (Element e: elements)
         {
-            heatResist += e.element.getCorrResistFromPercent(percents.get(index));
+            heatResist += e.element.getHeatResistFromPercent(percents.get(index));
             index++;
         }
 
         return heatResist;
+    }
+
+    public float calcToughness(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        float tough = 0f;
+        for (Element e: elements)
+        {
+            tough += e.element.getToughnessFromPercent(percents.get(index));
+            index++;
+        }
+
+        return tough;
     }
 
     public List<Enchantment> getEnchantments(List<Element> elements, List<Integer> percents)
@@ -202,7 +241,8 @@ public final class PeriodicTableUtils {
         PLATINUM(78,"Pt", new PlatinumElement()),
         GOLD(79, "Au", new GoldElement()),
         MERCURY(80, "Hg", new MercuryElement()),
-        LEAD(82,"Pb", new LeadElement());
+        LEAD(82,"Pb", new LeadElement()),
+        NETHERITE(156,"Nr", new NetheriteElement());
 
         public final int atomicNumber;
         public final String symbol;

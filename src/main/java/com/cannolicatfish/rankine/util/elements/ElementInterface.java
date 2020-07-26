@@ -2,30 +2,29 @@ package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
-
 public interface ElementInterface {
 
-    public PeriodicTableUtils.Element getReference();
+    PeriodicTableUtils.Element getReference();
 
-    public int getDurabilityFromPercent(int x);
+    int getDurabilityFromPercent(int x);
 
-    public int getDamageFromPercent(int x);
+    int getDamageFromPercent(int x);
 
-    public float getAttackSpeedFromPercent(int x);
+    float getAttackSpeedFromPercent(int x);
 
-    public float getMiningSpeedFromPercent(int x);
+    float getMiningSpeedFromPercent(int x);
 
-    public int getMiningLevelFromPercent(int x);
+    int getMiningLevelFromPercent(int x);
 
-    public int getEnchantabilityFromPercent(int x);
+    int getEnchantabilityFromPercent(int x);
 
-    public float getCorrResistFromPercent(int x);
+    float getCorrResistFromPercent(int x);
 
-    public float getHeatResistFromPercent(int x);
+    float getHeatResistFromPercent(int x);
 
-    public float getToughnessFromPercent(int x);
+    float getToughnessFromPercent(int x);
 
-    public Enchantment getEnchantments(int x);
+    Enchantment getEnchantments(int x);
 
 
 }

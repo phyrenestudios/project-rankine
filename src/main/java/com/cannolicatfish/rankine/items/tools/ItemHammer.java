@@ -189,7 +189,7 @@ public class ItemHammer extends ToolItem {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == Enchantments.MENDING || enchantment == Enchantments.VANISHING_CURSE)
+        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == ModEnchantments.SWING || enchantment == ModEnchantments.DAZE || enchantment == Enchantments.MENDING || enchantment == Enchantments.VANISHING_CURSE)
         {
             return true;
         }
