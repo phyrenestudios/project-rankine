@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Mod.EventBusSubscriber(modid = ProjectRankine.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class RankineBiomes {
+public class ModBiomes {
 /*
     public static final Biome CEDAR_FOREST = new CedarForestBiome();
     public static final Biome PINYON_JUNIPER_WOODLANDS = new PinyonJuniperWoodlandBiome();

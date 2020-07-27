@@ -1,5 +1,29 @@
 {
-        "variants": {
-        "": { "model": "rankine:block/native_selenium_ore" }
-        }
+      "variants": {
+        "type=0": {"model": "rankine:block/native_selenium_ore0"},
+        "type=1": {"model": "rankine:block/native_selenium_ore1"},
+        "type=2": {"model": "rankine:block/native_selenium_ore2"},
+        "type=3": {"model": "rankine:block/native_selenium_ore3"},
+        "type=4": {"model": "rankine:block/native_selenium_ore4"},
+        "type=5": {"model": "rankine:block/native_selenium_ore5"},
+        "type=6": {"model": "rankine:block/native_selenium_ore6"},
+        "type=7": {"model": "rankine:block/native_selenium_ore7"},
+        "type=8": {"model": "rankine:block/native_selenium_ore8"},
+        "type=9": {"model": "rankine:block/native_selenium_ore9"},
+        "type=10": {"model": "rankine:block/native_selenium_ore10"},
+        "type=11": {"model": "rankine:block/native_selenium_ore11"},
+        "type=12": {"model": "rankine:block/native_selenium_ore12"},
+        "type=13": {"model": "rankine:block/native_selenium_ore13"},
+        "type=14": {"model": "rankine:block/native_selenium_ore14"},
+        "type=15": {"model": "rankine:block/native_selenium_ore15"},
+        "type=16": {"model": "rankine:block/native_selenium_ore16"},
+        "type=17": {"model": "rankine:block/native_selenium_ore17"},
+        "type=18": {"model": "rankine:block/native_selenium_ore18"},
+        "type=19": {"model": "rankine:block/native_selenium_ore19"},
+        "type=20": {"model": "rankine:block/native_selenium_ore20"},
+        "type=21": {"model": "rankine:block/native_selenium_ore21"},
+        "type=22": {"model": "rankine:block/native_selenium_ore22"},
+        "type=23": {"model": "rankine:block/native_selenium_ore23"},
+        "type=24": {"model": "rankine:block/native_selenium_ore23"}
+      }
     }

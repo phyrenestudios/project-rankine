@@ -106,66 +106,32 @@ public class RankineStone extends Block {
     public ItemStack getNugget(Pair<Block,BlockPos> ore)
     {
         Random random = new Random();
-        if (ore.getKey() == ModBlocks.MAGNETITE_ORE) {
-            return new ItemStack(Items.IRON_NUGGET); }
-        if (ore.getKey() == ModBlocks.MALACHITE_ORE || ore.getKey() == ModBlocks.NATIVE_COPPER_ORE) {
-            return new ItemStack(ModItems.COPPER_NUGGET); }
-        if (ore.getKey() == ModBlocks.BAUXITE_ORE) {
-            return new ItemStack(ModItems.ALUMINUM_NUGGET); }
-        if (ore.getKey() == ModBlocks.NATIVE_GOLD_ORE) {
-            return new ItemStack(Items.GOLD_NUGGET); }
-        if (ore.getKey() == ModBlocks.CASSITERITE_ORE || ore.getKey() == ModBlocks.NATIVE_TIN_ORE)
-        {
-            return new ItemStack(ModItems.TIN_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.SPHALERITE_ORE)
-        {
-            return new ItemStack(ModItems.ZINC_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.PENTLANDITE_ORE)
-        {
-            return new ItemStack(ModItems.NICKEL_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.MAGNESITE_ORE)
-        {
-            return new ItemStack(ModItems.MAGNESIA);
-        }
-        if (ore.getKey() == ModBlocks.ILMENITE_ORE)
-        {
-            return new ItemStack(ModItems.TITANIUM_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.GALENA_ORE)
-        {
-            return new ItemStack(ModItems.LEAD_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.ACANTHITE_ORE)
-        {
-            return new ItemStack(ModItems.SILVER_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.MOLYBDENITE_ORE)
-        {
-            return new ItemStack(ModItems.MOLYBDENUM_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.PYROLUSITE_ORE)
-        {
-            return new ItemStack(ModItems.MANGANESE_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.CHROMITE_ORE)
-        {
-            return new ItemStack(ModItems.CHROMIUM_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.COLUMBITE_ORE)
-        {
-            return new ItemStack(ModItems.NIOBIUM_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.TANTALITE_ORE)
-        {
-            return new ItemStack(ModItems.TANTALUM_NUGGET);
-        }
-        if (ore.getKey() == ModBlocks.WOLFRAMITE_ORE)
-        {
-            return new ItemStack(ModItems.TUNGSTEN_NUGGET);
-        }
+        if (ore.getKey() == ModBlocks.MAGNETITE_ORE) { return new ItemStack(Items.IRON_NUGGET); }
+        if (ore.getKey() == ModBlocks.MALACHITE_ORE || ore.getKey() == ModBlocks.NATIVE_COPPER_ORE) { return new ItemStack(ModItems.COPPER_NUGGET); }
+        if (ore.getKey() == ModBlocks.BAUXITE_ORE || ore.getKey() == ModBlocks.NATIVE_ALUMINUM_ORE) { return new ItemStack(ModItems.ALUMINUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_GOLD_ORE) { return new ItemStack(Items.GOLD_NUGGET); }
+        if (ore.getKey() == ModBlocks.CASSITERITE_ORE || ore.getKey() == ModBlocks.NATIVE_TIN_ORE) { return new ItemStack(ModItems.TIN_NUGGET); }
+        if (ore.getKey() == ModBlocks.SPHALERITE_ORE) { return new ItemStack(ModItems.ZINC_NUGGET); }
+        if (ore.getKey() == ModBlocks.PENTLANDITE_ORE) { return new ItemStack(ModItems.NICKEL_NUGGET); }
+        if (ore.getKey() == ModBlocks.MAGNESITE_ORE) { return new ItemStack(ModItems.MAGNESIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.ILMENITE_ORE) { return new ItemStack(ModItems.TITANIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.GALENA_ORE || ore.getKey() == ModBlocks.NATIVE_LEAD_ORE) { return new ItemStack(ModItems.LEAD_NUGGET); }
+        if (ore.getKey() == ModBlocks.BISMITE_ORE || ore.getKey() == ModBlocks.NATIVE_BISMUTH_ORE) { return new ItemStack(ModItems.BISMUTH_NUGGET); }
+        if (ore.getKey() == ModBlocks.ACANTHITE_ORE || ore.getKey() == ModBlocks.NATIVE_SILVER_ORE) { return new ItemStack(ModItems.SILVER_NUGGET); }
+        if (ore.getKey() == ModBlocks.MOLYBDENITE_ORE) { return new ItemStack(ModItems.MOLYBDENUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.PYROLUSITE_ORE) { return new ItemStack(ModItems.MANGANESE_NUGGET); }
+        if (ore.getKey() == ModBlocks.CHROMITE_ORE) { return new ItemStack(ModItems.CHROMIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.COLUMBITE_ORE) { return new ItemStack(ModItems.NIOBIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.TANTALITE_ORE) { return new ItemStack(ModItems.TANTALUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.WOLFRAMITE_ORE) { return new ItemStack(ModItems.TUNGSTEN_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_ARSENIC_ORE) { return new ItemStack(ModItems.ARSENIC_NUGGET); }
+        if (ore.getKey() == ModBlocks.GREENOCKITE_ORE) { return new ItemStack(ModItems.CADMIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.VANADINITE_ORE) { return new ItemStack(ModItems.VANADIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_GALLIUM_ORE) { return new ItemStack(ModItems.GALLIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_SELENIUM_ORE) { return new ItemStack(ModItems.SELENIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_TELLURIUM_ORE) { return new ItemStack(ModItems.TELLURIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.NATIVE_INDIUM_ORE) { return new ItemStack(ModItems.INDIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.CINNABAR_ORE) { return new ItemStack(Items.REDSTONE); }
         return ItemStack.EMPTY;
     }
 
