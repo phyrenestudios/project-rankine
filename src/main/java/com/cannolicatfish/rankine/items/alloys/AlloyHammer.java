@@ -93,7 +93,7 @@ public class AlloyHammer extends ItemHammer {
         float eff = getEfficiency(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        this.wmodifier = eff * .25f;
+        float wmodifier = eff * .25f;
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -108,15 +108,15 @@ public class AlloyHammer extends ItemHammer {
 
     public float getWearAsPercent(ItemStack stack)
     {
-        float eff = getEfficiency(stack);
+        float dmg = getAttackDamage(stack);
         float wear_mod = getWearModifierDmg(stack);
-        return (eff - wear_mod)/eff * 100;
+        return (dmg - wear_mod)/dmg * 100;
     }
 
     public float getMaxWearPercent(ItemStack stack)
     {
-        float eff = getEfficiency(stack);
-        return (eff - wmodifier)/eff * 100;
+        float dmg = getAttackDamage(stack);
+        return (dmg - wmodifier)/dmg * 100;
     }
 
     public float getEfficiency(ItemStack stack)
@@ -295,6 +295,7 @@ public class AlloyHammer extends ItemHammer {
         }
 
         p_92115_0_.getOrCreateTag().put("StoredComposition", listnbt);
+        p_92115_0_.getOrCreateTag().putInt("HideFlags",2);
     }
 
     /**

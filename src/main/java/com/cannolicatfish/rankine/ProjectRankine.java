@@ -130,6 +130,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.FLINT_SPEAR);
             event.getRegistry().register(ModEntityTypes.BRONZE_SPEAR);
             event.getRegistry().register(ModEntityTypes.IRON_SPEAR);
+            event.getRegistry().register(ModEntityTypes.METEORIC_IRON_SPEAR);
             event.getRegistry().register(ModEntityTypes.STEEL_SPEAR);
             event.getRegistry().register(ModEntityTypes.ROSE_GOLD_SPEAR);
             event.getRegistry().register(ModEntityTypes.WHITE_GOLD_SPEAR);
@@ -161,6 +162,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FLINT_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRONZE_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.METEORIC_IRON_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEEL_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ROSE_GOLD_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.WHITE_GOLD_SPEAR, SpearRenderFactory.instance);

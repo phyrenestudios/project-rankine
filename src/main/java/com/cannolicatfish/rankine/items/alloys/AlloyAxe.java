@@ -100,7 +100,7 @@ public class AlloyAxe extends AxeItem {
         float dmg = getAttackDamage(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        this.wmodifier = dmg * .25f;
+        float wmodifier = dmg * .25f;
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -293,6 +293,7 @@ public class AlloyAxe extends AxeItem {
         }
 
         p_92115_0_.getOrCreateTag().put("StoredComposition", listnbt);
+        p_92115_0_.getOrCreateTag().putInt("HideFlags",2);
     }
 
     /**

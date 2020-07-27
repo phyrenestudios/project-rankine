@@ -236,7 +236,7 @@ public class ModItems {
     public static final AlloyItem GREEN_GOLD_ALLOY = add("green_gold_alloy", new AlloyItem("50Au-50Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BLUE_GOLD_ALLOY = add("blue_gold_alloy", new AlloyItem("75Au-25Fe", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem PURPLE_GOLD_ALLOY = add("purple_gold_alloy", new AlloyItem("80Au-20Al", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-
+    public static final AlloyItem METEORIC_IRON = add("meteoric_iron", new AlloyItem("90Fe-10Ni", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
 
     public static final Item CLAY_BRICK = add("clay_brick", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -294,12 +294,21 @@ public class ModItems {
     public static final Item  BRONZE_SHOVEL = add("bronze_shovel", new AlloyShovel(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new BronzeAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_PICKAXE = add("bronze_pickaxe", new AlloyPickaxe(RankineToolMaterials.BRONZE, 1, -2.8F, new BronzeAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_AXE = add("bronze_axe", new AlloyAxe(RankineToolMaterials.BRONZE, 4.0F, -3.2F, new BronzeAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BRONZE_HOE = add("bronze_hoe", new AlloyHoe(RankineToolMaterials.BRONZE, -1,-2.0F, new BronzeAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_HAMMER = add("bronze_hammer", new AlloyHammer(RankineToolMaterials.BRONZE,2, -3.2F, new BronzeAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BRONZE_HOE = add("bronze_hoe", new AlloyHoe(RankineToolMaterials.BRONZE, -1,-2.0F, new BronzeAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_SPEAR = add("bronze_spear", new AlloySpear(RankineToolMaterials.BRONZE, 2, -2.9F, new BronzeAlloyUtils(),ModEntityTypes.BRONZE_SPEAR,new ResourceLocation("rankine:textures/entity/bronze_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  IRON_SPEAR = add("iron_spear", new ItemSpear(ItemTier.IRON, 2, -2.9F, ModEntityTypes.IRON_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  IRON_HAMMER = add("iron_hammer", new ItemHammer(2, -3.2F, ItemTier.IRON, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  IRON_SCRAPER = add("iron_scraper", new ItemScraper(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
+
+    public static final Item  METEORIC_IRON_SWORD = add("meteoric_iron_sword", new AlloySword(RankineToolMaterials.METEORIC_IRON, 3, -2.4F, new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METEORIC_IRON_SHOVEL = add("meteoric_iron_shovel", new AlloyShovel(RankineToolMaterials.METEORIC_IRON, 1.5F, -3.0F, new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METEORIC_IRON_PICKAXE = add("meteoric_iron_pickaxe", new AlloyPickaxe(RankineToolMaterials.METEORIC_IRON, 1, -2.8F,new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METEORIC_IRON_AXE = add("meteoric_iron_axe", new AlloyAxe(RankineToolMaterials.METEORIC_IRON, 4.0F, -3.2F, new MeteoricIronAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METEORIC_IRON_HAMMER = add("meteoric_iron_hammer", new AlloyHammer(RankineToolMaterials.METEORIC_IRON, 2, -3.2F, new MeteoricIronAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METEORIC_IRON_HOE = add("meteoric_iron_hoe", new AlloyHoe(RankineToolMaterials.METEORIC_IRON, -2, -1.0F, new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METEORIC_IRON_SPEAR = add("meteoric_iron_spear", new AlloySpear(RankineToolMaterials.METEORIC_IRON,2, -2.9F, new MeteoricIronAlloyUtils(),ModEntityTypes.METEORIC_IRON_SPEAR,new ResourceLocation("rankine:textures/entity/meteoric_iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
     public static final Item  STEEL_SWORD = add("steel_sword", new SwordItem(RankineToolMaterials.STEEL, 3, -2.4F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  STEEL_SHOVEL = add("steel_shovel", new ShovelItem(RankineToolMaterials.STEEL, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
