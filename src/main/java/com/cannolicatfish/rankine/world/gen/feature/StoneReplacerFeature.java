@@ -25,7 +25,6 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
     }
 
     private static List<BlockState> STONES;
-    private static BlockState STONE = Blocks.STONE.getDefaultState();
 
     @Override
     public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, StoneReplacerFeatureConfig config) {
@@ -55,76 +54,85 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
     @Nonnull
     private static BlockState getStone(int biome_type, int y, int endY) {
         if (biome_type == 1) {
-            STONES = Arrays.asList(ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.GNEISS.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 4.25) {
+            if (y >= 0 && y < endY - THICKNESS * 5.5) {
+                return STONES.get(5);
+            }
+            if (y >= endY - THICKNESS * 5.5 && y < endY - THICKNESS * 4.5) {
                 return STONES.get(4);
             }
-            if (y >= endY - THICKNESS * 4.25 && y < endY - THICKNESS * 3.5) {
+            if (y >= endY - THICKNESS * 4.5 && y < endY - THICKNESS * 3.75) {
                 return STONES.get(3);
             }
-            if (y >= endY - THICKNESS * 3.5 && y < endY - THICKNESS * 2) {
+            if (y >= endY - THICKNESS * 3.75 && y < endY - THICKNESS * 2.75) {
                 return STONES.get(2);
             }
-            if (y >= endY - THICKNESS * 2 && y < endY - THICKNESS * 1.5) {
+            if (y >= endY - THICKNESS * 2.75 && y < endY - THICKNESS * 1.5) {
                 return STONES.get(1);
             }
             if (y >= endY - THICKNESS * 1.5 && y < endY) {
                 return STONES.get(0);
             }
         } else if (biome_type == 2) {
-            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.GNEISS.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 6) {
+            if (y >= 0 && y < endY - THICKNESS * 7.5) {
+                return STONES.get(7);
+            }
+            if (y >= endY - THICKNESS *7.5 && y < endY - THICKNESS * 7.0) {
                 return STONES.get(6);
             }
-            if (y >= endY - THICKNESS * 6 && y < endY - THICKNESS * 5) {
+            if (y >= endY - THICKNESS * 7.0 && y < endY - THICKNESS * 6.0) {
                 return STONES.get(5);
             }
-            if (y >= endY - THICKNESS * 5 && y < endY - THICKNESS * 4) {
+            if (y >= endY - THICKNESS * 6.0 && y < endY - THICKNESS * 5.0) {
                 return STONES.get(4);
             }
-            if (y >= endY - THICKNESS * 4 && y < endY - THICKNESS * 3) {
+            if (y >= endY - THICKNESS * 5.0 && y < endY - THICKNESS * 4.0) {
                 return STONES.get(3);
             }
-            if (y >= endY - THICKNESS * 3 && y < endY - THICKNESS * 2) {
+            if (y >= endY - THICKNESS * 4.0 && y < endY - THICKNESS * 2.5) {
                 return STONES.get(2);
             }
-            if (y >= endY - THICKNESS * 2 && y < endY - THICKNESS) {
+            if (y >= endY - THICKNESS * 2.5 && y < endY - THICKNESS * 1.0) {
                 return STONES.get(1);
             }
-            if (y >= endY - THICKNESS && y < endY) {
+            if (y >= endY - THICKNESS * 1.0 && y < endY) {
                 return STONES.get(0);
             }
         } else {
-            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.ANDESITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.GNEISS.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.ANDESITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 7.25) {
+            if (y >= 0 && y < endY - THICKNESS * 8.5) {
+                return STONES.get(8);
+            }
+            if (y >= endY - THICKNESS * 8.5 && y < endY - THICKNESS * 7.5) {
                 return STONES.get(7);
             }
-            if (y >= endY - THICKNESS * 7.25 && y < endY - THICKNESS * 6.5) {
+            if (y >= endY - THICKNESS * 7.5 && y < endY - THICKNESS * 7.0) {
                 return STONES.get(6);
             }
-            if (y >= endY - THICKNESS * 6.5 && y < endY - THICKNESS * 5) {
+            if (y >= endY - THICKNESS * 7.0 && y < endY - THICKNESS * 6.0) {
                 return STONES.get(5);
             }
-            if (y >= endY - THICKNESS * 5 && y < endY - THICKNESS * 4) {
+            if (y >= endY - THICKNESS * 6.0 && y < endY - THICKNESS * 4.5) {
                 return STONES.get(4);
             }
-            if (y >= endY - THICKNESS * 4 && y < endY - THICKNESS * 3) {
+            if (y >= endY - THICKNESS * 4.5 && y < endY - THICKNESS * 3.5) {
                 return STONES.get(3);
             }
-            if (y >= endY - THICKNESS * 3 && y < endY - THICKNESS * 2.5) {
+            if (y >= endY - THICKNESS * 3.5 && y < endY - THICKNESS * 3.0) {
                 return STONES.get(2);
             }
-            if (y >= endY - THICKNESS * 2.5 && y < endY - THICKNESS * 1.5) {
+            if (y >= endY - THICKNESS * 3.0 && y < endY - THICKNESS * 1.75) {
                 return STONES.get(1);
             }
-            if (y >= endY - THICKNESS * 1.5 && y < endY) {
+            if (y >= endY - THICKNESS * 1.75 && y < endY) {
                 return STONES.get(0);
             }
         }
-        return ModBlocks.SHALE.getDefaultState();
+        return ModBlocks.ANORTHOSITE.getDefaultState();
     }
 
 

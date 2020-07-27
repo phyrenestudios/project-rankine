@@ -1,17 +1,15 @@
 {
       "type": "minecraft:block",
-      "pools":
-      [
-        { "rolls": 1,
-          "entries":
-          [
+      "pools": [
+        {
+          "rolls": 1,
+          "entries": [
             {
               "type": "minecraft:item",
               "name": "rankine:native_bismuth_ore"
             }
           ],
-          "conditions":
-          [
+          "conditions": [
             {
               "condition": "minecraft:survives_explosion"
             }

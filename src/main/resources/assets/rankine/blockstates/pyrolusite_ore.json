@@ -21,6 +21,9 @@
         "type=18": {"model": "rankine:block/pyrolusite_ore18"},
         "type=19": {"model": "rankine:block/pyrolusite_ore19"},
         "type=20": {"model": "rankine:block/pyrolusite_ore20"},
-        "type=21": {"model": "rankine:block/pyrolusite_ore21"}
+        "type=21": {"model": "rankine:block/pyrolusite_ore21"},
+        "type=22": {"model": "rankine:block/pyrolusite_ore22"},
+        "type=23": {"model": "rankine:block/pyrolusite_ore23"},
+        "type=24": {"model": "rankine:block/pyrolusite_ore23"}
       }
     }

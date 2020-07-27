@@ -39,12 +39,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
     }
 
     public static enum RankineFillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
-        OVERWORLD_STONES("overworld_stones", (blockstate) -> {
+        OVERWORLD("overworld_stones", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.SHALE;
+                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.SHALE || block == ModBlocks.PERIDOTITE;
             }
         }),
         NO_SHALE("no_shale", (blockstate) -> {
@@ -52,110 +52,67 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE;
+                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.PERIDOTITE;
             }
         }),
-        OW_TOP_BASIC("ow_top_basic", (blockstate) -> {
+        NO_PERIDOTITE("no_peridotite", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.DIORITE || block == ModBlocks.ANDESITE || block == ModBlocks.LIMESTONE;
+                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.SHALE;
             }
         }),
-        OW_TOP_BASIC_B("ow_top_basic_b", (blockstate) -> {
+        NO_SP("no_per_shale", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.DIORITE || block == ModBlocks.ANDESITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT;
+                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.MARBLE;
             }
         }),
-        LIMESTONE("limestone", new BlockMatcher(ModBlocks.LIMESTONE)),
-        OW_TOP_NOSHALE("ow_top_noshale", (blockstate) -> {
+        NO_SMP("no_per_shale_marble", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.DIORITE || block == ModBlocks.ANDESITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.RHYOLITE;
+                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE;
             }
         }),
-        OW_IGNEOUS("ow_igneous", (blockstate) -> {
+        IGNEOUS("igneous", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.DIORITE || block == ModBlocks.ANDESITE || block == ModBlocks.BASALT || block == ModBlocks.RHYOLITE;
+                return block == ModBlocks.GRANITE || block == ModBlocks.ANDESITE || block == ModBlocks.DIORITE || block == ModBlocks.BASALT || block == ModBlocks.RHYOLITE;
             }
         }),
-        OW_MARBLE("ow_marble", (blockstate) -> {
+        MARBLE("marble", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.DIORITE || block == ModBlocks.ANDESITE || block == ModBlocks.BASALT || block == ModBlocks.RHYOLITE || block == ModBlocks.MARBLE;
+                return block == ModBlocks.MARBLE;
             }
         }),
-        OW_MARBLE_NOTOP("ow_marble_notop", (blockstate) -> {
+        PERIDOTITE("peridotite", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.RHYOLITE || block == ModBlocks.MARBLE;
+                return block == ModBlocks.PERIDOTITE;
             }
         }),
-        NATIVE_LOW("native", (blockstate) -> {
+        NETHER("nether", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.LIMESTONE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.SHALE || block == ModBlocks.RHYOLITE;
+                return block == Blocks.NETHERRACK || block == ModBlocks.PEROVSKITE || block == ModBlocks.RINGWOODITE || block == ModBlocks.BRIDGMANITE || block == ModBlocks.FERROPERICLASE || block == ModBlocks.WADSLEYITE;
             }
-        }),
-        NATIVE_HIGH("native_high", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block == ModBlocks.ANDESITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.DIORITE || block == ModBlocks.RHYOLITE;
-            }
-        }),
-        NATIVE_GOLD("gold", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block == ModBlocks.GRANITE || block == ModBlocks.DIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.ANDESITE || block == ModBlocks.LIMESTONE || block == ModBlocks.BASALT || block == ModBlocks.RHYOLITE || block == ModBlocks.SHALE;
-            }
-        }),
-        MARBLE_GNEISS("marble_gneiss", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block == ModBlocks.MARBLE || block == ModBlocks.GNEISS;
-            }
-        }),
-        MARBLE("marble", new BlockMatcher(ModBlocks.MARBLE)),
-        PERIDOTITE("peridotite", new BlockMatcher(ModBlocks.PERIDOTITE)),
-        PERIDOT_KOMA("peridot_koma", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block == ModBlocks.PERIDOTITE || block == ModBlocks.KOMATIITE;
-            }
-        }),
-        PERIDOT_WADS("peridot_wads", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block == ModBlocks.PERIDOTITE || block == ModBlocks.WADSLEYITE;
-            }
-        }),
-        KOMATIITE("komatiite", new BlockMatcher(ModBlocks.KOMATIITE)),
-        KIMBERLITE("kimberlite", new BlockMatcher(ModBlocks.KIMBERLITE));;
+        });;
+
+
 
         public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = IStringSerializable.createEnumCodec(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);
         /** maps the filler block type name to the corresponding enum value. */

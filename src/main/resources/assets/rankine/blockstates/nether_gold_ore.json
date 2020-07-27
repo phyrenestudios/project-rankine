@@ -1,0 +1,29 @@
+{
+      "variants": {
+        "type=0": {"model": "rankine:block/nether_gold_ore0"},
+        "type=1": {"model": "rankine:block/nether_gold_ore1"},
+        "type=2": {"model": "rankine:block/nether_gold_ore2"},
+        "type=3": {"model": "rankine:block/nether_gold_ore3"},
+        "type=4": {"model": "rankine:block/nether_gold_ore4"},
+        "type=5": {"model": "rankine:block/nether_gold_ore5"},
+        "type=6": {"model": "rankine:block/nether_gold_ore6"},
+        "type=7": {"model": "rankine:block/nether_gold_ore7"},
+        "type=8": {"model": "rankine:block/nether_gold_ore8"},
+        "type=9": {"model": "rankine:block/nether_gold_ore9"},
+        "type=10": {"model": "rankine:block/nether_gold_ore10"},
+        "type=11": {"model": "rankine:block/nether_gold_ore11"},
+        "type=12": {"model": "rankine:block/nether_gold_ore12"},
+        "type=13": {"model": "rankine:block/nether_gold_ore13"},
+        "type=14": {"model": "rankine:block/nether_gold_ore14"},
+        "type=15": {"model": "rankine:block/nether_gold_ore15"},
+        "type=16": {"model": "rankine:block/nether_gold_ore16"},
+        "type=17": {"model": "rankine:block/nether_gold_ore17"},
+        "type=18": {"model": "rankine:block/nether_gold_ore18"},
+        "type=19": {"model": "rankine:block/nether_gold_ore19"},
+        "type=20": {"model": "rankine:block/nether_gold_ore20"},
+        "type=21": {"model": "rankine:block/nether_gold_ore21"},
+        "type=22": {"model": "rankine:block/nether_gold_ore22"},
+        "type=23": {"model": "rankine:block/nether_gold_ore23"},
+        "type=24": {"model": "rankine:block/nether_gold_ore23"}
+      }
+    }

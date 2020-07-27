@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/shale",
+            "base": "rankine:block/diorite",
             "overlay": "rankine:block/columbite_ore",
-            "particle": "rankine:block/shale"
+            "particle": "rankine:block/diorite"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],
