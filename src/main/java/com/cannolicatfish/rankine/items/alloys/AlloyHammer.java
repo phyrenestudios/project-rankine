@@ -5,12 +5,17 @@ import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,92 +48,28 @@ public class AlloyHammer extends ItemHammer {
     private float wmodifier;
     private final AlloyUtils alloy;
     private final PeriodicTableUtils utils = new PeriodicTableUtils();
-    private float heat_resistance;
-    private float corr_resistance;
-    private float toughness;
     private final float attackDamage;
     private final float attackSpeedIn;
-    public AlloyHammer(IItemTier tier, int attackDamageIn, float attackSpeedIn, float corr_resistance, float heat_resistance, float toughness, AlloyUtils alloy, Properties builder) {
-        super(attackDamageIn, attackSpeedIn, tier, builder);
-        this.heat_resistance = heat_resistance;
-        this.toughness = toughness;
-        this.corr_resistance = corr_resistance;
+    private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
+    public AlloyHammer(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Properties properties) {
+        super(attackDamageIn, attackSpeedIn, tier, properties);
         this.alloy = alloy;
         this.attackSpeedIn = attackSpeedIn;
         this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
-                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-            });
-        }
-        if(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state))
-        {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                Item item;
-                int val;
-
-                if (getBlastModifier(stack) > 0)
-                {
-                    worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.25F + 0.25F*getBlastModifier(stack), Explosion.Mode.DESTROY);
-                    if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                        stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true) + 2*getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
-                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                        });
-                    }
-                }
-                if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f)
-                {
-                    if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] <= 1f)
-                    {
-                        item = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getKey().getItem();
-                        val = 1;
-                    } else
-                    {
-                        item = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getKey().getItem();
-                        val = Math.round(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0]) - 2 + Math.round(this.getTier().getHarvestLevel());
-                        if (val <= 1)
-                        {
-                            val = 1;
-                        }
-                    }
-                    ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(item,val));
-                    itementity.setDefaultPickupDelay();
-                    worldIn.addEntity(itementity);
-                    if (getAtomizeModifier(stack) == 0)
-                    {
-                        worldIn.removeBlock(pos,false);
-                    }
-                }
-                if (PistonCrusherRecipes.getInstance().getSecondaryResult(new ItemStack(state.getBlock())).getValue() > 0f && getAtomizeModifier(stack) == 1)
-                {
-                    item = PistonCrusherRecipes.getInstance().getSecondaryResult((new ItemStack(state.getBlock()))).getKey().getItem();
-                    if (random.nextFloat() <= PistonCrusherRecipes.getInstance().getSecondaryResult((new ItemStack(state.getBlock()))).getValue()) {
-                        ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(item, 1));
-                        itementity.setDefaultPickupDelay();
-                        worldIn.addEntity(itementity);
-
-                    }
-                    worldIn.removeBlock(pos, false);
-                }
-
-            }
-        }
-
-        return true;
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
     }
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
-            String comp = getComposition(stack).getCompound(0).get("comp").getString();
             return getDamage(stack) * 1f / this.getMaxDamage(stack);
         } else {
             return getDamage(stack) * 1f / this.getTier().getMaxUses();
@@ -147,37 +88,7 @@ public class AlloyHammer extends ItemHammer {
         }
     }
 
-    @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
-        {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
-            ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
-            ((ServerWorld)target.getEntityWorld()).addEntity(ent);
-        }
-        if (getDazeModifier(stack) != 0)
-        {
-            if (attacker instanceof PlayerEntity)
-            {
-                PlayerEntity player = (PlayerEntity) attacker;
-                if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
-                {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 2));
-                } else {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
-                }
-            } else {
-                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
-            }
-
-        }
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (p_220045_0_) -> {
-            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
-        return true;
-    }
-
-    public float getWearModifier(ItemStack stack)
+    public float getWearModifierMining(ItemStack stack)
     {
         float eff = getEfficiency(stack);
         float current_dur = this.getDamage(stack);
@@ -186,17 +97,25 @@ public class AlloyHammer extends ItemHammer {
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
+    public float getWearModifierDmg(ItemStack stack)
+    {
+        float dmg = getAttackDamage(stack);
+        float current_dur = this.getDamage(stack);
+        float max_dur = getMaxDamage(stack);
+        this.wmodifier = dmg * .25f;
+        return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
+    }
+
     public float getWearAsPercent(ItemStack stack)
     {
         float eff = getEfficiency(stack);
-        float wear_mod = getWearModifier(stack);
+        float wear_mod = getWearModifierDmg(stack);
         return (eff - wear_mod)/eff * 100;
     }
 
     public float getMaxWearPercent(ItemStack stack)
     {
         float eff = getEfficiency(stack);
-        float wear_mod = getWearModifier(stack);
         return (eff - wmodifier)/eff * 100;
     }
 
@@ -218,7 +137,7 @@ public class AlloyHammer extends ItemHammer {
             return utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus();
         } else
         {
-            return this.corr_resistance;
+            return alloy.getCorrResistBonus();
         }
 
     }
@@ -229,10 +148,10 @@ public class AlloyHammer extends ItemHammer {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.heat_resistance + utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
+            return utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
         } else
         {
-            return this.heat_resistance;
+            return alloy.getHeatResistBonus();
         }
     }
 
@@ -241,10 +160,10 @@ public class AlloyHammer extends ItemHammer {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.toughness + utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
+            return utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
         } else
         {
-            return this.toughness;
+            return alloy.getToughnessBonus();
         }
     }
 
@@ -289,17 +208,17 @@ public class AlloyHammer extends ItemHammer {
 
     public TextFormatting getWearColor(ItemStack stack)
     {
-        float maxw = getMaxWearPercent(stack);
-        if (getWearAsPercent(stack) >= 80f)
+        float maxWear = getMaxWearPercent(stack);
+        if (maxWear >= 80f)
         {
             return TextFormatting.AQUA;
-        } else if (getWearAsPercent(stack) >= 60f)
+        } else if (maxWear >= 60f)
         {
             return TextFormatting.GREEN;
-        } else if (getWearAsPercent(stack) >= 40f)
+        } else if (maxWear >= 40f)
         {
             return TextFormatting.YELLOW;
-        } else if (getWearAsPercent(stack) >= 20f)
+        } else if (maxWear >= 20f)
         {
             return TextFormatting.RED;
         } else{
@@ -354,7 +273,7 @@ public class AlloyHammer extends ItemHammer {
         }
         tooltip.add((new StringTextComponent("" )));
         tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));
-        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWearModifier(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
+        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWearModifierDmg(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
         tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((4 + getAttackSpeed(stack)))) + " Attack Speed").func_240701_a_(TextFormatting.DARK_GREEN)));
 
     }
@@ -445,5 +364,113 @@ public class AlloyHammer extends ItemHammer {
 
             items.add(stack);
         }
+    }
+
+
+    private void replaceModifier(double multiplier)
+    {
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", Math.max((double)this.attackDamage - multiplier,1), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
+                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            });
+        }
+        if(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state))
+        {
+            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
+                float f = 0.5F;
+                double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                Item item;
+                int val;
+
+                if (getBlastModifier(stack) > 0)
+                {
+                    worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.25F + 0.25F*getBlastModifier(stack), Explosion.Mode.DESTROY);
+                    if (state.getBlockHardness(worldIn, pos) != 0.0F) {
+                        stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true) + 2*getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
+                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        });
+                    }
+                }
+                replaceModifier(getWearModifierDmg(stack));
+                if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f)
+                {
+                    if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] <= 1f)
+                    {
+                        item = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getKey().getItem();
+                        val = 1;
+                    } else
+                    {
+                        item = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getKey().getItem();
+                        val = Math.round(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0]) - 2 + Math.round(this.getTier().getHarvestLevel());
+                        if (val <= 1)
+                        {
+                            val = 1;
+                        }
+                    }
+                    ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(item,val));
+                    itementity.setDefaultPickupDelay();
+                    worldIn.addEntity(itementity);
+                    if (getAtomizeModifier(stack) == 0)
+                    {
+                        worldIn.removeBlock(pos,false);
+                    }
+                }
+                if (PistonCrusherRecipes.getInstance().getSecondaryResult(new ItemStack(state.getBlock())).getValue() > 0f && getAtomizeModifier(stack) == 1)
+                {
+                    item = PistonCrusherRecipes.getInstance().getSecondaryResult((new ItemStack(state.getBlock()))).getKey().getItem();
+                    if (random.nextFloat() <= PistonCrusherRecipes.getInstance().getSecondaryResult((new ItemStack(state.getBlock()))).getValue()) {
+                        ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(item, 1));
+                        itementity.setDefaultPickupDelay();
+                        worldIn.addEntity(itementity);
+
+                    }
+                    worldIn.removeBlock(pos, false);
+                }
+
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
+        {
+            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
+            ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            ((ServerWorld)target.getEntityWorld()).addEntity(ent);
+        }
+        if (getDazeModifier(stack) != 0)
+        {
+            if (attacker instanceof PlayerEntity)
+            {
+                PlayerEntity player = (PlayerEntity) attacker;
+                if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
+                {
+                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 2));
+                } else {
+                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+                }
+            } else {
+                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+            }
+
+        }
+        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (p_220045_0_) -> {
+            p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
+        replaceModifier(getWearModifierDmg(stack));
+        return true;
     }
 }

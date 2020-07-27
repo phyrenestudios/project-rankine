@@ -50,31 +50,7 @@ public class SpearEntityRenderer extends EntityRenderer<SpearEntity> {
 
     @Override
     public ResourceLocation getEntityTexture(SpearEntity entity) {
-        switch (entity.type)
-        {
-            case 0:
-                return FLINT_SPEAR;
-            case 1:
-                return BRONZE_SPEAR;
-            case 2:
-                return IRON_SPEAR;
-            case 3:
-                return STEEL_SPEAR;
-            case 4:
-                return ROSE_GOLD_SPEAR;
-            case 5:
-                return WHITE_GOLD_SPEAR;
-            case 6:
-                return GREEN_GOLD_SPEAR;
-            case 7:
-                return BLUE_GOLD_SPEAR;
-            case 8:
-                return PURPLE_GOLD_SPEAR;
-            case 9:
-                return AMALGAM_SPEAR;
-            default:
-                return IRON_SPEAR;
-        }
+        return entity.type;
 
     }
 }

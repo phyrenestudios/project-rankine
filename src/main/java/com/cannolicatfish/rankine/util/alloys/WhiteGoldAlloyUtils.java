@@ -42,12 +42,17 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getCorrResistBonus() {
-        return 0;
+        return 0.1f;
     }
 
     @Override
     public float getHeatResistBonus() {
-        return 0;
+        return 0.3f;
+    }
+
+    @Override
+    public float getToughnessBonus() {
+        return 0.2f;
     }
 
     @Override

@@ -1,21 +1,14 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.entities.ModEntityTypes;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.ModEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import java.util.UUID;
 
 public class ReactiveItemEntity extends ItemEntity {
 

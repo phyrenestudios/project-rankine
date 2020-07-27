@@ -3,6 +3,8 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +14,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -41,25 +46,28 @@ public class AlloyAxe extends AxeItem {
     private float wmodifier;
     private final AlloyUtils alloy;
     private final PeriodicTableUtils utils = new PeriodicTableUtils();
-    private float heat_resistance;
-    private float corr_resistance;
-    private float toughness;
     private final float attackDamage;
     private final float attackSpeedIn;
-    public AlloyAxe(IItemTier tier, float attackDamageIn, float attackSpeedIn, float corr_resistance, float heat_resistance, float toughness, AlloyUtils alloy, Properties builder) {
-        super(tier, attackDamageIn, attackSpeedIn, builder);
-        this.heat_resistance = heat_resistance;
-        this.toughness = toughness;
-        this.corr_resistance = corr_resistance;
+    private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
+    public AlloyAxe(IItemTier tier, float attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Properties properties) {
+        super(tier, attackDamageIn, attackSpeedIn, properties);
         this.alloy = alloy;
         this.attackSpeedIn = attackSpeedIn;
         this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
+    }
+
+    @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
+        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
     }
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
-            String comp = getComposition(stack).getCompound(0).get("comp").getString();
             return getDamage(stack) * 1f / this.getMaxDamage(stack);
         } else {
             return getDamage(stack) * 1f / this.getTier().getMaxUses();
@@ -78,48 +86,7 @@ public class AlloyAxe extends AxeItem {
         }
     }
 
-    @Override
-    public float getDestroySpeed(ItemStack stack, BlockState state) {
-        Material material = state.getMaterial();
-        float efficiency = getEfficiency(stack);
-        float wear_modifier = getWearModifier(stack);
-        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return (efficiency - wear_modifier);
-        return !field_234662_c_.contains(material) ? (1.0f - wear_modifier) : (efficiency - wear_modifier);
-    }
-
-    @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        BlockState blockstate = world.getBlockState(blockpos);
-        Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
-        if (block != null) {
-            PlayerEntity playerentity = context.getPlayer();
-            world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            if (!world.isRemote) {
-                world.setBlockState(blockpos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
-                if (playerentity != null) {
-                    context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
-                        p_220040_1_.sendBreakAnimation(context.getHand());
-                    });
-                }
-            }
-
-            return ActionResultType.func_233537_a_(world.isRemote);
-        } else {
-            return ActionResultType.PASS;
-        }
-    }
-
-    @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,false), attacker, (p_220039_0_) -> {
-            p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
-        return true;
-    }
-
-    public float getWearModifier(ItemStack stack)
+    public float getWearModifierMining(ItemStack stack)
     {
         float eff = getEfficiency(stack);
         float current_dur = this.getDamage(stack);
@@ -128,17 +95,25 @@ public class AlloyAxe extends AxeItem {
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
+    public float getWearModifierDmg(ItemStack stack)
+    {
+        float dmg = getAttackDamage(stack);
+        float current_dur = this.getDamage(stack);
+        float max_dur = getMaxDamage(stack);
+        this.wmodifier = dmg * .25f;
+        return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
+    }
+
     public float getWearAsPercent(ItemStack stack)
     {
         float eff = getEfficiency(stack);
-        float wear_mod = getWearModifier(stack);
+        float wear_mod = getWearModifierMining(stack);
         return (eff - wear_mod)/eff * 100;
     }
 
     public float getMaxWearPercent(ItemStack stack)
     {
         float eff = getEfficiency(stack);
-        float wear_mod = getWearModifier(stack);
         return (eff - wmodifier)/eff * 100;
     }
 
@@ -160,7 +135,7 @@ public class AlloyAxe extends AxeItem {
             return utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus();
         } else
         {
-            return this.corr_resistance;
+            return alloy.getCorrResistBonus();
         }
 
     }
@@ -171,10 +146,10 @@ public class AlloyAxe extends AxeItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.heat_resistance + utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
+            return utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
         } else
         {
-            return this.heat_resistance;
+            return alloy.getHeatResistBonus();
         }
     }
 
@@ -183,10 +158,10 @@ public class AlloyAxe extends AxeItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.toughness + utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
+            return utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
         } else
         {
-            return this.toughness;
+            return alloy.getToughnessBonus();
         }
     }
 
@@ -231,17 +206,17 @@ public class AlloyAxe extends AxeItem {
 
     public TextFormatting getWearColor(ItemStack stack)
     {
-        float maxw = getMaxWearPercent(stack);
-        if (getWearAsPercent(stack) >= 80f)
+        float maxWear = getMaxWearPercent(stack);
+        if (maxWear >= 80f)
         {
             return TextFormatting.AQUA;
-        } else if (getWearAsPercent(stack) >= 60f)
+        } else if (maxWear >= 60f)
         {
             return TextFormatting.GREEN;
-        } else if (getWearAsPercent(stack) >= 40f)
+        } else if (maxWear >= 40f)
         {
             return TextFormatting.YELLOW;
-        } else if (getWearAsPercent(stack) >= 20f)
+        } else if (maxWear >= 20f)
         {
             return TextFormatting.RED;
         } else{
@@ -387,5 +362,68 @@ public class AlloyAxe extends AxeItem {
 
             items.add(stack);
         }
+    }
+
+
+    private void replaceModifier(double multiplier)
+    {
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", Math.max((double)this.attackDamage - multiplier,1), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
+    }
+
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        Material material = state.getMaterial();
+        float efficiency = getEfficiency(stack);
+        float wear_modifier = getWearModifierMining(stack);
+        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return (efficiency - wear_modifier);
+        return !field_234662_c_.contains(material) ? (1.0f - wear_modifier) : (efficiency - wear_modifier);
+    }
+
+    @Override
+    public ActionResultType onItemUse(ItemUseContext context) {
+        World world = context.getWorld();
+        BlockPos blockpos = context.getPos();
+        BlockState blockstate = world.getBlockState(blockpos);
+        Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
+        if (block != null) {
+            PlayerEntity playerentity = context.getPlayer();
+            world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if (!world.isRemote) {
+                world.setBlockState(blockpos, block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
+                if (playerentity != null) {
+                    context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
+                        p_220040_1_.sendBreakAnimation(context.getHand());
+                    });
+                }
+            }
+
+            return ActionResultType.func_233537_a_(world.isRemote);
+        } else {
+            return ActionResultType.PASS;
+        }
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,false), attacker, (p_220039_0_) -> {
+            p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
+                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            });
+            replaceModifier(getWearModifierDmg(stack));
+        }
+
+        return true;
     }
 }

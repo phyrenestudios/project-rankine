@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.entities;
 
+import com.cannolicatfish.rankine.init.ModEntityTypes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;

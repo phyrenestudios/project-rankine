@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.entities;
 
+import com.cannolicatfish.rankine.init.ModEntityTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
