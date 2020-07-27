@@ -6,6 +6,8 @@ import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -20,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -29,6 +32,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -37,27 +41,21 @@ public class AlloySword extends SwordItem {
     private float wmodifier;
     private final AlloyUtils alloy;
     private final PeriodicTableUtils utils = new PeriodicTableUtils();
-    private float heat_resistance;
-    private float corr_resistance;
-    private float toughness;
     private float efficiency;
     private final float attackDamage;
     private final float attackSpeedIn;
     private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
 
-    public AlloySword(IItemTier tier, int attackDamageIn, float attackSpeedIn, float corr_resistance, float heat_resistance, float toughness, AlloyUtils alloy, Properties properties) {
+    public AlloySword(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Properties properties) {
         super(tier, attackDamageIn, attackSpeedIn, properties);
         this.attackSpeedIn = attackSpeedIn;
         this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
-        this.attributeModifiers = builder.build();
-        this.heat_resistance = heat_resistance;
         this.efficiency = tier.getEfficiency();
-        this.toughness = toughness;
-        this.corr_resistance = corr_resistance;
         this.alloy = alloy;
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
     }
 
     @Override
@@ -68,7 +66,6 @@ public class AlloySword extends SwordItem {
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
-            String comp = getComposition(stack).getCompound(0).get("comp").getString();
             return getDamage(stack) * 1f / this.getMaxDamage(stack);
         } else {
             return getDamage(stack) * 1f / this.getTier().getMaxUses();
@@ -87,8 +84,16 @@ public class AlloySword extends SwordItem {
         }
     }
 
+    public float getWearModifierMining(ItemStack stack)
+    {
+        float eff = getEfficiency(stack);
+        float current_dur = this.getDamage(stack);
+        float max_dur = getMaxDamage(stack);
+        float wmodifier = eff * .25f;
+        return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
+    }
 
-    public float getWearModifier(ItemStack stack)
+    public float getWearModifierDmg(ItemStack stack)
     {
         float dmg = getAttackDamage(stack);
         float current_dur = this.getDamage(stack);
@@ -100,14 +105,13 @@ public class AlloySword extends SwordItem {
     public float getWearAsPercent(ItemStack stack)
     {
         float dmg = getAttackDamage(stack);
-        float wear_mod = getWearModifier(stack);
+        float wear_mod = getWearModifierDmg(stack);
         return (dmg - wear_mod)/dmg * 100;
     }
 
     public float getMaxWearPercent(ItemStack stack)
     {
         float dmg = getAttackDamage(stack);
-        float wear_mod = getWearModifier(stack);
         return (dmg - wmodifier)/dmg * 100;
     }
 
@@ -129,20 +133,21 @@ public class AlloySword extends SwordItem {
             return utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus();
         } else
         {
-            return this.corr_resistance;
+            return alloy.getCorrResistBonus();
         }
 
     }
+
 
     public float getHeatResist(ItemStack stack)
     {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.heat_resistance + utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
+            return utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
         } else
         {
-            return this.heat_resistance;
+            return alloy.getHeatResistBonus();
         }
     }
 
@@ -151,10 +156,10 @@ public class AlloySword extends SwordItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.toughness + utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
+            return utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
         } else
         {
-            return this.toughness;
+            return alloy.getToughnessBonus();
         }
     }
 
@@ -199,17 +204,17 @@ public class AlloySword extends SwordItem {
 
     public TextFormatting getWearColor(ItemStack stack)
     {
-        float maxw = getMaxWearPercent(stack);
-        if (getWearAsPercent(stack) >= 80f)
+        float maxWear = getMaxWearPercent(stack);
+        if (maxWear >= 80f)
         {
             return TextFormatting.AQUA;
-        } else if (getWearAsPercent(stack) >= 60f)
+        } else if (maxWear >= 60f)
         {
             return TextFormatting.GREEN;
-        } else if (getWearAsPercent(stack) >= 40f)
+        } else if (maxWear >= 40f)
         {
             return TextFormatting.YELLOW;
-        } else if (getWearAsPercent(stack) >= 20f)
+        } else if (maxWear >= 20f)
         {
             return TextFormatting.RED;
         } else{
@@ -264,7 +269,7 @@ public class AlloySword extends SwordItem {
         }
         tooltip.add((new StringTextComponent("" )));
         tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));
-        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWearModifier(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
+        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWearModifierDmg(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
         tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((4 + getAttackSpeed(stack)))) + " Attack Speed").func_240701_a_(TextFormatting.DARK_GREEN)));
 
     }
@@ -358,12 +363,20 @@ public class AlloySword extends SwordItem {
         }
     }
 
+    private void replaceModifier(double multiplier)
+    {
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", Math.max((double)this.attackDamage - multiplier,1), AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
+    }
+
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (p_220039_0_) -> {
             p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
-        replaceModifier(getWearModifier(stack));
+        replaceModifier(getWearModifierDmg(stack));
         return true;
     }
 
@@ -372,18 +385,20 @@ public class AlloySword extends SwordItem {
         stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (p_220039_0_) -> {
             p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
-        replaceModifier(getWearModifier(stack));
+        replaceModifier(getWearModifierDmg(stack));
         return true;
     }
 
-    private void replaceModifier(double multiplier)
-    {
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage - multiplier, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
-        this.attributeModifiers = builder.build();
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        float wear_modifier = getWearModifierMining(stack);
+        if (state.isIn(Blocks.COBWEB)) {
+            return (15.0f - wear_modifier);
+        } else {
+            Material material = state.getMaterial();
+            return material != Material.PLANTS && material != Material.TALL_PLANTS && material != Material.CORAL && !state.isIn(BlockTags.LEAVES) && material != Material.GOURD ? (1.0f - wear_modifier) : (1.5f - wear_modifier);
+        }
     }
-
 
 
 }

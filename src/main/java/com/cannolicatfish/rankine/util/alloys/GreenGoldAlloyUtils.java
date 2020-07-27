@@ -38,12 +38,17 @@ public class GreenGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getCorrResistBonus() {
-        return 0;
+        return 0.25f;
     }
 
     @Override
     public float getHeatResistBonus() {
-        return 0;
+        return 0.45f;
+    }
+
+    @Override
+    public float getToughnessBonus() {
+        return 0.15f;
     }
 
     @Override

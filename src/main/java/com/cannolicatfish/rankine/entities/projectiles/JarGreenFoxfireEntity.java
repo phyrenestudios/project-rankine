@@ -1,10 +1,9 @@
 package com.cannolicatfish.rankine.entities.projectiles;
 
-import com.cannolicatfish.rankine.entities.ModEntityTypes;
+import com.cannolicatfish.rankine.init.ModEntityTypes;
 import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.TNTEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

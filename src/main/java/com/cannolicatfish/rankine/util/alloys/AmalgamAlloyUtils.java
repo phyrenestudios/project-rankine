@@ -43,6 +43,11 @@ public class AmalgamAlloyUtils implements AlloyUtils {
     }
 
     @Override
+    public float getToughnessBonus() {
+        return 0.95f;
+    }
+
+    @Override
     public Enchantment getEnchantmentBonus(Item item) {
         return null;
     }

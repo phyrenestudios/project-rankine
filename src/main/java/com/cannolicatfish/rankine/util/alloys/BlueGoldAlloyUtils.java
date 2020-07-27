@@ -44,7 +44,12 @@ public class BlueGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getHeatResistBonus() {
-        return 0;
+        return 0.2f;
+    }
+
+    @Override
+    public float getToughnessBonus() {
+        return 0.05f;
     }
 
     @Override

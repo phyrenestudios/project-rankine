@@ -1,16 +1,12 @@
 package com.cannolicatfish.rankine.world.biome;
 
-import com.cannolicatfish.rankine.entities.ModEntityTypes;
-import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
+import com.cannolicatfish.rankine.init.ModEntityTypes;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.SeaGrassConfig;
-import net.minecraft.world.gen.feature.structure.MineshaftConfig;
-import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;

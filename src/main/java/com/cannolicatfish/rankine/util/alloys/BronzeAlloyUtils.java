@@ -41,7 +41,12 @@ public final class BronzeAlloyUtils implements AlloyUtils {
 
     @Override
     public float getHeatResistBonus() {
-        return 0;
+        return 0.25f;
+    }
+
+    @Override
+    public float getToughnessBonus() {
+        return 0.05f;
     }
 
     @Override

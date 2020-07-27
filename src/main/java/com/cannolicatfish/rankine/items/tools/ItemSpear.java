@@ -1,15 +1,14 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.entities.ModEntityTypes;
 import com.cannolicatfish.rankine.entities.SpearEntity;
 import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -28,15 +27,17 @@ import net.minecraft.world.World;
 
 public class ItemSpear extends Item {
     private final float attackDamage;
-    private final float attackSpeed;
-    public int type;
+    private final float attackSpeedIn;
+    public ResourceLocation type;
+    public EntityType<SpearEntity> entity;
     private IItemTier tier;
     private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
-    public ItemSpear(IItemTier tier, float attackDamageIn, float attackSpeedIn, int type, Properties properties) {
+    public ItemSpear(IItemTier tier, float attackDamageIn, float attackSpeedIn, EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
         super(properties.defaultMaxDamage(tier.getMaxUses()));
-        this.attackSpeed = attackSpeedIn;
+        this.attackSpeedIn = attackSpeedIn;
         this.attackDamage = (float) attackDamageIn + tier.getAttackDamage();
         this.type = type;
+        this.entity = entity;
         this.tier = tier;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
@@ -94,21 +95,7 @@ public class ItemSpear extends Item {
                         });
                         if (j == 0) {
                             SpearEntity spearentity;
-                            if (this.type == 0)
-                            {
-                                 spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.FLINT_SPEAR, 0, this.attackDamage);
-                            }
-                            else if (this.type == 1)
-                            {
-                                spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.BRONZE_SPEAR, 1, this.attackDamage);
-                            }
-                            else if (this.type == 2)
-                            {
-                                spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.IRON_SPEAR, 2, this.attackDamage);
-                            } else
-                            {
-                                spearentity = new SpearEntity(worldIn, playerentity, stack, ModEntityTypes.STEEL_SPEAR, 3, this.attackDamage);
-                            }
+                            spearentity = new SpearEntity(worldIn, playerentity, stack, entity, type, this.attackDamage);
                             spearentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
                             if (playerentity.abilities.isCreativeMode) {
                                 spearentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;

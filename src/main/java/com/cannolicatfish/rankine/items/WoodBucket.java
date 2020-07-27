@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -46,6 +47,12 @@ public class WoodBucket extends BucketItem {
 
     @Override
     protected ItemStack emptyBucket(ItemStack p_203790_1_, PlayerEntity p_203790_2_) {
+        if (random.nextFloat() < 0.1f && !p_203790_2_.abilities.isCreativeMode)
+        {
+            p_203790_2_.playSound(SoundEvents.ENTITY_ITEM_BREAK,1f,1f);
+            p_203790_2_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            return ItemStack.EMPTY;
+        }
         return !p_203790_2_.abilities.isCreativeMode ? new ItemStack(ModItems.WOOD_BUCKET) : p_203790_1_;
     }
 

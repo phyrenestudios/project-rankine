@@ -15,10 +15,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.IndirectEntityDamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
@@ -34,7 +31,7 @@ import javax.annotation.Nullable;
 public class SpearEntity extends AbstractArrowEntity {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(SpearEntity.class, DataSerializers.BYTE);
     private ItemStack thrownStack = new ItemStack(ModItems.BRONZE_SPEAR);
-    public int type;
+    public ResourceLocation type;
     private boolean dealtDamage;
     private float attackDamage;
     public int returningTicks;
@@ -43,7 +40,7 @@ public class SpearEntity extends AbstractArrowEntity {
         super(type, worldIn);
     }
 
-    public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, int type, float damage) {
+    public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, ResourceLocation type, float damage) {
         super(e, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
@@ -57,7 +54,7 @@ public class SpearEntity extends AbstractArrowEntity {
         super(e, x, y, z, worldIn);
     }
     @OnlyIn(Dist.CLIENT)
-    public SpearEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world, EntityType<SpearEntity> e, int type) {
+    public SpearEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world, EntityType<SpearEntity> e, ResourceLocation type) {
         super(e, world);
         this.type = type;
     }
