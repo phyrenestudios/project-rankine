@@ -245,15 +245,6 @@ public class ProjectRankine {
             event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
             event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
         }
-        
-        @SubscribeEvent
-        public static void onRegisterFeatures(final RegistryEvent.Register<Feature<?>> event)
-        {
-            //registers the structures/features.
-            //If you don't do this, you'll crash.
-            //RankineFeatures.registerFeatures(event);
-  //          LOGGER.log(Level.INFO, "features/structures registered.");
-        }
     }
 
 
