@@ -86,7 +86,7 @@ public class RankineBiomeFeatures {
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LEAVES.getDefaultState()),
             new AcaciaFoliagePlacer(2, 0, 0, 0),
-            new ForkyTrunkPlacer(3, 2, 2),
+            new ForkyTrunkPlacer(2, 0, 0),
             new TwoLayerFeature(1, 0, 2)))
             .func_236700_a_()
             .build();
@@ -110,7 +110,6 @@ public class RankineBiomeFeatures {
             .func_236703_a_(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
             .build();
 
-
     //OTHER TREE CONFIGS
     public static final BaseTreeFeatureConfig DEAD_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
@@ -133,16 +132,6 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
             new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()), new BlobFoliagePlacer(2, 0, 0, 0, 3),
             new StraightTrunkPlacer(5, 2, 0), new TwoLayerFeature(1, 0, 1))).func_236700_a_().build();
-/*
-
-    public static final BaseTreeFeatureConfig LARGE_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LEAVES.getDefaultState())))
-            .baseHeight(13).heightInterval(15).crownHeight(13)
-            .decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))
-            .setSapling((IPlantable) ModBlocks.EASTERN_HEMLOCK_SAPLING).build();
-*/
-
 
 
 
