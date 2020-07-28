@@ -412,4 +412,8 @@ public class AlloyPickaxe extends PickaxeItem {
 
         return true;
     }
+
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

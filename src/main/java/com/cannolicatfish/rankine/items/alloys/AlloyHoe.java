@@ -425,4 +425,8 @@ public class AlloyHoe extends HoeItem {
 
         return true;
     }
+
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

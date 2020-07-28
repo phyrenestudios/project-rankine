@@ -521,7 +521,9 @@ public class ModBlocks {
     public static final Block JUNIPER_TRAPDOOR = add("juniper_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block COCONUT_PALM_TRAPDOOR = add("coconut_palm_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block BALSAM_FIR_TRAPDOOR = add("balsam_fir_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
+    public static final Block EASTERN_HEMLOCK_TRAPDOOR = add("eastern_hemlock_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block MAGNOLIA_TRAPDOOR = add("magnolia_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
+    public static final Block BAMBOO_TRAPDOOR = add("bamboo_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
 
     public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), BLOCKS, 800);
 
@@ -601,10 +603,10 @@ public class ModBlocks {
     public static final RankineOre CINNABAR_ORE = add("cinnabar_ore", new RankineOre(DEF_ORE.harvestLevel(1), Items.REDSTONE), METALLURGY);
     public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final Block METEORITE = add("meteorite", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
-    public static final Block METEORITE1 = add("meteorite1", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
-    public static final Block METEORITE2 = add("meteorite2", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
-    public static final Block METEORITE3 = add("meteorite3", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
-    public static final Block METEORITE4 = add("meteorite4", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block KAMACITE = add("kamacite", new CompositionBlock(0,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block ANTITAENITE = add("antitaenite", new CompositionBlock(1,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
     //metal blocks
     public static final Block ROSE_GOLD_BLOCK = add("rose_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block WHITE_GOLD_BLOCK = add("white_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);

@@ -400,5 +400,7 @@ public class AlloySword extends SwordItem {
         }
     }
 
-
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

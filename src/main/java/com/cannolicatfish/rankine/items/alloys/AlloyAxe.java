@@ -427,4 +427,8 @@ public class AlloyAxe extends AxeItem {
 
         return true;
     }
+
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

@@ -5,4 +5,14 @@ public class SteelAlloyUtils implements AlloyUtils{
     public String getDefComposition() {
         return "98Fe-2C";
     }
+
+    @Override
+    public int getDurabilityBonus() {
+        return 500;
+    }
+
+    @Override
+    public int getMiningLevelBonus(){
+        return 1;
+    }
 }

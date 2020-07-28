@@ -83,6 +83,10 @@ public class RankineBoatEntity extends BoatEntity {
                 return ModItems.BALSAM_FIR_BOAT;
             case MAGNOLIA:
                 return ModItems.MAGNOLIA_BOAT;
+            case HEMLOCK:
+                return ModItems.HEMLOCK_BOAT;
+            case BAMBOO:
+                return ModItems.BAMBOO_BOAT;
         }
     }
 
@@ -107,7 +111,9 @@ public class RankineBoatEntity extends BoatEntity {
         PINYON_PINE(ModBlocks.PINYON_PINE_PLANKS, "pinyon_pine"),
         JUNIPER(ModBlocks.JUNIPER_PLANKS, "juniper"),
         BALSAM_FIR(ModBlocks.BALSAM_FIR_PLANKS, "balsam_fir"),
-        MAGNOLIA(ModBlocks.MAGNOLIA_PLANKS, "magnolia");
+        MAGNOLIA(ModBlocks.MAGNOLIA_PLANKS, "magnolia"),
+        HEMLOCK(ModBlocks.EASTERN_HEMLOCK_PLANKS, "hemlock"),
+        BAMBOO(ModBlocks.BAMBOO_PLANKS, "bamboo");
 
 
         private final String name;

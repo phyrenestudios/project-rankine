@@ -217,7 +217,7 @@ public class ModItems {
     public static final AlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRASS_ALLOY = add("brass_alloy", new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem NICHROME_ALLOY = add("nichrome_alloy", new AlloyItem("80Ni-20Cr",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item STEEL_ALLOY = add("steel_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item STEEL_ALLOY = add("steel_alloy", new AlloyItem("98Fe-2C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem STAINLESS_STEEL_ALLOY = add("stainless_steel_alloy", new AlloyItem(new StainlessSteelAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SOLDER_ALLOY = add("solder_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ALNICO_ALLOY = add("alnico_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -309,13 +309,13 @@ public class ModItems {
     public static final Item  METEORIC_IRON_HOE = add("meteoric_iron_hoe", new AlloyHoe(RankineToolMaterials.METEORIC_IRON, -2, -1.0F, new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  METEORIC_IRON_SPEAR = add("meteoric_iron_spear", new AlloySpear(RankineToolMaterials.METEORIC_IRON,2, -2.9F, new MeteoricIronAlloyUtils(),ModEntityTypes.METEORIC_IRON_SPEAR,new ResourceLocation("rankine:textures/entity/meteoric_iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item  STEEL_SWORD = add("steel_sword", new SwordItem(RankineToolMaterials.STEEL, 3, -2.4F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_SHOVEL = add("steel_shovel", new ShovelItem(RankineToolMaterials.STEEL, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new PickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_AXE = add("steel_axe", new AxeItem(RankineToolMaterials.STEEL, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_HAMMER = add("steel_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.STEEL, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_HOE = add("steel_hoe", new HoeItem(RankineToolMaterials.STEEL, -3,0.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  STEEL_SPEAR = add("steel_spear", new ItemSpear(RankineToolMaterials.STEEL, 2, -2.9F, ModEntityTypes.STEEL_SPEAR,new ResourceLocation("rankine:textures/entity/steel_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_SWORD = add("steel_sword", new AlloySword(RankineToolMaterials.STEEL, 3, -2.4F, new SteelAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_SHOVEL = add("steel_shovel", new AlloyShovel(RankineToolMaterials.STEEL, 1.5F, -3.0F, new SteelAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_PICKAXE = add("steel_pickaxe", new AlloyPickaxe(RankineToolMaterials.STEEL, 1, -2.8F, new SteelAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_AXE = add("steel_axe", new AlloyAxe(RankineToolMaterials.STEEL, 4.0F, -3.2F, new SteelAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_HAMMER = add("steel_hammer", new AlloyHammer(RankineToolMaterials.STEEL,2, -3.2F,  new SteelAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_HOE = add("steel_hoe", new AlloyHoe(RankineToolMaterials.STEEL, -3,0.0F, new SteelAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  STEEL_SPEAR = add("steel_spear", new AlloySpear(RankineToolMaterials.STEEL, 2, -2.9F, new SteelAlloyUtils(),ModEntityTypes.STEEL_SPEAR,new ResourceLocation("rankine:textures/entity/steel_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     //GOLD TOOLS
     public static final Item  ROSE_GOLD_SWORD = add("rose_gold_sword", new AlloySword(RankineToolMaterials.ROSE_GOLD,3, -2.4F, new RoseGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -409,12 +409,14 @@ public class ModItems {
     public static final Item  AXE_TEMPLATE = add("axe_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  HAMMER_TEMPLATE = add("hammer_template", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item CEDAR_BOAT = add("cedar_boat", new RankineBoatItem(RankineBoatEntity.Type.CEDAR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item COCONUT_PALM_BOAT = add("coconut_palm_boat", new RankineBoatItem(RankineBoatEntity.Type.COCONUT_PALM, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item PINYON_PINE_BOAT = add("pinyon_pine_boat", new RankineBoatItem(RankineBoatEntity.Type.PINYON_PINE, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item JUNIPER_BOAT = add("juniper_boat", new RankineBoatItem(RankineBoatEntity.Type.JUNIPER, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item BALSAM_FIR_BOAT = add("balsam_fir_boat", new RankineBoatItem(RankineBoatEntity.Type.BALSAM_FIR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item MAGNOLIA_BOAT = add("magnolia_boat", new RankineBoatItem(RankineBoatEntity.Type.MAGNOLIA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  CEDAR_BOAT = add("cedar_boat", new RankineBoatItem(RankineBoatEntity.Type.CEDAR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  COCONUT_PALM_BOAT = add("coconut_palm_boat", new RankineBoatItem(RankineBoatEntity.Type.COCONUT_PALM, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PINYON_PINE_BOAT = add("pinyon_pine_boat", new RankineBoatItem(RankineBoatEntity.Type.PINYON_PINE, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  JUNIPER_BOAT = add("juniper_boat", new RankineBoatItem(RankineBoatEntity.Type.JUNIPER, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BALSAM_FIR_BOAT = add("balsam_fir_boat", new RankineBoatItem(RankineBoatEntity.Type.BALSAM_FIR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  MAGNOLIA_BOAT = add("magnolia_boat", new RankineBoatItem(RankineBoatEntity.Type.MAGNOLIA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  HEMLOCK_BOAT = add("eastern_hemlock_boat", new RankineBoatItem(RankineBoatEntity.Type.HEMLOCK, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BAMBOO_BOAT = add("bamboo_boat", new RankineBoatItem(RankineBoatEntity.Type.BAMBOO, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final Item MANTLE_GOLEM = add("mantle_golem_egg", new SpawnEggItem(ModEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item DIAMOND_MANTLE_GOLEM = add("diamond_mantle_golem_egg", new SpawnEggItem(ModEntityTypes.DIAMOND_MANTLE_GOLEM, 0x435184,0xA1FBE8,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
