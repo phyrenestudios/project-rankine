@@ -26,12 +26,12 @@
         ]
       }
     },
-    "get_iron_oxide": {
+    "get_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:iron_oxide"
+            "item": "rankine:meteoric_iron"
           }
         ]
       }
@@ -40,7 +40,7 @@
   "requirements": [
     [
       "get_meteorite",
-      "get_iron_oxide"
+      "get_iron"
     ]
   ]
 }

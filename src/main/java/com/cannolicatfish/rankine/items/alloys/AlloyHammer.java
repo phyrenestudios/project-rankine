@@ -474,4 +474,8 @@ public class AlloyHammer extends ItemHammer {
         replaceModifier(getWearModifierDmg(stack));
         return true;
     }
+
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

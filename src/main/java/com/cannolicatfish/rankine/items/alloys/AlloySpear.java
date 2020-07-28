@@ -466,4 +466,7 @@ public class AlloySpear extends ItemSpear {
         return true;
     }
 
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.util.alloys.SteelAlloyUtils;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -44,7 +47,7 @@ public class Crucible extends Block {
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
+        return state.get(BlockStateProperties.LEVEL_0_3) == 3 ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Override
@@ -75,10 +78,12 @@ public class Crucible extends Block {
                 if (i > 0 && !worldIn.isRemote){
                     if (!player.abilities.isCreativeMode) {
                         itemstack.shrink(1);
+                        ItemStack steel = new ItemStack(ModItems.STEEL_ALLOY);
+                        AlloyItem.addAlloy(steel, new AlloyData("98Fe-2C"));
                         if (itemstack.isEmpty()) {
-                            player.setHeldItem(handIn, new ItemStack(ModItems.STEEL_ALLOY));
-                        } else if (!player.inventory.addItemStackToInventory(new ItemStack(ModItems.STEEL_ALLOY))) {
-                            player.dropItem(new ItemStack(ModItems.STEEL_ALLOY), false);
+                            player.setHeldItem(handIn, steel);
+                        } else if (!player.inventory.addItemStackToInventory(steel)) {
+                            player.dropItem(steel, false);
                         } else if (player instanceof ServerPlayerEntity) {
                             ((ServerPlayerEntity)player).sendContainerToPlayer(player.container);
                         }

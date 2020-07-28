@@ -433,4 +433,8 @@ public class AlloyShovel extends ShovelItem {
 
         return true;
     }
+
+    public AlloyUtils getAlloy() {
+        return alloy;
+    }
 }

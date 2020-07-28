@@ -1,10 +1,16 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.recipe.ICoalForgeRecipe;
 import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import com.cannolicatfish.rankine.util.alloys.GreenGoldAlloyUtils;
 import javafx.util.Pair;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ClientRecipeBook;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,6 +18,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.fml.RegistryObject;
@@ -85,7 +92,6 @@ public class ModRecipes {
         recipes.add(crushingRecipe("smooth_kimberlite_crushing",ModBlocks.SMOOTH_KIMBERLITE.asItem(), new ItemStack(ModItems.OLIVINE,1), new ItemStack(Items.DIAMOND,1),0.05f));
         recipes.add(crushingRecipe("smooth_ferropericlase_crushing",ModBlocks.SMOOTH_FERROPERICLASE.asItem(), new ItemStack(ModItems.IRON_OXIDE,1), new ItemStack(ModItems.MAGNESIA,1),0.5f));
         recipes.add(crushingRecipe("smooth_perovskite_crushing",ModBlocks.SMOOTH_PEROVSKITE.asItem(), new ItemStack(ModItems.CALCIUM_SILICATE,1), new ItemStack(ModItems.IRON_OXIDE,1),0.1f));
-        recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.IRON_OXIDE,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("magnetite_ore_crushing",ModBlocks.MAGNETITE_ORE.asItem(), new ItemStack(ModItems.IRON_OXIDE,1), new ItemStack(ModItems.CHROMIUM_OXIDE,1),0.1f));
         recipes.add(crushingRecipe("malachite_ore_crushing",ModBlocks.MALACHITE_ORE.asItem(), new ItemStack(ModItems.COPPER_HYDROXIDE,1), new ItemStack(ModItems.AZURITE,1),0.1f));
         recipes.add(crushingRecipe("bauxite_ore_crushing",ModBlocks.BAUXITE_ORE.asItem(), new ItemStack(ModItems.ALUMINA,1), new ItemStack(ModItems.TITANIA,1),0.05f));
@@ -110,8 +116,100 @@ public class ModRecipes {
         recipes.add(crushingRecipe("bituminous_coal_ore_crushing",ModBlocks.BITUMINOUS_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.05f));
         recipes.add(crushingRecipe("anthracite_ore_crushing",ModBlocks.ANTHRACITE_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,3), new ItemStack(ModItems.GRAPHITE,1),0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
+        recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("kamacite_crushing",ModBlocks.KAMACITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("antitaenite_crushing",ModBlocks.ANTITAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("taenite_crushing",ModBlocks.TAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         // Example of using tags for recipe (don""t use unless necessary, i.e. large list of blocks)
         // recipes.addAll(groupCrushingRecipe("andesite_crushing","rankine:andesite",new ItemStack(ModItems.FELDSPAR),new ItemStack(ModItems.PYROXENE), 0.2f));
+        return recipes;
+    }
+
+    public static List<ICoalForgeRecipe> getForgingRecipes()
+    {
+        List<ICoalForgeRecipe> recipes = new ArrayList<>();
+
+        recipes.add(forgingRecipe("bronze_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BRONZE_ALLOY,3),new ItemStack(ModItems.BRONZE_PICKAXE)));
+        recipes.add(forgingRecipe("bronze_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BRONZE_ALLOY,3),new ItemStack(ModItems.BRONZE_AXE)));
+        recipes.add(forgingRecipe("bronze_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BRONZE_ALLOY,1),new ItemStack(ModItems.BRONZE_SHOVEL)));
+        recipes.add(forgingRecipe("bronze_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BRONZE_ALLOY,2),new ItemStack(ModItems.BRONZE_HOE)));
+        recipes.add(forgingRecipe("bronze_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.BRONZE_ALLOY,2),new ItemStack(ModItems.BRONZE_SWORD)));
+        recipes.add(forgingRecipe("bronze_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BRONZE_ALLOY,3),new ItemStack(ModItems.BRONZE_SPEAR)));
+        recipes.add(forgingRecipe("bronze_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BRONZE_ALLOY,5),new ItemStack(ModItems.BRONZE_HAMMER)));
+
+        recipes.add(forgingRecipe("aluminum_bronze_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,3),new ItemStack(ModItems.BRONZE_PICKAXE)));
+        recipes.add(forgingRecipe("aluminum_bronze_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,3),new ItemStack(ModItems.BRONZE_AXE)));
+        recipes.add(forgingRecipe("aluminum_bronze_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,1),new ItemStack(ModItems.BRONZE_SHOVEL)));
+        recipes.add(forgingRecipe("aluminum_bronze_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,2),new ItemStack(ModItems.BRONZE_HOE)));
+        recipes.add(forgingRecipe("aluminum_bronze_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,2),new ItemStack(ModItems.BRONZE_SWORD)));
+        recipes.add(forgingRecipe("aluminum_bronze_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,3),new ItemStack(ModItems.BRONZE_SPEAR)));
+        recipes.add(forgingRecipe("aluminum_bronze_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY,5),new ItemStack(ModItems.BRONZE_HAMMER)));
+
+        recipes.add(forgingRecipe("amalgam_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_PICKAXE)));
+        recipes.add(forgingRecipe("amalgam_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_AXE)));
+        recipes.add(forgingRecipe("amalgam_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,1),new ItemStack(ModItems.AMALGAM_SHOVEL)));
+        recipes.add(forgingRecipe("amalgam_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,2),new ItemStack(ModItems.AMALGAM_HOE)));
+        recipes.add(forgingRecipe("amalgam_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.AMALGAM_ALLOY,2),new ItemStack(ModItems.AMALGAM_SWORD)));
+        recipes.add(forgingRecipe("amalgam_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_SPEAR)));
+        recipes.add(forgingRecipe("amalgam_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,5),new ItemStack(ModItems.AMALGAM_HAMMER)));
+
+        recipes.add(forgingRecipe("meteoric_iron_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,3),new ItemStack(ModItems.METEORIC_IRON_PICKAXE)));
+        recipes.add(forgingRecipe("meteoric_iron_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,3),new ItemStack(ModItems.METEORIC_IRON_AXE)));
+        recipes.add(forgingRecipe("meteoric_iron_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,1),new ItemStack(ModItems.METEORIC_IRON_SHOVEL)));
+        recipes.add(forgingRecipe("meteoric_iron_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,2),new ItemStack(ModItems.METEORIC_IRON_HOE)));
+        recipes.add(forgingRecipe("meteoric_iron_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.METEORIC_IRON,2),new ItemStack(ModItems.METEORIC_IRON_SWORD)));
+        recipes.add(forgingRecipe("meteoric_iron_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,3),new ItemStack(ModItems.METEORIC_IRON_SPEAR)));
+        recipes.add(forgingRecipe("meteoric_iron_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,5),new ItemStack(ModItems.METEORIC_IRON_HAMMER)));
+
+        recipes.add(forgingRecipe("rose_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,3),new ItemStack(ModItems.ROSE_GOLD_PICKAXE)));
+        recipes.add(forgingRecipe("rose_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,3),new ItemStack(ModItems.ROSE_GOLD_AXE)));
+        recipes.add(forgingRecipe("rose_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,1),new ItemStack(ModItems.ROSE_GOLD_SHOVEL)));
+        recipes.add(forgingRecipe("rose_gold_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,2),new ItemStack(ModItems.ROSE_GOLD_HOE)));
+        recipes.add(forgingRecipe("rose_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.ROSE_GOLD_ALLOY,2),new ItemStack(ModItems.ROSE_GOLD_SWORD)));
+        recipes.add(forgingRecipe("rose_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,3),new ItemStack(ModItems.ROSE_GOLD_SPEAR)));
+        recipes.add(forgingRecipe("rose_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,5),new ItemStack(ModItems.ROSE_GOLD_HAMMER)));
+
+        recipes.add(forgingRecipe("white_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.WHITE_GOLD_ALLOY,3),new ItemStack(ModItems.WHITE_GOLD_PICKAXE)));
+        recipes.add(forgingRecipe("white_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.WHITE_GOLD_ALLOY,3),new ItemStack(ModItems.WHITE_GOLD_AXE)));
+        recipes.add(forgingRecipe("white_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.WHITE_GOLD_ALLOY,1),new ItemStack(ModItems.WHITE_GOLD_SHOVEL)));
+        recipes.add(forgingRecipe("white_gold_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.WHITE_GOLD_ALLOY,2),new ItemStack(ModItems.WHITE_GOLD_HOE)));
+        recipes.add(forgingRecipe("white_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.WHITE_GOLD_ALLOY,2),new ItemStack(ModItems.WHITE_GOLD_SWORD)));
+        recipes.add(forgingRecipe("white_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.WHITE_GOLD_ALLOY,3),new ItemStack(ModItems.WHITE_GOLD_SPEAR)));
+        recipes.add(forgingRecipe("white_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.WHITE_GOLD_ALLOY,5),new ItemStack(ModItems.WHITE_GOLD_HAMMER)));
+
+        recipes.add(forgingRecipe("green_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.GREEN_GOLD_ALLOY,3),new ItemStack(ModItems.GREEN_GOLD_PICKAXE)));
+        recipes.add(forgingRecipe("green_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.GREEN_GOLD_ALLOY,3),new ItemStack(ModItems.GREEN_GOLD_AXE)));
+        recipes.add(forgingRecipe("green_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.GREEN_GOLD_ALLOY,1),new ItemStack(ModItems.GREEN_GOLD_SHOVEL)));
+        recipes.add(forgingRecipe("green_gold_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.GREEN_GOLD_ALLOY,2),new ItemStack(ModItems.GREEN_GOLD_HOE)));
+        recipes.add(forgingRecipe("green_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.GREEN_GOLD_ALLOY,2),new ItemStack(ModItems.GREEN_GOLD_SWORD)));
+        recipes.add(forgingRecipe("green_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.GREEN_GOLD_ALLOY,3),new ItemStack(ModItems.GREEN_GOLD_SPEAR)));
+        recipes.add(forgingRecipe("green_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.GREEN_GOLD_ALLOY,5),new ItemStack(ModItems.GREEN_GOLD_HAMMER)));
+
+        recipes.add(forgingRecipe("blue_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLUE_GOLD_ALLOY,3),new ItemStack(ModItems.BLUE_GOLD_PICKAXE)));
+        recipes.add(forgingRecipe("blue_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLUE_GOLD_ALLOY,3),new ItemStack(ModItems.BLUE_GOLD_AXE)));
+        recipes.add(forgingRecipe("blue_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLUE_GOLD_ALLOY,1),new ItemStack(ModItems.BLUE_GOLD_SHOVEL)));
+        recipes.add(forgingRecipe("blue_gold_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLUE_GOLD_ALLOY,2),new ItemStack(ModItems.BLUE_GOLD_HOE)));
+        recipes.add(forgingRecipe("blue_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.BLUE_GOLD_ALLOY,2),new ItemStack(ModItems.BLUE_GOLD_SWORD)));
+        recipes.add(forgingRecipe("blue_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLUE_GOLD_ALLOY,3),new ItemStack(ModItems.BLUE_GOLD_SPEAR)));
+        recipes.add(forgingRecipe("blue_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLUE_GOLD_ALLOY,5),new ItemStack(ModItems.BLUE_GOLD_HAMMER)));
+
+        recipes.add(forgingRecipe("purple_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,3),new ItemStack(ModItems.PURPLE_GOLD_PICKAXE)));
+        recipes.add(forgingRecipe("purple_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,3),new ItemStack(ModItems.PURPLE_GOLD_AXE)));
+        recipes.add(forgingRecipe("purple_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,1),new ItemStack(ModItems.PURPLE_GOLD_SHOVEL)));
+        recipes.add(forgingRecipe("purple_gold_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,2),new ItemStack(ModItems.PURPLE_GOLD_HOE)));
+        recipes.add(forgingRecipe("purple_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,2),new ItemStack(ModItems.PURPLE_GOLD_SWORD)));
+        recipes.add(forgingRecipe("purple_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,3),new ItemStack(ModItems.PURPLE_GOLD_SPEAR)));
+        recipes.add(forgingRecipe("purple_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,5),new ItemStack(ModItems.PURPLE_GOLD_HAMMER)));
+
+        recipes.add(forgingRecipe("steel_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_PICKAXE)));
+        recipes.add(forgingRecipe("steel_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_AXE)));
+        recipes.add(forgingRecipe("steel_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,1),new ItemStack(ModItems.STEEL_SHOVEL)));
+        recipes.add(forgingRecipe("steel_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,2),new ItemStack(ModItems.STEEL_HOE)));
+        recipes.add(forgingRecipe("steel_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.STEEL_ALLOY,2),new ItemStack(ModItems.STEEL_SWORD)));
+        recipes.add(forgingRecipe("steel_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_SPEAR)));
+        recipes.add(forgingRecipe("steel_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,5),new ItemStack(ModItems.STEEL_HAMMER)));
+
         return recipes;
     }
 
@@ -126,6 +224,21 @@ public class ModRecipes {
             }
         }
         return null;
+    }
+
+    public static ItemStack getForgingOutput(ItemStack input1, ItemStack input2, ItemStack template)
+    {
+        List<ICoalForgeRecipe> recipes = ModRecipes.getForgingRecipes();
+        for (ICoalForgeRecipe recipe: recipes)
+        {
+            if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input1.getItem()  && recipe.getIngredients().get(1).getMatchingStacks()[0].getItem() == input2.getItem()
+                    && recipe.getIngredients().get(0).getMatchingStacks()[0].getCount() == input1.getCount()  && recipe.getIngredients().get(1).getMatchingStacks()[0].getCount() == input2.getCount()
+                    && recipe.getIngredients().get(2).getMatchingStacks()[0].getItem() == template.getItem())
+            {
+                return getForgingItemStack(input2,recipe.getRecipeOutput(),true).get(0);
+            }
+        }
+        return ItemStack.EMPTY;
     }
 
     public static Pair<ItemStack,Float> getCrushingSecondaryOutputs(ItemStack input)
@@ -145,6 +258,179 @@ public class ModRecipes {
     {
         return new IPistonCrusherRecipe(new ResourceLocation(ProjectRankine.MODID,registry),new ItemStack[]{output,secondary},
                 Ingredient.fromStacks(new ItemStack(input)),chance);
+    }
+
+    public static ICoalForgeRecipe forgingRecipe(String registry, ItemStack input, ItemStack alloy, ItemStack output)
+    {
+        ItemStack result = ItemStack.EMPTY;
+        ItemStack template = new ItemStack(ModItems.PICKAXE_TEMPLATE);
+        result = getForgingItemStack(alloy,output,false).get(0);
+        template = getForgingItemStack(alloy,output,false).get(1);
+        NonNullList<Ingredient> list = NonNullList.create();
+        list.addAll(Arrays.asList(Ingredient.fromStacks(input),Ingredient.fromStacks(alloy),Ingredient.fromStacks(template)));
+        if (result != ItemStack.EMPTY)
+        {
+            return new ICoalForgeRecipe(new ResourceLocation(ProjectRankine.MODID,registry),result,
+                    list);
+        } else {
+            return new ICoalForgeRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
+                    list);
+        }
+
+    }
+
+    public static List<ItemStack> getForgingItemStack(ItemStack alloy, ItemStack output, boolean hasComposition) {
+        ItemStack result = ItemStack.EMPTY;
+        ItemStack template = new ItemStack(ModItems.PICKAXE_TEMPLATE);
+        String comp;
+        if (output.getItem() instanceof AlloyPickaxe)
+        {
+            AlloyPickaxe e = (AlloyPickaxe) output.getItem();
+            template = new ItemStack(ModItems.PICKAXE_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloyPickaxe.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        if (output.getItem() instanceof AlloyAxe)
+        {
+            AlloyAxe e = (AlloyAxe) output.getItem();
+            template = new ItemStack(ModItems.AXE_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloyAxe.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        if (output.getItem() instanceof AlloyShovel)
+        {
+            AlloyShovel e = (AlloyShovel) output.getItem();
+            template = new ItemStack(ModItems.SHOVEL_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloyShovel.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        if (output.getItem() instanceof AlloyHoe)
+        {
+            AlloyHoe e = (AlloyHoe) output.getItem();
+            template = new ItemStack(ModItems.HOE_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloyHoe.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        if (output.getItem() instanceof AlloySword)
+        {
+            AlloySword e = (AlloySword) output.getItem();
+            template = new ItemStack(ModItems.SWORD_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloySword.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        if (output.getItem() instanceof AlloySpear)
+        {
+            AlloySpear e = (AlloySpear) output.getItem();
+            template = new ItemStack(ModItems.SPEAR_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloySpear.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        if (output.getItem() instanceof AlloyHammer)
+        {
+            AlloyHammer e = (AlloyHammer) output.getItem();
+            template = new ItemStack(ModItems.HAMMER_TEMPLATE);
+            PeriodicTableUtils utils = new PeriodicTableUtils();
+            AlloyUtils alloyUtils = e.getAlloy();
+            result = new ItemStack(e);
+            if (hasComposition)
+            {
+                comp = alloy.getTag().getList("StoredComposition", 10).getCompound(0).get("comp").getString();
+
+            } else
+            {
+                comp = alloyUtils.getDefComposition();
+            }
+            AlloyHammer.addAlloy(result,new AlloyData(comp));
+            for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
+            {
+                result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
+            }
+        }
+        return Arrays.asList(result,template);
     }
 
     public static List<IPistonCrusherRecipe> groupCrushingRecipe(String registry, List<Item> input, ItemStack output, ItemStack secondary, float chance)
@@ -191,5 +477,51 @@ public class ModRecipes {
             });
         }
         return crusherRecipes;
+    }
+
+    public static List<PeriodicTableUtils.Element> getElements(String c)
+    {
+        //String c = getComposition(stack).getCompound(0).get("comp").getString();
+        PeriodicTableUtils utils = new PeriodicTableUtils();
+        String[] comp = c.split("-");
+        List<PeriodicTableUtils.Element> list = new ArrayList<>();
+        for (String e: comp)
+        {
+            String str = e.replaceAll("[^A-Za-z]+", "");
+            list.add(utils.getElementBySymbol(str));
+        }
+        return list;
+    }
+
+    public static List<Integer> getPercents(String c)
+    {
+        String[] comp = c.split("-");
+        List<Integer> list = new ArrayList<>();
+        for (String e: comp)
+        {
+            String str = e.replaceAll("\\D+", "");
+            list.add(Integer.parseInt(str));
+        }
+        return list;
+    }
+
+    public static List<Enchantment> getEnchantments(String c, AlloyUtils alloy, Item item)
+    {
+        PeriodicTableUtils utils = new PeriodicTableUtils();
+        List<Enchantment> enchantments = new ArrayList<>();
+        List<Enchantment> elementEn = utils.getEnchantments(getElements(c),getPercents(c));
+        for (Enchantment e: elementEn)
+        {
+            if (e != null)
+            {
+                enchantments.add(e);
+            }
+        }
+        Enchantment en = alloy.getEnchantmentBonus(item);
+        if (en != null)
+        {
+            enchantments.add(en);
+        }
+        return enchantments;
     }
 }

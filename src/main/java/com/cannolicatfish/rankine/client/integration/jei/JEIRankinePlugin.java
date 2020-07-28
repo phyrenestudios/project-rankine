@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.crusher.CoalForgeRecipeCategory;
 import com.cannolicatfish.rankine.client.integration.jei.crusher.PistonCrusherRecipeCategory;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
@@ -38,6 +39,7 @@ public class JEIRankinePlugin implements IModPlugin {
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
 
         registry.addRecipes(ModRecipes.getCrushingRecipes(),PistonCrusherRecipeCategory.UID);
+        registry.addRecipes(ModRecipes.getForgingRecipes(), CoalForgeRecipeCategory.UID);
         //registry.addRecipes(Minecraft.getInstance().world.getRecipeManager().getRecipes(IPistonCrusherRecipe.RECIPE_TYPE, IInventoryEmpty.INSTANCE, Minecraft.getInstance().world), PistonCrusherRecipeCategory.UID);
     }
 
@@ -46,11 +48,12 @@ public class JEIRankinePlugin implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new PistonCrusherRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new CoalForgeRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
-        System.out.println("registering rankineJEI catalysts");
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.PISTON_CRUSHER), PistonCrusherRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_FORGE), CoalForgeRecipeCategory.UID);
     }
 }
