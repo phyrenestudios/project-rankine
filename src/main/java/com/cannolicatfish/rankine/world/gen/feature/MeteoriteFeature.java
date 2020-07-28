@@ -44,13 +44,13 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 BlockState ORE;
                 float CHANCE = rand.nextFloat();
                 if (CHANCE < 0.2F) {
-                    ORE = ModBlocks.METEORITE1.getDefaultState();
+                    ORE = ModBlocks.KAMACITE.getDefaultState();
                 } else if (CHANCE < 0.4F) {
-                    ORE = ModBlocks.METEORITE2.getDefaultState();
+                    ORE = ModBlocks.ANTITAENITE.getDefaultState();
                 } else if (CHANCE < 0.6F) {
-                    ORE = ModBlocks.METEORITE3.getDefaultState();
+                    ORE = ModBlocks.TAENITE.getDefaultState();
                 } else if (CHANCE < 0.8F) {
-                    ORE = ModBlocks.METEORITE4.getDefaultState();
+                    ORE = ModBlocks.TETRATAENITE.getDefaultState();
                 } else {
                     ORE = ModBlocks.METEORITE.getDefaultState();
                 }
