@@ -1,42 +1,42 @@
 {
   "name": "Trees",
-  "icon": "rankine:elderberries",
+  "icon": "rankine:cedar_sapling",
   "category": "exploration/exploration",
   "pages": [
     {
       "type": "spotlight",
 	  "item": "rankine:cedar_sapling",
-      "text": "nom nom"
+      "text": "Found in Taigas"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:pinyon_pine_sapling",
-      "text": "nom nom"
+      "text": "Found in Savanas"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:juniper_sapling",
-      "text": "nom nom"
+      "text": "Found in Savanas"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:coconut_palm_sapling",
-      "text": "nom nom"
+      "text": "Found in Jungles"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:balsam_fir_sapling",
-      "text": "nom nom"
+      "text": "Found in Swamps"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:magnolia_sapling",
-      "text": "nom nom"
+      "text": "Found in Jungles"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:eastern_hemlock_sapling",
-      "text": "nom nom"
+      "text": "Found in Taigas"
     }
   ]
 }
