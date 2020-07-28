@@ -28,7 +28,7 @@ public class IronElement implements ElementInterface {
     public float getMiningSpeedFromPercent(int x) {
         if (x >= 50)
         {
-            return Math.round(x/10f - 6);
+            return Math.round(x/10f - 4);
         } else
         {
             return 0;
@@ -37,7 +37,7 @@ public class IronElement implements ElementInterface {
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        if (x >= 20)
+        if (x >= 15)
         {
             return 2;
         } else if (x >= 5)
