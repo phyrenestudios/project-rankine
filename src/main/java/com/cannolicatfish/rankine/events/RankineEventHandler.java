@@ -215,6 +215,7 @@ public class RankineEventHandler {
         }
     }
 
+    /*
     @SubscribeEvent
     public static void transformBlocks(PlayerInteractEvent.RightClickBlock event)
     {
@@ -249,7 +250,7 @@ public class RankineEventHandler {
             }
         }
     }
-
+*/
 
 
 }
