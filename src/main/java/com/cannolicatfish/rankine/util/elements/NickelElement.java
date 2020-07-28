@@ -26,7 +26,13 @@ public class NickelElement implements ElementInterface {
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return x/100f;
+        if (x >= 25)
+        {
+            return x/50f;
+        } else {
+            return x/100f;
+        }
+
     }
 
     @Override

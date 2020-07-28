@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:duralumin_block" } ], "result": { "item": "rankine:duralumin_alloy", "count": 9 } }

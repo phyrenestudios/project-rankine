@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:cast_iron_block" } ], "result": { "item": "rankine:cast_iron_ingot", "count": 9 } }

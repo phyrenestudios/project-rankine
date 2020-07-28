@@ -5,4 +5,9 @@ public class MeteoricIronAlloyUtils implements AlloyUtils {
     public String getDefComposition() {
         return "90Fe-10Ni";
     }
+
+    @Override
+    public float getMiningSpeedBonus() {
+        return 1;
+    }
 }

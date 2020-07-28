@@ -195,7 +195,7 @@ public class AlloyingRecipesComplex {
                 System.out.println(propx3);
                 System.out.println(Math.round(total/10));
                  */
-                if (propx1 <= .93f && propx1 >= .74f && propx2 >= .04f && propx2 <= .12f && propx1 + propx2 >= .86f && Math.round(total/10) <= 64) {
+                if (propx1 <= .93f && propx1 >= .74f && propx2 >= .04f && propx2 <= .15f && propx1 + propx2 >= .85f && Math.round(total/10) <= 64) {
                     int[] ar = new int[3];
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
@@ -259,7 +259,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("tin") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("chromium") ||
+            if (materials.get(x3).equals("silicon") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("chromium") ||
                     materials.get(x3).equals("molybdenum") || materials.get(x3).equals("titanium") || materials.get(x3).equals("vanadium") || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
@@ -383,7 +383,7 @@ public class AlloyingRecipesComplex {
                 System.out.println(propx3);
                 System.out.println(Math.round(total/10));
                  */
-                if (propx1 >= .74f && propx1 <= .76f && propx2 >= .20f && propx2 <= .25f && Math.round(total/10) <= 64) {
+                if (propx1 >= .3f && propx1 <= .7f && propx2 >= .3f && propx2 <= .7f && Math.round(total/10) <= 64) {
                     int[] ar = new int[3];
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();

@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:nickel_superalloy_block" } ], "result": { "item": "rankine:nickel_superalloy", "count": 9 } }
