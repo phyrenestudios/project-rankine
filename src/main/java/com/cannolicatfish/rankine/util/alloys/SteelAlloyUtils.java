@@ -15,4 +15,9 @@ public class SteelAlloyUtils implements AlloyUtils{
     public int getMiningLevelBonus(){
         return 1;
     }
+
+    @Override
+    public float getMiningSpeedBonus() {
+        return 4;
+    }
 }
