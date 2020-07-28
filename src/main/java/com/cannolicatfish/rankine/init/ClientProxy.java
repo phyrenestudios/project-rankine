@@ -53,6 +53,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.CASSITERITE_ORE,
                 ModBlocks.CHROMITE_ORE,
                 ModBlocks.CINNABAR_ORE,
+                ModBlocks.OPAL_ORE,
                 ModBlocks.COLUMBITE_ORE,
                 ModBlocks.DIAMOND_ORE,
                 ModBlocks.EMERALD_ORE,
@@ -92,6 +93,12 @@ public class ClientProxy implements IProxy {
                 ModBlocks.BALSAM_FIR_SAPLING,
                 ModBlocks.MAGNOLIA_SAPLING,
                 ModBlocks.EASTERN_HEMLOCK_SAPLING,
+                ModBlocks.CEDAR_TRAPDOOR,
+                ModBlocks.COCONUT_PALM_TRAPDOOR,
+                ModBlocks.PINYON_PINE_TRAPDOOR,
+                ModBlocks.JUNIPER_TRAPDOOR,
+                ModBlocks.MAGNOLIA_TRAPDOOR,
+                ModBlocks.BALSAM_FIR_TRAPDOOR,
                 ModBlocks.CEDAR_DOOR,
                 ModBlocks.COCONUT_PALM_DOOR,
                 ModBlocks.PINYON_PINE_DOOR,
@@ -104,12 +111,6 @@ public class ClientProxy implements IProxy {
         ));
 
         addCutoutMipped(Arrays.asList(
-                ModBlocks.CEDAR_TRAPDOOR,
-                ModBlocks.COCONUT_PALM_TRAPDOOR,
-                ModBlocks.PINYON_PINE_TRAPDOOR,
-                ModBlocks.JUNIPER_TRAPDOOR,
-                ModBlocks.MAGNOLIA_TRAPDOOR,
-                ModBlocks.BALSAM_FIR_TRAPDOOR,
                 ModBlocks.POTTED_CEDAR_SAPLING,
                 ModBlocks.POTTED_JUNIPER_SAPLING,
                 ModBlocks.POTTED_COCONUT_PALM_SAPLING,
