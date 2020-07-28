@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "The steel sword.$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "The steel sword.$(br2)Stats:$(li)Weapon Class: Melee"
     },
     {
       "type": "crafting",

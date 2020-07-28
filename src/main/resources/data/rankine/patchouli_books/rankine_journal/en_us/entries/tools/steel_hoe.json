@@ -1,15 +1,15 @@
 {
-  "name": "Iron Axe",
-  "icon": "rankine:iron_axe",
+  "name": "Steel Hoe",
+  "icon": "rankine:steel_hoe",
   "category": "technology/tools",
   "pages": [
     {
       "type": "text",
-      "text": "The iron axe$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "The steel hoe$(br2)Stats:$(li)Harvest Level: 3"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:iron_axe"
+      "recipe": "rankine:steel_hoe"
     }
   ]
 }

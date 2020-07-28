@@ -39,7 +39,7 @@ public class VanillaIntegration {
         RankineEventHandler.stripping_map.put(ModBlocks.JUNIPER_WOOD, ModBlocks.STRIPPED_JUNIPER_WOOD);
         RankineEventHandler.stripping_map.put(ModBlocks.YELLOW_BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
         RankineEventHandler.stripping_map.put(ModBlocks.YELLOW_BIRCH_WOOD, Blocks.STRIPPED_BIRCH_WOOD);
-        RankineEventHandler.stripping_map.put(ModBlocks.EASTERN_HEMLOCK_LOG, ModBlocks.EASTERN_HEMLOCK_LOG);
+        RankineEventHandler.stripping_map.put(ModBlocks.EASTERN_HEMLOCK_LOG, ModBlocks.STRIPPED_EASTERN_HEMLOCK_LOG);
         RankineEventHandler.stripping_map.put(ModBlocks.EASTERN_HEMLOCK_WOOD, ModBlocks.STRIPPED_EASTERN_HEMLOCK_WOOD);
 
 
