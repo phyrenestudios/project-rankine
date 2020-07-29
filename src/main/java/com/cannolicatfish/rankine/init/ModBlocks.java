@@ -585,7 +585,7 @@ public class ModBlocks {
     public static final RankineOre NATIVE_TELLURIUM_ORE = add("native_tellurium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre TANTALITE_ORE = add("tantalite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TANTALUM_NUGGET), METALLURGY);
     public static final RankineOre WOLFRAMITE_ORE = add("wolframite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TITANIUM_NUGGET), METALLURGY);
-    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre NETHER_GOLD_ORE = add("nether_gold_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.LEAD_NUGGET), METALLURGY);
