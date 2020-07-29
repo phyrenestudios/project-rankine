@@ -35,7 +35,7 @@ public class AlloyingRecipesComplex {
 
     public Pair<String,Integer> returnItemMaterial(ItemStack stack)
     {
-        System.out.println(RankineAlloyMaterial.getMaterial(stack.getItem()).toString());
+        //System.out.println(RankineAlloyMaterial.getMaterial(stack.getItem()).toString());
         if (stack.isEmpty())
         {
             return new Pair<>("none",0);
@@ -296,7 +296,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("nickel") || materials.get(x3).equals("palladium") || materials.get(x3).equals("silver") || materials.get(x3).equals("platinum")) {
+            if (materials.get(x3).equals("nickel") || materials.get(x3).equals("palladium") || materials.get(x3).equals("silver") || materials.get(x3).equals("platinum") || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -522,7 +522,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("zinc")){
+            if (materials.get(x3).equals("zinc") || materials.get(x3).equals("none")){
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -596,8 +596,8 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (!materials.get(x3).equals("iron") && !materials.get(x3).equals("platinum") && !materials.get(x3).equals("tungsten") && !materials.get(x3).equals("tantalum")
-                    && !materials.get(x3).equals("mercury") && !materials.get(x3).equals("gold") && (new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)) || materials.get(x3).equals("none"))) {
+            if ((!materials.get(x3).equals("iron") && !materials.get(x3).equals("platinum") && !materials.get(x3).equals("tungsten") && !materials.get(x3).equals("tantalum")
+                    && !materials.get(x3).equals("mercury") && !materials.get(x3).equals("gold") && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;

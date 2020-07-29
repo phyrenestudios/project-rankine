@@ -211,13 +211,13 @@ public class ModItems {
     public static final Item OGANESSON_INGOT = add("oganesson_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item PIG_IRON_INGOT = add("pig_iron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item WROUGHT_IRON_INGOT = add("wrought_iron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CAST_IRON_INGOT = add("cast_iron_ingot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CAST_IRON_INGOT = add("cast_iron_ingot", new AlloyItem("96Fe-4C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     //ALLOY INGOTS
     public static final AlloyItem BRONZE_ALLOY = add("bronze_alloy", new AlloyItem(new BronzeAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRASS_ALLOY = add("brass_alloy", new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem NICHROME_ALLOY = add("nichrome_alloy", new AlloyItem("80Ni-20Cr",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item STEEL_ALLOY = add("steel_alloy", new AlloyItem("98Fe-2C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item STEEL_ALLOY = add("steel_alloy", new AlloyItem("99Fe-1C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem STAINLESS_STEEL_ALLOY = add("stainless_steel_alloy", new AlloyItem(new StainlessSteelAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SOLDER_ALLOY = add("solder_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ALNICO_ALLOY = add("alnico_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -464,13 +464,13 @@ public class ModItems {
     public static final Item CAST_IRON_ROD = add("cast_iron_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_ROD = add("steel_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item WOODEN_HOURGLASS = add("wooden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
-    public static final Item GOLDEN_HOURGLASS = add("golden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
-    public static final Item BONE_HOURGLASS = add("bone_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
-    public static final Item PHANTOM_HOURGLASS = add("phantom_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
-    public static final Item BLAZE_HOURGLASS = add("blaze_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
-    public static final Item ENDER_HOURGLASS = add("ender_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMagic)));
-    public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMagic)));
+    public static final Item WOODEN_HOURGLASS = add("wooden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item GOLDEN_HOURGLASS = add("golden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item BONE_HOURGLASS = add("bone_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item PHANTOM_HOURGLASS = add("phantom_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item BLAZE_HOURGLASS = add("blaze_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item ENDER_HOURGLASS = add("ender_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
 
 
     @ObjectHolder("rankine:sphagnum_moss")

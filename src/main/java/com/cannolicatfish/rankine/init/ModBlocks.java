@@ -82,7 +82,7 @@ public class ModBlocks {
     public static Item.Properties BLOCKS = new Item.Properties().group(ProjectRankine.setup.rankineBlocks);
     public static Item.Properties METALLURGY = new Item.Properties().group(ProjectRankine.setup.rankineMetals);
     public static Item.Properties MISC = new Item.Properties().group(ProjectRankine.setup.rankineTools);
-    public static Item.Properties MAGIC = new Item.Properties().group(ProjectRankine.setup.rankineMagic);
+    //public static Item.Properties MAGIC = new Item.Properties().group(ProjectRankine.setup.rankineMagic);
 
 
 
@@ -381,6 +381,8 @@ public class ModBlocks {
     public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), BLOCKS);
     //public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
     public static final Block QUICKLIME_BLOCK = add("quicklime_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
+    public static final Block MAGNESITE_BLOCK = add("magnesite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
+    public static final Block MAGNESIA_BLOCK = add("magnesia_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block ANDESITIC_TUFF = add("andesitic_tuff", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block BASALTIC_TUFF = add("basaltic_tuff", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block RHYOLITIC_TUFF = add("rhyolitic_tuff", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE)), BLOCKS);
@@ -724,7 +726,7 @@ public class ModBlocks {
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
-    public static final Block MYSTICAL_SUNDIAL =  add("mystical_sundial", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F, 1.0F).harvestLevel(1)), MAGIC);
+    public static final Block MYSTICAL_SUNDIAL =  add("mystical_sundial", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F, 1.0F).harvestLevel(1)), MISC);
 
 
 

@@ -98,9 +98,14 @@ public class BeehiveOvenPit extends Block {
                 int firstCoalBlock = surroundingBlocks.indexOf(Blocks.COAL_BLOCK);
                 int firstBCoalBlock = surroundingBlocks.indexOf(ModBlocks.BITUMINOUS_COAL_BLOCK);
                 int firstLimestoneBlock = surroundingBlocks.indexOf(ModBlocks.LIMESTONE);
-                if (firstLimestoneBlock != -1)
+                int firstMagnesiteBlock = surroundingBlocks.indexOf(ModBlocks.MAGNESITE_BLOCK);
+                if (firstLimestoneBlock != -1 && firstLimestoneBlock > firstMagnesiteBlock)
                 {
                     world.setBlockState(surroundingBlockPos.get(firstLimestoneBlock), ModBlocks.QUICKLIME_BLOCK.getDefaultState(), 2);
+                }
+                if (firstMagnesiteBlock != -1 && firstMagnesiteBlock > firstLimestoneBlock)
+                {
+                    world.setBlockState(surroundingBlockPos.get(firstMagnesiteBlock), ModBlocks.MAGNESIA_BLOCK.getDefaultState(), 2);
                 }
                 if (firstCoalBlock != -1 && firstCoalBlock > firstBCoalBlock)
                 {
@@ -110,7 +115,7 @@ public class BeehiveOvenPit extends Block {
                 {
                     world.setBlockState(surroundingBlockPos.get(firstBCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
                 }
-                if (firstCoalBlock == -1 && firstBCoalBlock == -1 && firstLimestoneBlock == -1)
+                if (firstCoalBlock == -1 && firstBCoalBlock == -1 && firstLimestoneBlock == -1 && firstMagnesiteBlock == -1)
                 {
                     world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
                 }

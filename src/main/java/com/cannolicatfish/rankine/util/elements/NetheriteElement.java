@@ -11,7 +11,8 @@ public class NetheriteElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+
+        return (int) Math.round(Math.pow(45,x/100f + 1) + 6);
     }
 
     @Override
@@ -26,7 +27,13 @@ public class NetheriteElement implements ElementInterface {
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        if (x >= 70)
+        {
+            return Math.round(x/10f - 1);
+        } else
+        {
+            return 0;
+        }
     }
 
     @Override
@@ -54,7 +61,7 @@ public class NetheriteElement implements ElementInterface {
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return x/100f;
     }
 
     @Override
