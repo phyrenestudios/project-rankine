@@ -99,6 +99,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.JUNIPER_TRAPDOOR,
                 ModBlocks.MAGNOLIA_TRAPDOOR,
                 ModBlocks.BALSAM_FIR_TRAPDOOR,
+                ModBlocks.BAMBOO_TRAPDOOR,
+                ModBlocks.EASTERN_HEMLOCK_TRAPDOOR,
                 ModBlocks.CEDAR_DOOR,
                 ModBlocks.COCONUT_PALM_DOOR,
                 ModBlocks.PINYON_PINE_DOOR,
