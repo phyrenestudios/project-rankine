@@ -61,7 +61,7 @@ public class CreepingBlock extends Block {
 
 
     public void catchFire(BlockState state, World world, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
-        world.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
+        world.createExplosion(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
         world.removeBlock(pos, false);
     }
 
@@ -112,14 +112,13 @@ public class CreepingBlock extends Block {
             if (abstractarrowentity.isBurning()) {
                 BlockPos blockpos = hit.getPos();
                 catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
-                worldIn.removeBlock(blockpos, false);
             }
         }
     }
 
     public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isRemote) {
-            worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
+            catchFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
         }
     }
 
