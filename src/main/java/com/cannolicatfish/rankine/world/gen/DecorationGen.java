@@ -42,9 +42,9 @@ public class DecorationGen
         addTreesCount(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
         addTreesCount(RankineBiomeFeatures.CEDAR_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
         addTreesCount(RankineBiomeFeatures.COCNUT_PALM_TREE_CONFIG, 1, getBiomesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true));
-        addTreesCount(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG, 2, Arrays.asList(Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA));
-        addTreesChance(RankineBiomeFeatures.JUNIPER_TREE_CONFIG, 3, Arrays.asList(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA));
-        addTreesChance(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG, 1, Arrays.asList(Biomes.JUNGLE_EDGE, Biomes.MODIFIED_JUNGLE_EDGE));
+        addTreesCount(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG, 1, Arrays.asList(Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA));
+        //addTreesChance(RankineBiomeFeatures.JUNIPER_TREE_CONFIG, 3, Arrays.asList(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA));
+        //addTreesChance(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG, 1, Arrays.asList(Biomes.JUNGLE_EDGE, Biomes.MODIFIED_JUNGLE_EDGE));
         addTreesCount(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG, 2, Arrays.asList(Biomes.SWAMP, Biomes.SWAMP_HILLS));
         addTreesCount(RankineBiomeFeatures.DEAD_BALSAM_FIR_TREE_CONFIG, 1, Arrays.asList(Biomes.SWAMP, Biomes.SWAMP_HILLS));
 

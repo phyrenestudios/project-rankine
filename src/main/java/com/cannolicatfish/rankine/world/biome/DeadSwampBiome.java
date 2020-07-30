@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.SeaGrassConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
@@ -13,6 +14,8 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
 
 public class DeadSwampBiome extends Biome {
     static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
@@ -32,6 +35,7 @@ public class DeadSwampBiome extends Biome {
         DefaultBiomeFeatures.func_235196_b_(this);      //mineshaft and stronghold
         this.func_235063_a_(DefaultBiomeFeatures.field_235172_j_);  //swamp hut
         this.func_235063_a_(DefaultBiomeFeatures.field_235130_B_);  //portal
+        DefaultBiomeFeatures.func_235191_ai_(this);
         DefaultBiomeFeatures.addCarvers(this);
         RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addLakes(this);
@@ -70,6 +74,12 @@ public class DeadSwampBiome extends Biome {
     @OnlyIn(Dist.CLIENT)
     public int getFoliageColor() {
         return 6579240;
+    }
+
+    @Nullable
+    @Override
+    public Biome getHill(INoiseRandom rand) {
+        return Biomes.SWAMP_HILLS;
     }
 
     @Override

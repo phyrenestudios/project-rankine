@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "X X",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "item": "rankine:cast_iron_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:copper_wire",
+    "count": 8
+  }
+}

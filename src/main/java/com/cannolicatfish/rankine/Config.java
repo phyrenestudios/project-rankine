@@ -43,6 +43,8 @@ public class Config {
 
 
     public static ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
+    public static ForgeConfigSpec.BooleanValue FLAT_BEDROCK;
+    public static ForgeConfigSpec.IntValue BEDROCK_LAYERS;
 
 
     static {
@@ -73,6 +75,12 @@ public class Config {
 
         GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                 .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
+
+        FLAT_BEDROCK = COMMON_BUILDER.comment("Generates with a flat bedrock layer (includes the Nether)")
+                .define("flatBedrock",true);
+
+        BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
+                .defineInRange("breakExhaustion", 1, 0, 10);
 
         COMMON_BUILDER.pop();
     }

@@ -119,7 +119,12 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
                 double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
                 double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
                 if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
-                    entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 1.0F);
+                    if (state.getBlock() == ModBlocks.RASPBERRY_BUSH || state.getBlock() == ModBlocks.BLACKBERRY_BUSH) {
+                        entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 2.0F);
+                    }
+                    if (state.getBlock() == ModBlocks.SNOWBERRY_BUSH || state.getBlock() == ModBlocks.CRANBERRY_BUSH || state.getBlock() == ModBlocks.PINEAPPLE_BUSH) {
+                        entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 1.0F);
+                    }
                 }
             }
 

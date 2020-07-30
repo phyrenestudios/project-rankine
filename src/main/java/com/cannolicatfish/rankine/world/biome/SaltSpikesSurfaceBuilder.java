@@ -122,7 +122,7 @@ public class SaltSpikesSurfaceBuilder extends ErodedBadlandsSurfaceBuilder {
     @Override
     protected void func_215430_b(long p_215430_1_) {
         this.field_215432_a = new BlockState[64];
-        Arrays.fill(this.field_215432_a, RED_SANDSTONE);
+        Arrays.fill(this.field_215432_a, ModBlocks.LIMESTONE.getDefaultState());
         SharedSeedRandom sharedseedrandom = new SharedSeedRandom(p_215430_1_);
         this.field_215439_e = new PerlinNoiseGenerator(sharedseedrandom,Arrays.asList(0,0));
 

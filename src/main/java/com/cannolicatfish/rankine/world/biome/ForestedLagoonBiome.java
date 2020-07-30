@@ -1,37 +1,30 @@
 package com.cannolicatfish.rankine.world.biome;
 
-import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.structure.MineshaftConfig;
-import net.minecraft.world.gen.feature.structure.MineshaftStructure;
-import net.minecraft.world.gen.feature.structure.ShipwreckConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.CountConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ForestedLagoonBiome extends Biome {
+ static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
+ static final RainType PRECIPATATION = RainType.RAIN;
+ static final Category CATEGORY = Category.BEACH;
+ static final float DEPTH = -0.2F;
+ static final float SCALE = 0.05F;
+ static final float TEMPERATURE = 0.8F;
+ static final float DOWNFALL = 0.2F;
+ static final int WATER_COLOR = 686230;
+ static final int WATER_FOG_COLOR = 329011;
+ static final int FOG_COLOR = 12638463;
+ static final String PARENT = null;
     public ForestedLagoonBiome() {
-       super((new Builder()).surfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
-               .precipitation(RainType.RAIN)
-               .category(Category.BEACH)
-               .depth(-0.2F).scale(0.05F)
-               .temperature(0.8F)
-               .downfall(0.2F)
-               .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(686230).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
-               .parent((String)null));
-
-        //this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        //this.addStructure(RankineFeatures.LAGOON_FOUNTAIN.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-        DefaultBiomeFeatures.addOceanCarvers(this);
-        //DefaultBiomeFeatures.addStructures(this);
+     super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
+     DefaultBiomeFeatures.func_235196_b_(this);      //mineshaft and stronghold
+     this.func_235063_a_(DefaultBiomeFeatures.field_235187_y_);  //portal
+     DefaultBiomeFeatures.addOceanCarvers(this);
         RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);
@@ -64,7 +57,7 @@ public class ForestedLagoonBiome extends Biome {
 
  @Override
  public Biome getRiver() {
-  return Biomes.RIVER;
+  return this;
  }
 
 

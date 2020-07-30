@@ -35,7 +35,6 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
         int endX = chunk.getPos().getXEnd();
         int endZ = chunk.getPos().getZEnd();
 
-
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = worldIn.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
@@ -99,6 +98,27 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                 return STONES.get(1);
             }
             if (y >= endY - THICKNESS * 1.0 && y < endY) {
+                return STONES.get(0);
+            }
+        } else if (biome_type == 3) {
+            STONES = Arrays.asList(ModBlocks.BASALT.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
+            int THICKNESS = endY / STONES.size();
+            if (y >= 0 && y < endY - THICKNESS * 5.5) {
+                return STONES.get(5);
+            }
+            if (y >= endY - THICKNESS * 5.5 && y < endY - THICKNESS * 5.0) {
+                return STONES.get(4);
+            }
+            if (y >= endY - THICKNESS * 5.0 && y < endY - THICKNESS * 4.0) {
+                return STONES.get(3);
+            }
+            if (y >= endY - THICKNESS * 4.0 && y < endY - THICKNESS * 3.5) {
+                return STONES.get(2);
+            }
+            if (y >= endY - THICKNESS * 3.5 && y < endY - THICKNESS * 2.5) {
+                return STONES.get(1);
+            }
+            if (y >= endY - THICKNESS * 2.5 && y < endY) {
                 return STONES.get(0);
             }
         } else {

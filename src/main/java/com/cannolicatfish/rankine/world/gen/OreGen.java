@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine.world.gen;
 
+import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.ModBiomes;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.world.gen.feature.*;
@@ -7,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
@@ -21,10 +24,10 @@ public class OreGen {
 
 
     public static void setupOreGeneration() {
-
+        flatBedrock();
         removeFeatures();
 
-        //FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 64, Arrays.asList(RankineBiomes.SALT_PLAINS, RankineBiomes.SALT_SPIKES));
+        FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 64, Arrays.asList(ModBiomes.SALT_PLAINS, ModBiomes.SALT_SPIKES));
 
         addCrystal();
         intrusionGenDef();
@@ -32,17 +35,24 @@ public class OreGen {
         //Extras
         rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SALT_BLOCK.getDefaultState(),30,2,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
         rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PINK_SALT_BLOCK.getDefaultState(),30,2,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
-
-
-
-
-        replaceGenDef(Blocks.DIRT, ModBlocks.PERMAFROST, 50, 128, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY), true));
         replaceGenDef(Blocks.STONE, Blocks.RED_SANDSTONE, 61, 80, getBiomesFromCategory(Collections.singletonList(Biome.Category.MESA), true));
+        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SCORIA.getDefaultState(),20,6,50,128, Collections.singletonList(ModBiomes.CRACKED_CRUST));
+        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PUMICE.getDefaultState(),20,5,50,128, Collections.singletonList(ModBiomes.CRACKED_CRUST));
 
         stoneGen(1, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.MUSHROOM), true));
         stoneGen(2, getBiomesFromCategory(Collections.singletonList(Biome.Category.BEACH), true));
+        stoneGen(3, Collections.singletonList(ModBiomes.CRACKED_CRUST));
         stoneGen(0, getBiomesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH, Biome.Category.MUSHROOM), false));
         netherStoneGen(getBiomesFromCategory(Collections.singletonList(Biome.Category.NETHER), true));
+
+        rockGenCountDef(Blocks.NETHERRACK.getDefaultState(), ModBlocks.SCORIA.getDefaultState(),40,2,0,128, Collections.singletonList(Biomes.field_235254_j_));
+        rockGenCountDef(Blocks.NETHERRACK.getDefaultState(), ModBlocks.PUMICE.getDefaultState(),40,2,0,128, Collections.singletonList(Biomes.field_235254_j_));
+        rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.LIMESTONE_NODULE.getDefaultState(),6,20,31,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false));
+        //rockGenCountDef(Blocks.SAND.getDefaultState(), ModBlocks.ALLUVIUM.getDefaultState(),10,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.DESERT),true));
+        rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
+        rockGenCountDef(Blocks.RED_SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
+        rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 10),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
+        rockGenCountDef(Blocks.DIRT.getDefaultState(), ModBlocks.PERMAFROST.getDefaultState(),10,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY),true));
 
         //tier native
         OWGenDefCount(ModBlocks.NATIVE_COPPER_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
@@ -65,35 +75,25 @@ public class OreGen {
         OWGenDefCount(ModBlocks.SPHALERITE_ORE,20,1,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
 
         //tier 2
-        OWGenDefCount(ModBlocks.MAGNETITE_ORE,20,4,0,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
-        OWGenDefCount(ModBlocks.MAGNESITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
+        OWGenDefCount(ModBlocks.MAGNETITE_ORE,30,4,0,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
+        OWGenDefCount(ModBlocks.MAGNESITE_ORE, 20, 2, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.PENTLANDITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
-        chunkMultiGenDef(ModBlocks.GALENA_ORE, 20, 0.5F, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP, 0.3f);
+        chunkMultiGenDef(ModBlocks.GALENA_ORE, 20, 1F, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP, 0.3f);
         OWGenDefCount(ModBlocks.ACANTHITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.BISMITE_ORE, 5, 1, 11, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
-        OWGenDefCount(ModBlocks.PYROLUSITE_ORE, 10, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
-        OWGenDefCount(ModBlocks.CINNABAR_ORE, 20, 3, 20, 90, RankineOreFeatureConfig.RankineFillerBlockType.IGNEOUS);
+        OWGenDefCount(ModBlocks.PYROLUSITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
+        OWGenDefCount(ModBlocks.CINNABAR_ORE, 20, 4, 20, 90, RankineOreFeatureConfig.RankineFillerBlockType.IGNEOUS);
 
         //tier 3
         OWGenDefChance(ModBlocks.ILMENITE_ORE, 5, 3, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
         OWGenDefChance(ModBlocks.CHROMITE_ORE, 5, 3, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
         OWGenDefChance(ModBlocks.WOLFRAMITE_ORE, 5, 3, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
 
-
-
         //miac
         OWGenDefCount(ModBlocks.LAZURITE_ORE, 15, 2, 20, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
         OWGenDefCount(ModBlocks.EMERALD_ORE, 5, 1, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.AQUAMARINE_ORE, 5, 1, 11, 30, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.PLUMBAGO_ORE, 8, 3, 0, 20, RankineOreFeatureConfig.RankineFillerBlockType.MARBLE);
-
-
-        rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.LIMESTONE_NODULE.getDefaultState(),6,20,31,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false));
-        rockGenCountDef(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(),10,1,55,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),true));
-        //rockGenCountDef(Blocks.SAND.getDefaultState(), ModBlocks.ALLUVIUM.getDefaultState(),10,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.DESERT),true));
-        rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),60,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
-        rockGenCountDef(Blocks.RED_SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),60,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
-        rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 10),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
 
         //NETHER
         NetherGenDefCount(ModBlocks.NATIVE_ARSENIC_ORE, 10, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
@@ -110,6 +110,7 @@ public class OreGen {
         NetherGenDefCount(ModBlocks.WOLFRAMITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
         NetherGenDefCount(ModBlocks.MOISSANITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
         NetherGenDefCount(ModBlocks.SPERRYLITE_ORE, 20, 15, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.SPERRYLITE_ORE, 12, 1, 0, 20, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
 
 
 
@@ -245,7 +246,16 @@ public class OreGen {
         }
     }
 
-
+    private static void flatBedrock() {
+        if (Config.FLAT_BEDROCK.get()) {
+            for (Biome b : ForgeRegistries.BIOMES) {
+                if (b.getCategory() != Biome.Category.NETHER && b.getCategory() != Biome.Category.THEEND) {
+                    b.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, new FlatBedrockFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
+                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(),0, Config.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.field_236555_a_).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
+                }
+                }
+        }
+    }
 
     private static void removeFeatures() {
         for (Biome biome : ForgeRegistries.BIOMES) {

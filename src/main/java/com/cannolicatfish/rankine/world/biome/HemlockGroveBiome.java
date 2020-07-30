@@ -1,10 +1,14 @@
 package com.cannolicatfish.rankine.world.biome;
 
+import com.cannolicatfish.rankine.init.ModBiomes;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.INoiseRandom;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+
+import javax.annotation.Nullable;
 
 public class HemlockGroveBiome extends Biome {
     static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG);
@@ -60,13 +64,13 @@ public class HemlockGroveBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.WITCH, 5, 1, 1));
     }
 
-    /*
+
     @Nullable
     @Override
     public Biome getHill(INoiseRandom rand) {
-        return RankineBiomes.CEDAR_FOREST;
+        return ModBiomes.HEMLOCK_HILLS;
     }
-*/
+
 
     @Override
     public Biome getRiver() {

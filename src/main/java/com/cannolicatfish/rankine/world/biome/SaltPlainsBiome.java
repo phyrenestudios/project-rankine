@@ -10,24 +10,30 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.SeaGrassConfig;
 import net.minecraft.world.gen.feature.structure.*;
 import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 public class SaltPlainsBiome extends Biome {
+    static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, SurfaceBuilder.SAND_CONFIG);
+    static final RainType PRECIPATATION = RainType.NONE;
+    static final Category CATEGORY = Category.DESERT;
+    static final float DEPTH = 0.0F;
+    static final float SCALE = 0.0F;
+    static final float TEMPERATURE = 2.0F;
+    static final float DOWNFALL = 0.0F;
+    static final int WATER_COLOR = 4159204;
+    static final int WATER_FOG_COLOR = 329011;
+    static final int FOG_COLOR = 16777180;
+    static final String PARENT = "desert";
+
     public SaltPlainsBiome() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.SAND_CONFIG)
-                .precipitation(Biome.RainType.NONE)
-                .category(Biome.Category.DESERT)
-                .depth(0.0F)
-                .scale(0.0F)
-                .temperature(2.0F)
-                .downfall(0.0F)
-                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4159204).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
-                .parent("desert"));
-        //this.addStructure(Feature.PILLAGER_OUTPOST.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-        //this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        //this.addStructure(Feature.STRONGHOLD.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
+        this.func_235063_a_(DefaultBiomeFeatures.field_235183_u_);  //village
+        this.func_235063_a_(DefaultBiomeFeatures.field_235134_a_);  //pillager
+        DefaultBiomeFeatures.func_235196_b_(this);
+        this.func_235063_a_(DefaultBiomeFeatures.field_235188_z_);  //portal
+        DefaultBiomeFeatures.func_235191_ai_(this);
         DefaultBiomeFeatures.addCarvers(this);
-        //DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addDesertLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);

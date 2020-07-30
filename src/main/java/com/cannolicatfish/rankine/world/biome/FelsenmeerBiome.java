@@ -16,29 +16,33 @@ import net.minecraft.world.gen.feature.structure.MineshaftConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 import java.util.Random;
 
 public class FelsenmeerBiome extends Biome {
-    public FelsenmeerBiome() {
-        super((new Biome.Builder()).surfaceBuilder(new FelsenmeerSurfaceBuilder(SurfaceBuilderConfig.field_237203_a_), new SurfaceBuilderConfig(ModBlocks.RHYOLITE.getDefaultState(), Blocks.STONE.getDefaultState(), Blocks.GRAVEL.getDefaultState()))
-                .precipitation(Biome.RainType.RAIN)
-                .category(Category.FOREST)
-                .depth(0.15F)
-                .scale(0.075F)
-                .temperature(0.8F)
-                .downfall(0.4F)
-                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4159204).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
-                .parent((String)null));
+  static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(RankineSurfaceBuilder.FELSENMEER, RankineSurfaceBuilder.RHY_STONE_GRAVEL);
+  static final RainType PRECIPATATION = RainType.RAIN;
+  static final Category CATEGORY = Category.FOREST;
+  static final float DEPTH = 0.15F;
+  static final float SCALE = 0.075F;
+  static final float TEMPERATURE = 0.8F;
+  static final float DOWNFALL = 0.4F;
+  static final int WATER_COLOR = 4159204;
+  static final int WATER_FOG_COLOR = 329011;
+  static final int FOG_COLOR = 11197695;
+  static final String PARENT = null;
 
+    public FelsenmeerBiome() {
+      super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
       this.func_235063_a_(DefaultBiomeFeatures.field_235182_t_);
       this.func_235063_a_(DefaultBiomeFeatures.field_235134_a_);
       this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.ANDESITE.getDefaultState(),new Random().nextInt(2)))
               .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
       this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.DIORITE.getDefaultState(),new Random().nextInt(2)))
               .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
-
       DefaultBiomeFeatures.addCarvers(this);
       DefaultBiomeFeatures.func_235196_b_(this);
       DefaultBiomeFeatures.addLakes(this);

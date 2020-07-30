@@ -552,9 +552,6 @@
   "block.rankine.ironstone": "Ironstone",
   "block.rankine.smooth_ironstone": "Smooth Ironstone",
   "block.rankine.ironstone_bricks": "Ironstone Bricks",
-  "block.rankine.opal_ore": "Ironstone Opal",
-  "block.rankine.nether_gold_ore": "Nether Gold Ore",
-  "block.rankine.quartz_ore": "Quartz Ore",
   "block.rankine.quicklime_block": "Block of Quicklime",
   "block.rankine.limestone_nodule": "Limestone Nodule",
   "block.rankine.elderberry_bush": "Elderberry Bush",
@@ -914,7 +911,6 @@
   "item.minecraft.quartz": "Quartz",
   "item.minecraft.shield": "Iron Shield",
   "item.minecraft.coal": "Sub-bituminous Coal",
-  "block.minecraft.coal_ore": "Sub-bituminous Coal Ore",
   "block.minecraft.coal_block": "Sub-bituminous Coal Block",
   "block.minecraft.granite": "Red Granite",
   "block.minecraft.diorite": "Quartz Diorite",
@@ -1040,29 +1036,11 @@
   "item.rankine.silver_remedy": "Silver Remedy",
 
 
-
-
-
-
-
-
-
-
-
-
-
-  "block.rankine.native_indium_ore": "Native Indium Ore",
-  "block.rankine.native_selenium_ore": "Native Selenium Ore",
-  "block.rankine.native_tellurium_ore": "Native Tellurium Ore",
-  "block.rankine.native_gallium_ore": "Native Gallium Ore",
-  "block.rankine.native_bismuth_ore": "Native Bismuth Ore",
-  "block.rankine.native_sulfur_ore": "Native Sulfur Ore",
-  "block.rankine.native_arsenic_ore": "Native Arsenic Ore",
+  "block.rankine.magnetite_ore": "Magnetite Ore",
   "block.rankine.cassiterite_ore": "Cassiterite Ore",
   "block.rankine.malachite_ore": "Malachite Ore",
   "block.rankine.bauxite_ore": "Bauxite Ore",
   "block.rankine.sphalerite_ore": "Sphalerite Ore",
-  "block.rankine.magnetite_ore": "Magnetite Ore",
   "block.rankine.cinnabar_ore": "Cinnabar Ore",
   "block.rankine.pentlandite_ore": "Pentlandite Ore",
   "block.rankine.magnesite_ore": "Magnesite Ore",
@@ -1095,10 +1073,22 @@
   "block.rankine.native_aluminum_ore": "Native Aluminum Ore",
   "block.rankine.native_lead_ore": "Native Lead Ore",
   "block.rankine.native_silver_ore": "Native Silver Ore",
+  "block.rankine.native_arsenic_ore": "Native Arsenic Ore",
+  "block.rankine.native_bismuth_ore": "Native Bismuth Ore",
+  "block.rankine.native_sulfur_ore": "Native Sulfur Ore",
+  "block.rankine.native_gallium_ore": "Native Gallium Ore",
+  "block.rankine.native_indium_ore": "Native Indium Ore",
+  "block.rankine.native_tellurium_ore": "Native Tellurium Ore",
+  "block.rankine.native_selenium_ore": "Native Selenium Ore",
+  "block.rankine.nether_gold_ore": "Nether Gold Ore",
+  "block.rankine.quartz_ore": "Quartz Ore",
+  "block.rankine.opal_ore": "Opal Ore",
+  "block.rankine.fluorite_ore": "Fluorite Ore",
+  "block.rankine.uraninite_ore": "Uraninite Ore",
 
-
-
-
+  "item.rankine.greenockite": "Greenockite",
+  "item.rankine.fluorite": "Fluorite",
+  "item.rankine.uraninite": "Uraninite",
 
 
 
@@ -1206,5 +1196,6 @@
   "biome.rankine.forested_lagoon": "Forested Lagoon",
   "biome.rankine.hemlock_grove": "Hemlock Grove",
   "biome.rankine.salt_plains": "Salt Plains",
-  "biome.rankine.salt_spikes": "Salt Spikes"
+  "biome.rankine.salt_spikes": "Salt Spikes",
+  "biome.rankine.cracked_crust": "Cracked Crust"
 }

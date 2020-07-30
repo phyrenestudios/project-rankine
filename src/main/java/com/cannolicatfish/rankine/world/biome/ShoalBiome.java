@@ -14,25 +14,28 @@ import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.CountConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
 public class ShoalBiome extends Biome {
+    static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.SWAMP, SurfaceBuilder.SAND_SAND_GRAVEL_CONFIG);
+    static final RainType PRECIPATATION = RainType.RAIN;
+    static final Category CATEGORY = Category.OCEAN;
+    static final float DEPTH = -0.25F;
+    static final float SCALE = 0.05F;
+    static final float TEMPERATURE = 0.7F;
+    static final float DOWNFALL = 0.5F;
+    static final int WATER_COLOR = 4159204;
+    static final int WATER_FOG_COLOR = 329011;
+    static final int FOG_COLOR = 12638463;
+    static final String PARENT = null;
+
     public ShoalBiome() {
-        super((new Builder()).surfaceBuilder(SurfaceBuilder.SWAMP, SurfaceBuilder.SAND_SAND_GRAVEL_CONFIG)
-                .precipitation(RainType.RAIN)
-                .category(Category.OCEAN)
-                .depth(-0.25F).scale(0.05F)
-                .temperature(0.7F)
-                .downfall(0.5F)
-                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4159204).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
-                .parent((String)null));
-
-        //this.addStructure(Feature.MINESHAFT.withConfiguration(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));
-        //this.addStructure(Feature.SHIPWRECK.withConfiguration(new ShipwreckConfig(true)));
-        //this.addStructure(Feature.OCEAN_RUIN.withConfiguration(new OceanRuinConfig(net.minecraft.world.gen.feature.structure.OceanRuinStructure.Type.COLD, 0.3F, 0.9F)));
-
+        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
+        DefaultBiomeFeatures.func_235196_b_(this);
+        this.func_235063_a_(DefaultBiomeFeatures.field_235188_z_);  //portal
+        this.func_235063_a_(DefaultBiomeFeatures.field_235180_r_);  //treasure
         DefaultBiomeFeatures.addOceanCarvers(this);
-        //DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);
