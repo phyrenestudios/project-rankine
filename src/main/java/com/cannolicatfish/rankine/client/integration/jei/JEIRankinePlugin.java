@@ -67,7 +67,15 @@ public class JEIRankinePlugin implements IModPlugin {
                 "Antitaenite - 80% Iron, 20% Nickel", "Taenite - 60% Iron, 40% Nickel", "Tetrataenite - 50% Iron, 50% Nickel");
         registry.addIngredientInfo(new ItemStack(ModItems.COKE), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous or Sub-bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.COKE_BLOCK), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous or Sub-bituminous Coal Blocks in a beehive oven.",
+                "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(ModItems.QUICKLIME), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
+                "See Beehive Oven Pit for more details.");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.QUICKLIME_BLOCK), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
+                "See Beehive Oven Pit for more details.");
+        registry.addIngredientInfo(new ItemStack(ModItems.MAGNESIA), VanillaTypes.ITEM, "Magnesia can be obtained by cooking a Block of Magnesite in a beehive oven.",
+                "See Beehive Oven Pit for more details.");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.MAGNESIA_BLOCK), VanillaTypes.ITEM, "Magnesia can be obtained by cooking a Block of Magnesite in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), VanillaTypes.ITEM, "The minimum requirements for a beehive oven is a 3x3 structure with a beehive oven pit in the center and lighting the pit with flint and steel.",
                 "Only the pit block must have access to the sky. Place blocks around the pit to cook them over time.");

@@ -14,11 +14,11 @@ public final class PeriodicTableUtils {
             "Praseodymium", "Neodymium","Promethium","Samarium", "Europium","Gadolinium","Tebrium","Dysprosium","Holmium","Eribium","Thulium","Ytterbium","Lutetium","Hafnium","Tantalum","Tungsten","Rhenium","Osmium","Iridium",
             "Platinum","Gold", "Mercury","Thalium","Lead","Bismuth", "Polonium","Astatine","Radon","Francium","Radium","Actinium","Thorium","Proactinium","Uranium","Neptunium","Plutonium ","Americium","Curium","Berkelium",
             "Californium","Einsteinium", "Fermium","Mendelevium","Nobelium", "Lawrencium","Rutherfordium","Dubnium","Seaborgium","Bohrium","Hassium","Meiterium","Darmstadtium","Roentgenium","Copernicium","Nihonium","Flerovium",
-            "Moscovium","Livermorium", "Tennessine","Oganesson"); //Index 0 for all lists are "None" and should not be used or appear
+            "Moscovium","Livermorium", "Tennessine","Oganesson","Netherite"); //Index 0 for all lists are "None" and should not be used or appear
 
     public final List<String> symbols = Arrays.asList("","H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar","K","Ca","Sc","Ti","V","Cr","Mn","Fe","Co","Ni","Cu","Zn","Ga","Ge","As","Se","Br","Kr","Rb",
             "Sr","Y","Zr","Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","In","Sn","Sb","Te","I","Xe","Cs","Ba","La","Ce","Pr","Nd","pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu","Hf","Ta","W","Re","Os ","Ir","Pt","Au","Hg","Tl",
-            "Pb","Bi","Po","At","Rn","Fr","Ra","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","md","No","Lr","Rf","Db","Sg","Bh","Hs","Mt","Ds","Rg","Cn","Uut","Ft","Uup","Lv","Uus","Uuo");
+            "Pb","Bi","Po","At","Rn","Fr","Ra","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","md","No","Lr","Rf","Db","Sg","Bh","Hs","Mt","Ds","Rg","Cn","Uut","Ft","Uup","Lv","Uus","Uuo","Nr");
 
     public List<String> getElementNames() {
         return names;
@@ -30,7 +30,7 @@ public final class PeriodicTableUtils {
         {
             elements.add(e.toString().toLowerCase());
         }
-        System.out.println(elements);
+        //System.out.println(elements);
         return elements;
     }
 
@@ -78,8 +78,12 @@ public final class PeriodicTableUtils {
         {
             return "C";
         }
+        if (material.equals("unref_iron"))
+        {
+            return "Fe";
+        }
         int index = 0;
-        for (String e:names)
+        for (String e:names) // change to use implemented elements?
         {
             if (material.equalsIgnoreCase(e))
             {

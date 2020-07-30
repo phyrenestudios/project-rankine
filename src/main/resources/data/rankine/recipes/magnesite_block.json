@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:magnesite"
+    },
+    {
+      "item": "rankine:magnesite"
+    },
+    {
+      "item": "rankine:magnesite"
+    },
+    {
+      "item": "rankine:magnesite"
+    }
+  ],
+  "result": {
+    "item": "rankine:magnesite_block",
+    "count": 1
+  }
+}

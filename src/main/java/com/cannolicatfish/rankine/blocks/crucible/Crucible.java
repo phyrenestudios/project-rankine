@@ -79,7 +79,7 @@ public class Crucible extends Block {
                     if (!player.abilities.isCreativeMode) {
                         itemstack.shrink(1);
                         ItemStack steel = new ItemStack(ModItems.STEEL_ALLOY);
-                        AlloyItem.addAlloy(steel, new AlloyData("98Fe-2C"));
+                        AlloyItem.addAlloy(steel, new AlloyData("99Fe-1C"));
                         if (itemstack.isEmpty()) {
                             player.setHeldItem(handIn, steel);
                         } else if (!player.inventory.addItemStackToInventory(steel)) {
