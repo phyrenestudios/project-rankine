@@ -10,12 +10,15 @@ import net.minecraftforge.fml.common.Mod;
 public class RankineFeatures {
 
     public static final Feature<MeteoriteFeatureConfig> METEORITE = new MeteoriteFeature(MeteoriteFeatureConfig.AAAA);
+    public static final Feature<NoFeatureConfig> SPIKE = new SpikesFeature(NoFeatureConfig.field_236558_a_);
+
 
     @SubscribeEvent
     public static void PRregisterFeatures(RegistryEvent.Register<Feature<?>> event) {
         ProjectRankine.LOGGER.debug("PR: Registering Features...");
-        event.getRegistry().register(
-                METEORITE.setRegistryName("meteorite")
+        event.getRegistry().registerAll(
+                METEORITE.setRegistryName("meteorite"),
+                SPIKE.setRegistryName("spike")
         );
 
         ProjectRankine.LOGGER.info("PR: Features Registered!");

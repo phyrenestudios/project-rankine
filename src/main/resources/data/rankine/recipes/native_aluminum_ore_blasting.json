@@ -1,0 +1,9 @@
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:native_aluminum_ore"
+      },
+      "result": "rankine:aluminum_ingot",
+      "experience": 0.7,
+      "cookingtime": 100
+    }

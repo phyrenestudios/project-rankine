@@ -5,23 +5,26 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
 public class PinyonJuniperWoodlandBiome extends Biome {
-    public PinyonJuniperWoodlandBiome() {
-        super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, new SurfaceBuilderConfig(ModBlocks.SANDY_DIRT.getDefaultState(), ModBlocks.SANDY_DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))
-                .precipitation(RainType.RAIN)
-                .category(Biome.Category.SAVANNA)
-                .depth(0.8F)
-                .scale(0.05F)
-                .temperature(1.5F)
-                .downfall(0.1F)
-                .func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(4159177).func_235248_c_(329011).func_235239_a_(12638463).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_())
-                .parent((String)null));
+    static final ConfiguredSurfaceBuilder SURFACE_BUILDER = new ConfiguredSurfaceBuilder<>(SurfaceBuilder.DEFAULT, RankineSurfaceBuilder.SD_SD_GRAVEL);
+    static final RainType PRECIPATATION = RainType.RAIN;
+    static final Category CATEGORY = Category.SAVANNA;
+    static final float DEPTH = 0.8F;
+    static final float SCALE = 0.05F;
+    static final float TEMPERATURE = 1.5F;
+    static final float DOWNFALL = 0.1F;
+    static final int WATER_COLOR = 4159177;
+    static final int WATER_FOG_COLOR = 329011;
+    static final int FOG_COLOR = 12638463;
+    static final String PARENT = null;
 
+    public PinyonJuniperWoodlandBiome() {
+        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
         DefaultBiomeFeatures.addCarvers(this);
-        //DefaultBiomeFeatures.addStructures(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addSprings(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
@@ -29,8 +32,7 @@ public class PinyonJuniperWoodlandBiome extends Biome {
         DefaultBiomeFeatures.addStoneVariants(this);
         DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addSedimentDisks(this);
-        RankineBiomeFeatures.addPinyonTrees(this);
-        //DefaultBiomeFeatures.addFossils(this);
+        RankineBiomeFeatures.addPinyonJuniperWoodlandsTrees(this);
         DefaultBiomeFeatures.addExtraDefaultFlowers(this);
         DefaultBiomeFeatures.addVeryDenseGrass(this);
         DefaultBiomeFeatures.addMushrooms(this);
@@ -54,9 +56,4 @@ public class PinyonJuniperWoodlandBiome extends Biome {
         this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.WITCH, 5, 1, 1));
     }
 
-
-    @Override
-    public Biome getRiver() {
-        return Biomes.RIVER;
-    }
 }

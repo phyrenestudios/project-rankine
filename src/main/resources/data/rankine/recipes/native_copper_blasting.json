@@ -1,1 +1,0 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:native_copper_ore"},"result": { "item": "rankine:copper_ingot"},"experience": 1, "cookingTime": 200 }

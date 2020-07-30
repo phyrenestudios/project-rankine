@@ -51,6 +51,9 @@ public class ModItems {
     public static final Item PLATINUM_ARSENIDE = add("platinum_arsenide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MONAZITE = add("monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ZIRCON = add("zircon", new SimpleTooltipItem("ZrSiO4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item URANINITE = add("uraninite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item FLUORITE = add("fluorite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GREENOCKITE = add("greenockite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     //ELEMENT NUGGETS
     public static final Item COPPER_NUGGET = add("copper_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item TIN_NUGGET = add("tin_nugget", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

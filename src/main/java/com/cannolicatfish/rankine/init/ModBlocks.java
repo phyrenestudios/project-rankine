@@ -580,7 +580,7 @@ public class ModBlocks {
     public static final RankineOre MOLYBDENITE_ORE = add("molybdenite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.MOLYBDENUM_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_SILVER_ORE = add("native_silver_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre ACANTHITE_ORE = add("acanthite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.SILVER_NUGGET), METALLURGY);
-    public static final RankineOre GREENOCKITE_ORE = add("greenockite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre GREENOCKITE_ORE = add("greenockite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.CADMIUM_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_INDIUM_ORE = add("native_indium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre NATIVE_TIN_ORE = add("native_tin_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.TIN_NUGGET), METALLURGY);
     public static final RankineOre CASSITERITE_ORE = add("cassiterite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.TIN_NUGGET), METALLURGY);
@@ -593,6 +593,7 @@ public class ModBlocks {
     public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.LEAD_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre BISMITE_ORE = add("bismite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.BISMUTH_NUGGET), METALLURGY);
+    public static final RankineOre URANINITE_ORE = add("uraninite_ore", new RankineOre(DEF_ORE.harvestLevel(4)), METALLURGY);
     public static final RankineOre PLUMBAGO_ORE = add("plumbago_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
     public static final RankineOre MOISSANITE_ORE = add("moissanite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
     public static final RankineOre SPERRYLITE_ORE = add("sperrylite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
@@ -602,6 +603,7 @@ public class ModBlocks {
     public static final RankineOre OPAL_ORE = add("opal_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre AQUAMARINE_ORE = add("aquamarine_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre QUARTZ_ORE = add("quartz_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre FLUORITE_ORE = add("fluorite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
     public static final RankineOre CINNABAR_ORE = add("cinnabar_ore", new RankineOre(DEF_ORE.harvestLevel(1), Items.REDSTONE), METALLURGY);
     public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final Block METEORITE = add("meteorite", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);

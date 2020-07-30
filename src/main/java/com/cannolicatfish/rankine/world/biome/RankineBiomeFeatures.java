@@ -21,6 +21,7 @@ import net.minecraft.world.gen.blockstateprovider.ForestFlowerBlockStateProvider
 import net.minecraft.world.gen.blockstateprovider.PlainFlowerBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.carver.WorldCarver;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.*;
@@ -85,7 +86,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig JUNIPER_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(2, 0, 0, 0),
+            new AcaciaFoliagePlacer(1, 0, 0, 0),
             new ForkyTrunkPlacer(2, 0, 0),
             new TwoLayerFeature(1, 0, 2)))
             .func_236700_a_()
@@ -129,6 +130,15 @@ public class RankineBiomeFeatures {
             .func_236700_a_()
             .build();
 
+    public static final BaseTreeFeatureConfig LAGOOAN_OAK = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(Blocks.STRIPPED_DARK_OAK_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
+            new AcaciaFoliagePlacer(2, 0, 1, 0),
+            new ForkyTrunkPlacer(2, 1, 2),
+            new TwoLayerFeature(1, 0, 2)))
+            .func_236700_a_()
+            .build();
+
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
             new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()), new BlobFoliagePlacer(2, 0, 0, 0, 3),
             new StraightTrunkPlacer(5, 2, 0), new TwoLayerFeature(1, 0, 1))).func_236700_a_().build();
@@ -143,19 +153,15 @@ public class RankineBiomeFeatures {
     public static final BlockClusterFeatureConfig CLOVER_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).addWeightedBlockstate(ModBlocks.WHITE_CLOVER.getDefaultState(), 4).addWeightedBlockstate(ModBlocks.PURPLE_CLOVER.getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
 
 
-
-
-
     public static void addModStructures(Biome biomeIn) {
-        /*
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.BEAVER_LODGE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.TROPICS_HOUSE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.LAGOON_FOUNTAIN.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
-         */
     }
 
     public static void addCedarForestTrees(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(BALSAM_FIR_TREE_CONFIG).withChance(0.05F), Feature.field_236291_c_.withConfiguration(SMALL_SPRUCE_CONFIG).withChance(0.05F), Feature.field_236291_c_.withConfiguration(EASTERN_HEMLOCK_TREE_CONFIG).withChance(0.1F)), Feature.field_236291_c_.withConfiguration(CEDAR_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10, 0.2F, 3))));
+    }
+
+    public static void addPinyonJuniperWoodlandsTrees(Biome biomeIn) {
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(JUNIPER_TREE_CONFIG).withChance(0.15F)), Feature.field_236291_c_.withConfiguration(PINYON_PINE_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.2F, 3))));
     }
 
     public static void addDeadSwampVegetation(Biome biomeIn) {
@@ -175,47 +181,24 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(LARGE_EASTERN_HEMLOCK_TREE_CONFIG).withChance(0.1F), Feature.field_236291_c_.withConfiguration(BALSAM_FIR_TREE_CONFIG).withChance(0.1F), Feature.field_236291_c_.withConfiguration(YELLOW_BIRCH_TREE_CONFIG).withChance(0.1F)), Feature.field_236291_c_.withConfiguration(EASTERN_HEMLOCK_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(12, 0.1F, 1))));
     }
 
-
-
-
-
     public static void addDenseFerns(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.LARGE_FERN_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(40))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(FERN_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(30))));
     }
 
     public static void addSaltSpikes(Biome biomeIn) {
-        //biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.SPIKE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(10))));
+        biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RankineFeatures.SPIKE.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(10))));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void addPinyonTrees(Biome biomeIn) {
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.ACACIA_TREE.withConfiguration(PINYON_TREE_CONFIG).withChance(0.8F)), Feature.ACACIA_TREE.withConfiguration(JUNIPER_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(8, 0.1F, 1))));
-    }
-
-
 
     public static void addTropicsDecor(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Feature.DESERT_WELL.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(100))));
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(COCONUT_PALM_TREE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(COCNUT_PALM_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(6, 0.15F, 4))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.BAMBOO.withConfiguration(new ProbabilityConfig(0.2F)).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(2))));
     }
 
     public static void addLagoonDecor(Biome biomeIn) {
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(MAGNOLIA_TREE_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(3))));
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(LAGOON_OAK_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(4))));
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.ACACIA_TREE.withConfiguration(LAGOON_OAK2_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP.configure(new FrequencyConfig(4))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(MAGNOLIA_TREE_CONFIG).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(6, 0.1F, 4))));
+        biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.field_236291_c_.withConfiguration(LAGOOAN_OAK).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(6, 0.1F, 4))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(DefaultBiomeFeatures.GRASS_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(20))));
         biomeIn.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(Blocks.WATER.getDefaultState())).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(4))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.FLOWER.withConfiguration(DefaultBiomeFeatures.DEFAULT_FLOWER_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_32.configure(new FrequencyConfig(3))));
@@ -223,12 +206,18 @@ public class RankineBiomeFeatures {
     }
 
     public static void addHighlandDecor(Biome biomeIn) {
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.JUNGLE_GROUND_BUSH.withConfiguration(HIGHLAND_OAK_BUSH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(3))));
-        //biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.JUNGLE_GROUND_BUSH.withConfiguration(HIGHLAND_SPRUCE_BUSH_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(2))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(SHORT_GRASS_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(10))));
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_PATCH.withConfiguration(CLOVER_PATCH_CONFIG).withPlacement(Placement.COUNT_HEIGHTMAP_DOUBLE.configure(new FrequencyConfig(4))));
     }
 
+    public static void addCrackedCrustStuff(Biome biomeIn) {
+        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(WorldCarver.CAVE, new ProbabilityConfig(0.2F)));
+        biomeIn.addCarver(GenerationStage.Carving.AIR, Biome.createCarver(WorldCarver.CANYON, new ProbabilityConfig(0.05F)));
+        biomeIn.addFeature(GenerationStage.Decoration.LAKES, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(Blocks.LAVA.getDefaultState())).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(10))));
+        biomeIn.addFeature(GenerationStage.Decoration.LAKES, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(ModBlocks.LIQUID_MERCURY_BLOCK.getDefaultState())).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
+        biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Feature.MONSTER_ROOM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.DUNGEONS.configure(new ChanceConfig(3))));
+
+    }
 
 
-}
+    }
