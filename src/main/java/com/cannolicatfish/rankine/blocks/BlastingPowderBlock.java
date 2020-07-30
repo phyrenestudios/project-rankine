@@ -31,12 +31,10 @@ public class BlastingPowderBlock extends FallingBlock {
         super(properties);
     }
 
-
+    @Override
     public void catchFire(BlockState state, World world, BlockPos pos, @Nullable net.minecraft.util.Direction face, @Nullable LivingEntity igniter) {
-        world.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
+        world.createExplosion(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
         world.removeBlock(pos, false);
-
-
     }
 
     @Override
@@ -107,7 +105,6 @@ public class BlastingPowderBlock extends FallingBlock {
             if (abstractarrowentity.isBurning()) {
                 BlockPos blockpos = hit.getPos();
                 catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
-                worldIn.removeBlock(blockpos, false);
             }
         }
 
@@ -115,7 +112,7 @@ public class BlastingPowderBlock extends FallingBlock {
 
     public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isRemote) {
-            worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
+            catchFire(worldIn.getBlockState(pos), worldIn, pos, null,null);
         }
     }
 
@@ -124,8 +121,7 @@ public class BlastingPowderBlock extends FallingBlock {
         Random random = new Random();
         if (random.nextFloat() <= 0.05f && !player.abilities.isCreativeMode)
         {
-            worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.Mode.BREAK);
-            worldIn.removeBlock(pos, false);
+            catchFire(worldIn.getBlockState(pos), worldIn, pos, null,player);
         }
     }
 
@@ -138,7 +134,8 @@ public class BlastingPowderBlock extends FallingBlock {
     /**
      * Return whether this block can drop from an explosion.
      */
-    public boolean canDropFromExplosion(Explosion explosionIn) {
+    @Override
+    public boolean canDropFromExplosion(BlockState state, IBlockReader world, BlockPos pos, Explosion explosion) {
         return false;
     }
 }
