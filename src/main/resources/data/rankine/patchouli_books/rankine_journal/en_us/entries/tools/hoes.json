@@ -1,0 +1,71 @@
+{
+  "name": "Hoes",
+  "icon": "rankine:steel_hoe",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can I hoe you a question?"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_hoe",
+      "text": "The bronze hoe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_iron_hoe",
+      "text": "The anchient hoe.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:iron_hoe",
+      "text": "The iron hoe.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_hoe",
+      "text": "The steel hoe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond_hoe",
+      "text": "The diamond hoe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_hoe",
+      "text": "The netherite hoe.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_hoe",
+      "text": "The bronze hoe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_hoe",
+      "text": "The bronze hoe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_hoe",
+      "text": "The bronze hoe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_hoe",
+      "text": "The bronze hoe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_hoe",
+      "text": "The bronze hoe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_hoe",
+      "text": "You decide"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "name": "Shovels",
+  "icon": "rankine:steel_shovel",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can I shove you a question?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_shovel",
+      "text": "The flint shovel actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_shovel",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_iron_shovel",
+      "text": "The anchient shovel.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:iron_shovel",
+      "text": "The iron shovel.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_shovel",
+      "text": "The steel shovel.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond_shovel",
+      "text": "The diamond shovel.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_shovel",
+      "text": "The netherite shovel.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_shovel",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_shovel",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_shovel",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_shovel",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_shovel",
+      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_shovel",
+      "text": "You decide"
+    }
+  ]
+}

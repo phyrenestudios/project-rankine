@@ -1,0 +1,76 @@
+{
+  "name": "Pickaxe",
+  "icon": "rankine:steel_pickaxe",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can I pick you a question?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_pickaxe",
+      "text": "The flint pickaxe actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_pickaxe",
+      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_iron_pickaxe",
+      "text": "The anchient pickaxe.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:iron_pickaxe",
+      "text": "The iron pickaxe.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_pickaxe",
+      "text": "The steel pickaxe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond_pickaxe",
+      "text": "The diamond pickaxe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_pickaxe",
+      "text": "The netherite pickaxe.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_pickaxe",
+      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_pickaxe",
+      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_pickaxe",
+      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_pickaxe",
+      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_pickaxe",
+      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_pickaxe",
+      "text": "You decide"
+    }
+  ]
+}

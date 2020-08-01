@@ -28,23 +28,21 @@ public class DecorationGen
     {
         addBerryBushes(ModBlocks.ELDERBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS), true));
         addBerryBushes(ModBlocks.SNOWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY), true));
-        addBerryBushes(ModBlocks.BLUEBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.EXTREME_HILLS), true));
+        addBerryBushes(ModBlocks.BLUEBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS), true));
         addBerryBushes(ModBlocks.RASPBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
         addBerryBushes(ModBlocks.BLACKBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
         addBerryBushes(ModBlocks.CRANBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true));
         addBerryBushes(ModBlocks.STRAWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true));
         addBerryBushes(ModBlocks.PINEAPPLE_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true));
-        addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true));
+        addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(ModBlocks.SANDY_DIRT, Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true));
 
         addErratics(RankineFeatures.METEORITE, ModBlocks.METEORITE.getDefaultState(), 1, 70, getBiomesFromCategory(Collections.emptyList(),false));
 
-        addTreesChance(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG, 2, Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.FOREST, Biomes.FLOWER_FOREST));
+        addTreesChance(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG, 1, Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.FOREST, Biomes.FLOWER_FOREST));
         addTreesCount(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
         addTreesCount(RankineBiomeFeatures.CEDAR_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));
         addTreesCount(RankineBiomeFeatures.COCNUT_PALM_TREE_CONFIG, 1, getBiomesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true));
         addTreesCount(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG, 1, Arrays.asList(Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA));
-        //addTreesChance(RankineBiomeFeatures.JUNIPER_TREE_CONFIG, 3, Arrays.asList(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA));
-        //addTreesChance(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG, 1, Arrays.asList(Biomes.JUNGLE_EDGE, Biomes.MODIFIED_JUNGLE_EDGE));
         addTreesCount(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG, 2, Arrays.asList(Biomes.SWAMP, Biomes.SWAMP_HILLS));
         addTreesCount(RankineBiomeFeatures.DEAD_BALSAM_FIR_TREE_CONFIG, 1, Arrays.asList(Biomes.SWAMP, Biomes.SWAMP_HILLS));
 

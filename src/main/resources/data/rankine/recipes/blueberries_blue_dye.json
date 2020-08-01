@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:blueberries"
+    },
+    {
+      "item": "rankine:blueberries"
+    },
+    {
+      "item": "rankine:blueberries"
+    },
+    {
+      "item": "rankine:blueberries"
+    }
+  ],
+  "result": {
+    "item": "minecraft:blue_dye",
+    "count": 1
+  }
+}

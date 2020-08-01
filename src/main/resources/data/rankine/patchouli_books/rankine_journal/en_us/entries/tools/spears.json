@@ -1,0 +1,76 @@
+{
+  "name": "Spears",
+  "icon": "rankine:steel_spear",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can I spear you a question?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_spear",
+      "text": "The flint spear actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_spear",
+      "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_iron_spear",
+      "text": "The anchient spear.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:iron_spear",
+      "text": "The iron spear.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_spear",
+      "text": "The steel spear.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:diamond_spear",
+      "text": "The diamond spear.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:netherite_spear",
+      "text": "The netherite spear.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_spear",
+      "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_spear",
+      "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_spear",
+      "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_spear",
+      "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_spear",
+      "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_spear",
+      "text": "You decide"
+    }
+  ]
+}

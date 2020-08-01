@@ -1,0 +1,15 @@
+{
+  "name": "Glass Cutter",
+  "icon": "rankine:glass_cutter",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Smash glass real quick"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:glass_cutter"
+    }
+  ]
+}

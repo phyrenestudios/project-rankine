@@ -10,37 +10,37 @@
     {
       "type": "crafting",
 	  "recipe": "rankine:cedar_remedy",
-      "text": "nom nom"
+      "text": "cure all ailments"
     },
 	{
       "type": "crafting",
 	  "recipe": "rankine:wintergreen_remedy",
-      "text": "nom nom"
+      "text": "invisibility"
     },
 	{
       "type": "crafting",
 	  "recipe": "rankine:herbal_remedy",
-      "text": "nom nom"
+      "text": "greater life from another realm"
     },
 	{
       "type": "crafting",
 	  "recipe": "rankine:berry_remedy",
-      "text": "nom nom"
+      "text": "full bell fast arms"
     },
 	{
       "type": "crafting",
 	  "recipe": "rankine:bismuth_remedy",
-      "text": "nom nom"
+      "text": "removes nausea"
     },
 	{
       "type": "crafting",
 	  "recipe": "rankine:silver_remedy",
-      "text": "nom nom"
+      "text": "cure poison & give regen"
     },
 	{
       "type": "crafting",
 	  "recipe": "rankine:cobalt_remedy",
-      "text": "nom nom"
+      "text": "cure weakness and give strength"
     }
   ]
 }

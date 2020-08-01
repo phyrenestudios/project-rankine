@@ -3,12 +3,49 @@
   "icon": "rankine:coal_forge",
   "category": "technology/machines",
   "pages": [
+    {
+      "type": "text",
+      "anchor": "coal_forge",
+      "text": "The coal forge is used for making tools. A template is placed in the top blue slot and this determines what tool is being made. Sticks and ingots go in the main slots in the exact numbers they would be for a standard recipe."
+    },
 	{
       "type": "crafting",
-	  "title": "Coal Forge",
-	  "anchor": "coal_forge",
-	  "recipe": "rankine:coal_forge",
-      "text": "aaa"
+	  "recipe": "rankine:coal_forge"
+    },
+    {
+      "type": "crafting",
+      "title": "Pickaxe Template",
+      "recipe": "rankine:pickaxe_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Hammer Template",
+      "recipe": "rankine:hammer_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Axe Template",
+      "recipe": "rankine:axe_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Sword Template",
+      "recipe": "rankine:sword_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Spear Template",
+      "recipe": "rankine:spear_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Shovel Template",
+      "recipe": "rankine:shovel_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Hoe Template",
+      "recipe": "rankine:hoe_template"
     }
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "name": "Beehive Oven",
+  "icon": "rankine:beehive_oven_pit",
+  "category": "technology/machines",
+  "pages": [
+	{
+      "type": "crafting",
+	  "title": "Beehive Oven Pit",
+	  "anchor": "beehive_oven",
+	  "recipe": "rankine:beehive_oven_pit",
+      "text": "not food safe"
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          [ "   ", " 0 ", "   " ],
+          [ "WWW", "WPW", "WWW" ]
+        ],
+        "mapping": {
+          "P": "rankine:beehive_oven_pit",
+          "W": "rankine:refractory_bricks"
+        },
+        "symmetrical": true
+      },
+      "text": "not food safe"
+    }
+  ]
+}
