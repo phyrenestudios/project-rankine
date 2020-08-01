@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_piston_crusher",
+  "parent": "rankine:story/make_wrought_iron",
   "display": {
     "icon": {
       "item": "rankine:crucible"

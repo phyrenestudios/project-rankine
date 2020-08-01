@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:heart_of_the_mantle"
+      "rankine:steel_rod"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:heart_of_the_mantle"
+        "recipe": "rankine:steel_rod"
       }
     }
   },

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.RankineAlloyMaterial;
@@ -595,6 +596,25 @@ public class AlloyingRecipesComplex {
             else
             {
                 x3 = 0;
+            }
+            if (Config.AMALGAM_EXTRAS.get() && (new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)) || materials.get(x3).equals("none")))
+            {
+                float propx1 = amounts.get(x1)/total;
+                float propx2 = amounts.get(x2)/total;
+                float propx3 = amounts.get(x3)/total;
+                /*
+                System.out.println(propx1);
+                System.out.println(propx2);
+                System.out.println(propx3);
+                System.out.println(Math.round(total/10));
+                 */
+                if (propx1 >= .25f && propx1 <= .8f && propx2 >= .25f && propx2 <= .5f && Math.round(total/10) <= 64) {
+                    int[] ar = new int[3];
+                    ar[0] = input1.getCount();
+                    ar[1] = input2.getCount();
+                    ar[2] = input3.getCount();
+                    return new Pair<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
+                }
             }
             if ((!materials.get(x3).equals("iron") && !materials.get(x3).equals("platinum") && !materials.get(x3).equals("tungsten") && !materials.get(x3).equals("tantalum")
                     && !materials.get(x3).equals("mercury") && !materials.get(x3).equals("gold") && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {

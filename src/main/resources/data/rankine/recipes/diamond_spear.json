@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " ii",
+    " si",
+    "s  "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "i":
+    {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:diamond_spear",
+    "count": 1
+  }
+}

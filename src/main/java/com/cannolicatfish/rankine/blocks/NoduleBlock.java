@@ -41,7 +41,7 @@ public class NoduleBlock extends Block {
 
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
+        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && canHarvestBlock(state,worldIn,pos,player) && !player.isCreative())
         {
             float f = 0.5F;
             double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;

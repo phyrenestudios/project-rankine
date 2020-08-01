@@ -231,9 +231,9 @@ public class ProjectRankine {
             final ResourceLocation FLUID_STILL = new ResourceLocation("rankine:block/liquid_mercury_still");
             final ResourceLocation FLUID_FLOWING = new ResourceLocation("rankine:block/liquid_mercury_flow");
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_MERCURY, () -> ModFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF))
-                    .bucket(() -> ModItems.LIQUID_MERCURY_BRASS_BUCKET).block(() -> ModBlocks.LIQUID_MERCURY_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
+                    .bucket(() -> ModItems.LIQUID_MERCURY_BUCKET).block(() -> ModBlocks.LIQUID_MERCURY_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_MERCURY, () -> ModFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF))
-                    .bucket(() -> ModItems.LIQUID_MERCURY_BRASS_BUCKET).block(() -> ModBlocks.LIQUID_MERCURY_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
+                    .bucket(() -> ModItems.LIQUID_MERCURY_BUCKET).block(() -> ModBlocks.LIQUID_MERCURY_BLOCK)).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
         }
 
         @SubscribeEvent

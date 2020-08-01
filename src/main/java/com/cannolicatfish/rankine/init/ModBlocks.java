@@ -528,6 +528,7 @@ public class ModBlocks {
     public static final Block BAMBOO_TRAPDOOR = add("bamboo_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
 
     public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), BLOCKS, 800);
+    public static final Block MINERAL_WOOL = add("mineral_wool", new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)), BLOCKS);
 
     public static final Block CEDAR_LEAVES = add("cedar_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
     public static final Block COCONUT_PALM_LEAVES = add("coconut_palm_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);

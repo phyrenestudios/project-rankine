@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.ModEntityTypes;
 import com.cannolicatfish.rankine.entities.SpearEntity;
@@ -102,7 +103,7 @@ public class AlloySpear extends ItemSpear {
         float eff = getEfficiency(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        float wmodifier = eff * .25f;
+        float wmodifier = eff * Config.ALLOY_WEAR_MINING_AMT.get().floatValue();
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -111,7 +112,7 @@ public class AlloySpear extends ItemSpear {
         float dmg = getAttackDamage(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        this.wmodifier = dmg * .25f;
+        this.wmodifier = dmg * Config.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -140,6 +141,10 @@ public class AlloySpear extends ItemSpear {
 
     public float getCorrResist(ItemStack stack)
     {
+        if (!Config.ALLOY_CORROSION.get())
+        {
+            return 100;
+        }
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
@@ -154,6 +159,10 @@ public class AlloySpear extends ItemSpear {
 
     public float getHeatResist(ItemStack stack)
     {
+        if (!Config.ALLOY_HEAT.get())
+        {
+            return 100;
+        }
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
@@ -166,6 +175,10 @@ public class AlloySpear extends ItemSpear {
 
     public float getToughness(ItemStack stack)
     {
+        if (!Config.ALLOY_TOUGHNESS.get())
+        {
+            return 0;
+        }
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
@@ -276,9 +289,18 @@ public class AlloySpear extends ItemSpear {
             tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).func_240701_a_(TextFormatting.GRAY));
             tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack))))).func_240701_a_(TextFormatting.GRAY));
             tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
+            if (Config.ALLOY_CORROSION.get())
+            {
+                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+            }
+            if (Config.ALLOY_HEAT.get())
+            {
+                tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+            }
+            if (Config.ALLOY_TOUGHNESS.get())
+            {
+                tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
+            }
         }
         tooltip.add((new StringTextComponent("" )));
         tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));

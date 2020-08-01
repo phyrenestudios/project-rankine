@@ -401,6 +401,7 @@ public class ModItems {
     public static final Item  LAVA_BRASS_BUCKET = add("lava_brass_bucket", new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  LIQUID_MERCURY_BRASS_BUCKET = add("liquid_mercury_brass_bucket", new BrassBucket(() -> ModFluids.LIQUID_MERCURY, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  MILK_BRASS_BUCKET = add("milk_brass_bucket", new MilkBrassBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  LIQUID_MERCURY_BUCKET = add("liquid_mercury_bucket", new BucketItem(() -> ModFluids.LIQUID_MERCURY, (new Item.Properties().containerItem(Items.BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
     //TEMPLATES
