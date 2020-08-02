@@ -875,6 +875,8 @@
   "item.rankine.lava_brass_bucket": "Lava Brass Bucket",
   "item.rankine.milk_brass_bucket": "Milk Brass Bucket",
   "item.rankine.liquid_mercury_brass_bucket": "Liquid Mercury Brass Bucket",
+  "item.rankine.liquid_mercury_bucket": "Liquid Mercury Bucket",
+  "item.rankine.spinneret": "Spinneret",
   "item.rankine.flint_spear": "Flint Spear",
   "item.rankine.flint_knife": "Flint Knife",
   "item.rankine.flint_shovel": "Flint Shovel",
@@ -994,7 +996,7 @@
   "item.rankine.brigandine_boots": "Brigandine Boots",
 
 
-
+  "block.rankine.mineral_wool": "Mineral Wool",
   "block.rankine.white_clover": "White Clover",
   "block.rankine.purple_clover": "Purple Clover",
   "item.rankine.four_leafed_clover": "Four Leafed Clover",
@@ -1166,6 +1168,8 @@
   "rankine.advancements.story.make_piston_crusher.description": "Make a piston crusher to automate crushing and get additional products",
   "rankine.advancements.story.make_quartz.title": "Overworld Quartz",
   "rankine.advancements.story.make_quartz.description": "Find or make quartz by crushing stones",
+  "rankine.advancements.story.make_glass_cutter.title": "Steel Yourself",
+  "rankine.advancements.story.make_glass_cutter.description": "Make Steel using a heated Crucible, molten Pig Iron, and right-clicking with Wrought Iron",
   "rankine.advancements.story.make_pig_iron.title": "No Pigs Harmed",
   "rankine.advancements.story.make_pig_iron.description": "Make pig iron by smelting an iron ingot",
   "rankine.advancements.story.make_coke.title": "I cant believe it's not Coal!",
@@ -1173,17 +1177,15 @@
   "rankine.advancements.story.make_finery_forge.title": "Forged in Finery",
   "rankine.advancements.story.make_finery_forge.description": "Construct a finery forge and use coke or charcoal to fuel it",
   "rankine.advancements.story.make_wrought_iron.title": "Acquire Harderware",
-  "rankine.advancements.story.make_wrought_iron.description": "Make Wrought Iron in the Finery Forge",
+  "rankine.advancements.story.make_wrought_iron.description": "Make Wrought Iron in the Finery Forge using Pig Iron and Coke/Charcoal",
   "rankine.advancements.story.make_crucible.title": "Refractory Factory",
   "rankine.advancements.story.make_crucible.description": "Construct a crucible to make steel",
   "rankine.advancements.story.make_steel_alloy.title": "Steel Yourself",
   "rankine.advancements.story.make_steel_alloy.description": "Make Steel using a heated Crucible, molten Pig Iron, and right-clicking with Wrought Iron",
-  "rankine.advancements.story.enter_the_mantle.title": "The Mantlorian",
-  "rankine.advancements.story.enter_the_mantle.description": "Build a Heart of the Mantle and interact with it while standing on it",
   "rankine.advancements.story.rock_collector.title": "We Have the Rockiest Rocks",
-  "rankine.advancements.story.rock_collector.description": "Have each of the 18 new rocks in your inventory",
+  "rankine.advancements.story.rock_collector.description": "Collect 18 different types of rocks",
   "rankine.advancements.story.element_collector.title": "Periodic Collector",
-  "rankine.advancements.story.element_collector.description": "Collect 25 of the new elements from Project Rankine",
+  "rankine.advancements.story.element_collector.description": "Collect 25 of the metallic elements obtainable from ores",
 
 
 

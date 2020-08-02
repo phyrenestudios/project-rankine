@@ -4,6 +4,9 @@ import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -16,15 +19,84 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Optional;
 import java.util.Random;
 
-public class RopeBlock extends WeepingVinesBlock {
+public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
     VoxelShape voxelshape = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
     private static final VoxelShape field_220124_g = VoxelShapes.fullCube().withOffset(0.0D, -1.0D, 0.0D);
+
     public RopeBlock(Properties p_i49976_1_) {
         super(p_i49976_1_);
+        this.setDefaultState(this.stateContainer.getBaseState().with(field_220118_a, 7).with(WATERLOGGED, Boolean.FALSE).with(field_220120_c, Boolean.FALSE));
     }
 
     @Override
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        if (!context.hasItem(state.getBlock().asItem())) {
+            return Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+        } else {
+
+            return voxelshape;
+        }
+
+    }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        return !worldIn.getBlockState(pos.up()).isAir(worldIn, pos.up()) || !worldIn.getBlockState(pos.down()).isAir(worldIn, pos.down());
+    }
+
+
+    @Override
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        int i = func_220117_a(worldIn, pos);
+        BlockState blockstate = state.with(field_220118_a, i).with(field_220120_c, this.func_220116_a(worldIn, pos, i));
+        if (state != blockstate) {
+            worldIn.setBlockState(pos, blockstate, 3);
+        }
+
+    }
+
+    private boolean func_220116_a(IBlockReader p_220116_1_, BlockPos p_220116_2_, int p_220116_3_) {
+        return p_220116_3_ > 0 && p_220116_1_.getBlockState(p_220116_2_.down()).getBlock() != this;
+    }
+
+    private boolean func_220116_b(IBlockReader p_220116_1_, BlockPos p_220116_2_, int p_220116_3_) {
+        return p_220116_3_ > 0 && p_220116_1_.getBlockState(p_220116_2_.up()).getBlock() != this;
+    }
+
+    public static int func_220117_a(IBlockReader p_220117_0_, BlockPos p_220117_1_) {
+        BlockPos.Mutable blockpos$mutable = p_220117_1_.func_239590_i_().move(Direction.DOWN);
+        BlockState blockstate = p_220117_0_.getBlockState(blockpos$mutable);
+        int i = 7;
+        if (blockstate.getBlock() == ModBlocks.ROPE) {
+            i = blockstate.get(field_220118_a);
+        } else if (blockstate.isSolidSide(p_220117_0_, blockpos$mutable, Direction.UP)) {
+            return 0;
+        }
+
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockState blockstate1 = p_220117_0_.getBlockState(blockpos$mutable.setPos(p_220117_1_).move(direction));
+            if (blockstate1.getBlock() == ModBlocks.ROPE) {
+                i = Math.min(i, blockstate1.get(field_220118_a) + 1);
+                if (i == 1) {
+                    break;
+                }
+            }
+        }
+
+        return i;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        if (context.func_225581_b_()) {
+            return voxelshape;
+        } else {
+            return VoxelShapes.empty();
+        }
+    }
+
+    @Override
+    public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
         return false;
     }
 }

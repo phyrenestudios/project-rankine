@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.client.integration.jei;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.client.integration.jei.crusher.CoalForgeRecipeCategory;
 import com.cannolicatfish.rankine.client.integration.jei.crusher.PistonCrusherRecipeCategory;
@@ -59,8 +60,14 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(ModItems.PURPLE_GOLD_ALLOY), VanillaTypes.ITEM, "Purple Gold Alloy can be made in the Alloy Furnace.", "79-81% Gold", "19-21% Aluminum");
         registry.addIngredientInfo(new ItemStack(ModItems.BLUE_GOLD_ALLOY), VanillaTypes.ITEM, "Blue Gold Alloy can be made in the Alloy Furnace.", "74-76% Gold", "20-25% Iron",  "Gold + Iron >= 90%",
                 "Possible additions:", "Ni, Ru, Rh");
-        registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
-                "Amalgam can use any additions EXCEPT Fe, Pt, W, Ta");
+        if (Config.AMALGAM_EXTRAS.get())
+        {
+            registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
+                    "Amalgam can use any additions.");
+        } else {
+            registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
+                    "Amalgam can use any additions EXCEPT Fe, Pt, W, Ta.");
+        }
         registry.addIngredientInfo(new ItemStack(ModItems.STEEL_ALLOY), VanillaTypes.ITEM, "To make crucible steel, right-click on an empty crucible on top of a heat source with pig iron ingots.",
                 "Then, right-click the filled crucible with wrought iron ingots.");
         registry.addIngredientInfo(new ItemStack(ModItems.METEORIC_IRON), VanillaTypes.ITEM, "Meteoric Iron can be mined from meteorites.", "Possible compositions:", "Kamacite - 90% Iron, 10% Nickel",

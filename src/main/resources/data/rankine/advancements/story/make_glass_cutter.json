@@ -2,13 +2,13 @@
   "parent": "rankine:story/make_quartz",
   "display": {
     "icon": {
-      "item": "rankine:finery_forge"
+      "item": "rankine:glass_cutter"
     },
     "title": {
-      "translate": "rankine.advancements.story.make_finery_forge.title"
+      "translate": "rankine.advancements.story.make_glass_cutter.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.make_finery_forge.description"
+      "translate": "rankine.advancements.story.make_glass_cutter.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "finery_forge": {
+    "glass_cutter": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:finery_forge"
+            "item": "rankine:glass_cutter"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "finery_forge"
+      "glass_cutter"
     ]
   ]
 }

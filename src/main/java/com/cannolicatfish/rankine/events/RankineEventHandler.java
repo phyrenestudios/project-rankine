@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.init.ModTags;
@@ -15,6 +16,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -33,6 +35,12 @@ import static net.minecraft.block.Block.spawnAsEntity;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
+
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event)
+    {
+        CreateAlloyCommand.register(event.getDispatcher());
+    }
 
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {

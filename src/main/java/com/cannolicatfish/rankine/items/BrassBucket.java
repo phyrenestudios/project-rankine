@@ -120,6 +120,11 @@ public class BrassBucket extends BucketItem {
             //player.playSound();
             fullBucket = ModItems.MILK_BRASS_BUCKET;
         }
+        if (fullBucket.getItem() == ModItems.LIQUID_MERCURY_BUCKET)
+        {
+            //player.playSound();
+            fullBucket = ModItems.LIQUID_MERCURY_BRASS_BUCKET;
+        }
         if (player.abilities.isCreativeMode) {
             return emptyBuckets;
         } else {

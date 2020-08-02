@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -84,7 +85,7 @@ public class AlloyPickaxe extends PickaxeItem {
         float eff = getEfficiency(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        this.wmodifier = eff * .25f;
+        this.wmodifier = eff * Config.ALLOY_WEAR_MINING_AMT.get().floatValue();
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -93,7 +94,7 @@ public class AlloyPickaxe extends PickaxeItem {
         float dmg = getAttackDamage(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        float wmodifier = dmg * .25f;
+        float wmodifier = dmg * Config.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -122,6 +123,10 @@ public class AlloyPickaxe extends PickaxeItem {
 
     public float getCorrResist(ItemStack stack)
     {
+        if (!Config.ALLOY_CORROSION.get())
+        {
+            return 100;
+        }
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
@@ -136,6 +141,10 @@ public class AlloyPickaxe extends PickaxeItem {
 
     public float getHeatResist(ItemStack stack)
     {
+        if (!Config.ALLOY_HEAT.get())
+        {
+            return 100;
+        }
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
@@ -148,6 +157,10 @@ public class AlloyPickaxe extends PickaxeItem {
 
     public float getToughness(ItemStack stack)
     {
+        if (!Config.ALLOY_TOUGHNESS.get())
+        {
+            return 0;
+        }
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
@@ -163,10 +176,10 @@ public class AlloyPickaxe extends PickaxeItem {
         Random rand = new Random();
         int i = 1;
         i += rand.nextFloat() < getToughness(stack) ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0) && Config.ALLOY_HEAT.get()) {
             i += 1;
         }
-        if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
+        if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet() && Config.ALLOY_CORROSION.get()))
         {
             i += 1;
         }
@@ -258,9 +271,18 @@ public class AlloyPickaxe extends PickaxeItem {
             tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).func_240701_a_(TextFormatting.GRAY));
             tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack))))).func_240701_a_(TextFormatting.GRAY));
             tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
+            if (Config.ALLOY_CORROSION.get())
+            {
+                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+            }
+            if (Config.ALLOY_HEAT.get())
+            {
+                tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+            }
+            if (Config.ALLOY_TOUGHNESS.get())
+            {
+                tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
+            }
         }
         tooltip.add((new StringTextComponent("" )));
         tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));

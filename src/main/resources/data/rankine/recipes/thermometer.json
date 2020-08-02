@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "ggg",
+    "gxg",
+    " g "
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "rankine:mercury_ingot"
+    },
+    "g":
+    {
+      "tag": "forge:glass_panes"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:thermometer"
+  }
+}

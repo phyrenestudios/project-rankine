@@ -14,10 +14,9 @@ import java.nio.file.Path;
 public class Config {
 
     public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_POWER = "power";
+    public static final String CATEGORY_MECHANICS = "mechanics";
     public static final String SUBCATEGORY_EVENTS = "event";
-    public static final String SUBCATEGORY_PISTON_STEAM_ENGINE = "piston_steam_crusher";
-    public static final String SUBCATEGORY_STEAM_TURBINE = "steam_turbine";
+    public static final String SUBCATEGORY_ALLOYS = "alloys";
 
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
     private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
@@ -40,7 +39,12 @@ public class Config {
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_SEND;
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_TICKS;
 
-
+    public static ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
+    public static ForgeConfigSpec.BooleanValue ALLOY_HEAT;
+    public static ForgeConfigSpec.BooleanValue ALLOY_TOUGHNESS;
+    public static ForgeConfigSpec.DoubleValue ALLOY_WEAR_MINING_AMT;
+    public static ForgeConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
+    public static ForgeConfigSpec.BooleanValue AMALGAM_EXTRAS;
 
     public static ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
     public static ForgeConfigSpec.BooleanValue FLAT_BEDROCK;
@@ -53,12 +57,11 @@ public class Config {
         setupFirstBlockConfig();
         COMMON_BUILDER.pop();
 
-        /*
-        COMMON_BUILDER.comment("Power settings").push(CATEGORY_POWER);
+        COMMON_BUILDER.comment("Alloy settings").push(CATEGORY_MECHANICS);
 
         setupSecondBlockConfig();
-*/
 
+        COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
@@ -84,34 +87,31 @@ public class Config {
 
         COMMON_BUILDER.pop();
     }
-/*
+
     private static void setupSecondBlockConfig() {
-        COMMON_BUILDER.comment("General settings").push(SUBCATEGORY_PISTON_STEAM_ENGINE);
+        COMMON_BUILDER.comment("Alloy settings").push(SUBCATEGORY_ALLOYS);
 
-        PISTON_STEAM_ENGINE_MAXPOWER = COMMON_BUILDER.comment("Maximum power for the Piston Steam Engine generator")
-                .defineInRange("maxPower", 100000, 0, Integer.MAX_VALUE);
-        PISTON_STEAM_ENGINE_GENERATE = COMMON_BUILDER.comment("Power generation per diamond")
-                .defineInRange("generate", 1000, 0, Integer.MAX_VALUE);
-        PISTON_STEAM_ENGINE_SEND = COMMON_BUILDER.comment("Power generation to send per tick")
-                .defineInRange("send", 100, 0, Integer.MAX_VALUE);
-        PISTON_STEAM_ENGINE_TICKS = COMMON_BUILDER.comment("Ticks per diamond")
-                .defineInRange("ticks", 20, 0, Integer.MAX_VALUE);
+        ALLOY_CORROSION = COMMON_BUILDER.comment("Enables the corrosion negative modifier for alloy tools (chance to consume an extra point of durability in water and rain)")
+                .define("alloyCorrosion",true);
 
-        COMMON_BUILDER.comment("General settings").push(SUBCATEGORY_STEAM_TURBINE);
+        ALLOY_HEAT = COMMON_BUILDER.comment("Enables the heat negative modifier for alloy tools (chance to consume an extra point of durability in hot environments and lava)")
+                .define("alloyHeat",true);
 
-        STEAM_TURBINE_MAXPOWER = COMMON_BUILDER.comment("Maximum power for the Steam Turbine generator")
-                .defineInRange("maxPower", 100000, 0, Integer.MAX_VALUE);
-        STEAM_TURBINE_GENERATE = COMMON_BUILDER.comment("Power generation per diamond")
-                .defineInRange("generate", 1000, 0, Integer.MAX_VALUE);
-        STEAM_TURBINE_SEND = COMMON_BUILDER.comment("Power generation to send per tick")
-                .defineInRange("send", 100, 0, Integer.MAX_VALUE);
-        STEAM_TURBINE_TICKS = COMMON_BUILDER.comment("Ticks per diamond")
-                .defineInRange("ticks", 20, 0, Integer.MAX_VALUE);
+        ALLOY_TOUGHNESS = COMMON_BUILDER.comment("Enables the toughness negative modifier for alloy tools (chance to consume an extra point of durability)")
+                .define("alloyToughness",true);
 
+        ALLOY_WEAR_MINING_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on mining speed (ex. 0.25 means mining speed will be reduced to 75% of the original value as durability is lost)")
+                .defineInRange("alloyWearMiningAmount", 0.25D, 0.00D, 0.99D);
+
+        ALLOY_WEAR_DAMAGE_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on damage (ex. 0.25 means damage will be reduced to 75% of the original value as durability is lost)")
+                .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
+
+        AMALGAM_EXTRAS = COMMON_BUILDER.comment("Enables the disabled elements for amalgam alloy (Fe, Pt, W, Ta)")
+                .define("amalgamExtras",false);
 
         COMMON_BUILDER.pop();
     }
-*/
+
     public static void loadConfig(ForgeConfigSpec spec, Path path) {
 
         final CommentedFileConfig configData = CommentedFileConfig.builder(path)
