@@ -1,0 +1,76 @@
+{
+  "name": "Axes",
+  "icon": "rankine:steel_axe",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can I axe you a question?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_axe",
+      "text": "The flint axe actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_axe",
+      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_iron_axe",
+      "text": "The anchient axe.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:iron_axe",
+      "text": "The iron axe.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_axe",
+      "text": "The steel axe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond_axe",
+      "text": "The diamond axe.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_axe",
+      "text": "The netherite axe.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_axe",
+      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_axe",
+      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_axe",
+      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_axe",
+      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_axe",
+      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_axe",
+      "text": "You decide"
+    }
+  ]
+}

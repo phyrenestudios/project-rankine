@@ -18,6 +18,11 @@
 	  "item": "rankine:garnet",
       "text": "Found who knows where"
     },
+    {
+      "type": "spotlight",
+      "item": "rankine:sapphire",
+      "text": "Found who knows where"
+    },
 	{
       "type": "spotlight",
 	  "item": "rankine:aquamarine",
@@ -32,6 +37,11 @@
       "type": "spotlight",
 	  "item": "minecraft:emerald",
       "text": "Found throughout the Overworld"
+    },
+    {
+      "type": "crafting",
+      "item": "rankine:gem_core",
+      "text": "A powerful item"
     }
   ]
 }

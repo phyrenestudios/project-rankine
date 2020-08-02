@@ -1,5 +1,5 @@
 {
-  "name": "Ground Plants",
+  "name": "Fruit Bushes",
   "icon": "rankine:elderberries",
   "category": "exploration/exploration",
   "pages": [
@@ -16,6 +16,31 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:snowberries",
+      "text": "nom nom"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blueberries",
+      "text": "nom nom"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cranberries",
+      "text": "nom nom"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:raspberries",
+      "text": "nom nom"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blackberries",
+      "text": "nom nom"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:strawberries",
       "text": "nom nom"
     },
 	{

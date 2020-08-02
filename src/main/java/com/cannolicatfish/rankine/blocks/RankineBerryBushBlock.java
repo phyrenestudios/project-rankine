@@ -138,7 +138,7 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
         if (!flag && player.getHeldItem(handIn).getItem() == Items.BONE_MEAL) {
             return ActionResultType.PASS;
         } else if (i > 1) {
-            int j = 1;
+            int j = 0;
             if (type == 0)
             {
                 spawnAsEntity(worldIn, pos, new ItemStack(ModItems.ELDERBERRIES, j + (flag ? 1 : 0)));

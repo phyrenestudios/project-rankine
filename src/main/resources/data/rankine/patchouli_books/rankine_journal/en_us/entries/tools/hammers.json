@@ -1,0 +1,76 @@
+{
+  "name": "Axes",
+  "icon": "rankine:steel_hammer",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Can I hammer you a question?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:stone_hammer",
+      "text": "The flint hammer actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_hammer",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_iron_hammer",
+      "text": "The anchient hammer.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:iron_hammer",
+      "text": "The iron hammer.$(br2)Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_hammer",
+      "text": "The steel hammer.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:diamond_hammer",
+      "text": "The diamond hammer.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:netherite_hammer",
+      "text": "The netherite hammer.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_hammer",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_hammer",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_hammer",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_hammer",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_hammer",
+      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_hammer",
+      "text": "You decide"
+    }
+  ]
+}

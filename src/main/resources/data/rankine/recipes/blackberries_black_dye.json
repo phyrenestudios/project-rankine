@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:blackberries"
+    },
+    {
+      "item": "rankine:blackberries"
+    },
+    {
+      "item": "rankine:blackberries"
+    },
+    {
+      "item": "rankine:blackberries"
+    }
+  ],
+  "result": {
+    "item": "minecraft:black_dye",
+    "count": 1
+  }
+}
