@@ -7,27 +7,17 @@ import com.cannolicatfish.rankine.client.integration.jei.crusher.PistonCrusherRe
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.init.ModRecipes;
-import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.helpers.IJeiHelpers;
-import mezz.jei.api.ingredients.IIngredientType;
-import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.runtime.IIngredientManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 @JeiPlugin
 public class JEIRankinePlugin implements IModPlugin {
@@ -49,7 +39,7 @@ public class JEIRankinePlugin implements IModPlugin {
                 "Possible additions:", "Mn, Ni, Zn, As, Fe, Pb");
         registry.addIngredientInfo(new ItemStack(ModItems.BRASS_ALLOY), VanillaTypes.ITEM, "Brass Alloy can be made in the Alloy Furnace.", "30-70% Copper", "15-60% Zinc", "Copper + Zinc >= 90%",
                 "Possible additions:", "Sn, Pb, Al, Ni, Fe");
-        registry.addIngredientInfo(new ItemStack(ModItems.CAST_IRON_INGOT), VanillaTypes.ITEM, "Cast Iron Alloy can be made in the Alloy Furnace.", "86-98% Pig/Sponge Iron", "2-4% Carbon (Coke/Graphite)", "Iron + Carbon >= 90%",
+        registry.addIngredientInfo(new ItemStack(ModItems.CAST_IRON_ALLOY), VanillaTypes.ITEM, "Cast Iron Alloy can be made in the Alloy Furnace.", "86-98% Pig/Sponge Iron", "2-4% Carbon (Coke/Graphite)", "Iron + Carbon >= 90%",
                 "Possible additions:", "Si, Mn, Ni, Cr, Mo, Ti, Vn");
         registry.addIngredientInfo(new ItemStack(ModItems.WHITE_GOLD_ALLOY), VanillaTypes.ITEM, "White Gold Alloy can be made in the Alloy Furnace.", "74-90% Gold", "5-10% Zinc", "Gold + Zinc >= 90%",
                 "Possible additions:", "Ni, Pd, Ag, Pt");

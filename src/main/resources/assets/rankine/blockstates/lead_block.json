@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/lead_block"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/lead_block" }
+        }
+    }

@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/niobium_block"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/niobium_block" }
+        }
+    }

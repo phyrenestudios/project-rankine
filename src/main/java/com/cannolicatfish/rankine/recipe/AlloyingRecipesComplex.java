@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.cannolicatfish.rankine.util.RankineAlloyMaterial;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
@@ -276,7 +275,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.CAST_IRON_INGOT, Math.round(total/10)),ar);
+                    return new Pair<>(new ItemStack(ModItems.CAST_IRON_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }

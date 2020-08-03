@@ -25,7 +25,6 @@
 
     "rankine:osmium_block",
     "rankine:wrought_iron_block",
-    "rankine:pig_iron_block",
-    "rankine:cast_iron_block"
+    "rankine:pig_iron_block"
   ]
 }

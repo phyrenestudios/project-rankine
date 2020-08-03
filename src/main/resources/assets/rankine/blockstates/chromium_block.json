@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/chromium_block"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/chromium_block" }
+        }
+    }

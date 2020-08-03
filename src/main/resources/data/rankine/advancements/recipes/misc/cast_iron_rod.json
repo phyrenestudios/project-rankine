@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_cast_iron_ingot": {
+    "has_cast_iron_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:cast_iron_ingot"
+            "item": "rankine:cast_iron_alloy"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_cast_iron_ingot",
+      "has_cast_iron_alloy",
       "has_the_recipe"
     ]
   ]
