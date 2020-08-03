@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:lithium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:lithium_ingot",
+        "count": 9
+      }
+    }

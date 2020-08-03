@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:scandium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:scandium_nugget",
+        "count": 9
+      }
+    }

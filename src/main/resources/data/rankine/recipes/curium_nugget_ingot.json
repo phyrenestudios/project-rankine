@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:curium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:curium_ingot",
+        "count": 1
+      }
+    }

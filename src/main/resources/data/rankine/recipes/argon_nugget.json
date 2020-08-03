@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:argon_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:argon_nugget",
+        "count": 9
+      }
+    }

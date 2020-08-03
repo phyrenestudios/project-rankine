@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:germanium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:germanium_block",
+        "count": 1
+      }
+    }

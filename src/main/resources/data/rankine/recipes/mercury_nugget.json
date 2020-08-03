@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:mercury_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:mercury_nugget",
+        "count": 9
+      }
+    }

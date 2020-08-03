@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:thulium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:thulium_nugget",
+        "count": 9
+      }
+    }

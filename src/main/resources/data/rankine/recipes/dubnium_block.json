@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:dubnium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:dubnium_block",
+        "count": 1
+      }
+    }

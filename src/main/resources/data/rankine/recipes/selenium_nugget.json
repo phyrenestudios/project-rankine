@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:selenium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:selenium_nugget",
+        "count": 9
+      }
+    }

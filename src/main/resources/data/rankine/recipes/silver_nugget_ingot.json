@@ -1,1 +1,17 @@
-{ "type": "minecraft:crafting_shaped", "pattern": [ "xxx", "xxx", "xxx" ], "key": { "x": { "item": "rankine:silver_nugget" } }, "result": { "item": "rankine:silver_ingot", "count": 1 } }
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:silver_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:silver_ingot",
+        "count": 1
+      }
+    }

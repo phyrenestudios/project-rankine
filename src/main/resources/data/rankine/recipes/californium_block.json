@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:californium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:californium_block",
+        "count": 1
+      }
+    }

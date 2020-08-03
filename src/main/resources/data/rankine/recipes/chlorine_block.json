@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:chlorine_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:chlorine_block",
+        "count": 1
+      }
+    }

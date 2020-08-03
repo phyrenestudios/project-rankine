@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:barium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:barium_ingot",
+        "count": 9
+      }
+    }

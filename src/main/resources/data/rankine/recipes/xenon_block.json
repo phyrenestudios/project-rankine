@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:xenon_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:xenon_block",
+        "count": 1
+      }
+    }

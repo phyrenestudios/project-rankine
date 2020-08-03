@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:beryllium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:beryllium_nugget",
+        "count": 9
+      }
+    }

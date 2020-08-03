@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:zirconium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:zirconium_ingot",
+        "count": 1
+      }
+    }

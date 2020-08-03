@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:astatine_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:astatine",
+        "count": 1
+      }
+    }

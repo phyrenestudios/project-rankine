@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:hassium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:hassium_ingot",
+        "count": 1
+      }
+    }

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:oxygen_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:oxygen_block",
+        "count": 1
+      }
+    }

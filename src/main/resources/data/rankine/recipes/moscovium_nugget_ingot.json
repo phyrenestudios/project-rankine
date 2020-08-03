@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:moscovium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:moscovium_ingot",
+        "count": 1
+      }
+    }

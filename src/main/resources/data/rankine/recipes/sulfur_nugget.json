@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:sulfur"
+        }
+      ],
+      "result": {
+        "item": "rankine:sulfur_nugget",
+        "count": 9
+      }
+    }

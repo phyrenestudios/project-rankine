@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:moscovium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:moscovium_nugget",
+        "count": 9
+      }
+    }

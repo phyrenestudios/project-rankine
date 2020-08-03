@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:phosphorus_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:phosphorus",
+        "count": 1
+      }
+    }

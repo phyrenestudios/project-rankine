@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:francium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:francium_ingot",
+        "count": 9
+      }
+    }

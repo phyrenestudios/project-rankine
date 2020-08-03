@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:thulium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:thulium_ingot",
+        "count": 1
+      }
+    }

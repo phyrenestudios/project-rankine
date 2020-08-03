@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:lutetium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:lutetium_block",
+        "count": 1
+      }
+    }

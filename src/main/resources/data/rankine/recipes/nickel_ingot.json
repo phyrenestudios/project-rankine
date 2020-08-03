@@ -1,1 +1,12 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:nickel_block" } ], "result": { "item": "rankine:nickel_ingot", "count": 9 } }
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:nickel_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:nickel_ingot",
+        "count": 9
+      }
+    }

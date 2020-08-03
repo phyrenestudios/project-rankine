@@ -1,1 +1,12 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:niobium_block" } ], "result": { "item": "rankine:niobium_ingot", "count": 9 } }
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:niobium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:niobium_ingot",
+        "count": 9
+      }
+    }

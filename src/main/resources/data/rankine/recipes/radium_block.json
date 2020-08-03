@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:radium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:radium_block",
+        "count": 1
+      }
+    }

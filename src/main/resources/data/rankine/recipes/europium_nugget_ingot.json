@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:europium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:europium_ingot",
+        "count": 1
+      }
+    }

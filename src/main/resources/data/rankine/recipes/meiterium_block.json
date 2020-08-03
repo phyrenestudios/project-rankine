@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:meiterium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:meiterium_block",
+        "count": 1
+      }
+    }
