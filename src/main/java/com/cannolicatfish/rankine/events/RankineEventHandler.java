@@ -51,7 +51,7 @@ public class RankineEventHandler {
     public static void luckyBreak(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
-            if (event.getState().getBlock().isIn(ModTags.LUCK_PENDANT)) {
+            if (event.getState().getBlock().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
                 if (new Random().nextFloat() < 0.3f) {
                     for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld().getWorld(), event.getPos(), null)) {
                         spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
@@ -235,7 +235,6 @@ public class RankineEventHandler {
         }
     }
 
-    /*
     @SubscribeEvent
     public static void transformBlocks(PlayerInteractEvent.RightClickBlock event)
     {
@@ -250,7 +249,7 @@ public class RankineEventHandler {
             BlockState activatedBlock = world.getBlockState(pos);
             Block block = activatedBlock.getBlock();
             if (newBlock.getItem() instanceof BlockItem) {
-                if (((BlockItem) newBlock.getItem()).getBlock().isIn(ModTags.TRANSFORMABLE)) {
+                if (((BlockItem) newBlock.getItem()).getBlock().getTags().contains(new ResourceLocation("rankine:transformable")) && ((BlockItem) newBlock.getItem()).getBlock() == block) {
                     for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, -2, -2), pos.add(2, 2, 2))) {
                         if (world.getBlockState(blockpos).getBlock() == block) {
                             world.setBlockState(blockpos, ((BlockItem) newBlock.getItem()).getBlock().getDefaultState());
@@ -261,16 +260,15 @@ public class RankineEventHandler {
                                 newBlock.shrink(1);
                             }
                         }
-
                     }
-                    world.playSound(player, pos, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(player, pos, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 0.5F, 0.8F);
                     player.swingArm(event.getHand());
-                    //event.setResult(Event.Result.ALLOW);
+                    event.setCanceled(true);
                 }
             }
         }
     }
-*/
+
 
 
 }

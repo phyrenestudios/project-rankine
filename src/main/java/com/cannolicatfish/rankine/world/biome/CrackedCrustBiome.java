@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.world.biome;
 
+import com.cannolicatfish.rankine.init.ModEntityTypes;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.particles.ParticleTypes;
@@ -26,13 +27,7 @@ public class CrackedCrustBiome extends Biome {
         RankineBiomeFeatures.addCrackedCrustStuff(this);
         this.func_235063_a_(DefaultBiomeFeatures.field_235133_E_);  //portal
 
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SPIDER, 100, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SKELETON, 100, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.CREEPER, 200, 4, 10));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.SLIME, 100, 4, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ENDERMAN, 10, 1, 4));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.WITCH, 5, 1, 1));
-        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(EntityType.ZOMBIE, 19, 4, 4));
+        this.addSpawn(EntityClassification.MONSTER, new SpawnListEntry(ModEntityTypes.MANTLE_GOLEM, 50, 2, 4));
     }
 
     @Override

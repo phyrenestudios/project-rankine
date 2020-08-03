@@ -6,8 +6,13 @@
     "#forge:glass",
     "#forge:glass_panes",
     "#forge:sand",
+    "#forge:gravel",
+    "#forge:netherrack",
+    "#forge:sandstone",
     "#minecraft:logs",
+    "minecraft:clay",
     "#minecraft:planks",
+    "#minecraft:leaves",
     "#minecraft:walls"
   ]
 }

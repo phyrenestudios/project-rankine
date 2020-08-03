@@ -8,6 +8,6 @@ import net.minecraft.block.material.Material;
 public class RankineWoodenDoor extends DoorBlock
 {
     public RankineWoodenDoor() {
-        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(3.0F));
+        super(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(3.0F).notSolid());
     }
 }
