@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:carbon_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:carbon_ingot",
+        "count": 1
+      }
+    }

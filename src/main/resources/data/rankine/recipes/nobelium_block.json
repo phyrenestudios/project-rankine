@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:nobelium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:nobelium_block",
+        "count": 1
+      }
+    }

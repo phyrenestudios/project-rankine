@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:tebrium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:tebrium_ingot",
+        "count": 1
+      }
+    }

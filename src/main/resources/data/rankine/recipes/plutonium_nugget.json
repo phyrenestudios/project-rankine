@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:plutonium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:plutonium_nugget",
+        "count": 9
+      }
+    }

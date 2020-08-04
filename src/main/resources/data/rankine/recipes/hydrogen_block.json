@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:hydrogen_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:hydrogen_block",
+        "count": 1
+      }
+    }

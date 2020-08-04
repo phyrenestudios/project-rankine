@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:seaborgium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:seaborgium_block",
+        "count": 1
+      }
+    }

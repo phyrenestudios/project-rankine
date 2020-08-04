@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:oganesson_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:oganesson_block",
+        "count": 1
+      }
+    }

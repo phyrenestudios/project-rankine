@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:seaborgium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:seaborgium_ingot",
+        "count": 9
+      }
+    }

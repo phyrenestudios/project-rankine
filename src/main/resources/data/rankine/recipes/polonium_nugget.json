@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:polonium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:polonium_nugget",
+        "count": 9
+      }
+    }

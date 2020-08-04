@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:livermorium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:livermorium_nugget",
+        "count": 9
+      }
+    }

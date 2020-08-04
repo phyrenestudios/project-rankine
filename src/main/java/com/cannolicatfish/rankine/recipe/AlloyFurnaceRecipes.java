@@ -60,7 +60,7 @@ public class AlloyFurnaceRecipes {
         }
 
         if ((input1.getItem() == ModItems.PIG_IRON_INGOT && input1.getCount() >= 9 && input2.getItem() == ModItems.COKE) || (input2.getItem() == ModItems.PIG_IRON_INGOT && input2.getCount() >= 9 && input1.getItem() == ModItems.COKE)) {
-            return new ItemStack(ModItems.CAST_IRON_INGOT,8);
+            return new ItemStack(ModItems.CAST_IRON_ALLOY,8);
         }
         return ItemStack.EMPTY;
     }

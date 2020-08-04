@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:mercury_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:mercury_ingot",
+        "count": 9
+      }
+    }

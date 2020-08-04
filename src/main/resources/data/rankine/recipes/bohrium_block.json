@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:bohrium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:bohrium_block",
+        "count": 1
+      }
+    }

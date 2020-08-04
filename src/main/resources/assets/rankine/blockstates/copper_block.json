@@ -1,5 +1,5 @@
 {
-  "variants": {
-    "": {"model": "rankine:block/copper_block"}
-  }
-}
+        "variants": {
+        "": { "model": "rankine:block/copper_block" }
+        }
+    }

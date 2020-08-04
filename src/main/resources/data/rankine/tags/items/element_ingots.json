@@ -25,7 +25,6 @@
     "rankine:mercury_ingot",
     "rankine:osmium_ingot",
     "rankine:wrought_iron_ingot",
-    "rankine:pig_iron_ingot",
-    "rankine:cast_iron_ingot"
+    "rankine:pig_iron_ingot"
   ]
 }

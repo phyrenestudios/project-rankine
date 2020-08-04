@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:polonium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:polonium_block",
+        "count": 1
+      }
+    }

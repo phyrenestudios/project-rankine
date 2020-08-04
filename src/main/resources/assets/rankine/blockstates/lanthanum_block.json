@@ -1,5 +1,5 @@
 {
-    "variants": {
-    "": { "model": "rankine:block/lanthanum_block" }
+        "variants": {
+        "": { "model": "rankine:block/lanthanum_block" }
+        }
     }
-}

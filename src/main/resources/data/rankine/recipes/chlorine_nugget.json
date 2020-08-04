@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:chlorine_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:chlorine_nugget",
+        "count": 9
+      }
+    }

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:mendelevium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:mendelevium_block",
+        "count": 1
+      }
+    }

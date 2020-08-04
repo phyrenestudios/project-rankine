@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:lawrencium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:lawrencium_block",
+        "count": 1
+      }
+    }

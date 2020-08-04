@@ -1,1 +1,12 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:potassium_ingot" } ], "result": { "item": "rankine:potassium_nugget", "count": 9 } }
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:potassium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:potassium_nugget",
+        "count": 9
+      }
+    }

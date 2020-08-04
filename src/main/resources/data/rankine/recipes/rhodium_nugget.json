@@ -1,1 +1,12 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:rhodium_ingot" } ], "result": { "item": "rankine:rhodium_nugget", "count": 9 } }
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:rhodium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:rhodium_nugget",
+        "count": 9
+      }
+    }

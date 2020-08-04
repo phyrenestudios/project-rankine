@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:krypton_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:krypton_ingot",
+        "count": 9
+      }
+    }

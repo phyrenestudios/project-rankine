@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:sulfur_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:sulfur",
+        "count": 1
+      }
+    }

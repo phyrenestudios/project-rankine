@@ -1,5 +1,5 @@
 {
-    "variants": {
-    "": { "model": "rankine:block/arsenic_block" }
+        "variants": {
+        "": { "model": "rankine:block/arsenic_block" }
+        }
     }
-}

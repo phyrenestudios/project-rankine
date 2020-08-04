@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:gadolinium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:gadolinium_ingot",
+        "count": 1
+      }
+    }

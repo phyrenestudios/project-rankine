@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:neon_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:neon_ingot",
+        "count": 9
+      }
+    }

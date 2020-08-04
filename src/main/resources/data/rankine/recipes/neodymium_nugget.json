@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:neodymium_ingot"
+        }
+      ],
+      "result": {
+        "item": "rankine:neodymium_nugget",
+        "count": 9
+      }
+    }

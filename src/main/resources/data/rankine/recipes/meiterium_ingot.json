@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:meiterium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:meiterium_ingot",
+        "count": 9
+      }
+    }

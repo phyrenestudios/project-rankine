@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:praseodymium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:praseodymium_ingot",
+        "count": 9
+      }
+    }

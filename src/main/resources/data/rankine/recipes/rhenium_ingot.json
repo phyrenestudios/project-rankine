@@ -1,0 +1,12 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:rhenium_block"
+        }
+      ],
+      "result": {
+        "item": "rankine:rhenium_ingot",
+        "count": 9
+      }
+    }

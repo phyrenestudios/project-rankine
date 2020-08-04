@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:protactinium_nugget"
+        }
+      },
+      "result": {
+        "item": "rankine:protactinium_ingot",
+        "count": 1
+      }
+    }

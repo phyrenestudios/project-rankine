@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:einsteinium_ingot"
+        }
+      },
+      "result": {
+        "item": "rankine:einsteinium_block",
+        "count": 1
+      }
+    }
