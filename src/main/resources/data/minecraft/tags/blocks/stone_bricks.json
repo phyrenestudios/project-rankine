@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:rhyolite_bricks",
+    "rankine:granite_bricks",
+    "rankine:diorite_bricks",
+    "rankine:andesite_bricks",
+    "rankine:limestone_bricks",
+    "rankine:shale_bricks",
+    "rankine:gneiss_bricks",
+    "rankine:marble_bricks",
+    "rankine:basalt_bricks",
+    "rankine:anorthosite_bricks",
+    "rankine:pumice_bricks",
+    "rankine:scoria_bricks",
+    "rankine:ironstone_bricks",
+    "rankine:peridotite_bricks",
+    "rankine:kimberlite_bricks",
+    "rankine:komatiite_bricks",
+    "rankine:bridgmanite_bricks",
+    "rankine:ringwoodite_bricks",
+    "rankine:wadsleyite_bricks",
+    "rankine:ferropericlase_bricks",
+    "rankine:perovskite_bricks"
+  ]
+}

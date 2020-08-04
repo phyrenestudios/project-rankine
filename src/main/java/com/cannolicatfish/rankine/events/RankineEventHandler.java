@@ -4,21 +4,16 @@ import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.init.ModTags;
-import com.cannolicatfish.rankine.items.TransformationStaffItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -30,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import static net.minecraft.block.Block.nudgeEntitiesWithNewState;
 import static net.minecraft.block.Block.spawnAsEntity;
 
 @Mod.EventBusSubscriber
@@ -235,39 +229,6 @@ public class RankineEventHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void transformBlocks(PlayerInteractEvent.RightClickBlock event)
-    {
-        ItemStack stack = event.getItemStack();
-        Item item = stack.getItem();
-        World world = event.getWorld();
-        BlockPos pos = event.getPos();
-        PlayerEntity player = event.getPlayer();
-        ItemStack newBlock = player.getHeldItemOffhand();
-
-        if(item instanceof TransformationStaffItem) {
-            BlockState activatedBlock = world.getBlockState(pos);
-            Block block = activatedBlock.getBlock();
-            if (newBlock.getItem() instanceof BlockItem) {
-                if (((BlockItem) newBlock.getItem()).getBlock().getTags().contains(new ResourceLocation("rankine:transformable")) && ((BlockItem) newBlock.getItem()).getBlock() == block) {
-                    for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, -2, -2), pos.add(2, 2, 2))) {
-                        if (world.getBlockState(blockpos).getBlock() == block) {
-                            world.setBlockState(blockpos, ((BlockItem) newBlock.getItem()).getBlock().getDefaultState());
-                            stack.damageItem(1, player, (entity) -> {
-                                entity.sendBreakAnimation(event.getHand());
-                            });
-                            if (!player.abilities.isCreativeMode) {
-                                newBlock.shrink(1);
-                            }
-                        }
-                    }
-                    world.playSound(player, pos, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 0.5F, 0.8F);
-                    player.swingArm(event.getHand());
-                    event.setCanceled(true);
-                }
-            }
-        }
-    }
 
 
 

@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "#forge:stone",
+    "#forge:end_stones",
+    "#forge:obsidian",
     "#forge:dirt",
     "#forge:glass",
     "#forge:glass_panes",
@@ -10,9 +12,16 @@
     "#forge:netherrack",
     "#forge:sandstone",
     "#minecraft:logs",
-    "minecraft:clay",
+    "#rankine:smooth_stone",
+    "#rankine:sheetmetal",
     "#minecraft:planks",
     "#minecraft:leaves",
-    "#minecraft:walls"
+    "#minecraft:walls",
+    "#minecraft:stone_bricks",
+    "#minecraft:carpets",
+    "#minecraft:wool",
+    "#minecraft:wooden_fences",
+    "minecraft:clay",
+    "minecraft:bricks"
   ]
 }
