@@ -1,19 +1,17 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.Config;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
 
-public class FlatBedrockFeature extends Feature<ReplacerFeatureConfig> {
-    public FlatBedrockFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
+public class FlatNetherBedrockFeature extends Feature<ReplacerFeatureConfig> {
+    public FlatNetherBedrockFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 
@@ -35,6 +33,17 @@ public class FlatBedrockFeature extends Feature<ReplacerFeatureConfig> {
                     }
                 }
                 for (int y = endY; y <= 10; ++y) {
+                    if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.state.getBlock()) {
+                        worldIn.setBlockState(new BlockPos(x, y, z), config.target, 2);
+                    }
+                }
+
+                for (int y = 128 - endY; y < 128; ++y) {
+                    if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        worldIn.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                    }
+                }
+                for (int y = 118; y < 128 - endY; ++y) {
                     if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.state.getBlock()) {
                         worldIn.setBlockState(new BlockPos(x, y, z), config.target, 2);
                     }

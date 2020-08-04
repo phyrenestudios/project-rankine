@@ -153,7 +153,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("tantalite_ore_crushing",ModBlocks.TANTALITE_ORE.asItem(), new ItemStack(ModItems.TANTALUM_OXIDE,1), new ItemStack(ModItems.GALENA,1),0.1f));
         recipes.add(crushingRecipe("wolframite_ore_crushing",ModBlocks.WOLFRAMITE_ORE.asItem(), new ItemStack(ModItems.TUNGSTEN_OXIDE,1), new ItemStack(ModItems.CASSITERITE,1),0.2f));
         recipes.add(crushingRecipe("greenokite_ore_crushing",ModBlocks.GREENOCKITE_ORE.asItem(), new ItemStack(ModItems.GREENOCKITE,1), new ItemStack(ModItems.GALENA,1),0.2f));
-        recipes.add(crushingRecipe("uraninite_ore_crushing",ModBlocks.URANINITE_ORE.asItem(), new ItemStack(ModItems.URANINITE,1), new ItemStack(ModItems.HELIUM_INGOT,1),0.05f));
+        recipes.add(crushingRecipe("uraninite_ore_crushing",ModBlocks.URANINITE_ORE.asItem(), new ItemStack(ModItems.URANINITE,1), new ItemStack(ModItems.GALENA,1),0.1f));
         recipes.add(crushingRecipe("lignite_ore_crushing",ModBlocks.LIGNITE_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,1), new ItemStack(ModItems.GRAPHITE,1),0.01f));
         recipes.add(crushingRecipe("sub_bituminous_coal_ore_crushing",ModBlocks.SUBBITUMINOUS_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.02f));
         recipes.add(crushingRecipe("bituminous_coal_ore_crushing",ModBlocks.BITUMINOUS_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.05f));

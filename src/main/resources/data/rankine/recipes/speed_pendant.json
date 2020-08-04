@@ -1,0 +1,29 @@
+{
+      "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "GCG",
+    "GFG"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "G": {
+      "item": "rankine:white_gold_alloy"
+    },
+    "R": {
+      "item": "minecraft:turtle_egg"
+    },
+    "F": {
+      "item": "minecraft:sugar"
+    },
+    "C": {
+      "item": "rankine:gem_core"
+    }
+      },
+      "result": {
+        "item": "rankine:speed_pendant",
+        "count": 1
+      }
+    }

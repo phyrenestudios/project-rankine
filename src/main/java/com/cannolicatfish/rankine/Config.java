@@ -83,7 +83,7 @@ public class Config {
                 .define("flatBedrock",true);
 
         BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
-                .defineInRange("breakExhaustion", 1, 0, 10);
+                .defineInRange("bedrockLayers", 1, 0, 10);
 
         COMMON_BUILDER.pop();
     }

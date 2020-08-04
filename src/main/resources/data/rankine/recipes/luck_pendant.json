@@ -1,8 +1,8 @@
 {
       "type": "minecraft:crafting_shaped",
       "pattern": [
-        " S ",
-        "GRG",
+        "SRS",
+        "GCG",
         "GFG"
       ],
       "key": {
@@ -10,13 +10,16 @@
           "item": "minecraft:string"
         },
         "G": {
-          "item": "minecraft:gold_ingot"
+          "item": "rankine:white_gold_alloy"
         },
         "R": {
           "item": "minecraft:rabbit_foot"
         },
         "F": {
           "item": "rankine:four_leafed_clover"
+        },
+        "C": {
+          "item": "rankine:gem_core"
         }
       },
       "result": {
