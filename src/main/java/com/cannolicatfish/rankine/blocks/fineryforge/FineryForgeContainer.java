@@ -48,7 +48,6 @@ public class FineryForgeContainer extends Container {
             addSlot(new SlotItemHandler(h, 2, 149,19));
             addSlot(new SlotItemHandler(h, 3, 149,44));
             addSlot(new SlotItemHandler(h, 4, 38, 31));
-            addSlot(new SlotItemHandler(h, 5, 38, 31));
         });
 
         layoutPlayerInventorySlots(10, 70);
@@ -70,13 +69,18 @@ public class FineryForgeContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 0) {
-                if (!this.mergeItemStack(stack, 1, 37, true)) {
+            if (index == 2 || index == 3) {
+                if (!this.mergeItemStack(stack, 5, 37, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else {
+            } else if (index != 4 && index != 1 && index != 0) {
                 if (stack.getItem() == ModItems.PIG_IRON_INGOT) {
+                    if (!this.mergeItemStack(stack, 4, 5, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                if (stack.getItem() == ModItems.BLOOM_IRON) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -88,9 +92,11 @@ public class FineryForgeContainer extends Container {
                     if (!this.mergeItemStack(stack, 28, 37, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 1, 28, false)) {
+                } else if (index < 37 && !this.mergeItemStack(stack, 5, 28, false)) {
                     return ItemStack.EMPTY;
                 }
+            } else if (!this.mergeItemStack(stack, 5, 37, false)) {
+                return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {

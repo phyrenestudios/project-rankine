@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "rankine:overworld_core"
+      "item": "rankine:niobium_ingot"
     },
     "title": {
       "translate": "rankine.advancements.story.root.title"

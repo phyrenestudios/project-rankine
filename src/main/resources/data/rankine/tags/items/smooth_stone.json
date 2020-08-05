@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:smooth_stone",
+    "minecraft:stone",
     "rankine:smooth_granite",
     "rankine:smooth_andesite",
     "rankine:smooth_diorite",

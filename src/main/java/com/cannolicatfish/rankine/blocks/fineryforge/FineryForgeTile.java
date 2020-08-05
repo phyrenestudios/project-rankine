@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.fineryforge;
 
 
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.FineryForgeRecipes;
 import javafx.util.Pair;
@@ -202,7 +203,7 @@ public class FineryForgeTile extends TileEntity implements ITickableTileEntity, 
             }
             if (this.isCrushing() && redstoneCheck(blockState)) {
                 crushTime++;
-                System.out.println(crushTimeTotal - crushTime);
+                //System.out.println(crushTimeTotal - crushTime);
                 if (crushTime == crushTimeTotal) {
                     if (this.handler2.getStackInSlot(2).getCount() > 0) {
                         this.handler2.getStackInSlot(2).grow(crushingamt);
@@ -301,12 +302,11 @@ public class FineryForgeTile extends TileEntity implements ITickableTileEntity, 
                 }
                 if (slot == 1 && isFuel(stack))
                 {
-                    System.out.println("FineryForgeTile.isFuel");
+                    //System.out.println("FineryForgeTile.isFuel");
                     return true;
                 }
                 if (slot == 2)
                 {
-                    // ADD VALIDITY FOR SLOTS 2 AND 3
                     return true;
                 }
                 if (slot == 3)
@@ -341,7 +341,7 @@ public class FineryForgeTile extends TileEntity implements ITickableTileEntity, 
     }
 
     protected static boolean isFuel(ItemStack p_217058_1_) {
-        return p_217058_1_.getItem() == Items.CHARCOAL || p_217058_1_.getItem() == ModItems.COKE;
+        return p_217058_1_.getItem() == Items.CHARCOAL || p_217058_1_.getItem() == ModItems.COKE || p_217058_1_.getItem() == ModBlocks.COKE_BLOCK.asItem();
     }
 
     public boolean isBurning()
