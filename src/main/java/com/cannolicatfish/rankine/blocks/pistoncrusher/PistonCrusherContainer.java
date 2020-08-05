@@ -3,11 +3,13 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -68,23 +71,29 @@ public class PistonCrusherContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 0) {
-                if (!this.mergeItemStack(stack, 1, 37, true)) {
+            if (index == 2 || index == 3) {
+                if (!this.mergeItemStack(stack, 4, 37, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else {
-                if (stack.getItem() == ModItems.CALCITE) {
+            } else if (index != 1 && index != 0) {
+                if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(stack.getItem())).getValue()[0] > 0f) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
+                    if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 28) {
                     if (!this.mergeItemStack(stack, 28, 37, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 1, 28, false)) {
+                } else if (index < 37 && !this.mergeItemStack(stack, 4, 28, false)) {
                     return ItemStack.EMPTY;
                 }
+            } else if (!this.mergeItemStack(stack, 4, 37, false)) {
+                return ItemStack.EMPTY;
             }
 
             if (stack.isEmpty()) {
