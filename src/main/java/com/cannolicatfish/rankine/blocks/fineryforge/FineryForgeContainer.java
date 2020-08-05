@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
@@ -77,6 +78,10 @@ public class FineryForgeContainer extends Container {
             } else {
                 if (stack.getItem() == ModItems.PIG_IRON_INGOT) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
+                    if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 28) {
