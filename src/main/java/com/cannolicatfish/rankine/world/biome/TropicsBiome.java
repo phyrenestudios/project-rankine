@@ -31,10 +31,8 @@ public class TropicsBiome extends Biome {
      this.func_235063_a_(DefaultBiomeFeatures.field_235171_i_);
      this.func_235063_a_(DefaultBiomeFeatures.field_235187_y_);
         DefaultBiomeFeatures.addOceanCarvers(this);
-        RankineBiomeFeatures.addModStructures(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);
-        DefaultBiomeFeatures.addOres(this);
         DefaultBiomeFeatures.addReedsAndPumpkins(this);
         DefaultBiomeFeatures.addSprings(this);
         this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.SEA_PICKLE.withConfiguration(new CountConfig(14)).withPlacement(Placement.CHANCE_TOP_SOLID_HEIGHTMAP.configure(new ChanceConfig(16))));

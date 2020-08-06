@@ -51,7 +51,6 @@ public class OreGen {
         rockGenCountDef(Blocks.NETHERRACK.getDefaultState(), ModBlocks.SCORIA.getDefaultState(),40,2,0,128, Collections.singletonList(Biomes.field_235254_j_));
         rockGenCountDef(Blocks.NETHERRACK.getDefaultState(), ModBlocks.PUMICE.getDefaultState(),40,2,0,128, Collections.singletonList(Biomes.field_235254_j_));
         rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.LIMESTONE_NODULE.getDefaultState(),6,20,31,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false));
-        //rockGenCountDef(Blocks.SAND.getDefaultState(), ModBlocks.ALLUVIUM.getDefaultState(),10,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.DESERT),true));
         rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(Blocks.RED_SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 10),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));

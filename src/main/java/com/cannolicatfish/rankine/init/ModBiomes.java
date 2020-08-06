@@ -36,13 +36,16 @@ public class ModBiomes {
         registerBiome(event, new FelsenmeerBiome(),"felsenmeer", 8, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new ShoalBiome(),"shoal", 6, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.OCEAN, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new DeadSwampBiome(),"dead_swamp", 8, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
-        registerBiome(event, new TropicsBiome(),"tropics", 0, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+        registerBiome(event, new TropicsBiome(),"tropics", 2, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new ForestedLagoonBiome(),"forested_lagoon", 5, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new HemlockGroveBiome(),"hemlock_grove", 8, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new HemlockHillsBiome(),"hemlock_hills", 0, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new SaltPlainsBiome(),"salt_plains", 2, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new SaltSpikesBiome(),"salt_spikes", 1, BiomeManager.BiomeType.DESERT, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new CrackedCrustBiome(),"cracked_crust", 1, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.HOT, BiomeDictionary.Type.WASTELAND, BiomeDictionary.Type.OVERWORLD);
+        registerBiome(event, new BalsamWoodsBiome(),"balsam_woods", 5, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+        registerBiome(event, new BalsamHillsBiome(),"balsam_hills", 5, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.OVERWORLD);
+        registerBiome(event, new BlueberryMeadowsBiome(),"blueberry_meadows", 2, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.PLAINS, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.OVERWORLD);
 
 
         ProjectRankine.LOGGER.info("PR: Biomes Registered!");
@@ -94,5 +97,14 @@ public class ModBiomes {
 
     @ObjectHolder("rankine:cracked_crust")
     public static Biome CRACKED_CRUST;
+
+    @ObjectHolder("rankine:balsam_woods")
+    public static Biome BALSAM_WOODS;
+
+    @ObjectHolder("rankine:blueberry_meadows")
+    public static Biome BLUEBERRY_MEADOWS;
+
+    @ObjectHolder("rankine:balsam_hills")
+    public static Biome BALSAM_HILLS;
 }
 

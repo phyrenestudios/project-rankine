@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.blocks.RankineBerryBushBlock;
 import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.CustomScatteredPlantFeature;
 import com.cannolicatfish.rankine.world.gen.feature.MeteoriteFeatureConfig;
-import com.cannolicatfish.rankine.world.gen.feature.RankineFeatures;
+import com.cannolicatfish.rankine.init.RankineFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -28,7 +28,7 @@ public class DecorationGen
     {
         addBerryBushes(ModBlocks.ELDERBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS), true));
         addBerryBushes(ModBlocks.SNOWBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY), true));
-        addBerryBushes(ModBlocks.BLUEBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS), true));
+        //addBerryBushes(ModBlocks.BLUEBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS), true));
         addBerryBushes(ModBlocks.RASPBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
         addBerryBushes(ModBlocks.BLACKBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.FOREST), true));
         addBerryBushes(ModBlocks.CRANBERRY_BUSH, Collections.singletonList(Blocks.GRASS_BLOCK), getBiomesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true));
