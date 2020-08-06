@@ -1,0 +1,1 @@
+{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:malachite"},"result": { "item": "rankine:copper_ingot"},"experience": 1, "cookingTime": 200 }

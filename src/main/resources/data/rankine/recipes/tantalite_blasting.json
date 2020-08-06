@@ -1,0 +1,1 @@
+{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:tantalite"},"result": { "item": "rankine:tantalum_ingot"},"experience": 1, "cookingTime": 200 }

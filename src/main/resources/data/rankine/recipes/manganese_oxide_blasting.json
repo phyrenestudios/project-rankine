@@ -1,1 +1,0 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:manganese_oxide"},"result": { "item": "rankine:manganese_ingot"},"experience": 1, "cookingTime": 200 }

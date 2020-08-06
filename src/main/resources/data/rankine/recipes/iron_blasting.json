@@ -1,1 +1,0 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:iron_oxide"},"result": { "item": "minecraft:iron_ingot"},"experience": 1, "cookingTime": 200 }
