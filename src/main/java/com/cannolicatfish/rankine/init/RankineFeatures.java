@@ -1,6 +1,9 @@
-package com.cannolicatfish.rankine.world.gen.feature;
+package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.world.gen.feature.MeteoriteFeature;
+import com.cannolicatfish.rankine.world.gen.feature.MeteoriteFeatureConfig;
+import com.cannolicatfish.rankine.world.gen.feature.SpikesFeature;
 import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
