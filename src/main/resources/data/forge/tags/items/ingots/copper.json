@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:copper_ingot"
-  ]
-}
+      "replace": false,
+      "values": [
+        "rankine:copper_ingot"
+      ]
+    }

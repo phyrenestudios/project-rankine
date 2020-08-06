@@ -24,7 +24,7 @@ public class PendantItem extends Item{
                 }
             }
             if (player.getHeldItemOffhand().getItem() == ModItems.SPEED_PENDANT) {
-                entityIn.setMotion(entityIn.getMotion().mul(1.2D, 1.0D, 1.2D));
+                entityIn.setMotion(entityIn.getMotion().mul(1.3D, 1.1D, 1.3D));
                 if (random.nextFloat() < 0.05) {
                     stack.damageItem(1, player, (livingEntity) -> livingEntity.sendBreakAnimation(EquipmentSlotType.OFFHAND));
                 }
