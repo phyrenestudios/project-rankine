@@ -458,20 +458,20 @@ public class ModItems {
     public static final Item NETHERITE_HAMMER = add("netherite_hammer", new ItemHammer(2, -3.2F, ItemTier.NETHERITE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item NETHERITE_SPEAR = add("netherite_spear", new ItemSpear(ItemTier.NETHERITE,2, -2.9F ,ModEntityTypes.NETHERITE_SPEAR,new ResourceLocation("rankine:textures/entity/netherite_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item  STEEL_GOLD_PAN = add("steel_gold_pan", new ItemGoldPan(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item TRANSFORMATION_STAFF = add("transformation_staff", new TransformationStaffItem(new Item.Properties().maxDamage(1024).group(ProjectRankine.setup.rankineTools)));
+    public static final Item STEEL_GOLD_PAN = add("steel_gold_pan", new ItemGoldPan(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
+    public static final Item FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item TRANSFORMATION_STAFF = add("transformation_staff", new TransformationStaffItem(new Item.Properties().maxDamage(512).group(ProjectRankine.setup.rankineTools)));
     public static final Item GLASS_CUTTER = add("glass_cutter", new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BRIGADINE_HELMET = add("brigandine_helmet", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BRIGADINE_CHESTPLATE = add("brigandine_chestplate", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BRIGADINE_LEGGINGS = add("brigandine_leggings", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BRIGADINE_BOOTS = add("brigandine_boots", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BRIGADINE_HELMET = add("brigandine_helmet", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BRIGADINE_CHESTPLATE = add("brigandine_chestplate", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BRIGADINE_LEGGINGS = add("brigandine_leggings", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BRIGADINE_BOOTS = add("brigandine_boots", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GEM_CORE = add("gem_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item LUCK_PENDANT = add("luck_pendant", new PendantItem(new Item.Properties().maxDamage(300).group(ProjectRankine.setup.rankineTools)));
-    public static final Item SPEED_PENDANT = add("speed_pendant", new PendantItem(new Item.Properties().maxDamage(300).group(ProjectRankine.setup.rankineTools)));
+    public static final Item LUCK_PENDANT = add("luck_pendant", new PendantItem(new Item.Properties().maxDamage(200).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SPEED_PENDANT = add("speed_pendant", new PendantItem(new Item.Properties().maxDamage(200).group(ProjectRankine.setup.rankineTools)));
 
 
 

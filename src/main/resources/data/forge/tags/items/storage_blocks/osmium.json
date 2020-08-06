@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:osmium_block"
-  ]
-}
+      "replace": false,
+      "values": [
+        "rankine:osmium_block"
+      ]
+    }
