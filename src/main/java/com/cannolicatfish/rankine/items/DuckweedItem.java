@@ -25,6 +25,11 @@ public class DuckweedItem extends LilyPadItem {
     }
 
     @Override
+    public int getBurnTime(ItemStack itemStack) {
+        return 200;
+    }
+
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);

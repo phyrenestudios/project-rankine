@@ -1,5 +1,0 @@
-Build: 1.15.2-1.0 - Thu Sep 12 16:14:54 GMT 2019
-	CannoliCatfish:
-		initial release
-
-=========

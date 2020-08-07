@@ -64,23 +64,23 @@ public class AlloyingRecipesComplex {
 
             switch (reg) {
                 case "coke":
-                    mat = "pure_carbon";
+                    mat = "carbon";
                     amt = stack.getCount();
                     break;
                 case "graphite":
-                    mat = "pure_carbon";
+                    mat = "carbon";
                     amt = 3 * stack.getCount();
                     break;
                 case "anthracite_coal":
-                    mat = "carbon";
+                    mat = "nope";
                     amt = 4 * stack.getCount();
                     break;
                 case "bituminous_coal":
-                    mat = "carbon";
+                    mat = "nope";
                     amt = 3 * stack.getCount();
                     break;
                 case "subbituminous_coal":
-                    mat = "carbon";
+                    mat = "nope";
                     amt = 2 * stack.getCount();
                     break;
                 default:
@@ -242,10 +242,10 @@ public class AlloyingRecipesComplex {
                 }
             }
         }
-        if (materials.contains("unref_iron") && materials.contains("pure_carbon") && total >= 10) // Cast Iron
+        if (materials.contains("unref_iron") && materials.contains("carbon") && total >= 10) // Cast Iron
         {
             int x1 = materials.indexOf("unref_iron");
-            int x2 = materials.indexOf("pure_carbon");
+            int x2 = materials.indexOf("carbon");
             int x3;
             if (x1 == 0 && x2 == 1 || x2 == 0 && x1 == 1)
             {
@@ -266,10 +266,10 @@ public class AlloyingRecipesComplex {
                 float propx2 = amounts.get(x2)/total;
                 float propx3 = amounts.get(x3)/total;
 
-                System.out.println(propx1);
-                System.out.println(propx2);
-                System.out.println(propx3);
-                System.out.println(Math.round(total/10));
+                //System.out.println(propx1);
+                //System.out.println(propx2);
+                //System.out.println(propx3);
+                //System.out.println(Math.round(total/10));
                 if (propx1 >= .86f && propx1 <= .98f && propx2 >= .02f && propx2 <= .04f && Math.round(total/10) <= 64) {
                     int[] ar = new int[3];
                     ar[0] = input1.getCount();

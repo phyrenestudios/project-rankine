@@ -36,7 +36,7 @@ public class ModBiomes {
         registerBiome(event, new FelsenmeerBiome(),"felsenmeer", 8, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new ShoalBiome(),"shoal", 6, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.OCEAN, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new DeadSwampBiome(),"dead_swamp", 8, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.OVERWORLD);
-        registerBiome(event, new TropicsBiome(),"tropics", 2, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+        registerBiome(event, new TropicsBiome(),"tropics", 0, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new ForestedLagoonBiome(),"forested_lagoon", 5, BiomeManager.BiomeType.WARM, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new HemlockGroveBiome(),"hemlock_grove", 8, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
         registerBiome(event, new HemlockHillsBiome(),"hemlock_hills", 0, BiomeManager.BiomeType.COOL, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.CONIFEROUS, BiomeDictionary.Type.OVERWORLD);
