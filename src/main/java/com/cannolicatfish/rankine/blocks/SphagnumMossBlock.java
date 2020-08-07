@@ -44,10 +44,6 @@ public class SphagnumMossBlock extends BushBlock {
         super.tick(state, worldIn, pos, rand);
     }
 
-    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
-        return new ItemStack(ModItems.SPHAGNUM_MOSS);
-    }
-
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
