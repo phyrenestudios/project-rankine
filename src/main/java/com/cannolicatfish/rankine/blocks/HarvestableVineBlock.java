@@ -48,7 +48,7 @@ public class HarvestableVineBlock extends VineBlock implements IGrowable {
             ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(ModItems.RED_GRAPES));
             itementity.setDefaultPickupDelay();
             worldIn.addEntity(itementity);
-            worldIn.setBlockState(pos, ModBlocks.RED_GRAPEVINE.getDefaultState().with(this.getAgeProperty(), 4),2);
+            worldIn.setBlockState(pos, this.getDefaultState().with(this.getAgeProperty(), 4),2);
             return ActionResultType.SUCCESS;
         }
         return ActionResultType.PASS;

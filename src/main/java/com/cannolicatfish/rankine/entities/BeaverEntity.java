@@ -108,7 +108,7 @@ public class BeaverEntity extends AnimalEntity {
         }
         protected void stripLog() {
             if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(BeaverEntity.this.world, BeaverEntity.this)) {
-                System.out.println("Attempting to strip log");
+                //System.out.println("Attempting to strip log");
                 BlockState blockstate = BeaverEntity.this.world.getBlockState(this.destinationBlock);
                 boolean completed = false;
                 if (blockstate.getBlock() == Blocks.ACACIA_LOG)
@@ -207,8 +207,8 @@ public class BeaverEntity extends AnimalEntity {
                 }
                 if (blockstate.getBlock().getTags().contains(new ResourceLocation("minecraft/logs"))) {
                     BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.STICK_BLOCK));
-                    System.out.println("Beaver should now have stick block");
-                    System.out.println(BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
+                    //System.out.println("Beaver should now have stick block");
+                    //System.out.println(BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
                     BeaverEntity.this.playSound(SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, 1.0F, 1.0F);
                 }
             }
@@ -249,7 +249,7 @@ public class BeaverEntity extends AnimalEntity {
         public boolean shouldExecute() {
             if (!BeaverEntity.this.isSleeping() && BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == new ItemStack(ModBlocks.STICK_BLOCK).getItem() && super.shouldExecute()
             && ForgeEventFactory.getMobGriefingEvent(this.beaver.world, this.beaver)){
-                System.out.println("CAN PLACE STICKS");
+                //System.out.println("CAN PLACE STICKS");
                 return true;
             } else
             {
@@ -289,7 +289,7 @@ public class BeaverEntity extends AnimalEntity {
             if ((iworld.getFluidState(blockpos).getFluid() == Fluids.WATER || iworld.getBlockState(blockpos).getBlock() == Blocks.WATER) && blockpos != this.beaver.getOnPosition() &&
                     !ForgeEventFactory.onBlockPlace(this.beaver, BlockSnapshot.create(iworld, blockpos), Direction.UP)) {
                 iworld.setBlockState(blockpos, blockstate2, 3);
-                System.out.println("STICK BLOCK PLACED");
+                //System.out.println("STICK BLOCK PLACED");
                 BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
             }
         }

@@ -560,9 +560,6 @@ public class ModItems {
     public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
 
 
-    @ObjectHolder("rankine:sphagnum_moss")
-    public static Item SPHAGNUM_MOSS;
-
     @ObjectHolder("rankine:elderberries")
     public static Item ELDERBERRIES;
 
