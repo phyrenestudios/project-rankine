@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:shovel_template"
+    ]
+  },
+  "criteria": {
+    "has_paper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:paper"
+          }
+        ]
+      }
+    },
+    "has_flint_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:flint_shovel"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:shovel_template"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_paper",
+      "has_flint_shovel",
+      "has_the_recipe"
+    ]
+  ]
+}
