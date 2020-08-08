@@ -1,8 +1,8 @@
-package com.cannolicatfish.rankine.client.integration.jei.crusher;
+package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
+import com.cannolicatfish.rankine.recipe.ICoalForgeRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -22,22 +22,23 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrusherRecipe> {
+public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "crushing");
+    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "forging");
     private final IDrawable background;
     private final String localizedName;
     private final IDrawable overlay;
     private final IDrawable icon;
 
-    public PistonCrusherRecipeCategory(IGuiHelper guiHelper) {
+    public CoalForgeRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.crushing");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crushing_jei.png"),
+        localizedName = I18n.format("rankine.jei.forging");
+        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/forging_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.PISTON_CRUSHER));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.COAL_FORGE));
     }
 
     @Override
@@ -46,8 +47,8 @@ public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrush
     }
 
     @Override
-    public Class<? extends IPistonCrusherRecipe> getRecipeClass() {
-        return IPistonCrusherRecipe.class;
+    public Class<? extends ICoalForgeRecipe> getRecipeClass() {
+        return ICoalForgeRecipe.class;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrush
     }
 
     @Override
-    public void draw(IPistonCrusherRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+    public void draw(ICoalForgeRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -75,17 +76,17 @@ public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrush
     }
 
     @Override
-    public void setIngredients(IPistonCrusherRecipe recipe, IIngredients iIngredients) {
+    public void setIngredients(ICoalForgeRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Arrays.asList(recipe.getRecipeOutput(),recipe.getSecondaryOutput()));
+        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IPistonCrusherRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, ICoalForgeRecipe recipe, IIngredients ingredients) {
         int index = 0, posX = 23;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             recipeLayout.getItemStacks().init(index, true, posX, 34);
@@ -111,3 +112,4 @@ public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrush
         });
     }
 }
+

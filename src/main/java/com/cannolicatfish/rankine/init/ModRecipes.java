@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.recipe.ICoalForgeRecipe;
+import com.cannolicatfish.rankine.recipe.IFineryForgeRecipe;
 import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
@@ -273,6 +274,13 @@ public class ModRecipes {
         return recipes;
     }
 
+    public static List<IFineryForgeRecipe> getFineryRecipes()
+    {
+        List<IFineryForgeRecipe> recipes = new ArrayList<>();
+        recipes.add(fineryRecipe("finery_pig_to_wrought",ModItems.PIG_IRON_INGOT, new ItemStack(ModItems.BLOOM_IRON,1), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1),new ItemStack(ModItems.SLAG,1),0.5f));
+        return recipes;
+    }
+
     public static Pair<ItemStack,ItemStack> getCrushingOutputs(ItemStack input)
     {
         List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
@@ -337,6 +345,12 @@ public class ModRecipes {
                     list);
         }
 
+    }
+
+    public static IFineryForgeRecipe fineryRecipe(String registry, Item input, ItemStack intermediate, ItemStack output, ItemStack secondary, float chance)
+    {
+        return new IFineryForgeRecipe(new ResourceLocation(ProjectRankine.MODID,registry),new ItemStack[]{intermediate,output,secondary},
+                Ingredient.fromStacks(new ItemStack(input)),chance);
     }
 
     public static List<ItemStack> getForgingItemStack(ItemStack alloy, ItemStack output, boolean hasComposition) {

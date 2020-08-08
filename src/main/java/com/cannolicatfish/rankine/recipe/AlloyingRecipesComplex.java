@@ -496,7 +496,7 @@ public class AlloyingRecipesComplex {
                 System.out.println(propx3);
                 System.out.println(Math.round(total/10));
                  */
-                if (propx1 >= .71f && propx1 <= .90f && propx2 >= .10f && propx2 <= .360f && propx1 + propx2 >= .95f && Math.round(total/10) <= 64) {
+                if (propx1 >= .70f && propx1 <= .90f && propx2 >= .10f && propx2 <= .30f && propx1 + propx2 >= .95f && Math.round(total/10) <= 64) {
                     int[] ar = new int[3];
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
@@ -505,7 +505,7 @@ public class AlloyingRecipesComplex {
                 }
             }
         }
-        if (materials.contains("copper") && materials.contains("nickel") && total >= 10) // Cupronickel
+        if (materials.contains("copper") && materials.contains("nickel") && materials.contains("zinc") && total >= 10) // Nickel Silver
         {
             int x1 = materials.indexOf("copper");
             int x2 = materials.indexOf("nickel");
@@ -522,7 +522,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("zinc") || materials.get(x3).equals("none")){
+            if (materials.get(x3).equals("zinc")){
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;

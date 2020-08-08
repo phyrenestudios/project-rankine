@@ -1,8 +1,8 @@
-package com.cannolicatfish.rankine.client.integration.jei.crusher;
+package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.recipe.ICoalForgeRecipe;
+import com.cannolicatfish.rankine.recipe.IFineryForgeRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -22,23 +22,22 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe> {
+public class FineryForgeRecipeCategory implements IRecipeCategory<IFineryForgeRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "forging");
+    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "finery");
     private final IDrawable background;
     private final String localizedName;
     private final IDrawable overlay;
     private final IDrawable icon;
 
-    public CoalForgeRecipeCategory(IGuiHelper guiHelper) {
+    public FineryForgeRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(145, 95);
-        localizedName = I18n.format("rankine.jei.forging");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/forging_jei.png"),
+        localizedName = I18n.format("rankine.jei.finery");
+        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/finery_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.COAL_FORGE));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.FINERY_FORGE));
     }
 
     @Override
@@ -47,8 +46,8 @@ public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe
     }
 
     @Override
-    public Class<? extends ICoalForgeRecipe> getRecipeClass() {
-        return ICoalForgeRecipe.class;
+    public Class<? extends IFineryForgeRecipe> getRecipeClass() {
+        return IFineryForgeRecipe.class;
     }
 
     @Override
@@ -67,7 +66,7 @@ public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe
     }
 
     @Override
-    public void draw(ICoalForgeRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+    public void draw(IFineryForgeRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -76,18 +75,18 @@ public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe
     }
 
     @Override
-    public void setIngredients(ICoalForgeRecipe recipe, IIngredients iIngredients) {
+    public void setIngredients(IFineryForgeRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, Collections.singletonList(recipe.getRecipeOutput()));
+        iIngredients.setOutputs(VanillaTypes.ITEM, Arrays.asList(recipe.getRecipeIntermediate(),recipe.getRecipeOutput(),recipe.getSecondaryOutput()));
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, ICoalForgeRecipe recipe, IIngredients ingredients) {
-        int index = 0, posX = 23;
+    public void setRecipe(IRecipeLayout recipeLayout, IFineryForgeRecipe recipe, IIngredients ingredients) {
+        int index = 0, posX = 3;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             recipeLayout.getItemStacks().init(index, true, posX, 34);
             recipeLayout.getItemStacks().set(index, o);
@@ -97,7 +96,13 @@ public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe
 
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 91 + i * 25, 34);
+            if (i == 0)
+            {
+                recipeLayout.getItemStacks().init(index + i, false, 59, 34);
+            } else
+            {
+                recipeLayout.getItemStacks().init(index + i, false, 114, 22 + 25 * (i - 1));
+            }
             recipeLayout.getItemStacks().set(index + i, stacks);
         }
 
@@ -112,4 +117,3 @@ public class CoalForgeRecipeCategory implements IRecipeCategory<ICoalForgeRecipe
         });
     }
 }
-
