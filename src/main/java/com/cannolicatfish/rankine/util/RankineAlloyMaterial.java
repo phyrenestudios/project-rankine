@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
-import javafx.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
@@ -11,10 +10,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public enum RankineAlloyMaterial {
 
@@ -59,7 +55,7 @@ public enum RankineAlloyMaterial {
         this.containsNugget = containsNugget;
     }
 
-    public static Pair<List<PeriodicTableUtils.Element>,List<Integer>> getMaterial(Item item)
+    public static AbstractMap.SimpleEntry<List<PeriodicTableUtils.Element>,List<Integer>> getMaterial(Item item)
     {
         //System.out.println(item.getTags());
         for (RankineAlloyMaterial mat: RankineAlloyMaterial.values()) {
@@ -80,23 +76,23 @@ public enum RankineAlloyMaterial {
                             }
                             if (!newamts.isEmpty())
                             {
-                                return new Pair<>(mat.elements,newamts);
+                                return new AbstractMap.SimpleEntry<>(mat.elements,newamts);
                             }
 
                         } else {
-                            return new Pair<>(mat.elements,mat.amounts);
+                            return new AbstractMap.SimpleEntry<>(mat.elements,mat.amounts);
                         }
                     case 1:
                         if (mat.containsNugget)
                         {
-                            return new Pair<>(mat.elements,mat.amounts);
+                            return new AbstractMap.SimpleEntry<>(mat.elements,mat.amounts);
                         } else {
                             List<Integer> newamts = new ArrayList<>();
                             for (int i: mat.amounts)
                             {
                                 newamts.add(i * 9);
                             }
-                            return new Pair<>(mat.elements,newamts);
+                            return new AbstractMap.SimpleEntry<>(mat.elements,newamts);
                         }
                     case 2:
                         List<Integer> newamts = new ArrayList<>();
@@ -104,9 +100,9 @@ public enum RankineAlloyMaterial {
                         {
                             newamts.add(i * 9);
                         }
-                        return new Pair<>(mat.elements,newamts);
+                        return new AbstractMap.SimpleEntry<>(mat.elements,newamts);
                 }
-                return new Pair<>(mat.elements,mat.amounts); // Make it so different items have different values
+                return new AbstractMap.SimpleEntry<>(mat.elements,mat.amounts); // Make it so different items have different values
             }
             if (item.getTags().contains(new ResourceLocation(mat.tag))) {
 
@@ -123,7 +119,7 @@ public enum RankineAlloyMaterial {
                     }
                     if (!newamts.isEmpty())
                     {
-                        return new Pair<>(mat.elements,newamts);
+                        return new AbstractMap.SimpleEntry<>(mat.elements,newamts);
                     }
 
                 }
@@ -135,15 +131,15 @@ public enum RankineAlloyMaterial {
                     {
                         newamts.add(i * 9);
                     }
-                    return new Pair<>(mat.elements,newamts);
+                    return new AbstractMap.SimpleEntry<>(mat.elements,newamts);
                 }
                 else
                 {
                     //System.out.println("Material (base item) found!");
-                    return new Pair<>(mat.elements,mat.amounts);
+                    return new AbstractMap.SimpleEntry<>(mat.elements,mat.amounts);
                 }
             }
         }
-        return new Pair<>(null,null);
+        return new AbstractMap.SimpleEntry<>(null,null);
     }
 }

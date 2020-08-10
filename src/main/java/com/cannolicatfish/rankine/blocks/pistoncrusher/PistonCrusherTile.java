@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
-import javafx.util.Pair;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,6 +32,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import java.util.AbstractMap;
 import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.ModBlocks.PISTON_CRUSHER_TILE;
@@ -254,8 +254,8 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                 }
             } else {
                 if (this.canSmelt() && this.isBurning()) {
-                    Pair<ItemStack, Float[]> output1 = PistonCrusherRecipes.getInstance().getPrimaryResult(input);
-                    Pair<ItemStack, Float> output2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input);
+                    AbstractMap.SimpleEntry<ItemStack, Float[]> output1 = PistonCrusherRecipes.getInstance().getPrimaryResult(input);
+                    AbstractMap.SimpleEntry<ItemStack, Float> output2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input);
                     smelting2 = output2.getKey();
                     output2chance = output2.getValue();
 
@@ -394,8 +394,8 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
         }
         else
         {
-            Pair<ItemStack, Float[]> preresult = PistonCrusherRecipes.getInstance().getPrimaryResult((ItemStack)this.handler2.getStackInSlot(0));
-            Pair<ItemStack, Float> preresult2 = PistonCrusherRecipes.getInstance().getSecondaryResult(((ItemStack)this.handler2.getStackInSlot(0)));
+            AbstractMap.SimpleEntry<ItemStack, Float[]> preresult = PistonCrusherRecipes.getInstance().getPrimaryResult((ItemStack)this.handler2.getStackInSlot(0));
+            AbstractMap.SimpleEntry<ItemStack, Float> preresult2 = PistonCrusherRecipes.getInstance().getSecondaryResult(((ItemStack)this.handler2.getStackInSlot(0)));
             ItemStack result = preresult.getKey();
             ItemStack result2 = preresult2.getKey();
             if(result.isEmpty())

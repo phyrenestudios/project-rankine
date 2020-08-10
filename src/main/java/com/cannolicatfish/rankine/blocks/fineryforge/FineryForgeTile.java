@@ -4,7 +4,6 @@ package com.cannolicatfish.rankine.blocks.fineryforge;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.FineryForgeRecipes;
-import javafx.util.Pair;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,6 +33,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.AbstractMap;
 import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.ModBlocks.FINERY_FORGE_TILE;
@@ -183,8 +183,8 @@ public class FineryForgeTile extends TileEntity implements ITickableTileEntity, 
             ItemStack crushinput = this.handler2.getStackInSlot(0);
 
             if (this.canCrush() && !this.isCrushing() && redstoneCheck(blockState)) {
-                Pair<ItemStack, Float[]> output1 = FineryForgeRecipes.getInstance().getPrimaryResult(crushinput);
-                Pair<ItemStack, Float> output2 = FineryForgeRecipes.getInstance().getSecondaryResult(crushinput);
+                AbstractMap.SimpleEntry<ItemStack, Float[]> output1 = FineryForgeRecipes.getInstance().getPrimaryResult(crushinput);
+                AbstractMap.SimpleEntry<ItemStack, Float> output2 = FineryForgeRecipes.getInstance().getSecondaryResult(crushinput);
                 crushing2 = output2.getKey();
                 output2chance = output2.getValue();
 
@@ -403,8 +403,8 @@ public class FineryForgeTile extends TileEntity implements ITickableTileEntity, 
         }
         else
         {
-            Pair<ItemStack, Float[]> preresult = FineryForgeRecipes.getInstance().getPrimaryResult((ItemStack)this.handler2.getStackInSlot(0));
-            Pair<ItemStack, Float> preresult2 = FineryForgeRecipes.getInstance().getSecondaryResult(((ItemStack)this.handler2.getStackInSlot(0)));
+            AbstractMap.SimpleEntry<ItemStack, Float[]> preresult = FineryForgeRecipes.getInstance().getPrimaryResult((ItemStack)this.handler2.getStackInSlot(0));
+            AbstractMap.SimpleEntry<ItemStack, Float> preresult2 = FineryForgeRecipes.getInstance().getSecondaryResult(((ItemStack)this.handler2.getStackInSlot(0)));
             ItemStack result = preresult.getKey();
             ItemStack result2 = preresult2.getKey();
             if(result.isEmpty())
