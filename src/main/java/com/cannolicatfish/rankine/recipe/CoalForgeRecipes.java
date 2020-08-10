@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.init.ModRecipes;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.*;
-import javafx.util.Pair;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.*;

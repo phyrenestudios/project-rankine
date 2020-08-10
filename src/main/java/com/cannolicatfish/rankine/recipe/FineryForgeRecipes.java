@@ -1,8 +1,9 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.ModItems;
-import javafx.util.Pair;
 import net.minecraft.item.ItemStack;
+
+import java.util.AbstractMap;
 
 public class FineryForgeRecipes {
 
@@ -20,20 +21,20 @@ public class FineryForgeRecipes {
         return ItemStack.EMPTY;
     }
 
-    public Pair<ItemStack, Float[]> getPrimaryResult(ItemStack input1) {
+    public AbstractMap.SimpleEntry<ItemStack, Float[]> getPrimaryResult(ItemStack input1) {
 
         if ((input1.getItem() == ModItems.BLOOM_IRON)) {
-            return new Pair<>(new ItemStack(ModItems.WROUGHT_IRON_INGOT, 1), new Float[]{1f, 0f});
+            return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.WROUGHT_IRON_INGOT, 1), new Float[]{1f, 0f});
         }
-        return new Pair<>(ItemStack.EMPTY, new Float[]{1f,0f});
+        return new AbstractMap.SimpleEntry<>(ItemStack.EMPTY, new Float[]{1f,0f});
     }
 
-    public Pair<ItemStack, Float> getSecondaryResult(ItemStack input) {
+    public AbstractMap.SimpleEntry<ItemStack, Float> getSecondaryResult(ItemStack input) {
         float chance = 1.0f;
         if (input.getItem() == ModItems.BLOOM_IRON) {
             chance = 0.5f;
-            return new Pair<>(new ItemStack(ModItems.SLAG, 1), chance);
+            return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.SLAG, 1), chance);
         }
-        return new Pair<>(ItemStack.EMPTY, chance);
+        return new AbstractMap.SimpleEntry<>(ItemStack.EMPTY, chance);
     }
 }

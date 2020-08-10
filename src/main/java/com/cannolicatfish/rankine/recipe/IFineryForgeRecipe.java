@@ -42,6 +42,7 @@ public class IFineryForgeRecipe implements IRecipe<IInventory> {
         this.intermediate = outputs[0];
         this.result = outputs[1];
         this.secondary = outputs[2];
+        this.chance = chance;
     }
     @Override
     public boolean matches(IInventory inv, World worldIn) {

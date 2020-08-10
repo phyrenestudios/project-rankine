@@ -8,7 +8,6 @@ import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.alloys.GreenGoldAlloyUtils;
-import javafx.util.Pair;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ClientRecipeBook;
 import net.minecraft.enchantment.Enchantment;
@@ -28,10 +27,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 
 import java.lang.ref.Reference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ModRecipes {
     public static final DeferredRegister<IRecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ProjectRankine.MODID);
@@ -281,14 +277,14 @@ public class ModRecipes {
         return recipes;
     }
 
-    public static Pair<ItemStack,ItemStack> getCrushingOutputs(ItemStack input)
+    public static AbstractMap.SimpleEntry<ItemStack,ItemStack> getCrushingOutputs(ItemStack input)
     {
         List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
         for (IPistonCrusherRecipe recipe: recipes)
         {
             if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input.getItem())
             {
-                return new Pair<>(recipe.getRecipeOutput(), recipe.getSecondaryOutput());
+                return new AbstractMap.SimpleEntry<>(recipe.getRecipeOutput(), recipe.getSecondaryOutput());
             }
         }
         return null;
@@ -309,14 +305,14 @@ public class ModRecipes {
         return ItemStack.EMPTY;
     }
 
-    public static Pair<ItemStack,Float> getCrushingSecondaryOutputs(ItemStack input)
+    public static AbstractMap.SimpleEntry<ItemStack,Float> getCrushingSecondaryOutputs(ItemStack input)
     {
         List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
         for (IPistonCrusherRecipe recipe: recipes)
         {
             if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input.getItem())
             {
-                return new Pair<>(recipe.getSecondaryOutput(), recipe.getSecondaryChance());
+                return new AbstractMap.SimpleEntry<>(recipe.getSecondaryOutput(), recipe.getSecondaryChance());
             }
         }
         return null;

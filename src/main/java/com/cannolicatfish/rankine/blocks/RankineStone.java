@@ -2,7 +2,6 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
-import javafx.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,6 +15,7 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.AbstractMap;
 import java.util.Random;
 
 public class RankineStone extends Block {
@@ -44,7 +44,7 @@ public class RankineStone extends Block {
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         boolean oreFound = false;
         Random random = new Random();
-        Pair<Block, BlockPos> checker = nuggetCheck(worldIn,pos);
+        AbstractMap.SimpleEntry<Block, BlockPos> checker = nuggetCheck(worldIn,pos);
         //System.out.println(checker);
         if (checker.getKey() != Blocks.AIR) {
             oreFound = true;
@@ -65,45 +65,38 @@ public class RankineStone extends Block {
     }
 
 
-    private Pair<Block,BlockPos> nuggetCheck(World worldIn, BlockPos pos)
-    { // Write to check for every individual ore i guess
+    private AbstractMap.SimpleEntry<Block,BlockPos> nuggetCheck(World worldIn, BlockPos pos)
+    {
+        BlockPos foundPos = null;
         for (int x = 1; x < 7; x++) {
             if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOre) {
-                if ((worldIn.getBlockState(pos.down(x)).get(RankineOre.TYPE) != 0))
-                {
-                    return new Pair<>(worldIn.getBlockState(pos.down(x)).getBlock(), pos.down(x));
-                }
+                foundPos = pos.down(x);
             } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOre) {
-                if ((worldIn.getBlockState(pos.up(x)).get(RankineOre.TYPE) != 0))
-                {
-                    return new Pair<>(worldIn.getBlockState(pos.up(x)).getBlock(),pos.up(x));
-                }
+                foundPos = pos.up(x);
             } else if (worldIn.getBlockState(pos.south(x)).getBlock() instanceof RankineOre) {
-                if ((worldIn.getBlockState(pos.south(x)).get(RankineOre.TYPE) != 0))
-                {
-                    return new Pair<>( worldIn.getBlockState(pos.south(x)).getBlock(), pos.south(x));
-                }
+                foundPos = pos.south(x);
             } else if (worldIn.getBlockState(pos.north(x)).getBlock() instanceof RankineOre) {
-                if ((worldIn.getBlockState(pos.north(x)).get(RankineOre.TYPE) != 0))
-                {
-                    return new Pair<>( worldIn.getBlockState(pos.north(x)).getBlock(),pos.north(x));
-                }
+                foundPos = pos.north(x);
             } else if (worldIn.getBlockState(pos.east(x)).getBlock() instanceof RankineOre) {
-                if ((worldIn.getBlockState(pos.east(x)).get(RankineOre.TYPE)) != 0)
-                {
-                    return new Pair<>( worldIn.getBlockState(pos.east(x)).getBlock(),pos.east(x));
-                }
+                foundPos = pos.east(x);
             } else if (worldIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOre) {
-                if ((worldIn.getBlockState(pos.west(x)).get(RankineOre.TYPE) != 0))
+                foundPos = pos.west(x);
+            }
+
+            if (foundPos != null)
+            {
+                if ((worldIn.getBlockState(foundPos).get(RankineOre.TYPE) != 0)) {
+                    return new AbstractMap.SimpleEntry<>(worldIn.getBlockState(foundPos).getBlock(), foundPos);
+                } else
                 {
-                    return new Pair<>(worldIn.getBlockState(pos.west(x)).getBlock(),pos.west(x));
+                    foundPos = null;
                 }
             }
         }
-        return new Pair<>(Blocks.AIR,pos);
+        return new AbstractMap.SimpleEntry<>(Blocks.AIR,pos);
     }
 
-    public ItemStack getNugget(Pair<Block,BlockPos> ore)
+    public ItemStack getNugget(AbstractMap.SimpleEntry<Block,BlockPos> ore)
     {
         Random random = new Random();
         if (ore.getKey() == ModBlocks.MAGNETITE_ORE) { return new ItemStack(Items.IRON_NUGGET); }

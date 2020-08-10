@@ -6,11 +6,11 @@ import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
-import javafx.util.Pair;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +33,12 @@ public class AlloyingRecipesComplex {
         return ItemStack.EMPTY;
     }
 
-    public Pair<String,Integer> returnItemMaterial(ItemStack stack)
+    public AbstractMap.SimpleEntry<String,Integer> returnItemMaterial(ItemStack stack)
     {
         //System.out.println(RankineAlloyMaterial.getMaterial(stack.getItem()).toString());
         if (stack.isEmpty())
         {
-            return new Pair<>("none",0);
+            return new AbstractMap.SimpleEntry<>("none",0);
         }
 
         String reg = stack.getItem().getRegistryName().toString();
@@ -46,7 +46,7 @@ public class AlloyingRecipesComplex {
         int amt = 0;
         if (!reg.contains(":"))
         {
-            return new Pair<>("nope",0);
+            return new AbstractMap.SimpleEntry<>("nope",0);
         }
         reg = reg.split(":")[1];
         if (reg.equals("bloom_iron") || reg.equals("pig_iron_ingot"))
@@ -90,11 +90,11 @@ public class AlloyingRecipesComplex {
         }
         if (!mat.equals("none"))
         {
-            return new Pair<>(mat,amt);
+            return new AbstractMap.SimpleEntry<>(mat,amt);
         }
         if (!reg.contains("_") && mat.equals("none"))
         {
-            return new Pair<>("nope",0);
+            return new AbstractMap.SimpleEntry<>("nope",0);
         }
         if (reg.contains("block"))
         {
@@ -112,10 +112,10 @@ public class AlloyingRecipesComplex {
             amt = stack.getCount();
         }
 
-        return new Pair<>(mat,amt);
+        return new AbstractMap.SimpleEntry<>(mat,amt);
     }
 
-    public Pair<ItemStack,int[]> getAlloyResult(ItemStack input1, ItemStack input2, ItemStack input3) {
+    public AbstractMap.SimpleEntry<ItemStack,int[]> getAlloyResult(ItemStack input1, ItemStack input2, ItemStack input3) {
         List<Item> inputList = Arrays.asList(input1.getItem(),input2.getItem(),input3.getItem());
         if (inputList.stream().distinct().count() < 3)
         {
@@ -123,7 +123,7 @@ public class AlloyingRecipesComplex {
             ar[0] = 1;
             ar[1] = 1;
             ar[2] = 1;
-            return new Pair<>(ItemStack.EMPTY, ar);
+            return new AbstractMap.SimpleEntry<>(ItemStack.EMPTY, ar);
         }
         List<Integer> inputValList = Arrays.asList(input1.getCount(),input2.getCount(),input3.getCount());
         List<String> materials = Arrays.asList(returnItemMaterial(input1).getKey(),returnItemMaterial(input2).getKey(),returnItemMaterial(input3).getKey());
@@ -162,7 +162,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.BRONZE_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.BRONZE_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -200,7 +200,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -238,7 +238,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.BRASS_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.BRASS_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -259,8 +259,9 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("silicon") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("chromium") ||
-                    materials.get(x3).equals("molybdenum") || materials.get(x3).equals("titanium") || materials.get(x3).equals("vanadium") || materials.get(x3).equals("none")) {
+            if ((materials.get(x3).equals("silicon") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("chromium") ||
+                    materials.get(x3).equals("molybdenum") || materials.get(x3).equals("titanium") || materials.get(x3).equals("vanadium")
+                    && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -275,7 +276,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.CAST_IRON_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.CAST_IRON_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -296,7 +297,9 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("nickel") || materials.get(x3).equals("palladium") || materials.get(x3).equals("silver") || materials.get(x3).equals("platinum") || materials.get(x3).equals("none")) {
+            if (((materials.get(x3).equals("nickel") || materials.get(x3).equals("palladium") || materials.get(x3).equals("silver") || materials.get(x3).equals("platinum"))
+                && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)))
+                    || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -312,7 +315,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.WHITE_GOLD_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.WHITE_GOLD_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -350,7 +353,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.ROSE_GOLD_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.ROSE_GOLD_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -371,7 +374,8 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("copper") || materials.get(x3).equals("cadmium") || materials.get(x3).equals("platinum")
+            if (((materials.get(x3).equals("copper") || materials.get(x3).equals("cadmium") || materials.get(x3).equals("platinum"))
+                && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)))
                     || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
@@ -383,12 +387,12 @@ public class AlloyingRecipesComplex {
                 System.out.println(propx3);
                 System.out.println(Math.round(total/10));
                  */
-                if (propx1 >= .3f && propx1 <= .7f && propx2 >= .3f && propx2 <= .7f && Math.round(total/10) <= 64) {
+                if (propx1 >= .3f && propx1 <= .7f && propx2 >= .3f && propx2 <= .7f  && propx1 + propx2 >= .90f && Math.round(total/10) <= 64) {
                     int[] ar = new int[3];
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.GREEN_GOLD_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.GREEN_GOLD_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -425,7 +429,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.PURPLE_GOLD_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.PURPLE_GOLD_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -446,8 +450,8 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("nickel") || materials.get(x3).equals("ruthenium") || materials.get(x3).equals("rhodium")
-                    || materials.get(x3).equals("none")) {
+            if (((materials.get(x3).equals("nickel") || materials.get(x3).equals("ruthenium") || materials.get(x3).equals("rhodium"))
+                    && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -463,7 +467,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.BLUE_GOLD_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.BLUE_GOLD_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -501,11 +505,11 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.CUPRONICKEL_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.CUPRONICKEL_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
-        if (materials.contains("copper") && materials.contains("nickel") && materials.contains("zinc") && total >= 10) // Nickel Silver
+        if (materials.contains("copper") && materials.contains("nickel") && materials.contains("zinc")  && total >= 10) // Nickel Silver
         {
             int x1 = materials.indexOf("copper");
             int x2 = materials.indexOf("nickel");
@@ -522,7 +526,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("zinc")){
+            if (materials.get(x3).equals("zinc") && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))){
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -538,7 +542,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.NICKEL_SILVER_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.NICKEL_SILVER_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -575,7 +579,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.MAGNALIUM_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.MAGNALIUM_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -612,7 +616,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
                 }
             }
             if ((!materials.get(x3).equals("iron") && !materials.get(x3).equals("platinum") && !materials.get(x3).equals("tungsten") && !materials.get(x3).equals("tantalum")
@@ -632,7 +636,7 @@ public class AlloyingRecipesComplex {
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
-                    return new Pair<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }
@@ -640,7 +644,7 @@ public class AlloyingRecipesComplex {
         ar[0] = 1;
         ar[1] = 1;
         ar[2] = 1;
-        return new Pair<>(ItemStack.EMPTY, ar);
+        return new AbstractMap.SimpleEntry<>(ItemStack.EMPTY, ar);
     }
 
     public int getPercent(ItemStack input1, ItemStack input2, ItemStack input3, int index)
@@ -676,7 +680,7 @@ public class AlloyingRecipesComplex {
 
     }
 
-    public Pair<List<Integer>,List<ItemStack>> getPercents(ItemStack input1, ItemStack input2, ItemStack input3)
+    public AbstractMap.SimpleEntry<List<Integer>,List<ItemStack>> getPercents(ItemStack input1, ItemStack input2, ItemStack input3)
     {
         int percent1 = getPercent(input1,input2,input3,0);
         int percent2 = getPercent(input1,input2,input3,1);
@@ -689,27 +693,27 @@ public class AlloyingRecipesComplex {
         {
             if (percent2 >= percent3)
             {
-                return new Pair<>(Arrays.asList(percent1,percent2,percent3),Arrays.asList(input1,input2,input3));
+                return new AbstractMap.SimpleEntry<>(Arrays.asList(percent1,percent2,percent3),Arrays.asList(input1,input2,input3));
             } else {
-                return new Pair<>(Arrays.asList(percent1,percent3,percent2),Arrays.asList(input1,input3,input2));
+                return new AbstractMap.SimpleEntry<>(Arrays.asList(percent1,percent3,percent2),Arrays.asList(input1,input3,input2));
             }
         }
         else if (percent2 >= percent1 && percent2 >= percent3)
         {
             if (percent1 >= percent3)
             {
-                return new Pair<>(Arrays.asList(percent2,percent1,percent3),Arrays.asList(input2,input1,input3));
+                return new AbstractMap.SimpleEntry<>(Arrays.asList(percent2,percent1,percent3),Arrays.asList(input2,input1,input3));
             } else {
-                return new Pair<>(Arrays.asList(percent2,percent3,percent1),Arrays.asList(input2,input3,input1));
+                return new AbstractMap.SimpleEntry<>(Arrays.asList(percent2,percent3,percent1),Arrays.asList(input2,input3,input1));
             }
         }
         else
         {
             if (percent1 >= percent2)
             {
-                return new Pair<>(Arrays.asList(percent3,percent1,percent2),Arrays.asList(input3,input1,input2));
+                return new AbstractMap.SimpleEntry<>(Arrays.asList(percent3,percent1,percent2),Arrays.asList(input3,input1,input2));
             } else {
-                return new Pair<>(Arrays.asList(percent3,percent2,percent1),Arrays.asList(input3,input2,input2));
+                return new AbstractMap.SimpleEntry<>(Arrays.asList(percent3,percent2,percent1),Arrays.asList(input3,input2,input2));
             }
         }
     }

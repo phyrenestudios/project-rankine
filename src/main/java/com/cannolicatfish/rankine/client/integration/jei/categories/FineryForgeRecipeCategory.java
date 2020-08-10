@@ -13,6 +13,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -67,11 +68,14 @@ public class FineryForgeRecipeCategory implements IRecipeCategory<IFineryForgeRe
 
     @Override
     public void draw(IFineryForgeRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+        FontRenderer font = Minecraft.getInstance().fontRenderer;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();
+        String s = recipe.getSecondaryChance() * 100 + "%";
+        font.drawString(ms, s, (float)(124 - font.getStringWidth(s) / 2), 71, 0x000000);
     }
 
     @Override

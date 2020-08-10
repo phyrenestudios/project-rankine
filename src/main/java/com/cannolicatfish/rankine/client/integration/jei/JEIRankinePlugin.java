@@ -37,7 +37,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(ModRecipes.getFineryRecipes(), FineryForgeRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(ModItems.BRONZE_ALLOY), VanillaTypes.ITEM, "Bronze Alloy can be made in the Alloy Furnace.", "80-90% Copper", "10-20% Tin", "Copper + Tin >= 90%",
                 "Possible additions:", "Al, Mn, Ni, Zn");
-        registry.addIngredientInfo(new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY), VanillaTypes.ITEM, "Aluminum Bronze Alloy can be made in the Alloy Furnace.", "74-93% Copper", "4-12% Zinc", "Copper + Aluminum >= 85%",
+        registry.addIngredientInfo(new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY), VanillaTypes.ITEM, "Aluminum Bronze Alloy can be made in the Alloy Furnace.", "74-93% Copper", "4-12% Aluminum", "Copper + Aluminum >= 85%",
                 "Possible additions:", "Mn, Ni, Zn, As, Fe, Pb");
         registry.addIngredientInfo(new ItemStack(ModItems.BRASS_ALLOY), VanillaTypes.ITEM, "Brass Alloy can be made in the Alloy Furnace.", "30-70% Copper", "15-60% Zinc", "Copper + Zinc >= 90%",
                 "Possible additions:", "Sn, Pb, Al, Ni, Fe");
