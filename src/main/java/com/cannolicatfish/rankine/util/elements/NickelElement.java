@@ -26,11 +26,11 @@ public class NickelElement implements ElementInterface {
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        if (x >= 25)
+        if (x >= 50)
         {
-            return x/50f;
+            return (x/10f - 3)*x/50f;
         } else {
-            return x/100f;
+            return 2f*x/50f;
         }
 
     }
@@ -42,7 +42,7 @@ public class NickelElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return Math.round(x/50f);
+        return Math.round(4f*x/25f);
     }
 
     @Override

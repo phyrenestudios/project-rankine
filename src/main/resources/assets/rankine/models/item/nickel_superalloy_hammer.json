@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rankine:item/nickel_superalloy_hammer"
+  }
+}

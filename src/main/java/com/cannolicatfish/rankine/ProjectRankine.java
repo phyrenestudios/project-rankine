@@ -140,6 +140,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.AMALGAM_SPEAR);
             event.getRegistry().register(ModEntityTypes.DIAMOND_SPEAR);
             event.getRegistry().register(ModEntityTypes.NETHERITE_SPEAR);
+            event.getRegistry().register(ModEntityTypes.NICKEL_SUPERALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
       //      event.getRegistry().register(ModEntityTypes.JAR_BLUE_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_blue_foxfire"));
       //      event.getRegistry().register(ModEntityTypes.JAR_GREEN_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_green_foxfire"));
@@ -172,6 +173,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.AMALGAM_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NETHERITE_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NICKEL_SUPERALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
         //    RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_BLUE_FOXFIRE, ReactiveItemRenderer::new);
        //     RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_GREEN_FOXFIRE, ReactiveItemRenderer::new);

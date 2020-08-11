@@ -231,6 +231,7 @@ public final class PeriodicTableUtils {
     public enum Element {
         CARBON(6,"C",new CarbonElement()),
         ALUMINUM(13, "Al", new AluminumElement()),
+        SILICON(14, "Si", new SiliconElement()),
         SULFUR(16,"S",new SulfurElement()),
         TITANIUM(22, "Ti", new TitaniumElement()),
         VANADIUM(23, "Vn", new VanadiumElement()),

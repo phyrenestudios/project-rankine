@@ -71,22 +71,14 @@ public class AlloyingRecipesComplex {
                     mat = "carbon";
                     amt = 3 * stack.getCount();
                     break;
-                case "anthracite_coal":
-                    mat = "nope";
-                    amt = 4 * stack.getCount();
-                    break;
-                case "bituminous_coal":
-                    mat = "nope";
-                    amt = 3 * stack.getCount();
-                    break;
-                case "subbituminous_coal":
-                    mat = "nope";
-                    amt = 2 * stack.getCount();
-                    break;
                 default:
                     amt = stack.getCount();
                     break;
             }
+        }
+        if (reg.contains("coal"))
+        {
+            mat = "nope";
         }
         if (!mat.equals("none"))
         {
@@ -583,7 +575,7 @@ public class AlloyingRecipesComplex {
                 }
             }
         }
-        if (materials.contains("mercury") && materials.contains("gold") && total >= 10) // Magnalium
+        if (materials.contains("mercury") && materials.contains("gold") && total >= 10) // Amalgam
         {
             int x1 = materials.indexOf("mercury");
             int x2 = materials.indexOf("gold");
@@ -637,6 +629,47 @@ public class AlloyingRecipesComplex {
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
                     return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.AMALGAM_ALLOY, Math.round(total/10)),ar);
+                }
+            }
+        }
+        if (materials.contains("nickel") && materials.contains("chromium") && total >= 10) // Nickel Superalloy
+        {
+            int x1 = materials.indexOf("nickel");
+            int x2 = materials.indexOf("chromium");
+            int x3;
+            if (x1 == 0 && x2 == 1 || x2 == 0 && x1 == 1)
+            {
+                x3 = 2;
+            }
+            else if (x1 == 2 && x2 == 0 || x2 == 2 && x1 == 0)
+            {
+                x3 = 1;
+            }
+            else
+            {
+                x3 = 0;
+            }
+            if (((materials.get(x3).equals("molybdenum") || materials.get(x3).equals("niobium") || materials.get(x3).equals("tantalum") || materials.get(x3).equals("cobalt") ||
+                    materials.get(x3).equals("manganese") || materials.get(x3).equals("aluminum") || materials.get(x3).equals("titanium") || materials.get(x3).equals("silicon") ||
+                    materials.get(x3).equals("carbon") || materials.get(x3).equals("phosphorus") || materials.get(x3).equals("boron") || materials.get(x3).equals("iron") ||
+                    materials.get(x3).equals("vanadium") || materials.get(x3).equals("zirconium") || materials.get(x3).equals("hafnium") || materials.get(x3).equals("rhenium") ||
+                    materials.get(x3).equals("tungsten")) && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
+
+                float propx1 = amounts.get(x1)/total;
+                float propx2 = amounts.get(x2)/total;
+                float propx3 = amounts.get(x3)/total;
+                /*
+                System.out.println(propx1);
+                System.out.println(propx2);
+                System.out.println(propx3);
+                System.out.println(Math.round(total/10));
+                 */
+                if (propx1 >= .50f && propx1 <= .75f && propx2 >= .14f && propx2 <= .2f && Math.round(total/10) <= 64) {
+                    int[] ar = new int[3];
+                    ar[0] = input1.getCount();
+                    ar[1] = input2.getCount();
+                    ar[2] = input3.getCount();
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.NICKEL_SUPERALLOY, Math.round(total/10)),ar);
                 }
             }
         }
