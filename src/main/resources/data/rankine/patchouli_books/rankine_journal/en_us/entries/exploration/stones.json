@@ -1,8 +1,12 @@
 {
   "name": "Stones",
-  "icon": "rankine:granite",
+  "icon": "rankine:gneiss",
   "category": "exploration/exploration",
   "pages": [
+    {
+      "type": "text",
+      "text": "Since when are there colored stones? I bet there is something that makes each one a little different..."
+    },
     {
       "type": "spotlight",
 	  "item": "rankine:granite",
@@ -51,12 +55,12 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:marble",
-      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld and Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:gneiss",
-      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld and Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld"
     },
 	{
       "type": "spotlight",
@@ -71,42 +75,42 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:peridotite",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:ringwoodite",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Nether"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:wadsleyite",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Nether"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:bridgmanite",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Nether"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:komatiite",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Nether"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:kimberlite",
-      "text": "Classification: Metamorphic$(br2)Found in intrusions in the Overworld and Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in intrusions in the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:ferropericlase",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Nether"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:perovskite",
-      "text": "Classification: Metamorphic$(br2)Found in the Mantle"
+      "text": "Classification: Metamorphic$(br2)Found in the Nether"
     }
   ]
 }

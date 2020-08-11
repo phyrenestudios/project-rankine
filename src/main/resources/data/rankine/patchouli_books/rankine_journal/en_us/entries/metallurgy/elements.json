@@ -1,0 +1,591 @@
+{
+  "name": "Elements",
+  "icon": "rankine:element",
+  "category": "technology/metallurgy",
+  "pages": [
+    {
+      "type": "text",
+      "text": "All of these rudimentary components in the world, yet I feel the list is still incomplete..."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:hydrogen_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:helium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lithium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:beryllium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:boron_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:carbon_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nitrogen_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:oxygen_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:fluorine_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:neon_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sodium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:magnesium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:aluminum_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silicon",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:phosphorus",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sulfur",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:chlorine_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:argon_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:potassium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:calcium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:scandium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:titanium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:vanadium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:chromium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:manganese_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:copper_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:zinc_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gallium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:germanium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:arsenic_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:selenium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bromine_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:krypton_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rubidium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:strontium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:yttrium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:zirconium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:niobium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:molybdenum_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:technetium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ruthenium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rhodium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:palladium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silver_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cadmium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:indium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tin_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:antimony_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tellurium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:iodine_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:xenon_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cesium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:barium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lanthanum_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cerium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:praseodymium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:neodymium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:promethium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:samarium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:europium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gadolinium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tebrium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:dysprosium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:holmium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:eribium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:thulium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ytterbium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lutetium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:hafnium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tantalum_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rhenium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:osmium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:iridium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:platinum_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:mercury_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:thallium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lead_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bismuth_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:polonium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:astatine",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:radon_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:francium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:radium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:actinium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:thorium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:protactinium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:uranium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:neptunium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:plutonium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:americium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:curium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:berkelium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:californium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:einsteinium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:fermium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:mendelevium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nobelium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lawrencium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rutherfordium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:dubnium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:seaborgium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bohrium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:hassium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meiterium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:darmstadtium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:roentgenium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:copernicium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nihonium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:flerovium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:moscovium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:livermorium_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tennessine_ingot",
+      "text": "No known traces"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:oganesson_ingot",
+      "text": "No known traces"
+    }
+  ]
+}

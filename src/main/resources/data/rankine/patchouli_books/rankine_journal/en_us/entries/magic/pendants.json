@@ -1,0 +1,21 @@
+{
+  "name": "Pendants",
+  "icon": "rankine:luck_pendant",
+  "category": "magic/magic",
+  "pages": [
+    {
+      "type": "text",
+      "text": "These shiny 1metal bands look real on my offhand..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:luck_pendant",
+      "text": "While worn: $(li)Gives the wearer a chance to mine a duplicate resource from the world"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:speed_pendant",
+      "text": "While worn: $(li)Gives the wearer increased movement speed"
+    }
+  ]
+}

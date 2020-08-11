@@ -14,7 +14,7 @@
     },
     "x":
     {
-      "item": "minecraft:cobblestone"
+      "tag": "forge:stone"
     },
     "r":
     {

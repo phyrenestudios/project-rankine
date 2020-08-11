@@ -3,12 +3,14 @@
   "icon": "rankine:crucible",
   "category": "technology/machines",
   "pages": [
-	{
+    {
+      "type": "text",
+      "anchor": "crucible",
+      "text": ""
+    },
+    {
       "type": "crafting",
-	  "title": "Crucible",
-	  "anchor": "crucible",
-	  "recipe": "rankine:crucible",
-      "text": "aaa"
+      "recipe": "rankine:crucible"
     }
   ]
 }

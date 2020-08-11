@@ -3,12 +3,14 @@
   "icon": "rankine:alloy_furnace",
   "category": "technology/machines",
   "pages": [
-	{
+    {
+      "type": "text",
+      "anchor": "alloy_furnace",
+      "text": ""
+    },
+    {
       "type": "crafting",
-	  "title": "Alloy Furnace",
-	  "anchor": "alloy_furnace",
-	  "recipe": "rankine:alloy_furnace",
-      "text": "aaa"
+      "recipe": "rankine:alloy_furnace"
     }
   ]
 }

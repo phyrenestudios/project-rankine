@@ -46,10 +46,10 @@ public class ModRecipes {
         List<IPistonCrusherRecipe> recipes = new ArrayList<>();
 
         //Vanilla Blocks
-        recipes.add(crushingRecipe("cobblestone_crushing",Blocks.COBBLESTONE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.01f));
-        recipes.add(crushingRecipe("stone_crushing",Blocks.STONE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
-        recipes.add(crushingRecipe("smooth_stone_crushing",Blocks.SMOOTH_STONE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
-        recipes.add(crushingRecipe("stone_bricks_crushing",Blocks.STONE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
+        recipes.add(crushingRecipe("cobblestone_crushing",Blocks.COBBLESTONE.asItem(), new ItemStack(ModItems.FELDSPAR,1), new ItemStack(Items.QUARTZ,1),0.05f));
+        recipes.add(crushingRecipe("stone_crushing",Blocks.STONE.asItem(), new ItemStack(ModItems.FELDSPAR,1), new ItemStack(Items.QUARTZ,1),0.05f));
+        recipes.add(crushingRecipe("smooth_stone_crushing",Blocks.SMOOTH_STONE.asItem(), new ItemStack(ModItems.FELDSPAR,1), new ItemStack(Items.QUARTZ,1),0.05f));
+        recipes.add(crushingRecipe("stone_bricks_crushing",Blocks.STONE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,1), new ItemStack(Items.QUARTZ,1),0.05f));
         recipes.add(crushingRecipe("sandstone_crushing",Blocks.SANDSTONE.asItem(), new ItemStack(Items.SAND,3), new ItemStack(ModItems.FELDSPAR,1),0.5f));
         recipes.add(crushingRecipe("red_sandstone_crushing",Blocks.RED_SANDSTONE.asItem(), new ItemStack(Items.RED_SAND,3), new ItemStack(ModItems.FELDSPAR,1),0.5f));
 

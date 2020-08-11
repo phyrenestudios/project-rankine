@@ -3,12 +3,14 @@
   "icon": "rankine:piston_crusher",
   "category": "technology/machines",
   "pages": [
-	{
+    {
+      "type": "text",
+      "anchor": "piston_crusher",
+      "text": ""
+    },
+    {
       "type": "crafting",
-	  "title": "Piston Crusher",
-	  "anchor": "piston_crusher",
-	  "recipe": "rankine:piston_crusher",
-      "text": "aaa"
+      "recipe": "rankine:piston_crusher"
     }
   ]
 }
