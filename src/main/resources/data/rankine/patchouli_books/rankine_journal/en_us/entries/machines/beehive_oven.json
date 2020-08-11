@@ -4,11 +4,15 @@
   "category": "technology/machines",
   "pages": [
 	{
-      "type": "crafting",
+      "type": "text",
 	  "title": "Beehive Oven Pit",
 	  "anchor": "beehive_oven",
-	  "recipe": "rankine:beehive_oven_pit",
-      "text": "not food safe"
+      "text": "A large enclosed structure seems to work well for cooking my blocks over time. As long as the smoke can reach the sky and a solid floor around it, I'm happy..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:beehive_oven_pit",
+      "text": "Right click with a flint and steel to light $(br)Currently converts:   $(li)subbituminous coal --> coke   $(li)bituminous coal --> coke   $(li)limestone --> quicklime"
     },
     {
       "type": "multiblock",

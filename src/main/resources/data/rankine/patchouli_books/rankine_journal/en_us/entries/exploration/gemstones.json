@@ -4,6 +4,15 @@
   "category": "exploration/exploration",
   "pages": [
     {
+      "type": "text",
+      "text": "Ah, my precious..."
+    },
+    {
+      "type": "crafting",
+      "item": "rankine:gem_core",
+      "text": "A powerful item"
+    },
+    {
       "type": "spotlight",
 	  "item": "rankine:peridot",
       "text": "Found who knows where"
@@ -37,11 +46,6 @@
       "type": "spotlight",
 	  "item": "minecraft:emerald",
       "text": "Found throughout the Overworld"
-    },
-    {
-      "type": "crafting",
-      "item": "rankine:gem_core",
-      "text": "A powerful item"
     }
   ]
 }

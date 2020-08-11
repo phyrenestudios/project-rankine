@@ -5,7 +5,32 @@
   "pages": [
     {
       "type": "text",
-      "text": "Meteorites are extraterrestrial objects that have landed on the surface. Initial investigations determined the pressence of iron."
+      "text": "There seems to be some funny looking rocks on the surface. I have never seen this type of stone before. Parts of it look pretty tough, maybe good for a new pick..."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteorite",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:kamacite",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:antitaenite",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:taenite",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tetrataenite",
+      "text": ""
     }
   ]
 }
