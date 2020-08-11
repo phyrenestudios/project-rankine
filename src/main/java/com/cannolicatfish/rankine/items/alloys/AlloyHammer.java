@@ -41,8 +41,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class AlloyHammer extends ItemHammer {
@@ -263,7 +265,9 @@ public class AlloyHammer extends ItemHammer {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        DecimalFormat df = new DecimalFormat("##.#");
+        DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
+            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+        });
         if (!Screen.hasShiftDown() && getComposition(stack).size() != 0)
         {
             tooltip.add((new StringTextComponent("Hold shift for details...")).func_240701_a_(TextFormatting.GRAY));
@@ -278,26 +282,25 @@ public class AlloyHammer extends ItemHammer {
                 tooltip.add((new StringTextComponent("Durability: " + (getMaxDamage(stack) - getDamage(stack)) + "/" + getMaxDamage(stack))).func_240701_a_(TextFormatting.DARK_GREEN));
             }
             tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Mining Speed: " + Float.parseFloat(df.format(getEfficiency(stack))))).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getEfficiency(stack)))).func_240701_a_(TextFormatting.GRAY));
             tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).func_240701_a_(TextFormatting.GRAY));
             if (Config.ALLOY_CORROSION.get())
             {
-                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (Float.parseFloat(df.format(getCorrResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).func_240701_a_(TextFormatting.GRAY));
             }
             if (Config.ALLOY_HEAT.get())
             {
-                tooltip.add((new StringTextComponent("Heat Resistance: " + (Float.parseFloat(df.format(getHeatResist(stack) * 100))) + "%")).func_240701_a_(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).func_240701_a_(TextFormatting.GRAY));
             }
             if (Config.ALLOY_TOUGHNESS.get())
             {
-                tooltip.add((new StringTextComponent("Toughness: -" + (Float.parseFloat(df.format(getToughness(stack))) * 100) + "%")).func_240701_a_(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Toughness: -" + (df.format(getToughness(stack) * 100)) + "%")).func_240701_a_(TextFormatting.GRAY));
             }
         }
         tooltip.add((new StringTextComponent("" )));
         tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));
-        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((1 + getAttackDamage(stack) - getWearModifierDmg(stack)))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
-        tooltip.add((new StringTextComponent(" " + Float.parseFloat(df.format((4 + getAttackSpeed(stack)))) + " Attack Speed").func_240701_a_(TextFormatting.DARK_GREEN)));
-
+        tooltip.add((new StringTextComponent(" " + df.format((1 + getAttackDamage(stack))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
+        tooltip.add((new StringTextComponent(" " + df.format((4 + getAttackSpeed(stack))) + " Attack Speed").func_240701_a_(TextFormatting.DARK_GREEN)));
     }
 
     public static ListNBT getComposition(ItemStack stack) {
