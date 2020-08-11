@@ -38,6 +38,9 @@ public enum RankineToolMaterials implements IItemTier {
     }),
     STEEL(3, 1561, 8.0F, 3.0F, 10, () -> {
         return Ingredient.fromItems(ModItems.STEEL_ALLOY);
+    }),
+    NICKEL_SA(4, 2031, 9.0F, 4.0F, 15, () -> {
+        return Ingredient.fromItems(ModItems.NICKEL_SUPERALLOY);
     });
 
     private final int harvestLevel;

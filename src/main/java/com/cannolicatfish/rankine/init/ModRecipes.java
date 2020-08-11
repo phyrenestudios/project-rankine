@@ -251,6 +251,14 @@ public class ModRecipes {
         recipes.add(forgingRecipe("steel_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_SPEAR)));
         recipes.add(forgingRecipe("steel_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,5),new ItemStack(ModItems.STEEL_HAMMER)));
 
+        recipes.add(forgingRecipe("nickel_superalloy_pickaxe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_PICKAXE)));
+        recipes.add(forgingRecipe("nickel_superalloy_axe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_AXE)));
+        recipes.add(forgingRecipe("nickel_superalloy_shovel",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,1),new ItemStack(ModItems.NICKEL_SUPERALLOY_SHOVEL)));
+        recipes.add(forgingRecipe("nickel_superalloy_hoe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,2),new ItemStack(ModItems.NICKEL_SUPERALLOY_HOE)));
+        recipes.add(forgingRecipe("nickel_superalloy_sword",new ItemStack(ModItems.STEEL_ROD,1),new ItemStack(ModItems.NICKEL_SUPERALLOY,2),new ItemStack(ModItems.NICKEL_SUPERALLOY_SWORD)));
+        recipes.add(forgingRecipe("nickel_superalloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_SPEAR)));
+        recipes.add(forgingRecipe("nickel_superalloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,5),new ItemStack(ModItems.NICKEL_SUPERALLOY_HAMMER)));
+
         recipes.add(forgingRecipe("diamond_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,3),new ItemStack(Items.DIAMOND_PICKAXE)));
         recipes.add(forgingRecipe("diamond_axe",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,3),new ItemStack(Items.DIAMOND_AXE)));
         recipes.add(forgingRecipe("diamond_shovel",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,1),new ItemStack(Items.DIAMOND_SHOVEL)));
@@ -296,7 +304,7 @@ public class ModRecipes {
         for (ICoalForgeRecipe recipe: recipes)
         {
             if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input1.getItem()  && recipe.getIngredients().get(1).getMatchingStacks()[0].getItem() == input2.getItem()
-                    && recipe.getIngredients().get(0).getMatchingStacks()[0].getCount() == input1.getCount()  && recipe.getIngredients().get(1).getMatchingStacks()[0].getCount() == input2.getCount()
+                    && recipe.getIngredients().get(0).getMatchingStacks()[0].getCount() <= input1.getCount()  && recipe.getIngredients().get(1).getMatchingStacks()[0].getCount() <= input2.getCount()
                     && recipe.getIngredients().get(2).getMatchingStacks()[0].getItem() == template.getItem())
             {
                 return getForgingItemStack(input2,recipe.getRecipeOutput(),true).get(0);

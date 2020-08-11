@@ -38,13 +38,7 @@ public class AluminumElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        if (x >= 50)
-        {
-            return 4;
-        } else
-        {
-            return Math.round(x/10f);
-        }
+            return Math.round(x/11f);
     }
 
     @Override

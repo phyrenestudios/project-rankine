@@ -130,7 +130,7 @@ public class AlloyShovel extends ShovelItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus();
+            return Math.min(utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus(), 1);
         } else
         {
             return alloy.getCorrResistBonus();
@@ -148,7 +148,7 @@ public class AlloyShovel extends ShovelItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus();
+            return Math.min(utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus(),1);
         } else
         {
             return alloy.getHeatResistBonus();
