@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:moissanite_ore"
+  },
+  "result": "rankine:silicon_carbide",
+  "experience": 1.0,
+  "cookingtime": 200
+}

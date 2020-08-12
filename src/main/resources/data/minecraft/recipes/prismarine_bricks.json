@@ -1,1 +1,20 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:mortar" },"b": { "item": "minecraft:prismarine_shard"} }, "result": { "item": "minecraft:prismarine_bricks", "count": 2 } }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BMB",
+    "MBM",
+    "BMB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "result": {
+    "item": "minecraft:prismarine_bricks",
+    "count": 2
+  }
+}

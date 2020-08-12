@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:opal_ore"
+  },
+  "result": "rankine:opal",
+  "experience": 1.0,
+  "cookingtime": 100
+}

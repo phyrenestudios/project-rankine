@@ -7,14 +7,14 @@
   ],
   "key": {
     "B": {
-      "item": "minecraft:end_stone"
+      "item": "minecraft:polished_blackstone"
     },
     "M": {
       "item": "rankine:mortar"
     }
   },
   "result": {
-    "item": "minecraft:bricks",
+    "item": "minecraft:polished_blackstone_bricks",
     "count": 6
   }
 }

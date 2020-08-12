@@ -579,7 +579,7 @@ public class ModBlocks {
     public static final RankineOre NATIVE_SELENIUM_ORE = add("native_selenium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre COLUMBITE_ORE = add("columbite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.NIOBIUM_NUGGET), METALLURGY);
     public static final RankineOre MOLYBDENITE_ORE = add("molybdenite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.MOLYBDENUM_NUGGET), METALLURGY);
-    public static final RankineOre NATIVE_SILVER_ORE = add("native_silver_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre NATIVE_SILVER_ORE = add("native_silver_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final RankineOre ACANTHITE_ORE = add("acanthite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.SILVER_NUGGET), METALLURGY);
     public static final RankineOre GREENOCKITE_ORE = add("greenockite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.CADMIUM_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_INDIUM_ORE = add("native_indium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
@@ -588,9 +588,9 @@ public class ModBlocks {
     public static final RankineOre NATIVE_TELLURIUM_ORE = add("native_tellurium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre TANTALITE_ORE = add("tantalite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TANTALUM_NUGGET), METALLURGY);
     public static final RankineOre WOLFRAMITE_ORE = add("wolframite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TITANIUM_NUGGET), METALLURGY);
-    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
-    public static final RankineOre NETHER_GOLD_ORE = add("nether_gold_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
-    public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre NETHER_GOLD_ORE = add("nether_gold_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.LEAD_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
     public static final RankineOre BISMITE_ORE = add("bismite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.BISMUTH_NUGGET), METALLURGY);

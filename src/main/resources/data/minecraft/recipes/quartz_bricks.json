@@ -7,14 +7,14 @@
   ],
   "key": {
     "B": {
-      "item": "minecraft:end_stone"
+      "item": "minecraft:quartz_block"
     },
     "M": {
       "item": "rankine:mortar"
     }
   },
   "result": {
-    "item": "minecraft:bricks",
+    "item": "minecraft:quartz_bricks",
     "count": 6
   }
 }
