@@ -575,6 +575,43 @@ public class AlloyingRecipesComplex {
                 }
             }
         }
+        if (materials.contains("iron") && materials.contains("nickel") && total >= 10) // invar
+        {
+            int x1 = materials.indexOf("iron");
+            int x2 = materials.indexOf("nickel");
+            int x3;
+            if (x1 == 0 && x2 == 1 || x2 == 0 && x1 == 1)
+            {
+                x3 = 2;
+            }
+            else if (x1 == 2 && x2 == 0 || x2 == 2 && x1 == 0)
+            {
+                x3 = 1;
+            }
+            else
+            {
+                x3 = 0;
+            }
+            if (materials.get(x3).equals("none")) {
+
+                float propx1 = amounts.get(x1)/total;
+                float propx2 = amounts.get(x2)/total;
+                float propx3 = amounts.get(x3)/total;
+                /*
+                System.out.println(propx1);
+                System.out.println(propx2);
+                System.out.println(propx3);
+                System.out.println(Math.round(total/10));
+                 */
+                if (propx1 >= .50f && propx1 <= .90f && propx2 >= .10f && propx2 <= .50f && Math.round(total/10) <= 64) {
+                    int[] ar = new int[3];
+                    ar[0] = input1.getCount();
+                    ar[1] = input2.getCount();
+                    ar[2] = input3.getCount();
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.INVAR_ALLOY, Math.round(total/10)),ar);
+                }
+            }
+        }
         if (materials.contains("mercury") && materials.contains("gold") && total >= 10) // Amalgam
         {
             int x1 = materials.indexOf("mercury");

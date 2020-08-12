@@ -161,6 +161,7 @@ public class ModBlocks {
     public static final Block CLAY_BRICKS = add("clay_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS = add("refractory_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS = add("magnesium_refractory_bricks", new Block(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block ZIRCON_REFRACTORY_BRICKS = add("zircon_refractory_bricks", new Block(DEF_STONE.harvestLevel(3)), BLOCKS);
 
     //Stone Slabs
     public static final Block RED_GRANITE_BRICKS_SLAB = add("red_granite_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -231,7 +232,8 @@ public class ModBlocks {
     public static final Block SCORIA_BRICKS_SLAB = add("scoria_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
     public static final Block CLAY_BRICKS_SLAB = add("clay_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS_SLAB = add("refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block MAGNESIUM_REFRACTORY_BRICKS_SLAB = add("magnesium_refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(3)), BLOCKS);
+    public static final Block MAGNESIUM_REFRACTORY_BRICKS_SLAB = add("magnesium_refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block ZIRCON_REFRACTORY_BRICKS_SLAB = add("zircon_refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(3)), BLOCKS);
 
     //Stone Stairs
     public static final Block RED_GRANITE_BRICKS_STAIRS = add("red_granite_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -302,8 +304,8 @@ public class ModBlocks {
     public static final Block SCORIA_BRICKS_STAIRS = add("scoria_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(1)), BLOCKS);
     public static final Block CLAY_BRICKS_STAIRS = add("clay_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS_STAIRS = add("refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
-
+    public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(2)), BLOCKS);
+    public static final Block ZIRCON_REFRACTORY_BRICKS_STAIRS = add("zircon_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(3)), BLOCKS);
     //Stone Walls
     public static final Block RED_GRANITE_BRICKS_WALL = add("red_granite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block QUARTZ_DIORITE_BRICKS_WALL = add("quartz_diorite_bricks_wall", new WallBlock(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -786,6 +788,8 @@ public class ModBlocks {
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(0.4f,ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(0.6f,ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);

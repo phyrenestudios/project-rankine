@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:bronze_axe"
+      "rankine:flint_shovel"
     ]
   },
   "criteria": {
-    "has_bronze_alloy": {
+    "has_flint": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:bronze_alloy"
+            "item": "minecraft:flint"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:bronze_axe"
+        "recipe": "rankine:flint_shovel"
       }
     }
   },
   "requirements": [
     [
-      "has_bronze_alloy",
+      "has_flint",
       "has_the_recipe"
     ]
   ]

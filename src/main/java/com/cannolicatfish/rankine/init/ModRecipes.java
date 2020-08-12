@@ -203,6 +203,14 @@ public class ModRecipes {
         recipes.add(forgingRecipe("meteoric_iron_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,3),new ItemStack(ModItems.METEORIC_IRON_SPEAR)));
         recipes.add(forgingRecipe("meteoric_iron_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,5),new ItemStack(ModItems.METEORIC_IRON_HAMMER)));
 
+        recipes.add(forgingRecipe("invar_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.INVAR_ALLOY,3),new ItemStack(ModItems.METEORIC_IRON_PICKAXE)));
+        recipes.add(forgingRecipe("invar_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.INVAR_ALLOY,3),new ItemStack(ModItems.METEORIC_IRON_AXE)));
+        recipes.add(forgingRecipe("invar_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.INVAR_ALLOY,1),new ItemStack(ModItems.METEORIC_IRON_SHOVEL)));
+        recipes.add(forgingRecipe("invar_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.INVAR_ALLOY,2),new ItemStack(ModItems.METEORIC_IRON_HOE)));
+        recipes.add(forgingRecipe("invar_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.INVAR_ALLOY,2),new ItemStack(ModItems.METEORIC_IRON_SWORD)));
+        recipes.add(forgingRecipe("invar_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.INVAR_ALLOY,3),new ItemStack(ModItems.METEORIC_IRON_SPEAR)));
+        recipes.add(forgingRecipe("invar_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.INVAR_ALLOY,5),new ItemStack(ModItems.METEORIC_IRON_HAMMER)));
+
         recipes.add(forgingRecipe("rose_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,3),new ItemStack(ModItems.ROSE_GOLD_PICKAXE)));
         recipes.add(forgingRecipe("rose_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,3),new ItemStack(ModItems.ROSE_GOLD_AXE)));
         recipes.add(forgingRecipe("rose_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.ROSE_GOLD_ALLOY,1),new ItemStack(ModItems.ROSE_GOLD_SHOVEL)));

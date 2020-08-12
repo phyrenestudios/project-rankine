@@ -2,16 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:bronze_hoe"
+      "rankine:cobblestone_from_feldspar"
     ]
   },
   "criteria": {
-    "has_bronze_alloy": {
+    "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:bronze_alloy"
+            "tag": "forge:stone"
+          }
+        ]
+      }
+    },
+    "has_feldspar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:feldspar"
           }
         ]
       }
@@ -19,13 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:bronze_hoe"
+        "recipe": "rankine:cobble_stones"
       }
     }
   },
   "requirements": [
     [
-      "has_bronze_alloy",
+      "has_stone",
+      "has_feldspar",
       "has_the_recipe"
     ]
   ]

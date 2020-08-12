@@ -1,27 +1,27 @@
 {
-  "parent": "rankine:story/make_crucible",
+  "parent": "rankine:story/gather_rope",
   "display": {
     "icon": {
-      "item": "rankine:steel_alloy"
+      "item": "rankine:stone_hammer"
     },
     "title": {
-      "translate": "rankine.advancements.story.make_steel_alloy.title"
+      "translate": "rankine.advancements.story.get_stone_hammer.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.make_steel_alloy.description"
+      "translate": "rankine.advancements.story.get_stone_hammer.description"
     },
     "frame": "task",
     "show_toast": true,
-    "announce_to_chat": true,
+    "announce_to_chat": false,
     "hidden": false
   },
   "criteria": {
-    "steel_alloy": {
+    "stone_hammer": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:steel_alloy"
+            "item": "rankine:stone_hammer"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "steel_alloy"
+      "stone_hammer"
     ]
   ]
 }

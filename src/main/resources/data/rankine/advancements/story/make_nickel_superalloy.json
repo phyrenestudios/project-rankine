@@ -1,87 +1,87 @@
 {
-  "parent": "rankine:story/make_coal_forge",
+  "parent": "rankine:story/make_steel_alloy",
   "display": {
     "icon": {
-      "item": "rankine:hammer_template"
+      "item": "rankine:nickel_superalloy_pickaxe"
     },
     "title": {
-      "translate": "rankine.advancements.story.make_templates.title"
+      "translate": "rankine.advancements.story.make_nickel_superalloy.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.make_templates.description"
+      "translate": "rankine.advancements.story.make_nickel_superalloy.description"
     },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "rankine:shovel_template": {
+    "nickel_superalloy_pickaxe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:shovel_template"
+            "item": "rankine:nickel_superalloy_pickaxe"
           }
         ]
       }
     },
-    "rankine:hoe_template": {
+    "nickel_superalloy_axe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:hoe_template"
+            "item": "rankine:nickel_superalloy_axe"
           }
         ]
       }
     },
-    "rankine:spear_template": {
+    "nickel_superalloy_sword": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:spear_template"
+            "item": "rankine:nickel_superalloy_sword"
           }
         ]
       }
     },
-    "rankine:pickaxe_template": {
+    "nickel_superalloy_hammer": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:pickaxe_template"
+            "item": "rankine:nickel_superalloy_hammer"
           }
         ]
       }
     },
-    "rankine:sword_template": {
+    "nickel_superalloy_shovel": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:sword_template"
+            "item": "rankine:nickel_superalloy_shovel"
           }
         ]
       }
     },
-    "rankine:axe_template": {
+    "nickel_superalloy_spear": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:axe_template"
+            "item": "rankine:nickel_superalloy_spear"
           }
         ]
       }
     },
-    "rankine:hammer_template": {
+    "nickel_superalloy_hoe": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:hammer_template"
+            "item": "rankine:nickel_superalloy_hoe"
           }
         ]
       }
@@ -89,19 +89,19 @@
   },
   "requirements": [
     [
-      "rankine:shovel_template"
+      "nickel_superalloy_pickaxe"
     ], [
-      "rankine:hoe_template"
+      "nickel_superalloy_axe"
     ], [
-      "rankine:sword_template"
-    ],[
-      "rankine:spear_template"
+      "nickel_superalloy_sword"
     ], [
-      "rankine:pickaxe_template"
+      "nickel_superalloy_hammer"
     ], [
-      "rankine:axe_template"
+      "nickel_superalloy_shovel"
     ], [
-      "rankine:hammer_template"
+      "nickel_superalloy_spear"
+    ], [
+      "nickel_superalloy_hoe"
     ]
   ]
 }

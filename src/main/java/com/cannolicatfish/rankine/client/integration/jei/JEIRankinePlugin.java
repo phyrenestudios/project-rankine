@@ -55,6 +55,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(ModItems.BLUE_GOLD_ALLOY), VanillaTypes.ITEM, "Blue Gold Alloy can be made in the Alloy Furnace.", "74-76% Gold", "20-25% Iron",  "Gold + Iron >= 90%",
                 "Possible additions:", "Ni, Ru, Rh");
         registry.addIngredientInfo(new ItemStack(ModItems.NICKEL_SILVER_ALLOY), VanillaTypes.ITEM, "Nickel-Silver Alloy can be made in the Alloy Furnace.", "50-70% Copper", "15-25% Nickel", "15-25% Zinc");
+        registry.addIngredientInfo(new ItemStack(ModItems.INVAR_ALLOY), VanillaTypes.ITEM, "Invar Alloy can be made in the Alloy Furnace.", "50-90% Iron", "10-50% Nickel");
         if (Config.AMALGAM_EXTRAS.get())
         {
             registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
