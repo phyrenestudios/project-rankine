@@ -1,1 +1,17 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["i i","i i","i i"],"key": { "i":{ "item": "rankine:steel_alloy"} }, "result": { "item": "rankine:steel_sheetmetal", "count": 2 } }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/steel"
+    }
+  },
+  "result": {
+    "item": "rankine:steel_sheetmetal",
+    "count": 1
+  }
+}

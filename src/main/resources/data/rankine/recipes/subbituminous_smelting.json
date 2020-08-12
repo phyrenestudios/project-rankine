@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:subbituminous_ore"
+  },
+  "result": "minecraft:coal",
+  "experience": 0.2,
+  "cookingtime": 200
+}

@@ -1,1 +1,17 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["i i","i i","i i"],"key": { "i":{ "item": "rankine:wrought_iron_ingot"} }, "result": { "item": "rankine:wrought_iron_sheetmetal", "count": 2 } }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/wrought_iron"
+    }
+  },
+  "result": {
+    "item": "rankine:wrought_iron_sheetmetal",
+    "count": 1
+  }
+}

@@ -7,7 +7,7 @@
   ],
   "key": {
     "t": {
-      "item": "rankine:tin_sheetmetal"
+      "tag": "rankine:sheetmetal"
     },
     "#": {
       "item": "rankine:refractory_bricks"
