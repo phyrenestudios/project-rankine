@@ -311,7 +311,7 @@ public class ModItems {
     public static final AlloyItem AMALGAM_ALLOY = add("amalgam_alloy", new AlloyItem(new AmalgamAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem CUPRONICKEL_ALLOY = add("cupronickel_alloy", new AlloyItem("85Cu-15Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NICKEL_SILVER_ALLOY = add("nickel_silver_alloy", new AlloyItem("60Cu-20Ni-20Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));;
-    public static final Item INVAR_ALLOY = add("invar_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item INVAR_ALLOY = add("invar_alloy", new AlloyItem("64Fe-36Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NICKEL_SUPERALLOY = add("nickel_superalloy", new AlloyItem("75Ni-15Cr-10Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ROSE_METAL_ALLOY = add("rose_metal_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MAGNALIUM_ALLOY = add("magnalium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

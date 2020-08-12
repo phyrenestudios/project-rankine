@@ -34,8 +34,18 @@ import java.util.Random;
 
 public class BeehiveOvenPit extends Block {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public BeehiveOvenPit(Properties p_i48440_1_) {
-        super(p_i48440_1_);
+    private float chance;
+    private final Block blockType;
+    public BeehiveOvenPit(Properties properties) {
+        super(properties);
+        this.chance = 0.2f;
+        this.blockType = ModBlocks.REFRACTORY_BRICKS;
+    }
+
+    public BeehiveOvenPit(float chancePerRandomTick, Block blockType, Properties properties) {
+        super(properties);
+        this.chance = chancePerRandomTick;
+        this.blockType = blockType;
     }
 
 
@@ -86,7 +96,7 @@ public class BeehiveOvenPit extends Block {
         getBeehiveOven(world,pos);
         if (state.get((LIT)))
         {
-            if (rand.nextFloat() <= 0.2f)
+            if (rand.nextFloat() <= chance)
             {
                 List<Block> surroundingBlocks = Arrays.asList(world.getBlockState(uppos.north()).getBlock(),world.getBlockState(uppos.south()).getBlock(),world.getBlockState(uppos.east()).getBlock(),world.getBlockState(uppos.west()).getBlock(),
                         world.getBlockState(uppos.north().east()).getBlock(), world.getBlockState(uppos.north().west()).getBlock(),world.getBlockState(uppos.south().east()).getBlock(),world.getBlockState(uppos.south().west()).getBlock(),
@@ -163,10 +173,10 @@ public class BeehiveOvenPit extends Block {
                 canSeeSky = false;
             }
         }
-        if (canSeeSky && world.getBlockState(pos.north()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.south()).getBlock() == ModBlocks.REFRACTORY_BRICKS
-                && world.getBlockState(pos.east()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.west()).getBlock() == ModBlocks.REFRACTORY_BRICKS
-                && world.getBlockState(pos.north().west()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.north().east()).getBlock() == ModBlocks.REFRACTORY_BRICKS
-                && world.getBlockState(pos.south().west()).getBlock() == ModBlocks.REFRACTORY_BRICKS && world.getBlockState(pos.south().east()).getBlock() == ModBlocks.REFRACTORY_BRICKS)
+        if (canSeeSky && world.getBlockState(pos.north()).getBlock() == blockType && world.getBlockState(pos.south()).getBlock() == blockType
+                && world.getBlockState(pos.east()).getBlock() == blockType && world.getBlockState(pos.west()).getBlock() == blockType
+                && world.getBlockState(pos.north().west()).getBlock() == blockType && world.getBlockState(pos.north().east()).getBlock() == blockType
+                && world.getBlockState(pos.south().west()).getBlock() == blockType && world.getBlockState(pos.south().east()).getBlock() == blockType)
         {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
             return true;
