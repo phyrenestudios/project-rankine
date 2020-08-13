@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:radium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:radium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/radium"
     }
+  ],
+  "result": {
+    "item": "rankine:radium_nugget",
+    "count": 9
+  }
+}

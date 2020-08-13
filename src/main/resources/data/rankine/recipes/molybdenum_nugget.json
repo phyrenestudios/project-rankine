@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:molybdenum_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:molybdenum_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/molybdenum"
     }
+  ],
+  "result": {
+    "item": "rankine:molybdenum_nugget",
+    "count": 9
+  }
+}

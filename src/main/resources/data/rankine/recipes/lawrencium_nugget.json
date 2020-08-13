@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:lawrencium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:lawrencium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/lawrencium"
     }
+  ],
+  "result": {
+    "item": "rankine:lawrencium_nugget",
+    "count": 9
+  }
+}

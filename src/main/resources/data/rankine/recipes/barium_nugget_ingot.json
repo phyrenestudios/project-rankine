@@ -1,17 +1,17 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "###",
-        "###",
-        "###"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:barium_nugget"
-        }
-      },
-      "result": {
-        "item": "rankine:barium_ingot",
-        "count": 1
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/barium"
     }
+  },
+  "result": {
+    "item": "rankine:barium_ingot",
+    "count": 1
+  }
+}

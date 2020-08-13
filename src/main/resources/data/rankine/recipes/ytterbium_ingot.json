@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:ytterbium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:ytterbium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/ytterbium"
     }
+  ],
+  "result": {
+    "item": "rankine:ytterbium_ingot",
+    "count": 9
+  }
+}

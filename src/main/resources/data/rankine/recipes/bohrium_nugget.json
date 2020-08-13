@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:bohrium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:bohrium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/bohrium"
     }
+  ],
+  "result": {
+    "item": "rankine:bohrium_nugget",
+    "count": 9
+  }
+}

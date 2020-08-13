@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:nitrogen_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:nitrogen_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/nitrogen"
     }
+  ],
+  "result": {
+    "item": "rankine:nitrogen_nugget",
+    "count": 9
+  }
+}

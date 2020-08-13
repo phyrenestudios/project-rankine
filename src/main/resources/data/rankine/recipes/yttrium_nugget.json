@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:yttrium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:yttrium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/yttrium"
     }
+  ],
+  "result": {
+    "item": "rankine:yttrium_nugget",
+    "count": 9
+  }
+}

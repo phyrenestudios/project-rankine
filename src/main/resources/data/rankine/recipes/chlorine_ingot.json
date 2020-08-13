@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:chlorine_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:chlorine_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/chlorine"
     }
+  ],
+  "result": {
+    "item": "rankine:chlorine_ingot",
+    "count": 9
+  }
+}

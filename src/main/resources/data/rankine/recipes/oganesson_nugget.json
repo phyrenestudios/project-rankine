@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:oganesson_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:oganesson_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/oganesson"
     }
+  ],
+  "result": {
+    "item": "rankine:oganesson_nugget",
+    "count": 9
+  }
+}

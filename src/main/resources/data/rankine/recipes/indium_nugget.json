@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:indium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:indium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/indium"
     }
+  ],
+  "result": {
+    "item": "rankine:indium_nugget",
+    "count": 9
+  }
+}

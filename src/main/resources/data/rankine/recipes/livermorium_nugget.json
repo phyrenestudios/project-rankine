@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:livermorium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:livermorium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/livermorium"
     }
+  ],
+  "result": {
+    "item": "rankine:livermorium_nugget",
+    "count": 9
+  }
+}

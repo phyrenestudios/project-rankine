@@ -1,17 +1,17 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "###",
-        "###",
-        "###"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:chlorine_nugget"
-        }
-      },
-      "result": {
-        "item": "rankine:chlorine_ingot",
-        "count": 1
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/chlorine"
     }
+  },
+  "result": {
+    "item": "rankine:chlorine_ingot",
+    "count": 1
+  }
+}

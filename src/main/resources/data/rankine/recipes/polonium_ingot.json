@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:polonium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:polonium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/polonium"
     }
+  ],
+  "result": {
+    "item": "rankine:polonium_ingot",
+    "count": 9
+  }
+}

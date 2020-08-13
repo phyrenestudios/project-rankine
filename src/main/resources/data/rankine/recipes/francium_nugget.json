@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:francium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:francium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/francium"
     }
+  ],
+  "result": {
+    "item": "rankine:francium_nugget",
+    "count": 9
+  }
+}

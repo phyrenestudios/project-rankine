@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:ruthenium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:ruthenium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/ruthenium"
     }
+  ],
+  "result": {
+    "item": "rankine:ruthenium_nugget",
+    "count": 9
+  }
+}

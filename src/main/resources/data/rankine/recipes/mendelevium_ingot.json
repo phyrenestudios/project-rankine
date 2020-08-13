@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:mendelevium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:mendelevium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/mendelevium"
     }
+  ],
+  "result": {
+    "item": "rankine:mendelevium_ingot",
+    "count": 9
+  }
+}

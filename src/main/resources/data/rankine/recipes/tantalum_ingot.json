@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:tantalum_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:tantalum_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/tantalum"
     }
+  ],
+  "result": {
+    "item": "rankine:tantalum_ingot",
+    "count": 9
+  }
+}

@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:promethium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:promethium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/promethium"
     }
+  ],
+  "result": {
+    "item": "rankine:promethium_ingot",
+    "count": 9
+  }
+}

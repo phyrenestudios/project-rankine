@@ -1,6 +1,6 @@
 {
   "name": "Gemstones",
-  "icon": "rankine:opal",
+  "icon": "rankine:gem_core",
   "category": "exploration/exploration",
   "pages": [
     {
@@ -9,13 +9,13 @@
     },
     {
       "type": "crafting",
-      "item": "rankine:gem_core",
+      "recipe": "rankine:gem_core",
       "text": "A powerful item"
     },
     {
       "type": "spotlight",
 	  "item": "rankine:peridot",
-      "text": "Found who knows where"
+      "text": "Found in alluvium and black sand"
     },
 	{
       "type": "spotlight",
@@ -25,18 +25,28 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:garnet",
-      "text": "Found who knows where"
+      "text": "Found in alluvium and black sand"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ruby",
+      "text": "Found in alluvium and black sand"
     },
     {
       "type": "spotlight",
       "item": "rankine:sapphire",
-      "text": "Found who knows where"
+      "text": "Found in alluvium and black sand"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:aquamarine",
       "text": "Found throughout the Overworld"
-	  },
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:fluorite",
+      "text": "Found throughout the Overworld"
+    },
 	{
       "type": "spotlight",
 	  "item": "minecraft:diamond",

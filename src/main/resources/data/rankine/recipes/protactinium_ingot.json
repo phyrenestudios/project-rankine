@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:protactinium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:protactinium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/protactinium"
     }
+  ],
+  "result": {
+    "item": "rankine:protactinium_ingot",
+    "count": 9
+  }
+}

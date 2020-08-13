@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:germanium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:germanium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/germanium"
     }
+  ],
+  "result": {
+    "item": "rankine:germanium_ingot",
+    "count": 9
+  }
+}

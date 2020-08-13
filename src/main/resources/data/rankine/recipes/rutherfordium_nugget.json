@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:rutherfordium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:rutherfordium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/rutherfordium"
     }
+  ],
+  "result": {
+    "item": "rankine:rutherfordium_nugget",
+    "count": 9
+  }
+}

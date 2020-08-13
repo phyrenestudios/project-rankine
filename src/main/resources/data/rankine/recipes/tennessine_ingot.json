@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:tennessine_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:tennessine_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/tennessine"
     }
+  ],
+  "result": {
+    "item": "rankine:tennessine_ingot",
+    "count": 9
+  }
+}

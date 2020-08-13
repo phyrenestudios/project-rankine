@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:boron_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:boron_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/boron"
     }
+  ],
+  "result": {
+    "item": "rankine:boron_nugget",
+    "count": 9
+  }
+}

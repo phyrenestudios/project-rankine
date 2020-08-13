@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:meiterium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:meiterium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/meiterium"
     }
+  ],
+  "result": {
+    "item": "rankine:meiterium_ingot",
+    "count": 9
+  }
+}

@@ -36,7 +36,7 @@ public class DecorationGen
         addBerryBushes(ModBlocks.PINEAPPLE_BUSH, Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true));
         addBerryBushes(ModBlocks.BANANA_YUCCA_BUSH, Arrays.asList(ModBlocks.SANDY_DIRT, Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND), getBiomesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true));
 
-        addErratics(RankineFeatures.METEORITE, ModBlocks.METEORITE.getDefaultState(), 1, 150, getBiomesFromCategory(Collections.emptyList(),false));
+        addErratics(RankineFeatures.METEORITE, ModBlocks.METEORITE.getDefaultState(), 1, 100, getBiomesFromCategory(Collections.emptyList(),false));
 
         addTreesChance(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG, 1, Arrays.asList(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.FOREST, Biomes.FLOWER_FOREST));
         addTreesCount(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG, 1, Arrays.asList(Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TAIGA_HILLS, Biomes.GIANT_SPRUCE_TAIGA));

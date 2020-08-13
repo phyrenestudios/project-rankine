@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:californium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:californium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/californium"
     }
+  ],
+  "result": {
+    "item": "rankine:californium_nugget",
+    "count": 9
+  }
+}

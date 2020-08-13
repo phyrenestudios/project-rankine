@@ -20,6 +20,9 @@
     "rankine:ringwoodite_bricks",
     "rankine:wadsleyite_bricks",
     "rankine:ferropericlase_bricks",
-    "rankine:perovskite_bricks"
+    "rankine:perovskite_bricks",
+    "rankine:clay_bricks",
+    "rankine:refractory_bricks",
+    "rankine:magnesium_refractory_bricks"
   ]
 }

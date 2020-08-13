@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:tebrium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:tebrium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/tebrium"
     }
+  ],
+  "result": {
+    "item": "rankine:tebrium_ingot",
+    "count": 9
+  }
+}

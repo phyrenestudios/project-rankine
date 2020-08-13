@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:calcium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:calcium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/calcium"
     }
+  ],
+  "result": {
+    "item": "rankine:calcium_nugget",
+    "count": 9
+  }
+}
