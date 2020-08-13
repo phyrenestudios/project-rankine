@@ -317,7 +317,7 @@ public class ModItems {
     public static final Item MAGNALIUM_ALLOY = add("magnalium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item DURALUMIN_ALLOY = add("duralumin_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OSMIRIDIUM_ALLOY = add("osmiridium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final AlloyItem ROSE_GOLD_ALLOY = add("rose_gold_alloy", new AlloyItem("75Au-22Cu-3Ni", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final AlloyItem ROSE_GOLD_ALLOY = add("rose_gold_alloy", new AlloyItem("75Au-22Cu-3Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem WHITE_GOLD_ALLOY = add("white_gold_alloy", new AlloyItem("90Au-10Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem GREEN_GOLD_ALLOY = add("green_gold_alloy", new AlloyItem("50Au-50Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BLUE_GOLD_ALLOY = add("blue_gold_alloy", new AlloyItem("75Au-25Fe", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

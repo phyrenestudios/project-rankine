@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:ruby"
+    },
+    {
+      "item": "rankine:element_transmuter"
+    }
+  ],
+  "result": {
+    "item": "minecraft:iron_ingot",
+    "count": 3
+  }
+}

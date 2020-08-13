@@ -2,9 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.*;
-import com.cannolicatfish.rankine.recipe.ICoalForgeRecipe;
-import com.cannolicatfish.rankine.recipe.IFineryForgeRecipe;
-import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
+import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.alloys.GreenGoldAlloyUtils;
@@ -41,6 +39,75 @@ public class ModRecipes {
     }
     public static final RegistryObject<IPistonCrusherRecipe.Serializer> PISTON_CRUSHER_SERIALIZER = REGISTRY.register("crushing", IPistonCrusherRecipe.Serializer::new);
 
+    public static List<IAlloyRecipe> getAlloyRecipes()
+    {
+        List<IAlloyRecipe> recipes = new ArrayList<>();
+        recipes.add(alloyRecipe("bronze_alloy",new ItemStack(ModItems.BRONZE_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.TIN_INGOT,ModItems.ALUMINUM_INGOT,
+                ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT),new AbstractMap.SimpleEntry<>(.8f,.9f),new AbstractMap.SimpleEntry<>(.1f,.2f),
+                new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
+
+        recipes.add(alloyRecipe("aluminum_bronze_alloy",new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.ALUMINUM_INGOT,
+                ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT,ModItems.ARSENIC_INGOT,Items.IRON_INGOT,ModItems.LEAD_INGOT),
+                new AbstractMap.SimpleEntry<>(.74f,.93f), new AbstractMap.SimpleEntry<>(.04f,.12f),new AbstractMap.SimpleEntry<>(0f,.15f),.85f));
+
+        recipes.add(alloyRecipe("brass_alloy",new ItemStack(ModItems.BRASS_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.ZINC_INGOT,
+                ModItems.TIN_INGOT,ModItems.LEAD_INGOT,ModItems.ALUMINUM_INGOT,ModItems.NICKEL_INGOT,Items.IRON_INGOT),
+                new AbstractMap.SimpleEntry<>(.3f,.7f), new AbstractMap.SimpleEntry<>(.15f,.6f),new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
+
+        recipes.add(alloyRecipe("cupronickel_alloy",new ItemStack(ModItems.CUPRONICKEL_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.NICKEL_INGOT,
+                Items.IRON_INGOT,ModItems.MANGANESE_INGOT),
+                new AbstractMap.SimpleEntry<>(.7f,.9f), new AbstractMap.SimpleEntry<>(.1f,.3f),new AbstractMap.SimpleEntry<>(0f,.05f),.95f));
+
+        recipes.add(alloyRecipe("nickel_silver_alloy",new ItemStack(ModItems.NICKEL_SILVER_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.NICKEL_INGOT,
+                ModItems.ZINC_INGOT),
+                new AbstractMap.SimpleEntry<>(.5f,.7f), new AbstractMap.SimpleEntry<>(.15f,.25f),new AbstractMap.SimpleEntry<>(.15f,.25f),1f));
+
+        recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.NICKEL_INGOT),
+                new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
+
+        recipes.add(alloyRecipe("rose_gold_alloy",new ItemStack(ModItems.ROSE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.COPPER_INGOT,
+                ModItems.SILVER_INGOT,ModItems.ZINC_INGOT),
+                new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.6f),.94f));
+
+        recipes.add(alloyRecipe("white_gold_alloy",new ItemStack(ModItems.WHITE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.ZINC_INGOT,
+                ModItems.NICKEL_INGOT,ModItems.PALLADIUM_INGOT,ModItems.SILVER_INGOT,ModItems.PLATINUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.74f,.9f), new AbstractMap.SimpleEntry<>(.05f,.1f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+
+        recipes.add(alloyRecipe("green_gold_alloy",new ItemStack(ModItems.GREEN_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.SILVER_INGOT,
+                ModItems.COPPER_INGOT,ModItems.CADMIUM_INGOT,ModItems.PLATINUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.3f,.7f), new AbstractMap.SimpleEntry<>(.3f,.7f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+
+        recipes.add(alloyRecipe("blue_gold_alloy",new ItemStack(ModItems.BLUE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,Items.IRON_INGOT,
+                ModItems.NICKEL_INGOT,ModItems.RHODIUM_INGOT,ModItems.RUTHENIUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+
+        recipes.add(alloyRecipe("purple_gold_alloy",new ItemStack(ModItems.PURPLE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.ALUMINUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.79f,.81f), new AbstractMap.SimpleEntry<>(.19f,.21f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
+
+        recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
+                ModItems.SILICON, ModItems.MANGANESE_INGOT,ModItems.ALUMINUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.CARBON_INGOT,Items.IRON_INGOT,
+                ModItems.VANADIUM_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.2f),
+                new AbstractMap.SimpleEntry<>(0.05f,.36f),.64f));
+
+                /*recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
+                ModItems.MOLYBDENUM_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TANTALUM_INGOT,ModItems.COBALT_INGOT,ModItems.MANGANESE_INGOT,
+                ModItems.ALUMINUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.SILICON,ModItems.CARBON_INGOT,ModItems.PHOSPHORUS,
+                ModItems.BORON_INGOT, Items.IRON_INGOT,ModItems.VANADIUM_INGOT,ModItems.ZIRCONIUM_INGOT,ModItems.HAFNIUM_INGOT,
+                ModItems.RHENIUM_INGOT,ModItems.TUNGSTEN_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.2f),
+                new AbstractMap.SimpleEntry<>(0.05f,.36f),.64f));*/
+        return recipes;
+    }
+
+    public static List<IBeehiveOvenRecipe> getBeehiveOvenRecipes()
+    {
+        List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
+        recipes.add(beehiveOvenRecipe("limestone_oven_cooking",ModBlocks.LIMESTONE.asItem(),new ItemStack(ModBlocks.QUICKLIME_BLOCK)));
+        recipes.add(beehiveOvenRecipe("magnesite_oven_cooking",ModBlocks.MAGNESITE_BLOCK.asItem(),new ItemStack(ModBlocks.MAGNESIA_BLOCK)));
+        recipes.add(beehiveOvenRecipe("coal_oven_cooking",Blocks.COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
+        recipes.add(beehiveOvenRecipe("bituminous_oven_cooking",ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
+
+        return recipes;
+    }
     public static List<IPistonCrusherRecipe> getCrushingRecipes()
     {
         List<IPistonCrusherRecipe> recipes = new ArrayList<>();
@@ -138,7 +205,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("cinnabarite_ore_crushing",ModBlocks.CINNABAR_ORE.asItem(), new ItemStack(Items.REDSTONE,4), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("pentlandite_ore_crushing",ModBlocks.PENTLANDITE_ORE.asItem(), new ItemStack(ModItems.PENTLANDITE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
         recipes.add(crushingRecipe("magnesite_ore_crushing",ModBlocks.MAGNESITE_ORE.asItem(), new ItemStack(ModItems.MAGNESITE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
-        recipes.add(crushingRecipe("galena_ore_crushing",ModBlocks.GALENA_ORE.asItem(), new ItemStack(ModItems.GALENA,1), new ItemStack(ModItems.SILVER_SULFIDE,1),0.1f));
+        recipes.add(crushingRecipe("galena_ore_crushing",ModBlocks.GALENA_ORE.asItem(), new ItemStack(ModItems.GALENA,1), new ItemStack(ModItems.SPHALERITE,1),0.1f));
         recipes.add(crushingRecipe("acanthite_ore_crushing",ModBlocks.ACANTHITE_ORE.asItem(), new ItemStack(ModItems.SILVER_SULFIDE,1), new ItemStack(ModItems.GALENA,1),0.1f));
         recipes.add(crushingRecipe("pyrolusite_ore_crushing",ModBlocks.PYROLUSITE_ORE.asItem(), new ItemStack(ModItems.PYROLUSITE,1), new ItemStack(ModItems.TANTALUM_OXIDE,1),0.05f));
         recipes.add(crushingRecipe("bismite_ore_crushing",ModBlocks.BISMITE_ORE.asItem(), new ItemStack(ModItems.BISMUTH_OXIDE,1), new ItemStack(ModItems.GALENA,1),0.1f));
@@ -333,11 +400,28 @@ public class ModRecipes {
         }
         return null;
     }
+    public static IAlloyRecipe alloyRecipe(String registry, ItemStack output, List<Item> input, AbstractMap.SimpleEntry<Float, Float> primary,
+                                           AbstractMap.SimpleEntry<Float, Float> secondary, AbstractMap.SimpleEntry<Float, Float> other, float req)
+    {
+        NonNullList<Ingredient> list = NonNullList.create();
+        for (int i = 0; i < input.size(); i++)
+        {
+            list.add(i,Ingredient.fromStacks(new ItemStack(input.get(i))));
+        }
+        return new IAlloyRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output, list
+                ,primary,secondary,other,req);
+    }
 
     public static IPistonCrusherRecipe crushingRecipe(String registry, Item input, ItemStack output, ItemStack secondary, float chance)
     {
         return new IPistonCrusherRecipe(new ResourceLocation(ProjectRankine.MODID,registry),new ItemStack[]{output,secondary},
                 Ingredient.fromStacks(new ItemStack(input)),chance);
+    }
+
+    public static IBeehiveOvenRecipe beehiveOvenRecipe(String registry, Item input, ItemStack output)
+    {
+        return new IBeehiveOvenRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
+                Ingredient.fromStacks(new ItemStack(input)));
     }
 
     public static ICoalForgeRecipe forgingRecipe(String registry, ItemStack input, ItemStack alloy, ItemStack output)

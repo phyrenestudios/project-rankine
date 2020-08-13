@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.util.alloys.SteelAlloyUtils;
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.*;
@@ -53,6 +54,17 @@ public class Crucible extends Block {
     @Override
     public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return INSIDE;
+    }
+
+
+    @Override
+    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+        int i = state.get(LEVEL);
+        float f = (float)pos.getY() + (6.0F + (float)(3 * i)) / 16.0F;
+        if (!worldIn.isRemote && i > 0 && entityIn.getPosY() <= (double)f) {
+            entityIn.setFire(2);
+        }
+
     }
 
     @Override
@@ -150,7 +162,7 @@ public class Crucible extends Block {
     }
 
     public void setPigIronLevel(World worldIn, BlockPos pos, BlockState state, int level) {
-        worldIn.setBlockState(pos, state.with(LEVEL, Integer.valueOf(MathHelper.clamp(level, 0, 3))), 2);
+        worldIn.setBlockState(pos, state.with(LEVEL, MathHelper.clamp(level, 0, 3)), 2);
         worldIn.updateComparatorOutputLevel(pos, this);
     }
 
