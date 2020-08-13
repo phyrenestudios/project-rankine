@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:garnet",
+    "rankine:sapphire",
+    "rankine:fluorite",
+    "rankine:ruby",
+    "rankine:peridot",
+    "rankine:opal",
+    "rankine:tiger_iron",
+    "rankine:aquamarine"
+  ]
+}

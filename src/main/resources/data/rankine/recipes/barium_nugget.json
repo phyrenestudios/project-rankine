@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:barium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:barium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/barium"
     }
+  ],
+  "result": {
+    "item": "rankine:barium_nugget",
+    "count": 9
+  }
+}

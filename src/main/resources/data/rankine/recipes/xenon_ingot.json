@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:xenon_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:xenon_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/xenon"
     }
+  ],
+  "result": {
+    "item": "rankine:xenon_ingot",
+    "count": 9
+  }
+}

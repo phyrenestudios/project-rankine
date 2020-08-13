@@ -1,17 +1,17 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "###",
-        "###",
-        "###"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:radium_nugget"
-        }
-      },
-      "result": {
-        "item": "rankine:radium_ingot",
-        "count": 1
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/radium"
     }
+  },
+  "result": {
+    "item": "rankine:radium_ingot",
+    "count": 1
+  }
+}

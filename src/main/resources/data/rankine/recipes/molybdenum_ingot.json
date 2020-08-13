@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:molybdenum_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:molybdenum_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/molybdenum"
     }
+  ],
+  "result": {
+    "item": "rankine:molybdenum_ingot",
+    "count": 9
+  }
+}

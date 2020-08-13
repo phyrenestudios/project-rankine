@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:americium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:americium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/americium"
     }
+  ],
+  "result": {
+    "item": "rankine:americium_nugget",
+    "count": 9
+  }
+}

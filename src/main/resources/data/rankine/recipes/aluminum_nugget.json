@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:aluminum_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:aluminum_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/aluminum"
     }
+  ],
+  "result": {
+    "item": "rankine:aluminum_nugget",
+    "count": 9
+  }
+}

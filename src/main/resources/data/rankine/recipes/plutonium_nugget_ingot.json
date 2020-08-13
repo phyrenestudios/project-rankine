@@ -1,17 +1,17 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "###",
-        "###",
-        "###"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:plutonium_nugget"
-        }
-      },
-      "result": {
-        "item": "rankine:plutonium_ingot",
-        "count": 1
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/plutonium"
     }
+  },
+  "result": {
+    "item": "rankine:plutonium_ingot",
+    "count": 1
+  }
+}

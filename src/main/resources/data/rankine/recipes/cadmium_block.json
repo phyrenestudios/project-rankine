@@ -1,17 +1,17 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "###",
-        "###",
-        "###"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:cadmium_ingot"
-        }
-      },
-      "result": {
-        "item": "rankine:cadmium_block",
-        "count": 1
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/cadmium"
     }
+  },
+  "result": {
+    "item": "rankine:cadmium_block",
+    "count": 1
+  }
+}

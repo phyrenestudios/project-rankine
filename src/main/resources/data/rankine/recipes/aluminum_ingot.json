@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:aluminum_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:aluminum_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/aluminum"
     }
+  ],
+  "result": {
+    "item": "rankine:aluminum_ingot",
+    "count": 9
+  }
+}

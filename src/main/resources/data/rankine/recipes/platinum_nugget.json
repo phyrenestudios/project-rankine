@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:platinum_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:platinum_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/platinum"
     }
+  ],
+  "result": {
+    "item": "rankine:platinum_nugget",
+    "count": 9
+  }
+}

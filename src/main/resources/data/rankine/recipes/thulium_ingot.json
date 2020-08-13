@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:thulium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:thulium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/thulium"
     }
+  ],
+  "result": {
+    "item": "rankine:thulium_ingot",
+    "count": 9
+  }
+}

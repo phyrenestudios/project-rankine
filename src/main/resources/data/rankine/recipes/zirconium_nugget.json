@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:zirconium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:zirconium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/zirconium"
     }
+  ],
+  "result": {
+    "item": "rankine:zirconium_nugget",
+    "count": 9
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#rankine:colored_gold_tools",
+    "rankine:white_gold_alloy",
+    "rankine:rose_gold_alloy",
+    "rankine:green_gold_alloy",
+    "rankine:blue_gold_alloy",
+    "rankine:purple_gold_alloy",
+    "rankine:white_gold_block",
+    "rankine:rose_gold_block",
+    "rankine:green_gold_block",
+    "rankine:blue_gold_block",
+    "rankine:purple_gold_block",
+    "rankine:speed_pendant",
+    "rankine:luck_pendant"
+  ]
+}

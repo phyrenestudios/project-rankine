@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:einsteinium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:einsteinium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/einsteinium"
     }
+  ],
+  "result": {
+    "item": "rankine:einsteinium_nugget",
+    "count": 9
+  }
+}

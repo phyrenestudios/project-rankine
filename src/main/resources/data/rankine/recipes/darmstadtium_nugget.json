@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:darmstadtium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:darmstadtium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/darmstadtium"
     }
+  ],
+  "result": {
+    "item": "rankine:darmstadtium_nugget",
+    "count": 9
+  }
+}

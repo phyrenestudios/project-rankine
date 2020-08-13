@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:berkelium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:berkelium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/berkelium"
     }
+  ],
+  "result": {
+    "item": "rankine:berkelium_ingot",
+    "count": 9
+  }
+}

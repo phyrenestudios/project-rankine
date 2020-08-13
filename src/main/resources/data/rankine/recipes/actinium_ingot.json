@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:actinium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:actinium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/actinium"
     }
+  ],
+  "result": {
+    "item": "rankine:actinium_ingot",
+    "count": 9
+  }
+}

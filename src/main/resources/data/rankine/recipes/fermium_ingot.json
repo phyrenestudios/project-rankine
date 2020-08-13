@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:fermium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:fermium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/fermium"
     }
+  ],
+  "result": {
+    "item": "rankine:fermium_ingot",
+    "count": 9
+  }
+}

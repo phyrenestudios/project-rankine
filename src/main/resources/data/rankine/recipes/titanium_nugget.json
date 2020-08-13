@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:titanium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:titanium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/titanium"
     }
+  ],
+  "result": {
+    "item": "rankine:titanium_nugget",
+    "count": 9
+  }
+}

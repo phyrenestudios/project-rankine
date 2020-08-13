@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:palladium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:palladium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/palladium"
     }
+  ],
+  "result": {
+    "item": "rankine:palladium_ingot",
+    "count": 9
+  }
+}

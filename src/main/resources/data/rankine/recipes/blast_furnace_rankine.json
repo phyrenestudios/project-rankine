@@ -7,10 +7,10 @@
   ],
   "key": {
     "b": {
-      "item": "rankine:bronze_alloy"
+      "tag": "rankine:alloy_ingots"
     },
     "s": {
-      "tag": "rankine:smooth_stone"
+      "tag": "forge:smooth_stone"
     },
     "f": {
       "item": "minecraft:furnace"

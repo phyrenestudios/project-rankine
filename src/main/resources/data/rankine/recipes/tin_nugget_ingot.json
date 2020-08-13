@@ -1,17 +1,17 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "###",
-        "###",
-        "###"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:tin_nugget"
-        }
-      },
-      "result": {
-        "item": "rankine:tin_ingot",
-        "count": 1
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/tin"
     }
+  },
+  "result": {
+    "item": "rankine:tin_ingot",
+    "count": 1
+  }
+}

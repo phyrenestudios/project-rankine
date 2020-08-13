@@ -7,7 +7,6 @@
     "rankine:nichrome_block",
     "rankine:steel_block",
     "rankine:stainless_steel_block",
-
     "rankine:alnico_block",
     "rankine:nitinol_block",
     "rankine:amalgam_block",
@@ -19,6 +18,7 @@
     "rankine:magnalium_block",
     "rankine:duralumin_block",
     "rankine:osmiridium_block",
+    "rankine:cast_iron_block",
     "rankine:rose_gold_block",
     "rankine:white_gold_block",
     "rankine:green_gold_block",

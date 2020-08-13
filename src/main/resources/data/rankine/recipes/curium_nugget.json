@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:curium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:curium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/curium"
     }
+  ],
+  "result": {
+    "item": "rankine:curium_nugget",
+    "count": 9
+  }
+}

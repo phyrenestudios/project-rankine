@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:fluorine_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:fluorine_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/fluorine"
     }
+  ],
+  "result": {
+    "item": "rankine:fluorine_ingot",
+    "count": 9
+  }
+}

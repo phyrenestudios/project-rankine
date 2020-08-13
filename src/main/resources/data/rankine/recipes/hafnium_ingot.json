@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:hafnium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:hafnium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/hafnium"
     }
+  ],
+  "result": {
+    "item": "rankine:hafnium_ingot",
+    "count": 9
+  }
+}

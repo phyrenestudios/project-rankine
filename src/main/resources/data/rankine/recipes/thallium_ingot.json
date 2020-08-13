@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:thallium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:thallium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/thallium"
     }
+  ],
+  "result": {
+    "item": "rankine:thallium_ingot",
+    "count": 9
+  }
+}

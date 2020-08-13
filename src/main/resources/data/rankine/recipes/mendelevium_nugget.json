@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:mendelevium_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:mendelevium_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/mendelevium"
     }
+  ],
+  "result": {
+    "item": "rankine:mendelevium_nugget",
+    "count": 9
+  }
+}

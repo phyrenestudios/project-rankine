@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:selenium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:selenium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/selenium"
     }
+  ],
+  "result": {
+    "item": "rankine:selenium_ingot",
+    "count": 9
+  }
+}

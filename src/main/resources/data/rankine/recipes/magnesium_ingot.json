@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:magnesium_block"
-        }
-      ],
-      "result": {
-        "item": "rankine:magnesium_ingot",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/magnesium"
     }
+  ],
+  "result": {
+    "item": "rankine:magnesium_ingot",
+    "count": 9
+  }
+}

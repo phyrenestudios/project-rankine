@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:astatine"
-        }
-      ],
-      "result": {
-        "item": "rankine:astatine_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:astatine"
     }
+  ],
+  "result": {
+    "item": "rankine:astatine_nugget",
+    "count": 9
+  }
+}

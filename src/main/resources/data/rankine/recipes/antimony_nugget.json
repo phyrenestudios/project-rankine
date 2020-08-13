@@ -1,12 +1,12 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "ingredients": [
-        {
-          "item": "rankine:antimony_ingot"
-        }
-      ],
-      "result": {
-        "item": "rankine:antimony_nugget",
-        "count": 9
-      }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/antimony"
     }
+  ],
+  "result": {
+    "item": "rankine:antimony_nugget",
+    "count": 9
+  }
+}
