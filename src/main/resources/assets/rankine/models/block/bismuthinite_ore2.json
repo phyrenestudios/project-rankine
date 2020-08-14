@@ -1,9 +1,9 @@
 {
       "parent": "block/block",
       "textures": {
-        "base": "block/netherrack",
-        "overlay": "rankine:block/bismite_ore",
-        "particle": "block/netherrack"
+        "base": "block/blackstone",
+        "overlay": "rankine:block/bismuthinite_ore",
+        "particle": "block/blackstone"
       },
       "elements": [
         {   "from": [ 0, 0, 0 ],

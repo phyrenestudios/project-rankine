@@ -1,5 +1,5 @@
 {
-  "name": "Axes",
+  "name": "Hammers",
   "icon": "rankine:steel_hammer",
   "category": "technology/tools",
   "pages": [
@@ -36,6 +36,11 @@
       "type": "spotlight",
       "item": "rankine:diamond_hammer",
       "text": "The diamond hammer.$(br2)Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_superalloy_hammer",
+      "text": "The nickel super-alloy hammer.$(br2)Stats:$(li)Harvest Level: 4"
     },
     {
       "type": "spotlight",

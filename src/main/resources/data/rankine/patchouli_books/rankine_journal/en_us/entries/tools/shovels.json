@@ -44,6 +44,11 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:nickel_superalloy_shovel",
+      "text": "The nickel super-alloy shovel.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:rose_gold_shovel",
       "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
     },

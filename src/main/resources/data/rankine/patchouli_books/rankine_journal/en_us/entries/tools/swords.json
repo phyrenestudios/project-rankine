@@ -44,6 +44,11 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:nickel_superalloy_sword",
+      "text": "The nickel super-alloy sword.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:rose_gold_sword",
       "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
     },

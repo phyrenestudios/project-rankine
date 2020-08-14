@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/gneiss",
-            "overlay": "rankine:block/bismite_ore",
-            "particle": "rankine:block/gneiss"
+            "base": "rankine:block/limestone",
+            "overlay": "rankine:block/bismuthinite_ore",
+            "particle": "rankine:block/limestone"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

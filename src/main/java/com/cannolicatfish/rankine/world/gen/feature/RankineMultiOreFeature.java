@@ -144,7 +144,7 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     BlockState ore;
                                                     if (config.state.getBlock() == ModBlocks.GALENA_ORE && random.nextFloat() <= config.chance)
                                                     {
-                                                        ore = ModBlocks.BISMITE_ORE.getDefaultState();
+                                                        ore = ModBlocks.BISMUTHINITE_ORE.getDefaultState();
                                                     } else
                                                     {
                                                         ore = config.state;
@@ -200,7 +200,7 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     BlockState ore;
                                                     if (config.state.getBlock() == ModBlocks.GALENA_ORE && random.nextFloat() <= config.chance)
                                                     {
-                                                        ore = ModBlocks.BISMITE_ORE.getDefaultState();
+                                                        ore = ModBlocks.BISMUTHINITE_ORE.getDefaultState();
                                                     } else
                                                     {
                                                         ore = config.state;
@@ -228,14 +228,14 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                             ore = ModBlocks.VANADINITE_ORE.getDefaultState();
                                                         } else if (decider == 1)
                                                         {
-                                                            ore = ModBlocks.BISMITE_ORE.getDefaultState();
+                                                            ore = ModBlocks.BISMUTHINITE_ORE.getDefaultState();
                                                         } else
                                                         {
                                                             if (random.nextFloat() <= .5f)
                                                             {
                                                                 ore = ModBlocks.VANADINITE_ORE.getDefaultState();
                                                             } else {
-                                                                ore = ModBlocks.BISMITE_ORE.getDefaultState();
+                                                                ore = ModBlocks.BISMUTHINITE_ORE.getDefaultState();
                                                             }
                                                         }
                                                     } else

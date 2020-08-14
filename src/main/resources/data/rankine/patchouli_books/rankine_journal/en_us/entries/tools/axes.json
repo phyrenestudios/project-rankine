@@ -44,6 +44,11 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:nickel_superalloy_axe",
+      "text": "The nickel super-alloy axe.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:rose_gold_axe",
       "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
     },

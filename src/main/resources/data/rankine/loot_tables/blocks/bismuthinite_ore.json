@@ -6,7 +6,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "rankine:bismite_ore"
+              "name": "rankine:bismuthinite_ore"
             }
           ],
           "conditions": [
