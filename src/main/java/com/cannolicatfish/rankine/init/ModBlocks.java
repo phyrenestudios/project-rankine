@@ -595,7 +595,7 @@ public class ModBlocks {
     public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.LEAD_NUGGET), METALLURGY);
     public static final RankineOre NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
-    public static final RankineOre BISMITE_ORE = add("bismite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.BISMUTH_NUGGET), METALLURGY);
+    public static final RankineOre BISMUTHINITE_ORE = add("bismuthinite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.BISMUTH_NUGGET), METALLURGY);
     public static final RankineOre URANINITE_ORE = add("uraninite_ore", new RankineOre(DEF_ORE.harvestLevel(4)), METALLURGY);
     public static final RankineOre PLUMBAGO_ORE = add("plumbago_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
     public static final RankineOre MOISSANITE_ORE = add("moissanite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);

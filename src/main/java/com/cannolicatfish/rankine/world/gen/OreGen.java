@@ -82,7 +82,7 @@ public class OreGen {
         OWGenDefCount(ModBlocks.PENTLANDITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         chunkMultiGenDef(ModBlocks.GALENA_ORE, 20, 1F, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP, 0.3f);
         OWGenDefCount(ModBlocks.ACANTHITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
-        OWGenDefCount(ModBlocks.BISMITE_ORE, 5, 1, 11, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
+        OWGenDefCount(ModBlocks.BISMUTHINITE_ORE, 5, 1, 11, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.PYROLUSITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.CINNABAR_ORE, 20, 4, 20, 90, RankineOreFeatureConfig.RankineFillerBlockType.IGNEOUS);
 

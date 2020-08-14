@@ -2,7 +2,7 @@
           "parent": "block/block",
           "textures": {
             "base": "rankine:block/scoria",
-            "overlay": "rankine:block/bismite_ore",
+            "overlay": "rankine:block/bismuthinite_ore",
             "particle": "rankine:block/scoria"
           },
           "elements": [

@@ -44,6 +44,11 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:nickel_superalloy_pickaxe",
+      "text": "The nickel super-alloy pickaxe.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:rose_gold_pickaxe",
       "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
     },

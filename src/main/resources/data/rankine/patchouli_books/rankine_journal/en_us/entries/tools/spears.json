@@ -44,6 +44,11 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:nickel_superalloy_spear",
+      "text": "The nickel super-alloy spear.$(br2)Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:rose_gold_spear",
       "text": "The bronze spear.$(br2)Stats:$(li)Harvest Level: 1"
     },
