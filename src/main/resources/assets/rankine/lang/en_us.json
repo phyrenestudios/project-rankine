@@ -1344,6 +1344,8 @@
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",
   "rankine.jei.crushing": "Crushing",
   "rankine.jei.forging": "Tool Forging",
+  "rankine.jei.alloy": "Alloying",
+  "rankine.jei.beeoven": "Beehive Oven",
   "rankine.jei.finery": "Refining Iron",
   "itemGroup.rankine_blocks": "Project Rankine Blocks",
   "itemGroup.rankine_metallurgy": "Project Rankine Metallurgy",

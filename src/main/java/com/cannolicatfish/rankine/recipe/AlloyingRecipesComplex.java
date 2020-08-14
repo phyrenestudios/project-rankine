@@ -84,7 +84,9 @@ public class AlloyingRecipesComplex {
         {
             return new AbstractMap.SimpleEntry<>(mat,amt);
         }
-        if (!reg.contains("_") && mat.equals("none"))
+        //System.out.println(stack.getItem().getTags());
+        //if (stack.getItem().getTags().contains("forge:ingots"))
+        if (!reg.contains("_"))
         {
             return new AbstractMap.SimpleEntry<>("nope",0);
         }

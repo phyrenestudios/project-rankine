@@ -2,9 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.client.integration.jei.categories.CoalForgeRecipeCategory;
-import com.cannolicatfish.rankine.client.integration.jei.categories.FineryForgeRecipeCategory;
-import com.cannolicatfish.rankine.client.integration.jei.categories.PistonCrusherRecipeCategory;
+import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.init.ModRecipes;
@@ -31,7 +29,8 @@ public class JEIRankinePlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
-
+        registry.addRecipes(ModRecipes.getAlloyRecipes(),AlloyRecipeCategory.UID);
+        registry.addRecipes(ModRecipes.getBeehiveOvenRecipes(), BeehiveOvenRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getCrushingRecipes(),PistonCrusherRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getForgingRecipes(), CoalForgeRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getFineryRecipes(), FineryForgeRecipeCategory.UID);
@@ -100,7 +99,8 @@ public class JEIRankinePlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
-
+        registry.addRecipeCategories(new AlloyRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new BeehiveOvenRecipeCategory(guiHelper));
         registry.addRecipeCategories(new PistonCrusherRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CoalForgeRecipeCategory(guiHelper));
         registry.addRecipeCategories(new FineryForgeRecipeCategory(guiHelper));
@@ -108,6 +108,10 @@ public class JEIRankinePlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.ALLOY_FURNACE), AlloyRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), BeehiveOvenRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.MAGNESIUM_BEEHIVE_OVEN_PIT), BeehiveOvenRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.ZIRCON_BEEHIVE_OVEN_PIT), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.PISTON_CRUSHER), PistonCrusherRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_FORGE), CoalForgeRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.FINERY_FORGE), FineryForgeRecipeCategory.UID);
