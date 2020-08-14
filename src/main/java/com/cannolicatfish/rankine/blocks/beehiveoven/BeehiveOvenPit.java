@@ -1,14 +1,12 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
@@ -98,66 +96,34 @@ public class BeehiveOvenPit extends Block {
         {
             if (rand.nextFloat() <= chance)
             {
-                List<Block> surroundingBlocks = Arrays.asList(world.getBlockState(uppos.north()).getBlock(),world.getBlockState(uppos.south()).getBlock(),world.getBlockState(uppos.east()).getBlock(),world.getBlockState(uppos.west()).getBlock(),
+                boolean flag = true;
+                /*List<Block> surroundingBlocks = Arrays.asList(world.getBlockState(uppos.north()).getBlock(),world.getBlockState(uppos.south()).getBlock(),world.getBlockState(uppos.east()).getBlock(),world.getBlockState(uppos.west()).getBlock(),
                         world.getBlockState(uppos.north().east()).getBlock(), world.getBlockState(uppos.north().west()).getBlock(),world.getBlockState(uppos.south().east()).getBlock(),world.getBlockState(uppos.south().west()).getBlock(),
                         world.getBlockState(uppos.north().up()).getBlock(),world.getBlockState(uppos.south().up()).getBlock(),world.getBlockState(uppos.east().up()).getBlock(),world.getBlockState(uppos.west().up()).getBlock(),
                         world.getBlockState(uppos.north().east().up()).getBlock(), world.getBlockState(uppos.north().west().up()).getBlock(),world.getBlockState(uppos.south().east().up()).getBlock(),world.getBlockState(uppos.south().west().up()).getBlock());
+                */
                 List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
                         uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
                         uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
-                int firstCoalBlock = surroundingBlocks.indexOf(Blocks.COAL_BLOCK);
-                int firstBCoalBlock = surroundingBlocks.indexOf(ModBlocks.BITUMINOUS_COAL_BLOCK);
-                int firstLimestoneBlock = surroundingBlocks.indexOf(ModBlocks.LIMESTONE);
-                int firstMagnesiteBlock = surroundingBlocks.indexOf(ModBlocks.MAGNESITE_BLOCK);
-                if (firstLimestoneBlock != -1 && firstLimestoneBlock > firstMagnesiteBlock)
+
+                for (BlockPos p: surroundingBlockPos)
                 {
-                    world.setBlockState(surroundingBlockPos.get(firstLimestoneBlock), ModBlocks.QUICKLIME_BLOCK.getDefaultState(), 2);
+                    ItemStack output = ModRecipes.getBeehiveOutput(new ItemStack(world.getBlockState(p).getBlock()));
+                    if (!output.isEmpty())
+                    {
+                        if (output.getItem() instanceof BlockItem)
+                        {
+                            world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                            flag = false;
+                            break;
+                        }
+
+                    }
                 }
-                if (firstMagnesiteBlock != -1 && firstMagnesiteBlock > firstLimestoneBlock)
-                {
-                    world.setBlockState(surroundingBlockPos.get(firstMagnesiteBlock), ModBlocks.MAGNESIA_BLOCK.getDefaultState(), 2);
-                }
-                if (firstCoalBlock != -1 && firstCoalBlock > firstBCoalBlock)
-                {
-                    world.setBlockState(surroundingBlockPos.get(firstCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
-                }
-                if (firstBCoalBlock != -1 && firstBCoalBlock > firstCoalBlock)
-                {
-                    world.setBlockState(surroundingBlockPos.get(firstBCoalBlock), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
-                }
-                if (firstCoalBlock == -1 && firstBCoalBlock == -1 && firstLimestoneBlock == -1 && firstMagnesiteBlock == -1)
+                if (flag)
                 {
                     world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
                 }
-                /*
-                int choice = rand.nextInt(4);
-                System.out.println("SUCCESSFUL TICK");
-                if (choice == 0 && world.getBlockState(uppos.north()).getBlock() == Blocks.COAL_BLOCK)
-                {
-                    world.setBlockState(uppos.north(), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
-                } else
-                {
-                    choice = rand.nextInt(3) + 1;
-                }
-                if (choice == 1 && world.getBlockState(uppos.south()).getBlock() == Blocks.COAL_BLOCK)
-                {
-                    world.setBlockState(uppos.south(), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
-                } else
-                {
-                    choice = rand.nextInt(2) + 2;
-                }
-                if (choice == 2 && world.getBlockState(uppos.east()).getBlock() == Blocks.COAL_BLOCK)
-                {
-                    world.setBlockState(uppos.east(), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
-                } else
-                {
-                    choice = 3;
-                }
-                if (choice == 3 && world.getBlockState(uppos.west()).getBlock() == Blocks.COAL_BLOCK)
-                {
-                    world.setBlockState(uppos.west(), ModBlocks.COKE_BLOCK.getDefaultState(), 2);
-                }
-                 */
 
             }
         }
