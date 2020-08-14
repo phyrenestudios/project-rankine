@@ -33,6 +33,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -156,16 +157,17 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                 if (this.isBurning() && this.canSmelt()) {
                     ++this.cookTime;
                     if (this.cookTime == this.cookTimeTotal) {
-                        ItemStack output = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getKey();
+                        AbstractMap.SimpleEntry<ItemStack,int[]> alloyResult = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]);
+                        ItemStack output = alloyResult.getKey();
                         if (output.getItem() instanceof AlloyItem)
                         {
-                            int[] v = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getValue();
+                            int[] v = alloyResult.getValue();
                             AlloyItem.addAlloy(output,new AlloyData(AlloyingRecipesComplex.getInstance().getComposition(inputs[0], inputs[1], inputs[2])));
                         }
                         if (!output.isEmpty()) {
                             smelting = output;
                             this.cookTime++;
-                            int[] x = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getValue();
+                            int[] x = alloyResult.getValue();
                             smeltingamt = x[2];
                             this.handler2.setStackInSlot(0, inputs[0]);
                             this.handler2.setStackInSlot(1, inputs[1]);
@@ -176,7 +178,7 @@ public class AlloyFurnaceTile extends TileEntity implements ITickableTileEntity,
                         } else {
                             this.handler2.insertItem(4, smelting, false);
                         }
-                        int[] x = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]).getValue();
+                        int[] x = alloyResult.getValue();
                         inputs[0].shrink(x[0]);
                         inputs[1].shrink(x[1]);
                         inputs[2].shrink(x[2]);

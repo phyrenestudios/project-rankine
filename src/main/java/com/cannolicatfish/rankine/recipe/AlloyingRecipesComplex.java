@@ -9,6 +9,7 @@ import com.google.common.collect.Table;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.AbstractMap;
 import java.util.Arrays;
@@ -72,40 +73,72 @@ public class AlloyingRecipesComplex {
                     amt = 3 * stack.getCount();
                     break;
                 default:
+                    mat = "nope";
                     amt = stack.getCount();
                     break;
             }
+            return new AbstractMap.SimpleEntry<>(mat,amt);
         }
-        if (reg.contains("coal"))
+        if (reg.equals("phosphorus") || reg.equals("astatine") || reg.equals("silicon") || reg.contains("sulfur"))
         {
-            mat = "nope";
+
+            mat = reg;
+            //System.out.println("Mat found!: " + mat);
+            amt = 9*stack.getCount();
+            return new AbstractMap.SimpleEntry<>(mat,amt);
         }
         if (!mat.equals("none"))
         {
             return new AbstractMap.SimpleEntry<>(mat,amt);
         }
-        //System.out.println(stack.getItem().getTags());
-        //if (stack.getItem().getTags().contains("forge:ingots"))
-        if (!reg.contains("_"))
+        if (stack.getItem().getTags().contains(new ResourceLocation("forge:nuggets")))
         {
-            return new AbstractMap.SimpleEntry<>("nope",0);
-        }
-        if (reg.contains("block"))
-        {
-            mat = reg.split("_")[0];
-            amt = 81 * stack.getCount();
-        }
-        else if (reg.contains("ingot"))
-        {
-            mat = reg.split("_")[0];
-            amt = 9 * stack.getCount();
-        }
-        else if (reg.contains("nugget"))
-        {
-            mat = reg.split("_")[0];
+            for (ResourceLocation tag: stack.getItem().getTags())
+            {
+                if (tag.toString().contains("forge:nuggets/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (new PeriodicTableUtils().getImplementedElementNames().contains(temp))
+                    {
+                        mat = temp;
+                        //System.out.println("Nugget mat found!: " + temp);
+                    }
+                }
+            }
             amt = stack.getCount();
         }
-
+        if (stack.getItem().getTags().contains(new ResourceLocation("forge:ingots")))
+        {
+            for (ResourceLocation tag: stack.getItem().getTags())
+            {
+                if (tag.toString().contains("forge:ingots/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (new PeriodicTableUtils().getImplementedElementNames().contains(temp))
+                    {
+                        mat = temp;
+                        //System.out.println("Ingot mat found!: " + temp);
+                    }
+                }
+            }
+            amt = 9*stack.getCount();
+        }
+        if (stack.getItem().getTags().contains(new ResourceLocation("forge:storage_blocks")))
+        {
+            for (ResourceLocation tag: stack.getItem().getTags())
+            {
+                if (tag.toString().contains("forge:storage_blocks/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (new PeriodicTableUtils().getImplementedElementNames().contains(temp))
+                    {
+                        mat = temp;
+                        //System.out.println("Storage block mat found!: " + temp);
+                    }
+                }
+            }
+            amt = 81*stack.getCount();
+        }
         return new AbstractMap.SimpleEntry<>(mat,amt);
     }
 
@@ -120,9 +153,12 @@ public class AlloyingRecipesComplex {
             return new AbstractMap.SimpleEntry<>(ItemStack.EMPTY, ar);
         }
         List<Integer> inputValList = Arrays.asList(input1.getCount(),input2.getCount(),input3.getCount());
-        List<String> materials = Arrays.asList(returnItemMaterial(input1).getKey(),returnItemMaterial(input2).getKey(),returnItemMaterial(input3).getKey());
-        List<Integer> amounts = Arrays.asList(returnItemMaterial(input1).getValue(),returnItemMaterial(input2).getValue(),returnItemMaterial(input3).getValue());
-        float total = returnItemMaterial(input1).getValue() + returnItemMaterial(input2).getValue() + returnItemMaterial(input3).getValue();
+        AbstractMap.SimpleEntry<String,Integer> material1 = returnItemMaterial(input1);
+        AbstractMap.SimpleEntry<String,Integer> material2 = returnItemMaterial(input2);
+        AbstractMap.SimpleEntry<String,Integer> material3 = returnItemMaterial(input3);
+        List<String> materials = Arrays.asList(material1.getKey(),material2.getKey(),material3.getKey());
+        List<Integer> amounts = Arrays.asList(material1.getValue(),material2.getValue(),material3.getValue());
+        float total = material1.getValue() + material2.getValue() + material3.getValue();
         if (materials.contains("copper") && materials.contains("tin") && total >= 10) // Bronze
         {
             int x1 = materials.indexOf("copper");
@@ -729,6 +765,7 @@ public class AlloyingRecipesComplex {
 
     public String getComposition(ItemStack input1, ItemStack input2, ItemStack input3)
     {
+        boolean flag = false;
         PeriodicTableUtils a = new PeriodicTableUtils();
         List<Integer> percents = getPercents(input1,input2,input3).getKey();
         List<ItemStack> inputs = getPercents(input1,input2,input3).getValue();
@@ -741,6 +778,14 @@ public class AlloyingRecipesComplex {
             return getPercent(input1,input2,input3,0) + a.getElementbyMaterial(returnItemMaterial(input1).getKey()) + "-" + getPercent(input1,input2,input3,1) +
                     a.getElementbyMaterial(returnItemMaterial(input2).getKey());
         }*/
+        if (percents.get(1).equals(percents.get(2)) && percents.get(2) != 0)
+        {
+            if (a.getElementByMaterial(returnItemMaterial(inputs.get(1)).getKey()).compareToIgnoreCase(a.getElementByMaterial(returnItemMaterial(inputs.get(2)).getKey())) > 0)
+            {
+                return percents.get(0) + a.getElementByMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(2) +
+                        a.getElementByMaterial(returnItemMaterial(inputs.get(2)).getKey()) + "-" + percents.get(1) + a.getElementByMaterial(returnItemMaterial(inputs.get(1)).getKey());
+            }
+        }
         if (percents.get(2) != 0)
         {
             return percents.get(0) + a.getElementByMaterial(returnItemMaterial(inputs.get(0)).getKey()) + "-" + percents.get(1) +

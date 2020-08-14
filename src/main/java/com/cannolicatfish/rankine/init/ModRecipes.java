@@ -388,6 +388,19 @@ public class ModRecipes {
         return ItemStack.EMPTY;
     }
 
+    public static ItemStack getBeehiveOutput(ItemStack input1)
+    {
+        List<IBeehiveOvenRecipe> recipes = ModRecipes.getBeehiveOvenRecipes();
+        for (IBeehiveOvenRecipe recipe: recipes)
+        {
+            if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input1.getItem())
+            {
+                return recipe.getOutputs().get(0);
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
     public static AbstractMap.SimpleEntry<ItemStack,Float> getCrushingSecondaryOutputs(ItemStack input)
     {
         List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();

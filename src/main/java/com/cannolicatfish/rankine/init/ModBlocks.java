@@ -519,6 +519,7 @@ public class ModBlocks {
     public static final Block EASTERN_HEMLOCK_DOOR = add("eastern_hemlock_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block MAGNOLIA_DOOR = add("magnolia_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block BAMBOO_DOOR = add("bamboo_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block BRASS_DOOR = add("brass_door", new RankineMetalDoor(),BLOCKS);
 
     public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block PINYON_PINE_TRAPDOOR = add("pinyon_pine_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
@@ -528,6 +529,7 @@ public class ModBlocks {
     public static final Block EASTERN_HEMLOCK_TRAPDOOR = add("eastern_hemlock_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block MAGNOLIA_TRAPDOOR = add("magnolia_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block BAMBOO_TRAPDOOR = add("bamboo_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
+    public static final Block BRASS_TRAPDOOR = add("brass_trapdoor", new RankineMetalTrapdoor(),BLOCKS);
 
     public static final Block STICK_BLOCK = add("stick_block", new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)), BLOCKS, 800);
     public static final Block MINERAL_WOOL = add("mineral_wool", new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)), BLOCKS);
@@ -806,7 +808,7 @@ public class ModBlocks {
     public static final RankineBerryBushBlock STRAWBERRY_BUSH = add("strawberry_bush", "strawberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),6), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.STRAWBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock PINEAPPLE_BUSH = add("pineapple_bush", "pineapple",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),7), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE), BlockNamedItem::new);
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);
-    public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.CARPET).notSolid()), MISC);
+    public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.6F).notSolid()), MISC);
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
     public static final SwampGrassBlock SWAMP_GRASS = add("swamp_grass", new SwampGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock SHORT_GRASS = add("short_grass", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
