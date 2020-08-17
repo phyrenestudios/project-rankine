@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:kimberlite_bricks"
+        }
+      ],
+      "result": {
+        "item": "rankine:kimberlite_bricks_button"
+      }
+    }

@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:ringwoodite_bricks"
+      },
+      "result": "rankine:ringwoodite_bricks_button",
+      "count": 1
+    }

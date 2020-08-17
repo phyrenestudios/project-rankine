@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:scoria"
+        }
+      ],
+      "result": {
+        "item": "rankine:scoria_button"
+      }
+    }

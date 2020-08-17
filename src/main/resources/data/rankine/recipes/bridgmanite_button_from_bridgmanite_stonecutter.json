@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:bridgmanite"
+      },
+      "result": "rankine:bridgmanite_button",
+      "count": 1
+    }

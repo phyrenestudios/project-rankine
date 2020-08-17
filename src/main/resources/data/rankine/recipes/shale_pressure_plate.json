@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:shale"
+        }
+      },
+      "result": {
+        "item": "rankine:shale_pressure_plate",
+        "count": 1
+      }
+    }
