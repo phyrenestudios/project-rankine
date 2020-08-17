@@ -773,15 +773,22 @@ public class ModBlocks {
     public static final Block PINK_SALT_BLOCK = add("pink_salt_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
     public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new RankineTransparent(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).notSolid().harvestLevel(0)), METALLURGY);
     public static final Block SILICON_CARBIDE_BLOCK = add("silicon_carbide_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block COKE_BLOCK = add("coke_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 2400*9);
+    public static final Block COKE_BLOCK = add("coke_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 3200*9);
     public static final Block LIGNITE_BLOCK = add("lignite_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 1200*9);
-    public static final Block BITUMINOUS_COAL_BLOCK = add("bituminous_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 2000*9);
-    public static final Block ANTHRACITE_COAL_BLOCK = add("anthracite_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 2400*9);
+    public static final Block SUBBITUMINOUS_COAL_BLOCK = add("subbituminous_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 1600*9);
+    public static final Block BITUMINOUS_COAL_BLOCK = add("bituminous_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 2400*9);
+    public static final Block ANTHRACITE_COAL_BLOCK = add("anthracite_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 3200*9);
     public static final Block NITER = add("niter", new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
+    public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
 
@@ -808,7 +815,7 @@ public class ModBlocks {
     public static final RankineBerryBushBlock STRAWBERRY_BUSH = add("strawberry_bush", "strawberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),6), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.STRAWBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock PINEAPPLE_BUSH = add("pineapple_bush", "pineapple",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),7), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE), BlockNamedItem::new);
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);
-    public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.CARPET).hardnessAndResistance(0.6F).notSolid()), MISC);
+    public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
     public static final SwampGrassBlock SWAMP_GRASS = add("swamp_grass", new SwampGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock SHORT_GRASS = add("short_grass", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);

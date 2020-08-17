@@ -1,14 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "rpr",
-    "#b#",
-    "coc"
+    " p ",
+    "sbs",
+    "sos"
   ],
   "key": {
-    "c": {
-      "item": "minecraft:cobblestone"
-    },
     "b": {
       "item": "minecraft:blast_furnace"
     },
@@ -18,11 +15,8 @@
     "p": {
       "item": "minecraft:piston"
     },
-    "#": {
-      "item": "rankine:refractory_bricks"
-    },
-    "r": {
-      "item": "minecraft:redstone_block"
+    "s": {
+      "tag": "forge:sheetmetals"
     }
   },
   "result": {

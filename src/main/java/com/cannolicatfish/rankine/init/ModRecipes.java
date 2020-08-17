@@ -101,10 +101,11 @@ public class ModRecipes {
     public static List<IBeehiveOvenRecipe> getBeehiveOvenRecipes()
     {
         List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
-        recipes.add(beehiveOvenRecipe("limestone_oven_cooking",ModBlocks.LIMESTONE.asItem(),new ItemStack(ModBlocks.QUICKLIME_BLOCK)));
-        recipes.add(beehiveOvenRecipe("magnesite_oven_cooking",ModBlocks.MAGNESITE_BLOCK.asItem(),new ItemStack(ModBlocks.MAGNESIA_BLOCK)));
-        recipes.add(beehiveOvenRecipe("coal_oven_cooking",Blocks.COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
-        recipes.add(beehiveOvenRecipe("bituminous_oven_cooking",ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
+        recipes.add(beehiveOvenRecipe("limestone_oven_cooking", ModBlocks.LIMESTONE.asItem(),new ItemStack(ModBlocks.QUICKLIME_BLOCK)));
+        recipes.add(beehiveOvenRecipe("magnesite_oven_cooking", ModBlocks.MAGNESITE_BLOCK.asItem(),new ItemStack(ModBlocks.MAGNESIA_BLOCK)));
+        recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.LIGNITE_BLOCK.asItem(),new ItemStack(ModBlocks.SUBBITUMINOUS_COAL_BLOCK)));
+        recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.SUBBITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.BITUMINOUS_COAL_BLOCK)));
+        recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
 
         return recipes;
     }
@@ -218,10 +219,16 @@ public class ModRecipes {
         recipes.add(crushingRecipe("wolframite_ore_crushing",ModBlocks.WOLFRAMITE_ORE.asItem(), new ItemStack(ModItems.WOLFRAMITE,1), new ItemStack(ModItems.CASSITERITE,1),0.2f));
         recipes.add(crushingRecipe("greenokite_ore_crushing",ModBlocks.GREENOCKITE_ORE.asItem(), new ItemStack(ModItems.GREENOCKITE,1), new ItemStack(ModItems.GALENA,1),0.2f));
         recipes.add(crushingRecipe("uraninite_ore_crushing",ModBlocks.URANINITE_ORE.asItem(), new ItemStack(ModItems.URANINITE,1), new ItemStack(ModItems.GALENA,1),0.1f));
-        recipes.add(crushingRecipe("lignite_ore_crushing",ModBlocks.LIGNITE_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,1), new ItemStack(ModItems.GRAPHITE,1),0.01f));
-        recipes.add(crushingRecipe("sub_bituminous_coal_ore_crushing",ModBlocks.SUBBITUMINOUS_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.02f));
-        recipes.add(crushingRecipe("bituminous_coal_ore_crushing",ModBlocks.BITUMINOUS_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.05f));
-        recipes.add(crushingRecipe("anthracite_ore_crushing",ModBlocks.ANTHRACITE_ORE.asItem(), new ItemStack(ModItems.CRUSHED_COAL,3), new ItemStack(ModItems.GRAPHITE,1),0.1f));
+        recipes.add(crushingRecipe("lignite_ore_crushing",ModBlocks.LIGNITE_ORE.asItem(), new ItemStack(Items.COAL,1), new ItemStack(ModItems.GRAPHITE,1),0.01f));
+        recipes.add(crushingRecipe("sub_bituminous_coal_ore_crushing",ModBlocks.SUBBITUMINOUS_ORE.asItem(), new ItemStack(Items.COAL,1), new ItemStack(ModItems.GRAPHITE,1),0.02f));
+        recipes.add(crushingRecipe("bituminous_coal_ore_crushing",ModBlocks.BITUMINOUS_ORE.asItem(), new ItemStack(Items.COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.05f));
+        recipes.add(crushingRecipe("anthracite_ore_crushing",ModBlocks.ANTHRACITE_ORE.asItem(), new ItemStack(Items.COAL,3), new ItemStack(ModItems.GRAPHITE,1),0.1f));
+        recipes.add(crushingRecipe("lignite_crushing",ModItems.LIGNITE, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.5f));
+        recipes.add(crushingRecipe("sub_bituminous_coal_crushing",ModItems.SUBBITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.4f));
+        recipes.add(crushingRecipe("bituminous_coal_crushing",ModItems.BITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.25f));
+        recipes.add(crushingRecipe("anthracite_crushing",ModItems.ANTHRACITE_COAL, new ItemStack(Items.COAL,2), new ItemStack(ModItems.SULFUR,1),0.1f));
+
+
         recipes.add(crushingRecipe("chromite_ore_crushing",ModBlocks.CHROMITE_ORE.asItem(),new ItemStack(ModItems.CHROMIUM_OXIDE),new ItemStack(ModItems.MAGNETITE), 0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
         recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));

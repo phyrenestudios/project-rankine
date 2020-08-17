@@ -1,22 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "brb",
-    "bpb",
-    "bhb"
+    "sps",
+    "scs",
+    "sps"
   ],
   "key": {
-    "b": {
-      "item": "rankine:bronze_sheetmetal"
-    },
-    "r": {
-      "item": "minecraft:redstone_block"
+    "s": {
+      "tag": "forge:sheetmetals/bronze"
     },
     "p": {
       "item": "minecraft:piston"
     },
-    "h": {
-      "item": "rankine:cast_iron_block"
+    "c": {
+      "tag": "forge:rods/cast_iron"
     }
   },
   "result": {

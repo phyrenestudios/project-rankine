@@ -74,7 +74,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.PENTLANDITE_ORE,
                 ModBlocks.PLUMBAGO_ORE,
                 ModBlocks.PYROLUSITE_ORE,
-                //ModBlocks.REDSTONE_ORE,
+                ModBlocks.FLUORITE_ORE,
                 ModBlocks.SPERRYLITE_ORE,
                 ModBlocks.AQUAMARINE_ORE,
                 ModBlocks.SPHALERITE_ORE,

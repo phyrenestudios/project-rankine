@@ -16,7 +16,7 @@ public enum RankineAlloyMaterial {
 
     LIGNITE("rankine:materials/lignite",Arrays.asList(ModItems.LIGNITE, ModItems.getBlockAsItem(ModBlocks.LIGNITE_BLOCK)),
             Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(5,4),false),
-    SUBBITUMINOUS("rankine:materials/subbituminous_coal",Arrays.asList(Items.COAL, ModItems.getBlockAsItem(Blocks.COAL_BLOCK)),
+    SUBBITUMINOUS("rankine:materials/subbituminous_coal",Arrays.asList(ModItems.SUBBITUMINOUS_COAL, ModItems.getBlockAsItem(ModBlocks.SUBBITUMINOUS_COAL_BLOCK)),
             Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(6,3),false),
     BITUMINOUS("rankine:materials/bituminous_coal",Arrays.asList(ModItems.BITUMINOUS_COAL, ModItems.getBlockAsItem(ModBlocks.BITUMINOUS_COAL_BLOCK)),
             Arrays.asList(PeriodicTableUtils.Element.CARBON, PeriodicTableUtils.Element.SULFUR),Arrays.asList(8,1),false),

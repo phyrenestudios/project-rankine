@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#forge:stone",
+    "#forge:storage_blocks",
     "#forge:end_stones",
     "#forge:obsidian",
     "#forge:dirt",
@@ -13,7 +14,7 @@
     "#forge:sandstone",
     "#minecraft:logs",
     "#forge:smooth_stone",
-    "#rankine:sheetmetal",
+    "#forge:sheetmetals",
     "#minecraft:planks",
     "#minecraft:leaves",
     "#minecraft:walls",
