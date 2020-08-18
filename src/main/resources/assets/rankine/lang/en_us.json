@@ -1214,6 +1214,8 @@
 
   "item.rankine.thermometer": "Thermometer",
   "item.rankine.steel_gold_pan": "Steel Gold Pan",
+  "item.rankine.steel_crowbar": "Steel Crowbar",
+  "item.rankine.titanium_crowbar": "Titanium Crowbar",
 
   "item.rankine.wood_bucket": "Wooden Bucket",
   "item.rankine.water_wood_bucket": "Water Wooden Bucket",
@@ -1417,7 +1419,7 @@
   "item.rankine.sphalerite": "Sphalerite",
   "item.rankine.malachite": "Malachite",
   "item.rankine.azurite": "Azurite",
-  "item.rankine.bismuthinite": "bismuthinite",
+  "item.rankine.bismuthinite": "Bismuthinite",
   "item.rankine.cobaltite": "Cobaltite",
   "item.rankine.vanadinite": "Vanadinite",
   "item.rankine.tantalite": "Tantalite",

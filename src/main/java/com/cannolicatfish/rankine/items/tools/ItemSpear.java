@@ -71,7 +71,7 @@ public class ItemSpear extends Item {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == Enchantments.IMPALING || enchantment == Enchantments.LOYALTY || enchantment == Enchantments.UNBREAKING || enchantment == ModEnchantments.PUNCTURE || enchantment == Enchantments.MENDING || enchantment == Enchantments.VANISHING_CURSE)
+        if (enchantment == Enchantments.IMPALING || enchantment == Enchantments.LOYALTY || enchantment == Enchantments.UNBREAKING || enchantment == ModEnchantments.PUNCTURE)
         {
             return true;
         }

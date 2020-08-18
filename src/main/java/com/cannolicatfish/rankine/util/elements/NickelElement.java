@@ -11,7 +11,7 @@ public class NickelElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(2.5f*x);
+        return Math.round(2.25f*x);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class NickelElement implements ElementInterface {
     public float getMiningSpeedFromPercent(int x) {
         if (x >= 50)
         {
-            return (x/10f - 3)*x/50f;
+            return (x/10f - 2)*x/50f - 1;
         } else {
             return 2f*x/50f;
         }

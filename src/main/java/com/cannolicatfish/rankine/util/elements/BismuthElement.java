@@ -3,20 +3,19 @@ package com.cannolicatfish.rankine.util.elements;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 
-public class GoldElement implements ElementInterface {
+public class BismuthElement implements ElementInterface {
     @Override
     public PeriodicTableUtils.Element getReference() {
-        return PeriodicTableUtils.Element.GOLD;
+        return PeriodicTableUtils.Element.BISMUTH;
     }
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        if (x >= 60)
+        if (x >= 50)
         {
-            return Math.round(8*(x/10f - 6));
-        } else
-        {
-            return 0;
+            return (int) Math.round(Math.pow(x/8f,2));
+        } else {
+            return Math.round(x/6f + 2*x/5f);
         }
     }
 
@@ -32,13 +31,7 @@ public class GoldElement implements ElementInterface {
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        if (x >= 50)
-        {
-            return 4.5f + 1.5f*(x/10f - 5);
-        } else
-        {
-            return x/10f;
-        }
+        return (float) Math.log(x/10f + 1);
     }
 
     @Override
@@ -48,13 +41,7 @@ public class GoldElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        if (x >= 50)
-        {
-            return Math.round(7 + (x/5f - 5));
-        } else
-        {
-            return Math.round(x/5f);
-        }
+        return Math.round(x/20f + x/8f);
     }
 
     @Override

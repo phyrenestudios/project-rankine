@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx ",
+    " x ",
+    " xx"
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "rankine:titanium_ingot"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:titanium_crowbar",
+    "count": 1
+  }
+}

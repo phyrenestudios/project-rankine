@@ -11,7 +11,7 @@ public class ChromiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 16 + 32*(x/10);
+        return 4*(x);
     }
 
     @Override

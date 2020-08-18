@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xx ",
+    " x ",
+    " xx"
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "rankine:steel_alloy"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:steel_crowbar",
+    "count": 1
+  }
+}

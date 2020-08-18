@@ -157,6 +157,11 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
                             inputs[0].shrink(2);
                             inputs[1].shrink(5);
                         }
+                        if (template.getItem() == ModItems.HOE_TEMPLATE)
+                        {
+                            inputs[0].shrink(2);
+                            inputs[1].shrink(2);
+                        }
 
                         return;
                     }

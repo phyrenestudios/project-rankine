@@ -18,11 +18,16 @@ public class NickelSuperalloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 700;
+        return 770;
     }
 
     @Override
     public float getMiningSpeedBonus() {
         return 3.5f;
+    }
+
+    @Override
+    public int getEnchantabilityBonus() {
+        return 3;
     }
 }

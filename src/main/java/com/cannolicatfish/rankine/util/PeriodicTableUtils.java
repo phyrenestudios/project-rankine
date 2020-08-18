@@ -252,6 +252,7 @@ public final class PeriodicTableUtils {
         GOLD(79, "Au", new GoldElement()),
         MERCURY(80, "Hg", new MercuryElement()),
         LEAD(82,"Pb", new LeadElement()),
+        BISMUTH(83,"Bi", new BismuthElement()),
         NETHERITE(156,"Nr", new NetheriteElement());
 
         public final int atomicNumber;

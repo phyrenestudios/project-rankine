@@ -11,7 +11,12 @@ public class CarbonElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        if (x < 6)
+        {
+            return 20*x;
+        } else {
+            return 0;
+        }
     }
 
     @Override

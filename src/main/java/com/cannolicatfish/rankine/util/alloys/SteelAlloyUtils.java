@@ -8,7 +8,7 @@ public class SteelAlloyUtils implements AlloyUtils{
 
     @Override
     public int getDurabilityBonus() {
-        return 500;
+        return 460;
     }
 
     @Override
