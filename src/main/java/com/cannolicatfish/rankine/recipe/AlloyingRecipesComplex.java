@@ -739,7 +739,7 @@ public class AlloyingRecipesComplex {
                 System.out.println(propx3);
                 System.out.println(Math.round(total/10));
                  */
-                if (propx1 >= .50f && propx1 <= .75f && propx2 >= .14f && propx2 <= .2f && Math.round(total/10) <= 64) {
+                if (propx1 >= .50f && propx1 <= .75f && propx2 >= .14f && propx2 <= .3f && Math.round(total/10) <= 64) {
                     int[] ar = new int[3];
                     ar[0] = input1.getCount();
                     ar[1] = input2.getCount();

@@ -5,15 +5,20 @@ import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -24,11 +29,19 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
+
+    private static final Set<Item> WOOD_TOOLS = ImmutableSet.of(Items.WOODEN_AXE,Items.WOODEN_HOE,Items.WOODEN_PICKAXE,Items.WOODEN_SHOVEL, Items.WOODEN_SWORD);
+    private static final Set<Item> STONE_TOOLS = ImmutableSet.of(Items.STONE_AXE,Items.STONE_HOE,Items.STONE_PICKAXE,Items.STONE_SHOVEL, Items.STONE_SWORD);
+    private static final Set<Item> IRON_TOOLS = ImmutableSet.of(Items.IRON_AXE,Items.IRON_HOE,Items.IRON_PICKAXE,Items.IRON_SHOVEL, Items.IRON_SWORD);
+    private static final Set<Item> GOLD_TOOLS = ImmutableSet.of(Items.GOLDEN_AXE,Items.GOLDEN_HOE,Items.GOLDEN_PICKAXE,Items.GOLDEN_SHOVEL, Items.GOLDEN_SWORD);
+    private static final Set<Item> DIAMOND_TOOLS = ImmutableSet.of(Items.DIAMOND_AXE,Items.DIAMOND_HOE,Items.DIAMOND_PICKAXE,Items.DIAMOND_SHOVEL, Items.DIAMOND_SWORD);
+    private static final Set<Item> NETHERITE_TOOLS = ImmutableSet.of(Items.NETHERITE_AXE,Items.NETHERITE_HOE,Items.NETHERITE_PICKAXE,Items.NETHERITE_SHOVEL, Items.NETHERITE_SWORD);
 
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event)
@@ -90,7 +103,94 @@ public class RankineEventHandler {
         {
             event.setNewSpeed(0f);
         }
+        if (Config.DISABLE_WOOD.get() && WOOD_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setNewSpeed(0f);
+        }
+        if (Config.DISABLE_STONE.get() && STONE_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setNewSpeed(0f);
+        }
+        if (Config.DISABLE_IRON.get() && IRON_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setNewSpeed(0f);
+        }
+        if (Config.DISABLE_GOLD.get() && GOLD_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setNewSpeed(0f);
+        }
+        if (Config.DISABLE_DIAMOND.get() && DIAMOND_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setNewSpeed(0f);
+        }
+        if (Config.DISABLE_NETHERITE.get() && NETHERITE_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setNewSpeed(0f);
+        }
     }
+
+    @SubscribeEvent
+    public static void onDamageEntity(LivingDamageEvent event)
+    {
+        if (event.getSource().getTrueSource() instanceof PlayerEntity)
+        {
+            PlayerEntity player = (PlayerEntity) event.getSource().getTrueSource();
+            if (Config.DISABLE_WOOD.get() && WOOD_TOOLS.contains(player.getHeldItemMainhand().getItem()))
+            {
+                event.setAmount(1f);
+            }
+            if (Config.DISABLE_STONE.get() && STONE_TOOLS.contains(player.getHeldItemMainhand().getItem()))
+            {
+                event.setAmount(1f);
+            }
+            if (Config.DISABLE_IRON.get() && IRON_TOOLS.contains(player.getHeldItemMainhand().getItem()))
+            {
+                event.setAmount(1f);
+            }
+            if (Config.DISABLE_GOLD.get() && GOLD_TOOLS.contains(player.getHeldItemMainhand().getItem()))
+            {
+                event.setAmount(1f);
+            }
+            if (Config.DISABLE_DIAMOND.get() && DIAMOND_TOOLS.contains(player.getHeldItemMainhand().getItem()))
+            {
+                event.setAmount(1f);
+            }
+            if (Config.DISABLE_NETHERITE.get() && NETHERITE_TOOLS.contains(player.getHeldItemMainhand().getItem()))
+            {
+                event.setAmount(1f);
+            }
+        }
+    }
+    @SubscribeEvent
+    public static void onTooltipCheck(ItemTooltipEvent event)
+    {
+        if (Config.DISABLE_WOOD.get() && WOOD_TOOLS.contains(event.getItemStack().getItem()))
+        {
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+        }
+        if (Config.DISABLE_STONE.get() && STONE_TOOLS.contains(event.getItemStack().getItem()))
+        {
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+        }
+        if (Config.DISABLE_IRON.get() && IRON_TOOLS.contains(event.getItemStack().getItem()))
+        {
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+        }
+        if (Config.DISABLE_GOLD.get() && GOLD_TOOLS.contains(event.getItemStack().getItem()))
+        {
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+        }
+        if (Config.DISABLE_DIAMOND.get() && DIAMOND_TOOLS.contains(event.getItemStack().getItem()))
+        {
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+        }
+        if (Config.DISABLE_NETHERITE.get() && NETHERITE_TOOLS.contains(event.getItemStack().getItem()))
+        {
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+        }
+
+    }
+
 
 /*
     @SubscribeEvent

@@ -26,6 +26,12 @@ public class Config {
 
     public static ForgeConfigSpec.BooleanValue MANDATORY_AXE;
     public static ForgeConfigSpec.BooleanValue STARTING_BOOK;
+    public static ForgeConfigSpec.BooleanValue DISABLE_WOOD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_STONE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_IRON;
+    public static ForgeConfigSpec.BooleanValue DISABLE_GOLD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND;
+    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE;
 
 
     public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_MAXPOWER;
@@ -75,6 +81,24 @@ public class Config {
 
         STARTING_BOOK = COMMON_BUILDER.comment("Enables the Rankine Journal (a guide to the mod)")
                 .define("startingBook",true);
+
+        DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default.")
+                .define("disableWood",true);
+
+        DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default.")
+                .define("disableStone",true);
+
+        DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default.")
+                .define("disableIron",false);
+
+        DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is disabled by default.")
+                .define("disableGold",false);
+
+        DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default.")
+                .define("disableDiamond",false);
+
+        DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default.")
+                .define("disableNetherite",false);
 
         GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                 .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);

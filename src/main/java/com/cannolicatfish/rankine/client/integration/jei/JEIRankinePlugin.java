@@ -63,7 +63,7 @@ public class JEIRankinePlugin implements IModPlugin {
             registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
                     "Amalgam can use any additions EXCEPT Fe, Pt, W, Ta.");
         }
-        registry.addIngredientInfo(new ItemStack(ModItems.NICKEL_SUPERALLOY), VanillaTypes.ITEM, "Nickel Superalloy can be made in the Alloy Furnace.", "50-75% Nickel", "14-20% Chromium",  "Nickel + Chromium >= 64%",
+        registry.addIngredientInfo(new ItemStack(ModItems.NICKEL_SUPERALLOY), VanillaTypes.ITEM, "Nickel Superalloy can be made in the Alloy Furnace.", "50-75% Nickel", "14-30% Chromium",  "Nickel + Chromium >= 64%",
                 "Possible additions:", "Si, Mn, Al, Ti, C, Fe, V");
         registry.addIngredientInfo(new ItemStack(ModItems.STEEL_ALLOY), VanillaTypes.ITEM, "To make crucible steel, right-click on an empty crucible on top of a heat source with pig iron ingots.",
                 "Then, right-click the filled crucible with wrought iron ingots.");

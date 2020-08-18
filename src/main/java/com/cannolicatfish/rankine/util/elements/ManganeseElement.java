@@ -11,11 +11,17 @@ public class ManganeseElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        if (x >= 10)
+        if (x <= 2)
         {
-            return 100;
+            return 50*x;
+        } else if (x <= 10) {
+            return 100 - x*25;
+        } else if (x <= 12){
+            return (x-10)*200 -150;
+        } else if (x <= 16){
+            return 250 - 10*x;
         } else {
-            return Math.round(x*10);
+            return 90 - x/2;
         }
     }
 

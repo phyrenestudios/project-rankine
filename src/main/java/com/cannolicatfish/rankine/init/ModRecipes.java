@@ -86,8 +86,8 @@ public class ModRecipes {
 
         recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
                 ModItems.SILICON, ModItems.MANGANESE_INGOT,ModItems.ALUMINUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.CARBON_INGOT,Items.IRON_INGOT,
-                ModItems.VANADIUM_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.2f),
-                new AbstractMap.SimpleEntry<>(0.05f,.36f),.64f));
+                ModItems.VANADIUM_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.3f),
+                new AbstractMap.SimpleEntry<>(0f,.36f),.64f));
 
                 /*recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
                 ModItems.MOLYBDENUM_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TANTALUM_INGOT,ModItems.COBALT_INGOT,ModItems.MANGANESE_INGOT,
@@ -333,22 +333,6 @@ public class ModRecipes {
         recipes.add(forgingRecipe("nickel_superalloy_sword",new ItemStack(ModItems.STEEL_ROD,1),new ItemStack(ModItems.NICKEL_SUPERALLOY,2),new ItemStack(ModItems.NICKEL_SUPERALLOY_SWORD)));
         recipes.add(forgingRecipe("nickel_superalloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_SPEAR)));
         recipes.add(forgingRecipe("nickel_superalloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,5),new ItemStack(ModItems.NICKEL_SUPERALLOY_HAMMER)));
-
-        recipes.add(forgingRecipe("diamond_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,3),new ItemStack(Items.DIAMOND_PICKAXE)));
-        recipes.add(forgingRecipe("diamond_axe",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,3),new ItemStack(Items.DIAMOND_AXE)));
-        recipes.add(forgingRecipe("diamond_shovel",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,1),new ItemStack(Items.DIAMOND_SHOVEL)));
-        recipes.add(forgingRecipe("diamond_hoe",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,2),new ItemStack(Items.DIAMOND_HOE)));
-        recipes.add(forgingRecipe("diamond_sword",new ItemStack(Items.STICK,1),new ItemStack(Items.DIAMOND,2),new ItemStack(Items.DIAMOND_SWORD)));
-        recipes.add(forgingRecipe("diamond_spear",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,3),new ItemStack(ModItems.DIAMOND_SPEAR)));
-        recipes.add(forgingRecipe("diamond_hammer",new ItemStack(Items.STICK,2),new ItemStack(Items.DIAMOND,5),new ItemStack(ModItems.DIAMOND_HAMMER)));
-
-        recipes.add(forgingRecipe("iron_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(Items.IRON_INGOT,3),new ItemStack(Items.IRON_PICKAXE)));
-        recipes.add(forgingRecipe("iron_axe",new ItemStack(Items.STICK,2),new ItemStack(Items.IRON_INGOT,3),new ItemStack(Items.IRON_AXE)));
-        recipes.add(forgingRecipe("iron_shovel",new ItemStack(Items.STICK,2),new ItemStack(Items.IRON_INGOT,1),new ItemStack(Items.IRON_SHOVEL)));
-        recipes.add(forgingRecipe("iron_hoe",new ItemStack(Items.STICK,2),new ItemStack(Items.IRON_INGOT,2),new ItemStack(Items.IRON_HOE)));
-        recipes.add(forgingRecipe("iron_sword",new ItemStack(Items.STICK,1),new ItemStack(Items.IRON_INGOT,2),new ItemStack(Items.IRON_SWORD)));
-        recipes.add(forgingRecipe("iron_spear",new ItemStack(Items.STICK,2),new ItemStack(Items.IRON_INGOT,3),new ItemStack(ModItems.IRON_SPEAR)));
-        recipes.add(forgingRecipe("iron_hammer",new ItemStack(Items.STICK,2),new ItemStack(Items.IRON_INGOT,5),new ItemStack(ModItems.IRON_HAMMER)));
         
         return recipes;
     }
