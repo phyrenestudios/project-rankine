@@ -16,6 +16,8 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -161,6 +163,8 @@ public class RankineEventHandler {
             }
         }
     }
+
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onTooltipCheck(ItemTooltipEvent event)
     {
