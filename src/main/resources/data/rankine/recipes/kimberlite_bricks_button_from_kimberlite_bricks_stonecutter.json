@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:kimberlite_bricks"
+      },
+      "result": "rankine:kimberlite_bricks_button",
+      "count": 1
+    }

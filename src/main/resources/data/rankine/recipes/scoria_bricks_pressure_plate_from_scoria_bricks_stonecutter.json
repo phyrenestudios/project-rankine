@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:scoria_bricks"
+      },
+      "result": "rankine:scoria_bricks_pressure_plate",
+      "count": 1
+    }

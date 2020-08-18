@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:peridotite_bricks"
+      },
+      "result": "rankine:peridotite_bricks_pressure_plate",
+      "count": 1
+    }

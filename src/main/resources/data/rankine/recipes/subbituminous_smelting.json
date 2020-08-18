@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "rankine:subbituminous_ore"
   },
-  "result": "minecraft:coal",
+  "result": "rankine:subbituminous_coal",
   "experience": 0.2,
   "cookingtime": 200
 }

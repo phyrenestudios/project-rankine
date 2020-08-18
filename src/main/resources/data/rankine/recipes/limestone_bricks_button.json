@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:limestone_bricks"
+        }
+      ],
+      "result": {
+        "item": "rankine:limestone_bricks_button"
+      }
+    }

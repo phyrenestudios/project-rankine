@@ -6,6 +6,6 @@ import net.minecraft.block.material.Material;
 
 public class RankineStonePressurePlate extends PressurePlateBlock {
     public RankineStonePressurePlate() {
-        super(Sensitivity.MOBS, Properties.create(Material.ROCK).sound(SoundType.STONE).doesNotBlockMovement().hardnessAndResistance(2.0F));
+        super(Sensitivity.MOBS, Properties.create(Material.ROCK).sound(SoundType.STONE).doesNotBlockMovement().hardnessAndResistance(0.5F));
     }
 }

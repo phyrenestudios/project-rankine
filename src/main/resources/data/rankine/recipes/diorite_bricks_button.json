@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:diorite_bricks"
+        }
+      ],
+      "result": {
+        "item": "rankine:diorite_bricks_button"
+      }
+    }

@@ -1,1 +1,15 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:zircon" },"b": { "item": "rankine:magnesium_refractory_brick"} }, "result": { "item": "rankine:zircon_refractory_brick", "count": 2 } }
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:magnesium_refractory_brick"
+    },
+    {
+      "item": "rankine:zircon"
+    }
+  ],
+  "result": {
+    "item": "rankine:zircon_refractory_brick",
+    "count": 1
+  }
+}

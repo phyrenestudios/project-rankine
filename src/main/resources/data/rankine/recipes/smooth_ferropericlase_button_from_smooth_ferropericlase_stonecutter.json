@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:smooth_ferropericlase"
+      },
+      "result": "rankine:smooth_ferropericlase_button",
+      "count": 1
+    }

@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:smooth_marble"
+        }
+      ],
+      "result": {
+        "item": "rankine:smooth_marble_button"
+      }
+    }

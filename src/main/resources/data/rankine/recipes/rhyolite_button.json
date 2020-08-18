@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:rhyolite"
+        }
+      ],
+      "result": {
+        "item": "rankine:rhyolite_button"
+      }
+    }

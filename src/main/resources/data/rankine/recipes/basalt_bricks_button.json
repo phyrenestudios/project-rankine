@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:basalt_bricks"
+        }
+      ],
+      "result": {
+        "item": "rankine:basalt_bricks_button"
+      }
+    }

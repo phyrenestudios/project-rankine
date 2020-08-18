@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:anorthosite_bricks"
+      },
+      "result": "rankine:anorthosite_bricks_button",
+      "count": 1
+    }

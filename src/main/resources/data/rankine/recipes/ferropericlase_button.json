@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:ferropericlase"
+        }
+      ],
+      "result": {
+        "item": "rankine:ferropericlase_button"
+      }
+    }

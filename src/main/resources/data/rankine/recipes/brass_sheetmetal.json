@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/brass"
+    }
+  },
+  "result": {
+    "item": "rankine:brass_sheetmetal",
+    "count": 2
+  }
+}

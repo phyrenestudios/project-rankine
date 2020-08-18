@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 
 public class RankineStoneButton extends StoneButtonBlock {
     public RankineStoneButton() {
-        super(Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(2.0F).sound(SoundType.STONE));
+        super(Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F).sound(SoundType.STONE));
     }
 }
 

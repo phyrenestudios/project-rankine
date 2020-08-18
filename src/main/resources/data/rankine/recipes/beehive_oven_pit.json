@@ -10,7 +10,7 @@
       "item": "rankine:refractory_bricks"
     },
     "c": {
-      "item": "minecraft:coal_block"
+      "tag": "forge:storage_blocks/coal"
     }
   },
   "result": {

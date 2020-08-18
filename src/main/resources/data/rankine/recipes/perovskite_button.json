@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:perovskite"
+        }
+      ],
+      "result": {
+        "item": "rankine:perovskite_button"
+      }
+    }

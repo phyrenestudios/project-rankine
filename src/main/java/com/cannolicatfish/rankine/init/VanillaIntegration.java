@@ -7,9 +7,6 @@ import net.minecraft.util.IItemProvider;
 public class VanillaIntegration {
 
     public static void init() {
-
-
-
         registerCompostable(0.3F, ModBlocks.CEDAR_LEAVES);
         registerCompostable(0.3F, ModBlocks.PINYON_PINE_LEAVES);
         registerCompostable(0.3F, ModBlocks.COCONUT_PALM_LEAVES);
@@ -24,6 +21,9 @@ public class VanillaIntegration {
         registerCompostable(0.3F, ModBlocks.BALSAM_FIR_SAPLING);
         registerCompostable(0.3F, ModBlocks.MAGNOLIA_SAPLING);
         registerCompostable(0.3F, ModBlocks.EASTERN_HEMLOCK_SAPLING);
+        registerCompostable(0.3F, ModBlocks.YELLOW_BIRCH_SAPLING);
+        registerCompostable(0.3F, ModBlocks.DUCKWEED);
+
 
         RankineEventHandler.stripping_map.put(ModBlocks.CEDAR_LOG, ModBlocks.STRIPPED_CEDAR_LOG);
         RankineEventHandler.stripping_map.put(ModBlocks.CEDAR_WOOD, ModBlocks.STRIPPED_CEDAR_WOOD);
@@ -50,6 +50,7 @@ public class VanillaIntegration {
         addFlowerPot(ModBlocks.BALSAM_FIR_SAPLING, ModBlocks.POTTED_BALSAM_FIR_SAPLING);
         addFlowerPot(ModBlocks.MAGNOLIA_SAPLING, ModBlocks.POTTED_MAGNOLIA_SAPLING);
         addFlowerPot(ModBlocks.EASTERN_HEMLOCK_SAPLING, ModBlocks.POTTED_EASTERN_HEMLOCK_SAPLING);
+        addFlowerPot(ModBlocks.YELLOW_BIRCH_SAPLING, ModBlocks.POTTED_YELLOW_BIRCH_SAPLING);
 
 /*
         registerFlamables(ModBlocks.CEDAR_LEAVES,30,60);
@@ -154,7 +155,7 @@ public class VanillaIntegration {
         registerFlamables(ModBlocks.EASTERN_HEMLOCK_PRESSURE_PLATE,5,20);
         registerFlamables(ModBlocks.EASTERN_HEMLOCK_SLAB,5,20);
         registerFlamables(ModBlocks.EASTERN_HEMLOCK_STAIRS,5,20);
-    //    registerFlamables(ModBlocks.EASTERN_HEMLOCK_TRAPDOOR,5,20);
+        registerFlamables(ModBlocks.EASTERN_HEMLOCK_TRAPDOOR,5,20);
         registerFlamables(ModBlocks.EASTERN_HEMLOCK_WOOD,5,20);
         registerFlamables(ModBlocks.STRIPPED_EASTERN_HEMLOCK_LOG,5,20);
         registerFlamables(ModBlocks.STRIPPED_EASTERN_HEMLOCK_WOOD,5,20);
@@ -207,20 +208,5 @@ public class VanillaIntegration {
     public static void registerFlamables(Block block, int encouragement, int flammability) {
        // ((FireBlock)Blocks.FIRE).setFireInfo(block, encouragement, flammability);
     }
-
-    /*
-        strippableBlock(ModBlocks.CEDAR_LOG, ModBlocks.STRIPPED_CEDAR_LOG);
-        strippableBlock(ModBlocks.CEDAR_WOOD, ModBlocks.STRIPPED_CEDAR_WOOD);
-        strippableBlock(ModBlocks.PINYON_PINE_LOG, ModBlocks.STRIPPED_PINYON_PINE_LOG);
-        strippableBlock(ModBlocks.PINYON_PINE_WOOD, ModBlocks.STRIPPED_PINYON_PINE_WOOD);
-        strippableBlock(ModBlocks.BALSAM_FIR_LOG, ModBlocks.STRIPPED_BALSAM_FIR_LOG);
-        strippableBlock(ModBlocks.BALSAM_FIR_WOOD, ModBlocks.STRIPPED_BALSAM_FIR_WOOD);
-        strippableBlock(ModBlocks.COCONUT_PALM_LOG, ModBlocks.STRIPPED_COCONUT_PALM_LOG);
-        strippableBlock(ModBlocks.COCONUT_PALM_WOOD, ModBlocks.STRIPPED_COCONUT_PALM_WOOD);
-        strippableBlock(ModBlocks.MAGNOLIA_LOG, ModBlocks.STRIPPED_MAGNOLIA_LOG);
-        strippableBlock(ModBlocks.MAGNOLIA_WOOD, ModBlocks.STRIPPED_MAGNOLIA_WOOD);
-        strippableBlock(ModBlocks.JUNIPER_LOG, ModBlocks.STRIPPED_JUNIPER_LOG);
-        strippableBlock(ModBlocks.JUNIPER_WOOD, ModBlocks.STRIPPED_JUNIPER_WOOD);
-     */
 
 }

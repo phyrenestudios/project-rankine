@@ -1,12 +1,15 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "group": "wooden_button",
-      "ingredients": [
-        {
-          "item": "rankine:bamboo_clums"
-        }
-      ],
-      "result": {
-        "item": "rankine:bamboo_clums_button"
-      }
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bamboo_clums"
     }
+  },
+  "result": {
+    "item": "rankine:bamboo_clums_pressure_plate"
+  }
+}

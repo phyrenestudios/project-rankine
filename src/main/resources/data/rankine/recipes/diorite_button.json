@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:diorite"
+        }
+      ],
+      "result": {
+        "item": "rankine:diorite_button"
+      }
+    }
