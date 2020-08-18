@@ -919,11 +919,11 @@ public class ModBlocks {
     public static final Block NITER = add("niter", new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
-    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
+    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
     public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
+    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
     public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
