@@ -685,6 +685,8 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_SAPLING = add("balsam_fir_sapling", new RankineSapling(new BalsamFirTree(), sapling, 3), BLOCKS);
     public static final Block MAGNOLIA_SAPLING = add("magnolia_sapling", new RankineSapling(new MagnoliaTree(), sapling, 3), BLOCKS);
     public static final Block EASTERN_HEMLOCK_SAPLING = add("eastern_hemlock_sapling", new RankineSapling(new EasternHemlockTree(), sapling, 3), BLOCKS);
+    public static final Block YELLOW_BIRCH_SAPLING = add("yellow_birch_sapling", new RankineSapling(new YellowBirchTree(), sapling, 3), BLOCKS);
+
     public static final FlowerPotBlock POTTED_CEDAR_SAPLING = add("potted_cedar_sapling", new FlowerPotBlock(null, () -> CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_PINYON_PINE_SAPLING = add("potted_pinyon_pine_sapling", new FlowerPotBlock(null, () -> PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_JUNIPER_SAPLING = add("potted_juniper_sapling", new FlowerPotBlock(null, () -> JUNIPER_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -692,7 +694,8 @@ public class ModBlocks {
     public static final FlowerPotBlock POTTED_BALSAM_FIR_SAPLING = add("potted_balsam_fir_sapling", new FlowerPotBlock(null, () -> BALSAM_FIR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_MAGNOLIA_SAPLING = add("potted_magnolia_sapling", new FlowerPotBlock(null, () -> MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_EASTERN_HEMLOCK_SAPLING = add("potted_eastern_hemlock_sapling", new FlowerPotBlock(null, () -> EASTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
-    
+    public static final FlowerPotBlock POTTED_YELLOW_BIRCH_SAPLING = add("potted_yellow_birch_sapling", new FlowerPotBlock(null, () -> YELLOW_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     //ORES
