@@ -21,18 +21,14 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     }
 
     @Override
-    public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-        this.renderBackground(p_230430_1_);
-        super.render(p_230430_1_, p_230430_2_, p_230430_3_, p_230430_4_);
-        this.func_230459_a_(p_230430_1_, p_230430_2_, p_230430_3_);
-    }
-
-    protected void func_238807_a_(MatrixStack p_238807_1_, @Nullable MapData p_238807_2_, boolean p_238807_3_, boolean p_238807_4_, boolean p_238807_5_, boolean p_238807_6_) {
-
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(matrixStack);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void func_230450_a_(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+    protected void drawGuiContainerBackgroundLayer(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(this.GUI);
         int i = this.guiLeft;
@@ -59,24 +55,12 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     }
 
     @Override
-    protected void func_230451_b_(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+    protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Alloy Furnace", 92, 10, 0xffffff);
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 50, 0xffffff);
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 50, 0xffffff);
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() + "%", 86, 50, 0xffffff);
     }
-/*
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        drawCenteredString(Minecraft.getInstance().fontRenderer, "Alloy Furnace", 92, 10, 0xffffff);
-        drawCenteredString(Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 50, 0xffffff);
-        drawCenteredString(Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 50, 0xffffff);
-        drawCenteredString(Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() + "%", 86, 50, 0xffffff);
-        /*this.addButton((new ImageButton(this.guiLeft + 53, this.guiTop + 6, 20, 18, 0, 0, 19, button, (p_214087_1_) -> {
-            this.container.toggleRecipeLock();
-        })));
-        }*/
-
 
 
 

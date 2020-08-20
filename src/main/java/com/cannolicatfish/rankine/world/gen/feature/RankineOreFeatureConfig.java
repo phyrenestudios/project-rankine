@@ -22,7 +22,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
     public static final Codec<RankineOreFeatureConfig> field_236566_a_ = RecordCodecBuilder.create((p_236568_0_) -> {
         return p_236568_0_.group(RankineOreFeatureConfig.RankineFillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> {
             return p_236570_0_.target;
-        }), BlockState.field_235877_b_.fieldOf("state").forGetter((p_236569_0_) -> {
+        }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
             return p_236569_0_.state;
         }), Codec.INT.fieldOf("size").withDefault(0).forGetter((p_236567_0_) -> {
             return p_236567_0_.size;

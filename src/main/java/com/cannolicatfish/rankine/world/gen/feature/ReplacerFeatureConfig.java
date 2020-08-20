@@ -12,9 +12,9 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class ReplacerFeatureConfig implements IFeatureConfig {
     public static final Codec<ReplacerFeatureConfig> field_236449_a_ = RecordCodecBuilder.create((p_236451_0_) -> {
-        return p_236451_0_.group(BlockState.field_235877_b_.fieldOf("target").forGetter((p_236452_0_) -> {
+        return p_236451_0_.group(BlockState.CODEC.fieldOf("target").forGetter((p_236452_0_) -> {
             return p_236452_0_.target;
-        }), BlockState.field_235877_b_.fieldOf("state").forGetter((p_236569_0_) -> {
+        }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
             return p_236569_0_.state;
         }), Codec.INT.fieldOf("bottom_bound").withDefault(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.bottomBound;

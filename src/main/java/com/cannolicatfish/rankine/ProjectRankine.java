@@ -86,16 +86,16 @@ public class ProjectRankine {
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.STEAMER, SteamerEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DESMOXYTE, DesmoxyteEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DEMONYTE, DemonyteEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.SHROUDED_KING, ShroudedKingEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.STEAMER, SteamerEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DESMOXYTE, DesmoxyteEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DEMONYTE, DemonyteEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SHROUDED_KING, ShroudedKingEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().create());
         });
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }

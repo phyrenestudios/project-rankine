@@ -71,7 +71,7 @@ public class ReactiveItem extends Item {
             if (canExplode)
             {
                 stack.shrink(1);
-                BlockPos pos = entityIn.func_233580_cy_();
+                BlockPos pos = entityIn.getPosition();
                 if (canBreakBlocks)
                 {
                     entityIn.getEntityWorld().getWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);

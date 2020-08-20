@@ -56,7 +56,7 @@ public class BeaverEntity extends AnimalEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.MAX_HEALTH, 8.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 8.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
 

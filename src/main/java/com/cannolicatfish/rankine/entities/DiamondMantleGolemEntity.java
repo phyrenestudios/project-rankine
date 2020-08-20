@@ -46,7 +46,7 @@ public class DiamondMantleGolemEntity extends IronGolemEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MobEntity.func_233666_p_().func_233815_a_(Attributes.MAX_HEALTH, 100.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, 0.25D).func_233815_a_(Attributes.KNOCKBACK_RESISTANCE, 1.0D).func_233815_a_(Attributes.ATTACK_DAMAGE, 15.0D);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 100.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 15.0D);
     }
 }
 

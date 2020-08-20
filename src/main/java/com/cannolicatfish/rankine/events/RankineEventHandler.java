@@ -170,27 +170,27 @@ public class RankineEventHandler {
     {
         if (Config.DISABLE_WOOD.get() && WOOD_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_STONE.get() && STONE_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_IRON.get() && IRON_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_GOLD.get() && GOLD_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_DIAMOND.get() && DIAMOND_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_NETHERITE.get() && NETHERITE_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
 
     }

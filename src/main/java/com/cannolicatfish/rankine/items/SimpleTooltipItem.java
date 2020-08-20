@@ -25,7 +25,7 @@ public class SimpleTooltipItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent(tip).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent(tip).mergeStyle(TextFormatting.GRAY));
         }
 
     }

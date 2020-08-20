@@ -37,7 +37,7 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
-                if (worldIn.getBiome(pos) == Biomes.field_235250_aA_) {
+                if (worldIn.getBiome(pos) == Biomes.WARPED_FOREST) {
                     for (int y = 0; y <= 64; ++y) {
                         if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
@@ -63,7 +63,7 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                         }
                     }
                 }
-                if (worldIn.getBiome(pos) == Biomes.field_235252_ay_) {
+                if (worldIn.getBiome(pos) == Biomes.SOUL_SAND_VALLEY) {
                     for (int y = 0; y <= 64; ++y) {
                         if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
@@ -89,14 +89,14 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                         }
                     }
                 }
-                if (worldIn.getBiome(pos) == Biomes.field_235251_aB_) {
+                if (worldIn.getBiome(pos) == Biomes.BASALT_DELTAS) {
                     for (int y = 0; y <= 128; ++y) {
                         if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.FERROPERICLASE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(pos) == Biomes.field_235253_az_) {
+                if (worldIn.getBiome(pos) == Biomes.CRIMSON_FOREST) {
                     for (int y = 0; y <= 128; ++y) {
                         if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.KOMATIITE.getDefaultState(), 2);
