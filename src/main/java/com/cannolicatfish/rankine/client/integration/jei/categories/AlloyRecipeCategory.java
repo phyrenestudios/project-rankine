@@ -110,6 +110,10 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
         {
             size = 8;
         }
+        if (backup <= 0)
+        {
+            backup = 1;
+        }
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             if (index < 2)
             {

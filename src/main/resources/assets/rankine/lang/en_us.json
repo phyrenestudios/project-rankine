@@ -726,7 +726,8 @@
   "block.rankine.heart_of_the_mantle": "Heart of the Mantle",
   "item.rankine.platinum_arsenide": "Platinum Arsenide",
   "item.rankine.copper_wire": "Copper Wire",
-
+  "item.rankine.element_indexer": "Element Indexer",
+  "container.rankine.element_indexer": "Element Indexer",
 
 
 
@@ -1142,6 +1143,10 @@
   "item.rankine.nickel_silver_alloy": "Nickel-Silver Alloy Ingot",
   "item.rankine.steel_alloy": "Steel Alloy Ingot",
   "item.rankine.stainless_steel_alloy": "Stainless Steel Alloy Ingot",
+  "item.rankine.tungsten_heavy_alloy": "Tungsten Heavy Alloy Ingot",
+  "item.rankine.cobalt_superalloy": "Cobalt Superalloy Ingot",
+  "item.rankine.mischmetal_alloy": "Mischmetal Alloy Ingot",
+  "item.rankine.pewter_alloy": "Pewter Alloy Ingot",
   "item.rankine.rose_gold_pickaxe": "Rose Gold Pickaxe",
   "item.rankine.white_gold_pickaxe": "White Gold Pickaxe",
   "item.rankine.green_gold_pickaxe": "Green Gold Pickaxe",

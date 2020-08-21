@@ -1,15 +1,19 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
+import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.items.tools.*;
 import com.cannolicatfish.rankine.util.alloys.*;
 import net.minecraft.block.Block;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
@@ -301,6 +305,7 @@ public class ModItems {
     public static final Item CAST_IRON_ALLOY = add("cast_iron_alloy", new AlloyItem("96Fe-4C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRONZE_ALLOY = add("bronze_alloy", new AlloyItem(new BronzeAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PEWTER_ALLOY = add("pewter_alloy", new AlloyItem("90Sn-10Sb",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRASS_ALLOY = add("brass_alloy", new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem NICHROME_ALLOY = add("nichrome_alloy", new AlloyItem("80Ni-20Cr",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item STEEL_ALLOY = add("steel_alloy", new AlloyItem("99Fe-1C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -312,7 +317,10 @@ public class ModItems {
     public static final AlloyItem CUPRONICKEL_ALLOY = add("cupronickel_alloy", new AlloyItem("85Cu-15Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NICKEL_SILVER_ALLOY = add("nickel_silver_alloy", new AlloyItem("60Cu-20Ni-20Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));;
     public static final Item INVAR_ALLOY = add("invar_alloy", new AlloyItem("64Fe-36Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MISCHMETAL_ALLOY = add("mischmetal_alloy", new AlloyItem("55Ce-25La-20Nd",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NICKEL_SUPERALLOY = add("nickel_superalloy", new AlloyItem("75Ni-15Cr-10Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final AlloyItem TUNGSTEN_HEAVY_ALLOY = add("tungsten_heavy_alloy", new AlloyItem("92W-6Ni-2Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final AlloyItem COBALT_SUPERALLOY = add("cobalt_superalloy", new AlloyItem("60Co-20Cr-10Ni-10Ta",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ROSE_METAL_ALLOY = add("rose_metal_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MAGNALIUM_ALLOY = add("magnalium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item DURALUMIN_ALLOY = add("duralumin_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -560,6 +568,7 @@ public class ModItems {
     //public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     //public static final Item TURBINE_BLADE = add("turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item BATTERY = add("battery0", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item ELEMENT_INDEXER = add("element_indexer", new ElementIndexerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
     public static final Item WOODEN_HOURGLASS = add("wooden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -597,6 +606,9 @@ public class ModItems {
 
     @ObjectHolder("rankine:banana_yucca")
     public static Item BANANA_YUCCA;
+
+    @ObjectHolder("rankine:element_indexer")
+    public static ContainerType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
 
     public static Item getBlockAsItem(Block block)
     {

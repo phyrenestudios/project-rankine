@@ -7,6 +7,8 @@ import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
+import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
@@ -211,7 +213,9 @@ public class ProjectRankine {
                 return new FineryForgeContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"finery_forge"));
 
-
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"element_indexer"));
         }
 
         @SubscribeEvent
