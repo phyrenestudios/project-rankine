@@ -307,7 +307,6 @@ public class ModItems {
     public static final AlloyItem ALUMINUM_BRONZE_ALLOY = add("aluminum_bronze_alloy", new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PEWTER_ALLOY = add("pewter_alloy", new AlloyItem("90Sn-10Sb",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BRASS_ALLOY = add("brass_alloy", new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final AlloyItem NICHROME_ALLOY = add("nichrome_alloy", new AlloyItem("80Ni-20Cr",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item STEEL_ALLOY = add("steel_alloy", new AlloyItem("99Fe-1C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem STAINLESS_STEEL_ALLOY = add("stainless_steel_alloy", new AlloyItem(new StainlessSteelAlloyUtils().getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SOLDER_ALLOY = add("solder_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -355,7 +354,6 @@ public class ModItems {
     public static final Item GRAPHITE = add("graphite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CALCIUM_SILICATE = add("calcium_silicate", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SILICON_CARBIDE = add("silicon_carbide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CRUSHED_COAL = add("crushed_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),800));
     public static final Item CINNABAR = add("cinnabar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item RUBY = add("ruby", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SAPPHIRE = add("sapphire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -379,7 +377,6 @@ public class ModItems {
 
     //NORMAL TOOLS
     public static final Item  STONE_HAMMER = add("stone_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  BONE_SHOVEL = add("bone_shovel", new BoneShovel(ItemTier.STONE, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_PICKAXE = add("flint_pickaxe", new PickaxeItem(RankineToolMaterials.FLINT, 1, -2.8F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_AXE = add("flint_axe", new AxeItem(RankineToolMaterials.FLINT, 4.0F, -3.2F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -478,8 +475,6 @@ public class ModItems {
     public static final Item STEEL_GOLD_PAN = add("steel_gold_pan", new ItemGoldPan(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_CROWBAR = add("steel_crowbar", new ItemCrowbar(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item TITANIUM_CROWBAR = add("titanium_crowbar", new ItemCrowbar(1.5f, -1.8F, RankineToolMaterials.TITANIUM,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item FLINTLOCK_PISTOL = add("flintlock_pistol", new FlintlockPistol(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item LEAD_SHOT = add("lead_shot", new LeadShotItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item TRANSFORMATION_STAFF = add("transformation_staff", new TransformationStaffItem(new Item.Properties().maxDamage(512).group(ProjectRankine.setup.rankineTools)));
@@ -569,14 +564,6 @@ public class ModItems {
     //public static final Item TURBINE_BLADE = add("turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item BATTERY = add("battery0", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_INDEXER = add("element_indexer", new ElementIndexerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-
-
-    public static final Item WOODEN_HOURGLASS = add("wooden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item GOLDEN_HOURGLASS = add("golden_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item BONE_HOURGLASS = add("bone_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item PHANTOM_HOURGLASS = add("phantom_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item BLAZE_HOURGLASS = add("blaze_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item ENDER_HOURGLASS = add("ender_hourglass", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
 
 

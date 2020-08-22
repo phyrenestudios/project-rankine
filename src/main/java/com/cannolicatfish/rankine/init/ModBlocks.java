@@ -772,7 +772,6 @@ public class ModBlocks {
     public static final Block DURALUMIN_BLOCK = add("duralumin_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRASS_BLOCK = add("brass_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CUPRONICKEL_BLOCK = add("cupronickel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block NICHROME_BLOCK = add("nichrome_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NICKEL_SILVER_BLOCK = add("nickel_silver_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NITINOL_BLOCK = add("nitinol_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block AMALGAM_BLOCK = add("amalgam_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -965,8 +964,6 @@ public class ModBlocks {
 
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-
-    public static final Block MYSTICAL_SUNDIAL =  add("mystical_sundial", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F, 1.0F).harvestLevel(1)), MISC);
 
 
 
