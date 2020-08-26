@@ -43,7 +43,7 @@ public class AlloyItem extends Item {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            tooltip.add(new StringTextComponent(comp).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent(comp).mergeStyle(TextFormatting.GRAY));
             /*
             if (Screen.hasShiftDown())
             {

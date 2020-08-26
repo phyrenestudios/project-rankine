@@ -43,8 +43,13 @@ public class ModRecipes {
     {
         List<IAlloyRecipe> recipes = new ArrayList<>();
         recipes.add(alloyRecipe("bronze_alloy",new ItemStack(ModItems.BRONZE_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.TIN_INGOT,ModItems.ALUMINUM_INGOT,
-                ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT),new AbstractMap.SimpleEntry<>(.8f,.9f),new AbstractMap.SimpleEntry<>(.1f,.2f),
+                ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT,ModItems.ARSENIC_INGOT,Items.IRON_INGOT,ModItems.BISMUTH_INGOT,
+                ModItems.LEAD_INGOT,ModItems.SILICON,ModItems.ANTIMONY_INGOT,ModItems.PHOSPHORUS),new AbstractMap.SimpleEntry<>(.8f,.9f),new AbstractMap.SimpleEntry<>(.1f,.2f),
                 new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
+
+        recipes.add(alloyRecipe("pewter_alloy",new ItemStack(ModItems.PEWTER_ALLOY),Arrays.asList(ModItems.TIN_INGOT,ModItems.ANTIMONY_INGOT,
+                ModItems.COPPER_INGOT,ModItems.BISMUTH_INGOT,ModItems.SILVER_INGOT,ModItems.LEAD_INGOT),
+                new AbstractMap.SimpleEntry<>(.85f,.95f), new AbstractMap.SimpleEntry<>(.05f,.1f),new AbstractMap.SimpleEntry<>(0f,.1f),.85f));
 
         recipes.add(alloyRecipe("aluminum_bronze_alloy",new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.ALUMINUM_INGOT,
                 ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT,ModItems.ARSENIC_INGOT,Items.IRON_INGOT,ModItems.LEAD_INGOT),
@@ -55,7 +60,8 @@ public class ModRecipes {
                 new AbstractMap.SimpleEntry<>(.3f,.7f), new AbstractMap.SimpleEntry<>(.15f,.6f),new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
 
         recipes.add(alloyRecipe("cupronickel_alloy",new ItemStack(ModItems.CUPRONICKEL_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.NICKEL_INGOT,
-                Items.IRON_INGOT,ModItems.MANGANESE_INGOT),
+                Items.IRON_INGOT,ModItems.MANGANESE_INGOT,ModItems.TIN_INGOT,ModItems.SILICON,ModItems.NIOBIUM_INGOT,ModItems.LEAD_INGOT,ModItems.TITANIUM_INGOT,
+                ModItems.PHOSPHORUS,ModItems.CHROMIUM_INGOT,ModItems.ALUMINUM_INGOT,ModItems.BERYLLIUM_INGOT),
                 new AbstractMap.SimpleEntry<>(.7f,.9f), new AbstractMap.SimpleEntry<>(.1f,.3f),new AbstractMap.SimpleEntry<>(0f,.05f),.95f));
 
         recipes.add(alloyRecipe("nickel_silver_alloy",new ItemStack(ModItems.NICKEL_SILVER_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.NICKEL_INGOT,
@@ -85,16 +91,27 @@ public class ModRecipes {
                 new AbstractMap.SimpleEntry<>(.79f,.81f), new AbstractMap.SimpleEntry<>(.19f,.21f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
 
         recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
-                ModItems.SILICON, ModItems.MANGANESE_INGOT,ModItems.ALUMINUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.CARBON_INGOT,Items.IRON_INGOT,
-                ModItems.VANADIUM_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.3f),
-                new AbstractMap.SimpleEntry<>(0f,.36f),.64f));
-
-                /*recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
                 ModItems.MOLYBDENUM_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TANTALUM_INGOT,ModItems.COBALT_INGOT,ModItems.MANGANESE_INGOT,
                 ModItems.ALUMINUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.SILICON,ModItems.CARBON_INGOT,ModItems.PHOSPHORUS,
                 ModItems.BORON_INGOT, Items.IRON_INGOT,ModItems.VANADIUM_INGOT,ModItems.ZIRCONIUM_INGOT,ModItems.HAFNIUM_INGOT,
-                ModItems.RHENIUM_INGOT,ModItems.TUNGSTEN_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.2f),
-                new AbstractMap.SimpleEntry<>(0.05f,.36f),.64f));*/
+                ModItems.RHENIUM_INGOT,ModItems.TUNGSTEN_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.3f),
+                new AbstractMap.SimpleEntry<>(0.05f,.36f),.64f));
+
+        recipes.add(alloyRecipe("tungsten_heavy_alloy",new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY),Arrays.asList(ModItems.TUNGSTEN_INGOT,ModItems.GRAPHITE,
+                ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,ModItems.COPPER_INGOT,Items.IRON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.ALUMINUM_INGOT,ModItems.BORON_INGOT,
+                ModItems.TITANIUM_INGOT,ModItems.SILICON,ModItems.TANTALUM_INGOT,ModItems.YTTRIUM_INGOT,ModItems.CERIUM_INGOT,ModItems.LANTHANUM_INGOT,ModItems.THORIUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.8f,.98f),new AbstractMap.SimpleEntry<>(.02f,.04f),
+                new AbstractMap.SimpleEntry<>(0f,.18f),.82f));
+
+        recipes.add(alloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.CHROMIUM_INGOT,
+                ModItems.CARBON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.ALUMINUM_INGOT,ModItems.MANGANESE_INGOT,ModItems.SILICON,ModItems.COPPER_INGOT,
+                ModItems.NICKEL_INGOT,ModItems.BORON_INGOT,ModItems.COBALT_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.TUNGSTEN_INGOT,ModItems.YTTRIUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.65f,.7f),new AbstractMap.SimpleEntry<>(.11f,.18f), new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
+
+        recipes.add(alloyRecipe("cobalt_superalloy", new ItemStack(ModItems.COBALT_SUPERALLOY),Arrays.asList(ModItems.COBALT_INGOT,ModItems.CHROMIUM_INGOT,
+                ModItems.CARBON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.TUNGSTEN_INGOT,ModItems.NICKEL_INGOT,ModItems.TITANIUM_INGOT,ModItems.ALUMINUM_INGOT,
+                ModItems.IRIDIUM_INGOT,ModItems.TANTALUM_INGOT,Items.IRON_INGOT,ModItems.SILICON),
+                new AbstractMap.SimpleEntry<>(.5f,.7f),new AbstractMap.SimpleEntry<>(.2f,.3f), new AbstractMap.SimpleEntry<>(0f,.3f),.7f));
         return recipes;
     }
 

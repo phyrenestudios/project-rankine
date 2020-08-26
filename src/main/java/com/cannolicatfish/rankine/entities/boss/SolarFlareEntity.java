@@ -56,7 +56,7 @@ public class SolarFlareEntity extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute getAttributes() {
-        return MonsterEntity.func_234295_eP_().func_233815_a_(Attributes.MAX_HEALTH, 300.0D).func_233815_a_(Attributes.MOVEMENT_SPEED, (double)0.6F).func_233815_a_(Attributes.FOLLOW_RANGE, 40.0D).func_233815_a_(Attributes.ARMOR, 4.0D);
+        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MAX_HEALTH, 300.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.6F).createMutableAttribute(Attributes.FOLLOW_RANGE, 40.0D).createMutableAttribute(Attributes.ARMOR, 4.0D);
     }
 
     public void writeAdditional(CompoundNBT compound) {
@@ -268,7 +268,7 @@ public class SolarFlareEntity extends MonsterEntity {
 
                         if (this.attackStep > 1) {
                             float f = MathHelper.sqrt(MathHelper.sqrt(d0)) * 0.5F;
-                            this.flare.world.playEvent((PlayerEntity)null, 1018, new BlockPos(this.flare.func_233580_cy_()), 0);
+                            this.flare.world.playEvent((PlayerEntity)null, 1018, new BlockPos(this.flare.getPosition()), 0);
 
                             for(int i = 0; i < 1; ++i) {
                                 FireballEntity fireballentity = new FireballEntity(this.flare.world, this.flare, d1 + this.flare.getRNG().nextGaussian() * (double)f, d2, d3 + this.flare.getRNG().nextGaussian() * (double)f);

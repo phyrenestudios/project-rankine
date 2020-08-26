@@ -25,11 +25,11 @@ public class TropicsBiome extends Biome {
  static final String PARENT = null;
 
     public TropicsBiome() {
-        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
-     this.func_235063_a_(DefaultBiomeFeatures.field_235150_b_);
-     this.func_235063_a_(DefaultBiomeFeatures.field_235180_r_);
-     this.func_235063_a_(DefaultBiomeFeatures.field_235171_i_);
-     this.func_235063_a_(DefaultBiomeFeatures.field_235187_y_);
+        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).setFogColor(FOG_COLOR).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).parent(PARENT));
+     //this.func_235063_a_(DefaultBiomeFeatures.field_235150_b_);
+     //this.func_235063_a_(DefaultBiomeFeatures.field_235180_r_);
+     //this.func_235063_a_(DefaultBiomeFeatures.field_235171_i_);
+     //this.func_235063_a_(DefaultBiomeFeatures.field_235187_y_);
         DefaultBiomeFeatures.addOceanCarvers(this);
         DefaultBiomeFeatures.addMonsterRooms(this);
         DefaultBiomeFeatures.addStoneVariants(this);

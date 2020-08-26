@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -27,6 +28,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -170,27 +172,27 @@ public class RankineEventHandler {
     {
         if (Config.DISABLE_WOOD.get() && WOOD_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_STONE.get() && STONE_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_IRON.get() && IRON_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_GOLD.get() && GOLD_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_DIAMOND.get() && DIAMOND_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
         if (Config.DISABLE_NETHERITE.get() && NETHERITE_TOOLS.contains(event.getItemStack().getItem()))
         {
-            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").func_240701_a_(TextFormatting.RED));
+            event.getToolTip().add(new StringTextComponent("This tool doesn't seem to work properly...").mergeStyle(TextFormatting.RED));
         }
 
     }

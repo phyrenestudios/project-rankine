@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 
+import java.time.Period;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 public class AlloyingRecipesComplex {
     private static final AlloyingRecipesComplex INSTANCE = new AlloyingRecipesComplex();
+    private static PeriodicTableUtils utils;
     private final Table<ItemStack, ItemStack, ItemStack> smeltingList = HashBasedTable.<ItemStack, ItemStack, ItemStack>create();
     private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
 
@@ -98,7 +100,7 @@ public class AlloyingRecipesComplex {
                 if (tag.toString().contains("forge:nuggets/"))
                 {
                     String temp = tag.getPath().split("/")[1];
-                    if (new PeriodicTableUtils().getImplementedElementNames().contains(temp))
+                    if (utils.getImplementedElementNames().contains(temp))
                     {
                         mat = temp;
                         //System.out.println("Nugget mat found!: " + temp);
@@ -114,7 +116,7 @@ public class AlloyingRecipesComplex {
                 if (tag.toString().contains("forge:ingots/"))
                 {
                     String temp = tag.getPath().split("/")[1];
-                    if (new PeriodicTableUtils().getImplementedElementNames().contains(temp))
+                    if (utils.getImplementedElementNames().contains(temp))
                     {
                         mat = temp;
                         //System.out.println("Ingot mat found!: " + temp);
@@ -130,7 +132,7 @@ public class AlloyingRecipesComplex {
                 if (tag.toString().contains("forge:storage_blocks/"))
                 {
                     String temp = tag.getPath().split("/")[1];
-                    if (new PeriodicTableUtils().getImplementedElementNames().contains(temp))
+                    if (utils.getImplementedElementNames().contains(temp))
                     {
                         mat = temp;
                         //System.out.println("Storage block mat found!: " + temp);
@@ -291,7 +293,7 @@ public class AlloyingRecipesComplex {
             }
             if ((materials.get(x3).equals("silicon") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("chromium") ||
                     materials.get(x3).equals("molybdenum") || materials.get(x3).equals("titanium") || materials.get(x3).equals("vanadium")
-                    && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
+                    && utils.getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -328,7 +330,7 @@ public class AlloyingRecipesComplex {
                 x3 = 0;
             }
             if (((materials.get(x3).equals("nickel") || materials.get(x3).equals("palladium") || materials.get(x3).equals("silver") || materials.get(x3).equals("platinum"))
-                && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)))
+                && utils.getImplementedElementNames().contains(materials.get(x3)))
                     || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
@@ -405,7 +407,7 @@ public class AlloyingRecipesComplex {
                 x3 = 0;
             }
             if (((materials.get(x3).equals("copper") || materials.get(x3).equals("cadmium") || materials.get(x3).equals("platinum"))
-                && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)))
+                && utils.getImplementedElementNames().contains(materials.get(x3)))
                     || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
@@ -481,7 +483,7 @@ public class AlloyingRecipesComplex {
                 x3 = 0;
             }
             if (((materials.get(x3).equals("nickel") || materials.get(x3).equals("ruthenium") || materials.get(x3).equals("rhodium"))
-                    && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
+                    && utils.getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -556,7 +558,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("zinc") && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))){
+            if (materials.get(x3).equals("zinc") && utils.getImplementedElementNames().contains(materials.get(x3))){
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -667,7 +669,7 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (Config.AMALGAM_EXTRAS.get() && (new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3)) || materials.get(x3).equals("none")))
+            if (Config.AMALGAM_EXTRAS.get() && (utils.getImplementedElementNames().contains(materials.get(x3)) || materials.get(x3).equals("none")))
             {
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -687,7 +689,7 @@ public class AlloyingRecipesComplex {
                 }
             }
             if ((!materials.get(x3).equals("iron") && !materials.get(x3).equals("platinum") && !materials.get(x3).equals("tungsten") && !materials.get(x3).equals("tantalum")
-                    && !materials.get(x3).equals("mercury") && !materials.get(x3).equals("gold") && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
+                    && !materials.get(x3).equals("mercury") && !materials.get(x3).equals("gold") && utils.getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -728,7 +730,7 @@ public class AlloyingRecipesComplex {
                     materials.get(x3).equals("manganese") || materials.get(x3).equals("aluminum") || materials.get(x3).equals("titanium") || materials.get(x3).equals("silicon") ||
                     materials.get(x3).equals("carbon") || materials.get(x3).equals("phosphorus") || materials.get(x3).equals("boron") || materials.get(x3).equals("iron") ||
                     materials.get(x3).equals("vanadium") || materials.get(x3).equals("zirconium") || materials.get(x3).equals("hafnium") || materials.get(x3).equals("rhenium") ||
-                    materials.get(x3).equals("tungsten")) && new PeriodicTableUtils().getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
+                    materials.get(x3).equals("tungsten")) && utils.getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
 
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
@@ -766,7 +768,7 @@ public class AlloyingRecipesComplex {
     public String getComposition(ItemStack input1, ItemStack input2, ItemStack input3)
     {
         boolean flag = false;
-        PeriodicTableUtils a = new PeriodicTableUtils();
+        PeriodicTableUtils a = utils;
         List<Integer> percents = getPercents(input1,input2,input3).getKey();
         List<ItemStack> inputs = getPercents(input1,input2,input3).getValue();
         /*

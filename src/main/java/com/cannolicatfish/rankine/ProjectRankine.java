@@ -7,6 +7,8 @@ import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
+import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
@@ -86,16 +88,16 @@ public class ProjectRankine {
         OreGen.setupOreGeneration();
         DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.STEAMER, SteamerEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DESMOXYTE, DesmoxyteEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DEMONYTE, DemonyteEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.SHROUDED_KING, ShroudedKingEntity.getAttributes().func_233813_a_());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().func_233813_a_());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.STEAMER, SteamerEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DESMOXYTE, DesmoxyteEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DEMONYTE, DemonyteEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SHROUDED_KING, ShroudedKingEntity.getAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().create());
         });
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
@@ -211,7 +213,9 @@ public class ProjectRankine {
                 return new FineryForgeContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"finery_forge"));
 
-
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"element_indexer"));
         }
 
         @SubscribeEvent

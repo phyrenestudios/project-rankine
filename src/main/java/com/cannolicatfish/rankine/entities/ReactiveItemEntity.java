@@ -53,7 +53,7 @@ public class ReactiveItemEntity extends ItemEntity {
 
         if (this.inWater)
         {
-            BlockPos pos = this.func_233580_cy_();
+            BlockPos pos = this.getPosition();
             if (canBreakBlocks)
             {
                 this.getEntityWorld().getWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);

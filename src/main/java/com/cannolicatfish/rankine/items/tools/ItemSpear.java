@@ -123,7 +123,7 @@ public class ItemSpear extends Item {
                         f3 = f3 * (f5 / f4);
                         playerentity.addVelocity((double)f1, (double)f2, (double)f3);
                         playerentity.startSpinAttack(20);
-                        if (playerentity.func_233570_aj_()) {
+                        if (playerentity.isOnGround()) {
                             float f6 = 1.1999999F;
                             playerentity.move(MoverType.SELF, new Vector3d(0.0D, (double)1.1999999F, 0.0D));
                         }

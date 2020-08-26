@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum RankineArmorMaterials implements IArmorMaterial {
-    BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, () -> {
+    BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> {
         return Ingredient.fromItems(Items.LEATHER, ModItems.STEEL_ALLOY);
     });
 
@@ -25,15 +25,17 @@ public enum RankineArmorMaterials implements IArmorMaterial {
     private final int enchantability;
     private final SoundEvent soundEvent;
     private final float toughness;
+    private final float knockbackResistance;
     private final LazyValue<Ingredient> repairMaterial;
 
-    private RankineArmorMaterials(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float p_i48533_8_, Supplier<Ingredient> repairMaterialSupplier) {
+    private RankineArmorMaterials(String nameIn, int maxDamageFactorIn, int[] damageReductionAmountsIn, int enchantabilityIn, SoundEvent equipSoundIn, float toughness, float knockbackResistance, Supplier<Ingredient> repairMaterialSupplier) {
         this.name = nameIn;
         this.maxDamageFactor = maxDamageFactorIn;
         this.damageReductionAmountArray = damageReductionAmountsIn;
         this.enchantability = enchantabilityIn;
         this.soundEvent = equipSoundIn;
-        this.toughness = p_i48533_8_;
+        this.toughness = toughness;
+        this.knockbackResistance = knockbackResistance;
         this.repairMaterial = new LazyValue<>(repairMaterialSupplier);
     }
 
@@ -67,8 +69,8 @@ public enum RankineArmorMaterials implements IArmorMaterial {
     }
 
     @Override
-    public float func_230304_f_() {
-        return 0;
+    public float getKnockbackResistance() {
+        return this.knockbackResistance;
     }
 }
 

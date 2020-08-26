@@ -25,7 +25,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
 
     public RopeBlock(Properties p_i49976_1_) {
         super(p_i49976_1_);
-        this.setDefaultState(this.stateContainer.getBaseState().with(field_220118_a, 7).with(WATERLOGGED, Boolean.FALSE).with(field_220120_c, Boolean.FALSE));
+        this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, 7).with(WATERLOGGED, Boolean.FALSE).with(BOTTOM, Boolean.FALSE));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         int i = func_220117_a(worldIn, pos);
-        BlockState blockstate = state.with(field_220118_a, i).with(field_220120_c, this.func_220116_a(worldIn, pos, i));
+        BlockState blockstate = state.with(DISTANCE, i).with(BOTTOM, this.func_220116_a(worldIn, pos, i));
         if (state != blockstate) {
             worldIn.setBlockState(pos, blockstate, 3);
         }
@@ -64,11 +64,11 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
     }
 
     public static int func_220117_a(IBlockReader p_220117_0_, BlockPos p_220117_1_) {
-        BlockPos.Mutable blockpos$mutable = p_220117_1_.func_239590_i_().move(Direction.DOWN);
+        BlockPos.Mutable blockpos$mutable = p_220117_1_.toMutable().move(Direction.DOWN);
         BlockState blockstate = p_220117_0_.getBlockState(blockpos$mutable);
         int i = 7;
         if (blockstate.getBlock() == ModBlocks.ROPE) {
-            i = blockstate.get(field_220118_a);
+            i = blockstate.get(DISTANCE);
         } else if (blockstate.isSolidSide(p_220117_0_, blockpos$mutable, Direction.UP)) {
             return 0;
         }
@@ -76,7 +76,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             BlockState blockstate1 = p_220117_0_.getBlockState(blockpos$mutable.setPos(p_220117_1_).move(direction));
             if (blockstate1.getBlock() == ModBlocks.ROPE) {
-                i = Math.min(i, blockstate1.get(field_220118_a) + 1);
+                i = Math.min(i, blockstate1.get(DISTANCE) + 1);
                 if (i == 1) {
                     break;
                 }
@@ -88,7 +88,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (context.func_225581_b_()) {
+        if (context.getPosY()) {
             return voxelshape;
         } else {
             return VoxelShapes.empty();

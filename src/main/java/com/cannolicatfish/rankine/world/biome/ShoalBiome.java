@@ -31,10 +31,10 @@ public class ShoalBiome extends Biome {
     static final String PARENT = null;
 
     public ShoalBiome() {
-        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).func_235246_b_(WATER_COLOR).func_235248_c_(WATER_FOG_COLOR).func_235239_a_(FOG_COLOR).func_235243_a_(MoodSoundAmbience.field_235027_b_).func_235238_a_()).parent(PARENT));
+        super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).setFogColor(FOG_COLOR).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).parent(PARENT));
         DefaultBiomeFeatures.func_235196_b_(this);
-        this.func_235063_a_(DefaultBiomeFeatures.field_235188_z_);  //portal
-        this.func_235063_a_(DefaultBiomeFeatures.field_235180_r_);  //treasure
+        this.func_235063_a_(DefaultBiomeFeatures.RUINED_PORTAL_OCEAN);  //portal
+        this.func_235063_a_(DefaultBiomeFeatures.BURIED_TREASURE);  //treasure
         DefaultBiomeFeatures.addOceanCarvers(this);
         DefaultBiomeFeatures.addLakes(this);
         DefaultBiomeFeatures.addMonsterRooms(this);

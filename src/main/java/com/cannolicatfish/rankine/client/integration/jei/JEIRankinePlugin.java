@@ -84,7 +84,6 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), VanillaTypes.ITEM, "The minimum requirements for a beehive oven is a 3x3 structure with a beehive oven pit in the center and lighting the pit with flint and steel.",
                 "Only the pit block must have access to the sky. Place blocks around the pit to cook them over time.");
 
-        registry.addIngredientInfo(new ItemStack(ModItems.NICHROME_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.ALNICO_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");

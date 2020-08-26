@@ -27,7 +27,7 @@ public class RankineBiomeFeatures {
             new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
             new StraightTrunkPlacer(6, 4, 1),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -36,7 +36,7 @@ public class RankineBiomeFeatures {
             new SpruceFoliagePlacer(1, 0, 0, 2, 1, 1),
             new StraightTrunkPlacer(5, 2, 0),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig TALL_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -63,7 +63,7 @@ public class RankineBiomeFeatures {
             new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
             new StraightTrunkPlacer(4, 4, 1),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig SMALL_EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -72,7 +72,7 @@ public class RankineBiomeFeatures {
             new SpruceFoliagePlacer(2, 0, 0, 0, 0, 0),
             new StraightTrunkPlacer(2, 1, 0),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig LARGE_EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -90,7 +90,7 @@ public class RankineBiomeFeatures {
             new AcaciaFoliagePlacer(1, 0, 0, 0),
             new ForkyTrunkPlacer(3, 2, 2),
             new TwoLayerFeature(1, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig LARGE_MAGNOLIA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -99,7 +99,7 @@ public class RankineBiomeFeatures {
             new AcaciaFoliagePlacer(2, 0, 0, 0),
             new ForkyTrunkPlacer(5, 2, 2),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig PINYON_PINE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -108,7 +108,7 @@ public class RankineBiomeFeatures {
             new AcaciaFoliagePlacer(2, 0, 0, 0),
             new ForkyTrunkPlacer(5, 2, 2),
             new TwoLayerFeature(1, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig JUNIPER_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -117,7 +117,7 @@ public class RankineBiomeFeatures {
             new AcaciaFoliagePlacer(1, 0, 0, 0),
             new ForkyTrunkPlacer(2, 0, 0),
             new TwoLayerFeature(1, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig COCNUT_PALM_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -126,7 +126,7 @@ public class RankineBiomeFeatures {
             new AcaciaFoliagePlacer(1, 0, 0, 0),
             new ForkyTrunkPlacer(10, 2, 2),
             new TwoLayerFeature(1, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
 
@@ -137,7 +137,7 @@ public class RankineBiomeFeatures {
             new SpruceFoliagePlacer(1, 0, 0, 2, 1, 1),
             new StraightTrunkPlacer(5, 2, 1),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig SMALL_SPRUCE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -146,7 +146,7 @@ public class RankineBiomeFeatures {
             new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
             new StraightTrunkPlacer(3, 1, 1),
             new TwoLayerFeature(2, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig LAGOOAN_OAK = (new BaseTreeFeatureConfig.Builder(
@@ -155,7 +155,7 @@ public class RankineBiomeFeatures {
             new AcaciaFoliagePlacer(2, 0, 1, 0),
             new ForkyTrunkPlacer(2, 1, 2),
             new TwoLayerFeature(1, 0, 2)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
@@ -163,7 +163,7 @@ public class RankineBiomeFeatures {
             new BlobFoliagePlacer(2, 0, 0, 0, 3),
             new StraightTrunkPlacer(6, 3, 0),
             new TwoLayerFeature(1, 0, 1)))
-            .func_236700_a_()
+            .setIgnoreVines()
             .build();
 
 

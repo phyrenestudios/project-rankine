@@ -110,6 +110,10 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
         {
             size = 8;
         }
+        if (backup <= 0)
+        {
+            backup = 1;
+        }
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             if (index < 2)
             {
@@ -139,7 +143,7 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
         recipeLayout.getItemStacks().addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if (slotIndex >= endIndex) {
                 if (Minecraft.getInstance().gameSettings.advancedItemTooltips || Screen.hasShiftDown()) {
-                    tooltip.add(new TranslationTextComponent("jei.tooltip.recipe.id", recipeId).func_240699_a_(TextFormatting.DARK_GRAY));
+                    tooltip.add(new TranslationTextComponent("jei.tooltip.recipe.id", recipeId).mergeStyle(TextFormatting.DARK_GRAY));
                 }
             }
         });

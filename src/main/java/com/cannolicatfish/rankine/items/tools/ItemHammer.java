@@ -113,10 +113,11 @@ public class ItemHammer extends ToolItem {
 
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
+        if (target.getEntityWorld().isRainingAt(target.getPosition()) && getLightningModifier(stack) == 1)
         {
             LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
-            ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            //ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            ent.setPosition(target.getPosX(),target.getPosY(),target.getPosZ());
             ((ServerWorld)target.getEntityWorld()).addEntity(ent);
         }
         if (getDazeModifier(stack) != 0)

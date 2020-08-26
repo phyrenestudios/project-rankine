@@ -270,37 +270,37 @@ public class AlloyHammer extends ItemHammer {
         });
         if (!Screen.hasShiftDown() && getComposition(stack).size() != 0)
         {
-            tooltip.add((new StringTextComponent("Hold shift for details...")).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
         }
         if (Screen.hasShiftDown() && getComposition(stack).size() != 0)
         {
 
-            tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())).func_240701_a_(alloy.getAlloyGroupColor()));
-            tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%")).func_240701_a_(getWearColor(stack)));
+            tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())).mergeStyle(alloy.getAlloyGroupColor()));
+            tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%")).mergeStyle(getWearColor(stack)));
             if (!flagIn.isAdvanced())
             {
-                tooltip.add((new StringTextComponent("Durability: " + (getMaxDamage(stack) - getDamage(stack)) + "/" + getMaxDamage(stack))).func_240701_a_(TextFormatting.DARK_GREEN));
+                tooltip.add((new StringTextComponent("Durability: " + (getMaxDamage(stack) - getDamage(stack)) + "/" + getMaxDamage(stack))).mergeStyle(TextFormatting.DARK_GREEN));
             }
-            tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getEfficiency(stack)))).func_240701_a_(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).func_240701_a_(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).mergeStyle(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getEfficiency(stack)))).mergeStyle(TextFormatting.GRAY));
+            tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
             if (Config.ALLOY_CORROSION.get())
             {
-                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).func_240701_a_(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
             }
             if (Config.ALLOY_HEAT.get())
             {
-                tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).func_240701_a_(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
             }
             if (Config.ALLOY_TOUGHNESS.get())
             {
-                tooltip.add((new StringTextComponent("Toughness: -" + (df.format(getToughness(stack) * 100)) + "%")).func_240701_a_(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Toughness: -" + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
             }
         }
         tooltip.add((new StringTextComponent("" )));
-        tooltip.add((new StringTextComponent("When in main hand: " ).func_240701_a_(TextFormatting.GRAY)));
-        tooltip.add((new StringTextComponent(" " + df.format((1 + getAttackDamage(stack))) + " Attack Damage") .func_240701_a_(TextFormatting.DARK_GREEN)));
-        tooltip.add((new StringTextComponent(" " + df.format((4 + getAttackSpeed(stack))) + " Attack Speed").func_240701_a_(TextFormatting.DARK_GREEN)));
+        tooltip.add((new StringTextComponent("When in main hand: " ).mergeStyle(TextFormatting.GRAY)));
+        tooltip.add((new StringTextComponent(" " + df.format((1 + getAttackDamage(stack))) + " Attack Damage") .mergeStyle(TextFormatting.DARK_GREEN)));
+        tooltip.add((new StringTextComponent(" " + df.format((4 + getAttackSpeed(stack))) + " Attack Speed").mergeStyle(TextFormatting.DARK_GREEN)));
     }
 
     public static ListNBT getComposition(ItemStack stack) {
@@ -471,10 +471,11 @@ public class AlloyHammer extends ItemHammer {
 
     @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getEntityWorld().isRainingAt(target.func_233580_cy_()) && getLightningModifier(stack) == 1)
+        if (target.getEntityWorld().isRainingAt(target.getPosition()) && getLightningModifier(stack) == 1)
         {
             LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
-            ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            //ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
+            ent.setPosition(target.getPosX(),target.getPosY(),target.getPosZ());
             ((ServerWorld)target.getEntityWorld()).addEntity(ent);
         }
         if (getDazeModifier(stack) != 0)
