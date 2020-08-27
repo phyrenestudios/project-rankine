@@ -58,15 +58,6 @@ public class GreenGoldAlloyUtils implements AlloyUtils {
     }
 
     @Override
-    public int getEnchantmentLevel(Enchantment en, int enchantability) {
-        if (enchantability >= 25 && en.getMaxLevel() >= 2)
-        {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
     public String getDefComposition() {
         return "50Au-50Ag";
     }

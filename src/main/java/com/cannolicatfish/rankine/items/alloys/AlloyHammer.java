@@ -58,7 +58,7 @@ public class AlloyHammer extends ItemHammer {
         super(attackDamageIn, attackSpeedIn, tier, properties);
         this.alloy = alloy;
         this.attackSpeedIn = attackSpeedIn;
-        this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
+        this.attackDamage = (float)attackDamageIn + alloy.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
@@ -187,7 +187,7 @@ public class AlloyHammer extends ItemHammer {
         Random rand = new Random();
         int i = 1;
         i += rand.nextFloat() < getToughness(stack) ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
@@ -246,7 +246,7 @@ public class AlloyHammer extends ItemHammer {
     public float getAttackDamage(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp)) + this.alloy.getAttackDamageBonus();
+            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp));
         } else {
             return this.attackDamage;
         }

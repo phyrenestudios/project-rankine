@@ -52,7 +52,7 @@ public class AlloySword extends SwordItem {
     public AlloySword(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Properties properties) {
         super(tier, attackDamageIn, attackSpeedIn, properties);
         this.attackSpeedIn = attackSpeedIn;
-        this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
+        this.attackDamage = (float)attackDamageIn + alloy.getAttackDamageBonus();
         this.efficiency = tier.getEfficiency();
         this.alloy = alloy;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
@@ -183,7 +183,7 @@ public class AlloySword extends SwordItem {
         Random rand = new Random();
         int i = 1;
         i += rand.nextFloat() < getToughness(stack) ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
@@ -242,7 +242,7 @@ public class AlloySword extends SwordItem {
     public float getAttackDamage(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp)) + this.alloy.getAttackDamageBonus();
+            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp));
         } else {
             return this.attackDamage;
         }

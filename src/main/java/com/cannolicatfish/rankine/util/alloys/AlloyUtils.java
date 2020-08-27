@@ -48,7 +48,19 @@ public interface AlloyUtils {
         }
 
         default int getEnchantmentLevel(Enchantment en, int enchantability){
-                if (enchantability >= 25 && en.getMaxLevel() >= 2)
+                if (enchantability >= 50 && en.getMaxLevel() >= 5)
+                {
+                        return 5;
+                }
+                else if (enchantability >= 40 && en.getMaxLevel() >= 4)
+                {
+                        return 4;
+                }
+                else if (enchantability >= 30 && en.getMaxLevel() >= 3)
+                {
+                        return 3;
+                }
+                else if (enchantability >= 20 && en.getMaxLevel() >= 2)
                 {
                         return 2;
                 }

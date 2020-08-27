@@ -11,7 +11,7 @@ public class CobaltElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(30*(x/8f));
     }
 
     @Override
@@ -26,17 +26,29 @@ public class CobaltElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/20f;
     }
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        return 0;
+        if (x >= 30)
+        {
+            return 3;
+        }
+        else if (x >= 10)
+        {
+            return 2;
+        } else if (x >= 5)
+        {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(3*x/40f);
     }
 
     @Override
@@ -52,6 +64,11 @@ public class CobaltElement implements ElementInterface{
     @Override
     public float getToughnessFromPercent(int x) {
         return 0;
+    }
+
+    @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -0.28f;
     }
 
     @Override

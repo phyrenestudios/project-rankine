@@ -75,6 +75,11 @@ public class IronElement implements ElementInterface {
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.44f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

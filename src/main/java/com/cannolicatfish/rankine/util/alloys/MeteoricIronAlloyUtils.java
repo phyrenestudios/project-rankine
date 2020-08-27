@@ -10,4 +10,9 @@ public class MeteoricIronAlloyUtils implements AlloyUtils {
     public float getMiningSpeedBonus() {
         return 1;
     }
+
+    @Override
+    public float getAttackDamageBonus() {
+        return 2;
+    }
 }

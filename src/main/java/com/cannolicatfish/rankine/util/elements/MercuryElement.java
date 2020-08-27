@@ -55,6 +55,11 @@ public class MercuryElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.85f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

@@ -30,4 +30,9 @@ public class NickelSuperalloyUtils implements AlloyUtils {
     public int getEnchantabilityBonus() {
         return 3;
     }
+
+    @Override
+    public float getAttackDamageBonus() {
+        return 4;
+    }
 }

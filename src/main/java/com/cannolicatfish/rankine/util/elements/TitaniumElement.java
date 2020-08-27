@@ -55,7 +55,7 @@ public class TitaniumElement implements ElementInterface{
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return x/100f;
+        return (float) Math.pow(x/10f, 2);
     }
 
     @Override
@@ -66,6 +66,11 @@ public class TitaniumElement implements ElementInterface{
     @Override
     public float getToughnessFromPercent(int x) {
         return 0;
+    }
+
+    @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -1.63f;
     }
 
     @Override

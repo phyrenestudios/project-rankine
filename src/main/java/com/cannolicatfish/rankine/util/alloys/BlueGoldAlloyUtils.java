@@ -28,6 +28,11 @@ public class BlueGoldAlloyUtils implements AlloyUtils {
     }
 
     @Override
+    public float getAttackDamageBonus() {
+        return 1;
+    }
+
+    @Override
     public int getMiningLevelBonus() {
         return 0;
     }

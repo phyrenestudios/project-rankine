@@ -760,6 +760,7 @@ public class ModBlocks {
     public static final Block GREEN_GOLD_BLOCK = add("green_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BLUE_GOLD_BLOCK = add("blue_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PURPLE_GOLD_BLOCK = add("purple_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BLACK_GOLD_BLOCK = add("black_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block INVAR_BLOCK = add("invar_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_BLOCK = add("bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -954,6 +955,7 @@ public class ModBlocks {
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);
     public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
+    public static final RopeCoilBlock ROPE_COIL = add("rope_coil", new RopeCoilBlock(Block.Properties.create(Material.CARPET)), MISC);
     public static final SwampGrassBlock SWAMP_GRASS = add("swamp_grass", new SwampGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock SHORT_GRASS = add("short_grass", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
     public static final ShortGrassBlock WHITE_CLOVER = add("white_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);

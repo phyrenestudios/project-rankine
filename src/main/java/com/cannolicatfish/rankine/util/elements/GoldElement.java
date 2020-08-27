@@ -59,7 +59,7 @@ public class GoldElement implements ElementInterface {
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return x/100f;
     }
 
     @Override
@@ -70,6 +70,11 @@ public class GoldElement implements ElementInterface {
     @Override
     public float getToughnessFromPercent(int x) {
         return 0;
+    }
+
+    @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 1.83f;
     }
 
     @Override

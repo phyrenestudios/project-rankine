@@ -68,7 +68,7 @@ public class ModRecipes {
                 ModItems.ZINC_INGOT),
                 new AbstractMap.SimpleEntry<>(.5f,.7f), new AbstractMap.SimpleEntry<>(.15f,.25f),new AbstractMap.SimpleEntry<>(.15f,.25f),1f));
 
-        recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.NICKEL_INGOT),
+        recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.NICKEL_INGOT,ModItems.COBALT_INGOT),
                 new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
 
         recipes.add(alloyRecipe("rose_gold_alloy",new ItemStack(ModItems.ROSE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.COPPER_INGOT,
@@ -89,6 +89,10 @@ public class ModRecipes {
 
         recipes.add(alloyRecipe("purple_gold_alloy",new ItemStack(ModItems.PURPLE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.ALUMINUM_INGOT),
                 new AbstractMap.SimpleEntry<>(.79f,.81f), new AbstractMap.SimpleEntry<>(.19f,.21f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
+
+        recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.COBALT_INGOT,
+                ModItems.CHROMIUM_INGOT),
+                new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
         recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
                 ModItems.MOLYBDENUM_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TANTALUM_INGOT,ModItems.COBALT_INGOT,ModItems.MANGANESE_INGOT,
@@ -341,6 +345,14 @@ public class ModRecipes {
         recipes.add(forgingRecipe("purple_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,2),new ItemStack(ModItems.PURPLE_GOLD_SWORD)));
         recipes.add(forgingRecipe("purple_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,3),new ItemStack(ModItems.PURPLE_GOLD_SPEAR)));
         recipes.add(forgingRecipe("purple_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,5),new ItemStack(ModItems.PURPLE_GOLD_HAMMER)));
+
+        recipes.add(forgingRecipe("black_gold_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLACK_GOLD_ALLOY,3),new ItemStack(ModItems.BLACK_GOLD_PICKAXE)));
+        recipes.add(forgingRecipe("black_gold_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLACK_GOLD_ALLOY,3),new ItemStack(ModItems.BLACK_GOLD_AXE)));
+        recipes.add(forgingRecipe("black_gold_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLACK_GOLD_ALLOY,1),new ItemStack(ModItems.BLACK_GOLD_SHOVEL)));
+        recipes.add(forgingRecipe("black_gold_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLACK_GOLD_ALLOY,2),new ItemStack(ModItems.BLACK_GOLD_HOE)));
+        recipes.add(forgingRecipe("black_gold_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.BLACK_GOLD_ALLOY,2),new ItemStack(ModItems.BLACK_GOLD_SWORD)));
+        recipes.add(forgingRecipe("black_gold_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLACK_GOLD_ALLOY,3),new ItemStack(ModItems.BLACK_GOLD_SPEAR)));
+        recipes.add(forgingRecipe("black_gold_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.BLACK_GOLD_ALLOY,5),new ItemStack(ModItems.BLACK_GOLD_HAMMER)));
 
         recipes.add(forgingRecipe("steel_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_PICKAXE)));
         recipes.add(forgingRecipe("steel_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_AXE)));

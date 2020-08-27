@@ -329,6 +329,7 @@ public class ModItems {
     public static final AlloyItem GREEN_GOLD_ALLOY = add("green_gold_alloy", new AlloyItem("50Au-50Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem BLUE_GOLD_ALLOY = add("blue_gold_alloy", new AlloyItem("75Au-25Fe", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem PURPLE_GOLD_ALLOY = add("purple_gold_alloy", new AlloyItem("80Au-20Al", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final AlloyItem BLACK_GOLD_ALLOY = add("black_gold_alloy", new AlloyItem("75Au-25Co", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem METEORIC_IRON = add("meteoric_iron", new AlloyItem("90Fe-10Ni", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
 
@@ -458,6 +459,14 @@ public class ModItems {
     public static final Item  PURPLE_GOLD_HOE = add("purple_gold_hoe", new AlloyHoe(RankineToolMaterials.PURPLE_GOLD,0,-3.0F, new PurpleGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  PURPLE_GOLD_SPEAR = add("purple_gold_spear", new AlloySpear(RankineToolMaterials.PURPLE_GOLD,2, -2.9F, new PurpleGoldAlloyUtils(),ModEntityTypes.PURPLE_GOLD_SPEAR,new ResourceLocation("rankine:textures/entity/purple_gold_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
+    public static final Item  BLACK_GOLD_SWORD = add("black_gold_sword", new AlloySword(RankineToolMaterials.BLACK_GOLD,3, -2.4F, new BlackGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BLACK_GOLD_SHOVEL = add("black_gold_shovel", new AlloyShovel(RankineToolMaterials.BLACK_GOLD,1.5F, -3.0F, new BlackGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BLACK_GOLD_PICKAXE = add("black_gold_pickaxe", new AlloyPickaxe(RankineToolMaterials.BLACK_GOLD, 1, -2.8F, new BlackGoldAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BLACK_GOLD_AXE = add("black_gold_axe", new AlloyAxe(RankineToolMaterials.BLACK_GOLD,4.0F, -3.2F, new BlackGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BLACK_GOLD_HAMMER = add("black_gold_hammer", new AlloyHammer(RankineToolMaterials.BLACK_GOLD,2, -3.2F, new BlackGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BLACK_GOLD_HOE = add("black_gold_hoe", new AlloyHoe(RankineToolMaterials.BLACK_GOLD,0,-3.0F,new BlackGoldAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  BLACK_GOLD_SPEAR = add("black_gold_spear", new AlloySpear(RankineToolMaterials.BLACK_GOLD,2, -2.9F, new BlackGoldAlloyUtils(),ModEntityTypes.BLACK_GOLD_SPEAR,new ResourceLocation("rankine:textures/entity/black_gold_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
     //AMALGAM TOOLS
     public static final Item  AMALGAM_SWORD = add("amalgam_sword", new AlloySword(RankineToolMaterials.AMALGAM, 3, -2.4F, new AmalgamAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  AMALGAM_SHOVEL = add("amalgam_shovel", new AlloyShovel(RankineToolMaterials.AMALGAM, 1.5F, -3.0F, new AmalgamAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -559,6 +568,7 @@ public class ModItems {
     public static final Item CAST_IRON_ROD = add("cast_iron_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_ROD = add("steel_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SADDLE_TREE = add("saddle_tree", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     //public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     //public static final Item TURBINE_BLADE = add("turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));

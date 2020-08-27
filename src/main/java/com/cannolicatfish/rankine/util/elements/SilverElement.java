@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 
 public class SilverElement implements ElementInterface{
     @Override
@@ -55,7 +56,16 @@ public class SilverElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.7996f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
+        if (x >= 50)
+        {
+            return Enchantments.SMITE;
+        }
         return null;
     }
 }

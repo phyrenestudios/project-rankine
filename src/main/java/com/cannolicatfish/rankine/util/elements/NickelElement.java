@@ -61,6 +61,11 @@ public class NickelElement implements ElementInterface {
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -0.25f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

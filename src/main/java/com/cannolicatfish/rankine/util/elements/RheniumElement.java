@@ -55,6 +55,11 @@ public class RheniumElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.300f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

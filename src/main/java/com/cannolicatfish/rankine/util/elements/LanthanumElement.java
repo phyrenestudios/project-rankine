@@ -55,6 +55,11 @@ public class LanthanumElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -2.379f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

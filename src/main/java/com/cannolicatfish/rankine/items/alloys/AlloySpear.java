@@ -65,7 +65,7 @@ public class AlloySpear extends ItemSpear {
         this.entity = entity;
         this.efficiency = tier.getEfficiency();
         this.attackSpeedIn = attackSpeedIn;
-        this.attackDamage = attackDamageIn + tier.getAttackDamage();
+        this.attackDamage = attackDamageIn + alloy.getAttackDamageBonus();
         this.alloy = alloy;
         this.type = type;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
@@ -196,7 +196,7 @@ public class AlloySpear extends ItemSpear {
         Random rand = new Random();
         int i = 1;
         i += rand.nextFloat() < getToughness(stack) ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
@@ -255,7 +255,7 @@ public class AlloySpear extends ItemSpear {
     public float getAttackDamage(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp)) + this.alloy.getAttackDamageBonus();
+            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp));
         } else {
             return this.attackDamage;
         }
