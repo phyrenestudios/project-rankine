@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-        "item": "rankine:smooth_limestone"
-      },
-      "result": "rankine:smooth_limestone_pressure_plate",
-      "count": 1
-    }

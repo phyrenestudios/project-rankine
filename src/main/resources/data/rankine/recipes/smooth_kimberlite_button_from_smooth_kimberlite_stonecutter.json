@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-        "item": "rankine:smooth_kimberlite"
-      },
-      "result": "rankine:smooth_kimberlite_button",
-      "count": 1
-    }
