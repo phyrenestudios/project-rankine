@@ -1,8 +1,10 @@
 {
   "block.rankine.muddy_dirt": "Muddy Dirt",
-  "block.rankine.muddy_grass": "Muddy Grass",
   "block.rankine.permafrost": "Permafrost",
-  "block.rankine.vegetated_permafrost": "Vegetated Permafrost",
+  "block.rankine.etched_glass0": "Etched Glass Corner",
+  "block.rankine.etched_glass1": "Etched Glass Center",
+  "block.rankine.etched_glass2": "Etched Glass Side",
+
 
   "item.rankine.speed_pendant": "Speed Pendant",
   "item.rankine.gem_core": "Gem Core",
@@ -21,6 +23,7 @@
   "block.rankine.magnesia_block": "Block of Magnesia",
   "block.rankine.black_sand": "Black Sand",
   "block.rankine.alluvium": "Alluvium",
+  "block.rankine.lead_glass": "Lead Glass",
   "block.rankine.blueberry_bush": "Blueberry Bush",
   "block.rankine.blackberry_bush": "Blackberry Bush",
   "block.rankine.raspberry_bush": "Raspberry Bush",

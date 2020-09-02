@@ -1,0 +1,21 @@
+{
+  "name": "Crowbars",
+  "icon": "rankine:steel_crowbar",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "If there were nails around here, I'm sure this would help."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:steel_crowbar",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:titanium_crowbar",
+      "text": ""
+    }
+  ]
+}

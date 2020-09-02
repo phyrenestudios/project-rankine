@@ -25,6 +25,7 @@ import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
@@ -514,9 +515,13 @@ public class ModBlocks {
     public static final Block ALLUVIUM = add("alluvium", new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
     public static final Block BLACK_SAND = add("black_sand", new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
     //public static final Block MUDDY_DIRT = add("muddy_dirt", new  Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
-    //public static final Block MUDDY_GRASS = add("muddy_grass", new MuddyGrassBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
     public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), BLOCKS);
-    //public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
+    public static final Block LEAD_GLASS = add("lead_glass", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)), BLOCKS);
+    public static final Block ETCHED_GLASS0 = add("etched_glass0", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
+    public static final Block ETCHED_GLASS1 = add("etched_glass1", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
+    public static final Block ETCHED_GLASS2 = add("etched_glass2", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
+
+
     public static final Block QUICKLIME_BLOCK = add("quicklime_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block MAGNESITE_BLOCK = add("magnesite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block MAGNESIA_BLOCK = add("magnesia_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);

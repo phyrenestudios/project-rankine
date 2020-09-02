@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import net.minecraft.block.Block;
-import net.minecraft.block.GlassBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -88,6 +87,11 @@ public class ClientProxy implements IProxy {
                 ModBlocks.WOLFRAMITE_ORE,
                 ModBlocks.VANADINITE_ORE,
                 ModBlocks.GREENOCKITE_ORE,
+                ModBlocks.LEAD_GLASS,
+                ModBlocks.ETCHED_GLASS0,
+                ModBlocks.ETCHED_GLASS1,
+                ModBlocks.ETCHED_GLASS2,
+
                 ModBlocks.CEDAR_SAPLING,
                 ModBlocks.JUNIPER_SAPLING,
                 ModBlocks.COCONUT_PALM_SAPLING,
