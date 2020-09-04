@@ -61,6 +61,11 @@ public class ArsenicElement implements ElementInterface {
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.24f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

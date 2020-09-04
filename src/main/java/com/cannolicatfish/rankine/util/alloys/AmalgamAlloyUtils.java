@@ -44,21 +44,12 @@ public class AmalgamAlloyUtils implements AlloyUtils {
 
     @Override
     public float getToughnessBonus() {
-        return 0.95f;
+        return -0.5f;
     }
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
         return null;
-    }
-
-    @Override
-    public int getEnchantmentLevel(Enchantment en, int enchantability) {
-        if (enchantability >= 25 && en.getMaxLevel() >= 2)
-        {
-            return 2;
-        }
-        return 1;
     }
 
     @Override

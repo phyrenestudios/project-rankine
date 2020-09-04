@@ -46,7 +46,7 @@ public class CopperElement implements ElementInterface {
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        if (x >= 75)
+        if (x >= 20)
         {
             return 1;
         } else {
@@ -78,6 +78,11 @@ public class CopperElement implements ElementInterface {
     @Override
     public float getToughnessFromPercent(int x) {
         return 0;
+    }
+
+    @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.520f;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class GreenGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 0;
+        return 32;
     }
 
     @Override
@@ -48,22 +48,13 @@ public class GreenGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getToughnessBonus() {
-        return 0.15f;
+        return -0.15f;
     }
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
         return Enchantments.MENDING;
 
-    }
-
-    @Override
-    public int getEnchantmentLevel(Enchantment en, int enchantability) {
-        if (enchantability >= 25 && en.getMaxLevel() >= 2)
-        {
-            return 2;
-        }
-        return 1;
     }
 
     @Override

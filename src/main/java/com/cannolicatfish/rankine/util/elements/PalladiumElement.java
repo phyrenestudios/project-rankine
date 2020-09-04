@@ -61,6 +61,11 @@ public class PalladiumElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -1.9f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

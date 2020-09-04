@@ -37,15 +37,26 @@ public class ManganeseElement implements ElementInterface {
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return (-x/100f);
+        if (x <= 2)
+        {
+            return x;
+        } else if (x <= 10) {
+            return 2 - x/5f;
+        } else if (x <= 12){
+            return x/10f * 2f;
+        } else if (x <= 16){
+            return 2.4f - x/10f;
+        } else {
+            return 0.8f - x/150f;
+        }
     }
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        if (x >= 5)
+        if (x >= 10 && x <= 16)
         {
             return 2;
-        } else if (x > 0)
+        } else if (x > 0 && x <= 4)
         {
             return 1;
         } else {
@@ -55,13 +66,7 @@ public class ManganeseElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        if (x >= 50)
-        {
-            return -4;
-        } else
-        {
-            return Math.round(-x/5f);
-        }
+        return Math.round(-x/5f);
     }
 
     @Override
@@ -77,6 +82,11 @@ public class ManganeseElement implements ElementInterface {
     @Override
     public float getToughnessFromPercent(int x) {
         return 0;
+    }
+
+    @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -1.185f;
     }
 
     @Override

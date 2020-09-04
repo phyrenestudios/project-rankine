@@ -130,6 +130,7 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void onEntityRegistry(final RegistryEvent.Register<EntityType<?>> event) {
             event.getRegistry().register(ModEntityTypes.FLINT_SPEAR);
+            event.getRegistry().register(ModEntityTypes.PEWTER_SPEAR);
             event.getRegistry().register(ModEntityTypes.BRONZE_SPEAR);
             event.getRegistry().register(ModEntityTypes.IRON_SPEAR);
             event.getRegistry().register(ModEntityTypes.METEORIC_IRON_SPEAR);
@@ -139,6 +140,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.GREEN_GOLD_SPEAR);
             event.getRegistry().register(ModEntityTypes.BLUE_GOLD_SPEAR);
             event.getRegistry().register(ModEntityTypes.PURPLE_GOLD_SPEAR);
+            event.getRegistry().register(ModEntityTypes.BLACK_GOLD_SPEAR);
             event.getRegistry().register(ModEntityTypes.AMALGAM_SPEAR);
             event.getRegistry().register(ModEntityTypes.DIAMOND_SPEAR);
             event.getRegistry().register(ModEntityTypes.NETHERITE_SPEAR);
@@ -163,6 +165,7 @@ public class ProjectRankine {
         public static void clientSetupEvent(FMLClientSetupEvent event)
         {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.FLINT_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PEWTER_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BRONZE_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.METEORIC_IRON_SPEAR, SpearRenderFactory.instance);
@@ -172,6 +175,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GREEN_GOLD_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BLUE_GOLD_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PURPLE_GOLD_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BLACK_GOLD_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.AMALGAM_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NETHERITE_SPEAR, SpearRenderFactory.instance);

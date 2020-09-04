@@ -8,10 +8,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Collections;
+import java.util.Locale;
 
 public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContainer> {
     private int currentScroll = 100;
@@ -35,6 +39,9 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
 
         drawString(matrixStack,Minecraft.getInstance().fontRenderer,this.currentScroll + "%",140,12,0xffffff);
+        DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
+            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+        });
         if (element != this.container.getSlotItem())
         {
             element = this.container.getSlotItem();
@@ -44,13 +51,14 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,element.toString(),88,12,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Durability: " + utils.calcDurability(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,30,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Harvest Level: "+ utils.calcMiningLevel(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,42,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Mining Speed: "+ utils.calcMiningSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,54,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Damage: "+ utils.calcDamage(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,66,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Attack Speed: "+ utils.calcAttackSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,78,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Mining Speed: "+ df.format(utils.calcMiningSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll))),12,54,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Damage: "+ df.format(utils.calcDamage(Collections.singletonList(element),Collections.singletonList(this.currentScroll))),12,66,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Attack Speed: "+ df.format(utils.calcAttackSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll))),12,78,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Enchantability: "+ utils.calcEnchantability(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,90,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Corrosion Resistance: "+ utils.calcCorrResist(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,102,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Heat Resistance: "+ utils.calcHeatResist(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,114,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Corrosion Resistance: "+ df.format(utils.calcCorrResist(Collections.singletonList(element),Collections.singletonList(this.currentScroll))),12,102,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Heat Resistance: "+ df.format(utils.calcHeatResist(Collections.singletonList(element),Collections.singletonList(this.currentScroll))),12,114,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness: "+ utils.calcToughness(Collections.singletonList(element),Collections.singletonList(this.currentScroll)),12,126,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ element.element.getElectrodePotentialFromPercent(this.currentScroll) +"V",110,126,0xffffff);
         } else
         {
             //drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,"MATERIALNAME",88,12,0xffffff);
@@ -63,6 +71,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Corrosion Resistance:",12,102,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Heat Resistance:",12,114,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness:",12,126,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E:",110,126,0xffffff);
         }
 
     }

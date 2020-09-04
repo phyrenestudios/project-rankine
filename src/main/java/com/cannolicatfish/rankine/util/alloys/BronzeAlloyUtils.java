@@ -50,6 +50,11 @@ public final class BronzeAlloyUtils implements AlloyUtils {
     }
 
     @Override
+    public float getAttackDamageBonus() {
+        return 1;
+    }
+
+    @Override
     public Enchantment getEnchantmentBonus(Item item) {
         return null;
     }

@@ -36,7 +36,7 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
     private final IDrawable icon;
 
     public AlloyRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 95);
+        background = guiHelper.createBlankDrawable(145, 120);
         localizedName = I18n.format("rankine.jei.alloy");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloy_jei.png"),
                 0, 15, 140, 90);
@@ -99,7 +99,7 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, IAlloyRecipe recipe, IIngredients ingredients) {
-        int index = 0;
+        int index = 0;/*
         int size = ingredients.getInputs(VanillaTypes.ITEM).size() - 3;
         int backup = ingredients.getInputs(VanillaTypes.ITEM).size() - 12;
         if (size <= 0)
@@ -113,21 +113,29 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
         if (backup <= 0)
         {
             backup = 1;
-        }
+        }*/
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             if (index < 2)
             {
                 recipeLayout.getItemStacks().init(index, true, 33 + index * 64, 39);
             } else {
-                if (index < 11)
+                if (index < 10)
                 {
-                    recipeLayout.getItemStacks().init(index, true, (index - 2) * 125/size, 64);
-                } else {
-                    recipeLayout.getItemStacks().init(index, true, (index - 11) * 125/backup, 80);
+                    recipeLayout.getItemStacks().init(index, true, (index - 2) * 18, 64);
+                } else if (index < 18) {
+                    recipeLayout.getItemStacks().init(index, true, (index - 10) * 18, 80);
+                } else
+                {
+                    recipeLayout.getItemStacks().init(index, true, (index - 18) * 18, 96);
                 }
-
             }
-            recipeLayout.getItemStacks().set(index, o);
+            if (o.get(0).getItem() == ModItems.CARBON_INGOT)
+            {
+                recipeLayout.getItemStacks().set(index,Arrays.asList(new ItemStack(ModItems.CARBON_INGOT),new ItemStack(ModItems.COKE),new ItemStack(ModItems.GRAPHITE)));
+            } else
+            {
+                recipeLayout.getItemStacks().set(index, o);
+            }
             index++;
 
         }

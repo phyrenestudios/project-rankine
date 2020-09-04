@@ -81,8 +81,8 @@ public class JEIRankinePlugin implements IModPlugin {
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(ModBlocks.MAGNESIA_BLOCK), VanillaTypes.ITEM, "Magnesia can be obtained by cooking a Block of Magnesite in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
-        registry.addIngredientInfo(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), VanillaTypes.ITEM, "The minimum requirements for a beehive oven is a 3x3 structure with a beehive oven pit in the center and lighting the pit with flint and steel.",
-                "Only the pit block must have access to the sky. Place blocks around the pit to cook them over time.");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), VanillaTypes.ITEM, "The beehive oven is at minimum a 3x3 structure with a beehive oven pit in the center of 8 refractory bricks. " +
+                "The pit block must have access to the sky. Place blocks on the refractory bricks and light it with a flint and steel to cook them over time.");
 
         registry.addIngredientInfo(new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");

@@ -60,6 +60,11 @@ public class BismuthElement implements ElementInterface {
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 0.308f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

@@ -55,6 +55,11 @@ public class HafniumElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return 1.724f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

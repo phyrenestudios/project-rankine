@@ -41,13 +41,13 @@ public class ItemHammer extends ToolItem {
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(1, entityLiving, (p_220038_0_) -> {
-                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-            });
-        }
         if(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state))
         {
+            if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+                stack.damageItem(1, entityLiving, (p_220038_0_) -> {
+                    p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                });
+            }
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
                 double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;

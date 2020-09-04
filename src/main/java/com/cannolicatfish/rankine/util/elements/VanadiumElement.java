@@ -61,6 +61,11 @@ public class VanadiumElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -1.13f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

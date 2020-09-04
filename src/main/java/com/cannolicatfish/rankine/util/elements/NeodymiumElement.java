@@ -55,6 +55,11 @@ public class NeodymiumElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -2.1f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

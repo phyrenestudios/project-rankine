@@ -33,6 +33,12 @@ public enum RankineToolMaterials implements IItemTier {
     PURPLE_GOLD(1, 40, 14.0F, 0.0F, 22, () -> {
         return Ingredient.fromItems(ModItems.PURPLE_GOLD_ALLOY);
     }),
+    BLACK_GOLD(2, 78, 9.0F, 0.0F, 20, () -> {
+        return Ingredient.fromItems(ModItems.BLUE_GOLD_ALLOY);
+    }),
+    PEWTER(1, 63, 4.0F, 0.0F, 14, () -> {
+        return Ingredient.fromItems(ModItems.PEWTER_ALLOY);
+    }),
     AMALGAM(0, 63, 2.0F, 0.0F, 0, () -> {
         return Ingredient.fromItems(ModItems.AMALGAM_ALLOY);
     }),

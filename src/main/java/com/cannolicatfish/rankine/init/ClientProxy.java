@@ -152,13 +152,12 @@ public class ClientProxy implements IProxy {
                 ModBlocks.BALSAM_FIR_LEAVES,
                 ModBlocks.COCONUT_PALM_LEAVES,
                 ModBlocks.MAGNOLIA_LEAVES,
-                ModBlocks.EASTERN_HEMLOCK_LEAVES
+                ModBlocks.EASTERN_HEMLOCK_LEAVES,
+                ModBlocks.CALCITE_BLOCK,
+                ModBlocks.CALCIUM_SILICATE_BLOCK,
+                ModBlocks.SALT_BLOCK,
+                ModBlocks.PINK_SALT_BLOCK
         ));
-
-        RenderTypeLookup.setRenderLayer(ModBlocks.CALCITE_BLOCK, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModBlocks.CALCIUM_SILICATE_BLOCK, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModBlocks.SALT_BLOCK, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModBlocks.PINK_SALT_BLOCK, RenderType.getTranslucent());
     }
 
 

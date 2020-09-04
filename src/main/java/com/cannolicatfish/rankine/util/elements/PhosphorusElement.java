@@ -55,6 +55,11 @@ public class PhosphorusElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -1.82f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

@@ -24,6 +24,8 @@ public interface ElementInterface {
 
     float getToughnessFromPercent(int x);
 
+    float getElectrodePotentialFromPercent(int x);
+
     Enchantment getEnchantments(int x);
 
 

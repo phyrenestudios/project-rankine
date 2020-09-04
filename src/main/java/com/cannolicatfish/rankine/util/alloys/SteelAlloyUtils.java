@@ -20,4 +20,14 @@ public class SteelAlloyUtils implements AlloyUtils{
     public float getMiningSpeedBonus() {
         return 4;
     }
+
+    @Override
+    public float getAttackDamageBonus() {
+        return 3;
+    }
+
+    @Override
+    public float getToughnessBonus() {
+        return 0.25f;
+    }
 }

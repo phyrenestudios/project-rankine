@@ -22,7 +22,7 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 0;
+        return 32;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getToughnessBonus() {
-        return 0.2f;
+        return -0.2f;
     }
 
     @Override
@@ -71,15 +71,6 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
             return null;
         }
 
-    }
-
-    @Override
-    public int getEnchantmentLevel(Enchantment en, int enchantability) {
-        if (enchantability >= 25 && en.getMaxLevel() >= 2)
-        {
-            return 2;
-        }
-        return 1;
     }
 
     @Override

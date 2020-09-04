@@ -55,6 +55,11 @@ public class BoronElement implements ElementInterface {
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -0.89f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

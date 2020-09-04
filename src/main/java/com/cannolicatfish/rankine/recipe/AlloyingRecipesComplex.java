@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class AlloyingRecipesComplex {
     private static final AlloyingRecipesComplex INSTANCE = new AlloyingRecipesComplex();
-    private static PeriodicTableUtils utils;
+    private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private final Table<ItemStack, ItemStack, ItemStack> smeltingList = HashBasedTable.<ItemStack, ItemStack, ItemStack>create();
     private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
 
@@ -178,8 +178,10 @@ public class AlloyingRecipesComplex {
             {
                 x3 = 0;
             }
-            if (materials.get(x3).equals("aluminum") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("zinc") || materials.get(x3).equals("none")) {
-
+            if ((materials.get(x3).equals("aluminum") || materials.get(x3).equals("manganese") || materials.get(x3).equals("nickel") || materials.get(x3).equals("zinc") ||
+                        materials.get(x3).equals("arsenic") || materials.get(x3).equals("iron") || materials.get(x3).equals("bismuth") || materials.get(x3).equals("lead") ||
+                        materials.get(x3).equals("silicon") || materials.get(x3).equals("antimony") || materials.get(x3).equals("phosphorus")
+                        && utils.getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
                 float propx1 = amounts.get(x1)/total;
                 float propx2 = amounts.get(x2)/total;
                 float propx3 = amounts.get(x3)/total;
@@ -500,6 +502,44 @@ public class AlloyingRecipesComplex {
                     ar[1] = input2.getCount();
                     ar[2] = input3.getCount();
                     return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.BLUE_GOLD_ALLOY, Math.round(total/10)),ar);
+                }
+            }
+        }
+        if (materials.contains("tin") && materials.contains("antimony") && total >= 10) // Pewter
+        {
+            int x1 = materials.indexOf("tin");
+            int x2 = materials.indexOf("antimony");
+            int x3;
+            if (x1 == 0 && x2 == 1 || x2 == 0 && x1 == 1)
+            {
+                x3 = 2;
+            }
+            else if (x1 == 2 && x2 == 0 || x2 == 2 && x1 == 0)
+            {
+                x3 = 1;
+            }
+            else
+            {
+                x3 = 0;
+            }
+            if (((materials.get(x3).equals("copper") || materials.get(x3).equals("bismuth") || materials.get(x3).equals("silver") || materials.get(x3).equals("lead"))
+                    && utils.getImplementedElementNames().contains(materials.get(x3))) || materials.get(x3).equals("none")) {
+
+                float propx1 = amounts.get(x1)/total;
+                float propx2 = amounts.get(x2)/total;
+                float propx3 = amounts.get(x3)/total;
+                /*
+                System.out.println(propx1);
+                System.out.println(propx2);
+                System.out.println(propx3);
+                System.out.println(Math.round(total/10));
+                 */
+                if (propx1 >= .85f && propx1 <= .98f && propx2 >= .02f && propx2 <= .1f && Math.round(total/10) <= 64) {
+                    int[] ar = new int[3];
+                    ar[0] = input1.getCount();
+                    ar[1] = input2.getCount();
+                    ar[2] = input3.getCount();
+                    return new AbstractMap.SimpleEntry<>(new ItemStack(ModItems.PEWTER_ALLOY, Math.round(total/10)),ar);
                 }
             }
         }

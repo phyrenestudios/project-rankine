@@ -49,7 +49,7 @@ public class AlloyPickaxe extends PickaxeItem {
         super(tier, attackDamageIn, attackSpeedIn, properties);
         this.alloy = alloy;
         this.attackSpeedIn = attackSpeedIn;
-        this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
+        this.attackDamage = (float)attackDamageIn + alloy.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
@@ -177,8 +177,16 @@ public class AlloyPickaxe extends PickaxeItem {
     {
         Random rand = new Random();
         int i = 1;
-        i += rand.nextFloat() < getToughness(stack) ? 1 : 0;
-        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0) && Config.ALLOY_HEAT.get()) {
+        float toughness = getToughness(stack);
+        if (toughness > 0 && rand.nextFloat() < toughness)
+        {
+            i += -1;
+        }
+        if (toughness < 0 && rand.nextFloat() < Math.abs(toughness))
+        {
+            i += 1;
+        }
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER) && Config.ALLOY_HEAT.get()) {
             i += 1;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet() && Config.ALLOY_CORROSION.get()))
@@ -237,7 +245,7 @@ public class AlloyPickaxe extends PickaxeItem {
     public float getAttackDamage(ItemStack stack) {
         if (getComposition(stack).size() != 0) {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp)) + this.alloy.getAttackDamageBonus();
+            return this.attackDamage + utils.calcDamage(getElements(comp), getPercents(comp));
         } else {
             return this.attackDamage;
         }
@@ -259,40 +267,42 @@ public class AlloyPickaxe extends PickaxeItem {
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        if (!Screen.hasShiftDown() && getComposition(stack).size() != 0)
+        if (getComposition(stack).size() != 0)
         {
-            tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
-        }
-        if (Screen.hasShiftDown() && getComposition(stack).size() != 0)
-        {
+            if (!Screen.hasShiftDown())
+            {
+                tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
+            }
+            if (Screen.hasShiftDown())
+            {
 
-            tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())).mergeStyle(alloy.getAlloyGroupColor()));
-            tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%")).mergeStyle(getWearColor(stack)));
-            if (!flagIn.isAdvanced())
-            {
-                tooltip.add((new StringTextComponent("Durability: " + (getMaxDamage(stack) - getDamage(stack)) + "/" + getMaxDamage(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+                tooltip.add((new StringTextComponent("Composition: " +getComposition(stack).getCompound(0).get("comp").getString())).mergeStyle(alloy.getAlloyGroupColor()));
+                tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(getWearAsPercent(stack)) + "%")).mergeStyle(getWearColor(stack)));
+                if (!flagIn.isAdvanced())
+                {
+                    tooltip.add((new StringTextComponent("Durability: " + (getMaxDamage(stack) - getDamage(stack)) + "/" + getMaxDamage(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+                }
+                tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getEfficiency(stack)))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
+                if (Config.ALLOY_CORROSION.get())
+                {
+                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                }
+                if (Config.ALLOY_HEAT.get())
+                {
+                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                }
+                if (Config.ALLOY_TOUGHNESS.get())
+                {
+                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                }
             }
-            tooltip.add((new StringTextComponent("Harvest Level: " + getMiningLevel(stack))).mergeStyle(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Mining Speed: " + df.format(getEfficiency(stack)))).mergeStyle(TextFormatting.GRAY));
-            tooltip.add((new StringTextComponent("Enchantability: " + getItemEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
-            if (Config.ALLOY_CORROSION.get())
-            {
-                tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
-            }
-            if (Config.ALLOY_HEAT.get())
-            {
-                tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
-            }
-            if (Config.ALLOY_TOUGHNESS.get())
-            {
-                tooltip.add((new StringTextComponent("Toughness: -" + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
-            }
+            tooltip.add((new StringTextComponent("" )));
+            tooltip.add((new StringTextComponent("When in main hand: " ).mergeStyle(TextFormatting.GRAY)));
+            tooltip.add((new StringTextComponent(" " + df.format((1 + getAttackDamage(stack))) + " Attack Damage") .mergeStyle(TextFormatting.DARK_GREEN)));
+            tooltip.add((new StringTextComponent(" " + df.format((4 + getAttackSpeed(stack))) + " Attack Speed").mergeStyle(TextFormatting.DARK_GREEN)));
         }
-        tooltip.add((new StringTextComponent("" )));
-        tooltip.add((new StringTextComponent("When in main hand: " ).mergeStyle(TextFormatting.GRAY)));
-        tooltip.add((new StringTextComponent(" " + df.format((1 + getAttackDamage(stack))) + " Attack Damage") .mergeStyle(TextFormatting.DARK_GREEN)));
-        tooltip.add((new StringTextComponent(" " + df.format((4 + getAttackSpeed(stack))) + " Attack Speed").mergeStyle(TextFormatting.DARK_GREEN)));
-
     }
 
     public static ListNBT getComposition(ItemStack stack) {

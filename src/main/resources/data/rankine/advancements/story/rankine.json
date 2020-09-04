@@ -25,11 +25,22 @@
           }
         ]
       }
+    },
+    "crafting_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:crafting_table"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "get_flint"
+      "get_flint",
+      "crafting_table"
     ]
   ]
 }

@@ -70,6 +70,11 @@ public class NetheriteElement implements ElementInterface {
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -0.04f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }

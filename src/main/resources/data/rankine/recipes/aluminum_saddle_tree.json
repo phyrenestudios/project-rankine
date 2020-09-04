@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "www",
+    "sss"
+  ],
+  "key":
+  {
+    "w":
+    {
+      "tag": "minecraft:planks"
+    },
+    "x":
+    {
+      "tag": "forge:ingots/aluminum"
+    },
+    "s":
+    {
+      "tag": "forge:ingots/steel"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:saddle_tree",
+    "count": 1
+  }
+}

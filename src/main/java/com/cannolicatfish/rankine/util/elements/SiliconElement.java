@@ -55,6 +55,11 @@ public class SiliconElement implements ElementInterface{
     }
 
     @Override
+    public float getElectrodePotentialFromPercent(int x) {
+        return -0.91f;
+    }
+
+    @Override
     public Enchantment getEnchantments(int x) {
         return null;
     }
