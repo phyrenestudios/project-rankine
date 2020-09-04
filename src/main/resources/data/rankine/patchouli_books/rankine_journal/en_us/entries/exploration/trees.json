@@ -37,6 +37,16 @@
       "type": "spotlight",
 	  "item": "rankine:eastern_hemlock_sapling",
       "text": "Found in Taigas"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:yellow_birch_sapling",
+      "text": "Found where birch trees grow"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_birch_sapling",
+      "text": "Found where birch trees grow"
     }
   ]
 }

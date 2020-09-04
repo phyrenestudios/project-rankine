@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "rankine:yellow_birch_log"
+    "rankine:yellow_birch_log",
+    "rankine:yellow_birch_wood"
   ]
 }

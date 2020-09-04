@@ -100,6 +100,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.MAGNOLIA_SAPLING,
                 ModBlocks.EASTERN_HEMLOCK_SAPLING,
                 ModBlocks.YELLOW_BIRCH_SAPLING,
+                ModBlocks.BLACK_BIRCH_SAPLING,
 
                 ModBlocks.CEDAR_TRAPDOOR,
                 ModBlocks.COCONUT_PALM_TRAPDOOR,
@@ -142,7 +143,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.DUCKWEED,
                 ModBlocks.ELDERBERRY_BUSH,
                 ModBlocks.SNOWBERRY_BUSH,
-                ModBlocks.BLUE_FOXFIRE,
+                ModBlocks.PINK_FOXFIRE,
+                ModBlocks.YELLOW_FOXFIRE,
                 ModBlocks.BLUEBERRY_BUSH,
                 ModBlocks.BLACKBERRY_BUSH,
                 ModBlocks.RASPBERRY_BUSH,

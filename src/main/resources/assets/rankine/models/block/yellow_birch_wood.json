@@ -1,7 +1,7 @@
 {
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "rankine:block/yellow_birch_log",
-    "side": "rankine:block/yellow_birch_log"
-  }
-}
+      "parent": "block/cube_column",
+      "textures": {
+        "end": "rankine:block/yellow_birch_log",
+        "side": "rankine:block/yellow_birch_log"
+      }
+    }

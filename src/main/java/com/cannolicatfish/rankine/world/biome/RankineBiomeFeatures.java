@@ -158,7 +158,17 @@ public class RankineBiomeFeatures {
             .setIgnoreVines()
             .build();
 
-    public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
+    public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
+            new BlobFoliagePlacer(2, 0, 0, 0, 3),
+            new StraightTrunkPlacer(6, 3, 0),
+            new TwoLayerFeature(1, 0, 1)))
+            .setIgnoreVines()
+            .build();
+
+    public static final BaseTreeFeatureConfig BLACK_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.BLACK_BIRCH_LOG.getDefaultState()),
             new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(2, 0, 0, 0, 3),
             new StraightTrunkPlacer(6, 3, 0),
@@ -177,6 +187,12 @@ public class RankineBiomeFeatures {
     public static final BlockClusterFeatureConfig BLUEBERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLUEBERRY_BUSH.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig RASPBERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.RASPBERRY_BUSH.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig BLACKBERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLACKBERRY_BUSH.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+
+    public static final BlockClusterFeatureConfig BLUE_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLUE_FOXFIRE.getDefaultState()), SimpleBlockPlacer.field_236447_c_)).tries(64).func_227317_b_().build();
+    public static final BlockClusterFeatureConfig GREEN_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.GREEN_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig PINK_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PINK_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+    public static final BlockClusterFeatureConfig YELLOW_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+
 
 
     public static void addModStructures(Biome biomeIn) {
@@ -197,7 +213,7 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(LARGE_MAGNOLIA_TREE_CONFIG).withChance(0.2F)), Feature.field_236291_c_.withConfiguration(MAGNOLIA_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(0, 0.2F, 3))));
     }
 
-        public static void addPinyonJuniperWoodlandsTrees(Biome biomeIn) {
+    public static void addPinyonJuniperWoodlandsTrees(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(JUNIPER_TREE_CONFIG).withChance(0.15F)), Feature.field_236291_c_.withConfiguration(PINYON_PINE_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(7, 0.2F, 3))));
     }
 
@@ -254,7 +270,6 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.LAKES, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(Blocks.LAVA.getDefaultState())).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(10))));
         biomeIn.addFeature(GenerationStage.Decoration.LAKES, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(ModBlocks.LIQUID_MERCURY_BLOCK.getDefaultState())).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Feature.MONSTER_ROOM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.DUNGEONS.configure(new ChanceConfig(3))));
-
     }
 
 

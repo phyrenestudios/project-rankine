@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "axis=y": { "model": "rankine:block/yellow_birch_wood" },
-    "axis=z": { "model": "rankine:block/yellow_birch_wood", "x": 90 },
-    "axis=x": { "model": "rankine:block/yellow_birch_wood", "x": 90, "y": 90 }
-  }
-}
+      "variants": {
+        "axis=y": { "model": "rankine:block/yellow_birch_wood" },
+        "axis=z": { "model": "rankine:block/yellow_birch_wood", "x": 90 },
+        "axis=x": { "model": "rankine:block/yellow_birch_wood", "x": 90, "y": 90 }
+      }
+    }

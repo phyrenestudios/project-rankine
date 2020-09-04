@@ -486,6 +486,7 @@ public class ModBlocks {
     public static final Block MAGNOLIA_LOG = add("magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_LOG = add("eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block YELLOW_BIRCH_LOG = add("yellow_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block BLACK_BIRCH_LOG = add("black_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -495,6 +496,7 @@ public class ModBlocks {
     public static final Block MAGNOLIA_WOOD = add("magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_WOOD = add("eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block YELLOW_BIRCH_WOOD = add("yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block BLACK_BIRCH_WOOD = add("black_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block STRIPPED_CEDAR_LOG = add("stripped_cedar_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_LOG = add("stripped_pinyon_pine_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -503,6 +505,8 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_LOG = add("stripped_eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_YELLOW_BIRCH_LOG = add("stripped_yellow_birch_log", new RotatedPillarBlock(DEF_WOOD));
+    public static final Block STRIPPED_BLACK_BIRCH_LOG = add("stripped_black_birch_log", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -511,6 +515,8 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_WOOD = add("stripped_eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_YELLOW_BIRCH_WOOD = add("stripped_yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD));
+    public static final Block STRIPPED_BLACK_BIRCH_WOOD = add("stripped_black_birch_wood", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(DEF_WOOD), BLOCKS, 300);
@@ -625,6 +631,7 @@ public class ModBlocks {
     public static final Block MAGNOLIA_SAPLING = add("magnolia_sapling", new RankineSapling(new MagnoliaTree(), sapling, 3), BLOCKS);
     public static final Block EASTERN_HEMLOCK_SAPLING = add("eastern_hemlock_sapling", new RankineSapling(new EasternHemlockTree(), sapling, 3), BLOCKS);
     public static final Block YELLOW_BIRCH_SAPLING = add("yellow_birch_sapling", new RankineSapling(new YellowBirchTree(), sapling, 3), BLOCKS);
+    public static final Block BLACK_BIRCH_SAPLING = add("black_birch_sapling", new RankineSapling(new BlackBirchTree(), sapling, 3), BLOCKS);
 
     public static final FlowerPotBlock POTTED_CEDAR_SAPLING = add("potted_cedar_sapling", new FlowerPotBlock(null, () -> CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_PINYON_PINE_SAPLING = add("potted_pinyon_pine_sapling", new FlowerPotBlock(null, () -> PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -634,6 +641,8 @@ public class ModBlocks {
     public static final FlowerPotBlock POTTED_MAGNOLIA_SAPLING = add("potted_magnolia_sapling", new FlowerPotBlock(null, () -> MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_EASTERN_HEMLOCK_SAPLING = add("potted_eastern_hemlock_sapling", new FlowerPotBlock(null, () -> EASTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_YELLOW_BIRCH_SAPLING = add("potted_yellow_birch_sapling", new FlowerPotBlock(null, () -> YELLOW_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_BLACK_BIRCH_SAPLING = add("potted_black_birch_sapling", new FlowerPotBlock(null, () -> BLACK_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+
 
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -857,16 +866,20 @@ public class ModBlocks {
     public static final Block NITER = add("niter", new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
-    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
+    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block SILVER_SHEETMETAL = add("silver_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
+    public static final Block TUNGSTEN_SHEETMETAL = add("tungsten_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block LEAD_SHEETMETAL = add("lead_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     public static final Block CREEPER_BLOCK = add("creeper_block", new CreepingBlock(1.0F,Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
     public static final BlastingPowderBlock BLASTING_POWDER = add("blasting_powder", new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
@@ -900,6 +913,8 @@ public class ModBlocks {
     public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC, DuckweedItem::new);
     public static final FoxfireBlock BLUE_FOXFIRE = add("blue_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
     public static final FoxfireBlock GREEN_FOXFIRE = add("green_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
+    public static final FoxfireBlock PINK_FOXFIRE = add("pink_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
+    public static final FoxfireBlock YELLOW_FOXFIRE = add("yellow_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
 
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));

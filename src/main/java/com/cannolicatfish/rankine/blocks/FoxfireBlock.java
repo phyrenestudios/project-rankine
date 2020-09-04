@@ -18,7 +18,7 @@ import java.util.Random;
 public class FoxfireBlock extends HorizontalFaceBlock implements net.minecraftforge.common.IPlantable{
     public FoxfireBlock(Properties builder) {
         super(builder);
-        this.setDefaultState(this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(FACE, AttachFace.WALL));
+        this.setDefaultState(this.stateContainer.getBaseState());
     }
 
     protected static final VoxelShape FLOOR = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D);
@@ -84,10 +84,13 @@ public class FoxfireBlock extends HorizontalFaceBlock implements net.minecraftfo
         return state;
     }
 
+    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return state.isOpaqueCube(worldIn, pos);
+    }
+
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-    //    BlockPos blockpos = pos.down();
-   //     BlockState blockstate = worldIn.getBlockState(blockpos);
-        return worldIn.getLightSubtracted(pos, 0) < 9;
+        BlockPos blockpos = pos.down();
+        return worldIn.getBlockState(blockpos).isOpaqueCube(worldIn, blockpos);
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {

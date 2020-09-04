@@ -3,8 +3,6 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
-import com.cannolicatfish.rankine.entities.projectiles.JarBlueFoxfireEntity;
-import com.cannolicatfish.rankine.entities.projectiles.JarGreenFoxfireEntity;
 import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -39,9 +37,6 @@ public class ModEntityTypes {
     public static final EntityType<SolarFlareEntity> SOLAR_FLARE = EntityType.Builder.create(SolarFlareEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":solar_flare");
     public static final EntityType<RankineBoatEntity> RANKINE_BOAT = EntityType.Builder.<RankineBoatEntity>create(RankineBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F).build(ProjectRankine.MODID + ":rankine_boat");
     public static final EntityType<ReactiveItemEntity> REACTIVE_ITEM = EntityType.Builder.<ReactiveItemEntity>create(ReactiveItemEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ProjectRankine.MODID + ":reactive_item");
-    public static final EntityType<JarBlueFoxfireEntity> JAR_BLUE_FOXFIRE = EntityType.Builder.<JarBlueFoxfireEntity>create(JarBlueFoxfireEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ProjectRankine.MODID + ":jar_blue_foxfire_item");
-    public static final EntityType<JarGreenFoxfireEntity> JAR_GREEN_FOXFIRE = EntityType.Builder.<JarGreenFoxfireEntity>create(JarGreenFoxfireEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ProjectRankine.MODID + ":jar_green_foxfire_item");
-
 
 
 

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:sheetmetals/copper",
+    "#forge:sheetmetals/tin",
+    "#forge:sheetmetals/aluminum",
+    "#forge:sheetmetals/tungsten",
+    "#forge:sheetmetals/lead",
+    "#forge:sheetmetals/titanium",
+    "#forge:sheetmetals/nickel",
+    "#forge:sheetmetals/bronze",
+    "#forge:sheetmetals/brass",
+    "#forge:sheetmetals/wrought_iron",
+    "#forge:sheetmetals/steel",
+    "#forge:sheetmetals/stainless_steel"
+  ]
+}

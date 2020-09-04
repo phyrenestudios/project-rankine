@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "# #",
+		"# #",
+		"# #"
+      ],
+      "key": {
+        "#": {
+          "tag": "forge:sheetmetals/silver"
+        }
+      },
+      "result": {
+        "item": "rankine:silver_sheetmetal",
+        "count": 2
+      }
+	}

@@ -253,6 +253,12 @@ public class ModRecipes {
         recipes.add(crushingRecipe("antitaenite_crushing",ModBlocks.ANTITAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("taenite_crushing",ModBlocks.TAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+
+        recipes.addAll(groupCrushingRecipe("leaves_crushing","minecraft:leaves",new ItemStack(ModItems.COMPOST, 1),new ItemStack(ModItems.BIOMASS,1), 0.2f));
+        recipes.addAll(groupCrushingRecipe("crops_crushing","forge:crops",new ItemStack(ModItems.BIOMASS,2),new ItemStack(ModItems.COMPOST,1), 0.5f));
+        recipes.addAll(groupCrushingRecipe("saplings_crushing","minecraft:saplings",new ItemStack(ModItems.BIOMASS,1),new ItemStack(ModItems.COMPOST,1), 0.3f));
+
+
         // Example of using tags for recipe (don""t use unless necessary, i.e. large list of blocks)
         // recipes.addAll(groupCrushingRecipe("andesite_crushing","rankine:andesite",new ItemStack(ModItems.FELDSPAR),new ItemStack(ModItems.PYROXENE), 0.2f));
         return recipes;
