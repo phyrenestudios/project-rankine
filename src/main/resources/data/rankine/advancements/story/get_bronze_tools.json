@@ -25,11 +25,33 @@
           }
         ]
       }
+    },
+    "pewter_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pewter_hammer"
+          }
+        ]
+      }
+    },
+    "rose_gold_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_gold_hammer"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "bronze_hammer"
+      "bronze_hammer",
+      "pewter_hammer",
+      "rose_gold_hammer"
     ]
   ]
 }

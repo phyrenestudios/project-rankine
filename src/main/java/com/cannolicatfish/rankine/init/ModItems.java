@@ -383,6 +383,15 @@ public class ModItems {
     public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_SPEAR = add("flint_spear", new ItemSpear(RankineToolMaterials.FLINT, 2, -2.9F, ModEntityTypes.FLINT_SPEAR,new ResourceLocation("rankine:textures/entity/flint_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_KNIFE = add("flint_knife", new ItemKnife(RankineToolMaterials.FLINT, 1, -1.5F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+    public static final Item  PEWTER_SWORD = add("pewter_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F, new PewterAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PEWTER_SHOVEL = add("pewter_shovel", new AlloyShovel(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new PewterAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PEWTER_PICKAXE = add("pewter_pickaxe", new AlloyPickaxe(RankineToolMaterials.BRONZE, 1, -2.8F, new PewterAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PEWTER_AXE = add("pewter_axe", new AlloyAxe(RankineToolMaterials.BRONZE, 4.0F, -3.2F, new PewterAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PEWTER_HAMMER = add("pewter_hammer", new AlloyHammer(RankineToolMaterials.BRONZE,2, -3.2F, new PewterAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PEWTER_HOE = add("pewter_hoe", new AlloyHoe(RankineToolMaterials.BRONZE, 0,-2.0F, new PewterAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  PEWTER_SPEAR = add("pewter_spear", new AlloySpear(RankineToolMaterials.BRONZE, 2, -2.9F, new PewterAlloyUtils(),ModEntityTypes.PEWTER_SPEAR,new ResourceLocation("rankine:textures/entity/pewter_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
     public static final Item  BRONZE_SWORD = add("bronze_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F, new BronzeAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_SHOVEL = add("bronze_shovel", new AlloyShovel(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new BronzeAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  BRONZE_PICKAXE = add("bronze_pickaxe", new AlloyPickaxe(RankineToolMaterials.BRONZE, 1, -2.8F, new BronzeAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));

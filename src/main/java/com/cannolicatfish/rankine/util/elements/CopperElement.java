@@ -46,7 +46,7 @@ public class CopperElement implements ElementInterface {
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        if (x >= 75)
+        if (x >= 20)
         {
             return 1;
         } else {

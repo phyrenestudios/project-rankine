@@ -21,7 +21,7 @@ public class PurpleGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 0;
+        return 32;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PurpleGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getToughnessBonus() {
-        return 0.1f;
+        return -0.1f;
     }
 
     @Override

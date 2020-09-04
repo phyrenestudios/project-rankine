@@ -44,7 +44,7 @@ public class AmalgamAlloyUtils implements AlloyUtils {
 
     @Override
     public float getToughnessBonus() {
-        return 0.95f;
+        return -0.5f;
     }
 
     @Override

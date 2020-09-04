@@ -11,7 +11,7 @@ public class AntimonyElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(3*x/10f);
     }
 
     @Override

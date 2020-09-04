@@ -19,7 +19,7 @@ public class BlueGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 0;
+        return 32;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class BlueGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public float getToughnessBonus() {
-        return 0.05f;
+        return -0.05f;
     }
 
     @Override

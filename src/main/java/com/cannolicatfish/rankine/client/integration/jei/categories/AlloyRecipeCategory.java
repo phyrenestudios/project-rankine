@@ -129,7 +129,13 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
                     recipeLayout.getItemStacks().init(index, true, (index - 18) * 18, 96);
                 }
             }
-            recipeLayout.getItemStacks().set(index, o);
+            if (o.get(0).getItem() == ModItems.CARBON_INGOT)
+            {
+                recipeLayout.getItemStacks().set(index,Arrays.asList(new ItemStack(ModItems.CARBON_INGOT),new ItemStack(ModItems.COKE),new ItemStack(ModItems.GRAPHITE)));
+            } else
+            {
+                recipeLayout.getItemStacks().set(index, o);
+            }
             index++;
 
         }

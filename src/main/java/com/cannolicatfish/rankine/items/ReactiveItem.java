@@ -38,15 +38,15 @@ public class ReactiveItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (radius <= 1f)
         {
-            tooltip.add(new StringTextComponent("Warning! Reactive with water!"));
+            tooltip.add(new StringTextComponent("Warning! Reactive with water!").mergeStyle(TextFormatting.GRAY));
         }
         else if (radius <= 2f)
         {
-            tooltip.add(new StringTextComponent("Warning! Highly reactive with water!"));
+            tooltip.add(new StringTextComponent("Warning! Highly reactive with water!").mergeStyle(TextFormatting.GRAY));
         }
         else if (radius > 2f)
         {
-            tooltip.add(new StringTextComponent("Warning! Exercise caution near water with this item!"));
+            tooltip.add(new StringTextComponent("Warning! Exercise caution near water with this item!").mergeStyle(TextFormatting.GRAY));
         }
     }
 
