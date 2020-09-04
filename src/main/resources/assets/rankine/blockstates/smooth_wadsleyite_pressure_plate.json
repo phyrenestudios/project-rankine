@@ -1,6 +1,0 @@
-{
-      "variants": {
-        "powered=false": { "model": "rankine:block/smooth_wadsleyite_pressure_plate" },
-        "powered=true": { "model": "rankine:block/smooth_wadsleyite_pressure_plate_down" }
-      }
-    }

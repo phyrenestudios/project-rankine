@@ -35,7 +35,7 @@ public class GlassCutterItem extends ToolItem {
     @Override
     public boolean canHarvestBlock(BlockState blockIn) {
         int i = this.getTier().getHarvestLevel();
-        if (blockIn.getBlock().getTags().contains(new ResourceLocation("forge:glass"))) {
+        if (blockIn.getBlock().getTags().contains(new ResourceLocation("rankine:glass_cutter"))) {
             return i >= blockIn.getHarvestLevel();
         }
         Material material = blockIn.getMaterial();
@@ -45,7 +45,7 @@ public class GlassCutterItem extends ToolItem {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
-        return state.getBlock().getTags().contains(new ResourceLocation("forge:glass")) ? this.efficiency : 0.5F;
+        return state.getBlock().getTags().contains(new ResourceLocation("rankine:glass_cutter")) ? this.efficiency : 0.4F;
     }
 
     @Nonnull

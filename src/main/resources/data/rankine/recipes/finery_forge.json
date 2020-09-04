@@ -16,7 +16,7 @@
       "item": "minecraft:piston"
     },
     "s": {
-      "tag": "forge:sheetmetals"
+      "tag": "forge:functional_sheetmetals"
     }
   },
   "result": {

@@ -181,8 +181,6 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NETHERITE_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NICKEL_SUPERALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
-        //    RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_BLUE_FOXFIRE, ReactiveItemRenderer::new);
-       //     RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.JAR_GREEN_FOXFIRE, ReactiveItemRenderer::new);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PERIDOT_MANTLE_GOLEM,PeridotMantleGolemRenderer.instance);

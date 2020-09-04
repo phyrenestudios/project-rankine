@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "# #",
+		"# #",
+		"# #"
+      ],
+      "key": {
+        "#": {
+          "tag": "forge:sheetmetals/lead"
+        }
+      },
+      "result": {
+        "item": "rankine:lead_sheetmetal",
+        "count": 2
+      }
+	}

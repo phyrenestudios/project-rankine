@@ -21,7 +21,7 @@ public class UnagedCheeseBlock extends Block {
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
        super.tick(state, worldIn, pos, rand);
        World world = worldIn.getWorld();
-        if (rand.nextFloat() < 0.01) {
+        if (rand.nextFloat() < 0.02) {
             this.ageCheese(state, world, pos);
         }
     }

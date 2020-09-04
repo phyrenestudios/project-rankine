@@ -374,7 +374,7 @@ public class ModItems {
 
 
 
-//RANKINE TOOLS CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//RANKINE MISC CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //NORMAL TOOLS
     public static final Item  STONE_HAMMER = add("stone_hammer", new ItemHammer(2, -3.2F, RankineToolMaterials.FLINT, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -548,16 +548,17 @@ public class ModItems {
     public static final Item SOLAR_FLARE = add("solar_flare_spawn_egg", new SpawnEggItem(ModEntityTypes.SOLAR_FLARE,0xFFD724, 0xFF9F14,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item SHROUDED_KING = add("shrouded_king_spawn_egg", new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item JAR_BLUE_FOXFIRE = add("jar_blue_foxfire", new BlueFoxfireJarItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item JAR_GREEN_FOXFIRE = add("jar_green_foxfire", new GreenFoxfireJarItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item FOUR_LEAFED_CLOVER = add("four_leafed_clover", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item CEDAR_BARK = add("cedar_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item EASTERN_HEMLOCK_BARK = add("eastern_hemlock_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.HEMLOCK_BARK)));
     public static final Item BIRCH_BARK = add("birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item YELLOW_BIRCH_BARK = add("yellow_birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 100));
+    public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PUMICE_SOAP = add("pumice_soap", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),50));
+    public static final Item COMPOST = add("compost", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
 
     public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));

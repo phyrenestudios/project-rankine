@@ -5,12 +5,16 @@
     "#forge:sheetmetals/tin",
     "#forge:sheetmetals/aluminum",
     "#forge:sheetmetals/gold",
+    "#forge:sheetmetals/tungsten",
+    "#forge:sheetmetals/lead",
+    "#forge:sheetmetals/silver",
     "#forge:sheetmetals/titanium",
     "#forge:sheetmetals/nickel",
     "#forge:sheetmetals/platinum",
     "#forge:sheetmetals/bronze",
     "#forge:sheetmetals/brass",
     "#forge:sheetmetals/wrought_iron",
-    "#forge:sheetmetals/steel"
+    "#forge:sheetmetals/steel",
+    "#forge:sheetmetals/stainless_steel"
   ]
 }

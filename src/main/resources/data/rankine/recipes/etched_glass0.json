@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:etched_glass2"
+    }
+  ],
+  "result": {
+    "item": "rankine:etched_glass0",
+    "count": 1
+  }
+}

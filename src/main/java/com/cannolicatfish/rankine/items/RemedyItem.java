@@ -11,6 +11,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
@@ -29,13 +30,13 @@ public class RemedyItem extends Item {
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         PlayerEntity playerentity = entityLiving instanceof PlayerEntity ? (PlayerEntity)entityLiving : null;
 
-        if (!worldIn.isRemote && playerentity != null) {
+        if (!worldIn.isRemote) {
             if (stack.getItem() == ModItems.BISMUTH_REMEDY) {
                 entityLiving.removePotionEffect(Effects.NAUSEA);
             }
             if (stack.getItem() == ModItems.CEDAR_REMEDY) {
                 entityLiving.curePotionEffects(stack);
-                entityLiving.addPotionEffect(new EffectInstance(Effects.NAUSEA, 20 * 20, 0));
+                //entityLiving.addPotionEffect(new EffectInstance(Effects.NAUSEA, 20 * 20, 0));
             }
 
             //chance for remedies to fail
@@ -105,8 +106,7 @@ public class RemedyItem extends Item {
      * {@link #onItemUse}.
      */
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        playerIn.setActiveHand(handIn);
-        return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
+        return DrinkHelper.startDrinking(worldIn, playerIn, handIn);
     }
 
 }

@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import net.minecraft.block.Block;
-import net.minecraft.block.GlassBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -88,6 +87,11 @@ public class ClientProxy implements IProxy {
                 ModBlocks.WOLFRAMITE_ORE,
                 ModBlocks.VANADINITE_ORE,
                 ModBlocks.GREENOCKITE_ORE,
+                ModBlocks.LEAD_GLASS,
+                ModBlocks.ETCHED_GLASS0,
+                ModBlocks.ETCHED_GLASS1,
+                ModBlocks.ETCHED_GLASS2,
+
                 ModBlocks.CEDAR_SAPLING,
                 ModBlocks.JUNIPER_SAPLING,
                 ModBlocks.COCONUT_PALM_SAPLING,
@@ -96,6 +100,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.MAGNOLIA_SAPLING,
                 ModBlocks.EASTERN_HEMLOCK_SAPLING,
                 ModBlocks.YELLOW_BIRCH_SAPLING,
+                ModBlocks.BLACK_BIRCH_SAPLING,
 
                 ModBlocks.CEDAR_TRAPDOOR,
                 ModBlocks.COCONUT_PALM_TRAPDOOR,
@@ -138,7 +143,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.DUCKWEED,
                 ModBlocks.ELDERBERRY_BUSH,
                 ModBlocks.SNOWBERRY_BUSH,
-                ModBlocks.BLUE_FOXFIRE,
+                ModBlocks.PINK_FOXFIRE,
+                ModBlocks.YELLOW_FOXFIRE,
                 ModBlocks.BLUEBERRY_BUSH,
                 ModBlocks.BLACKBERRY_BUSH,
                 ModBlocks.RASPBERRY_BUSH,

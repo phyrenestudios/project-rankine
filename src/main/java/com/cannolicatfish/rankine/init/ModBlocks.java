@@ -25,6 +25,7 @@ import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
@@ -395,51 +396,6 @@ public class ModBlocks {
     public static final Block PEROVSKITE_BUTTON = add("perovskite_button", new RankineStoneButton(), BLOCKS);
     public static final Block PUMICE_BUTTON = add("pumice_button", new RankineStoneButton(), BLOCKS);
     public static final Block SCORIA_BUTTON = add("scoria_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_GRANITE_BUTTON = add("smooth_granite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_DIORITE_BUTTON = add("smooth_diorite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_ANDESITE_BUTTON = add("smooth_andesite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_LIMESTONE_BUTTON = add("smooth_limestone_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_SHALE_BUTTON = add("smooth_shale_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_ANORTHOSITE_BUTTON = add("smooth_anorthosite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_IRONSTONE_BUTTON = add("smooth_ironstone_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_BASALT_BUTTON = add("smooth_basalt_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_RHYOLITE_BUTTON = add("smooth_rhyolite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_MARBLE_BUTTON = add("smooth_marble_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_GNEISS_BUTTON = add("smooth_gneiss_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_PERIDOTITE_BUTTON = add("smooth_peridotite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_RINGWOODITE_BUTTON = add("smooth_ringwoodite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_WADSLEYITE_BUTTON = add("smooth_wadsleyite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_BRIDGMANITE_BUTTON = add("smooth_bridgmanite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_KOMATIITE_BUTTON = add("smooth_komatiite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_KIMBERLITE_BUTTON = add("smooth_kimberlite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_FERROPERICLASE_BUTTON = add("smooth_ferropericlase_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_PEROVSKITE_BUTTON = add("smooth_perovskite_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_PUMICE_BUTTON = add("smooth_pumice_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SMOOTH_SCORIA_BUTTON = add("smooth_scoria_button", new RankineStoneButton(), BLOCKS);
-    public static final Block RED_GRANITE_BRICKS_BUTTON = add("red_granite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block QUARTZ_DIORITE_BRICKS_BUTTON = add("quartz_diorite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block GRAY_ANDESITE_BRICKS_BUTTON = add("gray_andesite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block GRANITE_BRICKS_BUTTON = add("granite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block DIORITE_BRICKS_BUTTON = add("diorite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block ANDESITE_BRICKS_BUTTON = add("andesite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block LIMESTONE_BRICKS_BUTTON = add("limestone_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SHALE_BRICKS_BUTTON = add("shale_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block ANORTHOSITE_BRICKS_BUTTON = add("anorthosite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block IRONSTONE_BRICKS_BUTTON = add("ironstone_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block BASALT_BRICKS_BUTTON = add("basalt_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block RHYOLITE_BRICKS_BUTTON = add("rhyolite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block MARBLE_BRICKS_BUTTON = add("marble_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block GNEISS_BRICKS_BUTTON = add("gneiss_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block PERIDOTITE_BRICKS_BUTTON = add("peridotite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block RINGWOODITE_BRICKS_BUTTON = add("ringwoodite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block WADSLEYITE_BRICKS_BUTTON = add("wadsleyite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block BRIDGMANITE_BRICKS_BUTTON = add("bridgmanite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block KOMATIITE_BRICKS_BUTTON = add("komatiite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block KIMBERLITE_BRICKS_BUTTON = add("kimberlite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block FERROPERICLASE_BRICKS_BUTTON = add("ferropericlase_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block PEROVSKITE_BRICKS_BUTTON = add("perovskite_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block PUMICE_BRICKS_BUTTON = add("pumice_bricks_button", new RankineStoneButton(), BLOCKS);
-    public static final Block SCORIA_BRICKS_BUTTON = add("scoria_bricks_button", new RankineStoneButton(), BLOCKS);
 
     public static final Block GRANITE_PRESSURE_PLATE = add("granite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block DIORITE_PRESSURE_PLATE = add("diorite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
@@ -462,27 +418,6 @@ public class ModBlocks {
     public static final Block PEROVSKITE_PRESSURE_PLATE = add("perovskite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block PUMICE_PRESSURE_PLATE = add("pumice_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block SCORIA_PRESSURE_PLATE = add("scoria_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_GRANITE_PRESSURE_PLATE = add("smooth_granite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_DIORITE_PRESSURE_PLATE = add("smooth_diorite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_ANDESITE_PRESSURE_PLATE = add("smooth_andesite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_LIMESTONE_PRESSURE_PLATE = add("smooth_limestone_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_SHALE_PRESSURE_PLATE = add("smooth_shale_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_ANORTHOSITE_PRESSURE_PLATE = add("smooth_anorthosite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_IRONSTONE_PRESSURE_PLATE = add("smooth_ironstone_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_BASALT_PRESSURE_PLATE = add("smooth_basalt_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_RHYOLITE_PRESSURE_PLATE = add("smooth_rhyolite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_MARBLE_PRESSURE_PLATE = add("smooth_marble_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_GNEISS_PRESSURE_PLATE = add("smooth_gneiss_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_PERIDOTITE_PRESSURE_PLATE = add("smooth_peridotite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_RINGWOODITE_PRESSURE_PLATE = add("smooth_ringwoodite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_WADSLEYITE_PRESSURE_PLATE = add("smooth_wadsleyite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_BRIDGMANITE_PRESSURE_PLATE = add("smooth_bridgmanite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_KOMATIITE_PRESSURE_PLATE = add("smooth_komatiite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_KIMBERLITE_PRESSURE_PLATE = add("smooth_kimberlite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_FERROPERICLASE_PRESSURE_PLATE = add("smooth_ferropericlase_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_PEROVSKITE_PRESSURE_PLATE = add("smooth_perovskite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_PUMICE_PRESSURE_PLATE = add("smooth_pumice_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block SMOOTH_SCORIA_PRESSURE_PLATE = add("smooth_scoria_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block RED_GRANITE_BRICKS_PRESSURE_PLATE = add("red_granite_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block QUARTZ_DIORITE_BRICKS_PRESSURE_PLATE = add("quartz_diorite_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block GRAY_ANDESITE_BRICKS_PRESSURE_PLATE = add("gray_andesite_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
@@ -514,9 +449,13 @@ public class ModBlocks {
     public static final Block ALLUVIUM = add("alluvium", new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
     public static final Block BLACK_SAND = add("black_sand", new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
     //public static final Block MUDDY_DIRT = add("muddy_dirt", new  Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
-    //public static final Block MUDDY_GRASS = add("muddy_grass", new MuddyGrassBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
     public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), BLOCKS);
-    //public static final Block VEGETATED_PERMAFROST = add("vegetated_permafrost", new VegetatedPermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
+    public static final Block LEAD_GLASS = add("lead_glass", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)), BLOCKS);
+    public static final Block ETCHED_GLASS0 = add("etched_glass0", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
+    public static final Block ETCHED_GLASS1 = add("etched_glass1", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
+    public static final Block ETCHED_GLASS2 = add("etched_glass2", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
+
+
     public static final Block QUICKLIME_BLOCK = add("quicklime_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block MAGNESITE_BLOCK = add("magnesite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block MAGNESIA_BLOCK = add("magnesia_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
@@ -547,6 +486,7 @@ public class ModBlocks {
     public static final Block MAGNOLIA_LOG = add("magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_LOG = add("eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block YELLOW_BIRCH_LOG = add("yellow_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block BLACK_BIRCH_LOG = add("black_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -556,6 +496,7 @@ public class ModBlocks {
     public static final Block MAGNOLIA_WOOD = add("magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_WOOD = add("eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block YELLOW_BIRCH_WOOD = add("yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block BLACK_BIRCH_WOOD = add("black_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block STRIPPED_CEDAR_LOG = add("stripped_cedar_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_LOG = add("stripped_pinyon_pine_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -564,6 +505,8 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_LOG = add("stripped_eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_YELLOW_BIRCH_LOG = add("stripped_yellow_birch_log", new RotatedPillarBlock(DEF_WOOD));
+    public static final Block STRIPPED_BLACK_BIRCH_LOG = add("stripped_black_birch_log", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -572,6 +515,8 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_WOOD = add("stripped_eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_YELLOW_BIRCH_WOOD = add("stripped_yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD));
+    public static final Block STRIPPED_BLACK_BIRCH_WOOD = add("stripped_black_birch_wood", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(DEF_WOOD), BLOCKS, 300);
@@ -686,6 +631,7 @@ public class ModBlocks {
     public static final Block MAGNOLIA_SAPLING = add("magnolia_sapling", new RankineSapling(new MagnoliaTree(), sapling, 3), BLOCKS);
     public static final Block EASTERN_HEMLOCK_SAPLING = add("eastern_hemlock_sapling", new RankineSapling(new EasternHemlockTree(), sapling, 3), BLOCKS);
     public static final Block YELLOW_BIRCH_SAPLING = add("yellow_birch_sapling", new RankineSapling(new YellowBirchTree(), sapling, 3), BLOCKS);
+    public static final Block BLACK_BIRCH_SAPLING = add("black_birch_sapling", new RankineSapling(new BlackBirchTree(), sapling, 3), BLOCKS);
 
     public static final FlowerPotBlock POTTED_CEDAR_SAPLING = add("potted_cedar_sapling", new FlowerPotBlock(null, () -> CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_PINYON_PINE_SAPLING = add("potted_pinyon_pine_sapling", new FlowerPotBlock(null, () -> PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -695,6 +641,8 @@ public class ModBlocks {
     public static final FlowerPotBlock POTTED_MAGNOLIA_SAPLING = add("potted_magnolia_sapling", new FlowerPotBlock(null, () -> MAGNOLIA_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_EASTERN_HEMLOCK_SAPLING = add("potted_eastern_hemlock_sapling", new FlowerPotBlock(null, () -> EASTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_YELLOW_BIRCH_SAPLING = add("potted_yellow_birch_sapling", new FlowerPotBlock(null, () -> YELLOW_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_BLACK_BIRCH_SAPLING = add("potted_black_birch_sapling", new FlowerPotBlock(null, () -> BLACK_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+
 
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -919,16 +867,20 @@ public class ModBlocks {
     public static final Block NITER = add("niter", new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
-    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
+    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block SILVER_SHEETMETAL = add("silver_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_STONE.harvestLevel(0)), METALLURGY);
+    public static final Block TUNGSTEN_SHEETMETAL = add("tungsten_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block LEAD_SHEETMETAL = add("lead_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     public static final Block CREEPER_BLOCK = add("creeper_block", new CreepingBlock(1.0F,Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
     public static final BlastingPowderBlock BLASTING_POWDER = add("blasting_powder", new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
@@ -963,6 +915,8 @@ public class ModBlocks {
     public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC, DuckweedItem::new);
     public static final FoxfireBlock BLUE_FOXFIRE = add("blue_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
     public static final FoxfireBlock GREEN_FOXFIRE = add("green_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
+    public static final FoxfireBlock PINK_FOXFIRE = add("pink_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
+    public static final FoxfireBlock YELLOW_FOXFIRE = add("yellow_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
 
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
