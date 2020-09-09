@@ -1436,6 +1436,9 @@
   "block.rankine.opal_ore": "Opal Ore",
   "block.rankine.fluorite_ore": "Fluorite Ore",
   "block.rankine.uraninite_ore": "Uraninite Ore",
+  "block.rankine.xenotime_ore": "Xenotime Ore",
+  "block.rankine.stibnite_ore": "Stibnite Ore",
+
 
   "item.rankine.molybdenite": "Molybdenite",
   "item.rankine.pyrolusite": "Pyrolusite",
@@ -1475,7 +1478,9 @@
   "item.rankine.olivine": "Olivine",
   "item.rankine.peridot": "Chrysolite",
   "item.rankine.pyroxene": "Pyroxene",
-
+  "item.rankine.barite": "Barite",
+  "item.rankine.xenotime": "Xenotime",
+  "item.rankine.stibnite": "Stibnite",
 
 
   "fluid.rankine.liquid_mercury": "Liquid Mercury",

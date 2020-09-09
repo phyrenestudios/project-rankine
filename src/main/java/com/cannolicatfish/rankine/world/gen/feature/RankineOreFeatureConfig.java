@@ -103,12 +103,20 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return block == ModBlocks.PERIDOTITE;
             }
         }),
+        END("end", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block == Blocks.END_STONE;
+            }
+        }),
         NETHER("nether", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.NETHERRACK || block == ModBlocks.PEROVSKITE || block == ModBlocks.RINGWOODITE || block == ModBlocks.BRIDGMANITE || block == ModBlocks.FERROPERICLASE || block == ModBlocks.WADSLEYITE;
+                return block == Blocks.NETHERRACK || block == ModBlocks.KOMATIITE || block == ModBlocks.PEROVSKITE || block == ModBlocks.RINGWOODITE || block == ModBlocks.BRIDGMANITE || block == ModBlocks.FERROPERICLASE || block == ModBlocks.WADSLEYITE;
             }
         });;
 

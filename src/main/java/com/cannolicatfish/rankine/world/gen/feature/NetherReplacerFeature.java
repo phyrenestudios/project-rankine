@@ -37,6 +37,7 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
+
                 if (worldIn.getBiome(pos) == Biomes.WARPED_FOREST) {
                     for (int y = 0; y <= 64; ++y) {
                         if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
