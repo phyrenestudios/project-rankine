@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
@@ -91,6 +92,19 @@ public class PistonCrusher extends Block {
             double d6 = rand.nextDouble() * 6.0D / 16.0D;
             double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getZOffset() * 0.52D : d4;
             worldIn.addParticle(ParticleTypes.POOF, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.isIn(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+            if (tileentity instanceof PistonCrusherTile) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (PistonCrusherTile)tileentity);
+                //((PistonCrusherTile)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
+                worldIn.updateComparatorOutputLevel(pos, this);
+            }
+
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
         }
     }
 

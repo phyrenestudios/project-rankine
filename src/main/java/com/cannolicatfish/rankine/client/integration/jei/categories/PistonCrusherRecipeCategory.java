@@ -74,7 +74,7 @@ public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrush
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();
-        String s = recipe.getSecondaryChance() * 100 + "%";
+        String s = Math.round(recipe.getSecondaryChance() * 100) + "%";
         font.drawString(ms, s, (float)(126 - font.getStringWidth(s) / 2), 58, 0x000000);
     }
 

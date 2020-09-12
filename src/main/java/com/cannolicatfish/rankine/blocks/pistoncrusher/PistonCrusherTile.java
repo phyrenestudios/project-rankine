@@ -1,11 +1,17 @@
 package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
+import com.cannolicatfish.rankine.init.ModRecipes;
+import com.cannolicatfish.rankine.items.ItemTemplate;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
@@ -16,6 +22,8 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -37,13 +45,14 @@ import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.ModBlocks.PISTON_CRUSHER_TILE;
 
-public class PistonCrusherTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
-
-    private LazyOptional<IItemHandlerModifiable> handler = LazyOptional.of(this::createHandler);
-    private IItemHandlerModifiable handler2 = handler.orElseGet(this::createHandler);
+public class PistonCrusherTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
+    private static final int[] SLOTS_UP = new int[]{0};
+    private static final int[] SLOTS_DOWN = new int[]{2,3};
+    private static final int[] SLOTS_HORIZONTAL = new int[]{1};
     public PistonCrusherTile() {
         super(PISTON_CRUSHER_TILE);
     }
+    protected NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
@@ -62,8 +71,6 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                     return PistonCrusherTile.this.cookTime;
                 case 3:
                     return PistonCrusherTile.this.cookTimeTotal;
-                case 4:
-                    return PistonCrusherTile.this.redstonePower;
                 default:
                     return 0;
             }
@@ -85,15 +92,32 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                 case 3:
                     PistonCrusherTile.this.cookTimeTotal = value;
                     break;
-                case 4:
-                    PistonCrusherTile.this.redstonePower = value;
             }
         }
 
         public int size() {
-            return 5;
+            return 4;
         }
     };
+
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
+        this.burnTime = nbt.getInt("BurnTime");
+        this.cookTime = nbt.getInt("CookTime");
+        this.cookTimeTotal = nbt.getInt("CookTimeTotal");
+        this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1));
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        compound.putInt("BurnTime", this.burnTime);
+        compound.putInt("CookTime", this.cookTime);
+        compound.putInt("CookTimeTotal", this.cookTimeTotal);
+        ItemStackHelper.saveAllItems(compound, this.items);
+
+        return compound;
+    }
 
     public void tick() {
         boolean flag = this.isBurning();
@@ -103,22 +127,22 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
         }
 
         if (!this.world.isRemote) {
-            ItemStack input = this.handler2.getStackInSlot(0);
-            ItemStack fuel = this.handler2.getStackInSlot(1);
-            if ((this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty()) && redstoneCheck()) {
+            ItemStack input = this.items.get(0);
+            ItemStack fuel = this.items.get(1);
+            if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty())) {
                 if (!this.isBurning() && this.canSmelt()) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
                     if (this.isBurning()) {
                         flag1 = true;
                         if (fuel.hasContainerItem())
-                            this.handler2.setStackInSlot(1, fuel.getContainerItem());
+                            this.items.set(1, fuel.getContainerItem());
                         else
                         if (!fuel.isEmpty()) {
                             Item item = fuel.getItem();
                             fuel.shrink(1);
                             if (fuel.isEmpty()) {
-                                this.handler2.setStackInSlot(1, fuel.getContainerItem());
+                                this.items.set(1, fuel.getContainerItem());
                             }
                         }
                     }
@@ -132,28 +156,28 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                         ItemStack smelting = new ItemStack(PistonCrusherRecipes.getInstance().getPrimaryResult(input).getKey().getItem(), smeltingamt);
 
 
-                        if (this.handler2.getStackInSlot(2).getCount() > 0) {
-                            this.handler2.getStackInSlot(2).grow(smeltingamt);
-                        } if (this.handler2.getStackInSlot(2).getCount() <= 0) {
-                            this.handler2.insertItem(2, smelting, false);
+                        if (this.items.get(2).getCount() > 0) {
+                            this.items.get(2).grow(smeltingamt);
+                        } if (this.items.get(2).getCount() <= 0) {
+                            this.items.set(2, smelting);
                         }
                         Random random = new Random();
                         if (random.nextFloat() < output1chance)
                         {
-                            if (this.handler2.getStackInSlot(2).getCount() > 0) {
-                                this.handler2.getStackInSlot(2).grow(1);
-                            } if (this.handler2.getStackInSlot(2).getCount() <= 0) {
-                            this.handler2.insertItem(2, smelting, false);
+                            if (this.items.get(2).getCount() > 0) {
+                                this.items.get(2).grow(1);
+                            } if (this.items.get(2).getCount() <= 0) {
+                            this.items.set(2, smelting);
                         }
                         }
                         float output2chance = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getValue();
                         if (random.nextFloat() < output2chance)
                         {
                             ItemStack smelting2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getKey();
-                            if (this.handler2.getStackInSlot(3).getCount() > 0) {
-                                this.handler2.getStackInSlot(3).grow(1);
+                            if (this.items.get(3).getCount() > 0) {
+                                this.items.get(3).grow(1);
                             } else {
-                                this.handler2.insertItem(3, smelting2, false);
+                                this.items.set(3, smelting2);
                             }
                         }
                         input.shrink(1);
@@ -163,7 +187,7 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
                 } else {
                     this.cookTime = 0;
                 }
-            } else if ((!this.isBurning() || !redstoneCheck()) && this.cookTime > 0) {
+            } else if ((!this.isBurning()) && this.cookTime > 0) {
                 this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
 
@@ -177,202 +201,6 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
             this.markDirty();
         }
 
-    }
-    /*
-    @Override
-    public void tick(){
-        if (!this.world.isRemote) {
-            BlockState blockState = world.getBlockState(pos);
-            if (this.isBurning()) {
-                --this.burnTime;
-                System.out.println(this.burnTime);
-                if (redstoneCheck(blockState))
-                {
-                    world.setBlockState(pos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(true)), 11);
-                } else
-                {
-                    world.setBlockState(pos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(false)), 11);
-                }
-            } else {
-                world.setBlockState(pos, blockState.with(BlockStateProperties.LIT, Boolean.valueOf(false)), 11);
-            }
-            ItemStack input = this.handler2.getStackInSlot(0);
-            ItemStack fuel = this.handler2.getStackInSlot(1);
-            if (!this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty()) {
-                if (!this.isBurning() && this.canSmelt()) {
-                    this.burnTime = ForgeHooks.getBurnTime(fuel);
-                    this.currentBurnTime = burnTime;
-                    //System.out.println("lad");
-
-                    if (this.isBurning() && !fuel.isEmpty()) {
-                        Item item = fuel.getItem();
-                        fuel.shrink(1);
-
-                        if (fuel.isEmpty()) {
-                            ItemStack item1 = item.getContainerItem(fuel);
-                            this.handler2.setStackInSlot(1, item1);
-                        }
-                    }
-                }
-            }
-            if (this.isBurning() && cookTime > 0 && redstoneCheck(blockState)) {
-                cookTime++;
-                if (cookTime >= cookTimeTotal) {
-                    if (this.handler2.getStackInSlot(2).getCount() > 0) {
-                        this.handler2.getStackInSlot(2).grow(smeltingamt);
-                    } if (this.handler2.getStackInSlot(2).getCount() <= 0) {
-                        this.handler2.insertItem(2, smelting, false);
-                    }
-                    Random random = new Random();
-                    if (random.nextFloat() < output1chance)
-                    {
-                        if (this.handler2.getStackInSlot(2).getCount() > 0) {
-                            this.handler2.getStackInSlot(2).grow(1);
-                        } if (this.handler2.getStackInSlot(2).getCount() <= 0) {
-                        this.handler2.insertItem(2, smelting, false);
-                    }
-                    }
-                    random = new Random();
-                    if (random.nextFloat() < output2chance)
-                    {
-                        smelting2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getKey();
-                        if (this.handler2.getStackInSlot(3).getCount() > 0) {
-                            this.handler2.getStackInSlot(3).grow(smeltingamt);
-                        } else {
-                        this.handler2.insertItem(3, smelting2, false);
-                        }
-                    }
-
-
-                    smelting = ItemStack.EMPTY;
-                    smelting2 = ItemStack.EMPTY;
-                    hasProduct = false;
-                    smeltingamt = 1;
-                    output2chance = 1f;
-                    cookTime = 0;
-                    return;
-                }
-            } else {
-                if (this.canSmelt() && this.isBurning()) {
-                    AbstractMap.SimpleEntry<ItemStack, Float[]> output1 = PistonCrusherRecipes.getInstance().getPrimaryResult(input);
-                    AbstractMap.SimpleEntry<ItemStack, Float> output2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input);
-                    smelting2 = output2.getKey();
-                    output2chance = output2.getValue();
-
-                    if (!output1.getKey().isEmpty()) {
-                        smelting = output1.getKey();
-                        smeltingamt = output1.getValue()[0].intValue();
-                        output1chance = output1.getValue()[1];
-                        cookTime++;
-
-                        //write code that: returns shrink amount for inputs and smeltingamt
-                        if (!hasProduct)
-                        {
-                            input.shrink(1);
-                        }
-                        hasProduct = true;
-                        this.handler2.setStackInSlot(0, input);
-                    }
-                }
-            }
-
-        }
-    }
-
-     */
-
-    @Override
-    public void read(BlockState state, CompoundNBT tag) {
-        CompoundNBT invTag = tag.getCompound("inv");
-        handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
-        super.read(state,tag);
-        this.burnTime = tag.getInt("BurnTime");
-        this.cookTime = tag.getInt("CookTime");
-        this.cookTimeTotal = tag.getInt("CookTimeTotal");
-        this.currentBurnTime = ForgeHooks.getBurnTime(this.handler2.getStackInSlot(1));
-    }
-
-    @Override
-    public CompoundNBT write(CompoundNBT tag) {
-        handler.ifPresent(h -> {
-            CompoundNBT compound = ((INBTSerializable<CompoundNBT>) h).serializeNBT();
-            tag.putInt("BurnTime", (short)this.burnTime);
-            tag.putInt("CookTime", (short)this.cookTime);
-            tag.putInt("CookTimeTotal", (short)this.cookTimeTotal);
-            tag.put("inv", compound);
-        });
-
-        return super.write(tag);
-    }
-
-    public boolean redstoneCheck()
-    {
-        int x = world.getRedstonePowerFromNeighbors(pos);
-        if (x > 0)
-        {
-            redstonePower = 1;
-            return true;
-        } else
-        {
-            redstonePower = 0;
-            return false;
-        }
-    }
-
-
-    private IItemHandlerModifiable createHandler() {
-        return new ItemStackHandler(4) {
-
-            @Override
-            protected void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                markDirty();
-            }
-
-            @Override
-            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if (slot == 0)
-                {
-                    return true;
-                }
-                if (slot == 1 && isFuel(stack))
-                {
-                    return true;
-                }
-                if (slot == 2)
-                {
-                    return PistonCrusherRecipes.getInstance().getPrimaryResult(getStackInSlot(0)).getKey().getItem() == stack.getItem();
-
-                }
-                if (slot == 3)
-                {
-                    return PistonCrusherRecipes.getInstance().getSecondaryResult(getStackInSlot(0)).getKey().getItem() == stack.getItem();
-                }
-                return false;
-            }
-
-            @Nonnull
-            @Override
-            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (!isItemValid(slot,stack))
-                {
-                    return stack;
-                }
-                return super.insertItem(slot, stack, simulate);
-            }
-
-            @Override
-            @Nonnull
-            public ItemStack getStackInSlot(int slot)
-            {
-                validateSlotIndex(slot);
-                return this.stacks.get(slot);
-            }
-        };
-    }
-
-    protected static boolean isFuel(ItemStack p_217058_1_) {
-        return AbstractFurnaceTileEntity.isFuel(p_217058_1_);
     }
 
     public boolean isBurning()
@@ -388,14 +216,14 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
 
     private boolean canSmelt()
     {
-        if(((ItemStack)this.handler2.getStackInSlot(0)).isEmpty())
+        if((this.items.get(0)).isEmpty())
         {
             return false;
         }
         else
         {
-            AbstractMap.SimpleEntry<ItemStack, Float[]> preresult = PistonCrusherRecipes.getInstance().getPrimaryResult((ItemStack)this.handler2.getStackInSlot(0));
-            AbstractMap.SimpleEntry<ItemStack, Float> preresult2 = PistonCrusherRecipes.getInstance().getSecondaryResult(((ItemStack)this.handler2.getStackInSlot(0)));
+            AbstractMap.SimpleEntry<ItemStack, Float[]> preresult = PistonCrusherRecipes.getInstance().getPrimaryResult(this.items.get(0));
+            AbstractMap.SimpleEntry<ItemStack, Float> preresult2 = PistonCrusherRecipes.getInstance().getSecondaryResult((this.items.get(0)));
             ItemStack result = preresult.getKey();
             ItemStack result2 = preresult2.getKey();
             if(result.isEmpty())
@@ -408,8 +236,8 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
             }
             else
             {
-                ItemStack output = (ItemStack)this.handler2.getStackInSlot(2);
-                ItemStack output2 = (ItemStack)this.handler2.getStackInSlot(3);
+                ItemStack output = this.items.get(2);
+                ItemStack output2 = this.items.get(3);
                 if(output.isEmpty() && output2.isEmpty()) return true;
 
                 if(!output.isItemEqual(result) && !output2.isItemEqual(result2))
@@ -423,13 +251,27 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
         }
     }
 
-    @Nonnull
+    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
+            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return handler.cast();
+    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
+        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (facing == Direction.UP)
+                return handlers[0].cast();
+            else if (facing == Direction.DOWN)
+                return handlers[1].cast();
+            else
+                return handlers[2].cast();
         }
-        return super.getCapability(cap, side);
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public void remove() {
+        super.remove();
+        for (int x = 0; x < handlers.length; x++)
+            handlers[x].invalidate();
     }
 
     @Override
@@ -440,8 +282,104 @@ public class PistonCrusherTile extends TileEntity implements ITickableTileEntity
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new PistonCrusherContainer(i, world, pos, playerInventory, playerEntity, this.furnaceData);
+        return new PistonCrusherContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        if (side == Direction.DOWN) {
+            return SLOTS_DOWN;
+        } else {
+            return side == Direction.UP ? SLOTS_UP : SLOTS_HORIZONTAL;
+        }
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.isItemValidForSlot(index, itemStackIn);
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return this.items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for(ItemStack itemstack : this.items) {
+            if (!itemstack.isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index) {
+        return this.items.get(index);
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        return ItemStackHelper.getAndSplit(this.items, index, count);
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        return ItemStackHelper.getAndRemove(this.items, index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        ItemStack itemstack = this.items.get(index);
+        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.items.set(index, stack);
+        if (stack.getCount() > this.getInventoryStackLimit()) {
+            stack.setCount(this.getInventoryStackLimit());
+        }
+
+        if (index == 0 && !flag) {
+            this.cookTimeTotal = 200;
+            this.cookTime = 0;
+            this.markDirty();
+        }
+    }
+
+    @Override
+    public boolean isUsableByPlayer(PlayerEntity player) {
+        if (this.world.getTileEntity(this.pos) != this) {
+            return false;
+        } else {
+            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+        }
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        switch (index)
+        {
+            case 0:
+                return !ModRecipes.getCrushingOutputs(stack).getKey().isEmpty();
+            case 1:
+                return AbstractFurnaceTileEntity.isFuel(stack);
+            case 2:
+                return ItemStack.areItemsEqual(PistonCrusherRecipes.getInstance().getPrimaryResult(getStackInSlot(0)).getKey(), stack);
+            case 3:
+                return ItemStack.areItemsEqual(PistonCrusherRecipes.getInstance().getSecondaryResult(getStackInSlot(0)).getKey(), stack);
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void clear() {
+        this.items.clear();
+    }
 }

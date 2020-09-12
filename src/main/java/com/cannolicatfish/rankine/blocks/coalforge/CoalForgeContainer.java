@@ -6,6 +6,8 @@ import com.cannolicatfish.rankine.items.ItemTemplate;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -27,32 +29,33 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import static com.cannolicatfish.rankine.init.ModBlocks.COAL_FORGE_CONTAINER;
 
 public class CoalForgeContainer extends Container {
+    private final IInventory furnaceInventory;
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
     private final IIntArray data;
 
     public CoalForgeContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new IntArray(5));
+        this(windowId,world,pos,playerInventory,player,new Inventory(5),new IntArray(5));
 
 
 
     }
-    public CoalForgeContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IIntArray furnaceData) {
+    public CoalForgeContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
         super(COAL_FORGE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
+        assertInventorySize(furnaceInventoryIn, 5);
         assertIntArraySize(furnaceData, 5);
         this.playerEntity = player;
         this.data = furnaceData;
+        this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
 
-        tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 39, 37));
-            addSlot(new SlotItemHandler(h, 1, 88,37));
-            addSlot(new SlotItemHandler(h, 2, 146,11));
-            addSlot(new SlotItemHandler(h, 3, 10,37));
-            addSlot(new SlotItemHandler(h, 4, 146,37));
-        });
+        this.addSlot(new Slot(furnaceInventory, 0, 39, 37));
+        this.addSlot(new Slot(furnaceInventory, 1, 88,37));
+        this.addSlot(new Slot(furnaceInventory, 2, 146,11));
+        this.addSlot(new Slot(furnaceInventory, 3, 10,37));
+        this.addSlot(new Slot(furnaceInventory, 4, 146,37));
 
         layoutPlayerInventorySlots(8, 70);
 
@@ -92,7 +95,7 @@ public class CoalForgeContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 4) {
-                if (!this.mergeItemStack(stack, 5, 37, true)) {
+                if (!this.mergeItemStack(stack, 5, 39, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
@@ -114,14 +117,14 @@ public class CoalForgeContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                } else if (index < 30) {
+                    if (!this.mergeItemStack(stack, 30, 39, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 5, 28, false)) {
+                } else if (index < 39 && !this.mergeItemStack(stack, 5, 30, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 5, 37, false)) {
+            } else if (!this.mergeItemStack(stack, 5, 39, false)) {
                 return ItemStack.EMPTY;
             }
 

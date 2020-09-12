@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_finery_forge",
+  "parent": "rankine:story/make_pig_iron",
   "display": {
     "icon": {
       "item": "rankine:wrought_iron_ingot"

@@ -33,7 +33,6 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(ModRecipes.getBeehiveOvenRecipes(), BeehiveOvenRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getCrushingRecipes(),PistonCrusherRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getForgingRecipes(), CoalForgeRecipeCategory.UID);
-        registry.addRecipes(ModRecipes.getFineryRecipes(), FineryForgeRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(ModItems.BRONZE_ALLOY), VanillaTypes.ITEM, "Bronze Alloy can be made in the Alloy Furnace.", "80-90% Copper", "10-20% Tin", "Copper + Tin >= 90%",
                 "Possible additions:", "Al, Mn, Ni, Zn");
         registry.addIngredientInfo(new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY), VanillaTypes.ITEM, "Aluminum Bronze Alloy can be made in the Alloy Furnace.", "74-93% Copper", "4-12% Aluminum", "Copper + Aluminum >= 85%",
@@ -102,7 +101,6 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new BeehiveOvenRecipeCategory(guiHelper));
         registry.addRecipeCategories(new PistonCrusherRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CoalForgeRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new FineryForgeRecipeCategory(guiHelper));
     }
 
     @Override
@@ -113,7 +111,6 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.ZIRCON_BEEHIVE_OVEN_PIT), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.PISTON_CRUSHER), PistonCrusherRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_FORGE), CoalForgeRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(ModBlocks.FINERY_FORGE), FineryForgeRecipeCategory.UID);
     }
 
 }

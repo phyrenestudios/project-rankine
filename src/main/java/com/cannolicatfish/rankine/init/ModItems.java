@@ -523,6 +523,7 @@ public class ModItems {
     public static final Item  SWORD_TEMPLATE = add("sword_template", new ItemTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  AXE_TEMPLATE = add("axe_template", new ItemTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  HAMMER_TEMPLATE = add("hammer_template", new ItemTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_TEMPLATE = add("alloy_template", new AlloyTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final Item  CEDAR_BOAT = add("cedar_boat", new RankineBoatItem(RankineBoatEntity.Type.CEDAR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  COCONUT_PALM_BOAT = add("coconut_palm_boat", new RankineBoatItem(RankineBoatEntity.Type.COCONUT_PALM, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));

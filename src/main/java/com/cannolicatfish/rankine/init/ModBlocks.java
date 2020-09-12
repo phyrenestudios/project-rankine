@@ -13,9 +13,6 @@ import com.cannolicatfish.rankine.blocks.crucible.Crucible;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
@@ -643,6 +640,63 @@ public class ModBlocks {
 
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //ORES
+    public static final RankineOre LIGNITE_ORE = add("lignite_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre SUBBITUMINOUS_ORE = add("subbituminous_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre BITUMINOUS_ORE = add("bituminous_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre ANTHRACITE_ORE = add("anthracite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre MAGNESITE_ORE = add("magnesite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.MAGNESIUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_ALUMINUM_ORE = add("native_aluminum_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre BAUXITE_ORE = add("bauxite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.ALUMINUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_SULFUR_ORE = add("native_sulfur_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre ILMENITE_ORE = add("ilmenite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TITANIUM_NUGGET), METALLURGY);
+    public static final RankineOre VANADINITE_ORE = add("vanadinite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.VANADIUM_INGOT), METALLURGY);
+    public static final RankineOre CHROMITE_ORE = add("chromite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.CHROMIUM_NUGGET), METALLURGY);
+    public static final RankineOre PYROLUSITE_ORE = add("pyrolusite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.MANGANESE_NUGGET), METALLURGY);
+    public static final RankineOre MAGNETITE_ORE = add("magnetite_ore", new RankineOre(DEF_ORE.harvestLevel(2), Items.IRON_NUGGET), METALLURGY);
+    public static final RankineOre PENTLANDITE_ORE = add("pentlandite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.NICKEL_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_COPPER_ORE = add("native_copper_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.COPPER_NUGGET), METALLURGY);
+    public static final RankineOre MALACHITE_ORE = add("malachite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.COPPER_NUGGET), METALLURGY);
+    public static final RankineOre SPHALERITE_ORE = add("sphalerite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.ZINC_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_GALLIUM_ORE = add("native_gallium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_ARSENIC_ORE = add("native_arsenic_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_SELENIUM_ORE = add("native_selenium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre COLUMBITE_ORE = add("columbite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.NIOBIUM_NUGGET), METALLURGY);
+    public static final RankineOre MOLYBDENITE_ORE = add("molybdenite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.MOLYBDENUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_SILVER_ORE = add("native_silver_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre ACANTHITE_ORE = add("acanthite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.SILVER_NUGGET), METALLURGY);
+    public static final RankineOre GREENOCKITE_ORE = add("greenockite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.CADMIUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_INDIUM_ORE = add("native_indium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_TIN_ORE = add("native_tin_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.TIN_NUGGET), METALLURGY);
+    public static final RankineOre CASSITERITE_ORE = add("cassiterite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.TIN_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_TELLURIUM_ORE = add("native_tellurium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre TANTALITE_ORE = add("tantalite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TANTALUM_NUGGET), METALLURGY);
+    public static final RankineOre WOLFRAMITE_ORE = add("wolframite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TITANIUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre NETHER_GOLD_ORE = add("nether_gold_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.LEAD_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre BISMUTHINITE_ORE = add("bismuthinite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.BISMUTH_NUGGET), METALLURGY);
+    public static final RankineOre URANINITE_ORE = add("uraninite_ore", new RankineOre(DEF_ORE.harvestLevel(4)), METALLURGY);
+    public static final RankineOre PLUMBAGO_ORE = add("plumbago_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre MOISSANITE_ORE = add("moissanite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre SPERRYLITE_ORE = add("sperrylite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre LAZURITE_ORE = add("lazurite_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre DIAMOND_ORE = add("diamond_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre EMERALD_ORE = add("emerald_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre OPAL_ORE = add("opal_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre AQUAMARINE_ORE = add("aquamarine_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre QUARTZ_ORE = add("quartz_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre FLUORITE_ORE = add("fluorite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre CINNABAR_ORE = add("cinnabar_ore", new RankineOre(DEF_ORE.harvestLevel(1), Items.REDSTONE), METALLURGY);
+    public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final Block METEORITE = add("meteorite", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block KAMACITE = add("kamacite", new CompositionBlock(0,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block ANTITAENITE = add("antitaenite", new CompositionBlock(1,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
+
     //ELEMENT BLOCKS
     public static final Block HYDROGEN_BLOCK = add("hydrogen_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block HELIUM_BLOCK = add("helium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -888,12 +942,11 @@ public class ModBlocks {
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(0.4f,ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(0.6f,ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(0.5f,ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(0.75f,ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
-    public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final EvaporationTowerBlock EVAPORATION_TOWER = add("evaporation_tower", new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
 
@@ -947,18 +1000,12 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:coal_forge")
     public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
-
-
-    @ObjectHolder("rankine:finery_forge")
-    public static ContainerType<FineryForgeContainer> FINERY_FORGE_CONTAINER;
-
-    @ObjectHolder("rankine:finery_forge")
-    public static TileEntityType<FineryForgeTile> FINERY_FORGE_TILE;
-
+  
 
     @ObjectHolder("rankine:evaporation_tower")
     public static ContainerType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;
 
     @ObjectHolder("rankine:evaporation_tower")
     public static TileEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
+
 }
