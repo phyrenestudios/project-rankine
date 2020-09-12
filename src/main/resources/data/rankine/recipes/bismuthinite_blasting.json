@@ -1,1 +1,9 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:bismuthinite"},"result": { "item": "rankine:bismuth_ingot"},"experience": 1, "cookingTime": 200 }
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:bismuthinite"
+      },
+      "result": "rankine:bismuth_ingot",
+      "experience": 1.0,
+      "cookingtime": 100
+    }

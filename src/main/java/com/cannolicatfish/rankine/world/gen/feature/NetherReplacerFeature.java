@@ -37,35 +37,39 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
-                if (worldIn.getBiome(pos) == Biomes.WARPED_FOREST) {
+
+                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.WARPED_FOREST) {
                     for (int y = 0; y <= 64; ++y) {
-                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        BlockPos TARGET = new BlockPos(x,y,z);
+                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock() && worldIn.getBlockState(TARGET.up(1)).isOpaqueCube(worldIn, TARGET.up(1)) && worldIn.getBlockState(TARGET.up(2)).isOpaqueCube(worldIn, TARGET.up(2)) && worldIn.getBlockState(TARGET.up(3)).isOpaqueCube(worldIn, TARGET.up(3))) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                         }
                         if (y == 64) {
                             if (rand.nextFloat() < 0.75 && worldIn.getBlockState(new BlockPos(x, y+1, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
+                                worldIn.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
                             if (rand.nextFloat() < 0.5 && worldIn.getBlockState(new BlockPos(x, y+2, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 2, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
+                                worldIn.setBlockState(new BlockPos(x, y + 2, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
                             if (rand.nextFloat() < 0.25 && worldIn.getBlockState(new BlockPos(x, y+3, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 3, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
+                                worldIn.setBlockState(new BlockPos(x, y + 3, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
                             if (rand.nextFloat() < 0.10 && worldIn.getBlockState(new BlockPos(x, y+4, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 4, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
+                                worldIn.setBlockState(new BlockPos(x, y + 4, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
                         }
                     }
                     for (int y = 64; y <= 128; ++y) {
-                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        BlockPos TARGET = new BlockPos(x,y,z);
+                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock() && worldIn.getBlockState(TARGET.up(1)).isOpaqueCube(worldIn, TARGET.up(1)) && worldIn.getBlockState(TARGET.up(2)).isOpaqueCube(worldIn, TARGET.up(2)) && worldIn.getBlockState(TARGET.up(3)).isOpaqueCube(worldIn, TARGET.up(3))) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(pos) == Biomes.SOUL_SAND_VALLEY) {
+                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.SOUL_SAND_VALLEY) {
                     for (int y = 0; y <= 64; ++y) {
-                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        BlockPos TARGET = new BlockPos(x,y,z);
+                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
                         }
                         if (y == 64) {
@@ -84,21 +88,24 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                         }
                     }
                     for (int y = 64; y <= 128; ++y) {
-                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        BlockPos TARGET = new BlockPos(x,y,z);
+                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.PEROVSKITE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(pos) == Biomes.BASALT_DELTAS) {
+                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.BASALT_DELTAS) {
                     for (int y = 0; y <= 128; ++y) {
-                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        BlockPos TARGET = new BlockPos(x,y,z);
+                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.FERROPERICLASE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(pos) == Biomes.CRIMSON_FOREST) {
+                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.CRIMSON_FOREST) {
                     for (int y = 0; y <= 128; ++y) {
-                        if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        BlockPos TARGET = new BlockPos(x,y,z);
+                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock() && worldIn.getBlockState(TARGET.up(1)).isOpaqueCube(worldIn, TARGET.up(1)) && worldIn.getBlockState(TARGET.up(2)).isOpaqueCube(worldIn, TARGET.up(2)) && worldIn.getBlockState(TARGET.up(3)).isOpaqueCube(worldIn, TARGET.up(3))) {
                             worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.KOMATIITE.getDefaultState(), 2);
                         }
                     }

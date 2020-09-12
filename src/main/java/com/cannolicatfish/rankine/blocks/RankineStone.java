@@ -124,7 +124,11 @@ public class RankineStone extends Block {
         if (ore.getKey() == ModBlocks.NATIVE_SELENIUM_ORE) { return new ItemStack(ModItems.SELENIUM_NUGGET); }
         if (ore.getKey() == ModBlocks.NATIVE_TELLURIUM_ORE) { return new ItemStack(ModItems.TELLURIUM_NUGGET); }
         if (ore.getKey() == ModBlocks.NATIVE_INDIUM_ORE) { return new ItemStack(ModItems.INDIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.XENOTIME_ORE) { return new ItemStack(ModItems.CERIUM_NUGGET); }
+        if (ore.getKey() == ModBlocks.STIBNITE_ORE) { return new ItemStack(ModItems.ANTIMONY_NUGGET); }
         if (ore.getKey() == ModBlocks.CINNABAR_ORE) { return new ItemStack(Items.REDSTONE); }
+        if (ore.getKey() == ModBlocks.URANINITE_ORE) { return new ItemStack(ModItems.URANIUM_NUGGET); }
+
         return ItemStack.EMPTY;
     }
 

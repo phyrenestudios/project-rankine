@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
@@ -122,6 +124,8 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(AlloyFurnaceTile::new, ModBlocks.ALLOY_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(PistonCrusherTile::new, ModBlocks.PISTON_CRUSHER).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(CoalForgeTile::new, ModBlocks.COAL_FORGE).build(null).setRegistryName(ProjectRankine.MODID,"coal_forge"));
+            event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, ModBlocks.EVAPORATION_TOWER).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
+
         }
 
         @SubscribeEvent
@@ -206,6 +210,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new CoalForgeContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"coal_forge"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new EvaporationTowerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());

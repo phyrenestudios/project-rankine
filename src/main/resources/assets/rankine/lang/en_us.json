@@ -51,6 +51,7 @@
   "block.rankine.yellow_foxfire": "Yellow Foxfire",
   "item.rankine.biomass": "Biomass",
   "item.rankine.compost": "Compost",
+  "item.rankine.compressed_biomass": "Compressed Biomass",
 
   "block.rankine.juniper_wood": "Juniper Wood",
   "block.rankine.stripped_balsam_fir_log": "Stripped Balsam Fir Log",
@@ -143,6 +144,11 @@
   "block.rankine.alloy_furnace": "Alloy Furnace",
   "block.rankine.induction_furnace": "Induction Furnace",
   "block.rankine.piston_steam_engine": "Piston Steam Engine",
+  "block.rankine.evaporation_tower": "Evaporation Tower",
+  "block.rankine.beehive_oven_pit": "Beehive Oven Pit",
+  "block.rankine.magnesium_beehive_oven_pit": "Magnesium Beehive Oven Pit",
+  "block.rankine.zircon_beehive_oven_pit": "Zircon Beehive Oven Pit",
+
 
   "block.rankine.copper_sheetmetal": "Copper Sheetmetal",
   "block.rankine.tin_sheetmetal": "Tin Sheetmetal",
@@ -159,9 +165,7 @@
   "block.rankine.silver_sheetmetal": "Silver Sheetmetal",
   "block.rankine.tungsten_sheetmetal": "Tungsten Sheetmetal",
   "block.rankine.stainless_steel_sheetmetal": "Stainless Steel Sheetmetal",
-  "block.rankine.beehive_oven_pit": "Beehive Oven Pit",
-  "block.rankine.magnesium_beehive_oven_pit": "Magnesium Beehive Oven Pit",
-  "block.rankine.zircon_beehive_oven_pit": "Zircon Beehive Oven Pit",
+
   "block.rankine.rose_gold_block": "Block of Rose Gold",
   "block.rankine.white_gold_block": "Block of White Gold",
   "block.rankine.green_gold_block": "Block of Green Gold",
@@ -1438,6 +1442,9 @@
   "block.rankine.opal_ore": "Opal Ore",
   "block.rankine.fluorite_ore": "Fluorite Ore",
   "block.rankine.uraninite_ore": "Uraninite Ore",
+  "block.rankine.xenotime_ore": "Xenotime Ore",
+  "block.rankine.stibnite_ore": "Stibnite Ore",
+
 
   "item.rankine.molybdenite": "Molybdenite",
   "item.rankine.pyrolusite": "Pyrolusite",
@@ -1477,7 +1484,9 @@
   "item.rankine.olivine": "Olivine",
   "item.rankine.peridot": "Chrysolite",
   "item.rankine.pyroxene": "Pyroxene",
-
+  "item.rankine.barite": "Barite",
+  "item.rankine.xenotime": "Xenotime",
+  "item.rankine.stibnite": "Stibnite",
 
 
   "fluid.rankine.liquid_mercury": "Liquid Mercury",

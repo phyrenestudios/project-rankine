@@ -10,6 +10,9 @@ import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
 import com.cannolicatfish.rankine.blocks.crucible.Crucible;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerBlock;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
@@ -17,12 +20,10 @@ import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.items.DuckweedItem;
 import com.cannolicatfish.rankine.items.FuelBlockItem;
 import com.cannolicatfish.rankine.items.ModFoods;
-import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
@@ -502,8 +503,6 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_LOG = add("stripped_eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
-    public static final Block STRIPPED_YELLOW_BIRCH_LOG = add("stripped_yellow_birch_log", new RotatedPillarBlock(DEF_WOOD));
-    public static final Block STRIPPED_BLACK_BIRCH_LOG = add("stripped_black_birch_log", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -512,8 +511,6 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_WOOD = add("stripped_eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
-    public static final Block STRIPPED_YELLOW_BIRCH_WOOD = add("stripped_yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD));
-    public static final Block STRIPPED_BLACK_BIRCH_WOOD = add("stripped_black_birch_wood", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(DEF_WOOD), BLOCKS, 300);
@@ -642,7 +639,7 @@ public class ModBlocks {
 
 
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
+
     //ORES
     public static final RankineOre LIGNITE_ORE = add("lignite_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final RankineOre SUBBITUMINOUS_ORE = add("subbituminous_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
@@ -699,33 +696,8 @@ public class ModBlocks {
     public static final Block ANTITAENITE = add("antitaenite", new CompositionBlock(1,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
-    //metal blocks
-    public static final Block ROSE_GOLD_BLOCK = add("rose_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block WHITE_GOLD_BLOCK = add("white_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block GREEN_GOLD_BLOCK = add("green_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BLUE_GOLD_BLOCK = add("blue_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PURPLE_GOLD_BLOCK = add("purple_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BLACK_GOLD_BLOCK = add("black_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block INVAR_BLOCK = add("invar_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BRONZE_BLOCK = add("bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block OSMIRIDIUM_BLOCK = add("osmiridium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block STEEL_BLOCK = add("steel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block STAINLESS_STEEL_BLOCK = add("stainless_steel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PIG_IRON_BLOCK = add("pig_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BLOOM_IRON_BLOCK = add("bloom_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block ALNICO_BLOCK = add("alnico_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block MAGNALIUM_BLOCK = add("magnalium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block DURALUMIN_BLOCK = add("duralumin_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BRASS_BLOCK = add("brass_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block CUPRONICKEL_BLOCK = add("cupronickel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block NICKEL_SILVER_BLOCK = add("nickel_silver_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block NITINOL_BLOCK = add("nitinol_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block AMALGAM_BLOCK = add("amalgam_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block ROSE_METAL_BLOCK = add("rose_metal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block WROUGHT_IRON_BLOCK = add("wrought_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block CAST_IRON_BLOCK = add("cast_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
+    //ELEMENT BLOCKS
     public static final Block HYDROGEN_BLOCK = add("hydrogen_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block HELIUM_BLOCK = add("helium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block LITHIUM_BLOCK = add("lithium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -843,6 +815,32 @@ public class ModBlocks {
     public static final Block TENNESSINE_BLOCK = add("tennessine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block OGANESSON_BLOCK = add("oganesson_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
+    //ALLOY BLOCKS
+    public static final Block ROSE_GOLD_BLOCK = add("rose_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block WHITE_GOLD_BLOCK = add("white_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block GREEN_GOLD_BLOCK = add("green_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BLUE_GOLD_BLOCK = add("blue_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PURPLE_GOLD_BLOCK = add("purple_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BLACK_GOLD_BLOCK = add("black_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block INVAR_BLOCK = add("invar_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BRONZE_BLOCK = add("bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block OSMIRIDIUM_BLOCK = add("osmiridium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block STEEL_BLOCK = add("steel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block STAINLESS_STEEL_BLOCK = add("stainless_steel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PIG_IRON_BLOCK = add("pig_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block ALNICO_BLOCK = add("alnico_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block MAGNALIUM_BLOCK = add("magnalium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block DURALUMIN_BLOCK = add("duralumin_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BRASS_BLOCK = add("brass_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block CUPRONICKEL_BLOCK = add("cupronickel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block NICKEL_SILVER_BLOCK = add("nickel_silver_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block NITINOL_BLOCK = add("nitinol_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block AMALGAM_BLOCK = add("amalgam_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block ROSE_METAL_BLOCK = add("rose_metal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block WROUGHT_IRON_BLOCK = add("wrought_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block CAST_IRON_BLOCK = add("cast_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+
     public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block OPAL_BLOCK = add("opal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block GARNET_BLOCK = add("garnet_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -863,6 +861,65 @@ public class ModBlocks {
     public static final Block BITUMINOUS_COAL_BLOCK = add("bituminous_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 2400*9);
     public static final Block ANTHRACITE_COAL_BLOCK = add("anthracite_coal_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 3200*9);
     public static final Block NITER = add("niter", new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
+
+    //ORES
+    public static final RankineOre LIGNITE_ORE = add("lignite_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre SUBBITUMINOUS_ORE = add("subbituminous_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre BITUMINOUS_ORE = add("bituminous_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre ANTHRACITE_ORE = add("anthracite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre MAGNESITE_ORE = add("magnesite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.MAGNESIUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_ALUMINUM_ORE = add("native_aluminum_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre BAUXITE_ORE = add("bauxite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.ALUMINUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_SULFUR_ORE = add("native_sulfur_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre ILMENITE_ORE = add("ilmenite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TITANIUM_NUGGET), METALLURGY);
+    public static final RankineOre VANADINITE_ORE = add("vanadinite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.VANADIUM_INGOT), METALLURGY);
+    public static final RankineOre CHROMITE_ORE = add("chromite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.CHROMIUM_NUGGET), METALLURGY);
+    public static final RankineOre PYROLUSITE_ORE = add("pyrolusite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.MANGANESE_NUGGET), METALLURGY);
+    public static final RankineOre MAGNETITE_ORE = add("magnetite_ore", new RankineOre(DEF_ORE.harvestLevel(2), Items.IRON_NUGGET), METALLURGY);
+    public static final RankineOre PENTLANDITE_ORE = add("pentlandite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.NICKEL_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_COPPER_ORE = add("native_copper_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.COPPER_NUGGET), METALLURGY);
+    public static final RankineOre MALACHITE_ORE = add("malachite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.COPPER_NUGGET), METALLURGY);
+    public static final RankineOre SPHALERITE_ORE = add("sphalerite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.ZINC_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_GALLIUM_ORE = add("native_gallium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_ARSENIC_ORE = add("native_arsenic_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_SELENIUM_ORE = add("native_selenium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre XENOTIME_ORE = add("xenotime_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.YTTERBIUM_NUGGET), METALLURGY);
+    public static final RankineOre COLUMBITE_ORE = add("columbite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.NIOBIUM_NUGGET), METALLURGY);
+    public static final RankineOre MOLYBDENITE_ORE = add("molybdenite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.MOLYBDENUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_SILVER_ORE = add("native_silver_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre ACANTHITE_ORE = add("acanthite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.SILVER_NUGGET), METALLURGY);
+    public static final RankineOre GREENOCKITE_ORE = add("greenockite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.CADMIUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_INDIUM_ORE = add("native_indium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_TIN_ORE = add("native_tin_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.TIN_NUGGET), METALLURGY);
+    public static final RankineOre CASSITERITE_ORE = add("cassiterite_ore", new RankineOre(DEF_ORE.harvestLevel(1), ModItems.TIN_NUGGET), METALLURGY);
+    public static final RankineOre STIBNITE_ORE = add("stibnite_ore", new RankineOre(DEF_ORE.harvestLevel(0), ModItems.ANTIMONY_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_TELLURIUM_ORE = add("native_tellurium_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre TANTALITE_ORE = add("tantalite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TANTALUM_NUGGET), METALLURGY);
+    public static final RankineOre WOLFRAMITE_ORE = add("wolframite_ore", new RankineOre(DEF_ORE.harvestLevel(3), ModItems.TITANIUM_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre NETHER_GOLD_ORE = add("nether_gold_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.LEAD_NUGGET), METALLURGY);
+    public static final RankineOre NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre BISMUTHINITE_ORE = add("bismuthinite_ore", new RankineOre(DEF_ORE.harvestLevel(2), ModItems.BISMUTH_NUGGET), METALLURGY);
+    public static final RankineOre URANINITE_ORE = add("uraninite_ore", new RankineOre(DEF_ORE.harvestLevel(4)), METALLURGY);
+    public static final RankineOre PLUMBAGO_ORE = add("plumbago_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre MOISSANITE_ORE = add("moissanite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre SPERRYLITE_ORE = add("sperrylite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre LAZURITE_ORE = add("lazurite_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre DIAMOND_ORE = add("diamond_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre EMERALD_ORE = add("emerald_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre OPAL_ORE = add("opal_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre AQUAMARINE_ORE = add("aquamarine_ore", new RankineOre(DEF_ORE.harvestLevel(2)), METALLURGY);
+    public static final RankineOre QUARTZ_ORE = add("quartz_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final RankineOre FLUORITE_ORE = add("fluorite_ore", new RankineOre(DEF_ORE.harvestLevel(3)), METALLURGY);
+    public static final RankineOre CINNABAR_ORE = add("cinnabar_ore", new RankineOre(DEF_ORE.harvestLevel(1), Items.REDSTONE), METALLURGY);
+    public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(DEF_ORE.harvestLevel(0)), METALLURGY);
+    public static final Block METEORITE = add("meteorite", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block KAMACITE = add("kamacite", new CompositionBlock(0,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block ANTITAENITE = add("antitaenite", new CompositionBlock(1,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
 
     public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -891,6 +948,9 @@ public class ModBlocks {
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
+    public static final EvaporationTowerBlock EVAPORATION_TOWER = add("evaporation_tower", new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+
+
     public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final Block AGED_CHEESE = add("aged_cheese", new Block(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final RankineBerryBushBlock ELDERBERRY_BUSH = add("elderberry_bush", "elderberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.ELDERBERRIES), BlockNamedItem::new);
@@ -940,5 +1000,12 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:coal_forge")
     public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
+  
+
+    @ObjectHolder("rankine:evaporation_tower")
+    public static ContainerType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;
+
+    @ObjectHolder("rankine:evaporation_tower")
+    public static TileEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
 
 }

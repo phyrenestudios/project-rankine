@@ -76,7 +76,7 @@ public class BeaverEntity extends AnimalEntity {
     class StripLogGoal extends MoveToBlockGoal {
         protected int field_220731_g;
         List<Block> LOGS = Arrays.asList(Blocks.ACACIA_LOG,Blocks.BIRCH_LOG,Blocks.DARK_OAK_LOG,Blocks.JUNGLE_LOG,Blocks.OAK_LOG,Blocks.SPRUCE_LOG,ModBlocks.CEDAR_LOG,ModBlocks.PINYON_PINE_LOG,
-                ModBlocks.JUNIPER_LOG,ModBlocks.COCONUT_PALM_LOG,ModBlocks.BALSAM_FIR_LOG);
+                ModBlocks.JUNIPER_LOG,ModBlocks.COCONUT_PALM_LOG,ModBlocks.BALSAM_FIR_LOG,ModBlocks.EASTERN_HEMLOCK_LOG,ModBlocks.BLACK_BIRCH_LOG,ModBlocks.YELLOW_BIRCH_LOG,ModBlocks.MAGNOLIA_LOG);
         public StripLogGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
             super(BeaverEntity.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
         }
@@ -191,7 +191,13 @@ public class BeaverEntity extends AnimalEntity {
                 }
                 if (blockstate.getBlock() == ModBlocks.YELLOW_BIRCH_LOG)
                 {
-                    world.setBlockState(this.destinationBlock, Blocks.BIRCH_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, Blocks.STRIPPED_BIRCH_LOG.getDefaultState(),2);
+                    BeaverEntity.this.heal(1f);
+                    completed = true;
+                }
+                if (blockstate.getBlock() == ModBlocks.BLACK_BIRCH_LOG)
+                {
+                    world.setBlockState(this.destinationBlock, Blocks.STRIPPED_BIRCH_LOG.getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }

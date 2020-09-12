@@ -1,1 +1,9 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:columbite"},"result": { "item": "rankine:niobium_ingot"},"experience": 1, "cookingTime": 200 }
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:columbite"
+      },
+      "result": "rankine:niobium_ingot",
+      "experience": 1.0,
+      "cookingtime": 100
+    }
