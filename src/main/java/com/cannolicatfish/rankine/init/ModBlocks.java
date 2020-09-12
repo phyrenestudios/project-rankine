@@ -10,9 +10,6 @@ import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
 import com.cannolicatfish.rankine.blocks.crucible.Crucible;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
-import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
@@ -716,6 +713,7 @@ public class ModBlocks {
     public static final Block STEEL_BLOCK = add("steel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block STAINLESS_STEEL_BLOCK = add("stainless_steel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PIG_IRON_BLOCK = add("pig_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block BLOOM_IRON_BLOCK = add("bloom_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block ALNICO_BLOCK = add("alnico_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block MAGNALIUM_BLOCK = add("magnalium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block DURALUMIN_BLOCK = add("duralumin_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -887,12 +885,11 @@ public class ModBlocks {
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(0.4f,ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(0.6f,ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(0.5f,ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(0.75f,ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
-    public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final Block AGED_CHEESE = add("aged_cheese", new Block(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
@@ -944,10 +941,4 @@ public class ModBlocks {
     @ObjectHolder("rankine:coal_forge")
     public static TileEntityType<CoalForgeTile> COAL_FORGE_TILE;
 
-
-    @ObjectHolder("rankine:finery_forge")
-    public static ContainerType<FineryForgeContainer> FINERY_FORGE_CONTAINER;
-
-    @ObjectHolder("rankine:finery_forge")
-    public static TileEntityType<FineryForgeTile> FINERY_FORGE_TILE;
 }

@@ -131,6 +131,7 @@ public class ModRecipes {
         recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.LIGNITE_BLOCK.asItem(),new ItemStack(ModBlocks.SUBBITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.SUBBITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.BITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
+        recipes.add(beehiveOvenRecipe("bloom_pig_oven_cooking", ModBlocks.PIG_IRON_BLOCK.asItem(),new ItemStack(ModBlocks.BLOOM_IRON_BLOCK)));
 
         return recipes;
     }
@@ -252,7 +253,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("sub_bituminous_coal_crushing",ModItems.SUBBITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.4f));
         recipes.add(crushingRecipe("bituminous_coal_crushing",ModItems.BITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("anthracite_crushing",ModItems.ANTHRACITE_COAL, new ItemStack(Items.COAL,2), new ItemStack(ModItems.SULFUR,1),0.1f));
-
+        recipes.add(crushingRecipe("bloom_iron_crushing",ModItems.BLOOM_IRON.asItem(), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1), new ItemStack(ModItems.SLAG,1),0.5f));
 
         recipes.add(crushingRecipe("chromite_ore_crushing",ModBlocks.CHROMITE_ORE.asItem(),new ItemStack(ModItems.CHROMIUM_OXIDE),new ItemStack(ModItems.MAGNETITE), 0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
@@ -391,13 +392,6 @@ public class ModRecipes {
         return recipes;
     }
 
-    public static List<IFineryForgeRecipe> getFineryRecipes()
-    {
-        List<IFineryForgeRecipe> recipes = new ArrayList<>();
-        recipes.add(fineryRecipe("finery_pig_to_wrought",ModItems.PIG_IRON_INGOT, new ItemStack(ModItems.BLOOM_IRON,1), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1),new ItemStack(ModItems.SLAG,1),0.5f));
-        return recipes;
-    }
-
     public static AbstractMap.SimpleEntry<ItemStack,ItemStack> getCrushingOutputs(ItemStack input)
     {
         List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
@@ -408,7 +402,7 @@ public class ModRecipes {
                 return new AbstractMap.SimpleEntry<>(recipe.getRecipeOutput(), recipe.getSecondaryOutput());
             }
         }
-        return null;
+        return new AbstractMap.SimpleEntry<>(ItemStack.EMPTY,ItemStack.EMPTY);
     }
 
     public static ItemStack getForgingOutput(ItemStack input1, ItemStack input2, ItemStack template)
@@ -492,12 +486,6 @@ public class ModRecipes {
                     list);
         }
 
-    }
-
-    public static IFineryForgeRecipe fineryRecipe(String registry, Item input, ItemStack intermediate, ItemStack output, ItemStack secondary, float chance)
-    {
-        return new IFineryForgeRecipe(new ResourceLocation(ProjectRankine.MODID,registry),new ItemStack[]{intermediate,output,secondary},
-                Ingredient.fromStacks(new ItemStack(input)),chance);
     }
 
     public static List<ItemStack> getForgingItemStack(ItemStack alloy, ItemStack output, boolean hasComposition) {

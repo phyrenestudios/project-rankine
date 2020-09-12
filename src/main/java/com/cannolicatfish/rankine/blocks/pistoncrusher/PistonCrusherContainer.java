@@ -6,6 +6,8 @@ import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -28,29 +30,29 @@ import static com.cannolicatfish.rankine.init.ModBlocks.PISTON_CRUSHER_CONTAINER
 
 public class PistonCrusherContainer extends Container {
     private TileEntity tileEntity;
+    private final IInventory furnaceInventory;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
     private final IIntArray data;
-    private int cookTime, totalCookTime, burnTime, currentBurnTime;
 
     public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player, new IntArray(5));
+        this(windowId,world,pos,playerInventory,player, new Inventory(4),new IntArray(4));
     }
 
-    public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IIntArray furnaceData) {
+    public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(PISTON_CRUSHER_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertIntArraySize(furnaceData, 5);
+        assertInventorySize(furnaceInventoryIn, 4);
+        assertIntArraySize(furnaceData, 4);
         this.data = furnaceData;
         this.playerEntity = player;
+        this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
 
-        tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 56, 31));
-            addSlot(new SlotItemHandler(h, 1, 10,37));
-            addSlot(new SlotItemHandler(h, 2, 124,31));
-            addSlot(new SlotItemHandler(h, 3, 149,31));
-        });
+        this.addSlot(new Slot(furnaceInventory, 0, 56, 31));
+        this.addSlot(new Slot(furnaceInventory, 1, 10,37));
+        this.addSlot(new Slot(furnaceInventory, 2, 124,31));
+        this.addSlot(new Slot(furnaceInventory, 3, 149,31));
 
         layoutPlayerInventorySlots(10, 70);
 

@@ -6,6 +6,8 @@ import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -26,32 +28,34 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import static com.cannolicatfish.rankine.init.ModBlocks.ALLOY_FURNACE_CONTAINER;
 
 public class AlloyFurnaceContainer extends Container {
+    private final IInventory furnaceInventory;
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
     private final IIntArray data;
 
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new IntArray(9));
+        this(windowId,world,pos,playerInventory,player,new Inventory(6),new IntArray(7));
 
 
 
     }
-    public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IIntArray furnaceData) {
+    public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(ALLOY_FURNACE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertIntArraySize(furnaceData, 9);
+        assertInventorySize(furnaceInventoryIn, 6);
+        assertIntArraySize(furnaceData, 7);
         this.playerEntity = player;
+        this.furnaceInventory = furnaceInventoryIn;
         this.data = furnaceData;
         this.playerInventory = new InvWrapper(playerInventory);
 
-        tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-            addSlot(new SlotItemHandler(h, 0, 33, 31));
-            addSlot(new SlotItemHandler(h, 1, 55,31));
-            addSlot(new SlotItemHandler(h, 2, 77,31));
-            addSlot(new SlotItemHandler(h, 3, 10,37));
-            addSlot(new SlotItemHandler(h, 4, 134,31));
-        });
+        this.addSlot(new Slot(furnaceInventory, 0, 33, 31));
+        this.addSlot(new Slot(furnaceInventory, 1, 55,31));
+        this.addSlot(new Slot(furnaceInventory, 2, 77,31));
+        this.addSlot(new Slot(furnaceInventory, 3, 10,37));
+        this.addSlot(new Slot(furnaceInventory, 4, 134,31));
+        this.addSlot(new Slot(furnaceInventory, 5, 134,7));
 
         layoutPlayerInventorySlots(8, 70);
 
@@ -89,22 +93,6 @@ public class AlloyFurnaceContainer extends Container {
     @OnlyIn(Dist.CLIENT)
     public String getPercentSlot3(){
         return Integer.toString(this.data.get(6));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void toggleRecipeLock(){
-        this.data.set(7,this.data.get(7) != 1 ? 1 : 0); // if data is 1; returns 1
-    }
-    @OnlyIn(Dist.CLIENT)
-    public boolean isRecipeLocked()
-    {
-        return this.data.get(7) == 1;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public boolean isRSPower()
-    {
-        return this.data.get(8) == 1;
     }
 
     @Override

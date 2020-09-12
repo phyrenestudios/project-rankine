@@ -1,21 +1,28 @@
 package com.cannolicatfish.rankine.blocks.coalforge;
 
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.items.ItemTemplate;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -34,13 +41,15 @@ import javax.annotation.Nullable;
 
 import static com.cannolicatfish.rankine.init.ModBlocks.COAL_FORGE_TILE;
 
-public class CoalForgeTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+public class CoalForgeTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
-    private LazyOptional<IItemHandlerModifiable> handler = LazyOptional.of(this::createHandler);
-    private IItemHandlerModifiable handler2 = handler.orElseGet(this::createHandler);
+    private static final int[] SLOTS_UP = new int[]{0,1,2};
+    private static final int[] SLOTS_DOWN = new int[]{4};
+    private static final int[] SLOTS_HORIZONTAL = new int[]{3};
     public CoalForgeTile() {
         super(COAL_FORGE_TILE);
     }
+    protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
@@ -92,6 +101,25 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
         }
     };
 
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
+        this.burnTime = nbt.getInt("BurnTime");
+        this.cookTime = nbt.getInt("CookTime");
+        this.cookTimeTotal = nbt.getInt("CookTimeTotal");
+        this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1));
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        compound.putInt("BurnTime", this.burnTime);
+        compound.putInt("CookTime", this.cookTime);
+        compound.putInt("CookTimeTotal", this.cookTimeTotal);
+        ItemStackHelper.saveAllItems(compound, this.items);
+
+        return compound;
+    }
+
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
@@ -100,23 +128,23 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
         }
 
         if (!this.world.isRemote) {
-            ItemStack[] inputs = new ItemStack[]{this.handler2.getStackInSlot(0), this.handler2.getStackInSlot(1)};
-            ItemStack template = this.handler2.getStackInSlot(2);
-            ItemStack fuel = this.handler2.getStackInSlot(3);
-            if ((this.isBurning() || !fuel.isEmpty() && !this.handler2.getStackInSlot(0).isEmpty() && !this.handler2.getStackInSlot(1).isEmpty() && !this.handler2.getStackInSlot(2).isEmpty())) {
+            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1)};
+            ItemStack template = this.items.get(2);
+            ItemStack fuel = this.items.get(3);
+            if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty())) {
                 if (!this.isBurning() && this.canSmelt()) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
                     if (this.isBurning()) {
                         flag1 = true;
                         if (fuel.hasContainerItem())
-                            this.handler2.setStackInSlot(3, fuel.getContainerItem());
+                            this.items.set(3, fuel.getContainerItem());
                         else
                         if (!fuel.isEmpty()) {
                             Item item = fuel.getItem();
                             fuel.shrink(1);
                             if (fuel.isEmpty()) {
-                                this.handler2.setStackInSlot(3, fuel.getContainerItem());
+                                this.items.set(3, fuel.getContainerItem());
                             }
                         }
                     }
@@ -126,10 +154,10 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
                     ++this.cookTime;
                     if (this.cookTime == this.cookTimeTotal) {
                         ItemStack smelting = CoalForgeRecipes.getInstance().getResult(inputs[0],inputs[1],template);
-                        if (this.handler2.getStackInSlot(4).getCount() > 0) {
-                            this.handler2.getStackInSlot(4).grow(smelting.getCount());
+                        if (this.items.get(4).getCount() > 0) {
+                            this.items.get(4).grow(smelting.getCount());
                         } else {
-                            this.handler2.insertItem(4, smelting, false);
+                            this.items.set(4, smelting);
                         }
                         this.cookTime = 0;
                         if (template.getItem() == ModItems.PICKAXE_TEMPLATE || template.getItem() == ModItems.AXE_TEMPLATE)
@@ -184,30 +212,6 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
 
     }
 
-    @Override
-    public void read(BlockState stateIn,  CompoundNBT tag) {
-        CompoundNBT invTag = tag.getCompound("inv");
-        handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
-        super.read(stateIn,tag);
-        this.burnTime = tag.getInt("BurnTime");
-        this.cookTime = tag.getInt("CookTime");
-        this.cookTimeTotal = tag.getInt("CookTimeTotal");
-        this.currentBurnTime = ForgeHooks.getBurnTime(this.handler2.getStackInSlot(1));
-    }
-
-    @Override
-    public CompoundNBT write(CompoundNBT tag) {
-        handler.ifPresent(h -> {
-            CompoundNBT compound = ((INBTSerializable<CompoundNBT>) h).serializeNBT();
-            tag.putInt("BurnTime", (short)this.burnTime);
-            tag.putInt("CookTime", (short)this.cookTime);
-            tag.putInt("CookTimeTotal", (short)this.cookTimeTotal);
-            tag.put("inv", compound);
-        });
-
-        return super.write(tag);
-    }
-
     public boolean redstoneCheck()
     {
         int x = world.getRedstonePowerFromNeighbors(pos);
@@ -220,66 +224,6 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
             redstonePower = 0;
             return false;
         }
-    }
-
-
-    private IItemHandlerModifiable createHandler() {
-        return new ItemStackHandler(5) {
-
-            @Override
-            protected void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                markDirty();
-            }
-
-            @Override
-            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if (slot == 0)
-                {
-                    return true;
-                }
-                if (slot == 1)
-                {
-                    return true;
-                }
-                if (slot == 2)
-                {
-                    return true;
-                }
-                if (slot == 4)
-                {
-                    return ItemStack.areItemsEqual(CoalForgeRecipes.getInstance().getResult(getStackInSlot(0),getStackInSlot(1),getStackInSlot(2)), stack);
-
-                }
-                if (slot == 3)
-                {
-                    return isFuel(stack);
-                }
-                return false;
-            }
-
-            @Nonnull
-            @Override
-            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (!isItemValid(slot,stack))
-                {
-                    return stack;
-                }
-                return super.insertItem(slot, stack, simulate);
-            }
-
-            @Override
-            @Nonnull
-            public ItemStack getStackInSlot(int slot)
-            {
-                validateSlotIndex(slot);
-                return this.stacks.get(slot);
-            }
-        };
-    }
-
-    protected static boolean isFuel(ItemStack p_217058_1_) {
-        return AbstractFurnaceTileEntity.isFuel(p_217058_1_);
     }
 
     public boolean isBurning()
@@ -295,13 +239,13 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
 
     private boolean canSmelt()
     {
-        if((this.handler2.getStackInSlot(0)).isEmpty())
+        if((this.items.get(0)).isEmpty())
         {
             return false;
         }
         else
         {
-            ItemStack result = CoalForgeRecipes.getInstance().getResult(this.handler2.getStackInSlot(0),this.handler2.getStackInSlot(1), this.handler2.getStackInSlot(2));
+            ItemStack result = CoalForgeRecipes.getInstance().getResult(this.items.get(0),this.items.get(1), this.items.get(2));
             if(result.isEmpty())
             {
                 /*
@@ -312,7 +256,7 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
             }
             else
             {
-                ItemStack output = (ItemStack)this.handler2.getStackInSlot(4);
+                ItemStack output = this.items.get(4);
                 if(output.isEmpty()) return true;
 
                 if(!output.isItemEqual(result))
@@ -325,13 +269,27 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
         }
     }
 
-    @Nonnull
+    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
+            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return handler.cast();
+    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
+        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (facing == Direction.UP)
+                return handlers[0].cast();
+            else if (facing == Direction.DOWN)
+                return handlers[1].cast();
+            else
+                return handlers[2].cast();
         }
-        return super.getCapability(cap, side);
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public void remove() {
+        super.remove();
+        for (int x = 0; x < handlers.length; x++)
+            handlers[x].invalidate();
     }
 
     @Override
@@ -342,8 +300,106 @@ public class CoalForgeTile extends TileEntity implements ITickableTileEntity, IN
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new CoalForgeContainer(i, world, pos, playerInventory, playerEntity, this.furnaceData);
+        return new CoalForgeContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        if (side == Direction.DOWN) {
+            return SLOTS_DOWN;
+        } else {
+            return side == Direction.UP ? SLOTS_UP : SLOTS_HORIZONTAL;
+        }
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.isItemValidForSlot(index, itemStackIn);
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return this.items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for(ItemStack itemstack : this.items) {
+            if (!itemstack.isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index) {
+        return this.items.get(index);
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        return ItemStackHelper.getAndSplit(this.items, index, count);
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        return ItemStackHelper.getAndRemove(this.items, index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        ItemStack itemstack = this.items.get(index);
+        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.items.set(index, stack);
+        if (stack.getCount() > this.getInventoryStackLimit()) {
+            stack.setCount(this.getInventoryStackLimit());
+        }
+
+        if (index == 0 && !flag) {
+            this.cookTimeTotal = 200;
+            this.cookTime = 0;
+            this.markDirty();
+        }
+    }
+
+    @Override
+    public boolean isUsableByPlayer(PlayerEntity player) {
+        if (this.world.getTileEntity(this.pos) != this) {
+            return false;
+        } else {
+            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+        }
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        switch (index)
+        {
+            case 0:
+                return stack.getItem().getTags().contains(new ResourceLocation("forge:rods"));
+            case 1:
+                return stack.getItem() instanceof AlloyItem;
+            case 2:
+                return stack.getItem() instanceof ItemTemplate;
+            case 3:
+                return AbstractFurnaceTileEntity.isFuel(stack);
+            case 4:
+                return ItemStack.areItemsEqual(CoalForgeRecipes.getInstance().getResult(getStackInSlot(0),getStackInSlot(1),getStackInSlot(2)), stack);
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void clear() {
+        this.items.clear();
+    }
 }

@@ -4,7 +4,6 @@ import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particles.BasicParticleType;
@@ -36,7 +35,7 @@ public class BeehiveOvenPit extends Block {
     private final Block blockType;
     public BeehiveOvenPit(Properties properties) {
         super(properties);
-        this.chance = 0.2f;
+        this.chance = 0.25f;
         this.blockType = ModBlocks.REFRACTORY_BRICKS;
     }
 
@@ -71,13 +70,7 @@ public class BeehiveOvenPit extends Block {
 
     @Override
     public boolean ticksRandomly(BlockState stateIn) {
-        if (stateIn.get(LIT)) {
-            return true;
-        } else
-        {
-            return false;
-        }
-
+        return stateIn.get(LIT);
     }
 
     @Override
@@ -130,7 +123,7 @@ public class BeehiveOvenPit extends Block {
 
     }
 
-    private boolean getBeehiveOven(World world, BlockPos pos) {
+    private void getBeehiveOven(World world, BlockPos pos) {
         boolean canSeeSky = true;
         for (int i = 1; i <= 8; i++)
         {
@@ -145,12 +138,10 @@ public class BeehiveOvenPit extends Block {
                 && world.getBlockState(pos.south().west()).getBlock() == blockType && world.getBlockState(pos.south().east()).getBlock() == blockType)
         {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
-            return true;
         }
         else
         {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
-            return false;
         }
     }
 

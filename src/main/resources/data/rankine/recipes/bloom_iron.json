@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:bloom_iron_block" } ], "result": { "item": "rankine:bloom_iron", "count": 9 } }
