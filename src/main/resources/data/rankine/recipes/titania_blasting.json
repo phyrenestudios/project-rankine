@@ -1,1 +1,9 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:titania"},"result": { "item": "rankine:titanium_ingot"},"experience": 1, "cookingTime": 200 }
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:titania"
+      },
+      "result": "rankine:titanium_ingot",
+      "experience": 1.0,
+      "cookingtime": 100
+    }

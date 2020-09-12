@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeScreen;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
@@ -36,6 +37,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ModBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
         ScreenManager.registerFactory(ModBlocks.COAL_FORGE_CONTAINER, CoalForgeScreen::new);
         ScreenManager.registerFactory(ModBlocks.FINERY_FORGE_CONTAINER, FineryForgeScreen::new);
+        ScreenManager.registerFactory(ModBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
         ScreenManager.registerFactory(ModItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
 
         addCutout(Arrays.asList(
@@ -87,6 +89,10 @@ public class ClientProxy implements IProxy {
                 ModBlocks.WOLFRAMITE_ORE,
                 ModBlocks.VANADINITE_ORE,
                 ModBlocks.GREENOCKITE_ORE,
+                ModBlocks.XENOTIME_ORE,
+                ModBlocks.STIBNITE_ORE,
+                ModBlocks.URANINITE_ORE,
+
                 ModBlocks.LEAD_GLASS,
                 ModBlocks.ETCHED_GLASS0,
                 ModBlocks.ETCHED_GLASS1,

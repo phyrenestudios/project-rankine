@@ -1,1 +1,9 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:galena"},"result": { "item": "rankine:lead_ingot"},"experience": 1, "cookingTime": 200 }
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:galena"
+      },
+      "result": "rankine:lead_ingot",
+      "experience": 1.0,
+      "cookingtime": 100
+    }

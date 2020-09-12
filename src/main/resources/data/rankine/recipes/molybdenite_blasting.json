@@ -1,1 +1,9 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:molybdenite"},"result": { "item": "rankine:molybdenum_ingot"},"experience": 1, "cookingTime": 200 }
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:molybdenite"
+      },
+      "result": "rankine:molybdenum_ingot",
+      "experience": 1.0,
+      "cookingtime": 100
+    }

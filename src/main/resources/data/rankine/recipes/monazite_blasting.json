@@ -1,1 +1,9 @@
-{ "type": "minecraft:blasting", "ingredient": { "item": "rankine:monazite"},"result": { "item": "rankine:cerium_ingot"},"experience": 1, "cookingTime": 200 }
+{
+      "type": "minecraft:blasting",
+      "ingredient": {
+        "item": "rankine:monazite"
+      },
+      "result": "rankine:cerium_ingot",
+      "experience": 1.0,
+      "cookingtime": 100
+    }

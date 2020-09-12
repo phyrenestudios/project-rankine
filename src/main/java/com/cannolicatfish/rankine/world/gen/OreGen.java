@@ -54,7 +54,7 @@ public class OreGen {
         rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(Blocks.RED_SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 10),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
-        rockGenCountDef(Blocks.DIRT.getDefaultState(), ModBlocks.PERMAFROST.getDefaultState(),10,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY),true));
+        rockGenCountDef(Blocks.DIRT.getDefaultState(), ModBlocks.PERMAFROST.getDefaultState(),20,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY),true));
 
         //tier native
         OWGenDefCount(ModBlocks.NATIVE_COPPER_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
@@ -63,11 +63,12 @@ public class OreGen {
         OWGenDefCount(ModBlocks.NATIVE_SILVER_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_ALUMINUM_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_GOLD_ORE,10,4,15,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
+        OWGenDefCount(ModBlocks.STIBNITE_ORE,10,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
 
         //coals
         OWGenDefCount(ModBlocks.LIGNITE_ORE, 30, 1, 71, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
-        OWGenDefCount(ModBlocks.LIGNITE_ORE, 20, 2, 51, 71, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
-        OWGenDefCount(ModBlocks.SUBBITUMINOUS_ORE, 25, 2, 31, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
+        OWGenDefCount(ModBlocks.LIGNITE_ORE, 20, 3, 51, 71, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
+        OWGenDefCount(ModBlocks.SUBBITUMINOUS_ORE, 20, 3, 31, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
         OWGenDefCount(ModBlocks.BITUMINOUS_ORE, 20, 3, 0, 30, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
 
         //tier 1
@@ -77,19 +78,18 @@ public class OreGen {
         OWGenDefCount(ModBlocks.SPHALERITE_ORE,20,1,31,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
 
         //tier 2
-        OWGenDefCount(ModBlocks.MAGNETITE_ORE,30,4,0,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
+        OWGenDefCount(ModBlocks.MAGNETITE_ORE,30,3,0,128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);
         OWGenDefCount(ModBlocks.MAGNESITE_ORE, 20, 2, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.PENTLANDITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         chunkMultiGenDef(ModBlocks.GALENA_ORE, 20, 1F, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP, 0.3f);
         OWGenDefCount(ModBlocks.ACANTHITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
-        OWGenDefCount(ModBlocks.BISMUTHINITE_ORE, 5, 1, 11, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.PYROLUSITE_ORE, 20, 1, 11, 70, RankineOreFeatureConfig.RankineFillerBlockType.NO_SMP);
         OWGenDefCount(ModBlocks.CINNABAR_ORE, 20, 4, 20, 90, RankineOreFeatureConfig.RankineFillerBlockType.IGNEOUS);
 
         //tier 3
-        OWGenDefChance(ModBlocks.ILMENITE_ORE, 5, 3, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
-        OWGenDefChance(ModBlocks.CHROMITE_ORE, 5, 3, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
-        OWGenDefChance(ModBlocks.WOLFRAMITE_ORE, 5, 3, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
+        OWGenDefChance(ModBlocks.ILMENITE_ORE, 5, 2, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
+        OWGenDefChance(ModBlocks.CHROMITE_ORE, 5, 2, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
+        OWGenDefChance(ModBlocks.WOLFRAMITE_ORE, 5, 2, 0, 15, RankineOreFeatureConfig.RankineFillerBlockType.PERIDOTITE);
 
         //miac
         OWGenDefCount(ModBlocks.LAZURITE_ORE, 15, 2, 20, 50, RankineOreFeatureConfig.RankineFillerBlockType.NO_SHALE);
@@ -98,22 +98,30 @@ public class OreGen {
         OWGenDefCount(ModBlocks.PLUMBAGO_ORE, 8, 3, 0, 20, RankineOreFeatureConfig.RankineFillerBlockType.MARBLE);
 
         //NETHER
-        NetherGenDefCount(ModBlocks.NATIVE_ARSENIC_ORE, 10, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.NATIVE_SULFUR_ORE, 10, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.NATIVE_BISMUTH_ORE, 10, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.NETHER_GOLD_ORE, 10, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.QUARTZ_ORE, 20, 30, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.ANTHRACITE_ORE, 20, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.COLUMBITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.TANTALITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.GREENOCKITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.ILMENITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.CHROMITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.WOLFRAMITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.MOISSANITE_ORE, 10, 10, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.SPERRYLITE_ORE, 20, 15, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
-        NetherGenDefCount(ModBlocks.SPERRYLITE_ORE, 12, 1, 0, 20, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.NATIVE_ARSENIC_ORE, 6, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.NATIVE_SULFUR_ORE, 6, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.NATIVE_BISMUTH_ORE, 6, 20, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.NETHER_GOLD_ORE, 10, 15, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.QUARTZ_ORE, 20, 11, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.ANTHRACITE_ORE, 15, 8, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.COLUMBITE_ORE, 15, 4, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.TANTALITE_ORE, 15, 4, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.GREENOCKITE_ORE, 15, 4, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.ILMENITE_ORE, 20, 6, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.CHROMITE_ORE, 20, 6, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.WOLFRAMITE_ORE, 20, 6, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.MOISSANITE_ORE, 20, 4, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
+        NetherGenDefCount(ModBlocks.SPERRYLITE_ORE, 20, 8, 0, 128, RankineOreFeatureConfig.RankineFillerBlockType.NETHER);
 
+
+        //END
+        EndGenDefCount(ModBlocks.NATIVE_GALLIUM_ORE, 8, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
+        EndGenDefCount(ModBlocks.NATIVE_INDIUM_ORE, 8, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
+        EndGenDefCount(ModBlocks.NATIVE_TELLURIUM_ORE, 8, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
+        EndGenDefCount(ModBlocks.NATIVE_SELENIUM_ORE, 8, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
+        EndGenDefCount(ModBlocks.FLUORITE_ORE, 10, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
+        EndGenDefCount(ModBlocks.URANINITE_ORE, 14, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
+        EndGenDefCount(ModBlocks.XENOTIME_ORE, 8, 12, 0, 100, RankineOreFeatureConfig.RankineFillerBlockType.END);
 
 
     }
@@ -204,6 +212,24 @@ public class OreGen {
         }
     }
 
+    private static void EndGenDefChance(RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (biome.getCategory() == Biome.Category.THEEND) {
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, RANKINE_ORE.withConfiguration(
+                        new RankineOreFeatureConfig(type, block.getStateContainer().getBaseState(), veinSize)).withPlacement(Placement.CHANCE_RANGE.configure(new ChanceRangeConfig(chance, minHeight, 0, maxHeight))));
+            }
+        }
+    }
+
+    private static void EndGenDefCount(RankineOre block, int veinSize, int count, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
+            if (biome.getCategory() == Biome.Category.THEEND) {
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, RANKINE_ORE.withConfiguration(
+                        new RankineOreFeatureConfig(type, block.getStateContainer().getBaseState(), veinSize)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(count, minHeight, 0, maxHeight))));
+            }
+        }
+    }
+
     private static void chunkMultiGenDef(RankineOre block, int veinSize, float chance, int minHeight, int maxHeight, RankineOreFeatureConfig.RankineFillerBlockType type, float replaceChance) {
         for (Biome biome : ForgeRegistries.BIOMES) {
             if (biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
@@ -249,11 +275,8 @@ public class OreGen {
 
     private static void alluviumGen() {
         for (Biome biome : ForgeRegistries.BIOMES) {
-            if (biome.getCategory() == Biome.Category.RIVER) {
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.CLAY.getDefaultState(), 4, 2, Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(1))));
-            }
-            if (biome.getCategory() == Biome.Category.BEACH) {
-                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.CLAY.getDefaultState(), 4, 2, Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(1))));
+            if (biome.getCategory() == Biome.Category.OCEAN || biome.getCategory() == Biome.Category.RIVER) {
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.DISK.withConfiguration(new SphereReplaceConfig(ModBlocks.ALLUVIUM.getDefaultState(), 4, 2, Lists.newArrayList(Blocks.DIRT.getDefaultState(), ModBlocks.ALLUVIUM.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Placement.COUNT_TOP_SOLID.configure(new FrequencyConfig(1))));
             }
         }
     }
