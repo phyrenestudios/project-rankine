@@ -10,6 +10,9 @@ import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
 import com.cannolicatfish.rankine.blocks.crucible.Crucible;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerBlock;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForge;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeContainer;
 import com.cannolicatfish.rankine.blocks.fineryforge.FineryForgeTile;
@@ -20,12 +23,10 @@ import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.items.DuckweedItem;
 import com.cannolicatfish.rankine.items.FuelBlockItem;
 import com.cannolicatfish.rankine.items.ModFoods;
-import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntityType;
@@ -505,8 +506,6 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_LOG = add("stripped_eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
-    public static final Block STRIPPED_YELLOW_BIRCH_LOG = add("stripped_yellow_birch_log", new RotatedPillarBlock(DEF_WOOD));
-    public static final Block STRIPPED_BLACK_BIRCH_LOG = add("stripped_black_birch_log", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -515,8 +514,6 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_WOOD = add("stripped_eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
-    public static final Block STRIPPED_YELLOW_BIRCH_WOOD = add("stripped_yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD));
-    public static final Block STRIPPED_BLACK_BIRCH_WOOD = add("stripped_black_birch_wood", new RotatedPillarBlock(DEF_WOOD));
 
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(DEF_WOOD), BLOCKS, 300);
@@ -898,6 +895,9 @@ public class ModBlocks {
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final FineryForge FINERY_FORGE = add("finery_forge", new FineryForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
+    public static final EvaporationTowerBlock EVAPORATION_TOWER = add("evaporation_tower", new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+
+
     public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final Block AGED_CHEESE = add("aged_cheese", new Block(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
     public static final RankineBerryBushBlock ELDERBERRY_BUSH = add("elderberry_bush", "elderberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.ELDERBERRIES), BlockNamedItem::new);
@@ -954,4 +954,11 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:finery_forge")
     public static TileEntityType<FineryForgeTile> FINERY_FORGE_TILE;
+
+
+    @ObjectHolder("rankine:evaporation_tower")
+    public static ContainerType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;
+
+    @ObjectHolder("rankine:evaporation_tower")
+    public static TileEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
 }
