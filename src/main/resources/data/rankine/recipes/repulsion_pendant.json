@@ -1,0 +1,29 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "SRS",
+        "GCG",
+        "GFG"
+      ],
+      "key": {
+        "S": {
+          "item": "minecraft:string"
+        },
+        "G": {
+          "item": "rankine:black_gold_alloy"
+        },
+        "R": {
+          "item": "minecraft:shield"
+        },
+        "F": {
+          "item": "minecraft:creeper_head"
+        },
+        "C": {
+          "item": "rankine:gem_core"
+        }
+      },
+      "result": {
+        "item": "rankine:repulsion_pendant",
+        "count": 1
+      }
+    }

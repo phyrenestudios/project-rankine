@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.items.*;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
+import com.cannolicatfish.rankine.items.pendants.*;
 import com.cannolicatfish.rankine.items.tools.*;
 import com.cannolicatfish.rankine.util.alloys.*;
 import net.minecraft.block.Block;
@@ -497,9 +497,14 @@ public class ModItems {
     public static final Item BRIGADINE_CHESTPLATE = add("brigandine_chestplate", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BRIGADINE_LEGGINGS = add("brigandine_leggings", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BRIGADINE_BOOTS = add("brigandine_boots", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item GEM_SHARD = add("gem_shard", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GEM_CORE = add("gem_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item LUCK_PENDANT = add("luck_pendant", new PendantItem(new Item.Properties().maxDamage(200).group(ProjectRankine.setup.rankineTools)));
-    public static final Item SPEED_PENDANT = add("speed_pendant", new PendantItem(new Item.Properties().maxDamage(200).group(ProjectRankine.setup.rankineTools)));
+    public static final Item HASTE_PENDANT = add("haste_pendant", new HastePendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item LUCK_PENDANT = add("luck_pendant", new LuckPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item HEALTH_PENDANT = add("health_pendant", new HealthPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item SPEED_PENDANT = add("speed_pendant", new SpeedPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item LEVITATION_PENDANT = add("levitation_pendant", new LevitationPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item REPULSION_PENDANT = add("repulsion_pendant", new RepulsionPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
 
 

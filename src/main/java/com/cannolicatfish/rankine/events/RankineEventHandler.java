@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -57,6 +58,7 @@ public class RankineEventHandler {
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         event.getPlayer().addExhaustion(Config.GLOBAL_BREAK_EXHAUSTION.get().floatValue());
     }
+
 
     @SubscribeEvent
     public static void luckyBreak(BlockEvent.BreakEvent event) {

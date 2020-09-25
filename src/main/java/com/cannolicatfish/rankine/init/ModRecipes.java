@@ -158,7 +158,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("shale_crushing",ModBlocks.SHALE.asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("anorthosite_crushing",ModBlocks.ANORTHOSITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.OLIVINE), 0.1f));
         recipes.add(crushingRecipe("ironstone_crushing",ModBlocks.IRONSTONE.asItem(),new ItemStack(ModItems.MAGNETITE),new ItemStack(ModItems.TIGER_IRON), 0.1f));
-        recipes.add(crushingRecipe("basalt_crushing",ModBlocks.BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.1f));
+        recipes.add(crushingRecipe("basalt_crushing",ModBlocks.BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("rhyolite_crushing",ModBlocks.RHYOLITE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("marble_crushing",ModBlocks.MARBLE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("gneiss_crushing",ModBlocks.GNEISS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.2f));
@@ -183,7 +183,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("smooth_shale_crushing",ModBlocks.SMOOTH_SHALE.asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("smooth_anorthosite_crushing",ModBlocks.SMOOTH_ANORTHOSITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.OLIVINE), 0.1f));
         recipes.add(crushingRecipe("smooth_ironstone_crushing",ModBlocks.SMOOTH_IRONSTONE.asItem(),new ItemStack(ModItems.MAGNETITE),new ItemStack(ModItems.TIGER_IRON), 0.1f));
-        recipes.add(crushingRecipe("smooth_basalt_crushing",ModBlocks.SMOOTH_BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.1f));
+        recipes.add(crushingRecipe("smooth_basalt_crushing",ModBlocks.SMOOTH_BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("smooth_rhyolite_crushing",ModBlocks.SMOOTH_RHYOLITE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("smooth_marble_crushing",ModBlocks.SMOOTH_MARBLE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("smooth_gneiss_crushing",ModBlocks.SMOOTH_GNEISS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.2f));
@@ -208,7 +208,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("shale_bricks_crushing",ModBlocks.SHALE_BRICKS.asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("anorthosite_bricks_crushing",ModBlocks.ANORTHOSITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.OLIVINE), 0.1f));
         recipes.add(crushingRecipe("ironstone_bricks_crushing",ModBlocks.IRONSTONE_BRICKS.asItem(),new ItemStack(ModItems.MAGNETITE),new ItemStack(ModItems.TIGER_IRON), 0.1f));
-        recipes.add(crushingRecipe("basalt_bricks_crushing",ModBlocks.BASALT_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.1f));
+        recipes.add(crushingRecipe("basalt_bricks_crushing",ModBlocks.BASALT_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("rhyolite_bricks_crushing",ModBlocks.RHYOLITE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("marble_bricks_crushing",ModBlocks.MARBLE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("gneiss_bricks_crushing",ModBlocks.GNEISS_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.2f));

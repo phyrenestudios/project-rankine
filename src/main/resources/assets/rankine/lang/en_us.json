@@ -5,9 +5,17 @@
   "block.rankine.etched_glass1": "Etched Glass Center",
   "block.rankine.etched_glass2": "Etched Glass Side",
 
-
+  "item.rankine.health_pendant": "Health Pendant",
+  "item.rankine.repulsion_pendant": "Repulsion Pendant",
+  "item.rankine.luck_pendant": "Luck Pendant",
+  "item.rankine.levitation_pendant": "Levitation Pendant",
+  "item.rankine.haste_pendant": "Haste Pendant",
   "item.rankine.speed_pendant": "Speed Pendant",
   "item.rankine.gem_core": "Gem Core",
+  "item.rankine.gem_shard": "Gem Shard",
+  "item.rankine.chalk": "Chalk",
+
+
 
   "block.rankine.potted_cedar_sapling": "Potted Cedar Sapling",
   "block.rankine.potted_balsam_fir_sapling": "Potted Balsam Fir Sapling",
@@ -34,7 +42,7 @@
   "item.rankine.raspberries": "Raspberries",
   "item.rankine.cranberries": "Cranberries",
   "item.rankine.strawberries": "Strawberries",
-  "item.rankine.luck_pendant": "Luck Pendant",
+
   "item.rankine.jar_blue_foxfire": "Jar Blue Foxfire",
   "item.rankine.jar_green_foxfire": "Jar Green Foxfire",
   "block.rankine.red_grapevine": "Red Grapevine",
@@ -582,8 +590,8 @@
   "block.rankine.rose_metal_block": "Block of Rose's Metal",
   "block.rankine.pyroxene_block": "Block of Pyroxene",
   "block.rankine.nickel_superalloy_block": "Block of Nickel Superalloy",
-  "block.rankine.salt_block": "Halite",
-  "block.rankine.pink_salt_block": "Pink Halite",
+  "block.rankine.salt_block": "Block of Salt",
+  "block.rankine.pink_salt_block": "Block of Pink Salt",
   "block.rankine.coke_block": "Block of Coke",
   "block.rankine.lignite_block": "Block of Lignite",
   "block.rankine.subbituminous_coal_block": "Block of Subbituminous Coal",
@@ -1392,7 +1400,8 @@
   "item.rankine.cobalt_remedy": "Cobalt Remedy",
   "item.rankine.silver_remedy": "Silver Remedy",
 
-
+  "block.rankine.pink_halite_ore": "Pink Halite Ore",
+  "block.rankine.halite_ore": "Halite Ore",
   "block.rankine.magnetite_ore": "Magnetite Ore",
   "block.rankine.cassiterite_ore": "Cassiterite Ore",
   "block.rankine.malachite_ore": "Malachite Ore",
