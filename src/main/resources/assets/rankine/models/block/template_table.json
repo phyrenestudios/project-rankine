@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rankine:block/template_table_side1",
+    "north": "rankine:block/template_table_side2",
+    "south": "rankine:block/template_table_side2",
+    "east": "rankine:block/template_table_side1",
+    "west": "rankine:block/template_table_side1",
+    "up": "rankine:block/template_table_top",
+    "down": "rankine:block/cedar_planks"
+  }
+}

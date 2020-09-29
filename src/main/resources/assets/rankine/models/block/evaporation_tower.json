@@ -1,6 +1,12 @@
 {
-        "parent": "block/cube_all",
-        "textures": {
-        "all": "rankine:block/evaporation_tower"
-        }
-    }
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rankine:block/evaporation_tower",
+    "north": "rankine:block/evaporation_tower",
+    "south": "rankine:block/evaporation_tower",
+    "east": "rankine:block/evaporation_tower",
+    "west": "rankine:block/evaporation_tower",
+    "up": "rankine:block/evaporation_tower_top",
+    "down": "rankine:block/evaporation_tower_bottom"
+  }
+}

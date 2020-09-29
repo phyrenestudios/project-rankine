@@ -104,6 +104,8 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
     @Override
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
+        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt,this.items);
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
@@ -112,6 +114,7 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
+        super.write(compound);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);

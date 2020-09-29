@@ -69,7 +69,7 @@ public class ModRecipes {
                 new AbstractMap.SimpleEntry<>(.5f,.7f), new AbstractMap.SimpleEntry<>(.15f,.25f),new AbstractMap.SimpleEntry<>(.15f,.25f),1f));
 
         recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.NICKEL_INGOT,ModItems.COBALT_INGOT),
-                new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
+                new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,.05f),0.95f));
 
         recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(ModItems.PIG_IRON_INGOT,ModItems.CARBON_INGOT,ModItems.MANGANESE_INGOT,
                 ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.VANADIUM_INGOT,ModItems.SILICON),
@@ -111,16 +111,108 @@ public class ModRecipes {
                 new AbstractMap.SimpleEntry<>(.8f,.98f),new AbstractMap.SimpleEntry<>(.02f,.04f),
                 new AbstractMap.SimpleEntry<>(0f,.18f),.82f));
 
-        recipes.add(alloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.CHROMIUM_INGOT,
-                ModItems.CARBON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.ALUMINUM_INGOT,ModItems.MANGANESE_INGOT,ModItems.SILICON,ModItems.COPPER_INGOT,
-                ModItems.NICKEL_INGOT,ModItems.BORON_INGOT,ModItems.COBALT_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.TUNGSTEN_INGOT,ModItems.YTTRIUM_INGOT),
-                new AbstractMap.SimpleEntry<>(.65f,.7f),new AbstractMap.SimpleEntry<>(.11f,.18f), new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
-
         recipes.add(alloyRecipe("cobalt_superalloy", new ItemStack(ModItems.COBALT_SUPERALLOY),Arrays.asList(ModItems.COBALT_INGOT,ModItems.CHROMIUM_INGOT,
                 ModItems.CARBON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.TUNGSTEN_INGOT,ModItems.NICKEL_INGOT,ModItems.TITANIUM_INGOT,ModItems.ALUMINUM_INGOT,
                 ModItems.IRIDIUM_INGOT,ModItems.TANTALUM_INGOT,Items.IRON_INGOT,ModItems.SILICON),
                 new AbstractMap.SimpleEntry<>(.5f,.7f),new AbstractMap.SimpleEntry<>(.2f,.3f), new AbstractMap.SimpleEntry<>(0f,.3f),.7f));
         return recipes;
+    }
+
+    public static List<ITripleAlloyRecipe> getTripleAlloyRecipes() {
+        List<ITripleAlloyRecipe> recipes = new ArrayList<>();
+
+        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/wrought_iron")),
+                returnTag(new ResourceLocation("forge","ingots/chromium")), returnTag(new ResourceLocation("forge","ingots/carbon"),
+                        new ResourceLocation("forge","coke"),new ResourceLocation("forge","graphite")),
+                returnTag(new ResourceLocation("forge","ingots/molybdenum")), returnTag(new ResourceLocation("forge","ingots/aluminum")),
+                returnTag(new ResourceLocation("forge","ingots/manganese")), returnTag(new ResourceLocation("forge","ingots/copper")),
+                returnTag(new ResourceLocation("forge","ingots/nickel")), returnTag(new ResourceLocation("forge","ingots/boron")),
+                returnTag(new ResourceLocation("forge","ingots/cobalt")), returnTag(new ResourceLocation("forge","ingots/strontium")),
+                returnTag(new ResourceLocation("forge", "ingots/niobium")),returnTag(new ResourceLocation("forge","ingots/tantalum")),
+                returnTag(new ResourceLocation("forge","ingots/titanium")), returnTag(new ResourceLocation("forge","ingots/tungsten")),
+                returnTag(new ResourceLocation("forge","ingots/yttrium")), returnTag(new ResourceLocation("forge","ingots/selenium")),
+                returnTag(new ResourceLocation("forge","ingots/vanadium")), returnTag(new ResourceLocation("forge","ingots/zirconium")),
+                returnTag(new ResourceLocation("forge","silicon")), returnTag(new ResourceLocation("forge","phosphorus")),
+                returnTag(new ResourceLocation("forge","sulfur")), returnTag(new ResourceLocation("forge","ingots/nitrogen"))),
+                new AbstractMap.SimpleEntry<>(.65f, .7f), new AbstractMap.SimpleEntry<>(.10f, .19f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
+
+        recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/tungsten")),
+                returnTag(new ResourceLocation("forge","ingots/nickel")),returnTag(new ResourceLocation("forge","ingots/iron"),new ResourceLocation("forge","ingots/copper")),
+                returnTag(new ResourceLocation("forge","ingots/cobalt")), returnTag(new ResourceLocation("forge","ingots/chromium")),
+                returnTag(new ResourceLocation("forge","ingots/molybdenum")), returnTag(new ResourceLocation("forge","ingots/aluminum")),
+                returnTag(new ResourceLocation("forge","ingots/boron")), returnTag(new ResourceLocation("forge","ingots/titanium")),
+                returnTag(new ResourceLocation("forge","ingots/tantalum")), returnTag(new ResourceLocation("forge","ingots/yttrium")),
+                returnTag(new ResourceLocation("forge","ingots/cerium")), returnTag(new ResourceLocation("forge","ingots/lanthanum")),
+                returnTag(new ResourceLocation("forge","ingots/carbon"), new ResourceLocation("forge","coke"),new ResourceLocation("forge","graphite"))
+                , returnTag(new ResourceLocation("forge", "silicon"))),
+                new AbstractMap.SimpleEntry<>(.88f, .95f), new AbstractMap.SimpleEntry<>(.02f, .1f), new AbstractMap.SimpleEntry<>(.01f, .04f), new AbstractMap.SimpleEntry<>(0f, .09f),.91f));
+
+        recipes.add(tripleAlloyRecipe("mischmetal_alloy", new ItemStack(ModItems.MISCHMETAL_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/cerium")),
+                returnTag(new ResourceLocation("forge","ingots/lanthanum")),returnTag(new ResourceLocation("forge","ingots/neodymium")),
+                returnTag(new ResourceLocation("forge","ingots/praseodymium")), returnTag(new ResourceLocation("forge","ingots/dysprosium")),
+                returnTag(new ResourceLocation("forge","ingots/europium")), returnTag(new ResourceLocation("forge","ingots/gadolinium")),
+                returnTag(new ResourceLocation("forge","ingots/samarium")), returnTag(new ResourceLocation("forge","ingots/tebrium")),
+                returnTag(new ResourceLocation("forge","ingots/iron")), returnTag(new ResourceLocation("forge", "silicon"))),
+                new AbstractMap.SimpleEntry<>(.5f, .55f), new AbstractMap.SimpleEntry<>(.2f, .25f), new AbstractMap.SimpleEntry<>(.15f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.85f));
+
+        recipes.add(tripleAlloyRecipe("duralumin_alloy", new ItemStack(ModItems.DURALUMIN_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/aluminum")),
+                returnTag(new ResourceLocation("forge","ingots/copper")),returnTag(new ResourceLocation("forge","ingots/magnesium")),
+                returnTag(new ResourceLocation("forge","ingots/manganese")),returnTag(new ResourceLocation("forge","ingots/iron")),
+                returnTag(new ResourceLocation("forge","ingots/zinc")), returnTag(new ResourceLocation("forge","ingots/titanium")),
+                returnTag(new ResourceLocation("forge","ingots/chromium")), returnTag(new ResourceLocation("forge", "silicon"))),
+                new AbstractMap.SimpleEntry<>(.91f, .95f), new AbstractMap.SimpleEntry<>(.03f, .05f), new AbstractMap.SimpleEntry<>(.01f, .03f), new AbstractMap.SimpleEntry<>(0f, .04f),.96f));
+
+        recipes.add(tripleAlloyRecipe("rose_metal_alloy", new ItemStack(ModItems.ROSE_METAL_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/bismuth")),
+                returnTag(new ResourceLocation("forge","ingots/lead")),returnTag(new ResourceLocation("forge","ingots/tin"))),
+                new AbstractMap.SimpleEntry<>(.3f, .5f), new AbstractMap.SimpleEntry<>(.18f, .4f), new AbstractMap.SimpleEntry<>(.1f, .25f), new AbstractMap.SimpleEntry<>(0f, 0f),1f));
+
+            recipes.add(tripleAlloyRecipe("nickel_superalloy_tial", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/nickel")),
+                returnTag(new ResourceLocation("forge","ingots/titanium")),returnTag(new ResourceLocation("forge","ingots/aluminum")),
+                returnTag(new ResourceLocation("forge","ingots/chromium")), returnTag(new ResourceLocation("forge","ingots/molybdenum")),
+                returnTag(new ResourceLocation("forge","ingots/niobium")), returnTag(new ResourceLocation("forge","ingots/tantalum")),
+                returnTag(new ResourceLocation("forge","ingots/cobalt")), returnTag(new ResourceLocation("forge","ingots/manganese")),
+                returnTag(new ResourceLocation("forge","ingots/boron")), returnTag(new ResourceLocation("forge","ingots/iron")),
+                returnTag(new ResourceLocation("forge","ingots/vanadium")),returnTag(new ResourceLocation("forge","ingots/zirconium")),
+                returnTag(new ResourceLocation("forge","ingots/carbon")),returnTag(new ResourceLocation("forge","ingots/tungsten")),
+                returnTag(new ResourceLocation("forge","ingots/ruthenium")),returnTag(new ResourceLocation("forge","ingots/rhenium")),
+                returnTag(new ResourceLocation("forge","phosphorus")),returnTag(new ResourceLocation("forge", "silicon"))),
+                new AbstractMap.SimpleEntry<>(.6f, .75f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(0f, .15f),.62f));
+
+        recipes.add(tripleAlloyRecipe("nickel_superalloy_crfe", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/nickel")),
+                returnTag(new ResourceLocation("forge","ingots/chromium")),returnTag(new ResourceLocation("forge","ingots/cobalt")),
+                returnTag(new ResourceLocation("forge","ingots/titanium")), returnTag(new ResourceLocation("forge","ingots/molybdenum")),
+                returnTag(new ResourceLocation("forge","ingots/niobium")), returnTag(new ResourceLocation("forge","ingots/tantalum")),
+                returnTag(new ResourceLocation("forge","ingots/iron")), returnTag(new ResourceLocation("forge","ingots/manganese")),
+                returnTag(new ResourceLocation("forge","ingots/boron")), returnTag(new ResourceLocation("forge","ingots/aluminum")),
+                returnTag(new ResourceLocation("forge","ingots/vanadium")),returnTag(new ResourceLocation("forge","ingots/zirconium")),
+                returnTag(new ResourceLocation("forge","ingots/carbon")),returnTag(new ResourceLocation("forge","ingots/tungsten")),
+                returnTag(new ResourceLocation("forge","ingots/ruthenium")),returnTag(new ResourceLocation("forge","ingots/rhenium")),
+                returnTag(new ResourceLocation("forge","phosphorus")),returnTag(new ResourceLocation("forge", "silicon"))),
+                new AbstractMap.SimpleEntry<>(.5f, .75f), new AbstractMap.SimpleEntry<>(.14f, .27f), new AbstractMap.SimpleEntry<>(.01f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.65f));
+
+        return recipes;
+    }
+
+    public static ItemStack[] returnTag(ResourceLocation... rs) {
+        List<Item> list = new ArrayList<>();
+        for (ResourceLocation i : rs)
+        {
+            list.addAll(ItemTags.getCollection().getOrCreate(i).getAllElements());
+        }
+        ItemStack[] result = new ItemStack[list.size()];
+        if (!list.isEmpty())
+        {
+            for (int i = 0; i < list.size(); i++)
+            {
+                result[i] = new ItemStack(list.get(i));
+            }
+
+        } else
+        {
+            System.out.println("Tag not found for JEI Recipe with ResourceLocation(s): " + Arrays.toString(rs));
+            result = new ItemStack[]{new ItemStack(ModItems.ELEMENT)};
+        }
+        return result;
     }
 
     public static List<IBeehiveOvenRecipe> getBeehiveOvenRecipes()
@@ -226,7 +318,7 @@ public class ModRecipes {
         //Mod Ores
         recipes.add(crushingRecipe("magnetite_ore_crushing",ModBlocks.MAGNETITE_ORE.asItem(), new ItemStack(ModItems.MAGNETITE,1), new ItemStack(ModItems.CHROMITE,1),0.1f));
         recipes.add(crushingRecipe("malachite_ore_crushing",ModBlocks.MALACHITE_ORE.asItem(), new ItemStack(ModItems.MALACHITE,1), new ItemStack(ModItems.AZURITE,1),0.1f));
-        recipes.add(crushingRecipe("bauxite_ore_crushing",ModBlocks.BAUXITE_ORE.asItem(), new ItemStack(ModItems.ALUMINA,1), new ItemStack(ModItems.TITANIA,1),0.05f));
+        recipes.add(crushingRecipe("bauxite_ore_crushing",ModBlocks.BAUXITE_ORE.asItem(), new ItemStack(ModItems.ALUMINA,1), new ItemStack(ModItems.GALLIUM_NUGGET,1),0.05f));
         recipes.add(crushingRecipe("cassiterite_ore_crushing",ModBlocks.CASSITERITE_ORE.asItem(), new ItemStack(ModItems.CASSITERITE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
         recipes.add(crushingRecipe("sphalerite_ore_crushing",ModBlocks.SPHALERITE_ORE.asItem(), new ItemStack(ModItems.SPHALERITE,1), new ItemStack(ModItems.OPAL,1),0.05f));
         recipes.add(crushingRecipe("cinnabarite_ore_crushing",ModBlocks.CINNABAR_ORE.asItem(), new ItemStack(Items.REDSTONE,4), new ItemStack(ModItems.SULFUR,1),0.25f));
@@ -458,6 +550,18 @@ public class ModRecipes {
         }
         return new IAlloyRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output, list
                 ,primary,secondary,other,req);
+    }
+
+    public static ITripleAlloyRecipe tripleAlloyRecipe(String registry, ItemStack output, List<ItemStack[]> input, AbstractMap.SimpleEntry<Float, Float> primary,
+                                           AbstractMap.SimpleEntry<Float, Float> secondary, AbstractMap.SimpleEntry<Float, Float> tertiary, AbstractMap.SimpleEntry<Float, Float> other, float req)
+    {
+        NonNullList<Ingredient> list = NonNullList.create();
+        for (int i = 0; i < input.size(); i++)
+        {
+            list.add(i,Ingredient.fromStacks(input.get(i)));
+        }
+        return new ITripleAlloyRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output, list
+                ,primary,secondary,tertiary,other,req);
     }
 
     public static IPistonCrusherRecipe crushingRecipe(String registry, Item input, ItemStack output, ItemStack secondary, float chance)

@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
+import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -37,6 +38,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ModBlocks.COAL_FORGE_CONTAINER, CoalForgeScreen::new);
         ScreenManager.registerFactory(ModBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
         ScreenManager.registerFactory(ModItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
+        ScreenManager.registerFactory(ModBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
 
         addCutout(Arrays.asList(
                 ModBlocks.ACANTHITE_ORE,

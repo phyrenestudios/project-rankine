@@ -54,8 +54,9 @@ public class AlloyFurnaceContainer extends Container {
         this.addSlot(new Slot(furnaceInventory, 1, 55,31));
         this.addSlot(new Slot(furnaceInventory, 2, 77,31));
         this.addSlot(new Slot(furnaceInventory, 3, 10,37));
-        this.addSlot(new Slot(furnaceInventory, 4, 134,31));
-        this.addSlot(new Slot(furnaceInventory, 5, 134,7));
+        this.addSlot(new Slot(furnaceInventory, 4, 134,7));
+        this.addSlot(new Slot(furnaceInventory, 5, 134,31));
+
 
         layoutPlayerInventorySlots(8, 70);
 
@@ -109,8 +110,8 @@ public class AlloyFurnaceContainer extends Container {
         {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 4) {
-                if (!this.mergeItemStack(stack, 5, 37, true)) {
+            if (index == 5) {
+                if (!this.mergeItemStack(stack, 6, 42, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
@@ -123,14 +124,18 @@ public class AlloyFurnaceContainer extends Container {
                     if (!this.mergeItemStack(stack, 3, 4, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                } else if (stack.getItem() == ModItems.ALLOY_TEMPLATE) {
+                    if (!this.mergeItemStack(stack, 4, 5, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 5, 28, false)) {
+                } else if (index < 33) {
+                    if (!this.mergeItemStack(stack, 33, 42, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index < 42 && !this.mergeItemStack(stack, 6, 33, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 5, 37, false)) {
+            } else if (!this.mergeItemStack(stack, 6, 42, false)) {
                 return ItemStack.EMPTY;
             }
 

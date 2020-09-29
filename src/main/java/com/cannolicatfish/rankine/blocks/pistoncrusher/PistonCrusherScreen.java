@@ -47,10 +47,6 @@ public class PistonCrusherScreen extends ContainerScreen<PistonCrusherContainer>
             this.blit(p_230450_1_,this.guiLeft + 56, this.guiTop + 8, 180, 31, 16, 22);
         }
 
-        if (this.container.isRSPower())
-        {
-            this.blit(p_230450_1_,this.guiLeft + 56, this.guiTop + 48, 180, 53, 16, 16);
-        }
         this.blit(p_230450_1_,this.guiLeft + 88, this.guiTop + 32, 180, 14, l + 1, 16);
     }
 
