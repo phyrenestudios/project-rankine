@@ -1,1 +1,1 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:pink_salt_block" } ], "result": { "item": "rankine:pink_salt", "count": 4} }
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:pink_salt_block" } ], "result": { "item": "rankine:pink_salt", "count": 9} }

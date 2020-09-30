@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:garnet",
+    "rankine:sapphire",
+    "rankine:ruby",
+    "rankine:peridot",
+    "rankine:opal",
+    "rankine:aquamarine"
+  ]
+}

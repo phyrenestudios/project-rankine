@@ -29,15 +29,13 @@ public class OreGen {
         flatBedrock();
         removeFeatures();
 
-        FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 64, Arrays.asList(ModBiomes.SALT_PLAINS, ModBiomes.SALT_SPIKES));
+        FlatReplaceGenDef(Blocks.SAND, ModBlocks.SALT_BLOCK, 50, 63, Arrays.asList(ModBiomes.SALT_PLAINS, ModBiomes.SALT_SPIKES));
 
         addCrystal();
         intrusionGenDef();
         alluviumGen();
 
         //Extras
-        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SALT_BLOCK.getDefaultState(),30,2,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
-        rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PINK_SALT_BLOCK.getDefaultState(),30,2,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
         replaceGenDef(Blocks.STONE, Blocks.RED_SANDSTONE, 61, 80, getBiomesFromCategory(Collections.singletonList(Biome.Category.MESA), true));
         rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.SCORIA.getDefaultState(),20,6,50,128, Collections.singletonList(ModBiomes.CRACKED_CRUST));
         rockGenCountDef(Blocks.STONE.getDefaultState(), ModBlocks.PUMICE.getDefaultState(),20,5,50,128, Collections.singletonList(ModBiomes.CRACKED_CRUST));
@@ -64,6 +62,9 @@ public class OreGen {
         OWGenDefCount(ModBlocks.NATIVE_ALUMINUM_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_GOLD_ORE,10,4,15,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.STIBNITE_ORE,10,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
+        rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.HALITE_ORE.getDefaultState(),30,2,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
+        rockGenCountDef(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.PINK_HALITE_ORE.getDefaultState(),30,2,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
+
 
         //coals
         OWGenDefCount(ModBlocks.LIGNITE_ORE, 30, 1, 71, 128, RankineOreFeatureConfig.RankineFillerBlockType.NO_SP);

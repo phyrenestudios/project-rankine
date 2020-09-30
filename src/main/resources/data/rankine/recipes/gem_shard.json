@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " g ",
+    "gfg",
+    " g "
+  ],
+  "key": {
+    "g": {
+      "tag": "rankine:gems"
+    },
+    "f": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "rankine:gem_shard",
+    "count": 1
+  }
+}

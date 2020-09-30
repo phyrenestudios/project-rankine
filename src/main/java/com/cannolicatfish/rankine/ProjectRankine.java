@@ -10,7 +10,6 @@ import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
-import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
@@ -34,7 +33,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -44,11 +42,13 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
@@ -119,6 +119,7 @@ public class ProjectRankine {
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
+
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().register(TileEntityType.Builder.create(AlloyFurnaceTile::new, ModBlocks.ALLOY_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
@@ -147,8 +148,6 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.NETHERITE_SPEAR);
             event.getRegistry().register(ModEntityTypes.NICKEL_SUPERALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
-      //      event.getRegistry().register(ModEntityTypes.JAR_BLUE_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_blue_foxfire"));
-      //      event.getRegistry().register(ModEntityTypes.JAR_GREEN_FOXFIRE.setRegistryName(ProjectRankine.MODID,"jar_green_foxfire"));
             event.getRegistry().register(ModEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(ModEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
             event.getRegistry().register(ModEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));

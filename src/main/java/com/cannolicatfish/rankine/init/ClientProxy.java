@@ -41,6 +41,8 @@ public class ClientProxy implements IProxy {
         addCutout(Arrays.asList(
                 ModBlocks.ACANTHITE_ORE,
                 ModBlocks.NATIVE_BISMUTH_ORE,
+                ModBlocks.HALITE_ORE,
+                ModBlocks.PINK_HALITE_ORE,
                 ModBlocks.NATIVE_GALLIUM_ORE,
                 ModBlocks.NATIVE_INDIUM_ORE,
                 ModBlocks.NATIVE_SELENIUM_ORE,
@@ -95,6 +97,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.ETCHED_GLASS0,
                 ModBlocks.ETCHED_GLASS1,
                 ModBlocks.ETCHED_GLASS2,
+
+              //  ModBlocks.CHALK,
 
                 ModBlocks.CEDAR_SAPLING,
                 ModBlocks.JUNIPER_SAPLING,

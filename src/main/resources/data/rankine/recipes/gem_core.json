@@ -1,37 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "abc",
-    "def",
-    "ghi"
+    " g ",
+    "gfg",
+    " g "
   ],
   "key": {
-    "a": {
-      "item": "rankine:aquamarine"
-    },
-    "b": {
-      "item": "rankine:opal"
-    },
-    "c": {
-      "item": "rankine:garnet"
-    },
-    "d": {
-      "item": "rankine:peridot"
-    },
-    "e": {
-      "item": "rankine:sapphire"
+    "g": {
+      "item": "rankine:gem_shard"
     },
     "f": {
-      "item": "rankine:ruby"
-    },
-    "g": {
-      "item": "rankine:fluorite"
-    },
-    "h": {
-      "item": "minecraft:emerald"
-    },
-    "i": {
-      "item": "minecraft:diamond"
+      "tag": "rankine:foxfire"
     }
   },
   "result": {
