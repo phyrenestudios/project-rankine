@@ -10,9 +10,13 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.IntArray;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -24,16 +28,19 @@ public class EvaporationTowerContainer extends Container {
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
+    private final IIntArray data;
 
     public EvaporationTowerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(1));
+        this(windowId,world,pos,playerInventory,player,new Inventory(1), new IntArray(2));
 
     }
-    public EvaporationTowerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn) {
+    public EvaporationTowerContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray towerData) {
         super(EVAPORATION_TOWER_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
         assertInventorySize(furnaceInventoryIn, 1);
+        assertIntArraySize(towerData, 2);
         this.playerEntity = player;
+        this.data = towerData;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
 
@@ -42,6 +49,24 @@ public class EvaporationTowerContainer extends Container {
         layoutPlayerInventorySlots(8, 70);
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public int getCookTime(){
+        return this.data.get(0);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getTotalCookTime(){
+        return this.data.get(1);
+    }
+
+
+    @OnlyIn(Dist.CLIENT)
+    public int getCookProgressScaled(int pixels)
+    {
+        int i = getCookTime();
+        int j = getTotalCookTime();
+        return j != 0 && i != 0 ? i * pixels / j : 0;
+    }
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
@@ -56,20 +81,16 @@ public class EvaporationTowerContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 0) {
-                if (!this.mergeItemStack(stack, 1, 39, true)) {
+                if (!this.mergeItemStack(stack, 1, 37, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (stack.getItem() == ModItems.SALT) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+                if (index < 28) {
+                    if (!this.mergeItemStack(stack, 28, 37, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 30) {
-                    if (!this.mergeItemStack(stack, 30, 39, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index < 39 && !this.mergeItemStack(stack, 1, 30, false)) {
+                } else if (index < 37 && !this.mergeItemStack(stack, 1, 28, false)) {
                     return ItemStack.EMPTY;
                 }
             }

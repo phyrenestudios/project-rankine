@@ -31,6 +31,7 @@ public class EvaporationTowerBlock extends Block {
         super(properties);
     }
 
+    /*
     @SuppressWarnings( "deprecation" )
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         super.tick(state, worldIn, pos, rand);
@@ -45,11 +46,10 @@ public class EvaporationTowerBlock extends Block {
             }
         }
 
-
     @Override
     public boolean ticksRandomly(BlockState state) {
         return true;
-    }
+    }*/
 
     @Override
     public boolean hasTileEntity(BlockState state) {

@@ -144,11 +144,6 @@ public class PistonCrusherContainer extends Container {
         return 2;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public boolean isRSPower()
-    {
-        return this.data.get(4) == 1;
-    }
 
     @OnlyIn(Dist.CLIENT)
     public int getBurnLeftScaled(int pixels)

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:alloy_template"
+    },
+    {
+      "item": "rankine:element_transmuter"
+    }
+  ],
+  "result": {
+    "item": "rankine:alloy_template",
+    "count": 1
+  }
+}

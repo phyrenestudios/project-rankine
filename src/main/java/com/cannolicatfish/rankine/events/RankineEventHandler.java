@@ -11,6 +11,8 @@ import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
@@ -20,6 +22,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -29,12 +32,14 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.items.IItemHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -97,6 +102,15 @@ public class RankineEventHandler {
         }
     }
  */
+    @SubscribeEvent
+    public void lootLoad(LootTableLoadEvent evt) {
+        if (evt.getName().toString().equals("minecraft:chests/village/toolsmith")) {
+            LootTable table = evt.getTable();
+            table.addPool(LootPool.builder()
+                    .addEntry(ItemLootEntry.builder(() -> ModItems.ALLOY_TEMPLATE).weight(20).acceptFunction(SetCount.builder(ConstantRange.of(1))))
+                    .build());
+        }
+    }
 
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
+import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
@@ -35,6 +36,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -53,6 +55,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.annotation.Nonnull;
 
 @Mod("rankine")
 public class ProjectRankine {
@@ -216,6 +220,10 @@ public class ProjectRankine {
             }).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                return new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"template_table"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"element_indexer"));
         }
@@ -253,6 +261,11 @@ public class ProjectRankine {
             event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
             event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
         }
+/*
+        @SubscribeEvent
+        public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
+
+        }*/
     }
 
 

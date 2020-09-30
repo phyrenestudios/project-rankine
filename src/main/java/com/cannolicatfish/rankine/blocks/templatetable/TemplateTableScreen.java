@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.blocks.evaporationtower;
+package com.cannolicatfish.rankine.blocks.templatetable;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -9,12 +9,10 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-import java.awt.*;
-
-public class EvaporationTowerScreen extends ContainerScreen<EvaporationTowerContainer>{
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/evaporation_tower.png");
-    public EvaporationTowerScreen(EvaporationTowerContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
-        super(screenContainer, inv, titleIn);
+public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/template_table.png");
+    public TemplateTableScreen(TemplateTableContainer container, PlayerInventory inv, ITextComponent name) {
+        super(container, inv, name);
     }
 
     @Override
@@ -27,17 +25,20 @@ public class EvaporationTowerScreen extends ContainerScreen<EvaporationTowerCont
     @Override
     protected void drawGuiContainerBackgroundLayer(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GUI);
+        this.minecraft.getTextureManager().bindTexture(this.GUI);
+        int i = this.guiLeft;
+        int j = this.guiTop;
+        this.blit(p_230450_1_, i, j, 0, 0, this.xSize, this.ySize);
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
-        this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
-
-        int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_, this.guiLeft + 76, this.guiTop + 49, 176, 14, l + 1, 16);
+        this.blit(p_230450_1_, relX, relY, 0, 0, this.xSize, this.ySize);
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Evaporation Tower", 92, 10, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Template Table", 110, 10, 0xffffff);
     }
+
+
+
 }

@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -8,15 +11,23 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.Random;
+
 import static com.cannolicatfish.rankine.init.ModBlocks.EVAPORATION_TOWER_TILE;
 
 
@@ -25,7 +36,38 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_UP = new int[]{};
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
+    private int cookTime;
+    private int cookTimeTotal = 800;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
+    private final IIntArray towerData = new IIntArray(){
+        public int get(int index)
+        {
+            switch(index)
+            {
+                case 0:
+                    return EvaporationTowerTile.this.cookTime;
+                case 1:
+                    return EvaporationTowerTile.this.cookTimeTotal;
+                default:
+                    return 0;
+            }
+        }
+        public void set(int index, int value)
+        {
+            switch(index)
+            {
+                case 0:
+                    EvaporationTowerTile.this.cookTime = value;
+                    break;
+                case 1:
+                    EvaporationTowerTile.this.cookTimeTotal = value;
+                    break;
+            }
+        }
+        public int size() {
+            return 2;
+        }
+    };
 
     public EvaporationTowerTile() {
         super(EVAPORATION_TOWER_TILE);
@@ -34,16 +76,40 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     @Override
     public void read(BlockState state, CompoundNBT nbt) {
         super.read(state, nbt);
+        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt,this.items);
+        this.cookTime = nbt.getInt("CookTime");
+        this.cookTimeTotal = nbt.getInt("CookTimeTotal");
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
+        super.write(compound);
         ItemStackHelper.saveAllItems(compound, this.items);
+        compound.putInt("CookTime", this.cookTime);
+        compound.putInt("CookTimeTotal", this.cookTimeTotal);
         return compound;
     }
 
     @Override
     public void tick() {
+        World worldIn = this.getWorld();
+        if (!worldIn.isRemote) {
+
+            boolean ready = checkStructure(this.getPos(),worldIn) && this.items.get(0).isEmpty();
+            if (ready)
+            {
+                System.out.println(cookTime);
+                ++this.cookTime;
+                if (this.cookTime == this.cookTimeTotal) {
+                    this.items.set(0,randomOutput(worldIn.getRandom()));
+                    cookTime = 0;
+                }
+            } else if (cookTime > 0)
+            {
+                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            }
+        }
 
     }
 
@@ -70,6 +136,39 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             handlers[x].invalidate();
     }
 
+    private boolean checkStructure(BlockPos pos, World worldIn)
+    {
+        int i = 0;
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 3, 1))) {
+            if (worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+                ++i;
+            }
+        }
+        if (i >= 32 && worldIn.getBlockState(pos.up(1)) == Blocks.WATER.getDefaultState() && worldIn.getBlockState(pos.up(2)) == Blocks.WATER.getDefaultState()) {
+            return true;
+        }
+        return false;
+    }
+
+    private ItemStack randomOutput(Random random)
+    {
+        int randomSelector = random.nextInt(5);
+        int randomAmount = random.nextInt(4);
+        switch (randomSelector)
+        {
+            default:
+            case 0:
+                return new ItemStack(ModItems.SALT,randomAmount);
+            case 1:
+                return new ItemStack(ModItems.LEAD_NUGGET,randomAmount);
+            case 2:
+                return new ItemStack(Items.GOLD_NUGGET,randomAmount);
+            case 3:
+                return new ItemStack(ModItems.MAGNESIUM_NUGGET,randomAmount);
+            case 4:
+                return new ItemStack(ModItems.BROMINE_NUGGET,randomAmount);
+        }
+    }
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent(getType().getRegistryName().getPath());
@@ -78,7 +177,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new EvaporationTowerContainer(i, world, pos, playerInventory, playerEntity, this);
+        return new EvaporationTowerContainer(i, world, pos, playerInventory, playerEntity, this, this.towerData);
     }
 
     @Override
