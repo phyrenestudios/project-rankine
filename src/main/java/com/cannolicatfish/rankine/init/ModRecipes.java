@@ -264,7 +264,6 @@ public class ModRecipes {
         recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("bloom_iron_crushing",ModItems.BLOOM_IRON.asItem(), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1), new ItemStack(ModItems.SLAG,1),0.5f));
 
-        recipes.add(crushingRecipe("c_biomass_crushing",ModItems.BIOMASS, new ItemStack(ModItems.COMPRESSED_BIOMASS,1), new ItemStack(ModItems.COMPOST,1),0.01f));
 
         recipes.addAll(groupCrushingRecipe("leaves_crushing","minecraft:leaves",new ItemStack(ModItems.BIOMASS, 1),new ItemStack(ModItems.COMPOST,1), 1.0f));
         recipes.addAll(groupCrushingRecipe("crops_crushing","forge:crops",new ItemStack(ModItems.BIOMASS,3),new ItemStack(ModItems.COMPOST,1), 0.5f));

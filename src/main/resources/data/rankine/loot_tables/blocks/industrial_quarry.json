@@ -1,0 +1,21 @@
+{
+      "type": "minecraft:block",
+      "pools":
+      [
+        { "rolls": 1,
+          "entries":
+          [
+            {
+              "type": "minecraft:item",
+              "name": "rankine:industrial_quarry"
+            }
+          ],
+          "conditions":
+          [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ]
+        }
+      ]
+    }
