@@ -3,19 +3,15 @@ package com.cannolicatfish.rankine.blocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.ForgeEventFactory;
 
 public class CompositionBlock extends Block {
     int type;

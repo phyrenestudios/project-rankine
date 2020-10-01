@@ -3,37 +3,23 @@ package com.cannolicatfish.rankine.blocks.templatetable;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.AlloyTemplate;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
+import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
+import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.CraftResultInventory;
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.StonecuttingRecipe;
-import net.minecraft.network.play.server.SSetSlotPacket;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Optional;
 
 import static com.cannolicatfish.rankine.init.ModBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends Container {
@@ -106,7 +92,7 @@ public class TemplateTableContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (!(index < 7)) {
-                if (!AlloyingRecipesComplex.getInstance().returnItemMaterial(stack).getKey().contains("none") && !AlloyingRecipesComplex.getInstance().returnItemMaterial(stack).getKey().contains("nope")) {
+                if (!AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("none") && !AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("nope")) {
                     if (!this.mergeItemStack(stack, 2, 7, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -172,14 +158,14 @@ public class TemplateTableContainer extends Container {
     }
 
     public void onCraftMatrixChanged(IInventory inventoryIn) {
-        AbstractMap.SimpleEntry<ItemStack,int[]> recipeOutput = AlloyingRecipesComplex.getInstance().getAlloyResult(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
-        if (!recipeOutput.getKey().isEmpty() && this.inputInventory.getStackInSlot(0).getItem() == Items.PAPER &&
+        ItemStack recipeOutput = AlloyFurnaceRecipes.getInstance().getAlloyResult(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
+        if (!recipeOutput.isEmpty() && this.inputInventory.getStackInSlot(0).getItem() == Items.PAPER &&
                 (this.inputInventory.getStackInSlot(1).getItem() == Items.INK_SAC || this.inputInventory.getStackInSlot(1).getItem() == Items.BLACK_DYE))
         {
             ItemStack st = new ItemStack(ModItems.ALLOY_TEMPLATE);
             String temp = TemplateTableContainer.assembleTemplate(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
-            AlloyTemplate.addTemplate(st, temp,recipeOutput.getKey().getCount() + "x#" + recipeOutput.getKey().getTranslationKey(),
-                    recipeOutput.getKey(), AlloyingRecipesComplex.getInstance().getComposition(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4)),
+            AlloyTemplate.addTemplate(st, temp,recipeOutput.getCount() + "x#" + recipeOutput.getTranslationKey(),
+                    recipeOutput, AlloyRecipeHelper.getInstance().getComposition(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4)),
                     this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
 
             this.outputInventory.setInventorySlotContents(0,st);
@@ -215,7 +201,7 @@ public class TemplateTableContainer extends Container {
             {
                 ret.append("-");
             }
-            AbstractMap.SimpleEntry<String,Integer> s = AlloyingRecipesComplex.getInstance().returnItemMaterial(i);
+            AbstractMap.SimpleEntry<String,Integer> s = AlloyRecipeHelper.getInstance().returnItemMaterial(i);
             ret.append(s.getValue()).append(utils.getElementByMaterial(s.getKey()));
         }
         return ret.toString();

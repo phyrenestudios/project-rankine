@@ -74,7 +74,7 @@ public class PistonCrusherContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 2 || index == 3) {
-                if (!this.mergeItemStack(stack, 4, 37, true)) {
+                if (!this.mergeItemStack(stack, 4, 40, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
@@ -87,14 +87,14 @@ public class PistonCrusherContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                } else if (index < 31) {
+                    if (!this.mergeItemStack(stack, 31, 40, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 4, 28, false)) {
+                } else if (index < 40 && !this.mergeItemStack(stack, 4, 31, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 4, 37, false)) {
+            } else if (!this.mergeItemStack(stack, 4, 40, false)) {
                 return ItemStack.EMPTY;
             }
 
