@@ -1,11 +1,10 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.items.AlloyTemplate;
-import com.cannolicatfish.rankine.items.ItemTemplate;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
-import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
+import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
+import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,35 +22,24 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static com.cannolicatfish.rankine.init.ModBlocks.ALLOY_FURNACE_TILE;
 
 public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
-    private static final int[] SLOTS_UP = new int[]{0,1,2,4};
+    private static final int[] SLOTS_UP = new int[]{3,4};
+    private static final int[] SLOTS_EAST = new int[]{0};
+    private static final int[] SLOTS_WEST = new int[]{1};
+    private static final int[] SLOTS_BACK = new int[]{2};
     private static final int[] SLOTS_DOWN = new int[]{5};
-    private static final int[] SLOTS_HORIZONTAL = new int[]{3};
     private ItemStack smelting = ItemStack.EMPTY;
     public AlloyFurnaceTile() {
         super(ALLOY_FURNACE_TILE);
@@ -176,17 +164,24 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                 if (this.isBurning() && this.canSmelt()) {
                     ++this.cookTime;
                     if (this.cookTime == this.cookTimeTotal) {
-                        AbstractMap.SimpleEntry<ItemStack,int[]> alloyResult = AlloyingRecipesComplex.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]);
-                        ItemStack output = alloyResult.getKey();
-                        if (output.getItem() instanceof AlloyItem)
+                        int[] x;
+                        ItemStack output;
+
+                        if (recipeMode)
                         {
-                            int[] v = alloyResult.getValue();
-                            AlloyItem.addAlloy(output,new AlloyData(AlloyingRecipesComplex.getInstance().getComposition(inputs[0], inputs[1], inputs[2])));
+                            output = templateResult;
+                            x = AlloyTemplate.getShrinkAmount(this.items.get(4));
+                        } else {
+                            output = AlloyFurnaceRecipes.getInstance().getAlloyResult(inputs[0], inputs[1], inputs[2]);
+                            x = new int[]{inputs[0].getCount(),inputs[1].getCount(),inputs[2].getCount()};
+                            if (output.getItem() instanceof AlloyItem)
+                            {
+                                AlloyItem.addAlloy(output,new AlloyData(AlloyRecipeHelper.getInstance().getComposition(inputs[0], inputs[1], inputs[2])));
+                            }
                         }
                         if (!output.isEmpty()) {
                             smelting = output;
                             this.cookTime++;
-                            int[] x = alloyResult.getValue();
                             this.items.set(0, inputs[0]);
                             this.items.set(1, inputs[1]);
                             this.items.set(2, inputs[2]);
@@ -196,7 +191,6 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
                         } else {
                             this.items.set(5, smelting);
                         }
-                        int[] x = alloyResult.getValue();
                         inputs[0].shrink(x[0]);
                         inputs[1].shrink(x[1]);
                         inputs[2].shrink(x[2]);
@@ -249,9 +243,9 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
             this.percentSlot2 = 0;
             this.percentSlot3 = 0;
         } else {
-            this.percentSlot1 = AlloyingRecipesComplex.getInstance().getPercent(this.items.get(0), this.items.get(1), this.items.get(2), 0);
-            this.percentSlot2 = AlloyingRecipesComplex.getInstance().getPercent(this.items.get(0), this.items.get(1), this.items.get(2), 1);
-            this.percentSlot3 = AlloyingRecipesComplex.getInstance().getPercent(this.items.get(0), this.items.get(1), this.items.get(2), 2);
+            this.percentSlot1 = AlloyRecipeHelper.getInstance().getPercent(this.items.get(0), this.items.get(1), this.items.get(2), 0);
+            this.percentSlot2 = AlloyRecipeHelper.getInstance().getPercent(this.items.get(0), this.items.get(1), this.items.get(2), 1);
+            this.percentSlot3 = AlloyRecipeHelper.getInstance().getPercent(this.items.get(0), this.items.get(1), this.items.get(2), 2);
         }
 
     }
@@ -277,64 +271,78 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
         }
         else
         {
-            ItemStack result = AlloyingRecipesComplex.getInstance().getAlloyResult(this.items.get(0), this.items.get(1), this.items.get(2)).getKey();
-            if(result.isEmpty())
+            if (recipeMode)
             {
-                return false;
-            }
-            else
-            {
-                AlloyItem.addAlloy(result,new AlloyData(AlloyingRecipesComplex.getInstance().getComposition(this.items.get(0), this.items.get(1), this.items.get(2))));
-                ItemStack output = this.items.get(5);
-
-                if(output.isEmpty())
-                {
-                    /*System.out.println("Template check:");
-                    System.out.println("Tags equal: " + ItemStack.areItemStackTagsEqual(result, templateResult));
-                    System.out.println("Alloy Furnace result tag:" + result.getTag());
-                    System.out.println("Alloy Furnace result stack:" + result);
-                    System.out.println("templateResult tag:" + templateResult.getTag());
-                    System.out.println("templateResult stack:" + templateResult);
-                    System.out.println("Stacks equal: " + ItemStack.areItemStacksEqual(result, templateResult));
-                    System.out.println("RecipeMode is " + recipeMode);*/
-                    if (!recipeMode || (ItemStack.areItemStackTagsEqual(result, templateResult) && ItemStack.areItemStacksEqual(result, templateResult)))
-                    {
-                        return true;
-                    }
-
-                }
-
-                if(!output.isItemEqual(result))
+                int[] x = AlloyTemplate.getShrinkAmount(template);
+                if (this.items.get(0).getCount() < x[0] || this.items.get(1).getCount() < x[1] || this.items.get(2).getCount() < x[2])
                 {
                     return false;
                 }
-                int res = output.getCount() + result.getCount();
-                if (ItemStack.areItemStackTagsEqual(output,result))
+                ItemStack[] list = AlloyTemplate.getInputStacks(template);
+                if (this.items.get(0).getItem() != list[0].getItem() || this.items.get(1).getItem() != list[1].getItem() || (this.items.get(2).getItem() != list[2].getItem() && x[2] > 0))
                 {
-                    if (!recipeMode || (ItemStack.areItemStackTagsEqual(result, templateResult) && ItemStack.areItemStacksEqual(result, templateResult)))
-                    {
+                    return false;
+                }
+                ItemStack result = AlloyFurnaceRecipes.getInstance().getAlloyResult(list[0], list[1], list[2]);
+                if (!result.isEmpty()) {
+                    AlloyItem.addAlloy(result, new AlloyData(AlloyRecipeHelper.getInstance().getComposition(list[0], list[1], list[2])));
+                    ItemStack output = this.items.get(5);
+
+                    if (output.isEmpty()) {
+                        return true;
+                    }
+                    int res = output.getCount() + result.getCount();
+                    if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result)) {
                         return res <= 64 && res <= output.getMaxStackSize();
                     }
                 }
-                return false;
+                /*if (ItemStack.areItemStackTagsEqual(result, templateResult) && ItemStack.areItemsEqual(result, templateResult) &&
+                    result.getCount() >= templateResult.getCount())
+                {
+                    return res <= 64 && res <= output.getMaxStackSize();
+                }*/
+            } else {
+                ItemStack result = AlloyFurnaceRecipes.getInstance().getAlloyResult(this.items.get(0), this.items.get(1), this.items.get(2));
+                if (!result.isEmpty()) {
+                    AlloyItem.addAlloy(result, new AlloyData(AlloyRecipeHelper.getInstance().getComposition(this.items.get(0), this.items.get(1), this.items.get(2))));
+                    ItemStack output = this.items.get(5);
 
+                    if (output.isEmpty()) {
+                        return true;
+                    }
+                    int res = output.getCount() + result.getCount();
+                    if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result)) {
+                        return res <= 64 && res <= output.getMaxStackSize();
+                    }
+
+                }
             }
+            return false;
+
+
         }
     }
 
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
-            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.EAST, Direction.WEST, Direction.SOUTH);
 
     @Override
     public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
         if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+            switch (facing)
+            {
+                case UP:
+                    return handlers[0].cast();
+                case DOWN:
+                    return handlers[1].cast();
+                case EAST:
+                    return handlers[2].cast();
+                case WEST:
+                    return handlers[3].cast();
+                default:
+                    return handlers[4].cast();
+            }
         }
         return super.getCapability(capability, facing);
     }
@@ -359,10 +367,20 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
 
     @Override
     public int[] getSlotsForFace(Direction side) {
-        if (side == Direction.DOWN) {
-            return SLOTS_DOWN;
-        } else {
-            return side == Direction.UP ? SLOTS_UP : SLOTS_HORIZONTAL;
+        switch (side)
+        {
+            case UP:
+                return SLOTS_UP;
+            case DOWN:
+                return SLOTS_DOWN;
+            case EAST:
+                return SLOTS_EAST;
+            case WEST:
+                return SLOTS_WEST;
+            case NORTH:
+            case SOUTH:
+            default:
+                return SLOTS_BACK;
         }
     }
 
@@ -439,14 +457,14 @@ public class AlloyFurnaceTile extends TileEntity implements ISidedInventory, ITi
             case 0:
             case 1:
             case 2:
-                String mat = AlloyingRecipesComplex.getInstance().returnItemMaterial(stack).getKey();
+                String mat = AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey();
                 return !mat.contains("none") && !mat.contains("nope");
             case 3:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 4:
                 return stack.getItem() instanceof AlloyTemplate;
             case 5:
-                return ItemStack.areItemsEqual(AlloyingRecipesComplex.getInstance().getAlloyResult(getStackInSlot(0),getStackInSlot(1),getStackInSlot(2)).getKey(), stack);
+                return ItemStack.areItemsEqual(AlloyFurnaceRecipes.getInstance().getAlloyResult(getStackInSlot(0),getStackInSlot(1),getStackInSlot(2)), stack);
             default:
                 return false;
         }

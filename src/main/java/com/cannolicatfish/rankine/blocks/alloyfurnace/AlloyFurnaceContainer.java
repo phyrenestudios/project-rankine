@@ -2,8 +2,7 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
+import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -20,7 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -116,7 +114,7 @@ public class AlloyFurnaceContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index != 0 && index != 1 && index != 2 && index != 3) {
-                if (!AlloyingRecipesComplex.getInstance().returnItemMaterial(stack).getKey().contains("none") && !AlloyingRecipesComplex.getInstance().returnItemMaterial(stack).getKey().contains("nope")) {
+                if (!AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("none") && !AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("nope")) {
                     if (!this.mergeItemStack(stack, 0, 3, false)) {
                         return ItemStack.EMPTY;
                     }

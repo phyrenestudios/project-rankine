@@ -1,8 +1,12 @@
 {
-  "parent": "block/orientable",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "top": "rankine:block/alloy_furnace_top",
-    "front": "rankine:block/alloy_furnace_front_on",
-    "side": "rankine:block/refractory_bricks"
+    "particle": "rankine:block/refractory_bricks",
+    "north": "rankine:block/alloy_furnace_front_on",
+    "south": "rankine:block/alloy_furnace_front_on",
+    "east": "rankine:block/alloy_furnace_front_on",
+    "west": "rankine:block/alloy_furnace_front_on",
+    "up": "rankine:block/alloy_furnace_top",
+    "down": "rankine:block/refractory_bricks"
   }
 }

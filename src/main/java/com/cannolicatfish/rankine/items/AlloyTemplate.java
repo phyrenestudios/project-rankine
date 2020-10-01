@@ -4,11 +4,10 @@ import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipesComplex;
+import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -26,7 +25,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.AbstractMap;
-import java.util.Arrays;
 import java.util.List;
 
 public class AlloyTemplate extends Item {
@@ -64,17 +62,34 @@ public class AlloyTemplate extends Item {
         if (getTemplate(stack).size() != 0) {
             tooltip.add(new StringTextComponent("Requires:").mergeStyle(TextFormatting.DARK_GREEN));
             String comp = getTemplate(stack).get("StoredTemplate").getString();
+            int count = 0;
             for (String s : comp.split("-"))
             {
                 String str = s.replaceAll("[^A-Za-z]+", "");
-                String end = "Nugget";
+                String end = "";
                 int num = Integer.parseInt(s.replaceAll("[A-Za-z]+",""));
-                if (num > 64 || num % 9 == 0)
+
+                ListNBT nbt = getTemplate(stack).getList("Inputs",10);
+                String t = nbt.getString(count).split("\"")[1];
+                String namespace = t.split(":")[0];
+                String path = t.split(":")[1];
+                if (path.contains("ingot") || path.equals("silicon") || path.equals("phosphorus") || path.equals("sulfur") || path.equals("astatine"))
                 {
                     num = num/9;
-                    end = "Ingot";
+                    //end = t.contains("ingot") ? "Ingot" : "";
+                } else if (path.contains("block"))
+                {
+                    num = num/81;
+                    //end = "Block";
+                } else if (path.equals("graphite")){
+                    num = num/3;
                 }
-                tooltip.add(new StringTextComponent(num + "x " + utils.getElementBySymbol(str).toString().substring(0,1).toUpperCase() + utils.getElementBySymbol(str).toString().substring(1).toLowerCase() + " " + end).mergeStyle(TextFormatting.GRAY));
+                count++;
+
+
+                String display = new TranslationTextComponent(ForgeRegistries.ITEMS.getValue(new ResourceLocation(namespace,path)).getTranslationKey()).getString();
+                tooltip.add(new StringTextComponent(num + "x " + display).mergeStyle(TextFormatting.GRAY));
+                //tooltip.add(new StringTextComponent(num + "x " + utils.getElementBySymbol(str).toString().substring(0,1).toUpperCase() + utils.getElementBySymbol(str).toString().substring(1).toLowerCase() + " " + end).mergeStyle(TextFormatting.GRAY));
             }
         }
     }
@@ -98,7 +113,7 @@ public class AlloyTemplate extends Item {
             {
                 ret.append("-");
             }
-            AbstractMap.SimpleEntry<String,Integer> s = AlloyingRecipesComplex.getInstance().returnItemMaterial(i);
+            AbstractMap.SimpleEntry<String,Integer> s = AlloyRecipeHelper.getInstance().returnItemMaterial(i);
             ret.append(s.getValue()).append(utils.getElementByMaterial(s.getKey()));
         }
         return ret.toString();
@@ -111,7 +126,7 @@ public class AlloyTemplate extends Item {
         for (ItemStack i: inputs)
         {
             CompoundNBT nbt = new CompoundNBT();
-            nbt.putString(i.getItem().getRegistryName().toString(),i.getDisplayName().getString().split(" ")[0]);
+            nbt.putString(i.getDisplayName().getString().split(" ")[0], i.getItem().getRegistryName().toString());
             listnbt.add(nbt);
         }
         stack.getOrCreateTag().put("Inputs", listnbt);
@@ -143,6 +158,56 @@ public class AlloyTemplate extends Item {
         return ItemStack.EMPTY;
     }
 
+    public static int[] getShrinkAmount(ItemStack stack) {
+        int[] ret = new int[]{0,0,0};
+        if (getTemplate(stack).size() != 0) {
+            String comp = getTemplate(stack).get("StoredTemplate").getString();
+            int count = 0;
+            for (String s : comp.split("-"))
+            {
+                int num = Integer.parseInt(s.replaceAll("[A-Za-z]+",""));
+                ListNBT nbt = getTemplate(stack).getList("Inputs",10);
+                String t = nbt.getString(count).split("\"")[1].split(":")[1];
+                if (t.contains("ingot") || t.equals("silicon") || t.equals("phosphorus") || t.equals("sulfur") || t.equals("astatine"))
+                {
+                    ret[count] = num/9;
+                } else if (t.contains("block"))
+                {
+                    ret[count] = num/81;
+                } else if (t.equals("graphite")){
+                    ret[count] = num/3;
+                } else {
+                    ret[count] = num;
+                }
+                count++;
+            }
+        }
+        return ret;
+    }
+
+    public static ItemStack[] getInputStacks(ItemStack stack)
+    {
+        ItemStack[] x = new ItemStack[]{ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
+        int[] y = getShrinkAmount(stack);
+        if (getTemplate(stack).size() != 0) {
+            ListNBT nbt = getTemplate(stack).getList("Inputs",10);
+            for (int i = 0; i < nbt.size(); i++)
+            {
+                String s = nbt.getString(i).split("\"")[1];
+                System.out.println("Current string: " + s);
+                if (!s.equals("minecraft:air"))
+                {
+                    String namespace = s.split(":")[0];
+                    String path = s.split(":")[1];
+                    x[i] = new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(namespace,path)),y[i]);
+                    System.out.println("Assigning to array variable: " + x[i]);
+                }
+
+            }
+        }
+        return x;
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (getTemplate(stack).size() == 0 && !worldIn.isRemote)
@@ -155,55 +220,55 @@ public class AlloyTemplate extends Item {
                 case 0:
                     inputs = new ItemStack[]{new ItemStack(ModItems.COPPER_INGOT,8),new ItemStack(ModItems.TIN_INGOT,2),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.BRONZE_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 1:
                     inputs = new ItemStack[]{new ItemStack(ModItems.TIN_INGOT,9),new ItemStack(ModItems.ANTIMONY_INGOT,1),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.PEWTER_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 2:
                     inputs = new ItemStack[]{new ItemStack(ModItems.COPPER_INGOT,6),new ItemStack(ModItems.ZINC_INGOT,4),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.BRASS_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 3:
                     inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,5),new ItemStack(ModItems.COPPER_NUGGET,13), new ItemStack(ModItems.SILVER_NUGGET,2)};
                     output = new ItemStack(ModItems.ROSE_GOLD_ALLOY, 6);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 4:
                     inputs = new ItemStack[]{new ItemStack(ModItems.COPPER_INGOT,9),new ItemStack(ModItems.ALUMINUM_INGOT,1),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 5:
                     inputs = new ItemStack[]{new ItemStack(Items.IRON_INGOT,6),new ItemStack(ModItems.NICKEL_INGOT,4),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.INVAR_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 6:
                     inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,9),new ItemStack(ModItems.ZINC_INGOT,1),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.WHITE_GOLD_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 7:
                     inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,5),new ItemStack(ModItems.SILVER_INGOT,5),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.GREEN_GOLD_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
                 case 8:
                     inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,8),new ItemStack(ModItems.ALUMINUM_INGOT,2),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.PURPLE_GOLD_ALLOY, 9);
-                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyingRecipesComplex.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
+                    addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
                             inputs[0],inputs[1],inputs[2]);
                     break;
             }

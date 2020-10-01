@@ -1,9 +1,11 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.google.gson.JsonObject;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
@@ -16,10 +18,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class IAlloyRecipe implements IRecipe<IInventory> {
     public static final IAlloyRecipe.Serializer SERIALIZER = new IAlloyRecipe.Serializer();
@@ -68,6 +67,166 @@ public class IAlloyRecipe implements IRecipe<IInventory> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return inputs;
+    }
+
+    public AbstractMap.SimpleEntry<Float,Float> getBounds(int i)
+    {
+        switch (i)
+        {
+            case 0:
+            default:
+                return getPrimary();
+            case 1:
+                return getSecondary();
+            case 2:
+                return getOther();
+        }
+    }
+    public List<ItemStack> getIngredientStacks(int x) {
+        return new ArrayList<>(Arrays.asList(getIngredients().get(x).getMatchingStacks()));
+    }
+
+    public List<Item> getItemsPrimary() {
+        List<Item> x = new ArrayList<>();
+        for (ItemStack i : getIngredientStacks(0))
+        {
+            x.add(i.getItem());
+        }
+        return x;
+    }
+
+    public List<Item> getItemsSecondary() {
+        List<Item> x = new ArrayList<>();
+        for (ItemStack i : getIngredientStacks(1))
+        {
+            x.add(i.getItem());
+        }
+        return x;
+    }
+
+    public List<Item> getItemsRemainder() {
+        List<Item> x = new ArrayList<>();
+        for (int i = 2; i < getIngredients().size(); i++)
+        {
+            for (ItemStack stack : getIngredientStacks(i))
+            {
+                x.add(stack.getItem());
+            }
+        }
+        return x;
+    }
+    public ResourceLocation getPrimaryTag()
+    {
+        Item item = inputs.get(0).getMatchingStacks()[0].getItem();
+        final PeriodicTableUtils utils = new PeriodicTableUtils();
+        if (item.getTags().contains(new ResourceLocation("forge:nuggets")) || item.getTags().contains(new ResourceLocation("forge:ingots")) ||
+                item.getTags().contains(new ResourceLocation("forge:storage_blocks")))
+        {
+            for (ResourceLocation tag: item.getTags())
+            {
+                if (tag.toString().contains("forge:nuggets/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+                if (tag.toString().contains("forge:ingots/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+                if (tag.toString().contains("forge:storage_blocks/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public ResourceLocation getSecondaryTag()
+    {
+        Item item = inputs.get(1).getMatchingStacks()[0].getItem();
+        final PeriodicTableUtils utils = new PeriodicTableUtils();
+        if (item.getTags().contains(new ResourceLocation("forge:nuggets")) || item.getTags().contains(new ResourceLocation("forge:ingots")) ||
+                item.getTags().contains(new ResourceLocation("forge:storage_blocks")))
+        {
+            for (ResourceLocation tag: item.getTags())
+            {
+                if (tag.toString().contains("forge:nuggets/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+                if (tag.toString().contains("forge:ingots/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+                if (tag.toString().contains("forge:storage_blocks/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public ResourceLocation getRemainderTag(int i)
+    {
+        Item item = inputs.get(i).getMatchingStacks()[0].getItem();
+        final PeriodicTableUtils utils = new PeriodicTableUtils();
+        if (item.getTags().contains(new ResourceLocation("forge:nuggets")) || item.getTags().contains(new ResourceLocation("forge:ingots")) ||
+                item.getTags().contains(new ResourceLocation("forge:storage_blocks")))
+        {
+            for (ResourceLocation tag: item.getTags())
+            {
+                if (tag.toString().contains("forge:nuggets/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+                if (tag.toString().contains("forge:ingots/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+                if (tag.toString().contains("forge:storage_blocks/"))
+                {
+                    String temp = tag.getPath().split("/")[1];
+                    if (utils.getImplementedElementNames().contains(temp))
+                    {
+                        return tag;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     @Nonnull
