@@ -46,7 +46,7 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         }
 
         int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_, this.guiLeft + 81, this.guiTop + 50, 176, 14, l + 1, 16);
+        this.blit(p_230450_1_, this.guiLeft + 98, this.guiTop + 32, 176, 14, l + 1, 16);
     }
 
     @Override

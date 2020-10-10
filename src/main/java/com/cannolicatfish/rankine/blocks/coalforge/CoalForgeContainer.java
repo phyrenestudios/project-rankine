@@ -95,7 +95,7 @@ public class CoalForgeContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 4) {
-                if (!this.mergeItemStack(stack, 5, 39, true)) {
+                if (!this.mergeItemStack(stack, 5, 41, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
@@ -117,14 +117,14 @@ public class CoalForgeContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 30) {
-                    if (!this.mergeItemStack(stack, 30, 39, false)) {
+                } else if (index < 32) {
+                    if (!this.mergeItemStack(stack, 32, 41, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 39 && !this.mergeItemStack(stack, 5, 30, false)) {
+                } else if (index < 41 && !this.mergeItemStack(stack, 5, 32, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 5, 39, false)) {
+            } else if (!this.mergeItemStack(stack, 5, 41, false)) {
                 return ItemStack.EMPTY;
             }
 

@@ -5,9 +5,7 @@ import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
-import com.cannolicatfish.rankine.util.alloys.GreenGoldAlloyUtils;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.util.ClientRecipeBook;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +22,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 
-import java.lang.ref.Reference;
 import java.util.*;
 
 public class ModRecipes {
@@ -42,152 +39,130 @@ public class ModRecipes {
     public static List<IAlloyRecipe> getAlloyRecipes()
     {
         List<IAlloyRecipe> recipes = new ArrayList<>();
-        recipes.add(alloyRecipe("bronze_alloy",new ItemStack(ModItems.BRONZE_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.TIN_INGOT,ModItems.ALUMINUM_INGOT,
-                ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT,ModItems.ARSENIC_INGOT,Items.IRON_INGOT,ModItems.BISMUTH_INGOT,
-                ModItems.LEAD_INGOT,ModItems.SILICON,ModItems.ANTIMONY_INGOT,ModItems.PHOSPHORUS),new AbstractMap.SimpleEntry<>(.8f,.9f),new AbstractMap.SimpleEntry<>(.1f,.2f),
+        recipes.add(alloyRecipe("bronze_alloy",new ItemStack(ModItems.BRONZE_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("tin"),
+                returnTagFamily("aluminum"),returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("zinc"),returnTagFamily("arsenic"),
+                returnTagFamily("iron"),returnTagFamily("bismuth"),returnTagFamily("lead"),returnTagFamily("antimony"),returnTagFamily("silicon"),
+                returnTagFamily("phosphorus")),new AbstractMap.SimpleEntry<>(.8f,.9f),new AbstractMap.SimpleEntry<>(.1f,.2f),
                 new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
 
-        recipes.add(alloyRecipe("pewter_alloy",new ItemStack(ModItems.PEWTER_ALLOY),Arrays.asList(ModItems.TIN_INGOT,ModItems.ANTIMONY_INGOT,
-                ModItems.COPPER_INGOT,ModItems.BISMUTH_INGOT,ModItems.SILVER_INGOT,ModItems.LEAD_INGOT),
+        recipes.add(alloyRecipe("pewter_alloy",new ItemStack(ModItems.PEWTER_ALLOY),Arrays.asList(returnTagFamily("tin"),returnTagFamily("antimony"),
+                returnTagFamily("copper"),returnTagFamily("bismuth"),returnTagFamily("silver"),returnTagFamily("lead")),
                 new AbstractMap.SimpleEntry<>(.85f,.98f), new AbstractMap.SimpleEntry<>(.02f,.1f),new AbstractMap.SimpleEntry<>(0f,.13f),.87f));
 
-        recipes.add(alloyRecipe("aluminum_bronze_alloy",new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.ALUMINUM_INGOT,
-                ModItems.MANGANESE_INGOT,ModItems.NICKEL_INGOT,ModItems.ZINC_INGOT,ModItems.ARSENIC_INGOT,Items.IRON_INGOT,ModItems.LEAD_INGOT),
+        recipes.add(alloyRecipe("aluminum_bronze_alloy",new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("aluminum"),
+                returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("zinc"),returnTagFamily("arsenic"),returnTagFamily("iron"),returnTagFamily("lead")),
                 new AbstractMap.SimpleEntry<>(.74f,.93f), new AbstractMap.SimpleEntry<>(.04f,.12f),new AbstractMap.SimpleEntry<>(0f,.15f),.85f));
 
-        recipes.add(alloyRecipe("brass_alloy",new ItemStack(ModItems.BRASS_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.ZINC_INGOT,
-                ModItems.TIN_INGOT,ModItems.LEAD_INGOT,ModItems.ALUMINUM_INGOT,ModItems.NICKEL_INGOT,Items.IRON_INGOT),
+        recipes.add(alloyRecipe("brass_alloy",new ItemStack(ModItems.BRASS_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("zinc"),
+                returnTagFamily("tin"),returnTagFamily("lead"),returnTagFamily("aluminum"),returnTagFamily("nickel"),returnTagFamily("iron")),
                 new AbstractMap.SimpleEntry<>(.3f,.7f), new AbstractMap.SimpleEntry<>(.15f,.6f),new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
 
-        recipes.add(alloyRecipe("cupronickel_alloy",new ItemStack(ModItems.CUPRONICKEL_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.NICKEL_INGOT,
-                Items.IRON_INGOT,ModItems.MANGANESE_INGOT,ModItems.TIN_INGOT,ModItems.SILICON,ModItems.NIOBIUM_INGOT,ModItems.LEAD_INGOT,ModItems.TITANIUM_INGOT,
-                ModItems.PHOSPHORUS,ModItems.CHROMIUM_INGOT,ModItems.ALUMINUM_INGOT,ModItems.BERYLLIUM_INGOT),
+        recipes.add(alloyRecipe("cupronickel_alloy",new ItemStack(ModItems.CUPRONICKEL_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("nickel"),
+                returnTagFamily("iron"),returnTagFamily("manganese"),returnTagFamily("tin"),returnTagFamily("niobium"),returnTagFamily("lead"), returnTagFamily("titanium"),
+                returnTagFamily("chromium"),returnTagFamily("aluminum"), returnTagFamily("beryllium"),returnTagFamily("silicon"),returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.7f,.9f), new AbstractMap.SimpleEntry<>(.1f,.3f),new AbstractMap.SimpleEntry<>(0f,.05f),.95f));
 
-        recipes.add(alloyRecipe("nickel_silver_alloy",new ItemStack(ModItems.NICKEL_SILVER_ALLOY),Arrays.asList(ModItems.COPPER_INGOT,ModItems.NICKEL_INGOT,
-                ModItems.ZINC_INGOT),
-                new AbstractMap.SimpleEntry<>(.5f,.7f), new AbstractMap.SimpleEntry<>(.15f,.25f),new AbstractMap.SimpleEntry<>(.15f,.25f),1f));
+        recipes.add(alloyRecipe("nickel_silver_alloy",new ItemStack(ModItems.NICKEL_SILVER_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("nickel"),
+                returnTagFamily("zinc")), new AbstractMap.SimpleEntry<>(.5f,.7f), new AbstractMap.SimpleEntry<>(.15f,.25f),new AbstractMap.SimpleEntry<>(.15f,.25f),1f));
 
-        recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(Items.IRON_INGOT,ModItems.NICKEL_INGOT,ModItems.COBALT_INGOT),
-                new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,.05f),0.95f));
+        recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(returnTagFamily("iron"),returnTagFamily("nickel"),
+                returnTagFamily("cobalt")), new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,.05f),0.95f));
 
-        recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(ModItems.PIG_IRON_INGOT,ModItems.CARBON_INGOT,ModItems.MANGANESE_INGOT,
-                ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.VANADIUM_INGOT,ModItems.SILICON),
-                new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+        recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(returnTagFamily("pig_iron"),returnTagFamily("carbon","coke","graphite"),
+                returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("chromium"),returnTagFamily("molybdenum"),returnTagFamily("titanium"),
+                returnTagFamily("vanadium"),returnTagFamily("silicon")), new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
-        recipes.add(alloyRecipe("rose_gold_alloy",new ItemStack(ModItems.ROSE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.COPPER_INGOT,
-                ModItems.SILVER_INGOT,ModItems.ZINC_INGOT),
-                new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.6f),.94f));
+        recipes.add(alloyRecipe("rose_gold_alloy",new ItemStack(ModItems.ROSE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("copper"),
+                returnTagFamily("silver"), returnTagFamily("zinc")), new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.6f),.94f));
 
-        recipes.add(alloyRecipe("white_gold_alloy",new ItemStack(ModItems.WHITE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.ZINC_INGOT,
-                ModItems.NICKEL_INGOT,ModItems.PALLADIUM_INGOT,ModItems.SILVER_INGOT,ModItems.PLATINUM_INGOT),
+        recipes.add(alloyRecipe("white_gold_alloy",new ItemStack(ModItems.WHITE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("zinc"),
+                returnTagFamily("nickel"),returnTagFamily("palladium"),returnTagFamily("silver"),returnTagFamily("platinum")),
                 new AbstractMap.SimpleEntry<>(.74f,.9f), new AbstractMap.SimpleEntry<>(.05f,.1f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
-        recipes.add(alloyRecipe("green_gold_alloy",new ItemStack(ModItems.GREEN_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.SILVER_INGOT,
-                ModItems.COPPER_INGOT,ModItems.CADMIUM_INGOT,ModItems.PLATINUM_INGOT),
+        recipes.add(alloyRecipe("green_gold_alloy",new ItemStack(ModItems.GREEN_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("silver"),
+                returnTagFamily("copper"),returnTagFamily("cadmium"),returnTagFamily("platinum")),
                 new AbstractMap.SimpleEntry<>(.3f,.7f), new AbstractMap.SimpleEntry<>(.3f,.7f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
-        recipes.add(alloyRecipe("blue_gold_alloy",new ItemStack(ModItems.BLUE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,Items.IRON_INGOT,
-                ModItems.NICKEL_INGOT,ModItems.RHODIUM_INGOT,ModItems.RUTHENIUM_INGOT),
+        recipes.add(alloyRecipe("blue_gold_alloy",new ItemStack(ModItems.BLUE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("iron"),
+                returnTagFamily("nickel"),returnTagFamily("rhodium"),returnTagFamily("ruthenium")),
                 new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
-        recipes.add(alloyRecipe("purple_gold_alloy",new ItemStack(ModItems.PURPLE_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.ALUMINUM_INGOT),
+        recipes.add(alloyRecipe("purple_gold_alloy",new ItemStack(ModItems.PURPLE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("aluminum")),
                 new AbstractMap.SimpleEntry<>(.79f,.81f), new AbstractMap.SimpleEntry<>(.19f,.21f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
 
-        recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(Items.GOLD_INGOT,ModItems.COBALT_INGOT,
-                ModItems.CHROMIUM_INGOT),
-                new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
-
-        recipes.add(alloyRecipe("nickel_superalloy",new ItemStack(ModItems.NICKEL_SUPERALLOY),Arrays.asList(ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,
-                ModItems.MOLYBDENUM_INGOT,ModItems.NIOBIUM_INGOT,ModItems.TANTALUM_INGOT,ModItems.COBALT_INGOT,ModItems.MANGANESE_INGOT,
-                ModItems.ALUMINUM_INGOT,ModItems.TITANIUM_INGOT,ModItems.SILICON,ModItems.CARBON_INGOT,ModItems.PHOSPHORUS,
-                ModItems.BORON_INGOT, Items.IRON_INGOT,ModItems.VANADIUM_INGOT,ModItems.ZIRCONIUM_INGOT,ModItems.HAFNIUM_INGOT,
-                ModItems.RHENIUM_INGOT,ModItems.TUNGSTEN_INGOT),new AbstractMap.SimpleEntry<>(.5f,.75f),new AbstractMap.SimpleEntry<>(.14f,.3f),
-                new AbstractMap.SimpleEntry<>(0.05f,.36f),.64f));
-
-        recipes.add(alloyRecipe("tungsten_heavy_alloy",new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY),Arrays.asList(ModItems.TUNGSTEN_INGOT,ModItems.CARBON_INGOT,
-                ModItems.NICKEL_INGOT,ModItems.CHROMIUM_INGOT,ModItems.COPPER_INGOT,Items.IRON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.ALUMINUM_INGOT,ModItems.BORON_INGOT,
-                ModItems.TITANIUM_INGOT,ModItems.SILICON,ModItems.TANTALUM_INGOT,ModItems.YTTRIUM_INGOT,ModItems.CERIUM_INGOT,ModItems.LANTHANUM_INGOT,ModItems.THORIUM_INGOT),
-                new AbstractMap.SimpleEntry<>(.8f,.98f),new AbstractMap.SimpleEntry<>(.02f,.04f),
-                new AbstractMap.SimpleEntry<>(0f,.18f),.82f));
-
-        recipes.add(alloyRecipe("cobalt_superalloy", new ItemStack(ModItems.COBALT_SUPERALLOY),Arrays.asList(ModItems.COBALT_INGOT,ModItems.CHROMIUM_INGOT,
-                ModItems.CARBON_INGOT,ModItems.MOLYBDENUM_INGOT,ModItems.TUNGSTEN_INGOT,ModItems.NICKEL_INGOT,ModItems.TITANIUM_INGOT,ModItems.ALUMINUM_INGOT,
-                ModItems.IRIDIUM_INGOT,ModItems.TANTALUM_INGOT,Items.IRON_INGOT,ModItems.SILICON),
-                new AbstractMap.SimpleEntry<>(.5f,.7f),new AbstractMap.SimpleEntry<>(.2f,.3f), new AbstractMap.SimpleEntry<>(0f,.3f),.7f));
+        recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
+                returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
         return recipes;
     }
 
     public static List<ITripleAlloyRecipe> getTripleAlloyRecipes() {
         List<ITripleAlloyRecipe> recipes = new ArrayList<>();
 
-        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/wrought_iron")),
-                returnTag(new ResourceLocation("forge","ingots/chromium")), returnTag(new ResourceLocation("forge","ingots/carbon"),
-                        new ResourceLocation("forge","coke"),new ResourceLocation("forge","graphite")),
-                returnTag(new ResourceLocation("forge","ingots/molybdenum")), returnTag(new ResourceLocation("forge","ingots/aluminum")),
-                returnTag(new ResourceLocation("forge","ingots/manganese")), returnTag(new ResourceLocation("forge","ingots/copper")),
-                returnTag(new ResourceLocation("forge","ingots/nickel")), returnTag(new ResourceLocation("forge","ingots/boron")),
-                returnTag(new ResourceLocation("forge","ingots/cobalt")), returnTag(new ResourceLocation("forge","ingots/strontium")),
-                returnTag(new ResourceLocation("forge", "ingots/niobium")),returnTag(new ResourceLocation("forge","ingots/tantalum")),
-                returnTag(new ResourceLocation("forge","ingots/titanium")), returnTag(new ResourceLocation("forge","ingots/tungsten")),
-                returnTag(new ResourceLocation("forge","ingots/yttrium")), returnTag(new ResourceLocation("forge","ingots/selenium")),
-                returnTag(new ResourceLocation("forge","ingots/vanadium")), returnTag(new ResourceLocation("forge","ingots/zirconium")),
-                returnTag(new ResourceLocation("forge","silicon")), returnTag(new ResourceLocation("forge","phosphorus")),
-                returnTag(new ResourceLocation("forge","sulfur")), returnTag(new ResourceLocation("forge","ingots/nitrogen"))),
+        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("wrought_iron"),
+                returnTagFamily("chromium"),returnTagFamily("carbon","coke","graphite"),
+                returnTagFamily("molybdenum"),returnTagFamily("aluminum"),
+                returnTagFamily("manganese"),returnTagFamily("copper"),
+                returnTagFamily("nickel"),returnTagFamily("boron"),
+                returnTagFamily("cobalt"),returnTagFamily("strontium"),
+                returnTagFamily("niobium"),returnTagFamily("tantalum"),
+                returnTagFamily("titanium"),returnTagFamily("tungsten"),
+                returnTagFamily("yttrium"),returnTagFamily("selenium"),
+                returnTagFamily("vanadium"),returnTagFamily("zirconium"),
+                returnTagFamily("silicon"), returnTagFamily("phosphorus"),
+                returnTagFamily("sulfur"),returnTagFamily("nitrogen")),
                 new AbstractMap.SimpleEntry<>(.65f, .7f), new AbstractMap.SimpleEntry<>(.10f, .19f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
 
-        recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/tungsten")),
-                returnTag(new ResourceLocation("forge","ingots/nickel")),returnTag(new ResourceLocation("forge","ingots/iron"),new ResourceLocation("forge","ingots/copper")),
-                returnTag(new ResourceLocation("forge","ingots/cobalt")), returnTag(new ResourceLocation("forge","ingots/chromium")),
-                returnTag(new ResourceLocation("forge","ingots/molybdenum")), returnTag(new ResourceLocation("forge","ingots/aluminum")),
-                returnTag(new ResourceLocation("forge","ingots/boron")), returnTag(new ResourceLocation("forge","ingots/titanium")),
-                returnTag(new ResourceLocation("forge","ingots/tantalum")), returnTag(new ResourceLocation("forge","ingots/yttrium")),
-                returnTag(new ResourceLocation("forge","ingots/cerium")), returnTag(new ResourceLocation("forge","ingots/lanthanum")),
-                returnTag(new ResourceLocation("forge","ingots/carbon"), new ResourceLocation("forge","coke"),new ResourceLocation("forge","graphite"))
-                , returnTag(new ResourceLocation("forge", "silicon"))),
+        recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTagFamily("tungsten"),
+                returnTagFamily("nickel"),returnTagFamily("iron"),returnTagFamily("copper"),
+                returnTagFamily("cobalt"),returnTagFamily("chromium"),
+                returnTagFamily("molybdenum"),returnTagFamily("aluminum"),
+                returnTagFamily("boron"),returnTagFamily("titanium"),
+                returnTagFamily("tantalum"),returnTagFamily("yttrium"),
+                returnTagFamily("cerium"),returnTagFamily("lanthanum"),
+                returnTagFamily("carbon","coke","graphite"),
+                returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.88f, .95f), new AbstractMap.SimpleEntry<>(.02f, .1f), new AbstractMap.SimpleEntry<>(.01f, .04f), new AbstractMap.SimpleEntry<>(0f, .09f),.91f));
 
-        recipes.add(tripleAlloyRecipe("mischmetal_alloy", new ItemStack(ModItems.MISCHMETAL_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/cerium")),
-                returnTag(new ResourceLocation("forge","ingots/lanthanum")),returnTag(new ResourceLocation("forge","ingots/neodymium")),
-                returnTag(new ResourceLocation("forge","ingots/praseodymium")), returnTag(new ResourceLocation("forge","ingots/dysprosium")),
-                returnTag(new ResourceLocation("forge","ingots/europium")), returnTag(new ResourceLocation("forge","ingots/gadolinium")),
-                returnTag(new ResourceLocation("forge","ingots/samarium")), returnTag(new ResourceLocation("forge","ingots/tebrium")),
-                returnTag(new ResourceLocation("forge","ingots/iron")), returnTag(new ResourceLocation("forge", "silicon"))),
+        recipes.add(tripleAlloyRecipe("mischmetal_alloy", new ItemStack(ModItems.MISCHMETAL_ALLOY), Arrays.asList(returnTagFamily("cerium"),
+                returnTagFamily("lanthanum"),returnTagFamily("neodymium"),
+                returnTagFamily("praseodymium"),returnTagFamily("dysprosium"),
+                returnTagFamily("europium"),returnTagFamily("gadolinium"),
+                returnTagFamily("samarium"),returnTagFamily("tebrium"),
+                returnTagFamily("iron"), returnTagFamily( "silicon")),
                 new AbstractMap.SimpleEntry<>(.5f, .55f), new AbstractMap.SimpleEntry<>(.2f, .25f), new AbstractMap.SimpleEntry<>(.15f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.85f));
 
-        recipes.add(tripleAlloyRecipe("duralumin_alloy", new ItemStack(ModItems.DURALUMIN_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/aluminum")),
-                returnTag(new ResourceLocation("forge","ingots/copper")),returnTag(new ResourceLocation("forge","ingots/magnesium")),
-                returnTag(new ResourceLocation("forge","ingots/manganese")),returnTag(new ResourceLocation("forge","ingots/iron")),
-                returnTag(new ResourceLocation("forge","ingots/zinc")), returnTag(new ResourceLocation("forge","ingots/titanium")),
-                returnTag(new ResourceLocation("forge","ingots/chromium")), returnTag(new ResourceLocation("forge", "silicon"))),
+        recipes.add(tripleAlloyRecipe("duralumin_alloy", new ItemStack(ModItems.DURALUMIN_ALLOY), Arrays.asList(returnTagFamily("aluminum"),
+                returnTagFamily("copper"),returnTagFamily("magnesium"),
+                returnTagFamily("manganese"),returnTagFamily("iron"),
+                returnTagFamily("zinc"),returnTagFamily("titanium"),
+                returnTagFamily("chromium"), returnTagFamily( "silicon")),
                 new AbstractMap.SimpleEntry<>(.91f, .95f), new AbstractMap.SimpleEntry<>(.03f, .05f), new AbstractMap.SimpleEntry<>(.01f, .03f), new AbstractMap.SimpleEntry<>(0f, .04f),.96f));
 
-        recipes.add(tripleAlloyRecipe("rose_metal_alloy", new ItemStack(ModItems.ROSE_METAL_ALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/bismuth")),
-                returnTag(new ResourceLocation("forge","ingots/lead")),returnTag(new ResourceLocation("forge","ingots/tin"))),
+        recipes.add(tripleAlloyRecipe("rose_metal_alloy", new ItemStack(ModItems.ROSE_METAL_ALLOY), Arrays.asList(returnTagFamily("bismuth"),
+                returnTagFamily("lead"),returnTagFamily("tin")),
                 new AbstractMap.SimpleEntry<>(.3f, .5f), new AbstractMap.SimpleEntry<>(.18f, .4f), new AbstractMap.SimpleEntry<>(.1f, .25f), new AbstractMap.SimpleEntry<>(0f, 0f),1f));
 
-            recipes.add(tripleAlloyRecipe("nickel_superalloy_tial", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/nickel")),
-                returnTag(new ResourceLocation("forge","ingots/titanium")),returnTag(new ResourceLocation("forge","ingots/aluminum")),
-                returnTag(new ResourceLocation("forge","ingots/chromium")), returnTag(new ResourceLocation("forge","ingots/molybdenum")),
-                returnTag(new ResourceLocation("forge","ingots/niobium")), returnTag(new ResourceLocation("forge","ingots/tantalum")),
-                returnTag(new ResourceLocation("forge","ingots/cobalt")), returnTag(new ResourceLocation("forge","ingots/manganese")),
-                returnTag(new ResourceLocation("forge","ingots/boron")), returnTag(new ResourceLocation("forge","ingots/iron")),
-                returnTag(new ResourceLocation("forge","ingots/vanadium")),returnTag(new ResourceLocation("forge","ingots/zirconium")),
-                returnTag(new ResourceLocation("forge","ingots/carbon")),returnTag(new ResourceLocation("forge","ingots/tungsten")),
-                returnTag(new ResourceLocation("forge","ingots/ruthenium")),returnTag(new ResourceLocation("forge","ingots/rhenium")),
-                returnTag(new ResourceLocation("forge","phosphorus")),returnTag(new ResourceLocation("forge", "silicon"))),
+            recipes.add(tripleAlloyRecipe("nickel_superalloy_tial", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTagFamily("nickel"),
+                returnTagFamily("titanium"),returnTagFamily("aluminum"),
+                returnTagFamily("chromium"),returnTagFamily("molybdenum"),
+                returnTagFamily("niobium"),returnTagFamily("tantalum"),
+                returnTagFamily("cobalt"),returnTagFamily("manganese"),
+                returnTagFamily("boron"),returnTagFamily("iron"),
+                returnTagFamily("vanadium"),returnTagFamily("zirconium"),
+                returnTagFamily("carbon"),returnTagFamily("tungsten"),
+                returnTagFamily("ruthenium"),returnTagFamily("rhenium"), returnTagFamily("phosphorus"),returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.6f, .75f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(0f, .15f),.62f));
 
-        recipes.add(tripleAlloyRecipe("nickel_superalloy_crfe", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTag(new ResourceLocation("forge","ingots/nickel")),
-                returnTag(new ResourceLocation("forge","ingots/chromium")),returnTag(new ResourceLocation("forge","ingots/cobalt")),
-                returnTag(new ResourceLocation("forge","ingots/titanium")), returnTag(new ResourceLocation("forge","ingots/molybdenum")),
-                returnTag(new ResourceLocation("forge","ingots/niobium")), returnTag(new ResourceLocation("forge","ingots/tantalum")),
-                returnTag(new ResourceLocation("forge","ingots/iron")), returnTag(new ResourceLocation("forge","ingots/manganese")),
-                returnTag(new ResourceLocation("forge","ingots/boron")), returnTag(new ResourceLocation("forge","ingots/aluminum")),
-                returnTag(new ResourceLocation("forge","ingots/vanadium")),returnTag(new ResourceLocation("forge","ingots/zirconium")),
-                returnTag(new ResourceLocation("forge","ingots/carbon")),returnTag(new ResourceLocation("forge","ingots/tungsten")),
-                returnTag(new ResourceLocation("forge","ingots/ruthenium")),returnTag(new ResourceLocation("forge","ingots/rhenium")),
-                returnTag(new ResourceLocation("forge","phosphorus")),returnTag(new ResourceLocation("forge", "silicon"))),
+        recipes.add(tripleAlloyRecipe("nickel_superalloy_crfe", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTagFamily("nickel"),
+                returnTagFamily("chromium"),returnTagFamily("cobalt"),
+                returnTagFamily("titanium"),returnTagFamily("molybdenum"),
+                returnTagFamily("niobium"),returnTagFamily("tantalum"),
+                returnTagFamily("iron"),returnTagFamily("manganese"),
+                returnTagFamily("boron"),returnTagFamily("aluminum"),
+                returnTagFamily("vanadium"),returnTagFamily("zirconium"),
+                returnTagFamily("carbon"),returnTagFamily("tungsten"),
+                returnTagFamily("ruthenium"),returnTagFamily("rhenium"),
+                returnTagFamily("phosphorus"),returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.5f, .75f), new AbstractMap.SimpleEntry<>(.14f, .27f), new AbstractMap.SimpleEntry<>(.01f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.65f));
 
         return recipes;
@@ -215,6 +190,32 @@ public class ModRecipes {
         return result;
     }
 
+    public static ItemStack[] returnTagFamily(String... s) {
+        List<Item> list = new ArrayList<>();
+        ResourceLocation[] r = new ResourceLocation[s.length * 3];
+        int count = 0;
+        for (String str: s)
+        {
+            if (str.equals("phosphorus") || str.equals("sulfur") || str.equals("silicon") || str.equals("astatine"))
+            {
+                r[count] = new ResourceLocation("forge",str);
+                r[count + 1] = new ResourceLocation("forge","nuggets/"+str);
+                r[count + 2] = new ResourceLocation("forge", "storage_blocks/"+str);
+                count += 3;
+            } else if (str.equals("graphite") || str.equals("coke"))
+            {
+                r[count] = new ResourceLocation("forge",str);
+                r[count + 1] = new ResourceLocation("forge", "storage_blocks/"+str);
+                count += 2;
+            } else {
+                r[count] = new ResourceLocation("forge","ingots/"+str);
+                r[count + 1] = new ResourceLocation("forge","nuggets/"+str);
+                r[count + 2] = new ResourceLocation("forge", "storage_blocks/"+str);
+                count += 3;
+            }
+        }
+        return returnTag(r);
+    }
     public static List<IBeehiveOvenRecipe> getBeehiveOvenRecipes()
     {
         List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
@@ -527,6 +528,90 @@ public class ModRecipes {
         return ItemStack.EMPTY;
     }
 
+    public static ItemStack getAlloyOutput(ItemStack input1, ItemStack input2, ItemStack input3)
+    {
+
+        List<IAlloyRecipe> recipes = ModRecipes.getAlloyRecipes();
+        AlloyRecipeHelper r = AlloyRecipeHelper.getInstance();
+
+        AbstractMap.SimpleEntry<String,Integer> material1 = r.returnItemMaterial(input1);
+        AbstractMap.SimpleEntry<String,Integer> material2 = r.returnItemMaterial(input2);
+        AbstractMap.SimpleEntry<String,Integer> material3 = r.returnItemMaterial(input3);
+
+        List<String> materials = Arrays.asList(material1.getKey(),material2.getKey(),material3.getKey());
+        List<Integer> amounts = Arrays.asList(material1.getValue(),material2.getValue(),material3.getValue());
+        float total = material1.getValue() + material2.getValue() + material3.getValue();
+
+        if (materials.contains("nope") || material1.getKey().equals("none") || material2.getKey().contains("none"))
+        {
+            return ItemStack.EMPTY;
+        }
+        List<Float> props = Arrays.asList(amounts.get(0)/total,
+                amounts.get(1)/total,
+                amounts.get(2)/total);
+
+        IAlloyRecipe foundRecipe = null;
+        boolean flag = false;
+        boolean flag2 = true;
+        for (IAlloyRecipe recipe: recipes)
+        {/*
+            if (input1.getItem().getTags().contains(recipe.getPrimaryTag())
+                    && input2.getItem().getTags().contains(recipe.getSecondaryTag()))
+            {
+                if (input3.isEmpty() && recipe.getOther().getKey() == 0)
+                {
+                    flag = true;
+                } else if (!input3.isEmpty()){
+                    for (int i = 2; i < recipe.getIngredients().size(); i++)
+                    {
+                        if (input3.getItem().getTags().contains(recipe.getRemainderTag(i)))
+                        {
+                            flag = true;
+                        }
+                    }
+                }
+            }*/
+            if (recipe.getItemsPrimary().contains(input1.getItem()) && recipe.getItemsSecondary().contains(input2.getItem()))
+            {
+                if (input3.isEmpty() && recipe.getOther().getKey() == 0)
+                {
+                    flag = true;
+                } else if (!input3.isEmpty()){
+                    if (recipe.getItemsRemainder().contains(input3.getItem()))
+                    {
+                        flag = true;
+                    }
+                }
+            }
+            if (flag)
+            {
+                foundRecipe = recipe;
+                break;
+            }
+        }
+        if (foundRecipe != null)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == 2 && foundRecipe.getOther().getKey() == 0)
+                {
+                    break;
+                }
+                AbstractMap.SimpleEntry<Float,Float> bounds = foundRecipe.getBounds(i);
+                if (props.get(i) < bounds.getKey() || props.get(i) > bounds.getValue())
+                {
+                    flag2 = false;
+                    break;
+                }
+            }
+            if (flag2 && Math.round(total/10) <= 64)
+            {
+                return new ItemStack(foundRecipe.getRecipeOutput().getItem(),Math.round(total/10));
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
     public static AbstractMap.SimpleEntry<ItemStack,Float> getCrushingSecondaryOutputs(ItemStack input)
     {
         List<IPistonCrusherRecipe> recipes = ModRecipes.getCrushingRecipes();
@@ -539,13 +624,13 @@ public class ModRecipes {
         }
         return null;
     }
-    public static IAlloyRecipe alloyRecipe(String registry, ItemStack output, List<Item> input, AbstractMap.SimpleEntry<Float, Float> primary,
+    public static IAlloyRecipe alloyRecipe(String registry, ItemStack output, List<ItemStack[]> input, AbstractMap.SimpleEntry<Float, Float> primary,
                                            AbstractMap.SimpleEntry<Float, Float> secondary, AbstractMap.SimpleEntry<Float, Float> other, float req)
     {
         NonNullList<Ingredient> list = NonNullList.create();
         for (int i = 0; i < input.size(); i++)
         {
-            list.add(i,Ingredient.fromStacks(new ItemStack(input.get(i))));
+            list.add(i,Ingredient.fromStacks(input.get(i)));
         }
         return new IAlloyRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output, list
                 ,primary,secondary,other,req);

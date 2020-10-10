@@ -100,7 +100,6 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             boolean ready = checkStructure(this.getPos(),worldIn) && this.items.get(0).isEmpty();
             if (ready)
             {
-//                System.out.println(cookTime);
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
                     this.items.set(0,randomOutput(worldIn.getRandom()));
