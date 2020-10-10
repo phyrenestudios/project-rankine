@@ -16,6 +16,26 @@
       "type": "crafting",
       "recipe": "rankine:speed_pendant",
       "text": "While worn: $(li)Gives the wearer increased movement speed"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:haste_pendant",
+      "text": "While worn: $(li)Gives the wearer increased movement speed"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:levitation_pendant",
+      "text": "While worn: $(li)Protects the wearer form falling"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:health_pendant",
+      "text": "While worn: $(li)Gives the wearer increased health"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:repulsion_pendant",
+      "text": "While worn: $(li)Protects the wearer from mobs"
     }
   ]
 }

@@ -455,7 +455,6 @@ public class ModBlocks {
     public static final Block ETCHED_GLASS1 = add("etched_glass1", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
     public static final Block ETCHED_GLASS2 = add("etched_glass2", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
 
-
     public static final Block QUICKLIME_BLOCK = add("quicklime_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block MAGNESITE_BLOCK = add("magnesite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block MAGNESIA_BLOCK = add("magnesia_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
@@ -475,6 +474,7 @@ public class ModBlocks {
     public static final Block ROMAN_CONCRETE_BRICKS_SLAB = add("roman_concrete_bricks_slab", new RankineSlab(1.4D,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS_STAIRS = add("roman_concrete_bricks_stairs", new RankineStairs(1.4D,Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS_WALL = add("roman_concrete_bricks_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
+    public static final Block QUARRY_BARRIER = add("quarry_barrier", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(10.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
 
 
     //WOOD BLOCKS
@@ -898,6 +898,7 @@ public class ModBlocks {
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final EvaporationTowerBlock EVAPORATION_TOWER = add("evaporation_tower", new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final Block INDUSTRIAL_QUARRY = add("industrial_quarry", new IndustrialQuarryBlock(DEF_METAL_BLOCK), METALLURGY);
 
 
     public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
@@ -927,7 +928,6 @@ public class ModBlocks {
 
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
-
 
 
     //OTHER STUFFS
