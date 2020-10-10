@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
+import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -99,7 +100,6 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             boolean ready = checkStructure(this.getPos(),worldIn) && this.items.get(0).isEmpty();
             if (ready)
             {
-                //System.out.println(cookTime);
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
                     this.items.set(0,randomOutput(worldIn.getRandom()));
@@ -138,16 +138,41 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     private boolean checkStructure(BlockPos pos, World worldIn)
     {
-        int i = 0;
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 3, 1))) {
-            if (worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
-                ++i;
+        if (worldIn.getBlockState(pos.east()) != Blocks.LAVA.getDefaultState() && worldIn.getBlockState(pos.north()) != Blocks.LAVA.getDefaultState() && worldIn.getBlockState(pos.west()) != Blocks.LAVA.getDefaultState() && worldIn.getBlockState(pos.south()) != Blocks.LAVA.getDefaultState()) {
+            return false;
+        }
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, -1), pos.add(1, 1, 1))) {
+            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+                return false;
             }
         }
-        if (i >= 32 && worldIn.getBlockState(pos.up(1)) == Blocks.WATER.getDefaultState() && worldIn.getBlockState(pos.up(2)) == Blocks.WATER.getDefaultState()) {
-            return true;
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, 1, -1), pos.add(-2, 5, 1))) {
+            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+                return false;
+            }
         }
-        return false;
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(2, 1, -1), pos.add(2, 5, 1))) {
+            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+                return false;
+            }
+        }
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, -2), pos.add(1, 5, -2))) {
+            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+                return false;
+            }
+        }
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, 2), pos.add(-1, 5, 2))) {
+            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+                return false;
+            }
+        }
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 2, -1), pos.add(1, 5, 1))) {
+            if (worldIn.getBlockState(blockpos) != Blocks.WATER.getDefaultState()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private ItemStack randomOutput(Random random)
