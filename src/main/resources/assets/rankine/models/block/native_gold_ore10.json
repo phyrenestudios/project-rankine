@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/ironstone",
+            "base": "rankine:block/limestone",
             "overlay": "rankine:block/native_gold_ore",
-            "particle": "rankine:block/ironstone"
+            "particle": "rankine:block/limestone"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

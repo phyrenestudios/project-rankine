@@ -1,9 +1,0 @@
-{
-          "type": "minecraft:smelting",
-          "ingredient": {
-                  "item": "rankine:shale"
-          },
-          "result": "rankine:smooth_shale",
-          "experience": 0.1,
-          "cookingtime": 200
-        }

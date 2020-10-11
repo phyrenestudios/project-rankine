@@ -168,6 +168,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.BALSAM_FIR_LEAVES,
                 ModBlocks.COCONUT_PALM_LEAVES,
                 ModBlocks.MAGNOLIA_LEAVES,
+                ModBlocks.YELLOW_BIRCH_LEAVES,
+                ModBlocks.BLACK_BIRCH_LEAVES,
                 ModBlocks.EASTERN_HEMLOCK_LEAVES,
                 ModBlocks.CALCITE_BLOCK,
                 ModBlocks.CALCIUM_SILICATE_BLOCK,

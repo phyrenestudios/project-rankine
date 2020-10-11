@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.chunk.IChunk;
@@ -53,7 +52,7 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
     @Nonnull
     private static BlockState getStone(int biome_type, int y, int endY) {
         if (biome_type == 1) {
-            STONES = Arrays.asList(ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
             if (y >= 0 && y < endY - THICKNESS * 5.5) {
                 return STONES.get(5);
@@ -74,7 +73,7 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                 return STONES.get(0);
             }
         } else if (biome_type == 2) {
-            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.RED_GRANITE.getDefaultState(), ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
             if (y >= 0 && y < endY - THICKNESS * 7.5) {
                 return STONES.get(7);
@@ -101,7 +100,7 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                 return STONES.get(0);
             }
         } else if (biome_type == 3) {
-            STONES = Arrays.asList(ModBlocks.BASALT.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.RED_GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
             if (y >= 0 && y < endY - THICKNESS * 5.5) {
                 return STONES.get(5);
@@ -122,7 +121,7 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                 return STONES.get(0);
             }
         } else {
-            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.ANDESITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
+            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.HORNBLENDE_ANDESITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.RED_GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
             int THICKNESS = endY / STONES.size();
             if (y >= 0 && y < endY - THICKNESS * 8.5) {
                 return STONES.get(8);

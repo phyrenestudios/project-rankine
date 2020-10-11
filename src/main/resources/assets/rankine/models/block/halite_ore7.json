@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/limestone",
+            "base": "rankine:block/red_granite",
             "overlay": "rankine:block/halite_ore",
-            "particle": "rankine:block/limestone"
+            "particle": "rankine:block/red_granite"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

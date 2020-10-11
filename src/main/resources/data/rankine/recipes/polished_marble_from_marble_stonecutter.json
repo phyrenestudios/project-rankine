@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:marble"
+      },
+      "result": "rankine:polished_marble",
+      "count": 1
+	}

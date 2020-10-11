@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:polished_ferropericlase"
+        }
+      },
+      "result": {
+        "item": "rankine:polished_ferropericlase_stairs",
+        "count": 4
+      }
+    }

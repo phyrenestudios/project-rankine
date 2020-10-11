@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:red_granite"
+        }
+      ],
+      "result": {
+        "item": "rankine:red_granite_button"
+      }
+    }

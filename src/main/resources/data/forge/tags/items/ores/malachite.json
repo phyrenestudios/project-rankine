@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:malachite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:malachite_ore"
+	  ]
+    }

@@ -1,0 +1,4 @@
+{ "type": "minecraft:crafting_shaped",
+  "pattern": [ "xx", "xx"],
+  "key": { "x": { "item": "minecraft:bamboo" } },
+  "result": { "item": "rankine:bamboo_culms", "count": 1 } }

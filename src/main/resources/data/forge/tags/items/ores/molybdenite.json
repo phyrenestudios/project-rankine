@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:molybdenite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:molybdenite_ore"
+	  ]
+    }

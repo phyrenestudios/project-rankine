@@ -36,11 +36,11 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
             BOT = 0;
             TOP = 25;
         } else if (CHANCE < 0.12f) {
-            INTRUSION = ModBlocks.GRANITE.getDefaultState();
+            INTRUSION = ModBlocks.RED_GRANITE.getDefaultState();
             BOT = 0;
             TOP = 256;
         } else if (CHANCE < 0.2f) {
-            INTRUSION = ModBlocks.DIORITE.getDefaultState();
+            INTRUSION = ModBlocks.GRANODIORITE.getDefaultState();
             BOT = 0;
             TOP = 256;
         }
@@ -89,7 +89,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         if (INTRUSION.getBlock() == ModBlocks.KIMBERLITE) {
                             if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                                 if (rand.nextFloat() < 0.03) {
-                                    worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,20), 2);
+                                    worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,23), 2);
                                 } else {
                                     worldIn.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
                                 }

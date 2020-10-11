@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:magnesite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:magnesite_ore"
+	  ]
+    }

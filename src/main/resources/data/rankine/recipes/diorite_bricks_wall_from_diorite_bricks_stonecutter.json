@@ -1,8 +1,8 @@
 {
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:diorite_bricks"
-      },
-      "result": "rankine:diorite_bricks_wall",
-      "count": 1
-    }
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:diorite_bricks"
+  },
+  "result": "rankine:diorite_bricks_wall",
+  "count": 1
+}

@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:galena_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:galena_ore"
+	  ]
+    }

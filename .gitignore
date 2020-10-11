@@ -3,4 +3,5 @@
 /build/
 /run/
 /gradle/
+/py scrpits/
 *.py

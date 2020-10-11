@@ -1,8 +1,8 @@
 {
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:granite_bricks"
-      },
-      "result": "rankine:granite_bricks_wall",
-      "count": 1
-    }
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:granite_bricks"
+  },
+  "result": "rankine:granite_bricks_wall",
+  "count": 1
+}

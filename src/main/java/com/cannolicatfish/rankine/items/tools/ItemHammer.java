@@ -30,7 +30,7 @@ import java.util.Set;
 
 public class ItemHammer extends ToolItem {
 
-    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.STONE, Blocks.COBBLESTONE, Blocks.SMOOTH_STONE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, ModBlocks.GRANITE, ModBlocks.ANDESITE, ModBlocks.DIORITE, ModBlocks.LIMESTONE, ModBlocks.BASALT, ModBlocks.RHYOLITE,
+    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.STONE, Blocks.COBBLESTONE, Blocks.SMOOTH_STONE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, ModBlocks.RED_GRANITE, ModBlocks.HORNBLENDE_ANDESITE, ModBlocks.GRANODIORITE, ModBlocks.LIMESTONE, ModBlocks.THOLEIITIC_BASALT, ModBlocks.RHYOLITE,
             ModBlocks.GNEISS, ModBlocks.MARBLE, ModBlocks.SHALE, ModBlocks.IRONSTONE, ModBlocks.ANORTHOSITE, ModBlocks.MAGNETITE_ORE, ModBlocks.MALACHITE_ORE, ModBlocks.BAUXITE_ORE, ModBlocks.CASSITERITE_ORE, ModBlocks.SPHALERITE_ORE, ModBlocks.CINNABAR_ORE, ModBlocks.PENTLANDITE_ORE,
             ModBlocks.LIGNITE_ORE, ModBlocks.SUBBITUMINOUS_ORE, ModBlocks.BITUMINOUS_ORE, ModBlocks.METEORITE);
 

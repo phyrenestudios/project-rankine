@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:sperrylite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:sperrylite_ore"
+	  ]
+    }

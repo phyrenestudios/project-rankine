@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/gneiss",
+            "base": "rankine:block/tholeiitic_basalt",
             "overlay": "rankine:block/pyrolusite_ore",
-            "particle": "rankine:block/gneiss"
+            "particle": "rankine:block/tholeiitic_basalt"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

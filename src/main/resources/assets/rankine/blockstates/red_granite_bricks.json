@@ -1,5 +1,5 @@
 {
-    "variants": {
-    "": { "model": "rankine:block/red_granite_bricks" }
+        "variants": {
+        "": { "model": "rankine:block/red_granite_bricks" }
+        }
     }
-}

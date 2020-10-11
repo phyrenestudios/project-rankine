@@ -1,9 +1,9 @@
 {
       "parent": "block/block",
       "textures": {
-        "base": "block/end_stone",
+        "base": "block/andesite",
         "overlay": "rankine:block/subbituminous_ore",
-        "particle": "block/end_stone"
+        "particle": "block/andesite"
       },
       "elements": [
         {   "from": [ 0, 0, 0 ],

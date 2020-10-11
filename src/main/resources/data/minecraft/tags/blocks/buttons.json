@@ -1,14 +1,14 @@
 {
   "replace": false,
   "values": [
-    "rankine:granite_button",
-    "rankine:diorite_button",
-    "rankine:andesite_button",
+    "rankine:red_granite_button",
+    "rankine:granodiorite_button",
+    "rankine:hornblende_andesite_button",
     "rankine:limestone_button",
     "rankine:shale_button",
     "rankine:anorthosite_button",
     "rankine:ironstone_button",
-    "rankine:basalt_button",
+    "rankine:tholeiitic_basalt_button",
     "rankine:rhyolite_button",
     "rankine:marble_button",
     "rankine:gneiss_button",

@@ -1,14 +1,14 @@
 {
   "replace": false,
   "values": [
-    "rankine:granite_bricks",
-    "rankine:diorite_bricks",
-    "rankine:andesite_bricks",
+    "rankine:red_granite_bricks",
+    "rankine:granodiorite_bricks",
+    "rankine:hornblende_andesite_bricks",
     "rankine:limestone_bricks",
     "rankine:shale_bricks",
     "rankine:anorthosite_bricks",
     "rankine:ironstone_bricks",
-    "rankine:basalt_bricks",
+    "rankine:tholeiitic_basalt_bricks",
     "rankine:rhyolite_bricks",
     "rankine:marble_bricks",
     "rankine:gneiss_bricks",
@@ -22,11 +22,13 @@
     "rankine:perovskite_bricks",
     "rankine:pumice_bricks",
     "rankine:scoria_bricks",
-    "rankine:red_granite_bricks",
-    "rankine:quartz_diorite_bricks",
-    "rankine:gray_andesite_bricks",
+    "rankine:granite_bricks",
+    "rankine:diorite_bricks",
+    "rankine:andesite_bricks",
     "rankine:clay_bricks",
     "rankine:refractory_bricks",
-    "rankine:magnesium_refractory_bricks"
+    "rankine:magnesium_refractory_bricks",
+    "rankine:zircon_refractory_bricks"
+
   ]
 }

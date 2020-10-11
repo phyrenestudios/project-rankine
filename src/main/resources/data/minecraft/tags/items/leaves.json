@@ -7,6 +7,8 @@
     "rankine:juniper_leaves",
     "rankine:balsam_fir_leaves",
     "rankine:magnolia_leaves",
-    "rankine:eastern_hemlock_leaves"
+    "rankine:eastern_hemlock_leaves",
+    "rankine:yellow_birch_leaves",
+    "rankine:black_birch_leaves"
   ]
 }

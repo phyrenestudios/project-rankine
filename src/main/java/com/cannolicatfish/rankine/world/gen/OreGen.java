@@ -51,7 +51,7 @@ public class OreGen {
         rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.LIMESTONE_NODULE.getDefaultState(),6,20,31,70, getBiomesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP),false));
         rockGenCountDef(Blocks.SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(Blocks.RED_SANDSTONE.getDefaultState(), ModBlocks.IRONSTONE.getDefaultState(),40,4,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
-        rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 10),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
+        rockGenCountDef(ModBlocks.IRONSTONE.getDefaultState(), ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 13),8,30,50,128, getBiomesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA),true));
         rockGenCountDef(Blocks.DIRT.getDefaultState(), ModBlocks.PERMAFROST.getDefaultState(),20,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY),true));
 
         //tier native
@@ -62,8 +62,8 @@ public class OreGen {
         OWGenDefCount(ModBlocks.NATIVE_ALUMINUM_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_GOLD_ORE,10,4,15,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.STIBNITE_ORE,10,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
-        rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.HALITE_ORE.getDefaultState(),30,2,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
-        rockGenCountDef(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.PINK_HALITE_ORE.getDefaultState(),30,2,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
+        rockGenCountDef(ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.HALITE_ORE.getDefaultState().with(RankineOre.TYPE,10),30,2,40,70, getBiomesFromCategory(Arrays.asList(Biome.Category.BEACH, Biome.Category.OCEAN, Biome.Category.DESERT, Biome.Category.MESA), true));
+        rockGenCountDef(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.PINK_HALITE_ORE.getDefaultState().with(RankineOre.TYPE, 12),30,2,70,128, getBiomesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
 
 
         //coals

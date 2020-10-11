@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,6 @@ import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.BitSet;
 import java.util.Random;
-import java.util.function.Function;
 
 public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig> {
     public RankineMultiOreFeature(Codec<RankineMultiOreFeatureConfig> configFactoryIn) {
@@ -124,22 +122,37 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,0), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.NETHERRACK)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.GRANITE)
                                                 {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,1), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.BLACKSTONE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.DIORITE)
                                                 {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,2), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.END_STONE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.ANDESITE)
                                                 {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,3), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.GRANITE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.NETHERRACK)
+                                                {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,4), 2);
+                                                    ++i;
+                                                }
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.BLACKSTONE)
+                                                {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,5), 2);
+                                                    ++i;
+                                                }
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == Blocks.END_STONE)
+                                                {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,6), 2);
+                                                    ++i;
+                                                }
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.RED_GRANITE)
                                                 {
                                                     BlockState ore;
                                                     if (config.state.getBlock() == ModBlocks.GALENA_ORE && random.nextFloat() <= config.chance)
@@ -149,17 +162,17 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     {
                                                         ore = config.state;
                                                     }
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,4), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,7), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.DIORITE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.GRANODIORITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,5), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,8), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.ANDESITE)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.HORNBLENDE_ANDESITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,6), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,9), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.LIMESTONE)
@@ -172,27 +185,27 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     {
                                                         ore = config.state;
                                                     }
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,7), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,10), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.SHALE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,8), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,11), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.ANORTHOSITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,9), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,12), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.IRONSTONE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,10), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,13), 2);
                                                     ++i;
                                                 }
-                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.BASALT)
+                                                if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.THOLEIITIC_BASALT)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,11), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,14), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.RHYOLITE)
@@ -205,17 +218,17 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     {
                                                         ore = config.state;
                                                     }
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,12), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,15), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.MARBLE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,13), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,16), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.GNEISS)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,14), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,17), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.PERIDOTITE)
@@ -242,52 +255,52 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                                     {
                                                         ore = config.state;
                                                     }
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,15), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, ore.with(RankineOre.TYPE,18), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.RINGWOODITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,16), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,19), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.WADSLEYITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,17), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,20), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.BRIDGMANITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,18), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,21), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.KOMATIITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,19), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,22), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.KIMBERLITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,20), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,23), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.FERROPERICLASE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,21), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,24), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.PEROVSKITE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,22), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,25), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.PUMICE)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,23), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,26), 2);
                                                     ++i;
                                                 }
                                                 if (worldIn.getBlockState(blockpos$mutableblockpos).getBlock() == ModBlocks.SCORIA)
                                                 {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,24), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,27), 2);
                                                     ++i;
                                                 }
                                             }

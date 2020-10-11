@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:uraninite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:uraninite_ore"
+	  ]
+    }

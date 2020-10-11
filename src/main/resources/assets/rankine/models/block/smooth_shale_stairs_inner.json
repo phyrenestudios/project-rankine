@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/smooth_shale",
-        "top": "rankine:block/smooth_shale",
-        "side": "rankine:block/smooth_shale"
-      }
-    }

@@ -24,6 +24,9 @@
         "type=21": {"model": "rankine:block/native_bismuth_ore21"},
         "type=22": {"model": "rankine:block/native_bismuth_ore22"},
         "type=23": {"model": "rankine:block/native_bismuth_ore23"},
-        "type=24": {"model": "rankine:block/native_bismuth_ore23"}
-      }
+        "type=24": {"model": "rankine:block/native_bismuth_ore24"},
+		"type=25": {"model": "rankine:block/native_bismuth_ore25"},
+		"type=26": {"model": "rankine:block/native_bismuth_ore26"},
+		"type=27": {"model": "rankine:block/native_bismuth_ore27"}
+		}
     }

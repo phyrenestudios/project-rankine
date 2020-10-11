@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/bamboo_clums",
-        "top": "rankine:block/bamboo_clums",
-        "side": "rankine:block/bamboo_clums"
-      }
-    }

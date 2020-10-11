@@ -1,9 +1,0 @@
-{
-          "type": "minecraft:smelting",
-          "ingredient": {
-                  "item": "rankine:diorite"
-          },
-          "result": "rankine:smooth_diorite",
-          "experience": 0.1,
-          "cookingtime": 200
-        }

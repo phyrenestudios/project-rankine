@@ -14,6 +14,8 @@ public class VanillaIntegration {
         registerCompostable(0.3F, ModBlocks.BALSAM_FIR_LEAVES);
         registerCompostable(0.3F, ModBlocks.MAGNOLIA_LEAVES);
         registerCompostable(0.3F, ModBlocks.EASTERN_HEMLOCK_LEAVES);
+        registerCompostable(0.3F, ModBlocks.BLACK_BIRCH_LEAVES);
+        registerCompostable(0.3F, ModBlocks.YELLOW_BIRCH_LEAVES);
         registerCompostable(0.3F, ModBlocks.CEDAR_SAPLING);
         registerCompostable(0.3F, ModBlocks.PINYON_PINE_SAPLING);
         registerCompostable(0.3F, ModBlocks.COCONUT_PALM_SAPLING);

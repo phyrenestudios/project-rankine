@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:tholeiitic_basalt"
+        }
+      ],
+      "result": {
+        "item": "rankine:tholeiitic_basalt_button"
+      }
+    }

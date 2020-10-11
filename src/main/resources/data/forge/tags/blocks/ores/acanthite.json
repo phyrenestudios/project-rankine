@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:acanthite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:acanthite_ore"
+	  ]
+    }
