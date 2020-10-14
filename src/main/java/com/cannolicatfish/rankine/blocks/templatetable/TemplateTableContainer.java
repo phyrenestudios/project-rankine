@@ -3,8 +3,10 @@ package com.cannolicatfish.rankine.blocks.templatetable;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.AlloyTemplate;
+import com.cannolicatfish.rankine.items.TripleAlloyTemplate;
 import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
 import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.recipe.InductionFurnaceRecipes;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,6 +17,8 @@ import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -24,13 +28,14 @@ import java.util.AbstractMap;
 import static com.cannolicatfish.rankine.init.ModBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends Container {
 
+    private int percentSlot1 = 0;
+    private int percentSlot2 = 0;
+    private int percentSlot3 = 0;
+    private int percentSlot4 = 0;
+    private int percentSlot5 = 0;
     private IItemHandler playerInventory;
     private final CraftResultInventory resultInventory = new CraftResultInventory();
     public final IInventory inputInventory = new Inventory(7) {
-        /**
-         * For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think
-         * it hasn't changed and skip it.
-         */
         public void markDirty() {
             super.markDirty();
             TemplateTableContainer.this.onCraftMatrixChanged(this);
@@ -49,13 +54,13 @@ public class TemplateTableContainer extends Container {
         super(TEMPLATE_TABLE_CONTAINER,windowId);
         this.worldPosCallable = wpos;
         this.player = player;
-        this.addSlot(new Slot(inputInventory,0,35,11));
-        this.addSlot(new Slot(inputInventory,1,53,11));
+        this.addSlot(new Slot(inputInventory,0,35,19));
+        this.addSlot(new Slot(inputInventory,1,53,19));
         for (int i = 2; i < 7; i++)
         {
-            this.addSlot(new Slot(inputInventory,i,8+18*(i - 2),46));
+            this.addSlot(new Slot(inputInventory,i,8+18*(i - 2),54));
         }
-        this.addSlot(new Slot(outputInventory,0,144,28) {
+        this.addSlot(new Slot(outputInventory,0,144,36) {
             public boolean isItemValid(ItemStack stack) {
                 return false;
             }
@@ -73,7 +78,32 @@ public class TemplateTableContainer extends Container {
             }
         });
         this.playerInventory = new InvWrapper(playerInventory);
-        layoutPlayerInventorySlots(8, 70);
+        layoutPlayerInventorySlots(8, 86);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public String getPercentSlot1() {
+        return Integer.toString(percentSlot1);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public String getPercentSlot2() {
+        return Integer.toString(percentSlot2);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public String getPercentSlot3() {
+        return Integer.toString(percentSlot3);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public String getPercentSlot4() {
+        return Integer.toString(percentSlot4);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public String getPercentSlot5() {
+        return Integer.toString(percentSlot5);
     }
 
     @Override
@@ -96,7 +126,7 @@ public class TemplateTableContainer extends Container {
                     if (!this.mergeItemStack(stack, 2, 7, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem() == Items.INK_SAC || itemstack.getItem() == Items.BLACK_DYE) {
+                } else if (itemstack.getItem() == Items.INK_SAC || itemstack.getItem() == Items.BLACK_DYE || itemstack.getItem() == Items.PURPLE_DYE) {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -158,21 +188,48 @@ public class TemplateTableContainer extends Container {
     }
 
     public void onCraftMatrixChanged(IInventory inventoryIn) {
-        ItemStack recipeOutput = AlloyFurnaceRecipes.getInstance().getAlloyResult(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
-        if (!recipeOutput.isEmpty() && this.inputInventory.getStackInSlot(0).getItem() == Items.PAPER &&
+
+        if (this.inputInventory.getStackInSlot(0).getItem() == Items.PAPER &&
                 (this.inputInventory.getStackInSlot(1).getItem() == Items.INK_SAC || this.inputInventory.getStackInSlot(1).getItem() == Items.BLACK_DYE))
         {
-            ItemStack st = new ItemStack(ModItems.ALLOY_TEMPLATE);
-            String temp = TemplateTableContainer.assembleTemplate(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
-            AlloyTemplate.addTemplate(st, temp,recipeOutput.getCount() + "x#" + recipeOutput.getTranslationKey(),
-                    recipeOutput, AlloyRecipeHelper.getInstance().getComposition(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4)),
-                    this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
+            ItemStack recipeOutput = AlloyFurnaceRecipes.getInstance().getAlloyResult(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
+            calcPercentages();
+            if (!recipeOutput.isEmpty())
+            {
+                ItemStack st = new ItemStack(ModItems.ALLOY_TEMPLATE);
+                String temp = TemplateTableContainer.assembleTemplate(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
+                AlloyTemplate.addTemplate(st, temp,recipeOutput.getCount() + "x#" + recipeOutput.getTranslationKey(),
+                        recipeOutput, AlloyRecipeHelper.getInstance().getComposition(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4)),
+                        this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
 
-            this.outputInventory.setInventorySlotContents(0,st);
+                this.outputInventory.setInventorySlotContents(0,st);
 
-        } else if (!this.outputInventory.getStackInSlot(0).isEmpty())
-        {
-            this.outputInventory.setInventorySlotContents(0,ItemStack.EMPTY);
+            } else if (!this.outputInventory.getStackInSlot(0).isEmpty())
+            {
+                this.outputInventory.setInventorySlotContents(0,ItemStack.EMPTY);
+            }
+
+        } else if (this.inputInventory.getStackInSlot(0).getItem() == Items.PAPER &&
+                (this.inputInventory.getStackInSlot(1).getItem() == Items.PURPLE_DYE)) {
+            ItemStack recipeOutput = InductionFurnaceRecipes.getInstance().getTripleAlloyResult(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4),
+                    this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6));
+            calcTriplePercentages();
+            if (!recipeOutput.isEmpty()) {
+                ItemStack st = new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE);
+                String temp = TemplateTableContainer.assembleTemplate(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3), this.inputInventory.getStackInSlot(4),
+                        this.inputInventory.getStackInSlot(5), this.inputInventory.getStackInSlot(6));
+                TripleAlloyTemplate.addTemplate(st, recipeOutput,
+                        AlloyRecipeHelper.getInstance().getTripleComposition(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3), this.inputInventory.getStackInSlot(4),
+                                this.inputInventory.getStackInSlot(5), this.inputInventory.getStackInSlot(6)),
+                        this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3), this.inputInventory.getStackInSlot(4), this.inputInventory.getStackInSlot(5), this.inputInventory.getStackInSlot(6));
+
+                this.outputInventory.setInventorySlotContents(0, st);
+            }
+            else if (!this.outputInventory.getStackInSlot(0).isEmpty())
+            {
+                this.outputInventory.setInventorySlotContents(0,ItemStack.EMPTY);
+            }
+
         }
         /*
         if (itemstack.getItem() != this.itemStackInput.getItem()) {
@@ -181,6 +238,45 @@ public class TemplateTableContainer extends Container {
         }*/
 
     }
+
+    private void calcTriplePercentages()
+    {
+        if(this.inputInventory.getStackInSlot(2).isEmpty() || this.inputInventory.getStackInSlot(3).isEmpty() || this.inputInventory.getStackInSlot(4).isEmpty())
+        {
+            this.percentSlot1 = 0;
+            this.percentSlot2 = 0;
+            this.percentSlot3 = 0;
+            this.percentSlot4 = 0;
+            this.percentSlot5 = 0;
+        } else {
+            this.percentSlot1 = AlloyRecipeHelper.getInstance().getTriplePercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4),this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6),0);
+            this.percentSlot2 = AlloyRecipeHelper.getInstance().getTriplePercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4),this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6), 1);
+            this.percentSlot3 = AlloyRecipeHelper.getInstance().getTriplePercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4),this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6), 2);
+            this.percentSlot4 = AlloyRecipeHelper.getInstance().getTriplePercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4),this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6),3);
+            this.percentSlot5 = AlloyRecipeHelper.getInstance().getTriplePercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4),this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6), 4);
+        }
+
+    }
+
+    private void calcPercentages()
+    {
+        if(this.inputInventory.getStackInSlot(2).isEmpty() || this.inputInventory.getStackInSlot(3).isEmpty())
+        {
+            this.percentSlot1 = 0;
+            this.percentSlot2 = 0;
+            this.percentSlot3 = 0;
+            this.percentSlot4 = 0;
+            this.percentSlot5 = 0;
+        } else {
+            this.percentSlot1 = AlloyRecipeHelper.getInstance().getPercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4), 0);
+            this.percentSlot2 = AlloyRecipeHelper.getInstance().getPercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4), 1);
+            this.percentSlot3 = AlloyRecipeHelper.getInstance().getPercent(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4), 2);
+            this.percentSlot4 = 0;
+            this.percentSlot5 = 0;
+        }
+
+    }
+
 
     private void updateRecipeResultSlot() {
         this.onCraftMatrixChanged(inputInventory);

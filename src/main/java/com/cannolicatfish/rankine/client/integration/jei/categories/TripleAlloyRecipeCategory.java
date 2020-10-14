@@ -40,7 +40,7 @@ public class TripleAlloyRecipeCategory implements IRecipeCategory<ITripleAlloyRe
         localizedName = I18n.format("rankine.jei.triple_alloy");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/triple_alloy_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.STAINLESS_STEEL_SHEETMETAL));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.INDUCTION_FURNACE));
     }
 
     @Override
@@ -131,13 +131,7 @@ public class TripleAlloyRecipeCategory implements IRecipeCategory<ITripleAlloyRe
                     recipeLayout.getItemStacks().init(index, true, (index - 19) * 18, 104);
                 }
             }
-            if (o.get(0).getItem() == ModItems.CARBON_INGOT)
-            {
-                recipeLayout.getItemStacks().set(index, Arrays.asList(new ItemStack(ModItems.CARBON_INGOT),new ItemStack(ModItems.COKE),new ItemStack(ModItems.GRAPHITE)));
-            } else
-            {
-                recipeLayout.getItemStacks().set(index, o);
-            }
+            recipeLayout.getItemStacks().set(index, o);
             index++;
 
         }

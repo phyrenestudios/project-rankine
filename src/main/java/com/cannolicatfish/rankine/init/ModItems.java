@@ -112,9 +112,9 @@ public class ModItems {
     public static final AlloyItem CUPRONICKEL_ALLOY = add("cupronickel_alloy", new AlloyItem("85Cu-15Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item NICKEL_SILVER_ALLOY = add("nickel_silver_alloy", new AlloyItem("60Cu-20Ni-20Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));;
     public static final Item INVAR_ALLOY = add("invar_alloy", new AlloyItem("64Fe-36Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MISCHMETAL_ALLOY = add("mischmetal_alloy", new AlloyItem("55Ce-25La-20Nd",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item NICKEL_SUPERALLOY = add("nickel_superalloy", new AlloyItem("75Ni-15Cr-10Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final AlloyItem TUNGSTEN_HEAVY_ALLOY = add("tungsten_heavy_alloy", new AlloyItem("92W-6Ni-2Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MISCHMETAL_ALLOY = add("mischmetal_alloy", new AlloyItem("50Ce-24La-20Nd-6Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NICKEL_SUPERALLOY = add("nickel_superalloy", new AlloyItem("70Ni-20Cr-10Co",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final AlloyItem TUNGSTEN_HEAVY_ALLOY = add("tungsten_heavy_alloy", new AlloyItem("90W-7Ni-3Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem COBALT_SUPERALLOY = add("cobalt_superalloy", new AlloyItem("60Co-20Cr-10Ni-10Ta",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ROSE_METAL_ALLOY = add("rose_metal_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MAGNALIUM_ALLOY = add("magnalium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -529,6 +529,8 @@ public class ModItems {
     public static final Item  AXE_TEMPLATE = add("axe_template", new ItemTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  HAMMER_TEMPLATE = add("hammer_template", new ItemTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  ALLOY_TEMPLATE = add("alloy_template", new AlloyTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  TRIPLE_ALLOY_TEMPLATE = add("triple_alloy_template", new TripleAlloyTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+
 
     public static final Item  CEDAR_BOAT = add("cedar_boat", new RankineBoatItem(RankineBoatEntity.Type.CEDAR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  COCONUT_PALM_BOAT = add("coconut_palm_boat", new RankineBoatItem(RankineBoatEntity.Type.COCONUT_PALM, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));

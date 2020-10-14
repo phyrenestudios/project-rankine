@@ -92,6 +92,11 @@ public class ModRecipes {
 
         recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
                 returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+
+        recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
+                returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+
+
         return recipes;
     }
 
@@ -110,7 +115,7 @@ public class ModRecipes {
                 returnTagFamily("vanadium"),returnTagFamily("zirconium"),
                 returnTagFamily("silicon"), returnTagFamily("phosphorus"),
                 returnTagFamily("sulfur"),returnTagFamily("nitrogen")),
-                new AbstractMap.SimpleEntry<>(.65f, .7f), new AbstractMap.SimpleEntry<>(.10f, .19f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
+                new AbstractMap.SimpleEntry<>(.65f, .75f), new AbstractMap.SimpleEntry<>(.10f, .2f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
 
         recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTagFamily("tungsten"),
                 returnTagFamily("nickel"),returnTagFamily("iron"),returnTagFamily("copper"),
@@ -148,10 +153,9 @@ public class ModRecipes {
                 returnTagFamily("niobium"),returnTagFamily("tantalum"),
                 returnTagFamily("cobalt"),returnTagFamily("manganese"),
                 returnTagFamily("boron"),returnTagFamily("iron"),
-                returnTagFamily("vanadium"),returnTagFamily("zirconium"),
-                returnTagFamily("carbon"),returnTagFamily("tungsten"),
+                returnTagFamily("vanadium"),returnTagFamily("zirconium"), returnTagFamily("carbon","coke","graphite"),returnTagFamily("tungsten"),
                 returnTagFamily("ruthenium"),returnTagFamily("rhenium"), returnTagFamily("phosphorus"),returnTagFamily("silicon")),
-                new AbstractMap.SimpleEntry<>(.6f, .75f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(0f, .15f),.62f));
+                new AbstractMap.SimpleEntry<>(.6f, .8f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(.01f, .1f), new AbstractMap.SimpleEntry<>(0f, .15f),.62f));
 
         recipes.add(tripleAlloyRecipe("nickel_superalloy_crfe", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTagFamily("nickel"),
                 returnTagFamily("chromium"),returnTagFamily("cobalt"),
@@ -160,10 +164,23 @@ public class ModRecipes {
                 returnTagFamily("iron"),returnTagFamily("manganese"),
                 returnTagFamily("boron"),returnTagFamily("aluminum"),
                 returnTagFamily("vanadium"),returnTagFamily("zirconium"),
-                returnTagFamily("carbon"),returnTagFamily("tungsten"),
+                returnTagFamily("carbon","coke","graphite"),returnTagFamily("tungsten"),
                 returnTagFamily("ruthenium"),returnTagFamily("rhenium"),
                 returnTagFamily("phosphorus"),returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.5f, .75f), new AbstractMap.SimpleEntry<>(.14f, .27f), new AbstractMap.SimpleEntry<>(.01f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.65f));
+
+        recipes.add(tripleAlloyRecipe("cobalt_superalloy", new ItemStack(ModItems.COBALT_SUPERALLOY), Arrays.asList(returnTagFamily("cobalt"),
+                returnTagFamily("chromium"),returnTagFamily("nickel"),
+                returnTagFamily("tantalum"),returnTagFamily("molybdenum"),
+                returnTagFamily("tungsten"),returnTagFamily("titanium"),
+                returnTagFamily("aluminum"),returnTagFamily("iridium"),
+                returnTagFamily("iron"),returnTagFamily("aluminum"),
+                returnTagFamily("carbon","coke","graphite"),
+                returnTagFamily("phosphorus"),returnTagFamily("silicon")),
+                new AbstractMap.SimpleEntry<>(.6f, .8f), new AbstractMap.SimpleEntry<>(.18f, .3f), new AbstractMap.SimpleEntry<>(.02f, .12f), new AbstractMap.SimpleEntry<>(0f, .2f),.8f));
+
+        recipes.add(tripleAlloyRecipe("amalgam_alloy",new ItemStack(ModItems.AMALGAM_ALLOY),Arrays.asList(returnTagFamily("mercury"),returnTagFamily("gold"),
+                returnAmalgamStacks()), new AbstractMap.SimpleEntry<>(.25f,.8f), new AbstractMap.SimpleEntry<>(.25f,.5f),new AbstractMap.SimpleEntry<>(0f,0.5f),  new AbstractMap.SimpleEntry<>(0f, 0f),1f));
 
         return recipes;
     }
@@ -188,6 +205,12 @@ public class ModRecipes {
             result = new ItemStack[]{new ItemStack(ModItems.ELEMENT)};
         }
         return result;
+    }
+
+    public static ItemStack[] returnAmalgamStacks() {
+        PeriodicTableUtils utils = new PeriodicTableUtils();
+        String[] list = utils.getAmalgamNames().toArray(new String[0]);
+        return returnTagFamily(list);
     }
 
     public static ItemStack[] returnTagFamily(String... s) {
@@ -597,6 +620,94 @@ public class ModRecipes {
                 {
                     break;
                 }
+                AbstractMap.SimpleEntry<Float,Float> bounds = foundRecipe.getBounds(i);
+                if (props.get(i) < bounds.getKey() || props.get(i) > bounds.getValue())
+                {
+                    flag2 = false;
+                    break;
+                }
+            }
+            if (flag2 && Math.round(total/10) <= 64)
+            {
+                return new ItemStack(foundRecipe.getRecipeOutput().getItem(),Math.round(total/10));
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    public static ItemStack getTripleAlloyOutput(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5)
+    {
+
+        List<ITripleAlloyRecipe> recipes = ModRecipes.getTripleAlloyRecipes();
+        AlloyRecipeHelper r = AlloyRecipeHelper.getInstance();
+
+        AbstractMap.SimpleEntry<String,Integer> material1 = r.returnItemMaterial(input1);
+        AbstractMap.SimpleEntry<String,Integer> material2 = r.returnItemMaterial(input2);
+        AbstractMap.SimpleEntry<String,Integer> material3 = r.returnItemMaterial(input3);
+        AbstractMap.SimpleEntry<String,Integer> material4 = r.returnItemMaterial(input4);
+        AbstractMap.SimpleEntry<String,Integer> material5 = r.returnItemMaterial(input5);
+
+        List<String> materials = Arrays.asList(material1.getKey(),material2.getKey(),material3.getKey(),material4.getKey(),material5.getKey());
+        List<Integer> amounts = Arrays.asList(material1.getValue(),material2.getValue(),material3.getValue(),material4.getValue(),material5.getValue());
+        float total = material1.getValue() + material2.getValue() + material3.getValue() + material4.getValue() + material5.getValue();
+
+        if (materials.contains("nope") || material1.getKey().equals("none") || material2.getKey().contains("none") || material3.getKey().contains("none"))
+        {
+            return ItemStack.EMPTY;
+        }
+        List<Float> props = Arrays.asList(amounts.get(0)/total,
+                amounts.get(1)/total,
+                amounts.get(2)/total,
+                amounts.get(3)/total,
+                amounts.get(4)/total);
+
+        ITripleAlloyRecipe foundRecipe = null;
+        boolean flag = false;
+        boolean flag2 = true;
+        for (ITripleAlloyRecipe recipe: recipes)
+        {/*
+            if (input1.getItem().getTags().contains(recipe.getPrimaryTag())
+                    && input2.getItem().getTags().contains(recipe.getSecondaryTag()))
+            {
+                if (input3.isEmpty() && recipe.getOther().getKey() == 0)
+                {
+                    flag = true;
+                } else if (!input3.isEmpty()){
+                    for (int i = 2; i < recipe.getIngredients().size(); i++)
+                    {
+                        if (input3.getItem().getTags().contains(recipe.getRemainderTag(i)))
+                        {
+                            flag = true;
+                        }
+                    }
+                }
+            }*/
+            if (recipe.getItemsPrimary().contains(input1.getItem()) && recipe.getItemsSecondary().contains(input2.getItem()) && recipe.getItemsTertiary().contains(input3.getItem()))
+            {
+                if (input4.isEmpty() && input5.isEmpty() && recipe.getOther().getKey() == 0)
+                {
+                    flag = true;
+                } else if (!input4.isEmpty()){
+                    if (recipe.getItemsRemainder().contains(input4.getItem()))
+                    {
+                        if (input5.isEmpty() || (recipe.getItemsRemainder().contains(input5.getItem()) && !input5.isItemEqual(input4)))
+                        {
+                            flag = true;
+                        }
+
+                    }
+                }
+            }
+            if (flag)
+            {
+                foundRecipe = recipe;
+                break;
+            }
+        }
+        if (foundRecipe != null)
+        {
+            for (int i = 0; i < 5; i++)
+            {
                 AbstractMap.SimpleEntry<Float,Float> bounds = foundRecipe.getBounds(i);
                 if (props.get(i) < bounds.getKey() || props.get(i) > bounds.getValue())
                 {
