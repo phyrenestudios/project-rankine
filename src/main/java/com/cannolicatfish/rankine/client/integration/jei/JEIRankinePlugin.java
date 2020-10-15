@@ -86,7 +86,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.ZIRCON_BEEHIVE_OVEN_PIT), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.PISTON_CRUSHER), PistonCrusherRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_FORGE), CoalForgeRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(ModBlocks.STAINLESS_STEEL_SHEETMETAL), TripleAlloyRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.INDUCTION_FURNACE), TripleAlloyRecipeCategory.UID);
     }
 
 }

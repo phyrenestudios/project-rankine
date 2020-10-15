@@ -130,7 +130,7 @@ public class Config {
         ALLOY_WEAR_DAMAGE_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on damage (ex. 0.25 means damage will be reduced to 75% of the original value as durability is lost)")
                 .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
 
-        AMALGAM_EXTRAS = COMMON_BUILDER.comment("Enables the disabled elements for amalgam alloy (Fe, Pt, W, Ta)")
+        AMALGAM_EXTRAS = COMMON_BUILDER.comment("Enables the disabled metals for amalgam alloy (Fe, Pt, W, Ta)")
                 .define("amalgamExtras",false);
 
         COMMON_BUILDER.pop();

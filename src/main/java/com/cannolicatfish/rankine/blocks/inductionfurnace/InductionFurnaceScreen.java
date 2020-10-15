@@ -1,23 +1,19 @@
-package com.cannolicatfish.rankine.blocks.alloyfurnace;
+package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.storage.MapData;
 
-import javax.annotation.Nullable;
-
-public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloy_furnace.png");
-    public AlloyFurnaceScreen(AlloyFurnaceContainer container, PlayerInventory inv, ITextComponent name) {
+public class InductionFurnaceScreen extends ContainerScreen<InductionFurnaceContainer> {
+    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/induction_furnace.png");
+    public InductionFurnaceScreen(InductionFurnaceContainer container, PlayerInventory inv, ITextComponent name) {
         super(container, inv, name);
+        this.ySize = 182;
     }
 
     @Override
@@ -41,26 +37,27 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
         {
 
             int k = this.container.getBurnLeftScaled(13);
-            this.blit(p_230450_1_, this.guiLeft + 11, this.guiTop + 21 + 12 - k, 176, 12 - k, 14, k + 1);
+            this.blit(p_230450_1_, this.guiLeft + 11, this.guiTop + 37 + 12 - k, 176, 12 - k, 14, k + 1);
 
         }
 
         int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_, this.guiLeft + 98, this.guiTop + 32, 176, 14, l + 1, 16);
+        this.blit(p_230450_1_, this.guiLeft + 98, this.guiTop + 48, 176, 14, l + 1, 16);
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Alloy Furnace", 92, 10, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Induction Furnace", 92, 10, 0xffffff);
         if (!this.container.isRecipeMode())
         {
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 50, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 50, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() + "%", 86, 50, 0x00aa00);
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 21, 0xffffff);
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 21, 0xffffff);
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() +"%", 86, 21, 0xffffff);
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot4() + "%", 51, 74, 0xff55ff);
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot5() + "%", 75, 74, 0xff55ff);
         }
     }
 
 
 
 }
-

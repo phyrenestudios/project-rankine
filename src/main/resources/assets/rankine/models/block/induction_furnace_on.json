@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "rankine:block/induction_furnace_side",
+    "north": "rankine:block/induction_furnace_front",
+    "south": "rankine:block/induction_furnace_front",
+    "east": "rankine:block/induction_furnace_front",
+    "west": "rankine:block/induction_furnace_front",
+    "up": "rankine:block/induction_furnace_top_on",
+    "down": "rankine:block/induction_furnace_side"
+  }
+}

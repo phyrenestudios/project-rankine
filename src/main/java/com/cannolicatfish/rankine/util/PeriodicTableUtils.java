@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.util;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.util.elements.*;
 import com.sun.jna.platform.mac.Carbon;
 import net.minecraft.enchantment.Enchantment;
@@ -20,6 +21,8 @@ public final class PeriodicTableUtils {
             "Sr","Y","Zr","Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","In","Sn","Sb","Te","I","Xe","Cs","Ba","La","Ce","Pr","Nd","pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu","Hf","Ta","W","Re","Os ","Ir","Pt","Au","Hg","Tl",
             "Pb","Bi","Po","At","Rn","Fr","Ra","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","md","No","Lr","Rf","Db","Sg","Bh","Hs","Mt","Ds","Rg","Cn","Uut","Ft","Uup","Lv","Uus","Uuo","Nr");
 
+    public final List<Element> amalgamExtras = Arrays.asList(Element.IRON,Element.PLATINUM,Element.TUNGSTEN,Element.TANTALUM);
+    public final List<Element> amalgamNonmetals = Arrays.asList(Element.BORON,Element.CARBON,Element.SILICON,Element.PHOSPHORUS,Element.SULFUR,Element.ARSENIC,Element.ANTIMONY);
     public List<String> getElementNames() {
         return names;
     }
@@ -29,6 +32,22 @@ public final class PeriodicTableUtils {
         for (Element e: Element.values())
         {
             elements.add(e.toString().toLowerCase());
+        }
+        //System.out.println(elements);
+        return elements;
+    }
+
+    public List<String> getAmalgamNames() {
+        List<String> elements = new ArrayList<>();
+        for (Element e: Element.values())
+        {
+            if (e != Element.MERCURY && e != Element.GOLD && !amalgamNonmetals.contains(e))
+            {
+                if (Config.AMALGAM_EXTRAS.get() || (!amalgamExtras.contains(e)))
+                {
+                    elements.add(e.toString().toLowerCase());
+                }
+            }
         }
         //System.out.println(elements);
         return elements;
@@ -78,7 +97,7 @@ public final class PeriodicTableUtils {
         {
             return "C";
         }
-        if (material.equals("unref_iron"))
+        if (material.equals("unref_iron") || material.equals("ref_iron"))
         {
             return "Fe";
         }
