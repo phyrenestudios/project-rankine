@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
@@ -14,10 +15,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ITripleAlloyRecipe implements IRecipe<IInventory> {
     public static final ITripleAlloyRecipe.Serializer SERIALIZER = new ITripleAlloyRecipe.Serializer();
@@ -71,6 +69,67 @@ public class ITripleAlloyRecipe implements IRecipe<IInventory> {
         return inputs;
     }
 
+    public AbstractMap.SimpleEntry<Float,Float> getBounds(int i)
+    {
+        switch (i)
+        {
+            case 0:
+            default:
+                return getPrimary();
+            case 1:
+                return getSecondary();
+            case 2:
+                return getTertiary();
+            case 3:
+            case 4:
+                return getOther();
+        }
+    }
+
+    public List<ItemStack> getIngredientStacks(int x) {
+        return new ArrayList<>(Arrays.asList(getIngredients().get(x).getMatchingStacks()));
+    }
+
+    public List<Item> getItemsPrimary() {
+        List<Item> x = new ArrayList<>();
+        for (ItemStack i : getIngredientStacks(0))
+        {
+            x.add(i.getItem());
+        }
+        return x;
+    }
+
+    public List<Item> getItemsSecondary() {
+        List<Item> x = new ArrayList<>();
+        for (ItemStack i : getIngredientStacks(1))
+        {
+            x.add(i.getItem());
+        }
+        return x;
+    }
+
+    public List<Item> getItemsTertiary() {
+        List<Item> x = new ArrayList<>();
+        for (ItemStack i : getIngredientStacks(2))
+        {
+            x.add(i.getItem());
+        }
+        return x;
+    }
+
+
+    public List<Item> getItemsRemainder() {
+        List<Item> x = new ArrayList<>();
+        for (int i = 3; i < getIngredients().size(); i++)
+        {
+            for (ItemStack stack : getIngredientStacks(i))
+            {
+                x.add(stack.getItem());
+            }
+        }
+        return x;
+    }
+
     @Nonnull
     @Override
     public ItemStack getRecipeOutput() {
@@ -102,7 +161,7 @@ public class ITripleAlloyRecipe implements IRecipe<IInventory> {
 
     @Nonnull
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.STAINLESS_STEEL_SHEETMETAL);
+        return new ItemStack(ModBlocks.INDUCTION_FURNACE);
     }
 
     @Nonnull

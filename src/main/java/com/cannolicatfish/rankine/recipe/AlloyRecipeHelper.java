@@ -8,10 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AlloyRecipeHelper {
     private static final AlloyRecipeHelper INSTANCE = new AlloyRecipeHelper();
@@ -25,7 +22,7 @@ public class AlloyRecipeHelper {
 
     }
 
-    public AbstractMap.SimpleEntry<String,Integer> returnItemMaterial(ItemStack stack)
+    public static AbstractMap.SimpleEntry<String,Integer> returnItemMaterial(ItemStack stack)
     {
         //System.out.println(RankineAlloyMaterial.getMaterial(stack.getItem()).toString());
         if (stack.isEmpty())
@@ -51,6 +48,18 @@ public class AlloyRecipeHelper {
             mat = "unref_iron";
             amt = stack.getCount();
         }
+
+        if (reg.equals("wrought_iron_ingot"))
+        {
+            mat = "ref_iron";
+            amt = 9 * stack.getCount();
+        }
+        if (reg.equals("wrought_iron_nugget"))
+        {
+            mat = "ref_iron";
+            amt = stack.getCount();
+        }
+
         if (reg.equals("coke") || reg.equals("lignite") || reg.equals("graphite") || reg.contains("coal"))
         {
 
@@ -141,6 +150,14 @@ public class AlloyRecipeHelper {
         return Math.round(percent * 100);
     }
 
+    public int getTriplePercent(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5, int index)
+    {
+        List<Integer> amounts = Arrays.asList(returnItemMaterial(input1).getValue(),returnItemMaterial(input2).getValue(),returnItemMaterial(input3).getValue(),returnItemMaterial(input4).getValue(),returnItemMaterial(input5).getValue());
+        float total = amounts.get(0) + amounts.get(1) + amounts.get(2) + amounts.get(3) + amounts.get(4);
+        float percent = amounts.get(index)/total;
+        return Math.round(percent * 100);
+    }
+
     public String getComposition(ItemStack input1, ItemStack input2, ItemStack input3)
     {
         boolean flag = false;
@@ -174,6 +191,7 @@ public class AlloyRecipeHelper {
         }
 
     }
+
 
     public AbstractMap.SimpleEntry<List<Integer>,List<ItemStack>> getPercents(ItemStack input1, ItemStack input2, ItemStack input3)
     {
@@ -213,9 +231,118 @@ public class AlloyRecipeHelper {
         }
     }
 
-    public String getCompositionAlloy(CompoundNBT nbt)
+
+    public String getTripleComposition(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5)
     {
-        return nbt.getString();
+        List<Integer> percents = getTriplePercents(input1,input2,input3,input4,input5).getKey();
+        List<ItemStack> inputs = getTriplePercents(input1,input2,input3,input4,input5).getValue();
+        StringBuilder ret = new StringBuilder();
+        Map<ItemStack,Integer> map = new HashMap<>();
+        for (int i = 0; i < inputs.size(); i++)
+        {
+            map.put(inputs.get(i),percents.get(i));
+        }
+
+        List<Integer> sPercents = new ArrayList<>();
+        List<ItemStack> sInputs = new ArrayList<>();
+        for (Map.Entry<ItemStack, Integer> entry : mapInputsSort(map).entrySet())
+        {
+            sPercents.add(entry.getValue());
+            sInputs.add(entry.getKey());
+        }
+        Collections.reverse(sPercents);
+        Collections.reverse(sInputs);
+
+        for (int i = 0; i < sPercents.size(); i++)
+        {
+            ret.append(sPercents.get(i)).append(utils.getElementByMaterial(returnItemMaterial(sInputs.get(i)).getKey()));
+            if (i != sPercents.size() - 1) {
+                ret.append("-");
+            }
+        }
+        return ret.toString();
     }
+
+    public static Map<ItemStack, Integer> mapInputsSort(Map<ItemStack, Integer> map) {
+        List<Map.Entry<ItemStack, Integer>> list = new ArrayList<>(map.entrySet());
+        list.sort((o1, o2) -> {
+            if (o1.getValue().equals(o2.getValue())) {
+                return AlloyRecipeHelper.returnItemMaterial(o2.getKey()).getKey().compareToIgnoreCase(AlloyRecipeHelper.returnItemMaterial(o1.getKey()).getKey());
+            }
+            return o1.getValue() < o2.getValue() ? -1 : 1;
+        });
+
+        Map<ItemStack, Integer> result = new LinkedHashMap<>();
+        for (Map.Entry<ItemStack, Integer> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
+
+    public AbstractMap.SimpleEntry<List<Integer>,List<ItemStack>> getTriplePercents(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5)
+    {
+
+        int percent1 = getTriplePercent(input1,input2,input3,input4,input5,0);
+        int percent2 = getTriplePercent(input1,input2,input3,input4,input5,1);
+        int percent3 = getTriplePercent(input1,input2,input3,input4,input5,2);
+        int percent4 = getTriplePercent(input1,input2,input3,input4,input5,3);
+        int percent5 = getTriplePercent(input1,input2,input3,input4,input5,4);
+        if (percent1 + percent2 + percent3 + percent4 + percent5 == 101)
+        {
+            percent1 -= 1;
+        }
+        List<Integer> perc;
+        List<ItemStack> stacks;
+        if (percent4 == 0)
+        {
+            stacks = Arrays.asList(input1, input2, input3);
+            perc = Arrays.asList(percent1,percent2,percent3);
+        } else if (percent5 == 0)
+        {
+            stacks = Arrays.asList(input1, input2, input3, input4);
+            perc = Arrays.asList(percent1,percent2,percent3,percent4);
+        } else {
+            stacks = Arrays.asList(input1, input2, input3, input4, input5);
+            perc = Arrays.asList(percent1,percent2,percent3,percent4,percent5);
+        }
+
+        return new AbstractMap.SimpleEntry<>(perc,stacks);
+    }
+    /*
+    public AbstractMap.SimpleEntry<List<Integer>,List<ItemStack>> getTriplePercents(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5)
+    {
+        Map<ItemStack,Integer> map = new HashMap<>();
+        int percent1 = getTriplePercent(input1,input2,input3,input4,input5,0);
+        int percent2 = getTriplePercent(input1,input2,input3,input4,input5,1);
+        int percent3 = getTriplePercent(input1,input2,input3,input4,input5,2);
+        int percent4 = getTriplePercent(input1,input2,input3,input4,input5,3);
+        int percent5 = getTriplePercent(input1,input2,input3,input4,input5,4);
+        if (percent1 + percent2 + percent3 + percent4 + percent5 == 101)
+        {
+            percent1 -= 1;
+        }
+        map.put(input1,percent1);
+        map.put(input2,percent2);
+        map.put(input3,percent3);
+        if (!input4.isEmpty())
+        {
+            map.put(input4,percent4);
+        }
+        if (!input5.isEmpty())
+        {
+            map.put(input5,percent5);
+        }
+        List<Integer> perc = new ArrayList<>();
+        List<ItemStack> stacks = new ArrayList<>();
+        for (Map.Entry<ItemStack, Integer> entry : mapInputsSort(map).entrySet())
+        {
+            perc.add(entry.getValue());
+            stacks.add(entry.getKey());
+        }
+        Collections.reverse(perc);
+        Collections.reverse(stacks);
+        return new AbstractMap.SimpleEntry<>(perc,stacks);
+    }*/
 
 }

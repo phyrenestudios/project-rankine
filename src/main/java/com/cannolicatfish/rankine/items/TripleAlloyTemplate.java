@@ -27,9 +27,9 @@ import javax.annotation.Nullable;
 import java.util.AbstractMap;
 import java.util.List;
 
-public class AlloyTemplate extends Item {
+public class TripleAlloyTemplate extends Item {
     PeriodicTableUtils utils = new PeriodicTableUtils();
-    public AlloyTemplate(Properties properties) {
+    public TripleAlloyTemplate(Properties properties) {
         super(properties);
     }
 
@@ -49,7 +49,7 @@ public class AlloyTemplate extends Item {
                 p2 = new TranslationTextComponent(comp).getString();
             }
 
-            String p3 = new TranslationTextComponent(this.getTranslationKey(stack)).getString().split(" ")[1];
+            String p3 = new TranslationTextComponent(this.getTranslationKey(stack)).getString().split(" ")[2];
             return new StringTextComponent( p1 + " " + p2 + " " + p3);
         } else {
             return new TranslationTextComponent(this.getTranslationKey(stack));
@@ -119,7 +119,7 @@ public class AlloyTemplate extends Item {
         return ret.toString();
     }
 
-    public static void addTemplate(ItemStack stack, String data, String name, ItemStack output, String alloy,  ItemStack ... inputs) {
+    public static void addTemplate(ItemStack stack,ItemStack output, String alloy,  ItemStack ... inputs) {
         ListNBT listnbt = new ListNBT();
         stack.getOrCreateTag().putString("StoredTemplate",assembleTemplateData(inputs));
         stack.getOrCreateTag().putString("NameAdd",output.getCount() + "x#" + output.getTranslationKey());
@@ -141,7 +141,7 @@ public class AlloyTemplate extends Item {
             String name = compoundNBT.get("NameAdd").getString();
             int num;
             try{
-               num = Integer.parseInt(name.replaceAll("[^0-9]+",""));
+                num = Integer.parseInt(name.replaceAll("[^0-9]+",""));
             } catch (NumberFormatException e)
             {
                 return ItemStack.EMPTY;
@@ -159,7 +159,7 @@ public class AlloyTemplate extends Item {
     }
 
     public static int[] getShrinkAmount(ItemStack stack) {
-        int[] ret = new int[]{0,0,0};
+        int[] ret = new int[]{0,0,0,0,0};
         if (getTemplate(stack).size() != 0) {
             String comp = getTemplate(stack).get("StoredTemplate").getString();
             int count = 0;
@@ -187,7 +187,7 @@ public class AlloyTemplate extends Item {
 
     public static ItemStack[] getInputStacks(ItemStack stack)
     {
-        ItemStack[] x = new ItemStack[]{ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
+        ItemStack[] x = new ItemStack[]{ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY};
         int[] y = getShrinkAmount(stack);
         if (getTemplate(stack).size() != 0) {
             ListNBT nbt = getTemplate(stack).getList("Inputs",10);
@@ -212,51 +212,42 @@ public class AlloyTemplate extends Item {
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (getTemplate(stack).size() == 0 && !worldIn.isRemote)
         {
-            int random = worldIn.getRandom().nextInt(9);
+            int random = worldIn.getRandom().nextInt(7);
             ItemStack[] inputs;
             ItemStack output;
             switch (random)
             {
                 case 0:
                 default:
-                    inputs = new ItemStack[]{new ItemStack(ModItems.COPPER_INGOT,8),new ItemStack(ModItems.TIN_INGOT,2),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.BRONZE_ALLOY, 9);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.TUNGSTEN_INGOT,9),new ItemStack(ModItems.NICKEL_NUGGET,6),new ItemStack(Items.IRON_NUGGET,3),ItemStack.EMPTY,ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY, 9);
                 case 1:
-                    inputs = new ItemStack[]{new ItemStack(ModItems.TIN_INGOT,9),new ItemStack(ModItems.ANTIMONY_INGOT,1),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.PEWTER_ALLOY, 9);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.WROUGHT_IRON_INGOT,5),new ItemStack(ModItems.CHROMIUM_NUGGET,8),new ItemStack(ModItems.CARBON_NUGGET,1),
+                            new ItemStack(ModItems.NICKEL_NUGGET,6),ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.STAINLESS_STEEL_ALLOY, 6);
                 case 2:
-                    inputs = new ItemStack[]{new ItemStack(ModItems.COPPER_INGOT,6),new ItemStack(ModItems.ZINC_INGOT,4),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.BRASS_ALLOY, 9);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.BISMUTH_INGOT,5),new ItemStack(ModItems.LEAD_INGOT,3),new ItemStack(ModItems.TIN_INGOT,2),
+                            ItemStack.EMPTY,ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.ROSE_METAL_ALLOY, 9);
                 case 3:
-                    inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,5),new ItemStack(ModItems.COPPER_NUGGET,13), new ItemStack(ModItems.SILVER_NUGGET,2)};
-                    output = new ItemStack(ModItems.ROSE_GOLD_ALLOY, 6);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.CERIUM_INGOT,5),new ItemStack(ModItems.LANTHANUM_NUGGET,22),new ItemStack(ModItems.NEODYMIUM_NUGGET,18),
+                            new ItemStack(Items.IRON_NUGGET,5),ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.MISCHMETAL_ALLOY, 9);
                 case 4:
-                    inputs = new ItemStack[]{new ItemStack(ModItems.COPPER_INGOT,9),new ItemStack(ModItems.ALUMINUM_INGOT,1),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.ALUMINUM_BRONZE_ALLOY, 9);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.NICKEL_INGOT,8),new ItemStack(ModItems.TITANIUM_INGOT,1),new ItemStack(ModItems.ALUMINUM_INGOT,1),
+                            ItemStack.EMPTY,ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.NICKEL_SUPERALLOY, 9);
                 case 5:
-                    inputs = new ItemStack[]{new ItemStack(Items.IRON_INGOT,6),new ItemStack(ModItems.NICKEL_INGOT,4),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.INVAR_ALLOY, 9);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.NICKEL_INGOT,7),new ItemStack(ModItems.CHROMIUM_INGOT,2),new ItemStack(ModItems.COBALT_INGOT,1),
+                            ItemStack.EMPTY,ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.NICKEL_SUPERALLOY, 9);
                 case 6:
-                    inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,9),new ItemStack(ModItems.ZINC_INGOT,1),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.WHITE_GOLD_ALLOY, 9);
-                    break;
-                case 7:
-                    inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,5),new ItemStack(ModItems.SILVER_INGOT,5),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.GREEN_GOLD_ALLOY, 9);
-                    break;
-                case 8:
-                    inputs = new ItemStack[]{new ItemStack(Items.GOLD_INGOT,8),new ItemStack(ModItems.ALUMINUM_INGOT,2),ItemStack.EMPTY};
-                    output = new ItemStack(ModItems.PURPLE_GOLD_ALLOY, 9);
-                    break;
+                    inputs = new ItemStack[]{new ItemStack(ModItems.COBALT_INGOT,6),new ItemStack(ModItems.CHROMIUM_INGOT,2),new ItemStack(ModItems.NICKEL_INGOT,1),
+                            new ItemStack(ModItems.TANTALUM_INGOT,1),ItemStack.EMPTY};
+                    output = new ItemStack(ModItems.COBALT_SUPERALLOY, 9);
             }
-            addTemplate(stack, TemplateTableContainer.assembleTemplate(inputs),output.getCount() + "x#" + output.getDisplayName(), output, AlloyRecipeHelper.getInstance().getComposition(inputs[0],inputs[1],inputs[2]),
-                    inputs[0],inputs[1],inputs[2]);
+            addTemplate(stack, output, AlloyRecipeHelper.getInstance().getTripleComposition(inputs[0],inputs[1],inputs[2],inputs[3],inputs[4]),
+                    inputs[0],inputs[1],inputs[2],inputs[3],inputs[4]);
 
         }
     }
