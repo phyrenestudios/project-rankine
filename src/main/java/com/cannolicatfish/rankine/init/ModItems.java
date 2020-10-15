@@ -53,7 +53,10 @@ public class ModItems {
     public static final Item TANTALITE = add("tantalite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item COBALTITE = add("cobaltite", new SimpleTooltipItem("CoAsS",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PLATINUM_ARSENIDE = add("platinum_arsenide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MONAZITE = add("monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CERIUM_MONAZITE = add("cerium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LANTHANUM_MONAZITE = add("lanthanum_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NEODYMIUM_MONAZITE = add("neodymium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SAMARIUM_MONAZITE = add("samarium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ZIRCON = add("zircon", new SimpleTooltipItem("ZrSiO4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item URANINITE = add("uraninite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item GREENOCKITE = add("greenockite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
@@ -499,12 +502,12 @@ public class ModItems {
     public static final Item BRIGADINE_BOOTS = add("brigandine_boots", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GEM_SHARD = add("gem_shard", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GEM_CORE = add("gem_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item HASTE_PENDANT = add("haste_pendant", new HastePendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item LUCK_PENDANT = add("luck_pendant", new LuckPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item HEALTH_PENDANT = add("health_pendant", new HealthPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item SPEED_PENDANT = add("speed_pendant", new SpeedPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item LEVITATION_PENDANT = add("levitation_pendant", new LevitationPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item REPULSION_PENDANT = add("repulsion_pendant", new RepulsionPendantItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item HASTE_PENDANT = add("haste_pendant", new HastePendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item LUCK_PENDANT = add("luck_pendant", new LuckPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item HEALTH_PENDANT = add("health_pendant", new HealthPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SPEED_PENDANT = add("speed_pendant", new SpeedPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item LEVITATION_PENDANT = add("levitation_pendant", new LevitationPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item REPULSION_PENDANT = add("repulsion_pendant", new RepulsionPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
 

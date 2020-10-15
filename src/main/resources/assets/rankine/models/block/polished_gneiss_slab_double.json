@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+                "end": "rankine:block/polished_gneiss",
+                "side": "rankine:block/polished_gneiss_slab_side"
+          }
+        }

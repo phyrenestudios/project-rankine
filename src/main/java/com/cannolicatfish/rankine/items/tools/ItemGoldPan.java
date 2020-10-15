@@ -39,7 +39,7 @@ public class ItemGoldPan extends Item {
                 if (r <= 0.01f) {
                     stack = new ItemStack(Items.DIAMOND, 1);
                 } else if (r <= 0.03f) {
-                    stack = new ItemStack(ModItems.MONAZITE, 1);
+                    stack = new ItemStack(ModItems.CERIUM_MONAZITE, 1);
                 } else if (r <= 0.05f) {
                     stack = new ItemStack(ModItems.ZIRCON, 1);
                 } else if (r <= 0.07f) {

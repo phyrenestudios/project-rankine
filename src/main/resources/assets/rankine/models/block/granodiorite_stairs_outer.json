@@ -1,0 +1,8 @@
+{
+      "parent": "block/outer_stairs",
+      "textures": {
+        "bottom": "rankine:block/granodiorite",
+        "top": "rankine:block/granodiorite",
+        "side": "rankine:block/granodiorite"
+      }
+    }

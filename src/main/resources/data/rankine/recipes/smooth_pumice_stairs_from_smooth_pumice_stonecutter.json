@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:smooth_pumice"
-      },
-      "result": "rankine:smooth_pumice_stairs",
-      "count": 1
-    }

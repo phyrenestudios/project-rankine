@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab_top",
-      "textures": {
-        "bottom": "rankine:block/smooth_diorite",
-        "top": "rankine:block/smooth_diorite",
-        "side": "rankine:block/smooth_diorite"
-      }
-    }

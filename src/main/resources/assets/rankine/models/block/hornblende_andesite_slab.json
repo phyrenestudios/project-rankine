@@ -1,0 +1,8 @@
+{
+      "parent": "block/slab",
+      "textures": {
+        "bottom": "rankine:block/hornblende_andesite",
+        "top": "rankine:block/hornblende_andesite",
+        "side": "rankine:block/hornblende_andesite"
+      }
+    }

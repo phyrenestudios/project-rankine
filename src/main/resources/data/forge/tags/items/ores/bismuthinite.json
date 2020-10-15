@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:bismuthinite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:bismuthinite_ore"
+	  ]
+    }

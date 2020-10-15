@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:wolframite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:wolframite_ore"
+	  ]
+    }

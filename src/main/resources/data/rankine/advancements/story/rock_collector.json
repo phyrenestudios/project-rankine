@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:granite"
+            "item": "rankine:red_granite"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:andesite"
+            "item": "rankine:hornblende_andesite"
           }
         ]
       }
@@ -41,7 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:diorite"
+            "item": "rankine:granodiorite"
           }
         ]
       }
@@ -91,7 +91,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:basalt"
+            "item": "rankine:tholeiitic_basalt"
           }
         ]
       }

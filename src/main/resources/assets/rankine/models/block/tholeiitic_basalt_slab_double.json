@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+            "end": "rankine:block/tholeiitic_basalt",
+            "side": "rankine:block/tholeiitic_basalt"
+          }
+        }

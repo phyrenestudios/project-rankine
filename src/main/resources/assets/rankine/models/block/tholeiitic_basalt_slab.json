@@ -1,0 +1,8 @@
+{
+      "parent": "block/slab",
+      "textures": {
+        "bottom": "rankine:block/tholeiitic_basalt",
+        "top": "rankine:block/tholeiitic_basalt",
+        "side": "rankine:block/tholeiitic_basalt"
+      }
+    }

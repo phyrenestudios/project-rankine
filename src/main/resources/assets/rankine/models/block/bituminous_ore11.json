@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/basalt",
+            "base": "rankine:block/shale",
             "overlay": "rankine:block/bituminous_ore",
-            "particle": "rankine:block/basalt"
+            "particle": "rankine:block/shale"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

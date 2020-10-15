@@ -1,7 +1,0 @@
-{
-          "parent": "block/cube_column",
-          "textures": {
-                "end": "rankine:block/smooth_pumice",
-                "side": "rankine:block/smooth_pumice_slab_side"
-          }
-        }

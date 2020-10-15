@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:tholeiitic_basalt"
+        }
+      },
+      "result": {
+        "item": "rankine:tholeiitic_basalt_pressure_plate",
+        "count": 1
+      }
+    }

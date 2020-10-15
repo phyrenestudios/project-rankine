@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-        "item": "rankine:granite"
-      },
-      "result": "rankine:granite_button",
-      "count": 1
-    }

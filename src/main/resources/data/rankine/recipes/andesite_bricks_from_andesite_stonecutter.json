@@ -1,8 +1,8 @@
 {
-          "type": "minecraft:stonecutting",
-          "ingredient": {
-                  "item": "rankine:andesite"
-          },
-          "result": "rankine:andesite_bricks",
-          "count": 1
-        }
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:andesite"
+  },
+  "result": "rankine:andesite_bricks",
+  "count": 1
+}

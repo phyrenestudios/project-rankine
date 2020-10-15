@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+                "end": "rankine:block/polished_hornblende_andesite",
+                "side": "rankine:block/polished_hornblende_andesite_slab_side"
+          }
+        }

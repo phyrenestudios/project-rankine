@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:polished_hornblende_andesite"
+        }
+      },
+      "result": {
+        "item": "rankine:polished_hornblende_andesite_wall",
+        "count": 6
+      }
+    }

@@ -1,9 +1,9 @@
 {
       "parent": "block/block",
       "textures": {
-        "base": "block/blackstone",
+        "base": "block/diorite",
         "overlay": "rankine:block/native_copper_ore",
-        "particle": "block/blackstone"
+        "particle": "block/diorite"
       },
       "elements": [
         {   "from": [ 0, 0, 0 ],

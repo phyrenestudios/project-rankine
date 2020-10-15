@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:polished_perovskite"
+      },
+      "result": "rankine:polished_perovskite_slab",
+      "count": 2
+    }

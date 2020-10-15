@@ -1,0 +1,9 @@
+{
+          "type": "minecraft:smelting",
+          "ingredient": {
+                  "item": "rankine:roman_concrete"
+          },
+          "result": "rankine:polished_roman_concrete",
+          "experience": 0.1,
+          "cookingtime": 200
+        }

@@ -160,7 +160,7 @@ public class RankineBiomeFeatures {
 
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(2, 0, 0, 0, 3),
             new StraightTrunkPlacer(6, 3, 0),
             new TwoLayerFeature(1, 0, 1)))
@@ -169,7 +169,7 @@ public class RankineBiomeFeatures {
 
     public static final BaseTreeFeatureConfig BLACK_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BLACK_BIRCH_LOG.getDefaultState()),
-            new SimpleBlockStateProvider(Blocks.BIRCH_LEAVES.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.BLACK_BIRCH_LEAVES.getDefaultState()),
             new BlobFoliagePlacer(2, 0, 0, 0, 3),
             new StraightTrunkPlacer(6, 3, 0),
             new TwoLayerFeature(1, 0, 1)))

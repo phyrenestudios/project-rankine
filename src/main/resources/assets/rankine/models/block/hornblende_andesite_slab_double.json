@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+            "end": "rankine:block/hornblende_andesite",
+            "side": "rankine:block/hornblende_andesite"
+          }
+        }

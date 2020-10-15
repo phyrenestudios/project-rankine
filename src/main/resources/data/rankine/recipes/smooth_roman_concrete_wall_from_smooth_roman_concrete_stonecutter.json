@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:smooth_roman_concrete"
-      },
-      "result": "rankine:smooth_roman_concrete_wall",
-      "count": 1
-    }

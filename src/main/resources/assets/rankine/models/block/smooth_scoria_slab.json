@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/smooth_scoria",
-        "top": "rankine:block/smooth_scoria",
-        "side": "rankine:block/smooth_scoria"
-      }
-    }

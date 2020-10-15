@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:bauxite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:bauxite_ore"
+	  ]
+    }

@@ -1,0 +1,7 @@
+{
+        "variants": {
+            "type=bottom": { "model": "rankine:block/tholeiitic_basalt_bricks_slab" },
+            "type=top": { "model": "rankine:block/tholeiitic_basalt_bricks_slab_top" },
+            "type=double": { "model": "rankine:block/tholeiitic_basalt_bricks" }
+            }
+        }

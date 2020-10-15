@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/smooth_kimberlite_slab" },
-            "type=top": { "model": "rankine:block/smooth_kimberlite_slab_top" },
-            "type=double": { "model": "rankine:block/smooth_kimberlite_slab_double" }
-            }
-        }

@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/diorite_slab" },
-            "type=top": { "model": "rankine:block/diorite_slab_top" },
-            "type=double": { "model": "rankine:block/diorite" }
-            }
-        }

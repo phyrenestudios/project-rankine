@@ -17,7 +17,7 @@ import java.util.Random;
 public class RankineOre extends Block {
     public int type = 0;
     public Item nugget;
-    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,24);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,27);
     public RankineOre(Properties properties, Item nugget) {
         super(properties);
         this.nugget = nugget;

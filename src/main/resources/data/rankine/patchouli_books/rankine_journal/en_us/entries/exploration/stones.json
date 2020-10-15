@@ -9,17 +9,17 @@
     },
     {
       "type": "spotlight",
-	  "item": "rankine:granite",
+	  "item": "rankine:red_granite",
       "text": "Classification: Igneous$(br2)Found in continental biomes of the Overworld"
     },
 	{
       "type": "spotlight",
-	  "item": "rankine:diorite",
+	  "item": "rankine:granodiorite",
       "text": "Classification: Igneous$(br2)Found in all biomes of the Overworld"
     },
 	{
       "type": "spotlight",
-	  "item": "rankine:andesite",
+	  "item": "rankine:hornblende_andesite",
       "text": "Classification: Igneous$(br2)Found in all biomes of the Overworld"
     },
 	{
@@ -44,7 +44,7 @@
     },
 	{
       "type": "spotlight",
-	  "item": "rankine:basalt",
+	  "item": "rankine:tholeiitic_basalt",
       "text": "Classification: Igneous$(br2)Found in all oceanic biomes of the Overworld"
     },
 	{

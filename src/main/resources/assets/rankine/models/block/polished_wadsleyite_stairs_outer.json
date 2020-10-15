@@ -1,0 +1,8 @@
+{
+      "parent": "block/outer_stairs",
+      "textures": {
+        "bottom": "rankine:block/polished_wadsleyite",
+        "top": "rankine:block/polished_wadsleyite",
+        "side": "rankine:block/polished_wadsleyite"
+      }
+    }

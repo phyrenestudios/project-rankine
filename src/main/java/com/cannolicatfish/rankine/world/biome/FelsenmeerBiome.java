@@ -39,9 +39,9 @@ public class FelsenmeerBiome extends Biome {
       super((new Builder()).surfaceBuilder(SURFACE_BUILDER).precipitation(PRECIPATATION).category(CATEGORY).depth(DEPTH).scale(SCALE).temperature(TEMPERATURE).downfall(DOWNFALL).func_235097_a_((new BiomeAmbience.Builder()).setWaterColor(WATER_COLOR).setWaterFogColor(WATER_FOG_COLOR).setFogColor(FOG_COLOR).setMoodSound(MoodSoundAmbience.field_235027_b_).build()).parent(PARENT));
       //this.func_235063_a_(DefaultBiomeFeatures.field_235182_t_);
       //this.func_235063_a_(DefaultBiomeFeatures.field_235134_a_);
-      this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.ANDESITE.getDefaultState(),new Random().nextInt(2)))
+      this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.HORNBLENDE_ANDESITE.getDefaultState(),new Random().nextInt(2)))
               .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
-      this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.DIORITE.getDefaultState(),new Random().nextInt(2)))
+      this.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS,Feature.FOREST_ROCK.withConfiguration(new BlockBlobConfig(ModBlocks.GRANODIORITE.getDefaultState(),new Random().nextInt(2)))
               .withPlacement(Placement.CHANCE_HEIGHTMAP_DOUBLE.configure(new ChanceConfig(2))));
       DefaultBiomeFeatures.addCarvers(this);
       DefaultBiomeFeatures.func_235196_b_(this);

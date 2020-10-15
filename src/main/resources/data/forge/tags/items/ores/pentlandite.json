@@ -1,6 +1,6 @@
 {
-  "replace": false,
-  "values": [
-    "rankine:pentlandite_ore"
-  ]
-}
+	  "replace": false,
+	  "values": [
+		"rankine:pentlandite_ore"
+	  ]
+    }
