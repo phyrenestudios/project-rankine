@@ -137,6 +137,10 @@ public class ClientProxy implements IProxy {
         ));
 
         addCutoutMipped(Arrays.asList(
+                ModBlocks.ALUMINUM_BARS,
+                ModBlocks.MAGNESIUM_BARS,
+                ModBlocks.NICKEL_BARS,
+                ModBlocks.CAST_IRON_BARS,
                 ModBlocks.POTTED_CEDAR_SAPLING,
                 ModBlocks.POTTED_JUNIPER_SAPLING,
                 ModBlocks.POTTED_COCONUT_PALM_SAPLING,

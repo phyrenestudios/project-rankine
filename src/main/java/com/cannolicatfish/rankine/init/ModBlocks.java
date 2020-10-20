@@ -643,6 +643,27 @@ public class ModBlocks {
     public static final FlowerPotBlock POTTED_YELLOW_BIRCH_SAPLING = add("potted_yellow_birch_sapling", new FlowerPotBlock(null, () -> YELLOW_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_BLACK_BIRCH_SAPLING = add("potted_black_birch_sapling", new FlowerPotBlock(null, () -> BLACK_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
 
+    public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block SILVER_SHEETMETAL = add("silver_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block TUNGSTEN_SHEETMETAL = add("tungsten_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block LEAD_SHEETMETAL = add("lead_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+    public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
+
+    public static final Block ALUMINUM_BARS = add("aluminum_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
+    public static final Block MAGNESIUM_BARS = add("magnesium_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
+    public static final Block NICKEL_BARS = add("nickel_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
+    public static final Block CAST_IRON_BARS = add("cast_iron_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
+
 
     //METALLURGY--------------------------------------------------------------------------------------------------------------------------------------------------------------
     //ELEMENT BLOCKS
@@ -872,22 +893,6 @@ public class ModBlocks {
     public static final Block ANTITAENITE = add("antitaenite", new CompositionBlock(1,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
-
-    public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block SILVER_SHEETMETAL = add("silver_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TUNGSTEN_SHEETMETAL = add("tungsten_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block LEAD_SHEETMETAL = add("lead_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     public static final Block CREEPER_BLOCK = add("creeper_block", new CreepingBlock(1.0F,Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
     public static final BlastingPowderBlock BLASTING_POWDER = add("blasting_powder", new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);

@@ -550,10 +550,7 @@ public class ModItems {
     public static final Item DESMOXYTE = add("desmoxyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DESMOXYTE,0x2D4F64, 0xAC6D10,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item DEMONYTE = add("demonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DEMONYTE,0x161617, 0x512259,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item DRAGONYTE = add("dragonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item STEAMER = add("steamer_spawn_egg", new SpawnEggItem(ModEntityTypes.STEAMER,0xE7E7E7, 0x6B0000,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item SOLAR_FLARE = add("solar_flare_spawn_egg", new SpawnEggItem(ModEntityTypes.SOLAR_FLARE,0xFFD724, 0xFF9F14,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item SHROUDED_KING = add("shrouded_king_spawn_egg", new SpawnEggItem(ModEntityTypes.SHROUDED_KING,0x000000, 0xA82C00,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item FOUR_LEAFED_CLOVER = add("four_leafed_clover", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item CEDAR_BARK = add("cedar_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

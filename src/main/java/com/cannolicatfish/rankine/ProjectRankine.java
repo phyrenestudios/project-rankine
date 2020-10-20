@@ -7,8 +7,6 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
-import com.cannolicatfish.rankine.entities.boss.ShroudedKingEntity;
-import com.cannolicatfish.rankine.entities.boss.SolarFlareEntity;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.ModItems;
@@ -38,7 +36,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -46,13 +43,11 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
@@ -95,15 +90,12 @@ public class ProjectRankine {
         DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.STEAMER, SteamerEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.PERIDOT_MANTLE_GOLEM, PeridotMantleGolemEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.DESMOXYTE, DesmoxyteEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.DEMONYTE, DemonyteEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.SHROUDED_KING, ShroudedKingEntity.getAttributes().create());
-            GlobalEntityTypeAttributes.put(ModEntityTypes.SOLAR_FLARE, SolarFlareEntity.getAttributes().create());
         });
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
@@ -158,13 +150,10 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(ModEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
             event.getRegistry().register(ModEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
-            event.getRegistry().register(ModEntityTypes.STEAMER.setRegistryName(ProjectRankine.MODID,"steamer"));
             event.getRegistry().register(ModEntityTypes.DESMOXYTE.setRegistryName(ProjectRankine.MODID,"desmoxyte"));
             event.getRegistry().register(ModEntityTypes.DEMONYTE.setRegistryName(ProjectRankine.MODID,"demonyte"));
             event.getRegistry().register(ModEntityTypes.DRAGONYTE.setRegistryName(ProjectRankine.MODID,"dragonyte"));
             event.getRegistry().register(ModEntityTypes.BEAVER.setRegistryName(ProjectRankine.MODID,"beaver"));
-            event.getRegistry().register(ModEntityTypes.SHROUDED_KING.setRegistryName(ProjectRankine.MODID,"shrouded_king"));
-            event.getRegistry().register(ModEntityTypes.SOLAR_FLARE.setRegistryName(ProjectRankine.MODID,"solar_flare"));
             event.getRegistry().register(ModEntityTypes.RANKINE_BOAT.setRegistryName(ProjectRankine.MODID,"cedar_boat"));
         }
 
@@ -191,13 +180,9 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.PERIDOT_MANTLE_GOLEM,PeridotMantleGolemRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STEAMER,SteamerRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DESMOXYTE, DesmoxyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DEMONYTE, DemonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEAVER, BeaverRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SHROUDED_KING, ShroudedKingRenderer.instance);
-            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SOLAR_FLARE, SolarFlareRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
         }
         @SubscribeEvent

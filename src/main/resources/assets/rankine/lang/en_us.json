@@ -10,6 +10,12 @@
   "block.rankine.etched_glass1": "Etched Glass Center",
   "block.rankine.etched_glass2": "Etched Glass Side",
 
+  "block.rankine.cast_iron_bars": "Cast Iron Bars",
+  "block.rankine.nickel_bars": "Nickel Bars",
+  "block.rankine.magnesium_bars": "Magnesium Bars",
+  "block.rankine.aluminum_bars": "Aluminum Bars",
+
+
   "item.rankine.health_pendant": "Health Pendant",
   "item.rankine.repulsion_pendant": "Repulsion Pendant",
   "item.rankine.luck_pendant": "Luck Pendant",

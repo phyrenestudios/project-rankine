@@ -3,5 +3,6 @@
 /build/
 /run/
 /gradle/
-/py scrpits/
+/py_scripts/
 *.py
+*.zip

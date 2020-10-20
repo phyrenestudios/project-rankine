@@ -40,7 +40,7 @@ public class PeridotMantleGolemEntity extends IronGolemEntity {
         if (this.isPlayerCreated() && typeIn == EntityType.PLAYER) {
             return true;
         } else {
-            return typeIn != ModEntityTypes.DESMOXYTE && typeIn != ModEntityTypes.MANTLE_GOLEM && typeIn != ModEntityTypes.DIAMOND_MANTLE_GOLEM && typeIn != ModEntityTypes.STEAMER && super.canAttack(typeIn);
+            return typeIn != ModEntityTypes.DESMOXYTE && typeIn != ModEntityTypes.MANTLE_GOLEM && typeIn != ModEntityTypes.DIAMOND_MANTLE_GOLEM && super.canAttack(typeIn);
         }
     }
 

@@ -59,7 +59,7 @@ public class DemonyteEntity extends SilverfishEntity {
         if (typeIn == EntityType.PLAYER) {
             return true;
         } else {
-            return typeIn != ModEntityTypes.MANTLE_GOLEM && typeIn != ModEntityTypes.STEAMER && typeIn != ModEntityTypes.DIAMOND_MANTLE_GOLEM && typeIn != ModEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttack(typeIn);
+            return typeIn != ModEntityTypes.MANTLE_GOLEM && typeIn != ModEntityTypes.DIAMOND_MANTLE_GOLEM && typeIn != ModEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttack(typeIn);
         }
     }
 }
