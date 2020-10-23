@@ -1153,12 +1153,16 @@
   "item.rankine.cast_iron_ingot": "Cast Iron Alloy Ingot",
   "item.rankine.pig_iron_nugget": "Pig Iron Nugget",
   "item.rankine.wrought_iron_nugget": "Wrought Iron Nugget",
+  "effect.rankine.mercury_poison": "Mercury Poisoning",
+  "item.minecraft.potion.effect.mercury_poison": "Potion of Mercury Poison",
+  "item.minecraft.splash_potion.effect.mercury_poison": "Splash Potion of Mercury Poison",
+  "item.minecraft.lingering_potion.effect.mercury_poison": "Lingering Potion of Mercury Poison",
+  "item.minecraft.tipped_arrow.effect.mercury_poison": "Arrow of Mercury Poison",
 
 
 
 
-
-  "item.rankine.battery0": "Basic Battery",
+  "item.rankine.battery0": "Redstone Battery",
   "item.rankine.mortar": "Mortar",
   "item.rankine.coke": "Coke",
   "item.rankine.lignite": "Lignite",
@@ -1457,10 +1461,10 @@
   "item.rankine.fluorite": "Fluorite",
   "item.rankine.uraninite": "Uraninite",
   "item.rankine.zircon": "Zircon",
-  "item.rankine.cerium_monazite": "Cerium Monazite",
-  "item.rankine.lanthanum_monazite": "Lanthanum Monazite",
-  "item.rankine.neodymium_monazite": "Neodymium Monazite",
-  "item.rankine.samarium_monazite": "Samarium Monazite",
+  "item.rankine.cerium_monazite": "Monazite-(Ce)",
+  "item.rankine.lanthanum_monazite": "Monazite-(La)",
+  "item.rankine.neodymium_monazite": "Monazite-(Nd)",
+  "item.rankine.samarium_monazite": "Monazite-(Sm)",
   "item.rankine.alumina": "Alumina",
   "item.rankine.magnesia": "Magnesia",
   "item.rankine.magnesite": "Magnesite",

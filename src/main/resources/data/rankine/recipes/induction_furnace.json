@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "tst",
+    "c#c",
+    "tst"
+  ],
+  "key": {
+    "t": {
+      "item": "rankine:steel_alloy"
+    },
+    "s": {
+      "item": "rankine:steel_block"
+    },
+    "#": {
+      "item": "rankine:crucible"
+    },
+    "c": {
+      "tag": "forge:storage_blocks/copper"
+    }
+  },
+  "result": {
+    "item": "rankine:induction_furnace",
+    "count": 1
+  }
+}

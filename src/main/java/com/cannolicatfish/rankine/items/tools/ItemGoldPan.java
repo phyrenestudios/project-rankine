@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.util.WeightedCollection;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +20,7 @@ import net.minecraft.world.World;
 import javax.swing.*;
 
 public class ItemGoldPan extends Item {
+    WeightedCollection<ItemStack> ALLUVIUM = returnAlluviumCollection();
     public ItemGoldPan(Properties properties) {
         super(properties);
     }
@@ -34,52 +36,9 @@ public class ItemGoldPan extends Item {
             world.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.6F + 0.8F);
             world.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.2F + 0.8F);
             world.removeBlock(pos, false);
-            ItemStack stack;
+
             if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) {
-                if (r <= 0.01f) {
-                    stack = new ItemStack(Items.DIAMOND, 1);
-                } else if (r <= 0.03f) {
-                    stack = new ItemStack(ModItems.CERIUM_MONAZITE, 1);
-                } else if (r <= 0.05f) {
-                    stack = new ItemStack(ModItems.ZIRCON, 1);
-                } else if (r <= 0.07f) {
-                    stack = new ItemStack(ModItems.RUBY, 1);
-                } else if (r <= 0.08f) {
-                    stack = new ItemStack(ModItems.SAPPHIRE, 1);
-                } else if (r <= 0.09f) {
-                    stack = new ItemStack(ModItems.GARNET, 1);
-                } else if (r <= 0.1f) {
-                    stack = new ItemStack(ModItems.PERIDOT, 1);
-                } else if (r <= 0.11f) {
-                    stack = new ItemStack(ModItems.URANIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.13f) {
-                    stack = new ItemStack(ModItems.TITANIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.15f) {
-                    stack = new ItemStack(ModItems.IRIDIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.17f) {
-                    stack = new ItemStack(ModItems.RHODIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.19f) {
-                    stack = new ItemStack(ModItems.RUTHENIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.22f) {
-                    stack = new ItemStack(ModItems.PALLADIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.3f) {
-                    stack = new ItemStack(ModItems.PLATINUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.4f) {
-                    stack = new ItemStack(ModItems.OSMIUM_NUGGET, random.nextInt(5) + 2);
-                } else if (r <= 0.45f) {
-                    stack = new ItemStack(ModItems.TIN_NUGGET, random.nextInt(5) + 3);
-                } else if (r <= 0.55f) {
-                    stack = new ItemStack(Items.IRON_NUGGET, random.nextInt(5) + 3);
-                } else if (r <= 0.65f) {
-                    stack = new ItemStack(Items.GOLD_NUGGET, random.nextInt(5) + 4);
-                } else if (r <= 0.75f){
-                    stack = new ItemStack(Items.CLAY_BALL, random.nextInt(5) + 1);
-                } else if (r <= 0.85f){
-                    stack = new ItemStack(Blocks.GRAVEL, 1);
-                }
-                else {
-                    stack = new ItemStack(Blocks.SAND, 1);
-                }
+                ItemStack stack = ALLUVIUM.getRandomElement();
                 double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
@@ -94,5 +53,31 @@ public class ItemGoldPan extends Item {
 
         }
         return ActionResultType.FAIL;
+    }
+
+    private WeightedCollection<ItemStack> returnAlluviumCollection(){
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(Items.DIAMOND));
+        col.add(1.5f,new ItemStack(ModItems.RUBY));
+        col.add(1.5f,new ItemStack(ModItems.SAPPHIRE));
+        col.add(2,new ItemStack(ModItems.GARNET));
+        col.add(2,new ItemStack(ModItems.PERIDOT));
+        col.add(2,new ItemStack(ModItems.LANTHANUM_MONAZITE));
+        col.add(2,new ItemStack(ModItems.NEODYMIUM_MONAZITE));
+        col.add(2,new ItemStack(ModItems.SAMARIUM_MONAZITE));
+        col.add(2,new ItemStack(ModItems.ZIRCON));
+        col.add(3,new ItemStack(ModItems.CERIUM_MONAZITE));
+        col.add(4,new ItemStack(ModItems.URANIUM_NUGGET,3));
+        col.add(4,new ItemStack(ModItems.TITANIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.IRIDIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.RHODIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.RUTHENIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.PALLADIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.PLATINUM_NUGGET,3));
+        col.add(6,new ItemStack(ModItems.TIN_NUGGET,6));
+        col.add(6,new ItemStack(Items.IRON_NUGGET,6));
+        col.add(6,new ItemStack(Items.GOLD_NUGGET,6));
+        col.add(8,new ItemStack(Items.CLAY_BALL,2));
+        return col;
     }
 }
