@@ -15,6 +15,7 @@ public class VanillaIntegration {
         registerCompostable(0.3F, ModBlocks.MAGNOLIA_LEAVES);
         registerCompostable(0.3F, ModBlocks.EASTERN_HEMLOCK_LEAVES);
         registerCompostable(0.3F, ModBlocks.BLACK_BIRCH_LEAVES);
+        registerCompostable(0.3F, ModBlocks.MAPLE_LEAVES);
         registerCompostable(0.3F, ModBlocks.YELLOW_BIRCH_LEAVES);
         registerCompostable(0.3F, ModBlocks.CEDAR_SAPLING);
         registerCompostable(0.3F, ModBlocks.PINYON_PINE_SAPLING);
@@ -25,6 +26,7 @@ public class VanillaIntegration {
         registerCompostable(0.3F, ModBlocks.EASTERN_HEMLOCK_SAPLING);
         registerCompostable(0.3F, ModBlocks.YELLOW_BIRCH_SAPLING);
         registerCompostable(0.3F, ModBlocks.BLACK_BIRCH_SAPLING);
+        registerCompostable(0.3F, ModBlocks.MAPLE_SAPLING);
         registerCompostable(0.3F, ModBlocks.DUCKWEED);
         registerCompostable(0.5F, ModItems.COMPOST);
 
@@ -48,6 +50,8 @@ public class VanillaIntegration {
         RankineEventHandler.stripping_map.put(ModBlocks.YELLOW_BIRCH_WOOD, Blocks.STRIPPED_BIRCH_WOOD);
         RankineEventHandler.stripping_map.put(ModBlocks.BLACK_BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
         RankineEventHandler.stripping_map.put(ModBlocks.BLACK_BIRCH_WOOD, Blocks.STRIPPED_BIRCH_WOOD);
+        RankineEventHandler.stripping_map.put(ModBlocks.MAPLE_LOG, ModBlocks.STRIPPED_MAPLE_LOG);
+        RankineEventHandler.stripping_map.put(ModBlocks.MAPLE_WOOD, ModBlocks.STRIPPED_MAPLE_WOOD);
 
         addFlowerPot(ModBlocks.CEDAR_SAPLING, ModBlocks.POTTED_CEDAR_SAPLING);
         addFlowerPot(ModBlocks.PINYON_PINE_SAPLING, ModBlocks.POTTED_PINYON_PINE_SAPLING);
@@ -58,6 +62,7 @@ public class VanillaIntegration {
         addFlowerPot(ModBlocks.EASTERN_HEMLOCK_SAPLING, ModBlocks.POTTED_EASTERN_HEMLOCK_SAPLING);
         addFlowerPot(ModBlocks.YELLOW_BIRCH_SAPLING, ModBlocks.POTTED_YELLOW_BIRCH_SAPLING);
         addFlowerPot(ModBlocks.BLACK_BIRCH_SAPLING, ModBlocks.POTTED_BLACK_BIRCH_SAPLING);
+        addFlowerPot(ModBlocks.MAPLE_SAPLING, ModBlocks.POTTED_MAPLE_SAPLING);
 
 /*
         registerFlamables(ModBlocks.CEDAR_LEAVES,30,60);

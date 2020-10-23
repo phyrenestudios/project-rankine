@@ -22,11 +22,11 @@ public class UnagedCheeseBlock extends Block {
        super.tick(state, worldIn, pos, rand);
        World world = worldIn.getWorld();
         if (rand.nextFloat() < 0.02) {
-            this.ageCheese(state, world, pos);
+            this.ageCheese(world, pos);
         }
     }
 
-    protected void ageCheese(BlockState p_196454_1_, World worldIn, BlockPos pos) {
+    protected void ageCheese(World worldIn, BlockPos pos) {
         worldIn.setBlockState(pos, ModBlocks.AGED_CHEESE.getDefaultState(),2);
         worldIn.neighborChanged(pos, ModBlocks.AGED_CHEESE, pos);
     }

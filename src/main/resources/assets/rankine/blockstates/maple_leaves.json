@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "color=0": {"model": "rankine:block/maple_leaves0"},
+    "color=1": {"model": "rankine:block/maple_leaves1"},
+    "color=2": {"model": "rankine:block/maple_leaves2"},
+    "color=3": {"model": "rankine:block/maple_leaves3"},
+    "color=4": {"model": "rankine:block/maple_leaves4"},
+    "color=5": {"model": "rankine:block/maple_leaves5"},
+    "color=6": {"model": "rankine:block/maple_leaves6"}
+  }
+}

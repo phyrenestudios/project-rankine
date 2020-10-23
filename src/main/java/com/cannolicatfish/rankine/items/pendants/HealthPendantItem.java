@@ -14,18 +14,13 @@ public class HealthPendantItem extends Item{
         super(properties);
     }
 
-    int TICKS;
+
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             if (player.getHeldItemOffhand().getItem() == this) {
-                if (TICKS == 20*60) {
-                    ((PlayerEntity) entityIn).addPotionEffect(new EffectInstance(Effects.ABSORPTION, 60 * 20, 4));
-                    TICKS = 0;
-                }
-
-                TICKS += TICKS;
+                ((PlayerEntity) entityIn).addPotionEffect(new EffectInstance(Effects.ABSORPTION, 5 * 20, 1));
             }
         }
     }

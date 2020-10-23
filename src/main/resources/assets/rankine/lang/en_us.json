@@ -31,6 +31,8 @@
   "item.rankine.cast_iron_rod": "Cast Iron Rod",
 
 
+  "block.rankine.maple_sapling": "Maple Sapling",
+  "block.rankine.potted_maple_sapling": "Potted Maple Sapling",
   "block.rankine.potted_cedar_sapling": "Potted Cedar Sapling",
   "block.rankine.potted_balsam_fir_sapling": "Potted Balsam Fir Sapling",
   "block.rankine.potted_juniper_sapling": "Potted Juniper Sapling",
@@ -46,6 +48,7 @@
   "block.rankine.magnolia_leaves": "Magnolia Leaves",
   "block.rankine.juniper_leaves": "Juniper Leaves",
   "block.rankine.cedar_leaves": "Cedar Leaves",
+  "block.rankine.maple_leaves": "Maple Leaves",
   "block.rankine.balsam_fir_leaves": "Balsam Fir Leaves",
   "block.rankine.pinyon_pine_leaves": "Pinyon Pine Leaves",
   "block.rankine.eastern_hemlock_leaves": "Eastern Hemlock Leaves",
@@ -62,6 +65,11 @@
   "item.rankine.cranberries": "Cranberries",
   "item.rankine.strawberries": "Strawberries",
 
+
+  "block.rankine.maple_log": "Maple Log",
+  "block.rankine.maple_wood": "Maple Wood",
+  "block.rankine.stripped_maple_log": "Stripped Maple Log",
+  "block.rankine.stripped_maple_wood": "Stripped Maple Log",
   "block.rankine.balsam_fir_log": "Balsam Fir Log",
   "block.rankine.yellow_birch_log": "Yellow Birch Log",
   "block.rankine.yellow_birch_wood": "Yellow Birch Wood",

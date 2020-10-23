@@ -8,6 +8,7 @@ import net.minecraft.block.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
@@ -17,6 +18,8 @@ import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.*;
+
+import java.util.OptionalInt;
 
 public class RankineBiomeFeatures {
 
@@ -156,6 +159,15 @@ public class RankineBiomeFeatures {
             new ForkyTrunkPlacer(2, 1, 2),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
+            .build();
+
+    public static final BaseTreeFeatureConfig MAPLE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(ModBlocks.MAPLE_LOG.getDefaultState()),
+            new SimpleBlockStateProvider(ModBlocks.MAPLE_LEAVES.getDefaultState()),
+            new FancyFoliagePlacer(2, 0, 4, 0, 4),
+            new FancyTrunkPlacer(4, 9, 0),
+            new TwoLayerFeature(0, 0, 0,
+            OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING)
             .build();
 
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(

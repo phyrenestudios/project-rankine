@@ -55,8 +55,8 @@ public class OreGen {
         rockGenCountDef(Blocks.DIRT.getDefaultState(), ModBlocks.PERMAFROST.getDefaultState(),20,1,55,70, getBiomesFromCategory(Collections.singletonList(Biome.Category.ICY),true));
 
         //tier native
-        OWGenDefCount(ModBlocks.NATIVE_COPPER_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
-        OWGenDefCount(ModBlocks.NATIVE_TIN_ORE,12,3,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
+        OWGenDefCount(ModBlocks.NATIVE_COPPER_ORE,12,4,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
+        OWGenDefCount(ModBlocks.NATIVE_TIN_ORE,12,4,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_LEAD_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_SILVER_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);
         OWGenDefCount(ModBlocks.NATIVE_ALUMINUM_ORE,12,2,51,128, RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD);

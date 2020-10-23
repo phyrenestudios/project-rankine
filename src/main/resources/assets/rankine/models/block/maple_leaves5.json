@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "rankine:block/maple_leaves5"
+    }
+}

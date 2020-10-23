@@ -7,6 +7,8 @@ import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -25,6 +27,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -62,21 +66,6 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
         event.getPlayer().addExhaustion(Config.GLOBAL_BREAK_EXHAUSTION.get().floatValue());
-    }
-
-
-    @SubscribeEvent
-    public static void luckyBreak(BlockEvent.BreakEvent event) {
-        PlayerEntity player = event.getPlayer();
-        if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
-            if (event.getState().getBlock().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
-                if (new Random().nextFloat() < 0.3f) {
-                    for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld().getWorld(), event.getPos(), null)) {
-                        spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
-                    }
-                }
-            }
-        }
     }
 
 
@@ -311,8 +300,7 @@ public class RankineEventHandler {
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
 
     @SubscribeEvent
-    public static void axeStrip(PlayerInteractEvent.RightClickBlock event)
-    {
+    public static void axeStrip(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
         Item item = stack.getItem();
         World world = event.getWorld();
@@ -371,6 +359,46 @@ public class RankineEventHandler {
     }
 
 
+    //PENDANTS
+
+    @SubscribeEvent
+    public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
+        if (event.getPlayer().getHeldItemOffhand().getItem() == ModItems.HASTE_PENDANT) {
+            event.setNewSpeed(event.getNewSpeed() + 3);
+        }
+    }
+
+    @SubscribeEvent
+    public static void luckyBreak(BlockEvent.BreakEvent event) {
+        PlayerEntity player = event.getPlayer();
+        if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
+            if (event.getState().getBlock().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
+                if (new Random().nextFloat() < 0.2f) {
+                    for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld().getWorld(), event.getPos(), null)) {
+                        spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
+        if (event.getEntityLiving() instanceof MonsterEntity && event.getTarget() != null) {
+            if (event.getTarget().getHeldItemOffhand().getItem() == ModItems.REPULSION_PENDANT) {
+                ((MobEntity) event.getEntityLiving()).setAttackTarget(null);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+        if (event.getEntityLiving() instanceof MonsterEntity && event.getEntityLiving().getRevengeTarget() != null) {
+            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == ModItems.REPULSION_PENDANT) {
+                event.getEntityLiving().setRevengeTarget(null);
+            }
+        }
+    }
 
 
 }

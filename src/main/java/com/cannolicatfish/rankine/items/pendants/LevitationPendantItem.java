@@ -8,6 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent;
 
 public class LevitationPendantItem extends Item{
     public LevitationPendantItem(Properties properties) {
@@ -19,7 +23,7 @@ public class LevitationPendantItem extends Item{
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             if (player.getHeldItemOffhand().getItem() == this) {
-                ((PlayerEntity) entityIn).addPotionEffect(new EffectInstance(Effects.SLOW_FALLING,1,2));
+                entityIn.setMotion(entityIn.getMotion().mul(1.0D, 0.0D, 1.0D));
             }
         }
     }

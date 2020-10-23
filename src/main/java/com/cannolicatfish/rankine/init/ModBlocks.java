@@ -489,6 +489,7 @@ public class ModBlocks {
     public static final Block EASTERN_HEMLOCK_LOG = add("eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block YELLOW_BIRCH_LOG = add("yellow_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block BLACK_BIRCH_LOG = add("black_birch_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_LOG = add("maple_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_WOOD = add("cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_WOOD = add("pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -499,6 +500,7 @@ public class ModBlocks {
     public static final Block EASTERN_HEMLOCK_WOOD = add("eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block YELLOW_BIRCH_WOOD = add("yellow_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block BLACK_BIRCH_WOOD = add("black_birch_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_WOOD = add("maple_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block STRIPPED_CEDAR_LOG = add("stripped_cedar_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_LOG = add("stripped_pinyon_pine_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -507,6 +509,7 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_LOG = add("stripped_balsam_fir_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_LOG = add("stripped_magnolia_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_LOG = add("stripped_eastern_hemlock_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_MAPLE_LOG = add("stripped_maple_log", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block STRIPPED_CEDAR_WOOD = add("stripped_cedar_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_PINYON_PINE_WOOD = add("stripped_pinyon_pine_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
@@ -515,6 +518,7 @@ public class ModBlocks {
     public static final Block STRIPPED_BALSAM_FIR_WOOD = add("stripped_balsam_fir_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_MAGNOLIA_WOOD = add("stripped_magnolia_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
     public static final Block STRIPPED_EASTERN_HEMLOCK_WOOD = add("stripped_eastern_hemlock_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
+    public static final Block STRIPPED_MAPLE_WOOD = add("stripped_maple_wood", new RotatedPillarBlock(DEF_WOOD), BLOCKS, 300);
 
     public static final Block CEDAR_PLANKS = add("cedar_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_PLANKS = add("pinyon_pine_planks", new Block(DEF_WOOD), BLOCKS, 300);
@@ -621,6 +625,7 @@ public class ModBlocks {
     public static final Block EASTERN_HEMLOCK_LEAVES = add("eastern_hemlock_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
     public static final Block YELLOW_BIRCH_LEAVES = add("yellow_birch_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
     public static final Block BLACK_BIRCH_LEAVES = add("black_birch_leaves", new LeavesBlock(DEF_LEAVES), BLOCKS);
+    public static final Block MAPLE_LEAVES = add("maple_leaves", new MapleLeavesBlock(DEF_LEAVES), BLOCKS);
 
     private static final Block.Properties sapling = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
     public static final Block CEDAR_SAPLING = add("cedar_sapling", new RankineSapling(new CedarTree(), sapling, 3), BLOCKS);
@@ -632,6 +637,7 @@ public class ModBlocks {
     public static final Block EASTERN_HEMLOCK_SAPLING = add("eastern_hemlock_sapling", new RankineSapling(new EasternHemlockTree(), sapling, 3), BLOCKS);
     public static final Block YELLOW_BIRCH_SAPLING = add("yellow_birch_sapling", new RankineSapling(new YellowBirchTree(), sapling, 3), BLOCKS);
     public static final Block BLACK_BIRCH_SAPLING = add("black_birch_sapling", new RankineSapling(new BlackBirchTree(), sapling, 3), BLOCKS);
+    public static final Block MAPLE_SAPLING = add("maple_sapling", new RankineSapling(new MapleTree(), sapling, 3), BLOCKS);
 
     public static final FlowerPotBlock POTTED_CEDAR_SAPLING = add("potted_cedar_sapling", new FlowerPotBlock(null, () -> CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_PINYON_PINE_SAPLING = add("potted_pinyon_pine_sapling", new FlowerPotBlock(null, () -> PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -642,6 +648,7 @@ public class ModBlocks {
     public static final FlowerPotBlock POTTED_EASTERN_HEMLOCK_SAPLING = add("potted_eastern_hemlock_sapling", new FlowerPotBlock(null, () -> EASTERN_HEMLOCK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_YELLOW_BIRCH_SAPLING = add("potted_yellow_birch_sapling", new FlowerPotBlock(null, () -> YELLOW_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final FlowerPotBlock POTTED_BLACK_BIRCH_SAPLING = add("potted_black_birch_sapling", new FlowerPotBlock(null, () -> BLACK_BIRCH_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final FlowerPotBlock POTTED_MAPLE_SAPLING = add("potted_maple_sapling", new FlowerPotBlock(null, () -> MAPLE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
 
     public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
     public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
