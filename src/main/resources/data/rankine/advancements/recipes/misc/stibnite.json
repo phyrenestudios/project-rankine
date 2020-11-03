@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:stibnite_smelting",
+      "rankine:stibnite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_stibnite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:stibnite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:stibnite_smelting"
+      }
+    },
+    "has_the_recipe2": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:stibnite_blasting"
+      }
+    }
+  },
+
+  "requirements": [
+    [
+      "has_stibnite",
+      "has_the_recipe",
+      "has_the_recipe2"
+    ]
+  ]
+}

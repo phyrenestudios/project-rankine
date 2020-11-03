@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "msm",
+    "chc"
+  ],
+  "key": {
+    "m": {
+      "item": "minecraft:magma_block"
+    },
+    "s": {
+      "item": "minecraft:cauldron"
+    },
+    "c": {
+      "item": "rankine:cupronickel_alloy"
+    },
+    "h": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "rankine:evaporation_tower",
+    "count": 1
+  }
+}

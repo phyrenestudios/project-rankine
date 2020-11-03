@@ -1,0 +1,107 @@
+{
+  "parent": "rankine:story/make_induction_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:tungsten_heavy_alloy_pickaxe"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_tungsten_heavy_alloy.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_tungsten_heavy_alloy.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tungsten_heavy_alloy_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_pickaxe"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_axe"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_sword"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_hammer"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_shovel"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_spear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_spear"
+          }
+        ]
+      }
+    },
+    "tungsten_heavy_alloy_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy_hoe"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tungsten_heavy_alloy_pickaxe"
+    ], [
+      "tungsten_heavy_alloy_axe"
+    ], [
+      "tungsten_heavy_alloy_sword"
+    ], [
+      "tungsten_heavy_alloy_hammer"
+    ], [
+      "tungsten_heavy_alloy_shovel"
+    ], [
+      "tungsten_heavy_alloy_spear"
+    ], [
+      "tungsten_heavy_alloy_hoe"
+    ]
+  ]
+}

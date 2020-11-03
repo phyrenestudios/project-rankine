@@ -11,7 +11,7 @@ public class TungstenElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return 3*x;
     }
 
     @Override
@@ -26,17 +26,29 @@ public class TungstenElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/25f;
     }
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        return 0;
+        if (x >= 18)
+        {
+            return 3;
+        }
+        else if (x >= 12)
+        {
+            return 2;
+        } else if (x >= 6)
+        {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/16f);
     }
 
     @Override
@@ -46,7 +58,7 @@ public class TungstenElement implements ElementInterface{
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return x/100f;
     }
 
     @Override

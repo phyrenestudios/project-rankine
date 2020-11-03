@@ -1,0 +1,107 @@
+{
+  "parent": "rankine:story/make_induction_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:cobalt_superalloy_pickaxe"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_cobalt_superalloy.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_cobalt_superalloy.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cobalt_superalloy_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_pickaxe"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_axe"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_sword"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_hammer"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_shovel"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_spear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_spear"
+          }
+        ]
+      }
+    },
+    "cobalt_superalloy_hoe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy_hoe"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cobalt_superalloy_pickaxe"
+    ], [
+      "cobalt_superalloy_axe"
+    ], [
+      "cobalt_superalloy_sword"
+    ], [
+      "cobalt_superalloy_hammer"
+    ], [
+      "cobalt_superalloy_shovel"
+    ], [
+      "cobalt_superalloy_spear"
+    ], [
+      "cobalt_superalloy_hoe"
+    ]
+  ]
+}

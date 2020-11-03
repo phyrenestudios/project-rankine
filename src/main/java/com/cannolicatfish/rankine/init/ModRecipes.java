@@ -103,6 +103,15 @@ public class ModRecipes {
     public static List<ITripleAlloyRecipe> getTripleAlloyRecipes() {
         List<ITripleAlloyRecipe> recipes = new ArrayList<>();
 
+        recipes.add(tripleAlloyRecipe("steel_alloy", new ItemStack(ModItems.STEEL_ALLOY), Arrays.asList(returnTagFamily("pig_iron"),
+                returnTagFamily("manganese"),returnTagFamily("carbon","coke","graphite"),
+                returnTagFamily("chromium"),returnTagFamily("cobalt"),
+                returnTagFamily("molybdenum"),returnTagFamily("nickel"),
+                returnTagFamily("niobium"),returnTagFamily("titanium"),
+                returnTagFamily("vanadium"),returnTagFamily("zirconium"),
+                returnTagFamily("copper"),returnTagFamily("silicon")),
+                new AbstractMap.SimpleEntry<>(.97f,.98f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .01f),.99f));
+
         recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("wrought_iron"),
                 returnTagFamily("chromium"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("molybdenum"),returnTagFamily("aluminum"),
@@ -135,6 +144,12 @@ public class ModRecipes {
                 returnTagFamily("samarium"),returnTagFamily("tebrium"),
                 returnTagFamily("iron"), returnTagFamily( "silicon")),
                 new AbstractMap.SimpleEntry<>(.5f, .55f), new AbstractMap.SimpleEntry<>(.2f, .25f), new AbstractMap.SimpleEntry<>(.15f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.85f));
+
+        recipes.add(tripleAlloyRecipe("ferrocerium_alloy", new ItemStack(ModItems.FERROCERIUM_ALLOY), Arrays.asList(returnTagFamily("cerium"),
+                returnTagFamily("lanthanum"),returnTagFamily("iron"),
+                returnTagFamily("praseodymium"),returnTagFamily("neodymium"),
+                returnTagFamily("magnesium")),
+                new AbstractMap.SimpleEntry<>(.4f, .5f), new AbstractMap.SimpleEntry<>(.23f, .25f), new AbstractMap.SimpleEntry<>(.19f, .21f), new AbstractMap.SimpleEntry<>(0f, .04f),.92f));
 
         recipes.add(tripleAlloyRecipe("duralumin_alloy", new ItemStack(ModItems.DURALUMIN_ALLOY), Arrays.asList(returnTagFamily("aluminum"),
                 returnTagFamily("copper"),returnTagFamily("magnesium"),
@@ -502,6 +517,14 @@ public class ModRecipes {
         recipes.add(forgingRecipe("steel_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,3),new ItemStack(ModItems.STEEL_SPEAR)));
         recipes.add(forgingRecipe("steel_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.STEEL_ALLOY,5),new ItemStack(ModItems.STEEL_HAMMER)));
 
+        recipes.add(forgingRecipe("stainless_steel_pickaxe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,3),new ItemStack(ModItems.STAINLESS_STEEL_PICKAXE)));
+        recipes.add(forgingRecipe("stainless_steel_axe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,3),new ItemStack(ModItems.STAINLESS_STEEL_AXE)));
+        recipes.add(forgingRecipe("stainless_steel_shovel",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,1),new ItemStack(ModItems.STAINLESS_STEEL_SHOVEL)));
+        recipes.add(forgingRecipe("stainless_steel_hoe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,2),new ItemStack(ModItems.STAINLESS_STEEL_HOE)));
+        recipes.add(forgingRecipe("stainless_steel_sword",new ItemStack(ModItems.STEEL_ROD,1),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,2),new ItemStack(ModItems.STAINLESS_STEEL_SWORD)));
+        recipes.add(forgingRecipe("stainless_steel_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,3),new ItemStack(ModItems.STAINLESS_STEEL_SPEAR)));
+        recipes.add(forgingRecipe("stainless_steel_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.STAINLESS_STEEL_ALLOY,5),new ItemStack(ModItems.STAINLESS_STEEL_HAMMER)));
+
         recipes.add(forgingRecipe("nickel_superalloy_pickaxe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_PICKAXE)));
         recipes.add(forgingRecipe("nickel_superalloy_axe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_AXE)));
         recipes.add(forgingRecipe("nickel_superalloy_shovel",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,1),new ItemStack(ModItems.NICKEL_SUPERALLOY_SHOVEL)));
@@ -509,6 +532,24 @@ public class ModRecipes {
         recipes.add(forgingRecipe("nickel_superalloy_sword",new ItemStack(ModItems.STEEL_ROD,1),new ItemStack(ModItems.NICKEL_SUPERALLOY,2),new ItemStack(ModItems.NICKEL_SUPERALLOY_SWORD)));
         recipes.add(forgingRecipe("nickel_superalloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,3),new ItemStack(ModItems.NICKEL_SUPERALLOY_SPEAR)));
         recipes.add(forgingRecipe("nickel_superalloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.NICKEL_SUPERALLOY,5),new ItemStack(ModItems.NICKEL_SUPERALLOY_HAMMER)));
+
+        recipes.add(forgingRecipe("cobalt_superalloy_pickaxe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.COBALT_SUPERALLOY,3),new ItemStack(ModItems.COBALT_SUPERALLOY_PICKAXE)));
+        recipes.add(forgingRecipe("cobalt_superalloy_axe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.COBALT_SUPERALLOY,3),new ItemStack(ModItems.COBALT_SUPERALLOY_AXE)));
+        recipes.add(forgingRecipe("cobalt_superalloy_shovel",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.COBALT_SUPERALLOY,1),new ItemStack(ModItems.COBALT_SUPERALLOY_SHOVEL)));
+        recipes.add(forgingRecipe("cobalt_superalloy_hoe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.COBALT_SUPERALLOY,2),new ItemStack(ModItems.COBALT_SUPERALLOY_HOE)));
+        recipes.add(forgingRecipe("cobalt_superalloy_sword",new ItemStack(ModItems.STEEL_ROD,1),new ItemStack(ModItems.COBALT_SUPERALLOY,2),new ItemStack(ModItems.COBALT_SUPERALLOY_SWORD)));
+        recipes.add(forgingRecipe("cobalt_superalloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.COBALT_SUPERALLOY,3),new ItemStack(ModItems.COBALT_SUPERALLOY_SPEAR)));
+        recipes.add(forgingRecipe("cobalt_superalloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.COBALT_SUPERALLOY,5),new ItemStack(ModItems.COBALT_SUPERALLOY_HAMMER)));
+
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_pickaxe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,3),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_PICKAXE)));
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_axe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,3),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_AXE)));
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_shovel",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,1),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_SHOVEL)));
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_hoe",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_HOE)));
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_sword",new ItemStack(ModItems.STEEL_ROD,1),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_SWORD)));
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,3),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_SPEAR)));
+        recipes.add(forgingRecipe("tungsten_heavy_alloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,5),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_HAMMER)));
+
+
         
         return recipes;
     }

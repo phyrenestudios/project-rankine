@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:zircon_beehive_oven_pit"
+    ]
+  },
+  "criteria": {
+    "has_zircon_refractory_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:zircon_refractory_bricks"
+          }
+        ]
+      }
+    },
+    "has_beehive_oven_pit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:beehive_oven_pit"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:zircon_beehive_oven_pit"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_zircon_refractory_bricks",
+      "has_beehive_oven_pit",
+      "has_the_recipe"
+    ]
+  ]
+}
