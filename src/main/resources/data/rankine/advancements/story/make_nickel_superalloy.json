@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_steel_alloy",
+  "parent": "rankine:story/make_induction_furnace",
   "display": {
     "icon": {
       "item": "rankine:nickel_superalloy_pickaxe"

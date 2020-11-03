@@ -2,16 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:bone_shovel"
+      "rankine:induction_furnace"
     ]
   },
   "criteria": {
-    "has_bone": {
+    "has_steel_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:bone"
+            "item": "rankine:steel_alloy"
+          }
+        ]
+      }
+    },
+    "has_crucible": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:crucible"
           }
         ]
       }
@@ -19,13 +29,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:bone_shovel"
+        "recipe": "rankine:induction_furnace"
       }
     }
   },
+
   "requirements": [
     [
-      "has_bone",
+      "has_steel_alloy",
+      "has_crucible",
       "has_the_recipe"
     ]
   ]

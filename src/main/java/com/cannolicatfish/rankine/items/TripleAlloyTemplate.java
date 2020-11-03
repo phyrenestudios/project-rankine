@@ -242,7 +242,7 @@ public class TripleAlloyTemplate extends Item {
                             ItemStack.EMPTY,ItemStack.EMPTY};
                     output = new ItemStack(ModItems.NICKEL_SUPERALLOY, 9);
                 case 6:
-                    inputs = new ItemStack[]{new ItemStack(ModItems.COBALT_INGOT,6),new ItemStack(ModItems.CHROMIUM_INGOT,2),new ItemStack(ModItems.NICKEL_INGOT,1),
+                    inputs = new ItemStack[]{new ItemStack(ModItems.COBALT_INGOT,7),new ItemStack(ModItems.CHROMIUM_INGOT,2),new ItemStack(ModItems.NICKEL_INGOT,1),
                             new ItemStack(ModItems.TANTALUM_INGOT,1),ItemStack.EMPTY};
                     output = new ItemStack(ModItems.COBALT_SUPERALLOY, 9);
             }
