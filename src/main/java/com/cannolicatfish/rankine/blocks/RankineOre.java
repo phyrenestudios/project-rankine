@@ -32,10 +32,6 @@ public class RankineOre extends Block {
         return super.getStateForPlacement(context).with(TYPE,0);
     }
 
-    public void spawnAdditionalDrops(BlockState state, World worldIn, BlockPos pos, ItemStack stack) {
-        super.spawnAdditionalDrops(state, worldIn, pos, stack);
-    }
-
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE);

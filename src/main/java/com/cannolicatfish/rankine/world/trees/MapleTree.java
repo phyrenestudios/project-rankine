@@ -14,6 +14,6 @@ public class MapleTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.field_236291_c_.withConfiguration(RankineBiomeFeatures.MAPLE_TREE_CONFIG);
+        return Feature.TREE.withConfiguration(RankineBiomeFeatures.MAPLE_TREE_CONFIG);
     }
 }

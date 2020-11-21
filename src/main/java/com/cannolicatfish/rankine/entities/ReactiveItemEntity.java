@@ -56,9 +56,9 @@ public class ReactiveItemEntity extends ItemEntity {
             BlockPos pos = this.getPosition();
             if (canBreakBlocks)
             {
-                this.getEntityWorld().getWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);
+                this.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);
             } else {
-                this.getEntityWorld().getWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.NONE);
+                this.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.NONE);
             }
             this.remove();
         }

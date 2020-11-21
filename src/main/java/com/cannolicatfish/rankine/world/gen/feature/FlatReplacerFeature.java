@@ -19,8 +19,8 @@ public class FlatReplacerFeature extends Feature<ReplacerFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
-        IChunk chunk = worldIn.getChunk(pos);
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
+        IChunk chunk = reader.getChunk(pos);
         int startX = chunk.getPos().getXStart();
         int startZ = chunk.getPos().getZStart();
         int endX = chunk.getPos().getXEnd();
@@ -30,8 +30,8 @@ public class FlatReplacerFeature extends Feature<ReplacerFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 for (int y = startY; y <= endY; ++y) {
-                    if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        worldIn.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        reader.setBlockState(new BlockPos(x, y, z), config.state, 2);
                     }
                 }
             }

@@ -27,7 +27,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig CEDAR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.CEDAR_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.CEDAR_LEAVES.getDefaultState()),
-            new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(2, 1), FeatureSpread.func_242253_a(0, 2), FeatureSpread.func_242253_a(1, 1)),
             new StraightTrunkPlacer(6, 4, 1),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -36,7 +36,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LEAVES.getDefaultState()),
-            new SpruceFoliagePlacer(1, 0, 0, 2, 1, 1),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(0, 2), FeatureSpread.func_242253_a(1, 1)),
             new StraightTrunkPlacer(5, 2, 0),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -45,25 +45,25 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig TALL_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LEAVES.getDefaultState()),
-            new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(2, 1), FeatureSpread.func_242253_a(0, 2), FeatureSpread.func_242253_a(1, 1)),
             new StraightTrunkPlacer(10, 4, 0),
             new TwoLayerFeature(2, 0, 0)))
-            .func_236703_a_(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
+            .setDecorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
             .build();
 
     public static final BaseTreeFeatureConfig LARGE_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LEAVES.getDefaultState()),
-            new MegaPineFoliagePlacer(0, 0, 0, 0, 3, 6),
+            new MegaPineFoliagePlacer(FeatureSpread.func_242253_a(0, 0), FeatureSpread.func_242253_a(0, 0), FeatureSpread.func_242253_a(3, 6)),
             new GiantTrunkPlacer(9, 4, 12),
             new TwoLayerFeature(1, 1, 2)))
-            .func_236703_a_(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
+            .setDecorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
             .build();
 
     public static final BaseTreeFeatureConfig EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LEAVES.getDefaultState()),
-            new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(2, 1), FeatureSpread.func_242253_a(0, 2), FeatureSpread.func_242253_a(1, 1)),
             new StraightTrunkPlacer(4, 4, 1),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -72,7 +72,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig SMALL_EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LEAVES.getDefaultState()),
-            new SpruceFoliagePlacer(2, 0, 0, 0, 0, 0),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(0, 0), FeatureSpread.func_242253_a(0, 0)),
             new StraightTrunkPlacer(2, 1, 0),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -81,16 +81,16 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig LARGE_EASTERN_HEMLOCK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.EASTERN_HEMLOCK_LEAVES.getDefaultState()),
-            new MegaPineFoliagePlacer(0, 0, 0, 0, 4, 13),
+            new MegaPineFoliagePlacer(FeatureSpread.func_242253_a(0, 0), FeatureSpread.func_242253_a(0, 0), FeatureSpread.func_242253_a(4, 13)),
             new GiantTrunkPlacer(11, 2, 14),
             new TwoLayerFeature(1, 1, 2)))
-            .func_236703_a_(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
+            .setDecorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.getDefaultState()))))
             .build();
 
     public static final BaseTreeFeatureConfig MAGNOLIA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(1, 0, 0, 0),
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(0, 0)),
             new ForkyTrunkPlacer(3, 2, 2),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
@@ -99,7 +99,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig LARGE_MAGNOLIA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.MAGNOLIA_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(2, 0, 0, 0),
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(0, 0)),
             new ForkyTrunkPlacer(5, 2, 2),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -108,7 +108,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig PINYON_PINE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.PINYON_PINE_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.PINYON_PINE_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(2, 0, 0, 0),
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(0, 0)),
             new ForkyTrunkPlacer(5, 2, 2),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
@@ -117,7 +117,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig JUNIPER_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(1, 0, 0, 0),
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(0, 0)),
             new ForkyTrunkPlacer(2, 0, 0),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
@@ -126,7 +126,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig COCNUT_PALM_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.COCONUT_PALM_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.COCONUT_PALM_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(1, 0, 0, 0),
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(0, 0)),
             new ForkyTrunkPlacer(10, 2, 2),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
@@ -137,7 +137,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig DEAD_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BALSAM_FIR_LOG.getDefaultState()),
             new SimpleBlockStateProvider(Blocks.AIR.getDefaultState()),
-            new SpruceFoliagePlacer(1, 0, 0, 2, 1, 1),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(0, 2), FeatureSpread.func_242253_a(1, 1)),
             new StraightTrunkPlacer(5, 2, 1),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -146,7 +146,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig SMALL_SPRUCE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.getDefaultState()),
             new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
-            new SpruceFoliagePlacer(2, 1, 0, 2, 1, 1),
+            new SpruceFoliagePlacer(FeatureSpread.func_242253_a(2, 1), FeatureSpread.func_242253_a(0, 2), FeatureSpread.func_242253_a(1, 1)),
             new StraightTrunkPlacer(3, 1, 1),
             new TwoLayerFeature(2, 0, 2)))
             .setIgnoreVines()
@@ -155,7 +155,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig LAGOOAN_OAK = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(Blocks.STRIPPED_DARK_OAK_LOG.getDefaultState()),
             new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(2, 0, 1, 0),
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(1, 0)),
             new ForkyTrunkPlacer(2, 1, 2),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
@@ -164,7 +164,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig MAPLE_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.MAPLE_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.MAPLE_LEAVES.getDefaultState()),
-            new FancyFoliagePlacer(2, 0, 4, 0, 4),
+            new FancyFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(4, 0), 4),
             new FancyTrunkPlacer(4, 9, 0),
             new TwoLayerFeature(0, 0, 0,
             OptionalInt.of(4)))).setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING)
@@ -173,7 +173,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.YELLOW_BIRCH_LEAVES.getDefaultState()),
-            new BlobFoliagePlacer(2, 0, 0, 0, 3),
+            new BlobFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(0, 0), 3),
             new StraightTrunkPlacer(6, 3, 0),
             new TwoLayerFeature(1, 0, 1)))
             .setIgnoreVines()
@@ -182,7 +182,7 @@ public class RankineBiomeFeatures {
     public static final BaseTreeFeatureConfig BLACK_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.BLACK_BIRCH_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.BLACK_BIRCH_LEAVES.getDefaultState()),
-            new BlobFoliagePlacer(2, 0, 0, 0, 3),
+            new BlobFoliagePlacer(FeatureSpread.func_242253_a(2, 0), FeatureSpread.func_242253_a(0, 0), 3),
             new StraightTrunkPlacer(6, 3, 0),
             new TwoLayerFeature(1, 0, 1)))
             .setIgnoreVines()
@@ -200,7 +200,7 @@ public class RankineBiomeFeatures {
     public static final BlockClusterFeatureConfig RASPBERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.RASPBERRY_BUSH.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig BLACKBERRY_BUSH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLACKBERRY_BUSH.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
 
-    public static final BlockClusterFeatureConfig BLUE_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLUE_FOXFIRE.getDefaultState()), SimpleBlockPlacer.field_236447_c_)).tries(64).func_227317_b_().build();
+    public static final BlockClusterFeatureConfig BLUE_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLUE_FOXFIRE.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64).func_227317_b_().build();
     public static final BlockClusterFeatureConfig GREEN_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.GREEN_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig PINK_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PINK_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
     public static final BlockClusterFeatureConfig YELLOW_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
@@ -209,7 +209,7 @@ public class RankineBiomeFeatures {
 
     public static void addModStructures(Biome biomeIn) {
     }
-
+    /*
     public static void addCedarForestTrees(Biome biomeIn) {
         biomeIn.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(Feature.field_236291_c_.withConfiguration(BALSAM_FIR_TREE_CONFIG).withChance(0.05F), Feature.field_236291_c_.withConfiguration(SMALL_SPRUCE_CONFIG).withChance(0.05F), Feature.field_236291_c_.withConfiguration(EASTERN_HEMLOCK_TREE_CONFIG).withChance(0.1F)), Feature.field_236291_c_.withConfiguration(CEDAR_TREE_CONFIG))).withPlacement(Placement.COUNT_EXTRA_HEIGHTMAP.configure(new AtSurfaceWithExtraConfig(10, 0.2F, 3))));
     }
@@ -283,6 +283,6 @@ public class RankineBiomeFeatures {
         biomeIn.addFeature(GenerationStage.Decoration.LAKES, Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(ModBlocks.LIQUID_MERCURY_BLOCK.getDefaultState())).withPlacement(Placement.LAVA_LAKE.configure(new ChanceConfig(80))));
         biomeIn.addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, Feature.MONSTER_ROOM.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.DUNGEONS.configure(new ChanceConfig(3))));
     }
-
+*/
 
     }

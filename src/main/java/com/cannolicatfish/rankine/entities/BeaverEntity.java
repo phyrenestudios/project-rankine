@@ -19,6 +19,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -49,9 +50,9 @@ public class BeaverEntity extends AnimalEntity {
         this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
     }
 
-    @Nullable
     @Override
-    public AgeableEntity createChild(AgeableEntity ageableEntity) {
+    @Nullable
+    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
 
@@ -72,6 +73,8 @@ public class BeaverEntity extends AnimalEntity {
     protected SoundEvent getDeathSound() {
         return SoundEvents.BLOCK_DISPENSER_DISPENSE;
     }
+
+
 
     class StripLogGoal extends MoveToBlockGoal {
         protected int field_220731_g;
@@ -293,7 +296,7 @@ public class BeaverEntity extends AnimalEntity {
             BlockState blockstate1 = iworld.getBlockState(blockpos1);
             BlockState blockstate2 = ModBlocks.STICK_BLOCK.getDefaultState();
             if ((iworld.getFluidState(blockpos).getFluid() == Fluids.WATER || iworld.getBlockState(blockpos).getBlock() == Blocks.WATER) && blockpos != this.beaver.getOnPosition() &&
-                    !ForgeEventFactory.onBlockPlace(this.beaver, BlockSnapshot.create(iworld, blockpos), Direction.UP)) {
+                    !ForgeEventFactory.onBlockPlace(this.beaver, net.minecraftforge.common.util.BlockSnapshot.create(world.getDimensionKey(), iworld, blockpos1), Direction.UP)) {
                 iworld.setBlockState(blockpos, blockstate2, 3);
                 //System.out.println("STICK BLOCK PLACED");
                 BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);

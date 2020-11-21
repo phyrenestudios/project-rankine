@@ -374,7 +374,7 @@ public class RankineEventHandler {
         if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == ModItems.LUCK_PENDANT) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
                 if (new Random().nextFloat() < 0.2f) {
-                    for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld().getWorld(), event.getPos(), null)) {
+                    for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
                         spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
                     }
                 }

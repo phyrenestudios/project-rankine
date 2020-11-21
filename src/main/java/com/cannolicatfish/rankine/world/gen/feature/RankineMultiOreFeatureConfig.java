@@ -14,9 +14,9 @@ public class RankineMultiOreFeatureConfig implements IFeatureConfig {
             return p_236570_0_.target;
         }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
             return p_236569_0_.state;
-        }), Codec.INT.fieldOf("size").withDefault(0).forGetter((p_236567_0_) -> {
+        }), Codec.INT.fieldOf("size").orElse(0).forGetter((p_236567_0_) -> {
             return p_236567_0_.size;
-        }), Codec.FLOAT.fieldOf("chance").withDefault(0f).forGetter((p_236567_0_) -> {
+        }), Codec.FLOAT.fieldOf("chance").orElse(0f).forGetter((p_236567_0_) -> {
             return p_236567_0_.chance;
         })).apply(p_236568_0_, RankineMultiOreFeatureConfig::new);
     });

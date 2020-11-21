@@ -7,7 +7,6 @@ import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.world.gen.feature.BlockBlobConfig;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class ReplacerFeatureConfig implements IFeatureConfig {
@@ -16,9 +15,9 @@ public class ReplacerFeatureConfig implements IFeatureConfig {
             return p_236452_0_.target;
         }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
             return p_236569_0_.state;
-        }), Codec.INT.fieldOf("bottom_bound").withDefault(0).forGetter((p_236450_0_) -> {
+        }), Codec.INT.fieldOf("bottom_bound").orElse(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.bottomBound;
-        }),Codec.INT.fieldOf("top_bound").withDefault(0).forGetter((p_236450_0_) -> {
+        }),Codec.INT.fieldOf("top_bound").orElse(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.topBound;
         })).apply(p_236451_0_, ReplacerFeatureConfig::new);
     });

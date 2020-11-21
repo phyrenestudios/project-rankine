@@ -14,6 +14,6 @@ public class BalsamFirTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.field_236291_c_.withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG);
+        return Feature.TREE.withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG);
     }
 }

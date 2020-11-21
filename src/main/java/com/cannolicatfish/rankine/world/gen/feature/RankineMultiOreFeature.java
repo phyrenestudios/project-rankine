@@ -22,7 +22,8 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
         super(configFactoryIn);
     }
 
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, RankineMultiOreFeatureConfig config) {
+    @Override
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, RankineMultiOreFeatureConfig config) {
         float f = rand.nextFloat() * (float)Math.PI;
         float f1 = (float)config.size / 8.0F;
         int i = MathHelper.ceil(((float)config.size / 16.0F * 2.0F + 1.0F) / 2.0F);
@@ -41,8 +42,8 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
 
         for(int l1 = k; l1 <= k + j1; ++l1) {
             for(int i2 = i1; i2 <= i1 + j1; ++i2) {
-                if (l <= worldIn.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, l1, i2)) {
-                    return this.func_207803_a(worldIn, rand, config, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
+                if (l <= reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, l1, i2)) {
+                    return this.func_207803_a(reader, rand, config, d0, d1, d2, d3, d4, d5, k, l, i1, j1, k1);
                 }
             }
         }

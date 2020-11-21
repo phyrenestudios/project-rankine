@@ -21,8 +21,8 @@ public class ReplacerFeature extends Feature<ReplacerFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
-        IChunk chunk = worldIn.getChunk(pos);
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
+        IChunk chunk = reader.getChunk(pos);
         int startX = chunk.getPos().getXStart();
         int startZ = chunk.getPos().getZStart();
         int endX = chunk.getPos().getXEnd();
@@ -33,20 +33,20 @@ public class ReplacerFeature extends Feature<ReplacerFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 for (int y = startY; y <= endY; ++y) {
-                    if (y == startY && y - 1> 0 && worldIn.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
-                        worldIn.setBlockState(new BlockPos(x, y - 1, z), config.state, 2);
-                        if (y - 2> 0 && worldIn.getBlockState(new BlockPos(x, y - 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
-                            worldIn.setBlockState(new BlockPos(x, y - 2, z), config.state, 2);
+                    if (y == startY && y - 1> 0 && reader.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
+                        reader.setBlockState(new BlockPos(x, y - 1, z), config.state, 2);
+                        if (y - 2> 0 && reader.getBlockState(new BlockPos(x, y - 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
+                            reader.setBlockState(new BlockPos(x, y - 2, z), config.state, 2);
                         }
                     }
-                    if (y == endY && y + 1 < 256 && worldIn.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
-                        worldIn.setBlockState(new BlockPos(x, y + 1, z), config.state, 2);
-                        if (y + 2 < 128 && worldIn.getBlockState(new BlockPos(x, y + 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
-                            worldIn.setBlockState(new BlockPos(x, y + 2, z), config.state, 2);
+                    if (y == endY && y + 1 < 256 && reader.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
+                        reader.setBlockState(new BlockPos(x, y + 1, z), config.state, 2);
+                        if (y + 2 < 128 && reader.getBlockState(new BlockPos(x, y + 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1/2f)) {
+                            reader.setBlockState(new BlockPos(x, y + 2, z), config.state, 2);
                         }
                     }
-                    if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        worldIn.setBlockState(new BlockPos(x, y, z), config.state, 2);
+                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        reader.setBlockState(new BlockPos(x, y, z), config.state, 2);
                     }
                 }
             }

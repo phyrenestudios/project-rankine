@@ -86,8 +86,8 @@ public class ProjectRankine {
         proxy.init();
         //RankineBiomes.addRankineBiomes();
         ModRecipes.init();
-        OreGen.setupOreGeneration();
-        DecorationGen.setupDecoration();
+        //OreGen.setupOreGeneration();
+        //DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
             GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().create());

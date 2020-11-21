@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockBlobConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 
@@ -23,15 +22,16 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         super(p_i49915_1_);
     }
 
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, MeteoriteFeatureConfig config) {
+    @Override
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, MeteoriteFeatureConfig config) {
         while(true) {
             label48: {
                 if (pos.getY() > 3) {
-                    if (worldIn.isAirBlock(pos.down())) {
+                    if (reader.isAirBlock(pos.down())) {
                         break label48;
                     }
 
-                    Block block = worldIn.getBlockState(pos.down()).getBlock();
+                    Block block = reader.getBlockState(pos.down()).getBlock();
                     if (!isDirt(block) && !isStone(block)) {
                         break label48;
                     }
@@ -63,23 +63,23 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 int AIR = 3 * (j + k + l)/3;
                 for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-AIR, -k+1, -AIR), pos.add(AIR, AIR, AIR))) {
                     if (blockpos.distanceSq(pos) <= (double)(AIR * AIR)) {
-                        if (worldIn.getBlockState(pos).getBlock() == Blocks.AIR) {
-                            worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
+                        if (reader.getBlockState(pos).getBlock() == Blocks.AIR) {
+                            reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
                         }
                     }
                 }
                 for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-j, -k, -l), pos.add(j, k, l))) {
                     if (blockpos.distanceSq(pos) <= (double)(f * f)) {
                         if (rand.nextFloat() < 0.5F) {
-                            worldIn.setBlockState(blockpos.down(3), ORE, 4);
+                            reader.setBlockState(blockpos.down(3), ORE, 4);
                         } else {
-                            worldIn.setBlockState(blockpos.down(3), ModBlocks.METEORITE.getDefaultState(), 4);
+                            reader.setBlockState(blockpos.down(3), ModBlocks.METEORITE.getDefaultState(), 4);
                         }
                     }
                 }
 
 
-                    //pos = pos.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), -rand.nextInt(2), -(i1 + 1) + rand.nextInt(2 + i1 * 2));
+                //pos = pos.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), -rand.nextInt(2), -(i1 + 1) + rand.nextInt(2 + i1 * 2));
                 //}
 
                 return true;

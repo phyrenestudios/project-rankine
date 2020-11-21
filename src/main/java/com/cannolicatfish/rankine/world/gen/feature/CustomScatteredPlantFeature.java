@@ -25,13 +25,14 @@ public class CustomScatteredPlantFeature extends Feature<NoFeatureConfig> {
         this.blocks = blocks;
     }
 
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, NoFeatureConfig config) {
+    @Override
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         int i = 0;
 
         for (int j = 0; j < 64; ++j) {
             BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-            if (worldIn.isAirBlock(blockpos) && blocks.contains(worldIn.getBlockState(blockpos.down()).getBlock())) {
-                worldIn.setBlockState(blockpos, this.plant, 2);
+            if (reader.isAirBlock(blockpos) && blocks.contains(reader.getBlockState(blockpos.down()).getBlock())) {
+                reader.setBlockState(blockpos, this.plant, 2);
                 ++i;
             }
         }

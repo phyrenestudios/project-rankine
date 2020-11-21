@@ -11,9 +11,9 @@ public class StoneReplacerFeatureConfig implements IFeatureConfig {
             return p_236452_0_.target;
         }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
             return p_236569_0_.state;
-        }), Codec.INT.fieldOf("bottom_bound").withDefault(0).forGetter((p_236450_0_) -> {
+        }), Codec.INT.fieldOf("bottom_bound").orElse(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.bottomBound;
-        }),Codec.INT.fieldOf("biome_type").withDefault(0).forGetter((p_236450_0_) -> {
+        }),Codec.INT.fieldOf("biome_type").orElse(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.biomeType;
         })).apply(p_236451_0_, StoneReplacerFeatureConfig::new);
     });

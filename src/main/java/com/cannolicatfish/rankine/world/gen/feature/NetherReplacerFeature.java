@@ -26,9 +26,9 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, StoneReplacerFeatureConfig config) {
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, StoneReplacerFeatureConfig config) {
 
-        IChunk chunk = worldIn.getChunk(pos);
+        IChunk chunk = reader.getChunk(pos);
         int startX = chunk.getPos().getXStart();
         int startZ = chunk.getPos().getZStart();
         int endX = chunk.getPos().getXEnd();
@@ -38,75 +38,75 @@ public class NetherReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
 
-                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.WARPED_FOREST) {
+                if (reader.getBiome(new BlockPos(x,0,z)).getRegistryName() == Biomes.WARPED_FOREST.getRegistryName()) {
                     for (int y = 0; y <= 64; ++y) {
                         BlockPos TARGET = new BlockPos(x,y,z);
-                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock() && worldIn.getBlockState(TARGET.up(1)).isOpaqueCube(worldIn, TARGET.up(1)) && worldIn.getBlockState(TARGET.up(2)).isOpaqueCube(worldIn, TARGET.up(2)) && worldIn.getBlockState(TARGET.up(3)).isOpaqueCube(worldIn, TARGET.up(3))) {
-                            worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
+                        if (reader.getBlockState(TARGET).getBlock() == config.target.getBlock() && reader.getBlockState(TARGET.up(1)).isOpaqueCube(reader, TARGET.up(1)) && reader.getBlockState(TARGET.up(2)).isOpaqueCube(reader, TARGET.up(2)) && reader.getBlockState(TARGET.up(3)).isOpaqueCube(reader, TARGET.up(3))) {
+                            reader.setBlockState(new BlockPos(x, y, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                         }
                         if (y == 64) {
-                            if (rand.nextFloat() < 0.75 && worldIn.getBlockState(new BlockPos(x, y+1, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.75 && reader.getBlockState(new BlockPos(x, y+1, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
-                            if (rand.nextFloat() < 0.5 && worldIn.getBlockState(new BlockPos(x, y+2, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 2, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.5 && reader.getBlockState(new BlockPos(x, y+2, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 2, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
-                            if (rand.nextFloat() < 0.25 && worldIn.getBlockState(new BlockPos(x, y+3, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 3, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.25 && reader.getBlockState(new BlockPos(x, y+3, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 3, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
-                            if (rand.nextFloat() < 0.10 && worldIn.getBlockState(new BlockPos(x, y+4, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 4, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.10 && reader.getBlockState(new BlockPos(x, y+4, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 4, z), ModBlocks.RINGWOODITE.getDefaultState(), 2);
                             }
                         }
                     }
                     for (int y = 64; y <= 128; ++y) {
                         BlockPos TARGET = new BlockPos(x,y,z);
-                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock() && worldIn.getBlockState(TARGET.up(1)).isOpaqueCube(worldIn, TARGET.up(1)) && worldIn.getBlockState(TARGET.up(2)).isOpaqueCube(worldIn, TARGET.up(2)) && worldIn.getBlockState(TARGET.up(3)).isOpaqueCube(worldIn, TARGET.up(3))) {
-                            worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
+                        if (reader.getBlockState(TARGET).getBlock() == config.target.getBlock() && reader.getBlockState(TARGET.up(1)).isOpaqueCube(reader, TARGET.up(1)) && reader.getBlockState(TARGET.up(2)).isOpaqueCube(reader, TARGET.up(2)) && reader.getBlockState(TARGET.up(3)).isOpaqueCube(reader, TARGET.up(3))) {
+                            reader.setBlockState(new BlockPos(x, y, z), ModBlocks.WADSLEYITE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.SOUL_SAND_VALLEY) {
+                if (reader.getBiome(new BlockPos(x,0,z)).getRegistryName() == Biomes.SOUL_SAND_VALLEY.getRegistryName()) {
                     for (int y = 0; y <= 64; ++y) {
                         BlockPos TARGET = new BlockPos(x,y,z);
-                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
-                            worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
+                        if (reader.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
+                            reader.setBlockState(new BlockPos(x, y, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
                         }
                         if (y == 64) {
-                            if (rand.nextFloat() < 0.75 && worldIn.getBlockState(new BlockPos(x, y+1, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.75 && reader.getBlockState(new BlockPos(x, y+1, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 1, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
                             }
-                            if (rand.nextFloat() < 0.5 && worldIn.getBlockState(new BlockPos(x, y+2, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 2, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.5 && reader.getBlockState(new BlockPos(x, y+2, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 2, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
                             }
-                            if (rand.nextFloat() < 0.25 && worldIn.getBlockState(new BlockPos(x, y+3, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 3, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.25 && reader.getBlockState(new BlockPos(x, y+3, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 3, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
                             }
-                            if (rand.nextFloat() < 0.10 && worldIn.getBlockState(new BlockPos(x, y+4, z)).getBlock() == config.target.getBlock()) {
-                                worldIn.setBlockState(new BlockPos(x, y + 4, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
+                            if (rand.nextFloat() < 0.10 && reader.getBlockState(new BlockPos(x, y+4, z)).getBlock() == config.target.getBlock()) {
+                                reader.setBlockState(new BlockPos(x, y + 4, z), ModBlocks.BRIDGMANITE.getDefaultState(), 2);
                             }
                         }
                     }
                     for (int y = 64; y <= 128; ++y) {
                         BlockPos TARGET = new BlockPos(x,y,z);
-                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
-                            worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.PEROVSKITE.getDefaultState(), 2);
+                        if (reader.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
+                            reader.setBlockState(new BlockPos(x, y, z), ModBlocks.PEROVSKITE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.BASALT_DELTAS) {
+                if (reader.getBiome(new BlockPos(x,0,z)).getRegistryName() == Biomes.BASALT_DELTAS.getRegistryName()) {
                     for (int y = 0; y <= 128; ++y) {
                         BlockPos TARGET = new BlockPos(x,y,z);
-                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
-                            worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.FERROPERICLASE.getDefaultState(), 2);
+                        if (reader.getBlockState(TARGET).getBlock() == config.target.getBlock()) {
+                            reader.setBlockState(new BlockPos(x, y, z), ModBlocks.FERROPERICLASE.getDefaultState(), 2);
                         }
                     }
                 }
-                if (worldIn.getBiome(new BlockPos(x,0,z)) == Biomes.CRIMSON_FOREST) {
+                if (reader.getBiome(new BlockPos(x,0,z)).getRegistryName() == Biomes.CRIMSON_FOREST.getRegistryName()) {
                     for (int y = 0; y <= 128; ++y) {
                         BlockPos TARGET = new BlockPos(x,y,z);
-                        if (worldIn.getBlockState(TARGET).getBlock() == config.target.getBlock() && worldIn.getBlockState(TARGET.up(1)).isOpaqueCube(worldIn, TARGET.up(1)) && worldIn.getBlockState(TARGET.up(2)).isOpaqueCube(worldIn, TARGET.up(2)) && worldIn.getBlockState(TARGET.up(3)).isOpaqueCube(worldIn, TARGET.up(3))) {
-                            worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.KOMATIITE.getDefaultState(), 2);
+                        if (reader.getBlockState(TARGET).getBlock() == config.target.getBlock() && reader.getBlockState(TARGET.up(1)).isOpaqueCube(reader, TARGET.up(1)) && reader.getBlockState(TARGET.up(2)).isOpaqueCube(reader, TARGET.up(2)) && reader.getBlockState(TARGET.up(3)).isOpaqueCube(reader, TARGET.up(3))) {
+                            reader.setBlockState(new BlockPos(x, y, z), ModBlocks.KOMATIITE.getDefaultState(), 2);
                         }
                     }
                 }
