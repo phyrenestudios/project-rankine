@@ -10,7 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class ReplacerFeatureConfig implements IFeatureConfig {
-    public static final Codec<ReplacerFeatureConfig> field_236449_a_ = RecordCodecBuilder.create((p_236451_0_) -> {
+    public static final Codec<ReplacerFeatureConfig> CODEC = RecordCodecBuilder.create((p_236451_0_) -> {
         return p_236451_0_.group(BlockState.CODEC.fieldOf("target").forGetter((p_236452_0_) -> {
             return p_236452_0_.target;
         }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {

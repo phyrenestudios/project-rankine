@@ -2,19 +2,15 @@ package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.blocks.RankineOre;
+import com.cannolicatfish.rankine.init.ModFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.*;
 import com.cannolicatfish.rankine.world.gen.placement.IntrusionPlacement;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldSettingsImport;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.*;
@@ -25,13 +21,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 @Mod.EventBusSubscriber
 public class OreGen {
 
-    public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.field_236566_a_);
-    public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig.field_236566_a_);
+    //public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.field_236566_a_);
+    //public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig.field_236566_a_);
 
 
     public static void setupOreGeneration() {
@@ -310,11 +307,9 @@ public class OreGen {
         if (Config.FLAT_BEDROCK.get())
         {
             return Arrays.asList(
-                    new AbstractMap.SimpleEntry<>(new FlatBedrockFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, Config.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)),
+                    new AbstractMap.SimpleEntry<>(ModFeatures.FLAT_BEDROCK,
                             getBiomeNamesFromCategory(Collections.emptyList(),false)),
-                    new AbstractMap.SimpleEntry<>(new FlatBedrockFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
-                            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, Config.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG)),
+                    new AbstractMap.SimpleEntry<>(ModFeatures.FLAT_BEDROCK_NETHER,
                             getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)));
         } else
         {
@@ -324,24 +319,151 @@ public class OreGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getUndergroundOreFeatures() {
         return Arrays.asList(
-                new AbstractMap.SimpleEntry<>(Feature.DISK.withConfiguration(new SphereReplaceConfig(ModBlocks.ALLUVIUM.getDefaultState(), FeatureSpread.func_242253_a(2,4), 2, Lists.newArrayList(Blocks.DIRT.getDefaultState(), ModBlocks.ALLUVIUM.getDefaultState(),
-                Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT),
-                getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER),true)),
-                new AbstractMap.SimpleEntry<>(new IntrusionFeature(ReplacerFeatureConfig.field_236449_a_).withConfiguration(
-                new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 90)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2))),
-                        getBiomeNamesFromCategory(Collections.emptyList(),false)));
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_ALLUVIUM,
+                    getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_INTRUSION,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.OCEAN_STONE_GEN,
+                        getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN,Biome.Category.MUSHROOM),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BEACH_STONE_GEN,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.BEACH),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.DEFAULT_STONE_GEN,
+                        getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH,Biome.Category.MUSHROOM),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NODULE,
+                        getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.SWAMP), false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_IRONSTONE,
+                        getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_IRONSTONE_RED,
+                        getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_OPAL,
+                        getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PERMAFROST,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.ICY), false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_COPPER,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_TIN,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_LEAD,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_SILVER,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_ALUMINUM,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_GOLD,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_STIBNITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_HALITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PINK_HALITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_LIGNITE_LOWER,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_LIGNITE_UPPER,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_SUBBITUMINOUS,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_BITUMINOUS,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_MALACHITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_CASSITERITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_BAUXITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_SPHALERITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_MAGNETITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_MAGNESITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PENTLANDITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_GALENA_MULTI,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_ACANTHITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PYROLUSITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_CINNABAR,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_ILMENITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_CHROMITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_WOLFRAMITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_LAZURITE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_EMERALD,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_AQUAMARINE,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PLUMBAGO,
+                        getBiomeNamesFromCategory(Collections.emptyList(),false))
+                );
 
+    }
+
+    private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getNetherOreFeatures() {
+        return Arrays.asList(
+                new AbstractMap.SimpleEntry<>(ModFeatures.NETHER_STONE_GEN,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_SCORIA_NETHER,
+                        Collections.singletonList(new ResourceLocation("minecraft:crimson_forest"))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PUMICE_NETHER,
+                       Collections.singletonList(new ResourceLocation("minecraft:crimson_forest"))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_ARSENIC_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_SULFUR_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_BISMUTH_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_ANTHRACITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_COLUMBITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_TANTALITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_GREENOCKITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_ILMENITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_CHROMITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_WOLFRAMITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_MOISSANITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_SPERRYLITE_NETHER,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true))
+        );
+    }
+
+    private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getEndOreFeatures() {
+        return Arrays.asList(
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_GALLIUM_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_INDIUM_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_TELLURIUM_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_SELENIUM_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_FLUORITE_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_URANINITE_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_XENOTIME_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true))
+        );
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void removeFeatures(final BiomeLoadingEvent event) {
         if (event.getName() != null) {
-
-            List<ConfiguredFeature<?, ?>> removedList = Arrays.asList(Features.ORE_GOLD_DELTAS, Features.ORE_QUARTZ_DELTAS, Features.ORE_GOLD_NETHER, Features.ORE_QUARTZ_NETHER, Features.ORE_GRANITE, Features.ORE_DIORITE,
-                    Features.ORE_ANDESITE, Features.ORE_COAL, Features.ORE_IRON, Features.ORE_GOLD_EXTRA, Features.ORE_GOLD, Features.ORE_REDSTONE, Features.ORE_DIAMOND, Features.ORE_LAPIS, Features.ORE_EMERALD);
-
-            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).clear();
-            //System.out.println(event.getName() + ": " + (oreList.isEmpty() ? oreList : "Thing: " + oreList.get(0).get()));
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
+            //System.out.println(event.getName() + ": " + (event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES)));
         }
     }
 
@@ -349,23 +471,53 @@ public class OreGen {
     public static void addOreGenFeatures(final BiomeLoadingEvent event)
     {
         if (event.getName() != null) {
-            List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> bedrock = flatBedrock();
-            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : bedrock)
+            // TO-DO: Re-add vanilla features to proper biomes?
+            if (event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND)
             {
-                if (entry.getValue().contains(event.getName()))
+                List<ConfiguredFeature<?,?>> vanillaFeatures = Arrays.asList(Features.ORE_DIRT,Features.ORE_GRAVEL,Features.DISK_CLAY,Features.DISK_GRAVEL,Features.DISK_SAND);
+
+                List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> bedrock = flatBedrock();
+                for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : bedrock)
                 {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    if (entry.getValue().contains(event.getName()))
+                    {
+                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    }
+                }
+
+                List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> ores = getUndergroundOreFeatures();
+                for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : ores)
+                {
+                    if (entry.getValue().contains(event.getName()))
+                    {
+                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    }
+                }
+            }
+            else if (event.getCategory() == Biome.Category.NETHER)
+            {
+                List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> netherOreFeatures= getNetherOreFeatures();
+                for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : netherOreFeatures)
+                {
+                    if (entry.getValue().contains(event.getName()))
+                    {
+                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    }
+                }
+            } else {
+                List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> endOreFeatures = getEndOreFeatures();
+                for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : endOreFeatures)
+                {
+                    if (entry.getValue().contains(event.getName()))
+                    {
+                        event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
+                    }
                 }
             }
 
-            List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> ores = getUndergroundOreFeatures();
-            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : ores)
-            {
-                if (entry.getValue().contains(event.getName()))
-                {
-                    event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_ORES.ordinal(),entry::getKey);
-                }
-            }
+
+
+
         }
     }
 }

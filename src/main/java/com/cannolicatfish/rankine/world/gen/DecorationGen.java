@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.blocks.RankineBerryBushBlock;
+import com.cannolicatfish.rankine.init.ModFeatures;
 import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
 import com.cannolicatfish.rankine.world.gen.feature.CustomScatteredPlantFeature;
 import com.cannolicatfish.rankine.world.gen.feature.MeteoriteFeature;
@@ -116,48 +117,38 @@ public class DecorationGen
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getLocalModificationFeatures() {
         return Collections.singletonList(
-                new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE.withConfiguration(new MeteoriteFeatureConfig(ModBlocks.METEORITE.getDefaultState(), 1)).withPlacement(Placement.CHANCE.configure(new ChanceConfig(100))),
-                        getBiomeNamesFromCategory(Collections.emptyList(),false))
+                new AbstractMap.SimpleEntry<>(ModFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(),false))
 
         );
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getVegetalDecorationFeatures() {
         return Arrays.asList(
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.ELDERBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.SNOWBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.BLUEBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.RASPBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.BLACKBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.CRANBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.STRAWBERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Collections.singletonList(Blocks.GRASS_BLOCK))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.PINEAPPLE_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Arrays.asList(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
-                new AbstractMap.SimpleEntry<>(new CustomScatteredPlantFeature(NoFeatureConfig.field_236558_a_, ModBlocks.BANANA_YUCCA_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE, 3), Arrays.asList(ModBlocks.SANDY_DIRT, Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND))
-                        .withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE.configure(new ChanceConfig(5))),getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ELDERBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.SNOWBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLUEBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.RASPBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLACKBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.CRANBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.STRAWBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.PINEAPPLE_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BANANA_YUCCA_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
 
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.YELLOW_BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
-                        Arrays.asList(Biomes.BIRCH_FOREST.getRegistryName(), Biomes.BIRCH_FOREST_HILLS.getRegistryName(), Biomes.TALL_BIRCH_FOREST.getRegistryName(), Biomes.TALL_BIRCH_HILLS.getRegistryName(), Biomes.FOREST.getRegistryName(), Biomes.FLOWER_FOREST.getRegistryName())),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.BLACK_BIRCH_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
-                        Arrays.asList(Biomes.BIRCH_FOREST.getRegistryName(), Biomes.BIRCH_FOREST_HILLS.getRegistryName(), Biomes.TALL_BIRCH_FOREST.getRegistryName(), Biomes.TALL_BIRCH_HILLS.getRegistryName(), Biomes.FOREST.getRegistryName(), Biomes.FLOWER_FOREST.getRegistryName())),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.EASTERN_HEMLOCK_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.YELLOW_BIRCH_TREE, Arrays.asList(Biomes.BIRCH_FOREST.getRegistryName(), Biomes.BIRCH_FOREST_HILLS.getRegistryName(),
+                        Biomes.TALL_BIRCH_FOREST.getRegistryName(), Biomes.TALL_BIRCH_HILLS.getRegistryName(), Biomes.FOREST.getRegistryName(), Biomes.FLOWER_FOREST.getRegistryName())),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLACK_BIRCH_TREE, Arrays.asList(Biomes.BIRCH_FOREST.getRegistryName(), Biomes.BIRCH_FOREST_HILLS.getRegistryName(),
+                        Biomes.TALL_BIRCH_FOREST.getRegistryName(), Biomes.TALL_BIRCH_HILLS.getRegistryName(), Biomes.FOREST.getRegistryName(), Biomes.FLOWER_FOREST.getRegistryName())),
+                new AbstractMap.SimpleEntry<>(ModFeatures.EASTERN_HEMLOCK_TREE,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA),true)),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.CEDAR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.CEDAR_TREE,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA),true)),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.COCNUT_PALM_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.COCONUT_PALM_TREE,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.PINYON_PINE_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.PINYON_PINE_TREE,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA),true)),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.BALSAM_FIR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BALSAM_FIR_TREE,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
-                new AbstractMap.SimpleEntry<>(Feature.TREE.withConfiguration(RankineBiomeFeatures.DEAD_BALSAM_FIR_TREE_CONFIG).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))),
+                new AbstractMap.SimpleEntry<>(ModFeatures.DEAD_BALSAM_FIR_TREE,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true))
                 );
     }

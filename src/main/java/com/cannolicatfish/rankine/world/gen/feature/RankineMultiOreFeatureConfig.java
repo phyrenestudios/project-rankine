@@ -9,7 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class RankineMultiOreFeatureConfig implements IFeatureConfig {
-    public static final Codec<RankineMultiOreFeatureConfig> field_236566_a_ = RecordCodecBuilder.create((p_236568_0_) -> {
+    public static final Codec<RankineMultiOreFeatureConfig> CODEC = RecordCodecBuilder.create((p_236568_0_) -> {
         return p_236568_0_.group(RankineOreFeatureConfig.RankineFillerBlockType.field_236571_d_.fieldOf("target").forGetter((p_236570_0_) -> {
             return p_236570_0_.target;
         }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {

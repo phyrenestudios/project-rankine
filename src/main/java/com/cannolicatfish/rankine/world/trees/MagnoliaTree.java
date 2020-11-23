@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.world.trees;
 
+import com.cannolicatfish.rankine.init.ModFeatures;
 import com.cannolicatfish.rankine.world.biome.RankineBiomeFeatures;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
@@ -14,6 +15,6 @@ public class MagnoliaTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.TREE.withConfiguration(RankineBiomeFeatures.MAGNOLIA_TREE_CONFIG);
+        return Feature.TREE.withConfiguration(ModFeatures.MAGNOLIA_TREE_CONFIG);
     }
 }
