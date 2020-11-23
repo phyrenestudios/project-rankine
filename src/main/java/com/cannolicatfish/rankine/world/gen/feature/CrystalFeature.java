@@ -24,16 +24,17 @@ public class CrystalFeature extends Feature<NoFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         BlockPos underBlock = pos.down();
         ChunkPos chunkpos = new ChunkPos(pos);
-        if ((worldIn.getBlockState(underBlock).getBlock() == Blocks.SAND || worldIn.getBlockState(underBlock).getBlock() == Blocks.SANDSTONE ||
-                worldIn.getBlockState(underBlock).getBlock() == ModBlocks.LIMESTONE || worldIn.getBlockState(underBlock).getBlock() == ModBlocks.RHYOLITE || worldIn.getBlockState(underBlock).getBlock() == Blocks.STONE)
-                && worldIn.isAirBlock(pos) && pos.getY() >= 48 && pos.getY() <= 64) {
-            worldIn.setBlockState(pos, ModBlocks.NITER.getDefaultState(), 2);
+        if ((reader.getBlockState(underBlock).getBlock() == Blocks.SAND || reader.getBlockState(underBlock).getBlock() == Blocks.SANDSTONE ||
+                reader.getBlockState(underBlock).getBlock() == ModBlocks.LIMESTONE || reader.getBlockState(underBlock).getBlock() == ModBlocks.RHYOLITE || reader.getBlockState(underBlock).getBlock() == Blocks.STONE)
+                && reader.isAirBlock(pos) && pos.getY() >= 48 && pos.getY() <= 64) {
+            reader.setBlockState(pos, ModBlocks.NITER.getDefaultState(), 2);
             return true;
         } else {
             return false;
         }
     }
+
 }

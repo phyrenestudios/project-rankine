@@ -25,7 +25,7 @@ public class MetalLadder extends LadderBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         int n = 1;
-        IBlockReader reader = world.getWorld();
+        IBlockReader reader = world;
         while (reader.getBlockState(pos.up(n)).getBlock() == this.getBlock())
         {
             n += 1;

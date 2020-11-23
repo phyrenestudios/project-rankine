@@ -6,14 +6,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class StoneReplacerFeatureConfig implements IFeatureConfig {
-    public static final Codec<StoneReplacerFeatureConfig> field_236449_a_ = RecordCodecBuilder.create((p_236451_0_) -> {
+    public static final Codec<StoneReplacerFeatureConfig> CODEC = RecordCodecBuilder.create((p_236451_0_) -> {
         return p_236451_0_.group(BlockState.CODEC.fieldOf("target").forGetter((p_236452_0_) -> {
             return p_236452_0_.target;
         }), BlockState.CODEC.fieldOf("state").forGetter((p_236569_0_) -> {
             return p_236569_0_.state;
-        }), Codec.INT.fieldOf("bottom_bound").withDefault(0).forGetter((p_236450_0_) -> {
+        }), Codec.INT.fieldOf("bottom_bound").orElse(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.bottomBound;
-        }),Codec.INT.fieldOf("biome_type").withDefault(0).forGetter((p_236450_0_) -> {
+        }),Codec.INT.fieldOf("biome_type").orElse(0).forGetter((p_236450_0_) -> {
             return p_236450_0_.biomeType;
         })).apply(p_236451_0_, StoneReplacerFeatureConfig::new);
     });
@@ -22,11 +22,11 @@ public class StoneReplacerFeatureConfig implements IFeatureConfig {
     public final int bottomBound;
     public final int biomeType;
 
-    public StoneReplacerFeatureConfig(BlockState target, BlockState state, int bottomBound, int topBound) {
+    public StoneReplacerFeatureConfig(BlockState target, BlockState state, int bottomBound, int biomeType) {
         this.target = target;
         this.state = state;
         this.bottomBound = bottomBound;
-        this.biomeType = topBound;
+        this.biomeType = biomeType;
     }
 
 }

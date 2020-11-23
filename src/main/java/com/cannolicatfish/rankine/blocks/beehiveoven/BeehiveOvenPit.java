@@ -158,7 +158,7 @@ public class BeehiveOvenPit extends Block {
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
         if (stateIn.get(LIT)) {
-            spawnSmokeParticles(worldIn.getWorld(), pos, true);
+            spawnSmokeParticles(worldIn, pos, true);
             if (rand.nextInt(10) == 0) {
                 worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.6F, false);
             }

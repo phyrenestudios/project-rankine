@@ -24,7 +24,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
     }
 
     @Override
-    public boolean func_230362_a_(ISeedReader worldIn, StructureManager p_230362_2_, ChunkGenerator p_230362_3_, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
+    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
 
         BlockState INTRUSION = null;
         float CHANCE = rand.nextFloat();
@@ -45,19 +45,19 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
             TOP = 256;
         }
 
-        IChunk chunk = worldIn.getChunk(pos);
+        IChunk chunk = reader.getChunk(pos);
         int startX = chunk.getPos().getXStart() - rand.nextInt(6);
         int startZ = chunk.getPos().getZStart() - rand.nextInt(6);
         int endX = chunk.getPos().getXEnd() - rand.nextInt(6);
         int endZ = chunk.getPos().getZEnd() - rand.nextInt(6);
         int startY;
         int endY;
-        if (worldIn.getBiome(pos).getCategory() != Biome.Category.THEEND && worldIn.getBiome(pos).getCategory() != Biome.Category.NETHER) {
+        if (reader.getBiome(pos).getCategory() != Biome.Category.THEEND && reader.getBiome(pos).getCategory() != Biome.Category.NETHER) {
             startY = BOT;
-            if (worldIn.getHeight() > TOP) {
+            if (reader.getHeight() > TOP) {
                 endY = TOP - rand.nextInt(10);
             } else {
-                endY = worldIn.getHeight() - rand.nextInt(10);
+                endY = reader.getHeight() - rand.nextInt(10);
             }
         } else {
             startY = BOT + rand.nextInt(60);
@@ -74,30 +74,30 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 }
                 for (int z = startZ; z <= endZ; ++z) {
                     for (int x = startX; x <= endX; ++x) {
-                        if (y == startY && y - 1 > 0 && worldIn.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                            worldIn.setBlockState(new BlockPos(x, y - 1, z), INTRUSION, 2);
-                            if (y - 2 > 0 && worldIn.getBlockState(new BlockPos(x, y - 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                                worldIn.setBlockState(new BlockPos(x, y - 2, z), INTRUSION, 2);
+                        if (y == startY && y - 1 > 0 && reader.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
+                            reader.setBlockState(new BlockPos(x, y - 1, z), INTRUSION, 2);
+                            if (y - 2 > 0 && reader.getBlockState(new BlockPos(x, y - 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
+                                reader.setBlockState(new BlockPos(x, y - 2, z), INTRUSION, 2);
                             }
                         }
-                        if (y == endY && y + 1 < 128 && worldIn.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                            worldIn.setBlockState(new BlockPos(x, y + 1, z), INTRUSION, 2);
-                            if (y + 2 < 128 && worldIn.getBlockState(new BlockPos(x, y + 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                                worldIn.setBlockState(new BlockPos(x, y + 2, z), INTRUSION, 2);
+                        if (y == endY && y + 1 < 128 && reader.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
+                            reader.setBlockState(new BlockPos(x, y + 1, z), INTRUSION, 2);
+                            if (y + 2 < 128 && reader.getBlockState(new BlockPos(x, y + 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
+                                reader.setBlockState(new BlockPos(x, y + 2, z), INTRUSION, 2);
                             }
                         }
                         if (INTRUSION.getBlock() == ModBlocks.KIMBERLITE) {
-                            if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                            if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                                 if (rand.nextFloat() < 0.03) {
-                                    worldIn.setBlockState(new BlockPos(x, y, z), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,23), 2);
+                                    reader.setBlockState(new BlockPos(x, y, z), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,23), 2);
                                 } else {
-                                    worldIn.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
+                                    reader.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
                                 }
                             }
                         } else {
-                            if (worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                            if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                                 if (rand.nextInt(4) != 1) {
-                                    worldIn.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
+                                    reader.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
                                 }
                             }
                         }

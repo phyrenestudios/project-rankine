@@ -204,7 +204,7 @@ public class ModRecipes {
         List<Item> list = new ArrayList<>();
         for (ResourceLocation i : rs)
         {
-            list.addAll(ItemTags.getCollection().getOrCreate(i).getAllElements());
+            list.addAll(ItemTags.getCollection().get(i).getAllElements());
         }
         ItemStack[] result = new ItemStack[list.size()];
         if (!list.isEmpty())

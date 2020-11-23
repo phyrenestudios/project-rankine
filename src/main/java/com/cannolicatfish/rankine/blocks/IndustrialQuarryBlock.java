@@ -27,7 +27,7 @@ public class IndustrialQuarryBlock extends Block {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        World world = worldIn.getWorld();
+        World world = worldIn;
 
         if(player.getHeldItemMainhand().getItem() == Items.NETHER_STAR) {
             if (isValidStructure(world, pos)) {

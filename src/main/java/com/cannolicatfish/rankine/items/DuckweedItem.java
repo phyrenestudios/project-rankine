@@ -10,6 +10,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.LilyPadItem;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
@@ -27,52 +28,5 @@ public class DuckweedItem extends LilyPadItem {
     @Override
     public int getBurnTime(ItemStack itemStack) {
         return 200;
-    }
-
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-        RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-        if (raytraceresult.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.resultPass(itemstack);
-        } else {
-            if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-                BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult)raytraceresult;
-                BlockPos blockpos = blockraytraceresult.getPos();
-                Direction direction = blockraytraceresult.getFace();
-                if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(direction), direction, itemstack)) {
-                    return ActionResult.resultFail(itemstack);
-                }
-
-                BlockPos blockpos1 = blockpos.up();
-                BlockState blockstate = worldIn.getBlockState(blockpos);
-                Material material = blockstate.getMaterial();
-                FluidState ifluidstate = worldIn.getFluidState(blockpos);
-                if ((ifluidstate.getFluid() == Fluids.WATER || material == Material.ICE) && worldIn.isAirBlock(blockpos1)) {
-
-                    // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.create(worldIn, blockpos1);
-                    worldIn.setBlockState(blockpos1, ModBlocks.DUCKWEED.getDefaultState(), 11);
-                    if (net.minecraftforge.event.ForgeEventFactory.onBlockPlace(playerIn, blocksnapshot, net.minecraft.util.Direction.UP)) {
-                        blocksnapshot.restore(true, false);
-                        return ActionResult.resultFail(itemstack);
-                    }
-
-                    if (playerIn instanceof ServerPlayerEntity) {
-                        CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)playerIn, blockpos1, itemstack);
-                    }
-
-                    if (!playerIn.abilities.isCreativeMode) {
-                        itemstack.shrink(1);
-                    }
-
-                    playerIn.addStat(Stats.ITEM_USED.get(this));
-                    worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_LILY_PAD_PLACE, SoundCategory.BLOCKS, 1.0F, 0.5F);
-                    return ActionResult.resultSuccess(itemstack);
-                }
-            }
-
-            return ActionResult.resultFail(itemstack);
-        }
     }
 }
