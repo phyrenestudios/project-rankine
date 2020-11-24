@@ -5,7 +5,6 @@
     "#forge:storage_blocks",
     "#forge:end_stones",
     "#forge:obsidian",
-    "#forge:dirt",
     "#forge:glass",
     "#forge:glass_panes",
     "#forge:sand",
@@ -23,6 +22,11 @@
     "#minecraft:wool",
     "#minecraft:wooden_fences",
     "minecraft:clay",
-    "minecraft:bricks"
+    "minecraft:bricks",
+    "minecraft:dirt",
+    "minecraft:podzol",
+    "minecraft:grass_block",
+    "minecraft:coarse_dirt",
+    "minecraft:mycelium"
   ]
 }

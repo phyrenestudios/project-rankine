@@ -535,7 +535,6 @@ public class ModItems {
     public static final Item REPULSION_PENDANT = add("repulsion_pendant", new RepulsionPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
-
     //BUCKETS
     public static final Item  WOOD_BUCKET = add("wood_bucket", new WoodBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
     public static final Item  WATER_WOOD_BUCKET = add("water_wood_bucket", new WoodBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -559,7 +558,6 @@ public class ModItems {
     public static final Item  ALLOY_TEMPLATE = add("alloy_template", new AlloyTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  TRIPLE_ALLOY_TEMPLATE = add("triple_alloy_template", new TripleAlloyTemplate(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
-
     public static final Item  CEDAR_BOAT = add("cedar_boat", new RankineBoatItem(RankineBoatEntity.Type.CEDAR, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  COCONUT_PALM_BOAT = add("coconut_palm_boat", new RankineBoatItem(RankineBoatEntity.Type.COCONUT_PALM, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  PINYON_PINE_BOAT = add("pinyon_pine_boat", new RankineBoatItem(RankineBoatEntity.Type.PINYON_PINE, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -577,11 +575,6 @@ public class ModItems {
     public static final Item DRAGONYTE = add("dragonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item FOUR_LEAFED_CLOVER = add("four_leafed_clover", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item CEDAR_BARK = add("cedar_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item EASTERN_HEMLOCK_BARK = add("eastern_hemlock_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.HEMLOCK_BARK)));
-    public static final Item BIRCH_BARK = add("birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item YELLOW_BIRCH_BARK = add("yellow_birch_bark", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PUMICE_SOAP = add("pumice_soap", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -589,21 +582,10 @@ public class ModItems {
     public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),800));
     public static final Item COMPOST = add("compost", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-
     public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));
     public static final Item CHEESE = add("cheese", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.CHEESE)));
-    public static final Item RED_GRAPES = add("red_grapes", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.RED_GRAPES)));
     public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINA_COLADA)));
-
-    public static final Item CEDAR_REMEDY = add("cedar_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item WINTERGREEN_REMEDY = add("wintergreen_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item HERBAL_REMEDY = add("herbal_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item BERRY_REMEDY = add("berry_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item BISMUTH_REMEDY = add("bismuth_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item COBALT_REMEDY = add("cobalt_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item SILVER_REMEDY = add("silver_remedy", new RemedyItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    //public static final Item OVERWORLD_CORE = add("overworld_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item CAST_IRON_ROD = add("cast_iron_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_ROD = add("steel_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

@@ -2,15 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     " g ",
-    "gfg",
+    "g g",
     " g "
   ],
   "key": {
     "g": {
       "item": "rankine:gem_shard"
-    },
-    "f": {
-      "tag": "rankine:foxfire"
     }
   },
   "result": {

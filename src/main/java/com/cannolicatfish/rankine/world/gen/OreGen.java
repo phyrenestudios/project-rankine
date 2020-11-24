@@ -337,8 +337,6 @@ public class OreGen {
                         getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), false)),
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_OPAL,
                         getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), false)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_PERMAFROST,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.ICY), false)),
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_COPPER,
                         getBiomeNamesFromCategory(Collections.emptyList(),false)),
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_TIN,

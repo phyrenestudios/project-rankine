@@ -40,7 +40,7 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
         Block block = state.getBlock();
         if (type == 7 || type == 8)
         {
-            return block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == ModBlocks.SANDY_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
+            return block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
         }
         return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
     }

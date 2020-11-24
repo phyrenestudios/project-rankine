@@ -216,18 +216,7 @@ public class ModFeatures {
     public static final BlockClusterFeatureConfig PINEAPPLE_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PINEAPPLE_BUSH.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64)
             .whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK,Blocks.SAND, Blocks.RED_SAND)).func_227317_b_().build();
     public static final BlockClusterFeatureConfig BANANA_YUCCA_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BANANA_YUCCA_BUSH.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64)
-            .whitelist(ImmutableSet.of(ModBlocks.SANDY_DIRT, Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND)).func_227317_b_().build();
-
-    public static final BlockClusterFeatureConfig FERN_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.FERN.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig SWAMP_GRASS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.SWAMP_GRASS.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig DUCKWEED_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.DUCKWEED.getDefaultState()), new SimpleBlockPlacer())).tries(10).build();
-    public static final BlockClusterFeatureConfig SHORT_GRASS_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.SHORT_GRASS.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig CLOVER_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).addWeightedBlockstate(ModBlocks.WHITE_CLOVER.getDefaultState(), 4).addWeightedBlockstate(ModBlocks.PURPLE_CLOVER.getDefaultState(), 1), new SimpleBlockPlacer())).tries(32).build();
-
-    public static final BlockClusterFeatureConfig BLUE_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.BLUE_FOXFIRE.getDefaultState()), SimpleBlockPlacer.PLACER)).tries(64).func_227317_b_().build();
-    public static final BlockClusterFeatureConfig GREEN_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.GREEN_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig PINK_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PINK_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
-    public static final BlockClusterFeatureConfig YELLOW_FOXFIRE_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.YELLOW_FOXFIRE.getDefaultState()), new SimpleBlockPlacer())).tries(32).build();
+            .whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.SAND, Blocks.RED_SAND)).func_227317_b_().build();
 
 
     // LOCAL_MODIFICATIONS
@@ -323,9 +312,6 @@ public class ModFeatures {
 
     public static final ConfiguredFeature<?,?> ORE_OPAL = new ModularOreFeature(OreFeatureConfig.CODEC, ModBlocks.IRONSTONE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD,ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE,13), 8))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(50, 0, 128))).square().func_242731_b(30);
-
-    public static final ConfiguredFeature<?,?> ORE_PERMAFROST = new ModularOreFeature(OreFeatureConfig.CODEC, Blocks.DIRT.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.PERMAFROST.getDefaultState(), 20))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(55, 0, 70))).square().func_242731_b(1);
 
         // NATIVE ORES
 

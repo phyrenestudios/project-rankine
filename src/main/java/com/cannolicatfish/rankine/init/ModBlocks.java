@@ -22,7 +22,6 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTable;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.fluids.ModFluids;
-import com.cannolicatfish.rankine.items.DuckweedItem;
 import com.cannolicatfish.rankine.items.FuelBlockItem;
 import com.cannolicatfish.rankine.items.ModFoods;
 import com.cannolicatfish.rankine.world.trees.*;
@@ -447,11 +446,8 @@ public class ModBlocks {
 
 
     //Earth Blocks
-    public static final Block SANDY_DIRT = add("sandy_dirt", new SandyDirtBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), BLOCKS);
     public static final Block ALLUVIUM = add("alluvium", new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
     public static final Block BLACK_SAND = add("black_sand", new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
-    //public static final Block MUDDY_DIRT = add("muddy_dirt", new  Block(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)), MAIN, BLOCKS);
-    public static final Block PERMAFROST = add("permafrost", new PermafrostBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(1.5F).sound(SoundType.GROUND)), BLOCKS);
     public static final Block LEAD_GLASS = add("lead_glass", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)), BLOCKS);
     public static final Block ETCHED_GLASS0 = add("etched_glass0", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
     public static final Block ETCHED_GLASS1 = add("etched_glass1", new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)), BLOCKS);
@@ -901,7 +897,6 @@ public class ModBlocks {
     public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
 
-    public static final Block CREEPER_BLOCK = add("creeper_block", new CreepingBlock(1.0F,Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
     public static final BlastingPowderBlock BLASTING_POWDER = add("blasting_powder", new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)), METALLURGY);
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
@@ -932,16 +927,6 @@ public class ModBlocks {
     public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
     public static final RopeCoilBlock ROPE_COIL = add("rope_coil", new RopeCoilBlock(Block.Properties.create(Material.CARPET)), MISC);
-    //public static final Block CHALK = add("chalk", "chalk", new ChalkBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().zeroHardnessAndResistance()), new Item.Properties().group(ProjectRankine.setup.rankineTools), BlockNamedItem::new);
-    public static final SwampGrassBlock SWAMP_GRASS = add("swamp_grass", new SwampGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
-    public static final ShortGrassBlock SHORT_GRASS = add("short_grass", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
-    public static final ShortGrassBlock WHITE_CLOVER = add("white_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
-    public static final ShortGrassBlock PURPLE_CLOVER = add("purple_clover", new ShortGrassBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC);
-    public static final DuckweedBlock DUCKWEED = add("duckweed", new DuckweedBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f)), MISC, DuckweedItem::new);
-    public static final FoxfireBlock BLUE_FOXFIRE = add("blue_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
-    public static final FoxfireBlock GREEN_FOXFIRE = add("green_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
-    public static final FoxfireBlock PINK_FOXFIRE = add("pink_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
-    public static final FoxfireBlock YELLOW_FOXFIRE = add("yellow_foxfire", new FoxfireBlock(Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().sound(SoundType.PLANT).hardnessAndResistance(0.0f).setLightLevel((p_235418_0_) -> 4)), MISC);
 
 
     public static final FlowingFluidBlock LIQUID_MERCURY_BLOCK = add("liquid_mercury_block", new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
