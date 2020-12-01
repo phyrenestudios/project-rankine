@@ -4,7 +4,9 @@ import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.ISeedReader;
@@ -12,6 +14,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.feature.BlockBlobFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.structure.StructureManager;
 
@@ -26,87 +30,60 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
 
-        BlockState INTRUSION = null;
         float CHANCE = rand.nextFloat();
-        int BOT = 0;
-        int TOP = 0;
+        BlockState INTRUSION = null;
 
-        if (CHANCE < 0.075f) {
+        int startY = 0;
+        int endY = 0;
+        int radius = 0;
+
+        if (CHANCE < 0.1) {
             INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
-            BOT = 0;
-            TOP = 25;
-        } else if (CHANCE < 0.12f) {
-            INTRUSION = ModBlocks.RED_GRANITE.getDefaultState();
-            BOT = 0;
-            TOP = 256;
-        } else if (CHANCE < 0.2f) {
+            endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ())-20;
+            radius = 5-rand.nextInt(2);
+        } else if (CHANCE < 0.14) {
             INTRUSION = ModBlocks.GRANODIORITE.getDefaultState();
-            BOT = 0;
-            TOP = 256;
+            endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
+            radius = 9-rand.nextInt(3);
+        } else if (CHANCE < 0.17) {
+            INTRUSION = Blocks.DIORITE.getDefaultState();
+            endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
+            radius = 9-rand.nextInt(3);
+        } else if (CHANCE < 0.20) {
+            INTRUSION = Blocks.GRANITE.getDefaultState();
+            endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
+            radius = 9-rand.nextInt(3);
         }
 
-        IChunk chunk = reader.getChunk(pos);
-        int startX = chunk.getPos().getXStart() - rand.nextInt(6);
-        int startZ = chunk.getPos().getZStart() - rand.nextInt(6);
-        int endX = chunk.getPos().getXEnd() - rand.nextInt(6);
-        int endZ = chunk.getPos().getZEnd() - rand.nextInt(6);
-        int startY;
-        int endY;
-        if (reader.getBiome(pos).getCategory() != Biome.Category.THEEND && reader.getBiome(pos).getCategory() != Biome.Category.NETHER) {
-            startY = BOT;
-            if (reader.getHeight() > TOP) {
-                endY = TOP - rand.nextInt(10);
-            } else {
-                endY = reader.getHeight() - rand.nextInt(10);
-            }
-        } else {
-            startY = BOT + rand.nextInt(60);
-            endY = TOP;
-        }
-
-        if (INTRUSION != null) {
+        if (INTRUSION!= null) {
             for (int y = startY; y <= endY; ++y) {
-                if (rand.nextFloat() < 0.05) {
-                    startZ += 1;
-                    endZ -= 1;
-                    startX += 1;
-                    endX -= 1;
-                }
-                for (int z = startZ; z <= endZ; ++z) {
-                    for (int x = startX; x <= endX; ++x) {
-                        if (y == startY && y - 1 > 0 && reader.getBlockState(new BlockPos(x, y - 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                            reader.setBlockState(new BlockPos(x, y - 1, z), INTRUSION, 2);
-                            if (y - 2 > 0 && reader.getBlockState(new BlockPos(x, y - 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                                reader.setBlockState(new BlockPos(x, y - 2, z), INTRUSION, 2);
-                            }
-                        }
-                        if (y == endY && y + 1 < 128 && reader.getBlockState(new BlockPos(x, y + 1, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                            reader.setBlockState(new BlockPos(x, y + 1, z), INTRUSION, 2);
-                            if (y + 2 < 128 && reader.getBlockState(new BlockPos(x, y + 2, z)).getBlock() == config.target.getBlock() && rand.nextFloat() < (1 / 2f)) {
-                                reader.setBlockState(new BlockPos(x, y + 2, z), INTRUSION, 2);
-                            }
-                        }
-                        if (INTRUSION.getBlock() == ModBlocks.KIMBERLITE) {
-                            if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                                if (rand.nextFloat() < 0.03) {
-                                    reader.setBlockState(new BlockPos(x, y, z), ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE,23), 2);
+                for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
+                    if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
+                        if (reader.getBlockState(blockpos) == config.target) {
+                            if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState() && y <= 25) {
+                                if (rand.nextFloat() < 0.06F) {
+                                    reader.setBlockState(blockpos, ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
+                                } else if (rand.nextFloat() < 0.075F) {
+                                    reader.setBlockState(blockpos, ModBlocks.ILMENITE_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
                                 } else {
-                                    reader.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
+                                    reader.setBlockState(blockpos, INTRUSION, 4);
                                 }
-                            }
-                        } else {
-                            if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                                if (rand.nextInt(4) != 1) {
-                                    reader.setBlockState(new BlockPos(x, y, z), INTRUSION, 2);
-                                }
+                            } else {
+                                reader.setBlockState(blockpos, INTRUSION, 4);
                             }
                         }
-
-
+                    }
+                }
+                if (rand.nextFloat() < 0.15) {
+                    radius -= 1;
+                    if (radius <= 0) {
+                        return true;
                     }
                 }
             }
         }
-            return true;
+        return true;
     }
+
+
 }

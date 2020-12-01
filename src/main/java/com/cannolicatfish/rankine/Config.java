@@ -17,12 +17,14 @@ public class Config {
     public static final String CATEGORY_MECHANICS = "mechanics";
     public static final String SUBCATEGORY_EVENTS = "event";
     public static final String SUBCATEGORY_ALLOYS = "alloys";
+    public static final String SUBCATEGORY_WORLDGEN = "worldgen";
+
 
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
     private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
-
     public static ForgeConfigSpec COMMON_CONFIG;
     public static ForgeConfigSpec CLIENT_CONFIG;
+
 
     public static ForgeConfigSpec.BooleanValue MANDATORY_AXE;
     public static ForgeConfigSpec.BooleanValue STARTING_BOOK;
@@ -33,12 +35,10 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND;
     public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE;
 
-
     public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_MAXPOWER;
     public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_GENERATE;
     public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_SEND;
     public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_TICKS;
-
 
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_MAXPOWER;
     public static ForgeConfigSpec.IntValue STEAM_TURBINE_GENERATE;
@@ -55,6 +55,51 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
     public static ForgeConfigSpec.BooleanValue FLAT_BEDROCK;
     public static ForgeConfigSpec.IntValue BEDROCK_LAYERS;
+    public static ForgeConfigSpec.IntValue NOISE_SCALE;
+    public static ForgeConfigSpec.IntValue NOISE_OFFSET;
+
+    public static ForgeConfigSpec.IntValue XXX_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue XXX_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue XXX_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue XXX_ORE_COUNT;
+
+    //public static ForgeConfigSpec.BooleanValue DEFAULT_ORE;
+
+    public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_COUNT;
+    
+    public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_COUNT;
+
+    public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_COUNT;
+
+    public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_COUNT;
+
+    public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_COUNT;
+
+    public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_COUNT;
+
+
+
+
+
+
 
 
     static {
@@ -64,9 +109,7 @@ public class Config {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Alloy settings").push(CATEGORY_MECHANICS);
-
         setupSecondBlockConfig();
-
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();
@@ -74,40 +117,129 @@ public class Config {
     }
 
     private static void setupFirstBlockConfig() {
-        COMMON_BUILDER.comment("General Mod settings").push(SUBCATEGORY_EVENTS);
-
-        MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
-                .define("axesOnly",false);
+        //General config
+        COMMON_BUILDER.comment("General Mod Settings").push(SUBCATEGORY_EVENTS);
 
         STARTING_BOOK = COMMON_BUILDER.comment("Enables the Rankine Journal (a guide to the mod)")
                 .define("startingBook",true);
-
+        MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
+                .define("axesOnly",false);
         DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default.")
                 .define("disableWood",true);
-
         DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default.")
                 .define("disableStone",true);
-
         DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default.")
                 .define("disableIron",false);
-
         DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is disabled by default.")
                 .define("disableGold",false);
-
         DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default.")
                 .define("disableDiamond",false);
-
         DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default.")
                 .define("disableNetherite",false);
-
         GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                 .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
 
-        FLAT_BEDROCK = COMMON_BUILDER.comment("Generates with a flat bedrock layer (includes the Nether)")
-                .define("flatBedrock",false);
+        COMMON_BUILDER.pop();
 
-        BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
-                .defineInRange("bedrockLayers", 1, 0, 10);
+
+        //Worldgen config
+        COMMON_BUILDER.comment("Worldgen Settings").push(SUBCATEGORY_WORLDGEN);
+
+            COMMON_BUILDER.comment("Bedrock Generation").push("bedrock");
+                FLAT_BEDROCK = COMMON_BUILDER.comment("Generates with a flat bedrock layer (includes the Nether)")
+                        .define("flatBedrock",false);
+                BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
+                        .defineInRange("bedrockLayers", 1, 0, 10);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("Stone Layer Generation").push("layeringNoise");
+                NOISE_SCALE = COMMON_BUILDER.comment("This determines how smooth stone layers generate. Larger values means smoother. Default value is 125.")
+                        .defineInRange("noiseScale", 125, 1, 1000);
+                NOISE_OFFSET = COMMON_BUILDER.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically. Default value is 256")
+                        .defineInRange("noiseOffset", 256, 0, 16*64);
+            COMMON_BUILDER.pop();
+
+    //        FLAT_BEDROCK = COMMON_BUILDER.comment("Set to false to use custum ore generation parametersss below. This is true by default.")
+    //                .define("defaultOre",true);
+
+            COMMON_BUILDER.comment("Native Copper Ore Settings").push("nativeCopperOre");
+                NATIVE_COPPER_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Copper ore at (make sure it is less than the maximum)")
+                        .defineInRange("nativeCopperOreMin", 51, 0, 256);
+                NATIVE_COPPER_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Copper ore at (make sure it is greater than the minimum)")
+                        .defineInRange("nativeCopperOreMax", 128, 0, 256);
+                NATIVE_COPPER_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Copper ore vein")
+                        .defineInRange("nativeCopperOreSixe", 12, 0, 256);
+                NATIVE_COPPER_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Copper ore veins to generate per chunk")
+                        .defineInRange("nativeCopperOreCount", 5, 0, 256);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("Native Tn Ore Settings").push("nativeTinOre");
+                NATIVE_TIN_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Tin ore at (make sure it is less than the maximum)")
+                        .defineInRange("nativeTinOreMin", 51, 0, 256);
+                NATIVE_TIN_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Tin ore at (make sure it is greater than the minimum)")
+                        .defineInRange("nativeTinOreMax", 128, 0, 256);
+                NATIVE_TIN_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Tin ore vein")
+                        .defineInRange("nativeTinOreSize", 12, 0, 256);
+                NATIVE_TIN_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Tin ore veins to generate per chunk")
+                        .defineInRange("nativeTinOreCount", 4, 0, 256);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("Native Lead Ore Settings").push("nativeLeadOre");
+                NATIVE_LEAD_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Lead ore at (make sure it is less than the maximum)")
+                        .defineInRange("nativeLeadOreMin", 51, 0, 256);
+                NATIVE_LEAD_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Lead ore at (make sure it is greater than the minimum)")
+                        .defineInRange("nativeLeadOreMax", 128, 0, 256);
+                NATIVE_LEAD_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Lead ore vein")
+                        .defineInRange("nativeLeadOreSize", 12, 0, 256);
+                NATIVE_LEAD_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Lead ore veins to generate per chunk")
+                        .defineInRange("nativeLeadOreCount", 2, 0, 256);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("Native Silver Ore Settings").push("nativeSilverOre");
+                NATIVE_SILVER_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Silver ore at (make sure it is less than the maximum)")
+                        .defineInRange("nativeSilverOreMin", 51, 0, 256);
+                NATIVE_SILVER_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Silver ore at (make sure it is greater than the minimum)")
+                        .defineInRange("nativeSilverOreMax", 128, 0, 256);
+                NATIVE_SILVER_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Silver ore vein")
+                        .defineInRange("nativeSilverOreSize", 12, 0, 256);
+                NATIVE_SILVER_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Silver ore veins to generate per chunk")
+                        .defineInRange("nativeSilverOreCount", 2, 0, 256);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("Native Aluminum Ore Settings").push("nativeAluminumOre");
+                NATIVE_ALUMINUM_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Aluminum ore at (make sure it is less than the maximum)")
+                        .defineInRange("nativeAluminumOreMin", 51, 0, 256);
+                NATIVE_ALUMINUM_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Aluminum ore at (make sure it is greater than the minimum)")
+                        .defineInRange("nativeAluminumOreMax", 128, 0, 256);
+                NATIVE_ALUMINUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Aluminum ore vein")
+                        .defineInRange("nativeAluminumOreSize", 12, 0, 256);
+                NATIVE_ALUMINUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Aluminum ore veins to generate per chunk")
+                        .defineInRange("nativeAluminumOreCount", 3, 0, 256);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("Native Gold Ore Settings").push("nativeGoldOre");
+                NATIVE_GOLD_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Gold ore at (make sure it is less than the maximum)")
+                        .defineInRange("nativeGoldOreMin", 15, 0, 256);
+                NATIVE_GOLD_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Gold ore at (make sure it is greater than the minimum)")
+                        .defineInRange("nativeGoldOreMax", 128, 0, 256);
+                NATIVE_GOLD_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Gold ore vein")
+                        .defineInRange("nativeGoldOreSize", 10, 0, 256);
+                NATIVE_GOLD_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Gold ore veins to generate per chunk")
+                        .defineInRange("nativeGoldOreCount", 4, 0, 256);
+            COMMON_BUILDER.pop();
+
+            COMMON_BUILDER.comment("xxx Ore Settings").push("yyyOre");
+                XXX_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate xxx ore at (make sure it is less than the maximum)")
+                        .defineInRange("yyyOreMin", 1, 0, 256);
+                XXX_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate xxx ore at (make sure it is greater than the minimum)")
+                        .defineInRange("yyyOreMax", 1, 0, 256);
+                XXX_ORE_SIZE = COMMON_BUILDER.comment("Size of xxx ore vein")
+                        .defineInRange("yyyOreSize", 1, 0, 256);
+                XXX_ORE_COUNT = COMMON_BUILDER.comment("Number of xxx ore veins to generate per chunk")
+                        .defineInRange("yyyOreCount", 1, 0, 256);
+            COMMON_BUILDER.pop();
+
+
 
         COMMON_BUILDER.pop();
     }
@@ -134,6 +266,8 @@ public class Config {
                 .define("amalgamExtras",false);
 
         COMMON_BUILDER.pop();
+
+
     }
 
     public static void loadConfig(ForgeConfigSpec spec, Path path) {

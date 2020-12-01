@@ -29,13 +29,10 @@ public class MetalDetector extends Item {
             });
         }
         boolean found = false;
-        for (int x = 1; x < 16; x++) {
+        for (int x = 0; x < 24; x++) {
             if (e.getOpposite() == Direction.DOWN)
             {
-                if (reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.MAGNETITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.PENTLANDITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.MALACHITE_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.BAUXITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.CASSITERITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.GALENA_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_GOLD_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.ACANTHITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_COPPER_ORE ||
-                    reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_TIN_ORE){
+                if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
                     break;
                 }

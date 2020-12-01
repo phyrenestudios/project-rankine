@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/shale",
+            "base": "rankine:block/granodiorite",
             "overlay": "rankine:block/nether_gold_ore",
-            "particle": "rankine:block/shale"
+            "particle": "rankine:block/granodiorite"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

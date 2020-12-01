@@ -279,6 +279,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("quartz_diorite_crushing",Blocks.DIORITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("gray_andesite_crushing",Blocks.ANDESITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
         recipes.add(crushingRecipe("basalt_crushing",Blocks.BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
+        recipes.add(crushingRecipe("blackstone_crushing",Blocks.BLACKSTONE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("granite_crushing",ModBlocks.RED_GRANITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("diorite_crushing",ModBlocks.GRANODIORITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
         recipes.add(crushingRecipe("andesite_crushing",ModBlocks.HORNBLENDE_ANDESITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.ZIRCON), 0.05f));
@@ -307,6 +308,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("polished_quartz_diorite_crushing",Blocks.POLISHED_DIORITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("polished_gray_andesite_crushing",Blocks.POLISHED_ANDESITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
         recipes.add(crushingRecipe("polished_basalt_crushing",Blocks.POLISHED_BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
+        recipes.add(crushingRecipe("polished_blackstone_crushing",Blocks.POLISHED_BLACKSTONE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("smooth_granite_crushing",ModBlocks.POLISHED_RED_GRANITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("smooth_diorite_crushing",ModBlocks.POLISHED_GRANODIORITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
         recipes.add(crushingRecipe("smooth_andesite_crushing",ModBlocks.POLISHED_HORNBLENDE_ANDESITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.ZIRCON), 0.05f));
@@ -334,7 +336,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("red_granite_bricks_crushing",ModBlocks.GRANITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("quartz_diorite_bricks_crushing",ModBlocks.DIORITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("gray_andesite_bricks_crushing",ModBlocks.ANDESITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
-        recipes.add(crushingRecipe("basalt_bricks_crushing",ModBlocks.BASALT_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
+        recipes.add(crushingRecipe("polished_blackstone_bricks_crushing",Blocks.POLISHED_BLACKSTONE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("granite_bricks_crushing",ModBlocks.RED_GRANITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("diorite_bricks_crushing",ModBlocks.GRANODIORITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
         recipes.add(crushingRecipe("andesite_bricks_crushing",ModBlocks.HORNBLENDE_ANDESITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.ZIRCON), 0.05f));
@@ -365,6 +367,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("sphalerite_ore_crushing",ModBlocks.SPHALERITE_ORE.asItem(), new ItemStack(ModItems.SPHALERITE,1), new ItemStack(ModItems.OPAL,1),0.05f));
         recipes.add(crushingRecipe("cinnabarite_ore_crushing",ModBlocks.CINNABAR_ORE.asItem(), new ItemStack(Items.REDSTONE,4), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("pentlandite_ore_crushing",ModBlocks.PENTLANDITE_ORE.asItem(), new ItemStack(ModItems.PENTLANDITE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
+        recipes.add(crushingRecipe("interpinifex_ore_crushing",ModBlocks.INTERSPINIFEX_ORE.asItem(), new ItemStack(ModItems.PENTLANDITE,1), new ItemStack(ModItems.CHALCOPYRITE,1),0.1f));
         recipes.add(crushingRecipe("magnesite_ore_crushing",ModBlocks.MAGNESITE_ORE.asItem(), new ItemStack(ModItems.MAGNESITE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
         recipes.add(crushingRecipe("galena_ore_crushing",ModBlocks.GALENA_ORE.asItem(), new ItemStack(ModItems.GALENA,1), new ItemStack(ModItems.SPHALERITE,1),0.1f));
         recipes.add(crushingRecipe("acanthite_ore_crushing",ModBlocks.ACANTHITE_ORE.asItem(), new ItemStack(ModItems.ACANTHITE,1), new ItemStack(ModItems.GALENA,1),0.1f));
@@ -397,6 +400,9 @@ public class ModRecipes {
         recipes.add(crushingRecipe("taenite_crushing",ModBlocks.TAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("bloom_iron_crushing",ModItems.BLOOM_IRON.asItem(), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1), new ItemStack(ModItems.SLAG,1),0.5f));
+        recipes.add(crushingRecipe("cobalite_ore_crushing",ModBlocks.COBALTITE_ORE.asItem(), new ItemStack(ModItems.COBALTITE,1), new ItemStack(ModItems.COBALTITE,1),0.1f));
+        recipes.add(crushingRecipe("petalite_ore_crushing",ModBlocks.PETALITE_ORE.asItem(), new ItemStack(ModItems.PETALITE,1), new ItemStack(ModItems.TOURMALINE,1),0.1f));
+        recipes.add(crushingRecipe("chalcopyrite_crushing",ModItems.CHALCOPYRITE, new ItemStack(ModItems.COPPER_NUGGET,5), new ItemStack(Items.IRON_NUGGET,5),1.0f));
 
 
         recipes.addAll(groupCrushingRecipe("leaves_crushing","minecraft:leaves",new ItemStack(ModItems.BIOMASS, 1),new ItemStack(ModItems.COMPOST,1), 1.0f));

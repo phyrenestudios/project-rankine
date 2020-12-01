@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = ProjectRankine.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RankineFeatures {
 
-    public static final Feature<MeteoriteFeatureConfig> METEORITE = new MeteoriteFeature(MeteoriteFeatureConfig.AAAA);
+    public static final Feature<MeteoriteFeatureConfig> METEORITE = new MeteoriteFeature(MeteoriteFeatureConfig.CODEC);
 
 
     @SubscribeEvent

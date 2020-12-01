@@ -1,0 +1,5 @@
+{
+        "variants": {
+        "": { "model": "rankine:block/azurite_block" }
+        }
+    }

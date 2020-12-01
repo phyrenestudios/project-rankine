@@ -1,9 +1,9 @@
 {
       "parent": "block/block",
       "textures": {
-        "base": "block/end_stone",
+        "base": "block/netherrack",
         "overlay": "rankine:block/ilmenite_ore",
-        "particle": "block/end_stone"
+        "particle": "block/netherrack"
       },
       "elements": [
         {   "from": [ 0, 0, 0 ],

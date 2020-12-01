@@ -1,5 +1,5 @@
 {
-      "variants": {
+    "variants": {
         "type=0": {"model": "rankine:block/native_bismuth_ore0"},
         "type=1": {"model": "rankine:block/native_bismuth_ore1"},
         "type=2": {"model": "rankine:block/native_bismuth_ore2"},
@@ -25,8 +25,15 @@
         "type=22": {"model": "rankine:block/native_bismuth_ore22"},
         "type=23": {"model": "rankine:block/native_bismuth_ore23"},
         "type=24": {"model": "rankine:block/native_bismuth_ore24"},
-		"type=25": {"model": "rankine:block/native_bismuth_ore25"},
-		"type=26": {"model": "rankine:block/native_bismuth_ore26"},
-		"type=27": {"model": "rankine:block/native_bismuth_ore27"}
-		}
+	"type=25": {"model": "rankine:block/native_bismuth_ore25"},
+	"type=26": {"model": "rankine:block/native_bismuth_ore26"},
+	"type=27": {"model": "rankine:block/native_bismuth_ore27"},
+	"type=28": {"model": "rankine:block/native_bismuth_ore28"},
+	"type=29": {"model": "rankine:block/native_bismuth_ore29"},
+	"type=30": {"model": "rankine:block/native_bismuth_ore30"},
+	"type=31": {"model": "rankine:block/native_bismuth_ore31"},
+	"type=32": {"model": "rankine:block/native_bismuth_ore32"},
+        "type=33": {"model": "rankine:block/native_bismuth_ore33"},
+	"type=34": {"model": "rankine:block/native_bismuth_ore34"}
+	}
     }

@@ -311,37 +311,6 @@ public class RankineEventHandler {
 
         if(item instanceof AxeItem) {
         BlockState activatedBlock = world.getBlockState(pos);
-            if (activatedBlock.getBlock() == Blocks.BIRCH_LOG){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.BIRCH_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.YELLOW_BIRCH_LOG){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.YELLOW_BIRCH_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.BLACK_BIRCH_LOG){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.BIRCH_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.CEDAR_LOG){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.CEDAR_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.EASTERN_HEMLOCK_LOG){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.EASTERN_HEMLOCK_BARK, 1));
-            }
-            
-            if (activatedBlock.getBlock() == Blocks.BIRCH_WOOD){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.BIRCH_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.YELLOW_BIRCH_WOOD){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.YELLOW_BIRCH_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.BLACK_BIRCH_WOOD){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.BIRCH_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.CEDAR_WOOD){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.CEDAR_BARK, 1));
-            }
-            if (activatedBlock.getBlock() == ModBlocks.EASTERN_HEMLOCK_WOOD){
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ModItems.EASTERN_HEMLOCK_BARK, 1));
-            }
             if(stripping_map.get(activatedBlock.getBlock()) != null) {
                 Block block = activatedBlock.getBlock();
                 if(block instanceof RotatedPillarBlock) {

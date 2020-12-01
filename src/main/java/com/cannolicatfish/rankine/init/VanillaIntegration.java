@@ -27,7 +27,6 @@ public class VanillaIntegration {
         registerCompostable(0.3F, ModBlocks.YELLOW_BIRCH_SAPLING);
         registerCompostable(0.3F, ModBlocks.BLACK_BIRCH_SAPLING);
         registerCompostable(0.3F, ModBlocks.MAPLE_SAPLING);
-        registerCompostable(0.3F, ModBlocks.DUCKWEED);
         registerCompostable(0.5F, ModItems.COMPOST);
 
 
