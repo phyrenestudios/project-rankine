@@ -60,7 +60,8 @@ public class JEIRankinePlugin implements IModPlugin {
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), VanillaTypes.ITEM, "The beehive oven is at minimum a 3x3 structure with a beehive oven pit in the center of 8 refractory bricks. " +
                 "The pit block must have access to the sky. Place blocks on the refractory bricks and light it with a flint and steel to cook them over time.");
-
+        registry.addIngredientInfo(new ItemStack(ModItems.ELEMENT_INDEXER), VanillaTypes.ITEM, "The Element Indexer is a device that can be used to analyze the properties of an element in an alloy. " +
+                "Scroll up and down to change the percentage.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.ALNICO_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.NITINOL_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
