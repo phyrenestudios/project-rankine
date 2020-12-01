@@ -1,9 +1,9 @@
 {
       "parent": "block/block",
       "textures": {
-        "base": "block/netherrack",
+        "base": "block/sandstone",
         "overlay": "rankine:block/native_lead_ore",
-        "particle": "block/netherrack"
+        "particle": "block/sandstone"
       },
       "elements": [
         {   "from": [ 0, 0, 0 ],

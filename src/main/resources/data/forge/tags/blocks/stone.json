@@ -22,6 +22,10 @@
     "#forge:stones/wadsleyite",
     "#forge:stones/ferropericlase",
     "#forge:stones/perovskite",
-    "#forge:stones/bridgmanite"
+    "#forge:stones/bridgmanite",
+    "#forge:stones/gabbro",
+    "#forge:stones/schist",
+    "#forge:stones/slate",
+    "#forge:stones/breccia"
   ]
 }

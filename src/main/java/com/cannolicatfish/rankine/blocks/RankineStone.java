@@ -106,6 +106,7 @@ public class RankineStone extends Block {
         if (ore.getKey() == ModBlocks.CASSITERITE_ORE || ore.getKey() == ModBlocks.NATIVE_TIN_ORE) { return new ItemStack(ModItems.TIN_NUGGET); }
         if (ore.getKey() == ModBlocks.SPHALERITE_ORE) { return new ItemStack(ModItems.ZINC_NUGGET); }
         if (ore.getKey() == ModBlocks.PENTLANDITE_ORE) { return new ItemStack(ModItems.NICKEL_NUGGET); }
+        if (ore.getKey() == ModBlocks.INTERSPINIFEX_ORE) { return new ItemStack(ModItems.NICKEL_NUGGET); }
         if (ore.getKey() == ModBlocks.MAGNESITE_ORE) { return new ItemStack(ModItems.MAGNESIUM_NUGGET); }
         if (ore.getKey() == ModBlocks.ILMENITE_ORE) { return new ItemStack(ModItems.TITANIUM_NUGGET); }
         if (ore.getKey() == ModBlocks.GALENA_ORE || ore.getKey() == ModBlocks.NATIVE_LEAD_ORE) { return new ItemStack(ModItems.LEAD_NUGGET); }

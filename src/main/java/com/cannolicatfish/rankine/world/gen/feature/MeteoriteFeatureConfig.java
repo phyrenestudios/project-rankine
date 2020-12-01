@@ -6,7 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 public class MeteoriteFeatureConfig implements IFeatureConfig {
-    public static final Codec<MeteoriteFeatureConfig> AAAA = RecordCodecBuilder.create((p_236451_0_) -> {
+    public static final Codec<MeteoriteFeatureConfig> CODEC = RecordCodecBuilder.create((p_236451_0_) -> {
         return p_236451_0_.group(BlockState.CODEC.fieldOf("state").forGetter((p_236452_0_) -> {
             return p_236452_0_.state;
         }), Codec.INT.fieldOf("start_radius").orElse(0).forGetter((p_236450_0_) -> {

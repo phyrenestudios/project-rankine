@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:azurite"
+    }
+  },
+  "result": {
+    "item": "rankine:azurite_block",
+    "count": 1
+  }
+}

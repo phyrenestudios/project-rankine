@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/wadsleyite",
+            "base": "rankine:block/schist",
             "overlay": "rankine:block/vanadinite_ore",
-            "particle": "rankine:block/wadsleyite"
+            "particle": "rankine:block/schist"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

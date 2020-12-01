@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/tholeiitic_basalt",
+            "base": "rankine:block/gabbro",
             "overlay": "rankine:block/nether_gold_ore",
-            "particle": "rankine:block/tholeiitic_basalt"
+            "particle": "rankine:block/gabbro"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/bridgmanite",
+            "base": "rankine:block/slate",
             "overlay": "rankine:block/subbituminous_ore",
-            "particle": "rankine:block/bridgmanite"
+            "particle": "rankine:block/slate"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

@@ -1,9 +1,9 @@
 {
       "parent": "block/block",
       "textures": {
-        "base": "block/blackstone",
+        "base": "block/red_sandstone",
         "overlay": "rankine:block/acanthite_ore",
-        "particle": "block/blackstone"
+        "particle": "block/red_sandstone"
       },
       "elements": [
         {   "from": [ 0, 0, 0 ],

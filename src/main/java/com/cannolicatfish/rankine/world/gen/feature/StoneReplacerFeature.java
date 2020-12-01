@@ -1,15 +1,23 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ObserverBlock;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.PerlinNoiseGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -23,8 +31,8 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
         super(configFactoryIn);
     }
 
-
-    private static List<BlockState> STONES;
+    public static final int NOISE_SCALE = Config.NOISE_SCALE.get();
+    public static final int NOISE_OFFSET = Config.NOISE_OFFSET.get();
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, StoneReplacerFeatureConfig config) {
@@ -37,123 +45,106 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
+
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
-                for (int y = 0; y <= endY; ++y) {
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), getStone(config.biomeType, y, endY), 2);
+
+                double d0 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE, (double)z / NOISE_SCALE, false);
+                double d1 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + NOISE_OFFSET, (double)z / NOISE_SCALE + NOISE_OFFSET, false);
+                double d2 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + 2*NOISE_OFFSET, (double)z / NOISE_SCALE + 2*NOISE_OFFSET, false);
+                double d3 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + 3*NOISE_OFFSET, (double)z / NOISE_SCALE + 3*NOISE_OFFSET, false);
+                double d4 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + 4*NOISE_OFFSET, (double)z / NOISE_SCALE + 4*NOISE_OFFSET, false);
+                double d5 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + 5*NOISE_OFFSET, (double)z / NOISE_SCALE + 5*NOISE_OFFSET, false);
+                double d6 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + 6*NOISE_OFFSET, (double)z / NOISE_SCALE + 6*NOISE_OFFSET, false);
+                double d7 = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + 7*NOISE_OFFSET, (double)z / NOISE_SCALE + 7*NOISE_OFFSET, false);
+
+
+                //Universal Stones
+                int peridotiteHeights = 9;
+                replaceStone(reader, config, x, z, 0, geteHeights(d0, peridotiteHeights), ModBlocks.PERIDOTITE.getDefaultState());
+                
+                if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.OCEAN || reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.MUSHROOM) {
+                    int oGabbroHeights = 23;
+                    int oBasaltHeights = 38;
+                    int BasaltTuffHeight = 39;
+                    int oShaleHeights = 43;
+                    int oLimestoneHeights = 0;
+                    replaceStone(reader, config, x, z, geteHeights(d0, peridotiteHeights), geteHeights(d1, oGabbroHeights), ModBlocks.GABBRO.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d1, oGabbroHeights), geteHeights(d2, oBasaltHeights), ModBlocks.THOLEIITIC_BASALT.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d2, oBasaltHeights), geteHeights(d3, BasaltTuffHeight), ModBlocks.THOLEIITIC_BASALTIC_TUFF.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d3, BasaltTuffHeight), geteHeights(d4, oShaleHeights), ModBlocks.SHALE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d4, oShaleHeights), endY, ModBlocks.LIMESTONE.getDefaultState());
+                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.DESERT) {
+                    int sMarbleHeights = 18;
+                    int sGraniteHeights = 29;
+                    int sRhyoliteHeights = 37;
+                    int RhyoliteTuffHeight = 38;
+                    int sAnorthositeHeights = 48;
+                    int sLimestoneHeights = 54;
+                    int sBrecciaHeights = 55;
+                    int sSandstoneHeights = 0;
+                    replaceStone(reader, config, x, z, geteHeights(d0, peridotiteHeights), geteHeights(d1, sMarbleHeights), ModBlocks.MARBLE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d1, sMarbleHeights), geteHeights(d2, sGraniteHeights), ModBlocks.RED_GRANITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d2, sGraniteHeights), geteHeights(d3, sRhyoliteHeights), ModBlocks.RHYOLITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d3, sRhyoliteHeights), geteHeights(d7, RhyoliteTuffHeight), ModBlocks.RHYOLITIC_TUFF.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d7, RhyoliteTuffHeight), geteHeights(d4, sAnorthositeHeights), ModBlocks.ANORTHOSITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d4, sAnorthositeHeights), geteHeights(d5, sLimestoneHeights), ModBlocks.LIMESTONE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d5, sLimestoneHeights), geteHeights(d6, sBrecciaHeights), ModBlocks.BRECCIA.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d6, sBrecciaHeights), endY, Blocks.SANDSTONE.getDefaultState());
+                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.MESA) {
+                    int sMarbleHeights = 18;
+                    int sGraniteHeights = 29;
+                    int sRhyoliteHeights = 37;
+                    int RhyoliteTuffHeight = 38;
+                    int sAnorthositeHeights = 48;
+                    int sLimestoneHeights = 54;
+                    int sBrecciaHeights = 55;
+                    int sSandstoneHeights = 0;
+                    replaceStone(reader, config, x, z, geteHeights(d0, peridotiteHeights), geteHeights(d1, sMarbleHeights), ModBlocks.MARBLE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d1, sMarbleHeights), geteHeights(d2, sGraniteHeights), ModBlocks.RED_GRANITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d2, sGraniteHeights), geteHeights(d3, sRhyoliteHeights), ModBlocks.RHYOLITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d3, sRhyoliteHeights), geteHeights(d7, RhyoliteTuffHeight), ModBlocks.RHYOLITIC_TUFF.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d7, RhyoliteTuffHeight), geteHeights(d4, sAnorthositeHeights), ModBlocks.ANORTHOSITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d4, sAnorthositeHeights), geteHeights(d5, sLimestoneHeights), ModBlocks.LIMESTONE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d5, sLimestoneHeights), geteHeights(d6, sBrecciaHeights), ModBlocks.BRECCIA.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d6, sBrecciaHeights), endY, Blocks.RED_SANDSTONE.getDefaultState());
+                } else {
+                    int cGneissHeights = 16;
+                    int cSchistHeights = 23;
+                    int cGraniteHeights = 34;
+                    int cSlateHeights = 39;
+                    int cRhyoliteHeights = 48;
+                    int RhyoliteTuffHeight = 49;
+                    int AnorthositeHeight = 60;
+                    replaceStone(reader, config, x, z, geteHeights(d0, peridotiteHeights), geteHeights(d1, cGneissHeights), ModBlocks.GNEISS.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d1, cGneissHeights), geteHeights(d2, cSchistHeights), ModBlocks.SCHIST.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d2, cSchistHeights), geteHeights(d3, cGraniteHeights), ModBlocks.RED_GRANITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d3, cGraniteHeights), geteHeights(d4, cSlateHeights), ModBlocks.SLATE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d4, cSlateHeights), geteHeights(d5, cRhyoliteHeights), ModBlocks.RHYOLITE.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d5, cRhyoliteHeights), geteHeights(d6, RhyoliteTuffHeight), ModBlocks.RHYOLITIC_TUFF.getDefaultState());
+                    replaceStone(reader, config, x, z, geteHeights(d6, RhyoliteTuffHeight), geteHeights(d7, AnorthositeHeight), ModBlocks.ANORTHOSITE.getDefaultState());
+                    if (endY > 60 && endY < 68) {
+                        replaceStone(reader, config, x, z, geteHeights(d7, AnorthositeHeight), endY, ModBlocks.SHALE.getDefaultState());
+                    } else if (endY > 85) {
+                        replaceStone(reader, config, x, z, geteHeights(d7, AnorthositeHeight), endY, ModBlocks.HORNBLENDE_ANDESITE.getDefaultState());
+                    } else {
+                        replaceStone(reader, config, x, z, geteHeights(d5, cRhyoliteHeights), endY, ModBlocks.ANORTHOSITE.getDefaultState());
                     }
                 }
             }
         }
-
         return true;
     }
 
-
-    @Nonnull
-    private static BlockState getStone(int biome_type, int y, int endY) {
-        if (biome_type == 1) {
-            STONES = Arrays.asList(ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
-            int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 5.5) {
-                return STONES.get(5);
-            }
-            if (y >= endY - THICKNESS * 5.5 && y < endY - THICKNESS * 4.5) {
-                return STONES.get(4);
-            }
-            if (y >= endY - THICKNESS * 4.5 && y < endY - THICKNESS * 3.75) {
-                return STONES.get(3);
-            }
-            if (y >= endY - THICKNESS * 3.75 && y < endY - THICKNESS * 2.75) {
-                return STONES.get(2);
-            }
-            if (y >= endY - THICKNESS * 2.75 && y < endY - THICKNESS * 1.5) {
-                return STONES.get(1);
-            }
-            if (y >= endY - THICKNESS * 1.5 && y < endY) {
-                return STONES.get(0);
-            }
-        } else if (biome_type == 2) {
-            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.RED_GRANITE.getDefaultState(), ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
-            int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 7.5) {
-                return STONES.get(7);
-            }
-            if (y >= endY - THICKNESS *7.5 && y < endY - THICKNESS * 7.0) {
-                return STONES.get(6);
-            }
-            if (y >= endY - THICKNESS * 7.0 && y < endY - THICKNESS * 6.0) {
-                return STONES.get(5);
-            }
-            if (y >= endY - THICKNESS * 6.0 && y < endY - THICKNESS * 5.0) {
-                return STONES.get(4);
-            }
-            if (y >= endY - THICKNESS * 5.0 && y < endY - THICKNESS * 4.0) {
-                return STONES.get(3);
-            }
-            if (y >= endY - THICKNESS * 4.0 && y < endY - THICKNESS * 2.5) {
-                return STONES.get(2);
-            }
-            if (y >= endY - THICKNESS * 2.5 && y < endY - THICKNESS * 1.0) {
-                return STONES.get(1);
-            }
-            if (y >= endY - THICKNESS * 1.0 && y < endY) {
-                return STONES.get(0);
-            }
-        } else if (biome_type == 3) {
-            STONES = Arrays.asList(ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.RED_GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
-            int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 5.5) {
-                return STONES.get(5);
-            }
-            if (y >= endY - THICKNESS * 5.5 && y < endY - THICKNESS * 5.0) {
-                return STONES.get(4);
-            }
-            if (y >= endY - THICKNESS * 5.0 && y < endY - THICKNESS * 4.0) {
-                return STONES.get(3);
-            }
-            if (y >= endY - THICKNESS * 4.0 && y < endY - THICKNESS * 3.5) {
-                return STONES.get(2);
-            }
-            if (y >= endY - THICKNESS * 3.5 && y < endY - THICKNESS * 2.5) {
-                return STONES.get(1);
-            }
-            if (y >= endY - THICKNESS * 2.5 && y < endY) {
-                return STONES.get(0);
-            }
-        } else {
-            STONES = Arrays.asList(ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.HORNBLENDE_ANDESITE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.RED_GRANITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.PERIDOTITE.getDefaultState());
-            int THICKNESS = endY / STONES.size();
-            if (y >= 0 && y < endY - THICKNESS * 8.5) {
-                return STONES.get(8);
-            }
-            if (y >= endY - THICKNESS * 8.5 && y < endY - THICKNESS * 7.5) {
-                return STONES.get(7);
-            }
-            if (y >= endY - THICKNESS * 7.5 && y < endY - THICKNESS * 7.0) {
-                return STONES.get(6);
-            }
-            if (y >= endY - THICKNESS * 7.0 && y < endY - THICKNESS * 6.0) {
-                return STONES.get(5);
-            }
-            if (y >= endY - THICKNESS * 6.0 && y < endY - THICKNESS * 4.5) {
-                return STONES.get(4);
-            }
-            if (y >= endY - THICKNESS * 4.5 && y < endY - THICKNESS * 3.5) {
-                return STONES.get(3);
-            }
-            if (y >= endY - THICKNESS * 3.5 && y < endY - THICKNESS * 3.0) {
-                return STONES.get(2);
-            }
-            if (y >= endY - THICKNESS * 3.0 && y < endY - THICKNESS * 1.75) {
-                return STONES.get(1);
-            }
-            if (y >= endY - THICKNESS * 1.75 && y < endY) {
-                return STONES.get(0);
-            }
-        }
-        return ModBlocks.ANORTHOSITE.getDefaultState();
+    private static int geteHeights(double noise, int height) {
+        return height + (int) Math.round((noise/0.2D));
     }
 
-
+    private static void replaceStone(ISeedReader reader, StoneReplacerFeatureConfig config, int x, int z, int StartY, int EndY, BlockState Block) {
+        for (int y = StartY; y <= EndY; ++y) {
+            if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                reader.setBlockState(new BlockPos(x, y, z), Block, 2);
+            }
+        }
+    }
+    
 }

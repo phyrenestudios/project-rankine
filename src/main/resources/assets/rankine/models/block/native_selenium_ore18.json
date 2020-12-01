@@ -1,9 +1,9 @@
 {
           "parent": "block/block",
           "textures": {
-            "base": "rankine:block/peridotite",
+            "base": "rankine:block/marble",
             "overlay": "rankine:block/native_selenium_ore",
-            "particle": "rankine:block/peridotite"
+            "particle": "rankine:block/marble"
           },
           "elements": [
             {   "from": [ 0, 0, 0 ],

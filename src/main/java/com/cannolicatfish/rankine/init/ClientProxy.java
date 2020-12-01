@@ -79,6 +79,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.NATIVE_LEAD_ORE,
                 ModBlocks.NATIVE_SILVER_ORE,
                 ModBlocks.PENTLANDITE_ORE,
+                ModBlocks.INTERSPINIFEX_ORE,
                 ModBlocks.PLUMBAGO_ORE,
                 ModBlocks.PYROLUSITE_ORE,
                 ModBlocks.FLUORITE_ORE,
@@ -96,6 +97,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.XENOTIME_ORE,
                 ModBlocks.STIBNITE_ORE,
                 ModBlocks.URANINITE_ORE,
+                ModBlocks.PETALITE_ORE,
+                ModBlocks.COBALTITE_ORE,
 
                 ModBlocks.LEAD_GLASS,
                 ModBlocks.ETCHED_GLASS0,
