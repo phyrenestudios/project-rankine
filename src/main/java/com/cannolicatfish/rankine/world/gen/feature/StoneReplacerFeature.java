@@ -79,8 +79,8 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                     int sRhyoliteHeights = 37;
                     int RhyoliteTuffHeight = 38;
                     int sAnorthositeHeights = 48;
-                    int sLimestoneHeights = 54;
-                    int sBrecciaHeights = 55;
+                    int sLimestoneHeights = 60;
+                    int sBrecciaHeights = 61;
                     int sSandstoneHeights = 0;
                     replaceStone(reader, config, x, z, geteHeights(d0, peridotiteHeights), geteHeights(d1, sMarbleHeights), ModBlocks.MARBLE.getDefaultState());
                     replaceStone(reader, config, x, z, geteHeights(d1, sMarbleHeights), geteHeights(d2, sGraniteHeights), ModBlocks.RED_GRANITE.getDefaultState());
@@ -96,8 +96,8 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
                     int sRhyoliteHeights = 37;
                     int RhyoliteTuffHeight = 38;
                     int sAnorthositeHeights = 48;
-                    int sLimestoneHeights = 54;
-                    int sBrecciaHeights = 55;
+                    int sLimestoneHeights = 60;
+                    int sBrecciaHeights = 61;
                     int sSandstoneHeights = 0;
                     replaceStone(reader, config, x, z, geteHeights(d0, peridotiteHeights), geteHeights(d1, sMarbleHeights), ModBlocks.MARBLE.getDefaultState());
                     replaceStone(reader, config, x, z, geteHeights(d1, sMarbleHeights), geteHeights(d2, sGraniteHeights), ModBlocks.RED_GRANITE.getDefaultState());

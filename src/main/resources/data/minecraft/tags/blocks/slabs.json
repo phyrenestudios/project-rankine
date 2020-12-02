@@ -22,6 +22,10 @@
     "rankine:perovskite_slab",
     "rankine:pumice_slab",
     "rankine:scoria_slab",
+    "rankine:slate_slab",
+    "rankine:gabbro_slab",
+    "rankine:schist_slab",
+    "rankine:breccia_slab",
     "rankine:polished_red_granite_slab",
     "rankine:polished_granodiorite_slab",
     "rankine:polished_hornblende_andesite_slab",
@@ -43,9 +47,14 @@
     "rankine:polished_perovskite_slab",
     "rankine:polished_pumice_slab",
     "rankine:polished_scoria_slab",
+    "rankine:polished_slate_slab",
+    "rankine:polished_gabbro_slab",
+    "rankine:polished_schist_slab",
+    "rankine:polished_breccia_slab",
     "rankine:granite_bricks_slab",
     "rankine:diorite_bricks_slab",
     "rankine:andesite_bricks_slab",
+    "rankine:basalt_bricks_slab",
     "rankine:red_granite_bricks_slab",
     "rankine:granodiorite_bricks_slab",
     "rankine:hornblende_andesite_bricks_slab",
@@ -66,6 +75,10 @@
     "rankine:ferropericlase_bricks_slab",
     "rankine:perovskite_bricks_slab",
     "rankine:pumice_bricks_slab",
-    "rankine:scoria_bricks_slab"
+    "rankine:scoria_bricks_slab",
+    "rankine:slate_bricks_slab",
+    "rankine:gabbro_bricks_slab",
+    "rankine:schist_bricks_slab",
+    "rankine:breccia_bricks_slab"
   ]
 }

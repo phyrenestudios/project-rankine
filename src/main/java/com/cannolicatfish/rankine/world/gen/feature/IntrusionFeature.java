@@ -40,7 +40,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         if (CHANCE < 0.1) {
             INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
             endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ())-20;
-            radius = 5-rand.nextInt(2);
+            radius = 7-rand.nextInt(2);
         } else if (CHANCE < 0.14) {
             INTRUSION = ModBlocks.GRANODIORITE.getDefaultState();
             endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
@@ -60,7 +60,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos) == config.target) {
-                            if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState() && y <= 25) {
+                            if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState() && y <= 30) {
                                 if (rand.nextFloat() < 0.06F) {
                                     reader.setBlockState(blockpos, ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
                                 } else if (rand.nextFloat() < 0.075F) {

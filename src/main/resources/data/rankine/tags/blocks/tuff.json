@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:andesitic_tuff",
+    "rankine:tholeiitic_basaltic_tuff",
+    "rankine:rhyolitic_tuff"
+  ]
+}

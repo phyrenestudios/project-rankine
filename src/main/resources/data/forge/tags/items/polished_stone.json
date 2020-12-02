@@ -21,6 +21,10 @@
     "rankine:polished_wadsleyite",
     "rankine:polished_ferropericlase",
     "rankine:polished_bridgmanite",
-    "rankine:polished_perovskite"
+    "rankine:polished_perovskite",
+    "rankine:polished_schist",
+    "rankine:polished_slate",
+    "rankine:polished_gabbro",
+    "rankine:polished_breccia"
   ]
 }

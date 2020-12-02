@@ -22,9 +22,14 @@
     "rankine:perovskite_pressure_plate",
     "rankine:pumice_pressure_plate",
     "rankine:scoria_pressure_plate",
+    "rankine:slate_pressure_plate",
+    "rankine:gabbro_pressure_plate",
+    "rankine:schist_pressure_plate",
+    "rankine:breccia_pressure_plate",
     "rankine:granite_bricks_pressure_plate",
     "rankine:diorite_bricks_pressure_plate",
     "rankine:andesite_bricks_pressure_plate",
+    "rankine:basalt_bricks_pressure_plate",
     "rankine:red_granite_bricks_pressure_plate",
     "rankine:granodiorite_bricks_pressure_plate",
     "rankine:hornblende_andesite_bricks_pressure_plate",
@@ -45,6 +50,10 @@
     "rankine:ferropericlase_bricks_pressure_plate",
     "rankine:perovskite_bricks_pressure_plate",
     "rankine:pumice_bricks_pressure_plate",
-    "rankine:scoria_bricks_pressure_plate"
+    "rankine:scoria_bricks_pressure_plate",
+    "rankine:slate_bricks_pressure_plate",
+    "rankine:gabbro_bricks_pressure_plate",
+    "rankine:schist_bricks_pressure_plate",
+    "rankine:breccia_bricks_pressure_plate"
   ]
 }

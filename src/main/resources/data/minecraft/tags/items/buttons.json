@@ -21,6 +21,10 @@
     "rankine:ferropericlase_button",
     "rankine:perovskite_button",
     "rankine:pumice_button",
-    "rankine:scoria_button"
+    "rankine:scoria_button",
+    "rankine:slate_button",
+    "rankine:gabbro_button",
+    "rankine:schist_button",
+    "rankine:breccia_button"
   ]
 }

@@ -1,0 +1,8 @@
+{
+      "parent": "block/stairs",
+      "textures": {
+        "bottom": "rankine:block/breccia",
+        "top": "rankine:block/breccia",
+        "side": "rankine:block/breccia"
+      }
+    }

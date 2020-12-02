@@ -22,6 +22,10 @@
     "rankine:perovskite_stairs",
     "rankine:pumice_stairs",
     "rankine:scoria_stairs",
+    "rankine:slate_stairs",
+    "rankine:gabbro_stairs",
+    "rankine:schist_stairs",
+    "rankine:breccia_stairs",
     "rankine:polished_red_granite_stairs",
     "rankine:polished_granodiorite_stairs",
     "rankine:polished_hornblende_andesite_stairs",
@@ -43,9 +47,14 @@
     "rankine:polished_perovskite_stairs",
     "rankine:polished_pumice_stairs",
     "rankine:polished_scoria_stairs",
+    "rankine:polished_slate_stairs",
+    "rankine:polished_gabbro_stairs",
+    "rankine:polished_schist_stairs",
+    "rankine:polished_breccia_stairs",
     "rankine:granite_bricks_stairs",
     "rankine:diorite_bricks_stairs",
     "rankine:andesite_bricks_stairs",
+    "rankine:basalt_bricks_stairs",
     "rankine:red_granite_bricks_stairs",
     "rankine:granodiorite_bricks_stairs",
     "rankine:hornblende_andesite_bricks_stairs",
@@ -66,6 +75,10 @@
     "rankine:ferropericlase_bricks_stairs",
     "rankine:perovskite_bricks_stairs",
     "rankine:pumice_bricks_stairs",
-    "rankine:scoria_bricks_stairs"
+    "rankine:scoria_bricks_stairs",
+    "rankine:slate_bricks_stairs",
+    "rankine:gabbro_bricks_stairs",
+    "rankine:schist_bricks_stairs",
+    "rankine:breccia_bricks_stairs"
   ]
 }

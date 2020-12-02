@@ -358,6 +358,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("perovskite_bricks_crushing",ModBlocks.PEROVSKITE_BRICKS.asItem(), new ItemStack(ModItems.CALCIUM_SILICATE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
         recipes.add(crushingRecipe("pumice_bricks_crushing",ModBlocks.PUMICE_BRICKS.asItem(),new ItemStack(ModItems.POZZOLAN, 2), new ItemStack(ModItems.FELDSPAR), 0.1f));
         recipes.add(crushingRecipe("scoria_bricks_crushing",ModBlocks.SCORIA_BRICKS.asItem(),new ItemStack(ModItems.POZZOLAN, 2), new ItemStack(ModItems.FELDSPAR), 0.1f));
+        recipes.add(crushingRecipe("phosphorite_crushing",ModBlocks.PHOSPHORITE.asItem(),new ItemStack(ModItems.PHOSPHORUS, 1), new ItemStack(ModItems.PHOSPHORUS), 0.1f));
 
         //Mod Ores
         recipes.add(crushingRecipe("magnetite_ore_crushing",ModBlocks.MAGNETITE_ORE.asItem(), new ItemStack(ModItems.MAGNETITE,1), new ItemStack(ModItems.CHROMITE,1),0.1f));
@@ -377,6 +378,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("ilmenite_ore_crushing",ModBlocks.ILMENITE_ORE.asItem(), new ItemStack(ModItems.TITANIA,1), new ItemStack(ModItems.MALACHITE,1),0.1f));
         recipes.add(crushingRecipe("molybdenite_ore_crushing",ModBlocks.MOLYBDENITE_ORE.asItem(), new ItemStack(ModItems.MOLYBDENITE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
         recipes.add(crushingRecipe("chromite_ore_crushing",ModBlocks.CHROMITE_ORE.asItem(), new ItemStack(ModItems.CHROMITE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
+        recipes.add(crushingRecipe("celestine_ore_crushing",ModBlocks.CELESTINE_ORE.asItem(), new ItemStack(ModItems.CELESTINE,1), new ItemStack(ModItems.SALT,1),0.1f));
         recipes.add(crushingRecipe("columbite_ore_crushing",ModBlocks.COLUMBITE_ORE.asItem(), new ItemStack(ModItems.COLUMBITE,1), new ItemStack(ModItems.TANTALITE,1),0.1f));
         recipes.add(crushingRecipe("tantalite_ore_crushing",ModBlocks.TANTALITE_ORE.asItem(), new ItemStack(ModItems.TANTALITE,1), new ItemStack(ModItems.COLUMBITE,1),0.1f));
         recipes.add(crushingRecipe("wolframite_ore_crushing",ModBlocks.WOLFRAMITE_ORE.asItem(), new ItemStack(ModItems.WOLFRAMITE,1), new ItemStack(ModItems.CASSITERITE,1),0.2f));
@@ -392,7 +394,6 @@ public class ModRecipes {
         recipes.add(crushingRecipe("sub_bituminous_coal_crushing",ModItems.SUBBITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.4f));
         recipes.add(crushingRecipe("bituminous_coal_crushing",ModItems.BITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("anthracite_crushing",ModItems.ANTHRACITE_COAL, new ItemStack(Items.COAL,2), new ItemStack(ModItems.SULFUR,1),0.1f));
-        recipes.add(crushingRecipe("chromite_ore_crushing",ModBlocks.CHROMITE_ORE.asItem(),new ItemStack(ModItems.CHROMITE),new ItemStack(ModItems.MAGNETITE), 0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
         recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("kamacite_crushing",ModBlocks.KAMACITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));

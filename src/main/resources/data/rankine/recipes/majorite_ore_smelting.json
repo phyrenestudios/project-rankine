@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:majorite_ore"
+  },
+  "result": "rankine:garnet",
+  "experience": 1.0,
+  "cookingtime": 200
+}

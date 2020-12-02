@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:breccia_bricks"
+        }
+      },
+      "result": {
+        "item": "rankine:breccia_bricks_slab",
+        "count": 6
+      }
+    }
