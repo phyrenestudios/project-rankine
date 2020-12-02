@@ -11,7 +11,7 @@ public class BoronElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return (int) Math.round(50*Math.log(x));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class BoronElement implements ElementInterface {
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/100f;
     }
 
     @Override

@@ -13,6 +13,8 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ITagCollection;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -204,7 +206,15 @@ public class ModRecipes {
         List<Item> list = new ArrayList<>();
         for (ResourceLocation i : rs)
         {
-            list.addAll(ItemTags.getCollection().get(i).getAllElements());
+            ITag<Item> d = ItemTags.getCollection().get(i);
+            if (d != null)
+            {
+                list.addAll(d.getAllElements());
+            } /* else
+            {
+                System.out.println("TAG at ResourceLocation " + i + " does not exist.");
+            }*/
+
         }
         ItemStack[] result = new ItemStack[list.size()];
         if (!list.isEmpty())
