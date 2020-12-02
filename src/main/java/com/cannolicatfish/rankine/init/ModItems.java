@@ -600,6 +600,8 @@ public class ModItems {
     public static final Item BATTERY = add("battery0", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_INDEXER = add("element_indexer", new ElementIndexerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item HARDNESS_TESTER = add("hardness_tester", new ItemHardnessTester(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item ORE_CYCLER = add("ore_cycler", new ItemOreCycler(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
     @ObjectHolder("rankine:elderberries")

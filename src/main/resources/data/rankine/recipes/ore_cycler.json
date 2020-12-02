@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "ppp",
+    "r s",
+    "ppp"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "rankine:ruby"
+    },
+    "p":
+    {
+      "item": "rankine:pewter_alloy"
+    },
+    "s":
+    {
+      "item": "rankine:sapphire"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:ore_cycler",
+    "count": 1
+  }
+}
