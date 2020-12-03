@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.mojang.serialization.Codec;
@@ -28,7 +29,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
         BlockState INTRUSION = null;
 
         int endY = 45 + rand.nextInt(40);
-        int radius = 7-rand.nextInt(4);
+        int radius = 6-rand.nextInt(4);
 
         if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:warped_forest"))) {
             if (STONE < 0.06) {
@@ -64,7 +65,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos) != Blocks.BEDROCK.getDefaultState()) {
                             if (INTRUSION == ModBlocks.KOMATIITE.getDefaultState()) {
-                                if (rand.nextFloat() < 0.04F) {
+                                if (rand.nextFloat() < Config.INTERSPINIFEX_CHANCE.get().floatValue()) {
                                     reader.setBlockState(blockpos, ModBlocks.INTERSPINIFEX_ORE.getDefaultState().with(RankineOre.TYPE, 29), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);
@@ -75,8 +76,11 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         }
                     }
                 }
-                if (rand.nextFloat() < 0.15) {
+                if (rand.nextFloat() < 0.1) {
                     radius -= 1;
+                    if (radius <= 0) {
+                        break;
+                    }
                 }
             }
             for (int y = endY; y <= 127; ++y) {
@@ -84,7 +88,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos) != Blocks.BEDROCK.getDefaultState()) {
                             if (INTRUSION == ModBlocks.KOMATIITE.getDefaultState()) {
-                                if (rand.nextFloat() < 0.04F) {
+                                if (rand.nextFloat() < Config.INTERSPINIFEX_CHANCE.get().floatValue()) {
                                     reader.setBlockState(blockpos, ModBlocks.INTERSPINIFEX_ORE.getDefaultState().with(RankineOre.TYPE, 29), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);
@@ -95,7 +99,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         }
                     }
                 }
-                if (rand.nextFloat() < 0.075) {
+                if (rand.nextFloat() < 0.08) {
                     radius += 1;
                 }
             }

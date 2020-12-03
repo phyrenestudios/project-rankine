@@ -40,7 +40,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.GRANITE || block == Blocks.DIORITE || block == Blocks.ANDESITE || block == ModBlocks.RED_GRANITE || block == ModBlocks.HORNBLENDE_ANDESITE || block == ModBlocks.GRANODIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.THOLEIITIC_BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.GABBRO || block == ModBlocks.SHALE || block == ModBlocks.SLATE || block == ModBlocks.SCHIST || block == ModBlocks.BRECCIA || block == ModBlocks.PERIDOTITE;
+                return block == Blocks.GRANITE || block == Blocks.DIORITE || block == Blocks.ANDESITE || block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == ModBlocks.RED_GRANITE || block == ModBlocks.HORNBLENDE_ANDESITE || block == ModBlocks.GRANODIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.THOLEIITIC_BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.GABBRO || block == ModBlocks.SHALE || block == ModBlocks.SLATE || block == ModBlocks.SCHIST || block == ModBlocks.BRECCIA || block == ModBlocks.PERIDOTITE;
             }
         }),
         NO_P("no_per", (blockstate) -> {
@@ -129,6 +129,14 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             } else {
                 Block block = blockstate.getBlock();
                 return block == Blocks.END_STONE;
+            }
+        }),
+        NK_B("nk_b", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block == Blocks.NETHERRACK || block == Blocks.BASALT;
             }
         }),
         NETHERRACK("netherrack", (blockstate) -> {

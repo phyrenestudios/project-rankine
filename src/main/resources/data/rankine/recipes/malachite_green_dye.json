@@ -3,11 +3,11 @@
   "group": "white_dye",
   "ingredients": [
     {
-      "item": "rankine:titania"
+      "item": "rankine:malachite"
     }
   ],
   "result": {
-    "item": "minecraft:white_dye",
+    "item": "minecraft:green_dye",
     "count": 4
   }
 }

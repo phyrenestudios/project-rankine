@@ -265,11 +265,11 @@ public class ModFeatures {
             new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, Config.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     public static final ConfiguredFeature<?, ?> GRAVEL_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.GRAVEL.getDefaultState(), FeatureSpread.func_242253_a(2,5), 2,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> SAND_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.SAND.getDefaultState(), FeatureSpread.func_242253_a(2,3), 2,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> CLAY_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.CLAY.getDefaultState(), FeatureSpread.func_242253_a(2,2), 1,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> ORE_ALLUVIUM = Feature.DISK.withConfiguration(new SphereReplaceConfig(ModBlocks.ALLUVIUM.getDefaultState(), FeatureSpread.func_242253_a(1,2), 1,
             Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRASS_BLOCK.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
 
@@ -285,8 +285,15 @@ public class ModFeatures {
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(64, 0, 128))).square().func_242731_b(2);
     public static final ConfiguredFeature<?,?> ORE_NODULE = new ModularOreFeature(OreFeatureConfig.CODEC, ModBlocks.LIMESTONE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.LIMESTONE_NODULE.getDefaultState(), 6))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(31, 0, 70))).square().func_242731_b(20);
+    public static final ConfiguredFeature<?,?> ORE_IRONSTONE = new ModularOreFeature(OreFeatureConfig.CODEC, Blocks.SANDSTONE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.IRONSTONE.getDefaultState(), 50))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(60, 0, 128))).square().func_242731_b(5);
+    public static final ConfiguredFeature<?,?> ORE_IRONSTONE_RED = new ModularOreFeature(OreFeatureConfig.CODEC, Blocks.RED_SANDSTONE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.IRONSTONE.getDefaultState(), 50))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(60, 0, 128))).square().func_242731_b(5);
+    public static final ConfiguredFeature<?,?> ORE_OPAL = new ModularOreFeature(OreFeatureConfig.CODEC, ModBlocks.IRONSTONE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.OPAL_ORE.getDefaultState().with(RankineOre.TYPE, 23), 10))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(60, 0, 128))).square().func_242731_b(30);
     public static final ConfiguredFeature<?,?> ORE_PHOSPHORITE = new ModularOreFeature(OreFeatureConfig.CODEC, Blocks.SANDSTONE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.PHOSPHORITE.getDefaultState(), 20))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(60, 0, 128))).square().func_242731_b(10);
+
 
 
     //public static final ConfiguredFeature<?,?> ORE_IRONSTONE = MULTI_RANKINE_ORE.withConfiguration(new RankineMultiOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.SANDSTONE, ModBlocks.IRONSTONE.getStateContainer().getBaseState(), 40, 0.3f))
@@ -308,6 +315,8 @@ public class ModFeatures {
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.NATIVE_GOLD_ORE_MIN_HEIGHT.get(), 0, Config.NATIVE_GOLD_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.NATIVE_GOLD_ORE_COUNT.get());
     public static final ConfiguredFeature<?,?> ORE_STIBNITE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD, ModBlocks.STIBNITE_ORE.getStateContainer().getBaseState(), Config.STIBNITE_ORE_SIZE.get()))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.STIBNITE_ORE_MIN_HEIGHT.get(), 0, Config.STIBNITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.STIBNITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_NATIVE_BISMUTH = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD, ModBlocks.NATIVE_BISMUTH_ORE.getStateContainer().getBaseState(), Config.NATIVE_BISMUTH_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.NATIVE_BISMUTH_ORE_MIN_HEIGHT.get(), 0, Config.NATIVE_BISMUTH_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.NATIVE_BISMUTH_ORE_COUNT.get());
 
     // COAL ORES
     public static final ConfiguredFeature<?,?> ORE_LIGNITE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.OVERWORLD, ModBlocks.LIGNITE_ORE.getStateContainer().getBaseState(), Config.LIGNITE_ORE_SIZE.get()))
@@ -348,6 +357,8 @@ public class ModFeatures {
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.CHROMITE_ORE_MIN_HEIGHT.get(), 0, Config.CHROMITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.CHROMITE_ORE_COUNT.get());
     public static final ConfiguredFeature<?,?> ORE_CELESTINE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.SEDIMENTARY, ModBlocks.CELESTINE_ORE.getStateContainer().getBaseState(), Config.CELESTINE_ORE_SIZE.get()))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.CELESTINE_ORE_MIN_HEIGHT.get(), 0, Config.CELESTINE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.CELESTINE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_VANADINITE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NO_SPM, ModBlocks.VANADINITE_ORE.getStateContainer().getBaseState(), Config.VANADINITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.VANADINITE_ORE_MIN_HEIGHT.get(), 0, Config.VANADINITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.VANADINITE_ORE_COUNT.get());
 
 
     // MISC ORES
@@ -368,33 +379,30 @@ public class ModFeatures {
 
 
     // NETHER ORES
-    public static final ConfiguredFeature<?,?> ORE_NATIVE_ARSENIC_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.NATIVE_ARSENIC_ORE.getStateContainer().getBaseState(), 6))
-                .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(20);
-    public static final ConfiguredFeature<?,?> ORE_NATIVE_SULFUR_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.NATIVE_SULFUR_ORE.getStateContainer().getBaseState(), 6))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(20);
-    public static final ConfiguredFeature<?,?> ORE_NATIVE_BISMUTH_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.NATIVE_BISMUTH_ORE.getStateContainer().getBaseState(), 6))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(20);
-    public static final ConfiguredFeature<?,?> ORE_NATIVE_GOLD_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.NATIVE_GOLD_ORE.getStateContainer().getBaseState(), 10))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(15);
-    public static final ConfiguredFeature<?,?> ORE_QUARTZ_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.QUARTZ_ORE.getStateContainer().getBaseState(), 20))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(11);
-    public static final ConfiguredFeature<?,?> ORE_ANTHRACITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.ANTHRACITE_ORE.getStateContainer().getBaseState(), 15))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(8);
-    public static final ConfiguredFeature<?,?> ORE_COLUMBITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.COLUMBITE_ORE.getStateContainer().getBaseState(), 15))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(4);
-    public static final ConfiguredFeature<?,?> ORE_TANTALITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.TANTALITE_ORE.getStateContainer().getBaseState(), 15))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(4);
-    public static final ConfiguredFeature<?,?> ORE_GREENOCKITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.ANTHRACITE_ORE.getStateContainer().getBaseState(), 15))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(4);
-    public static final ConfiguredFeature<?,?> ORE_ILMENITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.ILMENITE_ORE.getStateContainer().getBaseState(), 20))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(6);
-    public static final ConfiguredFeature<?,?> ORE_WOLFRAMITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.WOLFRAMITE_ORE.getStateContainer().getBaseState(), 20))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(6);
-    public static final ConfiguredFeature<?,?> ORE_MOISSANITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.MOISSANITE_ORE.getStateContainer().getBaseState(), 20))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(4);
-    public static final ConfiguredFeature<?,?> ORE_SPERRYLITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.SPERRYLITE_ORE.getStateContainer().getBaseState(), 20))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 128))).square().func_242731_b(8);
-
+    public static final ConfiguredFeature<?,?> ORE_NATIVE_ARSENIC_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NK_B, ModBlocks.NATIVE_ARSENIC_ORE.getStateContainer().getBaseState(), Config.NATIVE_ARSENIC_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.NATIVE_ARSENIC_ORE_MIN_HEIGHT.get(), 0, Config.NATIVE_ARSENIC_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.NATIVE_ARSENIC_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_NATIVE_SULFUR_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NK_B, ModBlocks.NATIVE_SULFUR_ORE.getStateContainer().getBaseState(), Config.NATIVE_SULFUR_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.NATIVE_SULFUR_ORE_MIN_HEIGHT.get(), 0, Config.NATIVE_SULFUR_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.NATIVE_SULFUR_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_ANTHRACITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NK_B, ModBlocks.ANTHRACITE_ORE.getStateContainer().getBaseState(), Config.ANTHRACITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.ANTHRACITE_ORE_MIN_HEIGHT.get(), 0, Config.ANTHRACITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.ANTHRACITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_BISMUTHINITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.BISMUTHINITE_ORE.getStateContainer().getBaseState(), Config.BISMUTHINITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.BISMUTHINITE_ORE_MIN_HEIGHT.get(), 0, Config.BISMUTHINITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.BISMUTHINITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_GREENOCKITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.GREENOCKITE_ORE.getStateContainer().getBaseState(), Config.GREENOCKITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.GREENOCKITE_ORE_MIN_HEIGHT.get(), 0, Config.GREENOCKITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.GREENOCKITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_COLUMBITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.COLUMBITE_ORE.getStateContainer().getBaseState(), Config.COLUMBITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.COLUMBITE_ORE_MIN_HEIGHT.get(), 0, Config.COLUMBITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.COLUMBITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_TANTALITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.TANTALITE_ORE.getStateContainer().getBaseState(), Config.TANTALITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.TANTALITE_ORE_MIN_HEIGHT.get(), 0, Config.TANTALITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.TANTALITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_MOISSANITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.MOISSANITE_ORE.getStateContainer().getBaseState(), Config.MOISSANITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.MOISSANITE_ORE_MIN_HEIGHT.get(), 0, Config.MOISSANITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.MOISSANITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_ILMENITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.ILMENITE_ORE.getStateContainer().getBaseState(), Config.ILMENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.ILMENITE_ORE_MIN_HEIGHT.get(), 0, Config.ILMENITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.ILMENITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_WOLFRAMITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.WOLFRAMITE_ORE.getStateContainer().getBaseState(), Config.WOLFRAMITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.WOLFRAMITE_ORE_MIN_HEIGHT.get(), 0, Config.WOLFRAMITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.WOLFRAMITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_SPERRYLITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.SPERRYLITE_ORE.getStateContainer().getBaseState(), Config.SPERRYLITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.SPERRYLITE_ORE_MIN_HEIGHT.get(), 0, Config.SPERRYLITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.SPERRYLITE_ORE_COUNT.get());
+    public static final ConfiguredFeature<?,?> ORE_COBALTITE_NETHER = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NETHERRACK, ModBlocks.COBALTITE_ORE.getStateContainer().getBaseState(), Config.COBALTITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(Config.COBALTITE_ORE_MIN_HEIGHT.get(), 0, Config.COBALTITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(Config.COBALTITE_ORE_COUNT.get());
 
 
     // END ORES

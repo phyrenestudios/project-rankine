@@ -56,7 +56,7 @@ public class RankineOre extends Block {
             return MathHelper.nextInt(rand, 1, 4);
         } else if (this == ModBlocks.MOISSANITE_ORE || this == ModBlocks.FLUORITE_ORE ||this == ModBlocks.ANTHRACITE_ORE || this == ModBlocks.BITUMINOUS_ORE || this == ModBlocks.QUARTZ_ORE || this == ModBlocks.LAZURITE_ORE || this == ModBlocks.NATIVE_INDIUM_ORE || this == ModBlocks.NATIVE_GALLIUM_ORE || this == ModBlocks.NATIVE_SELENIUM_ORE || this == ModBlocks.NATIVE_TELLURIUM_ORE) {
             return MathHelper.nextInt(rand, 2, 5);
-        } else if (this == ModBlocks.EMERALD_ORE || this == ModBlocks.AQUAMARINE_ORE || this == ModBlocks.DIAMOND_ORE || this == ModBlocks.OPAL_ORE || this == ModBlocks.PLUMBAGO_ORE) {
+        } else if (this == ModBlocks.MAJORITE_ORE || this == ModBlocks.EMERALD_ORE || this == ModBlocks.AQUAMARINE_ORE || this == ModBlocks.DIAMOND_ORE || this == ModBlocks.OPAL_ORE || this == ModBlocks.PLUMBAGO_ORE) {
             return MathHelper.nextInt(rand, 3, 7);
         } else {
             return this == Blocks.NETHER_GOLD_ORE ? MathHelper.nextInt(rand, 0, 1) : 0;
