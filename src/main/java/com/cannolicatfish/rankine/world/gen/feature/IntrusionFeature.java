@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.RankineOre;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.mojang.serialization.Codec;
@@ -61,9 +62,9 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos) == config.target) {
                             if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState() && y <= 30) {
-                                if (rand.nextFloat() < 0.06F) {
+                                if (rand.nextFloat() < Config.DIAMON_CHANCE.get().floatValue()) {
                                     reader.setBlockState(blockpos, ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
-                                } else if (rand.nextFloat() < 0.075F) {
+                                } else if (rand.nextFloat() < Config.DIAMON_CHANCE.get().floatValue()+Config.ILMENITE_CHANCE.get().floatValue()) {
                                     reader.setBlockState(blockpos, ModBlocks.ILMENITE_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);

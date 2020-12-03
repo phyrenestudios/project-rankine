@@ -3,11 +3,11 @@
   "group": "white_dye",
   "ingredients": [
     {
-      "item": "rankine:titania"
+      "item": "rankine:chromite"
     }
   ],
   "result": {
-    "item": "minecraft:white_dye",
+    "item": "minecraft:yellow_dye",
     "count": 4
   }
 }

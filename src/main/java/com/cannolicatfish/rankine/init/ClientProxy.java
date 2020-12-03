@@ -99,6 +99,10 @@ public class ClientProxy implements IProxy {
                 ModBlocks.URANINITE_ORE,
                 ModBlocks.PETALITE_ORE,
                 ModBlocks.COBALTITE_ORE,
+                ModBlocks.MAJORITE_ORE,
+                ModBlocks.CELESTINE_ORE,
+
+
 
                 ModBlocks.LEAD_GLASS,
                 ModBlocks.ETCHED_GLASS0,
