@@ -23,7 +23,7 @@ public class ItemOreCycler extends Item {
         {
             RankineOre blockIn = (RankineOre) worldIn.getBlockState(context.getPos()).getBlock();
             int x = worldIn.getBlockState(context.getPos()).get(RankineOre.TYPE) + 1;
-            if (x >= 28)
+            if (x >= 35)
             {
                 x = 0;
             }

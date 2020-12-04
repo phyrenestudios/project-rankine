@@ -21,6 +21,7 @@ import javax.swing.*;
 
 public class ItemGoldPan extends Item {
     WeightedCollection<ItemStack> ALLUVIUM = returnAlluviumCollection();
+    WeightedCollection<ItemStack> BLACK_SAND = returnBlackSandCollection();
     public ItemGoldPan(Properties properties) {
         super(properties);
     }
@@ -38,7 +39,13 @@ public class ItemGoldPan extends Item {
             world.removeBlock(pos, false);
 
             if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) {
-                ItemStack stack = ALLUVIUM.getRandomElement();
+                ItemStack stack;
+                if (world.getBlockState(pos).getBlock() == ModBlocks.ALLUVIUM)
+                {
+                    stack = ALLUVIUM.getRandomElement();
+                } else {
+                    stack = BLACK_SAND.getRandomElement();
+                }
                 double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
@@ -55,29 +62,43 @@ public class ItemGoldPan extends Item {
         return ActionResultType.FAIL;
     }
 
-    private WeightedCollection<ItemStack> returnAlluviumCollection(){
+    public static WeightedCollection<ItemStack> returnAlluviumCollection(){
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(Items.DIAMOND));
+        col.add(1.5f,new ItemStack(ModItems.RUBY));
+        col.add(1.5f,new ItemStack(ModItems.SAPPHIRE));
+        col.add(1.5f,new ItemStack(ModItems.PERIDOT));
+        col.add(2,new ItemStack(ModItems.SAMARIUM_MONAZITE));
+        col.add(2,new ItemStack(ModItems.ZIRCON));
+        col.add(3,new ItemStack(ModItems.CERIUM_MONAZITE));
+        col.add(5,new ItemStack(ModItems.IRIDIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.OSMIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.RHODIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.RUTHENIUM_NUGGET,3));
+        col.add(5,new ItemStack(ModItems.PLATINUM_NUGGET,3));
+        col.add(6,new ItemStack(ModItems.TIN_NUGGET,3));
+        col.add(8,new ItemStack(Items.GOLD_NUGGET,6));
+        col.add(10,new ItemStack(Items.CLAY_BALL,2));
+        return col;
+    }
+
+    public static WeightedCollection<ItemStack> returnBlackSandCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(Items.DIAMOND));
         col.add(1.5f,new ItemStack(ModItems.RUBY));
         col.add(1.5f,new ItemStack(ModItems.SAPPHIRE));
         col.add(2,new ItemStack(ModItems.GARNET));
-        col.add(2,new ItemStack(ModItems.PERIDOT));
         col.add(2,new ItemStack(ModItems.LANTHANUM_MONAZITE));
         col.add(2,new ItemStack(ModItems.NEODYMIUM_MONAZITE));
-        col.add(2,new ItemStack(ModItems.SAMARIUM_MONAZITE));
         col.add(2,new ItemStack(ModItems.ZIRCON));
-        col.add(3,new ItemStack(ModItems.CERIUM_MONAZITE));
+        col.add(2,new ItemStack(Items.QUARTZ,2));
+        col.add(4,new ItemStack(ModItems.THORIUM_NUGGET,3));
         col.add(4,new ItemStack(ModItems.URANIUM_NUGGET,3));
         col.add(4,new ItemStack(ModItems.TITANIUM_NUGGET,3));
         col.add(5,new ItemStack(ModItems.IRIDIUM_NUGGET,3));
-        col.add(5,new ItemStack(ModItems.RHODIUM_NUGGET,3));
-        col.add(5,new ItemStack(ModItems.RUTHENIUM_NUGGET,3));
         col.add(5,new ItemStack(ModItems.PALLADIUM_NUGGET,3));
-        col.add(5,new ItemStack(ModItems.PLATINUM_NUGGET,3));
-        col.add(6,new ItemStack(ModItems.TIN_NUGGET,6));
-        col.add(6,new ItemStack(Items.IRON_NUGGET,6));
-        col.add(6,new ItemStack(Items.GOLD_NUGGET,6));
-        col.add(8,new ItemStack(Items.CLAY_BALL,2));
+        col.add(7,new ItemStack(ModItems.OSMIUM_NUGGET,3));
+        col.add(8,new ItemStack(Items.IRON_NUGGET,6));
         return col;
     }
 }

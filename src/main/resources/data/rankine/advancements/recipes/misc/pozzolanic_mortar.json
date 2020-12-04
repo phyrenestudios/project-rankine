@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:pozzolanic_mortar"
+    ]
+  },
+  "criteria": {
+    "has_pozzolan": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pozzolan"
+          }
+        ]
+      }
+    },
+    "has_quicklime": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:quicklime"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:pozzolanic_mortar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pozzolan",
+      "has_quicklime",
+      "has_the_recipe"
+    ]
+  ]
+}

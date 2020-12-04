@@ -2,8 +2,11 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.items.pendants.*;
+import com.cannolicatfish.rankine.items.tools.ItemGoldPan;
 import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
@@ -25,6 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ModRecipes {
     public static final DeferredRegister<IRecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ProjectRankine.MODID);
@@ -276,6 +280,15 @@ public class ModRecipes {
 
         return recipes;
     }
+
+    public static List<ISluicingRecipe> getSluicingRecipes()
+    {
+        List<ISluicingRecipe> recipes = new ArrayList<>();
+        recipes.add(sluicingRecipe("alluvium_sluicing", ModBlocks.ALLUVIUM.asItem(), ItemGoldPan.returnAlluviumCollection()));
+        recipes.add(sluicingRecipe("black_sand_sluicing", ModBlocks.BLACK_SAND.asItem(), ItemGoldPan.returnBlackSandCollection()));
+        return recipes;
+    }
+
     public static List<IPistonCrusherRecipe> getCrushingRecipes()
     {
         List<IPistonCrusherRecipe> recipes = new ArrayList<>();
@@ -566,7 +579,12 @@ public class ModRecipes {
         recipes.add(forgingRecipe("tungsten_heavy_alloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,3),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_SPEAR)));
         recipes.add(forgingRecipe("tungsten_heavy_alloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,5),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_HAMMER)));
 
-
+        recipes.add(forgingRecipe("haste_pendant",new ItemStack(ModItems.RUBY,4),new ItemStack(ModItems.ROSE_GOLD_ALLOY,24),new ItemStack(ModItems.HASTE_PENDANT)));
+        recipes.add(forgingRecipe("luck_pendant",new ItemStack(ModItems.PERIDOT,4),new ItemStack(ModItems.WHITE_GOLD_ALLOY,24),new ItemStack(ModItems.LUCK_PENDANT)));
+        recipes.add(forgingRecipe("health_pendant",new ItemStack(Items.EMERALD,4),new ItemStack(ModItems.GREEN_GOLD_ALLOY,24),new ItemStack(ModItems.HEALTH_PENDANT)));
+        recipes.add(forgingRecipe("speed_pendant",new ItemStack(ModItems.SAPPHIRE,4),new ItemStack(ModItems.BLUE_GOLD_ALLOY,24),new ItemStack(ModItems.SPEED_PENDANT)));
+        recipes.add(forgingRecipe("levitation_pendant",new ItemStack(ModItems.AQUAMARINE,4),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,24),new ItemStack(ModItems.LEVITATION_PENDANT)));
+        recipes.add(forgingRecipe("repulsion_pendant",new ItemStack(ModItems.GARNET,4),new ItemStack(ModItems.BLACK_GOLD_ALLOY,24),new ItemStack(ModItems.REPULSION_PENDANT)));
         
         return recipes;
     }
@@ -611,6 +629,7 @@ public class ModRecipes {
         }
         return ItemStack.EMPTY;
     }
+
 
     public static ItemStack getAlloyOutput(ItemStack input1, ItemStack input2, ItemStack input3)
     {
@@ -826,6 +845,15 @@ public class ModRecipes {
                 Ingredient.fromStacks(new ItemStack(input)),chance);
     }
 
+    public static ISluicingRecipe sluicingRecipe(String registry, Item input, WeightedCollection<ItemStack> col)
+    {
+        List<ItemStack> output = new ArrayList<>(col.getEntries());
+        List<Float> weights = new ArrayList<>(col.getWeights());
+        return new ISluicingRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
+                Ingredient.fromStacks(new ItemStack(input)),weights);
+    }
+
+
     public static IBeehiveOvenRecipe beehiveOvenRecipe(String registry, Item input, ItemStack output)
     {
         return new IBeehiveOvenRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
@@ -834,10 +862,8 @@ public class ModRecipes {
 
     public static ICoalForgeRecipe forgingRecipe(String registry, ItemStack input, ItemStack alloy, ItemStack output)
     {
-        ItemStack result = ItemStack.EMPTY;
-        ItemStack template = new ItemStack(ModItems.PICKAXE_TEMPLATE);
-        result = getForgingItemStack(alloy,output,false).get(0);
-        template = getForgingItemStack(alloy,output,false).get(1);
+        ItemStack result = getForgingItemStack(alloy,output,false).get(0);
+        ItemStack template = getForgingItemStack(alloy,output,false).get(1);
         NonNullList<Ingredient> list = NonNullList.create();
         list.addAll(Arrays.asList(Ingredient.fromStacks(input),Ingredient.fromStacks(alloy),Ingredient.fromStacks(template)));
         if (result != ItemStack.EMPTY)
@@ -852,10 +878,17 @@ public class ModRecipes {
     }
 
     public static List<ItemStack> getForgingItemStack(ItemStack alloy, ItemStack output, boolean hasComposition) {
+
         ItemStack result = ItemStack.EMPTY;
         ItemStack template = new ItemStack(ModItems.PICKAXE_TEMPLATE);
         String comp;
-        if (output.getItem() instanceof AlloyPickaxe)
+        if (output.getItem() instanceof HastePendantItem || output.getItem() instanceof HealthPendantItem ||
+                output.getItem() instanceof RepulsionPendantItem || output.getItem() instanceof LuckPendantItem ||
+                output.getItem() instanceof SpeedPendantItem || output.getItem() instanceof LevitationPendantItem)
+        {
+            result = output;
+            template = new ItemStack(ModItems.PENDANT_TEMPLATE);
+        } else if (output.getItem() instanceof AlloyPickaxe)
         {
             AlloyPickaxe e = (AlloyPickaxe) output.getItem();
             template = new ItemStack(ModItems.PICKAXE_TEMPLATE);
@@ -876,7 +909,7 @@ public class ModRecipes {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
             }
         }
-        if (output.getItem() instanceof AlloyAxe)
+        else if (output.getItem() instanceof AlloyAxe)
         {
             AlloyAxe e = (AlloyAxe) output.getItem();
             template = new ItemStack(ModItems.AXE_TEMPLATE);
@@ -897,7 +930,7 @@ public class ModRecipes {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
             }
         }
-        if (output.getItem() instanceof AlloyShovel)
+        else if (output.getItem() instanceof AlloyShovel)
         {
             AlloyShovel e = (AlloyShovel) output.getItem();
             template = new ItemStack(ModItems.SHOVEL_TEMPLATE);
@@ -918,7 +951,7 @@ public class ModRecipes {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
             }
         }
-        if (output.getItem() instanceof AlloyHoe)
+        else if (output.getItem() instanceof AlloyHoe)
         {
             AlloyHoe e = (AlloyHoe) output.getItem();
             template = new ItemStack(ModItems.HOE_TEMPLATE);
@@ -939,7 +972,7 @@ public class ModRecipes {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
             }
         }
-        if (output.getItem() instanceof AlloySword)
+        else if (output.getItem() instanceof AlloySword)
         {
             AlloySword e = (AlloySword) output.getItem();
             template = new ItemStack(ModItems.SWORD_TEMPLATE);
@@ -960,7 +993,7 @@ public class ModRecipes {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
             }
         }
-        if (output.getItem() instanceof AlloySpear)
+        else if (output.getItem() instanceof AlloySpear)
         {
             AlloySpear e = (AlloySpear) output.getItem();
             template = new ItemStack(ModItems.SPEAR_TEMPLATE);
@@ -981,7 +1014,7 @@ public class ModRecipes {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
             }
         }
-        if (output.getItem() instanceof AlloyHammer)
+        else if (output.getItem() instanceof AlloyHammer)
         {
             AlloyHammer e = (AlloyHammer) output.getItem();
             template = new ItemStack(ModItems.HAMMER_TEMPLATE);

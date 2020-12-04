@@ -168,30 +168,34 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
                             inputs[0].shrink(2);
                             inputs[1].shrink(3);
                         }
-                        if (template.getItem() == ModItems.SHOVEL_TEMPLATE)
+                        else if (template.getItem() == ModItems.SHOVEL_TEMPLATE)
                         {
                             inputs[0].shrink(2);
                             inputs[1].shrink(1);
                         }
-                        if (template.getItem() == ModItems.SWORD_TEMPLATE)
+                        else if (template.getItem() == ModItems.SWORD_TEMPLATE)
                         {
                             inputs[0].shrink(1);
                             inputs[1].shrink(2);
                         }
-                        if (template.getItem() == ModItems.SPEAR_TEMPLATE)
+                        else if (template.getItem() == ModItems.SPEAR_TEMPLATE)
                         {
                             inputs[0].shrink(2);
                             inputs[1].shrink(3);
                         }
-                        if (template.getItem() == ModItems.HAMMER_TEMPLATE)
+                        else if (template.getItem() == ModItems.HAMMER_TEMPLATE)
                         {
                             inputs[0].shrink(2);
                             inputs[1].shrink(5);
                         }
-                        if (template.getItem() == ModItems.HOE_TEMPLATE)
+                        else if (template.getItem() == ModItems.HOE_TEMPLATE)
                         {
                             inputs[0].shrink(2);
                             inputs[1].shrink(2);
+                        } else if (template.getItem() == ModItems.PENDANT_TEMPLATE)
+                        {
+                            inputs[0].shrink(4);
+                            inputs[1].shrink(24);
                         }
 
                         return;
@@ -387,7 +391,7 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
         switch (index)
         {
             case 0:
-                return stack.getItem().getTags().contains(new ResourceLocation("forge:rods"));
+                return stack.getItem().getTags().contains(new ResourceLocation("forge:rods")) || stack.getItem().getTags().contains(new ResourceLocation("forge:gems"));
             case 1:
                 return stack.getItem() instanceof AlloyItem;
             case 2:

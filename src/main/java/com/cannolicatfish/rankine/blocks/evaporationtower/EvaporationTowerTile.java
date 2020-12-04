@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.evaporationtower;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.util.WeightedCollection;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,6 +26,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -177,23 +179,63 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     private ItemStack randomOutput(Random random)
     {
-        int randomSelector = random.nextInt(5);
-        int randomAmount = random.nextInt(4);
-        switch (randomSelector)
+        World worldIn = this.getWorld();
+        if (worldIn != null)
         {
-            default:
-            case 0:
-                return new ItemStack(ModItems.SALT,randomAmount);
-            case 1:
-                return new ItemStack(ModItems.LEAD_NUGGET,randomAmount);
-            case 2:
-                return new ItemStack(Items.GOLD_NUGGET,randomAmount);
-            case 3:
-                return new ItemStack(ModItems.MAGNESIUM_NUGGET,randomAmount);
-            case 4:
-                return new ItemStack(ModItems.BROMINE_NUGGET,randomAmount);
+            WeightedCollection<ItemStack> COLLECTION;
+            if (worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.OCEAN || worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.BEACH)
+            {
+                COLLECTION = returnOceanCollection();
+            } else if (worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.RIVER || worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.SWAMP) {
+                COLLECTION = returnRiverCollection();
+            } else {
+                COLLECTION = returnGroundwaterCollection();
+            }
+            return COLLECTION.getRandomElement();
+        } else {
+            return ItemStack.EMPTY;
         }
     }
+
+    private WeightedCollection<ItemStack> returnOceanCollection(){
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(ModItems.BROMINE_NUGGET, 1));
+        col.add(2,new ItemStack(ModItems.SULFUR_NUGGET, 1));
+        col.add(3,new ItemStack(ModItems.POTASSIUM_NUGGET,1));
+        col.add(4,new ItemStack(ModItems.CALCIUM_NUGGET,1));
+        col.add(5,new ItemStack(ModItems.MAGNESIUM_NUGGET,1));
+        col.add(10,new ItemStack(ModItems.SALT,2));
+        return col;
+    }
+
+    private WeightedCollection<ItemStack> returnRiverCollection(){
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(ModItems.CADMIUM_NUGGET, 1));
+        col.add(1,new ItemStack(ModItems.CHROMIUM_NUGGET,1));
+        col.add(1,new ItemStack(ModItems.LEAD_NUGGET,1));
+        col.add(1,new ItemStack(ModItems.MANGANESE_NUGGET,1));
+        col.add(1,new ItemStack(ModItems.MERCURY_NUGGET,1));
+        col.add(2,new ItemStack(Items.IRON_NUGGET,1));
+        col.add(4,new ItemStack(ModItems.ZINC_NUGGET,1));
+        col.add(4,new ItemStack(ModItems.COPPER_NUGGET,1));
+        col.add(6,new ItemStack(ModItems.CALCIUM_NUGGET,2));
+        return col;
+    }
+
+    private WeightedCollection<ItemStack> returnGroundwaterCollection(){
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(ModItems.COBALT_NUGGET, 1));
+        col.add(1,new ItemStack(ModItems.TITANIUM_NUGGET,1));
+        col.add(1,new ItemStack(ModItems.ZIRCONIUM_NUGGET,1));
+        col.add(1,new ItemStack(ModItems.BORON_NUGGET,1));
+        col.add(1,new ItemStack(ModItems.SILVER_NUGGET,1));
+        col.add(2,new ItemStack(ModItems.MANGANESE_NUGGET,1));
+        col.add(4,new ItemStack(ModItems.LEAD_NUGGET,1));
+        col.add(4,new ItemStack(ModItems.LITHIUM_NUGGET,1));
+        col.add(6,new ItemStack(ModItems.SILICON_NUGGET,2));
+        return col;
+    }
+
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent(getType().getRegistryName().getPath());
