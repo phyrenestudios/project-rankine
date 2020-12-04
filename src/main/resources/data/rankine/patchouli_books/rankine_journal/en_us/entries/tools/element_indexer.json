@@ -1,0 +1,15 @@
+{
+  "name": "Element Indexer",
+  "icon": "rankine:element_indexer",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "It's all in the details, but I can't remember those. Luckily this device does..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:element_indexer"
+    }
+  ]
+}

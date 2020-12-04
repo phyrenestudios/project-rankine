@@ -25,7 +25,7 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:garnet",
-      "text": "Found in alluvium and black sand"
+      "text": "Found in peridotite"
     },
     {
       "type": "spotlight",
@@ -44,8 +44,8 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:fluorite",
-      "text": "Found throughout the Overworld"
+      "item": "rankine:tourmaline",
+      "text": "Found in conjunction with petalite"
     },
 	{
       "type": "spotlight",

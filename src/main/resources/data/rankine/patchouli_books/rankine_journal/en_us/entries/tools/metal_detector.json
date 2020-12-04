@@ -1,0 +1,15 @@
+{
+  "name": "Metal Detector",
+  "icon": "rankine:metal_detector",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Ding ding ding, I found something..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:metal_detector"
+    }
+  ]
+}

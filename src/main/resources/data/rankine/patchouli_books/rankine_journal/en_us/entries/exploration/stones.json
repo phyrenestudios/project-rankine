@@ -15,22 +15,27 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:granodiorite",
-      "text": "Classification: Igneous$(br2)Found in all biomes of the Overworld"
+      "text": "Classification: Igneous$(br2)Found in intrusions of the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:hornblende_andesite",
-      "text": "Classification: Igneous$(br2)Found in all biomes of the Overworld"
+      "text": "Classification: Igneous$(br2)Found in tall biomes of the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:limestone",
-      "text": "Classification: Sedimentary$(br2)Found in all biomes of the Overworld"
+      "text": "Classification: Sedimentary$(br2)Found in ocean and desert biomes of the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:shale",
-      "text": "Classification: Sedimentary$(br2)Found in watery biomes of the Overworld"
+      "text": "Classification: Sedimentary$(br2)Found in all biomes of the Overworld"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:slate",
+      "text": "Classification: Sedimentary$(br2)Found in all biomes of the Overworld"
     },
 	{
       "type": "spotlight",
@@ -42,9 +47,19 @@
 	  "item": "rankine:ironstone",
       "text": "Classification: Sedimentary$(br2)Found in Desert and Mesa biomes"
     },
+    {
+      "type": "spotlight",
+      "item": "rankine:breccia",
+      "text": "Classification: Sedimentary$(br2)Found in Desert and Mesa biomes"
+    },
 	{
       "type": "spotlight",
 	  "item": "rankine:tholeiitic_basalt",
+      "text": "Classification: Igneous$(br2)Found in all oceanic biomes of the Overworld"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gabbro",
       "text": "Classification: Igneous$(br2)Found in all oceanic biomes of the Overworld"
     },
 	{
@@ -55,12 +70,17 @@
 	{
       "type": "spotlight",
 	  "item": "rankine:marble",
-      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld"
+      "text": "Classification: Metamorphic$(br2)Found in desert biomes of the Overworld"
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:gneiss",
-      "text": "Classification: Metamorphic$(br2)Found in some biomes of the Overworld"
+      "text": "Classification: Metamorphic$(br2)Found in continental biomes of the Overworld"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:schist",
+      "text": "Classification: Metamorphic$(br2)Found in continental biomes of the Overworld"
     },
 	{
       "type": "spotlight",

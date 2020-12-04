@@ -1,0 +1,15 @@
+{
+  "name": "Thermometer",
+  "icon": "rankine:thermometer",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "It's hot and it's cold..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:thermometer"
+    }
+  ]
+}
