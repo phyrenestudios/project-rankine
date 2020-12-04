@@ -34,6 +34,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(ModRecipes.getCrushingRecipes(),PistonCrusherRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getForgingRecipes(), CoalForgeRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getTripleAlloyRecipes(), TripleAlloyRecipeCategory.UID);
+        registry.addRecipes(ModRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
         if (Config.AMALGAM_EXTRAS.get())
         {
             registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
@@ -60,6 +61,8 @@ public class JEIRankinePlugin implements IModPlugin {
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT), VanillaTypes.ITEM, "The beehive oven is at minimum a 3x3 structure with a beehive oven pit in the center of 8 refractory bricks. " +
                 "The pit block must have access to the sky. Place blocks on the refractory bricks and light it with a flint and steel to cook them over time.");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.EVAPORATION_TOWER), VanillaTypes.ITEM, "The evaporation tower is a complex multiblock which requires sheetmetal, magma blocks, and the Evaporation Tower block." +
+                " See the modpage or the Patchouli book for details.");
         registry.addIngredientInfo(new ItemStack(ModItems.ELEMENT_INDEXER), VanillaTypes.ITEM, "The Element Indexer is a device that can be used to analyze the properties of an element in an alloy. " +
                 "Scroll up and down to change the percentage.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
@@ -77,6 +80,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new PistonCrusherRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CoalForgeRecipeCategory(guiHelper));
         registry.addRecipeCategories(new TripleAlloyRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
     }
 
     @Override
@@ -88,6 +92,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.PISTON_CRUSHER), PistonCrusherRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_FORGE), CoalForgeRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.INDUCTION_FURNACE), TripleAlloyRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModItems.STEEL_GOLD_PAN), SluicingRecipeCategory.UID);
     }
 
 }

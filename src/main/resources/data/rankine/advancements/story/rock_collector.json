@@ -186,6 +186,76 @@
         ]
       }
     },
+    "rankine:scoria": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:scoria"
+          }
+        ]
+      }
+    },
+    "rankine:pumice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pumice"
+          }
+        ]
+      }
+    },
+    "rankine:ironstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ironstone"
+          }
+        ]
+      }
+    },
+    "rankine:gabbro": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gabbro"
+          }
+        ]
+      }
+    },
+    "rankine:schist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:schist"
+          }
+        ]
+      }
+    },
+    "rankine:slate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:slate"
+          }
+        ]
+      }
+    },
+    "rankine:breccia": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:breccia"
+          }
+        ]
+      }
+    },
     "rankine:anorthosite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -230,8 +300,24 @@
       "rankine:bridgmanite"
     ],[
       "rankine:ferropericlase"
-    ],
-    ["rankine:perovskite"],
-    ["rankine:anorthosite"]
+    ], [
+      "rankine:perovskite"
+    ], [
+      "rankine:scoria"
+    ], [
+      "rankine:pumice"
+    ], [
+      "rankine:ironstone"
+    ], [
+      "rankine:gabbro"
+    ], [
+      "rankine:schist"
+    ], [
+      "rankine:slate"
+    ], [
+      "rankine:breccia"
+    ], [
+      "rankine:anorthosite"
+    ]
   ]
 }

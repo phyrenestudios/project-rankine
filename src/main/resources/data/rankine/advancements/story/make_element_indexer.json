@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_element_transmuter",
+  "display": {
+    "icon": {
+      "item": "rankine:element_indexer"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_element_indexer.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_element_indexer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "element_indexer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:element_indexer"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "element_indexer"
+    ]
+  ]
+}

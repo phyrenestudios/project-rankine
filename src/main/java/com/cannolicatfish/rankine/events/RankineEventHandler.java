@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
+import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -91,15 +92,6 @@ public class RankineEventHandler {
         }
     }
  */
-    @SubscribeEvent
-    public void lootLoad(LootTableLoadEvent evt) {
-        if (evt.getName().toString().equals("minecraft:chests/village/toolsmith")) {
-            LootTable table = evt.getTable();
-            table.addPool(LootPool.builder()
-                    .addEntry(ItemLootEntry.builder(() -> ModItems.ALLOY_TEMPLATE).weight(20).acceptFunction(SetCount.builder(ConstantRange.of(1))))
-                    .build());
-        }
-    }
 
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)
