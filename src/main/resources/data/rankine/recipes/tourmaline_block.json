@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tourmaline"
+    }
+  },
+  "result": {
+    "item": "rankine:tourmaline_block",
+    "count": 1
+  }
+}

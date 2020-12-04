@@ -1,0 +1,20 @@
+{
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+        " # ",
+        "#B#",
+        " # "
+        ],
+        "key": {
+        "#": {
+        "tag": "rankine:crushed_rocks"
+        },
+        "B": {
+        "item": "rankine:wadsleyite"
+        }
+        },
+        "result": {
+        "item": "rankine:wadsleyite",
+        "count": 2
+        }
+        }

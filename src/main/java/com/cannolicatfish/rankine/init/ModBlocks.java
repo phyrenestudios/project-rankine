@@ -900,6 +900,7 @@ public class ModBlocks {
     public static final Block OPAL_BLOCK = add("opal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block GARNET_BLOCK = add("garnet_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block TOURMALINE_BLOCK = add("tourmaline_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CELESTINE_BLOCK = add("celestine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(DEF_METAL_BLOCK), METALLURGY);

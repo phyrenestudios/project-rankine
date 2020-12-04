@@ -1,0 +1,15 @@
+{
+  "name": "Ore Cycler",
+  "icon": "rankine:ore_cycler",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "So many combinations of ores and stones. If only I could use them for decoration..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:ore_cycler"
+    }
+  ]
+}

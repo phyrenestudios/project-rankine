@@ -8,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
@@ -140,39 +141,39 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     private boolean checkStructure(BlockPos pos, World worldIn)
     {
-        if (worldIn.getBlockState(pos.east()) != Blocks.LAVA.getDefaultState() && worldIn.getBlockState(pos.north()) != Blocks.LAVA.getDefaultState() && worldIn.getBlockState(pos.west()) != Blocks.LAVA.getDefaultState() && worldIn.getBlockState(pos.south()) != Blocks.LAVA.getDefaultState()) {
-            return false;
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 0, 1))) {
+            if (worldIn.getBlockState(blockpos) != Blocks.MAGMA_BLOCK.getDefaultState() && worldIn.getBlockState(blockpos) != ModBlocks.EVAPORATION_TOWER.getDefaultState()) {
+                return false;
+            }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, -1), pos.add(1, 1, 1))) {
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, 0, -1), pos.add(-2, 4, 1))) {
             if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
                 return false;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, 1, -1), pos.add(-2, 5, 1))) {
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(2, 0, -1), pos.add(2, 4, 1))) {
             if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
                 return false;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(2, 1, -1), pos.add(2, 5, 1))) {
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -2), pos.add(1, 4, -2))) {
             if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
                 return false;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, -2), pos.add(1, 5, -2))) {
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, 2), pos.add(-1, 4, 2))) {
             if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
                 return false;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, 2), pos.add(-1, 5, 2))) {
-            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
+        /*
+        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, -1), pos.add(1, 4, 1))) {
+            if (worldIn.getFluidState(blockpos) != Fluids.WATER.getDefaultState()) {
                 return false;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 2, -1), pos.add(1, 5, 1))) {
-            if (worldIn.getBlockState(blockpos) != Blocks.WATER.getDefaultState()) {
-                return false;
-            }
-        }
+
+         */
 
         return true;
     }

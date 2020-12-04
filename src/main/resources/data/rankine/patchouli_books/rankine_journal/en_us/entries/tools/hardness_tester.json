@@ -1,0 +1,15 @@
+{
+  "name": "Hardness Tester",
+  "icon": "rankine:hardness_tester",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Sometimes I don't know what to do, what to mine, even if I can at all. Luckily I can whack things with this..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:hardness_tester"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Steel Gold Pan",
+  "icon": "rankine:steel_gold_pan",
+  "category": "technology/tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Sifting through some of thoose weird new sands..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:steel_gold_pan"
+    }
+  ]
+}

@@ -1,14 +1,13 @@
 {
   "replace": false,
   "values": [
-    "rankine:garnet",
-    "rankine:sapphire",
-    "rankine:fluorite",
-    "rankine:ruby",
-    "rankine:peridot",
-    "rankine:opal",
-    "rankine:tiger_iron",
-    "rankine:aquamarine",
-    "rankine:tourmaline"
+    "#forge:gems/garnet",
+    "#forge:gems/sapphire",
+    "#forge:gems/ruby",
+    "#forge:gems/peridot",
+    "#forge:gems/opal",
+    "#forge:gems/tiger_iron",
+    "#forge:gems/aquamarine",
+    "#forge:gems/tourmaline"
   ]
 }

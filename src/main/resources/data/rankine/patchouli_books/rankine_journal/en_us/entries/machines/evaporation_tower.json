@@ -1,0 +1,39 @@
+{
+  "name": "Evaporation Tower",
+  "icon": "rankine:evaporation_tower",
+  "category": "technology/machines",
+  "pages": [
+	{
+      "type": "text",
+	  "title": "Evaporation Tower",
+	  "anchor": "evaporation_tower",
+      "text": "Sluicing is for chumps. I'll just remove the water to collect precious metals from it. There seems to be different materials in different types of water..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:evaporation_tower",
+      "text": ""
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          [ " SSS ","SWWWS", "SWWWS", "SWWWS", " SSS " ],
+          [ " SSS ","SWWWS", "SWWWS", "SWWWS", " SSS " ],
+          [ " SSS ","SWWWS", "SWWWS", "SWWWS", " SSS " ],
+          [ " SSS ","SWWWS", "SWWWS", "SWWWS", " SSS " ],
+          [ " SSS ","SMMMS", "SM0MS", "SMMMS", " SSS " ]
+        ],
+        "mapping": {
+          "M": "minecraft:magma_block",
+          "W": "minecraft:water",
+          "0": "rankine:evaporation_tower",
+          "S": "rankine:nickel_sheetmetal"
+        },
+        "symmetrical": true
+      },
+      "text": "Any sheetmetal of the tag forge:functional_sheetmetal will work. Fill the inside with water."
+    }
+  ]
+}
