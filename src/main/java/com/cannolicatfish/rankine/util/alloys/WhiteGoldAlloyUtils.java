@@ -75,7 +75,7 @@ public class WhiteGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public String getDefComposition() {
-        return "90Au-10Ni";
+        return "90Au-10Zn";
     }
 
     @Override

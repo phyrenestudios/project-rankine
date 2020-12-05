@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/find_meteorite",
+  "parent": "rankine:story/make_beehive_oven_pit",
   "display": {
     "icon": {
       "item": "rankine:piston_crusher"

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnace;
@@ -994,8 +995,8 @@ public class ModBlocks {
     public static final MantleTeleporterBlock HEART_OF_THE_MANTLE = add("heart_of_the_mantle", new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), METALLURGY);
 
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(0.5f,ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(0.75f,ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(Config.T2_BEEHIVE_OVEN_CHANCE.get().floatValue(),ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(Config.T3_BEEHIVE_OVEN_CHANCE.get().floatValue(),ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final Block TEMPLATE_TABLE = add("template_table", new TemplateTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);

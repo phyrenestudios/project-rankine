@@ -2,26 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:pendant_template"
+      "rankine:magnesite_block"
     ]
   },
   "criteria": {
-    "has_heart_of_the_sea": {
+    "has_magnesite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:heart_of_the_sea"
-          }
-        ]
-      }
-    },
-    "has_diamond": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:diamond"
+            "item": "rankine:magnesite"
           }
         ]
       }
@@ -29,14 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:pendant_template"
+        "recipe": "rankine:magnesite_block"
       }
     }
   },
   "requirements": [
     [
-      "has_heart_of_the_sea",
-      "has_diamond",
+      "has_magnesite",
       "has_the_recipe"
     ]
   ]

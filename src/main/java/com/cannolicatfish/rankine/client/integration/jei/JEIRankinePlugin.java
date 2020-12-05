@@ -65,6 +65,12 @@ public class JEIRankinePlugin implements IModPlugin {
                 " See the modpage or the Patchouli book for details.");
         registry.addIngredientInfo(new ItemStack(ModItems.ELEMENT_INDEXER), VanillaTypes.ITEM, "The Element Indexer is a device that can be used to analyze the properties of an element in an alloy. " +
                 "Scroll up and down to change the percentage.");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.TEMPLATE_TABLE), VanillaTypes.ITEM, "The Alloy Template Table can make templates to automate the alloy furnace. " +
+                "Paper and dye are required, and the template is determined by the arrangement of materials in the bottom row.");
+        registry.addIngredientInfo(new ItemStack(ModItems.ALLOY_TEMPLATE), VanillaTypes.ITEM, "Created using the Alloy Template Table. " +
+                "Paper and black dye are required.");
+        registry.addIngredientInfo(new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE), VanillaTypes.ITEM, "Created using the Alloy Template Table. " +
+                "Paper and purple dye are required.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.ALNICO_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.NITINOL_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");

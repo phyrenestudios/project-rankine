@@ -2,13 +2,13 @@
   "parent": "rankine:story/make_beehive_oven_pit",
   "display": {
     "icon": {
-      "item": "rankine:coke"
+      "item": "rankine:magnesia"
     },
     "title": {
-      "translate": "rankine.advancements.story.make_coke.title"
+      "translate": "rankine.advancements.story.make_magnesia.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.make_coke.description"
+      "translate": "rankine.advancements.story.make_magnesia.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "coke": {
+    "make_magnesia": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:coke"
+            "item": "rankine:magnesia"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "coke"
+      "make_magnesia"
     ]
   ]
 }

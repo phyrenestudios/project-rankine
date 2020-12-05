@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:element_transfuser",
+      "rankine:element_transmuter",
       "rankine:et_aluminum_ruby",
       "rankine:et_aluminum_sapphire",
       "rankine:et_arsenic",
@@ -41,7 +41,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:element_transfuser"
+        "recipe": "rankine:element_transmuter"
       }
     }
   },

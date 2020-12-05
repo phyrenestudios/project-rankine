@@ -2,7 +2,10 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:mortar"
+      "rankine:mortar",
+      "rankine:mortar_simple",
+      "rankine:mortar_double",
+      "rankine:mortar_quicklime"
     ]
   },
   "criteria": {

@@ -1,27 +1,27 @@
 {
-  "parent": "rankine:story/make_beehive_oven_pit",
+  "parent": "rankine:story/make_templates",
   "display": {
     "icon": {
-      "item": "rankine:coke"
+      "item": "rankine:pendant_template"
     },
     "title": {
-      "translate": "rankine.advancements.story.make_coke.title"
+      "translate": "rankine.advancements.story.get_pendant_template.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.make_coke.description"
+      "translate": "rankine.advancements.story.get_pendant_template.description"
     },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": false,
-    "hidden": false
+    "hidden": true
   },
   "criteria": {
-    "coke": {
+    "pendant_template": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:coke"
+            "item": "rankine:pendant_template"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "coke"
+      "pendant_template"
     ]
   ]
 }
