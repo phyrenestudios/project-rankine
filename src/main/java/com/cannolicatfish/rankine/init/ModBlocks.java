@@ -889,7 +889,7 @@ public class ModBlocks {
     public static final Block CAST_IRON_BLOCK = add("cast_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NICKEL_SUPERALLOY_BLOCK = add("nickel_superalloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
-
+Blocks
     //GEM AND MINERALS
     public static final Block MALACHITE_BLOCK = add("malachite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block AZURITE_BLOCK = add("azurite_block", new Block(DEF_METAL_BLOCK), METALLURGY);

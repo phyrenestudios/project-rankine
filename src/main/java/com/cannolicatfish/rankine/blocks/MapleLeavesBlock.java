@@ -36,7 +36,7 @@ public class MapleLeavesBlock extends LeavesBlock {
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!state.get(PERSISTENT)) {
-            if (random.nextFloat() < 0.04) {
+            if (random.nextFloat() < 0.01) {
                 this.atumnize(state, worldIn.getWorld(), pos);
             }
             if (state.get(DISTANCE) == 7) {
