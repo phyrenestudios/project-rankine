@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModRecipes;
 import net.minecraft.block.Block;
@@ -35,7 +36,7 @@ public class BeehiveOvenPit extends Block {
     private final Block blockType;
     public BeehiveOvenPit(Properties properties) {
         super(properties);
-        this.chance = 0.25f;
+        this.chance = Config.T1_BEEHIVE_OVEN_CHANCE.get().floatValue();
         this.blockType = ModBlocks.REFRACTORY_BRICKS;
     }
 
@@ -63,7 +64,39 @@ public class BeehiveOvenPit extends Block {
             });
             getBeehiveOven(worldIn,pos);
         }
+        else if (player.getHeldItemMainhand().getItem() == Items.BLAZE_POWDER && state.get((LIT)))
+        {
+            BlockPos uppos = pos.up();
+            boolean flag = true;
+            List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
+                    uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
+                    uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
 
+            for (BlockPos p: surroundingBlockPos)
+            {
+                ItemStack output = ModRecipes.getBeehiveOutput(new ItemStack(worldIn.getBlockState(p).getBlock()));
+                if (!output.isEmpty())
+                {
+                    if (output.getItem() instanceof BlockItem)
+                    {
+                        worldIn.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                        flag = false;
+                        break;
+                    }
+
+                }
+            }
+            if (flag)
+            {
+                worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
+            }
+                if (!player.isCreative())
+                {
+                    player.getHeldItemMainhand().shrink(1);
+                }
+
+                worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.5F, 0.7F + 0.6F, false);
+        }
 
         return ActionResultType.SUCCESS;
     }

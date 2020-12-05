@@ -1,0 +1,95 @@
+{
+  "parent": "rankine:story/get_pendant_template",
+  "display": {
+    "icon": {
+      "item": "rankine:speed_pendant"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_pendants.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_pendants.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "rankine:haste_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:haste_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:luck_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:luck_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:levitation_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:levitation_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:repulsion_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:repulsion_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:health_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:health_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:speed_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:speed_pendant"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rankine:haste_pendant"
+    ], [
+      "rankine:repulsion_pendant"
+    ],[
+      "rankine:luck_pendant"
+    ], [
+      "rankine:levitation_pendant"
+    ], [
+      "rankine:health_pendant"
+    ], [
+      "rankine:speed_pendant"
+    ]
+  ]
+}

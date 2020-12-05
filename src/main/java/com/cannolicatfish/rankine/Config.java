@@ -55,6 +55,10 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
     public static ForgeConfigSpec.BooleanValue AMALGAM_EXTRAS;
 
+    public static ForgeConfigSpec.DoubleValue T1_BEEHIVE_OVEN_CHANCE;
+    public static ForgeConfigSpec.DoubleValue T2_BEEHIVE_OVEN_CHANCE;
+    public static ForgeConfigSpec.DoubleValue T3_BEEHIVE_OVEN_CHANCE;
+
     public static ForgeConfigSpec.DoubleValue DIAMON_CHANCE;
     public static ForgeConfigSpec.DoubleValue ILMENITE_CHANCE;
     public static ForgeConfigSpec.DoubleValue INTERSPINIFEX_CHANCE;
@@ -428,7 +432,12 @@ public class Config {
                 .define("disableNetherite",false);
         GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                 .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
-
+        T1_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the beehive oven (T1) to cook a block")
+                .defineInRange("breakExhaustion", 0.5D, 0.00D, 1.00D);
+        T2_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the magnesium beehive oven (T2) to cook a block")
+                .defineInRange("breakExhaustion", 0.75D, 0.00D, 1.00D);
+        T3_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the zircon beehive oven (T3) to cook a block")
+                .defineInRange("breakExhaustion", 1.0D, 0.00D, 1.00D);
         COMMON_BUILDER.pop();
 
 

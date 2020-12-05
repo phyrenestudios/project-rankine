@@ -20,8 +20,7 @@ import net.minecraft.world.World;
 import javax.swing.*;
 
 public class ItemGoldPan extends Item {
-    WeightedCollection<ItemStack> ALLUVIUM = returnAlluviumCollection();
-    WeightedCollection<ItemStack> BLACK_SAND = returnBlackSandCollection();
+
     public ItemGoldPan(Properties properties) {
         super(properties);
     }
@@ -36,16 +35,17 @@ public class ItemGoldPan extends Item {
             world.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.4F + 0.8F);
             world.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.6F + 0.8F);
             world.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.2F + 0.8F);
+            ItemStack stack = ItemStack.EMPTY;
+            if (world.getBlockState(pos).getBlock() == ModBlocks.ALLUVIUM)
+            {
+                stack = returnAlluviumCollection().getRandomElement();
+            } else if (world.getBlockState(pos).getBlock() == ModBlocks.BLACK_SAND){
+                stack = returnBlackSandCollection().getRandomElement();
+            }
             world.removeBlock(pos, false);
 
             if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) {
-                ItemStack stack;
-                if (world.getBlockState(pos).getBlock() == ModBlocks.ALLUVIUM)
-                {
-                    stack = ALLUVIUM.getRandomElement();
-                } else {
-                    stack = BLACK_SAND.getRandomElement();
-                }
+
                 double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;

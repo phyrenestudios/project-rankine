@@ -1669,8 +1669,16 @@
   "rankine.advancements.story.make_glass_cutter.description": "Make a glass cutter",
   "rankine.advancements.story.make_pig_iron.title": "No Pigs Harmed",
   "rankine.advancements.story.make_pig_iron.description": "Make pig iron by smelting an iron ingot",
+  "rankine.advancements.story.make_beehive_oven_pit.title": "No Bees Harmed Either",
+  "rankine.advancements.story.make_beehive_oven_pit.description": "Build a beehive oven pit",
+  "rankine.advancements.story.make_quicklime.title": "Limecraft",
+  "rankine.advancements.story.make_quicklime.description": "Produce quicklime from combusting limestone with the beehive oven",
+  "rankine.advancements.story.make_roman_concrete.title": "Roaming like the Romans",
+  "rankine.advancements.story.make_roman_concrete.description": "Make roman concrete from pozzolanic mortar",
+  "rankine.advancements.story.make_magnesia.title": "Take the Heat",
+  "rankine.advancements.story.make_magnesia.description": "Make magnesia from cooking a magnesite block with the beehive oven",
   "rankine.advancements.story.make_coke.title": "I cant believe it's not Coal!",
-  "rankine.advancements.story.make_coke.description": "Use a beehive oven pit to produce coke from bituminous and sub-bituminous coal blocks",
+  "rankine.advancements.story.make_coke.description": "Use a beehive oven to produce coke from bituminous and sub-bituminous coal blocks",
   "rankine.advancements.story.make_wrought_iron.title": "Acquire Harderware",
   "rankine.advancements.story.make_wrought_iron.description": "Make Wrought Iron using the Beehive Oven and some form of crushing apparatus",
   "rankine.advancements.story.make_crucible.title": "Refractory Factory",
@@ -1699,6 +1707,10 @@
   "rankine.advancements.story.make_element_transmuter.description": "Create a substance from otherworldly materials that can extract elements",
   "rankine.advancements.story.make_element_indexer.title": "Elementary",
   "rankine.advancements.story.make_element_indexer.description": "Use a device to examine element properties",
+  "rankine.advancements.story.get_pendant_template.title": "Secret Plan",
+  "rankine.advancements.story.get_pendant_template.description": "Obtain a pendant template",
+  "rankine.advancements.story.make_pendants.title": "Hidden Power",
+  "rankine.advancements.story.make_pendants.description": "Make all of the 6 pendants",
 
 
 

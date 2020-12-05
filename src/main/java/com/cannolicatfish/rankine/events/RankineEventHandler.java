@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.potion.ModEffects;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
 import net.minecraft.entity.MobEntity;
@@ -24,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -346,7 +348,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving() instanceof MonsterEntity && event.getTarget() != null) {
-            if (event.getTarget().getHeldItemOffhand().getItem() == ModItems.REPULSION_PENDANT) {
+            if (event.getTarget().getHeldItemOffhand().getItem() == ModItems.REPULSION_PENDANT || event.getEntityLiving().getActivePotionEffect(ModEffects.MERCURY_POISONING) != null) {
                 ((MobEntity) event.getEntityLiving()).setAttackTarget(null);
             }
         }
@@ -355,11 +357,10 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntityLiving() instanceof MonsterEntity && event.getEntityLiving().getRevengeTarget() != null) {
-            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == ModItems.REPULSION_PENDANT) {
+            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == ModItems.REPULSION_PENDANT || event.getEntityLiving().getActivePotionEffect(ModEffects.MERCURY_POISONING) != null) {
                 event.getEntityLiving().setRevengeTarget(null);
             }
         }
     }
-
 
 }
