@@ -599,7 +599,7 @@ public class Config {
         MALACHITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Malachite ore at (make sure it is greater than the minimum)")
                 .defineInRange("malachiteOreMax", 60, 0, 256);
         MALACHITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Malachite ore vein")
-                .defineInRange("malachiteOreSize", 20, 0, 256);
+                .defineInRange("malachiteOreSize", 16, 0, 256);
         MALACHITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Malachite ore veins to generate per chunk")
                 .defineInRange("malachiteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -612,7 +612,7 @@ public class Config {
         CASSITERITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Cassiterite ore at (make sure it is greater than the minimum)")
                 .defineInRange("cassiteriteOreMax", 60, 0, 256);
         CASSITERITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Cassiterite ore vein")
-                .defineInRange("cassiteriteOreSize", 20, 0, 256);
+                .defineInRange("cassiteriteOreSize", 16, 0, 256);
         CASSITERITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Cassiterite ore veins to generate per chunk")
                 .defineInRange("cassiteriteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -625,7 +625,7 @@ public class Config {
         BAUXITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Bauxite ore at (make sure it is greater than the minimum)")
                 .defineInRange("bauxiteOreMax", 60, 0, 256);
         BAUXITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Bauxite ore vein")
-                .defineInRange("bauxiteOreSize", 20, 0, 256);
+                .defineInRange("bauxiteOreSize", 16, 0, 256);
         BAUXITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Bauxite ore veins to generate per chunk")
                 .defineInRange("bauxiteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -638,7 +638,7 @@ public class Config {
         SPHALERITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Sphalerite ore at (make sure it is greater than the minimum)")
                 .defineInRange("sphaleriteOreMax", 60, 0, 256);
         SPHALERITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Sphalerite ore vein")
-                .defineInRange("sphaleriteOreSize", 20, 0, 256);
+                .defineInRange("sphaleriteOreSize", 16, 0, 256);
         SPHALERITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Sphalerite ore veins to generate per chunk")
                 .defineInRange("sphaleriteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -690,7 +690,7 @@ public class Config {
         MAGNETITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Magnetite ore at (make sure it is greater than the minimum)")
                 .defineInRange("magnetiteOreMax", 50, 0, 256);
         MAGNETITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Magnetite ore vein")
-                .defineInRange("magnetiteOreSize", 25, 0, 256);
+                .defineInRange("magnetiteOreSize", 20, 0, 256);
         MAGNETITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnetite ore veins to generate per chunk")
                 .defineInRange("magnetiteOreCount", 3, 0, 256);
         COMMON_BUILDER.pop();
@@ -703,7 +703,7 @@ public class Config {
         MAGNESITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Magnesite ore at (make sure it is greater than the minimum)")
                 .defineInRange("magnesiteOreMax", 45, 0, 256);
         MAGNESITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Magnesite ore vein")
-                .defineInRange("magnesiteOreSize", 20, 0, 256);
+                .defineInRange("magnesiteOreSize", 16, 0, 256);
         MAGNESITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnesite ore veins to generate per chunk")
                 .defineInRange("magnesiteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -716,7 +716,7 @@ public class Config {
         PENTLANDITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Pentlandite ore at (make sure it is greater than the minimum)")
                 .defineInRange("pentlanditeOreMax", 45, 0, 256);
         PENTLANDITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Pentlandite ore vein")
-                .defineInRange("pentlanditeOreSize", 20, 0, 256);
+                .defineInRange("pentlanditeOreSize", 16, 0, 256);
         PENTLANDITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pentlandite ore veins to generate per chunk")
                 .defineInRange("pentlanditeOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -729,7 +729,7 @@ public class Config {
         GALENA_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Galena ore at (make sure it is greater than the minimum)")
                 .defineInRange("galenaOreMax", 45, 0, 256);
         GALENA_ORE_SIZE = COMMON_BUILDER.comment("Size of Galena ore vein")
-                .defineInRange("galenaOreSize", 20, 0, 256);
+                .defineInRange("galenaOreSize", 16, 0, 256);
         GALENA_ORE_COUNT = COMMON_BUILDER.comment("Number of Galena ore veins to generate per chunk")
                 .defineInRange("galenaOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
