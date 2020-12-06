@@ -11,7 +11,7 @@ public class YttriumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(2*x/5f);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class YttriumElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/40f;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class YttriumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/10f);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class YttriumElement implements ElementInterface{
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return x/250f;
     }
 
     @Override

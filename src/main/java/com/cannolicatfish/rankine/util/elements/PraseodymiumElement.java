@@ -3,15 +3,15 @@ package com.cannolicatfish.rankine.util.elements;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 
-public class AntimonyElement implements ElementInterface{
+public class PraseodymiumElement implements ElementInterface{
     @Override
     public PeriodicTableUtils.Element getReference() {
-        return PeriodicTableUtils.Element.ANTIMONY;
+        return PeriodicTableUtils.Element.PRASEODYMIUM;
     }
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(3*x/10f);
+        return 0;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class AntimonyElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return Math.round(x/4f);
+        return 0;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class AntimonyElement implements ElementInterface{
 
     @Override
     public float getElectrodePotentialFromPercent(int x) {
-        return 0.20f;
+        return -2.353f;
     }
 
     @Override

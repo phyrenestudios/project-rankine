@@ -41,17 +41,17 @@ public class SiliconElement implements ElementInterface{
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return x/200f;
     }
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return Math.abs(x-20)/100f - 0.2f;
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/200f;
     }
 
     @Override

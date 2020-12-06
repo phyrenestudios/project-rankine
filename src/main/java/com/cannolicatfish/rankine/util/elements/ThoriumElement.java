@@ -11,7 +11,7 @@ public class ThoriumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return x/6 + x;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ThoriumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return 5;
     }
 
     @Override

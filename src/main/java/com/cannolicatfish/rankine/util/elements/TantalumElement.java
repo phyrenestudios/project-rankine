@@ -11,7 +11,7 @@ public class TantalumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return 32 + 28*(x/10);
     }
 
     @Override
@@ -31,27 +31,35 @@ public class TantalumElement implements ElementInterface{
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        return 0;
+        if (x >= 6)
+        {
+            return 2;
+        } else if (x >= 2)
+        {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(-x/50f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return x/200f;
     }
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return x/125f;
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/400f;
     }
 
     @Override
