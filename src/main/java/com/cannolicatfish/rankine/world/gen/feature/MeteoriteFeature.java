@@ -37,51 +37,35 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                     }
                 }
 
-                if (pos.getY() <= 3) {
+                if (pos.getY() <= 50) {
                     return false;
                 }
 
                 BlockState ORE;
                 float CHANCE = rand.nextFloat();
-                if (CHANCE < 0.2F) {
+                if (CHANCE < 0.25F) {
                     ORE = ModBlocks.KAMACITE.getDefaultState();
-                } else if (CHANCE < 0.4F) {
+                } else if (CHANCE < 0.50F) {
                     ORE = ModBlocks.ANTITAENITE.getDefaultState();
-                } else if (CHANCE < 0.6F) {
+                } else if (CHANCE < 0.75F) {
                     ORE = ModBlocks.TAENITE.getDefaultState();
-                } else if (CHANCE < 0.8F) {
-                    ORE = ModBlocks.TETRATAENITE.getDefaultState();
                 } else {
-                    ORE = ModBlocks.METEORITE.getDefaultState();
+                    ORE = ModBlocks.TETRATAENITE.getDefaultState();
                 }
 
-                //for(int i = 0; i1 >= 0 && i < 1; ++i) {
-                int j = 1 + rand.nextInt(3);
-                int k = 1 + rand.nextInt(3);
-                int l = 1 + rand.nextInt(3);
+                int j = 1 + rand.nextInt(2);
+                int k = 1 + rand.nextInt(2);
+                int l = 1 + rand.nextInt(2);
                 float f = (float)(j + k + l) * 0.333F + 0.75F;
-                int AIR = 3 * (j + k + l)/3;
-                for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-AIR, -k+1, -AIR), pos.add(AIR, AIR, AIR))) {
-                    if (blockpos.distanceSq(pos) <= (double)(AIR * AIR)) {
-                        if (reader.getBlockState(pos).getBlock() == Blocks.AIR) {
-                            reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
-                        }
-                    }
-                }
                 for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-j, -k, -l), pos.add(j, k, l))) {
                     if (blockpos.distanceSq(pos) <= (double)(f * f)) {
-                        if (rand.nextFloat() < 0.5F) {
-                            reader.setBlockState(blockpos.down(3), ORE, 4);
+                        if (rand.nextFloat() < 0.4F) {
+                            reader.setBlockState(blockpos.down(1), ORE, 4);
                         } else {
-                            reader.setBlockState(blockpos.down(3), ModBlocks.METEORITE.getDefaultState(), 4);
+                            reader.setBlockState(blockpos.down(1), ModBlocks.METEORITE.getDefaultState(), 4);
                         }
                     }
                 }
-
-
-                //pos = pos.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), -rand.nextInt(2), -(i1 + 1) + rand.nextInt(2 + i1 * 2));
-                //}
-
                 return true;
             }
 
