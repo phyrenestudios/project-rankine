@@ -86,7 +86,6 @@ public class ProjectRankine {
         proxy.init();
         //RankineBiomes.addRankineBiomes();
         ModRecipes.init();
-        ModPotions.addBrewingRecipes();
         //OreGen.setupOreGeneration();
         //DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
