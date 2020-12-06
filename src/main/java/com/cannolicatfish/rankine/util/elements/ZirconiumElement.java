@@ -11,7 +11,7 @@ public class ZirconiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(3*x/5f);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ZirconiumElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/50f;
     }
 
     @Override
@@ -36,12 +36,12 @@ public class ZirconiumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/12f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return x/250f;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class LanthanumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(2*x/5f);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class LanthanumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/4f);
     }
 
     @Override

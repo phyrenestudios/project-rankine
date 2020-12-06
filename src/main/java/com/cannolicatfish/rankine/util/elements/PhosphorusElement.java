@@ -11,7 +11,7 @@ public class PhosphorusElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/10f);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class PhosphorusElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return - (x/100f);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PhosphorusElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/40f);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class PhosphorusElement implements ElementInterface{
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/125f;
     }
 
     @Override

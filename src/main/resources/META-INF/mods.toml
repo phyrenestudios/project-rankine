@@ -24,17 +24,17 @@ displayName="Project Rankine" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 # displayURL="http://example.com/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="examplemod.png" #optional
+logoFile="logo.png" #optional
 # A text field displayed in the mod UI
 #credits="" #optional
 # A text field displayed in the mod UI
 authors="CannoliCatfish, tritespartan17" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Project Rankine is a mod which adds a variety of new content including worldgen, a robust alloying system, and other stuffs
+Project Rankine is a mod which adds a variety of new content including worldgen, a robust alloying system, and other changes to the game
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.rankine]]
     modId="forge"
     mandatory=true
-    versionRange="[35.0.7,)"
+    versionRange="[35.1.10,)"

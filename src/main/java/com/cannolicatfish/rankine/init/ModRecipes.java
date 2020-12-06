@@ -64,7 +64,7 @@ public class ModRecipes {
                 new AbstractMap.SimpleEntry<>(.3f,.7f), new AbstractMap.SimpleEntry<>(.15f,.6f),new AbstractMap.SimpleEntry<>(0f,.1f),.9f));
 
         recipes.add(alloyRecipe("cupronickel_alloy",new ItemStack(ModItems.CUPRONICKEL_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("nickel"),
-                returnTagFamily("iron"),returnTagFamily("manganese"),returnTagFamily("tin"),returnTagFamily("niobium"),returnTagFamily("lead"), returnTagFamily("titanium"),
+                returnTagFamily("iron"),returnTagFamily("manganese"),returnTagFamily("tin"),returnTagFamily("niobium"),returnTagFamily("tantalum"),returnTagFamily("lead"), returnTagFamily("titanium"),
                 returnTagFamily("chromium"),returnTagFamily("aluminum"), returnTagFamily("beryllium"),returnTagFamily("silicon"),returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.7f,.9f), new AbstractMap.SimpleEntry<>(.1f,.3f),new AbstractMap.SimpleEntry<>(0f,.05f),.95f));
 
@@ -76,7 +76,8 @@ public class ModRecipes {
 
         recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(returnTagFamily("pig_iron"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("chromium"),returnTagFamily("molybdenum"),returnTagFamily("titanium"),
-                returnTagFamily("vanadium"),returnTagFamily("silicon")), new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+                returnTagFamily("vanadium"),returnTagFamily("silicon"),returnTagFamily("phosphorus")),
+                new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
         recipes.add(alloyRecipe("rose_gold_alloy",new ItemStack(ModItems.ROSE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("copper"),
                 returnTagFamily("silver"), returnTagFamily("zinc")), new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.6f),.94f));
@@ -128,8 +129,7 @@ public class ModRecipes {
                 returnTagFamily("titanium"),returnTagFamily("tungsten"),
                 returnTagFamily("yttrium"),returnTagFamily("selenium"),
                 returnTagFamily("vanadium"),returnTagFamily("zirconium"),
-                returnTagFamily("silicon"), returnTagFamily("phosphorus"),
-                returnTagFamily("sulfur"),returnTagFamily("nitrogen")),
+                returnTagFamily("silicon"), returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.65f, .75f), new AbstractMap.SimpleEntry<>(.10f, .2f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
 
         recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTagFamily("tungsten"),

@@ -1057,7 +1057,7 @@ public class Config {
         TANTALITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Tantalite ore at (make sure it is greater than the minimum)")
                 .defineInRange("tantaliteOreMax", 30, 0, 256);
         TANTALITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Tantalite ore vein")
-                .defineInRange("tantaliteOreSize", 10, 0, 256);
+                .defineInRange("tantaliteOreSize", 7, 0, 256);
         TANTALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Tantalite ore veins to generate per chunk")
                 .defineInRange("tantaliteOreCount", 1, 0, 256);
         COMMON_BUILDER.pop();
