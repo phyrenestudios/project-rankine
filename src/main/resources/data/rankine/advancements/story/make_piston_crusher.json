@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_beehive_oven_pit",
+  "parent": "rankine:story/make_cast_iron",
   "display": {
     "icon": {
       "item": "rankine:piston_crusher"

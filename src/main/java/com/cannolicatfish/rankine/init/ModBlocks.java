@@ -736,6 +736,7 @@ public class ModBlocks {
     public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
     public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(DEF_METAL_BLOCK), BLOCKS);
 
+    public static final Block CAST_IRON_SUPPORT = add("cast_iron_support", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
     public static final Block ALUMINUM_BARS = add("aluminum_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
     public static final Block MAGNESIUM_BARS = add("magnesium_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);
     public static final Block NICKEL_BARS = add("nickel_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), BLOCKS);

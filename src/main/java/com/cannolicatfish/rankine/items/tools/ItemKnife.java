@@ -41,7 +41,7 @@ public class ItemKnife extends SwordItem {
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.STICK,random.nextInt(4)));
+                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.STICK,random.nextInt(6)));
                 itementity.setDefaultPickupDelay();
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
@@ -58,8 +58,7 @@ public class ItemKnife extends SwordItem {
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
             }
-        }
-        if (state.getBlock() == Blocks.VINE) {
+        } else if (state.getBlock() == Blocks.VINE) {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
@@ -70,20 +69,18 @@ public class ItemKnife extends SwordItem {
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
             }
-        }
-        if (state.getBlock() == Blocks.TALL_GRASS) {
+        } else if (state.getBlock() == Blocks.TALL_GRASS) {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.GRASS,1));
+                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.GRASS,2));
                 itementity.setDefaultPickupDelay();
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
             }
-        }
-        if (state.getBlock() == Blocks.FERN) {
+        } else if (state.getBlock() == Blocks.FERN) {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
@@ -94,8 +91,7 @@ public class ItemKnife extends SwordItem {
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
             }
-        }
-        if (state.getBlock() == Blocks.LARGE_FERN) {
+        } else if (state.getBlock() == Blocks.LARGE_FERN) {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;

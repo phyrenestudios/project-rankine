@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CowEntity;
@@ -94,6 +95,15 @@ public class RankineEventHandler {
         }
     }
  */
+
+    @SubscribeEvent
+    public static void onCraft(PlayerEvent.ItemCraftedEvent event)
+    {
+        if (event.getCrafting().getItem() == ModItems.GLASS_CUTTER)
+        {
+            event.getCrafting().addEnchantment(Enchantments.SILK_TOUCH,1);
+        }
+    }
 
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)
