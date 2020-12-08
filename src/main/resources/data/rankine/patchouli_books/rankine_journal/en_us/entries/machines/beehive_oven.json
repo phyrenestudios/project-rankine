@@ -1,18 +1,18 @@
 {
   "name": "Beehive Oven",
   "icon": "rankine:beehive_oven_pit",
-  "category": "technology/machines",
+  "category": "machines",
   "pages": [
 	{
       "type": "text",
 	  "title": "Beehive Oven Pit",
 	  "anchor": "beehive_oven",
-      "text": "A large enclosed structure seems to work well for cooking my blocks over time. As long as the smoke can reach the sky and a solid floor around it, I'm happy..."
+      "text": "Some blocks are only able to be cooked over long periods of time. This is done using a beehive oven. $(br2)Currently converts:   $(li)Subbituminous Coal --> Bituminous Coal   $(li)Bituminous coal --> Coke   $(li)Limestone --> Quicklime   $(li)Magnesite --> Magnesia   $(li)Pig Iron --> Bloom Iron"
     },
     {
       "type": "crafting",
       "recipe": "rankine:beehive_oven_pit",
-      "text": "Right click with a flint and steel to light $(br)Currently converts:   $(li)subbituminous coal --> coke   $(li)bituminous coal --> coke   $(li)limestone --> quicklime"
+      "text": "Uses random ticks to cook blocks. Making multiple is recomended."
     },
     {
       "type": "multiblock",
@@ -27,8 +27,21 @@
           "W": "rankine:refractory_bricks"
         },
         "symmetrical": true
-      },
-      "text": "not food safe"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Right click the pit block to activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. Blaze powder can be used on the pit to instantly cook one block."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:magnesium_beehive_oven_pit",
+      "text": "1.5x speed. Upgrade the surrounding bricks to magnesium refractory bricks."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:zircon_beehive_oven_pit",
+      "text": "2.0x speed. Upgrade the surrounding bricks to zircon refractory bricks."
     }
   ]
 }

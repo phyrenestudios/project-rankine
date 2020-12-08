@@ -1,11 +1,11 @@
 {
   "name": "Thermometer",
   "icon": "rankine:thermometer",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "It's hot and it's cold..."
+      "text": "Although I do not care too much about the temperature, it is a handy thing to know. $(br2)Use by right clicking a block to get the temperature. This is based on the in-game calculations of biome temperature and elevation."
     },
     {
       "type": "crafting",

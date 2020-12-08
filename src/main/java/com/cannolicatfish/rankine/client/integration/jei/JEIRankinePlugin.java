@@ -37,10 +37,10 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(ModRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
         if (Config.AMALGAM_EXTRAS.get())
         {
-            registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
+            registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Induction Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
                     "Amalgam can use any additions.");
         } else {
-            registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Alloy Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
+            registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Induction Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
                     "Amalgam can use any additions EXCEPT Fe, Pt, W, Ta.");
         }
         registry.addIngredientInfo(new ItemStack(ModItems.STEEL_ALLOY), VanillaTypes.ITEM, "To make crucible steel, right-click on an empty crucible on top of a heat source with pig iron ingots.",

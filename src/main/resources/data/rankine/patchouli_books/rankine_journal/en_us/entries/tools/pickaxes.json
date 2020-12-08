@@ -1,7 +1,7 @@
 {
   "name": "Pickaxe",
   "icon": "rankine:steel_pickaxe",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

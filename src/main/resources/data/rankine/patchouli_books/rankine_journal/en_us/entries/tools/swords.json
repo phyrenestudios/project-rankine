@@ -1,7 +1,7 @@
 {
   "name": "Swords",
   "icon": "rankine:steel_sword",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,7 @@
 {
   "name": "Iron Scraper",
   "icon": "rankine:iron_scraper",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

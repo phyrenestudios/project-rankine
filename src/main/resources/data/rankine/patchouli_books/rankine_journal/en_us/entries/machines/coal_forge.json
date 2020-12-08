@@ -1,12 +1,16 @@
 {
   "name": "Coal Forge",
   "icon": "rankine:coal_forge",
-  "category": "technology/machines",
+  "category": "machines",
   "pages": [
     {
       "type": "text",
       "anchor": "coal_forge",
-      "text": "The coal forge is used for making tools. A template is placed in the top blue slot and this determines what tool is being made. Sticks and ingots go in the main slots in the exact numbers they would be for a standard recipe."
+      "text": "The coal forge is used for making tools. A template is placed in the top blue slot and this determines what tool is being made (templates are not consumed). The materials go into the main slots. See JEI for detailed recipes."
+    },
+    {
+      "type": "text",
+      "text": "For all tools steel tier and below, sticks and the respective alloy are used. $(br2)For all tools above steel level, steel rods and the respective alloy are used. $(br2)Other non-standard tool templates will exist as well, and they can be used to create special tools."
     },
 	{
       "type": "crafting",
@@ -46,6 +50,11 @@
       "type": "crafting",
       "title": "Hoe Template",
       "recipe": "rankine:hoe_template"
+    },
+    {
+      "type": "crafting",
+      "title": "Pendant Template",
+      "recipe": "rankine:pendant_template"
     }
   ]
 }

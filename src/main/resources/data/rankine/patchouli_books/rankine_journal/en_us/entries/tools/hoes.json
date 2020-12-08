@@ -1,7 +1,7 @@
 {
   "name": "Hoes",
   "icon": "rankine:steel_hoe",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

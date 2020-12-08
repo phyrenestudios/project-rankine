@@ -1,7 +1,7 @@
 {
   "name": "Piston Crusher",
   "icon": "rankine:piston_crusher",
-  "category": "technology/machines",
+  "category": "machines",
   "pages": [
     {
       "type": "text",

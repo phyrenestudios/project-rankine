@@ -101,10 +101,6 @@ public class ModRecipes {
         recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
                 returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
-        recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
-                returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
-
-
         return recipes;
     }
 
@@ -274,7 +270,6 @@ public class ModRecipes {
         List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
         recipes.add(beehiveOvenRecipe("limestone_oven_cooking", ModBlocks.LIMESTONE.asItem(),new ItemStack(ModBlocks.QUICKLIME_BLOCK)));
         recipes.add(beehiveOvenRecipe("magnesite_oven_cooking", ModBlocks.MAGNESITE_BLOCK.asItem(),new ItemStack(ModBlocks.MAGNESIA_BLOCK)));
-        recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.LIGNITE_BLOCK.asItem(),new ItemStack(ModBlocks.SUBBITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.SUBBITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.BITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
         recipes.add(beehiveOvenRecipe("bloom_pig_oven_cooking", ModBlocks.PIG_IRON_BLOCK.asItem(),new ItemStack(ModBlocks.BLOOM_IRON_BLOCK)));

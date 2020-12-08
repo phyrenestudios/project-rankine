@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +30,7 @@ public class MetalDetector extends Item {
             });
         }
         boolean found = false;
-        for (int x = 0; x < 24; x++) {
+        for (int x = 0; x < Config.METAL_DETECTOR_RANGE.get(); x++) {
             if (e.getOpposite() == Direction.DOWN)
             {
                 if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
@@ -39,50 +40,35 @@ public class MetalDetector extends Item {
             }
             if (e.getOpposite() == Direction.UP)
             {
-                if (reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.MAGNETITE_ORE || reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.PENTLANDITE_ORE || reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.MALACHITE_ORE ||
-                        reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.BAUXITE_ORE || reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.CASSITERITE_ORE || reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.GALENA_ORE ||
-                        reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.NATIVE_GOLD_ORE || reader.getBlockState(blockpos.up(x)).getBlock() == ModBlocks.ACANTHITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_COPPER_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_TIN_ORE) {
+                if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
                     break;
                 }
             }
             if (e.getOpposite() == Direction.NORTH)
             {
-                if (reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.MAGNETITE_ORE || reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.PENTLANDITE_ORE || reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.MALACHITE_ORE ||
-                        reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.BAUXITE_ORE || reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.CASSITERITE_ORE || reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.GALENA_ORE ||
-                        reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.NATIVE_GOLD_ORE || reader.getBlockState(blockpos.north(x)).getBlock() == ModBlocks.ACANTHITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_COPPER_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_TIN_ORE) {
+                if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
                     break;
                 }
             }
             if (e.getOpposite() == Direction.SOUTH)
             {
-                if (reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.MAGNETITE_ORE || reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.PENTLANDITE_ORE || reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.MALACHITE_ORE ||
-                        reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.BAUXITE_ORE || reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.CASSITERITE_ORE || reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.GALENA_ORE ||
-                        reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.NATIVE_GOLD_ORE || reader.getBlockState(blockpos.south(x)).getBlock() == ModBlocks.ACANTHITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_COPPER_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_TIN_ORE) {
+                if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
                     break;
                 }
             }
             if (e.getOpposite() == Direction.EAST)
             {
-                if (reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.MAGNETITE_ORE || reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.PENTLANDITE_ORE || reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.MALACHITE_ORE ||
-                        reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.BAUXITE_ORE || reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.CASSITERITE_ORE || reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.GALENA_ORE ||
-                        reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.NATIVE_GOLD_ORE || reader.getBlockState(blockpos.east(x)).getBlock() == ModBlocks.ACANTHITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_COPPER_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_TIN_ORE) {
+                if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
                     break;
                 }
             }
             if (e.getOpposite() == Direction.WEST)
             {
-                if (reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.MAGNETITE_ORE || reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.PENTLANDITE_ORE || reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.MALACHITE_ORE ||
-                        reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.BAUXITE_ORE || reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.CASSITERITE_ORE || reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.GALENA_ORE ||
-                        reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.NATIVE_GOLD_ORE || reader.getBlockState(blockpos.west(x)).getBlock() == ModBlocks.ACANTHITE_ORE || reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_COPPER_ORE ||
-                        reader.getBlockState(blockpos.down(x)).getBlock() == ModBlocks.NATIVE_TIN_ORE) {
+                if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
                     break;
                 }

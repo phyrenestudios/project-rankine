@@ -1,0 +1,88 @@
+{
+  "name": "Induction Furnace Alloys",
+  "icon": "rankine:stainless_steel_alloy",
+  "category": "alloying",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Steel",
+      "anchor": "steel",
+      "item": "rankine:steel_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Stainless Steel",
+      "anchor": "stainless_steel",
+      "item": "rankine:stainless_steel_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Tungsten Heavy Alloy",
+      "anchor": "tungsten_heavy_alloy",
+      "item": "rankine:tungsten_heavy_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Nickel Superalloy",
+      "anchor": "nickel_superalloy",
+      "item": "rankine:nickel_superalloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Cobalt Superalloy",
+      "anchor": "cobalt_superalloy",
+      "item": "rankine:cobalt_superalloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Duralumin",
+      "anchor": "duralumin",
+      "item": "rankine:duralumin_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Rose's Metal",
+      "anchor": "rose_metal",
+      "item": "rankine:rose_metal_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Steel",
+      "anchor": "steel",
+      "item": "rankine:steel_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Ferrocerium",
+      "anchor": "ferrocerium",
+      "item": "rankine:ferrocerium_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Mischmetal",
+      "anchor": "mischmetal",
+      "item": "rankine:mischmetal_alloy",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "title": "Amalgam",
+      "anchor": "amalgam",
+      "item": "rankine:amalgam_alloy",
+      "text": ""
+    }
+  ]
+}

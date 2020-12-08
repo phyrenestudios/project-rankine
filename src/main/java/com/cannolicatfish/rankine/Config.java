@@ -66,6 +66,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue NUGGET_DISTANCE;
     public static ForgeConfigSpec.DoubleValue GRAVEL_CONCRETE_SPEED;
     public static ForgeConfigSpec.DoubleValue ROMAN_CONCRETE_SPEED;
+    public static ForgeConfigSpec.IntValue METAL_DETECTOR_RANGE;
 
 
     public static ForgeConfigSpec.BooleanValue SPEED_PENDANT_RECIPE;
@@ -449,6 +450,9 @@ public class Config {
                     .defineInRange("gravelConcreteSpeed", 1.20D, 0.00D, 3.00D);
             ROMAN_CONCRETE_SPEED = COMMON_BUILDER.comment("Movement speed multiplier for walking on roman concrete")
                     .defineInRange("romanConcreteSpeed", 1.40D, 0.00D, 5.00D);
+            METAL_DETECTOR_RANGE = COMMON_BUILDER.comment("Number of blocks away that the metal detector can detect ore.")
+                    .defineInRange("metalDetectorRange", 24, 0, 64);
+
 
             COMMON_BUILDER.comment("Pendant Recipes").push("pendantRecipes");
             SPEED_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for speed pendant.")

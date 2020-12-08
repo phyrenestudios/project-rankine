@@ -1,6 +1,0 @@
-{
-  "name": "Tools n Things",
-  "description": "Here are all the tools I have learned to make. Unfortunately, most require the use of a more advanced machine, the $(l:machines/coal_forge)Coal Forge",
-  "icon": "rankine:flint_pickaxe",
-  "parent": "technology/technology"
-}

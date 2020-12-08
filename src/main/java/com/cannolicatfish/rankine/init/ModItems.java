@@ -523,14 +523,14 @@ public class ModItems {
     public static final Item TITANIUM_CROWBAR = add("titanium_crowbar", new ItemCrowbar(1.5f, -1.8F, RankineToolMaterials.TITANIUM,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item TRANSFORMATION_STAFF = add("transformation_staff", new TransformationStaffItem(new Item.Properties().maxDamage(512).group(ProjectRankine.setup.rankineTools)));
     public static final Item GLASS_CUTTER = add("glass_cutter", new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
+    public static final Item HARDNESS_TESTER = add("hardness_tester", new ItemHardnessTester(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item ORE_CYCLER = add("ore_cycler", new ItemOreCycler(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item ELEMENT_INDEXER = add("element_indexer", new ElementIndexerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item BRIGADINE_HELMET = add("brigandine_helmet", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.HEAD, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BRIGADINE_CHESTPLATE = add("brigandine_chestplate", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.CHEST, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BRIGADINE_LEGGINGS = add("brigandine_leggings", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.LEGS, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BRIGADINE_BOOTS = add("brigandine_boots", new ArmorItem(RankineArmorMaterials.BRIGANDINE, EquipmentSlotType.FEET, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item GEM_SHARD = add("gem_shard", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item GEM_CORE = add("gem_core", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item HASTE_PENDANT = add("haste_pendant", new HastePendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item LUCK_PENDANT = add("luck_pendant", new LuckPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item HEALTH_PENDANT = add("health_pendant", new HealthPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -586,24 +586,17 @@ public class ModItems {
     public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),50));
     public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),800));
     public static final Item COMPOST = add("compost", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-
     public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));
     public static final Item CHEESE = add("cheese", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.CHEESE)));
     public static final Item PINA_COLADA = add("pina_colada", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINA_COLADA)));
-
     public static final Item CAST_IRON_ROD = add("cast_iron_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_ROD = add("steel_rod", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GRAPHITE_ELECTRODE = add("graphite_electrode", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item SADDLE_TREE = add("saddle_tree", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    //public static final Item SURFACE_CONDENSER = add("surface_condenser", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    //public static final Item TURBINE_BLADE = add("turbine_blade", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item BATTERY = add("battery0", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final Item ELEMENT_INDEXER = add("element_indexer", new ElementIndexerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final Item HARDNESS_TESTER = add("hardness_tester", new ItemHardnessTester(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item ORE_CYCLER = add("ore_cycler", new ItemOreCycler(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
     @ObjectHolder("rankine:elderberries")

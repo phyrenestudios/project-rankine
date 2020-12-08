@@ -1,48 +1,48 @@
 {
   "name": "Enchantments",
   "icon": "minecraft:enchanted_book",
-  "category": "magic/magic",
+  "category": "magic",
   "pages": [
 	{
       "type": "text",
       "anchor": "enchantments",
-      "text": "A new plethora of power has emerged. $(li)Swing$(li)Daze$(li)Blast$(li)Puncture(li)Atomize$(li)Lightning Aspect"
+      "text": "Enchantments that appear to function much like the old. $(li)Swing$(li)Daze$(li)Blast$(li)Puncture$(li)Atomize$(li)Lightning Aspect"
     },
     {
       "type": "text",
       "title": "Swing",
       "anchor": "swing",
-      "text": "Swing increases attack speed of a tool. $(br)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(li)$(l:tools/crowbars)Crowbars$() $(br)Levels: I-V"
+      "text": "Swing increases attack speed of single click tools. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(li)$(l:tools/crowbars)Crowbars$() $(br)Levels: I-V"
     },
     {
       "type": "text",
       "title": "Daze",
       "anchor": "daze",
-      "text": "Daze inflicts slowness on a struck mob. $(br)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
+      "text": "Daze inflicts slowness on a struck mob. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
     },
     {
       "type": "text",
       "title": "Blast",
       "anchor": "blast",
-      "text": "Blast explodes a radius of blocks when using the hammer. $(br)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
+      "text": "Blast explodes blocks when using the hammer. Hurts at the moment. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
     },
     {
       "type": "text",
       "title": "Puncture",
       "anchor": "puncture",
-      "text": "Puncture allows throwable tools to pierce armour. $(br)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-III"
+      "text": "Puncture allows throwable tools to pierce armour. $(br2)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-III"
     },
     {
       "type": "text",
       "title": "Atomize",
       "anchor": "atomize",
-      "text": "Atomize yields the secondary crushing component of a block. $(br)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
+      "text": "Atomize allows hammers to crush the secondary component from blocks. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
     },
     {
       "type": "text",
       "title": "Lightning Aspect",
       "anchor": "lightning_aspect",
-      "text": "Lightning Aspect lets unimaginable power rain down. $(br)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
+      "text": "Lightning Aspect summons lightning on a struct mob. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
     }
   ]
 }

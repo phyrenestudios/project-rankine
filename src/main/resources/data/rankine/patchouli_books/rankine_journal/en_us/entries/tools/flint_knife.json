@@ -1,11 +1,11 @@
 {
   "name": "Flint Knife",
   "icon": "rankine:flint_knife",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "The flint knife is one sharp stone. Sharp enough to cut through flesh, bone, grass, you name it!$(br2)Stats:$(li)Weapon Class: Melee$(li)Damage: TBD"
+      "text": "A knife is very useful for cutting the weeds back. The trimmings can be used to make rope. $(br)Use by breaking grass or right click a grass block."
     },
     {
       "type": "crafting",

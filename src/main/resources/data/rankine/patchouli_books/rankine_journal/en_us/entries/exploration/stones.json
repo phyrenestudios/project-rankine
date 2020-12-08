@@ -1,7 +1,7 @@
 {
   "name": "Stones",
   "icon": "rankine:gneiss",
-  "category": "exploration/exploration",
+  "category": "exploration",
   "pages": [
     {
       "type": "text",

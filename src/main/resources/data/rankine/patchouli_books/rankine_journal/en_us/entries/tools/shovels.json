@@ -1,7 +1,7 @@
 {
   "name": "Shovels",
   "icon": "rankine:steel_shovel",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

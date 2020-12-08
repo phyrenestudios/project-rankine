@@ -1,0 +1,5 @@
+{
+  "name": "Machines",
+  "description": "Mechanical devices used to create various materials and components. Some are passive and most require fuel. Perhaps one day new forms of power will emerge.",
+  "icon": "rankine:coal_forge"
+}

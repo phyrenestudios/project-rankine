@@ -1,11 +1,11 @@
 {
   "name": "Hardness Tester",
   "icon": "rankine:hardness_tester",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "Sometimes I don't know what to do, what to mine, even if I can at all. Luckily I can whack things with this..."
+      "text": "Many stones and ores exist requiring various levels of technology to harvest. $(br2)Use by right clicking a block to see its mining level.Testable material only include those affeceted by a pickaxe."
     },
     {
       "type": "crafting",
