@@ -1,21 +1,26 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.ToolItem;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
@@ -84,4 +89,11 @@ public class GlassCutterItem extends ToolItem {
         return ActionResultType.FAIL;
     }
 
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
+            ItemStack stack = new ItemStack(this.asItem(),1);
+            stack.addEnchantment(Enchantments.SILK_TOUCH,1);
+            items.add(stack);
+        }
+    }
 }

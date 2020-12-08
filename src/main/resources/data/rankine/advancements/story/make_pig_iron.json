@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/find_meteorite",
+  "parent": "rankine:story/make_blast_furnace",
   "display": {
     "icon": {
       "item": "rankine:pig_iron_ingot"

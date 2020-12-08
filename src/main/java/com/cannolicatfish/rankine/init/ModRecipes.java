@@ -80,7 +80,7 @@ public class ModRecipes {
                 new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
 
         recipes.add(alloyRecipe("rose_gold_alloy",new ItemStack(ModItems.ROSE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("copper"),
-                returnTagFamily("silver"), returnTagFamily("zinc")), new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.6f),.94f));
+                returnTagFamily("silver"), returnTagFamily("zinc")), new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.06f),.94f));
 
         recipes.add(alloyRecipe("white_gold_alloy",new ItemStack(ModItems.WHITE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("zinc"),
                 returnTagFamily("nickel"),returnTagFamily("palladium"),returnTagFamily("silver"),returnTagFamily("platinum")),
@@ -167,6 +167,10 @@ public class ModRecipes {
         recipes.add(tripleAlloyRecipe("rose_metal_alloy", new ItemStack(ModItems.ROSE_METAL_ALLOY), Arrays.asList(returnTagFamily("bismuth"),
                 returnTagFamily("lead"),returnTagFamily("tin")),
                 new AbstractMap.SimpleEntry<>(.3f, .5f), new AbstractMap.SimpleEntry<>(.18f, .4f), new AbstractMap.SimpleEntry<>(.1f, .25f), new AbstractMap.SimpleEntry<>(0f, 0f),1f));
+
+        recipes.add(tripleAlloyRecipe("galinstan_alloy", new ItemStack(ModItems.GALINSTAN_ALLOY), Arrays.asList(returnTagFamily("gallium"),
+                returnTagFamily("indium"),returnTagFamily("tin"), returnTagFamily("antimony"), returnTagFamily("bismuth")),
+                new AbstractMap.SimpleEntry<>(.68f, .8f), new AbstractMap.SimpleEntry<>(.12f, .22f), new AbstractMap.SimpleEntry<>(.08f, .1f), new AbstractMap.SimpleEntry<>(0f, .1f),.9f));
 
             recipes.add(tripleAlloyRecipe("nickel_superalloy_tial", new ItemStack(ModItems.NICKEL_SUPERALLOY), Arrays.asList(returnTagFamily("nickel"),
                 returnTagFamily("titanium"),returnTagFamily("aluminum"),

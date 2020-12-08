@@ -125,6 +125,7 @@ public class ModItems {
     public static final AlloyItem TUNGSTEN_HEAVY_ALLOY = add("tungsten_heavy_alloy", new AlloyItem("90W-7Ni-3Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem COBALT_SUPERALLOY = add("cobalt_superalloy", new AlloyItem("60Co-20Cr-10Ni-10Ta",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ROSE_METAL_ALLOY = add("rose_metal_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GALINSTAN_ALLOY = add("galinstan_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MAGNALIUM_ALLOY = add("magnalium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item DURALUMIN_ALLOY = add("duralumin_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OSMIRIDIUM_ALLOY = add("osmiridium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

@@ -71,6 +71,8 @@ public class JEIRankinePlugin implements IModPlugin {
                 "Paper and black dye are required.");
         registry.addIngredientInfo(new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE), VanillaTypes.ITEM, "Created using the Alloy Template Table. " +
                 "Paper and purple dye are required.");
+        registry.addIngredientInfo(new ItemStack(ModItems.FLINT_KNIFE), VanillaTypes.ITEM, "Right-clicking on grass blocks allows you to obtain grass and convert the original block into dirt at an increased durability cost." +
+                "The knife can also harvest grass and vines by left clicking.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.ALNICO_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.NITINOL_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");

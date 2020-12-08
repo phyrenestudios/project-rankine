@@ -1,14 +1,14 @@
 {
-  "parent": "rankine:story/gather_rope",
+  "parent": "rankine:story/make_coke",
   "display": {
     "icon": {
-      "item": "rankine:flint_spear"
+      "item": "rankine:cast_iron_alloy"
     },
     "title": {
-      "translate": "rankine.advancements.story.get_flint_spear.title"
+      "translate": "rankine.advancements.story.make_cast_iron_alloy.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.get_flint_spear.description"
+      "translate": "rankine.advancements.story.make_cast_iron_alloy.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "flint_spear": {
+    "cast_iron_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:flint_spear"
+            "item": "rankine:cast_iron_alloy"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "flint_spear"
+      "cast_iron_alloy"
     ]
   ]
 }

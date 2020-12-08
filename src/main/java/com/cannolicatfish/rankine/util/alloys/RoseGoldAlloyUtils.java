@@ -18,7 +18,7 @@ public class RoseGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 32;
+        return 48;
     }
 
     @Override
