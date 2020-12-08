@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.pendants.*;
@@ -99,10 +100,6 @@ public class ModRecipes {
 
         recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
                 returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
-
-        recipes.add(alloyRecipe("black_gold_alloy",new ItemStack(ModItems.BLACK_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("cobalt"),
-                returnTagFamily("chromium")), new AbstractMap.SimpleEntry<>(.75f,.80f), new AbstractMap.SimpleEntry<>(.15f,.20f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
-
 
         return recipes;
     }
@@ -277,7 +274,6 @@ public class ModRecipes {
         List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
         recipes.add(beehiveOvenRecipe("limestone_oven_cooking", ModBlocks.LIMESTONE.asItem(),new ItemStack(ModBlocks.QUICKLIME_BLOCK)));
         recipes.add(beehiveOvenRecipe("magnesite_oven_cooking", ModBlocks.MAGNESITE_BLOCK.asItem(),new ItemStack(ModBlocks.MAGNESIA_BLOCK)));
-        recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.LIGNITE_BLOCK.asItem(),new ItemStack(ModBlocks.SUBBITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.SUBBITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.BITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
         recipes.add(beehiveOvenRecipe("bloom_pig_oven_cooking", ModBlocks.PIG_IRON_BLOCK.asItem(),new ItemStack(ModBlocks.BLOOM_IRON_BLOCK)));
@@ -313,7 +309,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("limestone_crushing",ModBlocks.LIMESTONE.asItem(),new ItemStack(ModItems.CALCITE, 1), new ItemStack(ModItems.DOLOMITE), 0.1f));
         recipes.add(crushingRecipe("shale_crushing",ModBlocks.SHALE.asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("anorthosite_crushing",ModBlocks.ANORTHOSITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.OLIVINE), 0.1f));
-        recipes.add(crushingRecipe("ironstone_crushing",ModBlocks.IRONSTONE.asItem(),new ItemStack(ModItems.MAGNETITE),new ItemStack(ModItems.TIGER_IRON), 0.1f));
+        recipes.add(crushingRecipe("ironstone_crushing",ModBlocks.IRONSTONE.asItem(),new ItemStack(Items.IRON_NUGGET, 2),new ItemStack(ModItems.TIGER_IRON), 0.05f));
         recipes.add(crushingRecipe("tholeiitic_basalt_crushing",ModBlocks.THOLEIITIC_BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("rhyolite_crushing",ModBlocks.RHYOLITE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("marble_crushing",ModBlocks.MARBLE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
@@ -342,7 +338,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("smooth_limestone_crushing",ModBlocks.POLISHED_LIMESTONE.asItem(),new ItemStack(ModItems.CALCITE, 1), new ItemStack(ModItems.DOLOMITE), 0.1f));
         recipes.add(crushingRecipe("smooth_shale_crushing",ModBlocks.POLISHED_SHALE.asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("smooth_anorthosite_crushing",ModBlocks.POLISHED_ANORTHOSITE.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.OLIVINE), 0.1f));
-        recipes.add(crushingRecipe("smooth_ironstone_crushing",ModBlocks.POLISHED_IRONSTONE.asItem(),new ItemStack(ModItems.MAGNETITE),new ItemStack(ModItems.TIGER_IRON), 0.1f));
+        recipes.add(crushingRecipe("smooth_ironstone_crushing",ModBlocks.POLISHED_IRONSTONE.asItem(),new ItemStack(Items.IRON_NUGGET, 2),new ItemStack(ModItems.TIGER_IRON), 0.05f));
         recipes.add(crushingRecipe("smooth_tholeiitic_basalt_crushing",ModBlocks.POLISHED_THOLEIITIC_BASALT.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("smooth_rhyolite_crushing",ModBlocks.POLISHED_RHYOLITE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("smooth_marble_crushing",ModBlocks.POLISHED_MARBLE.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
@@ -368,9 +364,9 @@ public class ModRecipes {
         recipes.add(crushingRecipe("diorite_bricks_crushing",ModBlocks.GRANODIORITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.PYROXENE), 0.1f));
         recipes.add(crushingRecipe("andesite_bricks_crushing",ModBlocks.HORNBLENDE_ANDESITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.ZIRCON), 0.05f));
         recipes.add(crushingRecipe("limestone_bricks_crushing",ModBlocks.LIMESTONE_BRICKS.asItem(),new ItemStack(ModItems.CALCITE, 1), new ItemStack(ModItems.DOLOMITE), 0.1f));
-        recipes.add(crushingRecipe("shale_bricks_crushing",ModBlocks.SHALE_BRICKS.asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
+        recipes.add(crushingRecipe("shale_bricks_crushing",ModBlocks.SHALE_BRICKS.asItem(),new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("anorthosite_bricks_crushing",ModBlocks.ANORTHOSITE_BRICKS.asItem(),new ItemStack(ModItems.FELDSPAR, 3), new ItemStack(ModItems.OLIVINE), 0.1f));
-        recipes.add(crushingRecipe("ironstone_bricks_crushing",ModBlocks.IRONSTONE_BRICKS.asItem(),new ItemStack(ModItems.MAGNETITE),new ItemStack(ModItems.TIGER_IRON), 0.1f));
+        recipes.add(crushingRecipe("ironstone_bricks_crushing",ModBlocks.IRONSTONE_BRICKS.asItem(),new ItemStack(Items.IRON_NUGGET, 2),new ItemStack(ModItems.TIGER_IRON), 0.05f));
         recipes.add(crushingRecipe("tholeiitic_basalt_bricks_crushing",ModBlocks.THOLEIITIC_BASALT_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(ModItems.MAGNETITE,1),0.05f));
         recipes.add(crushingRecipe("rhyolite_bricks_crushing",ModBlocks.RHYOLITE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
         recipes.add(crushingRecipe("marble_bricks_crushing",ModBlocks.MARBLE_BRICKS.asItem(), new ItemStack(ModItems.FELDSPAR,3), new ItemStack(Items.QUARTZ,1),0.1f));
@@ -423,10 +419,10 @@ public class ModRecipes {
         recipes.add(crushingRecipe("anthracite_crushing",ModItems.ANTHRACITE_COAL, new ItemStack(Items.COAL,2), new ItemStack(ModItems.SULFUR,1),0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
         recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("kamacite_crushing",ModBlocks.KAMACITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("antitaenite_crushing",ModBlocks.ANTITAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("taenite_crushing",ModBlocks.TAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("kamacite_crushing",ModBlocks.KAMACITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("antitaenite_crushing",ModBlocks.ANTITAENITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("taenite_crushing",ModBlocks.TAENITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("bloom_iron_crushing",ModItems.BLOOM_IRON.asItem(), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1), new ItemStack(ModItems.SLAG,1),0.5f));
         recipes.add(crushingRecipe("cobalite_ore_crushing",ModBlocks.COBALTITE_ORE.asItem(), new ItemStack(ModItems.COBALTITE,1), new ItemStack(ModItems.COBALTITE,1),0.1f));
         recipes.add(crushingRecipe("petalite_ore_crushing",ModBlocks.PETALITE_ORE.asItem(), new ItemStack(ModItems.PETALITE,1), new ItemStack(ModItems.TOURMALINE,1),0.1f));
@@ -583,12 +579,12 @@ public class ModRecipes {
         recipes.add(forgingRecipe("tungsten_heavy_alloy_spear",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,3),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_SPEAR)));
         recipes.add(forgingRecipe("tungsten_heavy_alloy_hammer",new ItemStack(ModItems.STEEL_ROD,2),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY,5),new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY_HAMMER)));
 
-        recipes.add(forgingRecipe("haste_pendant",new ItemStack(ModItems.RUBY,4),new ItemStack(ModItems.ROSE_GOLD_ALLOY,24),new ItemStack(ModItems.HASTE_PENDANT)));
-        recipes.add(forgingRecipe("luck_pendant",new ItemStack(ModItems.PERIDOT,4),new ItemStack(ModItems.WHITE_GOLD_ALLOY,24),new ItemStack(ModItems.LUCK_PENDANT)));
-        recipes.add(forgingRecipe("health_pendant",new ItemStack(Items.EMERALD,4),new ItemStack(ModItems.GREEN_GOLD_ALLOY,24),new ItemStack(ModItems.HEALTH_PENDANT)));
-        recipes.add(forgingRecipe("speed_pendant",new ItemStack(ModItems.SAPPHIRE,4),new ItemStack(ModItems.BLUE_GOLD_ALLOY,24),new ItemStack(ModItems.SPEED_PENDANT)));
-        recipes.add(forgingRecipe("levitation_pendant",new ItemStack(ModItems.AQUAMARINE,4),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,24),new ItemStack(ModItems.LEVITATION_PENDANT)));
-        recipes.add(forgingRecipe("repulsion_pendant",new ItemStack(ModItems.GARNET,4),new ItemStack(ModItems.BLACK_GOLD_ALLOY,24),new ItemStack(ModItems.REPULSION_PENDANT)));
+        if (Config.HASTE_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("haste_pendant",new ItemStack(ModItems.RUBY,9),new ItemStack(ModItems.ROSE_GOLD_ALLOY,64),new ItemStack(ModItems.HASTE_PENDANT)));}
+        if (Config.LUCK_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("luck_pendant",new ItemStack(ModItems.PERIDOT,9),new ItemStack(ModItems.WHITE_GOLD_ALLOY,64),new ItemStack(ModItems.LUCK_PENDANT)));}
+        if (Config.HEALTH_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("health_pendant",new ItemStack(Items.EMERALD,9),new ItemStack(ModItems.GREEN_GOLD_ALLOY,64),new ItemStack(ModItems.HEALTH_PENDANT)));}
+        if (Config.SPEED_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("speed_pendant",new ItemStack(ModItems.SAPPHIRE,9),new ItemStack(ModItems.BLUE_GOLD_ALLOY,64),new ItemStack(ModItems.SPEED_PENDANT)));}
+        if (Config.LEVITATION_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("levitation_pendant",new ItemStack(ModItems.AQUAMARINE,9),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,64),new ItemStack(ModItems.LEVITATION_PENDANT)));}
+        if (Config.REPULSION_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("repulsion_pendant",new ItemStack(ModItems.GARNET,9),new ItemStack(ModItems.BLACK_GOLD_ALLOY,64),new ItemStack(ModItems.REPULSION_PENDANT)));}
 
         // (EXPERIMENTAL) CONFIG ALLOYS
         recipes.add(forgingRecipe("cupronickel_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));

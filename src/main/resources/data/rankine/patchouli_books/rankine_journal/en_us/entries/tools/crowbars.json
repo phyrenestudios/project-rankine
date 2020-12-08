@@ -1,11 +1,11 @@
 {
   "name": "Crowbars",
   "icon": "rankine:steel_crowbar",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "If there were nails around here, I'm sure this would help."
+      "text": "Improved technology for breaking things made of nails and the such. Tested materials include planks, fences, rails, and sheetmetals. $(br)Use by left clicking when the attack bar is not on cooldown."
     },
     {
       "type": "crafting",

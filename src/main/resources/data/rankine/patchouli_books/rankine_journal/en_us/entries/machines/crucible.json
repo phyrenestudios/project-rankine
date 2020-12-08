@@ -1,16 +1,17 @@
 {
   "name": "Crucible",
   "icon": "rankine:crucible",
-  "category": "technology/machines",
+  "category": "machines",
   "pages": [
     {
       "type": "text",
       "anchor": "crucible",
-      "text": ""
+      "text": "The crucible is a device capable of melting the materials required to forge steel. Place the crucible above a heat source. Right click with an ingot of $(l:alloying/steel#pig_iron)Pig Iron$() to create molten pig iron and then right click with 3 ingots of $(l:alloying/steel#wrought_iron)Wrought Iron$() to make 3 steel ingots."
     },
     {
       "type": "crafting",
-      "recipe": "rankine:crucible"
+      "recipe": "rankine:crucible",
+      "text": "Valid heat sources include: $(li)Fire$() $(li)Lava$() $(li)Magma Block$()"
     }
   ]
 }

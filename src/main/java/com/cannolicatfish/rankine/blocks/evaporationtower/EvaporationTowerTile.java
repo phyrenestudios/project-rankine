@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
@@ -41,7 +42,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
     private int cookTime;
-    private int cookTimeTotal = 800;
+    private int cookTimeTotal = Config.EVAPORATION_TOWER_SPEED.get();
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
     private final IIntArray towerData = new IIntArray(){
         public int get(int index)

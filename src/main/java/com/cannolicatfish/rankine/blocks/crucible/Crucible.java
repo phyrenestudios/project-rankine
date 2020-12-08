@@ -75,7 +75,7 @@ public class Crucible extends Block {
         } else {
             int i = state.get(LEVEL);
             Item item = itemstack.getItem();
-            if (item == ModItems.PIG_IRON_INGOT && i != 1 && i != 2 && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA)) {
+            if (item == ModItems.PIG_IRON_INGOT && i != 1 && i != 2 && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA || worldIn.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK)) {
                 if (i < 3 && !worldIn.isRemote) {
                     if (!player.abilities.isCreativeMode) {
                         itemstack.shrink(1);
@@ -85,7 +85,7 @@ public class Crucible extends Block {
                 }
 
                 return ActionResultType.SUCCESS;
-            } if (item == ModItems.WROUGHT_IRON_INGOT && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA))
+            } if (item == ModItems.WROUGHT_IRON_INGOT && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA || worldIn.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK))
             {
                 if (i > 0 && !worldIn.isRemote){
                     if (!player.abilities.isCreativeMode) {

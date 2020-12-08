@@ -13,11 +13,13 @@ import java.nio.file.Path;
 @Mod.EventBusSubscriber
 public class Config {
 
-    public static final String CATEGORY_GENERAL = "general";
-    public static final String CATEGORY_MECHANICS = "mechanics";
+    public static final String CATEGORY_GENERAL = "generalSettings";
+    public static final String CATEGORY_ALLOYS = "alloySettings";
+    public static final String CATEGORY_WORLDGEN = "worldgenSettings";
+
     public static final String SUBCATEGORY_EVENTS = "event";
     public static final String SUBCATEGORY_ALLOYS = "alloys";
-    public static final String SUBCATEGORY_WORLDGEN = "worldgen";
+    public static final String SUBCATEGORY_OREGEN = "oregen";
     public static final String SUBCATEGORY_OVERWORLD = "overworldOres";
     public static final String SUBCATEGORY_NETHER = "netherOres";
     public static final String SUBCATEGORY_END = "endOres";
@@ -38,16 +40,6 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND;
     public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE;
 
-    public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_MAXPOWER;
-    public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_GENERATE;
-    public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_SEND;
-    public static ForgeConfigSpec.IntValue PISTON_STEAM_ENGINE_TICKS;
-
-    public static ForgeConfigSpec.IntValue STEAM_TURBINE_MAXPOWER;
-    public static ForgeConfigSpec.IntValue STEAM_TURBINE_GENERATE;
-    public static ForgeConfigSpec.IntValue STEAM_TURBINE_SEND;
-    public static ForgeConfigSpec.IntValue STEAM_TURBINE_TICKS;
-
     public static ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
     public static ForgeConfigSpec.BooleanValue ALLOY_HEAT;
     public static ForgeConfigSpec.BooleanValue ALLOY_TOUGHNESS;
@@ -67,11 +59,26 @@ public class Config {
     public static ForgeConfigSpec.IntValue BEDROCK_LAYERS;
     public static ForgeConfigSpec.IntValue NOISE_SCALE;
     public static ForgeConfigSpec.IntValue NOISE_OFFSET;
+    public static ForgeConfigSpec.IntValue METEOR_CHANCE;
+    public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
+    public static ForgeConfigSpec.BooleanValue RANKINE_TREES;
+    public static ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
+    public static ForgeConfigSpec.IntValue NUGGET_DISTANCE;
+    public static ForgeConfigSpec.DoubleValue GRAVEL_CONCRETE_SPEED;
+    public static ForgeConfigSpec.DoubleValue ROMAN_CONCRETE_SPEED;
+    public static ForgeConfigSpec.IntValue METAL_DETECTOR_RANGE;
 
 
+    public static ForgeConfigSpec.BooleanValue SPEED_PENDANT_RECIPE;
+    public static ForgeConfigSpec.BooleanValue HASTE_PENDANT_RECIPE;
+    public static ForgeConfigSpec.BooleanValue HEALTH_PENDANT_RECIPE;
+    public static ForgeConfigSpec.BooleanValue LEVITATION_PENDANT_RECIPE;
+    public static ForgeConfigSpec.BooleanValue REPULSION_PENDANT_RECIPE;
+    public static ForgeConfigSpec.BooleanValue LUCK_PENDANT_RECIPE;
 
+
+    //OVERWORLD ORES
     //public static ForgeConfigSpec.BooleanValue DEFAULT_ORE;
-
     public static ForgeConfigSpec.BooleanValue NATIVE_COPPER_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_MAX_HEIGHT;
@@ -344,9 +351,6 @@ public class Config {
     public static ForgeConfigSpec.IntValue TANTALITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue TANTALITE_ORE_COUNT;
     
-    
-    
-    
     //END ORES
     public static ForgeConfigSpec.BooleanValue NATIVE_GALLIUM_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_MIN_HEIGHT;
@@ -397,13 +401,16 @@ public class Config {
 
 
     static {
-
-        COMMON_BUILDER.comment("General settings").push(CATEGORY_GENERAL);
+        COMMON_BUILDER.comment("General Settings").push(CATEGORY_GENERAL);
         setupFirstBlockConfig();
         COMMON_BUILDER.pop();
 
-        COMMON_BUILDER.comment("Alloy settings").push(CATEGORY_MECHANICS);
+        COMMON_BUILDER.comment("Alloy Settings").push(CATEGORY_ALLOYS);
         setupSecondBlockConfig();
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("Worldgen Settings").push(CATEGORY_WORLDGEN);
+        setupThirdBlockConfig();
         COMMON_BUILDER.pop();
 
         COMMON_CONFIG = COMMON_BUILDER.build();
@@ -411,44 +418,85 @@ public class Config {
     }
 
     private static void setupFirstBlockConfig() {
-        //General config
         COMMON_BUILDER.comment("General Mod Settings").push(SUBCATEGORY_EVENTS);
 
-        STARTING_BOOK = COMMON_BUILDER.comment("Enables (not functional yet) the Rankine Journal (a guide to the mod)")
-                .define("startingBook",true);
-        MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
-                .define("axesOnly",false);
-        DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default.")
-                .define("disableWood",true);
-        DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default.")
-                .define("disableStone",true);
-        DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default.")
-                .define("disableIron",false);
-        DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is disabled by default.")
-                .define("disableGold",false);
-        DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default.")
-                .define("disableDiamond",false);
-        DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default.")
-                .define("disableNetherite",false);
-        GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
-                .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
-        T1_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the beehive oven (T1) to cook a block")
-                .defineInRange("breakExhaustion", 0.5D, 0.00D, 1.00D);
-        T2_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the magnesium beehive oven (T2) to cook a block")
-                .defineInRange("breakExhaustion", 0.75D, 0.00D, 1.00D);
-        T3_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the zircon beehive oven (T3) to cook a block")
-                .defineInRange("breakExhaustion", 1.0D, 0.00D, 1.00D);
+            STARTING_BOOK = COMMON_BUILDER.comment("Enables (not functional yet) the Rankine Journal (a guide to the mod)")
+                    .define("startingBook",true);
+            MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
+                    .define("axesOnly",false);
+            DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default.")
+                    .define("disableWood",true);
+            DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default.")
+                    .define("disableStone",true);
+            DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default.")
+                    .define("disableIron",false);
+            DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is disabled by default.")
+                    .define("disableGold",false);
+            DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default.")
+                    .define("disableDiamond",false);
+            DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default.")
+                    .define("disableNetherite",false);
+            GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
+                    .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
+            T1_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the beehive oven (T1) to cook a block")
+                    .defineInRange("t1BeehiveOvenTime", 0.5D, 0.00D, 1.00D);
+            T2_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the magnesium beehive oven (T2) to cook a block")
+                    .defineInRange("t2BeehiveOvenTime", 0.75D, 0.00D, 1.00D);
+            T3_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the zircon beehive oven (T3) to cook a block")
+                    .defineInRange("t3BeehiveOvenTime", 1.0D, 0.00D, 1.00D);
+            EVAPORATION_TOWER_SPEED = COMMON_BUILDER.comment("Speed (in ticks) at which the evaporation tower generates resources.")
+                    .defineInRange("evaporationTowerSpeed", 800, 20, 12000);
+            GRAVEL_CONCRETE_SPEED = COMMON_BUILDER.comment("Movement speed multiplier for walking on gravel concrete")
+                    .defineInRange("gravelConcreteSpeed", 1.20D, 0.00D, 3.00D);
+            ROMAN_CONCRETE_SPEED = COMMON_BUILDER.comment("Movement speed multiplier for walking on roman concrete")
+                    .defineInRange("romanConcreteSpeed", 1.40D, 0.00D, 5.00D);
+            METAL_DETECTOR_RANGE = COMMON_BUILDER.comment("Number of blocks away that the metal detector can detect ore.")
+                    .defineInRange("metalDetectorRange", 24, 0, 64);
+
+
+            COMMON_BUILDER.comment("Pendant Recipes").push("pendantRecipes");
+            SPEED_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for speed pendant.")
+                    .define("speedPendantRecipe",true);
+            HASTE_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for haste pendant.")
+                    .define("hastePendantRecipe",true);
+            HEALTH_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for health pendant.")
+                    .define("healthPendantRecipe",true);
+            LEVITATION_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for levitation pendant.")
+                    .define("levitationPendantRecipe",true);
+            REPULSION_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for repulsion pendant.")
+                    .define("repulsionPendantRecipe",true);
+            LUCK_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for luck pendant.")
+                    .define("luckPendantRecipe",true);
+            COMMON_BUILDER.pop();
+
         COMMON_BUILDER.pop();
+    }
 
+    private static void setupSecondBlockConfig() {
+        COMMON_BUILDER.comment("Alloy Settings").push(SUBCATEGORY_ALLOYS);
 
-        //Worldgen config
-        COMMON_BUILDER.comment("Worldgen Settings").push(SUBCATEGORY_WORLDGEN);
+            ALLOY_CORROSION = COMMON_BUILDER.comment("Enables (not functional yet) the corrosion negative modifier for alloy tools (chance to consume an extra point of durability in water and rain)")
+                    .define("alloyCorrosion",true);
+            ALLOY_HEAT = COMMON_BUILDER.comment("Enables (not functional yet) the heat negative modifier for alloy tools (chance to consume an extra point of durability in hot environments and lava)")
+                    .define("alloyHeat",true);
+            ALLOY_TOUGHNESS = COMMON_BUILDER.comment("Enables (not functional yet) the toughness negative modifier for alloy tools (chance to consume an extra point of durability)")
+                    .define("alloyToughness",true);
+            ALLOY_WEAR_MINING_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on mining speed (ex. 0.25 means mining speed will be reduced to 75% of the original value as durability is lost)")
+                    .defineInRange("alloyWearMiningAmount", 0.25D, 0.00D, 0.99D);
+            ALLOY_WEAR_DAMAGE_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on damage (ex. 0.25 means damage will be reduced to 75% of the original value as durability is lost)")
+                    .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
+            AMALGAM_EXTRAS = COMMON_BUILDER.comment("Enables (not functional yet) the disabled metals for amalgam alloy (Fe, Pt, W, Ta)")
+                    .define("amalgamExtras",false);
 
+        COMMON_BUILDER.pop();
+    }
+
+    private static void setupThirdBlockConfig() {
         COMMON_BUILDER.comment("Bedrock Generation").push("bedrock");
         FLAT_BEDROCK = COMMON_BUILDER.comment("Generates with a flat bedrock layer (includes the Nether)")
                 .define("flatBedrock",false);
         BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
-                .defineInRange("bedrockLayers", 1, 0, 10);
+                .defineInRange("bedrockLayers", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Stone Layer Generation").push("layeringNoise");
@@ -458,8 +506,10 @@ public class Config {
                 .defineInRange("noiseOffset", 256, 0, 16*64);
         COMMON_BUILDER.pop();
 
-            
-        COMMON_BUILDER.comment("Overworld Ore Settings").push(SUBCATEGORY_OVERWORLD);
+        COMMON_BUILDER.comment("Meteorite Generation").push("meteorite");
+        METEOR_CHANCE = COMMON_BUILDER.comment("The 1 in X chunks a meteroite will spawn. Set to 0 to disable")
+                .defineInRange("meteorChance", 50, 0, 1000);
+        COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Intrusion Ore Settings").push("intrusionOres");
         DIAMON_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by a diamond ore")
@@ -469,6 +519,24 @@ public class Config {
         INTERSPINIFEX_CHANCE = COMMON_BUILDER.comment("Chance for an komatiite intrusion block to be replaced by an interspinifex ore")
                 .defineInRange("interspinifexOreChance", 0.08D, 0.00D, 1.00D);
         COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("Rankine Tree Generation").push("rankineTrees");
+        RANKINE_TREES = COMMON_BUILDER.comment("Enable/Disable Project Rankine trees in world.")
+                .define("generateTrees",true);
+        COMMON_BUILDER.pop();
+
+        COMMON_BUILDER.comment("Nuggets Around Ores").push("oreNuggets");
+        NUGGET_CHANCE = COMMON_BUILDER.comment("Chance for a rankine stone block to drop a nugget of a nearby ore.")
+                .defineInRange("nuggetChance", 0.15D, 0.00D, 1.00D);
+        NUGGET_DISTANCE = COMMON_BUILDER.comment("")
+                .defineInRange("nuggetRange", 5, 1, 64);
+        COMMON_BUILDER.pop();
+
+
+
+        //Oregen config
+        COMMON_BUILDER.comment("Oregen Settings").push(SUBCATEGORY_OREGEN);
+        COMMON_BUILDER.comment("Overworld Ore Settings").push(SUBCATEGORY_OVERWORLD);
 
         COMMON_BUILDER.comment("Native Copper Ore Settings").push("nativeCopperOre");
         NATIVE_COPPER_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Copper ore)")
@@ -899,7 +967,7 @@ public class Config {
                 .defineInRange("plumbagoOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
 
-
+        //end overworld
         COMMON_BUILDER.pop();
 
 
@@ -1009,7 +1077,7 @@ public class Config {
         SPERRYLITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Sperrylite ore veins to generate per chunk")
                 .defineInRange("sperryliteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
-        
+
         COMMON_BUILDER.comment("Moissanite Ore Settings").push("moissaniteOre");
         MOISSANITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Moissanite ore)")
                 .define("moissaniteOreEnabled",true);
@@ -1022,7 +1090,7 @@ public class Config {
         MOISSANITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Moissanite ore veins to generate per chunk")
                 .defineInRange("moissaniteOreCount", 1, 0, 256);
         COMMON_BUILDER.pop();
-        
+
         COMMON_BUILDER.comment("Greenockite Ore Settings").push("greenockiteOre");
         GREENOCKITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Greenockite ore)")
                 .define("greenockiteOreEnabled",true);
@@ -1061,13 +1129,14 @@ public class Config {
         TANTALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Tantalite ore veins to generate per chunk")
                 .defineInRange("tantaliteOreCount", 1, 0, 256);
         COMMON_BUILDER.pop();
-        
+
+        //end nether
         COMMON_BUILDER.pop();
 
 
         //END ORES
         COMMON_BUILDER.comment("End Ore Settings").push(SUBCATEGORY_END);
-                
+
         COMMON_BUILDER.comment("Native Gallium Ore Settings").push("nativeGalliumOre");
         NATIVE_GALLIUM_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Gallium ore)")
                 .define("nativeGalliumOreEnabled",true);
@@ -1159,43 +1228,11 @@ public class Config {
                 .defineInRange("xenotimeOreCount", 8, 0, 256);
         COMMON_BUILDER.pop();
 
+        //end end
         COMMON_BUILDER.pop();
 
-
-
-
-
-
-
-
-
+        //end oregen
         COMMON_BUILDER.pop();
-    }
-
-    private static void setupSecondBlockConfig() {
-        COMMON_BUILDER.comment("Alloy settings").push(SUBCATEGORY_ALLOYS);
-
-        ALLOY_CORROSION = COMMON_BUILDER.comment("Enables (not functional yet) the corrosion negative modifier for alloy tools (chance to consume an extra point of durability in water and rain)")
-                .define("alloyCorrosion",true);
-
-        ALLOY_HEAT = COMMON_BUILDER.comment("Enables (not functional yet) the heat negative modifier for alloy tools (chance to consume an extra point of durability in hot environments and lava)")
-                .define("alloyHeat",true);
-
-        ALLOY_TOUGHNESS = COMMON_BUILDER.comment("Enables (not functional yet) the toughness negative modifier for alloy tools (chance to consume an extra point of durability)")
-                .define("alloyToughness",true);
-
-        ALLOY_WEAR_MINING_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on mining speed (ex. 0.25 means mining speed will be reduced to 75% of the original value as durability is lost)")
-                .defineInRange("alloyWearMiningAmount", 0.25D, 0.00D, 0.99D);
-
-        ALLOY_WEAR_DAMAGE_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on damage (ex. 0.25 means damage will be reduced to 75% of the original value as durability is lost)")
-                .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
-
-        AMALGAM_EXTRAS = COMMON_BUILDER.comment("Enables (not functional yet) the disabled metals for amalgam alloy (Fe, Pt, W, Ta)")
-                .define("amalgamExtras",false);
-
-        COMMON_BUILDER.pop();
-
-
     }
 
     public static void loadConfig(ForgeConfigSpec spec, Path path) {

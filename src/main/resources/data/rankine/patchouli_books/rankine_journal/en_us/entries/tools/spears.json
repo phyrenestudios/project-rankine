@@ -1,7 +1,7 @@
 {
   "name": "Spears",
   "icon": "rankine:steel_spear",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

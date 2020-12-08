@@ -1,52 +1,57 @@
 {
   "name": "Trees",
   "icon": "rankine:cedar_sapling",
-  "category": "exploration/exploration",
+  "category": "exploration",
   "pages": [
     {
       "type": "spotlight",
 	  "item": "rankine:cedar_sapling",
-      "text": "Found in Taigas"
+      "text": "Found in tiaga biomes."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:pinyon_pine_sapling",
-      "text": "Found in Savanas"
+      "text": "Found in savana biomes."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:juniper_sapling",
-      "text": "Found in Savanas"
+      "text": "Found in savana biomes. $(br2)A pretty shrub that grows close to the ground."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:coconut_palm_sapling",
-      "text": "Found in Jungles"
+      "text": "Found in jungle biomes."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:balsam_fir_sapling",
-      "text": "Found in Swamps"
+      "text": "Found in swamp biomes. $(br2)A majority of them appear dead."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:magnolia_sapling",
-      "text": "Found in Jungles"
+      "text": "Found along river biomes."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:eastern_hemlock_sapling",
-      "text": "Found in Taigas"
+      "text": "Found in taiga biomes."
     },
     {
       "type": "spotlight",
       "item": "rankine:yellow_birch_sapling",
-      "text": "Found where birch trees grow"
+      "text": "Found in forest biomes."
     },
     {
       "type": "spotlight",
       "item": "rankine:black_birch_sapling",
-      "text": "Found where birch trees grow"
+      "text": "Found in forest biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:maple_sapling",
+      "text": "Found in plains biomes. $(br2)Grows majestic leaves that slowly change colors."
     }
   ]
 }

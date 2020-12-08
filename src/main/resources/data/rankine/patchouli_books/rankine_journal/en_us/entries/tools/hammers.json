@@ -1,7 +1,7 @@
 {
   "name": "Hammers",
   "icon": "rankine:steel_hammer",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",

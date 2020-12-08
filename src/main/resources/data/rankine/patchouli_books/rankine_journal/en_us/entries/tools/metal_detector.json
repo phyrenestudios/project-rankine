@@ -1,11 +1,11 @@
 {
   "name": "Metal Detector",
   "icon": "rankine:metal_detector",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "Ding ding ding, I found something..."
+      "text": "A device capable of sensing ores, even non-metallic ones. $(br)Use by right clicking a block. The device searches in a straight line behid the face that was clicked. Dings when ore found."
     },
     {
       "type": "crafting",

@@ -1,11 +1,11 @@
 {
   "name": "Glass Cutter",
   "icon": "rankine:glass_cutter",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "Smash glass real quick"
+      "text": "A tool forged for the purpose of removing glass. It seems to be enchanted upon crafting. $(br)Use like a normal tool, very effective on glass. Right click on glass blocks to trim them into panes."
     },
     {
       "type": "crafting",

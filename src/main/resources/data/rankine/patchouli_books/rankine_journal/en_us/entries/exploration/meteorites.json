@@ -1,11 +1,11 @@
 {
   "name": "Meteorites",
   "icon": "rankine:meteorite",
-  "category": "exploration/exploration",
+  "category": "exploration",
   "pages": [
     {
       "type": "text",
-      "text": "There seems to be some funny looking rocks on the surface. I have never seen this type of stone before. Parts of it look pretty tough, maybe good for a new pick..."
+      "text": "T"
     },
     {
       "type": "spotlight",

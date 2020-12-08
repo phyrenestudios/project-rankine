@@ -1,16 +1,11 @@
 {
   "name": "Gemstones",
-  "icon": "rankine:gem_core",
-  "category": "exploration/exploration",
+  "icon": "rankine:opal",
+  "category": "exploration",
   "pages": [
     {
       "type": "text",
       "text": "Ah, my precious..."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:gem_core",
-      "text": "A powerful item"
     },
     {
       "type": "spotlight",

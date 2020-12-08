@@ -1,11 +1,11 @@
 {
   "name": "Pendants",
   "icon": "rankine:luck_pendant",
-  "category": "magic/magic",
+  "category": "magic",
   "pages": [
     {
       "type": "text",
-      "text": "These shiny 1metal bands look real on my offhand..."
+      "text": "When held in the offhand these magical relics inflict me with interesting abilities."
     },
     {
       "type": "spotlight",

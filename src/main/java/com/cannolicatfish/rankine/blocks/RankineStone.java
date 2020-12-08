@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.Block;
@@ -45,18 +46,16 @@ public class RankineStone extends Block {
         boolean oreFound = false;
         Random random = new Random();
         AbstractMap.SimpleEntry<Block, BlockPos> checker = nuggetCheck(worldIn,pos);
-        //System.out.println(checker);
         if (checker.getKey() != Blocks.AIR) {
             oreFound = true;
         }
-        if (oreFound && random.nextFloat() < 0.2f && isPlacedByWorld && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode)
+        if (oreFound && random.nextFloat() < Config.NUGGET_CHANCE.get() && isPlacedByWorld && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode)
         {
             float f = 0.5F;
             double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, getNugget(checker));
-            //System.out.println(itementity);
             itementity.setDefaultPickupDelay();
             worldIn.addEntity(itementity);
 
@@ -68,7 +67,7 @@ public class RankineStone extends Block {
     private AbstractMap.SimpleEntry<Block,BlockPos> nuggetCheck(World worldIn, BlockPos pos)
     {
         BlockPos foundPos = null;
-        for (int x = 1; x < 7; x++) {
+        for (int x = 1; x < Config.NUGGET_DISTANCE.get(); x++) {
             if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOre) {
                 foundPos = pos.down(x);
             } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOre) {
@@ -127,7 +126,6 @@ public class RankineStone extends Block {
         if (ore.getKey() == ModBlocks.NATIVE_INDIUM_ORE) { return new ItemStack(ModItems.INDIUM_NUGGET); }
         if (ore.getKey() == ModBlocks.XENOTIME_ORE) { return new ItemStack(ModItems.CERIUM_NUGGET); }
         if (ore.getKey() == ModBlocks.STIBNITE_ORE) { return new ItemStack(ModItems.ANTIMONY_NUGGET); }
-        if (ore.getKey() == ModBlocks.CINNABAR_ORE) { return new ItemStack(Items.REDSTONE); }
         if (ore.getKey() == ModBlocks.URANINITE_ORE) { return new ItemStack(ModItems.URANIUM_NUGGET); }
 
         return ItemStack.EMPTY;

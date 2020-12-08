@@ -1,11 +1,11 @@
 {
   "name": "Steel Gold Pan",
   "icon": "rankine:steel_gold_pan",
-  "category": "technology/tools",
+  "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "Sifting through some of thoose weird new sands..."
+      "text": "Manual sluicing of certain mineral rich sands can yield precious resources. $(br)Use by right clicking on blocks to sieve for resources (see JEI for yields). Tested blocks include Alluvium and Black Sand."
     },
     {
       "type": "crafting",

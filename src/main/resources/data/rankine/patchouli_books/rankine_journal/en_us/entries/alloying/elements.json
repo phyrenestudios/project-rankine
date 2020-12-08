@@ -1,11 +1,11 @@
 {
   "name": "Elements",
   "icon": "rankine:element",
-  "category": "technology/metallurgy",
+  "category": "alloying",
   "pages": [
     {
       "type": "text",
-      "text": "All of these rudimentary components in the world, yet I feel the list is still incomplete..."
+      "text": "Documentation of the known basic components of the world. Sources for each element not listed yet."
     },
     {
       "type": "spotlight",

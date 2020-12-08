@@ -16,13 +16,7 @@ import java.util.Random;
 
 public class RankineOre extends Block {
     public int type = 0;
-    public Item nugget;
     public static final IntegerProperty TYPE = IntegerProperty.create("type",0,34);
-    public RankineOre(Properties properties, Item nugget) {
-        super(properties);
-        this.nugget = nugget;
-        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));
-    }
     public RankineOre(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));
@@ -32,17 +26,9 @@ public class RankineOre extends Block {
         return super.getStateForPlacement(context).with(TYPE,0);
     }
 
-
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
     }
-
-
-    public ItemStack getNugget()
-    {
-        return new ItemStack(nugget, 1);
-    }
-
 
     @Override
     public int getExpDrop(BlockState state, net.minecraft.world.IWorldReader reader, BlockPos pos, int fortune, int silktouch) {
