@@ -149,6 +149,7 @@ public class ClientProxy implements IProxy {
                 ModBlocks.MAGNESIUM_BARS,
                 ModBlocks.NICKEL_BARS,
                 ModBlocks.CAST_IRON_BARS,
+                ModBlocks.CAST_IRON_SUPPORT,
                 ModBlocks.POTTED_CEDAR_SAPLING,
                 ModBlocks.POTTED_JUNIPER_SAPLING,
                 ModBlocks.POTTED_COCONUT_PALM_SAPLING,

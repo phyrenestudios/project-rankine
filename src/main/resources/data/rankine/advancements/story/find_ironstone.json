@@ -1,14 +1,14 @@
 {
-  "parent": "rankine:story/gather_rope",
+  "parent": "rankine:story/get_bronze_tools",
   "display": {
     "icon": {
-      "item": "rankine:flint_spear"
+      "item": "rankine:ironstone"
     },
     "title": {
-      "translate": "rankine.advancements.story.get_flint_spear.title"
+      "translate": "rankine.advancements.story.find_ironstone.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.get_flint_spear.description"
+      "translate": "rankine.advancements.story.find_ironstone.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "flint_spear": {
+    "get_ironstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:flint_spear"
+            "item": "rankine:ironstone"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "flint_spear"
+      "get_ironstone"
     ]
   ]
 }

@@ -63,7 +63,7 @@ public class ItemKnife extends SwordItem {
                 worldIn.removeBlock(pos,false);
             }
         }
-        if (state.getBlock() == Blocks.GRASS)
+        else if (state.getBlock() == Blocks.GRASS)
         {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
@@ -76,7 +76,7 @@ public class ItemKnife extends SwordItem {
                 worldIn.removeBlock(pos,false);
             }
         }
-        if (state.getBlock() == Blocks.TALL_GRASS)
+        else if (state.getBlock() == Blocks.TALL_GRASS)
         {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
