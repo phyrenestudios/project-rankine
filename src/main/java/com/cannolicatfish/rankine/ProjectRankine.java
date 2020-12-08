@@ -148,6 +148,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.NICKEL_SUPERALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.COBALT_SUPERALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR);
+            event.getRegistry().register(ModEntityTypes.ALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.STAINLESS_STEEL_SPEAR);
             event.getRegistry().register(ModEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
             event.getRegistry().register(ModEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
@@ -182,6 +183,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.COBALT_SUPERALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.STAINLESS_STEEL_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.ALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemRenderer.instance);

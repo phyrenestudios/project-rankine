@@ -124,10 +124,10 @@ public class ModItems {
     public static final Item NICKEL_SUPERALLOY = add("nickel_superalloy", new AlloyItem("70Ni-20Cr-10Co",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem TUNGSTEN_HEAVY_ALLOY = add("tungsten_heavy_alloy", new AlloyItem("90W-7Ni-3Fe",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem COBALT_SUPERALLOY = add("cobalt_superalloy", new AlloyItem("60Co-20Cr-10Ni-10Ta",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item ROSE_METAL_ALLOY = add("rose_metal_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item GALINSTAN_ALLOY = add("galinstan_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ROSE_METAL_ALLOY = add("rose_metal_alloy", new AlloyItem("50Bi-25Pb-25Sn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GALINSTAN_ALLOY = add("galinstan_alloy", new AlloyItem("70Ga-20In-10Sn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MAGNALIUM_ALLOY = add("magnalium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item DURALUMIN_ALLOY = add("duralumin_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item DURALUMIN_ALLOY = add("duralumin_alloy", new AlloyItem("95Al-3Cu-1Mg-1Mn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OSMIRIDIUM_ALLOY = add("osmiridium_alloy", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem ROSE_GOLD_ALLOY = add("rose_gold_alloy", new AlloyItem("75Au-22Cu-3Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final AlloyItem WHITE_GOLD_ALLOY = add("white_gold_alloy", new AlloyItem("90Au-10Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -518,6 +518,14 @@ public class ModItems {
     public static final Item DIAMOND_SPEAR = add("diamond_spear", new ItemSpear(ItemTier.DIAMOND,2, -2.9F ,ModEntityTypes.DIAMOND_SPEAR,new ResourceLocation("rankine:textures/entity/diamond_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item NETHERITE_HAMMER = add("netherite_hammer", new ItemHammer(2, -3.2F, ItemTier.NETHERITE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item NETHERITE_SPEAR = add("netherite_spear", new ItemSpear(ItemTier.NETHERITE,2, -2.9F ,ModEntityTypes.NETHERITE_SPEAR,new ResourceLocation("rankine:textures/entity/netherite_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+
+    public static final Item  ALLOY_SWORD = add("alloy_sword", new AlloySword(RankineToolMaterials.FLINT, 3, -2.4F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SHOVEL = add("alloy_shovel", new AlloyShovel(RankineToolMaterials.FLINT, 1.5F, -3.0F, new GenericAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_PICKAXE = add("alloy_pickaxe", new AlloyPickaxe(RankineToolMaterials.FLINT, 1, -2.8F, new GenericAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_AXE = add("alloy_axe", new AlloyAxe(RankineToolMaterials.FLINT, 4.0F, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_HAMMER = add("alloy_hammer", new AlloyHammer(RankineToolMaterials.FLINT,2, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_HOE = add("alloy_hoe", new AlloyHoe(RankineToolMaterials.FLINT, 0,-2.0F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SPEAR = add("alloy_spear", new AlloySpear(RankineToolMaterials.FLINT, 2, -2.9F, new GenericAlloyUtils(),ModEntityTypes.PEWTER_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item STEEL_GOLD_PAN = add("steel_gold_pan", new ItemGoldPan(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_CROWBAR = add("steel_crowbar", new ItemCrowbar(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
