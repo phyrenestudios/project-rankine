@@ -21,7 +21,12 @@ public class YttriumElement implements ElementInterface{
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        if (x <= 10)
+        {
+            return x/5f;
+        } else {
+            return 2;
+        }
     }
 
     @Override

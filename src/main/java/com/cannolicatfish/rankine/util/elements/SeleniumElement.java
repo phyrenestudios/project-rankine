@@ -11,7 +11,7 @@ public class SeleniumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/2f);
     }
 
     @Override
@@ -36,7 +36,12 @@ public class SeleniumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        if (x <= 10)
+        {
+            return Math.round(1.4f * x);
+        } else {
+            return 14;
+        }
     }
 
     @Override

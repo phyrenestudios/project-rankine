@@ -21,7 +21,13 @@ public class AntimonyElement implements ElementInterface{
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        if (x <= 10)
+        {
+            return x/10f;
+        } else {
+            return 1;
+        }
+
     }
 
     @Override

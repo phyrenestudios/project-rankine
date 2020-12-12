@@ -11,7 +11,7 @@ public class MolybdenumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return x;
+        return 2*x;
     }
 
     @Override
@@ -46,7 +46,12 @@ public class MolybdenumElement implements ElementInterface{
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return x/100f;
+        if (x <= 8)
+        {
+            return x/10f;
+        } else {
+            return 0.8f;
+        }
     }
 
     @Override
