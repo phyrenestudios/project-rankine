@@ -1,0 +1,17 @@
+{
+  "name": "Explosives",
+  "icon": "rankine:blasting_powder",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "explosives",
+      "text": "With new materials comes new ways to exploit them."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:blasting_powder",
+      "text": "A less controlled for of TNT and ignited in similar methods. Has a smaller blast size but can ignite upon placement and falling."
+    }
+  ]
+}

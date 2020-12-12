@@ -1,0 +1,15 @@
+{
+  "name": "Ore Detector",
+  "icon": "rankine:ore_detector",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A device capable of sensing ores, even non-metallic ones. $(br)Use by right clicking a block. The device searches in a straight line behid the face that was clicked. Dings when ore found."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:ore_detector"
+    }
+  ]
+}

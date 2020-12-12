@@ -5,77 +5,111 @@
   "pages": [
     {
       "type": "text",
-      "text": "Can I axe you a question?"
+      "text": "A listing of the variety of axes that are able to be made. Rankine axes are made in the $(l:machines/coal_forge)Coal Forge$() with an axe template. $(br2)Vanilla tools can be enabled/disabled in the config. By deafault, wood, stone and golden are disabled for progression."
+    },
+    {
+      "type": "text",
+      "text": "Axes function as normal. $(br2)There is a config option to disable punching wood by hand. This si why the Flint Handaxe has a 2x2 recipe."
     },
     {
       "type": "crafting",
       "recipe": "rankine:flint_axe",
-      "text": "The flint axe actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+      "text": "Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_axe",
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:bronze_axe",
-      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:meteoric_iron_axe",
-      "text": "The anchient axe.$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "Stats:$(li)Harvest Level: 2"
     },
     {
-      "type": "spotlight",
-      "item": "minecraft:iron_axe",
-      "text": "The iron axe.$(br2)Stats:$(li)Harvest Level: 2"
+      "type": "crafting",
+      "recipe": "minecraft:iron_axe",
+      "text": "Stats:$(li)Harvest wLevel: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:steel_axe",
-      "text": "The steel axe.$(br2)Stats:$(li)Harvest Level: 3"
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
-      "type": "spotlight",
-      "item": "minecraft:diamond_axe",
-      "text": "The diamond axe.$(br2)Stats:$(li)Harvest Level: 3"
+      "type": "crafting",
+      "recipe": "minecraft:diamond_axe",
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
       "type": "spotlight",
       "item": "minecraft:netherite_axe",
-      "text": "The netherite axe.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_axe",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:nickel_superalloy_axe",
-      "text": "The nickel super-alloy axe.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_axe",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_axe",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:rose_gold_axe",
-      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:green_gold_axe",
-      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:blue_gold_axe",
-      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:purple_gold_axe",
-      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_gold_axe",
-      "text": "The bronze axe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_axe",
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:amalgam_axe",
-      "text": "You decide"
+      "text": "Stats:$(li)Harvest Level: ???"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_axe",
+      "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
     }
   ]
 }

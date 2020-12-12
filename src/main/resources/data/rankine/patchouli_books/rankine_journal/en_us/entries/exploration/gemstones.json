@@ -5,52 +5,52 @@
   "pages": [
     {
       "type": "text",
-      "text": "Ah, my precious..."
+      "text": "Many precious gemstones can found in a variety of places. Only rudimentary sampling has been conducted."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:diamond",
+      "text": "Found in kimberlite intrusions and alluvium / black sand deposits."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:emerald",
+      "text": "Found throughout the overworld in most stones."
     },
     {
       "type": "spotlight",
 	  "item": "rankine:peridot",
-      "text": "Found in alluvium and black sand"
+      "text": "Found in alluvium / black sand deposits."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:opal",
-      "text": "Found in Ironstone"
+      "text": "Found as opal ore in ironstone."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:garnet",
-      "text": "Found in peridotite"
+      "text": "Found as majorite ore in peridotite."
     },
     {
       "type": "spotlight",
       "item": "rankine:ruby",
-      "text": "Found in alluvium and black sand"
+      "text": "Found in alluvium / black sand deposits."
     },
     {
       "type": "spotlight",
       "item": "rankine:sapphire",
-      "text": "Found in alluvium and black sand"
+      "text": "Found in alluvium / black sand deposits."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:aquamarine",
-      "text": "Found throughout the Overworld"
+      "text": "Found throughout the overworld in most stones."
     },
     {
       "type": "spotlight",
       "item": "rankine:tourmaline",
-      "text": "Found in conjunction with petalite"
-    },
-	{
-      "type": "spotlight",
-	  "item": "minecraft:diamond",
-      "text": "Found in kimberlite"
-    },
-	{
-      "type": "spotlight",
-	  "item": "minecraft:emerald",
-      "text": "Found throughout the Overworld"
+      "text": "Found as a crushing component of petalite."
     }
   ]
 }

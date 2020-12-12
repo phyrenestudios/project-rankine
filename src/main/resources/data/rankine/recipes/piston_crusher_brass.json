@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sps",
+    "scs",
+    "sps"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:sheetmetals/brass"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    },
+    "c": {
+      "tag": "forge:rods/cast_iron"
+    }
+  },
+  "result": {
+    "item": "rankine:piston_crusher",
+    "count": 1
+  }
+}

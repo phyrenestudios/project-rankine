@@ -1,0 +1,22 @@
+{
+  "name": "Concrete",
+  "icon": "rankine:roman_concrete",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "concrete",
+      "text": "Concrete is a refined stone coglamerate material. For it's improved properties it can allow increased movement speed across it's surface."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gravel_concrete",
+      "text": "1.2x Speed"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:roman_concrete",
+      "text": "1.4x Speed. The whole suite of decorative blocks exist and function the same way."
+    }
+  ]
+}

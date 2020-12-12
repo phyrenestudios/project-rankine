@@ -1,0 +1,26 @@
+{
+  "name": "Tuff",
+  "icon": "rankine:andesitic_tuff",
+  "category": "exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Tuff is an ashy material derived from its parent stone, often formed during periods of volcanism and the fluffy rocks settles on top. It can be used for decoration or for crafting $(l:materials/concrete)Roman Concrete$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:andesitic_tuff",
+      "text": "Found as pockets in $(l:exploration/stones#hornblende_andesite)Hornblende Andesite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rhyolitic_tuff",
+      "text": "Found above layers of $(l:exploration/stones#rhyolite)Rhyolite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tholeiitic_basaltic_tuff",
+      "text": "Found above layers of $(l:exploration/stones#tholeiitic_basalt)Tholeiitic Basalt$()."
+    }
+  ]
+}

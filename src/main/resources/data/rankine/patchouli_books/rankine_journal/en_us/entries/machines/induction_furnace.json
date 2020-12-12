@@ -1,0 +1,16 @@
+{
+  "name": "Induction Furnace",
+  "icon": "rankine:induction_furnace",
+  "category": "machines",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "induction_furnace",
+      "text": "The Induction Furnace functions the same way as the $(l:machines/alloy_furnace)Alloy Furnace$(). It allows for the production of alloys that consist of 3 major components and 2 extra components. See JEI or $(l:alloying/induction_furnace_alloys)Induction Furnace Alloys$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:induction_furnace"
+    }
+  ]
+}

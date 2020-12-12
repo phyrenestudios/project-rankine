@@ -61,7 +61,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue NOISE_OFFSET;
     public static ForgeConfigSpec.IntValue METEOR_CHANCE;
     public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
-    public static ForgeConfigSpec.BooleanValue RANKINE_TREES;
+    public static ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
     public static ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
     public static ForgeConfigSpec.IntValue NUGGET_DISTANCE;
     public static ForgeConfigSpec.DoubleValue GRAVEL_CONCRETE_SPEED;
@@ -302,6 +302,12 @@ public class Config {
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_COUNT;
+
+    public static ForgeConfigSpec.BooleanValue MOLYBDENITE_ORE_ENABLED;
+    public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_MIN_HEIGHT;
+    public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_MAX_HEIGHT;
+    public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_SIZE;
+    public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_COUNT;
     
     public static ForgeConfigSpec.BooleanValue BISMUTHINITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue BISMUTHINITE_ORE_MIN_HEIGHT;
@@ -424,17 +430,17 @@ public class Config {
                     .define("startingBook",true);
             MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
                     .define("axesOnly",false);
-            DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default.")
+            DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default for progression.")
                     .define("disableWood",true);
-            DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default.")
+            DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default for progression.")
                     .define("disableStone",true);
-            DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default.")
-                    .define("disableIron",false);
-            DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is disabled by default.")
-                    .define("disableGold",false);
-            DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default.")
+            DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableIron",true);
+            DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is enabled by default for progression.")
+                    .define("disableGold",true);
+            DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default for progression.")
                     .define("disableDiamond",false);
-            DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default.")
+            DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default for progression.")
                     .define("disableNetherite",false);
             GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                     .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
@@ -508,7 +514,7 @@ public class Config {
 
         COMMON_BUILDER.comment("Meteorite Generation").push("meteorite");
         METEOR_CHANCE = COMMON_BUILDER.comment("The 1 in X chunks a meteroite will spawn. Set to 0 to disable")
-                .defineInRange("meteorChance", 50, 0, 1000);
+                .defineInRange("meteorChance", 75, 0, 1000);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Intrusion Ore Settings").push("intrusionOres");
@@ -521,7 +527,7 @@ public class Config {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Rankine Tree Generation").push("rankineTrees");
-        RANKINE_TREES = COMMON_BUILDER.comment("Enable/Disable Project Rankine trees in world.")
+        RANKINE_FAUNA = COMMON_BUILDER.comment("Enable/Disable Project Rankine trees and berry bushes in world.")
                 .define("generateTrees",true);
         COMMON_BUILDER.pop();
 
@@ -780,7 +786,7 @@ public class Config {
         MAGNESITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Magnesite ore at (make sure it is greater than the minimum)")
                 .defineInRange("magnesiteOreMax", 45, 0, 256);
         MAGNESITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Magnesite ore vein")
-                .defineInRange("magnesiteOreSize", 16, 0, 256);
+                .defineInRange("magnesiteOreSize", 18, 0, 256);
         MAGNESITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnesite ore veins to generate per chunk")
                 .defineInRange("magnesiteOreCount", 2, 0, 256);
         COMMON_BUILDER.pop();
@@ -841,11 +847,11 @@ public class Config {
         PETALITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Petalite ore)")
                 .define("petaliteOreEnabled",true);
         PETALITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Petalite ore at (make sure it is less than the maximum)")
-                .defineInRange("petaliteOreMin", 20, 0, 256);
+                .defineInRange("petaliteOreMin", 10, 0, 256);
         PETALITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Petalite ore at (make sure it is greater than the minimum)")
-                .defineInRange("petaliteOreMax", 45, 0, 256);
+                .defineInRange("petaliteOreMax", 30, 0, 256);
         PETALITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Petalite ore vein")
-                .defineInRange("petaliteOreSize", 8, 0, 256);
+                .defineInRange("petaliteOreSize", 5, 0, 256);
         PETALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Petalite ore veins to generate per chunk")
                 .defineInRange("petaliteOreCount", 1, 0, 256);
         COMMON_BUILDER.pop();
@@ -1141,76 +1147,76 @@ public class Config {
         NATIVE_GALLIUM_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Gallium ore)")
                 .define("nativeGalliumOreEnabled",true);
         NATIVE_GALLIUM_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Gallium ore at (make sure it is less than the maximum)")
-                .defineInRange("nativeGalliumOreMin", 40, 0, 256);
+                .defineInRange("nativeGalliumOreMin", 0, 0, 256);
         NATIVE_GALLIUM_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Gallium ore at (make sure it is greater than the minimum)")
                 .defineInRange("nativeGalliumOreMax", 100, 0, 256);
         NATIVE_GALLIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Gallium ore vein")
                 .defineInRange("nativeGalliumOreSize", 12, 0, 256);
         NATIVE_GALLIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Gallium ore veins to generate per chunk")
-                .defineInRange("nativeGalliumOreCount", 10, 0, 256);
+                .defineInRange("nativeGalliumOreCount", 8, 0, 256);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Indium Ore Settings").push("nativeIndiumOre");
         NATIVE_INDIUM_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Indium ore)")
                 .define("nativeIndiumOreEnabled",true);
         NATIVE_INDIUM_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Indium ore at (make sure it is less than the maximum)")
-                .defineInRange("nativeIndiumOreMin", 40, 0, 256);
+                .defineInRange("nativeIndiumOreMin", 0, 0, 256);
         NATIVE_INDIUM_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Indium ore at (make sure it is greater than the minimum)")
                 .defineInRange("nativeIndiumOreMax", 100, 0, 256);
         NATIVE_INDIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Indium ore vein")
                 .defineInRange("nativeIndiumOreSize", 12, 0, 256);
         NATIVE_INDIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Indium ore veins to generate per chunk")
-                .defineInRange("nativeIndiumOreCount", 10, 0, 256);
+                .defineInRange("nativeIndiumOreCount", 8, 0, 256);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Selenium Ore Settings").push("nativeSeleniumOre");
         NATIVE_SELENIUM_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Selenium ore)")
                 .define("nativeSeleniumOreEnabled",true);
         NATIVE_SELENIUM_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Selenium ore at (make sure it is less than the maximum)")
-                .defineInRange("nativeSeleniumOreMin", 40, 0, 256);
+                .defineInRange("nativeSeleniumOreMin", 0, 0, 256);
         NATIVE_SELENIUM_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Selenium ore at (make sure it is greater than the minimum)")
                 .defineInRange("nativeSeleniumOreMax", 100, 0, 256);
         NATIVE_SELENIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Selenium ore vein")
                 .defineInRange("nativeSeleniumOreSize", 12, 0, 256);
         NATIVE_SELENIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Selenium ore veins to generate per chunk")
-                .defineInRange("nativeSeleniumOreCount", 10, 0, 256);
+                .defineInRange("nativeSeleniumOreCount", 8, 0, 256);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Tellurium Ore Settings").push("nativeTelluriumOre");
         NATIVE_TELLURIUM_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Tellurium ore)")
                 .define("nativeTelluriumOreEnabled",true);
         NATIVE_TELLURIUM_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Tellurium ore at (make sure it is less than the maximum)")
-                .defineInRange("nativeTelluriumOreMin", 40, 0, 256);
+                .defineInRange("nativeTelluriumOreMin", 0, 0, 256);
         NATIVE_TELLURIUM_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Tellurium ore at (make sure it is greater than the minimum)")
                 .defineInRange("nativeTelluriumOreMax", 100, 0, 256);
         NATIVE_TELLURIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Tellurium ore vein")
                 .defineInRange("nativeTelluriumOreSize", 12, 0, 256);
         NATIVE_TELLURIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Tellurium ore veins to generate per chunk")
-                .defineInRange("nativeTelluriumOreCount", 10, 0, 256);
+                .defineInRange("nativeTelluriumOreCount", 8, 0, 256);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Uraninite Ore Settings").push("uraniniteOre");
         URANINITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Uraninite ore)")
                 .define("uraniniteOreEnabled",true);
         URANINITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Uraninite ore at (make sure it is less than the maximum)")
-                .defineInRange("uraniniteOreMin", 40, 0, 256);
+                .defineInRange("uraniniteOreMin", 0, 0, 256);
         URANINITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Uraninite ore at (make sure it is greater than the minimum)")
                 .defineInRange("uraniniteOreMax", 100, 0, 256);
         URANINITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Uraninite ore vein")
                 .defineInRange("uraniniteOreSize", 20, 0, 256);
         URANINITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Uraninite ore veins to generate per chunk")
-                .defineInRange("uraniniteOreCount", 8, 0, 256);
+                .defineInRange("uraniniteOreCount", 7, 0, 256);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Fluorite Ore Settings").push("fluoriteOre");
         FLUORITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Fluorite ore)")
                 .define("fluoriteOreEnabled",true);
         FLUORITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Fluorite ore at (make sure it is less than the maximum)")
-                .defineInRange("fluoriteOreMin", 40, 0, 256);
+                .defineInRange("fluoriteOreMin", 0, 0, 256);
         FLUORITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Fluorite ore at (make sure it is greater than the minimum)")
                 .defineInRange("fluoriteOreMax", 100, 0, 256);
         FLUORITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Fluorite ore vein")
-                .defineInRange("fluoriteOreSize", 15, 0, 256);
+                .defineInRange("fluoriteOreSize", 12, 0, 256);
         FLUORITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Fluorite ore veins to generate per chunk")
                 .defineInRange("fluoriteOreCount", 8, 0, 256);
         COMMON_BUILDER.pop();
@@ -1219,13 +1225,27 @@ public class Config {
         XENOTIME_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Xenotime ore)")
                 .define("xenotimeOreEnabled",true);
         XENOTIME_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Xenotime ore at (make sure it is less than the maximum)")
-                .defineInRange("xenotimeOreMin", 40, 0, 256);
+                .defineInRange("xenotimeOreMin", 0, 0, 256);
         XENOTIME_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Xenotime ore at (make sure it is greater than the minimum)")
                 .defineInRange("xenotimeOreMax", 100, 0, 256);
         XENOTIME_ORE_SIZE = COMMON_BUILDER.comment("Size of Xenotime ore vein")
-                .defineInRange("xenotimeOreSize", 10, 0, 256);
+                .defineInRange("xenotimeOreSize", 5, 0, 256);
         XENOTIME_ORE_COUNT = COMMON_BUILDER.comment("Number of Xenotime ore veins to generate per chunk")
-                .defineInRange("xenotimeOreCount", 8, 0, 256);
+                .defineInRange("xenotimeOreCount", 5, 0, 256);
+        COMMON_BUILDER.pop();
+
+
+        COMMON_BUILDER.comment("Molybdenite Ore Settings").push("molybdeniteOre");
+        MOLYBDENITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Molybdenite ore)")
+                .define("molybdeniteOreEnabled",true);
+        MOLYBDENITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Molybdenite ore at (make sure it is less than the maximum)")
+                .defineInRange("molybdeniteOreMin", 0, 0, 256);
+        MOLYBDENITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Molybdenite ore at (make sure it is greater than the minimum)")
+                .defineInRange("molybdeniteOreMax", 100, 0, 256);
+        MOLYBDENITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Molybdenite ore vein")
+                .defineInRange("molybdeniteOreSize", 5, 0, 256);
+        MOLYBDENITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Molybdenite ore veins to generate per chunk")
+                .defineInRange("molybdeniteOreCount", 5, 0, 256);
         COMMON_BUILDER.pop();
 
         //end end

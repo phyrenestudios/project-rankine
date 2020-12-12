@@ -1,0 +1,42 @@
+{
+  "name": "Refractory Bricks",
+  "icon": "rankine:refractory_bricks",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "refractory_bricks",
+      "text": "Refractory bricks are the basic building blocks of some machines. The process begins by smelting a clay brick, which are obtained through simple crafting. $(br2)A clay brick can be made more efficiently by right clicking a clay block with the iron scraper."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:clay_brick",
+      "recipe2": "rankine:clay_bricks",
+      "text": ""
+    },
+    {
+      "type": "smelting",
+      "recipe": "rankine:refractory_brick_smelting",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:refractory_bricks",
+      "text": "Bricks can be crafted back into two individual brick (shapeless)."
+    },
+    {
+      "type": "crafting",
+      "title": "Magnesium RB",
+      "recipe": "rankine:magnesium_refractory_brick",
+      "recipe2": "rankine:magnesium_refractory_bricks",
+      "text": "Bricks can be crafted back into two individual brick (shapeless)."
+    },
+    {
+      "type": "crafting",
+      "title": "Zircon RB",
+      "recipe": "rankine:zircon_refractory_brick",
+      "recipe2": "rankine:zircon_refractory_bricks",
+      "text": "Bricks can be crafted back into two individual brick (shapeless)."
+    }
+  ]
+}

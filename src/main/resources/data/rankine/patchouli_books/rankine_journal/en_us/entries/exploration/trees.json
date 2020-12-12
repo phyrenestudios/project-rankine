@@ -4,6 +4,11 @@
   "category": "exploration",
   "pages": [
     {
+      "type": "text",
+      "anchor": "trees",
+      "text": ""
+    },
+    {
       "type": "spotlight",
 	  "item": "rankine:cedar_sapling",
       "text": "Found in tiaga biomes."

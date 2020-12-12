@@ -8,19 +8,19 @@
       "item": "minecraft:clay_ball"
     },
     {
-      "item": "rankine:limestone"
-    },
-    {
-      "item": "minecraft:sand"
-    },
-    {
       "item": "minecraft:clay_ball"
     },
     {
-      "item": "rankine:limestone"
+      "tag": "minecraft:sand"
     },
     {
-      "item": "minecraft:sand"
+      "tag": "minecraft:sand"
+    },
+    {
+      "tag": "forge:stones/limestone"
+    },
+    {
+      "tag": "forge:stones/limestone"
     }
   ],
   "result": {

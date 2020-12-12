@@ -7,7 +7,7 @@
       "type": "text",
 	  "title": "Evaporation Tower",
 	  "anchor": "evaporation_tower",
-      "text": "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources. The resource lootable depends on location."
+      "text": "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources. The resource lootable depends on the water of a location (biome). $(li)Oceans & Deserts $(li)Rivers and Swamps $(li)Elsewhere"
     },
     {
       "type": "crafting",
@@ -37,7 +37,7 @@
     },
     {
       "type": "text",
-      "text": "Construction notes: $(li)The inside is filled with water.$() $(li)The walls are made from any #forge:functional_sheetmetals.$()"
+      "text": "Construction notes: $(li)The inside is filled with water.$() $(li)The walls are made from any #forge:functional_sheetmetals$(). In the future, height may affect speed."
     }
   ]
 }

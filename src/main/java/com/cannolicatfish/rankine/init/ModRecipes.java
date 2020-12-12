@@ -18,7 +18,6 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.ITagCollection;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -29,7 +28,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ModRecipes {
     public static final DeferredRegister<IRecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ProjectRankine.MODID);
@@ -289,8 +287,7 @@ public class ModRecipes {
         return recipes;
     }
 
-    public static List<IPistonCrusherRecipe> getCrushingRecipes()
-    {
+    public static List<IPistonCrusherRecipe> getCrushingRecipes() {
         List<IPistonCrusherRecipe> recipes = new ArrayList<>();
 
         //Stones
@@ -418,17 +415,11 @@ public class ModRecipes {
         recipes.add(crushingRecipe("bituminous_coal_crushing",ModItems.BITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("anthracite_crushing",ModItems.ANTHRACITE_COAL, new ItemStack(Items.COAL,2), new ItemStack(ModItems.SULFUR,1),0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
-        recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("kamacite_crushing",ModBlocks.KAMACITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("antitaenite_crushing",ModBlocks.ANTITAENITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("taenite_crushing",ModBlocks.TAENITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
-        recipes.add(crushingRecipe("tetrataenite_crushing",ModBlocks.TETRATAENITE.asItem(), new ItemStack(ModItems.METEORIC_IRON,1), new ItemStack(ModItems.SULFUR,1),0.75f));
+        recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,2), new ItemStack(ModItems.SULFUR,1),0.75f));
         recipes.add(crushingRecipe("bloom_iron_crushing",ModItems.BLOOM_IRON.asItem(), new ItemStack(ModItems.WROUGHT_IRON_INGOT,1), new ItemStack(ModItems.SLAG,1),0.5f));
         recipes.add(crushingRecipe("cobalite_ore_crushing",ModBlocks.COBALTITE_ORE.asItem(), new ItemStack(ModItems.COBALTITE,1), new ItemStack(ModItems.COBALTITE,1),0.1f));
         recipes.add(crushingRecipe("petalite_ore_crushing",ModBlocks.PETALITE_ORE.asItem(), new ItemStack(ModItems.PETALITE,1), new ItemStack(ModItems.TOURMALINE,1),0.1f));
         recipes.add(crushingRecipe("chalcopyrite_crushing",ModItems.CHALCOPYRITE, new ItemStack(ModItems.COPPER_NUGGET,5), new ItemStack(Items.IRON_NUGGET,5),1.0f));
-
-
         recipes.addAll(groupCrushingRecipe("leaves_crushing","minecraft:leaves",new ItemStack(ModItems.BIOMASS, 1),new ItemStack(ModItems.COMPOST,1), 1.0f));
         recipes.addAll(groupCrushingRecipe("crops_crushing","forge:crops",new ItemStack(ModItems.BIOMASS,3),new ItemStack(ModItems.COMPOST,1), 0.5f));
         recipes.addAll(groupCrushingRecipe("saplings_crushing","minecraft:saplings",new ItemStack(ModItems.BIOMASS,2),new ItemStack(ModItems.COMPOST,1), 0.3f));
@@ -438,6 +429,28 @@ public class ModRecipes {
         // recipes.addAll(groupCrushingRecipe("andesite_crushing","rankine:andesite",new ItemStack(ModItems.FELDSPAR),new ItemStack(ModItems.PYROXENE), 0.2f));
         return recipes;
     }
+
+    private static ItemStack getMeteor(int type) {
+        ItemStack output = new ItemStack(ModItems.METEORIC_IRON, 1);
+        switch (type)
+        {
+            default:
+                AlloyItem.addAlloy(output, new AlloyData("90Fe-10Ni")); //kamacite
+                break;
+            case 1:
+                AlloyItem.addAlloy(output,new AlloyData("80Fe-20Ni")); //antitaenite
+                break;
+            case 2:
+                AlloyItem.addAlloy(output,new AlloyData("60Fe-40Ni")); //taenite
+                break;
+            case 3:
+                AlloyItem.addAlloy(output,new AlloyData("50Fe-50Ni")); //tetrataenite
+                break;
+        }
+        return output;
+    }
+
+
 
     public static List<ICoalForgeRecipe> getForgingRecipes()
     {

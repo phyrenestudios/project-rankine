@@ -5,77 +5,92 @@
   "pages": [
     {
       "type": "text",
-      "text": "Can I swing you a question?"
+      "text": "A listing of the variety of swords that are able to be made. Rankine swords are made in the $(l:machines/coal_forge)Coal Forge$() with an sword template. $(br2)Vanilla tools can be enabled/disabled in the config. By deafault, stone and golden are disabled for progression."
+    },
+    {
+      "type": "text",
+      "text": "Swords function as normal."
     },
     {
       "type": "crafting",
-      "recipe": "minecraft:wooden_sword",
-      "text": "The flint sword actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+      "recipe": "minecraft:wooden_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:bronze_sword",
-      "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
+      "item": "rankine:pewter_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:meteoric_iron_sword",
-      "text": "The anchient sword.$(br2)Stats:$(li)Harvest Level: 2"
+      "item": "rankine:bronze_sword"
     },
     {
       "type": "spotlight",
-      "item": "minecraft:iron_sword",
-      "text": "The iron sword.$(br2)Stats:$(li)Harvest Level: 2"
+      "item": "rankine:meteoric_iron_sword"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:iron_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:steel_sword",
-      "text": "The steel sword.$(br2)Stats:$(li)Harvest Level: 3"
+      "item": "rankine:steel_sword"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:diamond_sword"
     },
     {
       "type": "spotlight",
-      "item": "minecraft:diamond_sword",
-      "text": "The diamond sword.$(br2)Stats:$(li)Harvest Level: 3"
+      "item": "minecraft:netherite_sword"
     },
     {
       "type": "spotlight",
-      "item": "minecraft:netherite_sword",
-      "text": "The netherite sword.$(br2)Stats:$(li)Harvest Level: 4"
+      "item": "rankine:stainless_steel_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:nickel_superalloy_sword",
-      "text": "The nickel super-alloy sword.$(br2)Stats:$(li)Harvest Level: 4"
+      "item": "rankine:nickel_superalloy_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:rose_gold_sword",
-      "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
+      "item": "rankine:cobalt_superalloy_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:green_gold_sword",
-      "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
+      "item": "rankine:tungsten_heavy_alloy_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:blue_gold_sword",
-      "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
+      "item": "rankine:rose_gold_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:purple_gold_sword",
-      "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
+      "item": "rankine:green_gold_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:white_gold_sword",
-      "text": "The bronze sword.$(br2)Stats:$(li)Harvest Level: 1"
+      "item": "rankine:blue_gold_sword"
     },
     {
       "type": "spotlight",
-      "item": "rankine:amalgam_sword",
-      "text": "You decide"
+      "item": "rankine:purple_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_sword",
+      "text": "An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
     }
   ]
 }

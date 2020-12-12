@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "ss ",
+    "scs",
+    " sb"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "item": "rankine:battery0"
+    },
+    "c":
+    {
+      "item": "rankine:copper_wire"
+    },
+    "s":
+    {
+      "item": "rankine:steel_alloy"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:ore_detector",
+    "count": 1
+  }
+}

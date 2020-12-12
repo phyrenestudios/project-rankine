@@ -205,7 +205,7 @@ public class ModItems {
     public static final Item SAMARIUM_INGOT = add("samarium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item EUROPIUM_INGOT = add("europium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item GADOLINIUM_INGOT = add("gadolinium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item TEBRIUM_INGOT = add("tebrium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TERBIUM_INGOT = add("terbium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item DYSPROSIUM_INGOT = add("dysprosium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item HOLMIUM_INGOT = add("holmium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item ERIBIUM_INGOT = add("eribium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
@@ -323,7 +323,7 @@ public class ModItems {
     public static final Item SAMARIUM_NUGGET = add("samarium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item EUROPIUM_NUGGET = add("europium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item GADOLINIUM_NUGGET = add("gadolinium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item TEBRIUM_NUGGET = add("tebrium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TERBIUM_NUGGET = add("terbium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item DYSPROSIUM_NUGGET = add("dysprosium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item HOLMIUM_NUGGET = add("holmium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item ERIBIUM_NUGGET = add("eribium_nugget", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
@@ -531,7 +531,7 @@ public class ModItems {
     public static final Item STEEL_CROWBAR = add("steel_crowbar", new ItemCrowbar(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item TITANIUM_CROWBAR = add("titanium_crowbar", new ItemCrowbar(1.5f, -1.8F, RankineToolMaterials.TITANIUM,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item METAL_DETECTOR = add("metal_detector", new MetalDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item ORE_DETECTOR = add("ore_detector", new OreDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GLASS_CUTTER = add("glass_cutter", new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
     public static final Item HARDNESS_TESTER = add("hardness_tester", new ItemHardnessTester(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item ORE_CYCLER = add("ore_cycler", new ItemOreCycler(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));

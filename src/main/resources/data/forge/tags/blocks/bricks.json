@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bricks",
+    "rankine:refractory_bricks",
+    "rankine:magnesium_refractory_bricks",
+    "rankine:zircon_refractory_bricks"
+  ]
+}

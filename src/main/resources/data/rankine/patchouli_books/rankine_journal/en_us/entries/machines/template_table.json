@@ -6,7 +6,11 @@
     {
       "type": "text",
       "anchor": "template_table",
-      "text": "In order to automate the $(l:machines/alloy_furnace)Alloy Furnace$() an alloy template can be placed in the top blue slot. To craft an alloy template, place paper and black dye in the top slots. Then, place materials into the lowerslots as if it were the alloy furnace. When there is an acceptable recipe, a template will show up in the output slot. Take out the template and the materials are not consumed."
+      "text": "In order to automate the $(l:machines/alloy_furnace)Alloy Furnace$() an alloy template can be placed in the top blue slot. To craft an alloy template, place paper and black dye in the top slots. Then, place materials into the first three slots as if it were the alloy furnace. When there is an acceptable recipe, a template will show up in the output slot."
+    },
+    {
+      "type": "text",
+      "text": "The template can be removed and only paper and dye are consumed. The $(l:machines/induction_furnace)Induction Furnace$() can be automated in a similar way. That alloy template is created using purple dye instead of black and can accept up to 5 materials."
     },
     {
       "type": "crafting",

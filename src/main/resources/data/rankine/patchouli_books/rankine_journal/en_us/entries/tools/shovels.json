@@ -5,77 +5,111 @@
   "pages": [
     {
       "type": "text",
-      "text": "Can I shove you a question?"
+      "text": "A listing of the variety of shovels that are able to be made. Rankine shovels are made in the $(l:machines/coal_forge)Coal Forge$() with an shovel template. $(br2)Vanilla tools can be enabled/disabled in the config. By deafault, wood, stone and golden are disabled for progression."
+    },
+    {
+      "type": "text",
+      "text": "Shovels function as normal."
     },
     {
       "type": "crafting",
       "recipe": "rankine:flint_shovel",
-      "text": "The flint shovel actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+      "text": "Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_shovel",
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:bronze_shovel",
-      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:meteoric_iron_shovel",
-      "text": "The anchient shovel.$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "Stats:$(li)Harvest Level: 2"
     },
     {
-      "type": "spotlight",
-      "item": "minecraft:iron_shovel",
-      "text": "The iron shovel.$(br2)Stats:$(li)Harvest Level: 2"
+      "type": "crafting",
+      "recipe": "minecraft:iron_shovel",
+      "text": "Stats:$(li)Harvest wLevel: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:steel_shovel",
-      "text": "The steel shovel.$(br2)Stats:$(li)Harvest Level: 3"
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
-      "type": "spotlight",
-      "item": "minecraft:diamond_shovel",
-      "text": "The diamond shovel.$(br2)Stats:$(li)Harvest Level: 3"
+      "type": "crafting",
+      "recipe": "minecraft:diamond_shovel",
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
       "type": "spotlight",
       "item": "minecraft:netherite_shovel",
-      "text": "The netherite shovel.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:nickel_superalloy_shovel",
-      "text": "The nickel super-alloy shovel.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:rose_gold_shovel",
-      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:green_gold_shovel",
-      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:blue_gold_shovel",
-      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:purple_gold_shovel",
-      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_gold_shovel",
-      "text": "The bronze shovel.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:amalgam_shovel",
-      "text": "You decide"
+      "text": "Stats:$(li)Harvest Level: ???"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_shovel",
+      "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
     }
   ]
 }

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:water_buckets"
+    },
+    {
+      "item": "rankine:quicklime"
+    },
+    {
+      "item": "rankine:quicklime"
+    },
+    {
+      "item": "rankine:quicklime"
+    },
+    {
+      "item": "rankine:quicklime"
+    },
+    {
+      "tag": "minecraft:sand"
+    },
+    {
+      "tag": "minecraft:sand"
+    },
+    {
+      "tag": "minecraft:sand"
+    },
+    {
+      "tag": "minecraft:sand"
+    }
+  ],
+  "result": {
+    "item": "rankine:mortar",
+    "count": 32
+  }
+}

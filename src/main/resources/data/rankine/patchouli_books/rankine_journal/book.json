@@ -1,7 +1,7 @@
 {
   "name": "Rankine Journal",
   "landing_text": "My semi-detailed journal. It contains various schematics and explanations for the world as I discover it.",
-  "version": 2,
+  "version": 3,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",
   "filler_texture": "rankine:textures/gui/filler.png",

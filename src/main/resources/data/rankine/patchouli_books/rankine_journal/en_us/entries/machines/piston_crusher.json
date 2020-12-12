@@ -6,11 +6,17 @@
     {
       "type": "text",
       "anchor": "piston_crusher",
-      "text": ""
+      "text": "Crushing materials is the best method of obtaining resources for refinement. Simply place materials into the middle slot and fuel the machine."
     },
     {
       "type": "crafting",
-      "recipe": "rankine:piston_crusher"
+      "recipe": "rankine:piston_crusher_bronze",
+      "text": "Crushing outputs can be seen via JEI."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:piston_crusher_brass",
+      "text": "Crushing outputs can be seen via JEI."
     }
   ]
 }

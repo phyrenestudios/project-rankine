@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#b#",
-    "#b#",
-    "ccc"
+    "CBC",
+    "CFC",
+    "SBS"
   ],
   "key": {
-    "c": {
-      "tag": "minecraft:stone_bricks"
+    "S": {
+      "tag": "forge:functional_sheetmetals"
     },
-    "b": {
+    "F": {
       "item": "minecraft:furnace"
     },
-    "#": {
-      "item": "minecraft:bricks"
+    "B": {
+      "tag": "forge:bricks"
+    },
+    "C": {
+      "tag": "forge:cobblestone"
     }
   },
   "result": {
