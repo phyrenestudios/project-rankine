@@ -1,22 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "tst",
-    "c#c",
-    "tst"
+    "CSC",
+    "C#C",
+    "CSC"
   ],
   "key": {
-    "t": {
-      "item": "rankine:steel_alloy"
-    },
-    "s": {
+    "S": {
       "item": "rankine:steel_block"
     },
     "#": {
       "item": "rankine:crucible"
     },
-    "c": {
-      "tag": "forge:storage_blocks/copper"
+    "C": {
+      "tag": "forge:ingots/cupronickel"
     }
   },
   "result": {

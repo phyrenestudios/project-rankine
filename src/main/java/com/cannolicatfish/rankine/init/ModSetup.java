@@ -6,7 +6,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ModSetup {
 
-    public ItemGroup rankineBlocks = new ItemGroup("rankine_blocks") {
+    public ItemGroup rankineWorld = new ItemGroup("rankine_world") {
         @Override
         public ItemStack createIcon() { return new ItemStack(ModBlocks.REFRACTORY_BRICKS); }
     };

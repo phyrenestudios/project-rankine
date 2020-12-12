@@ -1,81 +1,115 @@
 {
-  "name": "Pickaxe",
+  "name": "Pickaxes",
   "icon": "rankine:steel_pickaxe",
   "category": "tools",
   "pages": [
     {
       "type": "text",
-      "text": "Can I pick you a question?"
+      "text": "A listing of the variety of pickaxes that are able to be made. Rankine pickaxes are made in the $(l:machines/coal_forge)Coal Forge$() with an pickaxe template. $(br2)Vanilla tools can be enabled/disabled in the config. By deafault, wood, stone and golden are disabled for progression."
+    },
+    {
+      "type": "text",
+      "text": "Pickaxes function as normal."
     },
     {
       "type": "crafting",
       "recipe": "rankine:flint_pickaxe",
-      "text": "The flint pickaxe actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+      "text": "Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_pickaxe",
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:bronze_pickaxe",
-      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:meteoric_iron_pickaxe",
-      "text": "The anchient pickaxe.$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "Stats:$(li)Harvest Level: 2"
     },
     {
-      "type": "spotlight",
-      "item": "minecraft:iron_pickaxe",
-      "text": "The iron pickaxe.$(br2)Stats:$(li)Harvest Level: 2"
+      "type": "crafting",
+      "recipe": "minecraft:iron_pickaxe",
+      "text": "Stats:$(li)Harvest wLevel: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:steel_pickaxe",
-      "text": "The steel pickaxe.$(br2)Stats:$(li)Harvest Level: 3"
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
-      "type": "spotlight",
-      "item": "minecraft:diamond_pickaxe",
-      "text": "The diamond pickaxe.$(br2)Stats:$(li)Harvest Level: 3"
+      "type": "crafting",
+      "recipe": "minecraft:diamond_pickaxe",
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
       "type": "spotlight",
       "item": "minecraft:netherite_pickaxe",
-      "text": "The netherite pickaxe.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_pickaxe",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:nickel_superalloy_pickaxe",
-      "text": "The nickel super-alloy pickaxe.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_pickaxe",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_pickaxe",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:rose_gold_pickaxe",
-      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:green_gold_pickaxe",
-      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:blue_gold_pickaxe",
-      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:purple_gold_pickaxe",
-      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_gold_pickaxe",
-      "text": "The bronze pickaxe.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_pickaxe",
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:amalgam_pickaxe",
-      "text": "You decide"
+      "text": "Stats:$(li)Harvest Level: ???"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_pickaxe",
+      "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
     }
   ]
 }

@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:dirt"
-    },
-    {
       "tag": "rankine:water_buckets"
     },
     {
-      "item": "minecraft:sand"
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "tag": "minecraft:sand"
+    },
+    {
+      "item": "minecraft:dirt"
     }
   ],
   "result": {

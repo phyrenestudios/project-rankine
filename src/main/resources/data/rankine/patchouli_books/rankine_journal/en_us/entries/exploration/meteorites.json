@@ -5,32 +5,32 @@
   "pages": [
     {
       "type": "text",
-      "text": "T"
+      "text": "Meteorites are scattered across the world surface. The ores inside them can be mined for metal chunks that have a composition similar to invar. Those chuncks can be used to make Meteoric Iron Tools."
     },
     {
       "type": "spotlight",
       "item": "rankine:meteorite",
-      "text": ""
+      "text": "Base meteorite material. Can be crushed into silicon and sulfur."
     },
     {
       "type": "spotlight",
       "item": "rankine:kamacite",
-      "text": ""
+      "text": "Material found in meteorites which has a composition of 90%Fe-10%Ni."
     },
     {
       "type": "spotlight",
       "item": "rankine:antitaenite",
-      "text": ""
+      "text": "Material found in meteorites which has a composition of 80%Fe-20%Ni."
     },
     {
       "type": "spotlight",
       "item": "rankine:taenite",
-      "text": ""
+      "text": "Material found in meteorites which has a composition of 60%Fe-40%Ni."
     },
     {
       "type": "spotlight",
       "item": "rankine:tetrataenite",
-      "text": ""
+      "text": "Material found in meteorites which has a composition of 50%Fe-50%Ni."
     }
   ]
 }

@@ -6,7 +6,7 @@
     {
       "type": "text",
       "anchor": "coal_forge",
-      "text": "The coal forge is used for making tools. A template is placed in the top blue slot and this determines what tool is being made (templates are not consumed). The materials go into the main slots. See JEI for detailed recipes."
+      "text": "The coal forge is used for making tools. A template is placed in the top blue slot and this determines what tool is being made (templates are not consumed). The materials go into the main slots. See JEI for detailed recipes. See $(l:alloying/alloying)Notes About Alloying$() for details on alooy tools."
     },
     {
       "type": "text",

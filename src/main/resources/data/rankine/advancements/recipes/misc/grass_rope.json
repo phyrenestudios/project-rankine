@@ -31,13 +31,13 @@
     "has_the_recipe1": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:vine_rope"
+        "recipe": "rankine:rope_vine"
       }
     },
     "has_the_recipe2": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:grass_rope"
+        "recipe": "rankine:rope_grass"
       }
     }
   },

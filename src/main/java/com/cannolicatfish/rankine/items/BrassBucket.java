@@ -152,9 +152,8 @@ public class BrassBucket extends BucketItem {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (stack.getItem() == ModItems.LAVA_BRASS_BUCKET)
-        {
-            ((LivingEntity) entityIn).setFire(2);
+        if (stack.getItem() == ModItems.LAVA_BRASS_BUCKET && random.nextFloat() < 0.05) {
+            ((LivingEntity) entityIn).setFire(1);
         }
 
 

@@ -1648,7 +1648,7 @@
   "rankine.jei.evaporation": "Evaporation",
   "rankine.jei.beeoven": "Beehive Oven",
   "rankine.jei.finery": "Refining Iron",
-  "itemGroup.rankine_blocks": "Project Rankine Blocks",
+  "itemGroup.rankine_world": "Project Rankine World",
   "itemGroup.rankine_metallurgy": "Project Rankine Metallurgy",
   "itemGroup.rankine_misc": "Project Rankine Miscellaneous",
 
@@ -1681,7 +1681,7 @@
   "rankine.advancements.story.make_blast_furnace.title": "Blast from the Past",
   "rankine.advancements.story.make_blast_furnace.description": "Make a Blast Furnace to begin smelting more complex ores",
   "rankine.advancements.story.find_meteorite.title": "Iron from Space",
-  "rankine.advancements.story.find_meteorite.description": "Find a meteorite and mine it to find meteoric iron",
+  "rankine.advancements.story.find_meteorite.description": "Find a meteorite and crush the ore in it to get meteoric iron",
   "rankine.advancements.story.find_meteoric_materials.title": "Stellar Performance",
   "rankine.advancements.story.find_meteoric_materials.description": "Find all the forms of meteoric iron",
   "rankine.advancements.story.find_ironstone.title": "Iron in the Rough",
@@ -1693,7 +1693,7 @@
   "rankine.advancements.story.make_quartz.title": "Overworld Quartz",
   "rankine.advancements.story.make_quartz.description": "Find or make quartz by crushing stones",
   "rankine.advancements.story.make_glass_cutter.title": "Transparent Carving",
-  "rankine.advancements.story.make_glass_cutter.description": "Make a glass cutter",
+  "rankine.advancements.story.make_glass_cutter.description": "Make a glass cutter to minimize losses",
   "rankine.advancements.story.make_pig_iron.title": "No Pigs Harmed",
   "rankine.advancements.story.make_pig_iron.description": "Make pig iron by smelting an iron ingot",
   "rankine.advancements.story.make_beehive_oven_pit.title": "No Bees Harmed Either",
@@ -1707,7 +1707,7 @@
   "rankine.advancements.story.make_coke.title": "I cant believe it's not Coal!",
   "rankine.advancements.story.make_coke.description": "Use a beehive oven to produce coke from bituminous and sub-bituminous coal blocks",
   "rankine.advancements.story.make_wrought_iron.title": "Acquire Harderware",
-  "rankine.advancements.story.make_wrought_iron.description": "Make Wrought Iron using the Beehive Oven and some form of crushing apparatus",
+  "rankine.advancements.story.make_wrought_iron.description": "Make Wrought Iron by crushing bloom iron made from the Beehive Oven",
   "rankine.advancements.story.make_crucible.title": "Refractory Factory",
   "rankine.advancements.story.make_crucible.description": "Construct a crucible to make steel",
   "rankine.advancements.story.make_steel_alloy.title": "Steel Yourself",
@@ -1739,23 +1739,7 @@
   "rankine.advancements.story.make_pendants.title": "Hidden Power",
   "rankine.advancements.story.make_pendants.description": "Make all of the 6 pendants",
   "rankine.advancements.story.support.title": "We support Patchouli and JEI!",
-  "rankine.advancements.story.support.description": "Be sure to download these mods if you want more information!",
+  "rankine.advancements.story.support.description": "Be sure to download these mods if you want more information!"
 
 
-
-  "biome.rankine.mantle": "Mantle",
-  "biome.rankine.pinyon_juniper_woodlands": "Pinyon Juniper Woodlands",
-  "biome.rankine.highland_plateau": "Highland Plateau",
-  "biome.rankine.cedar_forest": "Cedar Forest",
-  "biome.rankine.dead_swamp": "Dead Swamp",
-  "biome.rankine.felsenmeer": "Felsenmeer",
-  "biome.rankine.shoal": "Shoal",
-  "biome.rankine.tropics": "Tropics",
-  "biome.rankine.forested_lagoon": "Forested Lagoon",
-  "biome.rankine.hemlock_grove": "Hemlock Grove",
-  "biome.rankine.salt_plains": "Salt Plains",
-  "biome.rankine.salt_spikes": "Salt Spikes",
-  "biome.rankine.cracked_crust": "Cracked Crust",
-  "biome.rankine.blueberry_meadows": "Blueberry Meadows",
-  "biome.rankine.balsam_woods": "Balsam Woods"
 }

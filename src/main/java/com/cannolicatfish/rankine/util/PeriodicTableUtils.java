@@ -291,7 +291,7 @@ public final class PeriodicTableUtils {
         SAMARIUM(62,"Sm",new SamariumElement()),
         EUROPIUM(63,"Eu",new EuropiumElement()),
         GADOLINIUM(64,"Gd",new GadoliniumElement()),
-        TEBRIUM(65,"Tb",new TebriumElement()),
+        TERBIUM(65,"Tb",new TerbiumElement()),
         DYSPROSIUM(66,"Dy",new DysprosiumElement()),
         HAFNIUM(72,"Hf", new HafniumElement()),
         TANTALUM(73,"Ta", new TantalumElement()),

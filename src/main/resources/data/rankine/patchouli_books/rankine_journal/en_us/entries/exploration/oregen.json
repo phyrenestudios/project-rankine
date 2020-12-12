@@ -1,0 +1,25 @@
+{
+  "name": "Notes About Oregen",
+  "icon": "rankine:majorite_ore",
+  "category": "exploration",
+  "pages": [
+    {
+      "type": "text",
+      "text": "See $(l:exploration/ores)Ores$() for more information. $(br2)Oregen is customizable in the config for size and distribution of veins. Biome and dimension dependency will be coming in the future."
+    },
+    {
+      "type": "text",
+      "text": "The major thing about ores is that they take on the texture of the block that they generate in. Some ores however can only generate in certain stones (not currently configurable)."
+    },
+    {
+      "type": "text",
+      "title": "Native Ores",
+      "text": "Native ores in the overworld (including stibnite) with the exception of gold and bismuth spawn around sea level (55-70). Native bismuth occurs at lower levels in the world. Native gold can spawn at any height and is the only gold ore other than nether gold. Native ores in the End and Nether are scattered throughout the worlds."
+    },
+    {
+      "type": "text",
+      "title": "Specific Generation",
+      "text": "Lazurite only spawns in $(l:exploration/stones#limestone)Limestone$(). $(br2)Diamonds only spawns in $(l:exploration/stones#kimberlite)Kimberlite$(). $(br2)Chromite and Majorite only spawn in $(l:exploration/stones#peridotite)Peridotite$(). $(br2)Plumbago only spawns in $(l:exploration/stones#marble)Marble$(). $(br2)Most metal ores do not spawn in Shale, Peridotite or Marble."
+    }
+  ]
+}

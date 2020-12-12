@@ -5,77 +5,111 @@
   "pages": [
     {
       "type": "text",
-      "text": "Can I hammer you a question?"
+      "text": "A listing of the variety of hammers that are able to be made. Rankine hammers are made in the $(l:machines/coal_forge)Coal Forge$() with an hammer template."
+    },
+    {
+      "type": "text",
+      "text": "Hammers are a new type of tool that function like in-world crushers. Use by left clicking a block to swing the hammer and crush it. The swing speed is dependant on the tool similar to swords but it doesn't always follow the attack indicator. The products from crushing are identical to those in the $(l:machines/piston_crusher)Piston Crusher$(). Higher tier hammers will yield more products."
     },
     {
       "type": "crafting",
       "recipe": "rankine:stone_hammer",
-      "text": "The flint hammer actually breaks wood. The only 2x2 tool recipe. Remeber that.$(br2)Stats:$(li)Mining Level: 0"
+      "text": "Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_hammer",
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:bronze_hammer",
-      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:meteoric_iron_hammer",
-      "text": "The anchient hammer.$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "Stats:$(li)Harvest Level: 2"
     },
     {
       "type": "spotlight",
       "item": "rankine:iron_hammer",
-      "text": "The iron hammer.$(br2)Stats:$(li)Harvest Level: 2"
+      "text": "Stats:$(li)Harvest wLevel: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:steel_hammer",
-      "text": "The steel hammer.$(br2)Stats:$(li)Harvest Level: 3"
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
-      "type": "spotlight",
-      "item": "rankine:diamond_hammer",
-      "text": "The diamond hammer.$(br2)Stats:$(li)Harvest Level: 3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:nickel_superalloy_hammer",
-      "text": "The nickel super-alloy hammer.$(br2)Stats:$(li)Harvest Level: 4"
+      "type": "crafting",
+      "recipe": "rankine:diamond_hammer",
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
       "type": "spotlight",
       "item": "rankine:netherite_hammer",
-      "text": "The netherite hammer.$(br2)Stats:$(li)Harvest Level: 4"
+      "text": "Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_superalloy_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
     },
     {
       "type": "spotlight",
       "item": "rankine:rose_gold_hammer",
-      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:green_gold_hammer",
-      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:blue_gold_hammer",
-      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:purple_gold_hammer",
-      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_gold_hammer",
-      "text": "The bronze hammer.$(br2)Stats:$(li)Harvest Level: 1"
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
     },
     {
       "type": "spotlight",
       "item": "rankine:amalgam_hammer",
-      "text": "You decide"
+      "text": "Stats:$(li)Harvest Level: ???"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_hammer",
+      "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
     }
   ]
 }

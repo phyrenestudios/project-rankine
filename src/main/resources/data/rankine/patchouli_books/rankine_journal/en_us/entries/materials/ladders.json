@@ -1,0 +1,17 @@
+{
+  "name": "Ladders",
+  "icon": "rankine:aluminum_ladder",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "ladders",
+      "text": "More structual components can be used to create ladders."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:aluminum_ladder",
+      "text": "Right click with an empty hand to instantly travel to the top or bottom."
+    }
+  ]
+}

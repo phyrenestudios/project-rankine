@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "A knife is very useful for cutting the weeds back. The trimmings can be used to make rope. $(br)Use by breaking grass or right click a grass block."
+      "text": "A knife is very useful for cutting the weeds back and harvesting them too. $(br)Use by right clicking a grass block to remove the grass layer. $(br2)Can also shear grass, ferns, and vines. $(br2)Yeilds sticks when breaking bush-like blocks."
     },
     {
       "type": "crafting",

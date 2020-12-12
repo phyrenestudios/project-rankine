@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
+      "tag": "rankine:water_buckets"
+    },
+    {
       "item": "rankine:quicklime"
     },
     {
       "item": "rankine:pozzolan"
-    },
-    {
-      "tag": "rankine:water_buckets"
     }
   ],
   "result": {

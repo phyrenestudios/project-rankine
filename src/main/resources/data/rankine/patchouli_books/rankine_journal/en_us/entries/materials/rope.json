@@ -1,0 +1,32 @@
+{
+  "name": "Rope",
+  "icon": "rankine:rope",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "rope",
+      "text": "A strong, flexible material capable of binding tool componets. $(br2)Can also be climbed similar to scaffold, however single pieces are hard to stack."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:rope_grass",
+      "text": "Grass can be harvested using the $(l:tools/flint_knife)Flint Knife"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:rope_vine",
+      "text": "Vines can be harvested using the $(l:tools/flint_knife)Flint Knife"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:rope_string",
+      "text": "String can be collected from the usual sources."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:rope_coil",
+      "text": "An organized coil of rope that can be placed. It will place 8 lengths of rope beneath it. The rope can be extended to ground level by right clicking the coil block. When broken, it drops all the ropes blocks at the top."
+    }
+  ]
+}

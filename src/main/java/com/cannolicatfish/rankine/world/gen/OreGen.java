@@ -216,7 +216,9 @@ public class OreGen {
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_URANINITE_END,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_XENOTIME_END,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true))
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ORE_MOLYBDENITE_END,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true))
         );
     }
 

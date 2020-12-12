@@ -5,11 +5,21 @@
   "pages": [
     {
       "type": "text",
-      "text": "Manual sluicing of certain mineral rich sands can yield precious resources. $(br)Use by right clicking on blocks to sieve for resources (see JEI for yields). Tested blocks include Alluvium and Black Sand."
+      "text": "Manual sluicing of certain mineral rich sands can yield precious resources. $(br)Use by right clicking on blocks to sieve for resources (see JEI for yields)."
     },
     {
       "type": "crafting",
       "recipe": "rankine:steel_gold_pan"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alluvium",
+      "text": "Found in river and ocean beds. Yields various minerals and gems."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_sand",
+      "text": "Found in lower parts of the Nether. Yields various minerals and gems."
     }
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "name": "Buckets",
+  "icon": "rankine:wood_bucket",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "buckets",
+      "text": "As there is a delay before one can obtain a standard bucket, early game alternatives are available. Aside from transporting water, they will be necesary to craft $(l:materials/mortar)mortar."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:wood_bucket",
+      "text": "Can pick up water and milk. Has a chance of breaking when used in world."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:brass_bucket",
+      "text": "More durable than wood. Can pick up lava but it burns."
+    }
+  ]
+}

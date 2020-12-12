@@ -1,0 +1,37 @@
+{
+  "name": "Metal Decoration",
+  "icon": "rankine:cast_iron_support",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "metal_decoration",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cast_iron_support",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cast_iron_bars",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:aluminum_bars",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:magnesium_bars",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:nickel_bars",
+      "text": ""
+    }
+  ]
+}

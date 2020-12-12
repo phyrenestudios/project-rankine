@@ -45,40 +45,29 @@ public class DecorationGen
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getVegetalDecorationFeatures() {
-        if (Config.RANKINE_TREES.get()) {
+        if (Config.RANKINE_FAUNA.get()) {
             return Arrays.asList(
-                //new AbstractMap.SimpleEntry<>(ModFeatures.ELDERBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.SNOWBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.BLUEBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.RASPBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.BLACKBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.CRANBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.STRAWBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.PINEAPPLE_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
-                //new AbstractMap.SimpleEntry<>(ModFeatures.BANANA_YUCCA_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.ELDERBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.SNOWBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLUEBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.RASPBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLACKBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.CRANBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.STRAWBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.PINEAPPLE_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BANANA_YUCCA_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
 
-                new AbstractMap.SimpleEntry<>(ModFeatures.YELLOW_BIRCH_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.BLACK_BIRCH_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.EASTERN_HEMLOCK_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.CEDAR_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.COCONUT_PALM_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.PINYON_PINE_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.BALSAM_FIR_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.DEAD_BALSAM_FIR_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.MAGNOLIA_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.JUNIPER_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
-                new AbstractMap.SimpleEntry<>(ModFeatures.MAPLE_TREE,
-                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true))
+                new AbstractMap.SimpleEntry<>(ModFeatures.YELLOW_BIRCH_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLACK_BIRCH_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.EASTERN_HEMLOCK_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.CEDAR_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.COCONUT_PALM_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.PINYON_PINE_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BALSAM_FIR_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.DEAD_BALSAM_FIR_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.MAGNOLIA_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.JUNIPER_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.MAPLE_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true))
             );
         } else {
             return Collections.emptyList();

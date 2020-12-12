@@ -46,8 +46,7 @@ public class ItemKnife extends SwordItem {
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
             }
-        }
-        if (state.getBlock() == Blocks.GRASS) {
+        } else if (state.getBlock() == Blocks.GRASS) {
             if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 float f = 0.5F;
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
