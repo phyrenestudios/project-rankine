@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cast_iron_bars",
+    "rankine:magnesium_bars",
+    "rankine:aluminum_bars",
+    "rankine:nickel_bars",
+    "minecraft:iron_bars"
+  ]
+}

@@ -16,7 +16,7 @@ public class SilverElement implements ElementInterface{
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
@@ -37,12 +37,12 @@ public class SilverElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return Math.round(3*x/10f * 2/3f);
+        return Math.round(x/5f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return x/100f;
     }
 
     @Override

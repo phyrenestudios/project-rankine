@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.pendants.*;
 import com.cannolicatfish.rankine.items.tools.ItemGoldPan;
@@ -11,6 +12,7 @@ import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -69,6 +71,10 @@ public class ModRecipes {
                 returnTagFamily("chromium"),returnTagFamily("aluminum"), returnTagFamily("beryllium"),returnTagFamily("silicon"),returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.7f,.9f), new AbstractMap.SimpleEntry<>(.1f,.3f),new AbstractMap.SimpleEntry<>(0f,.05f),.95f));
 
+        recipes.add(alloyRecipe("sterling_silver_alloy",new ItemStack(ModItems.STERLING_SILVER_ALLOY),Arrays.asList(returnTagFamily("silver"),returnTagFamily("copper"),
+                returnTagFamily("zinc"),returnTagFamily("platinum"),returnTagFamily("boron"),returnTagFamily("germanium"),returnTagFamily("silicon")),
+                new AbstractMap.SimpleEntry<>(.92f,.96f), new AbstractMap.SimpleEntry<>(.01f,.08f),new AbstractMap.SimpleEntry<>(0f,.07f),0.93f));
+
         recipes.add(alloyRecipe("nickel_silver_alloy",new ItemStack(ModItems.NICKEL_SILVER_ALLOY),Arrays.asList(returnTagFamily("copper"),returnTagFamily("nickel"),
                 returnTagFamily("zinc")), new AbstractMap.SimpleEntry<>(.5f,.7f), new AbstractMap.SimpleEntry<>(.15f,.25f),new AbstractMap.SimpleEntry<>(.15f,.25f),1f));
 
@@ -94,6 +100,9 @@ public class ModRecipes {
         recipes.add(alloyRecipe("blue_gold_alloy",new ItemStack(ModItems.BLUE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("iron"),
                 returnTagFamily("nickel"),returnTagFamily("rhodium"),returnTagFamily("ruthenium")),
                 new AbstractMap.SimpleEntry<>(.74f,.76f), new AbstractMap.SimpleEntry<>(.2f,.25f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
+
+        recipes.add(alloyRecipe("blue_gold_alloy_alt",new ItemStack(ModItems.BLUE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("gallium","indium")),
+                new AbstractMap.SimpleEntry<>(.46f,.60f), new AbstractMap.SimpleEntry<>(.40f,.54f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
 
         recipes.add(alloyRecipe("purple_gold_alloy",new ItemStack(ModItems.PURPLE_GOLD_ALLOY),Arrays.asList(returnTagFamily("gold"),returnTagFamily("aluminum")),
                 new AbstractMap.SimpleEntry<>(.79f,.81f), new AbstractMap.SimpleEntry<>(.19f,.21f),new AbstractMap.SimpleEntry<>(0f,0f),1f));
@@ -161,9 +170,28 @@ public class ModRecipes {
                 returnTagFamily("chromium"), returnTagFamily( "silicon")),
                 new AbstractMap.SimpleEntry<>(.91f, .95f), new AbstractMap.SimpleEntry<>(.03f, .05f), new AbstractMap.SimpleEntry<>(.01f, .03f), new AbstractMap.SimpleEntry<>(0f, .04f),.96f));
 
+        recipes.add(tripleAlloyRecipe("magnesium_alloy", new ItemStack(ModItems.MAGNESIUM_ALLOY), Arrays.asList(returnTagFamily("magnesium"),
+                returnTagFamily("aluminum"),returnTagFamily("zinc"),
+                returnTagFamily("beryllium"),returnTagFamily("copper"),
+                returnTagFamily("iron"),returnTagFamily("nickel"),
+                returnTagFamily("chromium"),returnTagFamily("lead"),
+                returnTagFamily("tin"),returnTagFamily("yttrium"),
+                returnTagFamily("zirconium"),returnTagFamily("calcium"),
+                returnTagFamily("silver"),returnTagFamily("cadmium"),
+                returnTagFamily("thorium"),returnTagFamily("lithium"),
+                returnTagFamily("antimony"),returnTagFamily("bismuth"),
+                returnTagFamily("strontium"),returnTagFamily("neodymium"),
+                returnTagFamily("gadolinium"),returnTagFamily("manganese"),
+                returnTagFamily( "silicon")),
+                new AbstractMap.SimpleEntry<>(.85f, .96f), new AbstractMap.SimpleEntry<>(.03f, .13f), new AbstractMap.SimpleEntry<>(.01f, .03f), new AbstractMap.SimpleEntry<>(0f, .06f),.94f));
+
         recipes.add(tripleAlloyRecipe("rose_metal_alloy", new ItemStack(ModItems.ROSE_METAL_ALLOY), Arrays.asList(returnTagFamily("bismuth"),
                 returnTagFamily("lead"),returnTagFamily("tin")),
                 new AbstractMap.SimpleEntry<>(.3f, .5f), new AbstractMap.SimpleEntry<>(.18f, .4f), new AbstractMap.SimpleEntry<>(.1f, .25f), new AbstractMap.SimpleEntry<>(0f, 0f),1f));
+
+        recipes.add(tripleAlloyRecipe("alnico_alloy", new ItemStack(ModItems.ALNICO_ALLOY), Arrays.asList(returnTagFamily("iron"),
+                returnTagFamily("nickel"),returnTagFamily("cobalt"),returnTagFamily("aluminum"),returnTagFamily("copper","titanium","hafnium","niobium")),
+                new AbstractMap.SimpleEntry<>(.3f, .5f), new AbstractMap.SimpleEntry<>(.13f, .26f), new AbstractMap.SimpleEntry<>(.05f, .35f), new AbstractMap.SimpleEntry<>(.08f, .12f),1f));
 
         recipes.add(tripleAlloyRecipe("galinstan_alloy", new ItemStack(ModItems.GALINSTAN_ALLOY), Arrays.asList(returnTagFamily("gallium"),
                 returnTagFamily("indium"),returnTagFamily("tin"), returnTagFamily("antimony"), returnTagFamily("bismuth")),
@@ -286,6 +314,15 @@ public class ModRecipes {
         List<ISluicingRecipe> recipes = new ArrayList<>();
         recipes.add(sluicingRecipe("alluvium_sluicing", ModBlocks.ALLUVIUM.asItem(), ItemGoldPan.returnAlluviumCollection()));
         recipes.add(sluicingRecipe("black_sand_sluicing", ModBlocks.BLACK_SAND.asItem(), ItemGoldPan.returnBlackSandCollection()));
+        return recipes;
+    }
+
+    public static List<IEvaporationRecipe> getEvaporationRecipes()
+    {
+        List<IEvaporationRecipe> recipes = new ArrayList<>();
+        recipes.add(evaporationRecipe("groundwater_evaporation", ModItems.BIOME_INDICATOR_GENERIC, EvaporationTowerTile.returnGroundwaterCollection()));
+        recipes.add(evaporationRecipe("ocean_evaporation", ModItems.BIOME_INDICATOR_OCEAN, EvaporationTowerTile.returnOceanCollection()));
+        recipes.add(evaporationRecipe("river_evaporation", ModItems.BIOME_INDICATOR_RIVER, EvaporationTowerTile.returnRiverCollection()));
         return recipes;
     }
 
@@ -467,14 +504,6 @@ public class ModRecipes {
         recipes.add(forgingRecipe("pewter_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PEWTER_ALLOY,3),new ItemStack(ModItems.PEWTER_SPEAR)));
         recipes.add(forgingRecipe("pewter_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.PEWTER_ALLOY,5),new ItemStack(ModItems.PEWTER_HAMMER)));
 
-        recipes.add(forgingRecipe("amalgam_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_PICKAXE)));
-        recipes.add(forgingRecipe("amalgam_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_AXE)));
-        recipes.add(forgingRecipe("amalgam_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,1),new ItemStack(ModItems.AMALGAM_SHOVEL)));
-        recipes.add(forgingRecipe("amalgam_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,2),new ItemStack(ModItems.AMALGAM_HOE)));
-        recipes.add(forgingRecipe("amalgam_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.AMALGAM_ALLOY,2),new ItemStack(ModItems.AMALGAM_SWORD)));
-        recipes.add(forgingRecipe("amalgam_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_SPEAR)));
-        recipes.add(forgingRecipe("amalgam_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,5),new ItemStack(ModItems.AMALGAM_HAMMER)));
-
         recipes.add(forgingRecipe("meteoric_iron_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,3),new ItemStack(ModItems.METEORIC_IRON_PICKAXE)));
         recipes.add(forgingRecipe("meteoric_iron_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,3),new ItemStack(ModItems.METEORIC_IRON_AXE)));
         recipes.add(forgingRecipe("meteoric_iron_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.METEORIC_IRON,1),new ItemStack(ModItems.METEORIC_IRON_SHOVEL)));
@@ -586,62 +615,129 @@ public class ModRecipes {
         if (Config.LEVITATION_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("levitation_pendant",new ItemStack(ModItems.AQUAMARINE,9),new ItemStack(ModItems.PURPLE_GOLD_ALLOY,64),new ItemStack(ModItems.LEVITATION_PENDANT)));}
         if (Config.REPULSION_PENDANT_RECIPE.get()) {recipes.add(forgingRecipe("repulsion_pendant",new ItemStack(ModItems.GARNET,9),new ItemStack(ModItems.BLACK_GOLD_ALLOY,64),new ItemStack(ModItems.REPULSION_PENDANT)));}
 
+        if (Config.ENABLE_AMALGAM_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("amalgam_pickaxe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_PICKAXE)));
+            recipes.add(forgingRecipe("amalgam_axe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_AXE)));
+            recipes.add(forgingRecipe("amalgam_shovel",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,1),new ItemStack(ModItems.AMALGAM_SHOVEL)));
+            recipes.add(forgingRecipe("amalgam_hoe",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,2),new ItemStack(ModItems.AMALGAM_HOE)));
+            recipes.add(forgingRecipe("amalgam_sword",new ItemStack(Items.STICK,1),new ItemStack(ModItems.AMALGAM_ALLOY,2),new ItemStack(ModItems.AMALGAM_SWORD)));
+            recipes.add(forgingRecipe("amalgam_spear",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,3),new ItemStack(ModItems.AMALGAM_SPEAR)));
+            recipes.add(forgingRecipe("amalgam_hammer",new ItemStack(Items.STICK,2),new ItemStack(ModItems.AMALGAM_ALLOY,5),new ItemStack(ModItems.AMALGAM_HAMMER)));
+        }
+
+
         // (EXPERIMENTAL) CONFIG ALLOYS
-        recipes.add(forgingRecipe("cupronickel_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("cupronickel_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("cupronickel_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("cupronickel_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("cupronickel_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.CUPRONICKEL_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("cupronickel_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("cupronickel_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_CUPRONICKEL_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("cupronickel_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("cupronickel_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("cupronickel_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("cupronickel_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("cupronickel_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.CUPRONICKEL_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("cupronickel_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("cupronickel_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CUPRONICKEL_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
 
-        recipes.add(forgingRecipe("brass_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("brass_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("brass_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("brass_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("brass_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.BRASS_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("brass_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("brass_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_STERLING_SILVER_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("sterling_silver_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.STERLING_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("sterling_silver_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.STERLING_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("sterling_silver_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.STERLING_SILVER_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("sterling_silver_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.STERLING_SILVER_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("sterling_silver_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.STERLING_SILVER_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("sterling_silver_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.STERLING_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("sterling_silver_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.STERLING_SILVER_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
 
-        recipes.add(forgingRecipe("nickel_silver_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("nickel_silver_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("nickel_silver_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("nickel_silver_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("nickel_silver_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("nickel_silver_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("nickel_silver_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_BRASS_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("brass_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("brass_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("brass_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("brass_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("brass_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.BRASS_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("brass_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("brass_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.BRASS_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
 
-        recipes.add(forgingRecipe("cast_iron_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("cast_iron_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("cast_iron_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("cast_iron_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("cast_iron_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.CAST_IRON_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("cast_iron_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("cast_iron_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_NICKEL_SILVER_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("nickel_silver_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("nickel_silver_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("nickel_silver_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("nickel_silver_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("nickel_silver_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("nickel_silver_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("nickel_silver_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.NICKEL_SILVER_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
 
-        recipes.add(forgingRecipe("duralumin_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("duralumin_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("duralumin_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("duralumin_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("duralumin_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.DURALUMIN_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("duralumin_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("duralumin_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_CAST_IRON_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("cast_iron_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("cast_iron_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("cast_iron_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("cast_iron_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("cast_iron_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.CAST_IRON_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("cast_iron_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("cast_iron_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.CAST_IRON_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
 
-        recipes.add(forgingRecipe("rose_metal_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("rose_metal_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("rose_metal_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("rose_metal_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("rose_metal_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.ROSE_METAL_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("rose_metal_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("rose_metal_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_DURALUMIN_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("duralumin_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("duralumin_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("duralumin_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("duralumin_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("duralumin_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.DURALUMIN_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("duralumin_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("duralumin_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.DURALUMIN_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
 
-        recipes.add(forgingRecipe("galinstan_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
-        recipes.add(forgingRecipe("galinstan_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
-        recipes.add(forgingRecipe("galinstan_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
-        recipes.add(forgingRecipe("galinstan_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
-        recipes.add(forgingRecipe("galinstan_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.GALINSTAN_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
-        recipes.add(forgingRecipe("galinstan_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
-        recipes.add(forgingRecipe("galinstan_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        if (Config.ENABLE_MAGNESIUM_ALLOY_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("magnesium_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.MAGNESIUM_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("magnesium_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.MAGNESIUM_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("magnesium_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.MAGNESIUM_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("magnesium_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.MAGNESIUM_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("magnesium_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.MAGNESIUM_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("magnesium_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.MAGNESIUM_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("magnesium_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.MAGNESIUM_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
+
+        if (Config.ENABLE_ROSE_METAL_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("rose_metal_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("rose_metal_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("rose_metal_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("rose_metal_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("rose_metal_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.ROSE_METAL_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("rose_metal_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("rose_metal_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ROSE_METAL_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
+
+        if (Config.ENABLE_GALINSTAN_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("galinstan_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("galinstan_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("galinstan_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("galinstan_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("galinstan_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.GALINSTAN_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("galinstan_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("galinstan_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.GALINSTAN_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
+
+        if (Config.ENABLE_ALNICO_TOOLS.get())
+        {
+            recipes.add(forgingRecipe("alnico_alloy_pickaxe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ALNICO_ALLOY,3),new ItemStack(ModItems.ALLOY_PICKAXE)));
+            recipes.add(forgingRecipe("alnico_alloy_axe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ALNICO_ALLOY,3),new ItemStack(ModItems.ALLOY_AXE)));
+            recipes.add(forgingRecipe("alnico_alloy_shovel",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ALNICO_ALLOY,1),new ItemStack(ModItems.ALLOY_SHOVEL)));
+            recipes.add(forgingRecipe("alnico_alloy_hoe",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ALNICO_ALLOY,2),new ItemStack(ModItems.ALLOY_HOE)));
+            recipes.add(forgingRecipe("alnico_alloy_sword",new ItemStack(ModItems.CAST_IRON_ROD,1),new ItemStack(ModItems.ALNICO_ALLOY,2),new ItemStack(ModItems.ALLOY_SWORD)));
+            recipes.add(forgingRecipe("alnico_alloy_spear",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ALNICO_ALLOY,3),new ItemStack(ModItems.ALLOY_SPEAR)));
+            recipes.add(forgingRecipe("alnico_alloy_hammer",new ItemStack(ModItems.CAST_IRON_ROD,2),new ItemStack(ModItems.ALNICO_ALLOY,5),new ItemStack(ModItems.ALLOY_HAMMER)));
+        }
+
 
         return recipes;
     }
@@ -907,6 +1003,14 @@ public class ModRecipes {
         List<ItemStack> output = new ArrayList<>(col.getEntries());
         List<Float> weights = new ArrayList<>(col.getWeights());
         return new ISluicingRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
+                Ingredient.fromStacks(new ItemStack(input)),weights);
+    }
+
+    public static IEvaporationRecipe evaporationRecipe(String registry, Item input, WeightedCollection<ItemStack> col)
+    {
+        List<ItemStack> output = new ArrayList<>(col.getEntries());
+        List<Float> weights = new ArrayList<>(col.getWeights());
+        return new IEvaporationRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
                 Ingredient.fromStacks(new ItemStack(input)),weights);
     }
 

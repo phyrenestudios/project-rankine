@@ -11,22 +11,27 @@ public class MagnesiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x*1.2f);
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        if (x <= 5)
+        {
+            return x/10f;
+        } else {
+            return 0.5f;
+        }
     }
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return 2*x/12.5f;
     }
 
     @Override
@@ -36,22 +41,22 @@ public class MagnesiumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/9f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return -x/200f;
     }
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return -x/125f;
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return (float) (Math.log10(x + 1)/5f);
     }
 
     @Override

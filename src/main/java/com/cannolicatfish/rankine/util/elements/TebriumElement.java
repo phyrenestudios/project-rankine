@@ -15,7 +15,7 @@ public class TebriumElement implements ElementInterface {
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
@@ -56,7 +56,7 @@ public class TebriumElement implements ElementInterface {
 
     @Override
     public float getElectrodePotentialFromPercent(int x) {
-        return -2.295f;
+        return -2.28f;
     }
 
     @Override
