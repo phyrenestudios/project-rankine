@@ -11,11 +11,11 @@ public class RhodiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return x/3 + x;
+        return Math.round(x/3f + x);
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 

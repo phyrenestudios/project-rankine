@@ -152,10 +152,10 @@ public final class PeriodicTableUtils {
         return Collections.max(levels);
     }
 
-    public int calcDamage(List<Element> elements, List<Integer> percents) // takes max; 0 -> 4 (strongest)
+    public float calcDamage(List<Element> elements, List<Integer> percents) // takes max; 0 -> 4 (strongest)
     {
         int index = 0;
-        List<Integer> levels = new ArrayList<>();
+        List<Float> levels = new ArrayList<>();
         for (Element e: elements)
         {
             levels.add(e.element.getDamageFromPercent(percents.get(index)));
@@ -248,6 +248,7 @@ public final class PeriodicTableUtils {
     }
 
     public enum Element {
+        LITHIUM(3,"Li",new LithiumElement()),
         BERYLLIUM(4,"Be",new BerylliumElement()),
         BORON(5,"B",new BoronElement()),
         CARBON(6,"C",new CarbonElement()),
@@ -256,6 +257,7 @@ public final class PeriodicTableUtils {
         SILICON(14, "Si", new SiliconElement()),
         PHOSPHORUS(15, "P", new PhosphorusElement()),
         SULFUR(16,"S",new SulfurElement()),
+        CALCIUM(20, "Ca", new CalciumElement()),
         TITANIUM(22, "Ti", new TitaniumElement()),
         VANADIUM(23, "Vn", new VanadiumElement()),
         CHROMIUM(24, "Cr", new ChromiumElement()),
@@ -266,6 +268,7 @@ public final class PeriodicTableUtils {
         COPPER(29, "Cu", new CopperElement()),
         ZINC(30, "Zn", new ZincElement()),
         GALLIUM(31,"Ga",new GalliumElement()),
+        GERMANIUM(32,"Ge",new GermaniumElement()),
         ARSENIC(33,"As",new ArsenicElement()),
         SELENIUM(34,"Se",new SeleniumElement()),
         STRONTIUM(38,"Sr",new StrontiumElement()),

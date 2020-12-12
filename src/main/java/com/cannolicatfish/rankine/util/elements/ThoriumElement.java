@@ -11,11 +11,11 @@ public class ThoriumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return x/6 + x;
+        return Math.round(x/6f + x);
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 

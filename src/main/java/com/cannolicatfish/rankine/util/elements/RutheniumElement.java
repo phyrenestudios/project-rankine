@@ -11,11 +11,11 @@ public class RutheniumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return x/3 + x/2;
+        return Math.round(x/3f + x/2f);
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 

@@ -17,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -100,7 +101,7 @@ public class CoalForgeContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index != 3 && index != 2 && index != 1 && index != 0) {
-                if (stack.getItem() == ModItems.STEEL_ROD || stack.getItem() == Items.STICK) {
+                if (stack.getItem().getTags().contains(new ResourceLocation("forge:rods")) || stack.getItem().getTags().contains(new ResourceLocation("forge:gems"))) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }

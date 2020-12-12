@@ -199,7 +199,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         }
     }
 
-    private WeightedCollection<ItemStack> returnOceanCollection(){
+    public static WeightedCollection<ItemStack> returnOceanCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(ModItems.BROMINE_NUGGET, 1));
         col.add(2,new ItemStack(ModItems.SULFUR_NUGGET, 1));
@@ -210,7 +210,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         return col;
     }
 
-    private WeightedCollection<ItemStack> returnRiverCollection(){
+    public static WeightedCollection<ItemStack> returnRiverCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(ModItems.CADMIUM_NUGGET, 1));
         col.add(1,new ItemStack(ModItems.CHROMIUM_NUGGET,1));
@@ -224,7 +224,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         return col;
     }
 
-    private WeightedCollection<ItemStack> returnGroundwaterCollection(){
+    public static WeightedCollection<ItemStack> returnGroundwaterCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(ModItems.COBALT_NUGGET, 1));
         col.add(1,new ItemStack(ModItems.TITANIUM_NUGGET,1));

@@ -47,6 +47,18 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
     public static ForgeConfigSpec.BooleanValue AMALGAM_EXTRAS;
 
+    public static ForgeConfigSpec.BooleanValue ENABLE_AMALGAM_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_CUPRONICKEL_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_STERLING_SILVER_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_BRASS_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_NICKEL_SILVER_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_CAST_IRON_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_DURALUMIN_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_MAGNESIUM_ALLOY_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_ROSE_METAL_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_GALINSTAN_TOOLS;
+    public static ForgeConfigSpec.BooleanValue ENABLE_ALNICO_TOOLS;
+
     public static ForgeConfigSpec.DoubleValue T1_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T2_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T3_BEEHIVE_OVEN_CHANCE;
@@ -475,11 +487,11 @@ public class Config {
     private static void setupSecondBlockConfig() {
         COMMON_BUILDER.comment("Alloy Settings").push(SUBCATEGORY_ALLOYS);
 
-            ALLOY_CORROSION = COMMON_BUILDER.comment("Enables (not functional yet) the corrosion negative modifier for alloy tools (chance to consume an extra point of durability in water and rain)")
+            ALLOY_CORROSION = COMMON_BUILDER.comment("Enables the corrosion negative modifier for alloy tools (chance to consume extra points of durability in water and rain)")
                     .define("alloyCorrosion",true);
-            ALLOY_HEAT = COMMON_BUILDER.comment("Enables (not functional yet) the heat negative modifier for alloy tools (chance to consume an extra point of durability in hot environments and lava)")
+            ALLOY_HEAT = COMMON_BUILDER.comment("Enables the heat negative modifier for alloy tools (chance to consume extra points of durability in hot environments and lava)")
                     .define("alloyHeat",true);
-            ALLOY_TOUGHNESS = COMMON_BUILDER.comment("Enables (not functional yet) the toughness negative modifier for alloy tools (chance to consume an extra point of durability)")
+            ALLOY_TOUGHNESS = COMMON_BUILDER.comment("Enables the toughness negative modifier for alloy tools (chance to consume/resist loss of an extra point of durability)")
                     .define("alloyToughness",true);
             ALLOY_WEAR_MINING_AMT = COMMON_BUILDER.comment("Modifies the severity of the wear effect on mining speed (ex. 0.25 means mining speed will be reduced to 75% of the original value as durability is lost)")
                     .defineInRange("alloyWearMiningAmount", 0.25D, 0.00D, 0.99D);
@@ -487,6 +499,31 @@ public class Config {
                     .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
             AMALGAM_EXTRAS = COMMON_BUILDER.comment("Enables (not functional yet) the disabled metals for amalgam alloy (Fe, Pt, W, Ta)")
                     .define("amalgamExtras",false);
+            ENABLE_AMALGAM_TOOLS = COMMON_BUILDER.comment("Enables the construction of Amalgam Tools in the Coal Forge.")
+                    .define("amalgamToolsEnabled",true);
+
+            COMMON_BUILDER.comment("Experimental Alloy Tools").push("experimental");
+
+            ENABLE_CUPRONICKEL_TOOLS = COMMON_BUILDER.comment("Enables the construction of Cupronickel Tools in the Coal Forge.")
+                    .define("cupronickelToolsEnabled",false);
+            ENABLE_STERLING_SILVER_TOOLS = COMMON_BUILDER.comment("Enables the construction of Sterling Silver Tools in the Coal Forge.")
+                .define("sterlingSilverToolsEnabled",false);
+            ENABLE_BRASS_TOOLS = COMMON_BUILDER.comment("Enables the construction of Brass Tools in the Coal Forge.")
+                    .define("brassToolsEnabled",false);
+            ENABLE_NICKEL_SILVER_TOOLS = COMMON_BUILDER.comment("Enables the construction of Nickel-silver Tools in the Coal Forge.")
+                    .define("nickelSilverToolsEnabled",false);
+            ENABLE_CAST_IRON_TOOLS = COMMON_BUILDER.comment("Enables the construction of Cast Iron Tools in the Coal Forge.")
+                    .define("castIronToolsEnabled",false);
+            ENABLE_DURALUMIN_TOOLS = COMMON_BUILDER.comment("Enables the construction of Duralumin Tools in the Coal Forge.")
+                    .define("duraluminToolsEnabled",false);
+            ENABLE_MAGNESIUM_ALLOY_TOOLS = COMMON_BUILDER.comment("Enables the construction of Magnesium Alloy Tools in the Coal Forge.")
+                .define("magnesiumAlloyToolsEnabled",false);
+            ENABLE_ROSE_METAL_TOOLS = COMMON_BUILDER.comment("Enables the construction of Rose's Metal Tools in the Coal Forge.")
+                    .define("roseMetalToolsEnabled",false);
+            ENABLE_GALINSTAN_TOOLS = COMMON_BUILDER.comment("Enables the construction of Galinstan Tools in the Coal Forge.")
+                    .define("galinstanToolsEnabled",false);
+            ENABLE_ALNICO_TOOLS = COMMON_BUILDER.comment("Enables the construction of Alnico Tools in the Coal Forge.")
+                    .define("alnicoToolsEnabled",false);
 
         COMMON_BUILDER.pop();
     }

@@ -15,13 +15,18 @@ public class YttriumElement implements ElementInterface{
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        if (x <= 10)
+        {
+            return x/5f;
+        } else {
+            return 2;
+        }
     }
 
     @Override

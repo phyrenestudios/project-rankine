@@ -11,11 +11,11 @@ public class TitaniumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 16 + 32*(x/10);
+        return Math.round(16 + 32*(x/10f));
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
@@ -55,7 +55,7 @@ public class TitaniumElement implements ElementInterface{
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return (float) Math.pow(x/10f, 2);
+        return (float) Math.pow(x/10f, 2)/100;
     }
 
     @Override
