@@ -3,11 +3,13 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -18,6 +20,7 @@ import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
@@ -30,6 +33,7 @@ import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -54,47 +58,41 @@ import static net.minecraft.block.Block.spawnAsEntity;
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
 
-    private static final Set<Item> WOOD_TOOLS = ImmutableSet.of(Items.WOODEN_AXE,Items.WOODEN_HOE,Items.WOODEN_PICKAXE,Items.WOODEN_SHOVEL, Items.WOODEN_SWORD);
-    private static final Set<Item> STONE_TOOLS = ImmutableSet.of(Items.STONE_AXE,Items.STONE_HOE,Items.STONE_PICKAXE,Items.STONE_SHOVEL, Items.STONE_SWORD);
-    private static final Set<Item> IRON_TOOLS = ImmutableSet.of(Items.IRON_AXE,Items.IRON_HOE,Items.IRON_PICKAXE,Items.IRON_SHOVEL, Items.IRON_SWORD);
-    private static final Set<Item> GOLD_TOOLS = ImmutableSet.of(Items.GOLDEN_AXE,Items.GOLDEN_HOE,Items.GOLDEN_PICKAXE,Items.GOLDEN_SHOVEL, Items.GOLDEN_SWORD);
-    private static final Set<Item> DIAMOND_TOOLS = ImmutableSet.of(Items.DIAMOND_AXE,Items.DIAMOND_HOE,Items.DIAMOND_PICKAXE,Items.DIAMOND_SHOVEL, Items.DIAMOND_SWORD);
-    private static final Set<Item> NETHERITE_TOOLS = ImmutableSet.of(Items.NETHERITE_AXE,Items.NETHERITE_HOE,Items.NETHERITE_PICKAXE,Items.NETHERITE_SHOVEL, Items.NETHERITE_SWORD);
+    private static final Set<Item> WOOD_TOOLS = ImmutableSet.of(Items.WOODEN_AXE, Items.WOODEN_HOE, Items.WOODEN_PICKAXE, Items.WOODEN_SHOVEL, Items.WOODEN_SWORD);
+    private static final Set<Item> STONE_TOOLS = ImmutableSet.of(Items.STONE_AXE, Items.STONE_HOE, Items.STONE_PICKAXE, Items.STONE_SHOVEL, Items.STONE_SWORD);
+    private static final Set<Item> IRON_TOOLS = ImmutableSet.of(Items.IRON_AXE, Items.IRON_HOE, Items.IRON_PICKAXE, Items.IRON_SHOVEL, Items.IRON_SWORD);
+    private static final Set<Item> GOLD_TOOLS = ImmutableSet.of(Items.GOLDEN_AXE, Items.GOLDEN_HOE, Items.GOLDEN_PICKAXE, Items.GOLDEN_SHOVEL, Items.GOLDEN_SWORD);
+    private static final Set<Item> DIAMOND_TOOLS = ImmutableSet.of(Items.DIAMOND_AXE, Items.DIAMOND_HOE, Items.DIAMOND_PICKAXE, Items.DIAMOND_SHOVEL, Items.DIAMOND_SWORD);
+    private static final Set<Item> NETHERITE_TOOLS = ImmutableSet.of(Items.NETHERITE_AXE, Items.NETHERITE_HOE, Items.NETHERITE_PICKAXE, Items.NETHERITE_SHOVEL, Items.NETHERITE_SWORD);
 
     @SubscribeEvent
-    public static void registerCommands(RegisterCommandsEvent event)
-    {
+    public static void registerCommands(RegisterCommandsEvent event) {
         CreateAlloyCommand.register(event.getDispatcher());
     }
 
-    @SubscribeEvent
-    public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        event.getPlayer().addExhaustion(Config.GLOBAL_BREAK_EXHAUSTION.get().floatValue());
-    }
 
+    /*
+        private static final String NBT_KEY = "rankine.firstjoin";
+        @SubscribeEvent
+        public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+            if (!Config.STARTING_BOOK.get()) {
+                return;
+            }
 
-/*
-    private static final String NBT_KEY = "rankine.firstjoin";
-    @SubscribeEvent
-    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!Config.STARTING_BOOK.get()) {
-            return;
+            CompoundNBT data = event.getPlayer().getPersistentData();
+            CompoundNBT persistent;
+            if (!data.hasUniqueId(PlayerEntity.PERSISTED_NBT_TAG)) {
+                data.put(PlayerEntity.PERSISTED_NBT_TAG, (persistent = new CompoundNBT()));
+            } else {
+                persistent = data.getCompound(PlayerEntity.PERSISTED_NBT_TAG);
+            }
+
+            if (!persistent.hasUniqueId(NBT_KEY)) {
+                persistent.putBoolean(NBT_KEY, true);
+                event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
+            }
         }
-
-        CompoundNBT data = event.getPlayer().getPersistentData();
-        CompoundNBT persistent;
-        if (!data.hasUniqueId(PlayerEntity.PERSISTED_NBT_TAG)) {
-            data.put(PlayerEntity.PERSISTED_NBT_TAG, (persistent = new CompoundNBT()));
-        } else {
-            persistent = data.getCompound(PlayerEntity.PERSISTED_NBT_TAG);
-        }
-
-        if (!persistent.hasUniqueId(NBT_KEY)) {
-            persistent.putBoolean(NBT_KEY, true);
-            event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
-        }
-    }
- */
+     */
 
     @SubscribeEvent
     public static void onCraft(PlayerEvent.ItemCraftedEvent event)
@@ -108,6 +106,12 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)
     {
+
+        if (Config.GLOBAL_BREAK_EXHAUSTION.get() > 0)
+        {
+            event.getPlayer().addExhaustion(Config.GLOBAL_BREAK_EXHAUSTION.get().floatValue());
+        }
+
         if (!(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && event.getState().getBlock().getTags().contains(new ResourceLocation("minecraft/logs")) && Config.MANDATORY_AXE.get())
         {
             event.setNewSpeed(0f);

@@ -246,7 +246,7 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
 
     private boolean canSmelt()
     {
-        if((this.items.get(0)).isEmpty())
+        if((this.items.get(0)).isEmpty() || AlloyItem.getComposition(this.items.get(1)).size() == 0)
         {
             return false;
         }

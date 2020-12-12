@@ -15,8 +15,13 @@ public class BoronElement implements ElementInterface {
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
-        return 0;
+    public float getDamageFromPercent(int x) {
+
+        if (x <= 15) {
+            return x/25f;
+        } else {
+            return 0.6f;
+        }
     }
 
     @Override

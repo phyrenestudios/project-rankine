@@ -11,22 +11,22 @@ public class IndiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/10f);
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        return x/125f;
     }
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/8f;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class IndiumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/3.3f);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class IndiumElement implements ElementInterface{
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return -x/2000f;
     }
 
     @Override

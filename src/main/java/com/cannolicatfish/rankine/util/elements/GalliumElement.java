@@ -11,11 +11,11 @@ public class GalliumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return (int) Math.round(Math.log10(x+1) * 10);
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
@@ -26,7 +26,7 @@ public class GalliumElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/10f;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class GalliumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return (int) Math.round(Math.log10(x+1) * 10);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class GalliumElement implements ElementInterface{
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return (float) (-Math.pow(x/10f,2)/100);
     }
 
     @Override

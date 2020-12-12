@@ -21,7 +21,7 @@ public class GoldElement implements ElementInterface {
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 

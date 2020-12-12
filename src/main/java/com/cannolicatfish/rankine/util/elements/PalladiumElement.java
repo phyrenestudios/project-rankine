@@ -11,11 +11,17 @@ public class PalladiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return (int) Math.round(Math.pow(1.6f,x) - 1);
+        if (x <= 10)
+        {
+            return (int) Math.round(Math.pow(1.6f,x) - 1);
+        } else {
+            return Math.round(109 + x/5f);
+        }
+
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 

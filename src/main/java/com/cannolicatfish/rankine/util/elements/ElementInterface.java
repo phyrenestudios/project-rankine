@@ -8,7 +8,7 @@ public interface ElementInterface {
 
     int getDurabilityFromPercent(int x);
 
-    int getDamageFromPercent(int x);
+    float getDamageFromPercent(int x);
 
     float getAttackSpeedFromPercent(int x);
 

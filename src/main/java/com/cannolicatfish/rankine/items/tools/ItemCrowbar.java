@@ -60,9 +60,7 @@ public class ItemCrowbar extends ToolItem {
     @Override
     public boolean canHarvestBlock(BlockState blockIn) {
         int i = this.getTier().getHarvestLevel();
-        if (blockIn.getBlock().getTags().contains(new ResourceLocation("minecraft:planks")) || blockIn.getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) ||
-        blockIn.getBlock().getTags().contains(new ResourceLocation("minecraft:fences")) || blockIn.getBlock().getTags().contains(new ResourceLocation("minecraft:fence_gates")) ||
-                blockIn.getBlock().getTags().contains(new ResourceLocation("minecraft:rails"))) {
+        if (blockIn.getBlock().getTags().contains(new ResourceLocation("rankine:crowbar"))) {
             return i >= blockIn.getHarvestLevel();
         }
         return false;

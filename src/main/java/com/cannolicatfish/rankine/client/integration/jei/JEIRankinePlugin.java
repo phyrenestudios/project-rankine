@@ -35,6 +35,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(ModRecipes.getForgingRecipes(), CoalForgeRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getTripleAlloyRecipes(), TripleAlloyRecipeCategory.UID);
         registry.addRecipes(ModRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
+        registry.addRecipes(ModRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
         if (Config.AMALGAM_EXTRAS.get())
         {
             registry.addIngredientInfo(new ItemStack(ModItems.AMALGAM_ALLOY), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Induction Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
@@ -74,7 +75,6 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(ModItems.FLINT_KNIFE), VanillaTypes.ITEM, "Right-clicking on grass blocks allows you to obtain grass and convert the original block into dirt at an increased durability cost." +
                 "The knife can also harvest grass and vines by left clicking.");
         registry.addIngredientInfo(new ItemStack(ModItems.SOLDER_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
-        registry.addIngredientInfo(new ItemStack(ModItems.ALNICO_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.NITINOL_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
         registry.addIngredientInfo(new ItemStack(ModItems.MAGNALIUM_ALLOY), VanillaTypes.ITEM, "Currently not obtainable in Survival.");
 
@@ -89,6 +89,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new CoalForgeRecipeCategory(guiHelper));
         registry.addRecipeCategories(new TripleAlloyRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
     }
 
     @Override
@@ -101,6 +102,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.COAL_FORGE), CoalForgeRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.INDUCTION_FURNACE), TripleAlloyRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(ModItems.STEEL_GOLD_PAN), SluicingRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.EVAPORATION_TOWER), EvaporationRecipeCategory.UID);
     }
 
 }

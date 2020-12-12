@@ -856,11 +856,16 @@ public class ModBlocks {
     public static final Block PIG_IRON_BLOCK = add("pig_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block ALNICO_BLOCK = add("alnico_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block MAGNALIUM_BLOCK = add("magnalium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block MAGNESIUM_ALLOY_BLOCK = add("magnesium_alloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block DURALUMIN_BLOCK = add("duralumin_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRASS_BLOCK = add("brass_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CUPRONICKEL_BLOCK = add("cupronickel_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NICKEL_SILVER_BLOCK = add("nickel_silver_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block STERLING_SILVER_BLOCK = add("sterling_silver_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NITINOL_BLOCK = add("nitinol_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block GALINSTAN_BLOCK = add("galinstan_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block MISCHMETAL_BLOCK = add("mischmetal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block FERROCERIUM_BLOCK = add("ferrocerium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block AMALGAM_BLOCK = add("amalgam_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block ROSE_METAL_BLOCK = add("rose_metal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BLOOM_IRON_BLOCK = add("bloom_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);

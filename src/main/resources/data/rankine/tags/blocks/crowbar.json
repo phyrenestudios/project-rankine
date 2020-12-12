@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:sheetmetals",
+    "#forge:metal_bars",
+    "#minecraft:planks",
+    "#minecraft:fences",
+    "#minecraft:fence_gates",
+    "#minecraft:rails",
+    "rankine:cast_iron_support"
+  ]
+}

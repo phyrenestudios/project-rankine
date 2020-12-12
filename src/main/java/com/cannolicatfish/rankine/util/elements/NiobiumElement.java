@@ -11,11 +11,11 @@ public class NiobiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 32 + 24*(x/10);
+        return Math.round(32 + 24*(x/10f));
     }
 
     @Override
-    public int getDamageFromPercent(int x) {
+    public float getDamageFromPercent(int x) {
         return 0;
     }
 
