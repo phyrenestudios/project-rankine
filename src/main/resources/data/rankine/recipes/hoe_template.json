@@ -1,24 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern":
-  [
-    " r ",
-    "rxr",
-    " r "
-  ],
-  "key":
-  {
-    "x":
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
     {
       "item": "minecraft:paper"
     },
-    "r":
     {
-      "tag": "forge:seeds"
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:flint"
     }
-  },
-  "result":
-  {
-    "item": "rankine:hoe_template"
+  ],
+  "result": {
+    "item": "rankine:hoe_template",
+    "count": 1
   }
 }

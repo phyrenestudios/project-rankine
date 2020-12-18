@@ -237,6 +237,8 @@ public class ModFeatures {
             new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> NETHER_ORE_INTRUSION = new NetherIntrusionFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
             new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
+    public static final ConfiguredFeature<?,?> BLACK_SAND = new ModularOreFeature(OreFeatureConfig.CODEC, Blocks.NETHERRACK.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.BLACK_SAND.getDefaultState(), 23))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(20, 0, 60))).square().chance(2);
     public static final ConfiguredFeature<?,?> DEFAULT_STONE_GEN = new StoneReplacerFeature(StoneReplacerFeatureConfig.CODEC).withConfiguration(
             new StoneReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 0, 0)).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?,?> ANDESITIC_TUFF = new ModularOreFeature(OreFeatureConfig.CODEC, ModBlocks.HORNBLENDE_ANDESITE.getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, ModBlocks.ANDESITIC_TUFF.getDefaultState(), 40))

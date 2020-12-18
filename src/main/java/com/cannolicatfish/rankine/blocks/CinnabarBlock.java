@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -14,7 +16,7 @@ import java.util.Random;
 public class CinnabarBlock extends Block {
     public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
-    public CinnabarBlock(AbstractBlock.Properties properties) {
+    public CinnabarBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.getDefaultState().with(LIT, Boolean.FALSE));
     }

@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.util.WeightedCollection;
@@ -9,7 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
@@ -140,8 +138,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             handlers[x].invalidate();
     }
 
-    private boolean checkStructure(BlockPos pos, World worldIn)
-    {
+    private boolean checkStructure(BlockPos pos, World worldIn) {
         for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 0, 1))) {
             if (worldIn.getBlockState(blockpos) != Blocks.MAGMA_BLOCK.getDefaultState() && worldIn.getBlockState(blockpos) != ModBlocks.EVAPORATION_TOWER.getDefaultState()) {
                 return false;

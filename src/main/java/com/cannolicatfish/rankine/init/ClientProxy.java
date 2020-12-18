@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
@@ -41,6 +42,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(ModItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
         ScreenManager.registerFactory(ModBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
         ScreenManager.registerFactory(ModBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
+        ScreenManager.registerFactory(ModBlocks.LASER_QUARRY_CONTAINER, LaserQuarryScreen::new);
 
         addCutout(Arrays.asList(
                 ModBlocks.ACANTHITE_ORE,

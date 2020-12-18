@@ -1,24 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern":
-  [
-    " r ",
-    "rxr",
-    " r "
-  ],
-  "key":
-  {
-    "x":
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
     {
       "item": "minecraft:paper"
     },
-    "r":
     {
-      "tag": "forge:stone"
+      "item": "rankine:flint_pickaxe"
     }
-  },
-  "result":
-  {
-    "item": "rankine:pickaxe_template"
+  ],
+  "result": {
+    "item": "rankine:pickaxe_template",
+    "count": 1
   }
 }

@@ -4,6 +4,7 @@
     "#forge:stone",
     "#forge:dirt",
     "#forge:sand",
-    "#minecraft:logs"
+    "#minecraft:logs",
+    "minecraft:gravel"
   ]
 }

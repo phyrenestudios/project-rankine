@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.blocks.LEDBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModEnchantments;
@@ -268,6 +269,29 @@ public class RankineEventHandler {
     }
 
  */
+
+    @SubscribeEvent
+    public static void dyeLED(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof LEDBlock) {
+            if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/red"))) {
+                event.getWorld().setBlockState(event.getPos(), ModBlocks.RED_LED.getDefaultState(),3);
+                if (!event.getPlayer().isCreative()) {
+                    event.getItemStack().shrink(1);
+                }
+            } else if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/green"))) {
+                event.getWorld().setBlockState(event.getPos(), ModBlocks.GREEN_LED.getDefaultState(),3);
+                if (!event.getPlayer().isCreative()) {
+                    event.getItemStack().shrink(1);
+                }
+            } else if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/blue"))) {
+                event.getWorld().setBlockState(event.getPos(), ModBlocks.BLUE_LED.getDefaultState(),3);
+                if (!event.getPlayer().isCreative()) {
+                    event.getItemStack().shrink(1);
+                }
+            }
+        }
+    }
+
 
     @SubscribeEvent
     public static void checkCowInteraction(PlayerInteractEvent.EntityInteract event)

@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:industrial_quarry"
+              "name": "rankine:blue_led"
             }
           ],
           "conditions":
