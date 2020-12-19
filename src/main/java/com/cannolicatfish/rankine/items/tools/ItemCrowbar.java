@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +18,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -64,6 +66,19 @@ public class ItemCrowbar extends ToolItem {
             return i >= blockIn.getHarvestLevel();
         }
         return false;
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (entityIn instanceof PlayerEntity && isSelected)
+        {
+            PlayerEntity player = (PlayerEntity) entityIn;
+            if (player.swingingHand == Hand.OFF_HAND)
+            {
+                player.resetCooldown();
+                player.swingingHand = Hand.MAIN_HAND;
+            }
+        }
     }
 
     @Override

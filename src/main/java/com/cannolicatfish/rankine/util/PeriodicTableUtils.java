@@ -319,5 +319,12 @@ public final class PeriodicTableUtils {
             this.element = element;
         }
 
+        public int getAtomicNumber() {
+            return atomicNumber;
+        }
+
+        public String getSymbol() {
+            return symbol;
+        }
     }
 }

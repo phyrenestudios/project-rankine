@@ -11,7 +11,7 @@ public class RheniumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/1.5f);
     }
 
     @Override
@@ -46,12 +46,22 @@ public class RheniumElement implements ElementInterface{
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        if (x <= 20)
+        {
+            return x/50f;
+        } else {
+            return 0.4f + x/500f;
+        }
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        if (x <= 20)
+        {
+            return x/100f;
+        } else {
+            return 0.2f + x/625f;
+        }
     }
 
     @Override

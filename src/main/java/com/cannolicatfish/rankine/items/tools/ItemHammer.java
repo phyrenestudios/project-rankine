@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
@@ -19,6 +20,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
@@ -39,6 +41,7 @@ public class ItemHammer extends ToolItem {
         super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder);
     }
 
+
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state))
@@ -58,9 +61,38 @@ public class ItemHammer extends ToolItem {
 
                 if (getBlastModifier(stack) > 0)
                 {
-                    worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.25F + 0.25F*getBlastModifier(stack), Explosion.Mode.DESTROY);
+                    BlockRayTraceResult raytraceresult = rayTrace(worldIn, (PlayerEntity) entityLiving, RayTraceContext.FluidMode.ANY);
+
+                    BlockPos exppos;
+                    switch (raytraceresult.getFace())
+                    {
+                        case EAST:
+                            exppos = new BlockPos(pos.getX() - (2 + getBlastModifier(stack)),pos.getY(),pos.getZ());
+                            break;
+                        case WEST:
+                            exppos = new BlockPos(pos.getX() + (2 + getBlastModifier(stack)),pos.getY(),pos.getZ());
+                            break;
+                        case DOWN:
+                            exppos = new BlockPos(pos.getX(),pos.getY() + (2 + getBlastModifier(stack)),pos.getZ());
+                            break;
+                        case UP:
+                            exppos = new BlockPos(pos.getX(),pos.getY() - (2 + getBlastModifier(stack)),pos.getZ());
+                            break;
+                        case NORTH:
+                            exppos = new BlockPos(pos.getX(),pos.getY(),pos.getZ() + (2 + getBlastModifier(stack)));
+                            break;
+                        case SOUTH:
+                            exppos = new BlockPos(pos.getX(),pos.getY(),pos.getZ() - (2 + getBlastModifier(stack)));
+                            break;
+                        default:
+                            exppos = pos;
+                    }
+                    System.out.println(raytraceresult.getFace());
+                    System.out.println(exppos);
+                    worldIn.removeBlock(exppos,false);
+                    worldIn.createExplosion(null, exppos.getX(), exppos.getY() + 16 * .0625D, exppos.getZ(), 0.5F + getBlastModifier(stack), Explosion.Mode.DESTROY);
                     if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                        stack.damageItem(2 + 2*getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
+                        stack.damageItem(getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                         });
                     }
@@ -140,6 +172,19 @@ public class ItemHammer extends ToolItem {
             p_220045_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
         return true;
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (entityIn instanceof PlayerEntity && isSelected)
+        {
+            PlayerEntity player = (PlayerEntity) entityIn;
+            if (player.swingingHand == Hand.OFF_HAND)
+            {
+                player.resetCooldown();
+                player.swingingHand = Hand.MAIN_HAND;
+            }
+        }
     }
 
     @Override

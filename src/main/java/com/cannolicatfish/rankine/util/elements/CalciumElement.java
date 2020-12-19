@@ -11,12 +11,17 @@ public class CalciumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/6f);
     }
 
     @Override
     public float getDamageFromPercent(int x) {
-        return 0;
+        if (x <= 5)
+        {
+            return x/10f;
+        } else {
+            return 0.5f;
+        }
     }
 
     @Override

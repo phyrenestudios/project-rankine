@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.entities.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class ModEntityTypes {
@@ -28,6 +29,7 @@ public class ModEntityTypes {
     public static final EntityType<SpearEntity> COBALT_SUPERALLOY_SPEAR = prepareEntity(EntityType.Builder.<SpearEntity>create(EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> new SpearEntity(spawnEntity,world,ModEntityTypes.COBALT_SUPERALLOY_SPEAR,new ResourceLocation("rankine:textures/entity/cobalt_superalloy_spear.png"))).size(0.5F, 0.5F),"cobalt_superalloy_spear");
     public static final EntityType<SpearEntity> TUNGSTEN_HEAVY_ALLOY_SPEAR = prepareEntity(EntityType.Builder.<SpearEntity>create(EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> new SpearEntity(spawnEntity,world,ModEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR,new ResourceLocation("rankine:textures/entity/tungsten_heavy_alloy_spear.png"))).size(0.5F, 0.5F),"tungsten_heavy_alloy_spear");
     public static final EntityType<SpearEntity> ALLOY_SPEAR = prepareEntity(EntityType.Builder.<SpearEntity>create(EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> new SpearEntity(spawnEntity,world,ModEntityTypes.ALLOY_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"))).size(0.5F, 0.5F),"alloy_spear");
+    public static final EntityType<ThoriumArrowEntity> THORIUM_ARROW = prepareEntity(EntityType.Builder.<ThoriumArrowEntity>create(EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory((spawnEntity, world) -> new ThoriumArrowEntity(spawnEntity,world,ModEntityTypes.THORIUM_ARROW)).trackingRange(4).func_233608_b_(20).size(0.5F, 0.5F),"thorium_arrow");
 
     public static final EntityType<MantleGolemEntity> MANTLE_GOLEM = EntityType.Builder.create(MantleGolemEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":mantle_golem");
     public static final EntityType<DiamondMantleGolemEntity> DIAMOND_MANTLE_GOLEM = EntityType.Builder.create(DiamondMantleGolemEntity::new, EntityClassification.MONSTER).build(ProjectRankine.MODID + ":diamond_mantle_golem");
