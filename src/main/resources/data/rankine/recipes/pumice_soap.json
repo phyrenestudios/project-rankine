@@ -6,13 +6,10 @@
     },
     {
       "item": "rankine:pumice"
-    },
-    {
-      "item": "rankine:pumice"
     }
   ],
   "result": {
     "item": "rankine:pumice_soap",
-    "count": 2
+    "count": 4
   }
 }

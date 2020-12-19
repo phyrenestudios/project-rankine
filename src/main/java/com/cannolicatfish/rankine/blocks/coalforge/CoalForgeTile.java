@@ -49,7 +49,7 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
     public CoalForgeTile() {
         super(COAL_FORGE_TILE);
     }
-    protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> items = NonNullList.withSize(13, ItemStack.EMPTY);
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
@@ -395,6 +395,14 @@ public class CoalForgeTile extends TileEntity implements ISidedInventory, ITicka
             case 1:
                 return stack.getItem() instanceof AlloyItem;
             case 2:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 return stack.getItem() instanceof ItemTemplate;
             case 3:
                 return AbstractFurnaceTileEntity.isFuel(stack);

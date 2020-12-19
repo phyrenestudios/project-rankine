@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 
 public class LithiumElement implements ElementInterface {
     @Override
@@ -21,12 +22,17 @@ public class LithiumElement implements ElementInterface {
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        if (x <= 10)
+        {
+            return x/10f;
+        } else {
+            return 1;
+        }
     }
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return (float) Math.sqrt(x);
     }
 
     @Override
@@ -41,17 +47,22 @@ public class LithiumElement implements ElementInterface {
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        if (x/25 >= 1)
+        {
+            return -1;
+        } else {
+            return -x/25f;
+        }
     }
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return (float) (-Math.sqrt(x)/10f);
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return Math.min(x / 50f, 0.5f);
     }
 
     @Override
@@ -61,6 +72,11 @@ public class LithiumElement implements ElementInterface {
 
     @Override
     public Enchantment getEnchantments(int x) {
-        return null;
+        if (x >= 6)
+        {
+            return Enchantments.UNBREAKING;
+        } else {
+            return null;
+        }
     }
 }

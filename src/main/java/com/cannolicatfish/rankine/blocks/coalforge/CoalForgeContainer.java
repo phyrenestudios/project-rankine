@@ -37,7 +37,7 @@ public class CoalForgeContainer extends Container {
     private final IIntArray data;
 
     public CoalForgeContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(5),new IntArray(5));
+        this(windowId,world,pos,playerInventory,player,new Inventory(13),new IntArray(5));
 
 
 
@@ -45,7 +45,7 @@ public class CoalForgeContainer extends Container {
     public CoalForgeContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
         super(COAL_FORGE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 5);
+        assertInventorySize(furnaceInventoryIn, 13);
         assertIntArraySize(furnaceData, 5);
         this.playerEntity = player;
         this.data = furnaceData;
@@ -58,7 +58,16 @@ public class CoalForgeContainer extends Container {
         this.addSlot(new Slot(furnaceInventory, 3, 10,37));
         this.addSlot(new Slot(furnaceInventory, 4, 146,37));
 
-        layoutPlayerInventorySlots(8, 70);
+        this.addSlot(new Slot(furnaceInventory, 5, 26,61));
+        this.addSlot(new Slot(furnaceInventory, 6, 44,61));
+        this.addSlot(new Slot(furnaceInventory, 7, 62,61));
+        this.addSlot(new Slot(furnaceInventory, 8, 80,61));
+        this.addSlot(new Slot(furnaceInventory, 9, 98,61));
+        this.addSlot(new Slot(furnaceInventory, 10, 116,61));
+        this.addSlot(new Slot(furnaceInventory, 11, 134,61));
+        this.addSlot(new Slot(furnaceInventory, 12, 152,61));
+
+        layoutPlayerInventorySlots(8, 86);
 
         this.trackIntArray(furnaceData);
     }
@@ -96,11 +105,11 @@ public class CoalForgeContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 4) {
-                if (!this.mergeItemStack(stack, 5, 41, true)) {
+                if (!this.mergeItemStack(stack, 13, 49, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (index != 3 && index != 2 && index != 1 && index != 0) {
+            } else if (index > 12) {
                 if (stack.getItem().getTags().contains(new ResourceLocation("forge:rods")) || stack.getItem().getTags().contains(new ResourceLocation("forge:gems"))) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
@@ -108,7 +117,10 @@ public class CoalForgeContainer extends Container {
                 }
                 else if (stack.getItem() instanceof ItemTemplate) {
                     if (!this.mergeItemStack(stack, 2, 3, false)) {
-                        return ItemStack.EMPTY;
+                        if (!this.mergeItemStack(stack, 5, 12, false))
+                        {
+                            return ItemStack.EMPTY;
+                        }
                     }
                 } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
                     if (!this.mergeItemStack(stack, 3, 4, false)) {
@@ -118,14 +130,15 @@ public class CoalForgeContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 32) {
-                    if (!this.mergeItemStack(stack, 32, 41, false)) {
+                } else if (index < 40) {
+                    if (!this.mergeItemStack(stack, 40, 49, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 41 && !this.mergeItemStack(stack, 5, 32, false)) {
+                } else if (index < 49 && !this.mergeItemStack(stack, 13, 40, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 5, 41, false)) {
+            }
+            else if (!this.mergeItemStack(stack, 13, 49, false)) {
                 return ItemStack.EMPTY;
             }
 

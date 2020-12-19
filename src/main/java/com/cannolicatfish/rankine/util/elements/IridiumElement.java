@@ -11,7 +11,7 @@ public class IridiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(3*x/10f);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class IridiumElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return x/20f;
     }
 
     @Override
@@ -36,22 +36,37 @@ public class IridiumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        if (x<13)
+        {
+            return Math.round(Math.abs(6-x));
+        } else {
+            return Math.round(x/10f + 5);
+        }
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        if (x <= 50)
+        {
+            return x/50f;
+        } else {
+            return 1;
+        }
     }
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        if (x <= 50)
+        {
+            return x/50f;
+        } else {
+            return 1;
+        }
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return -x/175f;
     }
 
     @Override

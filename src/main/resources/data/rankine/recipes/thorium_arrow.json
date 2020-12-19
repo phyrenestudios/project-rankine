@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "#",
+    "Y"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:graphite_electrode"
+    },
+    "X": {
+      "item": "rankine:thorium_ingot"
+    },
+    "Y": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "rankine:thorium_arrow",
+    "count": 4
+  }
+}
