@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.laserquarry;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -107,7 +108,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     public void tick() {
         World worldIn = this.getWorld();
         if (!worldIn.isRemote && i <= 5){
-            if (worldIn.isBlockPowered(pos) && checkStructure(pos,worldIn)) {
+            if (worldIn.isBlockPowered(pos) && checkStructure(pos,worldIn) && this.items.get(0).getItem() == ModItems.LITHIUM_POWER_CELL) {
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
                     for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {

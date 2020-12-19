@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AYA",
+    "YGY",
+    "AYA"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "Y": {
+      "tag": "forge:ingots/yttrium"
+    },
+    "G": {
+      "tag": "forge:gems/garnet"
+    }
+  },
+  "result": {
+    "item": "rankine:yag_rod",
+    "count": 2
+  }
+}

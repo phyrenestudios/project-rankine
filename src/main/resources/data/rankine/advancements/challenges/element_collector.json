@@ -1,14 +1,14 @@
 {
-  "parent": "rankine:story/rankine",
+  "parent": "rankine:challenges/rankine_challenges",
   "display": {
     "icon": {
-      "item": "rankine:wadsleyite"
+      "item": "rankine:element"
     },
     "title": {
-      "translate": "rankine.advancements.story.rock_collector.title"
+      "translate": "rankine.advancements.challenges.element_collector.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.rock_collector.description"
+      "translate": "rankine.advancements.challenges.element_collector.description"
     },
     "frame": "challenge",
     "show_toast": true,
@@ -16,308 +16,300 @@
     "hidden": false
   },
   "criteria": {
-    "rankine:granite": {
+    "rankine:copper_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:red_granite"
+            "item": "rankine:copper_ingot"
           }
         ]
       }
     },
-    "rankine:andesite": {
+    "rankine:tin_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:hornblende_andesite"
+            "item": "rankine:tin_ingot"
           }
         ]
       }
     },
-    "rankine:diorite": {
+    "rankine:zinc_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:granodiorite"
+            "item": "rankine:zinc_ingot"
           }
         ]
       }
     },
-    "rankine:limestone": {
+    "rankine:aluminum_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:limestone"
+            "item": "rankine:aluminum_ingot"
           }
         ]
       }
     },
-    "rankine:shale": {
+    "rankine:nickel_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:shale"
+            "item": "rankine:nickel_ingot"
           }
         ]
       }
     },
-    "rankine:gneiss": {
+    "rankine:magnesium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:gneiss"
+            "item": "rankine:magnesium_ingot"
           }
         ]
       }
     },
-    "rankine:marble": {
+    "rankine:lead_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:marble"
+            "item": "rankine:lead_ingot"
           }
         ]
       }
     },
-    "rankine:basalt": {
+    "rankine:bismuth_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:tholeiitic_basalt"
+            "item": "rankine:bismuth_ingot"
           }
         ]
       }
     },
-    "rankine:peridotite": {
+    "rankine:vanadium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:peridotite"
+            "item": "rankine:vanadium_ingot"
           }
         ]
       }
     },
-    "rankine:kimberlite": {
+    "rankine:silver_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:kimberlite"
+            "item": "rankine:silver_ingot"
           }
         ]
       }
     },
-    "rankine:komatiite": {
+    "rankine:manganese_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:komatiite"
+            "item": "rankine:manganese_ingot"
           }
         ]
       }
     },
-    "rankine:ringwoodite": {
+    "rankine:chromium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:ringwoodite"
+            "item": "rankine:chromium_ingot"
           }
         ]
       }
     },
-    "rankine:wadsleyite": {
+    "rankine:molybdenum_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:wadsleyite"
+            "item": "rankine:molybdenum_ingot"
           }
         ]
       }
     },
-    "rankine:ferropericlase": {
+    "rankine:tungsten_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:ferropericlase"
+            "item": "rankine:tungsten_ingot"
           }
         ]
       }
     },
-    "rankine:perovskite": {
+    "rankine:titanium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:perovskite"
+            "item": "rankine:titanium_ingot"
           }
         ]
       }
     },
-    "rankine:bridgmanite": {
+    "rankine:niobium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:bridgmanite"
+            "item": "rankine:niobium_ingot"
           }
         ]
       }
     },
-    "rankine:rhyolite": {
+    "rankine:tantalum_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:rhyolite"
+            "item": "rankine:tantalum_ingot"
           }
         ]
       }
     },
-    "rankine:scoria": {
+    "rankine:cobalt_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:scoria"
+            "item": "rankine:cobalt_ingot"
           }
         ]
       }
     },
-    "rankine:pumice": {
+    "rankine:iridium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:pumice"
+            "item": "rankine:iridium_ingot"
           }
         ]
       }
     },
-    "rankine:ironstone": {
+    "rankine:platinum_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:ironstone"
+            "item": "rankine:platinum_ingot"
           }
         ]
       }
     },
-    "rankine:gabbro": {
+    "rankine:arsenic_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:gabbro"
+            "item": "rankine:arsenic_ingot"
           }
         ]
       }
     },
-    "rankine:schist": {
+    "rankine:osmium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:schist"
+            "item": "rankine:osmium_ingot"
           }
         ]
       }
     },
-    "rankine:slate": {
+    "rankine:ruthenium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:slate"
+            "item": "rankine:ruthenium_ingot"
           }
         ]
       }
     },
-    "rankine:breccia": {
+    "rankine:rhodium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:breccia"
+            "item": "rankine:rhodium_ingot"
           }
         ]
       }
     },
-    "rankine:anorthosite": {
+    "rankine:mercury_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:anorthosite"
+            "item": "rankine:mercury_ingot"
           }
         ]
       }
     }
   },
+
   "requirements": [
     [
-      "rankine:rhyolite"
+      "rankine:tantalum_ingot"
     ], [
-      "rankine:granite"
+      "rankine:copper_ingot"
     ], [
-      "rankine:diorite"
+      "rankine:zinc_ingot"
     ], [
-      "rankine:andesite"
+      "rankine:tin_ingot"
     ], [
-      "rankine:limestone"
+      "rankine:aluminum_ingot"
     ], [
-      "rankine:shale"
+      "rankine:nickel_ingot"
     ], [
-      "rankine:gneiss"
+      "rankine:magnesium_ingot"
     ], [
-      "rankine:marble"
+      "rankine:lead_ingot"
     ], [
-      "rankine:basalt"
+      "rankine:bismuth_ingot"
     ], [
-      "rankine:peridotite"
+      "rankine:vanadium_ingot"
     ], [
-      "rankine:kimberlite"
+      "rankine:silver_ingot"
     ], [
-      "rankine:komatiite"
+      "rankine:manganese_ingot"
     ], [
-      "rankine:ringwoodite"
+      "rankine:chromium_ingot"
     ], [
-      "rankine:wadsleyite"
+      "rankine:molybdenum_ingot"
     ], [
-      "rankine:bridgmanite"
+      "rankine:niobium_ingot"
     ],[
-      "rankine:ferropericlase"
-    ], [
-      "rankine:perovskite"
-    ], [
-      "rankine:scoria"
-    ], [
-      "rankine:pumice"
-    ], [
-      "rankine:ironstone"
-    ], [
-      "rankine:gabbro"
-    ], [
-      "rankine:schist"
-    ], [
-      "rankine:slate"
-    ], [
-      "rankine:breccia"
-    ], [
-      "rankine:anorthosite"
+      "rankine:tungsten_ingot"
+    ],
+    ["rankine:titanium_ingot"],
+    ["rankine:cobalt_ingot"],
+    ["rankine:iridium_ingot"],
+    ["rankine:platinum_ingot"],
+    ["rankine:arsenic_ingot"],
+    ["rankine:mercury_ingot"],
+    ["rankine:osmium_ingot"],
+    ["rankine:ruthenium_ingot"],
+    ["rankine:rhodium_ingot"]
     ]
-  ]
 }

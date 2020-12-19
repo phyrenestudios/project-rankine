@@ -12,7 +12,7 @@
     {
       "type": "crafting",
       "recipe": "rankine:beehive_oven_pit",
-      "text": "Uses random ticks to cook blocks. Making multiple is recomended."
+      "text": "Uses random ticks to cook blocks. Making multiple is recommended."
     },
     {
       "type": "multiblock",
@@ -31,7 +31,7 @@
     },
     {
       "type": "text",
-      "text": "Right click the pit block with flint and steelto activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. Blaze powder can be used on the pit to instantly cook one block."
+      "text": "Right click the pit block with flint and steel or a fire charge to activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. Blaze powder can be used on the pit to instantly cook one block."
     },
     {
       "type": "crafting",

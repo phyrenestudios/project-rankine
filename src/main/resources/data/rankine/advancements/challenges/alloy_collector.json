@@ -1,0 +1,321 @@
+{
+  "parent": "rankine:challenges/rankine_challenges",
+  "display": {
+    "icon": {
+      "item": "rankine:sterling_silver_alloy"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.alloy_collector.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.alloy_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rankine:bronze_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bronze_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:brass_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:brass_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:aluminum_bronze_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:aluminum_bronze_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:cast_iron_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cast_iron_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:steel_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:steel_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:stainless_steel_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:stainless_steel_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:alnico_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:alnico_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:amalgam_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:amalgam_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:cupronickel_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cupronickel_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:nickel_silver_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nickel_silver_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:invar_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:invar_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:nickel_superalloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nickel_superalloy"
+          }
+        ]
+      }
+    },
+    "rankine:cobalt_superalloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cobalt_superalloy"
+          }
+        ]
+      }
+    },
+    "rankine:pewter_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pewter_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:mischmetal_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mischmetal_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:tungsten_heavy_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_heavy_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:rose_metal_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_metal_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:duralumin_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:duralumin_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:ferrocerium_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ferrocerium_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:sterling_silver_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sterling_silver_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:magnesium_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:magnesium_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:rose_gold_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_gold_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:white_gold_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:white_gold_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:green_gold_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:green_gold_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:blue_gold_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:blue_gold_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:purple_gold_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:purple_gold_alloy"
+          }
+        ]
+      }
+    },
+    "rankine:black_gold_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:black_gold_alloy"
+          }
+        ]
+      }
+    }
+  },
+
+  "requirements": [
+    ["rankine:bronze_alloy"],[
+    "rankine:brass_alloy"],[
+    "rankine:aluminum_bronze_alloy"],[
+    "rankine:cast_iron_alloy"],[
+    "rankine:steel_alloy"],[
+    "rankine:stainless_steel_alloy"],[
+    "rankine:alnico_alloy"],[
+    "rankine:amalgam_alloy"],[
+    "rankine:cupronickel_alloy"],[
+    "rankine:nickel_silver_alloy"],[
+    "rankine:invar_alloy"],[
+    "rankine:nickel_superalloy"],[
+    "rankine:cobalt_superalloy"],[
+    "rankine:pewter_alloy"],[
+    "rankine:mischmetal_alloy"],[
+    "rankine:tungsten_heavy_alloy"],[
+    "rankine:rose_metal_alloy"],[
+    "rankine:duralumin_alloy"],[
+    "rankine:ferrocerium_alloy"],[
+    "rankine:sterling_silver_alloy"],[
+    "rankine:magnesium_alloy"],[
+    "rankine:rose_gold_alloy"],[
+    "rankine:rose_gold_alloy"],[
+    "rankine:white_gold_alloy"],[
+    "rankine:green_gold_alloy"],[
+    "rankine:blue_gold_alloy"],[
+    "rankine:purple_gold_alloy"],[
+    "rankine:black_gold_alloy"]
+  ]
+}

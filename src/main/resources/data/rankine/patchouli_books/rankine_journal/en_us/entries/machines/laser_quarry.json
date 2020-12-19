@@ -1,0 +1,60 @@
+{
+  "name": "Laser Quarry",
+  "icon": "rankine:laser_quarry",
+  "category": "machines",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Laser Quarry",
+      "anchor": "laser_quarry",
+      "text": "A device which allows you to mine out a large area. A Lithium Power Cell must be placed in the Laser Quarry before activation. When powered with redstone, the quarry will begin breaking blocks within the area defined by the pylons. The quarry voids resources, but does not break ores and certain other blocks, such as the Quarry Barrier."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:lithium_power_cell",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:quarry_barrier",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:laser_quarry",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:laser_pylon_base",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:laser_pylon_top",
+      "text": ""
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          [ "      P      ","             ", "             ", "             " ,"             ","             ", "P           P", "             ", "             ", "             ", "             ","             ","      P      "],
+          [ "      B      ","             ", "             ", "             " ,"             ","             ", "B           B", "             ", "             ", "             ", "             ","             ","      B      "],
+          [ "      B      ","             ", "             ", "             " ,"             ","             ", "B           B", "             ", "             ", "             ", "             ","             ","      B      " ],
+          [ "      B      ","             ", "             ", "             " ,"             ","             ", "B     0     B", "             ", "             ", "             ", "             ","             ","      B      " ]
+        ],
+        "mapping": {
+          "P": "rankine:laser_pylon_top",
+          "0": "rankine:laser_quarry",
+          "B": "rankine:laser_pylon_base"
+        },
+        "symmetrical": true
+      }
+    },
+    {
+      "type": "text",
+      "text": "Construction notes: $(li)The distance between pylon and quarry is 5 blocks.$() $(li)While the multiblock structure indicates that blocks must be removed in the area, this is not actually necessary."
+    }
+  ]
+}

@@ -28,6 +28,9 @@
     "rankine:green_gold_alloy",
     "rankine:blue_gold_alloy",
     "rankine:purple_gold_alloy",
-    "rankine:black_gold_alloy"
+    "rankine:black_gold_alloy",
+    "rankine:ferrocerium_alloy",
+    "rankine:sterling_silver_alloy",
+    "rankine:magnesium_alloy"
   ]
 }
