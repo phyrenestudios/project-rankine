@@ -5,6 +5,8 @@
     "minecraft:end_portal",
     "minecraft:end_portal_frame",
     "minecraft:spawner",
-    "minecraft:barrier"
+    "minecraft:barrier",
+    "minecraft:water",
+    "minecraft:lava"
   ]
 }

@@ -1,24 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern":
-  [
-    " r ",
-    "rxr",
-    " r "
-  ],
-  "key":
-  {
-    "x":
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
     {
       "item": "minecraft:paper"
     },
-    "r":
     {
-      "item": "minecraft:rotten_flesh"
+      "item": "rankine:flint_knife"
     }
-  },
-  "result":
-  {
-    "item": "rankine:sword_template"
+  ],
+  "result": {
+    "item": "rankine:sword_template",
+    "count": 1
   }
 }

@@ -174,6 +174,8 @@ public class OreGen {
         return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(ModFeatures.NETHER_ORE_INTRUSION,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
+                new AbstractMap.SimpleEntry<>(ModFeatures.BLACK_SAND,
+                        getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_ARSENIC_NETHER,
                         getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)),
                 new AbstractMap.SimpleEntry<>(ModFeatures.ORE_NATIVE_SULFUR_NETHER,

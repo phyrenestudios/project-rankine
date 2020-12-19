@@ -7,7 +7,7 @@
   ],
   "key": {
     "s": {
-      "tag": "forge:sheetmetals/bronze"
+      "tag": "rankine:piston_crusher_sheetmetals"
     },
     "p": {
       "item": "minecraft:piston"

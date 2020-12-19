@@ -1,24 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern":
-  [
-    " r ",
-    "rxr",
-    " r "
-  ],
-  "key":
-  {
-    "x":
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
     {
       "item": "minecraft:paper"
     },
-    "r":
     {
-      "tag": "minecraft:logs"
+      "item": "rankine:flint_axe"
     }
-  },
-  "result":
-  {
-    "item": "rankine:axe_template"
+  ],
+  "result": {
+    "item": "rankine:axe_template",
+    "count": 1
   }
 }

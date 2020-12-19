@@ -157,7 +157,7 @@ public class ModRecipes {
                 returnTagFamily("lanthanum"),returnTagFamily("neodymium"),
                 returnTagFamily("praseodymium"),returnTagFamily("dysprosium"),
                 returnTagFamily("europium"),returnTagFamily("gadolinium"),
-                returnTagFamily("samarium"),returnTagFamily("tebrium"),
+                returnTagFamily("samarium"),returnTagFamily("terbium"),
                 returnTagFamily("iron"), returnTagFamily( "silicon")),
                 new AbstractMap.SimpleEntry<>(.5f, .55f), new AbstractMap.SimpleEntry<>(.2f, .25f), new AbstractMap.SimpleEntry<>(.15f, .2f), new AbstractMap.SimpleEntry<>(0f, .15f),.85f));
 

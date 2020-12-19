@@ -31,7 +31,7 @@
     },
     {
       "type": "text",
-      "text": "Right click the pit block to activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. Blaze powder can be used on the pit to instantly cook one block."
+      "text": "Right click the pit block with flint and steelto activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. Blaze powder can be used on the pit to instantly cook one block."
     },
     {
       "type": "crafting",

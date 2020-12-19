@@ -1,6 +1,6 @@
 {
         "parent": "block/cube_all",
         "textures": {
-        "all": "rankine:block/industrial_quarry"
+        "all": "rankine:block/laser_quarry"
         }
     }

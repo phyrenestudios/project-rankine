@@ -66,6 +66,10 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue T2_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T3_BEEHIVE_OVEN_CHANCE;
 
+
+    public static ForgeConfigSpec.IntValue OPAL_ORE_HL;
+    public static ForgeConfigSpec.IntValue INTERSPINIFEX_ORE_HL;
+    public static ForgeConfigSpec.IntValue DIAMOND_ORE_HL;
     public static ForgeConfigSpec.DoubleValue DIAMON_CHANCE;
     public static ForgeConfigSpec.DoubleValue ILMENITE_CHANCE;
     public static ForgeConfigSpec.DoubleValue INTERSPINIFEX_CHANCE;
@@ -82,6 +86,8 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue GRAVEL_CONCRETE_SPEED;
     public static ForgeConfigSpec.DoubleValue ROMAN_CONCRETE_SPEED;
     public static ForgeConfigSpec.IntValue METAL_DETECTOR_RANGE;
+    public static ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
+    public static ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
 
 
     public static ForgeConfigSpec.BooleanValue SPEED_PENDANT_RECIPE;
@@ -93,204 +99,236 @@ public class Config {
 
 
     //OVERWORLD ORES
-    //public static ForgeConfigSpec.BooleanValue DEFAULT_ORE;
     public static ForgeConfigSpec.BooleanValue NATIVE_COPPER_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_COPPER_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_TIN_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_TIN_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_LEAD_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_SILVER_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_ALUMINUM_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_ALUMINUM_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_GOLD_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_BISMUTH_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue STIBNITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue STIBNITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue STIBNITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue STIBNITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue STIBNITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue STIBNITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue HALITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue HALITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue HALITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue HALITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue HALITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue HALITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue PINK_HALITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue PINK_HALITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue PINK_HALITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue PINK_HALITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue PINK_HALITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue PINK_HALITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue MALACHITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue MALACHITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue MALACHITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue MALACHITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue MALACHITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue MALACHITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue CASSITERITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue CASSITERITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue CASSITERITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue CASSITERITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue CASSITERITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue CASSITERITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue BAUXITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue BAUXITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue BAUXITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue BAUXITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue BAUXITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue BAUXITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue SPHALERITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue SPHALERITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue SPHALERITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue SPHALERITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue SPHALERITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue SPHALERITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue LIGNITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue LIGNITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue LIGNITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue LIGNITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue LIGNITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue LIGNITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue SUBBITUMINOUS_COAL_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue SUBBITUMINOUS_COAL_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue SUBBITUMINOUS_COAL_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue SUBBITUMINOUS_COAL_ORE_SIZE;
     public static ForgeConfigSpec.IntValue SUBBITUMINOUS_COAL_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue SUBBITUMINOUS_COAL_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue BITUMINOUS_COAL_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue BITUMINOUS_COAL_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue BITUMINOUS_COAL_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue BITUMINOUS_COAL_ORE_SIZE;
     public static ForgeConfigSpec.IntValue BITUMINOUS_COAL_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue BITUMINOUS_COAL_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue MAGNETITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue MAGNETITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue MAGNETITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue MAGNETITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue MAGNETITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue MAGNETITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue MAGNESITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue MAGNESITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue MAGNESITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue MAGNESITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue MAGNESITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue MAGNESITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue PENTLANDITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue PENTLANDITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue PENTLANDITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue PENTLANDITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue PENTLANDITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue PENTLANDITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue GALENA_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue GALENA_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue GALENA_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue GALENA_ORE_SIZE;
     public static ForgeConfigSpec.IntValue GALENA_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue GALENA_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue ACANTHITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue ACANTHITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue ACANTHITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue ACANTHITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue ACANTHITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue ACANTHITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue PYROLUSITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue PYROLUSITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue PYROLUSITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue PYROLUSITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue PYROLUSITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue PYROLUSITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue PETALITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue PETALITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue PETALITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue PETALITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue PETALITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue PETALITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue CINNABAR_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue CINNABAR_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue CINNABAR_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue CINNABAR_ORE_SIZE;
     public static ForgeConfigSpec.IntValue CINNABAR_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue CINNABAR_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue CHROMITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue CHROMITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue CHROMITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue CHROMITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue CHROMITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue CHROMITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue CELESTINE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue CELESTINE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue CELESTINE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue CELESTINE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue CELESTINE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue CELESTINE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue VANADINITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue VANADINITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue VANADINITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue VANADINITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue VANADINITE_ORE_COUNT;
-    
+    public static ForgeConfigSpec.IntValue VANADINITE_ORE_HL;
+
     public static ForgeConfigSpec.BooleanValue LAZURITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue LAZURITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue LAZURITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue LAZURITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue LAZURITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue LAZURITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue EMERALD_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue EMERALD_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue EMERALD_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue EMERALD_ORE_SIZE;
     public static ForgeConfigSpec.IntValue EMERALD_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue EMERALD_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue AQUAMARINE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue AQUAMARINE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue AQUAMARINE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue AQUAMARINE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue AQUAMARINE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue AQUAMARINE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue MAJORITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue MAJORITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue MAJORITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue MAJORITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue MAJORITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue MAJORITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue PLUMBAGO_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue PLUMBAGO_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue PLUMBAGO_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue PLUMBAGO_ORE_SIZE;
     public static ForgeConfigSpec.IntValue PLUMBAGO_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue PLUMBAGO_ORE_HL;
 
 
     //NETHER ORES
@@ -299,125 +337,170 @@ public class Config {
     public static ForgeConfigSpec.IntValue NATIVE_ARSENIC_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_ARSENIC_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_ARSENIC_ORE_COUNT;
-    
+    public static ForgeConfigSpec.IntValue NATIVE_ARSENIC_ORE_HL;
+
     public static ForgeConfigSpec.BooleanValue NATIVE_SULFUR_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue ANTHRACITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue ANTHRACITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue ANTHRACITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue ANTHRACITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue ANTHRACITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue ANTHRACITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue COBALTITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue COBALTITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue COBALTITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue MOLYBDENITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_COUNT;
-    
+    public static ForgeConfigSpec.IntValue MOLYBDENITE_ORE_HL;
+
     public static ForgeConfigSpec.BooleanValue BISMUTHINITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue BISMUTHINITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue BISMUTHINITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue BISMUTHINITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue BISMUTHINITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue BISMUTHINITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue ILMENITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue ILMENITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue ILMENITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue ILMENITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue ILMENITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue ILMENITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue WOLFRAMITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue WOLFRAMITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue WOLFRAMITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue WOLFRAMITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue WOLFRAMITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue WOLFRAMITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue SPERRYLITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue SPERRYLITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue SPERRYLITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue SPERRYLITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue SPERRYLITE_ORE_COUNT;
-    
+    public static ForgeConfigSpec.IntValue SPERRYLITE_ORE_HL;
+
     public static ForgeConfigSpec.BooleanValue MOISSANITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue MOISSANITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue MOISSANITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue MOISSANITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue MOISSANITE_ORE_COUNT;
-    
+    public static ForgeConfigSpec.IntValue MOISSANITE_ORE_HL;
+
     public static ForgeConfigSpec.BooleanValue GREENOCKITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue GREENOCKITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue GREENOCKITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue GREENOCKITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue GREENOCKITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue GREENOCKITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue COLUMBITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue COLUMBITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue COLUMBITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue COLUMBITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue COLUMBITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue COLUMBITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue TANTALITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue TANTALITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue TANTALITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue TANTALITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue TANTALITE_ORE_COUNT;
-    
+    public static ForgeConfigSpec.IntValue TANTALITE_ORE_HL;
+
     //END ORES
     public static ForgeConfigSpec.BooleanValue NATIVE_GALLIUM_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_INDIUM_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_SELENIUM_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue NATIVE_TELLURIUM_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_SIZE;
     public static ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue URANINITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue URANINITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue URANINITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue URANINITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue URANINITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue URANINITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue FLUORITE_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue FLUORITE_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue FLUORITE_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue FLUORITE_ORE_SIZE;
     public static ForgeConfigSpec.IntValue FLUORITE_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue FLUORITE_ORE_HL;
 
     public static ForgeConfigSpec.BooleanValue XENOTIME_ORE_ENABLED;
     public static ForgeConfigSpec.IntValue XENOTIME_ORE_MIN_HEIGHT;
     public static ForgeConfigSpec.IntValue XENOTIME_ORE_MAX_HEIGHT;
     public static ForgeConfigSpec.IntValue XENOTIME_ORE_SIZE;
     public static ForgeConfigSpec.IntValue XENOTIME_ORE_COUNT;
+    public static ForgeConfigSpec.IntValue XENOTIME_ORE_HL;
+
+    public static ForgeConfigSpec.IntValue RED_GRANITE_HL;
+    public static ForgeConfigSpec.IntValue GRANODIORITE_HL;
+    public static ForgeConfigSpec.IntValue HORNBLENDE_ANDESITE_HL;
+    public static ForgeConfigSpec.IntValue THOLEIITIC_BASALT_HL;
+    public static ForgeConfigSpec.IntValue GABBRO_HL;
+    public static ForgeConfigSpec.IntValue ANORTHOSITE_HL;
+    public static ForgeConfigSpec.IntValue RHYOLITE_HL;
+    public static ForgeConfigSpec.IntValue LIMESTONE_HL;
+    public static ForgeConfigSpec.IntValue MARBLE_HL;
+    public static ForgeConfigSpec.IntValue GNEISS_HL;
+    public static ForgeConfigSpec.IntValue SCHIST_HL;
+    public static ForgeConfigSpec.IntValue SLATE_HL;
+    public static ForgeConfigSpec.IntValue SHALE_HL;
+    public static ForgeConfigSpec.IntValue BRECCIA_HL;
+    public static ForgeConfigSpec.IntValue IRONSTONE_HL;
+    public static ForgeConfigSpec.IntValue PUMICE_HL;
+    public static ForgeConfigSpec.IntValue SCORIA_HL;
+    public static ForgeConfigSpec.IntValue PERIDOTITE_HL;
+    public static ForgeConfigSpec.IntValue KIMBERLITE_HL;
+    public static ForgeConfigSpec.IntValue KOMATIITE_HL;
+    public static ForgeConfigSpec.IntValue WADSLEYITE_HL;
+    public static ForgeConfigSpec.IntValue RINGWOODITE_HL;
+    public static ForgeConfigSpec.IntValue BRIDGMANITE_HL;
+    public static ForgeConfigSpec.IntValue FERROPERICLASE_HL;
+    public static ForgeConfigSpec.IntValue PEROVSKITE_HL;
 
 
-    
-    
+
 
 
 
@@ -479,6 +562,10 @@ public class Config {
                     .defineInRange("romanConcreteSpeed", 1.40D, 0.00D, 5.00D);
             METAL_DETECTOR_RANGE = COMMON_BUILDER.comment("Number of blocks away that the metal detector can detect ore.")
                     .defineInRange("metalDetectorRange", 24, 0, 64);
+            LASER_QUARRY_RANGE = COMMON_BUILDER.comment("Max range of the laser quarry.")
+                    .defineInRange("laserQuarryRange", 5, 0, 11);
+            LASER_QUARRY_SPEED = COMMON_BUILDER.comment("Max speed of the laser quarry.")
+                    .defineInRange("laserQuarrySpeed", 10, 10, 300);
 
 
             COMMON_BUILDER.comment("Pendant Recipes").push("pendantRecipes");
@@ -584,6 +671,65 @@ public class Config {
                 .defineInRange("nuggetRange", 5, 1, 64);
         COMMON_BUILDER.pop();
 
+        COMMON_BUILDER.comment("Miscellaneous Block Harvest Levels").push("harvestLevels");
+        DIAMOND_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Diamond Ore")
+                .defineInRange("diamondOreHL", 3, 0, 5);
+        INTERSPINIFEX_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Interspinifex Ore")
+                .defineInRange("interspinifexOreHL", 3, 0, 5);
+        OPAL_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Opal Ore")
+                .defineInRange("opalOreHL", 2, 0, 5);
+        RED_GRANITE_HL = COMMON_BUILDER.comment("Harvest Level of Red Granite")
+                .defineInRange("redGraniteHL", 0, 0, 5);
+        GRANODIORITE_HL = COMMON_BUILDER.comment("Harvest Level of Granodiorite")
+                .defineInRange("granodioriteHL", 0, 0, 5);
+        HORNBLENDE_ANDESITE_HL = COMMON_BUILDER.comment("Harvest Level of Hornblende Andesite")
+                .defineInRange("hornblendeAndesiteHL", 0, 0, 5);
+        THOLEIITIC_BASALT_HL = COMMON_BUILDER.comment("Harvest Level of Tholeiitic Basalt")
+                .defineInRange("basaltHL", 1, 0, 5);
+        GABBRO_HL = COMMON_BUILDER.comment("Harvest Level of Gabbro")
+                .defineInRange("gabbroHL", 1, 0, 5);
+        ANORTHOSITE_HL = COMMON_BUILDER.comment("Harvest Level of Anorthosite")
+                .defineInRange("anorthositeHL", 0, 0, 5);
+        RHYOLITE_HL = COMMON_BUILDER.comment("Harvest Level of Rhyp;ite")
+                .defineInRange("rhyolitteHL", 1, 0, 5);
+        LIMESTONE_HL = COMMON_BUILDER.comment("Harvest Level of Limestone")
+                .defineInRange("limestoneHL", 0, 0, 5);
+        MARBLE_HL = COMMON_BUILDER.comment("Harvest Level of Marble")
+                .defineInRange("marbleHL", 1, 0, 5);
+        GNEISS_HL = COMMON_BUILDER.comment("Harvest Level of Gneiss")
+                .defineInRange("gneissHL", 1, 0, 5);
+        SCHIST_HL = COMMON_BUILDER.comment("Harvest Level of Schist")
+                .defineInRange("schistHL", 1, 0, 5);
+        SLATE_HL = COMMON_BUILDER.comment("Harvest Level of Slate")
+                .defineInRange("slateHL", 1, 0, 5);
+        SHALE_HL = COMMON_BUILDER.comment("Harvest Level of Shale")
+                .defineInRange("shaleHL", 0, 0, 5);
+        BRECCIA_HL = COMMON_BUILDER.comment("Harvest Level of Breccia")
+                .defineInRange("brecciaHL", 0, 0, 5);
+        IRONSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Ironstone")
+                .defineInRange("ironstoneHL", 1, 0, 5);
+        PUMICE_HL = COMMON_BUILDER.comment("Harvest Level of Pumice")
+                .defineInRange("pumiveHL", 1, 0, 5);
+        SCORIA_HL = COMMON_BUILDER.comment("Harvest Level of Scoria")
+                .defineInRange("scoriaHL", 1, 0, 5);
+        PERIDOTITE_HL = COMMON_BUILDER.comment("Harvest Level of Peridotite")
+                .defineInRange("peridotiteHL", 2, 0, 5);
+        KIMBERLITE_HL = COMMON_BUILDER.comment("Harvest Level of Kimberlite")
+                .defineInRange("kimberliteHL", 2, 0, 5);
+        KOMATIITE_HL = COMMON_BUILDER.comment("Harvest Level of Komatiite")
+                .defineInRange("komatiiteHL", 2, 0, 5);
+        WADSLEYITE_HL = COMMON_BUILDER.comment("Harvest Level of Wadsleyite")
+                .defineInRange("wadsleyiteHL", 2, 0, 5);
+        RINGWOODITE_HL = COMMON_BUILDER.comment("Harvest Level of Ringwoodite")
+                .defineInRange("ringwooditeHL", 2, 0, 5);
+        BRIDGMANITE_HL = COMMON_BUILDER.comment("Harvest Level of Bridgmanite")
+                .defineInRange("bridgmaniteHL", 2, 0, 5);
+        FERROPERICLASE_HL = COMMON_BUILDER.comment("Harvest Level of Ferropericlase")
+                .defineInRange("ferropericlaseHL", 2, 0, 5);
+        PEROVSKITE_HL = COMMON_BUILDER.comment("Harvest Level of Perovskite")
+                .defineInRange("perovskiteHL", 2, 0, 5);
+        COMMON_BUILDER.pop();
+
 
 
         //Oregen config
@@ -601,6 +747,8 @@ public class Config {
                 .defineInRange("nativeCopperOreSixe", 12, 0, 256);
         NATIVE_COPPER_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Copper ore veins to generate per chunk")
                 .defineInRange("nativeCopperOreCount", 5, 0, 256);
+        NATIVE_COPPER_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Copper Ore")
+                .defineInRange("nativeCopperOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Tn Ore Settings").push("nativeTinOre");
@@ -614,6 +762,8 @@ public class Config {
                 .defineInRange("nativeTinOreSize", 12, 0, 256);
         NATIVE_TIN_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Tin ore veins to generate per chunk")
                 .defineInRange("nativeTinOreCount", 4, 0, 256);
+        NATIVE_TIN_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Tin Ore")
+                .defineInRange("nativeTinOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Lead Ore Settings").push("nativeLeadOre");
@@ -627,6 +777,8 @@ public class Config {
                 .defineInRange("nativeLeadOreSize", 12, 0, 256);
         NATIVE_LEAD_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Lead ore veins to generate per chunk")
                 .defineInRange("nativeLeadOreCount", 2, 0, 256);
+        NATIVE_LEAD_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Lead Ore")
+                .defineInRange("nativeLeadOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Silver Ore Settings").push("nativeSilverOre");
@@ -640,6 +792,8 @@ public class Config {
                 .defineInRange("nativeSilverOreSize", 12, 0, 256);
         NATIVE_SILVER_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Silver ore veins to generate per chunk")
                 .defineInRange("nativeSilverOreCount", 2, 0, 256);
+        NATIVE_SILVER_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Silver Ore")
+                .defineInRange("nativeSilverOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Aluminum Ore Settings").push("nativeAluminumOre");
@@ -653,6 +807,8 @@ public class Config {
                 .defineInRange("nativeAluminumOreSize", 12, 0, 256);
         NATIVE_ALUMINUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Aluminum ore veins to generate per chunk")
                 .defineInRange("nativeAluminumOreCount", 3, 0, 256);
+        NATIVE_ALUMINUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Aluminum Ore")
+                .defineInRange("nativeAluminumOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Gold Ore Settings").push("nativeGoldOre");
@@ -666,19 +822,23 @@ public class Config {
                 .defineInRange("nativeGoldOreSize", 12, 0, 256);
         NATIVE_GOLD_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Gold ore veins to generate per chunk")
                 .defineInRange("nativeGoldOreCount", 5, 0, 256);
+        NATIVE_GOLD_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Gold Ore")
+                .defineInRange("nativeGoldOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Bismuth Ore Settings").push("nativeBismuthOre");
         NATIVE_BISMUTH_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Native Bismuth ore)")
                 .define("nativeBismuthOreEnabled",true);
         NATIVE_BISMUTH_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Bismuth ore at (make sure it is less than the maximum)")
-                .defineInRange("nativeBismuthOreMin", 10, 0, 256);
+                .defineInRange("nativeBismuthOreMin", 50, 0, 256);
         NATIVE_BISMUTH_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Bismuth ore at (make sure it is greater than the minimum)")
-                .defineInRange("nativeBismuthOreMax", 40, 0, 256);
+                .defineInRange("nativeBismuthOreMax", 75, 0, 256);
         NATIVE_BISMUTH_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Bismuth ore vein")
-                .defineInRange("nativeBismuthOreSize", 12, 0, 256);
+                .defineInRange("nativeBismuthOreSize", 5, 0, 256);
         NATIVE_BISMUTH_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Bismuth ore veins to generate per chunk")
-                .defineInRange("nativeBismuthOreCount", 3, 0, 256);
+                .defineInRange("nativeBismuthOreCount", 1, 0, 256);
+        NATIVE_BISMUTH_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Bismuth Ore")
+                .defineInRange("nativeBismuthOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Stibnite Ore Settings").push("stibniteOre");
@@ -692,6 +852,8 @@ public class Config {
                 .defineInRange("stibniteOreSize", 12, 0, 256);
         STIBNITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Stibnite ore veins to generate per chunk")
                 .defineInRange("stibniteOreCount", 3, 0, 256);
+        STIBNITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Stibnite Ore")
+                .defineInRange("stibniteOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Halite Ore Settings").push("haliteOre");
@@ -705,6 +867,8 @@ public class Config {
                 .defineInRange("haliteOreSize", 20, 0, 256);
         HALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Halite ore veins to generate per chunk")
                 .defineInRange("haliteOreCount", 1, 0, 256);
+        HALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Halite Ore")
+                .defineInRange("haliteOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Pink Halite Ore Settings").push("pinkHaliteOre");
@@ -718,6 +882,8 @@ public class Config {
                 .defineInRange("pinkHaliteOreSize", 20, 0, 256);
         PINK_HALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pink Halite ore veins to generate per chunk")
                 .defineInRange("pinkHaliteOreCount", 2, 0, 256);
+        PINK_HALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Pink Halite Ore")
+                .defineInRange("pinkHaliteOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Malachite Ore Settings").push("malachiteOre");
@@ -731,6 +897,8 @@ public class Config {
                 .defineInRange("malachiteOreSize", 16, 0, 256);
         MALACHITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Malachite ore veins to generate per chunk")
                 .defineInRange("malachiteOreCount", 2, 0, 256);
+        MALACHITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Malachite Ore")
+                .defineInRange("malachiteOreHL", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Cassiterite Ore Settings").push("cassiteriteOre");
@@ -744,6 +912,8 @@ public class Config {
                 .defineInRange("cassiteriteOreSize", 16, 0, 256);
         CASSITERITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Cassiterite ore veins to generate per chunk")
                 .defineInRange("cassiteriteOreCount", 2, 0, 256);
+        CASSITERITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Cassiterite Ore")
+                .defineInRange("CassiteriteOreHL", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Bauxite Ore Settings").push("bauxiteOre");
@@ -757,6 +927,8 @@ public class Config {
                 .defineInRange("bauxiteOreSize", 16, 0, 256);
         BAUXITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Bauxite ore veins to generate per chunk")
                 .defineInRange("bauxiteOreCount", 2, 0, 256);
+        BAUXITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Bauxite Ore")
+                .defineInRange("bauxiteOreHL", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Sphalerite Ore Settings").push("sphaleriteOre");
@@ -770,6 +942,8 @@ public class Config {
                 .defineInRange("sphaleriteOreSize", 16, 0, 256);
         SPHALERITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Sphalerite ore veins to generate per chunk")
                 .defineInRange("sphaleriteOreCount", 2, 0, 256);
+        SPHALERITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Sphalerite Ore")
+                .defineInRange("sphaleriteOreHL", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Lignite Ore Settings").push("ligniteOre");
@@ -783,6 +957,8 @@ public class Config {
                 .defineInRange("ligniteOreSize", 20, 0, 256);
         LIGNITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Lignite ore veins to generate per chunk")
                 .defineInRange("ligniteOreCount", 2, 0, 256);
+        LIGNITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Lignite Ore")
+                .defineInRange("ligniteOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Subbituminous Coal Ore Settings").push("subbituminousCoalOre");
@@ -796,6 +972,8 @@ public class Config {
                 .defineInRange("subbituminousCoalOreSize", 20, 0, 256);
         SUBBITUMINOUS_COAL_ORE_COUNT = COMMON_BUILDER.comment("Number of Subbituminous Coal ore veins to generate per chunk")
                 .defineInRange("subbituminousCoalOreCount", 4, 0, 256);
+        SUBBITUMINOUS_COAL_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Subbituminous Coal Ore")
+                .defineInRange("subbituminousCoalOreHL", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Bituminous Coal Ore Settings").push("bituminousCoalOre");
@@ -809,6 +987,8 @@ public class Config {
                 .defineInRange("bituminousCoalOreSize", 20, 0, 256);
         BITUMINOUS_COAL_ORE_COUNT = COMMON_BUILDER.comment("Number of Bituminous Coal ore veins to generate per chunk")
                 .defineInRange("bituminousCoalOreCount", 4, 0, 256);
+        BITUMINOUS_COAL_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Bituminous Coal Ore")
+                .defineInRange("bituminousCoalOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Magnetite Ore Settings").push("magnetiteOre");
@@ -822,6 +1002,8 @@ public class Config {
                 .defineInRange("magnetiteOreSize", 20, 0, 256);
         MAGNETITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnetite ore veins to generate per chunk")
                 .defineInRange("magnetiteOreCount", 3, 0, 256);
+        MAGNETITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Magnetite Ore")
+                .defineInRange("magnetiteOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Magnesite Ore Settings").push("magnesiteOre");
@@ -835,6 +1017,8 @@ public class Config {
                 .defineInRange("magnesiteOreSize", 18, 0, 256);
         MAGNESITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnesite ore veins to generate per chunk")
                 .defineInRange("magnesiteOreCount", 2, 0, 256);
+        MAGNESITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Magnesite Ore")
+                .defineInRange("magnesiteOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Pentlandite Ore Settings").push("pentlanditeOre");
@@ -848,6 +1032,8 @@ public class Config {
                 .defineInRange("pentlanditeOreSize", 16, 0, 256);
         PENTLANDITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pentlandite ore veins to generate per chunk")
                 .defineInRange("pentlanditeOreCount", 2, 0, 256);
+        PENTLANDITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Pentlandite Ore")
+                .defineInRange("pentlanditeOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Galena Ore Settings").push("galenaOre");
@@ -861,6 +1047,8 @@ public class Config {
                 .defineInRange("galenaOreSize", 16, 0, 256);
         GALENA_ORE_COUNT = COMMON_BUILDER.comment("Number of Galena ore veins to generate per chunk")
                 .defineInRange("galenaOreCount", 2, 0, 256);
+        GALENA_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Galena Ore")
+                .defineInRange("galenaOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Acanthite Ore Settings").push("acanthiteOre");
@@ -874,6 +1062,8 @@ public class Config {
                 .defineInRange("acanthiteOreSize", 15, 0, 256);
         ACANTHITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Acanthite ore veins to generate per chunk")
                 .defineInRange("acanthiteOreCount", 2, 0, 256);
+        ACANTHITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Acanthite Ore")
+                .defineInRange("acanthiteOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Pyrolusite Ore Settings").push("pyrolusiteOre");
@@ -887,6 +1077,8 @@ public class Config {
                 .defineInRange("pyrolusiteOreSize", 15, 0, 256);
         PYROLUSITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pyrolusite ore veins to generate per chunk")
                 .defineInRange("pyrolusiteOreCount", 2, 0, 256);
+        PYROLUSITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Pyrolusite Ore")
+                .defineInRange("pyrolusiteOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Petalite Ore Settings").push("petaliteOre");
@@ -900,6 +1092,8 @@ public class Config {
                 .defineInRange("petaliteOreSize", 5, 0, 256);
         PETALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Petalite ore veins to generate per chunk")
                 .defineInRange("petaliteOreCount", 1, 0, 256);
+        PETALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Petalite Ore")
+                .defineInRange("petaliteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Cinnabar Ore Settings (Only generates in igneous rocks)").push("cinnabarOre");
@@ -913,6 +1107,8 @@ public class Config {
                 .defineInRange("cinnabarOreSize", 20, 0, 256);
         CINNABAR_ORE_COUNT = COMMON_BUILDER.comment("Number of Cinnabar ore veins to generate per chunk")
                 .defineInRange("cinnabarOreCount", 3, 0, 256);
+        CINNABAR_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Cinnabar Ore")
+                .defineInRange("cinnabarOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Chromite Ore Settings (Only generates in igneous rocks)").push("chromiteOre");
@@ -926,6 +1122,8 @@ public class Config {
                 .defineInRange("chromiteOreSize", 10, 0, 256);
         CHROMITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Chromite ore veins to generate per chunk")
                 .defineInRange("chromiteOreCount", 1, 0, 256);
+        CHROMITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Chromite Ore")
+                .defineInRange("chromiteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Celestine Ore Settings (Only generates in sedimentary rocks)").push("celestineOre");
@@ -939,6 +1137,8 @@ public class Config {
                 .defineInRange("celestineOreSize", 8, 0, 256);
         CELESTINE_ORE_COUNT = COMMON_BUILDER.comment("Number of Celestine ore veins to generate per chunk")
                 .defineInRange("celestineOreCount", 1, 0, 256);
+        CELESTINE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Celestine Ore")
+                .defineInRange("celestineOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Vanadinite Ore Settings").push("vanadiniteOre");
@@ -952,6 +1152,8 @@ public class Config {
                 .defineInRange("vanadiniteOreSize", 8, 0, 256);
         VANADINITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Vanadinite ore veins to generate per chunk")
                 .defineInRange("vanadiniteOreCount", 1, 0, 256);
+        VANADINITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Vanadinite Ore")
+                .defineInRange("vanadiniteOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Lazurite Ore Settings (Only generates in limestone)").push("lazuriteOre");
@@ -965,6 +1167,8 @@ public class Config {
                 .defineInRange("lazuriteOreSize", 20, 0, 256);
         LAZURITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Lazurite ore veins to generate per chunk")
                 .defineInRange("lazuriteOreCount", 3, 0, 256);
+        LAZURITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Lazurite Ore")
+                .defineInRange("lazuriteOreHL", 1, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Emerald Ore Settings").push("emeraldOre");
@@ -975,9 +1179,11 @@ public class Config {
         EMERALD_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Emerald ore at (make sure it is greater than the minimum)")
                 .defineInRange("emeraldOreMax", 60, 0, 256);
         EMERALD_ORE_SIZE = COMMON_BUILDER.comment("Size of Emerald ore vein")
-                .defineInRange("emeraldOreSize", 5, 0, 256);
+                .defineInRange("emeraldOreSize", 7, 0, 256);
         EMERALD_ORE_COUNT = COMMON_BUILDER.comment("Number of Emerald ore veins to generate per chunk")
-                .defineInRange("emeraldOreCount", 3, 0, 256);
+                .defineInRange("emeraldOreCount", 1, 0, 256);
+        EMERALD_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Emerald Ore")
+                .defineInRange("emeraldOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Aquamarine Ore Settings").push("aquamarineOre");
@@ -988,9 +1194,11 @@ public class Config {
         AQUAMARINE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Aquamarine ore at (make sure it is greater than the minimum)")
                 .defineInRange("aquamarineOreMax", 60, 0, 256);
         AQUAMARINE_ORE_SIZE = COMMON_BUILDER.comment("Size of Aquamarine ore vein")
-                .defineInRange("aquamarineOreSize", 5, 0, 256);
+                .defineInRange("aquamarineOreSize", 7, 0, 256);
         AQUAMARINE_ORE_COUNT = COMMON_BUILDER.comment("Number of Aquamarine ore veins to generate per chunk")
-                .defineInRange("aquamarineOreCount", 3, 0, 256);
+                .defineInRange("aquamarineOreCount", 1, 0, 256);
+        AQUAMARINE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Aquamarine Ore")
+                .defineInRange("aquamarineOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Majorite Ore Settings").push("majoriteOre");
@@ -1004,6 +1212,8 @@ public class Config {
                 .defineInRange("majoriteOreSize", 5, 0, 256);
         MAJORITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Majorite ore veins to generate per chunk")
                 .defineInRange("majoriteOreCount", 1, 0, 256);
+        MAJORITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Majorite Ore")
+                .defineInRange("majoriteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Plumbago Ore Settings (Only generates in marble)").push("plumbagoOre");
@@ -1017,6 +1227,8 @@ public class Config {
                 .defineInRange("plumbagoOreSize", 15, 0, 256);
         PLUMBAGO_ORE_COUNT = COMMON_BUILDER.comment("Number of Plumbago ore veins to generate per chunk")
                 .defineInRange("plumbagoOreCount", 2, 0, 256);
+        PLUMBAGO_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Plumbago Ore")
+                .defineInRange("plumbagoOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         //end overworld
@@ -1037,6 +1249,8 @@ public class Config {
                 .defineInRange("nativeArsenicOreSize", 12, 0, 256);
         NATIVE_ARSENIC_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Arsenic ore veins to generate per chunk")
                 .defineInRange("nativeArsenicOreCount", 8, 0, 256);
+        NATIVE_ARSENIC_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Arsenic Ore")
+                .defineInRange("nativeArsenicOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Sulfur Ore Settings").push("nativeSulfurOre");
@@ -1050,6 +1264,8 @@ public class Config {
                 .defineInRange("nativeSulfurOreSize", 12, 0, 256);
         NATIVE_SULFUR_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Sulfur ore veins to generate per chunk")
                 .defineInRange("nativeSulfurOreCount", 8, 0, 256);
+        NATIVE_SULFUR_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Sulfur Ore")
+                .defineInRange("nativeSulfurOreHL", 0, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Anthracite Ore Settings").push("anthraciteOre");
@@ -1063,6 +1279,8 @@ public class Config {
                 .defineInRange("anthraciteOreSize", 20, 0, 256);
         ANTHRACITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Anthracite ore veins to generate per chunk")
                 .defineInRange("anthraciteOreCount", 8, 0, 256);
+        ANTHRACITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Anthracite Ore")
+                .defineInRange("anthraciteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Cobaltite Ore Settings").push("cobaltiteOre");
@@ -1076,6 +1294,8 @@ public class Config {
                 .defineInRange("cobaltiteOreSize", 10, 0, 256);
         COBALTITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Cobaltite ore veins to generate per chunk")
                 .defineInRange("cobaltiteOreCount", 3, 0, 256);
+        COBALTITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Cobaltite Ore")
+                .defineInRange("cobaltiteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Bismuthinite Ore Settings").push("bismuthiniteOre");
@@ -1089,6 +1309,8 @@ public class Config {
                 .defineInRange("bismuthiniteOreSize", 15, 0, 256);
         BISMUTHINITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Bismuthinite ore veins to generate per chunk")
                 .defineInRange("bismuthiniteOreCount", 2, 0, 256);
+        BISMUTHINITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Bismuthinite Ore")
+                .defineInRange("bismuthiniteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Ilmenite Ore Settings").push("ilmeniteOre");
@@ -1102,6 +1324,8 @@ public class Config {
                 .defineInRange("ilmeniteOreSize", 20, 0, 256);
         ILMENITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Ilmenite ore veins to generate per chunk")
                 .defineInRange("ilmeniteOreCount", 2, 0, 256);
+        ILMENITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Ilmenite Ore")
+                .defineInRange("ilmeniteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Wolframite Ore Settings").push("wolframiteOre");
@@ -1115,6 +1339,8 @@ public class Config {
                 .defineInRange("wolframiteOreSize", 20, 0, 256);
         WOLFRAMITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Wolframite ore veins to generate per chunk")
                 .defineInRange("wolframiteOreCount", 2, 0, 256);
+        WOLFRAMITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Wolframite Ore")
+                .defineInRange("wolframiteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Sperrylite Ore Settings").push("sperryliteOre");
@@ -1128,32 +1354,23 @@ public class Config {
                 .defineInRange("sperryliteOreSize", 20, 0, 256);
         SPERRYLITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Sperrylite ore veins to generate per chunk")
                 .defineInRange("sperryliteOreCount", 2, 0, 256);
+        SPERRYLITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Sperrylite Ore")
+                .defineInRange("sperryliteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Moissanite Ore Settings").push("moissaniteOre");
         MOISSANITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Moissanite ore)")
                 .define("moissaniteOreEnabled",true);
         MOISSANITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Moissanite ore at (make sure it is less than the maximum)")
-                .defineInRange("moissaniteOreMin", 1, 0, 256);
+                .defineInRange("moissaniteOreMin", 31, 0, 256);
         MOISSANITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Moissanite ore at (make sure it is greater than the minimum)")
-                .defineInRange("moissaniteOreMax", 30, 0, 256);
+                .defineInRange("moissaniteOreMax", 90, 0, 256);
         MOISSANITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Moissanite ore vein")
-                .defineInRange("moissaniteOreSize", 12, 0, 256);
+                .defineInRange("moissaniteOreSize", 15, 0, 256);
         MOISSANITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Moissanite ore veins to generate per chunk")
-                .defineInRange("moissaniteOreCount", 1, 0, 256);
-        COMMON_BUILDER.pop();
-
-        COMMON_BUILDER.comment("Greenockite Ore Settings").push("greenockiteOre");
-        GREENOCKITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Greenockite ore)")
-                .define("greenockiteOreEnabled",true);
-        GREENOCKITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Greenockite ore at (make sure it is less than the maximum)")
-                .defineInRange("greenockiteOreMin", 1, 0, 256);
-        GREENOCKITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Greenockite ore at (make sure it is greater than the minimum)")
-                .defineInRange("greenockiteOreMax", 30, 0, 256);
-        GREENOCKITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Greenockite ore vein")
-                .defineInRange("greenockiteOreSize", 10, 0, 256);
-        GREENOCKITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Greenockite ore veins to generate per chunk")
-                .defineInRange("greenockiteOreCount", 1, 0, 256);
+                .defineInRange("moissaniteOreCount", 2, 0, 256);
+        MOISSANITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Moissanite Ore")
+                .defineInRange("moissaniteOreHL", 2, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Columbite Ore Settings").push("columbiteOre");
@@ -1167,6 +1384,8 @@ public class Config {
                 .defineInRange("columbiteOreSize", 10, 0, 256);
         COLUMBITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Columbite ore veins to generate per chunk")
                 .defineInRange("columbiteOreCount", 1, 0, 256);
+        COLUMBITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Columbite Ore")
+                .defineInRange("columbiteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Tantalite Ore Settings").push("tantaliteOre");
@@ -1180,6 +1399,8 @@ public class Config {
                 .defineInRange("tantaliteOreSize", 7, 0, 256);
         TANTALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Tantalite ore veins to generate per chunk")
                 .defineInRange("tantaliteOreCount", 1, 0, 256);
+        TANTALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Tantalite Ore")
+                .defineInRange("tantaliteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         //end nether
@@ -1200,6 +1421,8 @@ public class Config {
                 .defineInRange("nativeGalliumOreSize", 12, 0, 256);
         NATIVE_GALLIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Gallium ore veins to generate per chunk")
                 .defineInRange("nativeGalliumOreCount", 8, 0, 256);
+        NATIVE_GALLIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Gallium Ore")
+                .defineInRange("nativeGalliumOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Indium Ore Settings").push("nativeIndiumOre");
@@ -1213,6 +1436,8 @@ public class Config {
                 .defineInRange("nativeIndiumOreSize", 12, 0, 256);
         NATIVE_INDIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Indium ore veins to generate per chunk")
                 .defineInRange("nativeIndiumOreCount", 8, 0, 256);
+        NATIVE_INDIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Indium Ore")
+                .defineInRange("nativeIndiumOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Selenium Ore Settings").push("nativeSeleniumOre");
@@ -1226,6 +1451,8 @@ public class Config {
                 .defineInRange("nativeSeleniumOreSize", 12, 0, 256);
         NATIVE_SELENIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Selenium ore veins to generate per chunk")
                 .defineInRange("nativeSeleniumOreCount", 8, 0, 256);
+        NATIVE_SELENIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Selenium Ore")
+                .defineInRange("nativeSeleniumOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Native Tellurium Ore Settings").push("nativeTelluriumOre");
@@ -1239,6 +1466,8 @@ public class Config {
                 .defineInRange("nativeTelluriumOreSize", 12, 0, 256);
         NATIVE_TELLURIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Tellurium ore veins to generate per chunk")
                 .defineInRange("nativeTelluriumOreCount", 8, 0, 256);
+        NATIVE_TELLURIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Tellurium Ore")
+                .defineInRange("nativeTelluriumOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Uraninite Ore Settings").push("uraniniteOre");
@@ -1252,6 +1481,8 @@ public class Config {
                 .defineInRange("uraniniteOreSize", 20, 0, 256);
         URANINITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Uraninite ore veins to generate per chunk")
                 .defineInRange("uraniniteOreCount", 7, 0, 256);
+        URANINITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Uraninite Ore")
+                .defineInRange("uraniniteOreHL", 4, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Fluorite Ore Settings").push("fluoriteOre");
@@ -1265,6 +1496,8 @@ public class Config {
                 .defineInRange("fluoriteOreSize", 12, 0, 256);
         FLUORITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Fluorite ore veins to generate per chunk")
                 .defineInRange("fluoriteOreCount", 8, 0, 256);
+        FLUORITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Fluorite Ore")
+                .defineInRange("fluoriteOreHL", 4, 0, 5);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Xenotime Ore Settings").push("xenotimeOre");
@@ -1278,8 +1511,24 @@ public class Config {
                 .defineInRange("xenotimeOreSize", 5, 0, 256);
         XENOTIME_ORE_COUNT = COMMON_BUILDER.comment("Number of Xenotime ore veins to generate per chunk")
                 .defineInRange("xenotimeOreCount", 5, 0, 256);
+        XENOTIME_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Xenotime Ore")
+                .defineInRange("xenotimeOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
+        COMMON_BUILDER.comment("Greenockite Ore Settings").push("greenockiteOre");
+        GREENOCKITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Greenockite ore)")
+                .define("greenockiteOreEnabled",true);
+        GREENOCKITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Greenockite ore at (make sure it is less than the maximum)")
+                .defineInRange("greenockiteOreMin", 1, 0, 256);
+        GREENOCKITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Greenockite ore at (make sure it is greater than the minimum)")
+                .defineInRange("greenockiteOreMax", 30, 0, 256);
+        GREENOCKITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Greenockite ore vein")
+                .defineInRange("greenockiteOreSize", 10, 0, 256);
+        GREENOCKITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Greenockite ore veins to generate per chunk")
+                .defineInRange("greenockiteOreCount", 1, 0, 256);
+        GREENOCKITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Greenockite Ore")
+                .defineInRange("greenockiteOreHL", 3, 0, 5);
+        COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Molybdenite Ore Settings").push("molybdeniteOre");
         MOLYBDENITE_ORE_ENABLED = COMMON_BUILDER.comment("Enables (not functional yet) Molybdenite ore)")
@@ -1292,6 +1541,8 @@ public class Config {
                 .defineInRange("molybdeniteOreSize", 5, 0, 256);
         MOLYBDENITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Molybdenite ore veins to generate per chunk")
                 .defineInRange("molybdeniteOreCount", 5, 0, 256);
+        MOLYBDENITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Molybdenite Ore")
+                .defineInRange("molybdeniteOreHL", 3, 0, 5);
         COMMON_BUILDER.pop();
 
         //end end
