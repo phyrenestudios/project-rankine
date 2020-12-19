@@ -110,7 +110,25 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
             if (worldIn.isBlockPowered(pos) && checkStructure(pos,worldIn)) {
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
-                    BlockPos TARGET_POS = pos.add(x,-y,z);
+                    for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
+                        Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
+                        if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable")) && !TARGET_BLOCK.getTags().contains(new ResourceLocation("forge:ores"))) {
+                            worldIn.destroyBlock(TARGET_POS,false);
+                        }
+                        cookTime = 0;
+                    }
+                    ++y;
+                    if (y >= pos.getY()) {
+                        y = 1;
+                        ++i;
+                    }
+
+
+
+
+
+
+                    /*BlockPos TARGET_POS = pos.add(x,-y,z);
                     Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
                     if (TARGET_BLOCK == Blocks.AIR || TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable")) || TARGET_BLOCK.getTags().contains(new ResourceLocation("forge:ores"))) {
                         cookTime = cookTimeTotal - 1;
@@ -133,7 +151,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                         }
                     } else {
                         ++x;
-                    }
+                    } */
                 }
             } else if (cookTime > 0) {
                 this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
@@ -142,7 +160,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     }
 
     private boolean checkStructure(BlockPos pos, World worldIn) {
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(1,0,0), pos.add(6,0,0))) {
+        /*for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(1,0,0), pos.add(6,0,0))) {
             if (worldIn.getBlockState(blockpos) != ModBlocks.STAINLESS_STEEL_SHEETMETAL.getDefaultState()) {
                 return false;
             }
@@ -161,8 +179,8 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
             if (worldIn.getBlockState(blockpos) != ModBlocks.STAINLESS_STEEL_SHEETMETAL.getDefaultState()) {
                 return false;
             }
-        }
-        List<BlockPos> Pillars = Arrays.asList(pos.add(6,1,0),pos.add(6,2,0),pos.add(-6,1,0),pos.add(-6,2,0),pos.add(0,1,6),pos.add(0,2,6),pos.add(0,1,-6),pos.add(0,2,-6));
+        }*/
+        List<BlockPos> Pillars = Arrays.asList(pos.add(6,0,0),pos.add(6,2,0),pos.add(-6,0,0),pos.add(-6,2,0),pos.add(0,0,6),pos.add(0,2,6),pos.add(0,0,-6),pos.add(0,2,-6));
         for(BlockPos blockpos : Pillars) {
             if (worldIn.getBlockState(blockpos) != ModBlocks.LASER_PYLON_BASE.getDefaultState()) {
                 return false;

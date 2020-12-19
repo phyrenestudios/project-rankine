@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SBS",
+    "SGS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:sheetmetals/stainless_steel"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/thorium"
+    },
+    "G": {
+      "tag": "forge:gems/garnet"
+    }
+  },
+  "result": {
+    "item": "rankine:laser_quarry",
+    "count": 1
+  }
+}

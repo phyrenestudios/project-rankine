@@ -554,7 +554,7 @@ public class Config {
             METAL_DETECTOR_RANGE = COMMON_BUILDER.comment("Number of blocks away that the metal detector can detect ore.")
                     .defineInRange("metalDetectorRange", 24, 0, 64);
             LASER_QUARRY_RANGE = COMMON_BUILDER.comment("Max range of the laser quarry.")
-                    .defineInRange("laserQuarryRange", 5, 0, 5);
+                    .defineInRange("laserQuarryRange", 5, 0, 11);
             LASER_QUARRY_SPEED = COMMON_BUILDER.comment("Max speed of the laser quarry.")
                     .defineInRange("laserQuarrySpeed", 10, 10, 300);
 

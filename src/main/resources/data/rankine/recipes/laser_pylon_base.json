@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SGS",
+    "SGS",
+    "SGS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:sheetmetals/stainless_steel"
+    },
+    "G": {
+      "tag": "forge:gems/garnet"
+    }
+  },
+  "result": {
+    "item": "rankine:laser_pylon_base",
+    "count": 1
+  }
+}
