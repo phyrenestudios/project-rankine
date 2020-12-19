@@ -10,7 +10,7 @@
       "tag": "forge:sheetmetals/stainless_steel"
     },
     "G": {
-      "tag": "forge:gems/garnet"
+      "item": "rankine:yag_rod"
     }
   },
   "result": {
