@@ -28,6 +28,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -431,9 +433,38 @@ public class AlloyHammer extends ItemHammer {
 
                 if (getBlastModifier(stack) > 0)
                 {
-                    worldIn.createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.25F + 0.25F*getBlastModifier(stack), Explosion.Mode.DESTROY);
+                    BlockRayTraceResult raytraceresult = rayTrace(worldIn, (PlayerEntity) entityLiving, RayTraceContext.FluidMode.ANY);
+
+                    BlockPos exppos;
+                    switch (raytraceresult.getFace())
+                    {
+                        case EAST:
+                            exppos = new BlockPos(pos.getX() - (getBlastModifier(stack) - 1),pos.getY(),pos.getZ());
+                            break;
+                        case WEST:
+                            exppos = new BlockPos(pos.getX() + (getBlastModifier(stack) - 1),pos.getY(),pos.getZ());
+                            break;
+                        case DOWN:
+                            exppos = new BlockPos(pos.getX(),pos.getY() + (getBlastModifier(stack) - 1),pos.getZ());
+                            break;
+                        case UP:
+                            exppos = new BlockPos(pos.getX(),pos.getY() - (getBlastModifier(stack) - 1),pos.getZ());
+                            break;
+                        case NORTH:
+                            exppos = new BlockPos(pos.getX(),pos.getY(),pos.getZ() + (getBlastModifier(stack) - 1));
+                            break;
+                        case SOUTH:
+                            exppos = new BlockPos(pos.getX(),pos.getY(),pos.getZ() - (getBlastModifier(stack) - 1));
+                            break;
+                        default:
+                            exppos = pos;
+                    }
+                    System.out.println(raytraceresult.getFace());
+                    System.out.println(exppos);
+                    worldIn.removeBlock(exppos,false);
+                    worldIn.createExplosion(null, exppos.getX(), exppos.getY() + 16 * .0625D, exppos.getZ(), 0.5F + getBlastModifier(stack), Explosion.Mode.DESTROY);
                     if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                        stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true) + 2*getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
+                        stack.damageItem(getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                         });
                     }

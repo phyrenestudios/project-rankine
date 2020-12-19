@@ -153,6 +153,7 @@ public class ProjectRankine {
             event.getRegistry().register(ModEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.ALLOY_SPEAR);
             event.getRegistry().register(ModEntityTypes.STAINLESS_STEEL_SPEAR);
+            event.getRegistry().register(ModEntityTypes.THORIUM_ARROW);
             event.getRegistry().register(ModEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
             event.getRegistry().register(ModEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(ModEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
@@ -196,6 +197,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DEMONYTE, DemonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.THORIUM_ARROW,ThoriumArrowRenderer.instance);
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {

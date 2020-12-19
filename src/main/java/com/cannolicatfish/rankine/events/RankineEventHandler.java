@@ -2,10 +2,15 @@ package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
+import com.cannolicatfish.rankine.blocks.CompositionBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.ModRecipes;
+import com.cannolicatfish.rankine.items.AlloyTemplate;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.google.common.collect.ImmutableSet;
@@ -13,6 +18,8 @@ import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.merchant.villager.VillagerProfession;
+import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,6 +38,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -41,6 +49,9 @@ import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -48,6 +59,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.items.IItemHandler;
 
+import java.awt.event.ItemEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -71,6 +83,113 @@ public class RankineEventHandler {
         CreateAlloyCommand.register(event.getDispatcher());
     }
 
+    @SubscribeEvent
+    public static void addVillagerTrades(VillagerTradesEvent event)
+    {
+        if (Config.VILLAGER_TRADES.get())
+        {
+            if (event.getType() == VillagerProfession.MASON)
+            {
+                event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(ModItems.MORTAR, 16),16,1,0.05f));
+                event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(ModItems.REFRACTORY_BRICK, 10),16,1,0.05f));
+
+            } else if (event.getType() == VillagerProfession.LIBRARIAN)
+            {
+                event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(ModItems.ALLOY_TEMPLATE),12,1,0.05f));
+                event.getTrades().get(2).add(new BasicTrade(1, new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE),12,5,0.05f));
+            } else if (event.getType() == VillagerProfession.CLERIC)
+            {
+                event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(ModItems.SALTPETER,2),12,1,0.05f));
+            }
+        }
+
+    }
+
+    @SubscribeEvent
+    public static void addWandererTrades(WandererTradesEvent event)
+    {
+        if (Config.VILLAGER_TRADES.get())
+        {
+            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(ModItems.PINEAPPLE, 1),4,1,0.5f));
+
+            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(ModBlocks.LIMESTONE, 8),8,1,0.05f));
+            event.getRareTrades().add(new BasicTrade(1,new ItemStack(ModItems.ELEMENT_TRANSMUTER, 2),8,1,0.05f));
+            ItemStack met = new ItemStack(ModItems.METEORIC_IRON);
+            AlloyItem.addAlloy(met,new AlloyData("50Fe-50Ni"));
+            event.getRareTrades().add(new BasicTrade(3,met,6,1,0.5f));
+        }
+        event.getRareTrades().add(new BasicTrade(3,new ItemStack(ModItems.PACKAGED_TOOL),6,1,0.05f));
+    }
+
+    @SubscribeEvent
+    public static void onToolUse(BlockEvent.BlockToolInteractEvent event)
+    {
+        if (Config.DISABLE_WOOD.get() && WOOD_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setCanceled(true);
+        }
+        if (Config.DISABLE_STONE.get() && STONE_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setCanceled(true);
+        }
+        if (Config.DISABLE_IRON.get() && IRON_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setCanceled(true);
+        }
+        if (Config.DISABLE_GOLD.get() && GOLD_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setCanceled(true);
+        }
+        if (Config.DISABLE_DIAMOND.get() && DIAMOND_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setCanceled(true);
+        }
+        if (Config.DISABLE_NETHERITE.get() && NETHERITE_TOOLS.contains(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem()))
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onFluidInteraction(BlockEvent.FluidPlaceBlockEvent event)
+    {
+        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get())
+        {
+            switch (event.getWorld().getRandom().nextInt(10))
+            {
+                case 0:
+                    event.setNewState(Blocks.GRANITE.getDefaultState());
+                    break;
+                case 1:
+                    event.setNewState(Blocks.ANDESITE.getDefaultState());
+                    break;
+                case 2:
+                    event.setNewState(Blocks.DIORITE.getDefaultState());
+                    break;
+                case 3:
+                    event.setNewState(ModBlocks.RED_GRANITE.getDefaultState());
+                    break;
+                case 4:
+                    event.setNewState(ModBlocks.HORNBLENDE_ANDESITE.getDefaultState());
+                    break;
+                case 5:
+                    event.setNewState(ModBlocks.GRANODIORITE.getDefaultState());
+                    break;
+                case 6:
+                    event.setNewState(ModBlocks.ANORTHOSITE.getDefaultState());
+                    break;
+                case 7:
+                    event.setNewState(ModBlocks.THOLEIITIC_BASALT.getDefaultState());
+                    break;
+                case 8:
+                    event.setNewState(ModBlocks.GABBRO.getDefaultState());
+                    break;
+                case 9:
+                    event.setNewState(ModBlocks.RHYOLITE.getDefaultState());
+                    break;
+            }
+        }
+    }
 
     /*
         private static final String NBT_KEY = "rankine.firstjoin";

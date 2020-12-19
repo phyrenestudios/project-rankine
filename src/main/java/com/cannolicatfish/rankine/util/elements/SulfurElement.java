@@ -41,7 +41,7 @@ public class SulfurElement implements ElementInterface{
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return -x/100f;
     }
 
     @Override

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing",
   "base": {
-    "item": "minecraft:leather_boots"
+    "item": "minecraft:leather_leggings"
   },
   "addition": {
     "item": "rankine:steel_alloy"

@@ -33,12 +33,15 @@ public class Config {
 
     public static ForgeConfigSpec.BooleanValue MANDATORY_AXE;
     public static ForgeConfigSpec.BooleanValue STARTING_BOOK;
+    public static ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
+    public static ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
     public static ForgeConfigSpec.BooleanValue DISABLE_WOOD;
     public static ForgeConfigSpec.BooleanValue DISABLE_STONE;
     public static ForgeConfigSpec.BooleanValue DISABLE_IRON;
     public static ForgeConfigSpec.BooleanValue DISABLE_GOLD;
     public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND;
     public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE;
+    public static ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
 
     public static ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
     public static ForgeConfigSpec.BooleanValue ALLOY_HEAT;
@@ -537,6 +540,12 @@ public class Config {
                     .define("disableDiamond",false);
             DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default for progression.")
                     .define("disableNetherite",false);
+            IGNEOUS_COBBLE_GEN = COMMON_BUILDER.comment("Change the output of a cobblestone generator from cobblestone to random igneous rocks.")
+                    .define("igneousGen",true);
+            VILLAGER_TRADES = COMMON_BUILDER.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
+                    .define("villageTrades",true);
+            WANDERING_TRADE_SPECIAL = COMMON_BUILDER.comment("Adds a trade to the Wandering Trader for a random tool which is not restricted by alloy constraints. May be unbalanced due to complete randomness.")
+                    .define("wanderingSpecial",false);
             GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                     .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
             T1_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the beehive oven (T1) to cook a block")

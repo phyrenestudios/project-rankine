@@ -65,6 +65,7 @@ public class ItemGoldPan extends Item {
     public static WeightedCollection<ItemStack> returnAlluviumCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(Items.DIAMOND));
+        col.add(1,new ItemStack(ModItems.THORIUM_NUGGET,3));
         col.add(1.5f,new ItemStack(ModItems.RUBY));
         col.add(1.5f,new ItemStack(ModItems.SAPPHIRE));
         col.add(1.5f,new ItemStack(ModItems.PERIDOT));
@@ -87,12 +88,12 @@ public class ItemGoldPan extends Item {
         col.add(1,new ItemStack(Items.DIAMOND));
         col.add(1.5f,new ItemStack(ModItems.RUBY));
         col.add(1.5f,new ItemStack(ModItems.SAPPHIRE));
+        col.add(2,new ItemStack(ModItems.THORITE));
         col.add(2,new ItemStack(ModItems.GARNET));
         col.add(2,new ItemStack(ModItems.LANTHANUM_MONAZITE));
         col.add(2,new ItemStack(ModItems.NEODYMIUM_MONAZITE));
         col.add(2,new ItemStack(ModItems.ZIRCON));
         col.add(2,new ItemStack(Items.QUARTZ,2));
-        col.add(4,new ItemStack(ModItems.THORIUM_NUGGET,3));
         col.add(4,new ItemStack(ModItems.URANIUM_NUGGET,3));
         col.add(4,new ItemStack(ModItems.TITANIUM_NUGGET,3));
         col.add(5,new ItemStack(ModItems.IRIDIUM_NUGGET,3));

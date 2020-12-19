@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "mrc",
+    "lgl",
+    "nra"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "l":
+    {
+      "tag": "forge:storage_blocks/lithium"
+    },
+    "m":
+    {
+      "tag": "forge:storage_blocks/manganese"
+    },
+    "c":
+    {
+      "tag": "forge:storage_blocks/cobalt"
+    },
+    "n":
+    {
+      "tag": "forge:storage_blocks/nickel"
+    },
+    "a":
+    {
+      "tag": "forge:storage_blocks/aluminum"
+    },
+    "g":
+    {
+      "item": "rankine:graphite_electrode"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:lithium_power_cell",
+    "count": 1
+  }
+}

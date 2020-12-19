@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:ferrocerium_alloy"
+    },
+    {
+      "item": "rankine:steel_alloy"
+    }
+  ],
+  "result": {
+    "item": "rankine:spark_lighter"
+  }
+}

@@ -124,7 +124,8 @@ public class ModRecipes {
                 returnTagFamily("molybdenum"),returnTagFamily("nickel"),
                 returnTagFamily("niobium"),returnTagFamily("titanium"),
                 returnTagFamily("vanadium"),returnTagFamily("zirconium"),
-                returnTagFamily("copper"),returnTagFamily("silicon")),
+                returnTagFamily("copper"),returnTagFamily("calcium"),
+                returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.97f,.98f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .01f),.99f));
 
         recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("wrought_iron"),
@@ -136,8 +137,9 @@ public class ModRecipes {
                 returnTagFamily("niobium"),returnTagFamily("tantalum"),
                 returnTagFamily("titanium"),returnTagFamily("tungsten"),
                 returnTagFamily("yttrium"),returnTagFamily("selenium"),
-                returnTagFamily("vanadium"),returnTagFamily("zirconium"),
-                returnTagFamily("silicon"), returnTagFamily("phosphorus")),
+                returnTagFamily("vanadium"),returnTagFamily("calcium"),
+                returnTagFamily("zirconium"), returnTagFamily("silicon"),
+                returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.65f, .75f), new AbstractMap.SimpleEntry<>(.10f, .2f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
 
         recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTagFamily("tungsten"),
@@ -147,7 +149,7 @@ public class ModRecipes {
                 returnTagFamily("boron"),returnTagFamily("titanium"),
                 returnTagFamily("tantalum"),returnTagFamily("yttrium"),
                 returnTagFamily("cerium"),returnTagFamily("lanthanum"),
-                returnTagFamily("carbon","coke","graphite"),
+                returnTagFamily("rhenium"), returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.88f, .95f), new AbstractMap.SimpleEntry<>(.02f, .1f), new AbstractMap.SimpleEntry<>(.01f, .04f), new AbstractMap.SimpleEntry<>(0f, .09f),.91f));
 
@@ -169,7 +171,8 @@ public class ModRecipes {
                 returnTagFamily("copper"),returnTagFamily("magnesium"),
                 returnTagFamily("manganese"),returnTagFamily("iron"),
                 returnTagFamily("zinc"),returnTagFamily("titanium"),
-                returnTagFamily("chromium"), returnTagFamily( "silicon")),
+                returnTagFamily("calcium"),returnTagFamily("chromium"),
+                 returnTagFamily( "silicon")),
                 new AbstractMap.SimpleEntry<>(.91f, .95f), new AbstractMap.SimpleEntry<>(.03f, .05f), new AbstractMap.SimpleEntry<>(.01f, .03f), new AbstractMap.SimpleEntry<>(0f, .04f),.96f));
 
         recipes.add(tripleAlloyRecipe("magnesium_alloy", new ItemStack(ModItems.MAGNESIUM_ALLOY), Arrays.asList(returnTagFamily("magnesium"),
@@ -379,7 +382,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("malachite_ore_crushing",ModBlocks.MALACHITE_ORE.asItem(), new ItemStack(ModItems.MALACHITE,1), new ItemStack(ModItems.AZURITE,1),0.1f));
         recipes.add(crushingRecipe("bauxite_ore_crushing",ModBlocks.BAUXITE_ORE.asItem(), new ItemStack(ModItems.ALUMINA,1), new ItemStack(ModItems.GALLIUM_NUGGET,1),0.05f));
         recipes.add(crushingRecipe("cassiterite_ore_crushing",ModBlocks.CASSITERITE_ORE.asItem(), new ItemStack(ModItems.CASSITERITE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
-        recipes.add(crushingRecipe("sphalerite_ore_crushing",ModBlocks.SPHALERITE_ORE.asItem(), new ItemStack(ModItems.SPHALERITE,1), new ItemStack(ModItems.OPAL,1),0.05f));
+        recipes.add(crushingRecipe("sphalerite_ore_crushing",ModBlocks.SPHALERITE_ORE.asItem(), new ItemStack(ModItems.SPHALERITE,1), new ItemStack(ModItems.GERMANIUM_NUGGET,1),0.1f));
         recipes.add(crushingRecipe("cinnabarite_ore_crushing",ModBlocks.CINNABAR_ORE.asItem(), new ItemStack(Items.REDSTONE,4), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("pentlandite_ore_crushing",ModBlocks.PENTLANDITE_ORE.asItem(), new ItemStack(ModItems.PENTLANDITE,1), new ItemStack(ModItems.COBALTITE,1),0.05f));
         recipes.add(crushingRecipe("interpinifex_ore_crushing",ModBlocks.INTERSPINIFEX_ORE.asItem(), new ItemStack(ModItems.PENTLANDITE,1), new ItemStack(ModItems.CHALCOPYRITE,1),0.1f));
@@ -390,7 +393,7 @@ public class ModRecipes {
         recipes.add(crushingRecipe("bismite_ore_crushing",ModBlocks.BISMUTHINITE_ORE.asItem(), new ItemStack(ModItems.BISMUTHINITE,1), new ItemStack(ModItems.WOLFRAMITE,1),0.05f));
         recipes.add(crushingRecipe("vanadinite_ore_crushing",ModBlocks.VANADINITE_ORE.asItem(), new ItemStack(ModItems.VANADINITE,1), new ItemStack(ModItems.GALENA,1),0.1f));
         recipes.add(crushingRecipe("ilmenite_ore_crushing",ModBlocks.ILMENITE_ORE.asItem(), new ItemStack(ModItems.TITANIA,1), new ItemStack(ModItems.MALACHITE,1),0.1f));
-        recipes.add(crushingRecipe("molybdenite_ore_crushing",ModBlocks.MOLYBDENITE_ORE.asItem(), new ItemStack(ModItems.MOLYBDENITE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
+        recipes.add(crushingRecipe("molybdenite_ore_crushing",ModBlocks.MOLYBDENITE_ORE.asItem(), new ItemStack(ModItems.MOLYBDENITE,1), new ItemStack(ModItems.RHENIUM_NUGGET,1),0.1f));
         recipes.add(crushingRecipe("chromite_ore_crushing",ModBlocks.CHROMITE_ORE.asItem(), new ItemStack(ModItems.CHROMITE,1), new ItemStack(ModItems.MAGNETITE,1),0.1f));
         recipes.add(crushingRecipe("celestine_ore_crushing",ModBlocks.CELESTINE_ORE.asItem(), new ItemStack(ModItems.CELESTINE,1), new ItemStack(ModItems.SALT,1),0.1f));
         recipes.add(crushingRecipe("columbite_ore_crushing",ModBlocks.COLUMBITE_ORE.asItem(), new ItemStack(ModItems.COLUMBITE,1), new ItemStack(ModItems.TANTALITE,1),0.1f));
@@ -403,10 +406,10 @@ public class ModRecipes {
         recipes.add(crushingRecipe("lignite_ore_crushing",ModBlocks.LIGNITE_ORE.asItem(), new ItemStack(Items.COAL,1), new ItemStack(ModItems.GRAPHITE,1),0.01f));
         recipes.add(crushingRecipe("sub_bituminous_coal_ore_crushing",ModBlocks.SUBBITUMINOUS_ORE.asItem(), new ItemStack(Items.COAL,1), new ItemStack(ModItems.GRAPHITE,1),0.02f));
         recipes.add(crushingRecipe("bituminous_coal_ore_crushing",ModBlocks.BITUMINOUS_ORE.asItem(), new ItemStack(Items.COAL,2), new ItemStack(ModItems.GRAPHITE,1),0.05f));
-        recipes.add(crushingRecipe("anthracite_ore_crushing",ModBlocks.ANTHRACITE_ORE.asItem(), new ItemStack(Items.COAL,3), new ItemStack(ModItems.GRAPHITE,1),0.1f));
-        recipes.add(crushingRecipe("lignite_crushing",ModItems.LIGNITE, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.5f));
-        recipes.add(crushingRecipe("sub_bituminous_coal_crushing",ModItems.SUBBITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.4f));
-        recipes.add(crushingRecipe("bituminous_coal_crushing",ModItems.BITUMINOUS_COAL, new ItemStack(Items.COAL,1), new ItemStack(ModItems.SULFUR,1),0.25f));
+        recipes.add(crushingRecipe("anthracite_ore_crushing",ModBlocks.ANTHRACITE_ORE.asItem(), new ItemStack(ModItems.ANTHRACITE_COAL), new ItemStack(ModItems.GRAPHITE,1),0.1f));
+        recipes.add(crushingRecipe("lignite_crushing",ModItems.LIGNITE, new ItemStack(ModItems.LIGNITE), new ItemStack(ModItems.SULFUR,1),0.5f));
+        recipes.add(crushingRecipe("subbituminous_coal_crushing",ModItems.SUBBITUMINOUS_COAL, new ItemStack(ModItems.SUBBITUMINOUS_COAL), new ItemStack(ModItems.SULFUR,1),0.4f));
+        recipes.add(crushingRecipe("bituminous_coal_crushing",ModItems.BITUMINOUS_COAL, new ItemStack(ModItems.BITUMINOUS_COAL), new ItemStack(ModItems.SULFUR,1),0.25f));
         recipes.add(crushingRecipe("anthracite_crushing",ModItems.ANTHRACITE_COAL, new ItemStack(Items.COAL,2), new ItemStack(ModItems.SULFUR,1),0.1f));
         recipes.add(crushingRecipe("sperrylite_ore_crushing",ModBlocks.SPERRYLITE_ORE.asItem(), new ItemStack(ModItems.PLATINUM_ARSENIDE,1), new ItemStack(ModItems.OSMIRIDIUM_ALLOY,1),1f));
         recipes.add(crushingRecipe("meteorite_crushing",ModBlocks.METEORITE.asItem(), new ItemStack(ModItems.SILICON,2), new ItemStack(ModItems.SULFUR,1),0.75f));

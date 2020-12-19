@@ -61,6 +61,7 @@ public class ModItems {
     public static final Item NEODYMIUM_MONAZITE = add("neodymium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SAMARIUM_MONAZITE = add("samarium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ZIRCON = add("zircon", new SimpleTooltipItem("ZrSiO4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item THORITE = add("thorite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item URANINITE = add("uraninite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item GREENOCKITE = add("greenockite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item STIBNITE = add("stibnite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
@@ -593,7 +594,7 @@ public class ModItems {
 
     public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item PUMICE_SOAP = add("pumice_soap", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item PUMICE_SOAP = add("pumice_soap", new ItemPumiceSoap(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),50));
     public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),800));
     public static final Item COMPOST = add("compost", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -607,7 +608,11 @@ public class ModItems {
     public static final Item SADDLE_TREE = add("saddle_tree", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item COPPER_WIRE = add("copper_wire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item BATTERY = add("battery0", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item THORIUM_ARROW = add("thorium_arrow", new ThoriumArrowItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item LITHIUM_POWER_CELL = add("lithium_power_cell", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SPARK_LIGHTER = add("spark_lighter", new ItemSparkLighter(new Item.Properties().maxStackSize(1).maxDamage(600).group(ProjectRankine.setup.rankineTools)));
     public static final Item ELEMENT_TRANSMUTER = add("element_transmuter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final Item PACKAGED_TOOL = add("packaged_tool", new PackagedToolItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item BIOME_INDICATOR_GENERIC = add("biome_indicator_generic", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item BIOME_INDICATOR_RIVER = add("biome_indicator_river", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item BIOME_INDICATOR_OCEAN = add("biome_indicator_ocean", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));

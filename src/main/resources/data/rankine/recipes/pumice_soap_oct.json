@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "rankine:water_buckets"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    },
+    {
+      "item": "rankine:pumice"
+    }
+  ],
+  "result": {
+    "item": "rankine:pumice_soap",
+    "count": 32
+  }
+}
