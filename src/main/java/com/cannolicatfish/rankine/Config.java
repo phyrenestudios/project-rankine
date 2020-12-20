@@ -30,18 +30,36 @@ public class Config {
     public static ForgeConfigSpec COMMON_CONFIG;
     public static ForgeConfigSpec CLIENT_CONFIG;
 
-
-    public static ForgeConfigSpec.BooleanValue MANDATORY_AXE;
-    public static ForgeConfigSpec.BooleanValue STARTING_BOOK;
-    public static ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
-    public static ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
-    public static ForgeConfigSpec.BooleanValue DISABLE_WOOD;
-    public static ForgeConfigSpec.BooleanValue DISABLE_STONE;
-    public static ForgeConfigSpec.BooleanValue DISABLE_IRON;
-    public static ForgeConfigSpec.BooleanValue DISABLE_GOLD;
-    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND;
-    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE;
-    public static ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
+    public static ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_WOODEN_PICKAXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HOE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_STONE_SWORD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_STONE_AXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_STONE_SHOVEL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_STONE_PICKAXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_STONE_HOE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_IRON_SWORD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_IRON_AXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_IRON_SHOVEL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_IRON_PICKAXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_IRON_HOE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_SWORD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_AXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_SHOVEL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_PICKAXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_HOE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_SWORD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_AXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_SHOVEL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_PICKAXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_HOE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_SWORD;
+    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_AXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_SHOVEL;
+    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_PICKAXE;
+    public static ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_HOE;
 
     public static ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
     public static ForgeConfigSpec.BooleanValue ALLOY_HEAT;
@@ -66,7 +84,13 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue T2_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T3_BEEHIVE_OVEN_CHANCE;
 
-
+    public static ForgeConfigSpec.BooleanValue FORAGING;
+    public static ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
+    public static ForgeConfigSpec.BooleanValue MANDATORY_AXE;
+    public static ForgeConfigSpec.BooleanValue STARTING_BOOK;
+    public static ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
+    public static ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
+    public static ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
     public static ForgeConfigSpec.IntValue OPAL_ORE_HL;
     public static ForgeConfigSpec.IntValue INTERSPINIFEX_ORE_HL;
     public static ForgeConfigSpec.IntValue DIAMOND_ORE_HL;
@@ -528,18 +552,10 @@ public class Config {
                     .define("startingBook",true);
             MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
                     .define("axesOnly",false);
-            DISABLE_WOOD = COMMON_BUILDER.comment("Disable the use of wooden tools (still allows crafting for other recipes). This is enabled by default for progression.")
-                    .define("disableWood",true);
-            DISABLE_STONE = COMMON_BUILDER.comment("Disable the use of stone tools (still allows crafting for other recipes). This is enabled by default for progression.")
-                    .define("disableStone",true);
-            DISABLE_IRON = COMMON_BUILDER.comment("Disable the use of iron tools (still allows crafting for other recipes). This is disabled by default for progression.")
-                    .define("disableIron",true);
-            DISABLE_GOLD = COMMON_BUILDER.comment("Disable the use of golden tools (still allows crafting for other recipes). This is enabled by default for progression.")
-                    .define("disableGold",true);
-            DISABLE_DIAMOND = COMMON_BUILDER.comment("Disable the use of diamond tools (still allows crafting for other recipes). This is disabled by default for progression.")
-                    .define("disableDiamond",false);
-            DISABLE_NETHERITE = COMMON_BUILDER.comment("Disable the use of netherite tools (still allows crafting for other recipes). This is disabled by default for progression.")
-                    .define("disableNetherite",false);
+            FORAGING = COMMON_BUILDER.comment("Is it possible to find vegetables when mining dirt?")
+                    .define("foraging",true);
+            FORAGING_CHANCE = COMMON_BUILDER.comment("Chance for a dirt block to drop a vegetable if foraging is enabled")
+                    .defineInRange("foragingChance", 0.040D, 0.000D, 1.000D);
             IGNEOUS_COBBLE_GEN = COMMON_BUILDER.comment("Change the output of a cobblestone generator from cobblestone to random igneous rocks.")
                     .define("igneousGen",true);
             VILLAGER_TRADES = COMMON_BUILDER.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
@@ -549,9 +565,9 @@ public class Config {
             GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                     .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
             T1_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the beehive oven (T1) to cook a block")
-                    .defineInRange("t1BeehiveOvenTime", 0.5D, 0.00D, 1.00D);
+                    .defineInRange("t1BeehiveOvenTime", 0.10D, 0.00D, 1.00D);
             T2_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the magnesium beehive oven (T2) to cook a block")
-                    .defineInRange("t2BeehiveOvenTime", 0.75D, 0.00D, 1.00D);
+                    .defineInRange("t2BeehiveOvenTime", 0.4D, 0.00D, 1.00D);
             T3_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the zircon beehive oven (T3) to cook a block")
                     .defineInRange("t3BeehiveOvenTime", 1.0D, 0.00D, 1.00D);
             EVAPORATION_TOWER_SPEED = COMMON_BUILDER.comment("Speed (in ticks) at which the evaporation tower generates resources.")
@@ -564,23 +580,104 @@ public class Config {
                     .defineInRange("metalDetectorRange", 24, 0, 64);
             LASER_QUARRY_RANGE = COMMON_BUILDER.comment("Max range of the laser quarry.")
                     .defineInRange("laserQuarryRange", 5, 0, 11);
-            LASER_QUARRY_SPEED = COMMON_BUILDER.comment("Max speed of the laser quarry.")
+            LASER_QUARRY_SPEED = COMMON_BUILDER.comment("Max speed of the laser quarry in ticks.")
                     .defineInRange("laserQuarrySpeed", 10, 10, 300);
 
 
+            COMMON_BUILDER.comment("Vanilla Tools").push("vanillaTools");
+                COMMON_BUILDER.comment("Wooden Tools").push("woodenTools");
+                    DISABLE_WOODEN_SWORD = COMMON_BUILDER.comment("Disable the use of the wooden sword (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableWoodenSword",true);
+                    DISABLE_WOODEN_AXE = COMMON_BUILDER.comment("Disable the use of the wooden axe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableWoodenAxe",true);
+                    DISABLE_WOODEN_SHOVEL = COMMON_BUILDER.comment("Disable the use of the wooden shovel (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableWoodenShovel",true);
+                    DISABLE_WOODEN_PICKAXE = COMMON_BUILDER.comment("Disable the use of the wooden pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableWoodenPickaxe",true);
+                    DISABLE_WOODEN_HOE = COMMON_BUILDER.comment("Disable the use of the wooden hoe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableWoodenHoe",true);
+                COMMON_BUILDER.pop();
+                
+                COMMON_BUILDER.comment("Stone Tools").push("stoneTools");
+                    DISABLE_STONE_SWORD = COMMON_BUILDER.comment("Disable the use of the stone sword (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableStoneSword",true);
+                    DISABLE_STONE_AXE = COMMON_BUILDER.comment("Disable the use of the stone axe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableStoneAxe",true);
+                    DISABLE_STONE_SHOVEL = COMMON_BUILDER.comment("Disable the use of the stone shovel (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableStoneShovel",true);
+                    DISABLE_STONE_PICKAXE = COMMON_BUILDER.comment("Disable the use of the stone pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableStonePickaxe",true);
+                    DISABLE_STONE_HOE = COMMON_BUILDER.comment("Disable the use of the stone hoe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableStoneHoe",true);
+                COMMON_BUILDER.pop();
+
+                COMMON_BUILDER.comment("Iron Tools").push("ironTools");
+                    DISABLE_IRON_SWORD = COMMON_BUILDER.comment("Disable the use of the iron sword (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableIronSword",true);
+                    DISABLE_IRON_AXE = COMMON_BUILDER.comment("Disable the use of the iron axe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableIronAxe",true);
+                    DISABLE_IRON_SHOVEL = COMMON_BUILDER.comment("Disable the use of the iron shovel (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableIronShovel",true);
+                    DISABLE_IRON_PICKAXE = COMMON_BUILDER.comment("Disable the use of the iron pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableIronPickaxe",true);
+                    DISABLE_IRON_HOE = COMMON_BUILDER.comment("Disable the use of the iron hoe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableIronHoe",true);
+                COMMON_BUILDER.pop();
+        
+                COMMON_BUILDER.comment("Gold Tools").push("goldTools");
+                    DISABLE_GOLDEN_SWORD = COMMON_BUILDER.comment("Disable the use of the gold sword (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableGoldSword",true);
+                    DISABLE_GOLDEN_AXE = COMMON_BUILDER.comment("Disable the use of the gold axe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableGoldAxe",true);
+                    DISABLE_GOLDEN_SHOVEL = COMMON_BUILDER.comment("Disable the use of the gold shovel (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableGoldShovel",true);
+                    DISABLE_GOLDEN_PICKAXE = COMMON_BUILDER.comment("Disable the use of the gold pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableGoldPickaxe",true);
+                    DISABLE_GOLDEN_HOE = COMMON_BUILDER.comment("Disable the use of the gold hoe (still allows crafting for other recipes). This is enabled by default for progression.")
+                            .define("disableGoldHoe",true);
+                COMMON_BUILDER.pop();
+
+                COMMON_BUILDER.comment("Diamond Tools").push("diamondTools");
+                    DISABLE_DIAMOND_SWORD = COMMON_BUILDER.comment("Disable the use of the diamond sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableDiamondSword",false);
+                    DISABLE_DIAMOND_AXE = COMMON_BUILDER.comment("Disable the use of the diamond axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableDiamondAxe",false);
+                    DISABLE_DIAMOND_SHOVEL = COMMON_BUILDER.comment("Disable the use of the diamond shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableDiamondShovel",false);
+                    DISABLE_DIAMOND_PICKAXE = COMMON_BUILDER.comment("Disable the use of the diamond pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableDiamondPickaxe",false);
+                    DISABLE_DIAMOND_HOE = COMMON_BUILDER.comment("Disable the use of the diamond hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableDiamondHoe",false);
+                COMMON_BUILDER.pop();
+
+                COMMON_BUILDER.comment("Netherite Tools").push("netheriteTools");
+                    DISABLE_NETHERITE_SWORD = COMMON_BUILDER.comment("Disable the use of the netherite sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableNetheriteSword",false);
+                    DISABLE_NETHERITE_AXE = COMMON_BUILDER.comment("Disable the use of the netherite axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableNetheriteAxe",false);
+                    DISABLE_NETHERITE_SHOVEL = COMMON_BUILDER.comment("Disable the use of the netherite shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableNetheriteShovel",false);
+                    DISABLE_NETHERITE_PICKAXE = COMMON_BUILDER.comment("Disable the use of the netherite pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableNetheritePickaxe",false);
+                    DISABLE_NETHERITE_HOE = COMMON_BUILDER.comment("Disable the use of the netherite hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableNetheriteHoe",false);
+                COMMON_BUILDER.pop();
+            COMMON_BUILDER.pop();
+        
+
             COMMON_BUILDER.comment("Pendant Recipes").push("pendantRecipes");
-            SPEED_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for speed pendant.")
-                    .define("speedPendantRecipe",true);
-            HASTE_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for haste pendant.")
-                    .define("hastePendantRecipe",true);
-            HEALTH_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for health pendant.")
-                    .define("healthPendantRecipe",true);
-            LEVITATION_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for levitation pendant.")
-                    .define("levitationPendantRecipe",true);
-            REPULSION_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for repulsion pendant.")
-                    .define("repulsionPendantRecipe",true);
-            LUCK_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for luck pendant.")
-                    .define("luckPendantRecipe",true);
+                SPEED_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for speed pendant.")
+                        .define("speedPendantRecipe",true);
+                HASTE_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for haste pendant.")
+                        .define("hastePendantRecipe",true);
+                HEALTH_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for health pendant.")
+                        .define("healthPendantRecipe",true);
+                LEVITATION_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for levitation pendant.")
+                        .define("levitationPendantRecipe",true);
+                REPULSION_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for repulsion pendant.")
+                        .define("repulsionPendantRecipe",true);
+                LUCK_PENDANT_RECIPE = COMMON_BUILDER.comment("Enable the recipe for luck pendant.")
+                        .define("luckPendantRecipe",true);
             COMMON_BUILDER.pop();
 
         COMMON_BUILDER.pop();

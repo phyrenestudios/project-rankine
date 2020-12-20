@@ -8,6 +8,7 @@
     "minecraft:barrier",
     "minecraft:water",
     "minecraft:lava",
-    "rankine:quarry_barrier"
+    "rankine:quarry_barrier",
+    "#forge:chest"
   ]
 }

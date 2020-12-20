@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.beehiveoven;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.init.ModRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -58,7 +59,7 @@ public class BeehiveOvenPit extends Block {
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
         ItemStack itemstack = player.getHeldItem(handIn);
         Item item = itemstack.getItem();
-        if (item == Items.FLINT_AND_STEEL || item == Items.FIRE_CHARGE) {
+        if (item == Items.FLINT_AND_STEEL || item == Items.FIRE_CHARGE || item == ModItems.SPARK_LIGHTER) {
             itemstack.damageItem(1, player, (p_220287_1_) -> {
                 p_220287_1_.sendBreakAnimation(handIn);
             });
@@ -141,9 +142,8 @@ public class BeehiveOvenPit extends Block {
                         {
                             world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
                             flag = false;
-                            break;
+                            //break;
                         }
-
                     }
                 }
                 if (flag)
