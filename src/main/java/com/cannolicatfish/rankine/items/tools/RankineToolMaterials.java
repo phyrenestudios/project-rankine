@@ -12,6 +12,9 @@ public enum RankineToolMaterials implements IItemTier {
     FLINT(0, 63, 2.0F, 0.0F, 5, () -> {
         return Ingredient.fromItems(Items.FLINT);
     }),
+    ALLOY(0, 63, 2.0F, 0.0F, 5, () -> {
+        return Ingredient.fromItems(ModItems.CAST_IRON_ALLOY);
+    }),
     BRONZE(1, 150, 4.0F, 1.0F, 10, () -> {
         return Ingredient.fromItems(ModItems.BRONZE_ALLOY);
     }),

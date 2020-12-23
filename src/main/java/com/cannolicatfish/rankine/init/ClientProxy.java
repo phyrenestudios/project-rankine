@@ -143,6 +143,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.BRASS_DOOR,
                 ModBlocks.BRASS_TRAPDOOR,
                 ModBlocks.ALUMINUM_LADDER,
+                ModBlocks.MAPLE_DOOR,
+                ModBlocks.MAPLE_TRAPDOOR,
                 ModBlocks.NITER
         ));
 

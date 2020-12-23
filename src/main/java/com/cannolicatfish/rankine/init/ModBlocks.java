@@ -550,6 +550,7 @@ public class ModBlocks {
     public static final Block ROMAN_CONCRETE_BRICKS_STAIRS = add("roman_concrete_bricks_stairs", new RankineStairs(Config.ROMAN_CONCRETE_SPEED.get(),Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS_WALL = add("roman_concrete_bricks_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block QUARRY_BARRIER = add("quarry_barrier", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(10.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
+    public static final Block BONE_CHAR_BLOCK = add("bone_char_block", new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
 
 
     //WOOD BLOCKS
@@ -600,6 +601,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_PLANKS = add("balsam_fir_planks",new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_PLANKS = add("magnolia_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_PLANKS = add("eastern_hemlock_planks", new Block(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_PLANKS = add("maple_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_PLANKS = add("bamboo_planks",new Block(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS = add("bamboo_culms", new Block(DEF_WOOD), BLOCKS, 400);
 
@@ -610,6 +612,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_SLAB = add("balsam_fir_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block MAGNOLIA_SLAB = add("magnolia_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block EASTERN_HEMLOCK_SLAB = add("eastern_hemlock_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block MAPLE_SLAB = add("maple_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block BAMBOO_SLAB = add("bamboo_slab", new RankineSlab(DEF_WOOD), BLOCKS, 200);
     public static final Block BAMBOO_CULMS_SLAB = add("bamboo_culms_slab", new RankineSlab(DEF_WOOD), BLOCKS, 200);
 
@@ -620,6 +623,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_STAIRS = add("balsam_fir_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_STAIRS = add("magnolia_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_STAIRS = add("eastern_hemlock_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_STAIRS = add("maple_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_STAIRS = add("bamboo_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_STAIRS = add("bamboo_culms_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
 
@@ -630,6 +634,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_FENCE = add("balsam_fir_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_FENCE = add("magnolia_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_FENCE = add("eastern_hemlock_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_FENCE = add("maple_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_FENCE = add("bamboo_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_FENCE = add("bamboo_culms_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 400);
 
@@ -640,6 +645,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_FENCE_GATE = add("balsam_fir_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_FENCE_GATE = add("magnolia_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_FENCE_GATE = add("eastern_hemlock_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_FENCE_GATE = add("maple_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_FENCE_GATE = add("bamboo_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_FENCE_GATE = add("bamboo_culms_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
 
@@ -653,6 +659,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_PRESSURE_PLATE = add("balsam_fir_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block MAGNOLIA_PRESSURE_PLATE = add("magnolia_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block EASTERN_HEMLOCK_PRESSURE_PLATE = add("eastern_hemlock_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
+    public static final Block MAPLE_PRESSURE_PLATE = add("maple_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block BAMBOO_PRESSURE_PLATE = add("bamboo_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 800);
     public static final Block BAMBOO_CULMS_PRESSURE_PLATE = add("bamboo_culms_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 1800);
 
@@ -663,6 +670,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_BUTTON = add("balsam_fir_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block MAGNOLIA_BUTTON = add("magnolia_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_BUTTON = add("eastern_hemlock_button", new RankineWoodenButton(), BLOCKS, 300);
+    public static final Block MAPLE_BUTTON = add("maple_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block BAMBOO_BUTTON = add("bamboo_button", new RankineWoodenButton(), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_BUTTON = add("bamboo_culms_button", new RankineWoodenButton(), BLOCKS, 900);
 
@@ -673,8 +681,9 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_DOOR = add("balsam_fir_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block EASTERN_HEMLOCK_DOOR = add("eastern_hemlock_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block MAGNOLIA_DOOR = add("magnolia_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block MAPLE_DOOR = add("maple_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block BAMBOO_DOOR = add("bamboo_door", new RankineWoodenDoor(), BLOCKS, 600);
-    public static final Block BRASS_DOOR = add("brass_door", new RankineMetalDoor(),BLOCKS);
+    public static final Block BRASS_DOOR = add("brass_door", new RankineMetalDoor(),BLOCKS, 600);
 
     public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block PINYON_PINE_TRAPDOOR = add("pinyon_pine_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
@@ -683,6 +692,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_TRAPDOOR = add("balsam_fir_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_TRAPDOOR = add("eastern_hemlock_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block MAGNOLIA_TRAPDOOR = add("magnolia_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
+    public static final Block MAPLE_TRAPDOOR = add("maple_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block BAMBOO_TRAPDOOR = add("bamboo_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block BRASS_TRAPDOOR = add("brass_trapdoor", new RankineMetalTrapdoor(),BLOCKS);
 
@@ -851,6 +861,7 @@ public class ModBlocks {
     public static final Block PURPLE_GOLD_BLOCK = add("purple_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BLACK_GOLD_BLOCK = add("black_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block INVAR_BLOCK = add("invar_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PEWTER_BLOCK = add("pewter_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_BLOCK = add("bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block OSMIRIDIUM_BLOCK = add("osmiridium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -875,6 +886,8 @@ public class ModBlocks {
     public static final Block WROUGHT_IRON_BLOCK = add("wrought_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CAST_IRON_BLOCK = add("cast_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NICKEL_SUPERALLOY_BLOCK = add("nickel_superalloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block COBALT_SUPERALLOY_BLOCK = add("cobalt_superalloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block TUNGSTEN_HEAVY_ALLOY_BLOCK = add("tungsten_heavy_alloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     //GEM AND MINERALS
     public static final Block MALACHITE_BLOCK = add("malachite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -892,6 +905,7 @@ public class ModBlocks {
     public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CINNABAR_BLOCK = add("cinnabar_block", new CinnabarBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block PERLITE_BLOCK = add("perlite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block FELDSPAR_BLOCK = add("feldspar_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);

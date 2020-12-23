@@ -1,1 +1,17 @@
-{ "type": "minecraft:crafting_shaped", "pattern": [ "xxx", "xxx", "xxx" ], "key": { "x": { "item": "rankine:duralumin_alloy" } }, "result": { "item": "rankine:duralumin_block", "count": 1 } }
+{
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "###",
+            "###",
+            "###"
+          ],
+          "key": {
+            "#": {
+              "tag": "forge:ingots/duralumin"
+            }
+          },
+          "result": {
+            "item": "rankine:duralumin_block",
+            "count": 1
+          }
+    }

@@ -310,6 +310,8 @@ public class ModRecipes {
         recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", ModBlocks.SUBBITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.BITUMINOUS_COAL_BLOCK)));
         recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", ModBlocks.BITUMINOUS_COAL_BLOCK.asItem(),new ItemStack(ModBlocks.COKE_BLOCK)));
         recipes.add(beehiveOvenRecipe("bloom_pig_oven_cooking", ModBlocks.PIG_IRON_BLOCK.asItem(),new ItemStack(ModBlocks.BLOOM_IRON_BLOCK)));
+        recipes.add(beehiveOvenRecipe("coal_oven_cooking", Blocks.COAL_BLOCK.asItem(),new ItemStack(ModBlocks.BITUMINOUS_COAL_BLOCK)));
+        recipes.add(beehiveOvenRecipe("bone_char_cooking", Blocks.BONE_BLOCK.asItem(),new ItemStack(ModBlocks.BONE_CHAR_BLOCK)));
 
         return recipes;
     }
@@ -376,6 +378,8 @@ public class ModRecipes {
         recipes.add(crushingRecipe("tholeiitic_basaltic_tuff_crushing",ModBlocks.THOLEIITIC_BASALTIC_TUFF.asItem(),new ItemStack(ModBlocks.THOLEIITIC_BASALT, 1), new ItemStack(Items.NAUTILUS_SHELL), 0.01f));
         recipes.add(crushingRecipe("rhyolitic_tuff_crushing",ModBlocks.RHYOLITIC_TUFF.asItem(),new ItemStack(ModBlocks.RHYOLITE, 1), new ItemStack(ModItems.OPAL), 0.01f));
         recipes.add(crushingRecipe("phosphorite_crushing",ModBlocks.PHOSPHORITE.asItem(),new ItemStack(ModItems.PHOSPHORUS, 1), new ItemStack(ModItems.PHOSPHORUS), 0.1f));
+        recipes.add(crushingRecipe("obsidian_crushing",Blocks.OBSIDIAN.asItem(),new ItemStack(ModItems.PERLITE, 1), new ItemStack(Items.QUARTZ), 0.1f));
+
 
         //Mod Ores
         recipes.add(crushingRecipe("magnetite_ore_crushing",ModBlocks.MAGNETITE_ORE.asItem(), new ItemStack(ModItems.MAGNETITE,1), new ItemStack(ModItems.CHROMITE,1),0.1f));
@@ -420,7 +424,6 @@ public class ModRecipes {
         recipes.addAll(groupCrushingRecipe("leaves_crushing","minecraft:leaves",new ItemStack(ModItems.BIOMASS, 1),new ItemStack(ModItems.COMPOST,1), 1.0f));
         recipes.addAll(groupCrushingRecipe("crops_crushing","forge:crops",new ItemStack(ModItems.BIOMASS,3),new ItemStack(ModItems.COMPOST,1), 0.5f));
         recipes.addAll(groupCrushingRecipe("saplings_crushing","minecraft:saplings",new ItemStack(ModItems.BIOMASS,2),new ItemStack(ModItems.COMPOST,1), 0.3f));
-
 
         // Example of using tags for recipe (don""t use unless necessary, i.e. large list of blocks)
         // recipes.addAll(groupCrushingRecipe("andesite_crushing","rankine:andesite",new ItemStack(ModItems.FELDSPAR),new ItemStack(ModItems.PYROXENE), 0.2f));
@@ -943,10 +946,10 @@ public class ModRecipes {
                 ,primary,secondary,tertiary,other,req);
     }
 
-    public static IPistonCrusherRecipe crushingRecipe(String registry, Item input, ItemStack output, ItemStack secondary, float chance)
+    public static IPistonCrusherRecipe crushingRecipe(String registry, Item input, ItemStack output, ItemStack secondary, float secondaryChance)
     {
         return new IPistonCrusherRecipe(new ResourceLocation(ProjectRankine.MODID,registry),new ItemStack[]{output,secondary},
-                Ingredient.fromStacks(new ItemStack(input)),chance);
+                Ingredient.fromStacks(new ItemStack(input)),secondaryChance);
     }
 
     public static ISluicingRecipe sluicingRecipe(String registry, Item input, WeightedCollection<ItemStack> col)

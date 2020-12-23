@@ -95,6 +95,8 @@ public class ModItems {
     public static final Item PERIDOT = add("peridot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item BLOOM_IRON = add("bloom_iron", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SLAG = add("slag", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BONE_CHAR = add("bone_char", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PERLITE = add("perlite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item QUICKLIME = add("quicklime", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item POZZOLAN = add("pozzolan", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MORTAR = add("mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -391,6 +393,7 @@ public class ModItems {
     public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_SPEAR = add("flint_spear", new ItemSpear(RankineToolMaterials.FLINT, 2, -2.9F, ModEntityTypes.FLINT_SPEAR,new ResourceLocation("rankine:textures/entity/flint_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_KNIFE = add("flint_knife", new ItemKnife(RankineToolMaterials.FLINT, 1, -1.5F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  FLINT_HOE = add("flint_hoe", new HoeItem(RankineToolMaterials.FLINT, 0, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item  PEWTER_SWORD = add("pewter_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F, new PewterAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  PEWTER_SHOVEL = add("pewter_shovel", new AlloyShovel(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new PewterAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -522,13 +525,13 @@ public class ModItems {
     public static final Item NETHERITE_HAMMER = add("netherite_hammer", new ItemHammer(2, -3.2F, ItemTier.NETHERITE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item NETHERITE_SPEAR = add("netherite_spear", new ItemSpear(ItemTier.NETHERITE,2, -2.9F ,ModEntityTypes.NETHERITE_SPEAR,new ResourceLocation("rankine:textures/entity/netherite_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item  ALLOY_SWORD = add("alloy_sword", new AlloySword(RankineToolMaterials.FLINT, 3, -2.4F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_SHOVEL = add("alloy_shovel", new AlloyShovel(RankineToolMaterials.FLINT, 1.5F, -3.0F, new GenericAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_PICKAXE = add("alloy_pickaxe", new AlloyPickaxe(RankineToolMaterials.FLINT, 1, -2.8F, new GenericAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_AXE = add("alloy_axe", new AlloyAxe(RankineToolMaterials.FLINT, 4.0F, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_HAMMER = add("alloy_hammer", new AlloyHammer(RankineToolMaterials.FLINT,2, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_HOE = add("alloy_hoe", new AlloyHoe(RankineToolMaterials.FLINT, 0,-2.0F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_SPEAR = add("alloy_spear", new AlloySpear(RankineToolMaterials.FLINT, 2, -2.9F, new GenericAlloyUtils(),ModEntityTypes.PEWTER_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SWORD = add("alloy_sword", new AlloySword(RankineToolMaterials.ALLOY, 3, -2.4F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SHOVEL = add("alloy_shovel", new AlloyShovel(RankineToolMaterials.ALLOY, 1.5F, -3.0F, new GenericAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_PICKAXE = add("alloy_pickaxe", new AlloyPickaxe(RankineToolMaterials.ALLOY, 1, -2.8F, new GenericAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_AXE = add("alloy_axe", new AlloyAxe(RankineToolMaterials.ALLOY, 4.0F, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_HAMMER = add("alloy_hammer", new AlloyHammer(RankineToolMaterials.ALLOY,2, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_HOE = add("alloy_hoe", new AlloyHoe(RankineToolMaterials.ALLOY, 0,-2.0F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SPEAR = add("alloy_spear", new AlloySpear(RankineToolMaterials.ALLOY, 2, -2.9F, new GenericAlloyUtils(),ModEntityTypes.PEWTER_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item STEEL_GOLD_PAN = add("steel_gold_pan", new ItemGoldPan(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_CROWBAR = add("steel_crowbar", new ItemCrowbar(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));

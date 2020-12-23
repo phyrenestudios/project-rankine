@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y":  { "model": "rankine:block/bone_char_block" },
+    "axis=z":   { "model": "rankine:block/bone_char_block", "x": 90 },
+    "axis=x":   { "model": "rankine:block/bone_char_block", "x": 90, "y": 90 }
+  }
+}

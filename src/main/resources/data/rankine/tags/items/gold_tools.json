@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#rankine:rose_gold_tools",
+    "#rankine:blue_gold_tools",
+    "#rankine:purple_gold_tools",
+    "#rankine:green_gold_tools",
+    "#rankine:white_gold_tools",
+    "#rankine:black_gold_tools"
+  ]
+}

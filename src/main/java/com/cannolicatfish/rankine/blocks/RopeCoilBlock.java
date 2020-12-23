@@ -75,9 +75,8 @@ public class RopeCoilBlock extends Block {
             double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(ModBlocks.ROPE,ropeCount));
-            itementity.setDefaultPickupDelay();
-            worldIn.addEntity(itementity);
             itementity.setNoPickupDelay();
+            worldIn.addEntity(itementity);
         }
         super.onBlockHarvested(worldIn, pos, state, player);
     }

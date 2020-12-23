@@ -1,4 +1,16 @@
 {
+
+  "item.rankine.flint_hoe": "Flint Hoe",
+  "block.rankine.maple_planks": "Maple Planks",
+  "block.rankine.tungsten_heavy_alloy_block": "Tungsten Heavy Alloy Block",
+  "block.rankine.cobalt_superalloy_block": "Cobalt Superalloy Block",
+  "block.rankine.bone_char_block": "Bone Char Block",
+  "block.rankine.pewter_block": "Pewter Block",
+  "item.rankine.bone_char": "Bone Char",
+  "block.rankine.maple_trapdoor": "Maple Trap Door",
+
+
+
   "block.rankine.muddy_dirt": "Muddy Dirt",
   "block.rankine.permafrost": "Permafrost",
   "block.rankine.magnesite_block": "Block of Magnesite",
@@ -112,6 +124,14 @@
   "block.rankine.swamp_grass": "Swamp Grass",
   "block.rankine.duckweed": "Duckweed",
   "block.rankine.cedar_log": "Cedar Log",
+
+  "block.rankine.maple_slab": "Maple Slab",
+  "block.rankine.maple_stairs": "Maple Stairs",
+  "block.rankine.maple_fence": "Maple Fence",
+  "block.rankine.maple_fence_gate": "Maple Fence Gate",
+  "block.rankine.maple_pressure_plate": "Maple Pressure Plate",
+  "block.rankine.maple_button": "Maple Button",
+  "block.rankine.maple_door": "Maple Door",
 
   "block.rankine.cedar_door": "Cedar Door",
   "block.rankine.stripped_cedar_log": "Stripped Cedar Log",
@@ -665,6 +685,7 @@
   "block.rankine.wrought_iron_block": "Block of Wrought Iron",
   "block.rankine.cast_iron_block": "Block of Cast Iron",
   "block.rankine.graphite_block": "Block of Graphite",
+  "block.rankine.perlite_block": "Block of Perlite",
   "block.rankine.aluminum_ladder": "Aluminum Ladder",
   "block.rankine.brass_block": "Block of Brass",
   "block.rankine.nitinol_block": "Block of Nitinol",
@@ -1306,6 +1327,7 @@
   "item.rankine.black_gold_hammer": "Black Gold Hammer",
   "item.rankine.clay_brick": "Clay Brick",
   "item.rankine.graphite": "Graphite",
+  "item.rankine.perlite": "Perlite",
   "item.rankine.graphite_electrode": "Graphite Electrode",
   "item.rankine.steel_rod": "Steel Rod",
   "item.rankine.calcite": "Calcite",
