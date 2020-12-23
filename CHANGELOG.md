@@ -1,6 +1,56 @@
 
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
+
+## Project Rankine Version 1.1.3 Minor Changelog [2020-12-22]
+
+### Additions
+- Added Flint Hoe for pre-bronze age farming
+
+- Added tags for tool types (ex: rankine:bronze_tools)
+
+- Added Perlite and Block of Perlite, which is a material that crushes from Obsidian
+
+- Added Maple Planks, Stairs, Trapdoor, Door, Fence, Button, Slab, and Pressure Plate 
+
+- Added tag based crafting recipes for multiple items and blocks
+
+- Added Block of Pewter, Block of Tungsten Heavy Alloy, and Block of Cobalt Superalloy
+
+- Added Bone Char, which can be used to obtain more sugar from sugar cane and as a source of black dye
+
+- Added Beehive Oven Recipe for Block of Bone to Block of Bone Char
+
+- Added recipe to Pumice Soap to extract Blaze Powder from Magma Cream
+
+- Added recipe for Minerails using Cast Iron Rods and Steel Rods
+
+- Added recipe for Powered Rails using Graphite Electrodes
+
+- Added recipe for Cobblestone involving mortar for increased output
+
+- Added #rankine:mortar_special tag for use in certain mortar recipes (currently includes pozzolan and perlite)
+
+
+### Changes
+- Each vanilla tool can be disabled seperately via config
+
+- Breaking blocks in #forge:dirt has a chance of dropping vegetables with flint tools or with an empty hand (enable/disable and chance in config)
+
+- Changed stones dropping flint from lootable to event (config options for chance and enablement)
+
+- Quarry Barrier blocks prevent the Laser Quarry from mining the column underneath them
+
+- Beehive Oven Pit can be lit using spark lighter
+
+- Items used to light Beehive Oven will take damage / be consumed
+
+- Optional config for Beehive Oven to convert all blocks at once on random tick
+
+### Misc
+- Added/fixed lootable for induction furnace, interspinifex ore, anthracite coal ore, magnolia log, and juniper log
+
+
 ## Project Rankine Version 1.1.2 Minor Changelog [2020-12-19]
 
 ### Additions
@@ -58,7 +108,7 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 
 - Piston Crusher recipe changed to include #rankine:piston_crusher_sheetmetals (by default includes bronze, brass, wrought iron, steel, stainless steel)
 
-- Removed right-click functionality for disabled tools (hoes, axes, and shovels)
+- Removed right-click functionality for config disabled tools (hoes, axes, and shovels)
 
 - Reduced durability penalty for all levels of Blast enchantment 
 
