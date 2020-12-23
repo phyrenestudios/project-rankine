@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:white_gold_sword",
+    "rankine:white_gold_axe",
+    "rankine:white_gold_pickaxe",
+    "rankine:white_gold_shovel",
+    "rankine:white_gold_spear",
+    "rankine:white_gold_hammer",
+    "rankine:white_gold_hoe"
+  ]
+}

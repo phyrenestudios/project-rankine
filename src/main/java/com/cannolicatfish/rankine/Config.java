@@ -80,10 +80,13 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue ENABLE_GALINSTAN_TOOLS;
     public static ForgeConfigSpec.BooleanValue ENABLE_ALNICO_TOOLS;
 
+    public static ForgeConfigSpec.BooleanValue TOTAL_CONVERSION;
     public static ForgeConfigSpec.DoubleValue T1_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T2_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T3_BEEHIVE_OVEN_CHANCE;
 
+    public static ForgeConfigSpec.BooleanValue FLINT_DROP;
+    public static ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
     public static ForgeConfigSpec.BooleanValue FORAGING;
     public static ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
     public static ForgeConfigSpec.BooleanValue MANDATORY_AXE;
@@ -552,6 +555,10 @@ public class Config {
                     .define("startingBook",true);
             MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
                     .define("axesOnly",false);
+            FLINT_DROP = COMMON_BUILDER.comment("Enables an extra chance for stones to drop flint when mining with a flint / bronze / pewter / colored golds pickaxes.")
+                    .define("flintDrop",true);
+            FLINT_DROP_CHANCE = COMMON_BUILDER.comment("Chance for a dirt block to drop a vegetable if foraging is enabled")
+                    .defineInRange("flintDropChance", 0.1D, 0.00D, 1.00D);
             FORAGING = COMMON_BUILDER.comment("Is it possible to find vegetables when mining dirt?")
                     .define("foraging",true);
             FORAGING_CHANCE = COMMON_BUILDER.comment("Chance for a dirt block to drop a vegetable if foraging is enabled")
@@ -564,10 +571,12 @@ public class Config {
                     .define("wanderingSpecial",false);
             GLOBAL_BREAK_EXHAUSTION = COMMON_BUILDER.comment("Amount of additional exhaustion when breaking a block")
                     .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
+            TOTAL_CONVERSION = COMMON_BUILDER.comment("Enable for the Beehive Oven to convert all the blocks at once rather than one by one.")
+                    .define("beehiveOvenConversion",false);
             T1_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the beehive oven (T1) to cook a block")
-                    .defineInRange("t1BeehiveOvenTime", 0.10D, 0.00D, 1.00D);
+                    .defineInRange("t1BeehiveOvenTime", 0.40D, 0.00D, 1.00D);
             T2_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the magnesium beehive oven (T2) to cook a block")
-                    .defineInRange("t2BeehiveOvenTime", 0.4D, 0.00D, 1.00D);
+                    .defineInRange("t2BeehiveOvenTime", 0.7D, 0.00D, 1.00D);
             T3_BEEHIVE_OVEN_CHANCE = COMMON_BUILDER.comment("Chance on random tick for the zircon beehive oven (T3) to cook a block")
                     .defineInRange("t3BeehiveOvenTime", 1.0D, 0.00D, 1.00D);
             EVAPORATION_TOWER_SPEED = COMMON_BUILDER.comment("Speed (in ticks) at which the evaporation tower generates resources.")

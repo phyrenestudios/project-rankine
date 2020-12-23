@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "#S#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/cast_iron"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "minecraft:rail",
+    "count": 6
+  }
+}

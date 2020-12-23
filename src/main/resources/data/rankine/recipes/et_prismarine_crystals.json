@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " w ",
+    "wmw",
+    " w "
+  ],
+  "key": {
+    "w": {
+      "item": "rankine:perlite"
+    },
+    "m": {
+      "item": "rankine:element_transmuter"
+    }
+  },
+  "result": {
+    "item": "minecraft:prismarine_crystals",
+    "count": 16
+  }
+}

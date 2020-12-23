@@ -9,6 +9,7 @@
     "minecraft:water",
     "minecraft:lava",
     "rankine:quarry_barrier",
-    "#forge:chest"
+    "#forge:chests",
+    "#minecraft:shulker_boxes"
   ]
 }

@@ -475,28 +475,51 @@ public class RankineEventHandler {
     }
 
 
+
+    @SubscribeEvent
+    public static void flintDrop(BlockEvent.BreakEvent event) {
+        PlayerEntity player = event.getPlayer();
+        float CHANCE = new Random().nextFloat();
+        if (Config.FLINT_DROP.get() && !player.abilities.isCreativeMode) {
+            if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
+                if ( player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:gold_tools"))) {
+                    if (CHANCE < Config.FLINT_DROP_CHANCE.get()) {
+                        double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                        double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                        double d2 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                        ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, new ItemStack(Items.FLINT, 1));
+                        itementity.setDefaultPickupDelay();
+                        event.getWorld().addEntity(itementity);
+                    }
+                }
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void forage(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         float CHANCE = new Random().nextFloat();
         if (Config.FORAGING.get() && !player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:dirt"))) {
-                ItemStack FOOD = null;
-                if (CHANCE < Config.FORAGING_CHANCE.get() * 0.3) {
-                    FOOD = new ItemStack(Items.POTATO,1);
-                } else if (CHANCE < Config.FORAGING_CHANCE.get() * 0.6) {
-                    FOOD = new ItemStack(Items.CARROT,1);
-                } else if (CHANCE < Config.FORAGING_CHANCE.get()) {
-                    FOOD = new ItemStack(Items.BEETROOT,1);
-                } else {
-                    return;
+                if (player.getHeldItem(Hand.MAIN_HAND).isEmpty() || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools"))) {
+                    ItemStack FOOD = null;
+                    if (CHANCE < Config.FORAGING_CHANCE.get() * 0.3) {
+                        FOOD = new ItemStack(Items.POTATO,1);
+                    } else if (CHANCE < Config.FORAGING_CHANCE.get() * 0.6) {
+                        FOOD = new ItemStack(Items.CARROT,1);
+                    } else if (CHANCE < Config.FORAGING_CHANCE.get()) {
+                        FOOD = new ItemStack(Items.BEETROOT,1);
+                    } else {
+                        return;
+                    }
+                    double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                    double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                    double d2 = (double) (new Random().nextFloat()  * 0.5F) + 0.25D;
+                    ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, FOOD);
+                    itementity.setDefaultPickupDelay();
+                    event.getWorld().addEntity(itementity);
                 }
-                double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (new Random().nextFloat()  * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, FOOD);
-                itementity.setDefaultPickupDelay();
-                event.getWorld().addEntity(itementity);
             }
         }
     }

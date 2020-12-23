@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:pewter_sword",
+    "rankine:pewter_axe",
+    "rankine:pewter_pickaxe",
+    "rankine:pewter_shovel",
+    "rankine:pewter_spear",
+    "rankine:pewter_hammer",
+    "rankine:pewter_hoe"
+  ]
+}

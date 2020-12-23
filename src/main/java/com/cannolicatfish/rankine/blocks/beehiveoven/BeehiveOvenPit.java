@@ -59,44 +59,38 @@ public class BeehiveOvenPit extends Block {
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
         ItemStack itemstack = player.getHeldItem(handIn);
         Item item = itemstack.getItem();
-        if (item == Items.FLINT_AND_STEEL || item == Items.FIRE_CHARGE || item == ModItems.SPARK_LIGHTER) {
+        if (item == Items.FLINT_AND_STEEL || item == ModItems.SPARK_LIGHTER) {
             itemstack.damageItem(1, player, (p_220287_1_) -> {
                 p_220287_1_.sendBreakAnimation(handIn);
             });
             getBeehiveOven(worldIn,pos);
-        }
-        else if (player.getHeldItemMainhand().getItem() == Items.BLAZE_POWDER && state.get((LIT)))
-        {
+        } else if (item == Items.FIRE_CHARGE) {
+            itemstack.shrink(1);
+            getBeehiveOven(worldIn,pos);
+        } else if (player.getHeldItemMainhand().getItem() == Items.BLAZE_POWDER && state.get((LIT))) {
             BlockPos uppos = pos.up();
             boolean flag = true;
             List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
                     uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
                     uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
 
-            for (BlockPos p: surroundingBlockPos)
-            {
+            for (BlockPos p: surroundingBlockPos) {
                 ItemStack output = ModRecipes.getBeehiveOutput(new ItemStack(worldIn.getBlockState(p).getBlock()));
-                if (!output.isEmpty())
-                {
-                    if (output.getItem() instanceof BlockItem)
-                    {
+                if (!output.isEmpty()) {
+                    if (output.getItem() instanceof BlockItem) {
                         worldIn.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
                         flag = false;
                         break;
                     }
-
                 }
             }
-            if (flag)
-            {
+            if (flag) {
                 worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
             }
-                if (!player.isCreative())
-                {
-                    player.getHeldItemMainhand().shrink(1);
-                }
-
-                worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.5F, 0.7F + 0.6F, false);
+            if (!player.isCreative()) {
+                player.getHeldItemMainhand().shrink(1);
+            }
+            worldIn.playSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 0.5F, 0.7F + 0.6F, false);
         }
 
         return ActionResultType.SUCCESS;
@@ -142,7 +136,9 @@ public class BeehiveOvenPit extends Block {
                         {
                             world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
                             flag = false;
-                            //break;
+                            if (!Config.TOTAL_CONVERSION.get()) {
+                                break;
+                            }
                         }
                     }
                 }

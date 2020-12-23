@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cedar_fence_gate",
+    "rankine:pinyon_pine_fence_gate",
+    "rankine:juniper_fence_gate",
+    "rankine:coconut_palm_fence_gate",
+    "rankine:balsam_fir_fence_gate",
+    "rankine:magnolia_fence_gate",
+    "rankine:eastern_hemlock_fence_gate",
+    "rankine:bamboo_fence_gate",
+    "rankine:bamboo_culms_fence_gate",
+    "rankine:maple_fence_gate"
+  ]
+}
