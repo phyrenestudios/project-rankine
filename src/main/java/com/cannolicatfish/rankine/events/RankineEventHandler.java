@@ -105,6 +105,8 @@ public class RankineEventHandler {
 
     }
 
+    
+
     @SubscribeEvent
     public static void addWandererTrades(WandererTradesEvent event)
     {

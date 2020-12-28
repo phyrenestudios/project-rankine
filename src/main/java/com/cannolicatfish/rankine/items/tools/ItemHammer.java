@@ -7,6 +7,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -21,6 +22,8 @@ import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
@@ -130,9 +133,12 @@ public class ItemHammer extends ToolItem {
 
                     }
                     worldIn.removeBlock(pos, false);
+
                 }
 
             }
+            SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getBreakSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
 
         return true;
@@ -244,59 +250,4 @@ public class ItemHammer extends ToolItem {
             return false;
         }
     }
-
-    /*
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-        if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
-            return new ActionResult<>(ActionResultType.FAIL, itemstack);
-        } else {
-            playerIn.setActiveHand(handIn);
-            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
-        }
-    }
-
-    @Override
-    public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-        if (this.getUseDuration(stack) - count == 13)
-        {
-            BlockPos pos = player.func_233580_cy_();
-            player.getEntityWorld().playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS,0.4F, 1.0F, false);
-        }
-    }
-
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.SPEAR;
-    }
-
-    public int getUseDuration(ItemStack stack) {
-        return 72000;
-    }
-
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-        entityLiving.swing(Hand.MAIN_HAND,false);
-        RayTraceResult raytraceresult = rayTrace(worldIn, (PlayerEntity) entityLiving, RayTraceContext.FluidMode.ANY);
-        BlockPos pos;
-        if (raytraceresult instanceof BlockRayTraceResult)
-        {
-            final BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) raytraceresult;
-            pos = rayTraceResult.getPos();
-        } else
-        {
-            pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
-        }
-        System.out.println(this.getUseDuration(stack));
-        System.out.println(timeLeft);
-        System.out.println(this.getUseDuration(stack) - timeLeft);
-        if (this.getUseDuration(stack) - timeLeft >= 13)
-        {
-            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,1.0F, 1.0F, false);
-            onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, entityLiving);
-        } else
-        {
-            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,1.0F, 4.0F, false);
-            worldIn.sendBlockBreakProgress(-1,pos,1);
-        }
-
-    }*/
 }

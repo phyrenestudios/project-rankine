@@ -118,7 +118,7 @@ public class ModRecipes {
     public static List<ITripleAlloyRecipe> getTripleAlloyRecipes() {
         List<ITripleAlloyRecipe> recipes = new ArrayList<>();
 
-        recipes.add(tripleAlloyRecipe("steel_alloy", new ItemStack(ModItems.STEEL_ALLOY), Arrays.asList(returnTagFamily("pig_iron"),
+        recipes.add(tripleAlloyRecipe("steel_alloy", new ItemStack(ModItems.STEEL_ALLOY), Arrays.asList(returnTagFamily("iron"),
                 returnTagFamily("manganese"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("chromium"),returnTagFamily("cobalt"),
                 returnTagFamily("molybdenum"),returnTagFamily("nickel"),
@@ -128,7 +128,7 @@ public class ModRecipes {
                 returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.97f,.98f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .01f),.99f));
 
-        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("wrought_iron"),
+        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("iron"),
                 returnTagFamily("chromium"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("molybdenum"),returnTagFamily("aluminum"),
                 returnTagFamily("manganese"),returnTagFamily("copper"),
@@ -140,7 +140,7 @@ public class ModRecipes {
                 returnTagFamily("vanadium"),returnTagFamily("calcium"),
                 returnTagFamily("zirconium"), returnTagFamily("silicon"),
                 returnTagFamily("phosphorus")),
-                new AbstractMap.SimpleEntry<>(.65f, .75f), new AbstractMap.SimpleEntry<>(.10f, .2f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
+                new AbstractMap.SimpleEntry<>(.65f, .75f), new AbstractMap.SimpleEntry<>(.10f, .25f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .12f),.85f));
 
         recipes.add(tripleAlloyRecipe("tungsten_heavy_alloy", new ItemStack(ModItems.TUNGSTEN_HEAVY_ALLOY), Arrays.asList(returnTagFamily("tungsten"),
                 returnTagFamily("nickel"),returnTagFamily("iron"),returnTagFamily("copper"),
