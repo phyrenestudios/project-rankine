@@ -210,6 +210,12 @@ public class RankineEventHandler {
         }
      */
 
+
+
+
+
+
+
     @SubscribeEvent
     public static void onCraft(PlayerEvent.ItemCraftedEvent event) {
         if (event.getCrafting().getItem() == ModItems.GLASS_CUTTER) {
@@ -386,6 +392,30 @@ public class RankineEventHandler {
  */
 
     @SubscribeEvent
+    public static void brickify(PlayerInteractEvent.RightClickBlock event) {
+        PlayerEntity player = event.getPlayer();
+        ItemStack items = event.getItemStack();
+        BlockState blockstate = event.getWorld().getBlockState(event.getPos());
+
+
+
+
+    }
+
+
+    @SubscribeEvent
+    public static void deBrick(PlayerInteractEvent.RightClickBlock event) {
+        PlayerEntity player = event.getPlayer();
+        ItemStack items = event.getItemStack();
+        BlockState blockstate = event.getWorld().getBlockState(event.getPos());
+
+
+
+
+    }
+
+
+    @SubscribeEvent
     public static void dyeLED(PlayerInteractEvent.RightClickBlock event) {
         if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof LEDBlock) {
             if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/red"))) {
@@ -458,6 +488,11 @@ public class RankineEventHandler {
 
         if(item instanceof AxeItem) {
         BlockState activatedBlock = world.getBlockState(pos);
+            if (activatedBlock.getBlock() == Blocks.BIRCH_LOG){
+                if (new Random().nextFloat() < 0.2f) {
+                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(Items.PAPER, 1));
+                }
+            }
             if(stripping_map.get(activatedBlock.getBlock()) != null) {
                 Block block = activatedBlock.getBlock();
                 if(block instanceof RotatedPillarBlock) {
@@ -482,7 +517,7 @@ public class RankineEventHandler {
         float CHANCE = new Random().nextFloat();
         if (Config.FLINT_DROP.get() && !player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
-                if ( player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:gold_tools"))) {
+                if ( player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
                     if (CHANCE < Config.FLINT_DROP_CHANCE.get()) {
                         double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
                         double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;

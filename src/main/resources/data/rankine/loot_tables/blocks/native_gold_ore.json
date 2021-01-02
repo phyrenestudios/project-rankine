@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "minecraft:nether_gold_ore"
+              "name": "rankine:native_gold_ore"
             },
             {
               "type": "minecraft:item",
