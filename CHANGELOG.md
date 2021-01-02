@@ -2,6 +2,90 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.1.4 Minor Changelog [2021-1-1]
+### Additions
+- Major modifications to the Netherite element formulas, and Netherite can now be used as an alloy ingredient in end-game tools and gold tools
+
+- Lead can now be used as a secondary component in place of Antimony in Pewter instead of as a tertiary ingredient
+
+- All end game tools (Cobalt Superalloy, Nickel Superalloy, Tungsten Heavy Alloy, Stainless Steel) have had their durabilities increased by +200
+
+- Added dry mortar which is thrown in water to make mortar, making the process no longer require a bucket
+
+- Added enable/disable config for Rankine ores
+
+- Added initial compatability support to TerraForged
+
+- Added tooltips for minerals
+
+- Added Magnesite and Chromite alternative recipe for High Refractory Brick
+
+- Added Dolomite alternative recipe for High Refractory Brick
+
+- Added Silicon Carbide alternative recipe for Super-High Refractory Brick
+
+- Added alternative recipes to rails, powered rails, detector rails, activator rails, hopper, minecart
+
+- Added magnetic metals and crafting metals tag
+
+- Added element and alloy blocks to minecraft:beacon_base_blocks tag
+
+- Added guide category to the Rankine Journal, which contains an initial compatability and guide page to help with progression through the mod
+
+- Added more details to pages to the Rankine Journal
+
+### Changes
+- Changed many of the crushing recipes of stones; Most stones now give cobblestone by default when crushing
+
+- Removed previous recipes to create cobblestone
+
+- Moved recipes that created mortar to dry mortar instead
+
+- Using mortar on a stone converts it to it's respective brick variant
+
+- Metal Scraper now converts stone bricks to their respective stone variant
+
+- Ore detector outputs block found to the player, can be turned off via config
+
+- Adjusted stone generation to spawn intrusions through all stones
+
+- Stripping Birch Bark with an Axe has a chance to give paper
+
+- Changed crafting recipes of mortar to yield dry mortar
+
+- Changed Diamond and Netherite tools to be disabled by default
+
+- Lazurite, Plumbago, Celestine, and Majorite Ore are no longer stone specific ores
+
+- Changed Cinnabar and Block of Cinnabar to crush into redstone
+
+- Coal ores and cinnabar ore can no longer be crushed
+
+
+
+### Misc
+- #135 Fixed the current implementation of Alloy Ingredients in JEI so that it appears more consistently on servers
+
+- Fixed Native Gold Ore lootable
+
+- Fixed Spawning of Molybdenite in the end
+
+- Fixed polished roman concrete
+
+- Fixed Lignite, Subbituminous, and Bituminous Coals crushing recipes
+
+- Updated textures for: Ironstone, Polished Ironstone, Ironstone Bricks and Petalite Ore
+
+- Relocalized Iron Scraper to Metal Scraper
+
+- Relocalized Magnesia Refractory Bricks and Zircon Refractory Bricks to High Refractory Bricks and Ultra-High Refractory Bricks respectively
+
+
+
+
+
+
+
 ## Project Rankine Version 1.1.3 Minor Changelog [2020-12-22]
 
 ### Additions
@@ -44,6 +128,8 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Beehive Oven Pit can be lit using spark lighter
 
 - Items used to light Beehive Oven will take damage / be consumed
+
+- Changed YAG Recipe with only Yttrium and Aluminum to give 1 instead of 2
 
 - Optional config for Beehive Oven to convert all blocks at once on random tick
 
