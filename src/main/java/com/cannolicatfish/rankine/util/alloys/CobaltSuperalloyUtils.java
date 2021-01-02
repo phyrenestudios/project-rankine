@@ -13,7 +13,7 @@ public class CobaltSuperalloyUtils implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return 770;
+        return 970;
     }
 
     @Override

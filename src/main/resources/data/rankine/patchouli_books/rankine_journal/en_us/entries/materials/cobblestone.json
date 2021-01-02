@@ -6,22 +6,7 @@
     {
       "type": "text",
       "anchor": "cobblestone",
-      "text": "Crushing stones in the $(l:machines/piston_crusher)Piston Crusher$() or by $(l:tools/hammers)Hammers$() will yeild a few primary products: feldspar, olivine, and pyrozene. These components can be used to craft new stones."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:cobblestone_from_feldspar",
-      "text": "The begining recipe."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:cobblestone_from_olivine",
-      "text": ""
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:cobblestone_from_pyroxene",
-      "text": ""
+      "text": "Crushing stones in the $(l:machines/piston_crusher)Piston Crusher$() or by $(l:tools/hammers)Hammers$() will yield Cobblestone and a few primary products: feldspar, olivine, and pyrozene. These components can be used to craft new stones."
     },
     {
       "type": "crafting",

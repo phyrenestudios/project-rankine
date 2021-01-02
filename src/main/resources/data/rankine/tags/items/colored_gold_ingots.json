@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/green_gold",
+    "#forge:ingots/blue_gold",
+    "#forge:ingots/purple_gold",
+    "#forge:ingots/rose_gold",
+    "#forge:ingots/white_gold",
+    "#forge:ingots/black_gold"
+  ]
+}

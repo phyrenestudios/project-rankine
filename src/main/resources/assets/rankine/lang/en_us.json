@@ -220,8 +220,8 @@
   "block.rankine.piston_steam_engine": "Piston Steam Engine",
   "block.rankine.evaporation_tower": "Evaporation Tower",
   "block.rankine.beehive_oven_pit": "Beehive Oven Pit",
-  "block.rankine.magnesium_beehive_oven_pit": "Magnesium Beehive Oven Pit",
-  "block.rankine.zircon_beehive_oven_pit": "Zircon Beehive Oven Pit",
+  "block.rankine.magnesium_beehive_oven_pit": "Beehive Oven Pit (High Refractory)",
+  "block.rankine.zircon_beehive_oven_pit": "Beehive Oven Pit (Ultra-High Refractory)",
 
 
   "block.rankine.copper_sheetmetal": "Copper Sheetmetal",
@@ -272,9 +272,12 @@
   "block.rankine.refractory_bricks": "Refractory Bricks",
   "block.rankine.refractory_bricks_slab": "Refractory Brick Slab",
   "block.rankine.refractory_bricks_stairs": "Refractory Brick Stairs",
-  "block.rankine.zircon_refractory_bricks": "Zircon Refractory Bricks",
-  "block.rankine.zircon_refractory_bricks_slab": "Zircon Refractory Bricks Slab",
-  "block.rankine.zircon_refractory_bricks_stairs": "Zircon Refractory Bricks Stairs",
+  "block.rankine.magnesium_refractory_bricks": "High Refractory Bricks",
+  "block.rankine.magnesium_refractory_bricks_slab": "High Refractory Brick Slab",
+  "block.rankine.magnesium_refractory_bricks_stairs": "High Refractory Brick Stairs",
+  "block.rankine.zircon_refractory_bricks": "Ultra-High Refractory Bricks",
+  "block.rankine.zircon_refractory_bricks_slab": "Ultra-High Refractory Bricks Slab",
+  "block.rankine.zircon_refractory_bricks_stairs": "Ultra-High Refractory Bricks Stairs",
 
 
   "block.rankine.basalt_bricks_pressure_plate": "Basalt Bricks Pressure Plate",
@@ -767,9 +770,7 @@
   "block.rankine.polished_perovskite": "Polished Perovskite",
   "block.rankine.polished_perovskite_slab": "Polished Perovskite Slab",
   "block.rankine.polished_perovskite_stairs": "Polished Perovskite Stairs",
-  "block.rankine.magnesium_refractory_bricks": "Magnesium Refractory Bricks",
-  "block.rankine.magnesium_refractory_bricks_slab": "Magnesium Refractory Brick Slab",
-  "block.rankine.magnesium_refractory_bricks_stairs": "Magnesium Refractory Brick Stairs",
+
 
 
 
@@ -1334,10 +1335,10 @@
   "item.rankine.feldspar": "Feldspar",
   "item.rankine.dolomite": "Dolomite",
   "item.rankine.refractory_brick": "Refractory Brick",
-  "item.rankine.magnesium_refractory_brick": "Magnesium Refractory Brick",
-  "item.rankine.zircon_refractory_brick": "Zircon Refractory Brick",
+  "item.rankine.magnesium_refractory_brick": "High Refractory Brick",
+  "item.rankine.zircon_refractory_brick": "Ultra-High Refractory Brick",
   "item.rankine.surface_condenser": "Surface Condenser",
-  "item.rankine.iron_scraper": "Iron Scraper",
+  "item.rankine.metal_scraper": "Metal Scraper",
   "item.rankine.iron_spear": "Iron Spear",
   "item.rankine.stone_hammer": "Stone Hammer",
   "item.rankine.bronze_hammer": "Bronze Hammer",
@@ -1359,6 +1360,7 @@
   "item.rankine.triple_alloy_template": "Triple Alloy Template",
   "item.rankine.quicklime": "Quicklime",
   "item.rankine.pozzolan": "Pozzolan",
+  "item.rankine.dry_mortar": "Dry Mortar",
   "item.rankine.pozzolanic_mortar": "Pozzolanic Mortar",
   "item.rankine.salt": "Salt",
   "item.rankine.pink_salt": "Pink Salt",

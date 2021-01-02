@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/iron",
+    "#forge:ingots/cobalt",
+    "#forge:ingots/nickel",
+    "#forge:ingots/alnico",
+    "#forge:ingots/dysprosium",
+    "#forge:ingots/gadolinium"
+  ]
+}

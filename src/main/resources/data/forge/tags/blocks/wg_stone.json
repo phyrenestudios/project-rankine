@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:rhyolite",
+    "rankine:red_granite",
+    "rankine:granodiorite",
+    "rankine:hornblende_andesite",
+    "rankine:limestone",
+    "rankine:shale",
+    "rankine:gneiss",
+    "rankine:marble",
+    "rankine:tholeiitic_basalt",
+    "rankine:anorthosite",
+    "rankine:gabbro",
+    "rankine:schist",
+    "rankine:slate",
+    "rankine:breccia"
+  ]
+}

@@ -2,9 +2,6 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "rankine:water_buckets"
-    },
-    {
       "item": "minecraft:clay_ball"
     },
     {
@@ -15,7 +12,7 @@
     }
   ],
   "result": {
-    "item": "rankine:mortar",
+    "item": "rankine:dry_mortar",
     "count": 1
   }
 }

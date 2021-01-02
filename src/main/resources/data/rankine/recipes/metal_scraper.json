@@ -14,12 +14,12 @@
     },
     "x":
     {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots"
     }
   },
   "result":
   {
-    "item": "rankine:iron_scraper",
+    "item": "rankine:metal_scraper",
     "count": 1
   }
 }

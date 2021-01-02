@@ -10,7 +10,7 @@
     {
       "type": "text",
       "title": "Overworld",
-      "text": "$(li)Native Copper (HL: 0) $(li)Native Tin (HL: 0) $(li)Native Aluminum (HL: 0) $(li)Native Lead (HL: 0) $(li)Native Silver (HL: 0) $(li)Native Gold (HL: 0) $(li)Native Bismuth (HL: 2) $(li)Malachite (HL: 1) $(li)Cassiterite (HL: 1) $(li)Bauxite (HL: 1) $(li)Sphalerite (HL: 1) $(li)Magnetite (HL: 2) $(li)Magnesite (HL: 2) $(li)Cinnabar (HL: 2)"
+      "text": "$(li)Native Copper (HL: 0) $(li)Native Tin (HL: 0) $(li)Native Aluminum (HL: 0) $(li)Native Lead (HL: 0) $(li)Native Silver (HL: 0) $(li)Native Gold (HL: 0) $(li)Native Bismuth (HL: 0) $(li)Malachite (HL: 1) $(li)Cassiterite (HL: 1) $(li)Bauxite (HL: 1) $(li)Sphalerite (HL: 1) $(li)Magnetite (HL: 2) $(li)Magnesite (HL: 2) $(li)Cinnabar (HL: 2)"
     },
     {
       "type": "text",

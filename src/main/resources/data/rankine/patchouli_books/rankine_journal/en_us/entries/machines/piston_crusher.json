@@ -10,12 +10,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:piston_crusher_bronze",
-      "text": "Crushing outputs can be seen via JEI."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:piston_crusher_brass",
+      "recipe": "rankine:piston_crusher",
       "text": "Crushing outputs can be seen via JEI."
     }
   ]
