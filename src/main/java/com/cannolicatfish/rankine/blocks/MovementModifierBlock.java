@@ -15,6 +15,7 @@ public class MovementModifierBlock extends Block {
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+
         entityIn.setMotion(entityIn.getMotion().mul(modifier, 1.0D, modifier));
         super.onEntityWalk(worldIn, pos, entityIn);
     }

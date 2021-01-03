@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "#C#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "rankine:crafting_metals"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "minecraft:hopper",
+    "count": 1
+  }
+}

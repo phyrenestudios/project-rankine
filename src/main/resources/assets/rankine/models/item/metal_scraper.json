@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "rankine:item/iron_scraper"
+    "layer0": "rankine:item/metal_scraper"
   }
 }

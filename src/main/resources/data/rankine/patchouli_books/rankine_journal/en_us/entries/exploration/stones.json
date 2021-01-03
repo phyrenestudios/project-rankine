@@ -20,198 +20,231 @@
       "type": "spotlight",
       "anchor": "granite",
       "item": "minecraft:granite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found in intrusions throughout the overworld."
     },
     {
       "type": "spotlight",
       "anchor": "diorite",
       "item": "minecraft:diorite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found in intrusions throughout the overworld."
     },
     {
       "type": "spotlight",
       "anchor": "sandstone",
       "item": "minecraft:sandstone",
+      "link_recipe": true,
       "text": "Classification: Sedimentary $(br2)The top layer of desert biomes. Thicker than vanilla generation."
     },
     {
       "type": "spotlight",
       "anchor": "red_sandstone",
       "item": "minecraft:red_sandstone",
+      "link_recipe": true,
       "text": "Classification: Sedimentary $(br2)The top layer of mesa biomes (beneath terracotta)."
     },
     {
       "type": "spotlight",
       "anchor": "netherrack",
       "item": "minecraft:netherrack",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found as the major stone component of the nether."
     },
     {
       "type": "spotlight",
       "anchor": "basalt",
       "item": "minecraft:basalt",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found in standard formations in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "blackstone",
       "item": "minecraft:blackstone",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found in standard formations in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "end_stone",
       "item": "minecraft:end_stone",
+      "link_recipe": true,
       "text": "Classification: ??? $(br2)Found as the sole stone in the end."
     },
     {
       "type": "spotlight",
       "anchor": "granite",
       "item": "rankine:red_granite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found at intermediate heights throughout land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "granodiorite",
       "item": "rankine:granodiorite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found in intrusions throughout the overworld."
     },
     {
       "type": "spotlight",
       "anchor": "hornblende_andesite",
       "item": "rankine:hornblende_andesite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found at high elevations in non-sandy land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "tholeiitic_basalt",
       "item": "rankine:tholeiitic_basalt",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found at intermediate heights throughout ocean biomes."
     },
     {
       "type": "spotlight",
       "anchor": "gabbro",
       "item": "rankine:gabbro",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found at intermediate heights throughout ocean biomes."
     },
     {
       "type": "spotlight",
       "anchor": "anorthosite",
       "item": "rankine:anorthosite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found at intermediate heights (about sea level) throughout land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "rhyolite",
       "item": "rankine:rhyolite",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found at intermediate heights throughout land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "limestone",
       "item": "rankine:limestone",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found in the top layers of sandy land biomes and shallow ocean biomes."
     },
     {
       "type": "spotlight",
       "anchor": "marble",
       "item": "rankine:marble",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found in deep layers of sandy land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "gneiss",
       "item": "rankine:gneiss",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found in deep layers of non-sandy land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "schist",
       "item": "rankine:schist",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found in deep layers of non-sandy land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "slate",
       "item": "rankine:slate",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found in intermediate layers of land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "shale",
       "item": "rankine:shale",
+      "link_recipe": true,
       "text": "Classification: Sedimentary $(br2)Found in very shallow oceans and around sea level in non-sandy land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "ironstone",
       "item": "rankine:ironstone",
+      "link_recipe": true,
       "text": "Classification: Sedimentary $(br2)Found in conjunction with sandstones."
     },
     {
       "type": "spotlight",
       "anchor": "breccia",
       "item": "rankine:breccia",
+      "link_recipe": true,
       "text": "Classification: Sedimentary $(br2)Found in intermediate layers of sandy land biomes."
     },
     {
       "type": "spotlight",
       "anchor": "pumice",
       "item": "rankine:pumice",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "scoria",
       "item": "rankine:scoria",
+      "link_recipe": true,
       "text": "Classification: Igneous $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "peridotite",
       "item": "rankine:peridotite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found at the deepest levels of all biomes of the overworld."
     },
     {
       "type": "spotlight",
       "anchor": "kimberlite",
       "item": "rankine:kimberlite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions throughout the overworld."
     },
     {
       "type": "spotlight",
       "anchor": "komatiite",
       "item": "rankine:komatiite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "ringwoodite",
       "item": "rankine:ringwoodite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "wadsleyite",
       "item": "rankine:wadsleyite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "bridgmanite",
       "item": "rankine:bridgmanite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "ferropericlase",
       "item": "rankine:ferropericlase",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions in the nether."
     },
     {
       "type": "spotlight",
       "anchor": "perovskite",
       "item": "rankine:perovskite",
+      "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found as intrusions in the nether."
     }
   ]

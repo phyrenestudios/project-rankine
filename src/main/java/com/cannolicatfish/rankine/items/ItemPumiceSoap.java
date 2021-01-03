@@ -27,13 +27,11 @@ public class ItemPumiceSoap extends Item {
         World worldIn = context.getWorld();
         Block block = worldIn.getBlockState(context.getPos()).getBlock();
         ResourceLocation rs = block.getRegistryName();
-        if (rs != null)
-        {
+        if (rs != null) {
             if(rs.getPath().contains("mossy_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),rs.getPath().split("mossy_")[1]);
                 Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
-                if (bl != null)
-                {
+                if (bl != null && bl != Blocks.AIR) {
                     worldIn.setBlockState(context.getPos(),bl.getDefaultState(),2);
                     spawnSoapParticles(worldIn,context.getPos(),0);
                     context.getItem().shrink(1);
@@ -42,19 +40,17 @@ public class ItemPumiceSoap extends Item {
             } else if(rs.getPath().contains("cracked_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),rs.getPath().split("cracked_")[1]);
                 Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
-                if (bl != null)
+                if (bl != null && bl != Blocks.AIR)
                 {
                     worldIn.setBlockState(context.getPos(),bl.getDefaultState(),2);
                     spawnSoapParticles(worldIn,context.getPos(),0);
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 }
-            } else if (block.getTags().contains(new ResourceLocation("forge:stone")) && !rs.getPath().contains("polished_"))
-            {
+            } else if (block.getTags().contains(new ResourceLocation("forge:stone")) && !rs.getPath().contains("polished_")) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),"polished_" + rs.getPath());
                 Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
-                if (bl != null)
-                {
+                if (bl != null && bl != Blocks.AIR) {
                     worldIn.setBlockState(context.getPos(),bl.getDefaultState(),2);
                     spawnSoapParticles(worldIn,context.getPos(),0);
                     context.getItem().shrink(1);

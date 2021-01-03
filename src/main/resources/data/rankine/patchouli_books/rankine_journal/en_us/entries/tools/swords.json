@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "A listing of the variety of swords that are able to be made. Rankine swords are made in the $(l:machines/coal_forge)Coal Forge$() with an sword template. $(br2)Vanilla tools can be enabled/disabled in the config. By deafault, stone and golden are disabled for progression."
+      "text": "A listing of the variety of swords that are able to be made. Rankine swords are made in the $(l:machines/coal_forge)Coal Forge$() with an sword template. $(br2)Vanilla tools can be enabled/disabled in the config and are disabled by default for progression."
     },
     {
       "type": "text",

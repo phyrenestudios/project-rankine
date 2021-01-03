@@ -5,11 +5,16 @@
   "pages": [
     {
       "type": "text",
-      "text": "A listing of the variety of hoes that are able to be made. Rankine hoes are made in the $(l:machines/coal_forge)Coal Forge$() with an hoe template. $(br2)Vanilla tools can be enabled/disabled in the config. By deafault, wood, stone and golden are disabled for progression."
+      "text": "A listing of the variety of hoes that are able to be made. Rankine hoes are made in the $(l:machines/coal_forge)Coal Forge$() with an hoe template. $(br2)Vanilla tools can be enabled/disabled in the config and are disabled by default for progression."
     },
     {
       "type": "text",
       "text": "Hoes function as normal."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:flint_hoe",
+      "text": "Stats:$(li)Harvest Level: 0"
     },
     {
       "type": "spotlight",

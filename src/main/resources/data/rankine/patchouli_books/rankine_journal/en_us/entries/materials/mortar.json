@@ -20,28 +20,13 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:mortar_double",
-      "text": "A double recipe to make crafting easier."
-    },
-    {
-      "type": "crafting",
       "recipe": "rankine:mortar_quicklime",
       "text": "Preparing the lime into quicklime via the $(l:machines/beehive_oven)Beehive Oven$() increases efficiency."
     },
     {
       "type": "crafting",
-      "recipe": "rankine:mortar_quicklime_quad",
-      "text": "A quadruple recipe to make crafting easier."
-    },
-    {
-      "type": "crafting",
       "recipe": "rankine:mortar_pozzolan",
       "text": "Sand particles can be replaced by pozzolan which is derived from crushing $(l:exploration/stones#pumice)Pumice$() and $(l:exploration/stones#scoria)Scoria$() in the $(l:machines/piston_crusher)Piston Crusher$()."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:mortar_pozzolan_quad",
-      "text": "A quadruple recipe to make crafting easier."
     }
   ]
 }
