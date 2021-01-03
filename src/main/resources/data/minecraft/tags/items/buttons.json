@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
+    "rankine:red_dacite_button",
+    "rankine:black_dacite_button",
+    "rankine:quartz_sandstone_button",
+    "rankine:arkose_sandstone_button",
+    "rankine:mudstone_button",
+    "rankine:chalk_button",
     "rankine:red_granite_button",
     "rankine:granodiorite_button",
     "rankine:hornblende_andesite_button",

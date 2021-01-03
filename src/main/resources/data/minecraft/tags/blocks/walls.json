@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
+    "rankine:red_dacite_wall",
+    "rankine:black_dacite_wall",
+    "rankine:chalk_wall",
+    "rankine:mudstone_wall",
+    "rankine:quartz_sandstone_wall",
+    "rankine:arkose_sandstone_wall",
     "rankine:red_granite_wall",
     "rankine:granodiorite_wall",
     "rankine:hornblende_andesite_wall",
