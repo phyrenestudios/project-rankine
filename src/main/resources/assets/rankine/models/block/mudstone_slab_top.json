@@ -1,0 +1,8 @@
+{
+                "parent": "block/slab_top",
+                "textures": {
+                "bottom": "rankine:block/mudstone",
+                "top": "rankine:block/mudstone",
+                "side": "rankine:block/mudstone"
+                }
+                }

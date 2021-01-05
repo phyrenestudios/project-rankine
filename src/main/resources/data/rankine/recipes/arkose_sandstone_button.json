@@ -1,0 +1,12 @@
+{
+                "type": "minecraft:crafting_shapeless",
+                "group": "wooden_button",
+                "ingredients": [
+                {
+                  "item": "rankine:arkose_sandstone"
+                }
+                ],
+                "result": {
+                "item": "rankine:arkose_sandstone_button"
+                }
+                }

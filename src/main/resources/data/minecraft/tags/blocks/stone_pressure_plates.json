@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
+    "rankine:red_dacite_pressure_plate",
+    "rankine:black_dacite_pressure_plate",
+    "rankine:quartz_sandstone_pressure_plate",
+    "rankine:arkose_sandstone_pressure_plate",
+    "rankine:mudstone_pressure_plate",
+    "rankine:chalk_pressure_plate",
     "rankine:red_granite_pressure_plate",
     "rankine:granodiorite_pressure_plate",
     "rankine:hornblende_andesite_pressure_plate",
