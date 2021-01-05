@@ -49,6 +49,21 @@
     },
     {
       "type": "crafting",
+      "recipe": "rankine:gold_sheetmetal",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:silver_sheetmetal",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:platinum_sheetmetal",
+      "text": ""
+    },
+    {
+      "type": "crafting",
       "recipe": "rankine:bronze_sheetmetal",
       "text": ""
     },

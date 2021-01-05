@@ -85,6 +85,11 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue T2_BEEHIVE_OVEN_CHANCE;
     public static ForgeConfigSpec.DoubleValue T3_BEEHIVE_OVEN_CHANCE;
 
+    public static ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
+    public static ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
+    public static ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
+    public static ForgeConfigSpec.BooleanValue DISABLE_CHARCOAL;
+    public static ForgeConfigSpec.BooleanValue FUEL_VALUES;
     public static ForgeConfigSpec.BooleanValue FLINT_DROP;
     public static ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
     public static ForgeConfigSpec.BooleanValue FORAGING;
@@ -557,6 +562,16 @@ public class Config {
                     .define("startingBook",true);
             MANDATORY_AXE = COMMON_BUILDER.comment("An axe is required to harvest logs")
                     .define("axesOnly",false);
+            FUEL_VALUES = COMMON_BUILDER.comment("Change the fuel values of items for realism.")
+                    .define("fuelValuesChange",true);
+            DISABLE_CHARCOAL = COMMON_BUILDER.comment("Disable the standard charcoal recipe")
+                    .define("disableCharcoal",true);
+            CHARCOAL_PIT_RADIUS = COMMON_BUILDER.comment("Maximum radius the charcoal pit can convert logs.")
+                    .defineInRange("charcoalPitRadius", 7, 3, 15);
+            CHARCOAL_PIT_SPEED = COMMON_BUILDER.comment("Every X number of random ticks the charcoal pit will go")
+                    .defineInRange("charcoalPitSpeed", 10, 1, 200);
+            CHARCOAL_PIT_HEIGHT = COMMON_BUILDER.comment("Maximum height a charcoal pile can be")
+                    .defineInRange("charcoalPitHeight", 5, 1, 10);
             FLINT_DROP = COMMON_BUILDER.comment("Enables an extra chance for stones to drop flint when mining with a flint / bronze / pewter / colored golds pickaxes.")
                     .define("flintDrop",true);
             FLINT_DROP_CHANCE = COMMON_BUILDER.comment("Chance for a dirt block to drop a vegetable if foraging is enabled")
@@ -763,7 +778,7 @@ public class Config {
 
         COMMON_BUILDER.comment("Intrusion Ore Settings").push("intrusionOres");
         DIAMON_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by a diamond ore")
-                .defineInRange("diamondOreChance", 0.035D, 0.00D, 1.00D);
+                .defineInRange("diamondOreChance", 0.04D, 0.00D, 1.00D);
         ILMENITE_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by an ilmenite ore")
                 .defineInRange("ilmeniteOreChance", 0.005D, 0.00D, 1.00D);
         INTERSPINIFEX_CHANCE = COMMON_BUILDER.comment("Chance for an komatiite intrusion block to be replaced by an interspinifex ore")

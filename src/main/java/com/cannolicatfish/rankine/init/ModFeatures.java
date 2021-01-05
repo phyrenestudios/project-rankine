@@ -111,9 +111,9 @@ public class ModFeatures {
     public static final BaseTreeFeatureConfig JUNIPER_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LOG.getDefaultState()),
             new SimpleBlockStateProvider(ModBlocks.JUNIPER_LEAVES.getDefaultState()),
-            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(0, 0)),
-            new ForkyTrunkPlacer(2, 0, 0),
-            new TwoLayerFeature(1, 0, 2)))
+            new AcaciaFoliagePlacer(FeatureSpread.func_242253_a(1, 0), FeatureSpread.func_242253_a(1, 0)),
+            new ForkyTrunkPlacer(1, 1, 1),
+            new TwoLayerFeature(1, 1, 2)))
             .setIgnoreVines()
             .build();
 
