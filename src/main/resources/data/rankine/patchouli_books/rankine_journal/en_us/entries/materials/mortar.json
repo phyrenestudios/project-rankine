@@ -5,8 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "anchor": "mortar",
-      "text": "A wet mixture of earthy materials that is used to bind bricks together."
+      "text": "Mortar is a wet mixture of earthy materials that is used to bind stones together. It is made by throwing Dry Mortar into water."
     },
     {
       "type": "crafting",

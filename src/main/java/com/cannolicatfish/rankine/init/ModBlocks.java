@@ -551,6 +551,7 @@ public class ModBlocks {
     public static final Block ROMAN_CONCRETE_BRICKS_WALL = add("roman_concrete_bricks_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block QUARRY_BARRIER = add("quarry_barrier", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(10.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block BONE_CHAR_BLOCK = add("bone_char_block", new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
+    public static final Block CHARRED_WOOD = add("charred_wood", new CharredWood(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.2F, 3.0F).harvestLevel(0)), BLOCKS, 200);
 
 
     //WOOD BLOCKS
@@ -1032,6 +1033,7 @@ public class ModBlocks {
     public static final Block RED_LED = add("red_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
     public static final Block GREEN_LED = add("green_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
     public static final Block BLUE_LED = add("blue_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final CharcoalPit CHARCOAL_PIT = add("charcoal_pit", new CharcoalPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
 
 
     //MISC CREATIVE TAB

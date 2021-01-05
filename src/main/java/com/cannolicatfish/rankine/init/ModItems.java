@@ -602,8 +602,8 @@ public class ModItems {
     public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PUMICE_SOAP = add("pumice_soap", new ItemPumiceSoap(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),50));
-    public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),800));
+    public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),25));
+    public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),200));
     public static final Item COMPOST = add("compost", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));

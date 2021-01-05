@@ -1,6 +1,7 @@
 {
       "replace": false,
       "values": [
-        "rankine:bronze_alloy"
+        "rankine:bronze_alloy",
+        "rankine:aluminum_bronze_alloy"
       ]
     }
