@@ -115,6 +115,81 @@ public class RankineEventHandler {
         event.getRareTrades().add(new BasicTrade(3,new ItemStack(ModItems.PACKAGED_TOOL),6,1,0.05f));
     }
 
+
+    @SubscribeEvent
+    public static void fuelValues(FurnaceFuelBurnTimeEvent event) {
+        if (Config.FUEL_VALUES.get()) {
+            Item Fuel = event.getItemStack().getItem();
+            if (Fuel.getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
+                if (Fuel.getRegistryName().getPath().contains("fir")) {
+                    event.setBurnTime(290);
+                } else if (Fuel.getRegistryName().getPath().contains("pinyon_pine")) {
+                    event.setBurnTime(480);
+                } else if (Fuel.getRegistryName().getPath().contains("black_birch")) {
+                    event.setBurnTime(370);
+                } else if (Fuel.getRegistryName().getPath().contains("yellow_birch")) {
+                    event.setBurnTime(390);
+                } else if (Fuel.getRegistryName().getPath().contains("birch")) {
+                    event.setBurnTime(350);
+                } else if (Fuel.getRegistryName().getPath().contains("maple")) {
+                    event.setBurnTime(370);
+                } else if (Fuel.getRegistryName().getPath().contains("spruce")) {
+                    event.setBurnTime(310);
+                } else if (Fuel.getRegistryName().getPath().contains("oak")) {
+                    event.setBurnTime(400);
+                } else if (Fuel.getRegistryName().getPath().contains("jungle")) {
+                    event.setBurnTime(350);
+                } else if (Fuel.getRegistryName().getPath().contains("walnut")) {
+                    event.setBurnTime(360);
+                } else if (Fuel.getRegistryName().getPath().contains("pine")) {
+                    event.setBurnTime(290);
+                } else if (Fuel.getRegistryName().getPath().contains("willow")) {
+                    event.setBurnTime(280);
+                } else if (Fuel.getRegistryName().getPath().contains("sycamore")) {
+                    event.setBurnTime(340);
+                } else if (Fuel.getRegistryName().getPath().contains("hickory")) {
+                    event.setBurnTime(430);
+                } else if (Fuel.getRegistryName().getPath().contains("coconut")) {
+                    event.setBurnTime(350);
+                } else if (Fuel.getRegistryName().getPath().contains("juniper")) {
+                    event.setBurnTime(400);
+                } else if (Fuel.getRegistryName().getPath().contains("acacia")) {
+                    event.setBurnTime(400);
+                } else if (Fuel.getRegistryName().getPath().contains("magnolia")) {
+                    event.setBurnTime(350);
+                } else if (Fuel.getRegistryName().getPath().contains("hemlock")) {
+                    event.setBurnTime(310);
+                } else {
+                    event.setBurnTime(300);
+                }
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:planks"))) {
+                event.setBurnTime(100);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_buttons"))) {
+                event.setBurnTime(100);
+            } else if (Fuel.getTags().contains(new ResourceLocation("forge:rods/wooden"))) {
+                event.setBurnTime(50);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_slabs"))) {
+                event.setBurnTime(50);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_stairs"))) {
+                event.setBurnTime(75);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_pressure_plates"))) {
+                event.setBurnTime(200);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_fences"))) {
+                event.setBurnTime(167);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_fence_gates"))) {
+                event.setBurnTime(400);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_trapdoors"))) {
+                event.setBurnTime(300);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:wooden_doors"))) {
+                event.setBurnTime(200);
+            } else if (Fuel.getTags().contains(new ResourceLocation("minecraft:saplings"))) {
+                event.setBurnTime(100);
+            } else if (Fuel.getItem() == Items.CHARCOAL) {
+                event.setBurnTime(800);
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onToolUse(BlockEvent.BlockToolInteractEvent event) {
         if (Config.DISABLE_WOODEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setCanceled(true); }

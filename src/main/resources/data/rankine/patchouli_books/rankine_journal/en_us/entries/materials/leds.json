@@ -1,0 +1,26 @@
+{
+  "name": "LEDs",
+  "icon": "rankine:blue_led",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Light emitting diodes(LEDs) are lamp blocks. Right clicking with a dye will change the color in world. Only red, green and blue are currently available."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:red_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:blue_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:green_led",
+      "text": ""
+    }
+  ]
+}

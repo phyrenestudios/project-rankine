@@ -1,0 +1,58 @@
+{
+  "name": "Fuels",
+  "icon": "rankine:biomass",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A variety of fuel sources exist in the world to power pre-electrical machinery."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:biomass",
+      "link_recipe": true,
+      "text": "Biomass is a fuel source derived from plant matter. Crops and leaves can be crushed by a $(l:tools/hammers)Hammer$() or $(l:machines/piston_crusher)Piston Crusher$() to yield biomass. Biomass has a fuel value of 50."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:compressed_biomass",
+      "text": "Crafting biomass into a condensed form makes it a more suitable fuel. Compressed Biomass has a fuel value of 200."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:charcoal",
+      "link_recipe": true,
+      "text": "Charcoal is a concentrated carbon source derived from partially oxided organic matter. The traditional way of smelting logs can be disabled/enabled in the config. The new process for creating charcoal is outlined in the  $(mechanics/charcoal)Charcoal Creation$(). Additionally, compressed biomass can be cooked in a blast furnace to yield charcoal.. Charcoal has a fuel value of 800."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lignite",
+      "link_recipe": true,
+      "text": "One of the coal ores found in world. Can be used to craft 3 torches. Lignite has a fuel value of 1200."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:subbituminous_coal",
+      "link_recipe": true,
+      "text": "One of the coal ores found in world. Can be used to craft 4 torches. Subituminous Coal has a fuel value of 1600."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bituminous_coal",
+      "link_recipe": true,
+      "text": "One of the coal ores found in world. Can be used to craft 6 torches. Bituminous Coal has a fuel value of 2400."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:anthracite_coal",
+      "link_recipe": true,
+      "text": "One of the coal ores found in world (Nether by default). Can be used to craft 8 torches. Anthracite Coal has a fuel value of 3200."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:coke",
+      "link_recipe": true,
+      "text": "Coke is a refined carbon source with low sulfur content compared to coals. It is made by cooking Blocks of Subbituminous or Bituminous Coal on the $(l:machines/beehive_oven)Beehive Oven$(). Can be used to craft 16 torches with a Cast Iron rod. Coke has a fuel value of 3200."
+    }
+  ]
+}

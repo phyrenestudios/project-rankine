@@ -2,6 +2,6 @@
         "variants": {
             "type=bottom": { "model": "rankine:block/polished_scoria_slab" },
             "type=top": { "model": "rankine:block/polished_scoria_slab_top" },
-            "type=double": { "model": "rankine:block/polished_scoria_slab_double" }
+            "type=double": { "model": "rankine:block/polished_scoria" }
             }
         }

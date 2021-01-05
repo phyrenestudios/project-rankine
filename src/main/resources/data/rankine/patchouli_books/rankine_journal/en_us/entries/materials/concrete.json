@@ -6,7 +6,7 @@
     {
       "type": "text",
       "anchor": "concrete",
-      "text": "Concrete is a refined stone coglamerate material. For it's improved properties it can allow increased movement speed across it's surface."
+      "text": "Concrete is a refined stone conglomerate material. For it's improved properties it can allow increased movement speed across it's surface."
     },
     {
       "type": "crafting",
@@ -17,6 +17,11 @@
       "type": "crafting",
       "recipe": "rankine:roman_concrete",
       "text": "1.4x Speed. The whole suite of decorative blocks exist and function the same way."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:pozolanic_mortar",
+      "text": "Used for crafting concrete."
     }
   ]
 }
