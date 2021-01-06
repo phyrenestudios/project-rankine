@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      "###",
+      " t ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:rose_gold_alloy"
+            },
+        "t": {
+            "tag": "forge:rods/wooden"
+            }
+      },
+      "result": {
+          "item": "rankine:rose_gold_pickaxe",
+          "count": 1        }
+    }

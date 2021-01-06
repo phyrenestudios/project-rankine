@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -13,14 +14,12 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tags.BlockTags;
@@ -34,36 +33,37 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 public class AlloySword extends SwordItem {
+
+    protected final float efficiency;
     private float wmodifier;
-    private final AlloyUtils alloy;
-    private final PeriodicTableUtils utils = new PeriodicTableUtils();
-    private float efficiency;
     private final float attackDamage;
     private final float attackSpeedIn;
-    private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
+    private Multimap<Attribute, AttributeModifier> toolAttributes;
+    private final AlloyUtils alloy;
+    private final PeriodicTableUtils utils = new PeriodicTableUtils();
 
-    public AlloySword(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Properties properties) {
-        super(tier, attackDamageIn, attackSpeedIn, properties);
-        this.attackSpeedIn = attackSpeedIn;
-        this.attackDamage = (float)attackDamageIn + alloy.getAttackDamageBonus();
-        this.efficiency = tier.getEfficiency();
+    public AlloySword(IItemTier tier, float attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Item.Properties builderIn) {
+        super(tier, (int) attackDamageIn, attackSpeedIn, builderIn);
         this.alloy = alloy;
+        this.efficiency = tier.getEfficiency();
+        this.attackDamage = attackDamageIn + tier.getAttackDamage();
+        this.attackSpeedIn = attackSpeedIn;
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeedIn, AttributeModifier.Operation.ADDITION));
-        this.attributeModifiers = builder.build();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
+        this.toolAttributes = builder.build();
     }
 
+
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot) {
-        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(equipmentSlot);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {
+        return equipmentSlot == EquipmentSlotType.MAINHAND ? this.toolAttributes : super.getAttributeModifiers(equipmentSlot, stack);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class AlloySword extends SwordItem {
         float eff = getEfficiency(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        float wmodifier = eff * Config.ALLOY_WEAR_MINING_AMT.get().floatValue();
+        this.wmodifier = eff * Config.ALLOY_WEAR_MINING_AMT.get().floatValue();
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
 
@@ -101,9 +101,10 @@ public class AlloySword extends SwordItem {
         float dmg = getAttackDamage(stack);
         float current_dur = this.getDamage(stack);
         float max_dur = getMaxDamage(stack);
-        this.wmodifier = dmg * Config.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
+        float wmodifier = dmg * Config.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
         return wmodifier - wmodifier*((max_dur - current_dur)/max_dur);
     }
+
 
     public float getWearAsPercent(ItemStack stack)
     {
@@ -115,6 +116,7 @@ public class AlloySword extends SwordItem {
     public float getMaxWearPercent(ItemStack stack)
     {
         float dmg = getAttackDamage(stack);
+        float wmodifier = dmg * Config.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
         return (dmg - wmodifier)/dmg * 100;
     }
 
@@ -137,7 +139,7 @@ public class AlloySword extends SwordItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.min(utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus(), 1);
+            return Math.max(Math.min(utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus(), 1),0);
         } else
         {
             return alloy.getCorrResistBonus();
@@ -155,7 +157,7 @@ public class AlloySword extends SwordItem {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.min(utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus(),1);
+            return Math.max(Math.min(utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus(),1),0);
         } else
         {
             return alloy.getHeatResistBonus();
@@ -384,6 +386,7 @@ public class AlloySword extends SwordItem {
         return enchantments;
     }
 
+    @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
             ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()));
@@ -399,30 +402,18 @@ public class AlloySword extends SwordItem {
         }
     }
 
-    private void replaceModifier(double multiplier)
+
+    void replaceModifier(double multiplier)
     {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", Math.max((double)this.attackDamage - multiplier,1), AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)attackSpeedIn, AttributeModifier.Operation.ADDITION));
-        this.attributeModifiers = builder.build();
+        this.toolAttributes = builder.build();
     }
 
-    @Override
-    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (p_220039_0_) -> {
-            p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
-        replaceModifier(getWearModifierDmg(stack));
-        return true;
-    }
 
-    @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (p_220039_0_) -> {
-            p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-        });
-        replaceModifier(getWearModifierDmg(stack));
-        return true;
+    public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player) {
+        return !player.isCreative();
     }
 
     @Override
@@ -436,7 +427,33 @@ public class AlloySword extends SwordItem {
         }
     }
 
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (p_220039_0_) -> {
+            p_220039_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,false), entityLiving, (p_220038_0_) -> {
+                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            });
+            replaceModifier(getWearModifierDmg(stack));
+        }
+
+        return true;
+    }
+
+    public boolean canHarvestBlock(BlockState blockIn) {
+        return blockIn.isIn(Blocks.COBWEB);
+    }
+
     public AlloyUtils getAlloy() {
         return alloy;
     }
+
+
 }

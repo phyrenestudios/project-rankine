@@ -10,7 +10,10 @@ import com.cannolicatfish.rankine.blocks.coalforge.CoalForge;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
 import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
-import com.cannolicatfish.rankine.blocks.crucible.Crucible;
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleBlock;
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
+import com.cannolicatfish.rankine.blocks.dac.DiamondAnvilCellBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
@@ -949,16 +952,20 @@ public class ModBlocks {
     public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block TOURMALINE_BLOCK = add("tourmaline_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CELESTINE_BLOCK = add("celestine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CINNABAR_BLOCK = add("cinnabar_block", new CinnabarBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
     public static final Block PERLITE_BLOCK = add("perlite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block FELDSPAR_BLOCK = add("feldspar_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+    public static final Block PLAGIOCLASE_FELDSPAR_BLOCK = add("plagioclase_feldspar_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+    public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+    public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+    public static final Block MICA_BLOCK = add("mica_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+    public static final Block AMPHIBOLE_BLOCK = add("amphibole_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+
     public static final Block DOLOMITE_BLOCK = add("dolomite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block CALCITE_BLOCK = add("calcite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
-    public static final Block SALT_BLOCK = add("salt_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+   public static final Block SALT_BLOCK = add("salt_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block PINK_SALT_BLOCK = add("pink_salt_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block SILICON_CARBIDE_BLOCK = add("silicon_carbide_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -1066,13 +1073,14 @@ public class ModBlocks {
     public static final BeehiveOvenPit BEEHIVE_OVEN_PIT = add("beehive_oven_pit", new BeehiveOvenPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final BeehiveOvenPit MAGNESIUM_BEEHIVE_OVEN_PIT = add("magnesium_beehive_oven_pit", new BeehiveOvenPit(Config.T2_BEEHIVE_OVEN_CHANCE.get().floatValue(),ModBlocks.MAGNESIUM_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final BeehiveOvenPit ZIRCON_BEEHIVE_OVEN_PIT = add("zircon_beehive_oven_pit", new BeehiveOvenPit(Config.T3_BEEHIVE_OVEN_CHANCE.get().floatValue(),ModBlocks.ZIRCON_REFRACTORY_BRICKS,Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
-    public static final Crucible CRUCIBLE = add("crucible", new Crucible(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
+    public static final CrucibleBlock CRUCIBLE_BLOCK = add("crucible", new CrucibleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final Block TEMPLATE_TABLE = add("template_table", new TemplateTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final AlloyFurnace ALLOY_FURNACE = add("alloy_furnace", new AlloyFurnace(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final CoalForge COAL_FORGE = add("coal_forge", new CoalForge(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final PistonCrusher PISTON_CRUSHER = add("piston_crusher", new PistonCrusher(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)), METALLURGY);
     public static final InductionFurnace INDUCTION_FURNACE = add("induction_furnace", new InductionFurnace(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)), METALLURGY);
     public static final EvaporationTowerBlock EVAPORATION_TOWER = add("evaporation_tower", new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final Block DIAMOND_ANVIL_CELL = add("diamond_anvil_cell", new DiamondAnvilCellBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
     public static final Block LASER_QUARRY = add("laser_quarry", new LaserQuarryBlock(DEF_METAL_BLOCK), METALLURGY);
     public static final Block LASER_PYLON_TOP = add("laser_pylon_top", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block LASER_PYLON_BASE = add("laser_pylon_base", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -1142,6 +1150,12 @@ public class ModBlocks {
 
     @ObjectHolder("rankine:evaporation_tower")
     public static TileEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
+
+    @ObjectHolder("rankine:crucible")
+    public static ContainerType<CrucibleContainer> CRUCIBLE_CONTAINER;
+
+    @ObjectHolder("rankine:crucible")
+    public static TileEntityType<CrucibleTile> CRUCIBLE_TILE;
 
     @ObjectHolder("rankine:template_table")
     public static ContainerType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;
