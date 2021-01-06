@@ -35,16 +35,18 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModRecipes {
+
     public static final DeferredRegister<IRecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ProjectRankine.MODID);
+    public static final RegistryObject<AlloyCraftingRecipe.Serializer> ALLOY_CRAFTING_SERIALIZER = REGISTRY.register("alloy_crafting", () -> AlloyCraftingRecipe.SERIALIZER);
 
     private static void registerType(ResourceLocation name, IRecipeType<?> recipeType) {
         Registry.register(Registry.RECIPE_TYPE, name, recipeType);
     }
 
     public static void init() {
-        registerType(new ResourceLocation(ProjectRankine.MODID,"crushing"), IPistonCrusherRecipe.RECIPE_TYPE);
+
     }
-    public static final RegistryObject<IPistonCrusherRecipe.Serializer> PISTON_CRUSHER_SERIALIZER = REGISTRY.register("crushing", IPistonCrusherRecipe.Serializer::new);
+    //public static final RegistryObject<IPistonCrusherRecipe.Serializer> PISTON_CRUSHER_SERIALIZER = REGISTRY.register("crushing", IPistonCrusherRecipe.Serializer::new);
 
     public static List<IAlloyRecipe> getAlloyRecipes()
     {
@@ -83,7 +85,7 @@ public class ModRecipes {
         recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(returnTagFamily("iron"),returnTagFamily("nickel"),
                 returnTagFamily("cobalt")), new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,.05f),0.95f));
 
-        recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(returnTagFamily("pig_iron"),returnTagFamily("carbon","coke","graphite"),
+        recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(returnTagFamily("iron"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("chromium"),returnTagFamily("molybdenum"),returnTagFamily("titanium"),
                 returnTagFamily("vanadium"),returnTagFamily("silicon"),returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
@@ -244,6 +246,7 @@ public class ModRecipes {
         List<Item> list = new ArrayList<>();
         for (ResourceLocation i : rs)
         {
+            //System.out.println("Attempting to access " + i);
             ITag<Item> d = ItemTags.getCollection().get(i);
             if (d != null)
             {
@@ -254,7 +257,47 @@ public class ModRecipes {
             }*/
 
         }
+
+        if (list.isEmpty())
+        {
+            //System.out.println("Tag not found for JEI Recipe with ResourceLocation(s): " + Arrays.toString(rs));
+            //System.out.println("Attempting fix...");
+            for (ResourceLocation i : rs)
+            {
+                if (i != null)
+                {
+                    String namespace;
+                    String path = i.getPath();
+                    Item end;
+                    if (path.contains("iron") && (!path.contains("pig") || !path.contains("wrought")) || path.contains("gold") || path.contains("netherite")){
+                        namespace = "minecraft";
+                    } else {
+                        namespace = "rankine";
+                    }
+                    String s;
+                    if (path.contains("ingot"))
+                    {
+                        s = path.split("/")[1] + "_ingot";
+                    } else if (path.contains("nugget"))
+                    {
+                        s = path.split("/")[1] + "_nugget";
+                    } else if (path.contains("block")) {
+                        s = path.split("/")[1] + "_block";
+                    } else {
+                        s = path;
+                    }
+                    end = ForgeRegistries.ITEMS.getValue(new ResourceLocation(namespace,s));
+                    if (end != null)
+                    {
+                        list.add(end);
+                    }
+                }
+
+            }
+        }
+
         ItemStack[] result = new ItemStack[list.size()];
+
         if (!list.isEmpty())
         {
             for (int i = 0; i < list.size(); i++)
@@ -262,9 +305,8 @@ public class ModRecipes {
                 result[i] = new ItemStack(list.get(i));
             }
 
-        } else
-        {
-            System.out.println("Tag not found for JEI Recipe with ResourceLocation(s): " + Arrays.toString(rs));
+        } else {
+            System.out.println("JEI Alloy Ingredient error handler did not work! Inserting element error item...");
             result = new ItemStack[]{new ItemStack(ModItems.ELEMENT)};
         }
         return result;

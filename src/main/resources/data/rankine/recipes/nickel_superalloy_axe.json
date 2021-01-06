@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      "## ",
+      "#t ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:nickel_superalloy"
+            },
+        "t": {
+            "tag": "forge:rods/steel"
+            }
+      },
+      "result": {
+          "item": "rankine:nickel_superalloy_axe",
+          "count": 1        }
+    }

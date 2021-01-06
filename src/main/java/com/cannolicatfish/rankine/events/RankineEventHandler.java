@@ -60,10 +60,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.items.IItemHandler;
 
 import java.awt.event.ItemEvent;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 
 import static net.minecraft.block.Block.spawnAsEntity;
@@ -155,39 +152,123 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onFluidInteraction(BlockEvent.FluidPlaceBlockEvent event)
     {
-        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get())
+        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
         {
-            switch (event.getWorld().getRandom().nextInt(10))
+            World worldIn = (World) event.getWorld();
+            BlockPos pos = event.getPos();
+            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
+                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
+            if (adjPos.contains(ModBlocks.FELDSPAR_BLOCK) && adjPos.contains(Blocks.QUARTZ_BLOCK))
+            {
+                event.setNewState(Blocks.GRANITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK) && adjPos.contains(Blocks.QUARTZ_BLOCK))
+            {
+                event.setNewState(ModBlocks.RED_GRANITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.FELDSPAR_BLOCK) && adjPos.contains(ModBlocks.MICA_BLOCK))
+            {
+                event.setNewState(ModBlocks.GRANODIORITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK) && adjPos.contains(ModBlocks.MICA_BLOCK))
+            {
+                event.setNewState(Blocks.DIORITE.getDefaultState());
+                return;
+            }  else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK) && adjPos.contains(ModBlocks.PYROXENE_BLOCK))
+            {
+                event.setNewState(ModBlocks.GABBRO.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK) && adjPos.contains(ModBlocks.OLIVINE_BLOCK))
+            {
+                event.setNewState(ModBlocks.ANORTHOSITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.OLIVINE_BLOCK) && adjPos.contains(ModBlocks.PYROXENE_BLOCK))
+            {
+                event.setNewState(ModBlocks.PERIDOTITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.MAGNESIA_BLOCK) && adjPos.contains(ModBlocks.PYROXENE_BLOCK))
+            {
+                event.setNewState(ModBlocks.KOMATIITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.MAGNESIA_BLOCK) && adjPos.contains(ModBlocks.OLIVINE_BLOCK))
+            {
+                event.setNewState(ModBlocks.KIMBERLITE.getDefaultState());
+                return;
+            }
+
+            switch (event.getWorld().getRandom().nextInt(5))
             {
                 case 0:
                     event.setNewState(Blocks.GRANITE.getDefaultState());
                     break;
                 case 1:
-                    event.setNewState(Blocks.ANDESITE.getDefaultState());
-                    break;
-                case 2:
                     event.setNewState(Blocks.DIORITE.getDefaultState());
                     break;
-                case 3:
+                case 2:
                     event.setNewState(ModBlocks.RED_GRANITE.getDefaultState());
+                    break;
+                case 3:
+                    event.setNewState(ModBlocks.GRANODIORITE.getDefaultState());
+                    break;
+                case 4:
+                    event.setNewState(ModBlocks.ANORTHOSITE.getDefaultState());
+                    break;
+            }
+        } else if (event.getState() == Blocks.BASALT.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
+        {
+            World worldIn = (World) event.getWorld();
+            BlockPos pos = event.getPos();
+            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
+                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock());
+
+            if (adjPos.contains(ModBlocks.FELDSPAR_BLOCK))
+            {
+                event.setNewState(ModBlocks.RHYOLITE.getDefaultState());
+                return;
+            } /*else if (adjPos.contains(Blocks.QUARTZ_BLOCK))
+            {
+                event.setNewState(ModBlocks.BLACK_DACITE.getDefaultState());
+                return;
+            } */else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK))
+            {
+                event.setNewState(Blocks.ANDESITE.getDefaultState());
+                return;
+            } /*else if (adjPos.contains(ModBlocks.MICA_BLOCK))
+            {
+                event.setNewState(ModBlocks.RED_DACITE.getDefaultState());
+                return;
+            } */else if (adjPos.contains(ModBlocks.AMPHIBOLE_BLOCK))
+            {
+                event.setNewState(ModBlocks.HORNBLENDE_ANDESITE.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.PYROXENE_BLOCK))
+            {
+                event.setNewState(Blocks.BASALT.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.OLIVINE_BLOCK))
+            {
+                event.setNewState(ModBlocks.THOLEIITIC_BASALT.getDefaultState());
+                return;
+            }
+            switch (event.getWorld().getRandom().nextInt(6))
+            {
+                case 0:
+                    event.setNewState(Blocks.BASALT.getDefaultState());
+                    break;
+                case 1:
+                    event.setNewState(ModBlocks.THOLEIITIC_BASALT.getDefaultState());
+                    break;
+                case 2:
+                    event.setNewState(ModBlocks.GABBRO.getDefaultState());
+                    break;
+                case 3:
+                    event.setNewState(ModBlocks.RHYOLITE.getDefaultState());
                     break;
                 case 4:
                     event.setNewState(ModBlocks.HORNBLENDE_ANDESITE.getDefaultState());
                     break;
                 case 5:
-                    event.setNewState(ModBlocks.GRANODIORITE.getDefaultState());
-                    break;
-                case 6:
-                    event.setNewState(ModBlocks.ANORTHOSITE.getDefaultState());
-                    break;
-                case 7:
-                    event.setNewState(ModBlocks.THOLEIITIC_BASALT.getDefaultState());
-                    break;
-                case 8:
-                    event.setNewState(ModBlocks.GABBRO.getDefaultState());
-                    break;
-                case 9:
-                    event.setNewState(ModBlocks.RHYOLITE.getDefaultState());
+                    event.setNewState(Blocks.ANDESITE.getDefaultState());
                     break;
             }
         }

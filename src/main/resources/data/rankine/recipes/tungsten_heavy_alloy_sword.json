@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      " # ",
+      " # ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:tungsten_heavy_alloy"
+            },
+        "t": {
+            "tag": "forge:rods/steel"
+            }
+      },
+      "result": {
+          "item": "rankine:tungsten_heavy_alloy_sword",
+          "count": 1        }
+    }

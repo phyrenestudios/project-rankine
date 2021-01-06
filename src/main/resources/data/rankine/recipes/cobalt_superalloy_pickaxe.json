@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      "###",
+      " t ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:cobalt_superalloy"
+            },
+        "t": {
+            "tag": "forge:rods/steel"
+            }
+      },
+      "result": {
+          "item": "rankine:cobalt_superalloy_pickaxe",
+          "count": 1        }
+    }

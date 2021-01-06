@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      "###",
+      "#t#",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:stainless_steel_alloy"
+            },
+        "t": {
+            "tag": "forge:rods/steel"
+            }
+      },
+      "result": {
+          "item": "rankine:stainless_steel_hammer",
+          "count": 1        }
+    }

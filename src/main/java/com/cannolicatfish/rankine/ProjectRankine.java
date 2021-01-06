@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
@@ -69,7 +71,7 @@ public class ProjectRankine {
 
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-common.toml"));
-
+        //ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(this);
 
         Bus.addListener(this::CommonSetup);
@@ -87,7 +89,7 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         proxy.init();
         //RankineBiomes.addRankineBiomes();
-        ModRecipes.init();
+
         //OreGen.setupOreGeneration();
         //DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
@@ -125,6 +127,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(AlloyFurnaceTile::new, ModBlocks.ALLOY_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"alloy_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(PistonCrusherTile::new, ModBlocks.PISTON_CRUSHER).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(CoalForgeTile::new, ModBlocks.COAL_FORGE).build(null).setRegistryName(ProjectRankine.MODID,"coal_forge"));
+            event.getRegistry().register(TileEntityType.Builder.create(CrucibleTile::new, ModBlocks.CRUCIBLE_BLOCK).build(null).setRegistryName(ProjectRankine.MODID,"crucible"));
             event.getRegistry().register(TileEntityType.Builder.create(InductionFurnaceTile::new, ModBlocks.INDUCTION_FURNACE).build(null).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, ModBlocks.EVAPORATION_TOWER).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
             event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, ModBlocks.LASER_QUARRY).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
@@ -215,6 +218,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new CoalForgeContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"coal_forge"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new CrucibleContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"crucible"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
