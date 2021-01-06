@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LadderBlock;
+import net.minecraft.block.RedstoneOreBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -30,10 +31,11 @@ public class MetalLadder extends LadderBlock {
         {
             n += 1;
         }
-        if (!world.isRemote && player.getHeldItem(hand).getItem() == Items.AIR && player.isOnLadder()) {
+        if (!world.isRemote) {
             player.setPositionAndUpdate(pos.getX() + .5f,pos.getY() + n,pos.getZ() + .5f);
-            return ActionResultType.SUCCESS;
+            return ActionResultType.FAIL;
         }
         return super.onBlockActivated(state, world, pos, player, hand, result);
     }
+
 }

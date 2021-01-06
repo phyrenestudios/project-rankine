@@ -1,5 +1,5 @@
 {
-  "name": "Tuff",
+  "name": "Tuffs",
   "icon": "rankine:andesitic_tuff",
   "category": "exploration",
   "pages": [
@@ -10,16 +10,19 @@
     {
       "type": "spotlight",
       "item": "rankine:andesitic_tuff",
+      "link_recipe": true,
       "text": "Found as pockets in $(l:exploration/stones#hornblende_andesite)Hornblende Andesite$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:rhyolitic_tuff",
+      "link_recipe": true,
       "text": "Found above layers of $(l:exploration/stones#rhyolite)Rhyolite$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:tholeiitic_basaltic_tuff",
+      "link_recipe": true,
       "text": "Found above layers of $(l:exploration/stones#tholeiitic_basalt)Tholeiitic Basalt$()."
     }
   ]

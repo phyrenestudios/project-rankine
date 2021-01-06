@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
+    "rankine:red_dacite_slab",
+    "rankine:black_dacite_slab",
+    "rankine:chalk_slab",
+    "rankine:mudstone_slab",
+    "rankine:quartz_sandstone_slab",
+    "rankine:arkose_sandstone_slab",
     "rankine:red_granite_slab",
     "rankine:granodiorite_slab",
     "rankine:hornblende_andesite_slab",

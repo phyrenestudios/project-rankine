@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
+    "rankine:red_dacite_stairs",
+    "rankine:black_dacite_stairs",
+    "rankine:chalk_stairs",
+    "rankine:mudstone_stairs",
+    "rankine:quartz_sandstone_stairs",
+    "rankine:arkose_sandstone_stairs",
     "rankine:red_granite_stairs",
     "rankine:granodiorite_stairs",
     "rankine:hornblende_andesite_stairs",

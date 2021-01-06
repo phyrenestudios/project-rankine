@@ -1,0 +1,7 @@
+{
+                "variants": {
+                "type=bottom": { "model": "rankine:block/red_dacite_slab" },
+                "type=top": { "model": "rankine:block/red_dacite_slab_top" },
+                "type=double": { "model": "rankine:block/red_dacite" }
+                }
+                }

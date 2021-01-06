@@ -12,20 +12,29 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
 public class SimpleTooltipItem extends Item {
-    String tip;
+    List<String> tip;
     public SimpleTooltipItem(String tooltip, Properties properties) {
         super(properties);
-        this.tip = tooltip;
+        this.tip = Collections.singletonList(tooltip);
+    }
+    public SimpleTooltipItem(List<String> tooltips, Properties properties) {
+        super(properties);
+        this.tip = tooltips;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent(tip).mergeStyle(TextFormatting.GRAY));
+            for (String s : tip) {
+                tooltip.add(new StringTextComponent(s).mergeStyle(TextFormatting.GRAY));
+            }
+        } else {
+            tooltip.add(new StringTextComponent("Hold shift for mineral information...").mergeStyle(TextFormatting.GRAY));
         }
 
     }

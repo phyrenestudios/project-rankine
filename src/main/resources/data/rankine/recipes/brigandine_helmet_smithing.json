@@ -4,7 +4,7 @@
     "item": "minecraft:leather_helmet"
   },
   "addition": {
-    "item": "rankine:steel_alloy"
+    "tag": "forge:ingots/steel"
   },
   "result": {
     "item": "rankine:brigandine_helmet"

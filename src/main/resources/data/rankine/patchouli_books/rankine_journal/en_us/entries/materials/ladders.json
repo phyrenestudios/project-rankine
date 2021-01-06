@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "rankine:aluminum_ladder",
-      "text": "Right click with an empty hand to instantly travel to the top or bottom."
+      "text": "Right click with an empty hand to instantly travel to the top."
     }
   ]
 }

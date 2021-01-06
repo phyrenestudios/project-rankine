@@ -5,51 +5,60 @@
   "pages": [
     {
       "type": "text",
-      "text": "Many precious gemstones can found in a variety of places. Only rudimentary sampling has been conducted."
+      "text": "Many precious gemstones can found in a variety of places. For now, most are only used for crafting and/or decoration."
     },
     {
       "type": "spotlight",
       "item": "minecraft:diamond",
+      "link_recipe": true,
       "text": "Found in kimberlite intrusions and alluvium / black sand deposits."
     },
     {
       "type": "spotlight",
       "item": "minecraft:emerald",
-      "text": "Found throughout the overworld in most stones."
+      "link_recipe": true,
+      "text": "Found as an ore throughout the overworld."
     },
     {
       "type": "spotlight",
 	  "item": "rankine:peridot",
+      "link_recipe": true,
       "text": "Found in alluvium / black sand deposits."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:opal",
-      "text": "Found as opal ore in ironstone."
+      "link_recipe": true,
+      "text": "Found as an ore in ironstone."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:garnet",
-      "text": "Found as majorite ore in peridotite."
+      "link_recipe": true,
+      "text": "Found in majorite ore throughout the overworld."
     },
     {
       "type": "spotlight",
       "item": "rankine:ruby",
+      "link_recipe": true,
       "text": "Found in alluvium / black sand deposits."
     },
     {
       "type": "spotlight",
       "item": "rankine:sapphire",
+      "link_recipe": true,
       "text": "Found in alluvium / black sand deposits."
     },
 	{
       "type": "spotlight",
 	  "item": "rankine:aquamarine",
-      "text": "Found throughout the overworld in most stones."
+      "link_recipe": true,
+      "text": "Found as an ore throughout the overworld."
     },
     {
       "type": "spotlight",
       "item": "rankine:tourmaline",
+      "link_recipe": true,
       "text": "Found as a crushing component of petalite."
     }
   ]

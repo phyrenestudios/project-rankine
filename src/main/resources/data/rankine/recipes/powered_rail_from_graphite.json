@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "#S#",
+    "#R#"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/graphite"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "minecraft:powered_rail",
+    "count": 6
+  }
+}

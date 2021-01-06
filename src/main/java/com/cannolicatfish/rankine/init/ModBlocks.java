@@ -180,10 +180,20 @@ public class ModBlocks {
     public static final Block PEROVSKITE = add("perovskite", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block POLISHED_PEROVSKITE = add("polished_perovskite", new Block(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block PEROVSKITE_BRICKS = add("perovskite_bricks", new Block(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
+    public static final Block RED_DACITE = add("red_dacite", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block BLACK_DACITE = add("black_dacite", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block QUARTZ_SANDSTONE = add("quartz_sandstone", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block ARKOSE_SANDSTONE = add("arkose_sandstone", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block MUDSTONE = add("mudstone", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block CHALK = add("chalk", new RankineStone(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
+
     public static final Block CLAY_BRICKS = add("clay_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS = add("refractory_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS = add("magnesium_refractory_bricks", new Block(DEF_STONE.harvestLevel(1)), BLOCKS);
     public static final Block ZIRCON_REFRACTORY_BRICKS = add("zircon_refractory_bricks", new Block(DEF_STONE.harvestLevel(1)), BLOCKS);
+
 
     //Stone Slabs
     public static final Block GRANITE_BRICKS_SLAB = add("granite_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -265,6 +275,15 @@ public class ModBlocks {
     public static final Block PEROVSKITE_SLAB = add("perovskite_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block POLISHED_PEROVSKITE_SLAB = add("polished_perovskite_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_SLAB = add("perovskite_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
+    public static final Block RED_DACITE_SLAB = add("red_dacite_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block BLACK_DACITE_SLAB = add("black_dacite_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block QUARTZ_SANDSTONE_SLAB = add("quartz_sandstone_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block ARKOSE_SANDSTONE_SLAB = add("arkose_sandstone_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block MUDSTONE_SLAB = add("mudstone_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block CHALK_SLAB = add("chalk_slab", new RankineSlab(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
+
     public static final Block CLAY_BRICKS_SLAB = add("clay_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS_SLAB = add("refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_SLAB = add("magnesium_refractory_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(1)), BLOCKS);
@@ -352,6 +371,15 @@ public class ModBlocks {
     public static final Block PEROVSKITE_STAIRS = add("perovskite_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block POLISHED_PEROVSKITE_STAIRS = add("polished_perovskite_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_STAIRS = add("perovskite_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
+    public static final Block RED_DACITE_STAIRS = add("red_dacite_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block BLACK_DACITE_STAIRS = add("black_dacite_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block QUARTZ_SANDSTONE_STAIRS = add("quartz_sandstone_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block ARKOSE_SANDSTONE_STAIRS = add("arkose_sandstone_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block MUDSTONE_STAIRS = add("mudstone_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block CHALK_STAIRS = add("chalk_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
+
     public static final Block CLAY_BRICKS_STAIRS = add("clay_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block REFRACTORY_BRICKS_STAIRS = add("refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block MAGNESIUM_REFRACTORY_BRICKS_STAIRS = add("magnesium_refractory_bricks_stairs", new RankineStairs(Block.getStateById(0),DEF_STONE.harvestLevel(1)), BLOCKS);
@@ -439,6 +467,13 @@ public class ModBlocks {
     public static final Block POLISHED_PEROVSKITE_WALL = add("polished_perovskite_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_WALL = add("perovskite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
 
+    public static final Block RED_DACITE_WALL = add("red_dacite_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block BLACK_DACITE_WALL = add("black_dacite_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block QUARTZ_SANDSTONE_WALL = add("quartz_sandstone_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block ARKOSE_SANDSTONE_WALL = add("arkose_sandstone_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block MUDSTONE_WALL = add("mudstone_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+    public static final Block CHALK_WALL = add("chalk_wall", new RankineWall(DEF_STONE.harvestLevel(Config.PEROVSKITE_HL.get())), BLOCKS);
+
 
     //BUTTONS
     public static final Block RED_GRANITE_BUUTON = add("red_granite_button", new RankineStoneButton(), BLOCKS);
@@ -466,6 +501,12 @@ public class ModBlocks {
     public static final Block BRIDGMANITE_BUUTON = add("bridgmanite_button", new RankineStoneButton(), BLOCKS);
     public static final Block FERROPERICLASE_BUUTON = add("ferropericlase_button", new RankineStoneButton(), BLOCKS);
     public static final Block PEROVSKITE_BUUTON = add("perovskite_button", new RankineStoneButton(), BLOCKS);
+    public static final Block RED_DACITE_BUTTON = add("red_dacite_button", new RankineStoneButton(), BLOCKS);
+    public static final Block BLACK_DACITE_BUTTON = add("black_dacite_button", new RankineStoneButton(), BLOCKS);
+    public static final Block QUARTZ_SANDSTONE_BUTTON = add("quartz_sandstone_button", new RankineStoneButton(), BLOCKS);
+    public static final Block ARKOSE_SANDSTONE_BUTTON = add("arkose_sandstone_button", new RankineStoneButton(), BLOCKS);
+    public static final Block MUDSTONE_BUTTON = add("mudstone_button", new RankineStoneButton(), BLOCKS);
+    public static final Block CHALK_BUTTON = add("chalk_button", new RankineStoneButton(), BLOCKS);
 
 
     //PRESSURE PLATES
@@ -523,7 +564,12 @@ public class ModBlocks {
     public static final Block FERROPERICLASE_BRICKS_PRESSURE_PLATE = add("ferropericlase_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block PEROVSKITE_PRESSURE_PLATE = add("perovskite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block PEROVSKITE_BRICKS_PRESSURE_PLATE = add("perovskite_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-
+    public static final Block RED_DACITE_PRESSURE_PLATE = add("red_dacite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block BLACK_DACITE_PRESSURE_PLATE = add("black_dacite_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block QUARTZ_SANDSTONE_PRESSURE_PLATE = add("quartz_sandstone_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block ARKOSE_SANDSTONE_PRESSURE_PLATE = add("arkose_sandstone_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block MUDSTONE_PRESSURE_PLATE = add("mudstone_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block CHALK_PRESSURE_PLATE = add("chalk_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
 
     //Earth Blocks
     public static final Block ALLUVIUM = add("alluvium", new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)), BLOCKS);
@@ -553,6 +599,8 @@ public class ModBlocks {
     public static final Block ROMAN_CONCRETE_BRICKS_STAIRS = add("roman_concrete_bricks_stairs", new RankineStairs(Config.ROMAN_CONCRETE_SPEED.get(),Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_BRICKS_WALL = add("roman_concrete_bricks_wall", new WallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block QUARRY_BARRIER = add("quarry_barrier", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(10.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
+    public static final Block BONE_CHAR_BLOCK = add("bone_char_block", new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)), BLOCKS);
+    public static final Block CHARRED_WOOD = add("charred_wood", new CharredWood(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.2F, 3.0F).harvestLevel(0)), BLOCKS, 200);
 
 
     //WOOD BLOCKS
@@ -603,6 +651,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_PLANKS = add("balsam_fir_planks",new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_PLANKS = add("magnolia_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_PLANKS = add("eastern_hemlock_planks", new Block(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_PLANKS = add("maple_planks", new Block(DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_PLANKS = add("bamboo_planks",new Block(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS = add("bamboo_culms", new Block(DEF_WOOD), BLOCKS, 400);
 
@@ -613,6 +662,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_SLAB = add("balsam_fir_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block MAGNOLIA_SLAB = add("magnolia_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block EASTERN_HEMLOCK_SLAB = add("eastern_hemlock_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block MAPLE_SLAB = add("maple_slab", new RankineSlab(DEF_WOOD), BLOCKS, 150);
     public static final Block BAMBOO_SLAB = add("bamboo_slab", new RankineSlab(DEF_WOOD), BLOCKS, 200);
     public static final Block BAMBOO_CULMS_SLAB = add("bamboo_culms_slab", new RankineSlab(DEF_WOOD), BLOCKS, 200);
 
@@ -623,6 +673,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_STAIRS = add("balsam_fir_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_STAIRS = add("magnolia_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_STAIRS = add("eastern_hemlock_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_STAIRS = add("maple_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_STAIRS = add("bamboo_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_STAIRS = add("bamboo_culms_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
 
@@ -633,6 +684,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_FENCE = add("balsam_fir_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_FENCE = add("magnolia_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_FENCE = add("eastern_hemlock_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_FENCE = add("maple_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_FENCE = add("bamboo_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_FENCE = add("bamboo_culms_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 400);
 
@@ -643,6 +695,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_FENCE_GATE = add("balsam_fir_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block MAGNOLIA_FENCE_GATE = add("magnolia_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_FENCE_GATE = add("eastern_hemlock_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
+    public static final Block MAPLE_FENCE_GATE = add("maple_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_FENCE_GATE = add("bamboo_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_FENCE_GATE = add("bamboo_culms_fence_gate", new RankineWoodenFenceGate(DEF_WOOD), BLOCKS, 400);
 
@@ -656,6 +709,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_PRESSURE_PLATE = add("balsam_fir_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block MAGNOLIA_PRESSURE_PLATE = add("magnolia_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block EASTERN_HEMLOCK_PRESSURE_PLATE = add("eastern_hemlock_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
+    public static final Block MAPLE_PRESSURE_PLATE = add("maple_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 600);
     public static final Block BAMBOO_PRESSURE_PLATE = add("bamboo_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 800);
     public static final Block BAMBOO_CULMS_PRESSURE_PLATE = add("bamboo_culms_pressure_plate", new RankineWoodenPressurePlate(), BLOCKS, 1800);
 
@@ -666,6 +720,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_BUTTON = add("balsam_fir_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block MAGNOLIA_BUTTON = add("magnolia_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_BUTTON = add("eastern_hemlock_button", new RankineWoodenButton(), BLOCKS, 300);
+    public static final Block MAPLE_BUTTON = add("maple_button", new RankineWoodenButton(), BLOCKS, 300);
     public static final Block BAMBOO_BUTTON = add("bamboo_button", new RankineWoodenButton(), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_BUTTON = add("bamboo_culms_button", new RankineWoodenButton(), BLOCKS, 900);
 
@@ -676,8 +731,9 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_DOOR = add("balsam_fir_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block EASTERN_HEMLOCK_DOOR = add("eastern_hemlock_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block MAGNOLIA_DOOR = add("magnolia_door", new RankineWoodenDoor(), BLOCKS, 600);
+    public static final Block MAPLE_DOOR = add("maple_door", new RankineWoodenDoor(), BLOCKS, 600);
     public static final Block BAMBOO_DOOR = add("bamboo_door", new RankineWoodenDoor(), BLOCKS, 600);
-    public static final Block BRASS_DOOR = add("brass_door", new RankineMetalDoor(),BLOCKS);
+    public static final Block BRASS_DOOR = add("brass_door", new RankineMetalDoor(),BLOCKS, 600);
 
     public static final Block CEDAR_TRAPDOOR = add("cedar_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block PINYON_PINE_TRAPDOOR = add("pinyon_pine_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
@@ -686,6 +742,7 @@ public class ModBlocks {
     public static final Block BALSAM_FIR_TRAPDOOR = add("balsam_fir_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block EASTERN_HEMLOCK_TRAPDOOR = add("eastern_hemlock_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block MAGNOLIA_TRAPDOOR = add("magnolia_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
+    public static final Block MAPLE_TRAPDOOR = add("maple_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block BAMBOO_TRAPDOOR = add("bamboo_trapdoor", new RankineWoodenTrapDoor(), BLOCKS, 300);
     public static final Block BRASS_TRAPDOOR = add("brass_trapdoor", new RankineMetalTrapdoor(),BLOCKS);
 
@@ -854,6 +911,7 @@ public class ModBlocks {
     public static final Block PURPLE_GOLD_BLOCK = add("purple_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BLACK_GOLD_BLOCK = add("black_gold_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block INVAR_BLOCK = add("invar_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PEWTER_BLOCK = add("pewter_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block BRONZE_BLOCK = add("bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block ALUMINUM_BRONZE_BLOCK = add("aluminum_bronze_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block OSMIRIDIUM_BLOCK = add("osmiridium_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -878,6 +936,8 @@ public class ModBlocks {
     public static final Block WROUGHT_IRON_BLOCK = add("wrought_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CAST_IRON_BLOCK = add("cast_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block NICKEL_SUPERALLOY_BLOCK = add("nickel_superalloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block COBALT_SUPERALLOY_BLOCK = add("cobalt_superalloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block TUNGSTEN_HEAVY_ALLOY_BLOCK = add("tungsten_heavy_alloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     //GEM AND MINERALS
     public static final Block MALACHITE_BLOCK = add("malachite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
@@ -893,6 +953,7 @@ public class ModBlocks {
     public static final Block TOURMALINE_BLOCK = add("tourmaline_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CELESTINE_BLOCK = add("celestine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block CINNABAR_BLOCK = add("cinnabar_block", new CinnabarBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block PERLITE_BLOCK = add("perlite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block FELDSPAR_BLOCK = add("feldspar_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
@@ -1026,6 +1087,7 @@ public class ModBlocks {
     public static final Block RED_LED = add("red_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
     public static final Block GREEN_LED = add("green_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
     public static final Block BLUE_LED = add("blue_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final CharcoalPit CHARCOAL_PIT = add("charcoal_pit", new CharcoalPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
 
 
     //MISC CREATIVE TAB
@@ -1041,6 +1103,8 @@ public class ModBlocks {
     public static final RankineBerryBushBlock PINEAPPLE_BUSH = add("pineapple_bush", "pineapple",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),7), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE), BlockNamedItem::new);
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);
     public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
+    //public static final Block NICKEL_LADDER = add("nickel_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
+
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
     public static final RopeCoilBlock ROPE_COIL = add("rope_coil", new RopeCoilBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(1.0F)), MISC);
 

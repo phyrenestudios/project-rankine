@@ -19,6 +19,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+
+import java.util.Arrays;
+
 public class ModItems {
 
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
@@ -31,47 +34,47 @@ public class ModItems {
 //METALLURGY TAB
 //=============================================================================
 //CRUSHED ORES
-    public static final Item MALACHITE = add("malachite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item AZURITE = add("azurite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CHALCOPYRITE = add("chalcopyrite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CASSITERITE = add("cassiterite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item ALUMINA = add("alumina", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item SPHALERITE = add("sphalerite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MAGNETITE = add("magnetite", new SimpleTooltipItem("Fe3O4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item PENTLANDITE = add("pentlandite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MAGNESIA = add("magnesia", new SimpleTooltipItem("MgO",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MAGNESITE = add("magnesite", new SimpleTooltipItem("MgCO3",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item GALENA = add("galena", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item VANADINITE = add("vanadinite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item BISMUTHINITE = add("bismuthinite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item ACANTHITE = add("acanthite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item PYROLUSITE = add("pyrolusite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CHROMITE = add("chromite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MOLYBDENITE = add("molybdenite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item WOLFRAMITE = add("wolframite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item TITANIA = add("titania", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item COLUMBITE = add("columbite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item TANTALITE = add("tantalite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item COBALTITE = add("cobaltite", new SimpleTooltipItem("CoAsS",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item PETALITE = add("petalite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CELESTINE = add("celestine", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item PLATINUM_ARSENIDE = add("platinum_arsenide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CERIUM_MONAZITE = add("cerium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item LANTHANUM_MONAZITE = add("lanthanum_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item NEODYMIUM_MONAZITE = add("neodymium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item SAMARIUM_MONAZITE = add("samarium_monazite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item ZIRCON = add("zircon", new SimpleTooltipItem("ZrSiO4",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item THORITE = add("thorite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item URANINITE = add("uraninite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item GREENOCKITE = add("greenockite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item STIBNITE = add("stibnite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item XENOTIME = add("xenotime", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item BARITE = add("barite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MALACHITE = add("malachite", new SimpleTooltipItem(Arrays.asList("Composition: Cu2CO3(OH)2", "Used as a source for copper or as pigment"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item AZURITE = add("azurite", new SimpleTooltipItem(Arrays.asList("Composition: Cu3(CO3)2(OH)2", "Used as a source for copper or as pigment"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CHALCOPYRITE = add("chalcopyrite", new SimpleTooltipItem(Arrays.asList("Composition: CuFeS2", "Used as a source for copper and iron"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CASSITERITE = add("cassiterite", new SimpleTooltipItem(Arrays.asList("Composition: SnO2", "Used as a source for tin"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ALUMINA = add("alumina", new SimpleTooltipItem(Arrays.asList("Composition: Al2O3", "Used as a source for aluminum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SPHALERITE = add("sphalerite", new SimpleTooltipItem(Arrays.asList("Composition: ZnS", "Used as a source for zinc"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNETITE = add("magnetite", new SimpleTooltipItem(Arrays.asList("Composition: Fe3O4", "Used as a source for iron"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PENTLANDITE = add("pentlandite", new SimpleTooltipItem(Arrays.asList("Composition: Ni9S8", "Used as a source for nickel"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MAGNESITE = add("magnesite", new SimpleTooltipItem(Arrays.asList("Composition: MgCO3", "Used as a source for magnesium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GALENA = add("galena", new SimpleTooltipItem(Arrays.asList("Composition: PbS", "Used as a source for lead"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item VANADINITE = add("vanadinite", new SimpleTooltipItem(Arrays.asList("Composition: Pb5(VO4)3Cl", "Used as a source for vanadium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BISMUTHINITE = add("bismuthinite", new SimpleTooltipItem(Arrays.asList("Composition: Bi2S3", "Used as a source for bismuth"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ACANTHITE = add("acanthite", new SimpleTooltipItem(Arrays.asList("Composition: Ag2S", "Used as a source for silver"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PYROLUSITE = add("pyrolusite", new SimpleTooltipItem(Arrays.asList("Composition: MnO2", "Used as a source for manganese"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CHROMITE = add("chromite", new SimpleTooltipItem(Arrays.asList("Composition: FeCr2O4", "Used as a source for chromium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MOLYBDENITE = add("molybdenite", new SimpleTooltipItem(Arrays.asList("Composition: MoS2", "Used as a source for molybdenum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item WOLFRAMITE = add("wolframite", new SimpleTooltipItem(Arrays.asList("Composition: FeWO4", "Used as a source for tungsten"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TITANIA = add("titania", new SimpleTooltipItem(Arrays.asList("Composition: TiO2", "Used as a source for titanium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COLUMBITE = add("columbite", new SimpleTooltipItem(Arrays.asList("Composition: FeNb2O6", "Used as a source for niobium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item TANTALITE = add("tantalite", new SimpleTooltipItem(Arrays.asList("Composition: FeTa2O6", "Used as a source for tantalum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item COBALTITE = add("cobaltite", new SimpleTooltipItem(Arrays.asList("Composition: CoAsS", "Used as a source for cobalt"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PETALITE = add("petalite", new SimpleTooltipItem(Arrays.asList("Composition: LiAlSi4O10", "Used as a source for lithium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CELESTINE = add("celestine", new SimpleTooltipItem(Arrays.asList("Composition: SrSO4", "Used as a source for strontium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PLATINUM_ARSENIDE = add("platinum_arsenide", new SimpleTooltipItem(Arrays.asList("Composition: PtAs2", "Used as a source for platinum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CERIUM_MONAZITE = add("cerium_monazite", new SimpleTooltipItem(Arrays.asList("Composition: CePO4", "Used as a source for cerium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LANTHANUM_MONAZITE = add("lanthanum_monazite", new SimpleTooltipItem(Arrays.asList("Composition: LaPO4", "Used as a source for lanthanum"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item NEODYMIUM_MONAZITE = add("neodymium_monazite", new SimpleTooltipItem(Arrays.asList("Composition: NdPO4", "Used as a source for neodymium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SAMARIUM_MONAZITE = add("samarium_monazite", new SimpleTooltipItem(Arrays.asList("Composition: SmPO4", "Used as a source for samarium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item ZIRCON = add("zircon", new SimpleTooltipItem(Arrays.asList("Composition: ZrSiO4", "Used as a source for zirconium and for ultra-high refractory bricks"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item THORITE = add("thorite", new SimpleTooltipItem(Arrays.asList("Composition: ThSiO4", "Used as a source for thorium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item URANINITE = add("uraninite", new SimpleTooltipItem(Arrays.asList("Composition: UO2", "Used as a source for uranium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item GREENOCKITE = add("greenockite", new SimpleTooltipItem(Arrays.asList("Composition: CdS", "Used as a source for cadmium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item STIBNITE = add("stibnite", new SimpleTooltipItem(Arrays.asList("Composition: Sb2S3", "Used as a source for antimony"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item XENOTIME = add("xenotime", new SimpleTooltipItem(Arrays.asList("Composition: YPO4", "Used as a source for yttrium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BARITE = add("barite", new SimpleTooltipItem(Arrays.asList("Composition: BaSO4", "Used as a source for barium"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item LIGNITE = add("lignite", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),1200));
     public static final Item SUBBITUMINOUS_COAL = add("subbituminous_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),1600));
     public static final Item BITUMINOUS_COAL = add("bituminous_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),2400));
     public static final Item ANTHRACITE_COAL = add("anthracite_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200));
     public static final Item COKE = add("coke", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200));
+    public static final Item MAGNESIA = add("magnesia", new SimpleTooltipItem(Arrays.asList("Composition: MgO", "Used for high refractory bricks"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CALCITE = add("calcite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item DOLOMITE = add("dolomite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item FELDSPAR = add("feldspar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -86,9 +89,9 @@ public class ModItems {
     public static final Item SALTPETER = add("saltpeter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item FLUORITE = add("fluorite", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item GRAPHITE = add("graphite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CALCIUM_SILICATE = add("calcium_silicate", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item SILICON_CARBIDE = add("silicon_carbide", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item CINNABAR = add("cinnabar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CALCIUM_SILICATE = add("calcium_silicate", new SimpleTooltipItem(Arrays.asList("Composition: Ca2SiO4"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item SILICON_CARBIDE = add("silicon_carbide", new SimpleTooltipItem(Arrays.asList("Composition: SiC", "Used as a source for silicon and for LEDs"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CINNABAR = add("cinnabar", new SimpleTooltipItem(Arrays.asList("Composition: HgS", "Used as a source for mercury and redstone"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item RUBY = add("ruby", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SAPPHIRE = add("sapphire", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OPAL = add("opal", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -99,9 +102,12 @@ public class ModItems {
     public static final Item PERIDOT = add("peridot", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item BLOOM_IRON = add("bloom_iron", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SLAG = add("slag", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BONE_CHAR = add("bone_char", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PERLITE = add("perlite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item QUICKLIME = add("quicklime", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item POZZOLAN = add("pozzolan", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final Item MORTAR = add("mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item DRY_MORTAR = add("dry_mortar", new DryMortarItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MORTAR = add("mortar", new MortarItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item POZZOLANIC_MORTAR = add("pozzolanic_mortar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item ELEMENT = add("element", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CLAY_BRICK = add("clay_brick", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -395,6 +401,7 @@ public class ModItems {
     public static final Item  FLINT_SHOVEL = add("flint_shovel", new ShovelItem(RankineToolMaterials.FLINT, 1.5F, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_SPEAR = add("flint_spear", new ItemSpear(RankineToolMaterials.FLINT, 2, -2.9F, ModEntityTypes.FLINT_SPEAR,new ResourceLocation("rankine:textures/entity/flint_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  FLINT_KNIFE = add("flint_knife", new ItemKnife(RankineToolMaterials.FLINT, 1, -1.5F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  FLINT_HOE = add("flint_hoe", new HoeItem(RankineToolMaterials.FLINT, 0, -3.0F, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item  PEWTER_SWORD = add("pewter_sword", new AlloySword(RankineToolMaterials.BRONZE, 3, -2.4F, new PewterAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  PEWTER_SHOVEL = add("pewter_shovel", new AlloyShovel(RankineToolMaterials.BRONZE, 1.5F, -3.0F, new PewterAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -413,7 +420,7 @@ public class ModItems {
     public static final Item  BRONZE_SPEAR = add("bronze_spear", new AlloySpear(RankineToolMaterials.BRONZE, 2, -2.9F, new BronzeAlloyUtils(),ModEntityTypes.BRONZE_SPEAR,new ResourceLocation("rankine:textures/entity/bronze_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  IRON_SPEAR = add("iron_spear", new ItemSpear(ItemTier.IRON, 2, -2.9F, ModEntityTypes.IRON_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  IRON_HAMMER = add("iron_hammer", new ItemHammer(2, -3.2F, ItemTier.IRON, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  IRON_SCRAPER = add("iron_scraper", new ItemScraper(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  METAL_SCRAPER = add("metal_scraper", new ItemScraper(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
 
     public static final Item  METEORIC_IRON_SWORD = add("meteoric_iron_sword", new AlloySword(RankineToolMaterials.METEORIC_IRON, 3, -2.4F, new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item  METEORIC_IRON_SHOVEL = add("meteoric_iron_shovel", new AlloyShovel(RankineToolMaterials.METEORIC_IRON, 1.5F, -3.0F, new MeteoricIronAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -526,13 +533,13 @@ public class ModItems {
     public static final Item NETHERITE_HAMMER = add("netherite_hammer", new ItemHammer(2, -3.2F, ItemTier.NETHERITE,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item NETHERITE_SPEAR = add("netherite_spear", new ItemSpear(ItemTier.NETHERITE,2, -2.9F ,ModEntityTypes.NETHERITE_SPEAR,new ResourceLocation("rankine:textures/entity/netherite_spear.png"),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
-    public static final Item  ALLOY_SWORD = add("alloy_sword", new AlloySword(RankineToolMaterials.FLINT, 3, -2.4F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_SHOVEL = add("alloy_shovel", new AlloyShovel(RankineToolMaterials.FLINT, 1.5F, -3.0F, new GenericAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_PICKAXE = add("alloy_pickaxe", new AlloyPickaxe(RankineToolMaterials.FLINT, 1, -2.8F, new GenericAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_AXE = add("alloy_axe", new AlloyAxe(RankineToolMaterials.FLINT, 4.0F, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_HAMMER = add("alloy_hammer", new AlloyHammer(RankineToolMaterials.FLINT,2, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_HOE = add("alloy_hoe", new AlloyHoe(RankineToolMaterials.FLINT, 0,-2.0F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item  ALLOY_SPEAR = add("alloy_spear", new AlloySpear(RankineToolMaterials.FLINT, 2, -2.9F, new GenericAlloyUtils(),ModEntityTypes.PEWTER_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SWORD = add("alloy_sword", new AlloySword(RankineToolMaterials.ALLOY, 3, -2.4F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SHOVEL = add("alloy_shovel", new AlloyShovel(RankineToolMaterials.ALLOY, 1.5F, -3.0F, new GenericAlloyUtils(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_PICKAXE = add("alloy_pickaxe", new AlloyPickaxe(RankineToolMaterials.ALLOY, 1, -2.8F, new GenericAlloyUtils(), (new Item.Properties()).group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_AXE = add("alloy_axe", new AlloyAxe(RankineToolMaterials.ALLOY, 4.0F, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_HAMMER = add("alloy_hammer", new AlloyHammer(RankineToolMaterials.ALLOY,2, -3.2F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_HOE = add("alloy_hoe", new AlloyHoe(RankineToolMaterials.ALLOY, 0,-2.0F, new GenericAlloyUtils(),new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item  ALLOY_SPEAR = add("alloy_spear", new AlloySpear(RankineToolMaterials.ALLOY, 2, -2.9F, new GenericAlloyUtils(),ModEntityTypes.PEWTER_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
     public static final Item STEEL_GOLD_PAN = add("steel_gold_pan", new ItemGoldPan(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
     public static final Item STEEL_CROWBAR = add("steel_crowbar", new ItemCrowbar(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -599,8 +606,8 @@ public class ModItems {
     public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PUMICE_SOAP = add("pumice_soap", new ItemPumiceSoap(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),50));
-    public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),800));
+    public static final Item BIOMASS = add("biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),25));
+    public static final Item COMPRESSED_BIOMASS = add("compressed_biomass", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools),200));
     public static final Item COMPOST = add("compost", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PINEAPPLE_SLEEVES = add("pineapple_sleeves", new Item(new Item.Properties().food(ModFoods.PINEAPPLE_SLEEVES)));
     public static final Item COCONUT = add("coconut", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.COCONUT)));

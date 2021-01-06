@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "###",
-    "###"
-  ],
-  "key": {
-    "#": {
-      "tag": "forge:ingots/black_gold"
+          "type": "minecraft:crafting_shaped",
+          "pattern": [
+            "###",
+            "###",
+            "###"
+          ],
+          "key": {
+            "#": {
+              "tag": "forge:ingots/black_gold"
+            }
+          },
+          "result": {
+            "item": "rankine:black_gold_block",
+            "count": 1
+          }
     }
-  },
-  "result": {
-    "item": "rankine:black_gold_block",
-    "count": 1
-  }
-}

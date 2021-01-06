@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:bone_char_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:bone_char",
+    "count": 9
+  }
+}

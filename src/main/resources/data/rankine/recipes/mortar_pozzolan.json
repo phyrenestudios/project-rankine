@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "rankine:water_buckets"
-    },
-    {
       "item": "rankine:quicklime"
     },
     {
-      "item": "rankine:pozzolan"
+      "tag": "rankine:mortar_special"
     }
   ],
   "result": {
-    "item": "rankine:mortar",
+    "item": "rankine:dry_mortar",
     "count": 12
   }
 }

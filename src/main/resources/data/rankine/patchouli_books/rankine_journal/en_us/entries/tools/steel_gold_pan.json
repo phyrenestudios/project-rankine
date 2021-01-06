@@ -14,11 +14,13 @@
     {
       "type": "spotlight",
       "item": "rankine:alluvium",
+      "link_recipe": true,
       "text": "Found in river and ocean beds. Yields various minerals and gems."
     },
     {
       "type": "spotlight",
       "item": "rankine:black_sand",
+      "link_recipe": true,
       "text": "Found in lower parts of the Nether. Yields various minerals and gems."
     }
   ]

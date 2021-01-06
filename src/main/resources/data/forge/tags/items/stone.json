@@ -26,6 +26,9 @@
     "#forge:stones/gabbro",
     "#forge:stones/schist",
     "#forge:stones/slate",
-    "#forge:stones/breccia"
+    "#forge:stones/breccia",
+    "#forge:stones/dacite",
+    "#forge:stones/chalk",
+    "#forge:stones/mudstone"
   ]
 }

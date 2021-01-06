@@ -10,26 +10,31 @@
     {
       "type": "spotlight",
       "item": "rankine:meteorite",
+      "link_recipe": true,
       "text": "Base meteorite material. Can be crushed into silicon and sulfur."
     },
     {
       "type": "spotlight",
       "item": "rankine:kamacite",
+      "link_recipe": true,
       "text": "Material found in meteorites which has a composition of 90%Fe-10%Ni."
     },
     {
       "type": "spotlight",
       "item": "rankine:antitaenite",
+      "link_recipe": true,
       "text": "Material found in meteorites which has a composition of 80%Fe-20%Ni."
     },
     {
       "type": "spotlight",
       "item": "rankine:taenite",
+      "link_recipe": true,
       "text": "Material found in meteorites which has a composition of 60%Fe-40%Ni."
     },
     {
       "type": "spotlight",
       "item": "rankine:tetrataenite",
+      "link_recipe": true,
       "text": "Material found in meteorites which has a composition of 50%Fe-50%Ni."
     }
   ]

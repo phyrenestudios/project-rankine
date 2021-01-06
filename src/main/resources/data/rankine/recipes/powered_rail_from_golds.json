@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "#S#",
+    "#R#"
+  ],
+  "key": {
+    "#": {
+      "tag": "rankine:colored_gold_ingots"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "minecraft:powered_rail",
+    "count": 8
+  }
+}
