@@ -38,7 +38,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -265,19 +268,19 @@ public class RankineEventHandler {
             {
                 event.setNewState(ModBlocks.RHYOLITE.getDefaultState());
                 return;
-            } /*else if (adjPos.contains(Blocks.QUARTZ_BLOCK))
+            } else if (adjPos.contains(Blocks.QUARTZ_BLOCK))
             {
                 event.setNewState(ModBlocks.BLACK_DACITE.getDefaultState());
                 return;
-            } */else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK))
+            } else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK))
             {
                 event.setNewState(Blocks.ANDESITE.getDefaultState());
                 return;
-            } /*else if (adjPos.contains(ModBlocks.MICA_BLOCK))
+            } else if (adjPos.contains(ModBlocks.MICA_BLOCK))
             {
                 event.setNewState(ModBlocks.RED_DACITE.getDefaultState());
                 return;
-            } */else if (adjPos.contains(ModBlocks.AMPHIBOLE_BLOCK))
+            } else if (adjPos.contains(ModBlocks.AMPHIBOLE_BLOCK))
             {
                 event.setNewState(ModBlocks.HORNBLENDE_ANDESITE.getDefaultState());
                 return;

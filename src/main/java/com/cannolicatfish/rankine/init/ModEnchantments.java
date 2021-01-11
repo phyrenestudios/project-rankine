@@ -14,6 +14,9 @@ public class ModEnchantments {
     @ObjectHolder("rankine:lightning_aspect")
     public static Enchantment LIGHTNING_ASPECT;
 
+    @ObjectHolder("rankine:excavate")
+    public static Enchantment EXCAVATE;
+
     @ObjectHolder("rankine:swing")
     public static Enchantment SWING;
 

@@ -155,35 +155,30 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
      */
     public ItemStack getCraftingResult(CraftingInventory inv) {
         ItemStack res = this.getRecipeOutput().copy();
-        if (!composition.equals(""))
-        {
-            AlloyItem.addAlloy(res,new AlloyData(composition));
-        } else {
-            String workingComposition = "";
-            for(int i = 0; i < inv.getWidth(); ++i) {
-                for (int j = 0; j < inv.getHeight(); ++j) {
+        String workingComposition = composition;
 
-                    ItemStack stackInSlot = inv.getStackInSlot(i + j * inv.getWidth());
-                    if (stackInSlot.getItem() instanceof AlloyItem) {
-                        String comp = AlloyItem.getComposition(stackInSlot).getCompound(0).get("comp").getString();
-                        if (workingComposition.equals(""))
-                        {
-                            workingComposition = comp;
-                        }
-                        if (!comp.equals(workingComposition))
-                        {
-                            return ItemStack.EMPTY;
-                        }
+        for(int i = 0; i < inv.getWidth(); ++i) {
+            for (int j = 0; j < inv.getHeight(); ++j) {
 
+                ItemStack stackInSlot = inv.getStackInSlot(i + j * inv.getWidth());
+                if (stackInSlot.getItem() instanceof AlloyItem) {
+                    String comp = AlloyItem.getComposition(stackInSlot).getCompound(0).get("comp").getString();
+                    if (workingComposition.equals(""))
+                    {
+                        workingComposition = comp;
                     }
+                    if (!comp.equals(workingComposition))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+
                 }
             }
-            Item r = res.getItem();
-            if (r instanceof AlloyItem || r instanceof AlloyTool || r instanceof AlloySword || r instanceof AlloySpear || r instanceof AlloyHammer)
-            {
-                AlloyItem.addAlloy(res,new AlloyData(workingComposition));
-            }
-
+        }
+        Item r = res.getItem();
+        if (r instanceof AlloyItem || r instanceof AlloyTool || r instanceof AlloySword || r instanceof AlloySpear || r instanceof AlloyHammer)
+        {
+            AlloyItem.addAlloy(res,new AlloyData(workingComposition));
         }
         return res;
     }
@@ -322,7 +317,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
             }
 
-            map.put(entry.getKey(), Ingredient.deserialize(entry.getValue()));
+            map.put(entry.getKey(), AlloyIngredientHelper.deserialize(entry.getValue()));
         }
 
         map.put(" ", Ingredient.EMPTY);
@@ -360,7 +355,6 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             int i = buffer.readVarInt();
             int j = buffer.readVarInt();
             String s = buffer.readString(32767);
-            String t = buffer.readString(32767);
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY);
 
             for(int k = 0; k < nonnulllist.size(); ++k) {
@@ -368,6 +362,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             }
 
             ItemStack itemstack = buffer.readItemStack();
+            String t = buffer.readString(32767);
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, t);
         }
 

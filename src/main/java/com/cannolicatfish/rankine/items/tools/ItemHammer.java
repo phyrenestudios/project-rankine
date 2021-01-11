@@ -31,6 +31,9 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 public class ItemHammer extends ToolItem {
@@ -213,10 +216,64 @@ public class ItemHammer extends ToolItem {
             if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
             {
                 player.resetCooldown();
-                onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
+
+                if (getExcavateModifier(stack) != 0)
+                {
+                    getExcavationResult(pos,worldIn,player,stack);
+                } else {
+                    onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
+                }
             }
         }
         return false;
+    }
+
+    public void getExcavationResult(BlockPos pos, World worldIn, PlayerEntity player, ItemStack stack) {
+        BlockRayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
+        List<BlockPos> positions = new ArrayList<>();
+        if (getExcavateModifier(stack) == 1)
+        {
+            switch (raytraceresult.getFace())
+            {
+                case EAST:
+                case WEST:
+                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.up(),pos.down()));
+                    break;
+                case DOWN:
+                case UP:
+                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.west(),pos.east()));
+                    break;
+                case NORTH:
+                case SOUTH:
+                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.up(),pos.down()));
+                    break;
+                default:
+                    positions.add(pos);
+            }
+
+        } else {
+            switch (raytraceresult.getFace())
+            {
+                case EAST:
+                case WEST:
+                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.up(),pos.down(),pos.north().up(),pos.south().up(),pos.north().down(),pos.south().down()));
+                    break;
+                case DOWN:
+                case UP:
+                    positions.addAll(Arrays.asList(pos,pos.north(),pos.south(),pos.west(),pos.east(),pos.north().east(),pos.south().east(),pos.north().west(),pos.south().west()));
+                    break;
+                case NORTH:
+                case SOUTH:
+                    positions.addAll(Arrays.asList(pos,pos.east(),pos.west(),pos.up(),pos.down(),pos.up().east(),pos.down().east(),pos.up().west(),pos.down().west()));
+                    break;
+                default:
+                    positions.add(pos);
+            }
+        }
+        for (BlockPos p: positions)
+        {
+            onBlockDestroyed(stack,worldIn,worldIn.getBlockState(p),p, player);
+        }
     }
 
     public static int getBlastModifier(ItemStack stack) {
@@ -239,9 +296,13 @@ public class ItemHammer extends ToolItem {
         return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.DAZE, stack);
     }
 
+    public static int getExcavateModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.EXCAVATE, stack);
+    }
+
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == ModEnchantments.SWING || enchantment == ModEnchantments.DAZE || enchantment == Enchantments.UNBREAKING)
+        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.EXCAVATE || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == ModEnchantments.SWING || enchantment == ModEnchantments.DAZE || enchantment == Enchantments.UNBREAKING)
         {
             return true;
         }
