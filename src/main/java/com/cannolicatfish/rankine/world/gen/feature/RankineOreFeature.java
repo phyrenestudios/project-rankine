@@ -123,10 +123,13 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 List<Block> blockList = Arrays.asList(Blocks.STONE,Blocks.GRANITE,Blocks.DIORITE,Blocks.ANDESITE,Blocks.SANDSTONE,Blocks.RED_SANDSTONE,Blocks.NETHERRACK, Blocks.BLACKSTONE,Blocks.BASALT,Blocks.END_STONE,
                                                         ModBlocks.RED_GRANITE,ModBlocks.GRANODIORITE,ModBlocks.HORNBLENDE_ANDESITE,ModBlocks.THOLEIITIC_BASALT,ModBlocks.GABBRO,ModBlocks.ANORTHOSITE,ModBlocks.RHYOLITE,ModBlocks.LIMESTONE,ModBlocks.MARBLE,ModBlocks.GNEISS,ModBlocks.SCHIST,ModBlocks.SLATE,ModBlocks.SHALE,ModBlocks.IRONSTONE,ModBlocks.BRECCIA,ModBlocks.PUMICE,ModBlocks.SCORIA,
-                                                        ModBlocks.PERIDOTITE,ModBlocks.KIMBERLITE,ModBlocks.KOMATIITE,ModBlocks.RINGWOODITE, ModBlocks.WADSLEYITE,ModBlocks.BRIDGMANITE,ModBlocks.FERROPERICLASE, ModBlocks.PEROVSKITE);
-                                                if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())){
+                                                        ModBlocks.PERIDOTITE,ModBlocks.KIMBERLITE,ModBlocks.KOMATIITE,ModBlocks.RINGWOODITE, ModBlocks.WADSLEYITE,ModBlocks.BRIDGMANITE,ModBlocks.FERROPERICLASE, ModBlocks.PEROVSKITE, ModBlocks.QUARTZ_SANDSTONE, ModBlocks.ARKOSE_SANDSTONE, ModBlocks.BLACK_DACITE, ModBlocks.RED_DACITE, ModBlocks.MUDSTONE, ModBlocks.CHALK);
+                                                if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock()) && config.state.getBlock() instanceof RankineOre) {
                                                     worldIn.setBlockState(blockpos$mutableblockpos,
                                                             config.state.with(RankineOre.TYPE,blockList.indexOf(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())), 2);
+                                                    ++i;
+                                                } else if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())) {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
                                                     ++i;
                                                 }
                                             }

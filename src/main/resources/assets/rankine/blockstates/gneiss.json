@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/gneiss" }
+        "": [
+        {
+        "model": "rankine:block/gneiss"
+        },
+        {
+        "model": "rankine:block/gneiss"
+        },
+        {
+        "model": "rankine:block/gneiss_alt"
         }
-    }
+        ]
+        }
+        }

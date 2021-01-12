@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/scoria" }
+        "": [
+        {
+        "model": "rankine:block/scoria"
+        },
+        {
+        "model": "rankine:block/scoria"
+        },
+        {
+        "model": "rankine:block/scoria_alt"
         }
-    }
+        ]
+        }
+        }

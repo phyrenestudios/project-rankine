@@ -67,20 +67,16 @@ public class CharredWood extends Block {
 
 
 
-    public static void spawnSmokeParticles(World worldIn, BlockPos pos, boolean spawnExtraSmoke) {
+    public static void spawnSmokeParticles(World worldIn, BlockPos pos) {
         Random random = worldIn.getRandom();
-        BasicParticleType basicparticletype = ParticleTypes.CAMPFIRE_COSY_SMOKE;
-        worldIn.addOptionalParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-        if (spawnExtraSmoke) {
-            worldIn.addParticle(ParticleTypes.SMOKE, (double)pos.getX() + 0.25D + random.nextDouble() / 2.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 0.4D, (double)pos.getZ() + 0.25D + random.nextDouble() / 2.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
-        }
-
+        BasicParticleType basicparticletype = ParticleTypes.LARGE_SMOKE;
+        worldIn.addOptionalParticle(basicparticletype,  true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
     }
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (rand.nextFloat() < 0.2) {
-            spawnSmokeParticles(worldIn, pos, false);
+        if (rand.nextFloat() < 0.5) {
+            spawnSmokeParticles(worldIn, pos);
         }
     }
 

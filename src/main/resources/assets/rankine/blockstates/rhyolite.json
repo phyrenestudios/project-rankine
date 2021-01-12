@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/rhyolite" }
+        "": [
+        {
+        "model": "rankine:block/rhyolite"
+        },
+        {
+        "model": "rankine:block/rhyolite"
+        },
+        {
+        "model": "rankine:block/rhyolite_alt"
         }
-    }
+        ]
+        }
+        }

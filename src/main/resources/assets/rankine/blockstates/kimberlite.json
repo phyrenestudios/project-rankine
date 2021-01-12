@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/kimberlite" }
+        "": [
+        {
+        "model": "rankine:block/kimberlite"
+        },
+        {
+        "model": "rankine:block/kimberlite"
+        },
+        {
+        "model": "rankine:block/kimberlite_alt"
         }
-    }
+        ]
+        }
+        }

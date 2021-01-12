@@ -51,6 +51,8 @@ public class ClientProxy implements IProxy {
                 ModBlocks.NATIVE_BISMUTH_ORE,
                 ModBlocks.HALITE_ORE,
                 ModBlocks.PINK_HALITE_ORE,
+                ModBlocks.CRYOLITE_ORE,
+                ModBlocks.PYRITE_ORE,
                 ModBlocks.NATIVE_GALLIUM_ORE,
                 ModBlocks.NATIVE_INDIUM_ORE,
                 ModBlocks.NATIVE_SELENIUM_ORE,

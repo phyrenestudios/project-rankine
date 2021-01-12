@@ -190,20 +190,18 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                 return false;
             }
         }*/
-        List<BlockPos> Pillars = Arrays.asList(pos.add(6,0,0),pos.add(6,2,0),pos.add(-6,0,0),pos.add(-6,2,0),pos.add(0,0,6),pos.add(0,2,6),pos.add(0,0,-6),pos.add(0,2,-6));
+        List<BlockPos> Pillars = Arrays.asList(pos.add(8,0,0),pos.add(8,2,0),pos.add(-8,0,0),pos.add(-8,2,0),pos.add(0,0,8),pos.add(0,2,8),pos.add(0,0,-8),pos.add(0,2,-8));
         for(BlockPos blockpos : Pillars) {
             if (worldIn.getBlockState(blockpos) != ModBlocks.LASER_PYLON_BASE.getDefaultState()) {
                 return false;
             }
         }
-        List<BlockPos> Tops = Arrays.asList(pos.add(6,3,0),pos.add(-6,3,0),pos.add(0,3,6),pos.add(0,3,-6));
+        List<BlockPos> Tops = Arrays.asList(pos.add(8,3,0),pos.add(-8,3,0),pos.add(0,3,8),pos.add(0,3,-8));
         for(BlockPos blockpos : Tops) {
             if (worldIn.getBlockState(blockpos) != ModBlocks.LASER_PYLON_TOP.getDefaultState()) {
                 return false;
             }
         }
-
-
         return true;
     }
 

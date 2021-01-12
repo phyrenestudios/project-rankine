@@ -1,5 +1,15 @@
 {
-                "variants": {
-                "": { "model": "rankine:block/red_dacite" }
-                }
-                }
+        "variants": {
+        "": [
+        {
+        "model": "rankine:block/red_dacite"
+        },
+        {
+        "model": "rankine:block/red_dacite"
+        },
+        {
+        "model": "rankine:block/red_dacite_alt"
+        }
+        ]
+        }
+        }

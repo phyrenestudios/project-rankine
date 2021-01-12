@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/bridgmanite" }
+        "": [
+        {
+        "model": "rankine:block/bridgmanite"
+        },
+        {
+        "model": "rankine:block/bridgmanite"
+        },
+        {
+        "model": "rankine:block/bridgmanite_alt"
         }
-    }
+        ]
+        }
+        }

@@ -1,5 +1,15 @@
 {
-                "variants": {
-                "": { "model": "rankine:block/arkose_sandstone" }
-                }
-                }
+        "variants": {
+        "": [
+        {
+        "model": "rankine:block/arkose_sandstone"
+        },
+        {
+        "model": "rankine:block/arkose_sandstone"
+        },
+        {
+        "model": "rankine:block/arkose_sandstone_alt"
+        }
+        ]
+        }
+        }

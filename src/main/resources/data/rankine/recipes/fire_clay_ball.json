@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "tag": "forge:nuggets/aluminum"
+    }
+  ],
+  "result": {
+    "item": "rankine:fire_clay_ball",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " SN",
+    " RS",
+    "S  "
+  ],
+  "key": {
+    "N": {
+      "tag": "forge:nuggets"
+    },
+    "R": {
+      "item": "rankine:rope"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:prospecting_stick",
+    "count": 1
+  }
+}

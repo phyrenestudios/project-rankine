@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/ferropericlase" }
+        "": [
+        {
+        "model": "rankine:block/ferropericlase"
+        },
+        {
+        "model": "rankine:block/ferropericlase"
+        },
+        {
+        "model": "rankine:block/ferropericlase_alt"
         }
-    }
+        ]
+        }
+        }

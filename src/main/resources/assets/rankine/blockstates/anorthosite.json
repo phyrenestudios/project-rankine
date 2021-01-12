@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/anorthosite" }
+        "": [
+        {
+        "model": "rankine:block/anorthosite"
+        },
+        {
+        "model": "rankine:block/anorthosite"
+        },
+        {
+        "model": "rankine:block/anorthosite_alt"
         }
-    }
+        ]
+        }
+        }

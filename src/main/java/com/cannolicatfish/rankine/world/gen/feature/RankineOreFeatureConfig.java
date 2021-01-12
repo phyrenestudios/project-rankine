@@ -40,7 +40,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.GRANITE || block == Blocks.DIORITE || block == Blocks.ANDESITE || block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == ModBlocks.RED_GRANITE || block == ModBlocks.HORNBLENDE_ANDESITE || block == ModBlocks.GRANODIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.THOLEIITIC_BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.GABBRO || block == ModBlocks.SHALE || block == ModBlocks.SLATE || block == ModBlocks.SCHIST || block == ModBlocks.BRECCIA || block == ModBlocks.PERIDOTITE;
+                return block == Blocks.GRANITE || block == Blocks.DIORITE || block == Blocks.ANDESITE || block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == ModBlocks.RED_GRANITE || block == ModBlocks.HORNBLENDE_ANDESITE || block == ModBlocks.GRANODIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.LIMESTONE || block == ModBlocks.THOLEIITIC_BASALT || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.RHYOLITE || block == ModBlocks.GABBRO || block == ModBlocks.SHALE || block == ModBlocks.SLATE || block == ModBlocks.SCHIST || block == ModBlocks.BRECCIA || block == ModBlocks.PERIDOTITE || block == ModBlocks.RED_DACITE || block == ModBlocks.BLACK_DACITE || block == ModBlocks.QUARTZ_SANDSTONE || block == ModBlocks.ARKOSE_SANDSTONE || block == ModBlocks.CHALK || block == ModBlocks.MUDSTONE;
             }
         }),
         NO_P("no_per", (blockstate) -> {
@@ -72,7 +72,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.GRANITE || block == Blocks.DIORITE || block == Blocks.ANDESITE || block == ModBlocks.RED_GRANITE || block == ModBlocks.HORNBLENDE_ANDESITE || block == ModBlocks.GRANODIORITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.THOLEIITIC_BASALT || block == ModBlocks.RHYOLITE || block == ModBlocks.GABBRO;
+                return block == Blocks.GRANITE || block == Blocks.DIORITE || block == Blocks.ANDESITE || block == ModBlocks.RED_GRANITE || block == ModBlocks.HORNBLENDE_ANDESITE || block == ModBlocks.GRANODIORITE || block == ModBlocks.BLACK_DACITE || block == ModBlocks.RED_DACITE || block == ModBlocks.ANORTHOSITE || block == ModBlocks.THOLEIITIC_BASALT || block == ModBlocks.RHYOLITE || block == ModBlocks.GABBRO;
             }
         }),
         SEDIMENTARY("sedimentary", (blockstate) -> {
@@ -80,7 +80,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE ||block == ModBlocks.SHALE || block == ModBlocks.BRECCIA;
+                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == ModBlocks.LIMESTONE || block == ModBlocks.ARKOSE_SANDSTONE || block == ModBlocks.QUARTZ_SANDSTONE|| block == ModBlocks.SHALE || block == ModBlocks.BRECCIA || block == ModBlocks.MUDSTONE || block == ModBlocks.CHALK;
             }
         }),
         METAMORPHIC("metamorphic", (blockstate) -> {
@@ -88,7 +88,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.LIMESTONE || block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.SLATE || block == ModBlocks.SCHIST;
+                return block == ModBlocks.MARBLE || block == ModBlocks.GNEISS || block == ModBlocks.SLATE || block == ModBlocks.SCHIST;
             }
         }),
         MARBLE("marble", (blockstate) -> {
@@ -107,12 +107,20 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return block == ModBlocks.LIMESTONE;
             }
         }),
-        SANDSTONE("sandstone", (blockstate) -> {
+        SANDSTONES("sandstones", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE;
+                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == ModBlocks.ARKOSE_SANDSTONE || block == ModBlocks.QUARTZ_SANDSTONE;
+            }
+        }),
+        DACITES("dacites", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block == ModBlocks.RED_DACITE || block == ModBlocks.BLACK_DACITE;
             }
         }),
         PERIDOTITE("peridotite", (blockstate) -> {
@@ -131,12 +139,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return block == Blocks.END_STONE;
             }
         }),
-        NK_B("nk_b", (blockstate) -> {
+        NETHER("nk_b", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.NETHERRACK || block == Blocks.BASALT;
+                return block == Blocks.NETHERRACK || block == Blocks.BASALT || block == Blocks.BLACKSTONE;
             }
         }),
         NETHERRACK("netherrack", (blockstate) -> {

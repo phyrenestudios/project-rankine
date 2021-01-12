@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/ringwoodite" }
+        "": [
+        {
+        "model": "rankine:block/ringwoodite"
+        },
+        {
+        "model": "rankine:block/ringwoodite"
+        },
+        {
+        "model": "rankine:block/ringwoodite_alt"
         }
-    }
+        ]
+        }
+        }

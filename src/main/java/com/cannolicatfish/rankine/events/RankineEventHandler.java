@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.blocks.CharcoalPit;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
 import com.cannolicatfish.rankine.blocks.CompositionBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
@@ -24,17 +25,20 @@ import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.RandomChance;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -59,8 +63,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.items.IItemHandler;
+import org.intellij.lang.annotations.Flow;
 
 import java.awt.event.ItemEvent;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -119,45 +129,86 @@ public class RankineEventHandler {
     public static void fuelValues(FurnaceFuelBurnTimeEvent event) {
         if (Config.FUEL_VALUES.get()) {
             Item Fuel = event.getItemStack().getItem();
+            String path = Fuel.getRegistryName().getPath();
             if (Fuel.getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
-                if (Fuel.getRegistryName().getPath().contains("fir")) {
-                    event.setBurnTime(290);
-                } else if (Fuel.getRegistryName().getPath().contains("pinyon_pine")) {
-                    event.setBurnTime(480);
-                } else if (Fuel.getRegistryName().getPath().contains("black_birch")) {
-                    event.setBurnTime(370);
-                } else if (Fuel.getRegistryName().getPath().contains("yellow_birch")) {
-                    event.setBurnTime(390);
-                } else if (Fuel.getRegistryName().getPath().contains("birch")) {
-                    event.setBurnTime(350);
-                } else if (Fuel.getRegistryName().getPath().contains("maple")) {
-                    event.setBurnTime(370);
-                } else if (Fuel.getRegistryName().getPath().contains("spruce")) {
-                    event.setBurnTime(310);
-                } else if (Fuel.getRegistryName().getPath().contains("oak")) {
-                    event.setBurnTime(400);
-                } else if (Fuel.getRegistryName().getPath().contains("jungle")) {
-                    event.setBurnTime(350);
-                } else if (Fuel.getRegistryName().getPath().contains("walnut")) {
-                    event.setBurnTime(360);
-                } else if (Fuel.getRegistryName().getPath().contains("pine")) {
-                    event.setBurnTime(290);
-                } else if (Fuel.getRegistryName().getPath().contains("willow")) {
-                    event.setBurnTime(280);
-                } else if (Fuel.getRegistryName().getPath().contains("sycamore")) {
-                    event.setBurnTime(340);
-                } else if (Fuel.getRegistryName().getPath().contains("hickory")) {
+                if (path.contains("douglas_fir")) {
+                    event.setBurnTime(460);
+                } else if (path.contains("pinyon_pine")) {
+                    event.setBurnTime(520);
+                } else if (path.contains("alder")) {
+                    event.setBurnTime(420);
+                } else if (path.contains("apple")) {
+                    event.setBurnTime(520);
+                } else if (path.contains("ash")) {
+                    event.setBurnTime(470);
+                } else if (path.contains("aspen")) {
                     event.setBurnTime(430);
-                } else if (Fuel.getRegistryName().getPath().contains("coconut")) {
+                } else if (path.contains("basswood")) {
+                    event.setBurnTime(390);
+                } else if (path.contains("beech")) {
+                    event.setBurnTime(530);
+                } else if (path.contains("elder")) {
+                    event.setBurnTime(430);
+                } else if (path.contains("cherry")) {
+                    event.setBurnTime(450);
+                } else if (path.contains("chestnut")) {
+                    event.setBurnTime(430);
+                } else if (path.contains("black_birch")) {
+                    event.setBurnTime(470);
+                } else if (path.contains("yellow_birch")) {
+                    event.setBurnTime(490);
+                } else if (path.contains("birch")) {
+                    event.setBurnTime(450);
+                } else if (path.contains("dogwood")) {
+                    event.setBurnTime(600);
+                } else if (path.contains("elm")) {
+                    event.setBurnTime(450);
+                } else if (path.contains("cottonwood")) {
+                    event.setBurnTime(410);
+                } else if (path.contains("fir")) {
+                    event.setBurnTime(390);
+                } else if (path.contains("silver_maple")) {
+                    event.setBurnTime(440);
+                } else if (path.contains("mulberry")) {
+                    event.setBurnTime(510);
+                } else if (path.contains("poplar")) {
                     event.setBurnTime(350);
-                } else if (Fuel.getRegistryName().getPath().contains("juniper")) {
-                    event.setBurnTime(400);
-                } else if (Fuel.getRegistryName().getPath().contains("acacia")) {
-                    event.setBurnTime(400);
-                } else if (Fuel.getRegistryName().getPath().contains("magnolia")) {
-                    event.setBurnTime(350);
-                } else if (Fuel.getRegistryName().getPath().contains("hemlock")) {
-                    event.setBurnTime(310);
+                } else if (path.contains("maple")) {
+                    event.setBurnTime(500);
+                } else if (path.contains("cedar")) {
+                    event.setBurnTime(410);
+                } else if (path.contains("white_pine")) {
+                    event.setBurnTime(410);
+                } else if (path.contains("spruce")) {
+                    event.setBurnTime(410);
+                } else if (path.contains("white_oak")) {
+                    event.setBurnTime(540);
+                } else if (path.contains("red_oak")) {
+                    event.setBurnTime(500);
+                } else if (path.contains("oak")) {
+                    event.setBurnTime(520);
+                } else if (path.contains("jungle")) {
+                    event.setBurnTime(450);
+                } else if (path.contains("walnut")) {
+                    event.setBurnTime(470);
+                } else if (path.contains("pine")) {
+                    event.setBurnTime(420);
+                } else if (path.contains("willow")) {
+                    event.setBurnTime(420);
+                } else if (path.contains("sycamore")) {
+                    event.setBurnTime(440);
+                } else if (path.contains("hickory")) {
+                    event.setBurnTime(530);
+                } else if (path.contains("coconut")) {
+                    event.setBurnTime(450);
+                } else if (path.contains("juniper")) {
+                    event.setBurnTime(470);
+                } else if (path.contains("acacia")) {
+                    event.setBurnTime(500);
+                } else if (path.contains("magnolia")) {
+                    event.setBurnTime(450);
+                } else if (path.contains("hemlock")) {
+                    event.setBurnTime(440);
                 } else {
                     event.setBurnTime(300);
                 }
@@ -189,6 +240,7 @@ public class RankineEventHandler {
         }
     }
 
+    
     @SubscribeEvent
     public static void onFluidInteraction(BlockEvent.FluidPlaceBlockEvent event)
     {
@@ -552,29 +604,6 @@ public class RankineEventHandler {
 
  */
 
-    @SubscribeEvent
-    public static void brickify(PlayerInteractEvent.RightClickBlock event) {
-        PlayerEntity player = event.getPlayer();
-        ItemStack items = event.getItemStack();
-        BlockState blockstate = event.getWorld().getBlockState(event.getPos());
-
-
-
-
-    }
-
-
-    @SubscribeEvent
-    public static void deBrick(PlayerInteractEvent.RightClickBlock event) {
-        PlayerEntity player = event.getPlayer();
-        ItemStack items = event.getItemStack();
-        BlockState blockstate = event.getWorld().getBlockState(event.getPos());
-
-
-
-
-    }
-
 
     @SubscribeEvent
     public static void dyeLED(PlayerInteractEvent.RightClickBlock event) {
@@ -594,6 +623,33 @@ public class RankineEventHandler {
                 if (!event.getPlayer().isCreative()) {
                     event.getItemStack().shrink(1);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void flintFire(PlayerInteractEvent.RightClickBlock event) {
+        BlockPos pos = event.getPos();
+        World world = event.getWorld();
+        PlayerEntity player = event.getPlayer();
+        BlockPos blockpos1 = event.getPos().offset(event.getFace());
+        if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
+            if (world.getBlockState(pos) == ModBlocks.CHARCOAL_PIT.getDefaultState().with(CharcoalPit.LIT, false)) {
+                for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0,-Config.CHARCOAL_PIT_HEIGHT.get(),0), pos.add(0, Config.CHARCOAL_PIT_HEIGHT.get(),0))) {
+                    if (world.getBlockState(blockpos).getBlock() == ModBlocks.CHARCOAL_PIT && !world.isRemote) {
+                        world.setBlockState(blockpos, world.getBlockState(blockpos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                    }
+                }
+                player.swingArm(Hand.MAIN_HAND);
+                player.getHeldItem(Hand.MAIN_HAND).shrink(1);
+                player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+            } else if (AbstractFireBlock.canLightBlock(world, blockpos1, event.getFace()) && !world.isRemote && world.getBlockState(pos) != ModBlocks.CHARCOAL_PIT.getDefaultState().with(CharcoalPit.LIT, true)) {
+                world.setBlockState(blockpos1, AbstractFireBlock.getFireForPlacement(world, blockpos1), 11);
+                player.swingArm(Hand.MAIN_HAND);
+                player.getHeldItem(Hand.MAIN_HAND).shrink(1);
+                player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
             }
         }
     }
@@ -676,7 +732,7 @@ public class RankineEventHandler {
     public static void flintDrop(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         float CHANCE = new Random().nextFloat();
-        if (Config.FLINT_DROP.get() && !player.abilities.isCreativeMode) {
+        if (!player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
                 if ( player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
                     if (CHANCE < Config.FLINT_DROP_CHANCE.get()) {
@@ -696,10 +752,10 @@ public class RankineEventHandler {
     public static void forage(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         float CHANCE = new Random().nextFloat();
-        if (Config.FORAGING.get() && !player.abilities.isCreativeMode) {
+        if (!player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:dirt"))) {
-                if (player.getHeldItem(Hand.MAIN_HAND).isEmpty() || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools"))) {
-                    ItemStack FOOD = null;
+                if (player.getHeldItem(Hand.MAIN_HAND).isEmpty() || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
+                    ItemStack FOOD;
                     if (CHANCE < Config.FORAGING_CHANCE.get() * 0.3) {
                         FOOD = new ItemStack(Items.POTATO,1);
                     } else if (CHANCE < Config.FORAGING_CHANCE.get() * 0.6) {

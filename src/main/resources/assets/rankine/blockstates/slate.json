@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/slate" }
+        "": [
+        {
+        "model": "rankine:block/slate"
+        },
+        {
+        "model": "rankine:block/slate"
+        },
+        {
+        "model": "rankine:block/slate_alt"
         }
-    }
+        ]
+        }
+        }

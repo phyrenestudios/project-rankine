@@ -1,5 +1,15 @@
 {
-                "variants": {
-                "": { "model": "rankine:block/chalk" }
-                }
-                }
+        "variants": {
+        "": [
+        {
+        "model": "rankine:block/chalk"
+        },
+        {
+        "model": "rankine:block/chalk"
+        },
+        {
+        "model": "rankine:block/chalk_alt"
+        }
+        ]
+        }
+        }

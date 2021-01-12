@@ -1,5 +1,15 @@
 {
-                "variants": {
-                "": { "model": "rankine:block/mudstone" }
-                }
-                }
+        "variants": {
+        "": [
+        {
+        "model": "rankine:block/mudstone"
+        },
+        {
+        "model": "rankine:block/mudstone"
+        },
+        {
+        "model": "rankine:block/mudstone_alt"
+        }
+        ]
+        }
+        }

@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/perovskite" }
+        "": [
+        {
+        "model": "rankine:block/perovskite"
+        },
+        {
+        "model": "rankine:block/perovskite"
+        },
+        {
+        "model": "rankine:block/perovskite_alt"
         }
-    }
+        ]
+        }
+        }

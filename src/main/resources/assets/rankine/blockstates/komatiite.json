@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/komatiite" }
+        "": [
+        {
+        "model": "rankine:block/komatiite"
+        },
+        {
+        "model": "rankine:block/komatiite"
+        },
+        {
+        "model": "rankine:block/komatiite_alt"
         }
-    }
+        ]
+        }
+        }

@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/ironstone" }
+        "": [
+        {
+        "model": "rankine:block/ironstone"
+        },
+        {
+        "model": "rankine:block/ironstone"
+        },
+        {
+        "model": "rankine:block/ironstone_alt"
         }
-    }
+        ]
+        }
+        }

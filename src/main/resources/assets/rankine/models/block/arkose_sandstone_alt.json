@@ -1,0 +1,6 @@
+{
+        "parent": "block/cube_all",
+        "textures": {
+        "all": "rankine:block/arkose_sandstone_alt"
+        }
+        }

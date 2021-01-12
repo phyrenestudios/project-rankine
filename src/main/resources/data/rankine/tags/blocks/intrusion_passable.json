@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:stone",
+    "#forge:wg_stone",
+    "#rankine:tuff",
+    "#forge:sandstone",
+    "minecraft:lava"
+  ]
+}

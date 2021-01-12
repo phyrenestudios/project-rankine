@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.ModFeatures;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -38,10 +39,13 @@ public class DecorationGen
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getLocalModificationFeatures() {
-        return Collections.singletonList(
-                new AbstractMap.SimpleEntry<>(ModFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(),false))
+        List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> LocalModifications = new ArrayList<>();
 
-        );
+        LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        //LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.VOLCANO, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.FIRE_CLAY, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+
+        return LocalModifications;
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getVegetalDecorationFeatures() {

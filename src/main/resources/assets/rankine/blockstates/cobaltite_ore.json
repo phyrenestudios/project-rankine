@@ -25,15 +25,21 @@
         "type=22": {"model": "rankine:block/cobaltite_ore22"},
         "type=23": {"model": "rankine:block/cobaltite_ore23"},
         "type=24": {"model": "rankine:block/cobaltite_ore24"},
-        "type=25": {"model": "rankine:block/cobaltite_ore25"},
-        "type=26": {"model": "rankine:block/cobaltite_ore26"},
-        "type=27": {"model": "rankine:block/cobaltite_ore27"},
-        "type=28": {"model": "rankine:block/cobaltite_ore28"},
-        "type=29": {"model": "rankine:block/cobaltite_ore29"},
-        "type=30": {"model": "rankine:block/cobaltite_ore30"},
-        "type=31": {"model": "rankine:block/cobaltite_ore31"},
-        "type=32": {"model": "rankine:block/cobaltite_ore32"},
+	"type=25": {"model": "rankine:block/cobaltite_ore25"},
+	"type=26": {"model": "rankine:block/cobaltite_ore26"},
+	"type=27": {"model": "rankine:block/cobaltite_ore27"},
+	"type=28": {"model": "rankine:block/cobaltite_ore28"},
+	"type=29": {"model": "rankine:block/cobaltite_ore29"},
+	"type=30": {"model": "rankine:block/cobaltite_ore30"},
+	"type=31": {"model": "rankine:block/cobaltite_ore31"},
+	"type=32": {"model": "rankine:block/cobaltite_ore32"},
         "type=33": {"model": "rankine:block/cobaltite_ore33"},
-        "type=34": {"model": "rankine:block/cobaltite_ore34"}
+	"type=34": {"model": "rankine:block/cobaltite_ore34"},
+        "type=35": {"model": "rankine:block/cobaltite_ore35"},
+        "type=36": {"model": "rankine:block/cobaltite_ore36"},
+        "type=37": {"model": "rankine:block/cobaltite_ore37"},
+        "type=38": {"model": "rankine:block/cobaltite_ore38"},
+        "type=39": {"model": "rankine:block/cobaltite_ore39"},
+        "type=40": {"model": "rankine:block/cobaltite_ore40"}
 	}
-}
+    }
