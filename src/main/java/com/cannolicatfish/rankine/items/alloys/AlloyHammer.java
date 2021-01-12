@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -143,7 +144,7 @@ public class AlloyHammer extends ItemHammer {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.min(utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus(), 1);
+            return Math.max(Math.min(utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus(), 1),0);
         } else
         {
             return alloy.getCorrResistBonus();
@@ -161,7 +162,7 @@ public class AlloyHammer extends ItemHammer {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.min(utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus(),1);
+            return Math.max(Math.min(utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus(),1),0);
         } else
         {
             return alloy.getHeatResistBonus();
@@ -506,6 +507,8 @@ public class AlloyHammer extends ItemHammer {
                 }
 
             }
+            SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getBreakSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
 
         return true;

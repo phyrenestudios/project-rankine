@@ -26,6 +26,7 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
     private final net.minecraft.client.renderer.ItemRenderer itemRenderer;
     private final Random random = new Random();
 
+
     public ReactiveItemRenderer(EntityRendererManager renderManager) {
         super(renderManager);
         this.itemRenderer = Minecraft.getInstance().getItemRenderer();
@@ -58,10 +59,10 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
         boolean flag = ibakedmodel.isGui3d();
         int j = this.getModelCount(itemstack);
         float f = 0.25F;
-        float f1 = shouldBob() ? MathHelper.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.hoverStart) * 0.1F + 0.1F : 0;
-        float f2 = ibakedmodel.getItemCameraTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND).scale.getY();
+        float f1 = MathHelper.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.hoverStart) * 0.1F + 0.1F;
+        float f2 = shouldBob() ? ibakedmodel.getItemCameraTransforms().getTransform(ItemCameraTransforms.TransformType.GROUND).scale.getY() : 0;
         matrixStackIn.translate(0.0D, (double)(f1 + 0.25F * f2), 0.0D);
-        float f3 = ((float)entityIn.getAge() + partialTicks) / 20.0F + entityIn.hoverStart;
+        float f3 = entityIn.getItemHover(partialTicks);
         matrixStackIn.rotate(Vector3f.YP.rotation(f3));
         if (!flag) {
             float f7 = -0.0F * (float)(j - 1) * 0.5F;

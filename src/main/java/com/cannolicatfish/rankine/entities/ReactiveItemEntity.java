@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class ReactiveItemEntity extends ItemEntity {
 
@@ -22,7 +23,7 @@ public class ReactiveItemEntity extends ItemEntity {
     }
 
     public ReactiveItemEntity(World worldIn, double x, double y, double z) {
-        this(ModEntityTypes.REACTIVE_ITEM, worldIn);
+        this(EntityType.ITEM, worldIn);
         this.setPosition(x, y, z);
         this.rotationYaw = this.rand.nextFloat() * 360.0F;
         this.radius = 1f;
@@ -31,7 +32,7 @@ public class ReactiveItemEntity extends ItemEntity {
     }
 
     public ReactiveItemEntity(World worldIn, double x, double y, double z, ItemStack stack) {
-        super(ModEntityTypes.REACTIVE_ITEM,worldIn);
+        super(EntityType.ITEM,worldIn);
         this.setPosition(x, y, z);
         this.setItem(stack);
         this.radius = 1f;
@@ -40,7 +41,7 @@ public class ReactiveItemEntity extends ItemEntity {
     }
 
     public ReactiveItemEntity(World worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack) {
-        super(ModEntityTypes.REACTIVE_ITEM,worldIn);
+        super(EntityType.ITEM,worldIn);
         this.setPosition(x, y, z);
         this.setItem(stack);
         this.radius = radius;
@@ -65,7 +66,7 @@ public class ReactiveItemEntity extends ItemEntity {
         super.tick();
     }
 
-    public IPacket<?> createSpawnPacket() {
+    public @NotNull IPacket<?> createSpawnPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      " # ",
+      " t ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:purple_gold_alloy"
+            },
+        "t": {
+            "tag": "forge:rods/wooden"
+            }
+      },
+      "result": {
+          "item": "rankine:purple_gold_shovel",
+          "count": 1        }
+    }

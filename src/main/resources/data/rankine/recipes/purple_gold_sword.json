@@ -1,0 +1,20 @@
+{
+      "type": "rankine:alloy_crafting",
+      "alloyData": "",
+      "pattern": [
+      " # ",
+      " # ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:purple_gold_alloy"
+            },
+        "t": {
+            "tag": "forge:rods/wooden"
+            }
+      },
+      "result": {
+          "item": "rankine:purple_gold_sword",
+          "count": 1        }
+    }

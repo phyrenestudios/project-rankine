@@ -1,0 +1,5 @@
+{
+    "variants": {
+    "": { "model": "rankine:block/diamond_anvil_cell" }
+    }
+}

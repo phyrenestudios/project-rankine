@@ -81,8 +81,12 @@ public class ModItems {
     public static final Item CALCITE = add("calcite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item DOLOMITE = add("dolomite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item FELDSPAR = add("feldspar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item PLAGIOCLASE_FELDSPAR = add("plagioclase_feldspar", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item OLIVINE = add("olivine", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PYROXENE = add("pyroxene", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item MICA = add("mica", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item AMPHIBOLE = add("amphibole", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item BORAX = add("borax", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SALT = add("salt", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item PINK_SALT = add("pink_salt", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item SALTPETER = add("saltpeter", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -156,7 +160,7 @@ public class ModItems {
     //ELEMENT INGOTS
     public static final Item HYDROGEN_INGOT = add("hydrogen_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item HELIUM_INGOT = add("helium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
-    public static final Item LITHIUM_INGOT = add("lithium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
+    public static final Item LITHIUM_INGOT = add("lithium_ingot", new ReactiveItem(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item BERYLLIUM_INGOT = add("beryllium_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item BORON_INGOT = add("boron_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final Item CARBON_INGOT = add("carbon_ingot", new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));

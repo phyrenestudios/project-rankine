@@ -1,0 +1,5 @@
+{
+    "variants": {
+    "": { "model": "rankine:block/mica_block" }
+    }
+}

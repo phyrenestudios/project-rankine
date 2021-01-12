@@ -36,16 +36,18 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModRecipes {
+
     public static final DeferredRegister<IRecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ProjectRankine.MODID);
+    public static final RegistryObject<AlloyCraftingRecipe.Serializer> ALLOY_CRAFTING_SERIALIZER = REGISTRY.register("alloy_crafting", () -> AlloyCraftingRecipe.SERIALIZER);
 
     private static void registerType(ResourceLocation name, IRecipeType<?> recipeType) {
         Registry.register(Registry.RECIPE_TYPE, name, recipeType);
     }
 
     public static void init() {
-        registerType(new ResourceLocation(ProjectRankine.MODID,"crushing"), IPistonCrusherRecipe.RECIPE_TYPE);
+
     }
-    public static final RegistryObject<IPistonCrusherRecipe.Serializer> PISTON_CRUSHER_SERIALIZER = REGISTRY.register("crushing", IPistonCrusherRecipe.Serializer::new);
+    //public static final RegistryObject<IPistonCrusherRecipe.Serializer> PISTON_CRUSHER_SERIALIZER = REGISTRY.register("crushing", IPistonCrusherRecipe.Serializer::new);
 
     public static List<IAlloyRecipe> getAlloyRecipes()
     {
@@ -84,7 +86,7 @@ public class ModRecipes {
         recipes.add(alloyRecipe("invar_alloy",new ItemStack(ModItems.INVAR_ALLOY),Arrays.asList(returnTagFamily("iron"),returnTagFamily("nickel"),
                 returnTagFamily("cobalt")), new AbstractMap.SimpleEntry<>(.5f,.9f), new AbstractMap.SimpleEntry<>(.1f,.5f),new AbstractMap.SimpleEntry<>(0f,.05f),0.95f));
 
-        recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(returnTagFamily("pig_iron"),returnTagFamily("carbon","coke","graphite"),
+        recipes.add(alloyRecipe("cast_iron_alloy",new ItemStack(ModItems.CAST_IRON_ALLOY),Arrays.asList(returnTagFamily("iron"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("chromium"),returnTagFamily("molybdenum"),returnTagFamily("titanium"),
                 returnTagFamily("vanadium"),returnTagFamily("silicon"),returnTagFamily("phosphorus")),
                 new AbstractMap.SimpleEntry<>(.86f,.98f), new AbstractMap.SimpleEntry<>(.02f,.04f),new AbstractMap.SimpleEntry<>(0f,0.1f),.9f));
@@ -119,7 +121,7 @@ public class ModRecipes {
     public static List<ITripleAlloyRecipe> getTripleAlloyRecipes() {
         List<ITripleAlloyRecipe> recipes = new ArrayList<>();
 
-        recipes.add(tripleAlloyRecipe("steel_alloy", new ItemStack(ModItems.STEEL_ALLOY), Arrays.asList(returnTagFamily("pig_iron"),
+        recipes.add(tripleAlloyRecipe("steel_alloy", new ItemStack(ModItems.STEEL_ALLOY), Arrays.asList(returnTagFamily("iron"),
                 returnTagFamily("manganese"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("chromium"),returnTagFamily("cobalt"),
                 returnTagFamily("molybdenum"),returnTagFamily("nickel"),
@@ -129,7 +131,7 @@ public class ModRecipes {
                 returnTagFamily("silicon")),
                 new AbstractMap.SimpleEntry<>(.97f,.98f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(.01f, .02f), new AbstractMap.SimpleEntry<>(0f, .01f),.99f));
 
-        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("wrought_iron"),
+        recipes.add(tripleAlloyRecipe("stainless_steel_alloy", new ItemStack(ModItems.STAINLESS_STEEL_ALLOY), Arrays.asList(returnTagFamily("iron"),
                 returnTagFamily("chromium"),returnTagFamily("carbon","coke","graphite"),
                 returnTagFamily("molybdenum"),returnTagFamily("aluminum"),
                 returnTagFamily("manganese"),returnTagFamily("copper"),
