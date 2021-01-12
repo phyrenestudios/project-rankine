@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/wadsleyite" }
+        "": [
+        {
+        "model": "rankine:block/wadsleyite"
+        },
+        {
+        "model": "rankine:block/wadsleyite"
+        },
+        {
+        "model": "rankine:block/wadsleyite_alt"
         }
-    }
+        ]
+        }
+        }

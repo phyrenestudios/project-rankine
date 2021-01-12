@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/pumice" }
+        "": [
+        {
+        "model": "rankine:block/pumice"
+        },
+        {
+        "model": "rankine:block/pumice"
+        },
+        {
+        "model": "rankine:block/pumice_alt"
         }
-    }
+        ]
+        }
+        }

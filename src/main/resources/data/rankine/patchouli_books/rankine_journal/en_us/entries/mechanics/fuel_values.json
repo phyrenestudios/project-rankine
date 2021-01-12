@@ -1,7 +1,7 @@
 {
   "name": "Fuel Values",
   "icon": "minecraft:charcoal",
-  "category": "materials",
+  "category": "mechanics",
   "pages": [
     {
       "type": "text",

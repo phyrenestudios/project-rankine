@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import com.cannolicatfish.rankine.fluids.ModFluids;
@@ -74,6 +75,8 @@ public class ModItems {
     public static final Item BITUMINOUS_COAL = add("bituminous_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),2400));
     public static final Item ANTHRACITE_COAL = add("anthracite_coal", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200));
     public static final Item COKE = add("coke", new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200));
+    public static final Item PYRITE = add("pyrite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final Item CRYOLITE = add("cryolite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item MAGNESIA = add("magnesia", new SimpleTooltipItem(Arrays.asList("Composition: MgO", "Used for high refractory bricks"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item CALCITE = add("calcite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final Item DOLOMITE = add("dolomite", new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -541,7 +544,8 @@ public class ModItems {
     public static final Item STEEL_CROWBAR = add("steel_crowbar", new ItemCrowbar(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item TITANIUM_CROWBAR = add("titanium_crowbar", new ItemCrowbar(1.5f, -1.8F, RankineToolMaterials.TITANIUM,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item THERMOMETER = add("thermometer", new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final Item ORE_DETECTOR = add("ore_detector", new OreDetector(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item PROSPECTING_STICK = add("prospecting_stick", new OreDetector(Config.PROSPECTING_STICK_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final Item ORE_DETECTOR = add("ore_detector", new OreDetector(Config.ORE_DETECTOR_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item GLASS_CUTTER = add("glass_cutter", new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
     public static final Item HARDNESS_TESTER = add("hardness_tester", new ItemHardnessTester(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item ORE_CYCLER = add("ore_cycler", new ItemOreCycler(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -599,6 +603,7 @@ public class ModItems {
     public static final Item DRAGONYTE = add("dragonyte_spawn_egg", new SpawnEggItem(ModEntityTypes.DRAGONYTE,0xC28215, 0x8F1826,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item BEAVER = add("beaver_spawn_egg", new SpawnEggItem(ModEntityTypes.BEAVER,0x765F4C, 0x463F39,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
 
+    public static final Item FIRE_CLAY_BALL = add("fire_clay_ball", new SimpleTooltipItem("Derived from fire clay or from crafting. Used for refractory bricks.", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final Item DRIED_BAMBOO = add("dried_bamboo", new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final Item BEAVER_PELT = add("beaver_pelt", new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final Item PUMICE_SOAP = add("pumice_soap", new ItemPumiceSoap(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

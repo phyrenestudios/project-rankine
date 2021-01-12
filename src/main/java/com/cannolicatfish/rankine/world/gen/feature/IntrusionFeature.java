@@ -44,26 +44,26 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
             if (CHANCE < 0.1) {
                 INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-                radius = 6 - rand.nextInt(2);
+                radius = 5 - rand.nextInt(2);
             }
         } else {
             if (CHANCE < 0.1) {
                 INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ()) - 20;
-                radius = 6 - rand.nextInt(2);
-            } else if (CHANCE < 0.15) {
+                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
+            } else if (CHANCE < 0.2) {
                 INTRUSION = ModBlocks.GRANODIORITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-                radius = 6 - rand.nextInt(3);
-            } else if (CHANCE < 0.2) {
+            } else if (CHANCE < 0.3) {
                 INTRUSION = Blocks.DIORITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-                radius = 6 - rand.nextInt(3);
-            } else if (CHANCE < 0.25) {
+            } else if (CHANCE < 0.4) {
                 INTRUSION = Blocks.GRANITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-                radius = 6 - rand.nextInt(3);
+            } else if (CHANCE < 0.5) {
+                INTRUSION = ModBlocks.RED_GRANITE.getDefaultState();
+                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             }
+            radius = 6 - rand.nextInt(3);
         }
 
 
@@ -71,8 +71,8 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
             for (int y = startY; y <= endY; ++y) {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
-                        if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
-                            if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState() && y <= 40) {
+                        if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("rankine:intrusion_passable"))) {
+                            if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState()) {
                                 float chance = rand.nextFloat();
                                 if (chance < Config.ILMENITE_CHANCE.get().floatValue()) {
                                     reader.setBlockState(blockpos, ModBlocks.ILMENITE_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
@@ -87,7 +87,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         }
                     }
                 }
-                if (rand.nextFloat() < 0.08) {
+                if (rand.nextFloat() < 0.1) {
                     radius -= 1;
                     if (radius <= 0) {
                         return true;

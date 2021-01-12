@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/schist" }
+        "": [
+        {
+        "model": "rankine:block/schist"
+        },
+        {
+        "model": "rankine:block/schist"
+        },
+        {
+        "model": "rankine:block/schist_alt"
         }
-    }
+        ]
+        }
+        }

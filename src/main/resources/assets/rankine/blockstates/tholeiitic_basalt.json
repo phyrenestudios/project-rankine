@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/tholeiitic_basalt" }
+        "": [
+        {
+        "model": "rankine:block/tholeiitic_basalt"
+        },
+        {
+        "model": "rankine:block/tholeiitic_basalt"
+        },
+        {
+        "model": "rankine:block/tholeiitic_basalt_alt"
         }
-    }
+        ]
+        }
+        }

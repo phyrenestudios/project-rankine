@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/breccia" }
+        "": [
+        {
+        "model": "rankine:block/breccia"
+        },
+        {
+        "model": "rankine:block/breccia"
+        },
+        {
+        "model": "rankine:block/breccia_alt"
         }
-    }
+        ]
+        }
+        }

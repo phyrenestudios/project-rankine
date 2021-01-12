@@ -1,5 +1,6 @@
 {
         "variants": {
-        "": { "model": "rankine:block/charcoal_pit" }
+                "lit=false": { "model": "rankine:block/charcoal_pit" },
+                "lit=true": { "model": "rankine:block/charcoal_pit_on" }
         }
-        }
+}

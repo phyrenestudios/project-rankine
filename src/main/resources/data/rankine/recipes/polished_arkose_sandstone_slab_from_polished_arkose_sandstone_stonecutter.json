@@ -1,0 +1,8 @@
+{
+                "type": "minecraft:stonecutting",
+                "ingredient": {
+                  "item": "rankine:polished_arkose_sandstone"
+                },
+                "result": "rankine:polished_arkose_sandstone_slab",
+                "count": 2
+                }

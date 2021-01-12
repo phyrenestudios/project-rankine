@@ -1,0 +1,15 @@
+{
+                "type": "minecraft:crafting_shaped",
+                "pattern": [
+                "###"
+                ],
+                "key": {
+                "#": {
+                  "item": "rankine:polished_chalk"
+                }
+                },
+                "result": {
+                "item": "rankine:polished_chalk_slab",
+                "count": 6
+                }
+                }

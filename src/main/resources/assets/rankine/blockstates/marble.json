@@ -1,5 +1,15 @@
 {
         "variants": {
-        "": { "model": "rankine:block/marble" }
+        "": [
+        {
+        "model": "rankine:block/marble"
+        },
+        {
+        "model": "rankine:block/marble"
+        },
+        {
+        "model": "rankine:block/marble_alt"
         }
-    }
+        ]
+        }
+        }

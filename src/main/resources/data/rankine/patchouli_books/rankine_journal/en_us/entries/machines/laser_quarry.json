@@ -7,7 +7,7 @@
       "type": "text",
       "title": "Laser Quarry",
       "anchor": "laser_quarry",
-      "text": "A device which allows you to mine out a large area. A Lithium Power Cell must be placed in the Laser Quarry before activation. When powered with redstone, the quarry will begin breaking blocks within the area defined by the pylons. The quarry voids resources, but does not break ores and certain other blocks, such as the Quarry Barrier."
+      "text": "A device which allows you to mine out a large area. A Lithium Power Cell must be placed in the Laser Quarry before activation. When powered with redstone, the quarry will begin breaking blocks within the area defined by the pylons. The quarry voids blocks, but does not break ores and certain other blocks, such as spawners and bedrock."
     },
     {
       "type": "crafting",
@@ -17,7 +17,7 @@
     {
       "type": "crafting",
       "recipe": "rankine:quarry_barrier",
-      "text": ""
+      "text": "The Quarry Barrier can be place anywhere in the region of the Laser Quarry Pylons and no blocks will be broken beneath it. This can be used to stop the quarry at a certain y-level, or to define a non-square wall pattern."
     },
     {
       "type": "crafting",
@@ -35,26 +35,9 @@
       "text": ""
     },
     {
-      "type": "multiblock",
-      "multiblock_id": "multiblock",
-      "multiblock": {
-        "pattern": [
-          [ "      P      ","             ", "             ", "             " ,"             ","             ", "P           P", "             ", "             ", "             ", "             ","             ","      P      "],
-          [ "      B      ","             ", "             ", "             " ,"             ","             ", "B           B", "             ", "             ", "             ", "             ","             ","      B      "],
-          [ "      B      ","             ", "             ", "             " ,"             ","             ", "B           B", "             ", "             ", "             ", "             ","             ","      B      " ],
-          [ "      B      ","             ", "             ", "             " ,"             ","             ", "B     0     B", "             ", "             ", "             ", "             ","             ","      B      " ]
-        ],
-        "mapping": {
-          "P": "rankine:laser_pylon_top",
-          "0": "rankine:laser_quarry",
-          "B": "rankine:laser_pylon_base"
-        },
-        "symmetrical": true
-      }
-    },
-    {
       "type": "text",
-      "text": "Construction notes: $(li)The distance between pylon and quarry is 5 blocks.$() $(li)While the multiblock structure indicates that blocks must be removed in the area, this is not actually necessary."
+      "title": "Construction",
+      "text": "The pylons are built in the four cardinal directions from the Laser Quarry. There is a 7 block gap between the quarry block and pylon base. A pylon is constructed using 3 Pylon Bases and a Pylon Top. The bottom of the pylon is at the same y-level as the quarry."
     }
   ]
 }

@@ -461,6 +461,9 @@ public class ModRecipes {
         recipes.addAll(groupCrushingRecipe("saplings_crushing","minecraft:saplings",new ItemStack(ModItems.BIOMASS,2),new ItemStack(ModItems.COMPOST,1), 0.3f));
         recipes.add(crushingRecipe("cinnabar_crushing",ModItems.CINNABAR, new ItemStack(Items.REDSTONE,3), new ItemStack(ModItems.SULFUR,1),0.1f));
         recipes.add(crushingRecipe("cinnabar_crushing",ModBlocks.CINNABAR_BLOCK.asItem(), new ItemStack(Items.REDSTONE,27), new ItemStack(ModItems.SULFUR,1),0.9f));
+        recipes.add(crushingRecipe("cryolite_ore_crushing",ModBlocks.CRYOLITE_ORE.asItem(), new ItemStack(ModItems.CRYOLITE,1), new ItemStack(ModItems.ALUMINA,1),0.1f));
+        recipes.add(crushingRecipe("pyrite_ore_crushing",ModBlocks.PYRITE_ORE.asItem(), new ItemStack(ModItems.PYRITE,1), new ItemStack(Items.GOLD_NUGGET,1),1.0f));
+        recipes.add(crushingRecipe("pyrite_crushing",ModItems.PYRITE, new ItemStack(Items.IRON_NUGGET,6), new ItemStack(Items.GOLD_NUGGET,1),1.0f));
 
 
 

@@ -1,20 +1,26 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 
+import java.util.Random;
+
 public class OreDetector extends Item {
 
-    public OreDetector(Properties properties) {
+    private final int range;
+    public OreDetector(int range, Properties properties) {
         super(properties);
+        this.range = range;
     }
 
     public ActionResultType onItemUse(ItemUseContext context) {
@@ -31,7 +37,7 @@ public class OreDetector extends Item {
             });
         }
         boolean found = false;
-        for (int x = 0; x < Config.ORE_DETECTOR_RANGE.get(); x++) {
+        for (int x = 0; x <= range; x++) {
             if (e.getOpposite() == Direction.DOWN) {
                 if (reader.getBlockState(blockpos.down(x)).getBlock().getTags().contains(new ResourceLocation("forge:ores"))){
                     found = true;
@@ -77,11 +83,17 @@ public class OreDetector extends Item {
 
         }
         if (found && context.getPlayer() != null) {
-            if (Config.ORE_DETECTOR_MSG.get()) {
-                context.getPlayer().sendStatusMessage(new TranslationTextComponent(ORE.getBlock().getTranslationKey()), true);
+            if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == ModItems.PROSPECTING_STICK) {
+                context.getPlayer().sendStatusMessage(new StringTextComponent("An ore of harvest level "+ ORE.getBlock().getHarvestLevel(ORE) +" is nearby"), true);
+                if (new Random().nextFloat() < 0.5) {
+                    context.getPlayer().getHeldItem(Hand.MAIN_HAND).shrink(1);
+                }
+            } else if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == ModItems.ORE_DETECTOR) {
+                if (Config.ORE_DETECTOR_MSG.get()) {
+                    context.getPlayer().sendStatusMessage(new TranslationTextComponent(ORE.getBlock().getTranslationKey()), true);
+                }
+                iworld.playSound(context.getPlayer(),blockpos, SoundEvents.BLOCK_NOTE_BLOCK_BELL,SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);
             }
-            iworld.playSound(context.getPlayer(),blockpos, SoundEvents.BLOCK_NOTE_BLOCK_BELL,SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);
-
         }
         return ActionResultType.SUCCESS;
     }

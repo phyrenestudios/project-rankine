@@ -14,6 +14,10 @@
     "rankine:gabbro",
     "rankine:schist",
     "rankine:slate",
-    "rankine:breccia"
+    "rankine:breccia",
+    "rankine:red_dacite",
+    "rankine:black_dacite",
+    "rankine:quartz_sandstone",
+    "rankine:arkose_sandstone"
   ]
 }
