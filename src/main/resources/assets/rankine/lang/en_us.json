@@ -1784,6 +1784,8 @@
   "enchantment.rankine.lightning_aspect.desc": "Causes lightning to strike when attacking targets.",
   "enchantment.rankine.swing": "Swing",
   "enchantment.rankine.swing.desc": "Decreases the cooldown of effects caused by swinging the hammer by 15% (additive).",
+  "enchantment.rankine.excavate": "Excavate",
+  "enchantment.rankine.excavate.desc": "Increases the number of blocks broken by swinging the hammer.",
   "enchantment.rankine.daze": "Daze",
   "enchantment.rankine.daze.desc": "Applies slow on targets. Effect enhanced on perfect swing.",
 

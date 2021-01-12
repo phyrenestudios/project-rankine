@@ -37,18 +37,6 @@ import java.util.stream.Collectors;
 
 public class ModRecipes {
 
-    public static final DeferredRegister<IRecipeSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ProjectRankine.MODID);
-    public static final RegistryObject<AlloyCraftingRecipe.Serializer> ALLOY_CRAFTING_SERIALIZER = REGISTRY.register("alloy_crafting", () -> AlloyCraftingRecipe.SERIALIZER);
-
-    private static void registerType(ResourceLocation name, IRecipeType<?> recipeType) {
-        Registry.register(Registry.RECIPE_TYPE, name, recipeType);
-    }
-
-    public static void init() {
-
-    }
-    //public static final RegistryObject<IPistonCrusherRecipe.Serializer> PISTON_CRUSHER_SERIALIZER = REGISTRY.register("crushing", IPistonCrusherRecipe.Serializer::new);
-
     public static List<IAlloyRecipe> getAlloyRecipes()
     {
         List<IAlloyRecipe> recipes = new ArrayList<>();

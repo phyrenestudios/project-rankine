@@ -25,6 +25,7 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.fluids.ModFluids;
+import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.world.gen.OreGen;
 import com.cannolicatfish.rankine.world.gen.DecorationGen;
 import net.minecraft.enchantment.Enchantment;
@@ -33,11 +34,14 @@ import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -54,6 +58,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -73,12 +78,10 @@ public class ProjectRankine {
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-common.toml"));
         //ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(this);
-
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
         ModBlocks.REGISTRY.register(Bus);
         ModItems.REGISTRY.register(Bus);
-        ModRecipes.REGISTRY.register(Bus);
         Bus.addListener(this::LoadComplete);
 
     }
@@ -121,6 +124,10 @@ public class ProjectRankine {
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
+        @SubscribeEvent
+         public static void onRecipeSerializersRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
+            event.getRegistry().register(AlloyCraftingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_crafting"));
+         }
 
         @SubscribeEvent
         public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
@@ -279,6 +286,7 @@ public class ProjectRankine {
             event.getRegistry().register(new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"daze"));
             event.getRegistry().register(new BlastEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"blast"));
             event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
+            event.getRegistry().register(new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"excavate"));
             event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
         }
 /*
