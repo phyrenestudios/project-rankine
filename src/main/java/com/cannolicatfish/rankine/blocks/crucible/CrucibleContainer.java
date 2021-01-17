@@ -24,7 +24,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.COAL_FORGE_CONTAINER;
+import static com.cannolicatfish.rankine.init.ModBlocks.CRUCIBLE_CONTAINER;
 
 public class CrucibleContainer extends Container {
     private final IInventory furnaceInventory;
@@ -34,64 +34,51 @@ public class CrucibleContainer extends Container {
     private final IIntArray data;
 
     public CrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(13),new IntArray(5));
+        this(windowId,world,pos,playerInventory,player,new Inventory(5),new IntArray(3));
 
 
 
     }
     public CrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
-        super(COAL_FORGE_CONTAINER, windowId);
+        super(CRUCIBLE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 13);
-        assertIntArraySize(furnaceData, 5);
+        assertInventorySize(furnaceInventoryIn, 5);
+        assertIntArraySize(furnaceData, 3);
         this.playerEntity = player;
         this.data = furnaceData;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
 
-        this.addSlot(new Slot(furnaceInventory, 0, 39, 37));
-        this.addSlot(new Slot(furnaceInventory, 1, 88,37));
-        this.addSlot(new Slot(furnaceInventory, 2, 146,11));
-        this.addSlot(new Slot(furnaceInventory, 3, 10,37));
-        this.addSlot(new Slot(furnaceInventory, 4, 146,37));
+        this.addSlot(new Slot(furnaceInventory, 0, 53, 23));
+        this.addSlot(new Slot(furnaceInventory, 1, 71,16));
+        this.addSlot(new Slot(furnaceInventory, 2, 88,16));
+        this.addSlot(new Slot(furnaceInventory, 3, 106,23));
+        this.addSlot(new Slot(furnaceInventory, 4, 79,57));
 
-        this.addSlot(new Slot(furnaceInventory, 5, 26,61));
-        this.addSlot(new Slot(furnaceInventory, 6, 44,61));
-        this.addSlot(new Slot(furnaceInventory, 7, 62,61));
-        this.addSlot(new Slot(furnaceInventory, 8, 80,61));
-        this.addSlot(new Slot(furnaceInventory, 9, 98,61));
-        this.addSlot(new Slot(furnaceInventory, 10, 116,61));
-        this.addSlot(new Slot(furnaceInventory, 11, 134,61));
-        this.addSlot(new Slot(furnaceInventory, 12, 152,61));
-
-        layoutPlayerInventorySlots(8, 86);
+        layoutPlayerInventorySlots(8, 84);
 
         this.trackIntArray(furnaceData);
     }
 
+
     @OnlyIn(Dist.CLIENT)
-    public int getBurnTime(){
+    public int getCookTime(){
         return this.data.get(0);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getCurrentBurnTime(){
+    public int getTotalCookTime(){
         return this.data.get(1);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getCookTime(){
+    public int getHeatStatus(){
         return this.data.get(2);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public int getTotalCookTime(){
-        return this.data.get(3);
     }
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.COAL_FORGE);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.CRUCIBLE_BLOCK);
     }
 
     @Override
@@ -102,40 +89,25 @@ public class CrucibleContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 4) {
-                if (!this.mergeItemStack(stack, 13, 49, true)) {
+                if (!this.mergeItemStack(stack, 5, 41, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (index > 12) {
-                if (stack.getItem().getTags().contains(new ResourceLocation("forge:rods")) || stack.getItem().getTags().contains(new ResourceLocation("forge:gems"))) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+            } else if (index > 4) {
+                if (stack.getItem().getTags().contains(new ResourceLocation("rankine:crucible_fluxes"))) {
+                    if (!this.mergeItemStack(stack, 0, 4, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (stack.getItem() instanceof ItemTemplate) {
-                    if (!this.mergeItemStack(stack, 2, 3, false)) {
-                        if (!this.mergeItemStack(stack, 5, 12, false))
-                        {
-                            return ItemStack.EMPTY;
-                        }
-                    }
-                } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
-                    if (!this.mergeItemStack(stack, 3, 4, false)) {
+                else if (index < 32) {
+                    if (!this.mergeItemStack(stack, 32, 41, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (stack.getItem() instanceof AlloyItem) {
-                    if (!this.mergeItemStack(stack, 1, 2, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index < 40) {
-                    if (!this.mergeItemStack(stack, 40, 49, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index < 49 && !this.mergeItemStack(stack, 13, 40, false)) {
+                } else if (index < 41 && !this.mergeItemStack(stack, 5, 32, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(stack, 13, 49, false)) {
+            else if (!this.mergeItemStack(stack, 5, 41, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -182,15 +154,7 @@ public class CrucibleContainer extends Container {
     }
 
     public int getOutputSlot() {
-        return 2;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public int getBurnLeftScaled(int pixels)
-    {
-        int i = getCurrentBurnTime();
-        if(i == 0) i = 200;
-        return getBurnTime() * pixels / i;
+        return 4;
     }
 
 
@@ -202,11 +166,6 @@ public class CrucibleContainer extends Container {
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public boolean isBurning()
-    {
-        return getBurnTime() > 0;
-    }
 
 
 }

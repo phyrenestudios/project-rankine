@@ -6,7 +6,7 @@
     "bottom": "rankine:block/crucible_bottom",
     "side": "rankine:block/crucible_side",
     "inside": "rankine:block/crucible_inner",
-    "water": "rankine:block/liquid_pig_iron_still"
+    "water": "rankine:block/liquid_redstone_still"
   },
   "elements": [
     {

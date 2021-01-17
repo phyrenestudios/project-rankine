@@ -33,7 +33,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ModRecipes {
 
@@ -229,6 +231,325 @@ public class ModRecipes {
                 returnAmalgamStacks()), new AbstractMap.SimpleEntry<>(.25f,.8f), new AbstractMap.SimpleEntry<>(.25f,.5f),new AbstractMap.SimpleEntry<>(0f,0.5f),  new AbstractMap.SimpleEntry<>(0f, 0f),1f));
 
         return recipes;
+    }
+
+    public static ItemStack returnCrucibleOutput(List<Item> items) {
+        if (items.stream().distinct().count() != items.size())
+        {
+            return ItemStack.EMPTY;
+        }
+        ITag<Item> ironTag = ItemTags.getCollection().get(new ResourceLocation("forge:ingots/iron"));
+        List<Item> iron = ironTag != null ? ironTag.getAllElements() : Collections.singletonList(Items.IRON_INGOT);
+        Stream<Item> irons = items.stream().filter(iron::contains);
+        if (!Collections.disjoint(items,iron) && irons.count() == 1) {
+            int ingCount = 1;
+            ITag<Item> coalTag = ItemTags.getCollection().get(new ResourceLocation("minecraft:coals"));
+            List<Item> coal = coalTag != null  ? coalTag.getAllElements() : Arrays.asList(ModItems.ANTHRACITE_COAL,ModItems.SUBBITUMINOUS_COAL,ModItems.BITUMINOUS_COAL,ModItems.LIGNITE,ModItems.COKE,Items.COAL,Items.CHARCOAL);
+            ITag<Item> siliconTag = ItemTags.getCollection().get(new ResourceLocation("rankine:glass_inputs"));
+            List<Item> silicon = siliconTag != null  ? siliconTag.getAllElements() : Arrays.asList(ModBlocks.BLACK_SAND.asItem(), Items.SAND, Items.RED_SAND, Items.QUARTZ);
+            ITag<Item> limestoneTag = ItemTags.getCollection().get(new ResourceLocation("rankine:limestone_fluxes"));
+            List<Item> limestone = limestoneTag != null ? limestoneTag.getAllElements() : Arrays.asList(ModBlocks.LIMESTONE.asItem(), ModItems.QUICKLIME, ModItems.DOLOMITE);
+            ITag<Item> saltpeterTag = ItemTags.getCollection().get(new ResourceLocation("forge:saltpeter"));
+            List<Item> saltpeter = saltpeterTag != null ? saltpeterTag.getAllElements() : Collections.singletonList(ModItems.SALTPETER);
+            ITag<Item> phosphorusTag = ItemTags.getCollection().get(new ResourceLocation("forge:phosphorus"));
+            List<Item> phosphorus = phosphorusTag != null ? phosphorusTag.getAllElements() : Collections.singletonList(ModItems.PHOSPHORUS);
+            ITag<Item> fluoriteTag = ItemTags.getCollection().get(new ResourceLocation("forge:fluorite"));
+            List<Item> fluorite = fluoriteTag != null ? fluoriteTag.getAllElements() : Collections.singletonList(ModItems.FLUORITE);
+            ITag<Item> boraxTag = ItemTags.getCollection().get(new ResourceLocation("forge:borax"));
+            List<Item> borax = boraxTag != null ? boraxTag.getAllElements() : Collections.singletonList(ModItems.BORAX);
+            int ironlvl = 99;
+            int carbonlvl = 1;
+            int siliconlvl = 0;
+            int sulfurlvl = 0;
+            int potassiumlvl = 0;
+            int phosphoruslvl = 0;
+
+            Stream<Item> coals = items.stream().filter(coal::contains);
+            int count = (int) coals.count();
+            coals = items.stream().filter(coal::contains);
+            if (count == 1 && coals.findFirst().isPresent())
+            {
+                coals = items.stream().filter(coal::contains);
+                Item recipeCoal = coals.findFirst().get();
+                if (recipeCoal == ModItems.COKE || recipeCoal == Items.CHARCOAL) // 98Fe-2C
+                {
+                    ironlvl -= 1;
+                    carbonlvl += 1;
+                } else if (recipeCoal == ModItems.ANTHRACITE_COAL) // 97Fe-2C-1S
+                {
+                    sulfurlvl += 1;
+                    carbonlvl += 1;
+                    ironlvl -= 2;
+                } else if (recipeCoal == ModItems.BITUMINOUS_COAL) // 96Fe-2C-2S
+                {
+                    sulfurlvl += 2;
+                    carbonlvl += 1;
+                    ironlvl -= 3;
+                }  else if (recipeCoal == ModItems.SUBBITUMINOUS_COAL || recipeCoal == Items.COAL) // 96Fe-3S-1C
+                {
+                    sulfurlvl += 3;
+                    ironlvl -= 3;
+                }  else if (recipeCoal == ModItems.LIGNITE) // 95Fe-4S-1C
+                {
+                    sulfurlvl += 4;
+                    ironlvl -= 4;
+                } else {
+                    sulfurlvl += 3;
+                    ironlvl -= 3;
+                }
+                ingCount += 1;
+            } else if (count > 1 || count == 0) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> sands = items.stream().filter(silicon::contains);
+            count = (int) sands.count();
+            sands = items.stream().filter(silicon::contains);
+            if (count == 1 && sands.findFirst().isPresent()) {
+                sands = items.stream().filter(silicon::contains);
+                Item recipeSand = sands.findFirst().get();
+                if (carbonlvl > 1 && recipeSand == ModBlocks.BLACK_SAND.asItem())
+                {
+                    carbonlvl -= 1;
+                    siliconlvl += 1;
+                } else {
+                    ironlvl -= 1;
+                    siliconlvl += 1;
+                }
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> limestones = items.stream().filter(limestone::contains);
+            count = (int) limestones.count();
+            limestones = items.stream().filter(limestone::contains);
+            if (count == 1 && limestones.findFirst().isPresent()) {
+                if (sulfurlvl >= 1)
+                {
+                    ironlvl += sulfurlvl;
+                    sulfurlvl = 0;
+                }
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> saltpeters = items.stream().filter(saltpeter::contains);
+            count = (int) saltpeters.count();
+            saltpeters = items.stream().filter(saltpeter::contains);
+            if (count == 1 && saltpeters.findFirst().isPresent()) {
+                ironlvl -= 1;
+                potassiumlvl += 1;
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> phosphor = items.stream().filter(phosphorus::contains);
+            count = (int) phosphor.count();
+            phosphor = items.stream().filter(phosphorus::contains);
+            if (count == 1 && phosphor.findFirst().isPresent()) {
+                ironlvl -= 2;
+                phosphoruslvl += 2;
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> fluorites = items.stream().filter(fluorite::contains);
+            count = (int) fluorites.count();
+            fluorites = items.stream().filter(fluorite::contains);
+            if (count == 1 && fluorites.findFirst().isPresent()) {
+                if (phosphoruslvl >= 1) {
+                    ironlvl += phosphoruslvl;
+                    phosphoruslvl = 0;
+                }
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> boraxes = items.stream().filter(borax::contains);
+            count = (int) boraxes.count();
+            boraxes = items.stream().filter(borax::contains);
+            if (count == 1 && boraxes.findFirst().isPresent()) {
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            if (ironlvl < 94 && carbonlvl > 1)
+            {
+                carbonlvl -= 1;
+                ironlvl += 1;
+            }
+
+            if (ingCount == 4)
+            {
+                String alloyOutput = "";
+                String ironOutput = ironlvl + "Fe";
+                String carbonOutput = carbonlvl + "C";
+
+
+                if (siliconlvl == 0 && sulfurlvl == 0 && phosphoruslvl == 0 && potassiumlvl == 0)
+                {
+                    alloyOutput = ironOutput + "-" + carbonOutput;
+                } else {
+                    List<Integer> percents = new ArrayList<>();
+                    List<String> elements = new ArrayList<>();
+
+                    percents.add(ironlvl);
+                    elements.add("Fe");
+                    percents.add(carbonlvl);
+                    elements.add("C");
+                    if (siliconlvl > 0)
+                    {
+                        percents.add(siliconlvl);
+                        elements.add("Si");
+                    }
+                    if (sulfurlvl > 0)
+                    {
+                        percents.add(sulfurlvl);
+                        elements.add("S");
+                    }
+                    if (potassiumlvl > 0)
+                    {
+                        percents.add(potassiumlvl);
+                        elements.add("K");
+                    }
+                    if (phosphoruslvl > 0)
+                    {
+                        percents.add(phosphoruslvl);
+                        elements.add("P");
+                    }
+                    alloyOutput = AlloyRecipeHelper.getInstance().getDirectComposition(percents,elements);
+                }
+
+                ItemStack steel = new ItemStack(ModItems.STEEL_ALLOY);
+                AlloyItem.addAlloy(steel, new AlloyData(alloyOutput));
+                return steel;
+            }
+            return ItemStack.EMPTY;
+        }
+
+        if (items.contains(ModItems.CINNABAR))
+        {
+            int ingCount = 1;
+            int outputamt = 3;
+            Item output = Items.REDSTONE;
+
+            if (Collections.frequency(items,ModItems.ARSENIC_INGOT) > 1 || Collections.frequency(items,ModItems.COBALTITE) > 1 || Collections.frequency(items,Items.QUARTZ) > 1 || Collections.frequency(items,ModItems.PHOSPHORUS) > 1)
+            {
+                return ItemStack.EMPTY;
+            }
+            if (items.contains(ModItems.PHOSPHORUS)) {
+                ingCount += 1;
+                output = Items.GLOWSTONE;
+            }
+
+            if (items.contains(ModItems.ARSENIC_INGOT)) {
+                ingCount += 1;
+                outputamt += 1;
+            }
+
+            if (items.contains(Items.QUARTZ)) {
+                ingCount += 1;
+                outputamt += 1;
+            }
+
+            if (items.contains(ModItems.COBALTITE)) {
+                ingCount += 1;
+                outputamt += 2;
+            }
+
+            if (ingCount == 4) {
+                return new ItemStack(output,outputamt);
+            }
+        }
+
+        ITag<Item> siliconTag = ItemTags.getCollection().get(new ResourceLocation("rankine:glass_inputs"));
+        List<Item> silicon = siliconTag != null  ? siliconTag.getAllElements() : Arrays.asList(ModBlocks.BLACK_SAND.asItem(), Items.SAND, Items.RED_SAND, Items.QUARTZ);
+        Stream<Item> silicons = items.stream().filter(silicon::contains);
+        if (!Collections.disjoint(items,silicon) && silicons.count() == 1) {
+            int ingCount = 1;
+            int outputamt = 1;
+            Item glassOut = Items.GLASS;
+
+            silicons = items.stream().filter(silicon::contains);
+            if (silicons.findFirst().isPresent())
+            {
+                silicons = items.stream().filter(silicon::contains);
+                Item recipeSand = silicons.findFirst().get();
+                if (recipeSand.getItem() != Items.QUARTZ)
+                {
+                    outputamt += 1;
+                }
+            }
+
+            ITag<Item> dyeTag = ItemTags.getCollection().get(new ResourceLocation("forge:dyes"));
+            List<Item> dye = dyeTag != null  ? dyeTag.getAllElements() : Arrays.asList(Items.WHITE_DYE,Items.ORANGE_DYE,Items.MAGENTA_DYE,Items.LIGHT_BLUE_DYE,Items.YELLOW_DYE,Items.LIME_DYE,
+                    Items.PINK_DYE,Items.GRAY_DYE,Items.LIGHT_GRAY_DYE,Items.CYAN_DYE,Items.PURPLE_DYE,Items.BLUE_DYE,Items.BROWN_DYE,Items.GREEN_DYE,Items.RED_DYE, Items.BLACK_DYE);
+            Stream<Item> dyes = items.stream().filter(dye::contains);
+            if (items.contains(ModItems.GALENA) && dyes.count() >= 1)
+            {
+                return ItemStack.EMPTY;
+            }
+
+            if (Collections.frequency(items,ModItems.ALUMINA) > 1 || Collections.frequency(items,ModItems.GALENA) > 1 || Collections.frequency(items,ModItems.MAGNESIA) > 1 || Collections.frequency(items,ModItems.QUICKLIME) > 1)
+            {
+                return ItemStack.EMPTY;
+            }
+
+            if (items.contains(ModItems.GALENA))
+            {
+                ingCount += 1;
+                glassOut = ModBlocks.LEAD_GLASS.asItem();
+                outputamt += 1;
+            }
+
+            dyes = items.stream().filter(dye::contains);
+            if (dyes.findFirst().isPresent())
+            {
+                ingCount += 1;
+                dyes = items.stream().filter(dye::contains);
+                ResourceLocation color = dyes.findFirst().get().getRegistryName();
+                if (color != null) {
+                    String c = color.getPath().split("_")[0];
+                    String rest = "_stained_glass";
+                    String path = c + rest;
+                    Item regout = ForgeRegistries.ITEMS.getValue(new ResourceLocation("minecraft",path));
+                    if (regout != null && regout != Items.GLASS)
+                    {
+                        glassOut = regout;
+                    }
+                }
+            }
+
+            if (items.contains(ModItems.ALUMINA))
+            {
+                ingCount += 1;
+                outputamt += 1;
+            }
+
+            if (items.contains(ModItems.MAGNESIA))
+            {
+                ingCount += 1;
+                outputamt += 1;
+            }
+
+            if (items.contains(ModItems.QUICKLIME))
+            {
+                ingCount += 1;
+                outputamt += 2;
+            }
+
+            if (ingCount == 4) {
+                return new ItemStack(glassOut,outputamt);
+            }
+        }
+
+        return ItemStack.EMPTY;
     }
 
     public static ItemStack[] returnTag(ResourceLocation... rs) {
