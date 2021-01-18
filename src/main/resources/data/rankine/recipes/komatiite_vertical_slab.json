@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:komatiite"
+        }
+      },
+      "result": {
+        "item": "rankine:komatiite_vertical_slab",
+        "count": 6
+      }
+}

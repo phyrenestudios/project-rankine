@@ -113,22 +113,31 @@ public class Config {
     public static ForgeConfigSpec.IntValue NOISE_SCALE;
     public static ForgeConfigSpec.IntValue NOISE_OFFSET;
     public static ForgeConfigSpec.IntValue METEOR_CHANCE;
-    public static ForgeConfigSpec.DoubleValue VOLCANO_CHANCE;
-    public static ForgeConfigSpec.IntValue VOLCANO_SIZE;
     public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
     public static ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
     public static ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
     public static ForgeConfigSpec.IntValue NUGGET_DISTANCE;
-    public static ForgeConfigSpec.DoubleValue GRAVEL_CONCRETE_SPEED;
-    public static ForgeConfigSpec.DoubleValue ROMAN_CONCRETE_SPEED;
     public static ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
     public static ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
     public static ForgeConfigSpec.BooleanValue ORE_DETECTOR_MSG;
     public static ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
     public static ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
-
+    public static ForgeConfigSpec.DoubleValue ICE_BREAK;
     public static ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
     public static ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
+
+
+    public static ForgeConfigSpec.BooleanValue MOVEMENT_MODIFIERS;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_SAND;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_GRASS_PATH;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_BRICKS;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_ROMAN_CONCRETE;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_DIRT;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_POLISHED_STONE;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_WOODEN;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_CONCRETE;
+    public static ForgeConfigSpec.DoubleValue MOVEMENT_SNOW;
+
 
 
     public static ForgeConfigSpec.BooleanValue SPEED_PENDANT_RECIPE;
@@ -843,20 +852,41 @@ public class Config {
                     .defineInRange("t3BeehiveOvenTime", 1.0D, 0.00D, 1.00D);
             EVAPORATION_TOWER_SPEED = COMMON_BUILDER.comment("Speed (in ticks) at which the evaporation tower generates resources.")
                     .defineInRange("evaporationTowerSpeed", 800, 20, 12000);
-            GRAVEL_CONCRETE_SPEED = COMMON_BUILDER.comment("Movement speed multiplier for walking on gravel concrete")
-                    .defineInRange("gravelConcreteSpeed", 1.20D, 0.00D, 3.00D);
-            ROMAN_CONCRETE_SPEED = COMMON_BUILDER.comment("Movement speed multiplier for walking on roman concrete")
-                    .defineInRange("romanConcreteSpeed", 1.40D, 0.00D, 5.00D);
             PROSPECTING_STICK_RANGE = COMMON_BUILDER.comment("Number of blocks away that the Prospecting Stick can detect ore.")
                     .defineInRange("prospectingStickRange", 16, 0, 64);
             ORE_DETECTOR_RANGE = COMMON_BUILDER.comment("Number of blocks away that the Ore Detector can detect ore.")
                     .defineInRange("oreDetectorRange", 32, 0, 64);
             ORE_DETECTOR_MSG = COMMON_BUILDER.comment("Set to false to disable the ore detector from outputting the block found.")
                     .define("oreDetectorMessage",true);
+            ICE_BREAK = COMMON_BUILDER.comment("Chance for ice to break when walking on it.")
+                    .defineInRange("iceBreak", 0.002D, 0.0D, 1.0D);
             LASER_QUARRY_RANGE = COMMON_BUILDER.comment("Max range of the laser quarry.")
                     .defineInRange("laserQuarryRange", 7, 0, 15);
             LASER_QUARRY_SPEED = COMMON_BUILDER.comment("Max speed of the laser quarry in ticks.")
                     .defineInRange("laserQuarrySpeed", 10, 10, 300);
+
+            COMMON_BUILDER.comment("Movement speed modifiers").push("movementModifiers");
+                MOVEMENT_MODIFIERS = COMMON_BUILDER.comment("Set to false to disable movement speed modifiers.")
+                        .define("movementModifiersEnabled",true);
+                MOVEMENT_SAND = COMMON_BUILDER.comment("Movement speed modifier for walking on Sand blocks.")
+                        .defineInRange("movementSand", -0.02D, -1.0D, 1.0D);
+                MOVEMENT_BRICKS = COMMON_BUILDER.comment("Movement speed modifier for walking on Brick / Stone Bricks and variants.")
+                        .defineInRange("movementBricks", 0.05D, -1.0D, 1.0D);
+                MOVEMENT_GRASS_PATH = COMMON_BUILDER.comment("Movement speed modifier for walking on Grass Paths.")
+                        .defineInRange("movementGrassPath", 0.02D, -1.0D, 1.0D);
+                MOVEMENT_ROMAN_CONCRETE = COMMON_BUILDER.comment("Movement speed modifier for walking on Roman Cooncrete.")
+                        .defineInRange("movementRomanConcrete", 0.1D, -1.0D, 1.0D);
+                MOVEMENT_DIRT = COMMON_BUILDER.comment("Movement speed modifier for walking on Dirt / Grass blocks.")
+                        .defineInRange("movementDirt", 0.0D, -1.0D, 1.0D);
+                MOVEMENT_POLISHED_STONE = COMMON_BUILDER.comment("Movement speed modifier for walking on #forge:polished_stone blocks.")
+                        .defineInRange("movementPolishedStone", 0.02D, -1.0D, 1.0D);
+                MOVEMENT_WOODEN = COMMON_BUILDER.comment("Movement speed modifier for walking on Planks and wooden variants.")
+                        .defineInRange("movementWooden", 0.02D, -1.0D, 1.0D);
+                MOVEMENT_CONCRETE = COMMON_BUILDER.comment("Movement speed modifier for walking on Concrete / Gravel Concrete.")
+                        .defineInRange("movementConcrete", 0.05D, -1.0D, 1.0D);
+                MOVEMENT_SNOW = COMMON_BUILDER.comment("Movement speed modifier for walking on Snow.")
+                        .defineInRange("movementSnow", -0.02D, -1.0D, 1.0D);
+            COMMON_BUILDER.pop();
 
 
             COMMON_BUILDER.comment("Vanilla Tools").push("vanillaTools");
@@ -1023,12 +1053,12 @@ public class Config {
                 .defineInRange("meteorChance", 85, 0, 1000);
         COMMON_BUILDER.pop();
 
-        COMMON_BUILDER.comment("Volcano Generation").push("volcano");
+/*        COMMON_BUILDER.comment("Volcano Generation").push("volcano");
         VOLCANO_CHANCE = COMMON_BUILDER.comment("Chance for a volcano to spawn in a chunk. Set to 0 to disable.")
                 .defineInRange("volcanoChance", 0.005D, 0.00D, 1.00D);
         VOLCANO_SIZE = COMMON_BUILDER.comment("Max size of volcano")
                 .defineInRange("volcanoSize", 20, 0, 100);
-        COMMON_BUILDER.pop();
+        COMMON_BUILDER.pop();*/
 
         COMMON_BUILDER.comment("Intrusion Ore Settings").push("intrusionOres");
         DIAMON_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by a diamond ore")
@@ -1855,7 +1885,7 @@ public class Config {
         ANTHRACITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Anthracite at (make sure it is less than the maximum)")
                 .defineInRange("AnthraciteOreMin", 45, 0, 256);
         ANTHRACITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Anthracite at (make sure it is greater than the minimum)")
-                .defineInRange("AnthraciteOreMax", 128, 0, 256);
+                .defineInRange("AnthraciteOreMax", 90, 0, 256);
         ANTHRACITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, AnthraciteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("AnthraciteOreGentype",false);
         ANTHRACITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Anthracite vein")

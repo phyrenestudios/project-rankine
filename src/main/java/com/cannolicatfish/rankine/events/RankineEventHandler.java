@@ -3,54 +3,38 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPit;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
-import com.cannolicatfish.rankine.blocks.CompositionBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModEnchantments;
-import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.init.ModRecipes;
-import com.cannolicatfish.rankine.items.AlloyTemplate;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.potion.ModEffects;
-import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.RandomChance;
-import net.minecraft.loot.functions.SetCount;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.DrawHighlightEvent;
-import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BasicTrade;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -64,18 +48,11 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.items.IItemHandler;
-import org.intellij.lang.annotations.Flow;
 
-import java.awt.event.ItemEvent;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.*;
-import java.util.function.Consumer;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -243,7 +220,111 @@ public class RankineEventHandler {
         }
     }
 
-    
+
+    @SubscribeEvent
+    public static void movementModifier(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World world = event.player.world;
+        BlockPos pos;
+        if (player.getPosY() % 1 < 0.5) {
+            pos = player.getPosition().down();
+        } else {
+            pos = player.getPosition();
+        }
+        Block ground = world.getBlockState(pos).getBlock();
+        String path = ground.getRegistryName().getPath();
+        ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
+
+        if (Config.MOVEMENT_MODIFIERS.get()) {
+            if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && !movementSpeed.hasModifier(ModAttributes.GRASS_PATH_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.GRASS_PATH_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && movementSpeed.hasModifier(ModAttributes.GRASS_PATH_MS)) {
+                movementSpeed.removeModifier(ModAttributes.GRASS_PATH_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(ModAttributes.SAND_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.SAND_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && movementSpeed.hasModifier(ModAttributes.SAND_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.SAND_MS);
+            } else if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(ModAttributes.SNOW_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.SNOW_MS);
+            } else if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && movementSpeed.hasModifier(ModAttributes.SNOW_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.SNOW_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/dirt")) && !movementSpeed.hasModifier(ModAttributes.DIRT_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.DIRT_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/dirt")) && movementSpeed.hasModifier(ModAttributes.DIRT_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.DIRT_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/wooden")) && !movementSpeed.hasModifier(ModAttributes.WOODEN_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.WOODEN_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/wooden")) && movementSpeed.hasModifier(ModAttributes.WOODEN_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.WOODEN_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/polished_stone")) && !movementSpeed.hasModifier(ModAttributes.POLISHED_STONE_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.POLISHED_STONE_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/polished_stone")) && movementSpeed.hasModifier(ModAttributes.POLISHED_STONE_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.POLISHED_STONE_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/bricks")) && !movementSpeed.hasModifier(ModAttributes.BRICKS_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.BRICKS_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/bricks")) && movementSpeed.hasModifier(ModAttributes.BRICKS_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.BRICKS_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/concrete")) && !movementSpeed.hasModifier(ModAttributes.CONCRETE_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.CONCRETE_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/concrete")) && movementSpeed.hasModifier(ModAttributes.CONCRETE_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.CONCRETE_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/roman_concrete")) && !movementSpeed.hasModifier(ModAttributes.ROMAN_CONCRETE_MS)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.ROMAN_CONCRETE_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/roman_concrete")) && movementSpeed.hasModifier(ModAttributes.ROMAN_CONCRETE_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(ModAttributes.ROMAN_CONCRETE_MS);
+            }
+        }
+        if (ground == Blocks.ICE) {
+            if (new Random().nextFloat() < Config.ICE_BREAK.get()) {
+                for (BlockPos B : BlockPos.getAllInBoxMutable(pos.add(-2, -1, -2), pos.add(2, -1, 2))) {
+                    if (world.getBlockState(B).getBlock() == Blocks.ICE) {
+                        world.setBlockState(B, Blocks.FROSTED_ICE.getDefaultState().with(FrostedIceBlock.AGE, 2));
+                    }
+                }
+            }
+        }
+        if (EnchantmentHelper.getMaxEnchantmentLevel(ModEnchantments.DUNE_WALKER, player) > 0) {
+            if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(ModAttributes.DUNE_WALKER)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.DUNE_WALKER);
+            }
+        } else if (EnchantmentHelper.getMaxEnchantmentLevel(ModEnchantments.DUNE_WALKER, player) <= 0 && movementSpeed.hasModifier(ModAttributes.DUNE_WALKER)) {
+            movementSpeed.removeModifier(ModAttributes.DUNE_WALKER);
+        }
+        if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && ground != Blocks.AIR && movementSpeed.hasModifier(ModAttributes.DUNE_WALKER)) {
+            movementSpeed.removeModifier(ModAttributes.DUNE_WALKER);
+        }
+        if (EnchantmentHelper.getMaxEnchantmentLevel(ModEnchantments.SNOW_DRIFTER, player) > 0) {
+            if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(ModAttributes.SNOW_DRIFTER)) {
+                movementSpeed.applyNonPersistentModifier(ModAttributes.SNOW_DRIFTER);
+            }
+        } else  if (EnchantmentHelper.getMaxEnchantmentLevel(ModEnchantments.SNOW_DRIFTER, player) <= 0 && movementSpeed.hasModifier(ModAttributes.SNOW_DRIFTER)) {
+            movementSpeed.removeModifier(ModAttributes.SNOW_DRIFTER);
+        }
+        if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) && !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && ground != Blocks.AIR && movementSpeed.hasModifier(ModAttributes.SNOW_DRIFTER)) {
+            movementSpeed.removeModifier(ModAttributes.SNOW_DRIFTER);
+        }
+
+    }
+
+
+    @SubscribeEvent
+    public static void specialEnchants(AnvilUpdateEvent event) {
+        ItemStack input = event.getLeft();
+        if (event.getRight().getItem() == ModItems.SANDALS && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getEquipmentSlot() == EquipmentSlotType.FEET) {
+            event.setOutput(input.copy());
+            if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.DUNE_WALKER,event.getOutput()) != 1) {
+                event.getOutput().addEnchantment(ModEnchantments.DUNE_WALKER, 1);
+                event.setCost(20);
+            }
+        } else if (event.getRight().getItem() == ModItems.SNOWSHOES && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getEquipmentSlot() == EquipmentSlotType.FEET) {
+            event.setOutput(input.copy());
+            if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SNOW_DRIFTER,event.getOutput()) != 1) {
+                event.getOutput().addEnchantment(ModEnchantments.SNOW_DRIFTER, 1);
+                event.setCost(20);
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onFluidInteraction(BlockEvent.FluidPlaceBlockEvent event)
     {
@@ -658,44 +739,7 @@ public class RankineEventHandler {
     }
 
 
-    @SubscribeEvent
-    public static void checkCowInteraction(PlayerInteractEvent.EntityInteract event)
-    {
-        if (event.getTarget() instanceof CowEntity  && !event.getPlayer().abilities.isCreativeMode)
-        {
-            CowEntity cow = ((CowEntity)event.getTarget());
-            Hand hand = event.getHand();
-            if (event.getPlayer().getHeldItem(hand).getItem() == ModItems.BRASS_BUCKET && !cow.isChild())
-            {
-                event.getPlayer().playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-                event.getPlayer().getHeldItem(hand).shrink(1);
-                if (event.getPlayer().getHeldItem(hand).isEmpty())
-                {
-                    event.getPlayer().setHeldItem(hand, new ItemStack(ModItems.MILK_BRASS_BUCKET,1));
-                } else
-                {
-                    event.getPlayer().addItemStackToInventory(new ItemStack(ModItems.MILK_BRASS_BUCKET,1));
-                }
-
-            }
-            if (event.getPlayer().getHeldItem(hand).getItem() == ModItems.WOOD_BUCKET && !cow.isChild())
-            {
-                event.getPlayer().playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-                event.getPlayer().getHeldItem(hand).shrink(1);
-                if (event.getPlayer().getHeldItem(hand).isEmpty())
-                {
-                    event.getPlayer().setHeldItem(hand, new ItemStack(ModItems.MILK_WOOD_BUCKET,1));
-                } else
-                {
-                    event.getPlayer().addItemStackToInventory(new ItemStack(ModItems.MILK_WOOD_BUCKET,1));
-                }
-            }
-        }
-    }
-
-
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
-
     @SubscribeEvent
     public static void axeStrip(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();

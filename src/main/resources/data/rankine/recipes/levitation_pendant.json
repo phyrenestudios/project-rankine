@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "#G#",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "tag": "forge:ingots/purple_gold"
+        },
+        "G": {
+          "tag": "forge:storage_blocks/aquamarine"
+        }
+      },
+      "result": {
+        "item": "rankine:levitation_pendant",
+        "count": 1
+      }
+}

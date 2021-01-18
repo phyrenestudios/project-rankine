@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:gabbro_bricks"
+      },
+      "result": "rankine:polished_gabbro_vertical_slab",
+      "count": 2
+}

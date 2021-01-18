@@ -5,30 +5,155 @@
   "pages": [
     {
       "type": "text",
-      "text": "There are a lot of ores. Further documentation will be provided in the future. See JEI and $(l:exploration/oregen)Notes About Oregen$() for details."
+      "text": "Most of the resources added to the game are derived from ores. These mineral depositions occur throughout various stones and dimensions. "
     },
     {
       "type": "text",
-      "title": "Overworld",
-      "text": "$(li)Native Copper (HL: 0) $(li)Native Tin (HL: 0) $(li)Native Aluminum (HL: 0) $(li)Native Lead (HL: 0) $(li)Native Silver (HL: 0) $(li)Native Gold (HL: 0) $(li)Native Bismuth (HL: 0) $(li)Malachite (HL: 1) $(li)Cassiterite (HL: 1) $(li)Bauxite (HL: 1) $(li)Sphalerite (HL: 1) $(li)Magnetite (HL: 2) $(li)Magnesite (HL: 2) $(li)Cinnabar (HL: 2)"
+      "text": "The Overworld has 3 major regions of ore differentiation. From about y-level 50 to 75 are the top layers, which hosts all of the harvest level 0 ores. The middle layers are from about y-level 25 to 50 and are host to the majority of the common metals. The bottom layers are below y-level  30 and contain more precious metals and gems."
     },
     {
-      "type": "text",
-      "text": "$(li)Pentlandite (HL: 2) $(li)Pyrolusite (HL: 2) $(li)Galen (HL: 2)a $(li)Acanthite (HL: 2) $(li)Vanadinite (HL: 2) $(li)Petalite (HL: 3) $(li)Celestine (HL: 2) $(li)Chromite (HL: 3) $(li)Emerald (HL: 3) $(li)Aquamarine (HL: 3) $(li)Diamond (HL: 3) $(li)Opal (HL: 3) $(li)Majorite (HL: 3) $(li)Plumbago (HL: 3) $(li)Halite (HL: 0) $(li)Pink Halite (HL: 0)"
+      "type": "spotlight",
+      "item": "rankine:native_copper_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield copper nuggets."
     },
     {
-      "type": "text",
-      "text": "$(li)Lignite (HL: 0) $(li)Subbituminous Coal (HL: 1) $(li)Bituminous Coal (HL: 2)"
+      "type": "spotlight",
+      "item": "rankine:native_tin_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield tin nuggets."
     },
     {
-      "type": "text",
-      "title": "Nether",
-      "text": "$(li)Native Arsenic (HL: 2) $(li)Native Sulfur (HL: 2) $(li)Nether Quartz (HL: 2) $(li)Nether Gold (HL: 2) $(li)Anthracite (HL: 3) $(li)Bismuthinite (HL: 2) $(li)Ilmenite (HL: 3) $(li)Wolframite (HL: 3) $(li)Greenockite (HL: 3) $(li)Tantalite (HL: 3) $(li)Columbite (HL: 3) $(li)Moissianite (HL: 3) $(li)Sperrylite (HL: 3) $(li)Cobaltite (HL: 2) $(li)Interspinifex (HL: 3)"
+      "type": "spotlight",
+      "item": "rankine:native_aluminum_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield aluminum nuggets."
     },
     {
-      "type": "text",
-      "title": "End",
-      "text": "$(li)Native Gallium (HL: 3) $(li)Native Indium (HL: 3) $(li)Native Selenium (HL: 3) $(li)Native Tellurium (HL: 3) $(li)Fluorite (HL: 3) $(li)Uraninite (HL: 4) $(li)Xenotime (HL: 3) $(li)Molybdenite (HL: 3)"
+      "type": "spotlight",
+      "item": "rankine:native_lead_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield lead nuggets."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_silver_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield silver nuggets."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_bismuth_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield bismuth nuggets."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:native_gold_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() All layers of the Overworld $(br)$(l)Usage:$() Mine to yield gold nuggets."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stibnite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield $(l:materials/minerals)Stibnite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:malachite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 1 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#malachite)Malachite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cassiterite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 1 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#cassiterite)Cassiterite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bauxite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 1 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#bauxite)Bauxite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sphalerite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 1 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#sphalerite)Sphalerite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lignite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 0 $(br)$(l)Location:$() Top layers of the Overworld $(br)$(l)Usage:$() Mine to yield $(l:materials/fuels#lignite)Lignite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:subbituminous_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 1 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Mine to yield $(l:materials/fuels#subbituminous_coal)Subbituminous Coal$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bituminous_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Bottom layers of the Overworld $(br)$(l)Usage:$() Mine to yield $(l:materials/fuels#bituminous_coal)Bituminous Coal$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:anthracite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 3 $(br)$(l)Location:$() Middle layers of the Nether $(br)$(l)Usage:$() Mine to yield $(l:materials/fuels#anthracite_coal)Anthracite Coal$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:magnetite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#magnetite)Magnetite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pentlandite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#pentlandite)Pentlandite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:magnesite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#magnesite)Magnesite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pyrolusite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#pyrolusite)Pyrolusite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:galena_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#galena)Galena$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:acanthite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#acanthite)Acanthite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:vanadinite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Overworld $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#vanadinite)Vanadinite$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bismuthinite_ore",
+      "link_recipe": true,
+      "text": "$(l)Harvest Level:$() 2 $(br)$(l)Location:$() Middle layers of the Nether $(br)$(l)Usage:$() Crush to yield $(l:materials/minerals#bismuthinite)Bismuthinite$()."
     }
   ]
 }

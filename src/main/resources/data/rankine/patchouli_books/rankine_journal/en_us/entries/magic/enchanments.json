@@ -6,7 +6,25 @@
 	{
       "type": "text",
       "anchor": "enchantments",
-      "text": "Enchantments that appear to function much like the old. $(li)Swing$(li)Daze$(li)Blast$(li)Puncture$(li)Atomize$(li)Lightning Aspect"
+      "text": "Additional enchantments are added for a variety of purposes. "
+    },
+    {
+      "type": "text",
+      "title": "Dune Walker",
+      "anchor": "dune_walker",
+      "text": "Applicable to Boots. $(br2)Dune Walker increases movement speed while walking on sand. Obtained by combining boots with sandals in an anvil."
+    },
+    {
+      "type": "text",
+      "title": "Snow Drifter",
+      "anchor": "snow_drifter",
+      "text": "Applicable to Boots. $(br2)Snow Drifter increases movement speed while walking on snow. Obtained by combining boots with snowshoes in an anvil."
+    },
+    {
+      "type": "text",
+      "title": "Swing",
+      "anchor": "swing",
+      "text": "Swing increases attack speed of single click tools. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(li)$(l:tools/crowbars)Crowbars$() $(br)Levels: I-V"
     },
     {
       "type": "text",

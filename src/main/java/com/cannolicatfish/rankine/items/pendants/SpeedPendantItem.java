@@ -1,8 +1,11 @@
 package com.cannolicatfish.rankine.items.pendants;
 
 
+import com.cannolicatfish.rankine.init.ModAttributes;
 import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,10 +24,12 @@ public class SpeedPendantItem extends Item{
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
-            if (player.getHeldItemOffhand().getItem() == this) {
-                ((PlayerEntity) entityIn).addPotionEffect(new EffectInstance(Effects.SPEED,1,2));
+            ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
+            if (player.getHeldItemOffhand().getItem() == this && !att.hasModifier(ModAttributes.SPEED_PENDANT_MS)) {
+                att.applyNonPersistentModifier(ModAttributes.SPEED_PENDANT_MS);
+            } else if (player.getHeldItemOffhand().getItem() != this && att.hasModifier(ModAttributes.SPEED_PENDANT_MS)) {
+                att.removeModifier(ModAttributes.SPEED_PENDANT_MS);
             }
         }
     }
-
 }

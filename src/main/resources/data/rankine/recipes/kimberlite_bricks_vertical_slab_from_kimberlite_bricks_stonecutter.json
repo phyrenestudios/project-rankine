@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:kimberlite_bricks"
+      },
+      "result": "rankine:polished_kimberlite_vertical_slab",
+      "count": 2
+}

@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:rhyolite_bricks"
+      },
+      "result": "rankine:polished_rhyolite_vertical_slab",
+      "count": 2
+}

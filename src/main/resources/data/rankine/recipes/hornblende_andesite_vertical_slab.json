@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:hornblende_andesite"
+        }
+      },
+      "result": {
+        "item": "rankine:hornblende_andesite_vertical_slab",
+        "count": 6
+      }
+}

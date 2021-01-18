@@ -26,4 +26,10 @@ public class ModEnchantments {
     @ObjectHolder("rankine:puncture")
     public static Enchantment PUNCTURE;
 
+    @ObjectHolder("rankine:dune_walker")
+    public static Enchantment DUNE_WALKER;
+
+    @ObjectHolder("rankine:snow_drifter")
+    public static Enchantment SNOW_DRIFTER;
+
 }

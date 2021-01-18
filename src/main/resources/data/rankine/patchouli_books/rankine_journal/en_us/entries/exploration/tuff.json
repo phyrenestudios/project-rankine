@@ -11,19 +11,25 @@
       "type": "spotlight",
       "item": "rankine:andesitic_tuff",
       "link_recipe": true,
-      "text": "Found as pockets in $(l:exploration/stones#hornblende_andesite)Hornblende Andesite$()."
+      "text": "Found in layers of $(l:exploration/stones#hornblende_andesite)Hornblende Andesite$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:rhyolitic_tuff",
       "link_recipe": true,
-      "text": "Found above layers of $(l:exploration/stones#rhyolite)Rhyolite$()."
+      "text": "Found in layers of $(l:exploration/stones#rhyolite)Rhyolite$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:tholeiitic_basaltic_tuff",
       "link_recipe": true,
-      "text": "Found above layers of $(l:exploration/stones#tholeiitic_basalt)Tholeiitic Basalt$()."
+      "text": "Found in layers of $(l:exploration/stones#tholeiitic_basalt)Tholeiitic Basalt$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:dacitic_tuff",
+      "link_recipe": true,
+      "text": "Found in layers of $(l:exploration/stones#red_dacite)Red Dacite() and $(l:exploration/stones#black_dacite)Black Dacite()."
     }
   ]
 }

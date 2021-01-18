@@ -11,16 +11,16 @@
     {
       "type": "crafting",
       "recipe": "rankine:gravel_concrete",
-      "text": "1.2x Speed"
+      "text": ""
     },
     {
       "type": "crafting",
       "recipe": "rankine:roman_concrete",
-      "text": "1.4x Speed. The whole suite of decorative blocks exist and function the same way."
+      "text": "The whole suite of decorative blocks exist and function the same way."
     },
     {
       "type": "crafting",
-      "recipe": "rankine:pozolanic_mortar",
+      "recipe": "rankine:pozzolanic_mortar",
       "text": "Used for crafting concrete."
     }
   ]

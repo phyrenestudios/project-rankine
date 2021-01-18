@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:gneiss"
+        }
+      },
+      "result": {
+        "item": "rankine:gneiss_vertical_slab",
+        "count": 6
+      }
+}

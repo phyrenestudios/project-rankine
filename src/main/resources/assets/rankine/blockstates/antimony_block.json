@@ -1,5 +1,5 @@
 {
-        "variants": {
-        "": { "model": "rankine:block/antimony_block" }
-        }
+    "variants": {
+    "": { "model": "rankine:block/antimony_block" }
     }
+}

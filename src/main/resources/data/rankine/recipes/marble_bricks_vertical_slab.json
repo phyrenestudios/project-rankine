@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:marble_bricks"
+        }
+      },
+      "result": {
+        "item": "rankine:marble_bricks_vertical_slab",
+        "count": 6
+      }
+}

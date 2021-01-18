@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:water_bucket",
-    "rankine:water_brass_bucket",
-    "rankine:water_wood_bucket"
-  ]
-}

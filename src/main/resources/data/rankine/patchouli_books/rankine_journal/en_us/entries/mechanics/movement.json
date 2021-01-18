@@ -1,0 +1,29 @@
+{
+  "name": "Movement Speed",
+  "icon": "rankine:roman_concrete",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "To simulate the difficulty and ease of walking through different environments, some blocks are given movement modifiers to affect player speed. The handful of blocks changed have a config to change their speed and an override to disable all effects completely."
+    },
+    {
+      "type": "text",
+      "text": "By default, the more complex a material is, the better the path it makes. Sand and snow make the player slightly slower than normal. Dirt and Stone are at default speed along with all unaffected blocks. Grass Paths, Planks and their variants, and Polished Stones and their variants are slightly faster. Bricks, Stone Bricks, Concrete and their variants are next fastest. And finally, Roman Concrete is the fastest (approximately equivalent to speed 2)."
+    },
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:sandals",
+      "text": "Sandals can be used to walk faster on sand blocks. Combine boots of any type with sandals in an anvil to apply the $(l:magic/enchantments#dune_walker)Dune Walker$() enchantment."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:snowshoes",
+      "text": "Snowshoes can be used to walk faster on sand blocks. Combine boots of any type with snowshoes in an anvil to apply the $(l:magic/enchantments#snow_drifter)Snow Drifter$() enchantment."
+    }
+  ]
+}

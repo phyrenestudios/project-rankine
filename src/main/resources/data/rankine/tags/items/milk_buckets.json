@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "minecraft:milk_bucket",
-    "rankine:milk_brass_bucket",
-    "rankine:milk_wood_bucket"
-  ]
-}

@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:granodiorite_bricks"
+      },
+      "result": "rankine:polished_granodiorite_vertical_slab",
+      "count": 2
+}
