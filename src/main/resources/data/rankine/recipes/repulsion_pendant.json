@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "#G#",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "tag": "forge:ingots/black_gold"
+        },
+        "G": {
+          "tag": "forge:storage_blocks/garnet"
+        }
+      },
+      "result": {
+        "item": "rankine:repulsion_pendant",
+        "count": 1
+      }
+}

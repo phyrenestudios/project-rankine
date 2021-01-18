@@ -30,10 +30,11 @@
     "rankine:diorite_bricks",
     "rankine:andesite_bricks",
     "rankine:basalt_bricks",
-    "rankine:clay_bricks",
-    "rankine:refractory_bricks",
-    "rankine:magnesium_refractory_bricks",
-    "rankine:zircon_refractory_bricks"
-
+    "rankine:black_dacite_bricks",
+    "rankine:red_dacite_bricks",
+    "rankine:arkose_sandstone_bricks",
+    "rankine:quartz_sandstone_bricks",
+    "rankine:mudstone_bricks",
+    "rankine:chalk_bricks"
   ]
 }

@@ -23,7 +23,7 @@ public class LevitationPendantItem extends Item{
         if (entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
             if (player.getHeldItemOffhand().getItem() == this) {
-                entityIn.setMotion(entityIn.getMotion().mul(1.0D, 0.0D, 1.0D));
+                entityIn.setMotion(entityIn.getMotion().x, 0.0D, entityIn.getMotion().z);
             }
         }
     }

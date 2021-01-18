@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "#G#",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "tag": "forge:ingots/rose_gold"
+        },
+        "G": {
+          "tag": "forge:storage_blocks/ruby"
+        }
+      },
+      "result": {
+        "item": "rankine:haste_pendant",
+        "count": 1
+      }
+}

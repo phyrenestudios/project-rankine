@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:mudstone"
+        }
+      },
+      "result": {
+        "item": "rankine:mudstone_vertical_slab",
+        "count": 6
+      }
+}

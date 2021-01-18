@@ -123,13 +123,6 @@
     },
     {
       "type": "spotlight",
-      "anchor": "limestone",
-      "item": "rankine:limestone",
-      "link_recipe": true,
-      "text": "Classification: Metamorphic $(br2)Found in the top layers of sandy land biomes and shallow ocean biomes."
-    },
-    {
-      "type": "spotlight",
       "anchor": "marble",
       "item": "rankine:marble",
       "link_recipe": true,
@@ -155,6 +148,13 @@
       "item": "rankine:slate",
       "link_recipe": true,
       "text": "Classification: Metamorphic $(br2)Found in intermediate layers of land biomes."
+    },
+    {
+      "type": "spotlight",
+      "anchor": "limestone",
+      "item": "rankine:limestone",
+      "link_recipe": true,
+      "text": "Classification: Sedimentary $(br2)Found in the top layers of sandy land biomes and shallow ocean biomes."
     },
     {
       "type": "spotlight",

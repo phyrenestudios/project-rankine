@@ -25,6 +25,17 @@
     "rankine:polished_schist",
     "rankine:polished_slate",
     "rankine:polished_gabbro",
-    "rankine:polished_breccia"
+    "rankine:polished_breccia",
+    "rankine:polished_arkose_sandstone",
+    "rankine:polished_quartz_sandstone",
+    "rankine:polished_black_dacite",
+    "rankine:polished_red_dacite",
+    "rankine:polished_chalk",
+    "rankine:polished_mudstone",
+    "minecraft:polished_granite",
+    "minecraft:polished_diorite",
+    "minecraft:polished_andesite",
+    "minecraft:polished_basalt",
+    "minecraft:polished_blackstone"
   ]
 }

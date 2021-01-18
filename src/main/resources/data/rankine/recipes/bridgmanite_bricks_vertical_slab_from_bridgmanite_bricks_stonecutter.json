@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:bridgmanite_bricks"
+      },
+      "result": "rankine:polished_bridgmanite_vertical_slab",
+      "count": 2
+}

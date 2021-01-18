@@ -19,7 +19,7 @@ public class VolcanoFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        float CHANCE = rand.nextFloat();
+   /*     float CHANCE = rand.nextFloat();
         BlockState BASE = null;
         BlockState TUFF = null;
         int MAX_RADIUS = rand.nextInt(Config.VOLCANO_SIZE.get()) + 10;
@@ -44,7 +44,7 @@ public class VolcanoFeature extends Feature<NoFeatureConfig> {
         int RADIUS = MAX_RADIUS;
 
        //if (BASE != null) {
-/*        for (int y = 64; y <= pos.getY(); ++y) {
+        for (int y = 64; y <= pos.getY(); ++y) {
             for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX()-MAX_RADIUS, y, pos.getZ()-MAX_RADIUS), new BlockPos(pos.getX()+MAX_RADIUS, y, pos.getZ()+MAX_RADIUS))) {
                 if (blockpos.distanceSq(new BlockPos(pos.getX(), pos.getY(), pos.getZ())) <= Math.pow(MAX_RADIUS + 0.5, 2) && reader.getBlockState(blockpos) == Blocks.AIR.getDefaultState()) {
                     float chance = rand.nextFloat();
@@ -58,7 +58,7 @@ public class VolcanoFeature extends Feature<NoFeatureConfig> {
             }
         }
 
-*/
+
             for (int y = 0; y <= 256 - pos.getY(); ++y) {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-RADIUS, y, -RADIUS), pos.add(RADIUS, y, RADIUS))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), pos.getY()+y, pos.getZ())) <= Math.pow(RADIUS + 0.5, 2)) {
@@ -82,6 +82,6 @@ public class VolcanoFeature extends Feature<NoFeatureConfig> {
                 }
             }
        //}
-        return true;
+    */    return false;
     }
 }

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:schist_bricks"
+        }
+      },
+      "result": {
+        "item": "rankine:schist_bricks_vertical_slab",
+        "count": 6
+      }
+}

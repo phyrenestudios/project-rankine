@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:gabbro_bricks"
+        }
+      },
+      "result": {
+        "item": "rankine:gabbro_bricks_vertical_slab",
+        "count": 6
+      }
+}

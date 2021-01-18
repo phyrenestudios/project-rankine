@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:chalk"
+        }
+      },
+      "result": {
+        "item": "rankine:chalk_vertical_slab",
+        "count": 6
+      }
+}

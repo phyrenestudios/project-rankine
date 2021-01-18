@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:roman_concrete",
+    "rankine:polished_roman_concrete",
+    "rankine:roman_concrete_bricks",
+    "rankine:roman_concrete_slab",
+    "rankine:polished_roman_concrete_slab",
+    "rankine:roman_concrete_bricks_slab",
+    "rankine:roman_concrete_stairs",
+    "rankine:polished_roman_concrete_stairs",
+    "rankine:roman_concrete_bricks_stairs"
+  ]
+}

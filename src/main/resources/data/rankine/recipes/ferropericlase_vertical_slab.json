@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:ferropericlase"
+        }
+      },
+      "result": {
+        "item": "rankine:ferropericlase_vertical_slab",
+        "count": 6
+      }
+}

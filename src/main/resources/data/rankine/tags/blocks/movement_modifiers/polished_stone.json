@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:polished_stone",
+    "#forge:polished_stone_slabs",
+    "#forge:polished_stone_stairs"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:anorthosite_bricks"
+      },
+      "result": "rankine:polished_anorthosite_vertical_slab",
+      "count": 2
+}

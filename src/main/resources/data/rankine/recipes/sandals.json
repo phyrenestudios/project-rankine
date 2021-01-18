@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "RLR",
+        "L L",
+        " L "
+      ],
+      "key": {
+        "L": {
+          "item": "minecraft:leather"
+        }
+      },
+      "result": {
+        "item": "rankine:sandals",
+        "count": 1
+      }
+}

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:brick_slab",
+    "rankine:clay_bricks_slab",
+    "rankine:refractory_bricks_slab",
+    "rankine:magnesium_refractory_bricks_slab",
+    "rankine:zircon_refractory_bricks_slab"
+  ]
+}

@@ -22,6 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ModItems {
 
@@ -564,17 +565,6 @@ public class ModItems {
     public static final Item SPEED_PENDANT = add("speed_pendant", new SpeedPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item LEVITATION_PENDANT = add("levitation_pendant", new LevitationPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item REPULSION_PENDANT = add("repulsion_pendant", new RepulsionPendantItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-
-
-    //BUCKETS
-    public static final Item  WOOD_BUCKET = add("wood_bucket", new WoodBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  WATER_WOOD_BUCKET = add("water_wood_bucket", new WoodBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.WOOD_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  MILK_WOOD_BUCKET = add("milk_wood_bucket", new MilkWoodBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1)));
-    public static final Item  BRASS_BUCKET = add("brass_bucket", new BrassBucket(() -> Fluids.EMPTY, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(16).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  WATER_BRASS_BUCKET = add("water_brass_bucket", new BrassBucket(() -> Fluids.WATER, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  LAVA_BRASS_BUCKET = add("lava_brass_bucket", new BrassBucket(() -> Fluids.LAVA, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  LIQUID_MERCURY_BRASS_BUCKET = add("liquid_mercury_brass_bucket", new BrassBucket(() -> ModFluids.LIQUID_MERCURY, (new Item.Properties().containerItem(ModItems.BRASS_BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final Item  MILK_BRASS_BUCKET = add("milk_brass_bucket", new MilkBrassBucket(new Item.Properties().group(ProjectRankine.setup.rankineTools).containerItem(ModItems.WOOD_BUCKET).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item  LIQUID_MERCURY_BUCKET = add("liquid_mercury_bucket", new BucketItem(() -> ModFluids.LIQUID_MERCURY, (new Item.Properties().containerItem(Items.BUCKET)).maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
@@ -633,6 +623,8 @@ public class ModItems {
     public static final Item BIOME_INDICATOR_GENERIC = add("biome_indicator_generic", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item BIOME_INDICATOR_RIVER = add("biome_indicator_river", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final Item BIOME_INDICATOR_OCEAN = add("biome_indicator_ocean", new Item(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SANDALS = add("sandals", new SimpleTooltipItem(Collections.singletonList("Combine with boots in an anvil to add Dune Walker"), new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final Item SNOWSHOES = add("snowshoes", new SimpleTooltipItem(Collections.singletonList("Combine with boots in an anvil to add Snow Drifter"), new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
 
 

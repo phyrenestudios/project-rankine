@@ -27,8 +27,8 @@ public class StickBlock extends RotatedPillarBlock {
         super(properties);
     }
 
-
-
+    @Override
+    public float getSpeedFactor() {return 2.0f;}
 
     @Override
     public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {

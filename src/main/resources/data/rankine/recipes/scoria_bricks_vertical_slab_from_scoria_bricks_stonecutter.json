@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:scoria_bricks"
+      },
+      "result": "rankine:polished_scoria_vertical_slab",
+      "count": 2
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Stone Creation",
+  "icon": "minecraft:cobblestone",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "As the world is made up of lots of different stones, it might be confusing on how to get cobblestone. Cobblestone is obtained by crushing most of the rankine stones found in the overworld. At the start, this is achieved by a $(l:tools/hammers)Stone Hammer$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:cobblestone",
+      "link_recipe": true,
+      "title": "No Cobblestone Generator",
+      "text": "As the title suggests there has been a tweak to the standard lava + water = cobblestone scheme. This tweak can be enabled/disabled in the config. By default, lava and water will form a random igneous stone from Rankine. See the following for information on specific stone generators."
+    }
+  ]
+}
