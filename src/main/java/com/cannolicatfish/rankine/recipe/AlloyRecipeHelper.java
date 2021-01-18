@@ -263,6 +263,33 @@ public class AlloyRecipeHelper {
         return ret.toString();
     }
 
+    public String getDirectComposition(List<Integer> percents, List<String> inputs) {
+        StringBuilder ret = new StringBuilder();
+        Map<String,Integer> map = new HashMap<>();
+
+        for (int i = 0; i < inputs.size(); i++)
+        {
+            map.put(inputs.get(i),percents.get(i));
+        }
+        List<Integer> sPercents = new ArrayList<>();
+        List<String> sInputs = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : mapStringsSort(map).entrySet())
+        {
+            sPercents.add(entry.getValue());
+            sInputs.add(entry.getKey());
+        }
+        Collections.reverse(sPercents);
+        Collections.reverse(sInputs);
+        for (int i = 0; i < sPercents.size(); i++)
+        {
+            ret.append(sPercents.get(i)).append(sInputs.get(i));
+            if (i != sPercents.size() - 1) {
+                ret.append("-");
+            }
+        }
+        return ret.toString();
+    }
+
     public static Map<ItemStack, Integer> mapInputsSort(Map<ItemStack, Integer> map) {
         List<Map.Entry<ItemStack, Integer>> list = new ArrayList<>(map.entrySet());
         list.sort((o1, o2) -> {
@@ -274,6 +301,23 @@ public class AlloyRecipeHelper {
 
         Map<ItemStack, Integer> result = new LinkedHashMap<>();
         for (Map.Entry<ItemStack, Integer> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
+
+    public static Map<String, Integer> mapStringsSort(Map<String, Integer> map) {
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+        list.sort((o1, o2) -> {
+            if (o1.getValue().equals(o2.getValue())) {
+                return o2.getKey().compareToIgnoreCase(o1.getKey());
+            }
+            return o1.getValue() < o2.getValue() ? -1 : 1;
+        });
+
+        Map<String, Integer> result = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : list) {
             result.put(entry.getKey(), entry.getValue());
         }
 

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#rankine:glass_inputs",
+    "#forge:gems/quartz",
+    "rankine:limestone",
+    "rankine:quicklime",
+    "rankine:dolomite",
+    "rankine:borax",
+    "rankine:fluorite",
+    "rankine:saltpeter",
+    "rankine:phosphorus"
+  ]
+}

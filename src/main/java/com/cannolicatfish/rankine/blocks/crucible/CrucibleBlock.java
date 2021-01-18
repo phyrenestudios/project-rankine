@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
+import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeTile;
 import com.cannolicatfish.rankine.init.ModItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
@@ -8,12 +9,15 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.*;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -26,29 +30,33 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class CrucibleBlock extends Block {
-    public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_0_3;
+    public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 4);
     private static final VoxelShape INSIDE = makeCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(makeCuboidShape(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
 
 
     public CrucibleBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, Integer.valueOf(0)));
+        this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, 0));
 
     }
     
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE;
-    }
+
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.get(BlockStateProperties.LEVEL_0_3) == 3 ? super.getLightValue(state,world,pos) : 0;
+        return state.get(LEVEL) >= 1 ? super.getLightValue(state,world,pos) : 0;
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
     }
 
     @Override
@@ -60,7 +68,7 @@ public class CrucibleBlock extends Block {
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         int i = state.get(LEVEL);
-        float f = (float)pos.getY() + (6.0F + (float)(3 * i)) / 16.0F;
+        float f = (float)pos.getY() + (6.0F + (float)(3 * 3)) / 16.0F;
         if (!worldIn.isRemote && i > 0 && entityIn.getPosY() <= (double)f) {
             entityIn.setFire(2);
         }
@@ -68,62 +76,29 @@ public class CrucibleBlock extends Block {
     }
 
     @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new CrucibleTile();
+    }
+
+    @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        ItemStack itemstack = player.getHeldItem(handIn);
-        if (itemstack.isEmpty()) {
-            return ActionResultType.PASS;
-        } else {
-            int i = state.get(LEVEL);
-            Item item = itemstack.getItem();
-            if (item == ModItems.PIG_IRON_INGOT && i != 1 && i != 2 && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA || worldIn.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK)) {
-                if (i < 3 && !worldIn.isRemote) {
-                    if (!player.abilities.isCreativeMode) {
-                        itemstack.shrink(1);
-                    }
-                    this.setPigIronLevel(worldIn, pos, state, 3);
-                    worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                }
-
-                return ActionResultType.SUCCESS;
-            } if (item == ModItems.WROUGHT_IRON_INGOT && (worldIn.getBlockState(pos.down()).getBlock() == Blocks.FIRE || worldIn.getBlockState(pos.down()).getBlock() == Blocks.LAVA || worldIn.getBlockState(pos.down()).getBlock() == Blocks.MAGMA_BLOCK))
-            {
-                if (i > 0 && !worldIn.isRemote){
-                    if (!player.abilities.isCreativeMode) {
-                        itemstack.shrink(1);
-                        ItemStack steel = new ItemStack(ModItems.STEEL_ALLOY);
-                        AlloyItem.addAlloy(steel, new AlloyData("99Fe-1C"));
-                        if (itemstack.isEmpty()) {
-                            player.setHeldItem(handIn, steel);
-                        } else if (!player.inventory.addItemStackToInventory(steel)) {
-                            player.dropItem(steel, false);
-                        } else if (player instanceof ServerPlayerEntity) {
-                            ((ServerPlayerEntity)player).sendContainerToPlayer(player.container);
-                        }
-                    }
-                    this.setPigIronLevel(worldIn, pos, state, i-1);
-                }
-                return ActionResultType.SUCCESS;
+        if (!worldIn.isRemote) {
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if (tileEntity instanceof INamedContainerProvider) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+            } else {
+                throw new IllegalStateException("Our named container provider is missing!");
             }
-            /*
-            else if (item == ModItems.BRASS_BUCKET) {
-                if (i == 3 && !worldIn.isRemote) {
-                    if (!player.abilities.isCreativeMode) {
-                        itemstack.shrink(1);
-                        if (itemstack.isEmpty()) {
-                            player.setHeldItem(handIn, new ItemStack(ModItems.LIQUID_PIG_IRON_BRASS_BUCKET));
-                        } else if (!player.inventory.addItemStackToInventory(new ItemStack(ModItems.LIQUID_PIG_IRON_BRASS_BUCKET))) {
-                            player.dropItem(new ItemStack(ModItems.LIQUID_PIG_IRON_BRASS_BUCKET), false);
-                        }
-                    }
-                    this.setPigIronLevel(worldIn, pos, state, 0);
-                    worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                }
-
-                return true;
-                }*/
-            else {
-                    return ActionResultType.FAIL;
-                }
+            return ActionResultType.CONSUME;
+        } else
+        {
+            return ActionResultType.SUCCESS;
         }
     }
 
@@ -151,6 +126,19 @@ public class CrucibleBlock extends Block {
         }
     }
 
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.isIn(newState.getBlock())) {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+            if (tileentity instanceof CrucibleTile) {
+                InventoryHelper.dropInventoryItems(worldIn, pos, (CrucibleTile)tileentity);
+                //((CoalForgeTile)tileentity).grantStoredRecipeExperience(worldIn, Vector3d.copyCentered(pos));
+                worldIn.updateComparatorOutputLevel(pos, this);
+            }
+
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
+        }
+    }
+
     @Override
     public boolean hasComparatorInputOverride(BlockState state) {
         return true;
@@ -159,11 +147,6 @@ public class CrucibleBlock extends Block {
     @Override
     public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
         return blockState.get(LEVEL);
-    }
-
-    public void setPigIronLevel(World worldIn, BlockPos pos, BlockState state, int level) {
-        worldIn.setBlockState(pos, state.with(LEVEL, MathHelper.clamp(level, 0, 3)), 2);
-        worldIn.updateComparatorOutputLevel(pos, this);
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

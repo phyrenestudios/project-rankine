@@ -30,22 +30,19 @@ public class CrucibleScreen extends ContainerScreen<CrucibleContainer> {
         int relX = (this.width - this.xSize) / 2;
         int relY = (this.height - this.ySize) / 2;
         this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
-        if(this.container.isBurning())
+        if(this.container.getHeatStatus() > 0)
         {
-
-            int k = this.container.getBurnLeftScaled(13);
-            this.blit(p_230450_1_,this.guiLeft + 11, this.guiTop + 21 + 12 - k, 176, 12 - k, 14, k + 1);
-
+            this.blit(p_230450_1_,this.guiLeft + 78, this.guiTop + 77, 176, 29, 18, 4);
         }
 
-        int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_,this.guiLeft + 113, this.guiTop + 37, 176, 14, l + 1, 16);
+        int l = this.container.getCookProgressScaled(27);
+        this.blit(p_230450_1_,this.guiLeft + 108, this.guiTop + 44, 176, 0, 10, l + 1);
 
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Crucible", 92, 10, 0xffffff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Crucible", 88, 6, 0xffffff);
     }
 
 

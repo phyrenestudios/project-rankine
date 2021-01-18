@@ -1,12 +1,13 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
-import com.cannolicatfish.rankine.blocks.coalforge.CoalForgeContainer;
+
 import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.ModRecipes;
 import com.cannolicatfish.rankine.items.ItemTemplate;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -17,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -24,9 +26,11 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
@@ -40,7 +44,11 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.COAL_FORGE_TILE;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+import static com.cannolicatfish.rankine.init.ModBlocks.CRUCIBLE_TILE;
 
 public class CrucibleTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -48,11 +56,9 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     private static final int[] SLOTS_DOWN = new int[]{4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public CrucibleTile() {
-        super(COAL_FORGE_TILE);
+        super(CRUCIBLE_TILE);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
-    private int burnTime;
-    private int currentBurnTime;
     private int cookTime;
     private int cookTimeTotal = 3200;
     private int heatPower = 0;
@@ -62,14 +68,10 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             switch(index)
             {
                 case 0:
-                    return CrucibleTile.this.burnTime;
-                case 1:
-                    return CrucibleTile.this.currentBurnTime;
-                case 2:
                     return CrucibleTile.this.cookTime;
-                case 3:
+                case 1:
                     return CrucibleTile.this.cookTimeTotal;
-                case 4:
+                case 2:
                     return CrucibleTile.this.heatPower;
                 default:
                     return 0;
@@ -81,24 +83,18 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             switch(index)
             {
                 case 0:
-                    CrucibleTile.this.burnTime = value;
-                    break;
-                case 1:
-                    CrucibleTile.this.currentBurnTime = value;
-                    break;
-                case 2:
                     CrucibleTile.this.cookTime = value;
                     break;
-                case 3:
+                case 1:
                     CrucibleTile.this.cookTimeTotal = value;
                     break;
-                case 4:
+                case 2:
                     CrucibleTile.this.heatPower = value;
             }
         }
 
         public int size() {
-            return 5;
+            return 3;
         }
     };
 
@@ -107,16 +103,13 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         super.read(state, nbt);
         this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
-        this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
-        this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1));
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
-        compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         ItemStackHelper.saveAllItems(compound, this.items);
@@ -127,78 +120,28 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning()) {
-            --this.burnTime;
-        }
 
         if (!this.world.isRemote) {
-            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1)};
-            ItemStack template = this.items.get(2);
-            ItemStack fuel = this.items.get(3);
-            if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty())) {
-                if (!this.isBurning() && this.canSmelt()) {
-                    this.burnTime = ForgeHooks.getBurnTime(fuel);
-                    this.currentBurnTime = this.burnTime;
-                    if (this.isBurning()) {
-                        flag1 = true;
-                        if (fuel.hasContainerItem())
-                            this.items.set(3, fuel.getContainerItem());
-                        else
-                        if (!fuel.isEmpty()) {
-                            Item item = fuel.getItem();
-                            fuel.shrink(1);
-                            if (fuel.isEmpty()) {
-                                this.items.set(3, fuel.getContainerItem());
-                            }
-                        }
-                    }
-                }
-
-                if (this.isBurning() && this.canSmelt()) {
+            ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
+            if ((this.isBurning() || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty())) {
+                if (this.isHeated(this.pos,this.world) && this.canSmelt()) {
                     ++this.cookTime;
-                    if (this.cookTime == this.cookTimeTotal) {
-                        ItemStack smelting = CoalForgeRecipes.getInstance().getResult(inputs[0],inputs[1],template);
+                    if (Arrays.stream(inputs).anyMatch(itemStack -> itemStack.getItem() == ModItems.BORAX))
+                    {
+                        this.cookTime += 3;
+                    }
+                    if (this.cookTime >= this.cookTimeTotal) {
+                        ItemStack smelting = ModRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
                         if (this.items.get(4).getCount() > 0) {
                             this.items.get(4).grow(smelting.getCount());
                         } else {
                             this.items.set(4, smelting);
                         }
                         this.cookTime = 0;
-                        if (template.getItem() == ModItems.PICKAXE_TEMPLATE || template.getItem() == ModItems.AXE_TEMPLATE)
-                        {
-                            inputs[0].shrink(2);
-                            inputs[1].shrink(3);
-                        }
-                        else if (template.getItem() == ModItems.SHOVEL_TEMPLATE)
-                        {
-                            inputs[0].shrink(2);
-                            inputs[1].shrink(1);
-                        }
-                        else if (template.getItem() == ModItems.SWORD_TEMPLATE)
-                        {
-                            inputs[0].shrink(1);
-                            inputs[1].shrink(2);
-                        }
-                        else if (template.getItem() == ModItems.SPEAR_TEMPLATE)
-                        {
-                            inputs[0].shrink(2);
-                            inputs[1].shrink(3);
-                        }
-                        else if (template.getItem() == ModItems.HAMMER_TEMPLATE)
-                        {
-                            inputs[0].shrink(2);
-                            inputs[1].shrink(5);
-                        }
-                        else if (template.getItem() == ModItems.HOE_TEMPLATE)
-                        {
-                            inputs[0].shrink(2);
-                            inputs[1].shrink(2);
-                        } else if (template.getItem() == ModItems.PENDANT_TEMPLATE)
-                        {
-                            inputs[0].shrink(4);
-                            inputs[1].shrink(24);
-                        }
-
+                        inputs[0].shrink(1);
+                        inputs[1].shrink(1);
+                        inputs[2].shrink(1);
+                        inputs[3].shrink(1);
                         return;
                     }
                 } else {
@@ -210,7 +153,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.LEVEL, this.isBurning() ? checkResultingOutput() : 0), 3);
             }
         }
 
@@ -220,10 +163,43 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
 
     }
 
+    private int checkResultingOutput() {
+        ItemStack smelting = ModRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
+        if (smelting.getItem() == ModItems.STEEL_ALLOY)
+        {
+            return 1;
+        } else if (smelting.getItem() == Items.REDSTONE)
+        {
+            return 3;
+        } else if (smelting.getItem() == Items.GLOWSTONE) {
+            return 4;
+        } else if (!smelting.isEmpty()) {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
+
+    private boolean isHeated(BlockPos pos, World worldIn) {
+        List<BlockPos> positions = Arrays.asList(pos.down(),pos.east(),pos.north(),pos.west(),pos.south());
+        for (BlockPos p : positions) {
+            if (worldIn.getBlockState(p).getBlock() == Blocks.MAGMA_BLOCK || worldIn.getBlockState(p).getBlock() == Blocks.LAVA)
+            {
+                heatPower = 1;
+                return true;
+            } else if (p == pos.down() && worldIn.getBlockState(p).getBlock() == Blocks.FIRE)
+            {
+                heatPower = 1;
+                return true;
+            }
+        }
+        heatPower = 0;
+        return false;
+    }
 
     public boolean isBurning()
     {
-        return this.burnTime > 0;
+        return this.cookTime > 0;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -234,19 +210,15 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
 
     private boolean canSmelt()
     {
-        if((this.items.get(0)).isEmpty() || AlloyItem.getComposition(this.items.get(1)).size() == 0)
+        if(this.items.get(0).isEmpty() || this.items.get(1).isEmpty() || this.items.get(2).isEmpty() || this.items.get(3).isEmpty())
         {
             return false;
         }
         else
         {
-            ItemStack result = CoalForgeRecipes.getInstance().getResult(this.items.get(0),this.items.get(1), this.items.get(2));
+            ItemStack result = ModRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
             if(result.isEmpty())
             {
-                /*
-                System.out.println("Result Itemstack");
-                System.out.println(result);
-                System.out.println("Result is empty False");*/
                 return false;
             }
             else
@@ -259,7 +231,11 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
                     return false;
                 }
                 int res = output.getCount() + result.getCount();
-                return res <= 64 && res <= output.getMaxStackSize();
+                if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result)) {
+                    return res <= 64 && res <= output.getMaxStackSize();
+                } else {
+                    return false;
+                }
             }
         }
     }
@@ -295,7 +271,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     @Override
     @Nullable
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new CoalForgeContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
+        return new CrucibleContainer(i, world, pos, playerInventory, playerEntity, this, this.furnaceData);
     }
 
 
@@ -359,7 +335,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         }
 
         if (index == 0 && !flag) {
-            this.cookTimeTotal = 200;
+            this.cookTimeTotal = 3200;
             this.cookTime = 0;
             this.markDirty();
         }
@@ -379,14 +355,12 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         switch (index)
         {
             case 0:
-                return stack.getItem().getTags().contains(new ResourceLocation("forge:ingots/iron"));
             case 1:
-                return stack.getItem().getTags().contains(new ResourceLocation("rankine:coal"));
             case 2:
             case 3:
                 return stack.getItem().getTags().contains(new ResourceLocation("rankine:crucible_fluxes"));
             case 4:
-                return ItemStack.areItemsEqual(CoalForgeRecipes.getInstance().getResult(getStackInSlot(0),getStackInSlot(1),getStackInSlot(2)), stack);
+                return ItemStack.areItemsEqual(ModRecipes.returnCrucibleOutput(Arrays.asList(getStackInSlot(0).getItem(),getStackInSlot(1).getItem(),getStackInSlot(2).getItem(),getStackInSlot(3).getItem())), stack);
             default:
                 return false;
         }

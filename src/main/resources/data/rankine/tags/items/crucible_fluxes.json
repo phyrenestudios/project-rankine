@@ -1,9 +1,25 @@
 {
   "replace": false,
   "values": [
-    "minecraft:sand",
+    "#forge:sand",
+    "#forge:glass",
+    "#forge:gems/quartz",
+    "#forge:dyes",
+    "#minecraft:coals",
+    "#forge:coke",
+    "#forge:ingots/iron",
+    "rankine:limestone",
+    "rankine:quicklime",
+    "rankine:dolomite",
     "rankine:borax",
     "rankine:fluorite",
-    "rankine:saltpeter"
+    "rankine:saltpeter",
+    "rankine:phosphorus",
+    "rankine:cinnabar",
+    "rankine:galena",
+    "rankine:alumina",
+    "rankine:magnesia",
+    "rankine:cobaltite",
+    "rankine:arsenic_ingot"
   ]
 }

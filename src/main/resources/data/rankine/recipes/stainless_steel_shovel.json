@@ -1,6 +1,6 @@
 {
       "type": "rankine:alloy_crafting",
-      "alloyData": "",
+      "inherit": "true",
       "pattern": [
       " # ",
       " t ",
@@ -15,6 +15,6 @@
             }
       },
       "result": {
-          "item": "rankine:stainless_steel_shovel",
+          "item": "rankine:stainless_steel_shovel",       
           "count": 1        }
     }

@@ -1,6 +1,6 @@
 {
       "type": "rankine:alloy_crafting",
-      "alloyData": "",
+      "inherit": "true",
       "pattern": [
       " # ",
       " t ",
@@ -15,6 +15,6 @@
             }
       },
       "result": {
-          "item": "rankine:cobalt_superalloy_shovel",
+          "item": "rankine:cobalt_superalloy_shovel",       
           "count": 1        }
     }

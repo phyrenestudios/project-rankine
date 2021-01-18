@@ -1,6 +1,6 @@
 {
       "type": "rankine:alloy_crafting",
-      "alloyData": "",
+      "inherit": "true",
       "pattern": [
       " # ",
       " # ",
