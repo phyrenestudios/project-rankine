@@ -3,11 +3,14 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPit;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
+import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPit;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
+import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.items.tools.ItemKnife;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -62,6 +65,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
         CreateAlloyCommand.register(event.getDispatcher());
+        GiveTagCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
@@ -113,8 +117,14 @@ public class RankineEventHandler {
             if (Fuel.getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
                 if (path.contains("douglas_fir")) {
                     event.setBurnTime(460);
+                } else if (path.contains("ancient")) {
+                    event.setBurnTime(400);
+                } else if (path.contains("dead")) {
+                    event.setBurnTime(300);
                 } else if (path.contains("pinyon_pine")) {
                     event.setBurnTime(520);
+                } else if (path.contains("redwood")) {
+                    event.setBurnTime(440);
                 } else if (path.contains("alder")) {
                     event.setBurnTime(420);
                 } else if (path.contains("apple")) {
@@ -182,13 +192,23 @@ public class RankineEventHandler {
                 } else if (path.contains("coconut")) {
                     event.setBurnTime(450);
                 } else if (path.contains("juniper")) {
-                    event.setBurnTime(470);
+                    event.setBurnTime(480);
                 } else if (path.contains("acacia")) {
                     event.setBurnTime(500);
                 } else if (path.contains("magnolia")) {
                     event.setBurnTime(450);
                 } else if (path.contains("hemlock")) {
                     event.setBurnTime(440);
+                } else if (path.contains("larch")) {
+                    event.setBurnTime(440);
+                } else if (path.contains("robinia")) {
+                    event.setBurnTime(550);
+                } else if (path.contains("eucalyptus")) {
+                    event.setBurnTime(570);
+                } else if (path.contains("ironwood")) {
+                    event.setBurnTime(510);
+                } else if (path.contains("locust")) {
+                    event.setBurnTime(550);
                 } else {
                     event.setBurnTime(300);
                 }
@@ -362,6 +382,14 @@ public class RankineEventHandler {
             {
                 event.setNewState(ModBlocks.PERIDOTITE.getDefaultState());
                 return;
+            } else if (adjPos.contains(ModBlocks.FELDSPAR_BLOCK) && adjPos.contains(ModBlocks.CALCIUM_SILICATE_BLOCK))
+            {
+                event.setNewState(ModBlocks.PORPHYRY.getDefaultState());
+                return;
+            } else if (adjPos.contains(ModBlocks.PLAGIOCLASE_FELDSPAR_BLOCK) && adjPos.contains(ModBlocks.CALCIUM_SILICATE_BLOCK))
+            {
+                event.setNewState(ModBlocks.PURPLE_PORPHYRY.getDefaultState());
+                return;
             } else if (adjPos.contains(ModBlocks.MAGNESIA_BLOCK) && adjPos.contains(ModBlocks.PYROXENE_BLOCK))
             {
                 event.setNewState(ModBlocks.KOMATIITE.getDefaultState());
@@ -372,7 +400,7 @@ public class RankineEventHandler {
                 return;
             }
 
-            switch (event.getWorld().getRandom().nextInt(5))
+            switch (event.getWorld().getRandom().nextInt(7))
             {
                 case 0:
                     event.setNewState(Blocks.GRANITE.getDefaultState());
@@ -388,6 +416,12 @@ public class RankineEventHandler {
                     break;
                 case 4:
                     event.setNewState(ModBlocks.ANORTHOSITE.getDefaultState());
+                    break;
+                case 5:
+                    event.setNewState(ModBlocks.PORPHYRY.getDefaultState());
+                    break;
+                case 6:
+                    event.setNewState(ModBlocks.PURPLE_PORPHYRY.getDefaultState());
                     break;
             }
         } else if (event.getState() == Blocks.BASALT.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
@@ -690,25 +724,342 @@ public class RankineEventHandler {
 
 
     @SubscribeEvent
-    public static void dyeLED(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getWorld().getBlockState(event.getPos()).getBlock() instanceof LEDBlock) {
-            if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/red"))) {
-                event.getWorld().setBlockState(event.getPos(), ModBlocks.RED_LED.getDefaultState(),3);
-                if (!event.getPlayer().isCreative()) {
-                    event.getItemStack().shrink(1);
+    public static void worldDye(PlayerInteractEvent.RightClickBlock event) {
+        Set<ResourceLocation> target = event.getWorld().getBlockState(event.getPos()).getBlock().getTags();
+        Set<ResourceLocation> hand = event.getItemStack().getItem().getTags();
+        BlockState oldBlock = event.getWorld().getBlockState(event.getPos());
+
+        BlockState newBlock = null;
+        if (Config.COLOR_WORLD.get() && !event.getWorld().isRemote()) {
+            if (hand.contains(new ResourceLocation("forge:dyes/red"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.RED_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.RED_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.RED_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.RED_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.RED_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.RED_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.RED_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.RED_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
                 }
-            } else if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/green"))) {
-                event.getWorld().setBlockState(event.getPos(), ModBlocks.GREEN_LED.getDefaultState(),3);
-                if (!event.getPlayer().isCreative()) {
-                    event.getItemStack().shrink(1);
+            } else if (hand.contains(new ResourceLocation("forge:dyes/orange"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.ORANGE_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.ORANGE_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.ORANGE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.ORANGE_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.ORANGE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.ORANGE_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.ORANGE_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.ORANGE_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
                 }
-            } else if (event.getItemStack().getItem().getTags().contains(new ResourceLocation("forge:dyes/blue"))) {
-                event.getWorld().setBlockState(event.getPos(), ModBlocks.BLUE_LED.getDefaultState(),3);
+            } else if (hand.contains(new ResourceLocation("forge:dyes/yellow"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.YELLOW_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.YELLOW_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.YELLOW_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.YELLOW_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.YELLOW_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.YELLOW_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.YELLOW_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.YELLOW_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/lime"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.LIME_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.LIME_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.LIME_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.LIME_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.LIME_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.LIME_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.LIME_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.LIME_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/green"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.GREEN_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.GREEN_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.GREEN_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.GREEN_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.GREEN_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.GREEN_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.GREEN_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.GREEN_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/cyan"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.CYAN_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.CYAN_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.CYAN_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.CYAN_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.CYAN_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.CYAN_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.CYAN_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.CYAN_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/blue"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.BLUE_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.BLUE_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.BLUE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.BLUE_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.BLUE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.BLUE_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.BLUE_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.BLUE_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/light_blue"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.LIGHT_BLUE_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.LIGHT_BLUE_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.LIGHT_BLUE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.LIGHT_BLUE_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.LIGHT_BLUE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.LIGHT_BLUE_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.LIGHT_BLUE_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/magenta"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.MAGENTA_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.MAGENTA_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.MAGENTA_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.MAGENTA_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.MAGENTA_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.MAGENTA_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.MAGENTA_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.MAGENTA_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/purple"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.PURPLE_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.PURPLE_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.PURPLE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.PURPLE_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.PURPLE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.PURPLE_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.PURPLE_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.PURPLE_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/pink"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.PINK_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.PINK_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.PINK_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.PINK_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.PINK_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.PINK_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.PINK_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.PINK_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/brown"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.BROWN_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.BROWN_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.BROWN_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.BROWN_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:eglass_panes"))) {
+                    newBlock = Blocks.BROWN_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.BROWN_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.BROWN_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.BROWN_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/black"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.BLACK_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.BLACK_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.BLACK_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.BLACK_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.BLACK_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.BLACK_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.BLACK_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.BLACK_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/white"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.WHITE_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.WHITE_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.WHITE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.WHITE_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.WHITE_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.WHITE_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.WHITE_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.WHITE_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/gray"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.GRAY_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.GRAY_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.GRAY_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.GRAY_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.GRAY_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.GRAY_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.GRAY_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.GRAY_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            } else if (hand.contains(new ResourceLocation("forge:dyes/light_gray"))) {
+                if (target.contains(new ResourceLocation("rankine:leds"))) {
+                    newBlock = ModBlocks.LIGHT_GRAY_LED.getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
+                } else if (target.contains(new ResourceLocation("forge:concrete"))) {
+                    newBlock = Blocks.LIGHT_GRAY_CONCRETE.getDefaultState();
+                } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
+                    newBlock = Blocks.LIGHT_GRAY_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass"))) {
+                    newBlock = Blocks.LIGHT_GRAY_STAINED_GLASS.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
+                    newBlock = Blocks.LIGHT_GRAY_STAINED_GLASS_PANE.getDefaultState().with(PaneBlock.NORTH, oldBlock.get(PaneBlock.NORTH)).with(PaneBlock.WEST, oldBlock.get(PaneBlock.WEST)).with(PaneBlock.EAST, oldBlock.get(PaneBlock.EAST)).with(PaneBlock.SOUTH, oldBlock.get(PaneBlock.SOUTH)).with(PaneBlock.WATERLOGGED, oldBlock.get(PaneBlock.WATERLOGGED));
+                } else if (target.contains(new ResourceLocation("forge:concrete_powder"))) {
+                    newBlock = Blocks.LIGHT_GRAY_CONCRETE_POWDER.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:terracotta"))) {
+                    newBlock = Blocks.LIGHT_GRAY_TERRACOTTA.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:glazed_terracotta"))) {
+                    newBlock = Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA.getDefaultState().with(GlazedTerracottaBlock.HORIZONTAL_FACING, oldBlock.get(GlazedTerracottaBlock.HORIZONTAL_FACING));
+                }
+            }
+            if (newBlock != null) {
+                event.getWorld().setBlockState(event.getPos(), newBlock, 3);
                 if (!event.getPlayer().isCreative()) {
                     event.getItemStack().shrink(1);
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void slice(PlayerInteractEvent.RightClickBlock event) {
+        BlockPos pos = event.getPos();
+        World world = event.getWorld();
+        PlayerEntity player = event.getPlayer();
+        BlockState state = world.getBlockState(pos);
+        if (player.getHeldItemMainhand().getItem() instanceof ItemKnife) {
+            if (state.getBlock() == ModBlocks.AGED_CHEESE) {
+                if (state.get(BlockStateProperties.BITES_0_6) < 6) {
+                    world.setBlockState(pos, state.with(BlockStateProperties.BITES_0_6, state.get(BlockStateProperties.BITES_0_6) + 1));
+                    player.addItemStackToInventory(new ItemStack(ModItems.CHEESE, 1));
+                } else {
+                    world.removeBlock(pos, false);
+                }
+                player.getHeldItemMainhand().damageItem(1, player, (p_220040_1_) -> {
+                    p_220040_1_.sendBreakAnimation(event.getHand());
+                });
+            } else if (state.getBlock() == Blocks.CAKE) {
+                if (state.get(BlockStateProperties.BITES_0_6) < 6) {
+                    world.setBlockState(pos, state.with(BlockStateProperties.BITES_0_6, state.get(BlockStateProperties.BITES_0_6) + 1));
+                    player.addItemStackToInventory(new ItemStack(ModItems.CAKE_SLICE, 1));
+                } else {
+                    world.removeBlock(pos, false);
+                }
+                player.getHeldItemMainhand().damageItem(1, player, (p_220040_1_) -> {
+                    p_220040_1_.sendBreakAnimation(event.getHand());
+                });
+
+            }
+        }
+
     }
 
     @SubscribeEvent
@@ -728,7 +1079,15 @@ public class RankineEventHandler {
                 player.getHeldItem(Hand.MAIN_HAND).shrink(1);
                 player.getHeldItem(Hand.OFF_HAND).shrink(1);
                 world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
-            } else if (AbstractFireBlock.canLightBlock(world, blockpos1, event.getFace()) && !world.isRemote && world.getBlockState(pos) != ModBlocks.CHARCOAL_PIT.getDefaultState().with(CharcoalPit.LIT, true)) {
+            } else if (world.getBlockState(pos) == ModBlocks.BEEHIVE_OVEN_PIT.getDefaultState().with(BlockStateProperties.LIT, false) || world.getBlockState(pos) == ModBlocks.MAGNESIUM_BEEHIVE_OVEN_PIT.getDefaultState().with(BlockStateProperties.LIT, false) || world.getBlockState(pos) == ModBlocks.ZIRCON_BEEHIVE_OVEN_PIT.getDefaultState().with(BlockStateProperties.LIT, false)) {
+                if (!world.isRemote()) {
+                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                    player.swingArm(Hand.MAIN_HAND);
+                    player.getHeldItem(Hand.MAIN_HAND).shrink(1);
+                    player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                    world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+                }
+            } else if (AbstractFireBlock.canLightBlock(world, blockpos1, event.getFace()) && !world.isRemote && !(world.getBlockState(pos).getBlock() instanceof BeehiveOvenPit) && world.getBlockState(pos) != ModBlocks.CHARCOAL_PIT.getDefaultState().with(CharcoalPit.LIT, true)) {
                 world.setBlockState(blockpos1, AbstractFireBlock.getFireForPlacement(world, blockpos1), 11);
                 player.swingArm(Hand.MAIN_HAND);
                 player.getHeldItem(Hand.MAIN_HAND).shrink(1);

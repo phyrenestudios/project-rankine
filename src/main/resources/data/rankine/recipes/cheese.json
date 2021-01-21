@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:flint_knife" },{ "item": "rankine:aged_cheese" } ], "result": { "item": "rankine:cheese", "count": 4 } }

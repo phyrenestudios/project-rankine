@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/niobium",
+            "#forge:ingots/niobium",
+            "#forge:storage_blocks/niobium"
+          ]
+        }

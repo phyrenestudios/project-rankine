@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/meiterium",
+            "#forge:ingots/meiterium",
+            "#forge:storage_blocks/meiterium"
+          ]
+        }

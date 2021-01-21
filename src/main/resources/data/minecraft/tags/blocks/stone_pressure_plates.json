@@ -7,6 +7,8 @@
     "rankine:arkose_sandstone_pressure_plate",
     "rankine:mudstone_pressure_plate",
     "rankine:chalk_pressure_plate",
+    "rankine:porphyry_pressure_plate",
+    "rankine:purple_porphyry_pressure_plate",
     "rankine:red_granite_pressure_plate",
     "rankine:granodiorite_pressure_plate",
     "rankine:hornblende_andesite_pressure_plate",
@@ -60,6 +62,14 @@
     "rankine:slate_bricks_pressure_plate",
     "rankine:gabbro_bricks_pressure_plate",
     "rankine:schist_bricks_pressure_plate",
-    "rankine:breccia_bricks_pressure_plate"
+    "rankine:breccia_bricks_pressure_plate",
+    "rankine:porphyry_bricks_pressure_plate",
+    "rankine:purple_porphyry_bricks_pressure_plate",
+    "rankine:red_dacite_bricks_pressure_plate",
+    "rankine:black_dacite_bricks_pressure_plate",
+    "rankine:quartz_sandstone_bricks_pressure_plate",
+    "rankine:arkose_sandstone_bricks_pressure_plate",
+    "rankine:mudstone_bricks_pressure_plate",
+    "rankine:chalk_bricks_pressure_plate"
   ]
 }

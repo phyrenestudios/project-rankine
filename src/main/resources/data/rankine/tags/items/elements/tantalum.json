@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/tantalum",
+            "#forge:ingots/tantalum",
+            "#forge:storage_blocks/tantalum"
+          ]
+        }

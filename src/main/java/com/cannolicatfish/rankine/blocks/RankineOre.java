@@ -36,7 +36,7 @@ public class RankineOre extends Block {
     }
 
     protected int getExperience(Random rand) {
-        if (this == ModBlocks.LIGNITE_ORE  || this == ModBlocks.SUBBITUMINOUS_ORE|| this == ModBlocks.NATIVE_COPPER_ORE || this == ModBlocks.NATIVE_TIN_ORE || this == ModBlocks.NATIVE_SILVER_ORE || this == ModBlocks.NATIVE_LEAD_ORE || this == ModBlocks.NATIVE_ALUMINUM_ORE || this == ModBlocks.NATIVE_GOLD_ORE || this == ModBlocks.NETHER_GOLD_ORE || this == ModBlocks.HALITE_ORE || this == ModBlocks.PINK_HALITE_ORE) {
+        if (this == ModBlocks.LIGNITE_ORE  || this == ModBlocks.SUBBITUMINOUS_ORE|| this == ModBlocks.NATIVE_COPPER_ORE || this == ModBlocks.NATIVE_TIN_ORE || this == ModBlocks.NATIVE_SILVER_ORE || this == ModBlocks.NATIVE_LEAD_ORE || this == ModBlocks.NATIVE_ALUMINUM_ORE || this == ModBlocks.NATIVE_GOLD_ORE || this == ModBlocks.HALITE_ORE || this == ModBlocks.PINK_HALITE_ORE) {
             return MathHelper.nextInt(rand, 0, 2);
         } else if (this == ModBlocks.NATIVE_SULFUR_ORE || this == ModBlocks.NATIVE_BISMUTH_ORE || this == ModBlocks.NATIVE_ARSENIC_ORE) {
             return MathHelper.nextInt(rand, 1, 4);

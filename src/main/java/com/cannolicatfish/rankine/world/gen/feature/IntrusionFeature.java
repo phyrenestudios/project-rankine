@@ -41,25 +41,25 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         int radius = 0;
 
         if (TerraForged.isInstalled()) {
-            if (CHANCE < 0.1) {
+            if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get()) {
                 INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-                radius = 5 - rand.nextInt(2);
+                radius = 6 - rand.nextInt(2);
             }
         } else {
-            if (CHANCE < 0.1) {
+            if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get()) {
                 INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < 0.2) {
+            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4) {
                 INTRUSION = ModBlocks.GRANODIORITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < 0.3) {
+            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*2) {
                 INTRUSION = Blocks.DIORITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < 0.4) {
+            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*3) {
                 INTRUSION = Blocks.GRANITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < 0.5) {
+            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*4) {
                 INTRUSION = ModBlocks.RED_GRANITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             }

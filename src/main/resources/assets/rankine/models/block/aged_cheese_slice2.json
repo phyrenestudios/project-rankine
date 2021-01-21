@@ -1,0 +1,22 @@
+{
+    "textures": {
+        "particle": "rankine:block/aged_cheese_side",
+        "bottom": "rankine:block/aged_cheese_bottom",
+        "top": "rankine:block/aged_cheese_top",
+        "side": "rankine:block/aged_cheese_side",
+        "inside": "rankine:block/aged_cheese_inner"
+    },
+    "elements": [
+        {   "from": [ 5, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:coconut_palm"
+        }
+      },
+      "result": {
+        "item": "rankine:coconut_palm_vertical_slab",
+        "count": 6
+      }
+}

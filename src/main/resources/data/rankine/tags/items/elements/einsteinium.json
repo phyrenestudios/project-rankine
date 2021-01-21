@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/einsteinium",
+            "#forge:ingots/einsteinium",
+            "#forge:storage_blocks/einsteinium"
+          ]
+        }

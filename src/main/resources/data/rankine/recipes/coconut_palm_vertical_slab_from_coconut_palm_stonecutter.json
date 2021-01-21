@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:coconut_palm"
+      },
+      "result": "rankine:coconut_palm_vertical_slab",
+      "count": 2
+}

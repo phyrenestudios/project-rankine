@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:polished_purple_pophyry"
+        }
+      },
+      "result": {
+        "item": "rankine:polished_purple_pophyry_slab",
+        "count": 6
+      }
+}

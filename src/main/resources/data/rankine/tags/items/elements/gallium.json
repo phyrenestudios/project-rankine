@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/gallium",
+            "#forge:ingots/gallium",
+            "#forge:storage_blocks/gallium"
+          ]
+        }

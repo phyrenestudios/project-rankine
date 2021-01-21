@@ -78,6 +78,7 @@ public class OreGen {
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.SAND_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.CLAY_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.ORE_ALLUVIUM, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER),true)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.ORE_EVAPORITE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.ORE_INTRUSION, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.DEFAULT_STONE_GEN, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.ANDESITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(),false)));
@@ -514,7 +515,7 @@ public class OreGen {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NetherFeatures = new ArrayList<>();
 
         NetherFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.NETHER_ORE_INTRUSION, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)));
-        NetherFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.BLACK_SAND, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)));
+        NetherFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.NETHER_STONE_GEN, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
 
         if (Config.RANKINE_ORES_N.get()) {
             if (Config.MAGNETITE_ORE_NETHER.get()) {
@@ -936,6 +937,15 @@ public class OreGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getEndOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
+
+        if (Config.END_METEORITE.get()) {
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.END_STONE_GEN, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.END_TAENITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.END_TETRATAENITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.END_KAMACITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.END_ANTITAENITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(ModFeatures.END_LONSDALEITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+        }
 
         if (Config.RANKINE_ORES_E.get()) {
             if (Config.MAGNETITE_ORE_END.get()) {

@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/holmium",
+            "#forge:ingots/holmium",
+            "#forge:storage_blocks/holmium"
+          ]
+        }

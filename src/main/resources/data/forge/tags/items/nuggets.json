@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#forge:nuggets/netherite",
     "#forge:nuggets/hydrogen",
     "#forge:nuggets/helium",
     "#forge:nuggets/lithium",

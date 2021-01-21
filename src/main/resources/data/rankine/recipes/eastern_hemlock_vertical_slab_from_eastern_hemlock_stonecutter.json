@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:eastern_hemlock"
+      },
+      "result": "rankine:eastern_hemlock_vertical_slab",
+      "count": 2
+}

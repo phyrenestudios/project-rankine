@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "rankine:block/yellow_led"
+    },
+    "lit=true": {
+      "model": "rankine:block/yellow_led_on"
+    }
+  }
+}

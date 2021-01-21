@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "I",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "tag": "rankine:crafting_metals_nuggets"
+    },
+    "I": {
+      "tag": "rankine:crafting_metals"
+    }
+  },
+  "result": {
+    "item": "minecraft:chain",
+    "count": 1
+  }
+}

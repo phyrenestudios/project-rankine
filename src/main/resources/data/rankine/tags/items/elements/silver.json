@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/silver",
+            "#forge:ingots/silver",
+            "#forge:storage_blocks/silver"
+          ]
+        }

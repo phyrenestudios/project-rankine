@@ -1,5 +1,25 @@
 {
-        "variants": {
-        "": { "model": "rankine:block/aged_cheese" }
-        }
+  "variants": {
+    "bites=0": {
+      "model": "rankine:block/aged_cheese"
+    },
+    "bites=1": {
+      "model": "rankine:block/aged_cheese_slice1"
+    },
+    "bites=2": {
+      "model": "rankine:block/aged_cheese_slice2"
+    },
+    "bites=3": {
+      "model": "rankine:block/aged_cheese_slice3"
+    },
+    "bites=4": {
+      "model": "rankine:block/aged_cheese_slice4"
+    },
+    "bites=5": {
+      "model": "rankine:block/aged_cheese_slice5"
+    },
+    "bites=6": {
+      "model": "rankine:block/aged_cheese_slice6"
     }
+  }
+}

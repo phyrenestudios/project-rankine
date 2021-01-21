@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DRD",
+    "RSR",
+    "DRD"
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:dyes/pink"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "tag": "forge:storage_blocks/silicon_carbide"
+    }
+  },
+  "result": {
+    "item": "rankine:pink_led",
+    "count": 8
+  }
+}

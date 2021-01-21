@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:magnolia"
+      },
+      "result": "rankine:magnolia_vertical_slab",
+      "count": 2
+}

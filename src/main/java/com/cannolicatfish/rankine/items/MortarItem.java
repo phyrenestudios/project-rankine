@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -34,14 +35,37 @@ public class MortarItem extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
-        Block block = worldIn.getBlockState(context.getPos()).getBlock();
+        BlockPos pos = context.getPos();
+        Block block = worldIn.getBlockState(pos).getBlock();
         ResourceLocation rs = block.getRegistryName();
             if (rs != null) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(), rs.getPath()+"_bricks");
                 if (ForgeRegistries.BLOCKS.containsKey(rs2)) {
-                    worldIn.setBlockState(context.getPos(), Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(rs2)).getDefaultState(), 2);
-                    spawnParticles(worldIn, context.getPos(), 0);
+                    worldIn.setBlockState(pos, Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(rs2)).getDefaultState(), 2);
+                    spawnParticles(worldIn, pos, 0);
                     context.getItem().shrink(1);
+                    return ActionResultType.SUCCESS;
+                } else if (block == ModBlocks.CAST_IRON_SUPPORT) {
+                    int i = 0;
+                    while (worldIn.getBlockState(pos.up(i)) == ModBlocks.CAST_IRON_SUPPORT.getDefaultState()) {
+                        worldIn.setBlockState(pos.up(i), ModBlocks.UNCOLORED_CONCRETE.getDefaultState());
+                        ++i;
+                        if (context.getItem().getCount() >= 1) {
+                            context.getItem().shrink(1);
+                        } else {
+                            break;
+                        }
+                    }
+                    i = 1;
+                    while (worldIn.getBlockState(pos.down(i)) == ModBlocks.CAST_IRON_SUPPORT.getDefaultState()) {
+                        worldIn.setBlockState(pos.down(i), ModBlocks.UNCOLORED_CONCRETE.getDefaultState());
+                        ++i;
+                        if (context.getItem().getCount() >= 1) {
+                            context.getItem().shrink(1);
+                        } else {
+                            break;
+                        }
+                    }
                     return ActionResultType.SUCCESS;
                 }
             }
@@ -92,12 +116,8 @@ public class MortarItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if (Screen.hasShiftDown()) {
-                tooltip.add(new StringTextComponent("Used for creating bricks. Made by throwing dry mortar into water").mergeStyle(TextFormatting.GRAY));
-        } else {
-            tooltip.add(new StringTextComponent("Hold shift for information...").mergeStyle(TextFormatting.GRAY));
-        }
-
+            tooltip.add(new StringTextComponent("Used for creating bricks. Made by throwing dry mortar into water").mergeStyle(TextFormatting.GRAY));
     }
+
 
 }

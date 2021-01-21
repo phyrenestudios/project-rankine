@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/tennessine",
+            "#forge:ingots/tennessine",
+            "#forge:storage_blocks/tennessine"
+          ]
+        }

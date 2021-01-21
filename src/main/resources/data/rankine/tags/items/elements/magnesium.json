@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/magnesium",
+            "#forge:ingots/magnesium",
+            "#forge:storage_blocks/magnesium"
+          ]
+        }

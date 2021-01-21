@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/radium",
+            "#forge:ingots/radium",
+            "#forge:storage_blocks/radium"
+          ]
+        }

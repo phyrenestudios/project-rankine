@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/fermium",
+            "#forge:ingots/fermium",
+            "#forge:storage_blocks/fermium"
+          ]
+        }

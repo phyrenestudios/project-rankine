@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/tungsten",
+            "#forge:ingots/tungsten",
+            "#forge:storage_blocks/tungsten"
+          ]
+        }

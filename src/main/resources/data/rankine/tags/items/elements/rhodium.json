@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/rhodium",
+            "#forge:ingots/rhodium",
+            "#forge:storage_blocks/rhodium"
+          ]
+        }

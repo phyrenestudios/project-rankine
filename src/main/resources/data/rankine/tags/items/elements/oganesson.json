@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/oganesson",
+            "#forge:ingots/oganesson",
+            "#forge:storage_blocks/oganesson"
+          ]
+        }

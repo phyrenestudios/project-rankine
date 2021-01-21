@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/europium",
+            "#forge:ingots/europium",
+            "#forge:storage_blocks/europium"
+          ]
+        }

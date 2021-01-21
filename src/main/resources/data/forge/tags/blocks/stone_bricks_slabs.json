@@ -36,6 +36,8 @@
     "rankine:quartz_sandstone_bricks_slab",
     "rankine:mudstone_bricks_slab",
     "rankine:chalk_bricks_slab",
+    "rankine:porphyry_bricks_slab",
+    "rankine:purple_porphyry_bricks_slab",
     "minecraft:polished_blackstone_brick_slab"
   ]
 }

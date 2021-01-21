@@ -8,6 +8,9 @@
       "key": {
         "L": {
           "item": "minecraft:leather"
+        },
+        "R": {
+          "item": "rankine:rope"
         }
       },
       "result": {

@@ -1,0 +1,9 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/sulfur",
+            "#forge:ingots/sulfur",
+            "#forge:storage_blocks/sulfur",
+            "#forge:sulfur"
+          ]
+        }

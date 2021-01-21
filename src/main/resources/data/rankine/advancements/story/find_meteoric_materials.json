@@ -2,7 +2,7 @@
   "parent": "rankine:story/find_meteorite",
   "display": {
     "icon": {
-      "item": "rankine:antitaenite"
+      "item": "rankine:lonsdaleite_diamond"
     },
     "title": {
       "translate": "rankine.advancements.story.find_meteoric_materials.title"
@@ -16,42 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "rankine:taenite": {
+    "rankine:lonsdaleite_diamond": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:taenite"
-          }
-        ]
-      }
-    },
-    "rankine:tetrataenite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:tetrataenite"
-          }
-        ]
-      }
-    },
-    "rankine:kamacite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:kamacite"
-          }
-        ]
-      }
-    },
-    "rankine:antitaenite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:antitaenite"
+            "item": "rankine:lonsdaleite_diamond"
           }
         ]
       }
@@ -59,13 +29,7 @@
   },
   "requirements": [
     [
-      "rankine:taenite"
-    ], [
-      "rankine:tetrataenite"
-    ], [
-      "rankine:kamacite"
-    ], [
-      "rankine:antitaenite"
+      "rankine:lonsdaleite_diamond"
     ]
   ]
 }

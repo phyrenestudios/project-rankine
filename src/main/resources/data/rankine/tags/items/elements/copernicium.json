@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/copernicium",
+            "#forge:ingots/copernicium",
+            "#forge:storage_blocks/copernicium"
+          ]
+        }
