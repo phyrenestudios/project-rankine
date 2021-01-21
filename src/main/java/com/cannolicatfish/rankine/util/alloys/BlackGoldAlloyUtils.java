@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.init.ModEnchantments;
+import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -51,7 +53,19 @@ public class BlackGoldAlloyUtils implements AlloyUtils {
 
     @Override
     public Enchantment getEnchantmentBonus(Item item) {
-        return Enchantments.UNBREAKING;
+        if (item instanceof AlloyHoe)
+        {
+            return ModEnchantments.FORAGING;
+        } else if (item instanceof AlloySword || item instanceof AlloyAxe)
+        {
+            return Enchantments.BANE_OF_ARTHROPODS;
+        } else if (item instanceof AlloySpear) {
+            return ModEnchantments.IMPACT;
+        } else if (item instanceof AlloyHammer) {
+            return ModEnchantments.EXCAVATE;
+        } else {
+            return ModEnchantments.QUAKE;
+        }
 
     }
 

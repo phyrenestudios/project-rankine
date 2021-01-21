@@ -1872,6 +1872,8 @@
   "item.rankine.shrouded_king_spawn_egg": "Shrouded King Spawn Egg",
   "entity.rankine.shrouded_king": "Shrouded King",
 
+  "entity.minecraft.villager.rankine.metallurgist": "Metallurgist",
+
   "enchantment.rankine.puncture": "Puncture",
   "enchantment.rankine.puncture.desc": "Deals extra armor-piercing damage on direct attacks.",
   "enchantment.rankine.blast": "Blast",
@@ -1890,6 +1892,14 @@
   "enchantment.rankine.dune_walker.desc": "Increases movement speed on sand.",
   "enchantment.rankine.snow_drifter": "Snow Drifter",
   "enchantment.rankine.snow_drifter.desc": "Increases movement speed on snow.",
+  "enchantment.rankine.quake": "Quake",
+  "enchantment.rankine.quake.desc": "Increases mining speed based on depth.",
+  "enchantment.rankine.foraging": "Foraging",
+  "enchantment.rankine.foraging.desc": "Adds chance to gain various items from digging in dirt.",
+  "enchantment.rankine.impact": "Impact",
+  "enchantment.rankine.impact.desc": "Increases knockback of thrown spears.",
+  "enchantment.rankine.smithing": "Arcane Smithing",
+  "enchantment.rankine.smithing.desc": "When held in off hand while using an anvil, any enchantment book applications on unenchanted equipment will have a level cost of 1 at a cost of (1/level * 100) % of your hammer's maximum durability.",
 
 
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",

@@ -9,7 +9,9 @@ import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.potion.ModEffects;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.block.*;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.MobEntity;
@@ -18,7 +20,6 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -28,6 +29,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -38,6 +40,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -67,6 +70,19 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void addVillagerTrades(VillagerTradesEvent event)
     {
+        if (event.getType() == ModVillagerProfessions.METALLURGIST) {
+            event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(ModItems.ALLOY_TEMPLATE),12,1,0.05f));
+            event.getTrades().get(1).add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.TIN_INGOT, 8), new ItemStack(Items.EMERALD),12,2,0.05f));
+            event.getTrades().get(1).add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
+            event.getTrades().get(2).add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.METEORIC_IRON, 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            event.getTrades().get(2).add(new BasicTrade(1, new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE),12,5,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.MANGANESE_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.MOLYBDENUM_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.VANADIUM_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.NIOBIUM_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(4).add(new BasicTrade(6, new ItemStack(ModItems.ELEMENT_INDEXER),12,15,0.05f));
+            event.getTrades().get(5).add(new BasicTrade(10, new ItemStack(ModItems.ORE_DETECTOR),12,30,0.05f));
+        }
         if (Config.VILLAGER_TRADES.get())
         {
             if (event.getType() == VillagerProfession.MASON)
@@ -74,10 +90,6 @@ public class RankineEventHandler {
                 event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(ModItems.MORTAR, 16),16,1,0.05f));
                 event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(ModItems.REFRACTORY_BRICK, 10),16,1,0.05f));
 
-            } else if (event.getType() == VillagerProfession.LIBRARIAN)
-            {
-                event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(ModItems.ALLOY_TEMPLATE),12,1,0.05f));
-                event.getTrades().get(2).add(new BasicTrade(1, new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE),12,5,0.05f));
             } else if (event.getType() == VillagerProfession.CLERIC)
             {
                 event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(ModItems.SALTPETER,2),12,1,0.05f));
@@ -321,6 +333,110 @@ public class RankineEventHandler {
             if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SNOW_DRIFTER,event.getOutput()) != 1) {
                 event.getOutput().addEnchantment(ModEnchantments.SNOW_DRIFTER, 1);
                 event.setCost(20);
+            }
+        }
+
+        if (event.getPlayer() != null && event.getPlayer().getHeldItemOffhand().getItem() instanceof ItemHammer)
+        {
+            ItemStack hammer = event.getPlayer().getHeldItemOffhand();
+            int enchLvl = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SMITHING,hammer);
+            int durability = hammer.getMaxDamage() - hammer.getDamage();
+            if (enchLvl > 0 && durability >= Math.round(hammer.getMaxDamage() * 1f/enchLvl))
+            {
+                if (event.getRight().getItem() instanceof EnchantedBookItem && !event.getLeft().isEnchanted())
+                {
+                    event.setOutput(input.copy());
+                    int i = 0;
+                    ItemStack itemstack = input.copy();
+                    ItemStack itemstack1 = input.copy();
+                    ItemStack itemstack2 = event.getRight().copy();
+                    boolean flag = event.getRight().getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(event.getRight()).isEmpty();
+                    boolean flag2 = false;
+                    boolean flag3 = false;
+                    Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
+                    Map<Enchantment, Integer> map1 = EnchantmentHelper.getEnchantments(itemstack2);
+                    for(Enchantment enchantment1 : map1.keySet()) {
+                        if (enchantment1 != null) {
+                            int i2 = map.getOrDefault(enchantment1, 0);
+                            int j2 = map1.get(enchantment1);
+                            j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
+                            boolean flag1 = enchantment1.canApply((itemstack));
+                            if (event.getPlayer().abilities.isCreativeMode || (itemstack.getItem() == Items.ENCHANTED_BOOK)) {
+                                flag1 = true;
+                            }
+
+                            for(Enchantment enchantment : map.keySet()) {
+                                if (enchantment != enchantment1 && !enchantment1.isCompatibleWith(enchantment)) {
+                                    flag1 = false;
+                                }
+                            }
+
+                            if (!flag1) {
+                                flag3 = true;
+                            } else {
+                                flag2 = true;
+                                if (j2 > enchantment1.getMaxLevel()) {
+                                    j2 = enchantment1.getMaxLevel();
+                                }
+
+                                map.put(enchantment1, j2);
+                                int k3 = 0;
+                                switch(enchantment1.getRarity()) {
+                                    case COMMON:
+                                        k3 = 1;
+                                        break;
+                                    case UNCOMMON:
+                                        k3 = 2;
+                                        break;
+                                    case RARE:
+                                        k3 = 4;
+                                        break;
+                                    case VERY_RARE:
+                                        k3 = 8;
+                                }
+
+                                if (flag) {
+                                    k3 = Math.max(1, k3 / 2);
+                                }
+
+                                i += k3 * j2;
+                                if (itemstack.getCount() > 1) {
+                                    i = 40;
+                                }
+                            }
+                        }
+                    }
+                    if (flag3 && !flag2) {
+                        return;
+                    }
+
+                    if (!itemstack1.isEmpty()) {
+                        EnchantmentHelper.setEnchantments(map, itemstack1);
+                    }
+                    event.setOutput(itemstack1.copy());
+                    event.setCost(1);
+                }
+
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onAnvilRepair(AnvilRepairEvent event)
+    {
+        if (event.getPlayer() != null && event.getPlayer().getHeldItemOffhand().getItem() instanceof ItemHammer && event.getPlayer().getHeldItemOffhand().isEnchanted())
+        {
+            ItemStack hammer = event.getPlayer().getHeldItemOffhand();
+            int enchLvl = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SMITHING,hammer);
+            int durability = hammer.getMaxDamage() - hammer.getDamage();
+            if (enchLvl > 0 && event.getIngredientInput().getItem() instanceof EnchantedBookItem && !event.getItemInput().isEnchanted() && durability >= Math.round(hammer.getMaxDamage() * 1f/enchLvl))
+            {
+
+                float newBreakChance = Math.max(event.getBreakChance() - enchLvl * 0.02f,0);
+                event.setBreakChance(newBreakChance);
+                hammer.damageItem(Math.round(hammer.getMaxDamage() * 1f/enchLvl), event.getPlayer(), (p_220038_0_) -> {
+                    p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                });
             }
         }
     }
@@ -801,7 +917,51 @@ public class RankineEventHandler {
         float CHANCE = new Random().nextFloat();
         if (!player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:dirt"))) {
-                if (player.getHeldItem(Hand.MAIN_HAND).isEmpty() || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
+                if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.FORAGING,player.getHeldItem(Hand.MAIN_HAND)) > 0)
+                {
+                    ItemStack FOOD;
+                    World worldIn = (World) event.getWorld();
+                    Biome.Category cat = worldIn.getBiome(event.getPos()).getCategory();
+                    List<Item> possibleItems;
+                    switch (cat) {
+                        case JUNGLE:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,ModItems.PINEAPPLE, Items.COCOA_BEANS, Items.MELON_SEEDS);
+                            break;
+                        case SWAMP:
+                        case MUSHROOM:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.BROWN_MUSHROOM,Items.RED_MUSHROOM);
+                            break;
+                        case EXTREME_HILLS:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,ModItems.FIRE_CLAY_BALL, ModItems.SNOWBERRIES);
+                            break;
+                        case RIVER:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.CLAY_BALL,Items.KELP,Items.SUGAR_CANE);
+                            break;
+                        case PLAINS:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.PUMPKIN_SEEDS,Items.FEATHER,Items.LEATHER);
+                            break;
+                        case DESERT:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT,Items.RABBIT_HIDE,Items.BONE);
+                            break;
+                        default:
+                            possibleItems = Arrays.asList(ModItems.SALTPETER,Items.STRING,Items.POTATO,Items.CARROT,Items.BEETROOT);
+                            break;
+                    }
+
+                    if (CHANCE < Config.FORAGING_CHANCE.get())
+                    {
+                        FOOD = new ItemStack(possibleItems.get(event.getWorld().getRandom().nextInt(possibleItems.size())));
+                    } else {
+                        return;
+                    }
+                    double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                    double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
+                    double d2 = (double) (new Random().nextFloat()  * 0.5F) + 0.25D;
+                    ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, FOOD);
+                    itementity.setDefaultPickupDelay();
+                    event.getWorld().addEntity(itementity);
+                }
+                else if (player.getHeldItem(Hand.MAIN_HAND).isEmpty() || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
                     ItemStack FOOD;
                     if (CHANCE < Config.FORAGING_CHANCE.get() * 0.3) {
                         FOOD = new ItemStack(Items.POTATO,1);
@@ -831,6 +991,26 @@ public class RankineEventHandler {
     public static void onBreakSpeed(PlayerEvent.BreakSpeed event) {
         if (event.getPlayer().getHeldItemOffhand().getItem() == ModItems.HASTE_PENDANT) {
             event.setNewSpeed(event.getNewSpeed() + 3);
+        }
+
+        if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUAKE,event.getPlayer().getHeldItemMainhand()) > 0) {
+            int enchant = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.QUAKE,event.getPlayer().getHeldItemMainhand());
+            int height = event.getPos().getY();
+
+            float maxPercent = .40f + (enchant - 1) * .10f;
+            int minHeight = 10;
+            float finalSpeed;
+            int maxHeight = 45 + (enchant - 1) * 35;
+            if (height < minHeight) {
+                event.setNewSpeed(event.getNewSpeed() + event.getNewSpeed() * maxPercent);
+            } else if (height < maxHeight){
+                float minPercent = .10f + (enchant - 1) * 0.05f;
+
+                float[] s = RankineMathHelper.linspace(maxPercent,minPercent,maxHeight-minHeight);
+                event.setNewSpeed(event.getNewSpeed() + event.getNewSpeed() * s[height - 10]);
+            }
+
+
         }
     }
 
