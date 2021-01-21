@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shaped", "pattern": [ "xxx", "xxx", "xxx" ], "key": { "x": { "item": "rankine:plagioclase_feldspar" } }, "result": { "item": "rankine:plagioclase_feldspar_block", "count": 1 } }

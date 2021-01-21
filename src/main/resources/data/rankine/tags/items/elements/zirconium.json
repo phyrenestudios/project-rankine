@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/zirconium",
+            "#forge:ingots/zirconium",
+            "#forge:storage_blocks/zirconium"
+          ]
+        }

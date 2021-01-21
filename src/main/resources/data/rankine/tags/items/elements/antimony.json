@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/antimony",
+            "#forge:ingots/antimony",
+            "#forge:storage_blocks/antimony"
+          ]
+        }

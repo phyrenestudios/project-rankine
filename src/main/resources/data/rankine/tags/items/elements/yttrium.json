@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/yttrium",
+            "#forge:ingots/yttrium",
+            "#forge:storage_blocks/yttrium"
+          ]
+        }

@@ -1,0 +1,1 @@
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:plagioclase_feldspar_block" } ], "result": { "item": "rankine:plagioclase_feldspar", "count": 9 } }

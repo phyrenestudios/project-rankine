@@ -35,6 +35,10 @@
     "rankine:arkose_sandstone_bricks",
     "rankine:quartz_sandstone_bricks",
     "rankine:mudstone_bricks",
-    "rankine:chalk_bricks"
+    "rankine:chalk_bricks",
+    "rankine:porphyry_bricks",
+    "rankine:purple_porphyry_bricks",
+    "rankine:meteorite_paver",
+    "rankine:enstatite_paver"
   ]
 }

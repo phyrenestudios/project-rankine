@@ -14,6 +14,6 @@ public class EasternHemlockTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean p_225546_2_) {
-        return Feature.TREE.withConfiguration(ModFeatures.EASTERN_HEMLOCK_TREE_CONFIG);
+        return Feature.TREE.withConfiguration(ModFeatures.LARGE_EASTERN_HEMLOCK_TREE_CONFIG);
     }
 }

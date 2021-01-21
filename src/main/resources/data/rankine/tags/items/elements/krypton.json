@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/krypton",
+            "#forge:ingots/krypton",
+            "#forge:storage_blocks/krypton"
+          ]
+        }

@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/arsenic",
+            "#forge:ingots/arsenic",
+            "#forge:storage_blocks/arsenic"
+          ]
+        }

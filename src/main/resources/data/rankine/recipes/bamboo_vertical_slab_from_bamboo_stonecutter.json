@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:bamboo"
+      },
+      "result": "rankine:bamboo_vertical_slab",
+      "count": 2
+}

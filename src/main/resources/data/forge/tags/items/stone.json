@@ -29,6 +29,8 @@
     "#forge:stones/breccia",
     "#forge:stones/dacite",
     "#forge:stones/chalk",
-    "#forge:stones/mudstone"
+    "#forge:stones/mudstone",
+    "#forge:stones/porphyry",
+    "#forge:stones/purple_porphyry"
   ]
 }

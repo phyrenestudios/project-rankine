@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/bohrium",
+            "#forge:ingots/bohrium",
+            "#forge:storage_blocks/bohrium"
+          ]
+        }

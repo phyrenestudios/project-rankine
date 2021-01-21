@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/neptunium",
+            "#forge:ingots/neptunium",
+            "#forge:storage_blocks/neptunium"
+          ]
+        }

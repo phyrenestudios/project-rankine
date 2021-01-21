@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/berkelium",
+            "#forge:ingots/berkelium",
+            "#forge:storage_blocks/berkelium"
+          ]
+        }

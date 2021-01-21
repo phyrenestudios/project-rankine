@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/mercury",
+            "#forge:ingots/mercury",
+            "#forge:storage_blocks/mercury"
+          ]
+        }

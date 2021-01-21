@@ -141,8 +141,14 @@ public class CharcoalPit extends Block {
                     if (valid) {
                         if (path.contains("douglas_fir")) {
                             quality = 460;
+                        } else if (path.contains("ancient")) {
+                            quality = 400;
+                        } else if (path.contains("dead")) {
+                            quality = 300;
                         } else if (path.contains("pinyon_pine")) {
                             quality = 520;
+                        } else if (path.contains("redwood")) {
+                            quality = 440;
                         } else if (path.contains("alder")) {
                             quality = 420;
                         } else if (path.contains("apple")) {
@@ -210,13 +216,23 @@ public class CharcoalPit extends Block {
                         } else if (path.contains("coconut")) {
                             quality = 450;
                         } else if (path.contains("juniper")) {
-                            quality = 470;
+                            quality = 480;
                         } else if (path.contains("acacia")) {
                             quality = 500;
                         } else if (path.contains("magnolia")) {
                             quality = 450;
                         } else if (path.contains("hemlock")) {
                             quality = 440;
+                        } else if (path.contains("larch")) {
+                            quality = 440;
+                        } else if (path.contains("robinia")) {
+                            quality = 550;
+                        } else if (path.contains("eucalyptus")) {
+                            quality = 570;
+                        } else if (path.contains("ironwood")) {
+                            quality = 510;
+                        } else if (path.contains("locust")) {
+                            quality = 550;
                         } else {
                             quality = 300;
                         }
@@ -225,6 +241,11 @@ public class CharcoalPit extends Block {
                             count = (int) Math.floor(quality / 100f) - 3 + 1;
                         } else {
                             count = (int) Math.floor(quality / 100f) - 3;
+                        }
+                        if (count > 3) {
+                            count =3;
+                        } else if (count < 0) {
+                            count = 0;
                         }
                         worldIn.setBlockState(blockpos, ModBlocks.CHARRED_WOOD.getDefaultState().with(CharredWood.TYPE, count));
                     }

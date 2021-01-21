@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/livermorium",
+            "#forge:ingots/livermorium",
+            "#forge:storage_blocks/livermorium"
+          ]
+        }

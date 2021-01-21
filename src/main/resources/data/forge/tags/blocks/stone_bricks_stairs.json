@@ -36,6 +36,8 @@
     "rankine:quartz_sandstone_bricks_stairs",
     "rankine:mudstone_bricks_stairs",
     "rankine:chalk_bricks_stairs",
+    "rankine:porphyry_bricks_stairs",
+    "rankine:purple_porphyry_bricks_stairs",
     "minecraft:polished_blackstone_brick_stairs"
   ]
 }

@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/osmium",
+            "#forge:ingots/osmium",
+            "#forge:storage_blocks/osmium"
+          ]
+        }

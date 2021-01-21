@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/tellurium",
+            "#forge:ingots/tellurium",
+            "#forge:storage_blocks/tellurium"
+          ]
+        }

@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/lead",
+            "#forge:ingots/lead",
+            "#forge:storage_blocks/lead"
+          ]
+        }

@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/phosphorus",
+            "#forge:ingots/phosphorus",
+            "#forge:storage_blocks/phosphorus"
+          ]
+        }

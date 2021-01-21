@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/cobalt",
+            "#forge:ingots/cobalt",
+            "#forge:storage_blocks/cobalt"
+          ]
+        }

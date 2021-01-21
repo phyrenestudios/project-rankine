@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/rutherfordium",
+            "#forge:ingots/rutherfordium",
+            "#forge:storage_blocks/rutherfordium"
+          ]
+        }

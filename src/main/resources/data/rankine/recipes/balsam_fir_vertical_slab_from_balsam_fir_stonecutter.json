@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:balsam_fir"
+      },
+      "result": "rankine:balsam_fir_vertical_slab",
+      "count": 2
+}

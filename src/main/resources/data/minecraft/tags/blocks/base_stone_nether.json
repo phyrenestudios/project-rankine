@@ -1,11 +1,13 @@
 {
   "replace": false,
   "values": [
-    "rankine:kimberlite",
     "rankine:komatiite",
     "rankine:ringwoodite",
     "rankine:wadsleyite",
     "rankine:ferropericlase",
+    "rankine:bridgmanite",
+    "rankine:pumice",
+    "rankine:scoria",
     "rankine:perovskite"
   ]
 }

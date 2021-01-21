@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:red_led",
+    "rankine:orange_led",
+    "rankine:yellow_led",
+    "rankine:lime_led",
+    "rankine:green_led",
+    "rankine:blue_led",
+    "rankine:cyan_led",
+    "rankine:light_blue_led",
+    "rankine:magenta_led",
+    "rankine:purple_led",
+    "rankine:pink_led",
+    "rankine:brown_led",
+    "rankine:black_led",
+    "rankine:brown_led",
+    "rankine:light_gray_led",
+    "rankine:gray_led"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/argon",
+            "#forge:ingots/argon",
+            "#forge:storage_blocks/argon"
+          ]
+        }

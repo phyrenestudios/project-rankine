@@ -32,30 +32,24 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
         int radius = 6-rand.nextInt(4);
 
         if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:warped_forest"))) {
-            if (STONE < 0.06) {
+            if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
                 INTRUSION = ModBlocks.WADSLEYITE.getDefaultState();
-            } else if (STONE < 0.12) {
-                INTRUSION = ModBlocks.RINGWOODITE.getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:soul_sand_valley"))) {
-            if (STONE < 0.06) {
-                INTRUSION = ModBlocks.BRIDGMANITE.getDefaultState();
-            } else if (STONE < 0.12) {
-                INTRUSION = ModBlocks.PEROVSKITE.getDefaultState();
+            if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
+                INTRUSION = ModBlocks.RINGWOODITE.getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:crimson_forest"))) {
-            if (STONE < 0.12) {
+            if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
                 INTRUSION = ModBlocks.KOMATIITE.getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:basalt_deltas"))) {
-            if (STONE < 0.12) {
+            if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
                 INTRUSION = ModBlocks.FERROPERICLASE.getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:nether_wastes"))) {
-            if (STONE < 0.06) {
-                INTRUSION = ModBlocks.SCORIA.getDefaultState();
-            } else if (STONE < 0.12) {
-                INTRUSION = ModBlocks.PUMICE.getDefaultState();
+            if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
+                INTRUSION = ModBlocks.BRIDGMANITE.getDefaultState();
             }
         }
 

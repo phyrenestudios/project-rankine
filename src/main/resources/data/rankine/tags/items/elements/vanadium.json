@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/vanadium",
+            "#forge:ingots/vanadium",
+            "#forge:storage_blocks/vanadium"
+          ]
+        }

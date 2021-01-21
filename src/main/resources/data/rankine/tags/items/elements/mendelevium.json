@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/mendelevium",
+            "#forge:ingots/mendelevium",
+            "#forge:storage_blocks/mendelevium"
+          ]
+        }

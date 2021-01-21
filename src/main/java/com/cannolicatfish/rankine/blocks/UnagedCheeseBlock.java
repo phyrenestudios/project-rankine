@@ -4,7 +4,11 @@ import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CakeBlock;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -17,18 +21,19 @@ public class UnagedCheeseBlock extends Block {
         super(properties);
     }
 
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
+    }
+
+
    @SuppressWarnings( "deprecation" )
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
        super.tick(state, worldIn, pos, rand);
        World world = worldIn.getWorld();
-        if (rand.nextFloat() < 0.04) {
-            this.ageCheese(world, pos);
+        if (rand.nextFloat() < 0.05 && !worldIn.isRemote) {
+            worldIn.setBlockState(pos, ModBlocks.AGED_CHEESE.getDefaultState(),2);
+            worldIn.neighborChanged(pos, ModBlocks.AGED_CHEESE, pos);
         }
-    }
-
-    protected void ageCheese(World worldIn, BlockPos pos) {
-        worldIn.setBlockState(pos, ModBlocks.AGED_CHEESE.getDefaultState(),2);
-        worldIn.neighborChanged(pos, ModBlocks.AGED_CHEESE, pos);
     }
 
     @Override

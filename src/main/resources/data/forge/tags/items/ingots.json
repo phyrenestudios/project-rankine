@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "#forge:ingots/silicon",
+    "#forge:ingots/sulfur",
+    "#forge:ingots/astatine",
     "#forge:ingots/hydrogen",
     "#forge:ingots/helium",
     "#forge:ingots/lithium",

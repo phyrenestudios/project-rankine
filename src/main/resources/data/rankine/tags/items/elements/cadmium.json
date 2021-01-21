@@ -1,0 +1,8 @@
+{
+          "replace": false,
+          "values": [
+            "#forge:nuggets/cadmium",
+            "#forge:ingots/cadmium",
+            "#forge:storage_blocks/cadmium"
+          ]
+        }

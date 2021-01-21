@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
-import net.minecraft.block.Blocks;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -95,7 +94,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
     public static ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
     public static ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
-    public static ForgeConfigSpec.BooleanValue FINITE_WATER;
+    public static ForgeConfigSpec.BooleanValue COLOR_WORLD;
     public static ForgeConfigSpec.BooleanValue FUEL_VALUES;
     public static ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
     public static ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
@@ -115,6 +114,10 @@ public class Config {
     public static ForgeConfigSpec.IntValue METEOR_CHANCE;
     public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
     public static ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
+    public static ForgeConfigSpec.BooleanValue END_METEORITE;
+    public static ForgeConfigSpec.DoubleValue KIMBERLITE_INTRUSION_CHANCE;
+    public static ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_CHANCE;
+    public static ForgeConfigSpec.DoubleValue NETHER_INTRUSION_CHANCE;
     public static ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
     public static ForgeConfigSpec.IntValue NUGGET_DISTANCE;
     public static ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
@@ -785,7 +788,12 @@ public class Config {
     public static ForgeConfigSpec.IntValue CHALK_HL;
     public static ForgeConfigSpec.DoubleValue CHALK_HARD;
     public static ForgeConfigSpec.DoubleValue CHALK_RESIST;
-
+    public static ForgeConfigSpec.IntValue PORPHYRY_HL;
+    public static ForgeConfigSpec.DoubleValue PORPHYRY_HARD;
+    public static ForgeConfigSpec.DoubleValue PORPHYRY_RESIST;
+    public static ForgeConfigSpec.IntValue PURPLE_PORPHYRY_HL;
+    public static ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_HARD;
+    public static ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_RESIST;
 
 
 
@@ -812,8 +820,8 @@ public class Config {
     private static void setupFirstBlockConfig() {
         COMMON_BUILDER.comment("General Mod Settings").push(SUBCATEGORY_EVENTS);
 
-            FINITE_WATER = COMMON_BUILDER.comment("If enabled, infinite water sources can only be created in ocean and river biomes.")
-                    .define("finiteWater",true);
+            COLOR_WORLD = COMMON_BUILDER.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
+                    .define("colorWorld",true);
             BRICKS_HARDNESS_MULT = COMMON_BUILDER.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
                     .defineInRange("bricksHardnessMultiplier", 2.0D, 0.0D, 20.0D);
             BRICKS_RESISTANCE_MULT = COMMON_BUILDER.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")
@@ -833,7 +841,7 @@ public class Config {
             FLINT_DROP_CHANCE = COMMON_BUILDER.comment("Chance for a stone block to drop a flint")
                     .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
             FORAGING_CHANCE = COMMON_BUILDER.comment("Chance for a dirt block to drop a vegetable")
-                    .defineInRange("foragingChance", 0.100D, 0.000D, 1.000D);
+                    .defineInRange("foragingChance", 0.15D, 0.00D, 1.00D);
             IGNEOUS_COBBLE_GEN = COMMON_BUILDER.comment("Change the output of a cobblestone generator from cobblestone to random igneous rocks.")
                     .define("igneousGen",true);
             VILLAGER_TRADES = COMMON_BUILDER.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
@@ -1049,24 +1057,25 @@ public class Config {
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Meteorite Generation").push("meteorite");
-        METEOR_CHANCE = COMMON_BUILDER.comment("The 1 in X chunks a meteroite will spawn. Set to 0 to disable.")
+        METEOR_CHANCE = COMMON_BUILDER.comment("The 1 in X chunks a meteroite will spawn in the Overworld. Set to 0 to disable.")
                 .defineInRange("meteorChance", 85, 0, 1000);
+        END_METEORITE = COMMON_BUILDER.comment("Replaces the bottom of end islands with meteorite and ores")
+                .define("endMeteorite",true);
         COMMON_BUILDER.pop();
 
-/*        COMMON_BUILDER.comment("Volcano Generation").push("volcano");
-        VOLCANO_CHANCE = COMMON_BUILDER.comment("Chance for a volcano to spawn in a chunk. Set to 0 to disable.")
-                .defineInRange("volcanoChance", 0.005D, 0.00D, 1.00D);
-        VOLCANO_SIZE = COMMON_BUILDER.comment("Max size of volcano")
-                .defineInRange("volcanoSize", 20, 0, 100);
-        COMMON_BUILDER.pop();*/
-
-        COMMON_BUILDER.comment("Intrusion Ore Settings").push("intrusionOres");
+        COMMON_BUILDER.comment("Intrusion Settings").push("intrusionGen");
         DIAMON_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by a diamond ore")
                 .defineInRange("diamondOreChance", 0.045D, 0.00D, 1.00D);
         ILMENITE_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by an ilmenite ore")
                 .defineInRange("ilmeniteOreChance", 0.007D, 0.00D, 1.00D);
         INTERSPINIFEX_CHANCE = COMMON_BUILDER.comment("Chance for an komatiite intrusion block to be replaced by an interspinifex ore")
                 .defineInRange("interspinifexOreChance", 0.07D, 0.00D, 1.00D);
+        KIMBERLITE_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for kimberlite intrusions to spawn in overworld. Separate chance from overworldIntrusionsChance as the main source of diamond.")
+                .defineInRange("overworldIntrusionChance", 0.1D, 0.00D, 1.00D);
+        OVERWORLD_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for overworld intrusions to spawn (includes granite, red_granite, diorite, granodiorite, porphyry)")
+                .defineInRange("overworldIntrusionChance", 0.4D, 0.00D, 1.00D);
+        NETHER_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for nether intrusions to spawn")
+                .defineInRange("netherIntrusionChance", 0.12D, 0.00D, 1.00D);
         COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Rankine Fauna Generation").push("rankineFauna");
@@ -1330,7 +1339,22 @@ public class Config {
             CHALK_RESIST = COMMON_BUILDER.comment("Resistance of Chalk (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("chalkResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-
+            COMMON_BUILDER.comment("Pophyry Properties").push("pophyry");
+            PORPHYRY_HL = COMMON_BUILDER.comment("Harvest Level of Pophyry.")
+                    .defineInRange("pophyryHL", 0, 0, 10);
+            PORPHYRY_HARD = COMMON_BUILDER.comment("Hardness of Pophyry (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("pophyryHardness", 1.5D, 0.0D, 100.0D);
+            PORPHYRY_RESIST = COMMON_BUILDER.comment("Resistance of Pophyry (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("pophyryResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Purple Pophyry Properties").push("purplePophyry");
+            PURPLE_PORPHYRY_HL = COMMON_BUILDER.comment("Harvest Level of Purple Pophyry.")
+                    .defineInRange("pophyryHL", 0, 0, 10);
+            PURPLE_PORPHYRY_HARD = COMMON_BUILDER.comment("Hardness of Purple Pophyry (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("pophyryHardness", 1.5D, 0.0D, 100.0D);
+            PURPLE_PORPHYRY_RESIST = COMMON_BUILDER.comment("Resistance of Purple Pophyry (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("pophyryResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
 
@@ -1364,7 +1388,7 @@ public class Config {
         MAGNETITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, MagnetiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("MagnetiteOreGentype",true);
         MAGNETITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Magnetite vein")
-                .defineInRange("MagnetiteOreSize", 30, 0, 256);
+                .defineInRange("MagnetiteOreSize", 24, 0, 256);
         MAGNETITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnetite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("MagnetiteOreCount", 1, 0, 256);
         MAGNETITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Magnetite")
@@ -1385,7 +1409,7 @@ public class Config {
         CASSITERITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, CassiteriteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("CassiteriteOreGentype",true);
         CASSITERITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Cassiterite vein")
-                .defineInRange("CassiteriteOreSize", 30, 0, 256);
+                .defineInRange("CassiteriteOreSize", 24, 0, 256);
         CASSITERITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Cassiterite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("CassiteriteOreCount", 2, 0, 256);
         CASSITERITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Cassiterite")
@@ -1406,7 +1430,7 @@ public class Config {
         MALACHITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, MalachiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("MalachiteOreGentype",true);
         MALACHITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Malachite vein")
-                .defineInRange("MalachiteOreSize", 30, 0, 256);
+                .defineInRange("MalachiteOreSize", 24, 0, 256);
         MALACHITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Malachite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("MalachiteOreCount", 2, 0, 256);
         MALACHITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Malachite")
@@ -1427,7 +1451,7 @@ public class Config {
         BAUXITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, BauxiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("BauxiteOreGentype",true);
         BAUXITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Bauxite vein")
-                .defineInRange("BauxiteOreSize", 30, 0, 256);
+                .defineInRange("BauxiteOreSize", 24, 0, 256);
         BAUXITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Bauxite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("BauxiteOreCount", 2, 0, 256);
         BAUXITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Bauxite")
@@ -1448,7 +1472,7 @@ public class Config {
         SPHALERITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, SphaleriteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("SphaleriteOreGentype",true);
         SPHALERITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Sphalerite vein")
-                .defineInRange("SphaleriteOreSize", 30, 0, 256);
+                .defineInRange("SphaleriteOreSize", 24, 0, 256);
         SPHALERITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Sphalerite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("SphaleriteOreCount", 2, 0, 256);
         SPHALERITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Sphalerite")
@@ -1490,7 +1514,7 @@ public class Config {
         PENTLANDITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, PentlanditeOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("PentlanditeOreGentype",true);
         PENTLANDITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Pentlandite vein")
-                .defineInRange("PentlanditeOreSize", 30, 0, 256);
+                .defineInRange("PentlanditeOreSize", 24, 0, 256);
         PENTLANDITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pentlandite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("PentlanditeOreCount", 2, 0, 256);
         PENTLANDITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Pentlandite")
@@ -1511,7 +1535,7 @@ public class Config {
         MAGNESITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, MagnesiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("MagnesiteOreGentype",true);
         MAGNESITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Magnesite vein")
-                .defineInRange("MagnesiteOreSize", 30, 0, 256);
+                .defineInRange("MagnesiteOreSize", 24, 0, 256);
         MAGNESITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Magnesite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("MagnesiteOreCount", 2, 0, 256);
         MAGNESITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Magnesite")
@@ -1532,7 +1556,7 @@ public class Config {
         GALENA_ORE_GENTYPE = COMMON_BUILDER.comment("If true, GalenaOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("GalenaOreGentype",true);
         GALENA_ORE_SIZE = COMMON_BUILDER.comment("Size of Galena vein")
-                .defineInRange("GalenaOreSize", 30, 0, 256);
+                .defineInRange("GalenaOreSize", 24, 0, 256);
         GALENA_ORE_COUNT = COMMON_BUILDER.comment("Number of Galena veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("GalenaOreCount", 2, 0, 256);
         GALENA_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Galena")
@@ -1553,7 +1577,7 @@ public class Config {
         VANADINITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, VanadiniteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("VanadiniteOreGentype",true);
         VANADINITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Vanadinite vein")
-                .defineInRange("VanadiniteOreSize", 20, 0, 256);
+                .defineInRange("VanadiniteOreSize", 16, 0, 256);
         VANADINITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Vanadinite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("VanadiniteOreCount", 2, 0, 256);
         VANADINITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Vanadinite")
@@ -1574,7 +1598,7 @@ public class Config {
         BISMUTHINITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, BismuthiniteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("BismuthiniteOreGentype",true);
         BISMUTHINITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Bismuthinite vein")
-                .defineInRange("BismuthiniteOreSize", 30, 0, 256);
+                .defineInRange("BismuthiniteOreSize", 20, 0, 256);
         BISMUTHINITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Bismuthinite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("BismuthiniteOreCount", 2, 0, 256);
         BISMUTHINITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Bismuthinite")
@@ -1595,7 +1619,7 @@ public class Config {
         ACANTHITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, AcanthiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("AcanthiteOreGentype",true);
         ACANTHITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Acanthite vein")
-                .defineInRange("AcanthiteOreSize", 30, 0, 256);
+                .defineInRange("AcanthiteOreSize", 24, 0, 256);
         ACANTHITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Acanthite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("AcanthiteOreCount", 2, 0, 256);
         ACANTHITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Acanthite")
@@ -1616,7 +1640,7 @@ public class Config {
         PYROLUSITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, PyrolusiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("PyrolusiteOreGentype",true);
         PYROLUSITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Pyrolusite vein")
-                .defineInRange("PyrolusiteOreSize", 30, 0, 256);
+                .defineInRange("PyrolusiteOreSize", 24, 0, 256);
         PYROLUSITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pyrolusite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("PyrolusiteOreCount", 2, 0, 256);
         PYROLUSITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Pyrolusite")
@@ -1637,7 +1661,7 @@ public class Config {
         CHROMITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, ChromiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("ChromiteOreGentype",true);
         CHROMITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Chromite vein")
-                .defineInRange("ChromiteOreSize", 20, 0, 256);
+                .defineInRange("ChromiteOreSize", 16, 0, 256);
         CHROMITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Chromite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("ChromiteOreCount", 2, 0, 256);
         CHROMITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Chromite")
@@ -1658,7 +1682,7 @@ public class Config {
         MOLYBDENITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, MolybdeniteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("MolybdeniteOreGentype",false);
         MOLYBDENITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Molybdenite vein")
-                .defineInRange("MolybdeniteOreSize", 8, 0, 256);
+                .defineInRange("MolybdeniteOreSize", 9, 0, 256);
         MOLYBDENITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Molybdenite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("MolybdeniteOreCount", 4, 0, 256);
         MOLYBDENITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Molybdenite")
@@ -1679,7 +1703,7 @@ public class Config {
         ILMENITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, IlmeniteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("IlmeniteOreGentype",true);
         ILMENITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Ilmenite vein")
-                .defineInRange("IlmeniteOreSize", 30, 0, 256);
+                .defineInRange("IlmeniteOreSize", 24, 0, 256);
         ILMENITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Ilmenite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("IlmeniteOreCount", 2, 0, 256);
         ILMENITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Ilmenite")
@@ -1700,7 +1724,7 @@ public class Config {
         COLUMBITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, ColumbiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("ColumbiteOreGentype",true);
         COLUMBITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Columbite vein")
-                .defineInRange("ColumbiteOreSize", 20, 0, 256);
+                .defineInRange("ColumbiteOreSize", 16, 0, 256);
         COLUMBITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Columbite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("ColumbiteOreCount", 2, 0, 256);
         COLUMBITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Columbite")
@@ -1721,7 +1745,7 @@ public class Config {
         WOLFRAMITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, WolframiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("WolframiteOreGentype",true);
         WOLFRAMITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Wolframite vein")
-                .defineInRange("WolframiteOreSize", 30, 0, 256);
+                .defineInRange("WolframiteOreSize", 24, 0, 256);
         WOLFRAMITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Wolframite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("WolframiteOreCount", 2, 0, 256);
         WOLFRAMITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Wolframite")
@@ -1742,7 +1766,7 @@ public class Config {
         TANTALITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, TantaliteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("TantaliteOreGentype",true);
         TANTALITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Tantalite vein")
-                .defineInRange("TantaliteOreSize", 15, 0, 256);
+                .defineInRange("TantaliteOreSize", 16, 0, 256);
         TANTALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Tantalite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("TantaliteOreCount", 2, 0, 256);
         TANTALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Tantalite")
@@ -1778,9 +1802,9 @@ public class Config {
         MOISSANITE_ORE_END = COMMON_BUILDER.comment("Enables Moissanite in the End)")
                 .define("MoissaniteOreEnd",false);
         MOISSANITE_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Moissanite at (make sure it is less than the maximum)")
-                .defineInRange("MoissaniteOreMin", 0, 0, 256);
+                .defineInRange("MoissaniteOreMin", 45, 0, 256);
         MOISSANITE_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Moissanite at (make sure it is greater than the minimum)")
-                .defineInRange("MoissaniteOreMax", 45, 0, 256);
+                .defineInRange("MoissaniteOreMax", 90, 0, 256);
         MOISSANITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, MoissaniteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("MoissaniteOreGentype",true);
         MOISSANITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Moissanite vein")
@@ -1805,7 +1829,7 @@ public class Config {
         SPERRYLITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, SperryliteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("SperryliteOreGentype",true);
         SPERRYLITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Sperrylite vein")
-                .defineInRange("SperryliteOreSize", 30, 0, 256);
+                .defineInRange("SperryliteOreSize", 24, 0, 256);
         SPERRYLITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Sperrylite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("SperryliteOreCount", 2, 0, 256);
         SPERRYLITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Sperrylite")
@@ -1826,7 +1850,7 @@ public class Config {
         LIGNITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, LigniteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("LigniteOreGentype",true);
         LIGNITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Lignite vein")
-                .defineInRange("LigniteOreSize", 30, 0, 256);
+                .defineInRange("LigniteOreSize", 24, 0, 256);
         LIGNITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Lignite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("LigniteOreCount", 1, 0, 256);
         LIGNITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Lignite")
@@ -1847,7 +1871,7 @@ public class Config {
         SUBBITUMINOUS_ORE_GENTYPE = COMMON_BUILDER.comment("If true, SubbituminousOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("SubbituminousOreGentype",true);
         SUBBITUMINOUS_ORE_SIZE = COMMON_BUILDER.comment("Size of Subbituminous vein")
-                .defineInRange("SubbituminousOreSize", 30, 0, 256);
+                .defineInRange("SubbituminousOreSize", 24, 0, 256);
         SUBBITUMINOUS_ORE_COUNT = COMMON_BUILDER.comment("Number of Subbituminous veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("SubbituminousOreCount", 1, 0, 256);
         SUBBITUMINOUS_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Subbituminous")
@@ -1868,7 +1892,7 @@ public class Config {
         BITUMINOUS_ORE_GENTYPE = COMMON_BUILDER.comment("If true, BituminousOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("BituminousOreGentype",true);
         BITUMINOUS_ORE_SIZE = COMMON_BUILDER.comment("Size of Bituminous vein")
-                .defineInRange("BituminousOreSize", 30, 0, 256);
+                .defineInRange("BituminousOreSize", 24, 0, 256);
         BITUMINOUS_ORE_COUNT = COMMON_BUILDER.comment("Number of Bituminous veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("BituminousOreCount", 1, 0, 256);
         BITUMINOUS_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Bituminous")
@@ -1889,7 +1913,7 @@ public class Config {
         ANTHRACITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, AnthraciteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("AnthraciteOreGentype",false);
         ANTHRACITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Anthracite vein")
-                .defineInRange("AnthraciteOreSize", 20, 0, 256);
+                .defineInRange("AnthraciteOreSize", 16, 0, 256);
         ANTHRACITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Anthracite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("AnthraciteOreCount", 3, 0, 256);
         ANTHRACITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Anthracite")
@@ -1910,7 +1934,7 @@ public class Config {
         LAZURITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, LazuriteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("LazuriteOreGentype",false);
         LAZURITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Lazurite vein")
-                .defineInRange("LazuriteOreSize", 10, 0, 256);
+                .defineInRange("LazuriteOreSize", 14, 0, 256);
         LAZURITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Lazurite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("LazuriteOreCount", 2, 0, 256);
         LAZURITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Lazurite")
@@ -1952,7 +1976,7 @@ public class Config {
         GREENOCKITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, GreenockiteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("GreenockiteOreGentype",true);
         GREENOCKITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Greenockite vein")
-                .defineInRange("GreenockiteOreSize", 15, 0, 256);
+                .defineInRange("GreenockiteOreSize", 16, 0, 256);
         GREENOCKITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Greenockite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("GreenockiteOreCount", 2, 0, 256);
         GREENOCKITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Greenockite")
@@ -2204,7 +2228,7 @@ public class Config {
         NATIVE_GALLIUM_ORE_GENTYPE = COMMON_BUILDER.comment("If true, nativeGalliumOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("nativeGalliumOreGentype",false);
         NATIVE_GALLIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Gallium vein")
-                .defineInRange("nativeGalliumOreSize", 8, 0, 256);
+                .defineInRange("nativeGalliumOreSize", 9, 0, 256);
         NATIVE_GALLIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Gallium veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("nativeGalliumOreCount", 5, 0, 256);
         NATIVE_GALLIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Gallium")
@@ -2225,7 +2249,7 @@ public class Config {
         NATIVE_INDIUM_ORE_GENTYPE = COMMON_BUILDER.comment("If true, nativeIndiumOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("nativeIndiumOreGentype",false);
         NATIVE_INDIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Indium vein")
-                .defineInRange("nativeIndiumOreSize", 8, 0, 256);
+                .defineInRange("nativeIndiumOreSize", 9, 0, 256);
         NATIVE_INDIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Indium veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("nativeIndiumOreCount", 5, 0, 256);
         NATIVE_INDIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Indium")
@@ -2246,7 +2270,7 @@ public class Config {
         NATIVE_TELLURIUM_ORE_GENTYPE = COMMON_BUILDER.comment("If true, nativeTelluriumOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("nativeTelluriumOreGentype",true);
         NATIVE_TELLURIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Tellurium vein")
-                .defineInRange("nativeTelluriumOreSize", 8, 0, 256);
+                .defineInRange("nativeTelluriumOreSize", 9, 0, 256);
         NATIVE_TELLURIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Tellurium veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("nativeTelluriumOreCount", 5, 0, 256);
         NATIVE_TELLURIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Tellurium")
@@ -2267,7 +2291,7 @@ public class Config {
         NATIVE_SELENIUM_ORE_GENTYPE = COMMON_BUILDER.comment("If true, nativeSeleniumOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("nativeSeleniumOreGentype",false);
         NATIVE_SELENIUM_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Selenium vein")
-                .defineInRange("nativeSeleniumOreSize", 8, 0, 256);
+                .defineInRange("nativeSeleniumOreSize", 9, 0, 256);
         NATIVE_SELENIUM_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Selenium veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("nativeSeleniumOreCount", 5, 0, 256);
         NATIVE_SELENIUM_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Selenium")
@@ -2330,7 +2354,7 @@ public class Config {
         FLUORITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, FluoriteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("FluoriteOreGentype",false);
         FLUORITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Fluorite vein")
-                .defineInRange("FluoriteOreSize", 14, 0, 256);
+                .defineInRange("FluoriteOreSize", 16, 0, 256);
         FLUORITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Fluorite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("FluoriteOreCount", 5, 0, 256);
         FLUORITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Fluorite")
@@ -2416,7 +2440,7 @@ public class Config {
         HALITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Halite vein")
                 .defineInRange("HaliteOreSize", 20, 0, 256);
         HALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Halite veins to generate X veins per chunk or 1 vein in X chunks.")
-                .defineInRange("HaliteOreCount", 3, 0, 256);
+                .defineInRange("HaliteOreCount", 2, 0, 256);
         HALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Halite")
                 .defineInRange("HaliteOreHL", 0, 0, 10);
         COMMON_BUILDER.pop();
@@ -2437,7 +2461,7 @@ public class Config {
         PINK_HALITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Pink Halite vein")
                 .defineInRange("pinkHaliteOreSize", 20, 0, 256);
         PINK_HALITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Pink Halite veins to generate X veins per chunk or 1 vein in X chunks.")
-                .defineInRange("pinkHaliteOreCount", 3, 0, 256);
+                .defineInRange("pinkHaliteOreCount", 2, 0, 256);
         PINK_HALITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Pink Halite")
                 .defineInRange("pinkHaliteOreHL", 0, 0, 10);
         COMMON_BUILDER.pop();
@@ -2540,7 +2564,7 @@ public class Config {
         CELESTINE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, CelestineOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("CelestineOreGentype",true);
         CELESTINE_ORE_SIZE = COMMON_BUILDER.comment("Size of Celestine vein")
-                .defineInRange("CelestineOreSize", 15, 0, 256);
+                .defineInRange("CelestineOreSize", 12, 0, 256);
         CELESTINE_ORE_COUNT = COMMON_BUILDER.comment("Number of Celestine veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("CelestineOreCount", 2, 0, 256);
         CELESTINE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Celestine")
@@ -2561,7 +2585,7 @@ public class Config {
         CRYOLITE_ORE_GENTYPE = COMMON_BUILDER.comment("If true, CryoliteOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
                 .define("CryoliteOreGentype",true);
         CRYOLITE_ORE_SIZE = COMMON_BUILDER.comment("Size of Cryolite vein")
-                .defineInRange("CryoliteOreSize", 30, 0, 256);
+                .defineInRange("CryoliteOreSize", 24, 0, 256);
         CRYOLITE_ORE_COUNT = COMMON_BUILDER.comment("Number of Cryolite veins to generate X veins per chunk or 1 vein in X chunks.")
                 .defineInRange("CryoliteOreCount", 4, 0, 256);
         CRYOLITE_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Cryolite")

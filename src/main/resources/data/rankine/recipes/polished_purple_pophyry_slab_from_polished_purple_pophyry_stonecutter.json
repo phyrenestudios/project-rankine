@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:polished_purple_pophyry"
+      },
+      "result": "rankine:purple_pophyry_bricks_slab",
+      "count": 2
+}

@@ -16,6 +16,16 @@
     "hidden": false
   },
   "criteria": {
+    "rankine:porphyry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:porphyry"
+          }
+        ]
+      }
+    },
     "rankine:granite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -270,6 +280,8 @@
   "requirements": [
     [
       "rankine:rhyolite"
+    ], [
+      "rankine:porphyry"
     ], [
       "rankine:granite"
     ], [

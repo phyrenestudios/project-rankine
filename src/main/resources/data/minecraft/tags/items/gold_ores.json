@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "rankine:native_gold_ore",
-    "rankine:nether_gold_ore"
+    "rankine:native_gold_ore"
   ]
 }

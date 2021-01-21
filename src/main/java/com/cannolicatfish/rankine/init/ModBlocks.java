@@ -101,6 +101,7 @@ public class ModBlocks {
 //-------------------------------------
 
     //STONES
+
     public static final Block GRANITE_BRICKS = add("granite_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block DIORITE_BRICKS = add("diorite_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
     public static final Block ANDESITE_BRICKS = add("andesite_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -198,6 +199,13 @@ public class ModBlocks {
     public static final Block CHALK = add("chalk", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block POLISHED_CHALK = add("polished_chalk", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block CHALK_BRICKS = add("chalk_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.CHALK_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
+    public static final Block PORPHYRY = add("porphyry", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PORPHYRY = add("polished_porphyry", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_BRICKS = add("porphyry_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY = add("purple_porphyry", new RankineStone(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PURPLE_PORPHYRY = add("polished_purple_porphyry", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BRICKS = add("purple_porphyry_bricks", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+
 
     //STONE SLABS
     public static final Block GRANITE_BRICKS_SLAB = add("granite_bricks_slab", new RankineSlab(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -297,6 +305,12 @@ public class ModBlocks {
     public static final Block CHALK_SLAB = add("chalk_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block POLISHED_CHALK_SLAB = add("polished_chalk_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block CHALK_BRICKS_SLAB = add("chalk_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.CHALK_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_SLAB = add("porphyry_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PORPHYRY_SLAB = add("polished_porphyry_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_BRICKS_SLAB = add("porphyry_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_SLAB = add("purple_porphyry_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PURPLE_PORPHYRY_SLAB = add("polished_purple_porphyry_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BRICKS_SLAB = add("purple_porphyry_bricks_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
 
     //STONE STAIRS
     public static final Block GRANITE_BRICKS_STAIRS = add("granite_bricks_stairs", new RankineStairs(Block.getStateById(0), DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -396,6 +410,12 @@ public class ModBlocks {
     public static final Block CHALK_STAIRS = add("chalk_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block POLISHED_CHALK_STAIRS = add("polished_chalk_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block CHALK_BRICKS_STAIRS = add("chalk_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.CHALK_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_STAIRS = add("porphyry_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PORPHYRY_STAIRS = add("polished_porphyry_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_BRICKS_STAIRS = add("porphyry_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_STAIRS = add("purple_porphyry_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PURPLE_PORPHYRY_STAIRS = add("polished_purple_porphyry_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BRICKS_STAIRS = add("purple_porphyry_bricks_stairs", new RankineStairs(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
 
     //STONE WALLS
     public static final Block GRANITE_BRICKS_WALL = add("granite_bricks_wall", new RankineWall(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -495,6 +515,12 @@ public class ModBlocks {
     public static final Block CHALK_WALL = add("chalk_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block POLISHED_CHALK_WALL = add("polished_chalk_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block CHALK_BRICKS_WALL = add("chalk_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.CHALK_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_WALL = add("porphyry_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PORPHYRY_WALL = add("polished_porphyry_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_BRICKS_WALL = add("porphyry_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_WALL = add("purple_porphyry_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PURPLE_PORPHYRY_WALL = add("polished_purple_porphyry_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BRICKS_WALL = add("purple_porphyry_bricks_wall", new RankineWall(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue()*Config.BRICKS_HARDNESS_MULT.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()*Config.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
 
     //V SLABS
     public static final Block RED_GRANITE_VSLAB = add("red_granite_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.RED_GRANITE_HARD.get().floatValue(), Config.RED_GRANITE_RESIST.get().floatValue()).harvestLevel(Config.RED_GRANITE_HL.get())), BLOCKS);
@@ -590,6 +616,12 @@ public class ModBlocks {
     public static final Block CHALK_VSLAB = add("chalk_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block POLISHED_CHALK_VSLAB = add("polished_chalk_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
     public static final Block CHALK_BRICKS_VSLAB = add("chalk_bricks_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.CHALK_HARD.get().floatValue(), Config.CHALK_RESIST.get().floatValue()).harvestLevel(Config.CHALK_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_VSLAB = add("porphyry_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PORPHYRY_VSLAB = add("polished_porphyry_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PORPHYRY_BRICKS_VSLAB = add("porphyry_bricks_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PORPHYRY_HARD.get().floatValue(), Config.PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_VSLAB = add("purple_porphyry_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block POLISHED_PURPLE_PORPHYRY_VSLAB = add("polished_purple_porphyry_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BRICKS_VSLAB = add("purple_porphyry_bricks_vertical_slab", new RankineVerticalSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.PURPLE_PORPHYRY_HARD.get().floatValue(), Config.PURPLE_PORPHYRY_RESIST.get().floatValue()).harvestLevel(Config.PURPLE_PORPHYRY_HL.get())), BLOCKS);
 
     //BUTTONS
     public static final Block RED_GRANITE_BUUTON = add("red_granite_button", new RankineStoneButton(), BLOCKS);
@@ -623,6 +655,8 @@ public class ModBlocks {
     public static final Block ARKOSE_SANDSTONE_BUTTON = add("arkose_sandstone_button", new RankineStoneButton(), BLOCKS);
     public static final Block MUDSTONE_BUTTON = add("mudstone_button", new RankineStoneButton(), BLOCKS);
     public static final Block CHALK_BUTTON = add("chalk_button", new RankineStoneButton(), BLOCKS);
+    public static final Block PORPHYRY_BUTTON = add("porphyry_button", new RankineStoneButton(), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BUTTON = add("purple_porphyry_button", new RankineStoneButton(), BLOCKS);
 
 
     //PRESSURE PLATES
@@ -691,7 +725,11 @@ public class ModBlocks {
     public static final Block MUDSTONE_PRESSURE_PLATE = add("mudstone_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block MUDSTONE_PRESSURE_BRICKS_PLATE = add("mudstone_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
     public static final Block CHALK_PRESSURE_PLATE = add("chalk_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
-    public static final Block CHALK_PRESSURE_BRICKS_PLATE = add("chalk_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block CHALK_BRICKS_PRESSURE_PLATE = add("chalk_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block PORPHYRY_PRESSURE_PLATE = add("porphyry_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block PORPHYRY_BRICKS_PRESSURE_PLATE = add("porphyry_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_PRESSURE_PLATE = add("purple_porphyry_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
+    public static final Block PURPLE_PORPHYRY_BRICKS_PRESSURE_PLATE = add("purple_porphyry_bricks_pressure_plate", new RankineStonePressurePlate(), BLOCKS);
 
     //Earth Blocks
     public static final Block CLAY_BRICKS = add("clay_bricks", new Block(DEF_STONE.harvestLevel(0)), BLOCKS);
@@ -723,7 +761,8 @@ public class ModBlocks {
     public static final Block THOLEIITIC_BASALTIC_TUFF = add("tholeiitic_basaltic_tuff", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.THOLEIITIC_BASALT_HL.get()).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block RHYOLITIC_TUFF = add("rhyolitic_tuff", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.RHYOLITE_HL.get()).harvestTool(ToolType.PICKAXE)), BLOCKS);
     public static final Block DACITIC_TUFF = add("dacitic_tuff", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.RHYOLITE_HL.get()).harvestTool(ToolType.PICKAXE)), BLOCKS);
-    public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new Block(Block.Properties.create(Material.SAND).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), BLOCKS);
+    public static final Block UNCOLORED_CONCRETE = add("uncolored_concrete", new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), BLOCKS);
+    public static final Block GRAVEL_CONCRETE = add("gravel_concrete", new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)), BLOCKS);
     public static final Block ROMAN_CONCRETE = add("roman_concrete", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_SLAB = add("roman_concrete_slab", new RankineSlab(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
     public static final Block ROMAN_CONCRETE_STAIRS = add("roman_concrete_stairs", new RankineStairs(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)), BLOCKS);
@@ -815,6 +854,17 @@ public class ModBlocks {
     public static final Block MAPLE_STAIRS = add("maple_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 300);
     public static final Block BAMBOO_STAIRS = add("bamboo_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
     public static final Block BAMBOO_CULMS_STAIRS = add("bamboo_culms_stairs", new RankineStairs(Block.getStateById(0), DEF_WOOD), BLOCKS, 400);
+
+    public static final Block CEDAR_VSLAB = add("cedar_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block PINYON_PINE_VSLAB = add("pinyon_pine_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block JUNIPER_VSLAB = add("juniper_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block COCONUT_PALM_VSLAB = add("coconut_palm_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block BALSAM_FIR_VSLAB = add("balsam_fir_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block MAGNOLIA_VSLAB = add("magnolia_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block EASTERN_HEMMLOCK_VSLAB = add("eastern_hemlock_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block MAPLE_VSLAB = add("maple_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block BAMBOO_VSLAB = add("bamboo_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
+    public static final Block BAMBOO_CULMS_VSLAB = add("bamboo_culms_vertical_slab", new RankineVerticalSlab(DEF_WOOD), BLOCKS, 150);
 
     public static final Block CEDAR_FENCE = add("cedar_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
     public static final Block PINYON_PINE_FENCE = add("pinyon_pine_fence", new RankineWoodenFence(DEF_WOOD), BLOCKS, 300);
@@ -1079,35 +1129,38 @@ public class ModBlocks {
     public static final Block TUNGSTEN_HEAVY_ALLOY_BLOCK = add("tungsten_heavy_alloy_block", new Block(DEF_METAL_BLOCK), METALLURGY);
 
     //GEM AND MINERALS
-    public static final Block MALACHITE_BLOCK = add("malachite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block AZURITE_BLOCK = add("azurite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block FLUORITE_BLOCK = add("fluorite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block AQUAMARINE_BLOCK = add("aquamarine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block SAPPHIRE_BLOCK = add("sapphire_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block RUBY_BLOCK = add("ruby_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TIGER_IRON_BLOCK = add("tiger_iron_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block OPAL_BLOCK = add("opal_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block GARNET_BLOCK = add("garnet_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TOURMALINE_BLOCK = add("tourmaline_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block CELESTINE_BLOCK = add("celestine_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block MALACHITE_BLOCK = add("malachite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block AZURITE_BLOCK = add("azurite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block FLUORITE_BLOCK = add("fluorite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block AQUAMARINE_BLOCK = add("aquamarine_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block SAPPHIRE_BLOCK = add("sapphire_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block RUBY_BLOCK = add("ruby_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block TIGER_IRON_BLOCK = add("tiger_iron_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block OPAL_BLOCK = add("opal_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block GARNET_BLOCK = add("garnet_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block PERIDOT_BLOCK = add("peridot_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block TOURMALINE_BLOCK = add("tourmaline_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block PEARL_BLOCK = add("pearl_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block CELESTINE_BLOCK = add("celestine_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
     public static final Block CINNABAR_BLOCK = add("cinnabar_block", new CinnabarBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
-    public static final Block PERLITE_BLOCK = add("perlite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
-
-    public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block PERLITE_BLOCK = add("perlite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block RHODONITE_BLOCK = add("rhodonite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block RHODOCHROSITE_BLOCK = add("rhodochrosite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block GRAPHITE_BLOCK = add("graphite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
     public static final Block FELDSPAR_BLOCK = add("feldspar_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block PLAGIOCLASE_FELDSPAR_BLOCK = add("plagioclase_feldspar_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block OLIVINE_BLOCK = add("olivine_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block PYROXENE_BLOCK = add("pyroxene_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block MICA_BLOCK = add("mica_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block AMPHIBOLE_BLOCK = add("amphibole_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
-
+    public static final Block EVAPORITE = add("evaporite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block DOLOMITE_BLOCK = add("dolomite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block CALCITE_BLOCK = add("calcite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
-   public static final Block SALT_BLOCK = add("salt_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
+    public static final Block SALT_BLOCK = add("salt_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block PINK_SALT_BLOCK = add("pink_salt_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
     public static final Block CALCIUM_SILICATE_BLOCK = add("calcium_silicate_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)), METALLURGY);
-    public static final Block SILICON_CARBIDE_BLOCK = add("silicon_carbide_block", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block SILICON_CARBIDE_BLOCK = add("silicon_carbide_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
+    public static final Block CHROME_ENSTATITE_BLOCK = add("chrome_enstatite_block", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)), METALLURGY);
 
     public static final Block COKE_BLOCK = add("coke_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 3200*9);
     public static final Block LIGNITE_BLOCK = add("lignite_block", new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)), METALLURGY, 1200*9);
@@ -1155,7 +1208,6 @@ public class ModBlocks {
     public static final RankineOre TANTALITE_ORE = add("tantalite_ore", new RankineOre(DEF_ORE.harvestLevel(Config.TANTALITE_ORE_HL.get())), METALLURGY);
     public static final RankineOre WOLFRAMITE_ORE = add("wolframite_ore", new RankineOre(DEF_ORE.harvestLevel(Config.WOLFRAMITE_ORE_HL.get())), METALLURGY);
     public static final RankineOre NATIVE_GOLD_ORE = add("native_gold_ore", new RankineOre(DEF_ORE.harvestLevel(Config.NATIVE_GOLD_ORE_HL.get())), METALLURGY);
-    public static final RankineOre NETHER_GOLD_ORE = add("nether_gold_ore", new RankineOre(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final RankineOre NATIVE_LEAD_ORE = add("native_lead_ore", new RankineOre(DEF_ORE.harvestLevel(Config.NATIVE_LEAD_ORE_HL.get())), METALLURGY);
     public static final RankineOre GALENA_ORE = add("galena_ore", new RankineOre(DEF_ORE.harvestLevel(Config.GALENA_ORE_HL.get())), METALLURGY);
     public static final RankineOre NATIVE_BISMUTH_ORE = add("native_bismuth_ore", new RankineOre(DEF_ORE.harvestLevel(Config.NATIVE_BISMUTH_ORE_HL.get())), METALLURGY);
@@ -1181,26 +1233,31 @@ public class ModBlocks {
 
     public static final NoduleBlock LIMESTONE_NODULE = add("limestone_nodule", new NoduleBlock(DEF_ORE.harvestLevel(0)), METALLURGY);
     public static final Block METEORITE = add("meteorite", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block METEORITE_PAVER = add("meteorite_paver", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block KAMACITE = add("kamacite", new CompositionBlock(0,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block ANTITAENITE = add("antitaenite", new CompositionBlock(1,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TAENITE = add("taenite", new CompositionBlock(2,DEF_ORE.harvestLevel(1)), METALLURGY);
     public static final Block TETRATAENITE = add("tetrataenite", new CompositionBlock(3,DEF_ORE.harvestLevel(1)), METALLURGY);
+    public static final Block LONSDALEITE = add("lonsdaleite", new Block(Block.Properties.create(Material.ROCK).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(6.0F, 20.0F).harvestLevel(5)), METALLURGY);
+    public static final Block ENSTATITE = add("enstatite", new Block(DEF_ORE.harvestLevel(4)), METALLURGY);
+    public static final Block ENSTATITE_PAVER = add("enstatite_paver", new Block(DEF_ORE.harvestLevel(1)), METALLURGY);
 
-    public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block SILVER_SHEETMETAL = add("silver_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block TUNGSTEN_SHEETMETAL = add("tungsten_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block LEAD_SHEETMETAL = add("lead_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(DEF_METAL_BLOCK), METALLURGY);
+    public static final Block ALUMINUM_SHEETMETAL = add("aluminum_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block TITANIUM_SHEETMETAL = add("titanium_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block NICKEL_SHEETMETAL = add("nickel_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block COPPER_SHEETMETAL = add("copper_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block SILVER_SHEETMETAL = add("silver_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block TIN_SHEETMETAL = add("tin_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block TUNGSTEN_SHEETMETAL = add("tungsten_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block PLATINUM_SHEETMETAL = add("platinum_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block GOLD_SHEETMETAL = add("gold_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block LEAD_SHEETMETAL = add("lead_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block BRONZE_SHEETMETAL = add("bronze_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block BRASS_SHEETMETAL = add("brass_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block INVAR_SHEETMETAL = add("invar_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block WROUGHT_IRON_SHEETMETAL = add("wrought_iron_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block STEEL_SHEETMETAL = add("steel_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
+    public static final Block STAINLESS_STEEL_SHEETMETAL = add("stainless_steel_sheetmetal", new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)), METALLURGY);
 
     public static final Block CAST_IRON_SUPPORT = add("cast_iron_support", new Block(Block.Properties.create(Material.IRON, MaterialColor.AIR).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), METALLURGY);
     public static final Block ALUMINUM_BARS = add("aluminum_bars", new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()), METALLURGY);
@@ -1226,15 +1283,28 @@ public class ModBlocks {
     public static final Block LASER_QUARRY = add("laser_quarry", new LaserQuarryBlock(DEF_METAL_BLOCK), METALLURGY);
     public static final Block LASER_PYLON_TOP = add("laser_pylon_top", new Block(DEF_METAL_BLOCK), METALLURGY);
     public static final Block LASER_PYLON_BASE = add("laser_pylon_base", new Block(DEF_METAL_BLOCK), METALLURGY);
-    public static final Block RED_LED = add("red_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
-    public static final Block GREEN_LED = add("green_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
-    public static final Block BLUE_LED = add("blue_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
     public static final CharcoalPit CHARCOAL_PIT = add("charcoal_pit", new CharcoalPit(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)), METALLURGY);
+    public static final Block RED_LED = add("red_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block ORANGE_LED = add("orange_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block YELLOW_LED = add("yellow_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block LIME_LED = add("lime_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block GREEN_LED = add("green_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block CYAN_LED = add("cyan_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block LIGHT_BLUE_LED = add("light_blue_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block BLUE_LED = add("blue_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block MAGENTA_LED = add("magenta_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block PURPLE_LED = add("purple_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block PINK_LED = add("pink_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block BROWN_LED = add("brown_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block BLACK_LED = add("black_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block GRAY_LED = add("gray_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block LIGHT_GRAY_LED = add("light_gray_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
+    public static final Block WHITE_LED = add("white_led", new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))), METALLURGY);
 
 
     //MISC CREATIVE TAB
-    public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
-    public static final Block AGED_CHEESE = add("aged_cheese", new Block(Block.Properties.create(Material.GOURD).sound(SoundType.STEM).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)), MISC);
+    public static final Block UNAGED_CHEESE = add("unaged_cheese", new UnagedCheeseBlock(AbstractBlock.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)), MISC);
+    public static final Block AGED_CHEESE = add("aged_cheese", new CakeBlock(AbstractBlock.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
     public static final RankineBerryBushBlock ELDERBERRY_BUSH = add("elderberry_bush", "elderberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.ELDERBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock SNOWBERRY_BUSH = add("snowberry_bush", "snowberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),1), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.SNOWBERRIES), BlockNamedItem::new);
     public static final RankineBerryBushBlock BLUEBERRY_BUSH = add("blueberry_bush", "blueberries", new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),2), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.BLUEBERRIES), BlockNamedItem::new);
@@ -1245,7 +1315,6 @@ public class ModBlocks {
     public static final RankineBerryBushBlock PINEAPPLE_BUSH = add("pineapple_bush", "pineapple",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),7), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.PINEAPPLE), BlockNamedItem::new);
     public static final RankineBerryBushBlock BANANA_YUCCA_BUSH = add("banana_yucca_bush", "banana_yucca",  new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8), new Item.Properties().group(ProjectRankine.setup.rankineTools).food(ModFoods.YUCCA), BlockNamedItem::new);
     public static final Block ALUMINUM_LADDER = add("aluminum_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
-    //public static final Block NICKEL_LADDER = add("nickel_ladder", new MetalLadder(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()), MISC);
 
     public static final RopeBlock ROPE = add("rope", new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()), MISC);
     public static final RopeCoilBlock ROPE_COIL = add("rope_coil", new RopeCoilBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(1.0F)), MISC);

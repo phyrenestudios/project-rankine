@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DRD",
+    "RSR",
+    "DRD"
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:dyes/orange"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "tag": "forge:storage_blocks/silicon_carbide"
+    }
+  },
+  "result": {
+    "item": "rankine:orange_led",
+    "count": 8
+  }
+}

@@ -1,21 +1,32 @@
 {
-      "type": "minecraft:block",
-      "pools":
-      [
-        { "rolls": 1,
-          "entries":
-          [
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
             {
-              "type": "minecraft:item",
-              "name": "rankine:aged_cheese"
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "rankine:aged_cheese",
+                  "properties": {
+                    "bites": "0"
+                  }
+                }
+              ],
+              "count": 1
+            },
+            {
+              "function": "minecraft:explosion_decay"
             }
           ],
-          "conditions":
-          [
-            {
-              "condition": "minecraft:survives_explosion"
-            }
-          ]
+          "name": "rankine:aged_cheese"
         }
       ]
     }
+  ]
+}
