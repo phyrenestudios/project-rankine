@@ -300,15 +300,4 @@ public class ItemHammer extends ToolItem {
         return EnchantmentHelper.getEnchantmentLevel(ModEnchantments.EXCAVATE, stack);
     }
 
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == ModEnchantments.BLAST || enchantment == ModEnchantments.EXCAVATE || enchantment == ModEnchantments.ATOMIZE || enchantment == ModEnchantments.LIGHTNING_ASPECT || enchantment == ModEnchantments.SWING || enchantment == ModEnchantments.DAZE || enchantment == Enchantments.UNBREAKING)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }

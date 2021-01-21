@@ -1,7 +1,9 @@
 package com.cannolicatfish.rankine.entities;
 
+import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.cannolicatfish.rankine.init.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +20,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -35,6 +38,8 @@ public class SpearEntity extends AbstractArrowEntity {
     private boolean dealtDamage;
     private float attackDamage;
     public int returningTicks;
+    private int knockbackStrength;
+
 
     public SpearEntity(EntityType<? extends SpearEntity> type, World worldIn) {
         super(type, worldIn);
@@ -46,6 +51,7 @@ public class SpearEntity extends AbstractArrowEntity {
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.type = type;
         this.attackDamage = damage;
+
     }
 
 
@@ -73,6 +79,11 @@ public class SpearEntity extends AbstractArrowEntity {
     public void tick() {
         if (this.timeInGround > 4) {
             this.dealtDamage = true;
+        }
+        int r = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.IMPACT, this.thrownStack);
+
+        if (r > 0) {
+            this.setKnockbackStrength(r * 2);
         }
 
         Entity entity = this.func_234616_v_();
@@ -114,6 +125,10 @@ public class SpearEntity extends AbstractArrowEntity {
         }
     }
 
+    public void setKnockbackStrength(int knockbackStrengthIn) {
+        this.knockbackStrength = knockbackStrengthIn;
+    }
+
     protected ItemStack getArrowStack() {
         return this.thrownStack.copy();
     }
@@ -136,9 +151,16 @@ public class SpearEntity extends AbstractArrowEntity {
         {
             f = 4;
         }
+
         if (entity instanceof LivingEntity) {
             LivingEntity livingentity = (LivingEntity)entity;
             f += EnchantmentHelper.getModifierForCreature(this.thrownStack, livingentity.getCreatureAttribute());
+            if (this.knockbackStrength > 0) {
+                Vector3d vector3d = this.getMotion().mul(1.0D, 0.0D, 1.0D).normalize().scale((double)this.knockbackStrength * 0.6D);
+                if (vector3d.lengthSquared() > 0.0D) {
+                    livingentity.addVelocity(vector3d.x, 0.1D, vector3d.z);
+                }
+            }
         }
 
         Entity entity1 = this.func_234616_v_();
@@ -216,8 +238,9 @@ public class SpearEntity extends AbstractArrowEntity {
 
     }
 
+
     protected float getWaterDrag() {
-        return 0.99F;
+        return 0.8F;
     }
 
     @OnlyIn(Dist.CLIENT)

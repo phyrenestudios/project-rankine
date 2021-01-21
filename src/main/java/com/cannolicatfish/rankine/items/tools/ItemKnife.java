@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -115,7 +116,7 @@ public class ItemKnife extends SwordItem {
                 p_219998_1_.sendBreakAnimation(context.getHand());
             });
         }
-        if (blockstate.getBlock() == Blocks.GRASS_BLOCK) {
+        if (blockstate.getBlock() == Blocks.GRASS_BLOCK && context.getFace() == Direction.UP) {
             iworld.playSound(playerentity, blockpos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
             iworld.setBlockState(blockpos,Blocks.DIRT.getDefaultState(),2);
 
@@ -123,7 +124,7 @@ public class ItemKnife extends SwordItem {
             double d0 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
             double d1 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
             double d2 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-            ItemEntity itementity = new ItemEntity(context.getWorld(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1, (double)blockpos.getZ() + d2, new ItemStack(Items.GRASS,1));
+            ItemEntity itementity = new ItemEntity(context.getWorld(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1 + 1, (double)blockpos.getZ() + d2, new ItemStack(Items.GRASS,1));
             itementity.setDefaultPickupDelay();
             context.getWorld().addEntity(itementity);
             return ActionResultType.SUCCESS;
