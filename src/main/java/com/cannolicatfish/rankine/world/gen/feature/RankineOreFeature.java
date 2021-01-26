@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.ISeedReader;
@@ -125,8 +126,10 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                         ModBlocks.RED_GRANITE,ModBlocks.GRANODIORITE,ModBlocks.HORNBLENDE_ANDESITE,ModBlocks.THOLEIITIC_BASALT,ModBlocks.GABBRO,ModBlocks.ANORTHOSITE,ModBlocks.RHYOLITE,ModBlocks.LIMESTONE,ModBlocks.MARBLE,ModBlocks.GNEISS,ModBlocks.SCHIST,ModBlocks.SLATE,ModBlocks.SHALE,ModBlocks.IRONSTONE,ModBlocks.BRECCIA,ModBlocks.PUMICE,ModBlocks.SCORIA,
                                                         ModBlocks.PERIDOTITE,ModBlocks.KIMBERLITE,ModBlocks.KOMATIITE,ModBlocks.RINGWOODITE, ModBlocks.WADSLEYITE,ModBlocks.BRIDGMANITE,ModBlocks.FERROPERICLASE, ModBlocks.PEROVSKITE, ModBlocks.QUARTZ_SANDSTONE, ModBlocks.ARKOSE_SANDSTONE, ModBlocks.BLACK_DACITE, ModBlocks.RED_DACITE, ModBlocks.MUDSTONE, ModBlocks.CHALK);
                                                 if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock()) && config.state.getBlock() instanceof RankineOre) {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos,
-                                                            config.state.with(RankineOre.TYPE,blockList.indexOf(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())), 2);
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOre.TYPE,blockList.indexOf(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())), 2);
+                                                    ++i;
+                                                } else if (config.state.getBlock() instanceof RankineOre && (worldIn.getBlockState(blockpos$mutableblockpos).getBlock().getTags().contains(new ResourceLocation("minecraft:base_stone_overworld")) || worldIn.getBlockState(blockpos$mutableblockpos).getBlock().getTags().contains(new ResourceLocation("minecraft:base_stone_nether")) ||worldIn.getBlockState(blockpos$mutableblockpos).getBlock().getTags().contains(new ResourceLocation("rankine:base_stone_end")))) {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
                                                     ++i;
                                                 } else if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())) {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);

@@ -1,15 +1,5 @@
 {
-  "variants": {
-    "": [
-      {
-        "model": "rankine:block/porphyry"
-      },
-      {
-        "model": "rankine:block/porphyry"
-      },
-      {
-        "model": "rankine:block/porphyry_alt"
-      }
-    ]
-  }
+"variants": {
+"": { "model": "rankine:block/porphyry" }
+}
 }

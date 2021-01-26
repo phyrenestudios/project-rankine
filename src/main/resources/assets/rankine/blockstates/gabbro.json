@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/gabbro"
-        },
-        {
-        "model": "rankine:block/gabbro"
-        },
-        {
-        "model": "rankine:block/gabbro_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/gabbro" }
+}
+}

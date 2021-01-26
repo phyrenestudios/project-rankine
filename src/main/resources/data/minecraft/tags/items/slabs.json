@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:cast_iron_support_slab",
+    "rankine:uncolored_concrete_slab",
     "rankine:red_dacite_slab",
     "rankine:black_dacite_slab",
     "rankine:chalk_slab",

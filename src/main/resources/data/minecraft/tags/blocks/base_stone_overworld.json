@@ -20,6 +20,14 @@
     "rankine:quartz_sandstone",
     "rankine:arkose_sandstone",
     "rankine:porphyry",
-    "rankine:purple_porphyry"
+    "rankine:purple_porphyry",
+    "rankine:komatiite",
+    "rankine:ringwoodite",
+    "rankine:wadsleyite",
+    "rankine:ferropericlase",
+    "rankine:bridgmanite",
+    "rankine:pumice",
+    "rankine:scoria",
+    "rankine:perovskite"
   ]
 }

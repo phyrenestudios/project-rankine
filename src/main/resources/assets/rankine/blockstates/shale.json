@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/shale"
-        },
-        {
-        "model": "rankine:block/shale"
-        },
-        {
-        "model": "rankine:block/shale_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/shale" }
+}
+}

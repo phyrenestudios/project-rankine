@@ -1,0 +1,22 @@
+{
+  "name": "Cast Iron Support ",
+  "icon": "rankine:cast_iron_support",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cast_iron_support",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:uncolored_concrete",
+      "link_recipe": true,
+      "text": "Right click on a Cast Iron Support with mortar to create Uncolored Concrete. Can be dyed in world to make vanilla minecraft concretes."
+    }
+  ]
+}

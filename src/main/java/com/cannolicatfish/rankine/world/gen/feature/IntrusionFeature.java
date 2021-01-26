@@ -74,9 +74,9 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("rankine:intrusion_passable"))) {
                             if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState()) {
                                 float chance = rand.nextFloat();
-                                if (chance < Config.ILMENITE_CHANCE.get().floatValue()) {
+                                if (chance < Config.ILMENITE_CHANCE.get().floatValue() && y <= 50) {
                                     reader.setBlockState(blockpos, ModBlocks.ILMENITE_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
-                                } else if (chance < Config.DIAMON_CHANCE.get().floatValue()) {
+                                } else if (chance < Config.DIAMON_CHANCE.get().floatValue() && y <= 50) {
                                     reader.setBlockState(blockpos, ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);

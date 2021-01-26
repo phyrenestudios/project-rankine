@@ -85,7 +85,7 @@ public class OreDetector extends Item {
         if (found && context.getPlayer() != null) {
             if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == ModItems.PROSPECTING_STICK) {
                 context.getPlayer().sendStatusMessage(new StringTextComponent("An ore of harvest level "+ ORE.getBlock().getHarvestLevel(ORE) +" is nearby"), true);
-                if (new Random().nextFloat() < 0.5) {
+                if (new Random().nextFloat() < 0.25 && !context.getPlayer().isCreative()) {
                     context.getPlayer().getHeldItem(Hand.MAIN_HAND).shrink(1);
                 }
             } else if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == ModItems.ORE_DETECTOR) {

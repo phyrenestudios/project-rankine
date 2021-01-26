@@ -6,12 +6,7 @@
     {
       "type": "text",
       "anchor": "metal_decoration",
-      "text": ""
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:cast_iron_support",
-      "text": ""
+      "text": "Various blocks used for decoration."
     },
     {
       "type": "crafting",

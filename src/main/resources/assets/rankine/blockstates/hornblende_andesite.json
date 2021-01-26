@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/hornblende_andesite"
-        },
-        {
-        "model": "rankine:block/hornblende_andesite"
-        },
-        {
-        "model": "rankine:block/hornblende_andesite_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/hornblende_andesite" }
+}
+}

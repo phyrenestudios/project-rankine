@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/peridotite"
-        },
-        {
-        "model": "rankine:block/peridotite"
-        },
-        {
-        "model": "rankine:block/peridotite_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/peridotite" }
+}
+}

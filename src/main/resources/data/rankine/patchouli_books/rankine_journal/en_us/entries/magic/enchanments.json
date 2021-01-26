@@ -42,7 +42,7 @@
       "type": "text",
       "title": "Blast",
       "anchor": "blast",
-      "text": "Blast explodes blocks when using the hammer. Hurts at the moment. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
+      "text": "Blast creates an explosion behind the block mined. Each level increases the size of explosion. Damage to player is result of user error. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
     },
     {
       "type": "text",
@@ -54,13 +54,43 @@
       "type": "text",
       "title": "Atomize",
       "anchor": "atomize",
-      "text": "Atomize allows hammers to crush the secondary component from blocks. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
+      "text": "Atomize increases the chance of receiving extra drops from crushing. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
     },
     {
       "type": "text",
       "title": "Lightning Aspect",
       "anchor": "lightning_aspect",
       "text": "Lightning Aspect summons lightning on a struct mob. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I"
+    },
+    {
+      "type": "text",
+      "title": "Excavate",
+      "anchor": "excavate",
+      "text": "Excavate allows hammers to crush multiple blocks at once. Level 1 does a cross shape and level 2 does 3x3, both centered on the block mined. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-II"
+    },
+    {
+      "type": "text",
+      "title": "Impact",
+      "anchor": "impact",
+      "text": "Impact . $(br2)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-V"
+    },
+    {
+      "type": "text",
+      "title": "Quake",
+      "anchor": "quake",
+      "text": "Quake increases mining speed of a tool based off y-level. The lower in the world you are, the faster it mines. Each level increases the maximum speed that can be reached. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
+    },
+    {
+      "type": "text",
+      "title": "Foraging",
+      "anchor": "foraging",
+      "text": "Foraging allows any level of hoe to be able to $(l:mechanics/foraging)Forage$(). The enchantment also expands the drops obtainable to include saltpeter, other food items and mob drops. Some drops are biome dependent. $(br2)Applicable to: $(li)$(l:tools/hoes)Hoes() $(br)Levels: I"
+    },
+    {
+      "type": "text",
+      "title": "Arcane Smithing",
+      "anchor": "arcane_smithing",
+      "text": "Arcane Smithing decreases the cost of operations at an anvil at the expense of hammer durability. . $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers() $(br)Levels: I-V"
     }
   ]
 }

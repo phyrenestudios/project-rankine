@@ -1,7 +1,7 @@
 {
   "name": "Rankine Journal",
   "landing_text": "A semi-detailed journal to assist you in your discoveries. See the Tips and Tricks category first.",
-  "version": 4,
+  "version": 5,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",
   "filler_texture": "rankine:textures/gui/filler.png",

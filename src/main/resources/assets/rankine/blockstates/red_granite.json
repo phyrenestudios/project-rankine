@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/red_granite"
-        },
-        {
-        "model": "rankine:block/red_granite"
-        },
-        {
-        "model": "rankine:block/red_granite_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/red_granite" }
+}
+}

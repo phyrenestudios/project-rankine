@@ -1,15 +1,18 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.blocks.RankineVerticalSlab;
 import com.cannolicatfish.rankine.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -36,16 +39,17 @@ public class MortarItem extends Item {
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
         BlockPos pos = context.getPos();
-        Block block = worldIn.getBlockState(pos).getBlock();
+        BlockState state = worldIn.getBlockState(pos);
+        Block block = state.getBlock();
         ResourceLocation rs = block.getRegistryName();
             if (rs != null) {
                 ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(), rs.getPath()+"_bricks");
-                if (ForgeRegistries.BLOCKS.containsKey(rs2)) {
+                if (ForgeRegistries.BLOCKS.containsKey(rs2) && !worldIn.isRemote()) {
                     worldIn.setBlockState(pos, Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(rs2)).getDefaultState(), 2);
                     spawnParticles(worldIn, pos, 0);
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
-                } else if (block == ModBlocks.CAST_IRON_SUPPORT) {
+                } else if (block == ModBlocks.CAST_IRON_SUPPORT && !worldIn.isRemote()) {
                     int i = 0;
                     while (worldIn.getBlockState(pos.up(i)) == ModBlocks.CAST_IRON_SUPPORT.getDefaultState()) {
                         worldIn.setBlockState(pos.up(i), ModBlocks.UNCOLORED_CONCRETE.getDefaultState());
@@ -66,6 +70,18 @@ public class MortarItem extends Item {
                             break;
                         }
                     }
+                    return ActionResultType.SUCCESS;
+                } else if (block == ModBlocks.CAST_IRON_SUPPORT_SLAB && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, ModBlocks.UNCOLORED_CONCRETE_SLAB.getDefaultState().with(BlockStateProperties.SLAB_TYPE, state.get(BlockStateProperties.SLAB_TYPE)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
+                    context.getItem().shrink(1);
+                    return ActionResultType.SUCCESS;
+                } else if (block == ModBlocks.CAST_IRON_SUPPORT_STAIRS && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, ModBlocks.UNCOLORED_CONCRETE_STAIRS.getDefaultState().with(StairsBlock.SHAPE, state.get(StairsBlock.SHAPE)).with(StairsBlock.FACING, state.get(StairsBlock.FACING)).with(StairsBlock.HALF, state.get(StairsBlock.HALF)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
+                    context.getItem().shrink(1);
+                    return ActionResultType.SUCCESS;
+                } else if (block == ModBlocks.CAST_IRON_SUPPORT_VSLAB && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, ModBlocks.UNCOLORED_CONCRETE_VSLAB.getDefaultState().with(RankineVerticalSlab.HORIZONTAL_FACING, state.get(RankineVerticalSlab.HORIZONTAL_FACING)).with(RankineVerticalSlab.TYPE, state.get(RankineVerticalSlab.TYPE)));
+                    context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 }
             }

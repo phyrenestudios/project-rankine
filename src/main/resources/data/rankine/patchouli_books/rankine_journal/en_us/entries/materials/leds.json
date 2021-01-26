@@ -5,11 +5,36 @@
   "pages": [
     {
       "type": "text",
-      "text": "Light emitting diodes(LEDs) are lamp blocks. Right clicking with a dye will change the color in world. Only red, green and blue are currently available."
+      "text": "Light emitting diodes(LEDs) are pure color lamp blocks. Right clicking with a dye will change the color in world."
     },
     {
       "type": "crafting",
       "recipe": "rankine:red_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:orange_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:yellow_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:lime_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:green_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cyan_led",
       "text": ""
     },
     {
@@ -19,7 +44,47 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:green_led",
+      "recipe": "rankine:light_blue_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:magenta_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:purple_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:pink_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:brown_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:black_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gray_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:light_gray_led",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:white_led",
       "text": ""
     }
   ]

@@ -1,0 +1,11 @@
+{
+  "name": "Vertical Slabs",
+  "icon": "rankine:shake_bricks_vertical_slab",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Vertical slabs, fairly self-explanatory. Crafted like slabs but vertically or in the stonecutter. Vertical slabs exist for stone variants, planks, sheetmetal and some miscellaneous blocks."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-        "parent": "block/cube_all",
-        "textures": {
-        "all": "rankine:block/breccia"
-        }
-        }
+"parent": "block/cube_all",
+"textures": {
+"all": "rankine:block/breccia"
+}
+}

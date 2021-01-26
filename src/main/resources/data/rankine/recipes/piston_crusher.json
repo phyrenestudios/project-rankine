@@ -2,18 +2,21 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "sps",
-    "scs",
-    "sps"
+    "sfs",
+    "scs"
   ],
   "key": {
     "s": {
-      "tag": "rankine:piston_crusher_sheetmetals"
+      "tag": "forge:sheetmetal"
     },
     "p": {
       "item": "minecraft:piston"
     },
+    "f": {
+      "item": "minecraft:furnace"
+    },
     "c": {
-      "tag": "forge:rods/cast_iron"
+      "tag": "forge:storage_blocks/cast_iron"
     }
   },
   "result": {

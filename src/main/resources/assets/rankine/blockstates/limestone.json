@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/limestone"
-        },
-        {
-        "model": "rankine:block/limestone"
-        },
-        {
-        "model": "rankine:block/limestone_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/limestone" }
+}
+}

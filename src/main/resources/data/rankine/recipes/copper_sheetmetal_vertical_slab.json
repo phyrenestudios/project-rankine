@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:copper_sheetmetal"
+        }
+      },
+      "result": {
+        "item": "rankine:copper_sheetmetal_vertical_slab",
+        "count": 6
+      }
+}
