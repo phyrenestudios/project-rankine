@@ -1,0 +1,87 @@
+{
+  "parent": "rankine:challenges/rankine_challenges",
+  "display": {
+    "icon": {
+      "item": "rankine:antitaenite"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.find_meteoric_materials.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.find_meteoric_materials.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rankine:taenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:meteoric_iron"
+          },
+          {
+            "type": "rankine:exact_composition",
+            "comp": "60Fe-40Ni"
+          }
+        ]
+      }
+    },
+    "rankine:tetrataenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:meteoric_iron"
+          },
+          {
+            "type": "rankine:exact_composition",
+            "comp": "50Fe-50Ni"
+          }
+        ]
+      }
+    },
+    "rankine:kamacite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:meteoric_iron"
+          },
+          {
+            "type": "rankine:exact_composition",
+            "comp": "90Fe-10Ni"
+          }
+        ]
+      }
+    },
+    "rankine:antitaenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:meteoric_iron"
+          },
+          {
+            "type": "rankine:exact_composition",
+            "comp": "80Fe-20Ni"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rankine:taenite"
+    ], [
+      "rankine:tetrataenite"
+    ], [
+      "rankine:kamacite"
+    ], [
+      "rankine:antitaenite"
+    ]
+  ]
+}

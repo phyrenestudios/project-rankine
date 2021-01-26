@@ -44,12 +44,12 @@ public class TantalumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return Math.round(-x/50f);
+        return Math.round(-x/25f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return x/200f;
+        return x/100f;
     }
 
     @Override

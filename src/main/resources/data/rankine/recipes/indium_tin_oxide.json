@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:cassiterite"
+    },
+    {
+      "tag": "forge:ingots/indium"
+    },
+    {
+      "tag": "forge:ingots/indium"
+    }
+  ],
+  "result": {
+    "item": "rankine:indium_tin_oxide",
+    "count": 2
+  }
+}
