@@ -44,12 +44,12 @@ public class NiobiumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return Math.round(x/50f);
+        return -Math.round(x/50f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return x/250f;
+        return x/165f;
     }
 
     @Override

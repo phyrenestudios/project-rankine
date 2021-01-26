@@ -2,42 +2,49 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
+import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
+import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.pendants.*;
 import com.cannolicatfish.rankine.items.tools.ItemGoldPan;
+import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
-import net.minecraft.block.Block;
+import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.tags.ITag;
-import net.minecraft.tags.ITagCollection;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraftforge.common.extensions.IForgeBlock;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ModRecipes {
+
+    public static void registerPotionRecipes() {
+        BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(() -> ModItems.MERCURY_INGOT), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), ModPotions.MERCURY_POISON));
+    }
+
+    public static void registerPredicates() {
+        ItemPredicate.register(new ResourceLocation("rankine","harvest_level_check"), HarvestLevelPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","exact_composition"), ExactCompositionPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
+    }
 
     public static List<IAlloyRecipe> getAlloyRecipes()
     {
@@ -1372,7 +1379,7 @@ public class ModRecipes {
             {
                 comp = alloyUtils.getDefComposition();
             }
-            AlloyPickaxe.addAlloy(result,new AlloyData(comp));
+            AlloyItem.addAlloy(result,new AlloyData(comp));
             for (Enchantment en: getEnchantments(comp, alloyUtils,result.getItem()))
             {
                 result.addEnchantment(en,alloyUtils.getEnchantmentLevel(en,utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloyUtils.getEnchantabilityBonus()));
