@@ -12,6 +12,4 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModVillagerProfessions {
 
     public static final VillagerProfession METALLURGIST = new VillagerProfession("metallurgist", ModPOIs.TEMPLATE_TABLE_POI, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.BLOCK_ANVIL_HIT);
-    public static final VillagerProfession MINERALOGIST = new VillagerProfession("mineralogist", ModPOIs.PISTON_CRUSHER_POI, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.BLOCK_STONE_BREAK);
-    public static final VillagerProfession BOTANIST = new VillagerProfession("botanist", ModPOIs.BOTANIST_STATION_POI, ImmutableSet.of(), ImmutableSet.of(), SoundEvents.BLOCK_WET_GRASS_STEP);
 }

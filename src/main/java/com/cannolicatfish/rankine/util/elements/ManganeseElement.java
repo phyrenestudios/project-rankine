@@ -81,11 +81,7 @@ public class ManganeseElement implements ElementInterface {
 
     @Override
     public float getToughnessFromPercent(int x) {
-        if (x >= 10 && x <= 16) {
-            return 0.05f;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 
     @Override

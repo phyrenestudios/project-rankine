@@ -1,9 +1,13 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import com.cannolicatfish.rankine.init.ModItems;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.command.arguments.NBTCompoundTagArgument;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -24,7 +28,7 @@ public class ItemScraper extends ToolItem {
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.STONE);
 
     public ItemScraper(Properties properties) {
-        super(1.0f, -3.0f, RankineToolMaterials.INVAR, EFFECTIVE_ON, properties);
+        super(1.0f, -3.0f, RankineToolMaterials.METEORIC_IRON, EFFECTIVE_ON, properties);
     }
 
     public ActionResultType onItemUse(ItemUseContext context) {

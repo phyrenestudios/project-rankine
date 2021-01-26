@@ -6,12 +6,12 @@ import net.minecraft.enchantment.Enchantment;
 public class SulfurElement implements ElementInterface{
     @Override
     public PeriodicTableUtils.Element getReference() {
-        return PeriodicTableUtils.Element.SULFUR;
+        return null;
     }
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return -50 * x;
+        return 0;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SulfurElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return -0.2f * x;
+        return 0;
     }
 
     @Override

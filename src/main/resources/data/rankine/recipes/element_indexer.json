@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "ata",
+    "aaa",
     "beb",
-    "ata"
+    "aaa"
   ],
   "key":
   {
@@ -15,10 +15,6 @@
     "a":
     {
       "item": "minecraft:iron_ingot"
-    },
-    "t":
-    {
-      "item": "rankine:indium_tin_oxide"
     },
     "e":
     {

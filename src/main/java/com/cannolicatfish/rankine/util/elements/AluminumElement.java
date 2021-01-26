@@ -33,11 +33,7 @@ public class AluminumElement implements ElementInterface {
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        if (x >= 18) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 
     @Override

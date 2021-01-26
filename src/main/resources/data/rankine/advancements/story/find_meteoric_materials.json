@@ -1,14 +1,14 @@
 {
-  "parent": "rankine:challenges/rankine_challenges",
+  "parent": "rankine:story/find_meteorite",
   "display": {
     "icon": {
       "item": "rankine:antitaenite"
     },
     "title": {
-      "translate": "rankine.advancements.challenges.find_meteoric_materials.title"
+      "translate": "rankine.advancements.story.find_meteoric_materials.title"
     },
     "description": {
-      "translate": "rankine.advancements.challenges.find_meteoric_materials.description"
+      "translate": "rankine.advancements.story.find_meteoric_materials.description"
     },
     "frame": "challenge",
     "show_toast": true,
@@ -21,11 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meteoric_iron"
-          },
-          {
-            "type": "rankine:exact_composition",
-            "comp": "60Fe-40Ni"
+            "item": "rankine:taenite"
           }
         ]
       }
@@ -35,11 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meteoric_iron"
-          },
-          {
-            "type": "rankine:exact_composition",
-            "comp": "50Fe-50Ni"
+            "item": "rankine:tetrataenite"
           }
         ]
       }
@@ -49,11 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meteoric_iron"
-          },
-          {
-            "type": "rankine:exact_composition",
-            "comp": "90Fe-10Ni"
+            "item": "rankine:kamacite"
           }
         ]
       }
@@ -63,11 +51,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:meteoric_iron"
-          },
-          {
-            "type": "rankine:exact_composition",
-            "comp": "80Fe-20Ni"
+            "item": "rankine:antitaenite"
           }
         ]
       }

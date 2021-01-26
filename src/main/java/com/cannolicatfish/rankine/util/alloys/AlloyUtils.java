@@ -1,40 +1,77 @@
 package com.cannolicatfish.rankine.util.alloys;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.text.TextFormatting;
 
 public interface AlloyUtils {
 
-        IItemTier getMaterial();
+        default int getDurabilityBonus(){
+                return 0;
+        }
 
-        int getDurabilityBonus();
+        default float getMiningSpeedBonus(){
+                return 0;
+        }
 
-        float getMiningSpeedBonus();
+        default int getMiningLevelBonus(){
+                return 0;
+        }
 
-        int getMiningLevelBonus();
+        default int getEnchantabilityBonus(){
+                return 0;
+        }
 
-        int getEnchantabilityBonus();
+        default float getCorrResistBonus(){
+                return 0;
+        }
 
-        float getCorrResistBonus();
+        default float getHeatResistBonus(){
+                return 0;
+        }
 
-        float getHeatResistBonus();
+        default float getAttackSpeedBonus(){
+                return 0;
+        }
 
-        float getAttackSpeedBonus();
+        default float getAttackDamageBonus(){
+                return 0;
+        }
 
-        float getAttackDamageBonus();
+        default float getToughnessBonus(){
+                return 0;
+        }
 
-        float getToughnessBonus();
+        default Enchantment getEnchantmentBonus(Item item){
+                return null;
+        }
 
-        Enchantment getEnchantmentBonus(Item item);
+        default int getEnchantmentLevel(Enchantment en, int enchantability){
+                if (enchantability >= 50 && en.getMaxLevel() >= 5)
+                {
+                        return 5;
+                }
+                else if (enchantability >= 40 && en.getMaxLevel() >= 4)
+                {
+                        return 4;
+                }
+                else if (enchantability >= 30 && en.getMaxLevel() >= 3)
+                {
+                        return 3;
+                }
+                else if (enchantability >= 20 && en.getMaxLevel() >= 2)
+                {
+                        return 2;
+                }
+                return 1;
+        }
 
-        int getEnchantmentLevel(Enchantment en, int enchantability);
+        public String getDefComposition();
 
-        String getDefComposition();
-
-        TextFormatting getAlloyGroupColor();
+        default TextFormatting getAlloyGroupColor() {
+                return TextFormatting.WHITE;
+        }
 
 
 }

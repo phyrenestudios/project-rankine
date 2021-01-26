@@ -5,11 +5,10 @@ import com.cannolicatfish.rankine.blocks.CharcoalPit;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.init.*;
-import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.tools.ItemHammer;
 import com.cannolicatfish.rankine.potion.ModEffects;
-import com.cannolicatfish.rankine.potion.ModPotions;
-import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
@@ -20,15 +19,10 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -41,7 +35,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AnvilUpdateEvent;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -77,79 +70,18 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void addVillagerTrades(VillagerTradesEvent event)
     {
-        List<VillagerTrades.ITrade> level1 = event.getTrades().get(1);
-        List<VillagerTrades.ITrade> level2 = event.getTrades().get(2);
-        List<VillagerTrades.ITrade> level3 = event.getTrades().get(3);
-        List<VillagerTrades.ITrade> level4 = event.getTrades().get(4);
-        List<VillagerTrades.ITrade> level5 = event.getTrades().get(5);
-
         if (event.getType() == ModVillagerProfessions.METALLURGIST) {
-            level1.add(new BasicTrade(1, new ItemStack(ModItems.ALLOY_TEMPLATE),12,1,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.TIN_INGOT, 8), new ItemStack(Items.EMERALD),12,2,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.METEORIC_IRON, 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add(new BasicTrade(1, new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE),12,5,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.MANGANESE_INGOT, 2),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.MOLYBDENUM_INGOT, 2),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.VANADIUM_INGOT, 2),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.NIOBIUM_INGOT, 2),12,10,0.05f));
-            level4.add(new BasicTrade(6, new ItemStack(ModItems.ELEMENT_INDEXER),12,15,0.05f));
-            level5.add(new BasicTrade(10, new ItemStack(ModItems.ORE_DETECTOR),12,30,0.05f));
-        } else if (event.getType() == ModVillagerProfessions.MINERALOGIST) {
-            level1.add(new BasicTrade(1, new ItemStack(ModItems.STIBNITE),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(ModItems.STONE_HAMMER),12,1,0.2f));
-            level1.add(new BasicTrade(1, new ItemStack(ModItems.PROSPECTING_STICK),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(ModItems.HARDNESS_TESTER),12,1,0.05f));
-            level2.add(new BasicTrade(1, new ItemStack(ModItems.CHALCOPYRITE),12,5,0.05f));
-            level2.add(new BasicTrade(1, new ItemStack(ModItems.BORAX),12,5,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.MICA, 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.AMPHIBOLE, 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.PLAGIOCLASE_FELDSPAR, 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(ModItems.METEORIC_IRON_HAMMER,"90Fe-10Ni",8,3,10,0.2f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.ZIRCON),12,15,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.ALUMINA),12,15,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(ModItems.MAGNESITE),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(ModItems.VANADINITE),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(ModItems.PETALITE),12,15,0.05f));
-            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.OLIVINE, 4), new ItemStack(Items.EMERALD),12,20,0.05f));
-            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.PYROXENE, 4), new ItemStack(Items.EMERALD),12,20,0.05f));
-            level5.add(new BasicTrade(1, new ItemStack(ModItems.WOLFRAMITE),12,30,0.05f));
-            level5.add(new BasicTrade(1, new ItemStack(ModItems.COBALTITE),12,30,0.05f));
-            level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(ModItems.STEEL_HAMMER,"99Fe-1C",15,3,30,0.2f));
-        } else if (event.getType() == ModVillagerProfessions.BOTANIST) {
-            level1.add(new BasicTrade(1, new ItemStack(Items.DANDELION, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.POPPY, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.BLUE_ORCHID, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.ALLIUM, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.AZURE_BLUET, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.RED_TULIP, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.ORANGE_TULIP, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.WHITE_TULIP, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.OXEYE_DAISY, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.CORNFLOWER, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.LILY_OF_THE_VALLEY, 4),12,1,0.05f));
-            level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","saplings"),Items.OAK_SAPLING,2,1,1,10,0.05f));
-            level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","logs_that_burn"),Items.OAK_LOG,4,1,1,10,0.05f));
-            level2.add(new BasicTrade(1, new ItemStack(Items.VINE, 4),12,10,0.05f));
-            level2.add(new BasicTrade(1, new ItemStack(Items.LILY_PAD, 4),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.GRASS, 4),12,1,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.SUNFLOWER, 3),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.LILAC, 3),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.PEONY, 3),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.ROSE_BUSH, 3),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.RED_MUSHROOM, 4),12,15,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.BROWN_MUSHROOM, 4),12,15,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.SEA_PICKLE, 4),12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(Items.KELP, 4),12,10,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.BAMBOO, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.SHROOMLIGHT, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.WARPED_FUNGUS, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.CRIMSON_NYLIUM, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.WARPED_NYLIUM, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.TWISTING_VINES, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.WEEPING_VINES, 4),12,15,0.05f));
-            level5.add(new BasicTrade(1, new ItemStack(Items.MYCELIUM, 4),12,30,0.05f));
-            level5.add(new BasicTrade(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
+            event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(ModItems.ALLOY_TEMPLATE),12,1,0.05f));
+            event.getTrades().get(1).add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.TIN_INGOT, 8), new ItemStack(Items.EMERALD),12,2,0.05f));
+            event.getTrades().get(1).add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
+            event.getTrades().get(2).add((entity,rand) -> new MerchantOffer(new ItemStack(ModItems.METEORIC_IRON, 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            event.getTrades().get(2).add(new BasicTrade(1, new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE),12,5,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.MANGANESE_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.MOLYBDENUM_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.VANADIUM_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(3).add(new BasicTrade(1, new ItemStack(ModItems.NIOBIUM_INGOT, 2),12,10,0.05f));
+            event.getTrades().get(4).add(new BasicTrade(6, new ItemStack(ModItems.ELEMENT_INDEXER),12,15,0.05f));
+            event.getTrades().get(5).add(new BasicTrade(10, new ItemStack(ModItems.ORE_DETECTOR),12,30,0.05f));
         }
         if (Config.VILLAGER_TRADES.get())
         {
@@ -658,23 +590,17 @@ public class RankineEventHandler {
      */
 
 
+
+
+
+
+
     @SubscribeEvent
-    public static void onBlockHarvest(PlayerEvent.HarvestCheck event) {
-        if (event.getPlayer().getHeldItemMainhand().getItem() instanceof AlloyToolInterface) {
-            ItemStack stack = event.getPlayer().getHeldItemMainhand();
-            Item item = event.getPlayer().getHeldItemMainhand().getItem();
-            boolean bool = item.canHarvestBlock(stack,event.getTargetBlock());
-            event.setCanHarvest(bool);
+    public static void onCraft(PlayerEvent.ItemCraftedEvent event) {
+        if (event.getCrafting().getItem() == ModItems.GLASS_CUTTER) {
+            event.getCrafting().addEnchantment(Enchantments.SILK_TOUCH,1);
         }
     }
-
-    /*@SubscribeEvent
-    public static void onItemAttributeModification(ItemAttributeModifierEvent event) {
-        if (event.getItemStack().getItem() instanceof AlloyToolInterface)
-        {
-            ItemStack stack = event.getItemStack();
-        }
-    } */
     
     @SubscribeEvent
     public static void onToolUse(BlockEvent.BlockToolInteractEvent event) {

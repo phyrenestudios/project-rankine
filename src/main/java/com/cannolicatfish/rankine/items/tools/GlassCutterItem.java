@@ -8,7 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
@@ -96,13 +95,5 @@ public class GlassCutterItem extends ToolItem {
             stack.addEnchantment(Enchantments.SILK_TOUCH,1);
             items.add(stack);
         }
-    }
-
-    @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH,stack) != 1){
-            stack.addEnchantment(Enchantments.SILK_TOUCH,1);
-        }
-        super.onCreated(stack, worldIn, playerIn);
     }
 }
