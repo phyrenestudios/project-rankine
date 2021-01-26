@@ -107,14 +107,10 @@ public class ClientProxy implements IProxy {
                 ModBlocks.MAJORITE_ORE,
                 ModBlocks.CELESTINE_ORE,
 
-
-
                 ModBlocks.LEAD_GLASS,
                 ModBlocks.ETCHED_GLASS0,
                 ModBlocks.ETCHED_GLASS1,
                 ModBlocks.ETCHED_GLASS2,
-
-              //  ModBlocks.CHALK,
 
                 ModBlocks.CEDAR_SAPLING,
                 ModBlocks.JUNIPER_SAPLING,
@@ -157,6 +153,9 @@ public class ClientProxy implements IProxy {
                 ModBlocks.NICKEL_BARS,
                 ModBlocks.CAST_IRON_BARS,
                 ModBlocks.CAST_IRON_SUPPORT,
+                ModBlocks.CAST_IRON_SUPPORT_SLAB,
+                ModBlocks.CAST_IRON_SUPPORT_STAIRS,
+                ModBlocks.CAST_IRON_SUPPORT_VSLAB,
                 ModBlocks.POTTED_CEDAR_SAPLING,
                 ModBlocks.POTTED_JUNIPER_SAPLING,
                 ModBlocks.POTTED_COCONUT_PALM_SAPLING,

@@ -143,6 +143,8 @@ public class CharcoalPit extends Block {
                             quality = 460;
                         } else if (path.contains("ancient")) {
                             quality = 400;
+                        } else if (path.contains("archwood")) {
+                            quality = 400;
                         } else if (path.contains("dead")) {
                             quality = 300;
                         } else if (path.contains("pinyon_pine")) {

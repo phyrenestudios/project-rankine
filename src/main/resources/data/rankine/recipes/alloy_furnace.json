@@ -7,7 +7,7 @@
   ],
   "key": {
     "t": {
-      "tag": "forge:functional_sheetmetals"
+      "tag": "forge:sheetmetal"
     },
     "#": {
       "item": "rankine:refractory_bricks"

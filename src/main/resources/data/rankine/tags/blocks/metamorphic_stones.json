@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:stones/bridgmanite",
+    "#forge:stones/ferropericlase",
+    "#forge:stones/ringwoodite",
+    "#forge:stones/wadsleyite",
+    "#forge:stones/gneiss",
+    "#forge:stones/marble",
+    "#forge:stones/perovskite",
+    "#forge:stones/slate",
+    "#forge:stones/schist"
+  ]
+}

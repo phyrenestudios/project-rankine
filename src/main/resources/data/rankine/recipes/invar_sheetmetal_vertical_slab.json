@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:invar_sheetmetal"
+        }
+      },
+      "result": {
+        "item": "rankine:invar_sheetmetal_vertical_slab",
+        "count": 6
+      }
+}

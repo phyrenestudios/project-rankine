@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/granodiorite"
-        },
-        {
-        "model": "rankine:block/granodiorite"
-        },
-        {
-        "model": "rankine:block/granodiorite_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/granodiorite" }
+}
+}

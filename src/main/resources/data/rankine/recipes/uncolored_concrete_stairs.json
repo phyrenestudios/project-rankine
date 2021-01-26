@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:uncolored_concrete"
+        }
+      },
+      "result": {
+        "item": "rankine:uncolored_concrete_stairs",
+        "count": 4
+      }
+    }

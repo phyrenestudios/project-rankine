@@ -1,15 +1,5 @@
 {
-        "variants": {
-        "": [
-        {
-        "model": "rankine:block/quartz_sandstone"
-        },
-        {
-        "model": "rankine:block/quartz_sandstone"
-        },
-        {
-        "model": "rankine:block/quartz_sandstone_alt"
-        }
-        ]
-        }
-        }
+"variants": {
+"": { "model": "rankine:block/quartz_sandstone" }
+}
+}

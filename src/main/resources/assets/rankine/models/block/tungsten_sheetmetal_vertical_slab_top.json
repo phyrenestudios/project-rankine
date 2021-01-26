@@ -1,0 +1,8 @@
+{
+  "parent": "rankine:block/vertical_slab_top",
+  "textures": {
+    "bottom": "rankine:block/tungsten_sheetmetal",
+    "top": "rankine:block/tungsten_sheetmetal",
+    "side": "rankine:block/tungsten_sheetmetal"
+  }
+}

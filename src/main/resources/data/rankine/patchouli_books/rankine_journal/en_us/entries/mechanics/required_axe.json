@@ -1,0 +1,12 @@
+{
+  "name": "Required Axe",
+  "icon": "rankine:flint_axe",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "title": "Required Axe",
+      "text": "Some people just can't help themselves from punching trees. With a little encouragement they will be required to use an axe to chop any form of log. Enable/Disable in the config"
+    }
+  ]
+}

@@ -10,32 +10,32 @@
     {
       "type": "crafting",
       "recipe": "rankine:luck_pendant",
-      "text": "While worn: $(li)Gives the wearer a chance to mine duplicate resources from the world. Affects blocks in #rankine:luck_pendant."
+      "text": "While held: $(li)Gives the wearer a chance to mine duplicate resources from the world. Affects blocks in #rankine:luck_pendant."
     },
     {
       "type": "crafting",
       "recipe": "rankine:speed_pendant",
-      "text": "While worn: $(li)Gives the wearer increased movement speed"
+      "text": "While held: $(li)Gives the wearer increased movement speed"
     },
     {
       "type": "crafting",
       "recipe": "rankine:haste_pendant",
-      "text": "While worn: $(li)Gives the wearer increased mining speed"
+      "text": "While held: $(li)Gives the wearer increased mining speed"
     },
     {
       "type": "crafting",
       "recipe": "rankine:levitation_pendant",
-      "text": "While worn: $(li)Stabilizes the player at a fixed y-level. Allows the player to walk (kind of slowly) through air. Unequip to descend."
+      "text": "While held: $(li)Stabilizes the player at a fixed y-level. Allows the player to walk (kind of slowly) through air. Unequip to descend."
     },
     {
       "type": "crafting",
       "recipe": "rankine:health_pendant",
-      "text": "While worn: $(li)Gives the wearer increased health by 20 hp."
+      "text": "While held: $(li)Gives the wearer increased health by 20 hp."
     },
     {
       "type": "crafting",
       "recipe": "rankine:repulsion_pendant",
-      "text": "While worn: $(li)Protects the wearer from new mobs. Some enemies can detect the player after certain events that agro them, such as attacking."
+      "text": "While held: $(li)Protects the wearer from new mobs. Some enemies can detect the player after certain events that agro them, such as attacking."
     }
   ]
 }

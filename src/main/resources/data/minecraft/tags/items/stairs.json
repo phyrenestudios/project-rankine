@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:cast_iron_support_stairs",
+    "rankine:uncolored_concrete_stairs",
     "rankine:red_dacite_stairs",
     "rankine:black_dacite_stairs",
     "rankine:chalk_stairs",

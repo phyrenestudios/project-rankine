@@ -131,6 +131,8 @@ public class RankineEventHandler {
                     event.setBurnTime(460);
                 } else if (path.contains("ancient")) {
                     event.setBurnTime(400);
+                } else if (path.contains("archwood")) {
+                    event.setBurnTime(400);
                 } else if (path.contains("dead")) {
                     event.setBurnTime(300);
                 } else if (path.contains("pinyon_pine")) {

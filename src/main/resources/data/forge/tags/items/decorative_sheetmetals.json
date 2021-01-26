@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:sheetmetals/gold",
-    "#forge:sheetmetals/silver",
-    "#forge:sheetmetals/platinum"
-  ]
-}
