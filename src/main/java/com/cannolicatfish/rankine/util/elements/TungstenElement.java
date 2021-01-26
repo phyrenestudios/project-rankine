@@ -11,7 +11,7 @@ public class TungstenElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 3*x;
+        return 10*x;
     }
 
     @Override

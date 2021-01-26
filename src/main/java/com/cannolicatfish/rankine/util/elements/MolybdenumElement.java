@@ -56,7 +56,11 @@ public class MolybdenumElement implements ElementInterface{
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        if (x <= 8){
+            return x/100f;
+        } else {
+            return 0.08f;
+        }
     }
 
     @Override

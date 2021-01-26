@@ -1784,10 +1784,11 @@
   "block.rankine.cobaltite_ore": "Cobaltite Ore",
   "block.rankine.majorite_ore": "Majorite Ore",
   "block.rankine.celestine_ore": "Celestine Ore",
+  "block.rankine.botanist_station": "Botanist Station",
 
 
 
-
+  "item.rankine.indium_tin_oxide": "Indium Tin Oxide",
   "item.rankine.pyrite": "Pyrite",
   "item.rankine.cryolite": "Cryolite",
   "item.rankine.molybdenite": "Molybdenite",
@@ -1873,6 +1874,8 @@
   "entity.rankine.shrouded_king": "Shrouded King",
 
   "entity.minecraft.villager.rankine.metallurgist": "Metallurgist",
+  "entity.minecraft.villager.rankine.mineralogist": "Mineralogist",
+  "entity.minecraft.villager.rankine.botanist": "Botanist",
 
   "enchantment.rankine.puncture": "Puncture",
   "enchantment.rankine.puncture.desc": "Deals extra armor-piercing damage on direct attacks.",
@@ -1945,8 +1948,6 @@
   "rankine.advancements.story.make_blast_furnace.description": "Make a Blast Furnace to begin smelting more complex ores",
   "rankine.advancements.story.find_meteorite.title": "Iron from Space",
   "rankine.advancements.story.find_meteorite.description": "Find a meteorite and crush the ore in it to get meteoric iron",
-  "rankine.advancements.story.find_meteoric_materials.title": "Stellar Performance",
-  "rankine.advancements.story.find_meteoric_materials.description": "Find all the forms of meteoric iron",
   "rankine.advancements.story.find_ironstone.title": "Iron in the Rough",
   "rankine.advancements.story.find_ironstone.description": "Find ironstone under the sands of a desert or mesa",
   "rankine.advancements.story.make_cast_iron_alloy.title": "Cooking Time",
@@ -2010,5 +2011,11 @@
   "rankine.advancements.challenges.element_collector.title": "Periodic Collector",
   "rankine.advancements.challenges.element_collector.description": "Collect various metals used in alloying",
   "rankine.advancements.challenges.alloy_collector.title": "Master of the Elements",
-  "rankine.advancements.challenges.alloy_collector.description": "Create all of the different types of alloys"
+  "rankine.advancements.challenges.alloy_collector.description": "Create all of the different types of alloys",
+  "rankine.advancements.challenges.bronze_harvest.title": "Skipping Stones",
+  "rankine.advancements.challenges.bronze_harvest.description": "Make a Bronze Pickaxe with a Harvest Level of 2",
+  "rankine.advancements.challenges.colored_gold_netherite.title": "Gold Standard",
+  "rankine.advancements.challenges.colored_gold_netherite.description": "Make a Colored Gold tool using Netherite instead of Gold",
+  "rankine.advancements.challenges.find_meteoric_materials.title": "Stellar Performance",
+  "rankine.advancements.challenges.find_meteoric_materials.description": "Find all the forms of meteoric iron"
 }

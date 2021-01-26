@@ -179,7 +179,7 @@ public class AlloyTool extends ToolItem{
 
     public int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
-        Random rand = new Random();
+        Random rand = worldIn.getRandom();
         int i = 1;
         float toughness = getToughness(stack);
         if (toughness > 0 && rand.nextFloat() < toughness)

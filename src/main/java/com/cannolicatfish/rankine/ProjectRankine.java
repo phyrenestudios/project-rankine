@@ -88,12 +88,16 @@ public class ProjectRankine {
     {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
         POIFixer.fixPOITypeBlockStates(ModPOIs.TEMPLATE_TABLE_POI);
+        POIFixer.fixPOITypeBlockStates(ModPOIs.PISTON_CRUSHER_POI);
+        POIFixer.fixPOITypeBlockStates(ModPOIs.BOTANIST_STATION_POI);
         proxy.init();
         //RankineBiomes.addRankineBiomes();
 
         //OreGen.setupOreGeneration();
         //DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
+            ModRecipes.registerPredicates();
+            ModRecipes.registerPotionRecipes();
             GlobalEntityTypeAttributes.put(ModEntityTypes.BEAVER, BeaverEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.MANTLE_GOLEM, MantleGolemEntity.getAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.DIAMOND_MANTLE_GOLEM, DiamondMantleGolemEntity.getAttributes().create());
@@ -119,17 +123,22 @@ public class ProjectRankine {
     }
 
 
+
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
         @SubscribeEvent
         public static void onPOIRegistry(final RegistryEvent.Register<PointOfInterestType> event) {
             event.getRegistry().register(ModPOIs.TEMPLATE_TABLE_POI.setRegistryName(ProjectRankine.MODID,"template_table_poi"));
+            event.getRegistry().register(ModPOIs.PISTON_CRUSHER_POI.setRegistryName(ProjectRankine.MODID,"piston_crusher_poi"));
+            event.getRegistry().register(ModPOIs.BOTANIST_STATION_POI.setRegistryName(ProjectRankine.MODID,"potted_plant_poi"));
         }
 
         @SubscribeEvent
         public static void onVillagerProfessionRegistry(final RegistryEvent.Register<VillagerProfession> event) {
             event.getRegistry().register(ModVillagerProfessions.METALLURGIST.setRegistryName(ProjectRankine.MODID,"metallurgist"));
+            event.getRegistry().register(ModVillagerProfessions.MINERALOGIST.setRegistryName(ProjectRankine.MODID,"mineralogist"));
+            event.getRegistry().register(ModVillagerProfessions.BOTANIST.setRegistryName(ProjectRankine.MODID,"botanist"));
         }
 
         @SubscribeEvent
