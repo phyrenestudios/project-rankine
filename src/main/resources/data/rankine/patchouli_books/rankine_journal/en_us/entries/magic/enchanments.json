@@ -90,7 +90,7 @@
       "type": "text",
       "title": "Arcane Smithing",
       "anchor": "arcane_smithing",
-      "text": "Arcane Smithing decreases the cost of operations at an anvil at the expense of hammer durability. . $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers() $(br)Levels: I-V"
+      "text": "Arcane Smithing decreases the cost of operations at an anvil at the expense of hammer durability. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers() $(br)Levels: I-V"
     }
   ]
 }

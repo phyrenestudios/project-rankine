@@ -1053,7 +1053,7 @@ public class Config {
 
         COMMON_BUILDER.comment("Meteorite Generation").push("meteorite");
         METEOR_CHANCE = COMMON_BUILDER.comment("The 1 in X chunks a meteroite will spawn in the Overworld. Set to 0 to disable.")
-                .defineInRange("meteorChance", 85, 0, 1000);
+                .defineInRange("meteorChance", 100, 0, 1000);
         END_METEORITE = COMMON_BUILDER.comment("Replaces the bottom of end islands with meteorite and ores")
                 .define("endMeteorite",true);
         COMMON_BUILDER.pop();
