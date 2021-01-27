@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import net.minecraft.block.Block;
@@ -32,19 +32,19 @@ public class CompositionBlock extends Block {
         switch (type)
         {
             default:
-                output = new ItemStack(ModItems.METEORIC_IRON);
+                output = new ItemStack(RankineItems.METEORIC_IRON.get());
                 AlloyItem.addAlloy(output,new AlloyData("90Fe-10Ni")); //kamacite
                 break;
             case 1:
-                output = new ItemStack(ModItems.METEORIC_IRON);
+                output = new ItemStack(RankineItems.METEORIC_IRON.get());
                 AlloyItem.addAlloy(output,new AlloyData("80Fe-20Ni")); //antitaenite
                 break;
             case 2:
-                output = new ItemStack(ModItems.METEORIC_IRON);
+                output = new ItemStack(RankineItems.METEORIC_IRON.get());
                 AlloyItem.addAlloy(output,new AlloyData("60Fe-40Ni")); //taenite
                 break;
             case 3:
-                output = new ItemStack(ModItems.METEORIC_IRON);
+                output = new ItemStack(RankineItems.METEORIC_IRON.get());
                 AlloyItem.addAlloy(output,new AlloyData("50Fe-50Ni")); //tetrataenite
                 break;
         }

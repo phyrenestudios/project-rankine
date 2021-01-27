@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.ISluicingRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -10,7 +9,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.ITooltipCallback;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -21,8 +19,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -42,7 +38,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> 
         localizedName = I18n.format("rankine.jei.sluicing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/sluicing_jei.png"),
                 0, 15, 140, 120);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModItems.STEEL_GOLD_PAN));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()));
     }
 
     @Override

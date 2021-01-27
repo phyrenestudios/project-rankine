@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;

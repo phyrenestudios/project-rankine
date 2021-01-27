@@ -1,16 +1,7 @@
 package com.cannolicatfish.rankine.util;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.sun.javafx.geom.Vec3d;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.village.PointOfInterestType;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -23,10 +14,10 @@ public class POIFixer {
     {
         try
         {
-            POIFixer.blockStatesInjector = PointOfInterestType.class.getDeclaredMethod("registerBlockStates", PointOfInterestType.class);
+            POIFixer.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class,"func_221052_a", PointOfInterestType.class);
             POIFixer.blockStatesInjector.setAccessible(true);
         }
-        catch (NoSuchMethodException | SecurityException e)
+        catch (SecurityException | ObfuscationReflectionHelper.UnableToFindMethodException e)
         {
             e.printStackTrace();
         }
@@ -36,7 +27,7 @@ public class POIFixer {
     {
         try
         {
-            POIFixer.blockStatesInjector.invoke(null, poiType);
+            POIFixer.blockStatesInjector.invoke(PointOfInterestType.class, poiType);
         }
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
         {

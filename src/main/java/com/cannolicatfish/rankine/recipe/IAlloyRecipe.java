@@ -1,9 +1,8 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.google.gson.JsonObject;
-import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,7 +11,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -260,7 +258,7 @@ public class IAlloyRecipe implements IRecipe<IInventory> {
 
     @Nonnull
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.ALLOY_FURNACE);
+        return new ItemStack(RankineBlocks.ALLOY_FURNACE.get());
     }
 
     @Nonnull

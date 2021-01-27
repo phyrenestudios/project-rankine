@@ -1,21 +1,15 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.Dynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
     public MeteoriteFeature(Codec<MeteoriteFeatureConfig> p_i49915_1_) {
@@ -44,13 +38,13 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 BlockState ORE;
                 float CHANCE = rand.nextFloat();
                 if (CHANCE < 0.25F) {
-                    ORE = ModBlocks.KAMACITE.getDefaultState();
+                    ORE = RankineBlocks.KAMACITE.get().getDefaultState();
                 } else if (CHANCE < 0.50F) {
-                    ORE = ModBlocks.ANTITAENITE.getDefaultState();
+                    ORE = RankineBlocks.ANTITAENITE.get().getDefaultState();
                 } else if (CHANCE < 0.75F) {
-                    ORE = ModBlocks.TAENITE.getDefaultState();
+                    ORE = RankineBlocks.TAENITE.get().getDefaultState();
                 } else {
-                    ORE = ModBlocks.TETRATAENITE.getDefaultState();
+                    ORE = RankineBlocks.TETRATAENITE.get().getDefaultState();
                 }
 
                 int j = 1 + rand.nextInt(2);
@@ -62,7 +56,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                         if (rand.nextFloat() < 0.4F) {
                             reader.setBlockState(blockpos.down(1), ORE, 4);
                         } else {
-                            reader.setBlockState(blockpos.down(1), ModBlocks.METEORITE.getDefaultState(), 4);
+                            reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 4);
                         }
                     }
                 }

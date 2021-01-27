@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.IAlloyRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -40,7 +39,7 @@ public class AlloyRecipeCategory implements IRecipeCategory<IAlloyRecipe> {
         localizedName = I18n.format("rankine.jei.alloy");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloy_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.ALLOY_FURNACE));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()));
     }
 
     @Override

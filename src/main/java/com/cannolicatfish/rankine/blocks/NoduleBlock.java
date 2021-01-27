@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
@@ -30,7 +30,7 @@ public class NoduleBlock extends Block {
             ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.FLINT));
             itementity.setDefaultPickupDelay();
             worldIn.addEntity(itementity);
-            worldIn.setBlockState(pos, ModBlocks.LIMESTONE.getDefaultState(),2);
+            worldIn.setBlockState(pos, RankineBlocks.LIMESTONE.get().getDefaultState(),2);
             return ActionResultType.SUCCESS;
         }
         else

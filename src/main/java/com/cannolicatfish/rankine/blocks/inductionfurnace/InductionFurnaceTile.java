@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
-import com.cannolicatfish.rankine.items.TripleAlloyTemplate;
+import com.cannolicatfish.rankine.items.TripleAlloyTemplateItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.InductionFurnaceRecipes;
@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 
 import java.util.Arrays;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.INDUCTION_FURNACE_TILE;
+import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_TILE;
 
 public class InductionFurnaceTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -190,7 +190,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                         if (recipeMode)
                         {
                             output = templateResult;
-                            x = TripleAlloyTemplate.getShrinkAmount(this.items.get(6));
+                            x = TripleAlloyTemplateItem.getShrinkAmount(this.items.get(6));
                         } else {
                             output = InductionFurnaceRecipes.getInstance().getTripleAlloyResult(inputs[0], inputs[1], inputs[2],inputs[3],inputs[4]);
                             x = new int[]{inputs[0].getCount(),inputs[1].getCount(),inputs[2].getCount(),inputs[3].getCount(),inputs[4].getCount()};
@@ -281,12 +281,12 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     private boolean canSmelt()
     {
         ItemStack template = this.items.get(6);
-        if (template.getItem() instanceof TripleAlloyTemplate)
+        if (template.getItem() instanceof TripleAlloyTemplateItem)
         {
-            if (TripleAlloyTemplate.getTemplate(template).size() != 0)
+            if (TripleAlloyTemplateItem.getTemplate(template).size() != 0)
             {
                 recipeMode = true;
-                templateResult = TripleAlloyTemplate.getResult(template);
+                templateResult = TripleAlloyTemplateItem.getResult(template);
             }
         } else
         {
@@ -301,13 +301,13 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
         {
             if (recipeMode)
             {
-                int[] x = TripleAlloyTemplate.getShrinkAmount(template);
+                int[] x = TripleAlloyTemplateItem.getShrinkAmount(template);
                 if (this.items.get(0).getCount() < x[0] || this.items.get(1).getCount() < x[1] || this.items.get(2).getCount() < x[2] || this.items.get(3).getCount() < x[3] || this.items.get(4).getCount() < x[4])
                 {
                     System.out.println("item count mismatch");
                     return false;
                 }
-                ItemStack[] list = TripleAlloyTemplate.getInputStacks(template);
+                ItemStack[] list = TripleAlloyTemplateItem.getInputStacks(template);
                 if (this.items.get(0).getItem() != list[0].getItem() || this.items.get(1).getItem() != list[1].getItem() || this.items.get(2).getItem() != list[2].getItem() ||
                         this.items.get(3).getItem() != list[3].getItem() && x[3] > 0 || (this.items.get(4).getItem() != list[4].getItem() && x[4] > 0))
                 {
@@ -502,7 +502,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             case 5:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 6:
-                return stack.getItem() instanceof TripleAlloyTemplate;
+                return stack.getItem() instanceof TripleAlloyTemplateItem;
             case 7:
                 return ItemStack.areItemsEqual(InductionFurnaceRecipes.getInstance().getTripleAlloyResult(getStackInSlot(0),getStackInSlot(1),getStackInSlot(2),getStackInSlot(3),getStackInSlot(4)), stack);
             default:

@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/purple_pophyry_bricks",
-        "top": "rankine:block/purple_pophyry_bricks",
-        "side": "rankine:block/purple_pophyry_bricks"
-      }
-}

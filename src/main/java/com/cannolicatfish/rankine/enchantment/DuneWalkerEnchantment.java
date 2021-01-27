@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.enchantment;
 
-import com.cannolicatfish.rankine.init.ModEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;

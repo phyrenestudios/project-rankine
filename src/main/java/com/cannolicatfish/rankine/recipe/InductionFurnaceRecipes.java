@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModRecipes;
+import com.cannolicatfish.rankine.init.RankineRecipes;
 import net.minecraft.item.ItemStack;
 
 public class InductionFurnaceRecipes {
@@ -12,6 +12,6 @@ public class InductionFurnaceRecipes {
     }
 
     public ItemStack getTripleAlloyResult(ItemStack input1, ItemStack input2, ItemStack input3,ItemStack input4, ItemStack input5) {
-        return ModRecipes.getTripleAlloyOutput(input1,input2,input3,input4,input5);
+        return RankineRecipes.getTripleAlloyOutput(input1,input2,input3,input4,input5);
     }
 }

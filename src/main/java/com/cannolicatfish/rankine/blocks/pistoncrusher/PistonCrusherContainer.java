@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,13 +19,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.PISTON_CRUSHER_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_CONTAINER;
 
 public class PistonCrusherContainer extends Container {
     private TileEntity tileEntity;
@@ -62,7 +59,7 @@ public class PistonCrusherContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.PISTON_CRUSHER);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.PISTON_CRUSHER.get());
     }
 
 

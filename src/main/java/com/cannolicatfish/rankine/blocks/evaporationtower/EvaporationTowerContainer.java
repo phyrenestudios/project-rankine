@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -21,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.EVAPORATION_TOWER_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_CONTAINER;
 
 public class EvaporationTowerContainer extends Container {
     private final IInventory furnaceInventory;
@@ -70,7 +69,7 @@ public class EvaporationTowerContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.EVAPORATION_TOWER);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.EVAPORATION_TOWER.get());
     }
 
     @Override

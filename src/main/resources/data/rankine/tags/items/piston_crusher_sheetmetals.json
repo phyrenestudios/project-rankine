@@ -3,7 +3,6 @@
   "values": [
     "#forge:sheetmetals/bronze",
     "#forge:sheetmetals/brass",
-    "#forge:sheetmetals/wrought_iron",
     "#forge:sheetmetals/steel",
     "#forge:sheetmetals/stainless_steel"
   ]

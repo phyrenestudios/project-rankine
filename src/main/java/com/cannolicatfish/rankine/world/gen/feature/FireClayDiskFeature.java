@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +23,7 @@ public class FireClayDiskFeature extends Feature<NoFeatureConfig> {
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX()-3,height-3,pos.getZ()-3), new BlockPos(pos.getX()+3,height+1,pos.getZ()+3))) {
             if (reader.getBlockState(blockpos) == Blocks.DIRT.getDefaultState() && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(3 + 0.5, 2)) {
-                reader.setBlockState(blockpos, ModBlocks.FIRE_CLAY.getDefaultState(),2);
+                reader.setBlockState(blockpos, RankineBlocks.FIRE_CLAY.get().getDefaultState(),2);
             }
         }
         return true;

@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModEntityTypes;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineEntityTypes;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -9,13 +9,8 @@ import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.IPacket;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -27,7 +22,7 @@ public class ThoriumArrowEntity extends AbstractArrowEntity {
     }
 
     public ThoriumArrowEntity(World worldIn, LivingEntity shooter) {
-        super(ModEntityTypes.THORIUM_ARROW, shooter, worldIn);
+        super(RankineEntityTypes.THORIUM_ARROW, shooter, worldIn);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -43,7 +38,7 @@ public class ThoriumArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected ItemStack getArrowStack() {
-        return new ItemStack(ModItems.THORIUM_ARROW);
+        return new ItemStack(RankineItems.THORIUM_ARROW.get());
     }
 
     @Override

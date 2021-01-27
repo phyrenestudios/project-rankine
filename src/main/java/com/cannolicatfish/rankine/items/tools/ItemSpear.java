@@ -1,13 +1,10 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.entities.SpearEntity;
-import com.cannolicatfish.rankine.init.ModEnchantments;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;

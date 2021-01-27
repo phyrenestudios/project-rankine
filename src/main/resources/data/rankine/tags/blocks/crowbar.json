@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:sheetmetals",
+    "#forge:sheetmetal",
     "#forge:metal_bars",
     "#minecraft:planks",
     "#minecraft:fences",

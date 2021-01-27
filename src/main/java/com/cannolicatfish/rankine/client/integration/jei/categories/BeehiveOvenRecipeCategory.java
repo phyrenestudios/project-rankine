@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.recipe.IBeehiveOvenRecipe;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.IBeehiveOvenRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -39,7 +38,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<IBeehiveOvenRe
         localizedName = I18n.format("rankine.jei.beeoven");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()));
     }
 
     @Override

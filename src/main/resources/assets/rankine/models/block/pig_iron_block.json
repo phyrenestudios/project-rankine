@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "rankine:block/pig_iron_block"
-  }
-}

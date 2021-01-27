@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.IEvaporationRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -39,7 +38,7 @@ public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRe
         localizedName = I18n.format("rankine.jei.evaporation");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/evaporation_jei.png"),
                 0, 15, 140, 120);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.EVAPORATION_TOWER));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -97,7 +97,7 @@ public class IBeehiveOvenRecipe implements IRecipe<IInventory> {
 
     @Nonnull
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.BEEHIVE_OVEN_PIT);
+        return new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get());
     }
 
     @Nonnull

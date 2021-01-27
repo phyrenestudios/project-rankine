@@ -1,12 +1,11 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.RankineVerticalSlab;
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StairsBlock;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,10 +48,10 @@ public class MortarItem extends Item {
                     spawnParticles(worldIn, pos, 0);
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
-                } else if (block == ModBlocks.CAST_IRON_SUPPORT && !worldIn.isRemote()) {
+                } else if (block == RankineBlocks.CAST_IRON_SUPPORT.get() && !worldIn.isRemote()) {
                     int i = 0;
-                    while (worldIn.getBlockState(pos.up(i)) == ModBlocks.CAST_IRON_SUPPORT.getDefaultState()) {
-                        worldIn.setBlockState(pos.up(i), ModBlocks.UNCOLORED_CONCRETE.getDefaultState());
+                    while (worldIn.getBlockState(pos.up(i)) == RankineBlocks.CAST_IRON_SUPPORT.get().getDefaultState()) {
+                        worldIn.setBlockState(pos.up(i), RankineBlocks.UNCOLORED_CONCRETE.get().getDefaultState());
                         ++i;
                         if (context.getItem().getCount() >= 1) {
                             context.getItem().shrink(1);
@@ -61,8 +60,8 @@ public class MortarItem extends Item {
                         }
                     }
                     i = 1;
-                    while (worldIn.getBlockState(pos.down(i)) == ModBlocks.CAST_IRON_SUPPORT.getDefaultState()) {
-                        worldIn.setBlockState(pos.down(i), ModBlocks.UNCOLORED_CONCRETE.getDefaultState());
+                    while (worldIn.getBlockState(pos.down(i)) == RankineBlocks.CAST_IRON_SUPPORT.get().getDefaultState()) {
+                        worldIn.setBlockState(pos.down(i), RankineBlocks.UNCOLORED_CONCRETE.get().getDefaultState());
                         ++i;
                         if (context.getItem().getCount() >= 1) {
                             context.getItem().shrink(1);
@@ -71,16 +70,16 @@ public class MortarItem extends Item {
                         }
                     }
                     return ActionResultType.SUCCESS;
-                } else if (block == ModBlocks.CAST_IRON_SUPPORT_SLAB && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, ModBlocks.UNCOLORED_CONCRETE_SLAB.getDefaultState().with(BlockStateProperties.SLAB_TYPE, state.get(BlockStateProperties.SLAB_TYPE)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
+                } else if (block == RankineBlocks.CAST_IRON_SUPPORT_SLAB.get() && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_SLAB.get().getDefaultState().with(BlockStateProperties.SLAB_TYPE, state.get(BlockStateProperties.SLAB_TYPE)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
-                } else if (block == ModBlocks.CAST_IRON_SUPPORT_STAIRS && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, ModBlocks.UNCOLORED_CONCRETE_STAIRS.getDefaultState().with(StairsBlock.SHAPE, state.get(StairsBlock.SHAPE)).with(StairsBlock.FACING, state.get(StairsBlock.FACING)).with(StairsBlock.HALF, state.get(StairsBlock.HALF)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
+                } else if (block == RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get() && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_STAIRS.get().getDefaultState().with(StairsBlock.SHAPE, state.get(StairsBlock.SHAPE)).with(StairsBlock.FACING, state.get(StairsBlock.FACING)).with(StairsBlock.HALF, state.get(StairsBlock.HALF)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
-                } else if (block == ModBlocks.CAST_IRON_SUPPORT_VSLAB && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, ModBlocks.UNCOLORED_CONCRETE_VSLAB.getDefaultState().with(RankineVerticalSlab.HORIZONTAL_FACING, state.get(RankineVerticalSlab.HORIZONTAL_FACING)).with(RankineVerticalSlab.TYPE, state.get(RankineVerticalSlab.TYPE)));
+                } else if (block == RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get() && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get().getDefaultState().with(RankineVerticalSlab.HORIZONTAL_FACING, state.get(RankineVerticalSlab.HORIZONTAL_FACING)).with(RankineVerticalSlab.TYPE, state.get(RankineVerticalSlab.TYPE)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 }
@@ -88,45 +87,48 @@ public class MortarItem extends Item {
         return super.onItemUse(context);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static void spawnParticles(IWorld worldIn, BlockPos posIn, int data) {
-        if (data == 0) {
-            data = 15;
-        }
-
-        BlockState blockstate = worldIn.getBlockState(posIn);
-        if (!blockstate.isAir(worldIn, posIn)) {
-            double d0 = 0.5D;
-            double d1;
-            if (blockstate.isIn(Blocks.WATER)) {
-                data *= 3;
-                d1 = 1.0D;
-                d0 = 3.0D;
-            } else if (blockstate.isOpaqueCube(worldIn, posIn)) {
-                posIn = posIn.up();
-                data *= 3;
-                d0 = 3.0D;
-                d1 = 1.0D;
-            } else {
-                d1 = blockstate.getShape(worldIn, posIn).getEnd(Direction.Axis.Y);
+        if (worldIn.isRemote())
+        {
+            if (data == 0) {
+                data = 15;
             }
 
-            worldIn.addParticle(ParticleTypes.WHITE_ASH, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-
-            for(int i = 0; i < data; ++i) {
-                double d2 = random.nextGaussian() * 0.02D;
-                double d3 = random.nextGaussian() * 0.02D;
-                double d4 = random.nextGaussian() * 0.02D;
-                double d5 = 0.5D - d0;
-                double d6 = (double)posIn.getX() + d5 + random.nextDouble() * d0 * 2.0D;
-                double d7 = (double)posIn.getY() + random.nextDouble() * d1;
-                double d8 = (double)posIn.getZ() + d5 + random.nextDouble() * d0 * 2.0D;
-                if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).down()).isAir()) {
-                    worldIn.addParticle(ParticleTypes.WHITE_ASH, d6, d7, d8, d2, d3, d4);
+            BlockState blockstate = worldIn.getBlockState(posIn);
+            if (!blockstate.isAir(worldIn, posIn)) {
+                double d0 = 0.5D;
+                double d1;
+                if (blockstate.isIn(Blocks.WATER)) {
+                    data *= 3;
+                    d1 = 1.0D;
+                    d0 = 3.0D;
+                } else if (blockstate.isOpaqueCube(worldIn, posIn)) {
+                    posIn = posIn.up();
+                    data *= 3;
+                    d0 = 3.0D;
+                    d1 = 1.0D;
+                } else {
+                    d1 = blockstate.getShape(worldIn, posIn).getEnd(Direction.Axis.Y);
                 }
-            }
 
+                worldIn.addParticle(ParticleTypes.WHITE_ASH, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+
+                for(int i = 0; i < data; ++i) {
+                    double d2 = random.nextGaussian() * 0.02D;
+                    double d3 = random.nextGaussian() * 0.02D;
+                    double d4 = random.nextGaussian() * 0.02D;
+                    double d5 = 0.5D - d0;
+                    double d6 = (double)posIn.getX() + d5 + random.nextDouble() * d0 * 2.0D;
+                    double d7 = (double)posIn.getY() + random.nextDouble() * d1;
+                    double d8 = (double)posIn.getZ() + d5 + random.nextDouble() * d0 * 2.0D;
+                    if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).down()).isAir()) {
+                        worldIn.addParticle(ParticleTypes.WHITE_ASH, d6, d7, d8, d2, d3, d4);
+                    }
+                }
+
+            }
         }
+
     }
 
     @Override

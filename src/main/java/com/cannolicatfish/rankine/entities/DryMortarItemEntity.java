@@ -1,15 +1,11 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModEntityTypes;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -50,7 +46,7 @@ public class DryMortarItemEntity extends ItemEntity {
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(ModItems.MORTAR,this.getItem().getCount()));
+                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineItems.MORTAR.get(),this.getItem().getCount()));
                 itementity.setDefaultPickupDelay();
                 worldIn.addEntity(itementity);
             }

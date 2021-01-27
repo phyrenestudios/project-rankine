@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Items;
@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 public enum RankineArmorMaterials implements IArmorMaterial {
     BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> {
-        return Ingredient.fromItems(Items.LEATHER, ModItems.STEEL_ALLOY);
+        return Ingredient.fromItems(Items.LEATHER, RankineItems.STEEL_ALLOY.get());
     });
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};

@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,7 +31,7 @@ import net.minecraft.world.biome.Biome;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.EVAPORATION_TOWER_TILE;
+import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_TILE;
 
 
 public class EvaporationTowerTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
@@ -140,7 +140,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     private boolean checkStructure(BlockPos pos, World worldIn) {
         for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 0, 1))) {
-            if (worldIn.getBlockState(blockpos) != Blocks.MAGMA_BLOCK.getDefaultState() && worldIn.getBlockState(blockpos) != ModBlocks.EVAPORATION_TOWER.getDefaultState()) {
+            if (worldIn.getBlockState(blockpos) != Blocks.MAGMA_BLOCK.getDefaultState() && worldIn.getBlockState(blockpos) != RankineBlocks.EVAPORATION_TOWER.get().getDefaultState()) {
                 return false;
             }
         }
@@ -198,40 +198,40 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     public static WeightedCollection<ItemStack> returnOceanCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(ModItems.BROMINE_NUGGET, 1));
-        col.add(2,new ItemStack(ModItems.SULFUR_NUGGET, 1));
-        col.add(3,new ItemStack(ModItems.POTASSIUM_NUGGET,1));
-        col.add(4,new ItemStack(ModItems.CALCIUM_NUGGET,1));
-        col.add(5,new ItemStack(ModItems.MAGNESIUM_NUGGET,1));
-        col.add(10,new ItemStack(ModItems.SALT,2));
+        col.add(1,new ItemStack(RankineItems.BROMINE_NUGGET.get(), 1));
+        col.add(2,new ItemStack(RankineItems.SULFUR_NUGGET.get(), 1));
+        col.add(3,new ItemStack(RankineItems.POTASSIUM_NUGGET.get(),1));
+        col.add(4,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),1));
+        col.add(5,new ItemStack(RankineItems.MAGNESIUM_NUGGET.get(),1));
+        col.add(10,new ItemStack(RankineItems.SALT.get(),2));
         return col;
     }
 
     public static WeightedCollection<ItemStack> returnRiverCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(ModItems.CADMIUM_NUGGET, 1));
-        col.add(1,new ItemStack(ModItems.CHROMIUM_NUGGET,1));
-        col.add(1,new ItemStack(ModItems.LEAD_NUGGET,1));
-        col.add(1,new ItemStack(ModItems.MANGANESE_NUGGET,1));
-        col.add(1,new ItemStack(ModItems.MERCURY_NUGGET,1));
+        col.add(1,new ItemStack(RankineItems.CADMIUM_NUGGET.get(), 1));
+        col.add(1,new ItemStack(RankineItems.CHROMIUM_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.LEAD_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.MANGANESE_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.MERCURY_NUGGET.get(),1));
         col.add(2,new ItemStack(Items.IRON_NUGGET,1));
-        col.add(4,new ItemStack(ModItems.ZINC_NUGGET,1));
-        col.add(4,new ItemStack(ModItems.COPPER_NUGGET,1));
-        col.add(6,new ItemStack(ModItems.CALCIUM_NUGGET,2));
+        col.add(4,new ItemStack(RankineItems.ZINC_NUGGET.get(),1));
+        col.add(4,new ItemStack(RankineItems.COPPER_NUGGET.get(),1));
+        col.add(6,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),2));
         return col;
     }
 
     public static WeightedCollection<ItemStack> returnGroundwaterCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(ModItems.COBALT_NUGGET, 1));
-        col.add(1,new ItemStack(ModItems.TITANIUM_NUGGET,1));
-        col.add(1,new ItemStack(ModItems.ZIRCONIUM_NUGGET,1));
-        col.add(1,new ItemStack(ModItems.BORON_NUGGET,1));
-        col.add(1,new ItemStack(ModItems.SILVER_NUGGET,1));
-        col.add(2,new ItemStack(ModItems.MANGANESE_NUGGET,1));
-        col.add(4,new ItemStack(ModItems.LEAD_NUGGET,1));
-        col.add(4,new ItemStack(ModItems.LITHIUM_NUGGET,1));
-        col.add(6,new ItemStack(ModItems.SILICON_NUGGET,2));
+        col.add(1,new ItemStack(RankineItems.COBALT_NUGGET.get(), 1));
+        col.add(1,new ItemStack(RankineItems.TITANIUM_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.ZIRCONIUM_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.BORON_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.SILVER_NUGGET.get(),1));
+        col.add(2,new ItemStack(RankineItems.MANGANESE_NUGGET.get(),1));
+        col.add(4,new ItemStack(RankineItems.LEAD_NUGGET.get(),1));
+        col.add(4,new ItemStack(RankineItems.LITHIUM_NUGGET.get(),1));
+        col.add(6,new ItemStack(RankineItems.SILICON_NUGGET.get(),2));
         return col;
     }
 

@@ -1,12 +1,8 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.*;
-import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -16,7 +12,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
 
-import java.util.Optional;
 import java.util.Random;
 
 public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
@@ -67,7 +62,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
         BlockPos.Mutable blockpos$mutable = p_220117_1_.toMutable().move(Direction.DOWN);
         BlockState blockstate = p_220117_0_.getBlockState(blockpos$mutable);
         int i = 7;
-        if (blockstate.getBlock() == ModBlocks.ROPE) {
+        if (blockstate.getBlock() == RankineBlocks.ROPE.get()) {
             i = blockstate.get(DISTANCE);
         } else if (blockstate.isSolidSide(p_220117_0_, blockpos$mutable, Direction.UP)) {
             return 0;
@@ -75,7 +70,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
 
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             BlockState blockstate1 = p_220117_0_.getBlockState(blockpos$mutable.setPos(p_220117_1_).move(direction));
-            if (blockstate1.getBlock() == ModBlocks.ROPE) {
+            if (blockstate1.getBlock() == RankineBlocks.ROPE.get()) {
                 i = Math.min(i, blockstate1.get(DISTANCE) + 1);
                 if (i == 1) {
                     break;

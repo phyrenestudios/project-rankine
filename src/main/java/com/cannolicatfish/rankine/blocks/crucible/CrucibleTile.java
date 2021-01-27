@@ -1,11 +1,8 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 
-import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.init.ModRecipes;
-import com.cannolicatfish.rankine.items.ItemTemplate;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import net.minecraft.block.AbstractFurnaceBlock;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,12 +11,9 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -33,22 +27,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.CRUCIBLE_TILE;
+import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_TILE;
 
 public class CrucibleTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
@@ -126,12 +111,12 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             if ((this.isBurning() || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty())) {
                 if (this.isHeated(this.pos,this.world) && this.canSmelt()) {
                     ++this.cookTime;
-                    if (Arrays.stream(inputs).anyMatch(itemStack -> itemStack.getItem() == ModItems.BORAX))
+                    if (Arrays.stream(inputs).anyMatch(itemStack -> itemStack.getItem() == RankineItems.BORAX.get()))
                     {
                         this.cookTime += 3;
                     }
                     if (this.cookTime >= this.cookTimeTotal) {
-                        ItemStack smelting = ModRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
+                        ItemStack smelting = RankineRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
                         if (this.items.get(4).getCount() > 0) {
                             this.items.get(4).grow(smelting.getCount());
                         } else {
@@ -164,8 +149,8 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
 
     private int checkResultingOutput() {
-        ItemStack smelting = ModRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
-        if (smelting.getItem() == ModItems.STEEL_ALLOY)
+        ItemStack smelting = RankineRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
+        if (smelting.getItem() == RankineItems.STEEL_ALLOY.get())
         {
             return 1;
         } else if (smelting.getItem() == Items.REDSTONE)
@@ -216,7 +201,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         }
         else
         {
-            ItemStack result = ModRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
+            ItemStack result = RankineRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
             if(result.isEmpty())
             {
                 return false;
@@ -360,7 +345,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             case 3:
                 return stack.getItem().getTags().contains(new ResourceLocation("rankine:crucible_fluxes"));
             case 4:
-                return ItemStack.areItemsEqual(ModRecipes.returnCrucibleOutput(Arrays.asList(getStackInSlot(0).getItem(),getStackInSlot(1).getItem(),getStackInSlot(2).getItem(),getStackInSlot(3).getItem())), stack);
+                return ItemStack.areItemsEqual(RankineRecipes.returnCrucibleOutput(Arrays.asList(getStackInSlot(0).getItem(),getStackInSlot(1).getItem(),getStackInSlot(2).getItem(),getStackInSlot(3).getItem())), stack);
             default:
                 return false;
         }

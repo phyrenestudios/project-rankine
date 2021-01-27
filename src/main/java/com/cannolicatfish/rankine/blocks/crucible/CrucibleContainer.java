@@ -1,8 +1,6 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.items.ItemTemplate;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -10,7 +8,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
@@ -24,7 +21,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.CRUCIBLE_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_CONTAINER;
 
 public class CrucibleContainer extends Container {
     private final IInventory furnaceInventory;
@@ -78,7 +75,7 @@ public class CrucibleContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.CRUCIBLE_BLOCK);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.CRUCIBLE_BLOCK.get());
     }
 
     @Override

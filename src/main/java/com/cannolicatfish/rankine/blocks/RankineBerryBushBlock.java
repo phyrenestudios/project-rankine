@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -50,43 +50,43 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
         switch (type) {
             case 0:
             {
-                return new ItemStack(ModItems.ELDERBERRIES);
+                return new ItemStack(RankineItems.ELDERBERRIES.get());
             }
             case 1:
             {
-                return new ItemStack(ModItems.SNOWBERRIES);
+                return new ItemStack(RankineItems.SNOWBERRIES.get());
             }
             case 2:
             {
-                return new ItemStack(ModItems.BLUEBERRIES);
+                return new ItemStack(RankineItems.BLUEBERRIES.get());
             }
             case 3:
             {
-                return new ItemStack(ModItems.RASPBERRIES);
+                return new ItemStack(RankineItems.RASPBERRIES.get());
             }
             case 4:
             {
-                return new ItemStack(ModItems.BLACKBERRIES);
+                return new ItemStack(RankineItems.BLACKBERRIES.get());
             }
             case 5:
             {
-                return new ItemStack(ModItems.CRANBERRIES);
+                return new ItemStack(RankineItems.CRANBERRIES.get());
             }
             case 6:
             {
-                return new ItemStack(ModItems.STRAWBERRIES);
+                return new ItemStack(RankineItems.STRAWBERRIES.get());
             }
             case 7:
             {
                 if (rand.nextInt(50) == 1) {
-                    return new ItemStack(ModItems.PINEAPPLE_SLEEVES);
+                    return new ItemStack(RankineItems.PINEAPPLE_SLEEVES.get());
                  } else {
-                    return new ItemStack(ModItems.PINEAPPLE);
+                    return new ItemStack(RankineItems.PINEAPPLE.get());
                 }
             }
             case 8:
             {
-                return new ItemStack(ModItems.BANANA_YUCCA);
+                return new ItemStack(RankineItems.BANANA_YUCCA.get());
             }
         }
         return null;
@@ -119,10 +119,10 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
                 double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
                 double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
                 if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
-                    if (state.getBlock() == ModBlocks.RASPBERRY_BUSH || state.getBlock() == ModBlocks.BLACKBERRY_BUSH) {
+                    if (state.getBlock() == RankineBlocks.RASPBERRY_BUSH.get() || state.getBlock() == RankineBlocks.BLACKBERRY_BUSH.get()) {
                         entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 2.0F);
                     }
-                    if (state.getBlock() == ModBlocks.SNOWBERRY_BUSH || state.getBlock() == ModBlocks.CRANBERRY_BUSH || state.getBlock() == ModBlocks.PINEAPPLE_BUSH) {
+                    if (state.getBlock() == RankineBlocks.SNOWBERRY_BUSH.get() || state.getBlock() == RankineBlocks.CRANBERRY_BUSH.get() || state.getBlock() == RankineBlocks.PINEAPPLE_BUSH.get()) {
                         entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 1.0F);
                     }
                 }
@@ -141,39 +141,39 @@ public class RankineBerryBushBlock extends BushBlock implements IGrowable {
             int j = 0;
             if (type == 0)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.ELDERBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.ELDERBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 1)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.SNOWBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.SNOWBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 2)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BLUEBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BLUEBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 3)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.RASPBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.RASPBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 4)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BLACKBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BLACKBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 5)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.CRANBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CRANBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 6)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.STRAWBERRIES, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.STRAWBERRIES.get(), j + (flag ? 1 : 0)));
             }
             if (type == 7)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.PINEAPPLE, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.PINEAPPLE.get(), j + (flag ? 1 : 0)));
             }
             if (type == 8)
             {
-                spawnAsEntity(worldIn, pos, new ItemStack(ModItems.BANANA_YUCCA, j + (flag ? 1 : 0)));
+                spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BANANA_YUCCA.get(), j + (flag ? 1 : 0)));
             }
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
             worldIn.setBlockState(pos, state.with(AGE, 1), 2);

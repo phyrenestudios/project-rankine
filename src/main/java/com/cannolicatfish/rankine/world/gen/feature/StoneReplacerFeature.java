@@ -1,27 +1,18 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.compatibility.TerraForged;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.google.common.collect.ImmutableList;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ObserverBlock;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeManager;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.PerlinNoiseGenerator;
 import net.minecraft.world.gen.feature.Feature;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -35,12 +26,12 @@ public class StoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
 
     public static final int NOISE_SCALE = Config.NOISE_SCALE.get();
     public static final int NOISE_OFFSET = Config.NOISE_OFFSET.get();
-    public static final List<BlockState> OCEAN_STONES = Arrays.asList(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.GABBRO.getDefaultState(), ModBlocks.THOLEIITIC_BASALT.getDefaultState(), ModBlocks.SLATE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.BRECCIA.getDefaultState(), ModBlocks.SHALE.getDefaultState());
-    public static final List<BlockState> DESERT_STONES = Arrays.asList(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.SCHIST.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.SLATE.getDefaultState(), ModBlocks.RED_DACITE.getDefaultState(), ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.BLACK_DACITE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.BRECCIA.getDefaultState(), ModBlocks.QUARTZ_SANDSTONE.getDefaultState());
-    public static final List<BlockState> MESA_STONES = Arrays.asList(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.SCHIST.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.SLATE.getDefaultState(), ModBlocks.RED_DACITE.getDefaultState(),ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.BLACK_DACITE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.BRECCIA.getDefaultState(), ModBlocks.ARKOSE_SANDSTONE.getDefaultState());
-    public static final List<BlockState> MOUNTAIN_STONES = Arrays.asList(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.SCHIST.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.SLATE.getDefaultState(), ModBlocks.RED_DACITE.getDefaultState(),ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.BLACK_DACITE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.HORNBLENDE_ANDESITE.getDefaultState());
-    public static final List<BlockState> SWAMP_STONES = Arrays.asList(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.SCHIST.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.SLATE.getDefaultState(), ModBlocks.RED_DACITE.getDefaultState(),ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.BLACK_DACITE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState(), ModBlocks.MUDSTONE.getDefaultState());
-    public static final List<BlockState> DEFAULT_STONES = Arrays.asList(ModBlocks.PERIDOTITE.getDefaultState(), ModBlocks.GNEISS.getDefaultState(), ModBlocks.SCHIST.getDefaultState(), ModBlocks.MARBLE.getDefaultState(), ModBlocks.SLATE.getDefaultState(), ModBlocks.RED_DACITE.getDefaultState(),ModBlocks.RHYOLITE.getDefaultState(), ModBlocks.BLACK_DACITE.getDefaultState(), ModBlocks.LIMESTONE.getDefaultState(), ModBlocks.SHALE.getDefaultState(), ModBlocks.ANORTHOSITE.getDefaultState());
+    public static final List<BlockState> OCEAN_STONES = Arrays.asList(RankineBlocks.PERIDOTITE.get().getDefaultState(), RankineBlocks.GABBRO.get().getDefaultState(), RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState(), RankineBlocks.SLATE.get().getDefaultState(), RankineBlocks.LIMESTONE.get().getDefaultState(), RankineBlocks.BRECCIA.get().getDefaultState(), RankineBlocks.SHALE.get().getDefaultState());
+    public static final List<BlockState> DESERT_STONES = Arrays.asList(RankineBlocks.PERIDOTITE.get().getDefaultState(), RankineBlocks.GNEISS.get().getDefaultState(), RankineBlocks.SCHIST.get().getDefaultState(), RankineBlocks.MARBLE.get().getDefaultState(), RankineBlocks.SLATE.get().getDefaultState(), RankineBlocks.RED_DACITE.get().getDefaultState(), RankineBlocks.RHYOLITE.get().getDefaultState(), RankineBlocks.BLACK_DACITE.get().getDefaultState(), RankineBlocks.LIMESTONE.get().getDefaultState(), RankineBlocks.ANORTHOSITE.get().getDefaultState(), RankineBlocks.BRECCIA.get().getDefaultState(), RankineBlocks.QUARTZ_SANDSTONE.get().getDefaultState());
+    public static final List<BlockState> MESA_STONES = Arrays.asList(RankineBlocks.PERIDOTITE.get().getDefaultState(), RankineBlocks.GNEISS.get().getDefaultState(), RankineBlocks.SCHIST.get().getDefaultState(), RankineBlocks.MARBLE.get().getDefaultState(), RankineBlocks.SLATE.get().getDefaultState(), RankineBlocks.RED_DACITE.get().getDefaultState(), RankineBlocks.RHYOLITE.get().getDefaultState(), RankineBlocks.BLACK_DACITE.get().getDefaultState(), RankineBlocks.LIMESTONE.get().getDefaultState(), RankineBlocks.ANORTHOSITE.get().getDefaultState(), RankineBlocks.BRECCIA.get().getDefaultState(), RankineBlocks.ARKOSE_SANDSTONE.get().getDefaultState());
+    public static final List<BlockState> MOUNTAIN_STONES = Arrays.asList(RankineBlocks.PERIDOTITE.get().getDefaultState(), RankineBlocks.GNEISS.get().getDefaultState(), RankineBlocks.SCHIST.get().getDefaultState(), RankineBlocks.MARBLE.get().getDefaultState(), RankineBlocks.SLATE.get().getDefaultState(), RankineBlocks.RED_DACITE.get().getDefaultState(), RankineBlocks.RHYOLITE.get().getDefaultState(), RankineBlocks.BLACK_DACITE.get().getDefaultState(), RankineBlocks.LIMESTONE.get().getDefaultState(), RankineBlocks.SHALE.get().getDefaultState(), RankineBlocks.ANORTHOSITE.get().getDefaultState(), RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
+    public static final List<BlockState> SWAMP_STONES = Arrays.asList(RankineBlocks.PERIDOTITE.get().getDefaultState(), RankineBlocks.GNEISS.get().getDefaultState(), RankineBlocks.SCHIST.get().getDefaultState(), RankineBlocks.MARBLE.get().getDefaultState(), RankineBlocks.SLATE.get().getDefaultState(), RankineBlocks.RED_DACITE.get().getDefaultState(), RankineBlocks.RHYOLITE.get().getDefaultState(), RankineBlocks.BLACK_DACITE.get().getDefaultState(), RankineBlocks.LIMESTONE.get().getDefaultState(), RankineBlocks.SHALE.get().getDefaultState(), RankineBlocks.ANORTHOSITE.get().getDefaultState(), RankineBlocks.MUDSTONE.get().getDefaultState());
+    public static final List<BlockState> DEFAULT_STONES = Arrays.asList(RankineBlocks.PERIDOTITE.get().getDefaultState(), RankineBlocks.GNEISS.get().getDefaultState(), RankineBlocks.SCHIST.get().getDefaultState(), RankineBlocks.MARBLE.get().getDefaultState(), RankineBlocks.SLATE.get().getDefaultState(), RankineBlocks.RED_DACITE.get().getDefaultState(), RankineBlocks.RHYOLITE.get().getDefaultState(), RankineBlocks.BLACK_DACITE.get().getDefaultState(), RankineBlocks.LIMESTONE.get().getDefaultState(), RankineBlocks.SHALE.get().getDefaultState(), RankineBlocks.ANORTHOSITE.get().getDefaultState());
 
 
 

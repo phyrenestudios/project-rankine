@@ -1,10 +1,7 @@
 package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
-import com.cannolicatfish.rankine.init.ModRecipes;
-import com.cannolicatfish.rankine.items.ItemTemplate;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.CoalForgeRecipes;
+import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -23,27 +20,19 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.AbstractMap;
 import java.util.Random;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.PISTON_CRUSHER_TILE;
+import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_TILE;
 
 public class PistonCrusherTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     private static final int[] SLOTS_UP = new int[]{0};
@@ -369,7 +358,7 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
         switch (index)
         {
             case 0:
-                return !ModRecipes.getCrushingOutputs(stack).getKey().isEmpty();
+                return !RankineRecipes.getCrushingOutputs(stack).getKey().isEmpty();
             case 1:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 2:

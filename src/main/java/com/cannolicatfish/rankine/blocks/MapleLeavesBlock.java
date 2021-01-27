@@ -1,19 +1,15 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -81,9 +77,9 @@ public class MapleLeavesBlock extends LeavesBlock {
 
     protected void atumnize(BlockState state, World worldIn, BlockPos pos) {
         if (state.get(COLOR) != 6) {
-            worldIn.setBlockState(pos, ModBlocks.MAPLE_LEAVES.getDefaultState().with(DISTANCE, state.get(DISTANCE)).with(PERSISTENT, state.get(PERSISTENT)).with(COLOR, state.get(COLOR)+1),2);
+            worldIn.setBlockState(pos, RankineBlocks.MAPLE_LEAVES.get().getDefaultState().with(DISTANCE, state.get(DISTANCE)).with(PERSISTENT, state.get(PERSISTENT)).with(COLOR, state.get(COLOR)+1),2);
         }
-        worldIn.neighborChanged(pos, ModBlocks.MAPLE_LEAVES, pos);
+        worldIn.neighborChanged(pos, RankineBlocks.MAPLE_LEAVES.get(), pos);
     }
 
 

@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.enchantment;
 
-import com.cannolicatfish.rankine.init.ModEnchantments;
-import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
+import com.cannolicatfish.rankine.items.tools.HammerItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -9,7 +9,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 public class ExcavateEnchantment extends Enchantment {
     public ExcavateEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
         super(p_i46721_1_, EnchantmentType.create("hammer", (itemIn) -> {
-            return itemIn instanceof ItemHammer; }), p_i46721_2_);
+            return itemIn instanceof HammerItem; }), p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {
@@ -26,7 +26,7 @@ public class ExcavateEnchantment extends Enchantment {
 
     @Override
     protected boolean canApplyTogether(Enchantment ench) {
-        if (ench == ModEnchantments.BLAST)
+        if (ench == RankineEnchantments.BLAST)
         {
             return false;
         }

@@ -1,17 +1,14 @@
 package com.cannolicatfish.rankine.enchantment;
 
-import com.cannolicatfish.rankine.items.alloys.AlloyHoe;
-import com.cannolicatfish.rankine.items.tools.ItemHammer;
+import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
 
 public class ForagingEnchantment extends Enchantment {
     public ForagingEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.create("hoe", (itemIn) -> itemIn instanceof HoeItem || itemIn instanceof AlloyHoe), slots);
+        super(rarityIn, EnchantmentType.create("hoe", (itemIn) -> itemIn instanceof HoeItem || itemIn instanceof AlloyHoeItem), slots);
     }
 
     /**

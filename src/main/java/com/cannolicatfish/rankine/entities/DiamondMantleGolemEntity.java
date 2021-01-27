@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModEntityTypes;
+import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -41,7 +41,7 @@ public class DiamondMantleGolemEntity extends IronGolemEntity {
         if (this.isPlayerCreated() && typeIn == EntityType.PLAYER) {
             return true;
         } else {
-            return typeIn != ModEntityTypes.DESMOXYTE && typeIn != ModEntityTypes.MANTLE_GOLEM && typeIn != ModEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttack(typeIn);
+            return typeIn != RankineEntityTypes.DESMOXYTE && typeIn != RankineEntityTypes.MANTLE_GOLEM && typeIn != RankineEntityTypes.PERIDOT_MANTLE_GOLEM && super.canAttack(typeIn);
         }
     }
 
