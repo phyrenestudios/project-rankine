@@ -1,10 +1,9 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.blocks.RankineOre;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -13,7 +12,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Arrays;
 import java.util.BitSet;
@@ -122,11 +120,12 @@ public class RankineMultiOreFeature extends Feature<RankineMultiOreFeatureConfig
                                             blockpos$mutableblockpos.setPos(l1, i2, j2);
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 List<Block> blockList = Arrays.asList(Blocks.STONE,Blocks.GRANITE,Blocks.DIORITE,Blocks.ANDESITE,Blocks.SANDSTONE,Blocks.RED_SANDSTONE,Blocks.NETHERRACK, Blocks.BLACKSTONE,Blocks.BASALT,Blocks.END_STONE,
-                                                        ModBlocks.RED_GRANITE,ModBlocks.GRANODIORITE,ModBlocks.HORNBLENDE_ANDESITE,ModBlocks.THOLEIITIC_BASALT,ModBlocks.GABBRO,ModBlocks.ANORTHOSITE,ModBlocks.RHYOLITE,ModBlocks.LIMESTONE,ModBlocks.MARBLE,ModBlocks.GNEISS,ModBlocks.SCHIST,ModBlocks.SLATE,ModBlocks.SHALE,ModBlocks.IRONSTONE,ModBlocks.BRECCIA,ModBlocks.PUMICE,ModBlocks.SCORIA,
-                                                        ModBlocks.PERIDOTITE,ModBlocks.KIMBERLITE,ModBlocks.KOMATIITE,ModBlocks.RINGWOODITE, ModBlocks.WADSLEYITE,ModBlocks.BRIDGMANITE,ModBlocks.FERROPERICLASE, ModBlocks.PEROVSKITE);
+                                                        RankineBlocks.RED_GRANITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.GABBRO.get(), RankineBlocks.ANORTHOSITE.get(),
+                                                        RankineBlocks.RHYOLITE.get(), RankineBlocks.LIMESTONE.get(), RankineBlocks.MARBLE.get(), RankineBlocks.GNEISS.get(), RankineBlocks.SCHIST.get(), RankineBlocks.SLATE.get(), RankineBlocks.SHALE.get(), RankineBlocks.IRONSTONE.get(), RankineBlocks.BRECCIA.get(), RankineBlocks.PUMICE.get(), RankineBlocks.SCORIA.get(),
+                                                        RankineBlocks.PERIDOTITE.get(), RankineBlocks.KIMBERLITE.get(), RankineBlocks.KOMATIITE.get(), RankineBlocks.RINGWOODITE.get(), RankineBlocks.WADSLEYITE.get(), RankineBlocks.BRIDGMANITE.get(), RankineBlocks.FERROPERICLASE.get(), RankineBlocks.PEROVSKITE.get());
                                                 if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())){
                                                     worldIn.setBlockState(blockpos$mutableblockpos,
-                                                            config.state.with(RankineOre.TYPE,blockList.indexOf(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())), 2);
+                                                            config.state.with(RankineOreBlock.TYPE,blockList.indexOf(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())), 2);
                                                     ++i;
                                                 }
                                             }

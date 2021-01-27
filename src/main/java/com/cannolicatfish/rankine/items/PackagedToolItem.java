@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -8,9 +8,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -51,26 +49,26 @@ public class PackagedToolItem extends Item {
         switch(random.nextInt(7))
         {
             case 0:
-                ret = new ItemStack(ModItems.ALLOY_AXE);
+                ret = new ItemStack(RankineItems.ALLOY_AXE.get());
                 break;
             case 1:
-                ret = new ItemStack(ModItems.ALLOY_SHOVEL);
+                ret = new ItemStack(RankineItems.ALLOY_SHOVEL.get());
                 break;
             case 2:
-                ret = new ItemStack(ModItems.ALLOY_HAMMER);
+                ret = new ItemStack(RankineItems.ALLOY_HAMMER.get());
                 break;
             case 3:
-                ret = new ItemStack(ModItems.ALLOY_SWORD);
+                ret = new ItemStack(RankineItems.ALLOY_SWORD.get());
                 break;
             case 4:
-                ret = new ItemStack(ModItems.ALLOY_SPEAR);
+                ret = new ItemStack(RankineItems.ALLOY_SPEAR.get());
                 break;
             case 5:
             default:
-                ret = new ItemStack(ModItems.ALLOY_PICKAXE);
+                ret = new ItemStack(RankineItems.ALLOY_PICKAXE.get());
                 break;
             case 6:
-                ret = new ItemStack(ModItems.ALLOY_HOE);
+                ret = new ItemStack(RankineItems.ALLOY_HOE.get());
                 break;
         }
         List<PeriodicTableUtils.Element> elements = Arrays.asList(PeriodicTableUtils.Element.values());

@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -161,7 +161,7 @@ public class ITripleAlloyRecipe implements IRecipe<IInventory> {
 
     @Nonnull
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.INDUCTION_FURNACE);
+        return new ItemStack(RankineBlocks.INDUCTION_FURNACE.get());
     }
 
     @Nonnull

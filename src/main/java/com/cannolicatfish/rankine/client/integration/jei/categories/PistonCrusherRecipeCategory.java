@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.recipe.IPistonCrusherRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -38,7 +38,7 @@ public class PistonCrusherRecipeCategory implements IRecipeCategory<IPistonCrush
         localizedName = I18n.format("rankine.jei.crushing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crushing_jei.png"),
                 0, 15, 140, 90);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.PISTON_CRUSHER));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()));
     }
 
     @Override

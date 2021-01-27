@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.util.elements;
 
-import com.cannolicatfish.rankine.init.ModEnchantments;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 
@@ -64,7 +64,7 @@ public class ThoriumElement implements ElementInterface{
     public Enchantment getEnchantments(int x) {
         if (x >= 50)
         {
-            return ModEnchantments.LIGHTNING_ASPECT;
+            return RankineEnchantments.LIGHTNING_ASPECT;
         }
         return null;
     }

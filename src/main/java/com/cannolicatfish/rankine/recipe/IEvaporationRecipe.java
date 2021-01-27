@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -16,7 +15,6 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -95,7 +93,7 @@ public class IEvaporationRecipe implements IRecipe<IInventory> {
     }
 
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.EVAPORATION_TOWER);
+        return new ItemStack(RankineBlocks.EVAPORATION_TOWER.get());
     }
 
 

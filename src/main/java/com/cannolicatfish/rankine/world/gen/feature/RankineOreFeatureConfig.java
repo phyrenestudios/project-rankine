@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
@@ -1069,7 +1069,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == ModBlocks.ARKOSE_SANDSTONE || block == ModBlocks.QUARTZ_SANDSTONE;
+                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == RankineBlocks.ARKOSE_SANDSTONE.get() || block == RankineBlocks.QUARTZ_SANDSTONE.get();
             }
         }),
         DACITES("dacites", (blockstate) -> {
@@ -1077,7 +1077,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == ModBlocks.RED_DACITE || block == ModBlocks.BLACK_DACITE;
+                return block == RankineBlocks.RED_DACITE.get() || block == RankineBlocks.BLACK_DACITE.get();
             }
         }),
         END("end", (blockstate) -> {

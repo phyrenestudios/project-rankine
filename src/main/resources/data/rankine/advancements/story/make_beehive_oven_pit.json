@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_pig_iron",
+  "parent": "rankine:story/make_refractory_brick",
   "display": {
     "icon": {
       "item": "rankine:beehive_oven_pit"

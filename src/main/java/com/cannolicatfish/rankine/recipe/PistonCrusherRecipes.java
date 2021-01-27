@@ -1,16 +1,12 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.init.ModRecipes;
+import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 import java.util.AbstractMap;
-import java.util.List;
 import java.util.Map;
 
 public class PistonCrusherRecipes {
@@ -30,7 +26,7 @@ public class PistonCrusherRecipes {
 
     public AbstractMap.SimpleEntry<ItemStack, Float[]> getPrimaryResult(ItemStack input1) {
 
-        AbstractMap.SimpleEntry<ItemStack,ItemStack> stacks = ModRecipes.getCrushingOutputs(input1);
+        AbstractMap.SimpleEntry<ItemStack,ItemStack> stacks = RankineRecipes.getCrushingOutputs(input1);
         if (stacks != null)
         {
             return new AbstractMap.SimpleEntry<>(new ItemStack(stacks.getKey().getItem()),new Float[]{stacks.getKey().getCount()*1f,0f});
@@ -169,7 +165,7 @@ public class PistonCrusherRecipes {
     }
 
     public AbstractMap.SimpleEntry<ItemStack, Float> getSecondaryResult(ItemStack input) {
-        AbstractMap.SimpleEntry<ItemStack,Float> stacks = ModRecipes.getCrushingSecondaryOutputs(input);
+        AbstractMap.SimpleEntry<ItemStack,Float> stacks = RankineRecipes.getCrushingSecondaryOutputs(input);
         if (stacks != null)
         {
             return new AbstractMap.SimpleEntry<>(new ItemStack(stacks.getKey().getItem()),stacks.getValue());

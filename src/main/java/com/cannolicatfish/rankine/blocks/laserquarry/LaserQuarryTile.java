@@ -1,9 +1,8 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
-import net.minecraft.block.BeaconBlock;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,10 +30,9 @@ import javax.annotation.Nullable;
 
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.LASER_QUARRY_TILE;
+import static com.cannolicatfish.rankine.init.RankineBlocks.LASER_QUARRY_TILE;
 
 
 public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
@@ -108,7 +106,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     public void tick() {
         World worldIn = this.getWorld();
         if (!worldIn.isRemote && i <= 5){
-            if (worldIn.isBlockPowered(pos) && checkStructure(pos,worldIn) && this.items.get(0).getItem() == ModItems.LITHIUM_POWER_CELL) {
+            if (worldIn.isBlockPowered(pos) && checkStructure(pos,worldIn) && this.items.get(0).getItem() == RankineItems.LITHIUM_POWER_CELL.get()) {
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
                     for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
@@ -116,7 +114,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                         boolean stop = false;
                         if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable")) && !TARGET_BLOCK.getTags().contains(new ResourceLocation("forge:ores"))) {
                             for (int height = TARGET_POS.getY(); height <= this.pos.getY(); ++height) {
-                                if (worldIn.getBlockState(new BlockPos(TARGET_POS.getX(), height, TARGET_POS.getZ())) == ModBlocks.QUARRY_BARRIER.getDefaultState()) {
+                                if (worldIn.getBlockState(new BlockPos(TARGET_POS.getX(), height, TARGET_POS.getZ())) == RankineBlocks.QUARRY_BARRIER.get().getDefaultState()) {
                                     stop = true;
                                     break;
                                 }
@@ -192,13 +190,13 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
         }*/
         List<BlockPos> Pillars = Arrays.asList(pos.add(8,0,0),pos.add(8,2,0),pos.add(-8,0,0),pos.add(-8,2,0),pos.add(0,0,8),pos.add(0,2,8),pos.add(0,0,-8),pos.add(0,2,-8));
         for(BlockPos blockpos : Pillars) {
-            if (worldIn.getBlockState(blockpos) != ModBlocks.LASER_PYLON_BASE.getDefaultState()) {
+            if (worldIn.getBlockState(blockpos) != RankineBlocks.LASER_PYLON_BASE.get().getDefaultState()) {
                 return false;
             }
         }
         List<BlockPos> Tops = Arrays.asList(pos.add(8,3,0),pos.add(-8,3,0),pos.add(0,3,8),pos.add(0,3,-8));
         for(BlockPos blockpos : Tops) {
-            if (worldIn.getBlockState(blockpos) != ModBlocks.LASER_PYLON_TOP.getDefaultState()) {
+            if (worldIn.getBlockState(blockpos) != RankineBlocks.LASER_PYLON_TOP.get().getDefaultState()) {
                 return false;
             }
         }

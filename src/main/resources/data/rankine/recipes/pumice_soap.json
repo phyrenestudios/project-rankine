@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "rankine:water_buckets"
+      "item": "minecraft:water_bucket"
     },
     {
       "item": "rankine:pumice"

@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusher;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

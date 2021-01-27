@@ -12,7 +12,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModItems.ELEMENT_INDEXER_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineItems.ELEMENT_INDEXER_CONTAINER;
 
 public class ElementIndexerContainer extends Container {
     private PlayerEntity playerEntity;

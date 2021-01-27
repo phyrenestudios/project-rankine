@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModRecipes;
+import com.cannolicatfish.rankine.init.RankineRecipes;
 import net.minecraft.item.ItemStack;
-
-import java.util.AbstractMap;
 
 public class AlloyFurnaceRecipes {
 
@@ -14,6 +12,6 @@ public class AlloyFurnaceRecipes {
     }
 
     public ItemStack getAlloyResult(ItemStack input1, ItemStack input2, ItemStack input3) {
-        return ModRecipes.getAlloyOutput(input1,input2,input3);
+        return RankineRecipes.getAlloyOutput(input1,input2,input3);
     }
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "rankine:block/finery_forge_side",
-    "front": "rankine:block/coal_forge_front",
-    "side": "rankine:block/finery_forge_side"
-  }
-}

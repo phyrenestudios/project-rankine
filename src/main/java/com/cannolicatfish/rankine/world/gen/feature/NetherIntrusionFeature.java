@@ -1,17 +1,15 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.blocks.RankineOre;
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.blocks.RankineOreBlock;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Objects;
@@ -33,23 +31,23 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
 
         if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:warped_forest"))) {
             if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.WADSLEYITE.getDefaultState();
+                INTRUSION = RankineBlocks.WADSLEYITE.get().getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:soul_sand_valley"))) {
             if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.RINGWOODITE.getDefaultState();
+                INTRUSION = RankineBlocks.RINGWOODITE.get().getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:crimson_forest"))) {
             if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.KOMATIITE.getDefaultState();
+                INTRUSION = RankineBlocks.KOMATIITE.get().getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:basalt_deltas"))) {
             if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.FERROPERICLASE.getDefaultState();
+                INTRUSION = RankineBlocks.FERROPERICLASE.get().getDefaultState();
             }
         } else if (Objects.equals(reader.getBiome(pos).getRegistryName(), new ResourceLocation("minecraft:nether_wastes"))) {
             if (STONE < Config.NETHER_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.BRIDGMANITE.getDefaultState();
+                INTRUSION = RankineBlocks.BRIDGMANITE.get().getDefaultState();
             }
         }
 
@@ -58,9 +56,9 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos) != Blocks.BEDROCK.getDefaultState()) {
-                            if (INTRUSION == ModBlocks.KOMATIITE.getDefaultState()) {
+                            if (INTRUSION == RankineBlocks.KOMATIITE.get().getDefaultState()) {
                                 if (rand.nextFloat() < Config.INTERSPINIFEX_CHANCE.get().floatValue()) {
-                                    reader.setBlockState(blockpos, ModBlocks.INTERSPINIFEX_ORE.getDefaultState().with(RankineOre.TYPE, 29), 4);
+                                    reader.setBlockState(blockpos, RankineBlocks.INTERSPINIFEX_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 29), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);
                                 }
@@ -81,9 +79,9 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos) != Blocks.BEDROCK.getDefaultState()) {
-                            if (INTRUSION == ModBlocks.KOMATIITE.getDefaultState()) {
+                            if (INTRUSION == RankineBlocks.KOMATIITE.get().getDefaultState()) {
                                 if (rand.nextFloat() < Config.INTERSPINIFEX_CHANCE.get().floatValue()) {
-                                    reader.setBlockState(blockpos, ModBlocks.INTERSPINIFEX_ORE.getDefaultState().with(RankineOre.TYPE, 29), 4);
+                                    reader.setBlockState(blockpos, RankineBlocks.INTERSPINIFEX_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 29), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);
                                 }

@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -23,7 +23,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.ALLOY_FURNACE_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_FURNACE_CONTAINER;
 
 public class AlloyFurnaceContainer extends Container {
     private final IInventory furnaceInventory;
@@ -101,7 +101,7 @@ public class AlloyFurnaceContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.ALLOY_FURNACE);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.ALLOY_FURNACE.get());
     }
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
@@ -127,7 +127,7 @@ public class AlloyFurnaceContainer extends Container {
                     if (!this.mergeItemStack(stack, 3, 4, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (stack.getItem() == ModItems.ALLOY_TEMPLATE) {
+                } else if (stack.getItem() == RankineItems.ALLOY_TEMPLATE.get()) {
                     if (!this.mergeItemStack(stack, 4, 5, false)) {
                         return ItemStack.EMPTY;
                     }

@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModEntityTypes;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineEntityTypes;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -26,7 +26,7 @@ public class RankineBoatEntity extends BoatEntity {
     }
 
     public RankineBoatEntity(World worldIn, double x, double y, double z) {
-        this(ModEntityTypes.RANKINE_BOAT, worldIn);
+        this(RankineEntityTypes.RANKINE_BOAT, worldIn);
         this.setPosition(x, y, z);
         this.setMotion(Vector3d.ZERO);
         this.prevPosX = x;
@@ -72,21 +72,21 @@ public class RankineBoatEntity extends BoatEntity {
             case DARK_OAK:
                 return Items.DARK_OAK_BOAT;
             case CEDAR:
-                return ModItems.CEDAR_BOAT;
+                return RankineItems.CEDAR_BOAT.get();
             case COCONUT_PALM:
-                return ModItems.COCONUT_PALM_BOAT;
+                return RankineItems.COCONUT_PALM_BOAT.get();
             case PINYON_PINE:
-                return ModItems.PINYON_PINE_BOAT;
+                return RankineItems.PINYON_PINE_BOAT.get();
             case JUNIPER:
-                return ModItems.JUNIPER_BOAT;
+                return RankineItems.JUNIPER_BOAT.get();
             case BALSAM_FIR:
-                return ModItems.BALSAM_FIR_BOAT;
+                return RankineItems.BALSAM_FIR_BOAT.get();
             case MAGNOLIA:
-                return ModItems.MAGNOLIA_BOAT;
+                return RankineItems.MAGNOLIA_BOAT.get();
             case HEMLOCK:
-                return ModItems.HEMLOCK_BOAT;
+                return RankineItems.HEMLOCK_BOAT.get();
             case BAMBOO:
-                return ModItems.BAMBOO_BOAT;
+                return RankineItems.BAMBOO_BOAT.get();
         }
     }
 
@@ -106,14 +106,14 @@ public class RankineBoatEntity extends BoatEntity {
         JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
         ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
         DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-        CEDAR(ModBlocks.CEDAR_PLANKS, "cedar"),
-        COCONUT_PALM(ModBlocks.COCONUT_PALM_PLANKS, "coconut_palm"),
-        PINYON_PINE(ModBlocks.PINYON_PINE_PLANKS, "pinyon_pine"),
-        JUNIPER(ModBlocks.JUNIPER_PLANKS, "juniper"),
-        BALSAM_FIR(ModBlocks.BALSAM_FIR_PLANKS, "balsam_fir"),
-        MAGNOLIA(ModBlocks.MAGNOLIA_PLANKS, "magnolia"),
-        HEMLOCK(ModBlocks.EASTERN_HEMLOCK_PLANKS, "hemlock"),
-        BAMBOO(ModBlocks.BAMBOO_PLANKS, "bamboo");
+        CEDAR(RankineBlocks.CEDAR_PLANKS.get(), "cedar"),
+        COCONUT_PALM(RankineBlocks.COCONUT_PALM_PLANKS.get(), "coconut_palm"),
+        PINYON_PINE(RankineBlocks.PINYON_PINE_PLANKS.get(), "pinyon_pine"),
+        JUNIPER(RankineBlocks.JUNIPER_PLANKS.get(), "juniper"),
+        BALSAM_FIR(RankineBlocks.BALSAM_FIR_PLANKS.get(), "balsam_fir"),
+        MAGNOLIA(RankineBlocks.MAGNOLIA_PLANKS.get(), "magnolia"),
+        HEMLOCK(RankineBlocks.EASTERN_HEMLOCK_PLANKS.get(), "hemlock"),
+        BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo");
 
 
         private final String name;

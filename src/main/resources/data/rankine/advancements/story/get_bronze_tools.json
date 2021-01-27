@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_coal_forge",
+  "parent": "rankine:story/make_alloy_furnace",
   "display": {
     "icon": {
       "item": "rankine:bronze_hammer"

@@ -1,22 +1,15 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
-import javax.annotation.Nonnull;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class NetherStoneReplacerFeature extends Feature<StoneReplacerFeatureConfig> {
@@ -49,22 +42,22 @@ public class NetherStoneReplacerFeature extends Feature<StoneReplacerFeatureConf
                 }
                 for (int y = 16 + (int) Math.round((noise / 0.1D)); y <= 18 + (int) Math.round((noise / 0.1D));  ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), ModBlocks.BLACK_SAND.getDefaultState(), 2);
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.BLACK_SAND.get().getDefaultState(), 2);
                     }
                 }
                 for (int y = 18 + (int) Math.round((noise / 0.1D)) -2; y <= 30 + (int) Math.round((noise1 / 0.1D));  ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), ModBlocks.PURPLE_PORPHYRY.getDefaultState(), 2);
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.PURPLE_PORPHYRY.get().getDefaultState(), 2);
                     }
                 }
                 for (int y = 100 + (int) Math.round((noise1 / 0.1D)) -2; y <= 115 + (int) Math.round((noise2 / 0.1D));  ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), ModBlocks.PORPHYRY.getDefaultState(), 2);
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.PORPHYRY.get().getDefaultState(), 2);
                     }
                 }
                 for (int y = 115 + (int) Math.round((noise2 / 0.1D)); y <= 127; ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), ModBlocks.PEROVSKITE.getDefaultState(), 2);
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.PEROVSKITE.get().getDefaultState(), 2);
                     }
                 }
             }

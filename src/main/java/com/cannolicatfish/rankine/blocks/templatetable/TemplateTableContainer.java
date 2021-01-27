@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.blocks.templatetable;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.items.AlloyTemplate;
-import com.cannolicatfish.rankine.items.TripleAlloyTemplate;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.items.AlloyTemplateItem;
+import com.cannolicatfish.rankine.items.TripleAlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.AlloyFurnaceRecipes;
 import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.recipe.InductionFurnaceRecipes;
@@ -25,7 +25,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import java.util.AbstractMap;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.TEMPLATE_TABLE_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends Container {
 
     private int percentSlot1 = 0;
@@ -196,9 +196,9 @@ public class TemplateTableContainer extends Container {
             calcPercentages();
             if (!recipeOutput.isEmpty())
             {
-                ItemStack st = new ItemStack(ModItems.ALLOY_TEMPLATE);
+                ItemStack st = new ItemStack(RankineItems.ALLOY_TEMPLATE.get());
                 String temp = TemplateTableContainer.assembleTemplate(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
-                AlloyTemplate.addTemplate(st, temp,recipeOutput.getCount() + "x#" + recipeOutput.getTranslationKey(),
+                AlloyTemplateItem.addTemplate(st, temp,recipeOutput.getCount() + "x#" + recipeOutput.getTranslationKey(),
                         recipeOutput, AlloyRecipeHelper.getInstance().getComposition(this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4)),
                         this.inputInventory.getStackInSlot(2),this.inputInventory.getStackInSlot(3),this.inputInventory.getStackInSlot(4));
 
@@ -215,10 +215,10 @@ public class TemplateTableContainer extends Container {
                     this.inputInventory.getStackInSlot(5),this.inputInventory.getStackInSlot(6));
             calcTriplePercentages();
             if (!recipeOutput.isEmpty()) {
-                ItemStack st = new ItemStack(ModItems.TRIPLE_ALLOY_TEMPLATE);
+                ItemStack st = new ItemStack(RankineItems.TRIPLE_ALLOY_TEMPLATE.get());
                 String temp = TemplateTableContainer.assembleTemplate(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3), this.inputInventory.getStackInSlot(4),
                         this.inputInventory.getStackInSlot(5), this.inputInventory.getStackInSlot(6));
-                TripleAlloyTemplate.addTemplate(st, recipeOutput,
+                TripleAlloyTemplateItem.addTemplate(st, recipeOutput,
                         AlloyRecipeHelper.getInstance().getTripleComposition(this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3), this.inputInventory.getStackInSlot(4),
                                 this.inputInventory.getStackInSlot(5), this.inputInventory.getStackInSlot(6)),
                         this.inputInventory.getStackInSlot(2), this.inputInventory.getStackInSlot(3), this.inputInventory.getStackInSlot(4), this.inputInventory.getStackInSlot(5), this.inputInventory.getStackInSlot(6));
@@ -306,7 +306,7 @@ public class TemplateTableContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(this.worldPosCallable, playerIn, ModBlocks.TEMPLATE_TABLE);
+        return isWithinUsableDistance(this.worldPosCallable, playerIn, RankineBlocks.TEMPLATE_TABLE.get());
     }
 
     public void onContainerClosed(PlayerEntity playerIn) {

@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.init.ModBlocks;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;

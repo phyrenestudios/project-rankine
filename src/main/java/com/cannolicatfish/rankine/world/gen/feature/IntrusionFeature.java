@@ -1,29 +1,20 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.blocks.RankineOre;
+import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.compatibility.TerraForged;
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.Dynamic;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.BlockBlobFeature;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.StructureManager;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
     public IntrusionFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
@@ -42,16 +33,16 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
 
         if (TerraForged.isInstalled()) {
             if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
+                INTRUSION = RankineBlocks.KIMBERLITE.get().getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
                 radius = 6 - rand.nextInt(2);
             }
         } else {
             if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get()) {
-                INTRUSION = ModBlocks.KIMBERLITE.getDefaultState();
+                INTRUSION = RankineBlocks.KIMBERLITE.get().getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4) {
-                INTRUSION = ModBlocks.GRANODIORITE.getDefaultState();
+                INTRUSION = RankineBlocks.GRANODIORITE.get().getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*2) {
                 INTRUSION = Blocks.DIORITE.getDefaultState();
@@ -60,7 +51,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 INTRUSION = Blocks.GRANITE.getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*4) {
-                INTRUSION = ModBlocks.RED_GRANITE.getDefaultState();
+                INTRUSION = RankineBlocks.RED_GRANITE.get().getDefaultState();
                 endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             }
             radius = 6 - rand.nextInt(3);
@@ -72,12 +63,12 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("rankine:intrusion_passable"))) {
-                            if (INTRUSION == ModBlocks.KIMBERLITE.getDefaultState()) {
+                            if (INTRUSION == RankineBlocks.KIMBERLITE.get().getDefaultState()) {
                                 float chance = rand.nextFloat();
                                 if (chance < Config.ILMENITE_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(blockpos, ModBlocks.ILMENITE_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
+                                    reader.setBlockState(blockpos, RankineBlocks.ILMENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 28), 4);
                                 } else if (chance < Config.DIAMON_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(blockpos, ModBlocks.DIAMOND_ORE.getDefaultState().with(RankineOre.TYPE, 28), 4);
+                                    reader.setBlockState(blockpos, RankineBlocks.DIAMOND_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 28), 4);
                                 } else {
                                     reader.setBlockState(blockpos, INTRUSION, 4);
                                 }

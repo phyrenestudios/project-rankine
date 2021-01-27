@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.cannolicatfish.rankine.init.ModItems;
-import com.cannolicatfish.rankine.items.TripleAlloyTemplate;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.items.TripleAlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -24,7 +23,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.INDUCTION_FURNACE_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_CONTAINER;
 
 public class InductionFurnaceContainer extends Container {
     private final IInventory furnaceInventory;
@@ -119,7 +118,7 @@ public class InductionFurnaceContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.INDUCTION_FURNACE);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.INDUCTION_FURNACE.get());
     }
 
     @Override
@@ -144,7 +143,7 @@ public class InductionFurnaceContainer extends Container {
                     if (!this.mergeItemStack(stack, 5, 6, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (stack.getItem() instanceof TripleAlloyTemplate) {
+                } else if (stack.getItem() instanceof TripleAlloyTemplateItem) {
                     if (!this.mergeItemStack(stack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }

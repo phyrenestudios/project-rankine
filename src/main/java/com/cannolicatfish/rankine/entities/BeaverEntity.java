@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -20,12 +20,10 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.util.BlockSnapshot;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
@@ -78,8 +76,9 @@ public class BeaverEntity extends AnimalEntity {
 
     class StripLogGoal extends MoveToBlockGoal {
         protected int field_220731_g;
-        List<Block> LOGS = Arrays.asList(Blocks.ACACIA_LOG,Blocks.BIRCH_LOG,Blocks.DARK_OAK_LOG,Blocks.JUNGLE_LOG,Blocks.OAK_LOG,Blocks.SPRUCE_LOG,ModBlocks.CEDAR_LOG,ModBlocks.PINYON_PINE_LOG,
-                ModBlocks.JUNIPER_LOG,ModBlocks.COCONUT_PALM_LOG,ModBlocks.BALSAM_FIR_LOG,ModBlocks.EASTERN_HEMLOCK_LOG,ModBlocks.BLACK_BIRCH_LOG,ModBlocks.YELLOW_BIRCH_LOG,ModBlocks.MAGNOLIA_LOG);
+        List<Block> LOGS = Arrays.asList(Blocks.ACACIA_LOG,Blocks.BIRCH_LOG,Blocks.DARK_OAK_LOG,Blocks.JUNGLE_LOG,Blocks.OAK_LOG,Blocks.SPRUCE_LOG, RankineBlocks.CEDAR_LOG.get(), RankineBlocks.PINYON_PINE_LOG.get(),
+                RankineBlocks.JUNIPER_LOG.get(), RankineBlocks.COCONUT_PALM_LOG.get(), RankineBlocks.BALSAM_FIR_LOG.get(), RankineBlocks.EASTERN_HEMLOCK_LOG.get(),
+                RankineBlocks.BLACK_BIRCH_LOG.get(), RankineBlocks.YELLOW_BIRCH_LOG.get(), RankineBlocks.MAGNOLIA_LOG.get());
         public StripLogGoal(double p_i50737_2_, int p_i50737_4_, int p_i50737_5_) {
             super(BeaverEntity.this, p_i50737_2_, p_i50737_4_, p_i50737_5_);
         }
@@ -150,55 +149,55 @@ public class BeaverEntity extends AnimalEntity {
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.CEDAR_LOG)
+                if (blockstate.getBlock() == RankineBlocks.CEDAR_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_CEDAR_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_CEDAR_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.PINYON_PINE_LOG)
+                if (blockstate.getBlock() == RankineBlocks.PINYON_PINE_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_PINYON_PINE_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_PINYON_PINE_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.JUNIPER_LOG)
+                if (blockstate.getBlock() == RankineBlocks.JUNIPER_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_JUNIPER_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_JUNIPER_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.COCONUT_PALM_LOG)
+                if (blockstate.getBlock() == RankineBlocks.COCONUT_PALM_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_COCONUT_PALM_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_COCONUT_PALM_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.BALSAM_FIR_LOG)
+                if (blockstate.getBlock() == RankineBlocks.BALSAM_FIR_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_BALSAM_FIR_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_BALSAM_FIR_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.MAGNOLIA_LOG)
+                if (blockstate.getBlock() == RankineBlocks.MAGNOLIA_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_MAGNOLIA_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_MAGNOLIA_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.EASTERN_HEMLOCK_LOG)
+                if (blockstate.getBlock() == RankineBlocks.EASTERN_HEMLOCK_LOG.get())
                 {
-                    world.setBlockState(this.destinationBlock, ModBlocks.STRIPPED_EASTERN_HEMLOCK_LOG.getDefaultState(),2);
+                    world.setBlockState(this.destinationBlock, RankineBlocks.STRIPPED_EASTERN_HEMLOCK_LOG.get().getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.YELLOW_BIRCH_LOG)
+                if (blockstate.getBlock() == RankineBlocks.YELLOW_BIRCH_LOG.get())
                 {
                     world.setBlockState(this.destinationBlock, Blocks.STRIPPED_BIRCH_LOG.getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
                     completed = true;
                 }
-                if (blockstate.getBlock() == ModBlocks.BLACK_BIRCH_LOG)
+                if (blockstate.getBlock() == RankineBlocks.BLACK_BIRCH_LOG.get())
                 {
                     world.setBlockState(this.destinationBlock, Blocks.STRIPPED_BIRCH_LOG.getDefaultState(),2);
                     BeaverEntity.this.heal(1f);
@@ -207,7 +206,7 @@ public class BeaverEntity extends AnimalEntity {
                 if (completed) {
                     if (BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).isEmpty())
                     {
-                        BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.STICK_BLOCK));
+                        BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(RankineBlocks.STICK_BLOCK.get()));
                     } else
                     {
                         BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).grow(1);
@@ -215,7 +214,7 @@ public class BeaverEntity extends AnimalEntity {
 
                 }
                 if (blockstate.getBlock().getTags().contains(new ResourceLocation("minecraft/logs"))) {
-                    BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(ModBlocks.STICK_BLOCK));
+                    BeaverEntity.this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(RankineBlocks.STICK_BLOCK.get()));
                     //System.out.println("Beaver should now have stick block");
                     //System.out.println(BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND));
                     BeaverEntity.this.playSound(SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, 1.0F, 1.0F);
@@ -256,7 +255,7 @@ public class BeaverEntity extends AnimalEntity {
         }
 
         public boolean shouldExecute() {
-            if (!BeaverEntity.this.isSleeping() && BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == new ItemStack(ModBlocks.STICK_BLOCK).getItem() && super.shouldExecute()
+            if (!BeaverEntity.this.isSleeping() && BeaverEntity.this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == new ItemStack(RankineBlocks.STICK_BLOCK.get()).getItem() && super.shouldExecute()
             && ForgeEventFactory.getMobGriefingEvent(this.beaver.world, this.beaver)){
                 //System.out.println("CAN PLACE STICKS");
                 return true;
@@ -294,7 +293,7 @@ public class BeaverEntity extends AnimalEntity {
             BlockState blockstate = iworld.getBlockState(blockpos);
             BlockPos blockpos1 = blockpos.down();
             BlockState blockstate1 = iworld.getBlockState(blockpos1);
-            BlockState blockstate2 = ModBlocks.STICK_BLOCK.getDefaultState();
+            BlockState blockstate2 = RankineBlocks.STICK_BLOCK.get().getDefaultState();
             if ((iworld.getFluidState(blockpos).getFluid() == Fluids.WATER || iworld.getBlockState(blockpos).getBlock() == Blocks.WATER) && blockpos != this.beaver.getOnPosition() &&
                     !ForgeEventFactory.onBlockPlace(this.beaver, net.minecraftforge.common.util.BlockSnapshot.create(world.getDimensionKey(), iworld, blockpos1), Direction.UP)) {
                 iworld.setBlockState(blockpos, blockstate2, 3);

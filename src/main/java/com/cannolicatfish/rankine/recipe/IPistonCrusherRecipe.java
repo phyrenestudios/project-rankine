@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
-import com.google.common.collect.ImmutableList;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.gson.JsonObject;
-import net.minecraft.block.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -92,7 +90,7 @@ public class IPistonCrusherRecipe implements IRecipe<IInventory> {
     }
 
     public ItemStack getIcon() {
-        return new ItemStack(ModBlocks.PISTON_CRUSHER);
+        return new ItemStack(RankineBlocks.PISTON_CRUSHER.get());
     }
 
 

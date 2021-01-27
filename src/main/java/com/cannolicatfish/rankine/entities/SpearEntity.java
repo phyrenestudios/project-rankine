@@ -1,13 +1,11 @@
 package com.cannolicatfish.rankine.entities;
 
-import com.cannolicatfish.rankine.init.ModEnchantments;
-import com.cannolicatfish.rankine.init.ModItems;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -18,12 +16,9 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -33,7 +28,7 @@ import javax.annotation.Nullable;
 
 public class SpearEntity extends AbstractArrowEntity {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(SpearEntity.class, DataSerializers.BYTE);
-    private ItemStack thrownStack = new ItemStack(ModItems.BRONZE_SPEAR);
+    private ItemStack thrownStack = new ItemStack(RankineItems.BRONZE_SPEAR.get());
     public ResourceLocation type;
     private boolean dealtDamage;
     private float attackDamage;
@@ -80,7 +75,7 @@ public class SpearEntity extends AbstractArrowEntity {
         if (this.timeInGround > 4) {
             this.dealtDamage = true;
         }
-        int r = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.IMPACT, this.thrownStack);
+        int r = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.IMPACT, this.thrownStack);
 
         if (r > 0) {
             this.setKnockbackStrength(r * 2);

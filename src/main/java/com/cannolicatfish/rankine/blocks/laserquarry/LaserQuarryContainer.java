@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -20,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.ModBlocks.LASER_QUARRY_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineBlocks.LASER_QUARRY_CONTAINER;
 
 public class LaserQuarryContainer extends Container {
     private final IInventory furnaceInventory;
@@ -69,7 +69,7 @@ public class LaserQuarryContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, ModBlocks.LASER_QUARRY);
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.LASER_QUARRY.get());
     }
 
     @Override

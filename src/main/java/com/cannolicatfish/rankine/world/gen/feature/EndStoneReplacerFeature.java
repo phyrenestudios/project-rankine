@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.ModBlocks;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -31,12 +31,12 @@ public class EndStoneReplacerFeature extends Feature<StoneReplacerFeatureConfig>
                 double noise1 = Biome.INFO_NOISE.noiseAt((double) x / 50 + 64, (double) z / 50 + 64, false);
                 for (int y = 0; y <= 30 + (int) Math.round((noise / 0.1D)); ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), ModBlocks.METEORITE.getDefaultState(), 2);
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.METEORITE.get().getDefaultState(), 2);
                     }
                 }
                 for (int y = 30 + (int) Math.round((noise / 0.1D)); y <= 30 + (int) Math.round((noise1 / 0.1D)); ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
-                        reader.setBlockState(new BlockPos(x, y, z), ModBlocks.ENSTATITE.getDefaultState(), 2);
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.ENSTATITE.get().getDefaultState(), 2);
                     }
                 }
             }
