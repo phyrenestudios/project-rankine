@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:polished_polished_troctolite"
+      },
+      "result": "rankine:polished_troctolite_bricks_slab",
+      "count": 2
+}

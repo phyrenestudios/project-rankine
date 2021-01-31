@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:polished_chalk"
       },
-      "result": "rankine:chalk_bricks_vertical_slab",
+      "result": "rankine:polished_chalk_vertical_slab",
       "count": 2
 }

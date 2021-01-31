@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#m#",
+        "m#m",
+        "#m#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:gray_granite"
+        },
+        "m": {
+          "item": "rankine:mortar"
+        }
+      },
+      "result": {
+        "item": "rankine:gray_granite_bricks",
+        "count": 6
+      }
+    }

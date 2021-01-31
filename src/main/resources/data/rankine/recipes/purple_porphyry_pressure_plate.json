@@ -1,12 +1,15 @@
 {
-      "type": "minecraft:crafting_shapeless",
-      "group": "wooden_button",
-      "ingredients": [
-        {
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##"
+      ],
+      "key": {
+        "#": {
           "item": "rankine:purple_porphyry"
         }
-      ],
+      },
       "result": {
-        "item": "rankine:purple_porphyry_button"
+        "item": "rankine:purple_porphyry_pressure_plate",
+        "count": 1
       }
     }

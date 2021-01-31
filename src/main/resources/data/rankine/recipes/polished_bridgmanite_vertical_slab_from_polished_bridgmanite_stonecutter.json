@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:polished_bridgmanite"
       },
-      "result": "rankine:bridgmanite_bricks_vertical_slab",
+      "result": "rankine:polished_bridgmanite_vertical_slab",
       "count": 2
 }

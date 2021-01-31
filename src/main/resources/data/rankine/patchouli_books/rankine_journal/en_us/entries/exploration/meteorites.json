@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Meteorites are scattered across the world surface. The ores inside them can be mined for metal chunks that have a composition of iron and nickel. The chunks can be smelted in a blast furnace to create invar for invar tools."
+      "text": "Meteorites are scattered across the world surface. The bottom of islands in the End are made out of a similar material. The ores inside them can be mined for metal chunks that have a composition of iron and nickel. The chunks can be blasted into iron or used for invar tools."
     },
     {
       "type": "spotlight",
@@ -36,6 +36,18 @@
       "item": "rankine:tetrataenite",
       "link_recipe": true,
       "text": "Material found in meteorites which has a composition of 50%Fe-50%Ni."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lonsdaleite",
+      "link_recipe": true,
+      "text": "Material found in meteorites which has a composition very similar to diamond."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:enstatite",
+      "link_recipe": true,
+      "text": "Similar to standard meteorite. Only found in the End."
     }
   ]
 }

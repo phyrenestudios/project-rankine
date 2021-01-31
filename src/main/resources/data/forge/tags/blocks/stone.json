@@ -3,6 +3,8 @@
   "values": [
     "#forge:polished_stone",
     "#forge:stones/rhyolite",
+    "#forge:stones/comendite",
+    "#forge:stones/troctolite",
     "#forge:stones/granite",
     "#forge:stones/diorite",
     "#forge:stones/andesite",
@@ -14,7 +16,6 @@
     "#forge:stones/marble",
     "#forge:stones/basalt",
     "#forge:stones/anorthosite",
-    "#forge:stones/ironstone",
     "#forge:stones/peridotite",
     "#forge:stones/kimberlite",
     "#forge:stones/komatiite",
@@ -30,6 +31,12 @@
     "#forge:stones/dacite",
     "#forge:stones/chalk",
     "#forge:stones/mudstone",
+    "#forge:stones/quartzite",
+    "#forge:stones/phyllite",
+    "#forge:stones/siltstone",
+    "#forge:stones/dolomite",
+    "#forge:stones/mariposite",
+    "#forge:stones/skarn",
     "#forge:stones/porphyry"
   ]
 }

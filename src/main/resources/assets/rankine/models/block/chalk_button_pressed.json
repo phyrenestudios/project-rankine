@@ -1,6 +1,6 @@
 {
-                "parent": "block/button_pressed",
-                "textures": {
-                "texture": "rankine:block/chalk"
-                }
-                }
+      "parent": "block/button_pressed",
+      "textures": {
+        "texture": "rankine:block/chalk"
+      }
+    }

@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:anorthosite"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:anorthosite"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_anorthosite",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_anorthosite",
-    "count": 4
-  }
-	}

@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:siltstone"
+        }
+      ],
+      "result": {
+        "item": "rankine:siltstone_button"
+      }
+    }

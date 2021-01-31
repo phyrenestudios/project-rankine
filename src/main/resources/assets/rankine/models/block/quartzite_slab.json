@@ -1,0 +1,8 @@
+{
+      "parent": "block/slab",
+      "textures": {
+        "bottom": "rankine:block/quartzite",
+        "top": "rankine:block/quartzite",
+        "side": "rankine:block/quartzite"
+      }
+}

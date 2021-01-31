@@ -29,14 +29,19 @@ public class EndStoneReplacerFeature extends Feature<StoneReplacerFeatureConfig>
             for (int z = startZ; z <= endZ; ++z) {
                 double noise = Biome.INFO_NOISE.noiseAt((double) x / 50, (double) z / 50, false);
                 double noise1 = Biome.INFO_NOISE.noiseAt((double) x / 50 + 64, (double) z / 50 + 64, false);
-                for (int y = 0; y <= 30 + (int) Math.round((noise / 0.1D)); ++y) {
+                for (int y = 0; y <= 25 + (int) Math.round((noise / 0.1D)); ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                         reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.METEORITE.get().getDefaultState(), 2);
                     }
                 }
-                for (int y = 30 + (int) Math.round((noise / 0.1D)); y <= 30 + (int) Math.round((noise1 / 0.1D)); ++y) {
+                for (int y = 25 + (int) Math.round((noise / 0.1D)); y <= 27 + (int) Math.round((noise1 / 0.1D)); ++y) {
                     if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
                         reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.ENSTATITE.get().getDefaultState(), 2);
+                    }
+                }
+                for (int y = 27 + (int) Math.round((noise / 0.1D)); y <= 32 + (int) Math.round((noise1 / 0.1D)); ++y) {
+                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock() == config.target.getBlock()) {
+                        reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.SKARN.get().getDefaultState(), 2);
                     }
                 }
             }

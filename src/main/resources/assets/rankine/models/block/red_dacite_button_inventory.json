@@ -1,6 +1,6 @@
 {
-                "parent": "block/button_inventory",
-                "textures": {
-                "texture": "rankine:block/red_dacite"
-                }
-                }
+      "parent": "block/button_inventory",
+      "textures": {
+        "texture": "rankine:block/red_dacite"
+      }
+    }

@@ -1,8 +1,8 @@
 {
       "type": "minecraft:stonecutting",
       "ingredient": {
-        "item": "rankine:peridotite"
+          "item": "rankine:peridotite"
       },
       "result": "rankine:peridotite_pressure_plate",
       "count": 1
-    }
+}

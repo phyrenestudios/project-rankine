@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:pumice_bricks"
       },
-      "result": "rankine:polished_pumice_vertical_slab",
+      "result": "rankine:pumice_bricks_vertical_slab",
       "count": 2
 }

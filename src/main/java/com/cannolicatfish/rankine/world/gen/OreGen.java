@@ -61,24 +61,26 @@ public class OreGen {
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getUndergroundOreFeatures() {
-        List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> OverworldFeatures = new ArrayList<>();
+        List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> OverworldFeatures = new ArrayList<>();
 
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.GRAVEL_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SAND_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CLAY_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER),true)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, getBiomeNamesFromCategory(Collections.emptyList(),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DEFAULT_STONE_GEN, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.GRAVEL_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SAND_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CLAY_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        if (Config.OVERWORLD_STONE_LAYERS.get()) {
+            OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DEFAULT_STONE_GEN, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANDESITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.RHYOLITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.THOLEIITIC_BASALTIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DACITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANDESITE_VAR, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANDESITE_VAR, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NODULE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_IRONSTONE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), true)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PHOSPHORITE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_CHALK, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_CHALK, getBiomeNamesFromCategory(Collections.emptyList(),false)));
 
 
         if (Config.RANKINE_ORES_O.get()) {
@@ -501,9 +503,10 @@ public class OreGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getNetherOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NetherFeatures = new ArrayList<>();
-
-        NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_ORE_INTRUSION, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER),true)));
-        NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_STONE_GEN, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+        NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_ORE_INTRUSION, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+        if (Config.NETHER_STONE_LAYERS.get()) {
+            NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_STONE_GEN, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+        }
 
         if (Config.RANKINE_ORES_N.get()) {
             if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("nether")) {
@@ -926,7 +929,7 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getEndOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
-        if (Config.END_METEORITE.get()) {
+        if (Config.END_STONE_LAYERS.get()) {
             EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_STONE_GEN, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
             EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_TAENITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
             EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_TETRATAENITE_ORE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));

@@ -1,8 +1,8 @@
 {
-          "type": "minecraft:stonecutting",
-          "ingredient": {
-                  "item": "rankine:peridotite"
-          },
-          "result": "rankine:peridotite_bricks",
-          "count": 1
-        }
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:peridotite"
+      },
+      "result": "rankine:peridotite_bricks",
+      "count": 1
+    }

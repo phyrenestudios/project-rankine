@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:red_granite_bricks"
-      },
-      "result": "rankine:polished_red_granite_vertical_slab",
-      "count": 2
-}

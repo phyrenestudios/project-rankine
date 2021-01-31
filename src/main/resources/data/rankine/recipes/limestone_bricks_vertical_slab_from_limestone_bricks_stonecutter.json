@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:limestone_bricks"
-      },
-      "result": "rankine:polished_limestone_vertical_slab",
-      "count": 2
-}

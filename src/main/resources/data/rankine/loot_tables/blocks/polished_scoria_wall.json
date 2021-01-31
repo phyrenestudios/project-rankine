@@ -1,21 +1,21 @@
 {
-      "type": "minecraft:block",
-      "pools":
-      [
-        { "rolls": 1,
-          "entries":
-          [
-            {
-              "type": "minecraft:item",
-              "name": "rankine:polished_scoria_wall"
-            }
-          ],
-          "conditions":
-          [
-            {
-              "condition": "minecraft:survives_explosion"
-            }
-          ]
-        }
-      ]
+"type": "minecraft:block",
+"pools":
+[
+{ "rolls": 1,
+  "entries":
+  [
+    {
+      "type": "minecraft:item",
+      "name": "rankine:polished_scoria_wall"
     }
+  ],
+  "conditions":
+  [
+    {
+      "condition": "minecraft:survives_explosion"
+    }
+  ]
+}
+]
+}

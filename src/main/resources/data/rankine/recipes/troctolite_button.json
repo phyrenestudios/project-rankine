@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:troctolite"
+        }
+      ],
+      "result": {
+        "item": "rankine:troctolite_button"
+      }
+    }

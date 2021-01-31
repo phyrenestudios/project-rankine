@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:arkose_sandstone_bricks"
       },
-      "result": "rankine:polished_arkose_sandstone_vertical_slab",
+      "result": "rankine:arkose_sandstone_bricks_vertical_slab",
       "count": 2
 }

@@ -4,7 +4,7 @@
     "minecraft:brick_stairs",
     "rankine:clay_bricks_stairs",
     "rankine:refractory_bricks_stairs",
-    "rankine:magnesium_refractory_bricks_stairs",
-    "rankine:zircon_refractory_bricks_stairs"
+    "rankine:high_refractory_bricks_stairs",
+    "rankine:ultra_high_refractory_bricks_stairs"
   ]
 }

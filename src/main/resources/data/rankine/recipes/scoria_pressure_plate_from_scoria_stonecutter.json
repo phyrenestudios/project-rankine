@@ -1,8 +1,8 @@
 {
       "type": "minecraft:stonecutting",
       "ingredient": {
-        "item": "rankine:scoria"
+          "item": "rankine:scoria"
       },
       "result": "rankine:scoria_pressure_plate",
       "count": 1
-    }
+}

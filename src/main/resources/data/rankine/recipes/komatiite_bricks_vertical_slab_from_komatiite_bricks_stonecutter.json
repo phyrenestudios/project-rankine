@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:komatiite_bricks"
       },
-      "result": "rankine:polished_komatiite_vertical_slab",
+      "result": "rankine:komatiite_bricks_vertical_slab",
       "count": 2
 }

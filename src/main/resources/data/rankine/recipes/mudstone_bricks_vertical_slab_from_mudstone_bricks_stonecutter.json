@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:mudstone_bricks"
       },
-      "result": "rankine:polished_mudstone_vertical_slab",
+      "result": "rankine:mudstone_bricks_vertical_slab",
       "count": 2
 }

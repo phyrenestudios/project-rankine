@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:schist_bricks"
-      },
-      "result": "rankine:polished_schist_vertical_slab",
-      "count": 2
-}

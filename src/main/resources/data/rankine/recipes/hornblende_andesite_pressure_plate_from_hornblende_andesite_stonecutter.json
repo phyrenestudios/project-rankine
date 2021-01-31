@@ -1,8 +1,8 @@
 {
       "type": "minecraft:stonecutting",
       "ingredient": {
-        "item": "rankine:hornblende_andesite"
+          "item": "rankine:hornblende_andesite"
       },
       "result": "rankine:hornblende_andesite_pressure_plate",
       "count": 1
-    }
+}

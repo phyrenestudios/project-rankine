@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:black_marble"
+        }
+      },
+      "result": {
+        "item": "rankine:black_marble_stairs",
+        "count": 4
+      }
+    }

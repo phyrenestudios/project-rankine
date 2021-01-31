@@ -1,0 +1,8 @@
+{
+  "parent": "rankine:block/vertical_slab",
+  "textures": {
+    "bottom": "rankine:block/gray_granite",
+    "top": "rankine:block/gray_granite",
+    "side": "rankine:block/gray_granite"
+  }
+}

@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:tractolite"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_tractolite",
+        "count": 4
+      }
+    }

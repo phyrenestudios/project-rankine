@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_schist"
-      },
-      "result": "rankine:polished_schist_wall",
-      "count": 1
-    }

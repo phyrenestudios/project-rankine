@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:tufa_limestone"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_tufa_limestone",
+        "count": 4
+      }
+    }

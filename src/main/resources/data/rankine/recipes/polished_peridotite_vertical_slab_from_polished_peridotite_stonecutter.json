@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:polished_peridotite"
       },
-      "result": "rankine:peridotite_bricks_vertical_slab",
+      "result": "rankine:polished_peridotite_vertical_slab",
       "count": 2
 }

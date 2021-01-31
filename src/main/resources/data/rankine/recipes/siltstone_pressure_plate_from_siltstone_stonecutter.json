@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:siltstone"
+      },
+      "result": "rankine:siltstone_pressure_plate",
+      "count": 1
+}

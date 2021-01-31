@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:quartzite"
+        }
+      },
+      "result": {
+        "item": "rankine:quartzite_wall",
+        "count": 6
+      }
+    }

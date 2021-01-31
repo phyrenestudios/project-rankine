@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:polished_breccia"
       },
-      "result": "rankine:breccia_bricks_vertical_slab",
+      "result": "rankine:polished_breccia_vertical_slab",
       "count": 2
 }

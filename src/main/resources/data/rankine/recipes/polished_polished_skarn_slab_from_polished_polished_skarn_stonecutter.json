@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:polished_polished_skarn"
+      },
+      "result": "rankine:polished_skarn_bricks_slab",
+      "count": 2
+}

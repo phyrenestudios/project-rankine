@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:polished_black_marble_bricks"
+      },
+      "result": "rankine:black_marble_bricks_bricks_slab",
+      "count": 2
+}

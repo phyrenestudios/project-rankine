@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:troctolite_bricks"
+        }
+      },
+      "result": {
+        "item": "rankine:troctolite_bricks_vertical_slab",
+        "count": 6
+      }
+}

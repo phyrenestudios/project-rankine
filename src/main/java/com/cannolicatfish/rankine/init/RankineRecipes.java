@@ -1,13 +1,11 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.items.alloys.*;
-import com.cannolicatfish.rankine.items.pendants.*;
 import com.cannolicatfish.rankine.items.tools.GoldPanItem;
 import com.cannolicatfish.rankine.potion.ModPotions;
 import com.cannolicatfish.rankine.recipe.*;
@@ -255,7 +253,7 @@ public class RankineRecipes {
             ITag<Item> siliconTag = ItemTags.getCollection().get(new ResourceLocation("rankine:glass_inputs"));
             List<Item> silicon = siliconTag != null  ? siliconTag.getAllElements() : Arrays.asList(RankineBlocks.BLACK_SAND.get().asItem(), Items.SAND, Items.RED_SAND, Items.QUARTZ);
             ITag<Item> limestoneTag = ItemTags.getCollection().get(new ResourceLocation("rankine:limestone_fluxes"));
-            List<Item> limestone = limestoneTag != null ? limestoneTag.getAllElements() : Arrays.asList(RankineBlocks.LIMESTONE.get().asItem(), RankineItems.QUICKLIME.get(), RankineItems.DOLOMITE.get());
+            List<Item> limestone = limestoneTag != null ? limestoneTag.getAllElements() : Arrays.asList(RankineBlocks.TUFA_LIMESTONE.get().asItem(), RankineItems.QUICKLIME.get(), RankineItems.DOLOMITE.get());
             ITag<Item> saltpeterTag = ItemTags.getCollection().get(new ResourceLocation("forge:saltpeter"));
             List<Item> saltpeter = saltpeterTag != null ? saltpeterTag.getAllElements() : Collections.singletonList(RankineItems.SALTPETER.get());
             ITag<Item> phosphorusTag = ItemTags.getCollection().get(new ResourceLocation("forge:phosphorus"));
@@ -664,7 +662,7 @@ public class RankineRecipes {
     public static List<IBeehiveOvenRecipe> getBeehiveOvenRecipes()
     {
         List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
-        recipes.add(beehiveOvenRecipe("limestone_oven_cooking", RankineBlocks.LIMESTONE.get().asItem(),new ItemStack(RankineBlocks.QUICKLIME_BLOCK.get())));
+        recipes.add(beehiveOvenRecipe("limestone_oven_cooking", RankineBlocks.TUFA_LIMESTONE.get().asItem(),new ItemStack(RankineBlocks.QUICKLIME_BLOCK.get())));
         recipes.add(beehiveOvenRecipe("magnesite_oven_cooking", RankineBlocks.MAGNESITE_BLOCK.get().asItem(),new ItemStack(RankineBlocks.MAGNESIA_BLOCK.get())));
         recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", RankineBlocks.SUBBITUMINOUS_COAL_BLOCK.get().asItem(),new ItemStack(RankineBlocks.BITUMINOUS_COAL_BLOCK.get())));
         recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", RankineBlocks.BITUMINOUS_COAL_BLOCK.get().asItem(),new ItemStack(RankineBlocks.COKE_BLOCK.get())));
@@ -708,22 +706,22 @@ public class RankineRecipes {
         recipes.add(crushingRecipe("netherrack_crushing", Blocks.NETHERRACK.asItem(),new ItemStack(RankineItems.PYROXENE.get(), 1), new ItemStack(Items.GOLD_NUGGET), 0.04f));
         recipes.add(crushingRecipe("end_stone_crushing", Blocks.END_STONE.asItem(),new ItemStack(Items.COBBLESTONE, 3), new ItemStack(Items.ENDER_PEARL), 0.05f));
         recipes.add(crushingRecipe("obsidian_crushing",Blocks.OBSIDIAN.asItem(),new ItemStack(RankineItems.PERLITE.get(), 1), new ItemStack(Items.QUARTZ), 0.1f));
-        recipes.add(crushingRecipe("red_granite_crushing", RankineBlocks.RED_GRANITE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
+        recipes.add(crushingRecipe("red_granite_crushing", RankineBlocks.GRAY_GRANITE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
         recipes.add(crushingRecipe("granodiorite_crushing", RankineBlocks.GRANODIORITE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
         recipes.add(crushingRecipe("hornblende_andesite_crushing", RankineBlocks.HORNBLENDE_ANDESITE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.ZIRCON.get()), 0.1f));
-        recipes.add(crushingRecipe("limestone_crushing", RankineBlocks.LIMESTONE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.CALCITE.get()), 0.1f));
-        recipes.add(crushingRecipe("shale_crushing", RankineBlocks.SHALE.get().asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
+        recipes.add(crushingRecipe("limestone_crushing", RankineBlocks.TUFA_LIMESTONE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.CALCITE.get()), 0.1f));
+        recipes.add(crushingRecipe("shale_crushing", RankineBlocks.CARBONACEOUS_SHALE.get().asItem(), new ItemStack(Items.CLAY_BALL,2), new ItemStack(Items.SAND,1),0.5f));
         recipes.add(crushingRecipe("anorthosite_crushing", RankineBlocks.ANORTHOSITE.get().asItem(),new ItemStack(Items.COBBLESTONE, 1), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
         recipes.add(crushingRecipe("ironstone_crushing", RankineBlocks.IRONSTONE.get().asItem(),new ItemStack(Items.IRON_NUGGET, 2),new ItemStack(RankineItems.TIGER_IRON.get()), 0.05f));
         recipes.add(crushingRecipe("tholeiitic_basalt_crushing", RankineBlocks.THOLEIITIC_BASALT.get().asItem(), new ItemStack(RankineItems.FELDSPAR.get(),3), new ItemStack(RankineItems.OLIVINE.get(),1),0.05f));
         recipes.add(crushingRecipe("rhyolite_crushing", RankineBlocks.RHYOLITE.get().asItem(), new ItemStack(Items.COBBLESTONE,1), new ItemStack(RankineItems.FELDSPAR.get()),0.1f));
-        recipes.add(crushingRecipe("marble_crushing", RankineBlocks.MARBLE.get().asItem(), new ItemStack(Items.COBBLESTONE,1), new ItemStack(Items.QUARTZ),0.1f));
+        recipes.add(crushingRecipe("marble_crushing", RankineBlocks.WHITE_MARBLE.get().asItem(), new ItemStack(Items.COBBLESTONE,1), new ItemStack(Items.QUARTZ),0.1f));
         recipes.add(crushingRecipe("gneiss_crushing", RankineBlocks.GNEISS.get().asItem(),new ItemStack(Items.COBBLESTONE,1), new ItemStack(Items.QUARTZ), 0.1f));
         recipes.add(crushingRecipe("pumice_crushing", RankineBlocks.PUMICE.get().asItem(),new ItemStack(RankineItems.POZZOLAN.get(), 2), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
         recipes.add(crushingRecipe("scoria_crushing", RankineBlocks.SCORIA.get().asItem(),new ItemStack(RankineItems.POZZOLAN.get(), 2), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
         recipes.add(crushingRecipe("slate_crushing", RankineBlocks.SLATE.get().asItem(),new ItemStack(Items.CLAY_BALL, 2), new ItemStack(Items.QUARTZ), 0.1f));
-        recipes.add(crushingRecipe("gabbro_crushing", RankineBlocks.GABBRO.get().asItem(),new ItemStack(Items.COBBLESTONE,1), new ItemStack(RankineItems.PYROXENE.get()), 0.1f));
-        recipes.add(crushingRecipe("schist_crushing", RankineBlocks.SCHIST.get().asItem(),new ItemStack(Items.COBBLESTONE,1), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
+        recipes.add(crushingRecipe("gabbro_crushing", RankineBlocks.PYROXENE_GABBRO.get().asItem(),new ItemStack(Items.COBBLESTONE,1), new ItemStack(RankineItems.PYROXENE.get()), 0.1f));
+        recipes.add(crushingRecipe("schist_crushing", RankineBlocks.MICA_SCHIST.get().asItem(),new ItemStack(Items.COBBLESTONE,1), new ItemStack(RankineItems.FELDSPAR.get()), 0.1f));
         recipes.add(crushingRecipe("breccia_crushing", RankineBlocks.BRECCIA.get().asItem(),new ItemStack(Items.COBBLESTONE,1), new ItemStack(RankineItems.DOLOMITE.get()), 0.1f));
         recipes.add(crushingRecipe("peridotite_crushing", RankineBlocks.PERIDOTITE.get().asItem(), new ItemStack(RankineItems.PYROXENE.get(),2), new ItemStack(RankineItems.OLIVINE.get(),1),0.1f));
         recipes.add(crushingRecipe("komatiite_crushing", RankineBlocks.KOMATIITE.get().asItem(), new ItemStack(RankineItems.PYROXENE.get(),2), new ItemStack(RankineItems.MAGNESIA.get(),1),0.1f));
@@ -734,7 +732,7 @@ public class RankineRecipes {
         recipes.add(crushingRecipe("ferropericlase_crushing", RankineBlocks.FERROPERICLASE.get().asItem(), new ItemStack(RankineItems.MAGNESIA.get(),1), new ItemStack(RankineItems.MAGNETITE.get(),1),0.1f));
         recipes.add(crushingRecipe("perovskite_crushing", RankineBlocks.PEROVSKITE.get().asItem(), new ItemStack(RankineItems.CALCIUM_SILICATE.get(),1), new ItemStack(RankineItems.MAGNETITE.get(),1),0.1f));
         recipes.add(crushingRecipe("andesitic_tuff_crushing", RankineBlocks.ANDESITIC_TUFF.get().asItem(),new ItemStack(RankineBlocks.HORNBLENDE_ANDESITE.get(), 1), new ItemStack(RankineItems.CALCITE.get()), 0.15f));
-        recipes.add(crushingRecipe("tholeiitic_basaltic_tuff_crushing", RankineBlocks.THOLEIITIC_BASALTIC_TUFF.get().asItem(),new ItemStack(RankineBlocks.THOLEIITIC_BASALT.get(), 1), new ItemStack(Items.NAUTILUS_SHELL), 0.01f));
+        recipes.add(crushingRecipe("tholeiitic_basaltic_tuff_crushing", RankineBlocks.BASALTIC_TUFF.get().asItem(),new ItemStack(RankineBlocks.THOLEIITIC_BASALT.get(), 1), new ItemStack(Items.NAUTILUS_SHELL), 0.01f));
         recipes.add(crushingRecipe("rhyolitic_tuff_crushing", RankineBlocks.RHYOLITIC_TUFF.get().asItem(),new ItemStack(RankineBlocks.RHYOLITE.get(), 1), new ItemStack(RankineItems.OPAL.get()), 0.01f));
         recipes.add(crushingRecipe("phosphorite_crushing", RankineBlocks.PHOSPHORITE.get().asItem(),new ItemStack(RankineItems.PHOSPHORUS.get(), 1), new ItemStack(RankineItems.PHOSPHORUS.get()), 0.1f));
 
@@ -752,7 +750,7 @@ public class RankineRecipes {
         recipes.add(crushingRecipe("pyrolusite_ore_crushing", RankineBlocks.PYROLUSITE_ORE.get().asItem(), new ItemStack(RankineItems.PYROLUSITE.get(),1), new ItemStack(RankineItems.TANTALITE.get(),1),0.05f));
         recipes.add(crushingRecipe("bismite_ore_crushing", RankineBlocks.BISMUTHINITE_ORE.get().asItem(), new ItemStack(RankineItems.BISMUTHINITE.get(),1), new ItemStack(RankineItems.WOLFRAMITE.get(),1),0.05f));
         recipes.add(crushingRecipe("vanadinite_ore_crushing", RankineBlocks.VANADINITE_ORE.get().asItem(), new ItemStack(RankineItems.VANADINITE.get(),1), new ItemStack(RankineItems.GALENA.get(),1),0.1f));
-        recipes.add(crushingRecipe("ilmenite_ore_crushing", RankineBlocks.ILMENITE_ORE.get().asItem(), new ItemStack(RankineItems.TITANIA.get(),1), new ItemStack(RankineItems.MALACHITE.get(),1),0.1f));
+        recipes.add(crushingRecipe("ilmenite_ore_crushing", RankineBlocks.ILMENITE_ORE.get().asItem(), new ItemStack(RankineItems.ILMENITE.get(),1), new ItemStack(RankineItems.MALACHITE.get(),1),0.1f));
         recipes.add(crushingRecipe("molybdenite_ore_crushing", RankineBlocks.MOLYBDENITE_ORE.get().asItem(), new ItemStack(RankineItems.MOLYBDENITE.get(),1), new ItemStack(RankineItems.RHENIUM_NUGGET.get(),1),0.1f));
         recipes.add(crushingRecipe("chromite_ore_crushing", RankineBlocks.CHROMITE_ORE.get().asItem(), new ItemStack(RankineItems.CHROMITE.get(),1), new ItemStack(RankineItems.MAGNETITE.get(),1),0.1f));
         recipes.add(crushingRecipe("celestine_ore_crushing", RankineBlocks.CELESTINE_ORE.get().asItem(), new ItemStack(RankineItems.CELESTINE.get(),1), new ItemStack(RankineItems.SALT.get(),1),0.1f));

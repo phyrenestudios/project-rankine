@@ -1,6 +1,6 @@
 {
-                "parent": "block/button",
-                "textures": {
-                "texture": "rankine:block/quartz_sandstone"
-                }
-                }
+      "parent": "block/button",
+      "textures": {
+        "texture": "rankine:block/quartz_sandstone"
+      }
+    }

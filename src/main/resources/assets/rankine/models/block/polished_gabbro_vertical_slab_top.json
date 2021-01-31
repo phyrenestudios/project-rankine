@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab_top",
-  "textures": {
-    "bottom": "rankine:block/polished_gabbro",
-    "top": "rankine:block/polished_gabbro",
-    "side": "rankine:block/polished_gabbro"
-  }
-}

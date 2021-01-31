@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:polished_mariposte"
+      },
+      "result": "rankine:polished_mariposte_stairs",
+      "count": 1
+    }

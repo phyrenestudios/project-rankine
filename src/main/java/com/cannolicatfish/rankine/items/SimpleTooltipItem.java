@@ -29,13 +29,13 @@ public class SimpleTooltipItem extends Item {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if (Screen.hasShiftDown()) {
+     //   if (Screen.hasShiftDown()) {
             for (String s : tip) {
                 tooltip.add(new StringTextComponent(s).mergeStyle(TextFormatting.GRAY));
             }
-        } else {
-            tooltip.add(new StringTextComponent("Hold shift for mineral information...").mergeStyle(TextFormatting.GRAY));
-        }
+    //    } else {
+   //         tooltip.add(new StringTextComponent("Hold shift for information...").mergeStyle(TextFormatting.GRAY));
+ //       }
 
     }
 }

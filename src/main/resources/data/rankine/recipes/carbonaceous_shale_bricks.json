@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#m#",
+        "m#m",
+        "#m#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:carbonaceous_shale"
+        },
+        "m": {
+          "item": "rankine:mortar"
+        }
+      },
+      "result": {
+        "item": "rankine:carbonaceous_shale_bricks",
+        "count": 6
+      }
+    }

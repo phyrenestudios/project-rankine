@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/limestone",
-        "top": "rankine:block/limestone",
-        "side": "rankine:block/limestone"
-      }
-    }

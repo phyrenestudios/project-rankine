@@ -1,0 +1,6 @@
+{
+        "parent": "block/cube_all",
+        "textures": {
+        "all": "rankine:block/pyroxene_gabbro_bricks"
+        }
+    }

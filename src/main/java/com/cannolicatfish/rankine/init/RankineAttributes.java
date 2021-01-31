@@ -18,8 +18,9 @@ public class RankineAttributes {
     public static final AttributeModifier SNOW_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa8"), "rankine:snow_ms", Config.MOVEMENT_SNOW.get(), AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier DUNE_WALKER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa9"), "rankine:dune_walker", 0.1, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier SNOW_DRIFTER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb0"), "rankine:snowshoes", 0.1, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier SPEED_PENDANT_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb1"), "rankine:speed_pendant_ms", 0.075, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier HEALTH_PENDANT = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb2"), "rankine:health_pendant_ms", 20.0, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier SPEED_SKATER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb1"), "rankine:speed_skater", 0.1, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier SPEED_PENDANT_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb2"), "rankine:speed_pendant_ms", 0.075, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier HEALTH_PENDANT = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb3"), "rankine:health_pendant_ms", 20.0, AttributeModifier.Operation.ADDITION);
 
 
 }

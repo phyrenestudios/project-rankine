@@ -114,8 +114,8 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:titania",
-      "anchor": "titania",
+      "item": "rankine:ilmenite",
+      "anchor": "ilmenite",
       "link_recipe": true,
       "text": "$(l)Source:$() Obtained from $(l:exploration/ores#ilmenite_ore)Ilmenite Ore$() through crushing. $(br2)$(l)Uses:$() Smelted in a blast furnace to yield titanium ingots."
     },

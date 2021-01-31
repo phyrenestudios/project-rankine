@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:dolostone"
+        }
+      ],
+      "result": {
+        "item": "rankine:dolostone_button"
+      }
+    }

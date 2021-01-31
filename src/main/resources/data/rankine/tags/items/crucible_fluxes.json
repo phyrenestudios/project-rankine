@@ -8,7 +8,7 @@
     "#minecraft:coals",
     "#forge:coke",
     "#forge:ingots/iron",
-    "rankine:limestone",
+    "#forge:stone/limestone",
     "rankine:quicklime",
     "rankine:dolomite",
     "rankine:borax",

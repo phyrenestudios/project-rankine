@@ -1,8 +1,0 @@
-{
-      "parent": "block/stairs",
-      "textures": {
-        "bottom": "rankine:block/zircon_refractory_bricks",
-        "top": "rankine:block/zircon_refractory_bricks",
-        "side": "rankine:block/zircon_refractory_bricks"
-      }
-    }

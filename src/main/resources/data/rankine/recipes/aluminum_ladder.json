@@ -10,12 +10,12 @@
   {
     "a":
     {
-      "item": "rankine:aluminum_ingot"
+      "tag": "forge:ingots/aluminum"
     }
   },
   "result":
   {
     "item": "rankine:aluminum_ladder",
-    "count": 5
+    "count": 8
   }
 }

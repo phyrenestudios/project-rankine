@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:skarn"
+        }
+      ],
+      "result": {
+        "item": "rankine:skarn_button"
+      }
+    }

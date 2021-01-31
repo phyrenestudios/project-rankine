@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_limestone",
-        "top": "rankine:block/polished_limestone",
-        "side": "rankine:block/polished_limestone"
-      }
-    }

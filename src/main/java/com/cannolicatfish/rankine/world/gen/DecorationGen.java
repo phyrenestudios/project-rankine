@@ -39,8 +39,9 @@ public class DecorationGen
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getLocalModificationFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> LocalModifications = new ArrayList<>();
-
-        LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        if (Config.METEORITE_GEN.get()) {
+            LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
         //LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.VOLCANO, getBiomeNamesFromCategory(Collections.emptyList(),false)));
         LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, getBiomeNamesFromCategory(Collections.emptyList(),false)));
 

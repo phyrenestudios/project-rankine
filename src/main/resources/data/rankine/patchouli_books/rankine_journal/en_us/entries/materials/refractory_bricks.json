@@ -27,15 +27,15 @@
     {
       "type": "crafting",
       "title": "Magnesium RB",
-      "recipe": "rankine:magnesium_refractory_brick",
-      "recipe2": "rankine:magnesium_refractory_bricks",
+      "recipe": "rankine:high_refractory_brick",
+      "recipe2": "rankine:high_refractory_bricks",
       "text": "Bricks can be crafted back into two individual brick (shapeless)."
     },
     {
       "type": "crafting",
       "title": "Zircon RB",
-      "recipe": "rankine:zircon_refractory_brick",
-      "recipe2": "rankine:zircon_refractory_bricks",
+      "recipe": "rankine:ultra_high_refractory_brick",
+      "recipe2": "rankine:ultra_high_refractory_bricks",
       "text": "Bricks can be crafted back into two individual brick (shapeless)."
     }
   ]

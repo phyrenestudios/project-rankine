@@ -1,0 +1,8 @@
+{
+      "parent": "block/stairs",
+      "textures": {
+        "bottom": "rankine:block/carbonaceous_shale",
+        "top": "rankine:block/carbonaceous_shale",
+        "side": "rankine:block/carbonaceous_shale"
+      }
+    }

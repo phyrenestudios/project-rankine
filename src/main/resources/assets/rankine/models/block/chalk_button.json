@@ -1,6 +1,6 @@
 {
-                "parent": "block/button",
-                "textures": {
-                "texture": "rankine:block/chalk"
-                }
-                }
+      "parent": "block/button",
+      "textures": {
+        "texture": "rankine:block/chalk"
+      }
+    }

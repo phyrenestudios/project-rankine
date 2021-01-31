@@ -1,6 +1,6 @@
 {
-                "parent": "block/pressure_plate_down",
-                "textures": {
-                "texture": "rankine:block/black_dacite"
-                }
-                }
+      "parent": "block/pressure_plate_down",
+      "textures": {
+        "texture": "rankine:block/black_dacite"
+      }
+    }
