@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:troctolite"
+        }
+      },
+      "result": {
+        "item": "rankine:troctolite_slab",
+        "count": 6
+      }
+}

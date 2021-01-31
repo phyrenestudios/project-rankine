@@ -1,0 +1,8 @@
+{
+  "parent": "rankine:block/vertical_slab",
+  "textures": {
+    "bottom": "rankine:block/polished_tufa_limestone",
+    "top": "rankine:block/polished_tufa_limestone",
+    "side": "rankine:block/polished_tufa_limestone"
+  }
+}

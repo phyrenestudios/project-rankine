@@ -95,8 +95,8 @@ public class JEIRankinePlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), AlloyRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MAGNESIUM_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ZIRCON_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()), PistonCrusherRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), TripleAlloyRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);

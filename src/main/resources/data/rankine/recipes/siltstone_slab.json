@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:siltstone"
+        }
+      },
+      "result": {
+        "item": "rankine:siltstone_slab",
+        "count": 6
+      }
+}

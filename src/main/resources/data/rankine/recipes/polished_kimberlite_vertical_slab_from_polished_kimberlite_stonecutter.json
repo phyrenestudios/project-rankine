@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:polished_kimberlite"
       },
-      "result": "rankine:kimberlite_bricks_vertical_slab",
+      "result": "rankine:polished_kimberlite_vertical_slab",
       "count": 2
 }

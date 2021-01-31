@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:scoria"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:scoria"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_scoria",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_scoria",
-    "count": 4
-  }
-	}

@@ -4,15 +4,20 @@ import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.compatibility.TerraForged;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
@@ -21,44 +26,35 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         super(configFactoryIn);
     }
 
+    public static WeightedCollection<BlockState> intrusionCollection(){
+        WeightedCollection<BlockState> col = new WeightedCollection<>();
+        for (int i = 0; i < Config.OVERWORLD_INTRUSION_LIST.get().size(); i+=2) {
+            try {
+                col.add(Integer.parseInt(Config.OVERWORLD_INTRUSION_LIST.get().get(i+1)), ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Config.OVERWORLD_INTRUSION_LIST.get().get(i))).getDefaultState());
+            }
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return col;
+    }
+
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
 
+        BlockState INTRUSION;
         float CHANCE = rand.nextFloat();
-        BlockState INTRUSION = null;
-
+        int radius = Config.OVERWORLD_INTRUSION_RADIUS.get() - rand.nextInt(3);
         int startY = 0;
-        int endY = 0;
-        int radius = 0;
+        int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
 
-        if (TerraForged.isInstalled()) {
-            if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get()) {
+
+        if (CHANCE < Config.OVERWORLD_INTRUSION_CHANCE.get()) {
+            if (TerraForged.isInstalled()) {
                 INTRUSION = RankineBlocks.KIMBERLITE.get().getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-                radius = 6 - rand.nextInt(2);
+            } else {
+                INTRUSION = intrusionCollection().getRandomElement();
             }
-        } else {
-            if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get()) {
-                INTRUSION = RankineBlocks.KIMBERLITE.get().getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4) {
-                INTRUSION = RankineBlocks.GRANODIORITE.get().getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*2) {
-                INTRUSION = Blocks.DIORITE.getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*3) {
-                INTRUSION = Blocks.GRANITE.getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            } else if (CHANCE < Config.KIMBERLITE_INTRUSION_CHANCE.get() + Config.OVERWORLD_INTRUSION_CHANCE.get() / 4*4) {
-                INTRUSION = RankineBlocks.RED_GRANITE.get().getDefaultState();
-                endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
-            }
-            radius = 6 - rand.nextInt(3);
-        }
-
-
-        if (INTRUSION!= null) {
             for (int y = startY; y <= endY; ++y) {
                 for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-radius, y - 1, -radius), pos.add(radius, y - 1, radius))) {
                     if (blockpos.distanceSq(new BlockPos(pos.getX(), y, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {

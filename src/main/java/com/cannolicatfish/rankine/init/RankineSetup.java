@@ -15,6 +15,11 @@ public class RankineSetup {
         public ItemStack createIcon() { return new ItemStack(RankineItems.NIOBIUM_INGOT.get()); }
     };
 
+    public ItemGroup rankineElements = new ItemGroup("rankine_elements") {
+        @Override
+        public ItemStack createIcon() { return new ItemStack(RankineItems.ELEMENT.get()); }
+    };
+
     public ItemGroup rankineTools = new ItemGroup("rankine_misc") {
         @Override
         public ItemStack createIcon() {

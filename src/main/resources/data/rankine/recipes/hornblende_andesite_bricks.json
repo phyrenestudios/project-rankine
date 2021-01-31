@@ -1,20 +1,20 @@
 {
-          "type": "minecraft:crafting_shaped",
-          "pattern": [
-                "bmb",
-                "mbm",
-                "bmb"
-          ],
-          "key": {
-                "b": {
-                  "item": "rankine:hornblende_andesite"
-                },
-                "m": {
-                  "item": "rankine:mortar"
-                }
-          },
-          "result": {
-                "item": "rankine:hornblende_andesite_bricks",
-                "count": 6
-          }
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#m#",
+        "m#m",
+        "#m#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:hornblende_andesite"
+        },
+        "m": {
+          "item": "rankine:mortar"
         }
+      },
+      "result": {
+        "item": "rankine:hornblende_andesite_bricks",
+        "count": 6
+      }
+    }

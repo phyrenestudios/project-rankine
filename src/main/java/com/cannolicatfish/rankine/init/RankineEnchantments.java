@@ -44,4 +44,6 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:snow_drifter")
     public static Enchantment SNOW_DRIFTER;
 
+    @ObjectHolder("rankine:speed_skater")
+    public static Enchantment SPEED_SKATER;
 }

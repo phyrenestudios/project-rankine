@@ -35,13 +35,13 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:magnesium_beehive_oven_pit",
-      "text": "1.5x speed. Upgrade the surrounding bricks to magnesium refractory bricks."
+      "recipe": "rankine:high_beehive_oven_pit",
+      "text": "1.5x speed. Upgrade the surrounding bricks to high refractory bricks."
     },
     {
       "type": "crafting",
-      "recipe": "rankine:zircon_beehive_oven_pit",
-      "text": "2.0x speed. Upgrade the surrounding bricks to zircon refractory bricks."
+      "recipe": "rankine:ultra_high_beehive_oven_pit",
+      "text": "2.0x speed. Upgrade the surrounding bricks to ultra_high refractory bricks."
     }
   ]
 }

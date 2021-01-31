@@ -21,7 +21,7 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:tholeiitic_basaltic_tuff",
+      "item": "rankine:basaltic_tuff",
       "link_recipe": true,
       "text": "Found in layers of $(l:exploration/stones#tholeiitic_basalt)Tholeiitic Basalt$()."
     },

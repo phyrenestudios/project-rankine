@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "rankine:block/zircon_beehive_oven",
-        "front": "rankine:block/zircon_refractory_bricks",
-        "side": "rankine:block/zircon_refractory_bricks"
-    }
-}

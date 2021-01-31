@@ -1,0 +1,8 @@
+{
+  "variants": {
+"variants": {
+    "type=bottom": { "model": "rankine:block/phyllite_bricks_bricks_slab" },
+    "type=top": { "model": "rankine:block/phyllite_bricks_bricks_slab_top" },
+    "type=double": { "model": "rankine:block/phyllite_bricks_bricks" }
+    }
+}

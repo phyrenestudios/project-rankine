@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bmb",
+    "mbm",
+    "bmb"
+  ],
+  "key": {
+    "b": {
+      "item": "rankine:high_refractory_brick"
+    },
+    "m": {
+      "item": "rankine:mortar"
+    }
+  },
+  "result": {
+    "item": "rankine:high_refractory_bricks",
+    "count": 2
+  }
+}

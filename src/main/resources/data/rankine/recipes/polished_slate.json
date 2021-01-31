@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:slate"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:slate"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_slate",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_slate",
-    "count": 4
-  }
-	}

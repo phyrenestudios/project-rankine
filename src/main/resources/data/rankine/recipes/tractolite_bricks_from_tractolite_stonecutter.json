@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:tractolite"
+      },
+      "result": "rankine:tractolite_bricks",
+      "count": 1
+    }

@@ -1,6 +1,6 @@
 {
-                "variants": {
-                "powered=false": { "model": "rankine:block/mudstone_pressure_plate" },
-                "powered=true": { "model": "rankine:block/mudstone_pressure_plate_down" }
-                }
-                }
+      "variants": {
+        "powered=false": { "model": "rankine:block/mudstone_pressure_plate" },
+        "powered=true": { "model": "rankine:block/mudstone_pressure_plate_down" }
+      }
+    }

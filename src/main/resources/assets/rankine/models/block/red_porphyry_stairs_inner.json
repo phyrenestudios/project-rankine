@@ -1,0 +1,8 @@
+{
+      "parent": "block/inner_stairs",
+      "textures": {
+        "bottom": "rankine:block/red_porphyry",
+        "top": "rankine:block/red_porphyry",
+        "side": "rankine:block/red_porphyry"
+      }
+    }

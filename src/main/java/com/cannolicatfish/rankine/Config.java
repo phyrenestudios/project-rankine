@@ -114,12 +114,18 @@ public class Config {
     public static ForgeConfigSpec.IntValue BEDROCK_LAYERS;
     public static ForgeConfigSpec.IntValue NOISE_SCALE;
     public static ForgeConfigSpec.IntValue NOISE_OFFSET;
-    public static ForgeConfigSpec.IntValue METEOR_CHANCE;
+    public static ForgeConfigSpec.IntValue METEORITE_CHANCE;
+    public static ForgeConfigSpec.BooleanValue METEORITE_GEN;
+    public static ForgeConfigSpec.BooleanValue NETHER_INTRUSION_GEN;
     public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
     public static ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
-    public static ForgeConfigSpec.BooleanValue END_METEORITE;
-    public static ForgeConfigSpec.DoubleValue KIMBERLITE_INTRUSION_CHANCE;
+    public static ForgeConfigSpec.BooleanValue OVERWORLD_STONE_LAYERS;
+    public static ForgeConfigSpec.BooleanValue NETHER_STONE_LAYERS;
+    public static ForgeConfigSpec.BooleanValue END_STONE_LAYERS;
     public static ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_CHANCE;
+    public static ForgeConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
+    public static ForgeConfigSpec.ConfigValue<List<String>> NETHER_INTRUSION_LIST;
+    public static ForgeConfigSpec.IntValue NETHER_INTRUSION_RADIUS;
     public static ForgeConfigSpec.DoubleValue NETHER_INTRUSION_CHANCE;
     public static ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
     public static ForgeConfigSpec.IntValue NUGGET_DISTANCE;
@@ -685,14 +691,27 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<List<String>> CELESTINE_BLOCK_LIST;
     public static ForgeConfigSpec.ConfigValue<List<String>> CELESTINE_ORE_DIMENSION_LIST;
 
+    public static ForgeConfigSpec.ConfigValue<List<String>> OVERWORLD_INTRUSION_LIST;
     public static ForgeConfigSpec.ConfigValue<List<String>> OCEAN_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> MUSHROOM_STONE_LIST;
     public static ForgeConfigSpec.ConfigValue<List<String>> DESERT_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> MESA_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> SAVANNA_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> JUNGLE_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> PLAINS_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> SWAMP_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> FOREST_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> ICY_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> MOUNTAIN_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> RIVER_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> BEACH_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> DEFAULT_STONE_LIST;
+    public static ForgeConfigSpec.ConfigValue<List<String>> NETHER_STONE_LIST;
 
 
-
-    public static ForgeConfigSpec.IntValue RED_GRANITE_HL;
-    public static ForgeConfigSpec.DoubleValue RED_GRANITE_HARD;
-    public static ForgeConfigSpec.DoubleValue RED_GRANITE_RESIST;
+    public static ForgeConfigSpec.IntValue GRAY_GRANITE_HL;
+    public static ForgeConfigSpec.DoubleValue GRAY_GRANITE_HARD;
+    public static ForgeConfigSpec.DoubleValue GRAY_GRANITE_RESIST;
     public static ForgeConfigSpec.IntValue GRANODIORITE_HL;
     public static ForgeConfigSpec.DoubleValue GRANODIORITE_HARD;
     public static ForgeConfigSpec.DoubleValue GRANODIORITE_RESIST;
@@ -702,54 +721,75 @@ public class Config {
     public static ForgeConfigSpec.IntValue THOLEIITIC_BASALT_HL;
     public static ForgeConfigSpec.DoubleValue THOLEIITIC_BASALT_HARD;
     public static ForgeConfigSpec.DoubleValue THOLEIITIC_BASALT_RESIST;
-    public static ForgeConfigSpec.IntValue GABBRO_HL;
-    public static ForgeConfigSpec.DoubleValue GABBRO_HARD;
-    public static ForgeConfigSpec.DoubleValue GABBRO_RESIST;
+    public static ForgeConfigSpec.IntValue PYROXENE_GABBRO_HL;
+    public static ForgeConfigSpec.DoubleValue PYROXENE_GABBRO_HARD;
+    public static ForgeConfigSpec.DoubleValue PYROXENE_GABBRO_RESIST;
     public static ForgeConfigSpec.IntValue ANORTHOSITE_HL;
     public static ForgeConfigSpec.DoubleValue ANORTHOSITE_HARD;
     public static ForgeConfigSpec.DoubleValue ANORTHOSITE_RESIST;
     public static ForgeConfigSpec.IntValue RHYOLITE_HL;
     public static ForgeConfigSpec.DoubleValue RHYOLITE_HARD;
     public static ForgeConfigSpec.DoubleValue RHYOLITE_RESIST;
-    public static ForgeConfigSpec.IntValue LIMESTONE_HL;
-    public static ForgeConfigSpec.DoubleValue LIMESTONE_HARD;
-    public static ForgeConfigSpec.DoubleValue LIMESTONE_RESIST;
-    public static ForgeConfigSpec.IntValue MARBLE_HL;
-    public static ForgeConfigSpec.DoubleValue MARBLE_HARD;
-    public static ForgeConfigSpec.DoubleValue MARBLE_RESIST;
-    public static ForgeConfigSpec.IntValue GNEISS_HL;
-    public static ForgeConfigSpec.DoubleValue GNEISS_HARD;
-    public static ForgeConfigSpec.DoubleValue GNEISS_RESIST;
-    public static ForgeConfigSpec.IntValue SCHIST_HL;
-    public static ForgeConfigSpec.DoubleValue SCHIST_HARD;
-    public static ForgeConfigSpec.DoubleValue SCHIST_RESIST;
-    public static ForgeConfigSpec.IntValue SLATE_HL;
-    public static ForgeConfigSpec.DoubleValue SLATE_HARD;
-    public static ForgeConfigSpec.DoubleValue SLATE_RESIST;
-    public static ForgeConfigSpec.IntValue SHALE_HL;
-    public static ForgeConfigSpec.DoubleValue SHALE_HARD;
-    public static ForgeConfigSpec.DoubleValue SHALE_RESIST;
-    public static ForgeConfigSpec.IntValue IRONSTONE_HL;
-    public static ForgeConfigSpec.DoubleValue IRONSTONE_HARD;
-    public static ForgeConfigSpec.DoubleValue IRONSTONE_RESIST;
-    public static ForgeConfigSpec.IntValue BRECCIA_HL;
-    public static ForgeConfigSpec.DoubleValue BRECCIA_HARD;
-    public static ForgeConfigSpec.DoubleValue BRECCIA_RESIST;
-    public static ForgeConfigSpec.IntValue PUMICE_HL;
-    public static ForgeConfigSpec.DoubleValue PUMICE_HARD;
-    public static ForgeConfigSpec.DoubleValue PUMICE_RESIST;
-    public static ForgeConfigSpec.IntValue SCORIA_HL;
-    public static ForgeConfigSpec.DoubleValue SCORIA_HARD;
-    public static ForgeConfigSpec.DoubleValue SCORIA_RESIST;
+    public static ForgeConfigSpec.IntValue COMENDITE_HL;
+    public static ForgeConfigSpec.DoubleValue COMENDITE_HARD;
+    public static ForgeConfigSpec.DoubleValue COMENDITE_RESIST;
+    public static ForgeConfigSpec.IntValue BLACK_DACITE_HL;
+    public static ForgeConfigSpec.DoubleValue BLACK_DACITE_HARD;
+    public static ForgeConfigSpec.DoubleValue BLACK_DACITE_RESIST;
+    public static ForgeConfigSpec.IntValue RED_DACITE_HL;
+    public static ForgeConfigSpec.DoubleValue RED_DACITE_HARD;
+    public static ForgeConfigSpec.DoubleValue RED_DACITE_RESIST;
+    public static ForgeConfigSpec.IntValue RED_PORPHYRY_HL;
+    public static ForgeConfigSpec.DoubleValue RED_PORPHYRY_HARD;
+    public static ForgeConfigSpec.DoubleValue RED_PORPHYRY_RESIST;
+    public static ForgeConfigSpec.IntValue PURPLE_PORPHYRY_HL;
+    public static ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_HARD;
+    public static ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_RESIST;
     public static ForgeConfigSpec.IntValue PERIDOTITE_HL;
     public static ForgeConfigSpec.DoubleValue PERIDOTITE_HARD;
     public static ForgeConfigSpec.DoubleValue PERIDOTITE_RESIST;
+    public static ForgeConfigSpec.IntValue TROCTOLITE_HL;
+    public static ForgeConfigSpec.DoubleValue TROCTOLITE_HARD;
+    public static ForgeConfigSpec.DoubleValue TROCTOLITE_RESIST;
     public static ForgeConfigSpec.IntValue KIMBERLITE_HL;
     public static ForgeConfigSpec.DoubleValue KIMBERLITE_HARD;
     public static ForgeConfigSpec.DoubleValue KIMBERLITE_RESIST;
     public static ForgeConfigSpec.IntValue KOMATIITE_HL;
     public static ForgeConfigSpec.DoubleValue KOMATIITE_HARD;
     public static ForgeConfigSpec.DoubleValue KOMATIITE_RESIST;
+    public static ForgeConfigSpec.IntValue PUMICE_HL;
+    public static ForgeConfigSpec.DoubleValue PUMICE_HARD;
+    public static ForgeConfigSpec.DoubleValue PUMICE_RESIST;
+    public static ForgeConfigSpec.IntValue SCORIA_HL;
+    public static ForgeConfigSpec.DoubleValue SCORIA_HARD;
+    public static ForgeConfigSpec.DoubleValue SCORIA_RESIST;
+    public static ForgeConfigSpec.IntValue WHITE_MARBLE_HL;
+    public static ForgeConfigSpec.DoubleValue WHITE_MARBLE_HARD;
+    public static ForgeConfigSpec.DoubleValue WHITE_MARBLE_RESIST;
+    public static ForgeConfigSpec.IntValue BLACK_MARBLE_HL;
+    public static ForgeConfigSpec.DoubleValue BLACK_MARBLE_HARD;
+    public static ForgeConfigSpec.DoubleValue BLACK_MARBLE_RESIST;
+    public static ForgeConfigSpec.IntValue GNEISS_HL;
+    public static ForgeConfigSpec.DoubleValue GNEISS_HARD;
+    public static ForgeConfigSpec.DoubleValue GNEISS_RESIST;
+    public static ForgeConfigSpec.IntValue MICA_SCHIST_HL;
+    public static ForgeConfigSpec.DoubleValue MICA_SCHIST_HARD;
+    public static ForgeConfigSpec.DoubleValue MICA_SCHIST_RESIST;
+    public static ForgeConfigSpec.IntValue PHYLLITE_HL;
+    public static ForgeConfigSpec.DoubleValue PHYLLITE_HARD;
+    public static ForgeConfigSpec.DoubleValue PHYLLITE_RESIST;
+    public static ForgeConfigSpec.IntValue SLATE_HL;
+    public static ForgeConfigSpec.DoubleValue SLATE_HARD;
+    public static ForgeConfigSpec.DoubleValue SLATE_RESIST;
+    public static ForgeConfigSpec.IntValue QUARTZITE_HL;
+    public static ForgeConfigSpec.DoubleValue QUARTZITE_HARD;
+    public static ForgeConfigSpec.DoubleValue QUARTZITE_RESIST;
+    public static ForgeConfigSpec.IntValue MARIPOSITE_HL;
+    public static ForgeConfigSpec.DoubleValue MARIPOSITE_HARD;
+    public static ForgeConfigSpec.DoubleValue MARIPOSITE_RESIST;
+    public static ForgeConfigSpec.IntValue SKARN_HL;
+    public static ForgeConfigSpec.DoubleValue SKARN_HARD;
+    public static ForgeConfigSpec.DoubleValue SKARN_RESIST;
     public static ForgeConfigSpec.IntValue RINGWOODITE_HL;
     public static ForgeConfigSpec.DoubleValue RINGWOODITE_HARD;
     public static ForgeConfigSpec.DoubleValue RINGWOODITE_RESIST;
@@ -765,30 +805,33 @@ public class Config {
     public static ForgeConfigSpec.IntValue PEROVSKITE_HL;
     public static ForgeConfigSpec.DoubleValue PEROVSKITE_HARD;
     public static ForgeConfigSpec.DoubleValue PEROVSKITE_RESIST;
+    public static ForgeConfigSpec.IntValue TUFA_LIMESTONE_HL;
+    public static ForgeConfigSpec.DoubleValue TUFA_LIMESTONE_HARD;
+    public static ForgeConfigSpec.DoubleValue TUFA_LIMESTONE_RESIST;
+    public static ForgeConfigSpec.IntValue DOLOSTONE_HL;
+    public static ForgeConfigSpec.DoubleValue DOLOSTONE_HARD;
+    public static ForgeConfigSpec.DoubleValue DOLOSTONE_RESIST;
+    public static ForgeConfigSpec.IntValue CHALK_HL;
+    public static ForgeConfigSpec.DoubleValue CHALK_HARD;
+    public static ForgeConfigSpec.DoubleValue CHALK_RESIST;
+    public static ForgeConfigSpec.IntValue CARBONACEOUS_SHALE_HL;
+    public static ForgeConfigSpec.DoubleValue CARBONACEOUS_SHALE_HARD;
+    public static ForgeConfigSpec.DoubleValue CARBONACEOUS_SHALE_RESIST;
+    public static ForgeConfigSpec.IntValue SILTSTONE_HL;
+    public static ForgeConfigSpec.DoubleValue SILTSTONE_HARD;
+    public static ForgeConfigSpec.DoubleValue SILTSTONE_RESIST;
     public static ForgeConfigSpec.IntValue QUARTZ_SANDSTONE_HL;
     public static ForgeConfigSpec.DoubleValue QUARTZ_SANDSTONE_HARD;
     public static ForgeConfigSpec.DoubleValue QUARTZ_SANDSTONE_RESIST;
     public static ForgeConfigSpec.IntValue ARKOSE_SANDSTONE_HL;
     public static ForgeConfigSpec.DoubleValue ARKOSE_SANDSTONE_HARD;
     public static ForgeConfigSpec.DoubleValue ARKOSE_SANDSTONE_RESIST;
-    public static ForgeConfigSpec.IntValue BLACK_DACITE_HL;
-    public static ForgeConfigSpec.DoubleValue BLACK_DACITE_HARD;
-    public static ForgeConfigSpec.DoubleValue BLACK_DACITE_RESIST;
-    public static ForgeConfigSpec.IntValue RED_DACITE_HL;
-    public static ForgeConfigSpec.DoubleValue RED_DACITE_HARD;
-    public static ForgeConfigSpec.DoubleValue RED_DACITE_RESIST;
     public static ForgeConfigSpec.IntValue MUDSTONE_HL;
     public static ForgeConfigSpec.DoubleValue MUDSTONE_HARD;
     public static ForgeConfigSpec.DoubleValue MUDSTONE_RESIST;
-    public static ForgeConfigSpec.IntValue CHALK_HL;
-    public static ForgeConfigSpec.DoubleValue CHALK_HARD;
-    public static ForgeConfigSpec.DoubleValue CHALK_RESIST;
-    public static ForgeConfigSpec.IntValue PORPHYRY_HL;
-    public static ForgeConfigSpec.DoubleValue PORPHYRY_HARD;
-    public static ForgeConfigSpec.DoubleValue PORPHYRY_RESIST;
-    public static ForgeConfigSpec.IntValue PURPLE_PORPHYRY_HL;
-    public static ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_HARD;
-    public static ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_RESIST;
+    public static ForgeConfigSpec.IntValue BRECCIA_HL;
+    public static ForgeConfigSpec.DoubleValue BRECCIA_HARD;
+    public static ForgeConfigSpec.DoubleValue BRECCIA_RESIST;
 
 
 
@@ -1038,45 +1081,90 @@ public class Config {
 
     private static void setupThirdBlockConfig() {
         COMMON_BUILDER.comment("Bedrock Generation").push("bedrock");
-        FLAT_BEDROCK = COMMON_BUILDER.comment("Generates with a flat bedrock layer (includes the Nether)")
-                .define("flatBedrock",false);
-        BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
-                .defineInRange("bedrockLayers", 1, 0, 5);
+            FLAT_BEDROCK = COMMON_BUILDER.comment("Generates with a flat bedrock layer (includes the Nether)")
+                    .define("flatBedrock",false);
+            BEDROCK_LAYERS = COMMON_BUILDER.comment("Layers of bedrock to generate if flatBedrock is true")
+                    .defineInRange("bedrockLayers", 1, 0, 5);
         COMMON_BUILDER.pop();
 
-        COMMON_BUILDER.comment("Stone Layer Generation").push("layeringNoise");
-        NOISE_SCALE = COMMON_BUILDER.comment("This determines how smooth stone layers generate. Larger values means smoother. Default value is 125.")
-                .defineInRange("noiseScale", 125, 1, 1000);
-        NOISE_OFFSET = COMMON_BUILDER.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically. Default value is 256")
-                .defineInRange("noiseOffset", 256, 0, 16*64);
+
+        COMMON_BUILDER.comment("Overworld Features").push("overworldFeatures");
+            RANKINE_FAUNA = COMMON_BUILDER.comment("Enable/Disable Project Rankine trees and berry bushes in world.")
+                    .define("generateFauna",true);
+            OVERWORLD_STONE_LAYERS = COMMON_BUILDER.comment("Enable stone layer generation in the End.")
+                    .define("overworldStoneGen",true);
+            NOISE_SCALE = COMMON_BUILDER.comment("This determines how smooth stone layers generate. Larger values means smoother. Default value is 125.")
+                    .defineInRange("noiseScale", 125, 1, 1000);
+            NOISE_OFFSET = COMMON_BUILDER.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically. Default value is 256")
+                    .defineInRange("noiseOffset", 256, 0, 16*64);
+            METEORITE_GEN = COMMON_BUILDER.comment("Enable to generate meteorites in the overworld.")
+                    .define("meteoriteGen",true);
+            METEORITE_CHANCE = COMMON_BUILDER.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
+                    .defineInRange("meteoriteChance", 100, 0, 1000);
+            OVERWORLD_INTRUSION_LIST = COMMON_BUILDER.comment("List of blocks to be generated as intrusions. Each block is followed by its weight.")
+                    .define("overworldIntrusionList", new ArrayList<>(Arrays.asList("rankine:kimberlite","1","rankine:gray_granite","1","rankine:granodiorite","1","minecraft:granite","1","minecraft:diorite","1")));
+            OVERWORLD_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for an overworld intrusion to spawn in a chunk. Set to 0 to disable.")
+                    .defineInRange("overworldIntrusionChance", 0.5D, 0.0D, 1.0D);
+            OVERWORLD_INTRUSION_RADIUS = COMMON_BUILDER.comment("Maximum radius of an intrusion")
+                    .defineInRange("overworldIntrusionRadius", 6, 0, 15);
+            DIAMON_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by a diamond ore")
+                    .defineInRange("diamondOreChance", 0.04D, 0.00D, 1.00D);
+            ILMENITE_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by an ilmenite ore")
+                    .defineInRange("ilmeniteOreChance", 0.007D, 0.00D, 1.00D);
+
+
+            COMMON_BUILDER.comment("Stone Layers").push("stoneLayers");
+                OCEAN_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Ocean Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("oceanBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite","rankine:pyroxene_gabbro","rankine:tholeiitic_basalt","rankine:slate","rankine:tufa_limestone","rankine:chalk","rankine:carbonaceous_shale")));
+                MUSHROOM_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Mushroom Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("mushroomBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite","rankine:pyroxene_gabbro","rankine:tholeiitic_basalt","rankine:slate","rankine:tufa_limestone","rankine:chalk","rankine:carbonaceous_shale")));
+                DESERT_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Desert Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("desertBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite","rankine:mica_schist","rankine:rhyolite","rankine:white_marble","rankine:siltstone","rankine:red_dacite","rankine:phyllite","rankine:tufa_limestone","rankine:quartzite","rankine:quartz_sandstone")));
+                MESA_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Mesa Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("mesaBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite","rankine:mica_schist","rankine:comendite","rankine:black_marble","rankine:siltstone","rankine:red_dacite","rankine:phyllite","rankine:dolostone","rankine:anorthosite","rankine:hornblende_andesite")));
+                MOUNTAIN_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Mountain Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("mountainBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:gneiss","rankine:comendite","rankine:black_marble","rankine:black_dacite","rankine:phyllite","rankine:dolostone","rankine:anorthosite","minecraft:andesite","rankine:hornblende_andesite")));
+                JUNGLE_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Jungle Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("jungleBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:gneiss","rankine:rhyolite","rankine:black_marble","rankine:black_dacite","rankine:slate","rankine:tufa_limestone","rankine:carbonaceous_shale","rankine:mudstone","rankine:anorthosite")));
+                BEACH_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Beach Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("beachBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite","rankine:gneiss","rankine:comendite","rankine:white_marble","rankine:breccia","rankine:black_dacite","rankine:slate","rankine:tufa_limestone","rankine:carbonaceous_shale","rankine:anorthosite")));
+                FOREST_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Forest Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("forestBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:gneiss","rankine:rhyolite","rankine:white_marble","rankine:mariposite","rankine:black_dacite","rankine:slate","rankine:tufa_limestone","rankine:carbonaceous_shale","rankine:anorthosite")));
+                RIVER_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in River Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("riverBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:gneiss","rankine:comendite","rankine:white_marble","rankine:siltstone","rankine:black_dacite","rankine:slate","rankine:dolostone","rankine:carbonaceous_shale","rankine:anorthosite")));
+                PLAINS_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Plains Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("plainsBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:mica_schist","rankine:rhyolite","rankine:white_marble","rankine:siltstone","rankine:red_dacite","rankine:slate","rankine:dolostone","rankine:carbonaceous_shale","rankine:anorthosite")));
+                ICY_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Icy Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("icyBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:mica_schist","rankine:rhyolite","rankine:white_marble","rankine:mariposite","rankine:black_dacite","rankine:phyllite","rankine:dolostone","rankine:carbonaceous_shale","rankine:anorthosite")));
+                SWAMP_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Swamp Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("swampBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:mica_schist","rankine:rhyolite","rankine:white_marble","rankine:siltstone","rankine:red_dacite","rankine:slate","rankine:tufa_limestone","rankine:carbonaceous_shale","rankine:mudstone")));
+                SAVANNA_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Savanna Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("savannaBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:mica_schist","rankine:rhyolite","rankine:white_marble","rankine:mariposite","rankine:red_dacite","rankine:phyllite","rankine:tufa_limestone","rankine:carbonaceous_shale","rankine:anorthosite")));
+                DEFAULT_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Default Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
+                        .define("defaultBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:gneiss","rankine:rhyolite","rankine:white_marble","rankine:mariposite","rankine:black_dacite","rankine:slate","rankine:tufa_limestone","rankine:carbonaceous_shale","rankine:anorthosite")));
+            COMMON_BUILDER.pop();
         COMMON_BUILDER.pop();
 
-        COMMON_BUILDER.comment("Meteorite Generation").push("meteorite");
-        METEOR_CHANCE = COMMON_BUILDER.comment("The 1 in X chunks a meteroite will spawn in the Overworld. Set to 0 to disable.")
-                .defineInRange("meteorChance", 100, 0, 1000);
-        END_METEORITE = COMMON_BUILDER.comment("Replaces the bottom of end islands with meteorite and ores")
-                .define("endMeteorite",true);
+
+
+        COMMON_BUILDER.comment("Nether Features").push("netherFeatures");
+            NETHER_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Nether layering. Layers generate from bottom to top. Leave empty to leave it as default gen.")
+                    .define("netherStoneList", new ArrayList<>(Arrays.asList("rankine:black_sand","minecraft:blackstone","rankine:purple_porphyry","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","rankine:red_porphyry")));
+            NETHER_STONE_LAYERS = COMMON_BUILDER.comment("Enable stone layer generation in the Nether.")
+                    .define("netherStoneGen",true);
+            END_STONE_LAYERS = COMMON_BUILDER.comment("Enable stone layer generation in the End.")
+                    .define("endStoneGen",true);
+            NETHER_INTRUSION_RADIUS = COMMON_BUILDER.comment("Maximum radius of an intrusion")
+                    .defineInRange("netherIntrusionRadius", 7, 0, 15);
+            NETHER_INTRUSION_LIST = COMMON_BUILDER.comment("List of blocks to be generated as intrusions. Each block is followed by its weight.")
+                    .define("netherIntrusionList", new ArrayList<>(Arrays.asList("rankine:pumice","1","rankine:scoria","1","rankine:perovskite","1","rankine:bridgmanite","1","rankine:wadsleyite","1","rankine:komatiite","1","rankine:ferropericlase","1","rankine:ringwoodite","1")));
+            NETHER_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for nether intrusions to spawn")
+                    .defineInRange("netherIntrusionChance", 0.15D, 0.00D, 1.00D);
+            INTERSPINIFEX_CHANCE = COMMON_BUILDER.comment("Chance for an komatiite intrusion block to be replaced by an interspinifex ore")
+                    .defineInRange("interspinifexOreChance", 0.07D, 0.00D, 1.00D);
         COMMON_BUILDER.pop();
 
-        COMMON_BUILDER.comment("Intrusion Settings").push("intrusionGen");
-        DIAMON_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by a diamond ore")
-                .defineInRange("diamondOreChance", 0.045D, 0.00D, 1.00D);
-        ILMENITE_CHANCE = COMMON_BUILDER.comment("Chance for an kimberlite intrusion block to be replaced by an ilmenite ore")
-                .defineInRange("ilmeniteOreChance", 0.007D, 0.00D, 1.00D);
-        INTERSPINIFEX_CHANCE = COMMON_BUILDER.comment("Chance for an komatiite intrusion block to be replaced by an interspinifex ore")
-                .defineInRange("interspinifexOreChance", 0.07D, 0.00D, 1.00D);
-        KIMBERLITE_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for kimberlite intrusions to spawn in overworld. Separate chance from overworldIntrusionsChance as the main source of diamond.")
-                .defineInRange("overworldIntrusionChance", 0.1D, 0.00D, 1.00D);
-        OVERWORLD_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for overworld intrusions to spawn (includes granite, red_granite, diorite, granodiorite, porphyry)")
-                .defineInRange("overworldIntrusionChance", 0.4D, 0.00D, 1.00D);
-        NETHER_INTRUSION_CHANCE = COMMON_BUILDER.comment("Chance for nether intrusions to spawn")
-                .defineInRange("netherIntrusionChance", 0.12D, 0.00D, 1.00D);
-        COMMON_BUILDER.pop();
 
-        COMMON_BUILDER.comment("Rankine Fauna Generation").push("rankineFauna");
-        RANKINE_FAUNA = COMMON_BUILDER.comment("Enable/Disable Project Rankine trees and berry bushes in world.")
-                .define("generateFauna",true);
-        COMMON_BUILDER.pop();
 
         COMMON_BUILDER.comment("Nuggets Around Ores").push("oreNuggets");
         NUGGET_CHANCE = COMMON_BUILDER.comment("Chance for a rankine stone block to drop a nugget of a nearby ore.")
@@ -1086,23 +1174,15 @@ public class Config {
         COMMON_BUILDER.pop();
 
 
-        COMMON_BUILDER.comment("Stone Layers").push("stoneLayers");
-        OCEAN_STONE_LIST = COMMON_BUILDER.comment("Blocks to generate in Ocean Biomes. Layers generate from bottom to top.")
-                .define("OceanBlockList", new ArrayList<>(Arrays.asList("rankine:peridotite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:slate","rankine:limestone","rankine:breccia","rankine:shale")));
-        COMMON_BUILDER.pop();
-
-
-
-
 
         COMMON_BUILDER.comment("Stone Properties").push("stoneProperties");
-            COMMON_BUILDER.comment("Red Granite Properties").push("redGranite");
-            RED_GRANITE_HL = COMMON_BUILDER.comment("Harvest Level of Red Granite.")
-                    .defineInRange("redGraniteHL", 0, 0, 10);
-            RED_GRANITE_HARD = COMMON_BUILDER.comment("Hardness of Red Granite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("redGraniteHardness", 2.5D, 0.0D, 100.0D);
-            RED_GRANITE_RESIST = COMMON_BUILDER.comment("Resistance of Red Granite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("redGraniteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Gray Granite Properties").push("GrayGranite");
+            GRAY_GRANITE_HL = COMMON_BUILDER.comment("Harvest Level of Gray Granite.")
+                    .defineInRange("GrayGraniteHL", 0, 0, 10);
+            GRAY_GRANITE_HARD = COMMON_BUILDER.comment("Hardness of Gray Granite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("GrayGraniteHardness", 2.5D, 0.0D, 100.0D);
+            GRAY_GRANITE_RESIST = COMMON_BUILDER.comment("Resistance of Gray Granite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("GrayGraniteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Granodiorite Properties").push("granodiorite");
             GRANODIORITE_HL = COMMON_BUILDER.comment("Harvest Level of Granodiorite.")
@@ -1112,29 +1192,29 @@ public class Config {
             GRANODIORITE_RESIST = COMMON_BUILDER.comment("Resistance of Granodiorite (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("granodioriteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Hornblende Andesite Properties").push("hornblendeAndesite");
+            COMMON_BUILDER.comment("Hornblende Andesite Properties").push("HornblendeAndesite");
             HORNBLENDE_ANDESITE_HL = COMMON_BUILDER.comment("Harvest Level of Hornblende Andesite.")
-                    .defineInRange("hornblendeAndesiteHL", 0, 0, 10);
+                    .defineInRange("HornblendeAndesiteHL", 0, 0, 10);
             HORNBLENDE_ANDESITE_HARD = COMMON_BUILDER.comment("Hardness of Hornblende Andesite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("hornblendeAndesiteHardness", 2.5D, 0.0D, 100.0D);
+                    .defineInRange("HornblendeAndesiteHardness", 2.5D, 0.0D, 100.0D);
             HORNBLENDE_ANDESITE_RESIST = COMMON_BUILDER.comment("Resistance of Hornblende Andesite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("hornblendeAndesiteResistance", 6.0D, 0.00D, 2000.0D);
+                    .defineInRange("HornblendeAndesiteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Tholeiitic Basalt Properties").push("tholeiiticBasalt");
+            COMMON_BUILDER.comment("Tholeiitic Basalt Properties").push("TholeiiticBasalt");
             THOLEIITIC_BASALT_HL = COMMON_BUILDER.comment("Harvest Level of Tholeiitic Basalt.")
-                    .defineInRange("tholeiiticBasaltHL", 0, 0, 10);
+                    .defineInRange("TholeiiticBasaltHL", 0, 0, 10);
             THOLEIITIC_BASALT_HARD = COMMON_BUILDER.comment("Hardness of Tholeiitic Basalt (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("tholeiiticBasaltHardness", 2.5D, 0.0D, 100.0D);
+                    .defineInRange("TholeiiticBasaltHardness", 2.5D, 0.0D, 100.0D);
             THOLEIITIC_BASALT_RESIST = COMMON_BUILDER.comment("Resistance of Tholeiitic Basalt (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("tholeiiticBasaltResistance", 6.0D, 0.00D, 2000.0D);
+                    .defineInRange("TholeiiticBasaltResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Gabbro Properties").push("gabbro");
-            GABBRO_HL = COMMON_BUILDER.comment("Harvest Level of Gabbro.")
-                    .defineInRange("gabbroHL", 0, 0, 10);
-            GABBRO_HARD = COMMON_BUILDER.comment("Hardness of Gabbro (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("gabbroHardness", 2.5D, 0.0D, 100.0D);
-            GABBRO_RESIST = COMMON_BUILDER.comment("Resistance of Gabbro (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("gabbroResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Pyroxene Gabbro Properties").push("PyroxeneGabbro");
+            PYROXENE_GABBRO_HL = COMMON_BUILDER.comment("Harvest Level of Pyroxene Gabbro.")
+                    .defineInRange("PyroxeneGabbroHL", 0, 0, 10);
+            PYROXENE_GABBRO_HARD = COMMON_BUILDER.comment("Hardness of Pyroxene Gabbro (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("PyroxeneGabbroHardness", 2.5D, 0.0D, 100.0D);
+            PYROXENE_GABBRO_RESIST = COMMON_BUILDER.comment("Resistance of Pyroxene Gabbro (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("PyroxeneGabbroResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Anorthosite Properties").push("anorthosite");
             ANORTHOSITE_HL = COMMON_BUILDER.comment("Harvest Level of Anorthosite.")
@@ -1152,21 +1232,109 @@ public class Config {
             RHYOLITE_RESIST = COMMON_BUILDER.comment("Resistance of Rhyolite (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("rhyoliteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Limestone Properties").push("limestone");
-            LIMESTONE_HL = COMMON_BUILDER.comment("Harvest Level of Limestone.")
-                    .defineInRange("limestoneHL", 0, 0, 10);
-            LIMESTONE_HARD = COMMON_BUILDER.comment("Hardness of Limestone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("limestoneHardness", 1.5D, 0.0D, 100.0D);
-            LIMESTONE_RESIST = COMMON_BUILDER.comment("Resistance of Limestone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("limestoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Comendite Properties").push("comendite");
+            COMENDITE_HL = COMMON_BUILDER.comment("Harvest Level of Comendite.")
+                    .defineInRange("comenditeHL", 0, 0, 10);
+            COMENDITE_HARD = COMMON_BUILDER.comment("Hardness of Rhyolite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("comenditeHardness", 2.5D, 0.0D, 100.0D);
+            COMENDITE_RESIST = COMMON_BUILDER.comment("Resistance of Rhyolite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("comenditeResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Marble Properties").push("marble");
-            MARBLE_HL = COMMON_BUILDER.comment("Harvest Level of Marble.")
-                    .defineInRange("marbleHL", 0, 0, 10);
-            MARBLE_HARD = COMMON_BUILDER.comment("Hardness of Marble (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("marbleHardness", 2.5D, 0.0D, 100.0D);
-            MARBLE_RESIST = COMMON_BUILDER.comment("Resistance of Marble (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("marbleResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Black Dacite Properties").push("BlackDacite");
+            BLACK_DACITE_HL = COMMON_BUILDER.comment("Harvest Level of Black Dacite.")
+                    .defineInRange("BlackDaciteHL", 0, 0, 10);
+            BLACK_DACITE_HARD = COMMON_BUILDER.comment("Hardness of Black Dacite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("BlackDaciteHardness", 2.5D, 0.0D, 100.0D);
+            BLACK_DACITE_RESIST = COMMON_BUILDER.comment("Resistance of Black Dacite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("BlackDaciteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Red Dacite Properties").push("RedDacite");
+            RED_DACITE_HL = COMMON_BUILDER.comment("Harvest Level of Red Dacite.")
+                    .defineInRange("RedDaciteHL", 0, 0, 10);
+            RED_DACITE_HARD = COMMON_BUILDER.comment("Hardness of Red Dacite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("RedDaciteHardness", 2.5D, 0.0D, 100.0D);
+            RED_DACITE_RESIST = COMMON_BUILDER.comment("Resistance of Red Dacite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("RedDaciteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Red Porphyry Properties").push("RedPorphyry");
+            RED_PORPHYRY_HL = COMMON_BUILDER.comment("Harvest Level of Red Porphyry.")
+                    .defineInRange("RedPorphyryHL", 0, 0, 10);
+            RED_PORPHYRY_HARD = COMMON_BUILDER.comment("Hardness of Red Porphyry (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("RedPorphyryHardness", 2.5D, 0.0D, 100.0D);
+            RED_PORPHYRY_RESIST = COMMON_BUILDER.comment("Resistance of Red Porphyry (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("RedPorphyryResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Purple Porphyry Properties").push("PurplePorphyry");
+            PURPLE_PORPHYRY_HL = COMMON_BUILDER.comment("Harvest Level of Purple Porphyry.")
+                    .defineInRange("PurplePorphyryHL", 0, 0, 10);
+            PURPLE_PORPHYRY_HARD = COMMON_BUILDER.comment("Hardness of Purple Porphyry (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("PurplePorphyryHardness", 2.5D, 0.0D, 100.0D);
+            PURPLE_PORPHYRY_RESIST = COMMON_BUILDER.comment("Resistance of Purple Porphyry (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("PurplePorphyryResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Peridotite Properties").push("peridotite");
+            PERIDOTITE_HL = COMMON_BUILDER.comment("Harvest Level of Peridotite.")
+                    .defineInRange("peridotiteHL", 0, 0, 10);
+            PERIDOTITE_HARD = COMMON_BUILDER.comment("Hardness of Peridotite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("peridotiteHardness", 2.5D, 0.0D, 100.0D);
+            PERIDOTITE_RESIST = COMMON_BUILDER.comment("Resistance of Peridotite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("peridotiteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Troctolite Properties").push("troctolite");
+            TROCTOLITE_HL = COMMON_BUILDER.comment("Harvest Level of Troctolite.")
+                    .defineInRange("troctoliteHL", 0, 0, 10);
+            TROCTOLITE_HARD = COMMON_BUILDER.comment("Hardness of Troctolite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("troctoliteHardness", 2.5D, 0.0D, 100.0D);
+            TROCTOLITE_RESIST = COMMON_BUILDER.comment("Resistance of Troctolite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("troctoliteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Kimberlite Properties").push("kimberlite");
+            KIMBERLITE_HL = COMMON_BUILDER.comment("Harvest Level of Kimberlite.")
+                    .defineInRange("kimberliteHL", 0, 0, 10);
+            KIMBERLITE_HARD = COMMON_BUILDER.comment("Hardness of Kimberlite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("kimberliteHardness", 2.5D, 0.0D, 100.0D);
+            KIMBERLITE_RESIST = COMMON_BUILDER.comment("Resistance of Kimberlite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("kimberliteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Komatiite Properties").push("komatiite");
+            KOMATIITE_HL = COMMON_BUILDER.comment("Harvest Level of Komatiite.")
+                    .defineInRange("komatiiteHL", 0, 0, 10);
+            KOMATIITE_HARD = COMMON_BUILDER.comment("Hardness of Komatiite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("komatiiteHardness", 2.5D, 0.0D, 100.0D);
+            KOMATIITE_RESIST = COMMON_BUILDER.comment("Resistance of Komatiite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("komatiiteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Pumice Properties").push("pumice");
+            PUMICE_HL = COMMON_BUILDER.comment("Harvest Level of Pumice.")
+                    .defineInRange("pumiceHL", 0, 0, 10);
+            PUMICE_HARD = COMMON_BUILDER.comment("Hardness of Pumice (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("pumiceHardness", 2.5D, 0.0D, 100.0D);
+            PUMICE_RESIST = COMMON_BUILDER.comment("Resistance of Pumice (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("pumiceResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Scoria Properties").push("scoria");
+            SCORIA_HL = COMMON_BUILDER.comment("Harvest Level of Scoria.")
+                    .defineInRange("scoriaHL", 0, 0, 10);
+            SCORIA_HARD = COMMON_BUILDER.comment("Hardness of Scoria (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("scoriaHardness", 2.5D, 0.0D, 100.0D);
+            SCORIA_RESIST = COMMON_BUILDER.comment("Resistance of Scoria (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("scoriaResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("White Marble Properties").push("WhiteMarble");
+            WHITE_MARBLE_HL = COMMON_BUILDER.comment("Harvest Level of White Marble.")
+                    .defineInRange("WhiteMarbleHL", 0, 0, 10);
+            WHITE_MARBLE_HARD = COMMON_BUILDER.comment("Hardness of White Marble (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("WhiteMarbleHardness", 2.5D, 0.0D, 100.0D);
+            WHITE_MARBLE_RESIST = COMMON_BUILDER.comment("Resistance of White Marble (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("WhiteMarbleResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Black Marble Properties").push("BlackMarble");
+            BLACK_MARBLE_HL = COMMON_BUILDER.comment("Harvest Level of Black Marble.")
+                    .defineInRange("BlackMarbleHL", 0, 0, 10);
+            BLACK_MARBLE_HARD = COMMON_BUILDER.comment("Hardness of Black Marble (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("BlackMarbleHardness", 2.5D, 0.0D, 100.0D);
+            BLACK_MARBLE_RESIST = COMMON_BUILDER.comment("Resistance of Black Marble (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("BlackMarbleResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Gneiss Properties").push("gneiss");
             GNEISS_HL = COMMON_BUILDER.comment("Harvest Level of Gneiss.")
@@ -1176,13 +1344,21 @@ public class Config {
             GNEISS_RESIST = COMMON_BUILDER.comment("Resistance of Gneiss (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("gneissResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Schist Properties").push("schist");
-            SCHIST_HL = COMMON_BUILDER.comment("Harvest Level of Schist.")
-                    .defineInRange("schistHL", 0, 0, 10);
-            SCHIST_HARD = COMMON_BUILDER.comment("Hardness of Schist (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("schistHardness", 2.5D, 0.0D, 100.0D);
-            SCHIST_RESIST = COMMON_BUILDER.comment("Resistance of Schist (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("schistResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Mica Schist Properties").push("MicaSchist");
+            MICA_SCHIST_HL = COMMON_BUILDER.comment("Harvest Level of Mica Schist.")
+                    .defineInRange("MicaSchistHL", 0, 0, 10);
+            MICA_SCHIST_HARD = COMMON_BUILDER.comment("Hardness of Mica Schist (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("MicaSchistHardness", 2.5D, 0.0D, 100.0D);
+            MICA_SCHIST_RESIST = COMMON_BUILDER.comment("Resistance of Mica Schist (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("MicaSchistResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Phyllite Properties").push("phyllite");
+            PHYLLITE_HL = COMMON_BUILDER.comment("Harvest Level of Phyllite.")
+                    .defineInRange("phylliteHL", 0, 0, 10);
+            PHYLLITE_HARD = COMMON_BUILDER.comment("Hardness of Phyllite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("phylliteHardness", 2.5D, 0.0D, 100.0D);
+            PHYLLITE_RESIST = COMMON_BUILDER.comment("Resistance of Phyllite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("phylliteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Slate Properties").push("slate");
             SLATE_HL = COMMON_BUILDER.comment("Harvest Level of Slate.")
@@ -1192,73 +1368,33 @@ public class Config {
             SLATE_RESIST = COMMON_BUILDER.comment("Resistance of Slate (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("slateResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Shale Properties").push("shale");
-            SHALE_HL = COMMON_BUILDER.comment("Harvest Level of Shale.")
-                    .defineInRange("shaleHL", 0, 0, 10);
-            SHALE_HARD = COMMON_BUILDER.comment("Hardness of Shale (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("shaleHardness", 1.5D, 0.0D, 100.0D);
-            SHALE_RESIST = COMMON_BUILDER.comment("Resistance of Shale (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("shaleResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Quartzite Properties").push("quartzite");
+            QUARTZITE_HL = COMMON_BUILDER.comment("Harvest Level of Quartzite.")
+                    .defineInRange("quartziteHL", 0, 0, 10);
+            QUARTZITE_HARD = COMMON_BUILDER.comment("Hardness of Quartzite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("quartziteHardness", 2.5D, 0.0D, 100.0D);
+            QUARTZITE_RESIST = COMMON_BUILDER.comment("Resistance of Quartzite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("quartziteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Ironstone Properties").push("ironstone");
-            IRONSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Ironstone.")
-                    .defineInRange("ironstoneHL", 1, 0, 10);
-            IRONSTONE_HARD = COMMON_BUILDER.comment("Hardness of Ironstone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("ironstoneHardness", 1.5D, 0.0D, 100.0D);
-            IRONSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Ironstone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("ironstoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Mariposite Properties").push("mariposite");
+            MARIPOSITE_HL = COMMON_BUILDER.comment("Harvest Level of Mariposite.")
+                    .defineInRange("maripositeHL", 0, 0, 10);
+            MARIPOSITE_HARD = COMMON_BUILDER.comment("Hardness of Mariposite (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("maripositeHardness", 2.5D, 0.0D, 100.0D);
+            MARIPOSITE_RESIST = COMMON_BUILDER.comment("Resistance of Mariposite (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("maripositeResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Breccia Properties").push("breccia");
-            BRECCIA_HL = COMMON_BUILDER.comment("Harvest Level of Breccia.")
-                    .defineInRange("brecciaHL", 0, 0, 10);
-            BRECCIA_HARD = COMMON_BUILDER.comment("Hardness of Breccia (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("brecciaHardness", 1.5D, 0.0D, 100.0D);
-            BRECCIA_RESIST = COMMON_BUILDER.comment("Resistance of Breccia (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("brecciaResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Pumice Properties").push("pumice");
-            PUMICE_HL = COMMON_BUILDER.comment("Harvest Level of Pumice.")
-                    .defineInRange("pumiceHL", 0, 0, 10);
-            PUMICE_HARD = COMMON_BUILDER.comment("Hardness of Pumice (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("pumiceHardness", 1.5D, 0.0D, 100.0D);
-            PUMICE_RESIST = COMMON_BUILDER.comment("Resistance of Pumice (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("pumiceResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Scoria Properties").push("scoria");
-            SCORIA_HL = COMMON_BUILDER.comment("Harvest Level of Scoria.")
-                    .defineInRange("scoriaHL", 0, 0, 10);
-            SCORIA_HARD = COMMON_BUILDER.comment("Hardness of Scoria (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("scoriaHardness", 1.5D, 0.0D, 100.0D);
-            SCORIA_RESIST = COMMON_BUILDER.comment("Resistance of Scoria (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("scoriaResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Peridotite Properties").push("peridotite");
-            PERIDOTITE_HL = COMMON_BUILDER.comment("Harvest Level of Peridotite.")
-                    .defineInRange("peridotiteHL", 2, 0, 10);
-            PERIDOTITE_HARD = COMMON_BUILDER.comment("Hardness of Peridotite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("peridotiteHardness", 2.5D, 0.0D, 100.0D);
-            PERIDOTITE_RESIST = COMMON_BUILDER.comment("Resistance of Peridotite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("peridotiteResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Kimberlite Properties").push("kimberlite");
-            KIMBERLITE_HL = COMMON_BUILDER.comment("Harvest Level of Kimberlite.")
-                    .defineInRange("kimberliteHL", 2, 0, 10);
-            KIMBERLITE_HARD = COMMON_BUILDER.comment("Hardness of Kimberlite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("kimberliteHardness", 2.5D, 0.0D, 100.0D);
-            KIMBERLITE_RESIST = COMMON_BUILDER.comment("Resistance of Kimberlite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("kimberliteResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Komatiite Properties").push("komatiite");
-            KOMATIITE_HL = COMMON_BUILDER.comment("Harvest Level of Komatiite.")
-                    .defineInRange("komatiiteHL", 2, 0, 10);
-            KOMATIITE_HARD = COMMON_BUILDER.comment("Hardness of Komatiite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("komatiiteHardness", 2.5D, 0.0D, 100.0D);
-            KOMATIITE_RESIST = COMMON_BUILDER.comment("Resistance of Komatiite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("komatiiteResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Skarn Properties").push("skarn");
+            SKARN_HL = COMMON_BUILDER.comment("Harvest Level of Skarn.")
+                    .defineInRange("skarnHL", 0, 0, 10);
+            SKARN_HARD = COMMON_BUILDER.comment("Hardness of Skarn (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("skarnHardness", 2.5D, 0.0D, 100.0D);
+            SKARN_RESIST = COMMON_BUILDER.comment("Resistance of Skarn (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("skarnResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Ringwoodite Properties").push("ringwoodite");
             RINGWOODITE_HL = COMMON_BUILDER.comment("Harvest Level of Ringwoodite.")
-                    .defineInRange("ringwooditeHL", 2, 0, 10);
+                    .defineInRange("ringwooditeHL", 0, 0, 10);
             RINGWOODITE_HARD = COMMON_BUILDER.comment("Hardness of Ringwoodite (Obsidian is 50 and vanilla stone is 2).")
                     .defineInRange("ringwooditeHardness", 2.5D, 0.0D, 100.0D);
             RINGWOODITE_RESIST = COMMON_BUILDER.comment("Resistance of Ringwoodite (Obsidian is 1200 and vanilla stone is 6).")
@@ -1266,7 +1402,7 @@ public class Config {
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Wadsleyite Properties").push("wadsleyite");
             WADSLEYITE_HL = COMMON_BUILDER.comment("Harvest Level of Wadsleyite.")
-                    .defineInRange("wadsleyiteHL", 2, 0, 10);
+                    .defineInRange("wadsleyiteHL", 0, 0, 10);
             WADSLEYITE_HARD = COMMON_BUILDER.comment("Hardness of Wadsleyite (Obsidian is 50 and vanilla stone is 2).")
                     .defineInRange("wadsleyiteHardness", 2.5D, 0.0D, 100.0D);
             WADSLEYITE_RESIST = COMMON_BUILDER.comment("Resistance of Wadsleyite (Obsidian is 1200 and vanilla stone is 6).")
@@ -1274,7 +1410,7 @@ public class Config {
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Bridgmanite Properties").push("bridgmanite");
             BRIDGMANITE_HL = COMMON_BUILDER.comment("Harvest Level of Bridgmanite.")
-                    .defineInRange("bridgmaniteHL", 2, 0, 10);
+                    .defineInRange("bridgmaniteHL", 0, 0, 10);
             BRIDGMANITE_HARD = COMMON_BUILDER.comment("Hardness of Bridgmanite (Obsidian is 50 and vanilla stone is 2).")
                     .defineInRange("bridgmaniteHardness", 2.5D, 0.0D, 100.0D);
             BRIDGMANITE_RESIST = COMMON_BUILDER.comment("Resistance of Bridgmanite (Obsidian is 1200 and vanilla stone is 6).")
@@ -1282,7 +1418,7 @@ public class Config {
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Ferropericlase Properties").push("ferropericlase");
             FERROPERICLASE_HL = COMMON_BUILDER.comment("Harvest Level of Ferropericlase.")
-                    .defineInRange("ferropericlaseHL", 2, 0, 10);
+                    .defineInRange("ferropericlaseHL", 0, 0, 10);
             FERROPERICLASE_HARD = COMMON_BUILDER.comment("Hardness of Ferropericlase (Obsidian is 50 and vanilla stone is 2).")
                     .defineInRange("ferropericlaseHardness", 2.5D, 0.0D, 100.0D);
             FERROPERICLASE_RESIST = COMMON_BUILDER.comment("Resistance of Ferropericlase (Obsidian is 1200 and vanilla stone is 6).")
@@ -1290,51 +1426,27 @@ public class Config {
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Perovskite Properties").push("perovskite");
             PEROVSKITE_HL = COMMON_BUILDER.comment("Harvest Level of Perovskite.")
-                    .defineInRange("perovskiteHL", 2, 0, 10);
+                    .defineInRange("perovskiteHL", 0, 0, 10);
             PEROVSKITE_HARD = COMMON_BUILDER.comment("Hardness of Perovskite (Obsidian is 50 and vanilla stone is 2).")
                     .defineInRange("perovskiteHardness", 2.5D, 0.0D, 100.0D);
             PEROVSKITE_RESIST = COMMON_BUILDER.comment("Resistance of Perovskite (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("perovskiteResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Quartz Sandstone Properties").push("quartzSandstone");
-            QUARTZ_SANDSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Quartz Sandstone.")
-                    .defineInRange("quartzSandstoneHL", 0, 0, 10);
-            QUARTZ_SANDSTONE_HARD = COMMON_BUILDER.comment("Hardness of Quartz Sandstone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("quartzSandstoneHardness", 1.5D, 0.0D, 100.0D);
-            QUARTZ_SANDSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Quartz Sandstone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("quartzSandstoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Tufa Limestone Properties").push("TufaLimestone");
+            TUFA_LIMESTONE_HL = COMMON_BUILDER.comment("Harvest Level of Tufa Limestone.")
+                    .defineInRange("TufaLimestoneHL", 0, 0, 10);
+            TUFA_LIMESTONE_HARD = COMMON_BUILDER.comment("Hardness of Tufa Limestone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("TufaLimestoneHardness", 1.5D, 0.0D, 100.0D);
+            TUFA_LIMESTONE_RESIST = COMMON_BUILDER.comment("Resistance of Tufa Limestone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("TufaLimestoneResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Arkose Sandstone Properties").push("arkoseSandstone");
-            ARKOSE_SANDSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Arkose Sandstone.")
-                    .defineInRange("arkoseSandstoneHL", 0, 0, 10);
-            ARKOSE_SANDSTONE_HARD = COMMON_BUILDER.comment("Hardness of Arkose Sandstone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("arkoseSandstoneHardness", 1.5D, 0.0D, 100.0D);
-            ARKOSE_SANDSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Arkose Sandstone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("arkoseSandstoneResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Black Dacite Properties").push("blackDacite");
-            BLACK_DACITE_HL = COMMON_BUILDER.comment("Harvest Level of Black Dacite.")
-                    .defineInRange("blackDaciteHL", 0, 0, 10);
-            BLACK_DACITE_HARD = COMMON_BUILDER.comment("Hardness of Black Dacite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("blackDaciteHardness", 2.5D, 0.0D, 100.0D);
-            BLACK_DACITE_RESIST = COMMON_BUILDER.comment("Resistance of Black Dacite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("blackDaciteResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Red Dacite Properties").push("redDacite");
-            RED_DACITE_HL = COMMON_BUILDER.comment("Harvest Level of Red Dacite.")
-                    .defineInRange("redDaciteHL", 0, 0, 10);
-            RED_DACITE_HARD = COMMON_BUILDER.comment("Hardness of Red Dacite (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("redDaciteHardness", 2.5D, 0.0D, 100.0D);
-            RED_DACITE_RESIST = COMMON_BUILDER.comment("Resistance of Red Dacite (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("redDaciteResistance", 6.0D, 0.00D, 2000.0D);
-            COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Mudstone Properties").push("mudstone");
-            MUDSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Mudstone.")
-                    .defineInRange("mudstoneHL", 0, 0, 10);
-            MUDSTONE_HARD = COMMON_BUILDER.comment("Hardness of Mudstone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("mudstoneHardness", 1.5D, 0.0D, 100.0D);
-            MUDSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Mudstone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("mudstoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Dolostone Properties").push("dolostone");
+            DOLOSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Dolostone.")
+                    .defineInRange("dolostoneHL", 0, 0, 10);
+            DOLOSTONE_HARD = COMMON_BUILDER.comment("Hardness of Dolostone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("dolostoneHardness", 1.5D, 0.0D, 100.0D);
+            DOLOSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Dolostone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("dolostoneResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
             COMMON_BUILDER.comment("Chalk Properties").push("chalk");
             CHALK_HL = COMMON_BUILDER.comment("Harvest Level of Chalk.")
@@ -1344,28 +1456,56 @@ public class Config {
             CHALK_RESIST = COMMON_BUILDER.comment("Resistance of Chalk (Obsidian is 1200 and vanilla stone is 6).")
                     .defineInRange("chalkResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Pophyry Properties").push("pophyry");
-            PORPHYRY_HL = COMMON_BUILDER.comment("Harvest Level of Pophyry.")
-                    .defineInRange("pophyryHL", 0, 0, 10);
-            PORPHYRY_HARD = COMMON_BUILDER.comment("Hardness of Pophyry (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("pophyryHardness", 1.5D, 0.0D, 100.0D);
-            PORPHYRY_RESIST = COMMON_BUILDER.comment("Resistance of Pophyry (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("pophyryResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Carbonaceous Shale Properties").push("CarbonaceousShale");
+            CARBONACEOUS_SHALE_HL = COMMON_BUILDER.comment("Harvest Level of Carbonaceous Shale.")
+                    .defineInRange("CarbonaceousShaleHL", 0, 0, 10);
+            CARBONACEOUS_SHALE_HARD = COMMON_BUILDER.comment("Hardness of Carbonaceous Shale (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("CarbonaceousShaleHardness", 1.5D, 0.0D, 100.0D);
+            CARBONACEOUS_SHALE_RESIST = COMMON_BUILDER.comment("Resistance of Carbonaceous Shale (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("CarbonaceousShaleResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
-            COMMON_BUILDER.comment("Purple Pophyry Properties").push("purplePophyry");
-            PURPLE_PORPHYRY_HL = COMMON_BUILDER.comment("Harvest Level of Purple Pophyry.")
-                    .defineInRange("pophyryHL", 0, 0, 10);
-            PURPLE_PORPHYRY_HARD = COMMON_BUILDER.comment("Hardness of Purple Pophyry (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("pophyryHardness", 1.5D, 0.0D, 100.0D);
-            PURPLE_PORPHYRY_RESIST = COMMON_BUILDER.comment("Resistance of Purple Pophyry (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("pophyryResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.comment("Siltstone Properties").push("siltstone");
+            SILTSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Siltstone.")
+                    .defineInRange("siltstoneHL", 0, 0, 10);
+            SILTSTONE_HARD = COMMON_BUILDER.comment("Hardness of Siltstone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("siltstoneHardness", 1.5D, 0.0D, 100.0D);
+            SILTSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Siltstone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("siltstoneResistance", 6.0D, 0.00D, 2000.0D);
             COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Quartz Sandstone Properties").push("QuartzSandstone");
+            QUARTZ_SANDSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Quartz Sandstone.")
+                    .defineInRange("QuartzSandstoneHL", 0, 0, 10);
+            QUARTZ_SANDSTONE_HARD = COMMON_BUILDER.comment("Hardness of Quartz Sandstone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("QuartzSandstoneHardness", 1.5D, 0.0D, 100.0D);
+            QUARTZ_SANDSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Quartz Sandstone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("QuartzSandstoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Arkose Sandstone Properties").push("ArkoseSandstone");
+            ARKOSE_SANDSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Arkose Sandstone.")
+                    .defineInRange("ArkoseSandstoneHL", 0, 0, 10);
+            ARKOSE_SANDSTONE_HARD = COMMON_BUILDER.comment("Hardness of Arkose Sandstone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("ArkoseSandstoneHardness", 1.5D, 0.0D, 100.0D);
+            ARKOSE_SANDSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Arkose Sandstone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("ArkoseSandstoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Mudstone Properties").push("mudstone");
+            MUDSTONE_HL = COMMON_BUILDER.comment("Harvest Level of Mudstone.")
+                    .defineInRange("mudstoneHL", 0, 0, 10);
+            MUDSTONE_HARD = COMMON_BUILDER.comment("Hardness of Mudstone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("mudstoneHardness", 1.5D, 0.0D, 100.0D);
+            MUDSTONE_RESIST = COMMON_BUILDER.comment("Resistance of Mudstone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("mudstoneResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+            COMMON_BUILDER.comment("Breccia Properties").push("breccia");
+            BRECCIA_HL = COMMON_BUILDER.comment("Harvest Level of Breccia.")
+                    .defineInRange("brecciaHL", 0, 0, 10);
+            BRECCIA_HARD = COMMON_BUILDER.comment("Hardness of Breccia (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("brecciaHardness", 1.5D, 0.0D, 100.0D);
+            BRECCIA_RESIST = COMMON_BUILDER.comment("Resistance of Breccia (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("brecciaResistance", 6.0D, 0.00D, 2000.0D);
+            COMMON_BUILDER.pop();
+
         COMMON_BUILDER.pop();
-
-
-
-
-
 
 
         //Oregen config
@@ -1384,7 +1524,7 @@ public class Config {
                 .define("Native_copperOreDimList", new ArrayList<>(Arrays.asList("overworld")));
         NATIVE_COPPER_ORE_STONE_SPECIFIC = COMMON_BUILDER.comment("Use Native_copperBlockList to determine what blocks Native_copper Ore will spawn in. If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether.")
                 .define("Native_copperOreStoneSpecific",false);
-        NATIVE_COPPER_BLOCK_LIST = COMMON_BUILDER.comment("Blocks to generate Native_copper Ore in if Native_copperOreStoneSpecific is enabled.")
+        NATIVE_COPPER_BLOCK_LIST = COMMON_BUILDER.comment("Blocks to generate Native_copper Ore in if Native_copperOreStoneSpecific is enabled. Can use tags and/or blocks (tag ex: T#rankine:metamorphic_stones ||| block ex: B:minecraft:dirt)")
                 .define("Native_copperBlockList", new ArrayList<>(Arrays.asList()));
         NATIVE_COPPER_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native_copper at (make sure it is less than the maximum)")
                 .defineInRange("Native_copperOreMin", 60, 0, 256);
@@ -2560,7 +2700,7 @@ public class Config {
                 .defineInRange("CelestineOreHL", 2, 0, 10);
         COMMON_BUILDER.pop();
 
-        //end oregen
+
         COMMON_BUILDER.pop();
     }
 

@@ -1,0 +1,7 @@
+{
+        "variants": {
+            "type=bottom": { "model": "rankine:block/polished_white_marble_slab" },
+            "type=top": { "model": "rankine:block/polished_white_marble_slab_top" },
+            "type=double": { "model": "rankine:block/polished_white_marble" }
+            }
+        }

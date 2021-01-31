@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_ironstone"
-      },
-      "result": "rankine:polished_ironstone_slab",
-      "count": 2
-    }

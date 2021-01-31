@@ -1,0 +1,8 @@
+{
+      "parent": "block/slab_top",
+      "textures": {
+        "bottom": "rankine:block/siltstone",
+        "top": "rankine:block/siltstone",
+        "side": "rankine:block/siltstone"
+      }
+}

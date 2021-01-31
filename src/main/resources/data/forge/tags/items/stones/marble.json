@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-	"rankine:marble"
+	"rankine:white_marble",
+	"rankine:black_marble"
 	]
 	}

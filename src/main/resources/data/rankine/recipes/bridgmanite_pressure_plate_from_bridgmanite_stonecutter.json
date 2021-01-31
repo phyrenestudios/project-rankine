@@ -1,8 +1,8 @@
 {
       "type": "minecraft:stonecutting",
       "ingredient": {
-        "item": "rankine:bridgmanite"
+          "item": "rankine:bridgmanite"
       },
       "result": "rankine:bridgmanite_pressure_plate",
       "count": 1
-    }
+}

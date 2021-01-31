@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/polished_schist",
-    "top": "rankine:block/polished_schist",
-    "side": "rankine:block/polished_schist"
-  }
-}

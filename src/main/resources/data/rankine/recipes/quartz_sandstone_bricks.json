@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#m#",
+        "m#m",
+        "#m#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:quartz_sandstone"
+        },
+        "m": {
+          "item": "rankine:mortar"
+        }
+      },
+      "result": {
+        "item": "rankine:quartz_sandstone_bricks",
+        "count": 6
+      }
+    }

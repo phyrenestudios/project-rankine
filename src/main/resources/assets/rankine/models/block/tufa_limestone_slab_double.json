@@ -1,0 +1,7 @@
+{
+          "parent": "block/cube_column",
+          "textures": {
+            "end": "rankine:block/tufa_limestone",
+            "side": "rankine:block/tufa_limestone"
+          }
+        }

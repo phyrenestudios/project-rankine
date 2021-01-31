@@ -1,6 +1,6 @@
 {
-                "parent": "block/pressure_plate_down",
-                "textures": {
-                "texture": "rankine:block/quartz_sandstone"
-                }
-                }
+      "parent": "block/pressure_plate_down",
+      "textures": {
+        "texture": "rankine:block/quartz_sandstone_bricks"
+      }
+    }

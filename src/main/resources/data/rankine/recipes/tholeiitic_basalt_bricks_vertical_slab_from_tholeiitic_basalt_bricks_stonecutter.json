@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:tholeiitic_basalt_bricks"
       },
-      "result": "rankine:polished_tholeiitic_basalt_vertical_slab",
+      "result": "rankine:tholeiitic_basalt_bricks_vertical_slab",
       "count": 2
 }

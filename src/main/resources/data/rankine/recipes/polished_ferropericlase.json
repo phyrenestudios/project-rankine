@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:ferropericlase"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:ferropericlase"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_ferropericlase",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_ferropericlase",
-    "count": 4
-  }
-	}

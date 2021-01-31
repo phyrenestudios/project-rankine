@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:ferropericlase_bricks"
       },
-      "result": "rankine:polished_ferropericlase_vertical_slab",
+      "result": "rankine:ferropericlase_bricks_vertical_slab",
       "count": 2
 }

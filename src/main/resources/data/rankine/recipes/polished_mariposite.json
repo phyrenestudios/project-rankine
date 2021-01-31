@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:mariposite"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_mariposite",
+        "count": 4
+      }
+    }

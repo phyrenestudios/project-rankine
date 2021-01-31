@@ -30,7 +30,7 @@ public class NoduleBlock extends Block {
             ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.FLINT));
             itementity.setDefaultPickupDelay();
             worldIn.addEntity(itementity);
-            worldIn.setBlockState(pos, RankineBlocks.LIMESTONE.get().getDefaultState(),2);
+            worldIn.setBlockState(pos, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState(),2);
             return ActionResultType.SUCCESS;
         }
         else

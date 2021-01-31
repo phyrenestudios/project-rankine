@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:mica_schist"
+      },
+      "result": "rankine:polished_mica_schist",
+      "count": 1
+    }

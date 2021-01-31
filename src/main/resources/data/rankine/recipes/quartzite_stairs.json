@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:quartzite"
+        }
+      },
+      "result": {
+        "item": "rankine:quartzite_stairs",
+        "count": 4
+      }
+    }

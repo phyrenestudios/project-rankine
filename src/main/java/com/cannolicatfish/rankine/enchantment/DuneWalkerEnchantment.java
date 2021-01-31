@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.enchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 
 public class DuneWalkerEnchantment extends Enchantment {
     public DuneWalkerEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
@@ -17,6 +18,11 @@ public class DuneWalkerEnchantment extends Enchantment {
 
     public int getMaxEnchantability(int enchantmentLevel) {
         return this.getMinEnchantability(enchantmentLevel) + 15;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return false;
     }
 
     /**

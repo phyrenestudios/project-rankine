@@ -1,8 +1,0 @@
-{
-          "type": "minecraft:stonecutting",
-          "ingredient": {
-                  "item": "rankine:ironstone"
-          },
-          "result": "rankine:ironstone_bricks",
-          "count": 1
-        }

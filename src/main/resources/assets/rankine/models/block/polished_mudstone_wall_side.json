@@ -1,6 +1,6 @@
 {
-                "parent": "block/template_wall_side",
-                "textures": {
-                    "wall": "rankine:block/polished_mudstone"
-                }
-                }
+        "parent": "block/template_wall_side",
+        "textures": {
+            "wall": "rankine:block/polished_mudstone"
+        }
+    }

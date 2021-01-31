@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#  ",
+        "## ",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:phyllite"
+        }
+      },
+      "result": {
+        "item": "rankine:phyllite_stairs",
+        "count": 4
+      }
+    }

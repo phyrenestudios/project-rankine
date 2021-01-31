@@ -1,0 +1,8 @@
+{
+      "parent": "block/outer_stairs",
+      "textures": {
+        "bottom": "rankine:block/polished_quartzite",
+        "top": "rankine:block/polished_quartzite",
+        "side": "rankine:block/polished_quartzite"
+      }
+    }

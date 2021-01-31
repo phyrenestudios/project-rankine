@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:wadsleyite_bricks"
       },
-      "result": "rankine:polished_wadsleyite_vertical_slab",
+      "result": "rankine:wadsleyite_bricks_vertical_slab",
       "count": 2
 }

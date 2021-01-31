@@ -1,0 +1,7 @@
+{
+"variants": {
+    "type=bottom": { "model": "rankine:block/polished_polished_skarn_slab" },
+    "type=top": { "model": "rankine:block/polished_polished_skarn_slab_top" },
+    "type=double": { "model": "rankine:block/polished_polished_skarn" }
+    }
+}

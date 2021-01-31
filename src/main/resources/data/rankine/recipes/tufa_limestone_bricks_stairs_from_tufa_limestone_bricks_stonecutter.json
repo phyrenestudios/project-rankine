@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:tufa_limestone_bricks"
+      },
+      "result": "rankine:tufa_limestone_bricks_stairs",
+      "count": 1
+    }

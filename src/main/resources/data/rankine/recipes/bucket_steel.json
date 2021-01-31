@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "a a",
+    " a "
+  ],
+  "key":
+  {
+    "a":
+    {
+      "tag": "forge:ingots/brass"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:bucket",
+    "count": 2
+  }
+}

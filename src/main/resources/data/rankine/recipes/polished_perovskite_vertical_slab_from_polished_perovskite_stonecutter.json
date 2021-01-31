@@ -3,6 +3,6 @@
       "ingredient": {
           "item": "rankine:polished_perovskite"
       },
-      "result": "rankine:perovskite_bricks_vertical_slab",
+      "result": "rankine:polished_perovskite_vertical_slab",
       "count": 2
 }

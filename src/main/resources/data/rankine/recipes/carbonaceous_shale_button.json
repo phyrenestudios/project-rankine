@@ -1,0 +1,11 @@
+{
+      "type": "minecraft:crafting_shapeless",
+      "ingredients": [
+        {
+          "item": "rankine:carbonaceous_shale"
+        }
+      ],
+      "result": {
+        "item": "rankine:carbonaceous_shale_button"
+      }
+    }

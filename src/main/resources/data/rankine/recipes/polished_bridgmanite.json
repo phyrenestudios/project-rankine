@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:bridgmanite"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:bridgmanite"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_bridgmanite",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_bridgmanite",
-    "count": 4
-  }
-	}

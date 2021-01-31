@@ -1,0 +1,8 @@
+{
+      "parent": "block/inner_stairs",
+      "textures": {
+        "bottom": "rankine:block/comendite",
+        "top": "rankine:block/comendite",
+        "side": "rankine:block/comendite"
+      }
+    }

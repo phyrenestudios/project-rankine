@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "rankine:pyroxene_gabbro"
+      },
+      "result": "rankine:pyroxene_gabbro_button",
+      "count": 1
+        }

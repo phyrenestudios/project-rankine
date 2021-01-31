@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:carbonaceous_shale"
+      },
+      "result": "rankine:polished_carbonaceous_shale",
+      "count": 1
+    }

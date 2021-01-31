@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:pumice"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:pumice"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_pumice",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_pumice",
-    "count": 4
-  }
-	}

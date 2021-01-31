@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_porphyry",
-        "top": "rankine:block/polished_porphyry",
-        "side": "rankine:block/polished_porphyry"
-      }
-    }

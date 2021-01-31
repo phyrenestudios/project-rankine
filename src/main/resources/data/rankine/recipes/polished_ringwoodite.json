@@ -1,16 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "rankine:ringwoodite"
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:ringwoodite"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_ringwoodite",
+        "count": 4
+      }
     }
-  },
-  "result": {
-    "item": "rankine:polished_ringwoodite",
-    "count": 4
-  }
-	}

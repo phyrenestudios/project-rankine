@@ -1,8 +1,8 @@
 {
-          "type": "minecraft:stonecutting",
-          "ingredient": {
-                  "item": "rankine:slate"
-          },
-          "result": "rankine:slate_bricks",
-          "count": 1
-        }
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:slate"
+      },
+      "result": "rankine:slate_bricks",
+      "count": 1
+    }

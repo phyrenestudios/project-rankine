@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -66,13 +67,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_COPPER_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_COPPER_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_COPPER_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -83,13 +102,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_TIN_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_TIN_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_TIN_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -100,13 +137,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_GOLD_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_GOLD_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_GOLD_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -117,13 +172,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_ALUMINUM_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_ALUMINUM_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_ALUMINUM_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -134,13 +207,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_LEAD_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_LEAD_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_LEAD_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -151,13 +242,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_SILVER_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_SILVER_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_SILVER_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -168,13 +277,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_ARSENIC_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_ARSENIC_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_ARSENIC_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -185,13 +312,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_BISMUTH_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_BISMUTH_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_BISMUTH_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -202,13 +347,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_SULFUR_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_SULFUR_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_SULFUR_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -219,13 +382,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_GALLIUM_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_GALLIUM_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_GALLIUM_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -236,13 +417,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_INDIUM_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_INDIUM_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_INDIUM_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -253,13 +452,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_TELLURIUM_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_TELLURIUM_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_TELLURIUM_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -270,13 +487,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.NATIVE_SELENIUM_ORE_STONE_SPECIFIC.get()) {
-                    return Config.NATIVE_SELENIUM_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.NATIVE_SELENIUM_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -287,13 +522,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.MALACHITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.MALACHITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.MALACHITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.MALACHITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.MALACHITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.MALACHITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -304,13 +557,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.CASSITERITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.CASSITERITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.CASSITERITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.CASSITERITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.CASSITERITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.CASSITERITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -321,13 +592,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.BAUXITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.BAUXITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.BAUXITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.BAUXITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.BAUXITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.BAUXITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -338,13 +627,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.SPHALERITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.SPHALERITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.SPHALERITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.SPHALERITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.SPHALERITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.SPHALERITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -355,13 +662,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.CINNABAR_ORE_STONE_SPECIFIC.get()) {
-                    return Config.CINNABAR_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.CINNABAR_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.CINNABAR_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.CINNABAR_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.CINNABAR_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -372,13 +697,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.MAGNETITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.MAGNETITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.MAGNETITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.MAGNETITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.MAGNETITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.MAGNETITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -389,13 +732,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.PENTLANDITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.PENTLANDITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.PENTLANDITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -406,13 +767,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.MAGNESITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.MAGNESITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.MAGNESITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.MAGNESITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.MAGNESITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.MAGNESITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -423,13 +802,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.GALENA_ORE_STONE_SPECIFIC.get()) {
-                    return Config.GALENA_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.GALENA_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.GALENA_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.GALENA_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.GALENA_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -440,13 +837,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.VANADINITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.VANADINITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.VANADINITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.VANADINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.VANADINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.VANADINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -457,13 +872,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.BISMUTHINITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.BISMUTHINITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.BISMUTHINITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -474,13 +907,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.ACANTHITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.ACANTHITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.ACANTHITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.ACANTHITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.ACANTHITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.ACANTHITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -491,13 +942,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.PYROLUSITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.PYROLUSITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.PYROLUSITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -508,13 +977,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.CHROMITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.CHROMITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.CHROMITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.CHROMITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.CHROMITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.CHROMITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -525,13 +1012,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.MOLYBDENITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.MOLYBDENITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.MOLYBDENITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -542,13 +1047,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.ILMENITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.ILMENITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.ILMENITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.ILMENITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.ILMENITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.ILMENITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -559,13 +1082,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.COLUMBITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.COLUMBITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.COLUMBITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.COLUMBITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.COLUMBITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.COLUMBITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -576,13 +1117,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.WOLFRAMITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.WOLFRAMITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.WOLFRAMITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -593,13 +1152,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.TANTALITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.TANTALITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.TANTALITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.TANTALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.TANTALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.TANTALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -610,13 +1187,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.PLUMBAGO_ORE_STONE_SPECIFIC.get()) {
-                    return Config.PLUMBAGO_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.PLUMBAGO_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -627,13 +1222,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.MOISSANITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.MOISSANITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.MOISSANITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.MOISSANITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.MOISSANITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.MOISSANITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -644,13 +1257,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.SPERRYLITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.SPERRYLITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.SPERRYLITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -661,13 +1292,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.LIGNITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.LIGNITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.LIGNITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.LIGNITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.LIGNITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.LIGNITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -678,13 +1327,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.SUBBITUMINOUS_ORE_STONE_SPECIFIC.get()) {
-                    return Config.SUBBITUMINOUS_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.SUBBITUMINOUS_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -695,13 +1362,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.BITUMINOUS_ORE_STONE_SPECIFIC.get()) {
-                    return Config.BITUMINOUS_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.BITUMINOUS_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -712,13 +1397,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.ANTHRACITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.ANTHRACITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.ANTHRACITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -729,13 +1432,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.LAZURITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.LAZURITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.LAZURITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.LAZURITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.LAZURITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.LAZURITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -746,13 +1467,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.DIAMOND_ORE_STONE_SPECIFIC.get()) {
-                    return Config.DIAMOND_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.DIAMOND_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.DIAMOND_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.DIAMOND_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.DIAMOND_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -763,13 +1502,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.GREENOCKITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.GREENOCKITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.GREENOCKITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -780,13 +1537,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.EMERALD_ORE_STONE_SPECIFIC.get()) {
-                    return Config.EMERALD_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.EMERALD_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.EMERALD_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.EMERALD_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.EMERALD_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -797,13 +1572,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.AQUAMARINE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.AQUAMARINE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.AQUAMARINE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -814,13 +1607,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.QUARTZ_ORE_STONE_SPECIFIC.get()) {
-                    return Config.QUARTZ_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.QUARTZ_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.QUARTZ_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.QUARTZ_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.QUARTZ_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -831,13 +1642,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.OPAL_ORE_STONE_SPECIFIC.get()) {
-                    return Config.OPAL_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.OPAL_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.OPAL_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.OPAL_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.OPAL_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -848,13 +1677,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.MAJORITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.MAJORITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.MAJORITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.MAJORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.MAJORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.MAJORITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -865,13 +1712,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.FLUORITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.FLUORITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.FLUORITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.FLUORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.FLUORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.FLUORITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -882,13 +1747,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.URANINITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.URANINITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.URANINITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.URANINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.URANINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.URANINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -899,13 +1782,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.STIBNITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.STIBNITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.STIBNITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.STIBNITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.STIBNITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.STIBNITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -916,13 +1817,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.XENOTIME_ORE_STONE_SPECIFIC.get()) {
-                    return Config.XENOTIME_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.XENOTIME_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.XENOTIME_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.XENOTIME_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.XENOTIME_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -933,13 +1852,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.HALITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.HALITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.HALITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -950,13 +1887,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.PINK_HALITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.PINK_HALITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.PINK_HALITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -967,13 +1922,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.INTERSPINIFEX_ORE_STONE_SPECIFIC.get()) {
-                    return Config.INTERSPINIFEX_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.INTERSPINIFEX_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -984,13 +1957,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.PETALITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.PETALITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.PETALITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.PETALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.PETALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.PETALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -1001,13 +1992,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.COBALTITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.COBALTITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.COBALTITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.COBALTITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.COBALTITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.COBALTITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -1018,13 +2027,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.CRYOLITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.CRYOLITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.CRYOLITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.CRYOLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.CRYOLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.CRYOLITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -1035,13 +2062,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.PYRITE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.PYRITE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.PYRITE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.PYRITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.PYRITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.PYRITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }
@@ -1052,13 +2097,31 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 if (Config.CELESTINE_ORE_STONE_SPECIFIC.get()) {
-                    return Config.CELESTINE_BLOCK_LIST.get().contains(blockstate.getBlock().getRegistryName().toString());
+                    for (String s : Config.CELESTINE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
                 } else if (Config.CELESTINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
                 } else if (Config.CELESTINE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
                 } else if (Config.CELESTINE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("rankine:base_stone_end")));
+                    return blockstate.getBlock() == Blocks.END_STONE;
                 } else {
                     return false;
                 }

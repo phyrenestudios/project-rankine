@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#m#",
+        "m#m",
+        "#m#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:tufa_limestone"
+        },
+        "m": {
+          "item": "rankine:mortar"
+        }
+      },
+      "result": {
+        "item": "rankine:tufa_limestone_bricks",
+        "count": 6
+      }
+    }
