@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ini",
+    "wlw",
+    "nbn"
+  ],
+  "key": {
+    "n": {
+      "tag": "forge:ingots/neodymium"
+    },
+    "b": {
+      "tag": "forge:ingots/boron"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "w": {
+      "item": "rankine:copper_wire"
+    },
+    "l": {
+      "item": "rankine:lithium_power_cell"
+    }
+  },
+  "result": {
+    "item": "rankine:rare_earth_electromagnet",
+    "count": 1
+  }
+}

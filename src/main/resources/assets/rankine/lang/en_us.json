@@ -1990,6 +1990,10 @@
   "item.rankine.biome_indicator_ocean": "Water Category: Ocean",
   "item.rankine.biome_indicator_river": "Water Category: River",
 
+  "item.rankine.alnico_magnet": "Alnico Magnet",
+  "item.rankine.rare_earth_magnet": "Rare Earth Magnet",
+  "block.rankine.alnico_electromagnet": "Alnico Electromagnet",
+  "block.rankine.rare_earth_electromagnet": "Rare Earth Electromagnet",
   "fluid.rankine.liquid_mercury": "Liquid Mercury",
 
 

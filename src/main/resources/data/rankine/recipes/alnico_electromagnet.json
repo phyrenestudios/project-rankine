@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#w#",
+    "wrw",
+    "#w#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:alnico_alloy"
+    },
+    "w": {
+      "item": "rankine:copper_wire"
+    },
+    "r": {
+      "item": "rankine:battery0"
+    }
+  },
+  "result": {
+    "item": "rankine:alnico_electromagnet",
+    "count": 1
+  }
+}

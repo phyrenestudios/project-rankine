@@ -1787,6 +1787,11 @@ public class RankineItems {
     public static final RegistryObject<Item> SANDALS = REGISTRY.register("sandals", () -> new SimpleTooltipItem(Collections.singletonList("Combine with boots in an anvil to add Dune Walker"), new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SNOWSHOES = REGISTRY.register("snowshoes", () -> new SimpleTooltipItem(Collections.singletonList("Combine with boots in an anvil to add Snow Drifter"), new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
+    public static final RegistryObject<Item> ALNICO_MAGNET = REGISTRY.register("alnico_magnet", () -> new MagnetItem(1,new Item.Properties().maxDamage(200).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> RARE_EARTH_MAGNET = REGISTRY.register("rare_earth_magnet", () -> new MagnetItem(2,new Item.Properties().maxDamage(600).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new BlockItem(RankineBlocks.ALNICO_ELECTROMAGNET.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new BlockItem(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+
     @ObjectHolder("rankine:element_indexer")
     public static ContainerType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
 

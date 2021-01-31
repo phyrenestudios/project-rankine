@@ -124,9 +124,10 @@ public class RankineEventHandler {
             level1.add(new BasicTrade(1, new ItemStack(Items.WHITE_TULIP, 4),12,1,0.05f));
             level1.add(new BasicTrade(1, new ItemStack(Items.OXEYE_DAISY, 4),12,1,0.05f));
             level1.add(new BasicTrade(1, new ItemStack(Items.CORNFLOWER, 4),12,1,0.05f));
+            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("forge","berries"),RankineItems.ELDERBERRIES.get(),2,1,12,10,0.05f));
             level1.add(new BasicTrade(1, new ItemStack(Items.LILY_OF_THE_VALLEY, 4),12,1,0.05f));
-            level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","saplings"),Items.OAK_SAPLING,2,1,1,10,0.05f));
-            level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","logs_that_burn"),Items.OAK_LOG,4,1,1,10,0.05f));
+            level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","saplings"),Items.OAK_SAPLING,2,1,12,10,0.05f));
+            level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","logs_that_burn"),Items.OAK_LOG,4,1,12,10,0.05f));
             level2.add(new BasicTrade(1, new ItemStack(Items.VINE, 4),12,10,0.05f));
             level2.add(new BasicTrade(1, new ItemStack(Items.LILY_PAD, 4),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.GRASS, 4),12,1,0.05f));
@@ -146,6 +147,7 @@ public class RankineEventHandler {
             level4.add(new BasicTrade(1, new ItemStack(Items.TWISTING_VINES, 4),12,15,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(Items.WEEPING_VINES, 4),12,15,0.05f));
             level5.add(new BasicTrade(1, new ItemStack(Items.MYCELIUM, 4),12,30,0.05f));
+            level5.add(new BasicTrade(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
             level5.add(new BasicTrade(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
         }
         if (Config.VILLAGER_TRADES.get())

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "c c",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/samarium"
+    },
+    "c": {
+      "tag": "forge:ingots/cobalt"
+    }
+  },
+  "result": {
+    "item": "rankine:rare_earth_magnet",
+    "count": 1
+  }
+}

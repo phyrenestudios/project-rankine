@@ -1,0 +1,50 @@
+{
+    "variants": {
+        "facing=down,powered=false": {
+            "model": "rankine:block/alnico_electromagnet",
+            "x": 90
+        },
+        "facing=down,powered=true": {
+            "model": "rankine:block/alnico_electromagnet_on",
+            "x": 90
+        },
+        "facing=east,powered=false": {
+            "model": "rankine:block/alnico_electromagnet",
+            "y": 90
+        },
+        "facing=east,powered=true": {
+            "model": "rankine:block/alnico_electromagnet_on",
+            "y": 90
+        },
+        "facing=north,powered=false": {
+            "model": "rankine:block/alnico_electromagnet"
+        },
+        "facing=north,powered=true": {
+            "model": "rankine:block/alnico_electromagnet_on"
+        },
+        "facing=south,powered=false": {
+            "model": "rankine:block/alnico_electromagnet",
+            "y": 180
+        },
+        "facing=south,powered=true": {
+            "model": "rankine:block/alnico_electromagnet_on",
+            "y": 180
+        },
+        "facing=up,powered=false": {
+            "model": "rankine:block/alnico_electromagnet",
+            "x": 270
+        },
+        "facing=up,powered=true": {
+            "model": "rankine:block/alnico_electromagnet_on",
+            "x": 270
+        },
+        "facing=west,powered=false": {
+            "model": "rankine:block/alnico_electromagnet",
+            "y": 270
+        },
+        "facing=west,powered=true": {
+            "model": "rankine:block/alnico_electromagnet_on",
+            "y": 270
+        }
+    }
+}

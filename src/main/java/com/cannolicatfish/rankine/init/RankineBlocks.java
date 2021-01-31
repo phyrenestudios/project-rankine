@@ -1306,6 +1306,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ROPE_COIL = REGISTRY.register("rope_coil", () -> new RopeCoilBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(1.0F)));
     public static final RegistryObject<Block> BOTANIST_STATION = REGISTRY.register("botanist_station", () -> new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
 
+    public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new ElectromagnetBlock(1,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
+    public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(2,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
+
     public static final RegistryObject<Block> LIQUID_MERCURY_BLOCK = REGISTRY.register("liquid_mercury_block", () -> new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
 

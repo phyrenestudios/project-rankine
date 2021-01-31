@@ -129,6 +129,9 @@ public class Config {
     public static ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
     public static ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
     public static ForgeConfigSpec.DoubleValue ICE_BREAK;
+    public static ForgeConfigSpec.IntValue ALNICO_MAGNET_RANGE;
+    public static ForgeConfigSpec.IntValue RARE_MAGNET_RANGE;
+    public static ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
     public static ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
     public static ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
 
@@ -863,6 +866,12 @@ public class Config {
                     .define("oreDetectorMessage",true);
             ICE_BREAK = COMMON_BUILDER.comment("Chance for ice to break when walking on it.")
                     .defineInRange("iceBreak", 0.002D, 0.0D, 1.0D);
+            ALNICO_MAGNET_RANGE = COMMON_BUILDER.comment("Range for the Alnico Magnet's pickup radius and the Alnico Electromagnet range.")
+                    .defineInRange("alnicoMagnetRange",5,1,10);
+            RARE_MAGNET_RANGE = COMMON_BUILDER.comment("Range for the Rare Earth Magnet's pickup radius and the Rare Earth Electromagnet range.")
+                    .defineInRange("rareEarthMagnetRange",10,1,15);
+            ELECTROMAGNET_MATERIAL_REQ = COMMON_BUILDER.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
+                    .define("electromagnetMaterialReq",true);
             LASER_QUARRY_RANGE = COMMON_BUILDER.comment("Max range of the laser quarry.")
                     .defineInRange("laserQuarryRange", 7, 0, 15);
             LASER_QUARRY_SPEED = COMMON_BUILDER.comment("Max speed of the laser quarry in ticks.")
