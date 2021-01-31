@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "scs",
+    "wlw",
+    "scs"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:ingots/samarium"
+    },
+    "c": {
+      "tag": "forge:ingots/cobalt"
+    },
+    "w": {
+      "item": "rankine:copper_wire"
+    },
+    "l": {
+      "item": "rankine:lithium_power_cell"
+    }
+  },
+  "result": {
+    "item": "rankine:rare_earth_electromagnet",
+    "count": 1
+  }
+}
