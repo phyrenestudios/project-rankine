@@ -176,7 +176,7 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> VOLCANO = new VolcanoFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(30)));
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = new FireClayDiskFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
 
 
     // VEGETAL_DECORATION

@@ -21,8 +21,8 @@ public class FireClayDiskFeature extends Feature<NoFeatureConfig> {
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         int height = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
 
-        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX()-3,height-3,pos.getZ()-3), new BlockPos(pos.getX()+3,height+1,pos.getZ()+3))) {
-            if (reader.getBlockState(blockpos) == Blocks.DIRT.getDefaultState() && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(3 + 0.5, 2)) {
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX()-4,height-4,pos.getZ()-4), new BlockPos(pos.getX()+4,height+1,pos.getZ()+4))) {
+            if (reader.getBlockState(blockpos) == Blocks.DIRT.getDefaultState() && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(4 + 0.5, 2)) {
                 reader.setBlockState(blockpos, RankineBlocks.FIRE_CLAY.get().getDefaultState(),2);
             }
         }
