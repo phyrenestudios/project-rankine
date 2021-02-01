@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "rankine:porphyry": {
+    "rankine:red_porphyry": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:porphyry"
+            "item": "rankine:red_porphyry"
           }
         ]
       }

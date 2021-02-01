@@ -17,6 +17,7 @@ import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.item.ItemEntity;
@@ -38,6 +39,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AnvilUpdateEvent;
+import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -575,10 +577,6 @@ public class RankineEventHandler {
             {
                 event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.PERIDOTITE.get().getDefaultState());
-                return;
             } else if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
@@ -586,6 +584,14 @@ public class RankineEventHandler {
             } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.PURPLE_PORPHYRY.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
+            {
+                event.setNewState(RankineBlocks.PERIDOTITE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
+            {
+                event.setNewState(RankineBlocks.TROCTOLITE.get().getDefaultState());
                 return;
             } else if (adjPos.contains(RankineBlocks.MAGNESIA_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
             {
@@ -597,7 +603,7 @@ public class RankineEventHandler {
                 return;
             }
 
-            switch (event.getWorld().getRandom().nextInt(7))
+            switch (event.getWorld().getRandom().nextInt(8))
             {
                 case 0:
                     event.setNewState(Blocks.GRANITE.getDefaultState());
@@ -609,15 +615,18 @@ public class RankineEventHandler {
                     event.setNewState(RankineBlocks.GRAY_GRANITE.get().getDefaultState());
                     break;
                 case 3:
-                    event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
+                    event.setNewState(RankineBlocks.PYROXENE_GABBRO.get().getDefaultState());
                     break;
                 case 4:
-                    event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
+                    event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
                     break;
                 case 5:
-                    event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
+                    event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
                     break;
                 case 6:
+                    event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
+                    break;
+                case 7:
                     event.setNewState(RankineBlocks.PURPLE_PORPHYRY.get().getDefaultState());
                     break;
             }
@@ -636,13 +645,13 @@ public class RankineEventHandler {
             {
                 event.setNewState(RankineBlocks.BLACK_DACITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()))
-            {
-                event.setNewState(Blocks.ANDESITE.getDefaultState());
-                return;
             } else if (adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.RED_DACITE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()))
+            {
+                event.setNewState(Blocks.ANDESITE.getDefaultState());
                 return;
             } else if (adjPos.contains(RankineBlocks.AMPHIBOLE_BLOCK.get()))
             {
@@ -656,8 +665,12 @@ public class RankineEventHandler {
             {
                 event.setNewState(RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState());
                 return;
+            } else if (adjPos.contains(Blocks.CRYING_OBSIDIAN))
+            {
+                event.setNewState(RankineBlocks.COMENDITE.get().getDefaultState());
+                return;
             }
-            switch (event.getWorld().getRandom().nextInt(6))
+            switch (event.getWorld().getRandom().nextInt(7))
             {
                 case 0:
                     event.setNewState(Blocks.BASALT.getDefaultState());
@@ -666,15 +679,18 @@ public class RankineEventHandler {
                     event.setNewState(RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState());
                     break;
                 case 2:
-                    event.setNewState(RankineBlocks.PYROXENE_GABBRO.get().getDefaultState());
+                    event.setNewState(RankineBlocks.RED_DACITE.get().getDefaultState());
                     break;
                 case 3:
-                    event.setNewState(RankineBlocks.RHYOLITE.get().getDefaultState());
+                    event.setNewState(RankineBlocks.BLACK_DACITE.get().getDefaultState());
                     break;
                 case 4:
-                    event.setNewState(RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
+                    event.setNewState(RankineBlocks.RHYOLITE.get().getDefaultState());
                     break;
                 case 5:
+                    event.setNewState(RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
+                    break;
+                case 6:
                     event.setNewState(Blocks.ANDESITE.getDefaultState());
                     break;
             }
@@ -707,7 +723,7 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void onBlockHarvest(PlayerEvent.HarvestCheck event) {
-        if (event.getPlayer().getHeldItemMainhand().getItem() instanceof AlloyToolInterface) {
+        if (event.getPlayer().getHeldItemMainhand().getItem() instanceof IAlloyTool) {
             ItemStack stack = event.getPlayer().getHeldItemMainhand();
             Item item = event.getPlayer().getHeldItemMainhand().getItem();
             boolean bool = item.canHarvestBlock(stack,event.getTargetBlock());
@@ -715,13 +731,28 @@ public class RankineEventHandler {
         }
     }
 
-    /*@SubscribeEvent
+    @SubscribeEvent
     public static void onItemAttributeModification(ItemAttributeModifierEvent event) {
-        if (event.getItemStack().getItem() instanceof AlloyToolInterface)
+        ItemStack stack = event.getItemStack();
+        if (stack.getItem() instanceof IAlloyTool && event.getSlotType() == EquipmentSlotType.MAINHAND)
         {
-            ItemStack stack = event.getItemStack();
+
+            IAlloyTool alloyTool = (IAlloyTool) stack.getItem();
+
+            double damage = alloyTool.getAlloyAttackDamage(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils());
+            event.addModifier(Attributes.ATTACK_DAMAGE,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc1"), "Rankine Damage modifier",
+                    Math.max(damage - alloyTool.getAlloyWear(alloyTool.getWearModifierDmg((float) damage),stack.getItem().getDamage(stack),stack.getItem().getMaxDamage(stack)),0),
+                    AttributeModifier.Operation.ADDITION));
+            event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
+                    alloyTool.getAlloyAttackSpeed(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils()),
+                    AttributeModifier.Operation.ADDITION));
         }
-    } */
+        if ((stack.getItem() instanceof HammerItem) && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING,stack) > 0 && event.getSlotType() == EquipmentSlotType.MAINHAND) {
+            event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc3"), "Rankine Swing modifier",
+                    0.5D * EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING,stack),
+                    AttributeModifier.Operation.ADDITION));
+        }
+    }
     
     @SubscribeEvent
     public static void onToolUse(BlockEvent.BlockToolInteractEvent event) {

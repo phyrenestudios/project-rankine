@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/polished_polished_mariposte",
-        "top": "rankine:block/polished_polished_mariposte",
-        "side": "rankine:block/polished_polished_mariposte"
-      }
-}

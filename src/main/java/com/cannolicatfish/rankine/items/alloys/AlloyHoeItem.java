@@ -2,25 +2,18 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.google.common.collect.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -36,13 +29,15 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
-public class AlloyHoeItem extends AlloyTool {
+public class AlloyHoeItem extends HoeItem implements IAlloyTool {
     private static final Set<Block> EFFECTIVE_ON_BLOCKS = ImmutableSet.of(Blocks.NETHER_WART_BLOCK, Blocks.WARPED_WART_BLOCK, Blocks.HAY_BLOCK, Blocks.DRIED_KELP_BLOCK, Blocks.TARGET, Blocks.SHROOMLIGHT, Blocks.SPONGE, Blocks.WET_SPONGE, Blocks.JUNGLE_LEAVES, Blocks.OAK_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.ACACIA_LEAVES, Blocks.BIRCH_LEAVES);
-    protected static final Map<Block, BlockState> HOE_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.getDefaultState(), Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState(), Blocks.DIRT, Blocks.FARMLAND.getDefaultState(), Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState()));
+    private final AlloyUtils alloy;
 
     public AlloyHoeItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Item.Properties builder) {
-        super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON_BLOCKS, alloy, builder.addToolType(ToolType.HOE, tier.getHarvestLevel()));
+        super( tier, (int) attackDamageIn, attackSpeedIn, builder.addToolType(ToolType.HOE, tier.getHarvestLevel()));
+        this.alloy = alloy;
     }
+
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
@@ -58,7 +53,7 @@ public class AlloyHoeItem extends AlloyTool {
                 if (!world.isRemote) {
                     world.setBlockState(blockpos, blockstate, 11);
                     if (playerentity != null) {
-                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),context.getPlayer(),true), playerentity, (p_220043_1_) -> {
+                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),this.alloy,context.getWorld(),context.getPlayer(),true), playerentity, (p_220043_1_) -> {
                             p_220043_1_.sendBreakAnimation(context.getHand());
                         });
                     }
@@ -69,6 +64,106 @@ public class AlloyHoeItem extends AlloyTool {
         }
 
         return ActionResultType.PASS;
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
+        return EFFECTIVE_ON_BLOCKS.contains(state.getBlock()) ? getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy) : 1.0F;
+    }
+
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.damageItem(calcDurabilityLoss(stack,this.alloy,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
+            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
+        return true;
+    }
+
+    /**
+     * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
+     */
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+            stack.damageItem(calcDurabilityLoss(stack,this.alloy,worldIn,entityLiving,true), entityLiving, (entity) -> {
+                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            });
+        }
+
+        return true;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        return getDamage(stack) * 1f / this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
+            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+        });
+        if (returnCompositionString(stack,this.alloy) != null)
+        {
+            if (!Screen.hasShiftDown())
+            {
+                tooltip.add((new StringTextComponent("Hold shift for details...")).mergeStyle(TextFormatting.GRAY));
+            }
+            if (Screen.hasShiftDown())
+            {
+                float eff = getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
+                float wear = getWearAsPercent(eff,getAlloyWear(getWearModifierMining(eff),getDamage(stack),getMaxDamage(stack)));
+                tooltip.add((new StringTextComponent("Composition: " + returnCompositionString(stack,this.alloy))).mergeStyle(alloy.getAlloyGroupColor()));
+                tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(wear) + "%")).mergeStyle(getWearColor(wear)));
+                tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy) - getDamage(stack)) + "/" + getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.DARK_GREEN));
+                tooltip.add((new StringTextComponent("Harvest Level: " + getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
+                if (Config.ALLOY_CORROSION.get())
+                {
+                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                }
+                if (Config.ALLOY_HEAT.get())
+                {
+                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                }
+                if (Config.ALLOY_TOUGHNESS.get())
+                {
+                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
+        {
+            stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy)));
+        }
+        super.onCreated(stack, worldIn, playerIn);
+    }
+
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
+            ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()),this.getItem());
+            for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
+            {
+                stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy)));
+            }
+            items.add(stack);
+        }
+    }
+
+    @Override
+    public AlloyUtils returnAlloyUtils() {
+        return this.alloy;
     }
 
 }

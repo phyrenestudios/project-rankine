@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:dolostone_bricks_bricks"
-      },
-      "result": "rankine:polished_dolostone_bricks_slab",
-      "count": 2
-}
