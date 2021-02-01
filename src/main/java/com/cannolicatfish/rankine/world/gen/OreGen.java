@@ -68,6 +68,9 @@ public class OreGen {
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CLAY_DISKS, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false)));
+        if (Config.FIRE_CLAY_GEN.get()) {
+            OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        }
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, getBiomeNamesFromCategory(Collections.emptyList(), false)));
         if (Config.OVERWORLD_STONE_LAYERS.get()) {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DEFAULT_STONE_GEN, getBiomeNamesFromCategory(Collections.emptyList(), false)));

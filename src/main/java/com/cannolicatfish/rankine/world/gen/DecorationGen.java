@@ -43,8 +43,6 @@ public class DecorationGen
             LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
         //LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.VOLCANO, getBiomeNamesFromCategory(Collections.emptyList(),false)));
-        LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, getBiomeNamesFromCategory(Collections.emptyList(),false)));
-
         return LocalModifications;
     }
 

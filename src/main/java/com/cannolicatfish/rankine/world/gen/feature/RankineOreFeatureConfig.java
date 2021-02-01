@@ -38,30 +38,6 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
     }
 
     public static enum RankineFillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
-        IGNEOUS("igneous", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block.getTags().contains(new ResourceLocation("rankine:igneous_stones"));
-            }
-        }),
-        SEDIMENTARY("sedimentary", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block.getTags().contains(new ResourceLocation("rankine:sedimentary_stones"));
-            }
-        }),
-        METAMORPHIC("metamorphic", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block.getTags().contains(new ResourceLocation("rankine:metamorphic_stones"));
-            }
-        }),
         NATIVE_COPPER("native_copper", (blockstate) -> {
             if (blockstate == null) {
                 return false;
@@ -2143,28 +2119,52 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return block == RankineBlocks.RED_DACITE.get() || block == RankineBlocks.BLACK_DACITE.get();
             }
         }),
+        IGNEOUS("igneous", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block.getTags().contains(new ResourceLocation("rankine:igneous_stones"));
+            }
+        }),
+        SEDIMENTARY("sedimentary", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block.getTags().contains(new ResourceLocation("rankine:sedimentary_stones"));
+            }
+        }),
+        METAMORPHIC("metamorphic", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block.getTags().contains(new ResourceLocation("rankine:metamorphic_stones"));
+            }
+        }),
+        OVERWORLD("overworld", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                Block block = blockstate.getBlock();
+                return block.getTags().contains(new ResourceLocation("minecraft:base_stone_overworld"));
+            }
+        }),
         END("end", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.END_STONE;
+                return block.getTags().contains(new ResourceLocation("rankine:base_stone_end"));
             }
         }),
-        NETHER("nk_b", (blockstate) -> {
+        NETHER("nether", (blockstate) -> {
             if (blockstate == null) {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.NETHERRACK || block == Blocks.BASALT || block == Blocks.BLACKSTONE;
-            }
-        }),
-        NETHERRACK("netherrack", (blockstate) -> {
-            if (blockstate == null) {
-                return false;
-            } else {
-                Block block = blockstate.getBlock();
-                return block == Blocks.NETHERRACK;
+                return block.getTags().contains(new ResourceLocation("mine:base_stone_nether"));
             }
         });;
 

@@ -118,13 +118,48 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                         if (!bitset.get(k2)) {
                                             bitset.set(k2);
                                             blockpos$mutableblockpos.setPos(l1, i2, j2);
+                                            Block b = worldIn.getBlockState(blockpos$mutableblockpos).getBlock();
+                                            ResourceLocation rs = b.getRegistryName();
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 List<Block> blockList = Arrays.asList(Blocks.STONE,Blocks.GRANITE,Blocks.DIORITE,Blocks.ANDESITE,Blocks.SANDSTONE,Blocks.RED_SANDSTONE,Blocks.NETHERRACK, Blocks.BLACKSTONE,Blocks.BASALT,Blocks.END_STONE,
-                                                        RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.PYROXENE_GABBRO.get(), RankineBlocks.ANORTHOSITE.get(),
-                                                        RankineBlocks.RHYOLITE.get(), RankineBlocks.TUFA_LIMESTONE.get(), RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.GNEISS.get(), RankineBlocks.MICA_SCHIST.get(), RankineBlocks.SLATE.get(), RankineBlocks.CARBONACEOUS_SHALE.get(), RankineBlocks.IRONSTONE.get(), RankineBlocks.BRECCIA.get(), RankineBlocks.PUMICE.get(), RankineBlocks.SCORIA.get(),
-                                                        RankineBlocks.PERIDOTITE.get(), RankineBlocks.KIMBERLITE.get(), RankineBlocks.KOMATIITE.get(), RankineBlocks.RINGWOODITE.get(), RankineBlocks.WADSLEYITE.get(), RankineBlocks.BRIDGMANITE.get(), RankineBlocks.FERROPERICLASE.get(), RankineBlocks.PEROVSKITE.get(), RankineBlocks.QUARTZ_SANDSTONE.get(), RankineBlocks.ARKOSE_SANDSTONE.get(), RankineBlocks.BLACK_DACITE.get(), RankineBlocks.RED_DACITE.get(), RankineBlocks.MUDSTONE.get(), RankineBlocks.CHALK.get());
-                                                if (blockList.contains(worldIn.getBlockState(blockpos$mutableblockpos).getBlock()) && config.state.getBlock() instanceof RankineOreBlock) {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE,blockList.indexOf(worldIn.getBlockState(blockpos$mutableblockpos).getBlock())), 2);
+                                                        RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.PYROXENE_GABBRO.get(), RankineBlocks.ANORTHOSITE.get(), RankineBlocks.RHYOLITE.get(), RankineBlocks.COMENDITE.get(), RankineBlocks.BLACK_DACITE.get(), RankineBlocks.RED_DACITE.get(), RankineBlocks.RED_PORPHYRY.get(), RankineBlocks.PURPLE_PORPHYRY.get(), RankineBlocks.PERIDOTITE.get(), RankineBlocks.TROCTOLITE.get(), RankineBlocks.KIMBERLITE.get(), RankineBlocks.KOMATIITE.get(), RankineBlocks.PUMICE.get(), RankineBlocks.SCORIA.get(),
+                                                        RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.BLACK_MARBLE.get(), RankineBlocks.GNEISS.get(), RankineBlocks.MICA_SCHIST.get(), RankineBlocks.PHYLLITE.get(), RankineBlocks.SLATE.get(), RankineBlocks.QUARTZITE.get(), RankineBlocks.MARIPOSITE.get(), RankineBlocks.SKARN.get(), RankineBlocks.RINGWOODITE.get(), RankineBlocks.WADSLEYITE.get(), RankineBlocks.BRIDGMANITE.get(), RankineBlocks.FERROPERICLASE.get(), RankineBlocks.PEROVSKITE.get(),
+                                                        RankineBlocks.TUFA_LIMESTONE.get(), RankineBlocks.DOLOSTONE.get(), RankineBlocks.CHALK.get(), RankineBlocks.CARBONACEOUS_SHALE.get(), RankineBlocks.SILTSTONE.get(), RankineBlocks.QUARTZ_SANDSTONE.get(), RankineBlocks.ARKOSE_SANDSTONE.get(), RankineBlocks.MUDSTONE.get(), RankineBlocks.BRECCIA.get());
+                                                if (blockList.contains(b) && config.state.getBlock() instanceof RankineOreBlock) {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE,blockList.indexOf(b)), 2);
+                                                    ++i;
+                                                } else if (rs.getNamespace().equals("create")) {
+                                                    switch (rs.getPath()) {
+                                                        case "limestone":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 51), 2);
+                                                        case "weathered_limestone":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 52), 2);
+                                                        case "dolomite":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 53), 2);
+                                                        case "gabbro":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 54), 2);
+                                                        case "natural_scoria":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 55), 2);
+                                                    }
+                                                    ++i;
+                                                } else if (rs.getNamespace().equals("quark")) {
+                                                    switch (rs.getPath()) {
+                                                        case "limestone":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 56), 2);
+                                                        case "marble":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 57), 2);
+                                                        case "jasper":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 58), 2);
+                                                        case "slate":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 59), 2);
+                                                        case "basalt":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 60), 2);
+                                                        case "myalite":
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 61), 2);
+                                                    }
+                                                    ++i;
+                                                } else if (b.getRegistryName().getNamespace().equals("unearthed")) {
+                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
                                                     ++i;
                                                 } else {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);

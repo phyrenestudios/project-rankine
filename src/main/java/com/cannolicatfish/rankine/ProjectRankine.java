@@ -71,6 +71,7 @@ public class ProjectRankine {
 
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-common.toml"));
+        //WGConfig.loadConfig(WGConfig.COMMON_WGCONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-worldgen.toml"));
         //ModRecipes.init();
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);

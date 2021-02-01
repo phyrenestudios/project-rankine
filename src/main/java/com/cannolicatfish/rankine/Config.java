@@ -23,10 +23,6 @@ public class Config {
     public static final String SUBCATEGORY_EVENTS = "event";
     public static final String SUBCATEGORY_ALLOYS = "alloys";
     public static final String SUBCATEGORY_OREGEN = "oregen";
-    public static final String SUBCATEGORY_OVERWORLD = "overworldOres";
-    public static final String SUBCATEGORY_NETHER = "netherOres";
-    public static final String SUBCATEGORY_END = "endOres";
-
 
     private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
     private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
@@ -116,7 +112,7 @@ public class Config {
     public static ForgeConfigSpec.IntValue NOISE_OFFSET;
     public static ForgeConfigSpec.IntValue METEORITE_CHANCE;
     public static ForgeConfigSpec.BooleanValue METEORITE_GEN;
-    public static ForgeConfigSpec.BooleanValue NETHER_INTRUSION_GEN;
+    public static ForgeConfigSpec.BooleanValue FIRE_CLAY_GEN;
     public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
     public static ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
     public static ForgeConfigSpec.BooleanValue OVERWORLD_STONE_LAYERS;
@@ -1100,6 +1096,8 @@ public class Config {
         COMMON_BUILDER.comment("Overworld Features").push("overworldFeatures");
             RANKINE_FAUNA = COMMON_BUILDER.comment("Enable/Disable Project Rankine trees and berry bushes in world.")
                     .define("generateFauna",true);
+            FIRE_CLAY_GEN = COMMON_BUILDER.comment("Enables the generation of fire clay disks in dirt.")
+                    .define("generateFireClay",true);
             OVERWORLD_STONE_LAYERS = COMMON_BUILDER.comment("Enable stone layer generation in the End.")
                     .define("overworldStoneGen",true);
             NOISE_SCALE = COMMON_BUILDER.comment("This determines how smooth stone layers generate. Larger values means smoother. Default value is 125.")
@@ -1528,25 +1526,25 @@ public class Config {
                 .define("generateEndOres",true);
 
 
-        COMMON_BUILDER.comment("Native_copper Settings").push("Native_copperOre");
-        NATIVE_COPPER_ORE_DIMENSION_LIST = COMMON_BUILDER.comment("Dimension to generate Native_copper Ore in (overworld / nether / end)")
-                .define("Native_copperOreDimList", new ArrayList<>(Arrays.asList("overworld")));
-        NATIVE_COPPER_ORE_STONE_SPECIFIC = COMMON_BUILDER.comment("Use Native_copperBlockList to determine what blocks Native_copper Ore will spawn in. If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether.")
-                .define("Native_copperOreStoneSpecific",false);
-        NATIVE_COPPER_BLOCK_LIST = COMMON_BUILDER.comment("Blocks to generate Native_copper Ore in if Native_copperOreStoneSpecific is enabled. Can use tags and/or blocks (tag ex: T#rankine:metamorphic_stones ||| block ex: B:minecraft:dirt)")
-                .define("Native_copperBlockList", new ArrayList<>(Arrays.asList()));
-        NATIVE_COPPER_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native_copper at (make sure it is less than the maximum)")
-                .defineInRange("Native_copperOreMin", 60, 0, 256);
-        NATIVE_COPPER_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native_copper at (make sure it is greater than the minimum)")
-                .defineInRange("Native_copperOreMax", 85, 0, 256);
-        NATIVE_COPPER_ORE_GENTYPE = COMMON_BUILDER.comment("If true, Native_copperOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
-                .define("Native_copperOreGentype",false);
-        NATIVE_COPPER_ORE_SIZE = COMMON_BUILDER.comment("Size of Native_copper vein")
-                .defineInRange("Native_copperOreSize", 9, 0, 256);
-        NATIVE_COPPER_ORE_COUNT = COMMON_BUILDER.comment("Number of Native_copper veins to generate X veins per chunk or 1 vein in X chunks.")
-                .defineInRange("Native_copperOreCount", 5, 0, 256);
-        NATIVE_COPPER_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native_copper")
-                .defineInRange("Native_copperOreHL", 0, 0, 10);
+        COMMON_BUILDER.comment("Native Copper Settings").push("nativeCopperOre");
+        NATIVE_COPPER_ORE_DIMENSION_LIST = COMMON_BUILDER.comment("Dimension to generate Native Copper Ore in (overworld / nether / end)")
+                .define("nativeCopperOreDimList", new ArrayList<>(Arrays.asList("overworld")));
+        NATIVE_COPPER_ORE_STONE_SPECIFIC = COMMON_BUILDER.comment("Use nativeCopperBlockList to determine what blocks Native Copper Ore will spawn in. If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether.")
+                .define("nativeCopperOreStoneSpecific",false);
+        NATIVE_COPPER_BLOCK_LIST = COMMON_BUILDER.comment("Blocks to generate Native Copper Ore in if nativeCopperOreStoneSpecific is enabled. Can use tags and/or blocks (tag ex: T#rankine:metamorphic_stones ||| block ex: B:minecraft:dirt)")
+                .define("nativeCopperBlockList", new ArrayList<>(Arrays.asList()));
+        NATIVE_COPPER_ORE_MIN_HEIGHT = COMMON_BUILDER.comment("Minimum height to generate Native Copper at (make sure it is less than the maximum)")
+                .defineInRange("nativeCopperOreMin", 60, 0, 256);
+        NATIVE_COPPER_ORE_MAX_HEIGHT = COMMON_BUILDER.comment("Maximum height to generate Native Copper at (make sure it is greater than the minimum)")
+                .defineInRange("nativeCopperOreMax", 85, 0, 256);
+        NATIVE_COPPER_ORE_GENTYPE = COMMON_BUILDER.comment("If true, nativeCopperOreCount will switch to generate a vein 1 in X chunks instead of number of veins per chunk.")
+                .define("nativeCopperOreGentype",false);
+        NATIVE_COPPER_ORE_SIZE = COMMON_BUILDER.comment("Size of Native Copper vein")
+                .defineInRange("nativeCopperOreSize", 9, 0, 256);
+        NATIVE_COPPER_ORE_COUNT = COMMON_BUILDER.comment("Number of Native Copper veins to generate X veins per chunk or 1 vein in X chunks.")
+                .defineInRange("nativeCopperOreCount", 5, 0, 256);
+        NATIVE_COPPER_ORE_HL = COMMON_BUILDER.comment("Harvest Level of Native Copper")
+                .defineInRange("nativeCopperOreHL", 0, 0, 10);
         COMMON_BUILDER.pop();
         COMMON_BUILDER.comment("Native_tin Settings").push("Native_tinOre");
         NATIVE_TIN_ORE_DIMENSION_LIST = COMMON_BUILDER.comment("Dimension to generate Native_tin Ore in (overworld / nether / end)")
