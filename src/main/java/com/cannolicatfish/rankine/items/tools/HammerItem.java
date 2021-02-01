@@ -162,7 +162,7 @@ public class HammerItem extends ToolItem {
             if (attacker instanceof PlayerEntity)
             {
                 PlayerEntity player = (PlayerEntity) attacker;
-                if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
+                if (player.getCooledAttackStrength(0) >= (1f))
                 {
                     target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 2));
                 } else {
@@ -209,7 +209,7 @@ public class HammerItem extends ToolItem {
             {
                 pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
             }
-            if (player.getCooledAttackStrength(0) >= (1f - .15*getSwingModifier(stack)))
+            if (player.getCooledAttackStrength(0) >= (1f))
             {
                 player.resetCooldown();
 

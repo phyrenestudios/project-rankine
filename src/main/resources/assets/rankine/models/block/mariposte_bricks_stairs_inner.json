@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/mariposte_bricks",
-        "top": "rankine:block/mariposte_bricks",
-        "side": "rankine:block/mariposte_bricks"
-      }
-    }

@@ -11,53 +11,34 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameters;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.extensions.IForgeItem;
 
 import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
-public class AlloyPickaxeItem extends PickaxeItem implements AlloyToolInterface {
+public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     private final AlloyUtils alloy;
-    private final float attackDamage;
-    private final float attackSpeedIn;
+
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.POWERED_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.NETHER_GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.BLUE_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.CHISELED_SANDSTONE, Blocks.CUT_SANDSTONE, Blocks.CHISELED_RED_SANDSTONE, Blocks.CUT_RED_SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.GRANITE, Blocks.POLISHED_GRANITE, Blocks.DIORITE, Blocks.POLISHED_DIORITE, Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.STONE_SLAB, Blocks.SMOOTH_STONE_SLAB, Blocks.SANDSTONE_SLAB, Blocks.PETRIFIED_OAK_SLAB, Blocks.COBBLESTONE_SLAB, Blocks.BRICK_SLAB, Blocks.STONE_BRICK_SLAB, Blocks.NETHER_BRICK_SLAB, Blocks.QUARTZ_SLAB, Blocks.RED_SANDSTONE_SLAB, Blocks.PURPUR_SLAB, Blocks.SMOOTH_QUARTZ, Blocks.SMOOTH_RED_SANDSTONE, Blocks.SMOOTH_SANDSTONE, Blocks.SMOOTH_STONE, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE, Blocks.POLISHED_GRANITE_SLAB, Blocks.SMOOTH_RED_SANDSTONE_SLAB, Blocks.MOSSY_STONE_BRICK_SLAB, Blocks.POLISHED_DIORITE_SLAB, Blocks.MOSSY_COBBLESTONE_SLAB, Blocks.END_STONE_BRICK_SLAB, Blocks.SMOOTH_SANDSTONE_SLAB, Blocks.SMOOTH_QUARTZ_SLAB, Blocks.GRANITE_SLAB, Blocks.ANDESITE_SLAB, Blocks.RED_NETHER_BRICK_SLAB, Blocks.POLISHED_ANDESITE_SLAB, Blocks.DIORITE_SLAB, Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX, Blocks.PISTON, Blocks.STICKY_PISTON, Blocks.PISTON_HEAD);
 
-    public AlloyPickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Item.Properties builder) {
-        super(tier, attackDamageIn, attackSpeedIn, builder.addToolType(ToolType.PICKAXE, tier.getHarvestLevel()));
+    public AlloyPickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Item.Properties properties) {
+        super(tier, attackDamageIn, attackSpeedIn, properties.addToolType(ToolType.PICKAXE, tier.getHarvestLevel()));
         this.alloy = alloy;
-        this.attackDamage = attackDamageIn + tier.getAttackDamage();
-        this.attackSpeedIn = attackSpeedIn;
-    }
-
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        return getDamage(stack) * 1f / this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
-    }
-
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        return this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
     }
 
     @Override
@@ -76,15 +57,39 @@ public class AlloyPickaxeItem extends PickaxeItem implements AlloyToolInterface 
         return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? getToolItemDestroySpeed(stack,state) : getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
     }
 
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.damageItem(calcDurabilityLoss(stack,this.alloy,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
+            entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+        });
+        return true;
+    }
+
+    /**
+     * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
+     */
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+        if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
+            stack.damageItem(calcDurabilityLoss(stack,this.alloy,worldIn,entityLiving,true), entityLiving, (entity) -> {
+                entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+            });
+        }
+
+        return true;
+    }
+
     public float getToolItemDestroySpeed(ItemStack stack, BlockState state) {
         if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
         return EFFECTIVE_ON.contains(state.getBlock()) ? getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy) : 1.0F;
     }
 
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        return getDamage(stack) * 1f / this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+    }
 
-
-    public AlloyUtils getAlloy() {
-        return this.alloy;
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
     }
 
     @Override
@@ -122,10 +127,6 @@ public class AlloyPickaxeItem extends PickaxeItem implements AlloyToolInterface 
                     tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
             }
-            tooltip.add((new StringTextComponent("" )));
-            tooltip.add((new StringTextComponent("When in main hand: " ).mergeStyle(TextFormatting.GRAY)));
-            tooltip.add((new StringTextComponent(" " + df.format((1 + getAlloyAttackDamage(returnCompositionString(stack,this.alloy),getAttackDamage(),this.alloy))) + " Attack Damage") .mergeStyle(TextFormatting.DARK_GREEN)));
-            tooltip.add((new StringTextComponent(" " + df.format((4 + getAlloyAttackSpeed(returnCompositionString(stack,this.alloy),this.attackSpeedIn,this.alloy))) + " Attack Speed").mergeStyle(TextFormatting.DARK_GREEN)));
         }
     }
 
@@ -148,6 +149,11 @@ public class AlloyPickaxeItem extends PickaxeItem implements AlloyToolInterface 
             }
             items.add(stack);
         }
+    }
+
+    @Override
+    public AlloyUtils returnAlloyUtils() {
+        return this.alloy;
     }
 
 }

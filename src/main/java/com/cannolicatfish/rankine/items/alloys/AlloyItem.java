@@ -67,7 +67,6 @@ public class AlloyItem extends Item {
         }
 
         p_92115_0_.getOrCreateTag().put("StoredComposition", listnbt);
-        p_92115_0_.getOrCreateTag().putInt("HideFlags",2);
     }
 
     /**

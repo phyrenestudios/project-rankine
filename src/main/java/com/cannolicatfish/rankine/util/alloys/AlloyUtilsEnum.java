@@ -33,11 +33,11 @@ public enum AlloyUtilsEnum implements AlloyUtils{
     BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, 32,0,0,0,1,0,0f,0.2f,-0.05f,
             Collections.emptyList(),"75Au-25Co", TextFormatting.YELLOW),
     PEWTER(RankineToolMaterials.PEWTER, 20,4,1,5,0,0,0.25F,0,-0.05f, Collections.emptyList(),"90Sn-10Sb", TextFormatting.DARK_GREEN),
-    STEEL(RankineToolMaterials.STEEL, 460,4,1,0,3,0,0F,0,0.25f, Collections.emptyList(),"99Fe-1C", TextFormatting.DARK_GRAY),
-    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,3,0,0F,0,0.25f, Collections.emptyList(),"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
-    TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,4,0,0F,0,0.15f, Collections.emptyList(),"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
-    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,4,0,0.15F,0,0.15f, Collections.emptyList(),"75Ni-15Cr-10Fe", TextFormatting.DARK_BLUE),
-    COBALT_SA(RankineToolMaterials.COBALT_SA, 370,3.5f,1,3,4,0,0F,0,0.3f, Collections.emptyList(),"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
+    STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, Collections.emptyList(),"99Fe-1C", TextFormatting.DARK_GRAY),
+    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, Collections.emptyList(),"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
+    TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,0,0,0F,0,0.15f, Collections.emptyList(),"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
+    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0.15F,0,0.15f, Collections.emptyList(),"75Ni-15Cr-10Fe", TextFormatting.DARK_BLUE),
+    COBALT_SA(RankineToolMaterials.COBALT_SA, 370,3.5f,1,3,0,0,0F,0,0.3f, Collections.emptyList(),"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
 
     IItemTier tier;
     int durabilityBonus;
