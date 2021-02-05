@@ -259,7 +259,7 @@ public final class PeriodicTableUtils {
         SULFUR(16,"S",new SulfurElement()),
         CALCIUM(20, "Ca", new CalciumElement()),
         TITANIUM(22, "Ti", new TitaniumElement()),
-        VANADIUM(23, "Vn", new VanadiumElement()),
+        VANADIUM(23, "V", new VanadiumElement()),
         CHROMIUM(24, "Cr", new ChromiumElement()),
         MANGANESE(25, "Mn", new ManganeseElement()),
         IRON(26, "Fe", new IronElement()),

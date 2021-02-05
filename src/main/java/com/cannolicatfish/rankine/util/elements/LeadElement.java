@@ -11,12 +11,7 @@ public class LeadElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        if (x >= 50)
-        {
-            return (int) Math.round(Math.pow(x/8f,2));
-        } else {
-            return Math.round(x/6f + 2*x/5f);
-        }
+        return (int) Math.round(Math.pow(x/8f,2) + 8);
     }
 
     @Override
@@ -41,7 +36,7 @@ public class LeadElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return Math.round(x/20f + x/8f);
+        return Math.round(x/4f);
     }
 
     @Override

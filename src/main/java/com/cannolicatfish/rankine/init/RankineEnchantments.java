@@ -5,9 +5,6 @@ import net.minecraftforge.registries.ObjectHolder;
 
 public class RankineEnchantments {
 
-    @ObjectHolder("rankine:blast")
-    public static Enchantment BLAST;
-
     @ObjectHolder("rankine:atomize")
     public static Enchantment ATOMIZE;
 

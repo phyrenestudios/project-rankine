@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:sperrylite_ore"
+  },
+  "output1": {
+    "item": "rankine:rhodium_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output2": {
+    "item": "rankine:ruthenium_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output3": {
+    "item": "rankine:platinum_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output4": {
+    "item": "rankine:platinum_arsenide",
+    "chance": 1
+  },
+  "output5": {
+    "item": "rankine:osmiridium_alloy",
+    "chance": 0.25,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:tellurium_nugget",
+    "count": 5,
+    "chance": 0.4
+  }
+}

@@ -28,7 +28,7 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:meteoric_iron_hoe",
+      "item": "rankine:invar_hoe",
       "text": "Stats:$(li)Harvest Level: 2"
     },
     {

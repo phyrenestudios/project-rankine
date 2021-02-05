@@ -1,0 +1,30 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:kamacite"
+  },
+  "output2": {
+    "item": "rankine:meteoric_iron",
+    "alloyData": "90Fe-10Ni",
+    "chance": 1
+  },
+  "output3": {
+    "item": "minecraft:iron_nugget",
+    "chance": 0.3,
+    "additional": 0.1
+  },
+  "output4": {
+    "item": "rankine:cobalt_nugget",
+    "chance": 0.2,
+    "additional": 0.1
+  },
+  "output5": {
+    "item": "rankine:germanium_nugget",
+    "chance": 0.1,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:gallium_nugget",
+    "chance": 0.1
+  }
+}

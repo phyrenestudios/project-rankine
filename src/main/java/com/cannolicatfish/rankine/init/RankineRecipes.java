@@ -776,8 +776,6 @@ public class RankineRecipes {
         recipes.add(crushingRecipe("cinnabar_crushing", RankineItems.CINNABAR.get(), new ItemStack(Items.REDSTONE,3), new ItemStack(RankineItems.SULFUR.get(),1),0.1f));
         recipes.add(crushingRecipe("cinnabar_crushing", RankineBlocks.CINNABAR_BLOCK.get().asItem(), new ItemStack(Items.REDSTONE,27), new ItemStack(RankineItems.SULFUR.get(),1),0.9f));
         recipes.add(crushingRecipe("cryolite_ore_crushing", RankineBlocks.CRYOLITE_ORE.get().asItem(), new ItemStack(RankineItems.CRYOLITE.get(),1), new ItemStack(RankineItems.ALUMINA.get(),1),0.1f));
-        recipes.add(crushingRecipe("pyrite_ore_crushing", RankineBlocks.PYRITE_ORE.get().asItem(), new ItemStack(RankineItems.PYRITE.get(),1), new ItemStack(Items.GOLD_NUGGET,1),1.0f));
-        recipes.add(crushingRecipe("pyrite_crushing", RankineItems.PYRITE.get(), new ItemStack(Items.IRON_NUGGET,6), new ItemStack(Items.GOLD_NUGGET,1),1.0f));
 
 
 

@@ -54,28 +54,11 @@ public class ElementIndexerItem extends Item {
     {
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-        if (stack.getItem().getTags().contains(new ResourceLocation("forge:nuggets")) || stack.getItem().getTags().contains(new ResourceLocation("forge:ingots")) ||
-                stack.getItem().getTags().contains(new ResourceLocation("forge:storage_blocks")))
+        if (stack.getItem().getTags().contains(new ResourceLocation("rankine:elements")))
         {
             for (ResourceLocation tag: stack.getItem().getTags())
             {
-                if (tag.toString().contains("forge:nuggets/"))
-                {
-                    String temp = tag.getPath().split("/")[1];
-                    if (utils.getImplementedElementNames().contains(temp))
-                    {
-                        return true;
-                    }
-                }
-                if (tag.toString().contains("forge:ingots/"))
-                {
-                    String temp = tag.getPath().split("/")[1];
-                    if (utils.getImplementedElementNames().contains(temp))
-                    {
-                        return true;
-                    }
-                }
-                if (tag.toString().contains("forge:storage_blocks/"))
+                if (tag.toString().contains("rankine:elements/"))
                 {
                     String temp = tag.getPath().split("/")[1];
                     if (utils.getImplementedElementNames().contains(temp))

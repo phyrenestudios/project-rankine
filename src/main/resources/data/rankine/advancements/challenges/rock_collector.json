@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:red_granite"
+            "item": "rankine:gray_granite"
           }
         ]
       }
@@ -61,7 +61,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:limestone"
+            "item": "rankine:tufa_limestone"
           }
         ]
       }
@@ -71,7 +71,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:shale"
+            "item": "rankine:carbonaceous_shale"
           }
         ]
       }
@@ -91,7 +91,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:marble"
+            "item": "rankine:white_marble"
           }
         ]
       }
@@ -231,7 +231,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:gabbro"
+            "item": "rankine:pyroxene_gabbro"
           }
         ]
       }
@@ -241,7 +241,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:schist"
+            "item": "rankine:mica_schist"
           }
         ]
       }
@@ -281,7 +281,7 @@
     [
       "rankine:rhyolite"
     ], [
-      "rankine:porphyry"
+      "rankine:red_porphyry"
     ], [
       "rankine:granite"
     ], [

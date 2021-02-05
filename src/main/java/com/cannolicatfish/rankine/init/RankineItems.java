@@ -1248,7 +1248,6 @@ public class RankineItems {
     public static final RegistryObject<Item> BITUMINOUS_COAL = REGISTRY.register("bituminous_coal", () -> new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals),2400));
     public static final RegistryObject<Item> ANTHRACITE_COAL = REGISTRY.register("anthracite_coal", () -> new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200));
     public static final RegistryObject<Item> COKE = REGISTRY.register("coke", () -> new FuelItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200));
-    public static final RegistryObject<Item> PYRITE = REGISTRY.register("pyrite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CRYOLITE = REGISTRY.register("cryolite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MAGNESIA = REGISTRY.register("magnesia", () -> new SimpleTooltipItem(Arrays.asList("Composition: MgO", "Used for high refractory bricks"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CALCITE = REGISTRY.register("calcite", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1339,8 +1338,6 @@ public class RankineItems {
     public static final RegistryObject<Item> SUBBITUMINOUS_COAL_BLOCK = REGISTRY.register("subbituminous_coal_block", () -> new FuelBlockItem(RankineBlocks.SUBBITUMINOUS_COAL_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 1600*9));
     public static final RegistryObject<Item> BITUMINOUS_COAL_BLOCK = REGISTRY.register("bituminous_coal_block", () -> new FuelBlockItem(RankineBlocks.BITUMINOUS_COAL_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 2400*9));
     public static final RegistryObject<Item> ANTHRACITE_COAL_BLOCK = REGISTRY.register("anthracite_coal_block", () -> new FuelBlockItem(RankineBlocks.ANTHRACITE_COAL_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals), 3200*9));
-    public static final RegistryObject<Item> NITER = REGISTRY.register("niter", () -> new BlockItem(RankineBlocks.NITER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-
     //Machines
     public static final RegistryObject<Item> BEEHIVE_OVEN_PIT = REGISTRY.register("beehive_oven_pit", () -> new BlockItem(RankineBlocks.BEEHIVE_OVEN_PIT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("high_beehive_oven_pit", () -> new BlockItem(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1386,13 +1383,13 @@ public class RankineItems {
     public static final RegistryObject<Item>  IRON_SPEAR = REGISTRY.register("iron_spear", () -> new SpearItem(ItemTier.IRON, 2, -2.9F, RankineEntityTypes.IRON_SPEAR,new ResourceLocation("rankine:textures/entity/iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item>  IRON_HAMMER = REGISTRY.register("iron_hammer", () -> new HammerItem(2, -3.2F, ItemTier.IRON, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item>  METAL_SCRAPER = REGISTRY.register("metal_scraper", () -> new ScraperItem(new Item.Properties().maxStackSize(1).maxDamage(256).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_SWORD = REGISTRY.register("meteoric_iron_sword", () -> new AlloySwordItem(RankineToolMaterials.INVAR, 3, -2.4F, AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_SHOVEL = REGISTRY.register("meteoric_iron_shovel", () -> new AlloyShovelItem(RankineToolMaterials.INVAR, 1.5F, -3.0F, AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_PICKAXE = REGISTRY.register("meteoric_iron_pickaxe", () -> new AlloyPickaxeItem(RankineToolMaterials.INVAR, 1, -2.8F,AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_AXE = REGISTRY.register("meteoric_iron_axe", () -> new AlloyAxeItem(RankineToolMaterials.INVAR, 4.0F, -3.2F, AlloyUtilsEnum.INVAR, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_HAMMER = REGISTRY.register("meteoric_iron_hammer", () -> new AlloyHammerItem(RankineToolMaterials.INVAR, 2, -3.2F, AlloyUtilsEnum.INVAR, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_HOE = REGISTRY.register("meteoric_iron_hoe", () -> new AlloyHoeItem(RankineToolMaterials.INVAR, -2, -1.0F, AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item>  METEORIC_IRON_SPEAR = REGISTRY.register("meteoric_iron_spear", () -> new AlloySpearItem(RankineToolMaterials.INVAR,2, -2.9F, AlloyUtilsEnum.INVAR, RankineEntityTypes.METEORIC_IRON_SPEAR,new ResourceLocation("rankine:textures/entity/meteoric_iron_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_SWORD = REGISTRY.register("invar_sword", () -> new AlloySwordItem(RankineToolMaterials.INVAR, 3, -2.4F, AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_SHOVEL = REGISTRY.register("invar_shovel", () -> new AlloyShovelItem(RankineToolMaterials.INVAR, 1.5F, -3.0F, AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_PICKAXE = REGISTRY.register("invar_pickaxe", () -> new AlloyPickaxeItem(RankineToolMaterials.INVAR, 1, -2.8F,AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_AXE = REGISTRY.register("invar_axe", () -> new AlloyAxeItem(RankineToolMaterials.INVAR, 4.0F, -3.2F, AlloyUtilsEnum.INVAR, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_HAMMER = REGISTRY.register("invar_hammer", () -> new AlloyHammerItem(RankineToolMaterials.INVAR, 2, -3.2F, AlloyUtilsEnum.INVAR, new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_HOE = REGISTRY.register("invar_hoe", () -> new AlloyHoeItem(RankineToolMaterials.INVAR, -2, -1.0F, AlloyUtilsEnum.INVAR,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item>  INVAR_SPEAR = REGISTRY.register("invar_spear", () -> new AlloySpearItem(RankineToolMaterials.INVAR,2, -2.9F, AlloyUtilsEnum.INVAR, RankineEntityTypes.INVAR_SPEAR,new ResourceLocation("rankine:textures/entity/invar_spear.png"), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item>  STEEL_SWORD = REGISTRY.register("steel_sword", () -> new AlloySwordItem(RankineToolMaterials.STEEL, 3, -2.4F, AlloyUtilsEnum.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item>  STEEL_SHOVEL = REGISTRY.register("steel_shovel", () -> new AlloyShovelItem(RankineToolMaterials.STEEL, 1.5F, -3.0F, AlloyUtilsEnum.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item>  STEEL_PICKAXE = REGISTRY.register("steel_pickaxe", () -> new AlloyPickaxeItem(RankineToolMaterials.STEEL, 1, -2.8F, AlloyUtilsEnum.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -1531,6 +1528,7 @@ public class RankineItems {
     public static final RegistryObject<Item>  BAMBOO_BOAT = REGISTRY.register("bamboo_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BAMBOO, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> FIRE_CLAY_BALL = REGISTRY.register("fire_clay_ball", () -> new SimpleTooltipItem("Derived from fire clay or from crafting. Used for refractory bricks.", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> KAOLINITE_BALL = REGISTRY.register("kaolinite_ball", () -> new SimpleTooltipItem("Derived from Bauxite Ore or from crafting. Used to make decorative porcelain.", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DRIED_BAMBOO = REGISTRY.register("dried_bamboo", () -> new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final RegistryObject<Item> BEAVER_PELT = REGISTRY.register("beaver_pelt", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PUMICE_SOAP = REGISTRY.register("pumice_soap", () -> new PumiceSoapItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -1649,7 +1647,7 @@ public class RankineItems {
     public static final RegistryObject<Item> TERBIUM_NUGGET = REGISTRY.register("terbium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> DYSPROSIUM_NUGGET = REGISTRY.register("dysprosium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HOLMIUM_NUGGET = REGISTRY.register("holmium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> ERIBIUM_NUGGET = REGISTRY.register("eribium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> ERBIUM_NUGGET = REGISTRY.register("erbium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> THULIUM_NUGGET = REGISTRY.register("thulium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> YTTERBIUM_NUGGET = REGISTRY.register("ytterbium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> LUTETIUM_NUGGET = REGISTRY.register("lutetium_nugget", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -1765,7 +1763,7 @@ public class RankineItems {
     public static final RegistryObject<Item> TERBIUM_INGOT = REGISTRY.register("terbium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> DYSPROSIUM_INGOT = REGISTRY.register("dysprosium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HOLMIUM_INGOT = REGISTRY.register("holmium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> ERIBIUM_INGOT = REGISTRY.register("eribium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> ERBIUM_INGOT = REGISTRY.register("erbium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> THULIUM_INGOT = REGISTRY.register("thulium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> YTTERBIUM_INGOT = REGISTRY.register("ytterbium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> LUTETIUM_INGOT = REGISTRY.register("lutetium_ingot", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -1881,7 +1879,7 @@ public class RankineItems {
     public static final RegistryObject<Item> TERBIUM_BLOCK = REGISTRY.register("terbium_block", () -> new BlockItem(RankineBlocks.TERBIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> DYSPROSIUM_BLOCK = REGISTRY.register("dysprosium_block", () -> new BlockItem(RankineBlocks.DYSPROSIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HOLMIUM_BLOCK = REGISTRY.register("holmium_block", () -> new BlockItem(RankineBlocks.HOLMIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> ERIBIUM_BLOCK = REGISTRY.register("eribium_block", () -> new BlockItem(RankineBlocks.ERIBIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> ERBIUM_BLOCK = REGISTRY.register("erbium_block", () -> new BlockItem(RankineBlocks.ERBIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> THULIUM_BLOCK = REGISTRY.register("thulium_block", () -> new BlockItem(RankineBlocks.THULIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> YTTERBIUM_BLOCK = REGISTRY.register("ytterbium_block", () -> new BlockItem(RankineBlocks.YTTERBIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> LUTETIUM_BLOCK = REGISTRY.register("lutetium_block", () -> new BlockItem(RankineBlocks.LUTETIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
@@ -1932,11 +1930,14 @@ public class RankineItems {
     public static final RegistryObject<Item> TENNESSINE_BLOCK = REGISTRY.register("tennessine_block", () -> new BlockItem(RankineBlocks.TENNESSINE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> OGANESSON_BLOCK = REGISTRY.register("oganesson_block", () -> new BlockItem(RankineBlocks.OGANESSON_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
 
+    public static final RegistryObject<Item> SEDIMENT_FAN = REGISTRY.register("sediment_fan", () -> new BlockItem(RankineBlocks.SEDIMENT_FAN.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
+    public static final RegistryObject<Item> LODESTONE = REGISTRY.register("lodestone", () -> new MagnetItem(3,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALNICO_MAGNET = REGISTRY.register("alnico_magnet", () -> new MagnetItem(1,new Item.Properties().maxDamage(200).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> RARE_EARTH_MAGNET = REGISTRY.register("rare_earth_magnet", () -> new MagnetItem(2,new Item.Properties().maxDamage(600).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new BlockItem(RankineBlocks.ALNICO_ELECTROMAGNET.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new BlockItem(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> PIA = REGISTRY.register("pia", () -> new PIAItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     @ObjectHolder("rankine:element_indexer")
     public static ContainerType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
