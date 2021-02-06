@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:pegmatite"
-      },
-      "result": "rankine:pegmatite_button",
-      "count": 1
-}
