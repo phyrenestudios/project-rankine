@@ -30,6 +30,7 @@
     "rankine:quartz_sandstone",
     "rankine:arkose_sandstone",
     "rankine:mudstone",
+    "rankine:pegmatite",
     "rankine:breccia"
   ]
 }

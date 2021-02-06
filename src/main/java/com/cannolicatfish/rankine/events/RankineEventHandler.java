@@ -343,6 +343,10 @@ public class RankineEventHandler {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.SAND_MS);
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && movementSpeed.hasModifier(RankineAttributes.SAND_MS) && ground != Blocks.AIR) {
                 movementSpeed.removeModifier(RankineAttributes.SAND_MS);
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/mud")) && !movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
+                movementSpeed.applyNonPersistentModifier(RankineAttributes.MUD_MS);
+            } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/mud")) && movementSpeed.hasModifier(RankineAttributes.MUD_MS) && ground != Blocks.AIR) {
+                movementSpeed.removeModifier(RankineAttributes.MUD_MS);
             } else if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(RankineAttributes.SNOW_MS)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.SNOW_MS);
             } else if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && movementSpeed.hasModifier(RankineAttributes.SNOW_MS) && ground != Blocks.AIR) {

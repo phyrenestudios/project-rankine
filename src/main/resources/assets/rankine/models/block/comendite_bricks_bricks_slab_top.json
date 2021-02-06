@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab_top",
-      "textures": {
-        "bottom": "rankine:block/comendite_bricks_bricks",
-        "top": "rankine:block/comendite_bricks_bricks",
-        "side": "rankine:block/comendite_bricks_bricks"
-      }
-}

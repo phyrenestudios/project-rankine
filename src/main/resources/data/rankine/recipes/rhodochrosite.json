@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rhodochrosite"
+    }
+  ],
+  "result": {
+    "item": "rankine:rhodochrosite",
+    "count": 9
+  }
+}

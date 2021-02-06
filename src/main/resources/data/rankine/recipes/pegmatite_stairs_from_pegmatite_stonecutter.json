@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:pegmatite"
+      },
+      "result": "rankine:pegmatite_stairs",
+      "count": 1
+    }

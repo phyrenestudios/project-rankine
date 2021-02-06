@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.gen;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.RankineFeatures;
+import com.cannolicatfish.rankine.init.WGConfig;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -39,7 +40,7 @@ public class DecorationGen
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getLocalModificationFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> LocalModifications = new ArrayList<>();
-        if (Config.METEORITE_GEN.get()) {
+        if (WGConfig.MISC.METEORITE_GEN.get()) {
             LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
         //LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.VOLCANO, getBiomeNamesFromCategory(Collections.emptyList(),false)));
@@ -47,7 +48,7 @@ public class DecorationGen
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getVegetalDecorationFeatures() {
-        if (Config.RANKINE_FAUNA.get()) {
+        if (WGConfig.MISC.RANKINE_FAUNA.get()) {
             return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(RankineFeatures.ELDERBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.SNOWBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),

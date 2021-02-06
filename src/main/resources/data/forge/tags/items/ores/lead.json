@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "rankine:native_lead_ore",
     "rankine:galena_ore"
   ]
 }

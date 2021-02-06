@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:rhodinite"
+    }
+  },
+  "result": {
+    "item": "rankine:rhodinite_block",
+    "count": 1
+  }
+}
