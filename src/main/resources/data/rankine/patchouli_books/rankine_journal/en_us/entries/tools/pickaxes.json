@@ -28,7 +28,7 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:meteoric_iron_pickaxe",
+      "item": "rankine:invar_pickaxe",
       "text": "Stats:$(li)Harvest Level: 2"
     },
     {

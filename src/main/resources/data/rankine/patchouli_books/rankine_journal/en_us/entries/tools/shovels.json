@@ -28,7 +28,7 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:meteoric_iron_shovel",
+      "item": "rankine:invar_shovel",
       "text": "Stats:$(li)Harvest Level: 2"
     },
     {

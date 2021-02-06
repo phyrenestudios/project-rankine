@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:galena_ore"
+  },
+  "output1": {
+    "item": "rankine:lead_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output2": {
+    "item": "rankine:galena",
+    "chance": 1
+  },
+  "output3": {
+    "item": "rankine:silver_nugget",
+    "chance": 0.2,
+    "additional": 0.4
+  },
+  "output4": {
+    "item": "rankine:calcite",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output5": {
+    "item": "rankine:sphalerite",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output6": {
+    "item": "rankine:fluorite",
+    "chance": 0.2,
+    "additional": 0.1
+  }
+}

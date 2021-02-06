@@ -29,12 +29,13 @@ public class JEIRankinePlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
+        RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
         registry.addRecipes(RankineRecipes.getAlloyRecipes(),AlloyRecipeCategory.UID);
         registry.addRecipes(RankineRecipes.getBeehiveOvenRecipes(), BeehiveOvenRecipeCategory.UID);
-        registry.addRecipes(RankineRecipes.getCrushingRecipes(),PistonCrusherRecipeCategory.UID);
         registry.addRecipes(RankineRecipes.getTripleAlloyRecipes(), TripleAlloyRecipeCategory.UID);
         registry.addRecipes(RankineRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
         registry.addRecipes(RankineRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
+        registry.addRecipes(rankineJEIRecipes.getCrushingRecipes(), CrushingRecipeCategory.UID);
         if (Config.AMALGAM_EXTRAS.get())
         {
             registry.addIngredientInfo(new ItemStack(RankineItems.AMALGAM_ALLOY.get()), VanillaTypes.ITEM, "Amalgam Alloy can be made in the Induction Furnace.", "25-80% Mercury", "25-50% Gold",  "Mercury + Gold >= 50%",
@@ -85,7 +86,7 @@ public class JEIRankinePlugin implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
         registry.addRecipeCategories(new AlloyRecipeCategory(guiHelper));
         registry.addRecipeCategories(new BeehiveOvenRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new PistonCrusherRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new CrushingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new TripleAlloyRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
@@ -97,7 +98,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
-        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()), PistonCrusherRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()), CrushingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), TripleAlloyRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);

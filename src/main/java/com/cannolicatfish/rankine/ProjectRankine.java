@@ -24,6 +24,7 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
+import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.POIFixer;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.enchantment.Enchantment;
@@ -34,6 +35,7 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
@@ -141,6 +143,7 @@ public class ProjectRankine {
         @SubscribeEvent
          public static void onRecipeSerializersRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
             event.getRegistry().register(AlloyCraftingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_crafting"));
+            event.getRegistry().register(CrushingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crushing"));
          }
 
         @SubscribeEvent
@@ -160,7 +163,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.PEWTER_SPEAR);
             event.getRegistry().register(RankineEntityTypes.BRONZE_SPEAR);
             event.getRegistry().register(RankineEntityTypes.IRON_SPEAR);
-            event.getRegistry().register(RankineEntityTypes.METEORIC_IRON_SPEAR);
+            event.getRegistry().register(RankineEntityTypes.INVAR_SPEAR);
             event.getRegistry().register(RankineEntityTypes.STEEL_SPEAR);
             event.getRegistry().register(RankineEntityTypes.ROSE_GOLD_SPEAR);
             event.getRegistry().register(RankineEntityTypes.WHITE_GOLD_SPEAR);
@@ -195,7 +198,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.PEWTER_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.BRONZE_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.IRON_SPEAR, SpearRenderFactory.instance);
-            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.METEORIC_IRON_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.INVAR_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.STEEL_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ROSE_GOLD_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.WHITE_GOLD_SPEAR, SpearRenderFactory.instance);
@@ -292,7 +295,6 @@ public class ProjectRankine {
             event.getRegistry().register(new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"puncture"));
             event.getRegistry().register(new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"swing"));
             event.getRegistry().register(new DazeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"daze"));
-            event.getRegistry().register(new BlastEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"blast"));
             event.getRegistry().register(new SmithingEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"smithing"));
             event.getRegistry().register(new AtomizeEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"atomize"));
             event.getRegistry().register(new ExcavateEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"excavate"));

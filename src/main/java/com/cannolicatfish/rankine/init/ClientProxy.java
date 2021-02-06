@@ -141,8 +141,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.BRASS_TRAPDOOR.get(),
                 RankineBlocks.ALUMINUM_LADDER.get(),
                 RankineBlocks.MAPLE_DOOR.get(),
-                RankineBlocks.MAPLE_TRAPDOOR.get(),
-                RankineBlocks.NITER.get()
+                RankineBlocks.MAPLE_TRAPDOOR.get()
         ));
 
         addCutoutMipped(Arrays.asList(

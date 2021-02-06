@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:cassiterite_ore"
+  },
+  "output1": {
+    "item": "rankine:tin_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output2": {
+    "item": "rankine:cassiterite",
+    "chance": 1
+  },
+  "output3": {
+    "item": "rankine:tourmaline",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "minecraft:emerald",
+    "chance": 0.2,
+    "additional": 0.2
+  },
+  "output5": {
+    "item": "rankine:molybdenite",
+    "chance": 0.2,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:wolframite",
+    "chance": 0.4
+  }
+}

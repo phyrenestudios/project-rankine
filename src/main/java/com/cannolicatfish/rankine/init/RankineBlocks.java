@@ -1162,7 +1162,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TERBIUM_BLOCK = REGISTRY.register("terbium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> DYSPROSIUM_BLOCK = REGISTRY.register("dysprosium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> HOLMIUM_BLOCK = REGISTRY.register("holmium_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> ERIBIUM_BLOCK = REGISTRY.register("eribium_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> ERBIUM_BLOCK = REGISTRY.register("erbium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> THULIUM_BLOCK = REGISTRY.register("thulium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> YTTERBIUM_BLOCK = REGISTRY.register("ytterbium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LUTETIUM_BLOCK = REGISTRY.register("lutetium_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1285,7 +1285,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SUBBITUMINOUS_COAL_BLOCK = REGISTRY.register("subbituminous_coal_block", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> BITUMINOUS_COAL_BLOCK = REGISTRY.register("bituminous_coal_block", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ANTHRACITE_COAL_BLOCK = REGISTRY.register("anthracite_coal_block", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> NITER = REGISTRY.register("niter", () -> new CrystalBlock(Block.Properties.create(Material.IRON).sound(SoundType.GLASS).harvestLevel(1).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
 
     //ORES
     public static final RegistryObject<Block> PETALITE_ORE = REGISTRY.register("petalite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PETALITE_ORE_HL.get())));
@@ -1456,6 +1455,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ROPE = REGISTRY.register("rope", () -> new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()));
     public static final RegistryObject<Block> ROPE_COIL = REGISTRY.register("rope_coil", () -> new RopeCoilBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(1.0F)));
     public static final RegistryObject<Block> BOTANIST_STATION = REGISTRY.register("botanist_station", () -> new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+
+    public static final RegistryObject<Block> SEDIMENT_FAN = REGISTRY.register("sediment_fan", () -> new SedimentFanBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F).notSolid()));
 
     public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new ElectromagnetBlock(1,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
     public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(2,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));

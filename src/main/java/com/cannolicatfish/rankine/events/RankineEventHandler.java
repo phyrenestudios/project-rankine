@@ -104,7 +104,7 @@ public class RankineEventHandler {
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.MICA.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AMPHIBOLE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.METEORIC_IRON_HAMMER.get(),"90Fe-10Ni",8,3,10,0.2f));
+            level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.INVAR_HAMMER.get(),"90Fe-10Ni",8,3,10,0.2f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.ZIRCON.get()),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.ALUMINA.get()),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MAGNESITE.get()),12,15,0.05f));
@@ -696,6 +696,67 @@ public class RankineEventHandler {
                     break;
                 case 6:
                     event.setNewState(Blocks.ANDESITE.getDefaultState());
+                    break;
+            }
+        } else if (event.getState() == Blocks.STONE.getDefaultState() && Config.METAMORPHIC_STONE_GEN.get()) { // Change to metamorphic gen
+            World worldIn = (World) event.getWorld();
+            BlockPos pos = event.getPos();
+            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
+                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
+
+            if (adjPos.contains(RankineBlocks.QUARTZ_SANDSTONE.get()) || adjPos.contains(Blocks.SANDSTONE)) {
+                event.setNewState(RankineBlocks.QUARTZITE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.CARBONACEOUS_SHALE.get())) {
+                event.setNewState(RankineBlocks.SLATE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.SLATE.get())) {
+                event.setNewState(RankineBlocks.PHYLLITE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.DOLOSTONE.get())) {
+                event.setNewState(RankineBlocks.WHITE_MARBLE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.TUFA_LIMESTONE.get())) {
+                event.setNewState(RankineBlocks.BLACK_MARBLE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.GRAY_GRANITE.get()) || adjPos.contains(Blocks.GRANITE)) {
+                event.setNewState(RankineBlocks.GNEISS.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.GRANODIORITE.get()) || adjPos.contains(Blocks.DIORITE)) {
+                event.setNewState(RankineBlocks.MICA_SCHIST.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.HORNBLENDE_ANDESITE.get()) || adjPos.contains(Blocks.ANDESITE)) {
+                event.setNewState(RankineBlocks.MARIPOSITE.get().getDefaultState());
+                return;
+            } else if (adjPos.contains(RankineBlocks.BRECCIA.get()) || adjPos.contains(Blocks.ANDESITE)) {
+                event.setNewState(RankineBlocks.SKARN.get().getDefaultState());
+                return;
+            }
+            switch (event.getWorld().getRandom().nextInt(8))
+            {
+                case 0:
+                    event.setNewState(RankineBlocks.QUARTZITE.get().getDefaultState());
+                    break;
+                case 1:
+                    event.setNewState(RankineBlocks.SLATE.get().getDefaultState());
+                    break;
+                case 2:
+                    event.setNewState(RankineBlocks.PHYLLITE.get().getDefaultState());
+                    break;
+                case 3:
+                    event.setNewState(RankineBlocks.WHITE_MARBLE.get().getDefaultState());
+                    break;
+                case 4:
+                    event.setNewState(RankineBlocks.BLACK_MARBLE.get().getDefaultState());
+                    break;
+                case 5:
+                    event.setNewState(RankineBlocks.GNEISS.get().getDefaultState());
+                    break;
+                case 6:
+                    event.setNewState(RankineBlocks.MICA_SCHIST.get().getDefaultState());
+                    break;
+                case 7:
+                    event.setNewState(RankineBlocks.MARIPOSITE.get().getDefaultState());
                     break;
             }
         }

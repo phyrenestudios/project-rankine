@@ -69,7 +69,12 @@ public class ChromiumElement implements ElementInterface{
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        if (x < 10)
+        {
+            return x/200f;
+        } else {
+            return 0.05f;
+        }
     }
 
     @Override

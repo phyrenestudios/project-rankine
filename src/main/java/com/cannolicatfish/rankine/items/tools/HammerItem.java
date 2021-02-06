@@ -2,13 +2,17 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -46,101 +50,44 @@ public class HammerItem extends ToolItem {
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state))
+        boolean creativeFlag = false;
+        if (entityLiving instanceof PlayerEntity)
         {
-            if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-                stack.damageItem(1, entityLiving, (p_220038_0_) -> {
-                    p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                });
-            }
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                Item item;
-                int val;
-
-                if (getBlastModifier(stack) > 0)
-                {
-                    BlockRayTraceResult raytraceresult = rayTrace(worldIn, (PlayerEntity) entityLiving, RayTraceContext.FluidMode.ANY);
-
-                    BlockPos exppos;
-                    switch (raytraceresult.getFace())
-                    {
-                        case EAST:
-                            exppos = new BlockPos(pos.getX() - (2 + getBlastModifier(stack)),pos.getY(),pos.getZ());
-                            break;
-                        case WEST:
-                            exppos = new BlockPos(pos.getX() + (2 + getBlastModifier(stack)),pos.getY(),pos.getZ());
-                            break;
-                        case DOWN:
-                            exppos = new BlockPos(pos.getX(),pos.getY() + (2 + getBlastModifier(stack)),pos.getZ());
-                            break;
-                        case UP:
-                            exppos = new BlockPos(pos.getX(),pos.getY() - (2 + getBlastModifier(stack)),pos.getZ());
-                            break;
-                        case NORTH:
-                            exppos = new BlockPos(pos.getX(),pos.getY(),pos.getZ() + (2 + getBlastModifier(stack)));
-                            break;
-                        case SOUTH:
-                            exppos = new BlockPos(pos.getX(),pos.getY(),pos.getZ() - (2 + getBlastModifier(stack)));
-                            break;
-                        default:
-                            exppos = pos;
-                    }
-                    System.out.println(raytraceresult.getFace());
-                    System.out.println(exppos);
-                    worldIn.removeBlock(exppos,false);
-                    worldIn.createExplosion(null, exppos.getX(), exppos.getY() + 16 * .0625D, exppos.getZ(), 0.5F + getBlastModifier(stack), Explosion.Mode.DESTROY);
-                    if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                        stack.damageItem(getBlastModifier(stack), entityLiving, (p_220038_0_) -> {
-                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                        });
-                    }
-                }
-                if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] > 0f)
-                {
-                    if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0] <= 1f)
-                    {
-                        item = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getKey().getItem();
-                        val = 1;
-                    } else
-                    {
-                        item = PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getKey().getItem();
-                        val = Math.round(PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(state.getBlock())).getValue()[0]) - 2 + Math.round(this.getTier().getHarvestLevel());
-                        if (val <= 1)
-                        {
-                            val = 1;
-                        }
-                    }
-                    ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(item,val));
-                    itementity.setDefaultPickupDelay();
-                    worldIn.addEntity(itementity);
-                    if (getAtomizeModifier(stack) == 0)
-                    {
-                        worldIn.removeBlock(pos,false);
-                    }
-                }
-                if (PistonCrusherRecipes.getInstance().getSecondaryResult(new ItemStack(state.getBlock())).getValue() > 0f && getAtomizeModifier(stack) == 1)
-                {
-                    item = PistonCrusherRecipes.getInstance().getSecondaryResult((new ItemStack(state.getBlock()))).getKey().getItem();
-                    if (random.nextFloat() <= PistonCrusherRecipes.getInstance().getSecondaryResult((new ItemStack(state.getBlock()))).getValue()) {
-                        ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(item, 1));
-                        itementity.setDefaultPickupDelay();
-                        worldIn.addEntity(itementity);
-
-                    }
-                    worldIn.removeBlock(pos, false);
-
-                }
-
-            }
-            SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
-            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getBreakSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
+            creativeFlag = ((PlayerEntity) entityLiving).isCreative();
         }
+        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isAirBlock(pos)) {
+            for (CrushingRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.CRUSHING)) {
+                for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
+                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && this.getTier().getHarvestLevel() >= state.getBlock().getHarvestLevel(state)) {
+                        if (state.getBlockHardness(worldIn, pos) != 0.0F) {
+                            stack.damageItem(1, entityLiving, (p_220038_0_) -> {
+                                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                            });
+                        }
+                        double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
 
-        return true;
+                        if (!creativeFlag) {
+                            List<ItemStack> results = recipe.getResults(getTier().getHarvestLevel(), worldIn);
+
+                            for (ItemStack t : results) {
+                                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
+                                itementity.setDefaultPickupDelay();
+                                worldIn.addEntity(itementity);
+                            }
+                            worldIn.destroyBlock(pos, false);
+                            return true;
+                        }
+
+                    }
+
+                }
+            }
+        }
+        SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+        worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
+        return false;
     }
 
     public boolean canHarvestBlock(BlockState blockIn) {
@@ -272,20 +219,9 @@ public class HammerItem extends ToolItem {
         }
     }
 
-    public static int getBlastModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.BLAST, stack);
-    }
-
-    public static int getAtomizeModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ATOMIZE, stack);
-    }
 
     public static int getLightningModifier(ItemStack stack) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LIGHTNING_ASPECT, stack);
-    }
-
-    public static int getSwingModifier(ItemStack stack) {
-        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING, stack);
     }
 
     public static int getDazeModifier(ItemStack stack) {
@@ -296,4 +232,11 @@ public class HammerItem extends ToolItem {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.EXCAVATE, stack);
     }
 
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.SILK_TOUCH || enchantment == Enchantments.FORTUNE ) {
+            return false;
+        }
+        return super.canApplyAtEnchantingTable(stack,enchantment);
+    }
 }
