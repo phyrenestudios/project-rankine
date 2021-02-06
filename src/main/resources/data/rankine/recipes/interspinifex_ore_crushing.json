@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:interspinifex_ore"
+  },
+  "output1": {
+    "item": "rankine:ruthenium_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output2": {
+    "item": "rankine:palladium_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output3": {
+    "item": "rankine:nickel_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output4": {
+    "item": "rankine:pentlandite",
+    "chance": 1
+  },
+  "output5": {
+    "item": "rankine:chalcopyrite",
+    "chance": 0.25,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:platinum_nugget",
+    "count": 5,
+    "chance": 0.4
+  }
+}

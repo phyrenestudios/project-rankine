@@ -11,7 +11,7 @@ public class CobaltElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(30*(x/8f));
+        return Math.round(50*(x/8f));
     }
 
     @Override

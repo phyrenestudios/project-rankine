@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:chromite_ore"
+  },
+  "output1": {
+    "item": "rankine:magnesium_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output2": {
+    "item": "rankine:aluminum_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output3": {
+    "item": "rankine:chromium_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output4": {
+    "item": "rankine:chromite",
+    "chance": 1
+  },
+  "output5": {
+    "item": "rankine:manganese_nugget",
+    "count": 2,
+    "chance": 0.25,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:magnetite",
+    "chance": 0.4
+  }
+}

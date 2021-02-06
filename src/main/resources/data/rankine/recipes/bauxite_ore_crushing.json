@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:bauxite_ore"
+  },
+  "output1": {
+    "item": "rankine:aluminum_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output2": {
+    "item": "rankine:alumina",
+    "chance": 1
+  },
+  "output3": {
+    "item": "rankine:kaolinite_ball",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:gallium_nugget",
+    "chance": 0.2,
+    "additional": 0.4
+  },
+  "output5": {
+    "item": "rankine:quicklime",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output6": {
+    "item": "rankine:ilmenite",
+    "chance": 0.2
+  }
+}

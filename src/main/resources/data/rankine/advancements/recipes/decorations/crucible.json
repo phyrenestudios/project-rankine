@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_magnesium_refractory_brick": {
+    "has_high_refractory_brick": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:magnesium_refractory_brick"
+            "item": "rankine:high_refractory_brick"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_magnesium_refractory_brick",
+      "has_high_refractory_brick",
       "has_the_recipe"
     ]
   ]

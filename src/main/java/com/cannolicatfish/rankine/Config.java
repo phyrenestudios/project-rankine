@@ -102,6 +102,7 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
     public static ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
     public static ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
+    public static ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
     public static ForgeConfigSpec.DoubleValue DIAMON_CHANCE;
     public static ForgeConfigSpec.DoubleValue ILMENITE_CHANCE;
     public static ForgeConfigSpec.DoubleValue INTERSPINIFEX_CHANCE;
@@ -879,7 +880,9 @@ public class Config {
                     .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
             FORAGING_CHANCE = COMMON_BUILDER.comment("Chance for a dirt block to drop a vegetable")
                     .defineInRange("foragingChance", 0.15D, 0.00D, 1.00D);
-            IGNEOUS_COBBLE_GEN = COMMON_BUILDER.comment("Change the output of a cobblestone generator from cobblestone to random igneous rocks.")
+            IGNEOUS_COBBLE_GEN = COMMON_BUILDER.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
+                    .define("igneousGen",true);
+            METAMORPHIC_STONE_GEN = COMMON_BUILDER.comment("Change the output of a stone generator from stone to metamorphic rocks.")
                     .define("igneousGen",true);
             VILLAGER_TRADES = COMMON_BUILDER.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
                     .define("villageTrades",true);

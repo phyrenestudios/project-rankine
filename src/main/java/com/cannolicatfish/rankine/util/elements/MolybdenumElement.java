@@ -11,7 +11,7 @@ public class MolybdenumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 2*x;
+        return Math.round(3.5f*x);
     }
 
     @Override

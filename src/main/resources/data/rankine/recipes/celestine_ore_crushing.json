@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:celestine_ore"
+  },
+  "output1": {
+    "item": "rankine:calcium_nugget",
+    "chance": 0.1,
+    "additional": 0.8
+  },
+  "output2": {
+    "item": "rankine:strontium_nugget",
+    "chance": 0.25,
+    "additional": 0.75
+  },
+  "output3": {
+    "item": "rankine:celestine",
+    "chance": 1
+  },
+  "output4": {
+    "item": "rankine:salt",
+    "chance": 0.4,
+    "additional": 0.2
+  },
+  "output5": {
+    "item": "rankine:barium_nugget",
+    "count": 3,
+    "chance": 0.2,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:pink_salt",
+    "chance": 0.4
+  }
+}

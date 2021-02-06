@@ -26,10 +26,6 @@ public class ExcavateEnchantment extends Enchantment {
 
     @Override
     protected boolean canApplyTogether(Enchantment ench) {
-        if (ench == RankineEnchantments.BLAST)
-        {
-            return false;
-        }
         return super.canApplyTogether(ench);
     }
 }

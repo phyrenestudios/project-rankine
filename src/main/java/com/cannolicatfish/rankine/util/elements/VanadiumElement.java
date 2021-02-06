@@ -17,7 +17,12 @@ public class VanadiumElement implements ElementInterface{
 
     @Override
     public float getDamageFromPercent(int x) {
-        return 1;
+        if (x < 5)
+        {
+            return x/5f;
+        } else {
+            return 1;
+        }
     }
 
     @Override

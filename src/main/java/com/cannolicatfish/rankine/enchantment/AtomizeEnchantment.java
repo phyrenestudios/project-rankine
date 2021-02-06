@@ -25,6 +25,6 @@ public class AtomizeEnchantment extends Enchantment {
     }
 
     public boolean canApplyTogether(Enchantment p_77326_1_) {
-        return super.canApplyTogether(p_77326_1_) && p_77326_1_ != RankineEnchantments.BLAST;
+        return super.canApplyTogether(p_77326_1_);
     }
 }

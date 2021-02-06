@@ -11,7 +11,7 @@ public class NickelElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(2.25f*x);
+        return (int) Math.round(Math.pow(x/10f,2.5));
     }
 
     @Override
