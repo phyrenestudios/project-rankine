@@ -8,6 +8,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -125,42 +126,69 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                         RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.PYROXENE_GABBRO.get(), RankineBlocks.ANORTHOSITE.get(), RankineBlocks.RHYOLITE.get(), RankineBlocks.COMENDITE.get(), RankineBlocks.BLACK_DACITE.get(), RankineBlocks.RED_DACITE.get(), RankineBlocks.RED_PORPHYRY.get(), RankineBlocks.PURPLE_PORPHYRY.get(), RankineBlocks.PERIDOTITE.get(), RankineBlocks.TROCTOLITE.get(), RankineBlocks.KIMBERLITE.get(), RankineBlocks.KOMATIITE.get(), RankineBlocks.PUMICE.get(), RankineBlocks.SCORIA.get(),
                                                         RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.BLACK_MARBLE.get(), RankineBlocks.GNEISS.get(), RankineBlocks.MICA_SCHIST.get(), RankineBlocks.PHYLLITE.get(), RankineBlocks.SLATE.get(), RankineBlocks.QUARTZITE.get(), RankineBlocks.MARIPOSITE.get(), RankineBlocks.SKARN.get(), RankineBlocks.RINGWOODITE.get(), RankineBlocks.WADSLEYITE.get(), RankineBlocks.BRIDGMANITE.get(), RankineBlocks.FERROPERICLASE.get(), RankineBlocks.PEROVSKITE.get(),
                                                         RankineBlocks.TUFA_LIMESTONE.get(), RankineBlocks.DOLOSTONE.get(), RankineBlocks.CHALK.get(), RankineBlocks.CARBONACEOUS_SHALE.get(), RankineBlocks.SILTSTONE.get(), RankineBlocks.QUARTZ_SANDSTONE.get(), RankineBlocks.ARKOSE_SANDSTONE.get(), RankineBlocks.MUDSTONE.get(), RankineBlocks.BRECCIA.get());
-                                                if (blockList.contains(b) && config.state.getBlock() instanceof RankineOreBlock) {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE,blockList.indexOf(b)), 2);
-                                                    ++i;
-                                                } else if (rs.getNamespace().equals("create")) {
-                                                    switch (rs.getPath()) {
-                                                        case "limestone":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 51), 2);
-                                                        case "weathered_limestone":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 52), 2);
-                                                        case "dolomite":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 53), 2);
-                                                        case "gabbro":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 54), 2);
-                                                        case "natural_scoria":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 55), 2);
+                                                if (config.state.getBlock() instanceof RankineOreBlock) {
+                                                    if (blockList.contains(b)) {
+                                                        worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, blockList.indexOf(b)), 2);
+                                                        ++i;
+                                                    } else if (rs.getNamespace().equals("create")) {
+                                                        switch (rs.getPath()) {
+                                                            case "limestone":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 51), 2);
+                                                                break;
+                                                            case "weathered_limestone":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 52), 2);
+                                                                break;
+                                                            case "dolomite":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 53), 2);
+                                                                break;
+                                                            case "gabbro":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 54), 2);
+                                                                break;
+                                                            case "natural_scoria":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 55), 2);
+                                                                break;
+                                                            default:
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 0), 2);
+                                                        }
+                                                        ++i;
+                                                    } else if (rs.getNamespace().equals("quark")) {
+                                                        switch (rs.getPath()) {
+                                                            case "limestone":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 56), 2);
+                                                                break;
+                                                            case "marble":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 57), 2);
+                                                                break;
+                                                            case "jasper":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 58), 2);
+                                                                break;
+                                                            case "slate":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 59), 2);
+                                                                break;
+                                                            case "basalt":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 60), 2);
+                                                                break;
+                                                            case "myalite":
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 61), 2);
+                                                                break;
+                                                            default:
+                                                                worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 0), 2);
+                                                        }
+                                                        ++i;
+                                                    } else if (b.getRegistryName().getNamespace().equals("unearthed")) {
+                                                        worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
+                                                        ++i;
+                                                    } else {
+                                                        DimensionType dimensionType = worldIn.getDimensionType();
+                                                        if (DimensionType.OVERWORLD.equals(dimensionType)) {
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, 0), 2);
+                                                        } else if (DimensionType.THE_NETHER.equals(dimensionType)) {
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, 6), 2);
+                                                        } else if (DimensionType.THE_END.equals(dimensionType)) {
+                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, 10), 2);
+                                                        }
+                                                        ++i;
                                                     }
-                                                    ++i;
-                                                } else if (rs.getNamespace().equals("quark")) {
-                                                    switch (rs.getPath()) {
-                                                        case "limestone":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 56), 2);
-                                                        case "marble":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 57), 2);
-                                                        case "jasper":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 58), 2);
-                                                        case "slate":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 59), 2);
-                                                        case "basalt":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 60), 2);
-                                                        case "myalite":
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, 61), 2);
-                                                    }
-                                                    ++i;
-                                                } else if (b.getRegistryName().getNamespace().equals("unearthed")) {
-                                                    worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
-                                                    ++i;
                                                 } else {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
                                                     ++i;

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "rankine:native_tin_ore",
     "rankine:cassiterite_ore"
   ]
 }

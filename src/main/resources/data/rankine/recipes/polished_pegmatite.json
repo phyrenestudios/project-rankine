@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:pegmatite"
+        }
+      },
+      "result": {
+        "item": "rankine:pilished_pegmatite",
+        "count": 4
+      }
+    }

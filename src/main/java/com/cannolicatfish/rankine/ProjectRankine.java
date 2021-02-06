@@ -51,8 +51,10 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -73,8 +75,8 @@ public class ProjectRankine {
 
         Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-client.toml"));
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-common.toml"));
-        //WGConfig.loadConfig(WGConfig.COMMON_WGCONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-worldgen.toml"));
-        //ModRecipes.init();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "rankine-worldgen.toml");
+
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
@@ -92,10 +94,7 @@ public class ProjectRankine {
         POIFixer.fixPOITypeBlockStates(RankinePOIs.PISTON_CRUSHER_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.BOTANIST_STATION_POI);
         proxy.init();
-        //RankineBiomes.addRankineBiomes();
 
-        //OreGen.setupOreGeneration();
-        //DecorationGen.setupDecoration();
         DeferredWorkQueue.runLater(() -> {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
@@ -118,7 +117,6 @@ public class ProjectRankine {
 
     private void LoadComplete(FMLLoadCompleteEvent event) {
         LOGGER.debug("Rankine: \"Load Complete Event\" Starting...");
-        //StructureGen.setupStructureGen();
         VanillaIntegration.init();
         LOGGER.info("Rankine: \"Load Complete\" Event Complete!");
     }

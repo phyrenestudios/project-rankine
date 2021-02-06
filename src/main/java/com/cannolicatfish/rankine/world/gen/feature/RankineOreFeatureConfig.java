@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.WGConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
@@ -42,8 +43,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_COPPER_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_COPPER_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_COPPER_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_COPPER_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -62,12 +63,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -77,8 +78,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_TIN_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_TIN_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_TIN_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_TIN_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -97,12 +98,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -112,8 +113,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_GOLD_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_GOLD_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_GOLD_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_GOLD_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -132,12 +133,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_GOLD_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -147,8 +148,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_ALUMINUM_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_ALUMINUM_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_ALUMINUM_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -167,12 +168,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -182,8 +183,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_LEAD_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_LEAD_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_LEAD_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_LEAD_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -202,12 +203,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -217,8 +218,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_SILVER_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_SILVER_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_SILVER_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_SILVER_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -237,12 +238,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_SILVER_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -252,8 +253,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_ARSENIC_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_ARSENIC_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_ARSENIC_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_ARSENIC_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -272,12 +273,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_ARSENIC_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -287,8 +288,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_BISMUTH_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_BISMUTH_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_BISMUTH_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_BISMUTH_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -307,12 +308,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_BISMUTH_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -322,8 +323,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_SULFUR_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_SULFUR_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_SULFUR_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_SULFUR_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -342,12 +343,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_SULFUR_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -357,8 +358,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_GALLIUM_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_GALLIUM_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_GALLIUM_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_GALLIUM_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -377,12 +378,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_GALLIUM_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -392,8 +393,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_INDIUM_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_INDIUM_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_INDIUM_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_INDIUM_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -412,12 +413,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_INDIUM_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -427,8 +428,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_TELLURIUM_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_TELLURIUM_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_TELLURIUM_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_TELLURIUM_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -447,12 +448,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_TELLURIUM_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -462,8 +463,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.NATIVE_SELENIUM_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.NATIVE_SELENIUM_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.NATIVE_SELENIUM_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.NATIVE_SELENIUM_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -482,12 +483,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.NATIVE_SELENIUM_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -497,8 +498,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.MALACHITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.MALACHITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.MALACHITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MALACHITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -517,12 +518,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.MALACHITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.MALACHITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.MALACHITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.MALACHITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.MALACHITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.MALACHITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -532,8 +533,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.CASSITERITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.CASSITERITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.CASSITERITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.CASSITERITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -552,12 +553,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.CASSITERITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.CASSITERITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.CASSITERITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.CASSITERITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.CASSITERITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.CASSITERITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -567,8 +568,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.BAUXITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.BAUXITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.BAUXITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.BAUXITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -587,12 +588,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.BAUXITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.BAUXITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.BAUXITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.BAUXITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.BAUXITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.BAUXITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -602,8 +603,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.SPHALERITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.SPHALERITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.SPHALERITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.SPHALERITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -622,12 +623,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.SPHALERITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.SPHALERITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.SPHALERITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.SPHALERITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.SPHALERITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.SPHALERITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -637,8 +638,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.CINNABAR_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.CINNABAR_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.CINNABAR_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.CINNABAR_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -657,12 +658,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.CINNABAR_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.CINNABAR_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.CINNABAR_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.CINNABAR_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.CINNABAR_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.CINNABAR_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -672,8 +673,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.MAGNETITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.MAGNETITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.MAGNETITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MAGNETITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -692,12 +693,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.MAGNETITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.MAGNETITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.MAGNETITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.MAGNETITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.MAGNETITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.MAGNETITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -707,8 +708,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.PENTLANDITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.PENTLANDITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.PENTLANDITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.PENTLANDITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -727,12 +728,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.PENTLANDITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -742,8 +743,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.MAGNESITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.MAGNESITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.MAGNESITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MAGNESITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -762,12 +763,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.MAGNESITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.MAGNESITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.MAGNESITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.MAGNESITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.MAGNESITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.MAGNESITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -777,8 +778,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.GALENA_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.GALENA_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.GALENA_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.GALENA_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -797,12 +798,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.GALENA_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.GALENA_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.GALENA_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.GALENA_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.GALENA_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.GALENA_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -812,8 +813,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.VANADINITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.VANADINITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.VANADINITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.VANADINITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -832,12 +833,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.VANADINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.VANADINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.VANADINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.VANADINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.VANADINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.VANADINITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -847,8 +848,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.BISMUTHINITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.BISMUTHINITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.BISMUTHINITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.BISMUTHINITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -867,12 +868,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -882,8 +883,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.ACANTHITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.ACANTHITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.ACANTHITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.ACANTHITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -902,12 +903,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.ACANTHITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.ACANTHITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.ACANTHITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.ACANTHITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.ACANTHITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.ACANTHITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -917,8 +918,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.PYROLUSITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.PYROLUSITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.PYROLUSITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.PYROLUSITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -937,12 +938,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.PYROLUSITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -952,8 +953,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.CHROMITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.CHROMITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.CHROMITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.CHROMITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -972,12 +973,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.CHROMITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.CHROMITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.CHROMITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.CHROMITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.CHROMITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.CHROMITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -987,8 +988,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.MOLYBDENITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.MOLYBDENITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.MOLYBDENITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MOLYBDENITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1007,12 +1008,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.MOLYBDENITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1022,8 +1023,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.ILMENITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.ILMENITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.ILMENITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.ILMENITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1042,12 +1043,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.ILMENITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.ILMENITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.ILMENITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.ILMENITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.ILMENITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.ILMENITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1057,8 +1058,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.COLUMBITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.COLUMBITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.COLUMBITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.COLUMBITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1077,12 +1078,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.COLUMBITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.COLUMBITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.COLUMBITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.COLUMBITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.COLUMBITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.COLUMBITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1092,8 +1093,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.WOLFRAMITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.WOLFRAMITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.WOLFRAMITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.WOLFRAMITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1112,12 +1113,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.WOLFRAMITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1127,8 +1128,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.TANTALITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.TANTALITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.TANTALITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.TANTALITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1147,12 +1148,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.TANTALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.TANTALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.TANTALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.TANTALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.TANTALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.TANTALITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1162,8 +1163,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.PLUMBAGO_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.PLUMBAGO_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.PLUMBAGO_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.PLUMBAGO_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1182,12 +1183,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1197,8 +1198,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.MOISSANITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.MOISSANITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.MOISSANITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MOISSANITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1217,12 +1218,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.MOISSANITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.MOISSANITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.MOISSANITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.MOISSANITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.MOISSANITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.MOISSANITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1232,8 +1233,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.SPERRYLITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.SPERRYLITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.SPERRYLITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.SPERRYLITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1252,12 +1253,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1267,8 +1268,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.LIGNITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.LIGNITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.LIGNITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.LIGNITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1287,12 +1288,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.LIGNITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.LIGNITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.LIGNITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.LIGNITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.LIGNITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.LIGNITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1302,8 +1303,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.SUBBITUMINOUS_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.SUBBITUMINOUS_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.SUBBITUMINOUS_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.SUBBITUMINOUS_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1322,12 +1323,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.SUBBITUMINOUS_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1337,8 +1338,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.BITUMINOUS_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.BITUMINOUS_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.BITUMINOUS_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.BITUMINOUS_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1357,12 +1358,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.BITUMINOUS_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1372,8 +1373,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.ANTHRACITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.ANTHRACITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.ANTHRACITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.ANTHRACITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1392,12 +1393,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.ANTHRACITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1407,8 +1408,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.LAZURITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.LAZURITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.LAZURITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.LAZURITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1427,12 +1428,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.LAZURITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.LAZURITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.LAZURITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.LAZURITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.LAZURITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.LAZURITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1442,8 +1443,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.DIAMOND_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.DIAMOND_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.DIAMOND_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.DIAMOND_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1462,12 +1463,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.DIAMOND_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.DIAMOND_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.DIAMOND_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.DIAMOND_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.DIAMOND_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.DIAMOND_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1477,8 +1478,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.GREENOCKITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.GREENOCKITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.GREENOCKITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.GREENOCKITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1497,12 +1498,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.GREENOCKITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1512,8 +1513,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.EMERALD_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.EMERALD_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.EMERALD_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.EMERALD_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1532,12 +1533,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.EMERALD_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.EMERALD_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.EMERALD_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.EMERALD_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.EMERALD_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.EMERALD_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1547,8 +1548,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.AQUAMARINE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.AQUAMARINE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.AQUAMARINE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.AQUAMARINE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1567,12 +1568,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1582,8 +1583,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.QUARTZ_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.QUARTZ_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.QUARTZ_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.QUARTZ_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1602,12 +1603,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.QUARTZ_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.QUARTZ_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.QUARTZ_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.QUARTZ_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.QUARTZ_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.QUARTZ_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1617,8 +1618,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.OPAL_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.OPAL_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.OPAL_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.OPAL_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1637,12 +1638,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.OPAL_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.OPAL_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.OPAL_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.OPAL_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.OPAL_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.OPAL_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1652,8 +1653,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.MAJORITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.MAJORITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.MAJORITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MAJORITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1672,12 +1673,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.MAJORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.MAJORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.MAJORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.MAJORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.MAJORITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.MAJORITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1687,8 +1688,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.FLUORITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.FLUORITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.FLUORITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.FLUORITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1707,12 +1708,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.FLUORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.FLUORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.FLUORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.FLUORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.FLUORITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.FLUORITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1722,8 +1723,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.URANINITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.URANINITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.URANINITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.URANINITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1742,12 +1743,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.URANINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.URANINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.URANINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.URANINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.URANINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.URANINITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1757,8 +1758,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.STIBNITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.STIBNITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.STIBNITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.STIBNITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1777,12 +1778,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.STIBNITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.STIBNITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.STIBNITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.STIBNITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.STIBNITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.STIBNITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1792,8 +1793,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.XENOTIME_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.XENOTIME_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.XENOTIME_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.XENOTIME_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1812,12 +1813,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.XENOTIME_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.XENOTIME_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.XENOTIME_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.XENOTIME_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.XENOTIME_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.XENOTIME_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1827,8 +1828,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.HALITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.HALITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.HALITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.HALITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1847,12 +1848,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1862,8 +1863,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.PINK_HALITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.PINK_HALITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.PINK_HALITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.PINK_HALITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1882,12 +1883,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1897,8 +1898,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.INTERSPINIFEX_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.INTERSPINIFEX_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.INTERSPINIFEX_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.INTERSPINIFEX_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1917,12 +1918,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1932,8 +1933,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.PETALITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.PETALITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.PETALITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.PETALITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1952,12 +1953,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.PETALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.PETALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.PETALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.PETALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.PETALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.PETALITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -1967,8 +1968,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.COBALTITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.COBALTITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.COBALTITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.COBALTITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -1987,12 +1988,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.COBALTITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.COBALTITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.COBALTITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.COBALTITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.COBALTITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.COBALTITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -2002,8 +2003,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.CRYOLITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.CRYOLITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.CRYOLITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.CRYOLITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -2022,12 +2023,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.CRYOLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.CRYOLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.CRYOLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.CRYOLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.CRYOLITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.CRYOLITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -2037,8 +2038,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.PYRITE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.PYRITE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.PYRITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.PYRITE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -2057,12 +2058,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.PYRITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.PYRITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.PYRITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.PYRITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.PYRITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.PYRITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }
@@ -2072,8 +2073,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
             if (blockstate == null) {
                 return false;
             } else {
-                if (Config.CELESTINE_ORE_STONE_SPECIFIC.get()) {
-                    for (String s : Config.CELESTINE_BLOCK_LIST.get()) {
+                if (WGConfig.ORES.CELESTINE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.CELESTINE_ORE_BLOCK_LIST.get()) {
                         List<String> name = Arrays.asList(s.split("#"));
                         if (name.size() > 1) {
                             if (name.get(0).equals("T")) {
@@ -2092,12 +2093,12 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                         }
                     }
                     return false;
-                } else if (Config.CELESTINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                } else if (WGConfig.ORES.CELESTINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
-                } else if (Config.CELESTINE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                } else if (WGConfig.ORES.CELESTINE_ORE_DIMENSION_LIST.get().contains("nether")) {
                     return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
-                } else if (Config.CELESTINE_ORE_DIMENSION_LIST.get().contains("end")) {
-                    return blockstate.getBlock() == Blocks.END_STONE;
+                } else if (WGConfig.ORES.CELESTINE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
                 } else {
                     return false;
                 }

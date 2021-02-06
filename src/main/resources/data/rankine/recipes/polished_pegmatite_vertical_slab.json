@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:polished_pegmatite"
+        }
+      },
+      "result": {
+        "item": "rankine:polished_pegmatite_vertical_slab",
+        "count": 6
+      }
+}

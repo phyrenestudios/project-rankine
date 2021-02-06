@@ -31,12 +31,14 @@
     "#forge:stones/dacite",
     "#forge:stones/chalk",
     "#forge:stones/mudstone",
+    "#forge:stones/sandstone",
     "#forge:stones/quartzite",
     "#forge:stones/phyllite",
     "#forge:stones/siltstone",
     "#forge:stones/dolomite",
     "#forge:stones/mariposite",
     "#forge:stones/skarn",
+    "#forge:stones/pegmatite",
     "#forge:stones/porphyry"
   ]
 }

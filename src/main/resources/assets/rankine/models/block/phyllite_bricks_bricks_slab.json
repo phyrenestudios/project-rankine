@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/phyllite_bricks_bricks",
-        "top": "rankine:block/phyllite_bricks_bricks",
-        "side": "rankine:block/phyllite_bricks_bricks"
-      }
-}
