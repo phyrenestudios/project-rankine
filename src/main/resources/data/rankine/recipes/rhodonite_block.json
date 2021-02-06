@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:rhodinite"
+      "item": "rankine:rhodonite"
     }
   },
   "result": {
-    "item": "rankine:rhodinite_block",
+    "item": "rankine:rhodonite_block",
     "count": 1
   }
 }

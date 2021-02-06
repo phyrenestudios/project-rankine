@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_pegmatite_bricks"
-      },
-      "result": "rankine:pegmatite_bricks_bricks_slab",
-      "count": 2
-}

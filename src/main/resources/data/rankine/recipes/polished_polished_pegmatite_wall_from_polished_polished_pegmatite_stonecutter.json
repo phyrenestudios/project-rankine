@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_polished_pegmatite"
-      },
-      "result": "rankine:polished_polished_pegmatite_wall",
-      "count": 1
-    }
