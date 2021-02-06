@@ -99,6 +99,7 @@ public class Config {
     public static ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
     public static ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
     public static ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
+    public static ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
     public static ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
     public static ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
     public static ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
