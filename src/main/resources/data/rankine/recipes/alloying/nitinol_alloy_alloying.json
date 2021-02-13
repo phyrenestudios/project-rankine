@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloying",
+  "total": 2,
+  "tier": 2,
+  "input1": {
+    "element": "nickel",
+    "min": 0.48,
+    "max": 0.56
+  },
+  "input2": {
+    "element": "titanium",
+    "min": 0.44,
+    "max": 0.52
+  },
+  "result": "rankine:nitinol_alloy"
+}

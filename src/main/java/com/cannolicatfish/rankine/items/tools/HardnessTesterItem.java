@@ -41,15 +41,17 @@ public class HardnessTesterItem extends Item {
                         desc = " (Bronze)";
                         break;
                     case 3:
-                        desc = " (Iron)";
+                        desc = " (Invar)";
                         break;
                     case 4:
                         desc = " (Steel)";
                         break;
                     case 5:
+                        desc = " (Superalloy)";
+                        break;
+                    case 6:
                         desc = " (Advanced)";
                         break;
-
                 }
             } else {
                 harvest = 0;

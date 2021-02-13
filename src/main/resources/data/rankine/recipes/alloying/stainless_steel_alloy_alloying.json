@@ -1,0 +1,122 @@
+{
+  "type": "rankine:alloying",
+  "tier": 2,
+  "required": 4,
+  "total": 23,
+  "input1": {
+    "element": "iron",
+    "min": 0.65,
+    "max": 0.75
+  },
+  "input2": {
+    "element": "chromium",
+    "min": 0.10,
+    "max": 0.21
+  },
+  "input3": {
+    "element": "carbon",
+    "min": 0.01,
+    "max": 0.02
+  },
+  "input4": {
+    "element": "molybdenum",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input5": {
+    "element": "aluminum",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input6": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input7": {
+    "element": "nickel",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input8": {
+    "element": "copper",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input9": {
+    "element": "boron",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input10": {
+    "element": "cobalt",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input11": {
+    "element": "strontium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input12": {
+    "element": "niobium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input13": {
+    "element": "tantalum",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input14": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input15": {
+    "element": "tungsten",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input16": {
+    "element": "selenium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input17": {
+    "element": "yttrium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input18": {
+    "element": "vanadium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input19": {
+    "element": "calcium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input20": {
+    "element": "zirconium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input21": {
+    "element": "netherite",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input22": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input23": {
+    "element": "phosphorus",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "result": "rankine:stainless_steel_alloy"
+}

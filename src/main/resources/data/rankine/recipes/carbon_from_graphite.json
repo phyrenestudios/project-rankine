@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:graphite"
+    }
+  ],
+  "result": {
+    "item": "rankine:carbon_nugget",
+    "count": 3
+  }
+}

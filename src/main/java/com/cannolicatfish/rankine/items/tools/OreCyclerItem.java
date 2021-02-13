@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.items.tools;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.client.integration.jei.IInventoryEmpty;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.recipebook.RecipeList;
@@ -32,7 +33,14 @@ public class OreCyclerItem extends Item {
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
 
-
+        if (!worldIn.isRemote) {
+            for (AlloyingRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING)) {
+                System.out.println(recipe.getIngredients());
+                System.out.println(recipe.getMins());
+                System.out.println(recipe.getMaxes());
+                System.out.println(recipe.getRecipeOutput());
+            }
+        }
 
         if (worldIn.getBlockState(context.getPos()).getBlock() instanceof RankineOreBlock)
         {

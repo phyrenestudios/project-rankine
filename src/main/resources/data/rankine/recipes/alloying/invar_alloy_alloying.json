@@ -1,0 +1,35 @@
+{
+  "type": "rankine:alloying",
+  "total": 6,
+  "input1": {
+    "element": "iron",
+    "min": 0.50,
+    "max": 0.90
+  },
+  "input2": {
+    "element": "nickel",
+    "min": 0.10,
+    "max": 0.50
+  },
+  "input3": {
+    "element": "cobalt",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input4": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input5": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input6": {
+    "element": "palladium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "result": "rankine:invar_alloy"
+}

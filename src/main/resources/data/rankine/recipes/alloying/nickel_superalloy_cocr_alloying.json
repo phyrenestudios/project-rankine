@@ -1,0 +1,106 @@
+{
+  "type": "rankine:alloying",
+  "total": 20,
+  "tier": 2,
+  "input1": {
+    "element": "nickel",
+    "min": 0.50,
+    "max": 0.75
+  },
+  "input2": {
+    "element": "chromium",
+    "min": 0.14,
+    "max": 0.27
+  },
+  "input3": {
+    "element": "cobalt",
+    "min": 0.01,
+    "max": 0.20
+  },
+  "input4": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input5": {
+    "element": "niobium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input6": {
+    "element": "molybdenum",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input7": {
+    "element": "tantalum",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input8": {
+    "element": "aluminum",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input9": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input10": {
+    "element": "boron",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input11": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input12": {
+    "element": "netherite",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input13": {
+    "element": "zirconium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input14": {
+    "element": "vanadium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input15": {
+    "element": "carbon",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input16": {
+    "element": "tungsten",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input17": {
+    "element": "ruthenium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input18": {
+    "element": "rhenium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input19": {
+    "element": "phosphorus",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input20": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "result": "rankine:nickel_superalloy"
+}

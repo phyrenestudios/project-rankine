@@ -248,42 +248,42 @@ public final class PeriodicTableUtils {
     }
 
     public enum Element {
-        LITHIUM(3,"Li",new LithiumElement()),
-        BERYLLIUM(4,"Be",new BerylliumElement()),
-        BORON(5,"B",new BoronElement()),
-        CARBON(6,"C",new CarbonElement()),
-        MAGNESIUM(12,"Mg",new MagnesiumElement()),
-        ALUMINUM(13, "Al", new AluminumElement()),
-        SILICON(14, "Si", new SiliconElement()),
-        PHOSPHORUS(15, "P", new PhosphorusElement()),
-        SULFUR(16,"S",new SulfurElement()),
-        CALCIUM(20, "Ca", new CalciumElement()),
-        TITANIUM(22, "Ti", new TitaniumElement()),
-        VANADIUM(23, "V", new VanadiumElement()),
-        CHROMIUM(24, "Cr", new ChromiumElement()),
-        MANGANESE(25, "Mn", new ManganeseElement()),
-        IRON(26, "Fe", new IronElement()),
-        COBALT(27, "Co", new CobaltElement()),
-        NICKEL(28,"Ni", new NickelElement()),
-        COPPER(29, "Cu", new CopperElement()),
-        ZINC(30, "Zn", new ZincElement()),
-        GALLIUM(31,"Ga",new GalliumElement()),
+        LITHIUM(3,"Li",new LithiumElement(),14087935),
+        BERYLLIUM(4,"Be",new BerylliumElement(),6672537),
+        BORON(5,"B",new BoronElement(),10194328),
+        CARBON(6,"C",new CarbonElement(),6513507),
+        MAGNESIUM(12,"Mg",new MagnesiumElement(),15724505),
+        ALUMINUM(13, "Al", new AluminumElement(),15919335),
+        SILICON(14, "Si", new SiliconElement(),8684688),
+        PHOSPHORUS(15, "P", new PhosphorusElement(),14202036),
+        SULFUR(16,"S",new SulfurElement(),14737504),
+        CALCIUM(20, "Ca", new CalciumElement(),15595448),
+        TITANIUM(22, "Ti", new TitaniumElement(),13621208),
+        VANADIUM(23, "V", new VanadiumElement(),13416389),
+        CHROMIUM(24, "Cr", new ChromiumElement(),15462646),
+        MANGANESE(25, "Mn", new ManganeseElement(),15450555),
+        IRON(26, "Fe", new IronElement(),14211288),
+        COBALT(27, "Co", new CobaltElement(),11653119),
+        NICKEL(28,"Ni", new NickelElement(),13625311),
+        COPPER(29, "Cu", new CopperElement(),15382670),
+        ZINC(30, "Zn", new ZincElement(),14870226),
+        GALLIUM(31,"Ga",new GalliumElement(),9207455),
         GERMANIUM(32,"Ge",new GermaniumElement()),
         ARSENIC(33,"As",new ArsenicElement()),
         SELENIUM(34,"Se",new SeleniumElement()),
         STRONTIUM(38,"Sr",new StrontiumElement()),
         YTTRIUM(39,"Y",new YttriumElement()),
-        ZIRCONIUM(40,"Zr",new ZirconiumElement()),
-        NIOBIUM(41,"Nb",new NiobiumElement()),
-        MOLYBDENUM(42,"Mo",new MolybdenumElement()),
+        ZIRCONIUM(40,"Zr",new ZirconiumElement(),9018824),
+        NIOBIUM(41,"Nb",new NiobiumElement(),10200279),
+        MOLYBDENUM(42,"Mo",new MolybdenumElement(),13615061),
         RUTHENIUM(44,"Ru",new RutheniumElement()),
         RHODIUM(45,"Rh",new RhodiumElement()),
-        PALLADIUM(46,"Pd",new PalladiumElement()),
-        SILVER(47,"Ag",new SilverElement()),
+        PALLADIUM(46,"Pd",new PalladiumElement(),15699840),
+        SILVER(47,"Ag",new SilverElement(),15724527),
         CADMIUM(48,"Cd",new CadmiumElement()),
-        INDIUM(49,"In",new IndiumElement()),
-        TIN(50, "Sn", new TinElement()),
-        ANTIMONY(51, "Sb", new AntimonyElement()),
+        INDIUM(49,"In",new IndiumElement(),6315469),
+        TIN(50, "Sn", new TinElement(),11975882),
+        ANTIMONY(51, "Sb", new AntimonyElement(),13683045),
         LANTHANUM(57, "La", new LanthanumElement()),
         CERIUM(58, "Ce", new CeriumElement()),
         PRASEODYMIUM(59,"Pr",new PraseodymiumElement()),
@@ -295,28 +295,33 @@ public final class PeriodicTableUtils {
         DYSPROSIUM(66,"Dy",new DysprosiumElement()),
         HAFNIUM(72,"Hf", new HafniumElement()),
         TANTALUM(73,"Ta", new TantalumElement()),
-        TUNGSTEN(74,"W", new TungstenElement()),
+        TUNGSTEN(74,"W", new TungstenElement(),12693657),
         RHENIUM(75,"Re", new RheniumElement()),
         IRIDIUM(77,"Ir", new IridiumElement()),
-        PLATINUM(78,"Pt", new PlatinumElement()),
-        GOLD(79, "Au", new GoldElement()),
-        MERCURY(80, "Hg", new MercuryElement()),
-        LEAD(82,"Pb", new LeadElement()),
-        BISMUTH(83,"Bi", new BismuthElement()),
+        PLATINUM(78,"Pt", new PlatinumElement(),14016232),
+        GOLD(79, "Au", new GoldElement(),16643423),
+        MERCURY(80, "Hg", new MercuryElement(),15721704),
+        LEAD(82,"Pb", new LeadElement(),10131385),
+        BISMUTH(83,"Bi", new BismuthElement(),14407127),
         THORIUM(90,"Th", new ThoriumElement()),
-        NETHERITE(156,"Nr", new NetheriteElement());
+        NETHERITE(156,"Nr", new NetheriteElement(),4997443);
 
         public final int atomicNumber;
         public final String symbol;
         public final ElementInterface element;
+        public final int color;
 
-
-
-        private Element(int atomicNumber, String symbol, ElementInterface element)
+        Element(int atomicNumber, String symbol, ElementInterface element, int color)
         {
             this.atomicNumber = atomicNumber;
             this.symbol = symbol;
             this.element = element;
+            this.color = color;
+        }
+
+        Element(int atomicNumber, String symbol, ElementInterface element)
+        {
+            this(atomicNumber,symbol,element,16777215);
         }
 
         public int getAtomicNumber() {
@@ -325,6 +330,14 @@ public final class PeriodicTableUtils {
 
         public String getSymbol() {
             return symbol;
+        }
+
+        public int getColor() {
+            return color;
+        }
+
+        public static PeriodicTableUtils.Element valueOfCaseIgnored(String string) {
+            return valueOf(string.toUpperCase());
         }
     }
 }

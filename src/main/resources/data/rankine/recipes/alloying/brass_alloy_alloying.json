@@ -1,0 +1,45 @@
+{
+  "type": "rankine:alloying",
+  "total": 8,
+  "input1": {
+    "element": "copper",
+    "min": 0.30,
+    "max": 0.70
+  },
+  "input2": {
+    "element": "zinc",
+    "min": 0.15,
+    "max": 0.60
+  },
+  "input3": {
+    "element": "tin",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input4": {
+    "element": "lead",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input5": {
+    "element": "aluminum",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input6": {
+    "element": "nickel",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input7": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input8": {
+    "element": "selenium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "result": "rankine:brass_alloy"
+}

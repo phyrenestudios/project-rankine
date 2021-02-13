@@ -1,0 +1,45 @@
+{
+  "type": "rankine:alloying",
+  "total": 8,
+  "input1": {
+    "element": "iron",
+    "min": 0.30,
+    "max": 0.50
+  },
+  "input2": {
+    "element": "nickel",
+    "min": 0.13,
+    "max": 0.26
+  },
+  "input3": {
+    "element": "cobalt",
+    "min": 0.05,
+    "max": 0.35
+  },
+  "input4": {
+    "element": "aluminum",
+    "min": 0.08,
+    "max": 0.12
+  },
+  "input5": {
+    "element": "copper",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input6": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input7": {
+    "element": "niobium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input8": {
+    "element": "hafnium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "result": "rankine:alnico_alloy"
+}

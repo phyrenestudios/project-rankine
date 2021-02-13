@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
@@ -24,6 +25,10 @@ public class RankineJEIRecipes {
 
     public List<CrushingRecipe> getCrushingRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.CRUSHING);
+    }
+
+    public List<AlloyingRecipe> getAlloyingRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING);
     }
 
     public static <T> void checkNotNull(@Nullable T object, String name) {

@@ -1,0 +1,25 @@
+{
+  "type": "rankine:alloying",
+  "total": 4,
+  "input1": {
+    "element": "gold",
+    "min": 0.74,
+    "max": 0.76
+  },
+  "input2": {
+    "element": "copper",
+    "min": 0.20,
+    "max": 0.25
+  },
+  "input3": {
+    "element": "silver",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input4": {
+    "element": "zinc",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "result": "rankine:rose_gold_alloy"
+}

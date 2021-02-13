@@ -1,0 +1,40 @@
+{
+  "type": "rankine:alloying",
+  "total": 7,
+  "input1": {
+    "element": "silver",
+    "min": 0.92,
+    "max": 0.96
+  },
+  "input2": {
+    "element": "copper",
+    "min": 0.01,
+    "max": 0.08
+  },
+  "input3": {
+    "element": "zinc",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "input4": {
+    "element": "platinum",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "input5": {
+    "element": "boron",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "input6": {
+    "element": "germanium",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "input7": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "result": "rankine:sterling_silver_alloy"
+}

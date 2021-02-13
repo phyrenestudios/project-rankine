@@ -39,15 +39,15 @@ public class ManganeseElement implements ElementInterface {
     public float getMiningSpeedFromPercent(int x) {
         if (x <= 2)
         {
-            return x;
+            return x * 0.25f;
         } else if (x <= 10) {
-            return 2 - x/5f;
+            return 1 - x/5f;
         } else if (x <= 12){
-            return x/10f * 2f;
+            return -1 + (x-10);
         } else if (x <= 16){
-            return 2.4f - x/10f;
+            return 1f - x/20f;
         } else {
-            return 0.8f - x/150f;
+            return 0.21f - x/500f;
         }
     }
 

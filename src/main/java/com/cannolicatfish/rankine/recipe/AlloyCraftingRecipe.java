@@ -419,12 +419,11 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 ingredient.write(buffer);
             }
 
-            ItemStack result = recipe.recipeOutput;
             /*if (!comp.equals(""))
             {
                 AlloyItem.addAlloy(result,new AlloyData(comp));
             }*/
-            buffer.writeItemStack(result);
+            buffer.writeItemStack(recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
         }
     }
