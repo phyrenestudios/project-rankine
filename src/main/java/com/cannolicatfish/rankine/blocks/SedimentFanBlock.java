@@ -64,7 +64,7 @@ public class SedimentFanBlock extends Block {
                     }else if ((sediment == Blocks.SAND && sediment2 == Blocks.CLAY) || (sediment == Blocks.CLAY && sediment2 == Blocks.SAND)) {
                         worldIn.setBlockState(end, RankineBlocks.SILTSTONE.get().getDefaultState(), 2);
                         return;
-                    }  else if ((sediment == Blocks.DIRT && sediment2 == Blocks.CLAY) || (sediment == Blocks.CLAY && sediment2 == Blocks.DIRT)) {
+                    }  else if ((sediment == RankineBlocks.MUD.get()) && (sediment2 == RankineBlocks.MUD.get())) {
                         worldIn.setBlockState(end, RankineBlocks.MUDSTONE.get().getDefaultState(), 2);
                         return;
                     } else if ((sediment == Blocks.RED_SAND) && (sediment2 == Blocks.RED_SAND)) {

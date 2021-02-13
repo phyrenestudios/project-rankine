@@ -1,0 +1,30 @@
+{
+  "type": "rankine:alloying",
+  "total": 5,
+  "input1": {
+    "element": "tin",
+    "min": 0.85,
+    "max": 0.98
+  },
+  "input2": {
+    "element": "antimony",
+    "min": 0.02,
+    "max": 0.10
+  },
+  "input3": {
+    "element": "copper",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input4": {
+    "element": "bismuth",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input5": {
+    "element": "silver",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "result": "rankine:pewter_alloy"
+}

@@ -33,20 +33,6 @@ public class AlloyItem extends Item {
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
             tooltip.add(new StringTextComponent(comp).mergeStyle(TextFormatting.GRAY));
-            /*
-            if (Screen.hasShiftDown())
-            {
-                List<PeriodicTableUtils.Element> elements = getElements(comp);
-                List<Integer> percents = getPercents(comp);
-                for (int i = 0; i < elements.size(); i++)
-                {
-                    tooltip.add(new StringTextComponent(elements.get(i).toString() + ": " + percents.get(i) + "%").applyTextStyle(TextFormatting.GRAY));
-                }
-            } else
-            {
-                tooltip.add((new StringTextComponent("Hold shift for details...").applyTextStyle(TextFormatting.GRAY).applyTextStyle(TextFormatting.ITALIC)));
-            }
-            */
         }
     }
 
@@ -104,9 +90,6 @@ public class AlloyItem extends Item {
         return list;
     }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineMetals) {

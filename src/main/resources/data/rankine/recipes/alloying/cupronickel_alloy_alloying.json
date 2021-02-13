@@ -1,0 +1,80 @@
+{
+  "type": "rankine:alloying",
+  "total": 15,
+  "input1": {
+    "element": "copper",
+    "min": 0.70,
+    "max": 0.90
+  },
+  "input2": {
+    "element": "nickel",
+    "min": 0.10,
+    "max": 0.30
+  },
+  "input3": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input4": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input5": {
+    "element": "tin",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input6": {
+    "element": "niobium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input7": {
+    "element": "tantalum",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input8": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input9": {
+    "element": "lead",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input10": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input11": {
+    "element": "aluminum",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input12": {
+    "element": "bismuth",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input13": {
+    "element": "beryllium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input14": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input15": {
+    "element": "phosphorus",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "result": "rankine:cupronickel_alloy"
+}

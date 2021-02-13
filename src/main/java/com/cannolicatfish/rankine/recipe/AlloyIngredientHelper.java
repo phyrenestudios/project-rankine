@@ -90,6 +90,11 @@ public class AlloyIngredientHelper {
 
     public static ItemStack getItemStack(JsonObject json, boolean readNBT)
     {
+        return getItemStack(json, readNBT, true);
+    }
+
+    public static ItemStack getItemStack(JsonObject json, boolean readNBT, boolean includeCount)
+    {
         String itemName = JSONUtils.getString(json, "item");
 
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName));
@@ -100,7 +105,6 @@ public class AlloyIngredientHelper {
 
         if (readNBT && json.has("nbt"))
         {
-            // Lets hope this works? Needs test
             try
             {
                 JsonElement element = json.get("nbt");
@@ -119,8 +123,11 @@ public class AlloyIngredientHelper {
 
                 tmp.put("tag", nbt);
                 tmp.putString("id", itemName);
-                tmp.putInt("Count", JSONUtils.getInt(json, "count", 1));
-
+                if (includeCount) {
+                    tmp.putInt("Count", JSONUtils.getInt(json, "count", 1));
+                } else {
+                    tmp.putInt("Count", 1);
+                }
                 return ItemStack.read(tmp);
             }
             catch (CommandSyntaxException e)

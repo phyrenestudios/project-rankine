@@ -1,0 +1,36 @@
+{
+  "type": "rankine:alloying",
+  "total": 6,
+  "tier": 2,
+  "input1": {
+    "element": "cerium",
+    "min": 0.40,
+    "max": 0.50
+  },
+  "input2": {
+    "element": "lanthanum",
+    "min": 0.23,
+    "max": 0.25
+  },
+  "input3": {
+    "element": "iron",
+    "min": 0.19,
+    "max": 0.21
+  },
+  "input4": {
+    "element": "praseodymium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input5": {
+    "element": "neodymium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input6": {
+    "element": "magnesium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "result": "rankine:ferrocerium_alloy"
+}

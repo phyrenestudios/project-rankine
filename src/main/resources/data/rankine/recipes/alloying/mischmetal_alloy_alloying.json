@@ -1,0 +1,61 @@
+{
+  "type": "rankine:alloying",
+  "total": 11,
+  "tier": 2,
+  "input1": {
+    "element": "cerium",
+    "min": 0.50,
+    "max": 0.55
+  },
+  "input2": {
+    "element": "lanthanum",
+    "min": 0.20,
+    "max": 0.25
+  },
+  "input3": {
+    "element": "neodymium",
+    "min": 0.15,
+    "max": 0.20
+  },
+  "input4": {
+    "element": "praseodymium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input5": {
+    "element": "dysprosium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input6": {
+    "element": "europium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input7": {
+    "element": "gadolynium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input8": {
+    "element": "samarium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input9": {
+    "element": "terbium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input10": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input11": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "result": "rankine:mischmetal_alloy"
+}

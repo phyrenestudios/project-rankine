@@ -1,0 +1,125 @@
+{
+  "type": "rankine:alloying",
+  "total": 24,
+  "input1": {
+    "element": "magnesium",
+    "min": 0.85,
+    "max": 0.90
+  },
+  "input2": {
+    "element": "aluminum",
+    "min": 0.03,
+    "max": 0.10
+  },
+  "input3": {
+    "element": "zinc",
+    "min": 0.01,
+    "max": 0.03
+  },
+  "input4": {
+    "element": "beryllium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input5": {
+    "element": "copper",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input6": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input7": {
+    "element": "nickel",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input8": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input9": {
+    "element": "lead",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input10": {
+    "element": "tin",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input11": {
+    "element": "zirconium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input12": {
+    "element": "yttrium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input13": {
+    "element": "calcium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input14": {
+    "element": "silver",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input15": {
+    "element": "cadmium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input16": {
+    "element": "thorium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input17": {
+    "element": "lithium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input18": {
+    "element": "antimony",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input19": {
+    "element": "bismuth",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input20": {
+    "element": "strontium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input21": {
+    "element": "neodymium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input22": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input23": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input24": {
+    "element": "gadolinium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "result": "rankine:magnesium_alloy"
+}

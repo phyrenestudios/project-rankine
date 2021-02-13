@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "rankine:narive_copper_ore",
+    "rankine:native_copper_ore",
     "rankine:malachite_ore",
     "rankine:interspinifex_ore"
   ]

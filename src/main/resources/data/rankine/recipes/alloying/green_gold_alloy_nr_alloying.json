@@ -1,0 +1,36 @@
+{
+  "type": "rankine:alloying",
+  "total": 6,
+  "tier": 2,
+  "input1": {
+    "tag": "netherite",
+    "min": 0.30,
+    "max": 0.70
+  },
+  "input2": {
+    "tag": "silver",
+    "min": 0.30,
+    "max": 0.70
+  },
+  "input3": {
+    "tag": "copper",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input4": {
+    "tag": "cadmium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input5": {
+    "tag": "platinum",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input6": {
+    "tag": "selenium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "result": "rankine:green_gold_alloy"
+}

@@ -59,7 +59,11 @@ public class ChromiumElement implements ElementInterface{
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return x/200f * 3/2f;
+        if (x <= 25) {
+            return (float) (0.15f * Math.log10(x) + 0.3f)/2f;
+        } else {
+            return 0.2f + x/125f;
+        }
     }
 
     @Override

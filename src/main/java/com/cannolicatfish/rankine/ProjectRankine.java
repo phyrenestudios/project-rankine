@@ -14,6 +14,7 @@ import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.potion.ModEffects;
 import com.cannolicatfish.rankine.potion.ModPotions;
@@ -24,6 +25,7 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.fluids.ModFluids;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.POIFixer;
 import net.minecraft.block.FlowingFluidBlock;
@@ -35,13 +37,13 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.PointOfInterestType;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
@@ -111,7 +113,6 @@ public class ProjectRankine {
 
     private void ClientSetup(FMLClientSetupEvent event) {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
-
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 
@@ -125,6 +126,27 @@ public class ProjectRankine {
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
+
+        @SubscribeEvent
+        public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_INGOT::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_PLATE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_ROD::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_WIRE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_PICKAXE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_AXE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_SHOVEL::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_SWORD::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HOE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_SPEAR::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HAMMER::get);
+        }
+
+        @SubscribeEvent
+        public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
+        }
 
         @SubscribeEvent
         public static void onPOIRegistry(final RegistryEvent.Register<PointOfInterestType> event) {
@@ -144,6 +166,7 @@ public class ProjectRankine {
          public static void onRecipeSerializersRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> event) {
             event.getRegistry().register(AlloyCraftingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloy_crafting"));
             event.getRegistry().register(CrushingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crushing"));
+            event.getRegistry().register(AlloyingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloying"));
          }
 
         @SubscribeEvent
