@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:slate"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.80,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "minecraft:clay_ball",
+    "chance": 1.0,
+    "additional": 0.50
+  },
+  "output3": {
+    "item": "rankine:mica",
+    "chance": 0.20,
+    "additional": 0.10
+  },
+  "output4": {
+    "item": "rankine:kaolinite_ball",
+    "chance": 0.05,
+    "additional": 0.10
+  },
+  "output5": {
+    "item": "rankine:tourmaline",
+    "chance": 0.05,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:graphite",
+    "chance": 0.04
+  }
+}

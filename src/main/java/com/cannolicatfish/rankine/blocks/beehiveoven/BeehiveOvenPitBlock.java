@@ -47,12 +47,23 @@ public class BeehiveOvenPitBlock extends Block {
         this.blockType = blockType;
     }
 
-
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        IWorld iworld = context.getWorld();
-        BlockPos blockpos = context.getPos();
         return this.getDefaultState().with(LIT, false);
+    }
+
+    @Override
+    public boolean ticksRandomly(BlockState stateIn) {
+        return stateIn.get(LIT);
+    }
+
+    @Override
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
+    }
+
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(LIT);
     }
 
     @Override
@@ -68,13 +79,8 @@ public class BeehiveOvenPitBlock extends Block {
             itemstack.shrink(1);
             getBeehiveOven(worldIn,pos);
         } else if (player.getHeldItemMainhand().getItem() == Items.BLAZE_POWDER && state.get((LIT))) {
-            BlockPos uppos = pos.up();
             boolean flag = true;
-            List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
-                    uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
-                    uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
-
-            for (BlockPos p: surroundingBlockPos) {
+            for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,2,1))) {
                 ItemStack output = RankineRecipes.getBeehiveOutput(new ItemStack(worldIn.getBlockState(p).getBlock()));
                 if (!output.isEmpty()) {
                     if (output.getItem() instanceof BlockItem) {
@@ -96,15 +102,59 @@ public class BeehiveOvenPitBlock extends Block {
         return ActionResultType.SUCCESS;
     }
 
+    /*
     @Override
-    public boolean ticksRandomly(BlockState stateIn) {
-        return stateIn.get(LIT);
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+        super.tick(state, worldIn, pos, rand);
+        World world = worldIn.getWorld();
+        BlockPos uppos = pos.up();
+        if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+
+        if (state.get((LIT))) {
+        //
+
+
+        }
+
+
+
+
+        getBeehiveOven(world,pos);
+        if (state.get((LIT)))
+        {
+            if (rand.nextFloat() <= chance)
+            {
+                boolean flag = true;
+                List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
+                        uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
+                        uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
+
+                for (BlockPos p: surroundingBlockPos)
+                {
+                    ItemStack output = RankineRecipes.getBeehiveOutput(new ItemStack(world.getBlockState(p).getBlock()));
+                    if (!output.isEmpty())
+                    {
+                        if (output.getItem() instanceof BlockItem)
+                        {
+                            world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                            flag = false;
+                            if (!Config.TOTAL_CONVERSION.get()) {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (flag)
+                {
+                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
+                }
+
+            }
+        }
+
     }
 
-    @Override
-    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.get(BlockStateProperties.LIT) ? super.getLightValue(state,world,pos) : 0;
-    }
+*/
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
@@ -118,11 +168,6 @@ public class BeehiveOvenPitBlock extends Block {
             if (rand.nextFloat() <= chance)
             {
                 boolean flag = true;
-                /*List<Block> surroundingBlocks = Arrays.asList(world.getBlockState(uppos.north()).getBlock(),world.getBlockState(uppos.south()).getBlock(),world.getBlockState(uppos.east()).getBlock(),world.getBlockState(uppos.west()).getBlock(),
-                        world.getBlockState(uppos.north().east()).getBlock(), world.getBlockState(uppos.north().west()).getBlock(),world.getBlockState(uppos.south().east()).getBlock(),world.getBlockState(uppos.south().west()).getBlock(),
-                        world.getBlockState(uppos.north().up()).getBlock(),world.getBlockState(uppos.south().up()).getBlock(),world.getBlockState(uppos.east().up()).getBlock(),world.getBlockState(uppos.west().up()).getBlock(),
-                        world.getBlockState(uppos.north().east().up()).getBlock(), world.getBlockState(uppos.north().west().up()).getBlock(),world.getBlockState(uppos.south().east().up()).getBlock(),world.getBlockState(uppos.south().west().up()).getBlock());
-                */
                 List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
                         uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
                         uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
@@ -201,7 +246,4 @@ public class BeehiveOvenPitBlock extends Block {
         }
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LIT);
-    }
 }

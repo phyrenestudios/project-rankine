@@ -1,0 +1,20 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:obsidian"
+  },
+  "output1": {
+    "item": "rankine:feldspar",
+    "count": 2,
+    "chance": 1.0
+  },
+  "output2": {
+    "item": "rankine:perlite",
+    "count": 1,
+    "chance": 1.0
+  },
+  "output3": {
+    "item": "rankine:magnetite",
+    "chance": 0.04
+  }
+}

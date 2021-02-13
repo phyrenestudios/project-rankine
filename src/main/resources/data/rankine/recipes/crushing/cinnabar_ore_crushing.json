@@ -4,19 +4,19 @@
     "item": "rankine:cinnabar_ore"
   },
   "output1": {
-    "item": "minecraft:redstone",
-    "count": 4,
-    "chance": 0.25,
-    "additional": 0.75
-  },
-  "output2": {
-    "item": "rankine:cinnabar",
-    "chance": 1
-  },
-  "output3": {
     "item": "rankine:dolomite",
     "chance": 0.5,
     "additional": 0.2
+  },
+  "output2": {
+    "item": "minecraft:redstone",
+    "count": 4,
+    "chance": 0.30,
+    "additional": 0.70
+  },
+  "output3": {
+    "item": "rankine:cinnabar",
+    "chance": 1
   },
   "output4": {
     "item": "rankine:sulfur",

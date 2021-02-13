@@ -1,6 +1,6 @@
 {
   "block.rankine.mud": "Mud",
-
+  "block.rankine.pozzolan_block": "Pozzolan Block",
 
   "block.rankine.gray_granite": "Gray Granite",
   "block.rankine.polished_gray_granite": "Polished Gray Granite",
@@ -1601,8 +1601,7 @@
   "block.rankine.livermorium_block": "Block of Livermorium",
   "block.rankine.tennessine_block": "Block of Tennessine",
   "block.rankine.oganesson_block": "Block of Solidified Oganesson",
-
-
+  "block.rankine.labradorite_block": "Labradorite Block",
 
 
 
@@ -1654,6 +1653,7 @@
 
   "item.rankine.battery0": "Redstone Battery",
   "item.rankine.mortar": "Mortar",
+  "item.rankine.labradorite": "Labradorite",
   "item.rankine.coke": "Coke",
   "item.rankine.lignite": "Lignite",
   "item.rankine.subbituminous_coal": "Subbituminous Coal",

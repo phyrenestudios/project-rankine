@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:labradorite"
+    }
+  },
+  "result": {
+    "item": "rankine:labradorite_block",
+    "count": 1
+  }
+}

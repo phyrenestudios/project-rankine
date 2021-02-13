@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:komatiite"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.80,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "rankine:pyroxene",
+    "chance": 0.50,
+    "additional": 0.20
+  },
+  "output3": {
+    "item": "rankine:olivine",
+    "chance": 0.40,
+    "additional": 0.10
+  },
+  "output4": {
+    "item": "rankine:magnesia",
+    "chance": 0.03,
+    "additional": 0.07
+  },
+  "output5": {
+    "item": "rankine:chalcopyrite",
+    "chance": 0.02,
+    "additional": 0.08
+  },
+  "output6": {
+    "item": "rankine:magnesium_nugget",
+    "chance": 0.50
+  }
+}

@@ -1,1 +1,20 @@
-{ "type": "minecraft:crafting_shaped", "pattern": ["bmb","mbm","bmb"],"key": { "m":{ "item": "rankine:mortar" },"b": { "item": "rankine:clay_brick"} }, "result": { "item": "rankine:clay_bricks", "count": 2 } }
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#m#",
+        "m#m",
+        "#m#"
+      ],
+      "key": {
+        "#": {
+          "tag": "forge:clay_balls"
+        },
+        "m": {
+          "item": "rankine:mortar"
+        }
+      },
+      "result": {
+        "item": "rankine:clay_bricks",
+        "count": 2
+      }
+    }

@@ -78,6 +78,8 @@ public class OreGen {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.OVERWORLD_STONE_GEN, getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SILL_PHOSPHORITE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SILL_IRONSTONE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.MESA, Biome.Category.DESERT), true)));
         if (WGConfig.MISC.TUFF_GEN.get()) {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANDESITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(), false)));
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.RHYOLITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -85,8 +87,8 @@ public class OreGen {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DACITIC_TUFF, getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NODULE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_IRONSTONE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), true)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PHOSPHORITE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
+        //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_IRONSTONE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.DESERT, Biome.Category.MESA), true)));
+        //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PHOSPHORITE, getBiomeNamesFromCategory(Collections.emptyList(),false)));
 
 
         if (WGConfig.ORES.RANKINE_ORES_O.get()) {

@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
+import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
@@ -32,6 +33,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -1395,6 +1398,88 @@ public class RankineEventHandler {
                 player.getHeldItem(Hand.MAIN_HAND).shrink(1);
                 player.getHeldItem(Hand.OFF_HAND).shrink(1);
                 world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void nuggetDrop(BlockEvent.BreakEvent event) {
+        ServerWorld worldIn = (ServerWorld) event.getWorld();
+        PlayerEntity player = event.getPlayer();
+        BlockPos pos = event.getPos();
+        Block target = worldIn.getBlockState(pos).getBlock();
+        if (target.getTags().contains(new ResourceLocation("rankine:nugget_stones"))) {
+            BlockPos foundPos = null;
+            for (int x = 1; x < Config.NUGGET_DISTANCE.get(); x++) {
+                if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOreBlock) {
+                    foundPos = pos.down(x);
+                } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOreBlock) {
+                    foundPos = pos.up(x);
+                } else if (worldIn.getBlockState(pos.south(x)).getBlock() instanceof RankineOreBlock) {
+                    foundPos = pos.south(x);
+                } else if (worldIn.getBlockState(pos.north(x)).getBlock() instanceof RankineOreBlock) {
+                    foundPos = pos.north(x);
+                } else if (worldIn.getBlockState(pos.east(x)).getBlock() instanceof RankineOreBlock) {
+                    foundPos = pos.east(x);
+                } else if (worldIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOreBlock) {
+                    foundPos = pos.west(x);
+                }
+                if (foundPos != null && new Random().nextFloat() < Config.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode) {
+                    Block b = worldIn.getBlockState(foundPos).getBlock();
+                    ItemStack nug = null;
+                    if (b == RankineBlocks.MAGNETITE_ORE.get()) {
+                        nug = new ItemStack(Items.IRON_NUGGET);
+                    } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
+                    } else if (b == RankineBlocks.BAUXITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.ALUMINUM_NUGGET.get());
+                    } else if (b == RankineBlocks.CASSITERITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.TIN_NUGGET.get());
+                    } else if (b == RankineBlocks.SPHALERITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.ZINC_NUGGET.get());
+                    } else if (b == RankineBlocks.PENTLANDITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
+                    } else if (b == RankineBlocks.INTERSPINIFEX_ORE.get()) {
+                        nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
+                    } else if (b == RankineBlocks.MAGNESITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.MAGNESIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.ILMENITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.TITANIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.GALENA_ORE.get()) {
+                        nug = new ItemStack(RankineItems.LEAD_NUGGET.get());
+                    } else if (b == RankineBlocks.BISMUTHINITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.BISMUTH_NUGGET.get());
+                    } else if (b == RankineBlocks.ACANTHITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.SILVER_NUGGET.get());
+                    } else if (b == RankineBlocks.MOLYBDENITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.MOLYBDENUM_NUGGET.get());
+                    } else if (b == RankineBlocks.PYROLUSITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.MANGANESE_NUGGET.get());
+                    } else if (b == RankineBlocks.CHROMITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.CHROMIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.COLUMBITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.NIOBIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.TANTALITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.TANTALUM_NUGGET.get());
+                    } else if (b == RankineBlocks.WOLFRAMITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.TUNGSTEN_NUGGET.get());
+                    } else if (b == RankineBlocks.GREENOCKITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.CADMIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.VANADINITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.VANADIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.XENOTIME_ORE.get()) {
+                        nug = new ItemStack(RankineItems.CERIUM_NUGGET.get());
+                    } else if (b == RankineBlocks.URANINITE_ORE.get()) {
+                        nug = new ItemStack(RankineItems.URANIUM_NUGGET.get());
+                    }
+
+                    double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                    double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                    double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                    ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, nug);
+                    itementity.setDefaultPickupDelay();
+                    worldIn.addEntity(itementity);
+                }
             }
         }
     }

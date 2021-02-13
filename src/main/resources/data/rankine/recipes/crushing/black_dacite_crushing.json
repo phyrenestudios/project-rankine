@@ -1,16 +1,16 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "tag": "forge:stones/andesite"
+    "item": "rankine:black_dacite"
   },
   "output1": {
     "item": "minecraft:cobblestone",
-    "chance": 0.8,
-    "additional": 0.2
+    "chance": 0.80,
+    "additional": 0.20
   },
   "output2": {
     "item": "rankine:plagioclase_feldspar",
-    "chance": 0.4,
+    "chance": 0.40,
     "additional": 0.15
   },
   "output3": {
@@ -19,17 +19,17 @@
     "additional": 0.10
   },
   "output4": {
-    "item": "rankine:zircon",
+    "item": "minecraft:quartz",
     "chance": 0.10,
     "additional": 0.10
   },
   "output5": {
-    "item": "rankine:ilmenite",
+    "item": "rankine:mica",
     "chance": 0.05,
-    "additional": 0.05
+    "additional": 0.10
   },
   "output6": {
-    "item": "rankine:garnet",
-    "chance": 0.02
+    "item": "rankine:labradorite",
+    "chance": 0.50
   }
 }

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:clay_brick"
+            "item": "rankine:fire_clay"
           }
         ]
       }

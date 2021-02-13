@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:bridgmanite"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.80,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "rankine:olivine",
+    "chance": 0.20,
+    "additional": 0.20
+  },
+  "output3": {
+    "item": "rankine:calcium_silicate",
+    "chance": 0.50,
+    "additional": 0.20
+  },
+  "output4": {
+    "item": "rankine:feldspar",
+    "chance": 0.10,
+    "additional": 0.10
+  },
+  "output5": {
+    "item": "rankine:titanium_nugget",
+    "chance": 0.20
+  },
+  "output6": {
+    "item": "rankine:magnesium_nugget",
+    "chance": 0.20
+  }
+}

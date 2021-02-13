@@ -5,12 +5,12 @@
   },
   "output1": {
     "item": "rankine:silicon",
-    "chance": 0.8,
-    "additional": 0.2
+    "chance": 0.80,
+    "additional": 0.20
   },
   "output2": {
     "item": "rankine:sulfur",
-    "chance": 0.6,
+    "chance": 0.60,
     "additional": 0.15
   },
   "output3": {
@@ -29,7 +29,7 @@
     "additional": 0.05
   },
   "output6": {
-    "item": "rankine:graphite",
-    "chance": 0.05
+    "item": "rankine:chrome_enstatite",
+    "chance": 0.50
   }
 }

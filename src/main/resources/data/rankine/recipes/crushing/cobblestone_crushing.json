@@ -1,0 +1,21 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "tag": "forge:cobblestone"
+  },
+  "output1": {
+    "item": "minecraft:gravel",
+    "chance": 0.30,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "minecraft:flint",
+    "chance": 0.30,
+    "additional": 0.20
+  },
+  "output3": {
+    "item": "minecraft:sand",
+    "chance": 0.30,
+    "additional": 0.20
+  }
+}

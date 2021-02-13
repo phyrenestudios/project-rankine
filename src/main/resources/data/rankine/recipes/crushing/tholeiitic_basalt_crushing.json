@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:tholeiitic_basalt"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.8,
+    "additional": 0.2
+  },
+  "output2": {
+    "item": "rankine:plagioclase_feldspar",
+    "chance": 0.20,
+    "additional": 0.10
+  },
+  "output3": {
+    "item": "rankine:pyroxene",
+    "chance": 0.50,
+    "additional": 0.15
+  },
+  "output4": {
+    "item": "rankine:olivine",
+    "chance": 0.10,
+    "additional": 0.10
+  },
+  "output5": {
+    "item": "rankine:magnetite",
+    "chance": 0.02
+  },
+  "output6": {
+    "item": "minecraft:quartz",
+    "chance": 0.02
+  }
+}

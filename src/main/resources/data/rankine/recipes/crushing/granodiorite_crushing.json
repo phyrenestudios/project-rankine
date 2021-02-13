@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:granodiorite"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.80,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "rankine:plagioclase_feldspar",
+    "chance": 0.40,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:amphibole",
+    "chance": 0.20,
+    "additional": 0.20
+  },
+  "output4": {
+    "item": "rankine:mica",
+    "chance": 0.05,
+    "additional": 0.10
+  },
+  "output5": {
+    "item": "minecraft:quartz",
+    "chance": 0.10,
+    "additional": 0.10
+  },
+  "output6": {
+    "item": "rankine:magnetite",
+    "chance": 0.03
+  }
+}
