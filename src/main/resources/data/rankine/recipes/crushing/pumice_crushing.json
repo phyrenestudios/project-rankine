@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pumice"
+  },
+  "output1": {
+    "item": "rankine:rhyolitic_tuff",
+    "chance": 0.40,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "rankine:andesitic_tuff",
+    "chance": 0.40,
+    "additional": 0.20
+  },
+  "output3": {
+    "item": "rankine:pozzolan",
+    "count": 1,
+    "chance": 1.0,
+    "additional": 0.50
+  },
+  "output4": {
+    "item": "rankine:perlite",
+    "chance": 0.05,
+    "additional": 0.05
+  },
+  "output5": {
+    "item": "minecraft:magma_block",
+    "chance": 0.02
+  },
+  "output6": {
+    "item": "minecraft:obsidian",
+    "chance": 0.02
+  }
+}

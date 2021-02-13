@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:breccia"
+  },
+  "output1": {
+    "item": "rankine:quartz_sandstone",
+    "chance": 0.40,
+    "additional": 0.40
+  },
+  "output2": {
+    "item": "rankine:chalk",
+    "chance": 0.40,
+    "additional": 0.40
+  },
+  "output3": {
+    "item": "rankine:calcite",
+    "chance": 0.40,
+    "additional": 0.40
+  },
+  "output4": {
+    "item": "rankine:dolomite",
+    "chance": 0.40,
+    "additional": 0.40
+  },
+  "output5": {
+    "item": "rankine:opal",
+    "chance": 0.10,
+    "additional": 0.20
+  },
+  "output6": {
+    "item": "rankine:saltpeter",
+    "chance": 0.15
+  }
+}

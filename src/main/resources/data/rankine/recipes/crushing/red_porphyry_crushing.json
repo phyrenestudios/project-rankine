@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:red_porphyry"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.80,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "rankine:feldspar",
+    "chance": 0.40,
+    "additional": 0.10
+  },
+  "output3": {
+    "item": "rankine:calcium_silicate",
+    "chance": 0.40,
+    "additional": 0.10
+  },
+  "output4": {
+    "item": "minecraft:quartz",
+    "chance": 0.05,
+    "additional": 0.05
+  },
+  "output5": {
+    "item": "rankine:copper_nugget",
+    "chance": 0.05,
+    "additional": 0.15
+  },
+  "output6": {
+    "item": "minecraft:gold_nugget",
+    "chance": 0.10
+  }
+}

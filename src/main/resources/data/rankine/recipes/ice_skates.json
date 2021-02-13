@@ -1,0 +1,23 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "L",
+        "LRL",
+        "NNN"
+      ],
+      "key": {
+        "R": {
+          "item": "rankine:rope"
+        },
+        "L": {
+          "item": "minecraft:leather"
+        },
+        "N": {
+          "tag": "rankine:crafting_metal_nuggets"
+        }
+      },
+      "result": {
+        "item": "rankine:ice_skates",
+        "count": 1
+      }
+}

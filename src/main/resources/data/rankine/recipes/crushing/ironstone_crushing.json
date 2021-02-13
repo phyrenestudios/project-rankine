@@ -1,0 +1,20 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:ironstone"
+  },
+  "output1": {
+    "item": "minecraft:iron_nugget",
+    "count": 2,
+    "chance": 1.0
+  },
+  "output2": {
+    "item": "rankine:magnetite",
+    "chance": 0.05,
+    "additional": 0.03
+  },
+  "output3": {
+    "item": "rankine:tiger_iron",
+    "chance": 0.50
+  }
+}

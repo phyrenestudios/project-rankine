@@ -1,0 +1,35 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pegmatite"
+  },
+  "output1": {
+    "item": "minecraft:cobblestone",
+    "chance": 0.80,
+    "additional": 0.20
+  },
+  "output2": {
+    "item": "rankine:feldspar",
+    "chance": 0.4,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "minecraft:quartz",
+    "chance": 0.10,
+    "additional": 0.10
+  },
+  "output4": {
+    "item": "rankine:mica",
+    "chance": 0.10,
+    "additional": 0.10
+  },
+  "output5": {
+    "item": "rankine:tourmaline",
+    "chance": 0.05,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:sapphire",
+    "chance": 0.03
+  }
+}

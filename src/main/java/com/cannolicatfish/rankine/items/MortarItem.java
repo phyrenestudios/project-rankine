@@ -84,8 +84,8 @@ public class MortarItem extends Item {
                     return ActionResultType.SUCCESS;
                 }
             }
-        return super.onItemUse(context);
-    }
+            return super.onItemUse(context);
+        }
 
     public static void spawnParticles(IWorld worldIn, BlockPos posIn, int data) {
         if (worldIn.isRemote())

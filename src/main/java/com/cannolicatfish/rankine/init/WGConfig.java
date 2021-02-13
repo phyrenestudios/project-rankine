@@ -22,6 +22,7 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue TUFF_GEN;
         public final ForgeConfigSpec.BooleanValue METEORITE_GEN;
         public final ForgeConfigSpec.IntValue METEORITE_CHANCE;
+        public final ForgeConfigSpec.DoubleValue SILL_CHANCE;
 
         public Misc(ForgeConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen features").push("misc");
@@ -47,6 +48,8 @@ public class WGConfig {
                         .define("meteoriteGen",true);
                 METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
                         .defineInRange("meteoriteChance", 100, 0, 1000);
+                SILL_CHANCE = b.comment("Chance per chunk to generate a sill of ironstone or phosphorite.")
+                        .defineInRange("sillChance", 0.1D, 0.0D, 1.0D);
             b.pop();
         }
     }

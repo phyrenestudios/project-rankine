@@ -342,7 +342,7 @@ public class Config {
                     .defineInRange("laserQuarrySpeed", 10, 10, 300);
 
             COMMON_BUILDER.comment("Nuggets Around Ores").push("oreNuggets");
-            NUGGET_CHANCE = COMMON_BUILDER.comment("Chance for a rankine stone block to drop a nugget of a nearby ore.")
+            NUGGET_CHANCE = COMMON_BUILDER.comment("Chance for a block in #rankine:nugget_stones to drop a nugget of a nearby ore.")
                     .defineInRange("nuggetChance", 0.15D, 0.00D, 1.00D);
             NUGGET_DISTANCE = COMMON_BUILDER.comment("")
                     .defineInRange("nuggetRange", 7, 1, 64);

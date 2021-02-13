@@ -1,0 +1,18 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "tag": "forge:crops"
+  },
+  "output1": {
+    "item": "rankine:biomass",
+    "chance": 1.0
+  },
+  "output2": {
+    "item": "rankine:compost",
+    "chance": 0.50
+  },
+  "output3": {
+    "item": "minecraft:dirt",
+    "chance": 0.05
+  }
+}
