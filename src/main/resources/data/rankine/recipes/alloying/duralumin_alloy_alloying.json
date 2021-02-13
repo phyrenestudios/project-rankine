@@ -1,0 +1,55 @@
+{
+  "type": "rankine:alloying",
+  "total": 10,
+  "input1": {
+    "element": "aluminum",
+    "min": 0.91,
+    "max": 0.95
+  },
+  "input2": {
+    "element": "copper",
+    "min": 0.03,
+    "max": 0.05
+  },
+  "input3": {
+    "element": "magnesium",
+    "min": 0.01,
+    "max": 0.03
+  },
+  "input4": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input5": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input6": {
+    "element": "zinc",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input7": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input8": {
+    "element": "calcium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input9": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input10": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "result": "rankine:duralumin_alloy"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloying",
+  "total": 3,
+  "tier": 2,
+  "input1": {
+    "element": "netherite",
+    "min": 0.78,
+    "max": 0.80
+  },
+  "input2": {
+    "element": "aluminum",
+    "min": 0.15,
+    "max": 0.22
+  },
+  "input3": {
+    "element": "palladium",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "result": "rankine:purple_gold_alloy"
+}

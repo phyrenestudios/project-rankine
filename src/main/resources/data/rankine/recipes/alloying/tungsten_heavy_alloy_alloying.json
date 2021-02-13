@@ -1,0 +1,96 @@
+{
+  "type": "rankine:alloying",
+  "total": 18,
+  "tier": 2,
+  "input1": {
+    "element": "tungsten",
+    "min": 0.88,
+    "max": 0.95
+  },
+  "input2": {
+    "element": "nickel",
+    "min": 0.02,
+    "max": 0.10
+  },
+  "input3": {
+    "element": "iron",
+    "min": 0.01,
+    "max": 0.04
+  },
+  "input4": {
+    "element": "copper",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input5": {
+    "element": "cobalt",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input6": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input7": {
+    "element": "molybdenum",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input8": {
+    "element": "aluminum",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input9": {
+    "element": "boron",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input10": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input11": {
+    "element": "tantalum",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input12": {
+    "element": "yttrium",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input13": {
+    "element": "cerium",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input14": {
+    "element": "lanthanum",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input15": {
+    "element": "rhenium",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input16": {
+    "element": "netherite",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input17": {
+    "element": "carbon",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "input18": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.09
+  },
+  "result": "rankine:tungsten_heavy_alloy"
+}

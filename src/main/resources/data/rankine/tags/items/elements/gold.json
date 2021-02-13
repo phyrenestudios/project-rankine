@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:nuggets/gold",
+    "#forge:ingots/gold",
+    "#forge:storage_blocks/gold"
+  ]
+}

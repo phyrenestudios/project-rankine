@@ -26,6 +26,7 @@
     "#rankine:elements/vanadium",
     "#rankine:elements/chromium",
     "#rankine:elements/manganese",
+    "#rankine:elements/iron",
     "#rankine:elements/cobalt",
     "#rankine:elements/nickel",
     "#rankine:elements/copper",
@@ -78,6 +79,7 @@
     "#rankine:elements/osmium",
     "#rankine:elements/iridium",
     "#rankine:elements/platinum",
+    "#rankine:elements/gold",
     "#rankine:elements/mercury",
     "#rankine:elements/thallium",
     "#rankine:elements/lead",
@@ -116,6 +118,7 @@
     "#rankine:elements/moscovium",
     "#rankine:elements/livermorium",
     "#rankine:elements/tennessine",
-    "#rankine:elements/oganesson"
+    "#rankine:elements/oganesson",
+    "#rankine:elements/netherite"
   ]
 }

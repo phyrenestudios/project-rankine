@@ -1467,6 +1467,7 @@ public class RankineBlocks {
 
 
     //OTHER STUFFS
+
     @ObjectHolder("rankine:alloy_furnace")
     public static ContainerType<AlloyFurnaceContainer> ALLOY_FURNACE_CONTAINER;
 

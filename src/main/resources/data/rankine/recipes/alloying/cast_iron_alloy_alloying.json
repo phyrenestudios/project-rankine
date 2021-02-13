@@ -1,0 +1,55 @@
+{
+  "type": "rankine:alloying",
+  "total": 10,
+  "input1": {
+    "element": "iron",
+    "min": 0.86,
+    "max": 0.98
+  },
+  "input2": {
+    "element": "carbon",
+    "min": 0.02,
+    "max": 0.04
+  },
+  "input3": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input4": {
+    "element": "nickel",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input5": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input6": {
+    "element": "molybdenum",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input7": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input8": {
+    "element": "vanadium",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input9": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input10": {
+    "element": "phosphorus",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "result": "rankine:cast_iron_alloy"
+}

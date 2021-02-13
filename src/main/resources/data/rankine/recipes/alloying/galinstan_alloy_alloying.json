@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloying",
+  "total": 6,
+  "tier": 2,
+  "input1": {
+    "element": "gallium",
+    "min": 0.68,
+    "max": 0.80
+  },
+  "input2": {
+    "element": "indium",
+    "min": 0.12,
+    "max": 0.22
+  },
+  "input3": {
+    "element": "tin",
+    "min": 0.08,
+    "max": 0.10
+  },
+  "input4": {
+    "element": "antimony",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "input5": {
+    "element": "bismuth",
+    "min": 0.0,
+    "max": 0.10
+  },
+  "result": "rankine:galinstan_alloy"
+}

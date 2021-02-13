@@ -3,7 +3,8 @@
           "values": [
             "#forge:nuggets/silicon",
             "#forge:ingots/silicon",
-            "#forge:storage_blocks/silicon",
-            "#forge:silicon"
+            "#forge:silicon",
+            "#forge:storage_blocks/silicon"
+
           ]
         }

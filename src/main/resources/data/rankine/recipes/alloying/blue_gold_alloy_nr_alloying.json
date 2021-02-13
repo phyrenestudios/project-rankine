@@ -1,0 +1,30 @@
+{
+  "type": "rankine:alloying",
+  "total": 5,
+  "input1": {
+    "element": "netherite",
+    "min": 0.74,
+    "max": 0.76
+  },
+  "input2": {
+    "element": "iron",
+    "min": 0.20,
+    "max": 0.25
+  },
+  "input3": {
+    "element": "nickel",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input4": {
+    "element": "rhodium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input5": {
+    "element": "ruthenium",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "result": "rankine:blue_gold_alloy"
+}
