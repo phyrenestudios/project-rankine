@@ -43,4 +43,7 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:speed_skater")
     public static Enchantment SPEED_SKATER;
+
+    @ObjectHolder("rankine:antiquated")
+    public static Enchantment ANTIQUATED;
 }

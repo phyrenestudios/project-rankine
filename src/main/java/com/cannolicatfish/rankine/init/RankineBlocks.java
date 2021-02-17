@@ -1223,12 +1223,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> INVAR_BLOCK = REGISTRY.register("invar_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> PEWTER_BLOCK = REGISTRY.register("pewter_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BRONZE_BLOCK = REGISTRY.register("bronze_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> ALUMINUM_BRONZE_BLOCK = REGISTRY.register("aluminum_bronze_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> OSMIRIDIUM_BLOCK = REGISTRY.register("osmiridium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> STEEL_BLOCK = REGISTRY.register("steel_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> STAINLESS_STEEL_BLOCK = REGISTRY.register("stainless_steel_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ALNICO_BLOCK = REGISTRY.register("alnico_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> MAGNALIUM_BLOCK = REGISTRY.register("magnalium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> MAGNESIUM_ALLOY_BLOCK = REGISTRY.register("magnesium_alloy_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> DURALUMIN_BLOCK = REGISTRY.register("duralumin_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BRASS_BLOCK = REGISTRY.register("brass_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1260,6 +1258,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PERIDOT_BLOCK = REGISTRY.register("peridot_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TOURMALINE_BLOCK = REGISTRY.register("tourmaline_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PEARL_BLOCK = REGISTRY.register("pearl_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> LONSDALEITE_DIAMOND_BLOCK = REGISTRY.register("lonsdaleite_diamond_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CELESTINE_BLOCK = REGISTRY.register("celestine_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CINNABAR_BLOCK = REGISTRY.register("cinnabar_block", () -> new CinnabarBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL))));
     public static final RegistryObject<Block> PERLITE_BLOCK = REGISTRY.register("perlite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));

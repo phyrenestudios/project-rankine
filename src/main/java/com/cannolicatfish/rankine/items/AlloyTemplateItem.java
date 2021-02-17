@@ -236,7 +236,7 @@ public class AlloyTemplateItem extends Item {
                     break;
                 case 4:
                     inputs = new ItemStack[]{new ItemStack(RankineItems.COPPER_INGOT.get(),9),new ItemStack(RankineItems.ALUMINUM_INGOT.get(),1),ItemStack.EMPTY};
-                    output = new ItemStack(RankineItems.ALUMINUM_BRONZE_ALLOY.get(), 9);
+                    output = new ItemStack(RankineItems.BRONZE_ALLOY.get(), 9);
                     break;
                 case 5:
                     inputs = new ItemStack[]{new ItemStack(Items.IRON_INGOT,6),new ItemStack(RankineItems.NICKEL_INGOT.get(),4),ItemStack.EMPTY};

@@ -1267,6 +1267,7 @@ public class RankineItems {
     public static final RegistryObject<Item> PERIDOT_BLOCK = REGISTRY.register("peridot_block", () -> new BlockItem(RankineBlocks.PERIDOT_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> TOURMALINE_BLOCK = REGISTRY.register("tourmaline_block", () -> new BlockItem(RankineBlocks.TOURMALINE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> PEARL_BLOCK = REGISTRY.register("pearl_block", () -> new BlockItem(RankineBlocks.PEARL_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> LONSDALEITE_DIAMOND_BLOCK = REGISTRY.register("lonsdaleite_diamond_block", () -> new BlockItem(RankineBlocks.LONSDALEITE_DIAMOND_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CELESTINE_BLOCK = REGISTRY.register("celestine_block", () -> new BlockItem(RankineBlocks.CELESTINE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CINNABAR_BLOCK = REGISTRY.register("cinnabar_block", () -> new BlockItem(RankineBlocks.CINNABAR_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> PERLITE_BLOCK = REGISTRY.register("perlite_block", () -> new BlockItem(RankineBlocks.PERLITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1302,12 +1303,11 @@ public class RankineItems {
     //Alloy Ingots
     public static final RegistryObject<Item> CAST_IRON_ALLOY = REGISTRY.register("cast_iron_alloy", () -> new AlloyItem("96Fe-4C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BRONZE_ALLOY = REGISTRY.register("bronze_alloy", () -> new AlloyItem(AlloyUtilsEnum.BRONZE.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> ALUMINUM_BRONZE_ALLOY = REGISTRY.register("aluminum_bronze_alloy", () -> new AlloyItem("90Cu-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> PEWTER_ALLOY = REGISTRY.register("pewter_alloy", () -> new AlloyItem("90Sn-10Sb",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BRASS_ALLOY = REGISTRY.register("brass_alloy", () -> new AlloyItem("60Cu-40Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> STEEL_ALLOY = REGISTRY.register("steel_alloy", () -> new AlloyItem("99Fe-1C",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> STAINLESS_STEEL_ALLOY = REGISTRY.register("stainless_steel_alloy", () -> new AlloyItem(AlloyUtilsEnum.STAINLESS.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> SOLDER_ALLOY = REGISTRY.register("solder_alloy", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> SOLDER_ALLOY = REGISTRY.register("solder_alloy", () -> new AlloyItem("60Sn-40Pb",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALNICO_ALLOY = REGISTRY.register("alnico_alloy", () -> new AlloyItem("50Fe-25Co-15Ni-10Al",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> NITINOL_ALLOY = REGISTRY.register("nitinol_alloy", () -> new AlloyItem("50Ni-50Ti",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> AMALGAM_ALLOY = REGISTRY.register("amalgam_alloy", () -> new AlloyItem(AlloyUtilsEnum.AMALGAM.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1323,9 +1323,8 @@ public class RankineItems {
     public static final RegistryObject<Item> COBALT_SUPERALLOY = REGISTRY.register("cobalt_superalloy", () -> new AlloyItem("60Co-20Cr-10Ni-10Ta",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ROSE_METAL_ALLOY = REGISTRY.register("rose_metal_alloy", () -> new AlloyItem("50Bi-25Pb-25Sn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> GALINSTAN_ALLOY = REGISTRY.register("galinstan_alloy", () -> new AlloyItem("70Ga-20In-10Sn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> MAGNALIUM_ALLOY = REGISTRY.register("magnalium_alloy", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> DURALUMIN_ALLOY = REGISTRY.register("duralumin_alloy", () -> new AlloyItem("95Al-3Cu-1Mg-1Mn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> OSMIRIDIUM_ALLOY = REGISTRY.register("osmiridium_alloy", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> OSMIRIDIUM_ALLOY = REGISTRY.register("osmiridium_alloy", () -> new AlloyItem("60Os-40Ir",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ROSE_GOLD_ALLOY = REGISTRY.register("rose_gold_alloy", () -> new AlloyItem("75Au-22Cu-3Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> WHITE_GOLD_ALLOY = REGISTRY.register("white_gold_alloy", () -> new AlloyItem("90Au-10Zn",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> GREEN_GOLD_ALLOY = REGISTRY.register("green_gold_alloy", () -> new AlloyItem("50Au-50Ag", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1344,12 +1343,10 @@ public class RankineItems {
     public static final RegistryObject<Item> INVAR_BLOCK = REGISTRY.register("invar_block", () -> new BlockItem(RankineBlocks.INVAR_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> PEWTER_BLOCK = REGISTRY.register("pewter_block", () -> new BlockItem(RankineBlocks.PEWTER_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BRONZE_BLOCK = REGISTRY.register("bronze_block", () -> new BlockItem(RankineBlocks.BRONZE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> ALUMINUM_BRONZE_BLOCK = REGISTRY.register("aluminum_bronze_block", () -> new BlockItem(RankineBlocks.ALUMINUM_BRONZE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> OSMIRIDIUM_BLOCK = REGISTRY.register("osmiridium_block", () -> new BlockItem(RankineBlocks.OSMIRIDIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> STEEL_BLOCK = REGISTRY.register("steel_block", () -> new BlockItem(RankineBlocks.STEEL_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> STAINLESS_STEEL_BLOCK = REGISTRY.register("stainless_steel_block", () -> new BlockItem(RankineBlocks.STAINLESS_STEEL_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALNICO_BLOCK = REGISTRY.register("alnico_block", () -> new BlockItem(RankineBlocks.ALNICO_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> MAGNALIUM_BLOCK = REGISTRY.register("magnalium_block", () -> new BlockItem(RankineBlocks.MAGNALIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MAGNESIUM_ALLOY_BLOCK = REGISTRY.register("magnesium_alloy_block", () -> new BlockItem(RankineBlocks.MAGNESIUM_ALLOY_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> DURALUMIN_BLOCK = REGISTRY.register("duralumin_block", () -> new BlockItem(RankineBlocks.DURALUMIN_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BRASS_BLOCK = REGISTRY.register("brass_block", () -> new BlockItem(RankineBlocks.BRASS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1600,13 +1597,13 @@ public class RankineItems {
 
     public static final RegistryObject<Item> SADDLE_TREE = REGISTRY.register("saddle_tree", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> THORIUM_ARROW = REGISTRY.register("thorium_arrow", () -> new ThoriumArrowItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL = REGISTRY.register("power_cell", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL_2 = REGISTRY.register("power_cell_2", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL_3 = REGISTRY.register("power_cell_3", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL_4 = REGISTRY.register("power_cell_4", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL_5 = REGISTRY.register("power_cell_5", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL_6 = REGISTRY.register("power_cell_6", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> POWER_CELL_7 = REGISTRY.register("power_cell_7", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL = REGISTRY.register("power_cell", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL_2 = REGISTRY.register("power_cell_2", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL_3 = REGISTRY.register("power_cell_3", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL_4 = REGISTRY.register("power_cell_4", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL_5 = REGISTRY.register("power_cell_5", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL_6 = REGISTRY.register("power_cell_6", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> POWER_CELL_7 = REGISTRY.register("power_cell_7", () -> new PowerCellItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> SPARK_LIGHTER = REGISTRY.register("spark_lighter", () -> new SparkLighterItem(new Item.Properties().maxStackSize(1).maxDamage(600).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ELEMENT_TRANSMUTER = REGISTRY.register("element_transmuter", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));

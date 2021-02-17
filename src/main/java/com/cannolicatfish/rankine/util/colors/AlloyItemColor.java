@@ -7,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 
 import java.awt.*;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlloyItemColor implements IItemColor {
     @Override
@@ -15,58 +18,59 @@ public class AlloyItemColor implements IItemColor {
         INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
         if (nbt != null && nbt.getString().contains("-"))
         {
+            boolean weighted = true;
+            List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements = new ArrayList<>();
             String[] split = nbt.getString().split("-");
-            String str = split[0].replaceAll("[^A-Za-z]+", "");
-            String str2 = nbt.getString().split("-")[1].replaceAll("[^A-Za-z]+", "");
-            boolean weighted = false;
-            int w1 = 0;
-            int w2 = 0;
-            if (split[0].replaceAll("[A-Za-z]+", "").matches("-?\\d+") && split[1].replaceAll("[A-Za-z]+", "").matches("-?\\d+")){
-                w1 = Integer.parseInt(split[0].replaceAll("[A-Za-z]+", ""));
-                w2 = Integer.parseInt(split[1].replaceAll("[A-Za-z]+", ""));
-                weighted = true;
-            }
-
-
-            PeriodicTableUtils.Element element = utils.getElementBySymbol(str);
-            PeriodicTableUtils.Element element2 = utils.getElementBySymbol(str2);
-            if (element != null) {
-                int color;
-                if (element2 != null) {
-
-                    color = weighted ? returnBlendWeighted(element.getColor(),w1,element2.getColor(),w2) : returnBlend(element.getColor(),element2.getColor());
+            for (String s : split) {
+                if (s.replaceAll("[A-Za-z]+", "").matches("-?\\d+")) {
+                    elements.add(new AbstractMap.SimpleEntry<>(utils.getElementBySymbol(s.replaceAll("[^A-Za-z]+", "")),Integer.parseInt(s.replaceAll("[A-Za-z]+", ""))));
                 } else {
-                    color = element.getColor();
+                    elements.add(new AbstractMap.SimpleEntry<>(utils.getElementBySymbol(s.replaceAll("[^A-Za-z]+", "")),null));
+                    weighted = false;
                 }
-                return color;
             }
+            int color;
+            if (elements.size() >= 2) {
+                color = weighted ? returnBlendWeighted(elements) : returnBlend(elements);
+            } else if (elements.size() == 1){
+                color = elements.get(0).getKey().getColor();
+            } else {
+                color = 16777215;
+            }
+            return color;
         }
         return 16777215;
     }
 
-    private int returnBlend(int colorint, int colorint2) {
-        Color col = new Color(colorint);
-        Color col2 = new Color(colorint2);
-
-        int r = Math.round((col.getRed() + col2.getRed())/2f);
-        int g = Math.round((col.getGreen() + col2.getGreen())/2f);
-        int b = Math.round((col.getBlue() + col2.getBlue())/2f);
-        int rgb = r;
-        rgb = (rgb << 8) + g;
-        rgb = (rgb << 8) + b;
+    private int returnBlend(List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements) {
+        float r = 0;
+        float g = 0;
+        float b = 0;
+        for (AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer> e : elements) {
+            Color col = new Color(e.getKey().getColor());
+            r += (col.getRed());
+            g += (col.getGreen());
+            b += (col.getBlue());
+        }
+        int rgb = Math.round(r/elements.size());
+        rgb = (rgb << 8) +  Math.round(g/elements.size());
+        rgb = (rgb << 8) +  Math.round(b/elements.size());
         return rgb;
     }
 
-    private int returnBlendWeighted(int colorint, int weight1, int colorint2, int weight2) {
-        Color col = new Color(colorint);
-        Color col2 = new Color(colorint2);
-
-        int r = Math.round((col.getRed() * weight1/100f + col2.getRed() * weight2/100f));
-        int g = Math.round((col.getGreen() * weight1/100f + col2.getGreen() * weight2/100f));
-        int b = Math.round((col.getBlue() * weight1/100f + col2.getBlue() * weight2/100f));
-        int rgb = r;
-        rgb = (rgb << 8) + g;
-        rgb = (rgb << 8) + b;
+    private int returnBlendWeighted(List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements) {
+        float r = 0;
+        float g = 0;
+        float b = 0;
+        for (AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer> e : elements) {
+            Color col = new Color(e.getKey().getColor());
+            r += (col.getRed() * e.getValue()/100f);
+            g += (col.getGreen() * e.getValue()/100f);
+            b += (col.getBlue() * e.getValue()/100f);
+        }
+        int rgb = Math.round(r);
+        rgb = (rgb << 8) +  Math.round(g);
+        rgb = (rgb << 8) +  Math.round(b);
         return rgb;
     }
 }

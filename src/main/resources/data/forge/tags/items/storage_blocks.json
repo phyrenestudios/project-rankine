@@ -120,7 +120,6 @@
 
     "#forge:storage_blocks/bronze",
     "#forge:storage_blocks/brass",
-    "#forge:storage_blocks/aluminum_bronze",
     "#forge:storage_blocks/cast_iron",
     "#forge:storage_blocks/steel",
     "#forge:storage_blocks/stainless_steel",
@@ -132,7 +131,6 @@
     "#forge:storage_blocks/invar",
     "#forge:storage_blocks/nickel_superalloy",
     "#forge:storage_blocks/rose_metal",
-    "#forge:storage_blocks/magnalium",
     "#forge:storage_blocks/duralumin",
     "#forge:storage_blocks/osmiridium",
     "#forge:storage_blocks/rose_gold",

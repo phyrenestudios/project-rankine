@@ -297,6 +297,7 @@ public final class PeriodicTableUtils {
         TANTALUM(73,"Ta", new TantalumElement()),
         TUNGSTEN(74,"W", new TungstenElement(),12693657),
         RHENIUM(75,"Re", new RheniumElement()),
+        OSMIUM(76,"Os", new OsmiumElement()),
         IRIDIUM(77,"Ir", new IridiumElement()),
         PLATINUM(78,"Pt", new PlatinumElement(),14016232),
         GOLD(79, "Au", new GoldElement(),16643423),

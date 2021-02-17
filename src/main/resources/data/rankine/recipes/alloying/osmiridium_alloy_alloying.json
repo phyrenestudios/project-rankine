@@ -1,0 +1,30 @@
+{
+  "type": "rankine:alloying",
+  "total": 5,
+  "input1": {
+    "element": "osmium",
+    "min": 0.20,
+    "max": 0.80
+  },
+  "input2": {
+    "element": "iridium",
+    "min": 0.20,
+    "max": 0.80
+  },
+  "input3": {
+    "element": "platinum",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input4": {
+    "element": "ruthenium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input5": {
+    "element": "rhodium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "result": "rankine:osmiridium_alloy"
+}

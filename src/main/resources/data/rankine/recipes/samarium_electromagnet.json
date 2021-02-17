@@ -13,10 +13,10 @@
       "tag": "forge:ingots/cobalt"
     },
     "w": {
-      "item": "rankine:copper_wire"
+      "item": "rankine:alloy_wire"
     },
     "l": {
-      "item": "rankine:lithium_power_cell"
+      "item": "rankine:power_cell_4"
     }
   },
   "result": {

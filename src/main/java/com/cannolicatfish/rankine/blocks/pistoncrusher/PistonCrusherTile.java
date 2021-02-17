@@ -1,7 +1,9 @@
 package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -29,24 +31,22 @@ import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 
-import java.util.AbstractMap;
-import java.util.Random;
+import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_TILE;
 
 public class PistonCrusherTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     private static final int[] SLOTS_UP = new int[]{0};
-    private static final int[] SLOTS_DOWN = new int[]{2,3};
+    private static final int[] SLOTS_DOWN = new int[]{2,3,4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{1};
     public PistonCrusherTile() {
         super(PISTON_CRUSHER_TILE);
     }
-    protected NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
     private int cookTimeTotal = 200;
-    private int redstonePower = 0;
     private final IIntArray furnaceData = new IIntArray(){
         public int get(int index)
         {
@@ -122,7 +122,8 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
             ItemStack input = this.items.get(0);
             ItemStack fuel = this.items.get(1);
             if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty())) {
-                if (!this.isBurning() && this.canSmelt()) {
+                CrushingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
+                if (!this.isBurning() && this.canSmelt(irecipe)) {
                     this.burnTime = ForgeHooks.getBurnTime(fuel);
                     this.currentBurnTime = this.burnTime;
                     if (this.isBurning()) {
@@ -140,48 +141,29 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
                     }
                 }
 
-                if (this.isBurning() && this.canSmelt()) {
+                if (this.isBurning() && this.canSmelt(irecipe)) {
                     cookTime++;
                     if (cookTime >= cookTimeTotal) {
-                        int smeltingamt = PistonCrusherRecipes.getInstance().getPrimaryResult(input).getValue()[0].intValue();
-                        float output1chance = PistonCrusherRecipes.getInstance().getPrimaryResult(input).getValue()[1];
-                        ItemStack smelting = new ItemStack(PistonCrusherRecipes.getInstance().getPrimaryResult(input).getKey().getItem(), smeltingamt);
+                        List<ItemStack> results = irecipe.getResults(2,this.world);
 
-
-                        if (this.items.get(2).getCount() > 0) {
-                            this.items.get(2).grow(smeltingamt);
-                        } if (this.items.get(2).getCount() <= 0) {
-                            this.items.set(2, smelting);
-                        }
-                        Random random = new Random();
-                        if (random.nextFloat() < output1chance)
-                        {
-                            if (this.items.get(2).getCount() > 0) {
-                                this.items.get(2).grow(1);
-                            } if (this.items.get(2).getCount() <= 0) {
-                            this.items.set(2, smelting);
-                        }
-                        }
-                        float output2chance = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getValue();
-                        if (random.nextFloat() < output2chance)
-                        {
-                            ItemStack smelting2 = PistonCrusherRecipes.getInstance().getSecondaryResult(input).getKey();
-                            if (this.items.get(3).getCount() > 0) {
-                                this.items.get(3).grow(1);
-                            } else {
-                                this.items.set(3, smelting2);
+                        for (int i = 0; i < results.size(); i++) {
+                            if (this.items.get(2 + i).getCount() > 0) {
+                                this.items.get(2 + i).grow(results.get(i).getCount());
+                            } if (this.items.get(2 + i).getCount() <= 0) {
+                                this.items.set(2 + i, results.get(i).copy());
                             }
                         }
+
                         input.shrink(1);
                         cookTime = 0;
                         return;
+                        }
+                    } else {
+                        this.cookTime = 0;
                     }
-                } else {
-                    this.cookTime = 0;
+                } else if ((!this.isBurning()) && this.cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
-            } else if ((!this.isBurning()) && this.cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-            }
 
             if (flag != this.isBurning()) {
                 flag1 = true;
@@ -206,40 +188,33 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
         return te.furnaceData.get(0) > 0;
     }
 
-    private boolean canSmelt()
+    private boolean canSmelt(@Nullable CrushingRecipe recipeIn)
     {
-        if((this.items.get(0)).isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            AbstractMap.SimpleEntry<ItemStack, Float[]> preresult = PistonCrusherRecipes.getInstance().getPrimaryResult(this.items.get(0));
-            AbstractMap.SimpleEntry<ItemStack, Float> preresult2 = PistonCrusherRecipes.getInstance().getSecondaryResult((this.items.get(0)));
-            ItemStack result = preresult.getKey();
-            ItemStack result2 = preresult2.getKey();
-            if(result.isEmpty())
-            {
-                /*
-                System.out.println("Result Itemstack");
-                System.out.println(result);
-                System.out.println("Result is empty False");*/
+        if (!this.items.get(0).isEmpty() && recipeIn != null) {
+            List<ItemStack> itemstacks = recipeIn.getPossibleResults(2,this.world);
+            if (itemstacks.isEmpty()) {
                 return false;
-            }
-            else
-            {
-                ItemStack output = this.items.get(2);
-                ItemStack output2 = this.items.get(3);
-                if(output.isEmpty() && output2.isEmpty()) return true;
-
-                if(!output.isItemEqual(result) && !output2.isItemEqual(result2))
-                {
+            } else {
+                ItemStack itemstack1 = this.items.get(2);
+                ItemStack itemstack2 = this.items.get(3);
+                ItemStack itemstack3 = this.items.get(4);
+                if (itemstack1.isEmpty() && itemstack2.isEmpty() && itemstack3.isEmpty()) {
+                    return true;
+                } else if ((!itemstack1.isItemEqual(itemstacks.get(0)) && !itemstack1.isEmpty()) || (!itemstack2.isItemEqual(itemstacks.get(1)) && !itemstack2.isEmpty())
+                        || (!itemstack3.isItemEqual(itemstacks.get(2)) && !itemstack3.isEmpty())) {
                     return false;
+                } else if (itemstack1.getCount() + itemstacks.get(0).getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstacks.get(0).getCount() <= itemstack1.getMaxStackSize() &&
+                        itemstack2.getCount() + itemstacks.get(1).getCount() <= this.getInventoryStackLimit() && itemstack2.getCount() + itemstacks.get(1).getCount() <= itemstack2.getMaxStackSize() &&
+                        itemstack3.getCount() + itemstacks.get(2).getCount() <= this.getInventoryStackLimit() && itemstack3.getCount() + itemstacks.get(2).getCount() <= itemstack3.getMaxStackSize()) {
+                    return true;
+                } else {
+                    return itemstack1.getCount() + itemstacks.get(0).getCount() <= itemstacks.get(0).getMaxStackSize() &&
+                            itemstack2.getCount() + itemstacks.get(1).getCount() <= itemstacks.get(1).getMaxStackSize() &&
+                            itemstack3.getCount() + itemstacks.get(2).getCount() <= itemstacks.get(2).getMaxStackSize();
                 }
-                int res = output.getCount() + preresult.getValue()[0].intValue();
-                int res2 = output2.getCount() + 1;
-                return res <= 64 && res <= output.getMaxStackSize() && res2 <= 64 && res2 <= output2.getMaxStackSize();
             }
+        } else {
+            return false;
         }
     }
 

@@ -36,12 +36,12 @@
         ]
       }
     },
-    "rankine:aluminum_bronze_alloy": {
+    "rankine:nitinol_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:aluminum_bronze_alloy"
+            "item": "rankine:nitinol_alloy"
           }
         ]
       }
@@ -226,6 +226,16 @@
         ]
       }
     },
+    "rankine:solder_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:solder_alloy"
+          }
+        ]
+      }
+    },
     "rankine:rose_gold_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -291,7 +301,7 @@
   "requirements": [
     ["rankine:bronze_alloy"],[
     "rankine:brass_alloy"],[
-    "rankine:aluminum_bronze_alloy"],[
+    "rankine:nitinol_alloy"],[
     "rankine:cast_iron_alloy"],[
     "rankine:steel_alloy"],[
     "rankine:stainless_steel_alloy"],[
@@ -310,6 +320,7 @@
     "rankine:ferrocerium_alloy"],[
     "rankine:sterling_silver_alloy"],[
     "rankine:magnesium_alloy"],[
+      "rankine:solder_alloy"],[
     "rankine:rose_gold_alloy"],[
     "rankine:rose_gold_alloy"],[
     "rankine:white_gold_alloy"],[

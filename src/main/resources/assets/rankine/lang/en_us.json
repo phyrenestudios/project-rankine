@@ -885,10 +885,10 @@
 
   "item.rankine.flint_hoe": "Flint Hoe",
   "block.rankine.maple_planks": "Maple Planks",
-  "block.rankine.tungsten_heavy_alloy_block": "Tungsten Heavy Alloy Block",
-  "block.rankine.cobalt_superalloy_block": "Cobalt Superalloy Block",
-  "block.rankine.bone_char_block": "Bone Char Block",
-  "block.rankine.pewter_block": "Pewter Block",
+  "block.rankine.tungsten_heavy_alloy_block": "Block of Tungsten Heavy Alloy",
+  "block.rankine.cobalt_superalloy_block": "Block of Cobalt Superalloy",
+  "block.rankine.bone_char_block": "Block of Bone Char",
+  "block.rankine.pewter_block": "Block ofPewter",
   "item.rankine.bone_char": "Bone Char",
   "block.rankine.maple_trapdoor": "Maple Trap Door",
 
@@ -1166,6 +1166,7 @@
   "block.rankine.aquamarine_block": "Block of Aquamarine",
   "block.rankine.sapphire_block": "Block of Sapphire",
   "block.rankine.ruby_block": "Block of Ruby",
+  "block.rankine.lonsdaleite_diamond_block": "Block of Lonsdaleite Diamond",
   "block.rankine.celestine_block": "Block of Celestine",
   "block.rankine.fluorite_block": "Block of Fluorite",
   "block.rankine.tiger_iron_block": "Block of Tiger Iron",
@@ -2120,7 +2121,8 @@
   "enchantment.rankine.impact.desc": "Increases knockback of thrown spears.",
   "enchantment.rankine.smithing": "Arcane Smithing",
   "enchantment.rankine.smithing.desc": "When held in off hand while using an anvil, any enchantment book applications on unenchanted equipment will have a level cost of 1 at a cost of (1/level * 100) % of your hammer's maximum durability.",
-
+  "enchantment.rankine.antiquated": "Antiquated",
+  "enchantment.rankine.antiquated.desc": "Increases the luck stat while held in the main hand or off hand.",
 
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",
   "rankine.jei.crushing": "Crushing",

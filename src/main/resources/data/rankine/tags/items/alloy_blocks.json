@@ -3,7 +3,6 @@
   "values": [
     "rankine:bronze_block",
     "rankine:brass_block",
-    "rankine:aluminum_bronze_block",
     "rankine:steel_block",
     "rankine:stainless_steel_block",
     "rankine:alnico_block",
@@ -14,7 +13,6 @@
     "rankine:invar_block",
     "rankine:nickel_superalloy_block",
     "rankine:rose_metal_block",
-    "rankine:magnalium_block",
     "rankine:duralumin_block",
     "rankine:osmiridium_block",
     "rankine:cast_iron_block",

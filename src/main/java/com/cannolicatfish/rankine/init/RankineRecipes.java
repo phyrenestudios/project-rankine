@@ -57,10 +57,6 @@ public class RankineRecipes {
                 returnTagFamily("copper"),returnTagFamily("bismuth"),returnTagFamily("silver")),
                 new AbstractMap.SimpleEntry<>(.85f,.98f), new AbstractMap.SimpleEntry<>(.02f,.1f),new AbstractMap.SimpleEntry<>(0f,.13f),.87f));
 
-        recipes.add(alloyRecipe("aluminum_bronze_alloy",new ItemStack(RankineItems.ALUMINUM_BRONZE_ALLOY.get()),Arrays.asList(returnTagFamily("copper"),returnTagFamily("aluminum"),
-                returnTagFamily("manganese"),returnTagFamily("nickel"),returnTagFamily("zinc"),returnTagFamily("arsenic"),returnTagFamily("iron"),returnTagFamily("lead")),
-                new AbstractMap.SimpleEntry<>(.74f,.93f), new AbstractMap.SimpleEntry<>(.04f,.12f),new AbstractMap.SimpleEntry<>(0f,.15f),.85f));
-
         recipes.add(alloyRecipe("brass_alloy",new ItemStack(RankineItems.BRASS_ALLOY.get()),Arrays.asList(returnTagFamily("copper"),returnTagFamily("zinc"),
                 returnTagFamily("tin"),returnTagFamily("lead"),returnTagFamily("aluminum"),returnTagFamily("nickel"),returnTagFamily("iron"),
                 returnTagFamily("selenium")),
@@ -1129,15 +1125,18 @@ public class RankineRecipes {
         List<Enchantment> elementEn = utils.getEnchantments(getElements(c),getPercents(c));
         for (Enchantment e: elementEn)
         {
-            if (e != null)
+            if (e != null && !enchantments.contains(e))
             {
                 enchantments.add(e);
             }
         }
-        Enchantment en = alloy.getEnchantmentBonus(item);
-        if (en != null)
+        List<Enchantment> en = alloy.getEnchantmentBonus(item);
+        for (Enchantment e: en)
         {
-            enchantments.add(en);
+            if (e != null && !enchantments.contains(e))
+            {
+                enchantments.add(e);
+            }
         }
         return enchantments;
     }

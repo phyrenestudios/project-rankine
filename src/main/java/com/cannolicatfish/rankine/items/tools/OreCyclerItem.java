@@ -32,16 +32,6 @@ public class OreCyclerItem extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
-
-        if (!worldIn.isRemote) {
-            for (AlloyingRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING)) {
-                System.out.println(recipe.getIngredients());
-                System.out.println(recipe.getMins());
-                System.out.println(recipe.getMaxes());
-                System.out.println(recipe.getRecipeOutput());
-            }
-        }
-
         if (worldIn.getBlockState(context.getPos()).getBlock() instanceof RankineOreBlock)
         {
             RankineOreBlock blockIn = (RankineOreBlock) worldIn.getBlockState(context.getPos()).getBlock();

@@ -9,8 +9,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.ITag;
@@ -67,10 +69,10 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return this.tier;
     }
 
-    public List<Ingredient> getRequiredIngredients() {
+    public List<Ingredient> getIngredientsList(boolean required) {
         List<Ingredient> ret = new ArrayList<>();
         for (int i = 0; i < this.recipeItems.size(); i++) {
-            if (this.mins.get(i) > 0) {
+            if ((this.mins.get(i) > 0 && required) || (this.mins.get(i) == 0 && !required)) {
                 ret.add(this.recipeItems.get(i));
             }
         }
@@ -103,6 +105,45 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
+        int material = 0;
+        List<PeriodicTableUtils.Element> currentElements = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            ItemStack stack = inv.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                boolean flag = false;
+                for (Ingredient s : getIngredients()) {
+                    if (s.test(stack)) {
+                        PeriodicTableUtils.Element element = getElements().get(getIngredients().indexOf(s));
+                        if (!currentElements.contains(element)) {
+                            currentElements.add(element);
+                        }
+                        flag = true;
+                    }
+                }
+                if (flag) {
+                    Item item = stack.getItem();
+                    ResourceLocation reg = item.getRegistryName();
+                    String registry = "";
+                    if (reg != null) {
+                        registry = reg.getPath();
+                    }
+
+                    if (stack.getItem().getTags().contains(new ResourceLocation("forge:storage_blocks")) || stack.getItem() instanceof BlockItem || registry.contains("block")) {
+                        material += 81 * stack.getCount();
+                    } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || registry.contains("ingot")) {
+                        material += 9 * stack.getCount();
+                    } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:nuggets")) || registry.contains("nugget")) {
+                        material += stack.getCount();
+                    } else if (stack.getItem() == Items.NETHERITE_SCRAP || registry.contains("scrap")){
+                        material += 2 * stack.getCount();
+                    } else {
+                        material += 9 * stack.getCount();
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 

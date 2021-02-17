@@ -249,15 +249,18 @@ public interface IAlloyTool {
         List<Enchantment> elementEn = utils.getEnchantments(getElements(c),getPercents(c));
         for (Enchantment e: elementEn)
         {
-            if (e != null)
+            if (e != null && !enchantments.contains(e))
             {
                 enchantments.add(e);
             }
         }
-        Enchantment en = alloy.getEnchantmentBonus(item);
-        if (en != null)
+        List<Enchantment> en = alloy.getEnchantmentBonus(item);
+        for (Enchantment e: en)
         {
-            enchantments.add(en);
+            if (e != null && !enchantments.contains(e))
+            {
+                enchantments.add(e);
+            }
         }
         return enchantments;
     }

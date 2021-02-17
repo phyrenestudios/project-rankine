@@ -87,7 +87,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     }
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return true;
+        return this.recipeItems.get(0).test(inv.getStackInSlot(0));
     }
 
     @Override
@@ -108,7 +108,18 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             float c = harvestLevel == i ? (this.chances.get(i) + this.additional.get(i)) : this.chances.get(i);
             if (random.nextFloat() < c) {
                 outputs.add(this.recipeOutputs.get(i));
+            } else {
+                outputs.add(ItemStack.EMPTY);
             }
+        }
+        return outputs;
+    }
+
+    public List<ItemStack> getPossibleResults(int harvestLevel, World worldIn) {
+        List<ItemStack> outputs = new ArrayList<>();
+        int check = Math.min(harvestLevel + 1, 6);
+        for (int i = 0; i < check; i++) {
+            outputs.add(this.recipeOutputs.get(i));
         }
         return outputs;
     }

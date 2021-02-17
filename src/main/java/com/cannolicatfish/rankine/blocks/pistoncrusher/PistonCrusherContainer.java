@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,6 +11,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
@@ -31,25 +33,28 @@ public class PistonCrusherContainer extends Container {
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
     private final IIntArray data;
+    protected final World world;
 
     public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player, new Inventory(4),new IntArray(4));
+        this(windowId,world,pos,playerInventory,player, new Inventory(5),new IntArray(4));
     }
 
     public PistonCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(PISTON_CRUSHER_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 4);
+        assertInventorySize(furnaceInventoryIn, 5);
         assertIntArraySize(furnaceData, 4);
         this.data = furnaceData;
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
+        this.world = playerEntity.world;
 
         this.addSlot(new Slot(furnaceInventory, 0, 56, 31));
         this.addSlot(new Slot(furnaceInventory, 1, 10,37));
-        this.addSlot(new Slot(furnaceInventory, 2, 124,31));
-        this.addSlot(new Slot(furnaceInventory, 3, 149,31));
+        this.addSlot(new Slot(furnaceInventory, 2, 124,17));
+        this.addSlot(new Slot(furnaceInventory, 3, 149,17));
+        this.addSlot(new Slot(furnaceInventory, 4, 136,42));
 
         layoutPlayerInventorySlots(10, 70);
 
@@ -62,6 +67,9 @@ public class PistonCrusherContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.PISTON_CRUSHER.get());
     }
 
+    protected boolean hasRecipe(ItemStack stack) {
+        return this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, new Inventory(stack), this.world).isPresent();
+    }
 
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
@@ -70,13 +78,13 @@ public class PistonCrusherContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 2 || index == 3) {
-                if (!this.mergeItemStack(stack, 4, 40, true)) {
+            if (index == 2 || index == 3 || index == 4) {
+                if (!this.mergeItemStack(stack, 5, 41, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index != 1 && index != 0) {
-                if (PistonCrusherRecipes.getInstance().getPrimaryResult(new ItemStack(stack.getItem())).getValue()[0] > 0f) {
+                if (hasRecipe(stack)) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -84,14 +92,14 @@ public class PistonCrusherContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 31) {
-                    if (!this.mergeItemStack(stack, 31, 40, false)) {
+                } else if (index < 32) {
+                    if (!this.mergeItemStack(stack, 32, 41, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 40 && !this.mergeItemStack(stack, 4, 31, false)) {
+                } else if (index < 41 && !this.mergeItemStack(stack, 5, 32, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 4, 40, false)) {
+            } else if (!this.mergeItemStack(stack, 5, 41, false)) {
                 return ItemStack.EMPTY;
             }
 

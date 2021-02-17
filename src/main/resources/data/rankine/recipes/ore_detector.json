@@ -10,11 +10,11 @@
   {
     "b":
     {
-      "item": "rankine:battery0"
+      "item": "rankine:power_cell_3"
     },
     "c":
     {
-      "item": "rankine:copper_wire"
+      "item": "rankine:alloy_wire"
     },
     "s":
     {
