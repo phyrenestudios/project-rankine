@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:checkered_porphyry"
+        }
+      },
+      "result": {
+        "item": "rankine:checkered_porphyry_vertical_slab",
+        "count": 6
+      }
+}

@@ -5,7 +5,6 @@
   "pages": [
     {
       "type": "text",
-      "anchor": "ladders",
       "text": "More structual components can be used to create ladders."
     },
     {

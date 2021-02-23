@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -89,7 +89,7 @@ public class OreDetectorItem extends Item {
                     context.getPlayer().getHeldItem(Hand.MAIN_HAND).shrink(1);
                 }
             } else if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == RankineItems.ORE_DETECTOR.get()) {
-                if (Config.ORE_DETECTOR_MSG.get()) {
+                if (Config.GENERAL.ORE_DETECTOR_MSG.get()) {
                     context.getPlayer().sendStatusMessage(new TranslationTextComponent(ORE.getBlock().getTranslationKey()), true);
                 }
                 iworld.playSound(context.getPlayer(),blockpos, SoundEvents.BLOCK_NOTE_BLOCK_BELL,SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);

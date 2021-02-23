@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/scoria",
+    "base": "rankine:block/komatiite",
     "overlay": "rankine:block/magnetite_ore",
-    "particle": "rankine:block/scoria"
+    "particle": "rankine:block/komatiite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

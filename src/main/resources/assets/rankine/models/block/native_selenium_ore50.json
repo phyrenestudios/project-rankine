@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/breccia",
+    "base": "rankine:block/arkose_sandstone",
     "overlay": "rankine:block/native_selenium_ore",
-    "particle": "rankine:block/breccia"
+    "particle": "rankine:block/arkose_sandstone"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

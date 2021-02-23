@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.block.BlockState;
@@ -87,15 +87,15 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
                 tooltip.add((new StringTextComponent("Harvest Level: " + getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
                 tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
                 tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
-                if (Config.ALLOY_CORROSION.get())
+                if (Config.ALLOYS.ALLOY_CORROSION.get())
                 {
                     tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
-                if (Config.ALLOY_HEAT.get())
+                if (Config.ALLOYS.ALLOY_HEAT.get())
                 {
                     tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
-                if (Config.ALLOY_TOUGHNESS.get())
+                if (Config.ALLOYS.ALLOY_TOUGHNESS.get())
                 {
                     tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }

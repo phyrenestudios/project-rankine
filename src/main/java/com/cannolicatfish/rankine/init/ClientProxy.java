@@ -104,6 +104,11 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.COBALTITE_ORE.get(),
                 RankineBlocks.MAJORITE_ORE.get(),
                 RankineBlocks.CELESTINE_ORE.get(),
+                RankineBlocks.KAMACITE_ORE.get(),
+                RankineBlocks.TAENITE_ORE.get(),
+                RankineBlocks.ANTITAENITE_ORE.get(),
+                RankineBlocks.TETRATAENITE_ORE.get(),
+                RankineBlocks.LONSDALEITE_ORE.get(),
 
                 RankineBlocks.LEAD_GLASS.get(),
                 RankineBlocks.ETCHED_GLASS0.get(),

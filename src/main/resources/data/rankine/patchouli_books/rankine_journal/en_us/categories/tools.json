@@ -1,5 +1,6 @@
 {
   "name": "Tools",
   "description": "Two major categories exist for tools. Those that are individuals such as the glass cutter or thermometer have unique uses. Those that are in tool sets such as bronze are standard picks, axes and spears. Tool sets are created in the $(l:machines/coal_forge)Coal Forge$() with the exception of flint.",
-  "icon": "rankine:stainless_steel_hammer"
+  "icon": "rankine:stainless_steel_hammer",
+  "sortnum": 5
 }

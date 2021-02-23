@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/chalk",
+    "base": "rankine:block/tufa_limestone",
     "overlay": "rankine:block/moissanite_ore",
-    "particle": "rankine:block/chalk"
+    "particle": "rankine:block/tufa_limestone"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

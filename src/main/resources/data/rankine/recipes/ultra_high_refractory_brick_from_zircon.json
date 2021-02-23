@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:fire_clay_ball"
+    },
+    {
+      "item": "rankine:zircon"
+    }
+  ],
+  "result": {
+    "item": "rankine:ultra_high_refractory_brick",
+    "count": 1
+  }
+}

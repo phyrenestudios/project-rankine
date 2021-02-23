@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/arkose_sandstone",
+    "base": "rankine:block/siltstone",
     "overlay": "rankine:block/sperrylite_ore",
-    "particle": "rankine:block/arkose_sandstone"
+    "particle": "rankine:block/siltstone"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

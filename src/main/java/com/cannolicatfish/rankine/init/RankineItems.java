@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.entities.RankineBoatEntity;
 import com.cannolicatfish.rankine.fluids.ModFluids;
@@ -816,17 +815,21 @@ public class RankineItems {
     public static final RegistryObject<Item> RHYOLITIC_TUFF = REGISTRY.register("rhyolitic_tuff", () -> new BlockItem(RankineBlocks.RHYOLITIC_TUFF.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> DACITIC_TUFF = REGISTRY.register("dacitic_tuff", () -> new BlockItem(RankineBlocks.DACITIC_TUFF.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CLAY_BRICKS = REGISTRY.register("clay_bricks", () -> new BlockItem(RankineBlocks.CLAY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> REFRACTORY_BRICKS = REGISTRY.register("refractory_bricks", () -> new BlockItem(RankineBlocks.REFRACTORY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> MAGNESIUM_REFRACTORY_BRICKS = REGISTRY.register("high_refractory_bricks", () -> new BlockItem(RankineBlocks.HIGH_REFRACTORY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ZIRCON_REFRACTORY_BRICKS = REGISTRY.register("ultra_high_refractory_bricks", () -> new BlockItem(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CLAY_BRICKS_SLAB = REGISTRY.register("clay_bricks_slab", () -> new BlockItem(RankineBlocks.CLAY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> REFRACTORY_BRICKS_SLAB = REGISTRY.register("refractory_bricks_slab", () -> new BlockItem(RankineBlocks.REFRACTORY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> MAGNESIUM_REFRACTORY_BRICKS_SLAB = REGISTRY.register("high_refractory_bricks_slab", () -> new BlockItem(RankineBlocks.MAGNESIUM_REFRACTORY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ZIRCON_REFRACTORY_BRICKS_SLAB = REGISTRY.register("ultra_high_refractory_bricks_slab", () -> new BlockItem(RankineBlocks.ZIRCON_REFRACTORY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CLAY_BRICKS_STAIRS = REGISTRY.register("clay_bricks_stairs", () -> new BlockItem(RankineBlocks.CLAY_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CLAY_BRICKS_VERTICAL_SLAB = REGISTRY.register("clay_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.CLAY_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> REFRACTORY_BRICKS = REGISTRY.register("refractory_bricks", () -> new BlockItem(RankineBlocks.REFRACTORY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> REFRACTORY_BRICKS_SLAB = REGISTRY.register("refractory_bricks_slab", () -> new BlockItem(RankineBlocks.REFRACTORY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> REFRACTORY_BRICKS_STAIRS = REGISTRY.register("refractory_bricks_stairs", () -> new BlockItem(RankineBlocks.REFRACTORY_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> REFRACTORY_BRICKS_VERTICAL_SLAB = REGISTRY.register("refractory_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.REFRACTORY_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGNESIUM_REFRACTORY_BRICKS = REGISTRY.register("high_refractory_bricks", () -> new BlockItem(RankineBlocks.HIGH_REFRACTORY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGNESIUM_REFRACTORY_BRICKS_SLAB = REGISTRY.register("high_refractory_bricks_slab", () -> new BlockItem(RankineBlocks.MAGNESIUM_REFRACTORY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> MAGNESIUM_REFRACTORY_BRICKS_STAIRS = REGISTRY.register("high_refractory_bricks_stairs", () -> new BlockItem(RankineBlocks.MAGNESIUM_REFRACTORY_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGNESIUM_REFRACTORY_BRICKS_VERTICAL_SLAB = REGISTRY.register("high_refractory_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.MAGNESIUM_REFRACTORY_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ZIRCON_REFRACTORY_BRICKS = REGISTRY.register("ultra_high_refractory_bricks", () -> new BlockItem(RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ZIRCON_REFRACTORY_BRICKS_SLAB = REGISTRY.register("ultra_high_refractory_bricks_slab", () -> new BlockItem(RankineBlocks.ZIRCON_REFRACTORY_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ZIRCON_REFRACTORY_BRICKS_STAIRS = REGISTRY.register("ultra_high_refractory_bricks_stairs", () -> new BlockItem(RankineBlocks.ZIRCON_REFRACTORY_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ZIRCON_REFRACTORY_BRICKS_VERTICAL_SLAB = REGISTRY.register("ultra_high_refractory_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.ZIRCON_REFRACTORY_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> UNCOLORED_CONCRETE = REGISTRY.register("uncolored_concrete", () -> new BlockItem(RankineBlocks.UNCOLORED_CONCRETE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> UNCOLORED_CONCRETE_SLAB = REGISTRY.register("uncolored_concrete_slab", () -> new BlockItem(RankineBlocks.UNCOLORED_CONCRETE_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> UNCOLORED_CONCRETE_STAIRS = REGISTRY.register("uncolored_concrete_stairs", () -> new BlockItem(RankineBlocks.UNCOLORED_CONCRETE_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -849,7 +852,7 @@ public class RankineItems {
     public static final RegistryObject<Item> METEORITE_PAVER = REGISTRY.register("meteorite_paver", () -> new BlockItem(RankineBlocks.METEORITE_PAVER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENSTATITE = REGISTRY.register("enstatite", () -> new BlockItem(RankineBlocks.ENSTATITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ENSTATITE_PAVER = REGISTRY.register("enstatite_paver", () -> new BlockItem(RankineBlocks.ENSTATITE_PAVER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-
+    
     public static final RegistryObject<Item> MUD = REGISTRY.register("mud", () -> new BlockItem(RankineBlocks.MUD.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> ALLUVIUM = REGISTRY.register("alluvium", () -> new BlockItem(RankineBlocks.ALLUVIUM.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_SAND = REGISTRY.register("black_sand", () -> new BlockItem(RankineBlocks.BLACK_SAND.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -862,6 +865,37 @@ public class RankineItems {
     public static final RegistryObject<Item> CHARRED_WOOD = REGISTRY.register("charred_wood", () -> new FuelBlockItem(RankineBlocks.CHARRED_WOOD.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld),300));
     public static final RegistryObject<Item> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new BlockItem(RankineBlocks.QUARRY_BARRIER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PACKED_SNOW = REGISTRY.register("packed_snow", () -> new BlockItem(RankineBlocks.PACKED_SNOW.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_MARBLE = REGISTRY.register("checkered_marble", () -> new BlockItem(RankineBlocks.CHECKERED_MARBLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_MARBLE_SLAB = REGISTRY.register("checkered_marble_slab", () -> new BlockItem(RankineBlocks.CHECKERED_MARBLE_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_MARBLE_STAIRS = REGISTRY.register("checkered_marble_stairs", () -> new BlockItem(RankineBlocks.CHECKERED_MARBLE_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_MARBLE_VERTICAL_SLAB = REGISTRY.register("checkered_marble_vertical_slab", () -> new BlockItem(RankineBlocks.CHECKERED_MARBLE_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_DACITE = REGISTRY.register("checkered_dacite", () -> new BlockItem(RankineBlocks.CHECKERED_DACITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_DACITE_SLAB = REGISTRY.register("checkered_dacite_slab", () -> new BlockItem(RankineBlocks.CHECKERED_DACITE_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_DACITE_STAIRS = REGISTRY.register("checkered_dacite_stairs", () -> new BlockItem(RankineBlocks.CHECKERED_DACITE_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_DACITE_VERTICAL_SLAB = REGISTRY.register("checkered_dacite_vertical_slab", () -> new BlockItem(RankineBlocks.CHECKERED_DACITE_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_PORPHYRY = REGISTRY.register("checkered_porphyry", () -> new BlockItem(RankineBlocks.CHECKERED_PORPHYRY.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_PORPHYRY_SLAB = REGISTRY.register("checkered_porphyry_slab", () -> new BlockItem(RankineBlocks.CHECKERED_PORPHYRY_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_PORPHYRY_STAIRS = REGISTRY.register("checkered_porphyry_stairs", () -> new BlockItem(RankineBlocks.CHECKERED_PORPHYRY_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CHECKERED_PORPHYRY_VERTICAL_SLAB = REGISTRY.register("checkered_porphyry_vertical_slab", () -> new BlockItem(RankineBlocks.CHECKERED_PORPHYRY_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> STICK_BLOCK = REGISTRY.register("stick_block", () -> new FuelBlockItem(RankineBlocks.STICK_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld), 800));
+    public static final RegistryObject<Item> MINERAL_WOOL = REGISTRY.register("mineral_wool", () -> new BlockItem(RankineBlocks.MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> WHITE_MINERAL_WOOL = REGISTRY.register("white_mineral_wool", () -> new BlockItem(RankineBlocks.WHITE_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ORANGE_MINERAL_WOOL = REGISTRY.register("orange_mineral_wool", () -> new BlockItem(RankineBlocks.ORANGE_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> MAGENTA_MINERAL_WOOL = REGISTRY.register("magenta_mineral_wool", () -> new BlockItem(RankineBlocks.MAGENTA_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LIGHT_BLUE_MINERAL_WOOL = REGISTRY.register("light_blue_mineral_wool", () -> new BlockItem(RankineBlocks.LIGHT_BLUE_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> YELLOW_MINERAL_WOOL = REGISTRY.register("yellow_mineral_wool", () -> new BlockItem(RankineBlocks.YELLOW_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LIME_MINERAL_WOOL = REGISTRY.register("lime_mineral_wool", () -> new BlockItem(RankineBlocks.LIME_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> PINK_MINERAL_WOOL = REGISTRY.register("pink_mineral_wool", () -> new BlockItem(RankineBlocks.PINK_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> GRAY_MINERAL_WOOL = REGISTRY.register("gray_mineral_wool", () -> new BlockItem(RankineBlocks.GRAY_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> LIGHT_GRAY_MINERAL_WOOL = REGISTRY.register("light_gray_mineral_wool", () -> new BlockItem(RankineBlocks.LIGHT_GRAY_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> CYAN_MINERAL_WOOL = REGISTRY.register("cyan_mineral_wool", () -> new BlockItem(RankineBlocks.CYAN_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> PURPLE_MINERAL_WOOL = REGISTRY.register("purple_mineral_wool", () -> new BlockItem(RankineBlocks.PURPLE_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BLUE_MINERAL_WOOL = REGISTRY.register("blue_mineral_wool", () -> new BlockItem(RankineBlocks.BLUE_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> GREEN_MINERAL_WOOL = REGISTRY.register("green_mineral_wool", () -> new BlockItem(RankineBlocks.GREEN_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BROWN_MINERAL_WOOL = REGISTRY.register("brown_mineral_wool", () -> new BlockItem(RankineBlocks.BROWN_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> RED_MINERAL_WOOL = REGISTRY.register("red_mineral_wool", () -> new BlockItem(RankineBlocks.RED_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> BLACK_MINERAL_WOOL = REGISTRY.register("black_mineral_wool", () -> new BlockItem(RankineBlocks.BLACK_MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+
 
     public static final RegistryObject<Item> ALUMINUM_SHEETMETAL = REGISTRY.register("aluminum_sheetmetal", () -> new BlockItem(RankineBlocks.ALUMINUM_SHEETMETAL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> TITANIUM_SHEETMETAL = REGISTRY.register("titanium_sheetmetal", () -> new BlockItem(RankineBlocks.TITANIUM_SHEETMETAL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -1046,8 +1080,6 @@ public class RankineItems {
     public static final RegistryObject<Item> MAPLE_TRAPDOOR = REGISTRY.register("maple_trapdoor", () -> new FuelBlockItem(RankineBlocks.MAPLE_TRAPDOOR.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld), 300));
     public static final RegistryObject<Item> BAMBOO_TRAPDOOR = REGISTRY.register("bamboo_trapdoor", () -> new FuelBlockItem(RankineBlocks.BAMBOO_TRAPDOOR.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld), 300));
     public static final RegistryObject<Item> BRASS_TRAPDOOR = REGISTRY.register("brass_trapdoor", () -> new BlockItem(RankineBlocks.BRASS_TRAPDOOR.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> STICK_BLOCK = REGISTRY.register("stick_block", () -> new FuelBlockItem(RankineBlocks.STICK_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld), 800));
-    public static final RegistryObject<Item> MINERAL_WOOL = REGISTRY.register("mineral_wool", () -> new BlockItem(RankineBlocks.MINERAL_WOOL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> CEDAR_LEAVES = REGISTRY.register("cedar_leaves", () -> new BlockItem(RankineBlocks.CEDAR_LEAVES.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> COCONUT_PALM_LEAVES = REGISTRY.register("coconut_palm_leaves", () -> new BlockItem(RankineBlocks.COCONUT_PALM_LEAVES.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> PINYON_PINE_LEAVES = REGISTRY.register("pinyon_pine_leaves", () -> new BlockItem(RankineBlocks.PINYON_PINE_LEAVES.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -1151,12 +1183,12 @@ public class RankineItems {
     public static final RegistryObject<Item> PINK_HALITE_ORE = REGISTRY.register("pink_halite_ore", () -> new BlockItem(RankineBlocks.PINK_HALITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CRYOLITE_ORE = REGISTRY.register("cryolite_ore", () -> new BlockItem(RankineBlocks.CRYOLITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> PYRITE_ORE = REGISTRY.register("pyrite_ore", () -> new BlockItem(RankineBlocks.PYRITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> KAMACITE = REGISTRY.register("kamacite_ore", () -> new BlockItem(RankineBlocks.KAMACITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> ANTITAENITE = REGISTRY.register("antitaenite_ore", () -> new BlockItem(RankineBlocks.ANTITAENITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> TAENITE = REGISTRY.register("taenite_ore", () -> new BlockItem(RankineBlocks.TAENITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> TETRATAENITE = REGISTRY.register("tetrataenite_ore", () -> new BlockItem(RankineBlocks.TETRATAENITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> LONSDALEITE = REGISTRY.register("lonsdaleite_ore", () -> new BlockItem(RankineBlocks.LONSDALEITE_ORE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> LIMESTONE_NODULE = REGISTRY.register("limestone_nodule", () -> new BlockItem(RankineBlocks.LIMESTONE_NODULE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> KAMACITE = REGISTRY.register("kamacite", () -> new BlockItem(RankineBlocks.KAMACITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> ANTITAENITE = REGISTRY.register("antitaenite", () -> new BlockItem(RankineBlocks.ANTITAENITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> TAENITE = REGISTRY.register("taenite", () -> new BlockItem(RankineBlocks.TAENITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> TETRATAENITE = REGISTRY.register("tetrataenite", () -> new BlockItem(RankineBlocks.TETRATAENITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> LONSDALEITE = REGISTRY.register("lonsdaleite", () -> new BlockItem(RankineBlocks.LONSDALEITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
     //Minerals
     public static final RegistryObject<Item> MALACHITE = REGISTRY.register("malachite", () -> new SimpleTooltipItem(Arrays.asList("Composition: Cu2CO3(OH)2", "Used as a source for copper or as pigment"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1368,10 +1400,10 @@ public class RankineItems {
     public static final RegistryObject<Item> TUNGSTEN_HEAVY_ALLOY_BLOCK = REGISTRY.register("tungsten_heavy_alloy_block", () -> new BlockItem(RankineBlocks.TUNGSTEN_HEAVY_ALLOY_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
     //Components
+    public static final RegistryObject<Item> INDIUM_TIN_OXIDE = REGISTRY.register("indium_tin_oxide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CAST_IRON_ROD = REGISTRY.register("cast_iron_rod", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> STEEL_ROD = REGISTRY.register("steel_rod", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> GRAPHITE_ELECTRODE = REGISTRY.register("graphite_electrode", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> INDIUM_TIN_OXIDE = REGISTRY.register("indium_tin_oxide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> YAG_ROD = REGISTRY.register("yag_rod", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALLOY_DUST = REGISTRY.register("alloy_dust", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALLOY_GEAR = REGISTRY.register("alloy_gear", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1379,11 +1411,6 @@ public class RankineItems {
     public static final RegistryObject<Item> ALLOY_PLATE = REGISTRY.register("alloy_plate", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALLOY_ROD = REGISTRY.register("alloy_rod", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALLOY_WIRE = REGISTRY.register("alloy_wire", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-
-
-
-
-
 
 
 //RANKINE MISC CREATIVE TAB --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1541,8 +1568,8 @@ public class RankineItems {
     public static final RegistryObject<Item> STEEL_CROWBAR = REGISTRY.register("steel_crowbar", () -> new CrowbarItem(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TITANIUM_CROWBAR = REGISTRY.register("titanium_crowbar", () -> new CrowbarItem(1.5f, -1.8F, RankineToolMaterials.TITANIUM,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new ThermometerItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.PROSPECTING_STICK_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ORE_DETECTOR = REGISTRY.register("ore_detector", () -> new OreDetectorItem(Config.ORE_DETECTOR_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ORE_DETECTOR = REGISTRY.register("ore_detector", () -> new OreDetectorItem(Config.GENERAL.ORE_DETECTOR_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GLASS_CUTTER = REGISTRY.register("glass_cutter", () -> new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HARDNESS_TESTER = REGISTRY.register("hardness_tester", () -> new HardnessTesterItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -1600,6 +1627,8 @@ public class RankineItems {
 
     public static final RegistryObject<Item> SADDLE_TREE = REGISTRY.register("saddle_tree", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> THORIUM_ARROW = REGISTRY.register("thorium_arrow", () -> new ThoriumArrowItem(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BATTERY = REGISTRY.register("battery0", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> LITHIUM_POWER_CELL = REGISTRY.register("lithium_power_cell", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> POWER_CELL = REGISTRY.register("power_cell", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> POWER_CELL_2 = REGISTRY.register("power_cell_2", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> POWER_CELL_3 = REGISTRY.register("power_cell_3", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
@@ -1608,7 +1637,7 @@ public class RankineItems {
     public static final RegistryObject<Item> POWER_CELL_6 = REGISTRY.register("power_cell_6", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> POWER_CELL_7 = REGISTRY.register("power_cell_7", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
 
-    public static final RegistryObject<Item> SPARK_LIGHTER = REGISTRY.register("spark_lighter", () -> new SparkLighterItem(new Item.Properties().maxStackSize(1).maxDamage(600).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SPARK_LIGHTER = REGISTRY.register("spark_lighter", () -> new SparkLighterItem(new Item.Properties().maxStackSize(1).maxDamage(1023).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ELEMENT_TRANSMUTER = REGISTRY.register("element_transmuter", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PACKAGED_TOOL = REGISTRY.register("packaged_tool", () -> new PackagedToolItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BIOME_INDICATOR_GENERIC = REGISTRY.register("biome_indicator_generic", () -> new Item(new Item.Properties().maxStackSize(1)));

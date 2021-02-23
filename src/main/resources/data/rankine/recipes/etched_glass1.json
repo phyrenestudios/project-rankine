@@ -1,12 +1,20 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "rankine:etched_glass0"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GQG",
+    " G "
   ],
+  "key": {
+    "Q": {
+      "tag": "forge:gems/quartz"
+    },
+    "G": {
+      "tag": "forge:glass"
+    }
+  },
   "result": {
     "item": "rankine:etched_glass1",
-    "count": 1
+    "count": 4
   }
 }

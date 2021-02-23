@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/purple_porphyry",
+    "base": "rankine:block/red_porphyry",
     "overlay": "rankine:block/native_tellurium_ore",
-    "particle": "rankine:block/purple_porphyry"
+    "particle": "rankine:block/red_porphyry"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

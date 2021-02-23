@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.RankineBerryBushBlock;
 import com.cannolicatfish.rankine.world.gen.feature.*;
 import com.cannolicatfish.rankine.world.gen.placement.IntrusionPlacement;
@@ -12,7 +11,6 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.structure.DesertPyramidStructure;
 import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
@@ -179,7 +177,8 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = new FireClayDiskFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4)));
     public static final ConfiguredFeature<?, ?> MUD_FEATURE = new MudReplacerFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+
 
     // VEGETAL_DECORATION
     public static final ConfiguredFeature<?, ?> ELDERBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(ELDERBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
@@ -226,22 +225,22 @@ public class RankineFeatures {
             new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     public static final ConfiguredFeature<?, ?> GRAVEL_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.GRAVEL.getDefaultState(), FeatureSpread.func_242253_a(2, 5), 2,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> SAND_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.SAND.getDefaultState(), FeatureSpread.func_242253_a(2, 3), 2,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> CLAY_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.CLAY.getDefaultState(), FeatureSpread.func_242253_a(2, 2), 1,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> ORE_ALLUVIUM = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.ALLUVIUM.get().getDefaultState(), FeatureSpread.func_242253_a(1, 2), 1,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> ORE_EVAPORITE = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.EVAPORITE.get().getDefaultState(), FeatureSpread.func_242253_a(1, 1), 1,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
 
     public static final ConfiguredFeature<?, ?> ORE_INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
-            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
+            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(1)));
     public static final ConfiguredFeature<?, ?> SILL_PHOSPHORITE = new SillFeature(NoFeatureConfig.field_236558_a_, RankineBlocks.PHOSPHORITE.get().getDefaultState()).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(4)));
+            .withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> SILL_IRONSTONE = new SillFeature(NoFeatureConfig.field_236558_a_, RankineBlocks.IRONSTONE.get().getDefaultState()).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(4)));
+            .withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> NETHER_ORE_INTRUSION = new NetherIntrusionFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
             new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> ANDESITIC_TUFF = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.ANDESITIC_TUFF.get().getDefaultState(), 80))
@@ -252,12 +251,8 @@ public class RankineFeatures {
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 60))).square().func_242731_b(1);
     public static final ConfiguredFeature<?, ?> DACITIC_TUFF = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.DACITES, RankineBlocks.DACITIC_TUFF.get().getStateContainer().getBaseState(), 60))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 60))).square().func_242731_b(1);
-    public static final ConfiguredFeature<?, ?> ANDESITE_VAR = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.ANDESITE.getDefaultState(), 120))
+    public static final ConfiguredFeature<?, ?> ANDESITE_VAR = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.ANDESITE.getDefaultState(), 40))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(64, 64, 150))).square().func_242731_b(2);
- //   public static final ConfiguredFeature<?, ?> ORE_PHOSPHORITE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.SEDIMENTARY, RankineBlocks.PHOSPHORITE.get().getStateContainer().getBaseState(), 20))
-   //         .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(40, 40, 90))).square().func_242731_b(2);
-    //public static final ConfiguredFeature<?, ?> ORE_IRONSTONE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.SANDSTONES, RankineBlocks.IRONSTONE.get().getStateContainer().getBaseState(), 30))
-      //      .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(40, 40, 90))).square().func_242731_b(1);
     public static final ConfiguredFeature<?, ?> ORE_NODULE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.LIMESTONE_NODULE.get().getDefaultState(), 6))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(31, 31, 90))).square().func_242731_b(20);
     public static final ConfiguredFeature<?, ?> END_STONE_GEN = new EndStoneReplacerFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
@@ -266,16 +261,6 @@ public class RankineFeatures {
             .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> OVERWORLD_STONE_GEN = new StoneReplacerFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
             .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> END_TAENITE_ORE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.METEORITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.TAENITE.get().getDefaultState(), 10))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 40))).square().func_242731_b(6);
-    public static final ConfiguredFeature<?, ?> END_ANTITAENITE_ORE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.METEORITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.ANTITAENITE.get().getDefaultState(), 10))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 40))).square().func_242731_b(6);
-    public static final ConfiguredFeature<?, ?> END_KAMACITE_ORE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.METEORITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.KAMACITE.get().getDefaultState(), 10))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 40))).square().func_242731_b(6);
-    public static final ConfiguredFeature<?, ?> END_TETRATAENITE_ORE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.METEORITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.TETRATAENITE.get().getDefaultState(), 10))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 40))).square().func_242731_b(6);
-    public static final ConfiguredFeature<?, ?> END_LONSDALEITE_ORE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.METEORITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.LONSDALEITE.get().getDefaultState(), 6))
-            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 40))).square().func_242731_b(5);
 
 
     //ORES
@@ -634,6 +619,36 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?,?> ORE_CELESTINE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.CELESTINE, RankineBlocks.CELESTINE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.CELESTINE_ORE_MEGA_SIZE.get()))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.CELESTINE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.CELESTINE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.CELESTINE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.CELESTINE_ORE_MEGA_CHANCE.get());
 
+    public static final ConfiguredFeature<?,?> ORE_KAMACITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.KAMACITE, RankineBlocks.KAMACITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.KAMACITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.KAMACITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_KAMACITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.KAMACITE, RankineBlocks.KAMACITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.KAMACITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.KAMACITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_KAMACITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.KAMACITE, RankineBlocks.KAMACITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.KAMACITE_ORE_MEGA_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.KAMACITE_ORE_MEGA_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_ANTITAENITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ANTITAENITE, RankineBlocks.ANTITAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.ANTITAENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.ANTITAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.ANTITAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.ANTITAENITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.ANTITAENITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_ANTITAENITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ANTITAENITE, RankineBlocks.ANTITAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.ANTITAENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.ANTITAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.ANTITAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.ANTITAENITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.ANTITAENITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_ANTITAENITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ANTITAENITE, RankineBlocks.ANTITAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.ANTITAENITE_ORE_MEGA_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.ANTITAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.ANTITAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.ANTITAENITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.ANTITAENITE_ORE_MEGA_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_TAENITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.TAENITE, RankineBlocks.TAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.TAENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.TAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TAENITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.TAENITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_TAENITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.TAENITE, RankineBlocks.TAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.TAENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.TAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TAENITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.TAENITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_TAENITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.TAENITE, RankineBlocks.TAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.TAENITE_ORE_MEGA_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.TAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TAENITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.TAENITE_ORE_MEGA_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_TETRATAENITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.TETRATAENITE, RankineBlocks.TETRATAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.TETRATAENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.TETRATAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TETRATAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TETRATAENITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.TETRATAENITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_TETRATAENITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.TETRATAENITE, RankineBlocks.TETRATAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.TETRATAENITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.TETRATAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TETRATAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TETRATAENITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.TETRATAENITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_TETRATAENITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.TETRATAENITE, RankineBlocks.TETRATAENITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.TETRATAENITE_ORE_MEGA_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.TETRATAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TETRATAENITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.TETRATAENITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.TETRATAENITE_ORE_MEGA_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_LONSDALEITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.LONSDALEITE, RankineBlocks.LONSDALEITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.LONSDALEITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.LONSDALEITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_LONSDALEITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.LONSDALEITE, RankineBlocks.LONSDALEITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.LONSDALEITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.LONSDALEITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_LONSDALEITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.LONSDALEITE, RankineBlocks.LONSDALEITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.LONSDALEITE_ORE_MEGA_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.LONSDALEITE_ORE_MEGA_CHANCE.get());
 
 }
 

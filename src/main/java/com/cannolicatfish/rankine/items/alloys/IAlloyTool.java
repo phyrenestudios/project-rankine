@@ -1,11 +1,10 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -58,12 +57,12 @@ public interface IAlloyTool {
 
     default float getWearModifierMining(float eff)
     {
-        return eff * Config.ALLOY_WEAR_MINING_AMT.get().floatValue();
+        return eff * Config.ALLOYS.ALLOY_WEAR_MINING_AMT.get().floatValue();
     }
 
     default float getWearModifierDmg(float dmg)
     {
-        return dmg * Config.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
+        return dmg * Config.ALLOYS.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
 
     }
 
@@ -84,7 +83,7 @@ public interface IAlloyTool {
 
     default float getCorrResist(ItemStack stack, AlloyUtils alloy)
     {
-        if (!Config.ALLOY_CORROSION.get())
+        if (!Config.ALLOYS.ALLOY_CORROSION.get())
         {
             return 100;
         }
@@ -102,7 +101,7 @@ public interface IAlloyTool {
 
     default float getHeatResist(ItemStack stack, AlloyUtils alloy)
     {
-        if (!Config.ALLOY_HEAT.get())
+        if (!Config.ALLOYS.ALLOY_HEAT.get())
         {
             return 100;
         }
@@ -118,7 +117,7 @@ public interface IAlloyTool {
 
     default float getToughness(ItemStack stack, AlloyUtils alloy)
     {
-        if (!Config.ALLOY_TOUGHNESS.get())
+        if (!Config.ALLOYS.ALLOY_TOUGHNESS.get())
         {
             return 0;
         }

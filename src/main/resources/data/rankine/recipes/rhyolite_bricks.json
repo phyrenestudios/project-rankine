@@ -1,20 +1,20 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        "#m#",
-        "m#m",
-        "#m#"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:rhyolite"
-        },
-        "m": {
-          "item": "rankine:mortar"
-        }
-      },
-      "result": {
-        "item": "rankine:rhyolite_bricks",
-        "count": 6
-      }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#m#",
+    "m#m",
+    "#m#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:rhyolite"
+    },
+    "m": {
+      "item": "rankine:mortar"
     }
+  },
+  "result": {
+    "item": "rankine:rhyolite_bricks",
+    "count": 6
+  }
+}

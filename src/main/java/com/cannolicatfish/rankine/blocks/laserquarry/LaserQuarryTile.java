@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.Block;
@@ -41,7 +41,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
     private int cookTime;
-    private int cookTimeTotal = Config.LASER_QUARRY_SPEED.get();
+    private int cookTimeTotal = Config.MACHINES.LASER_QUARRY_SPEED.get();
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
     private final IIntArray towerData = new IIntArray(){
         public int get(int index)
@@ -96,7 +96,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     }
 
 
-    int RANGE = Config.LASER_QUARRY_RANGE.get();
+    int RANGE = Config.MACHINES.LASER_QUARRY_RANGE.get();
     int i = 0;
     int x = 0;
     int y = 1;

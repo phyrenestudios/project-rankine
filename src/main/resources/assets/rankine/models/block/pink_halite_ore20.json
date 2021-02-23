@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/red_porphyry",
+    "base": "rankine:block/red_dacite",
     "overlay": "rankine:block/pink_halite_ore",
-    "particle": "rankine:block/red_porphyry"
+    "particle": "rankine:block/red_dacite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

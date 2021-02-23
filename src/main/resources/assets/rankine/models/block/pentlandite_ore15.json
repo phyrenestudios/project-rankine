@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/anorthosite",
+    "base": "rankine:block/pyroxene_gabbro",
     "overlay": "rankine:block/pentlandite_ore",
-    "particle": "rankine:block/anorthosite"
+    "particle": "rankine:block/pyroxene_gabbro"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

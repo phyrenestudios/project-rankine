@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/skarn",
+    "base": "rankine:block/quartzite",
     "overlay": "rankine:block/cassiterite_ore",
-    "particle": "rankine:block/skarn"
+    "particle": "rankine:block/quartzite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/dolostone",
+    "base": "rankine:block/perovskite",
     "overlay": "rankine:block/wolframite_ore",
-    "particle": "rankine:block/dolostone"
+    "particle": "rankine:block/perovskite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

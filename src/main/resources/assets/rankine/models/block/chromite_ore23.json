@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/troctolite",
+    "base": "rankine:block/pegmatite",
     "overlay": "rankine:block/chromite_ore",
-    "particle": "rankine:block/troctolite"
+    "particle": "rankine:block/pegmatite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

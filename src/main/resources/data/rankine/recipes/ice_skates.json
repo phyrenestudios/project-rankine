@@ -1,7 +1,7 @@
 {
       "type": "minecraft:crafting_shaped",
       "pattern": [
-        "L",
+        "L  ",
         "LRL",
         "NNN"
       ],
@@ -13,7 +13,7 @@
           "item": "minecraft:leather"
         },
         "N": {
-          "tag": "rankine:crafting_metal_nuggets"
+          "tag": "rankine:crafting_metals_nuggets"
         }
       },
       "result": {

@@ -1,6 +1,6 @@
 {
   "name": "Rankine Journal",
-  "landing_text": "A semi-detailed journal to assist you in your discoveries. See the Tips and Tricks category first.",
+  "landing_text": "A collection of the discoveries to be made, mechanics to utilize, and blocks to build with. For more information see JEI, the CurseForge page or our Discord.",
   "version": 5,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",

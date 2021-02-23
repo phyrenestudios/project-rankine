@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;

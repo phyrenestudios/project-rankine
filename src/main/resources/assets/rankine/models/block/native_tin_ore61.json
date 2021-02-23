@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/quark_textures/myalite",
+    "base": "rankine:block/quark_textures/marble",
     "overlay": "rankine:block/native_tin_ore",
-    "particle": "rankine:block/quark_textures/myalite"
+    "particle": "rankine:block/quark_textures/marble"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

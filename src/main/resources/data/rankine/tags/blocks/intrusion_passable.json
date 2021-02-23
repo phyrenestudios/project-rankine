@@ -6,6 +6,8 @@
     "#forge:base_stone_end",
     "#forge:wg_stone",
     "#rankine:tuff",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
     "minecraft:lava"
   ]
 }

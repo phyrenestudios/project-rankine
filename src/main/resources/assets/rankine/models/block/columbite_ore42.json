@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/tufa_limestone",
+    "base": "rankine:block/ferropericlase",
     "overlay": "rankine:block/columbite_ore",
-    "particle": "rankine:block/tufa_limestone"
+    "particle": "rankine:block/ferropericlase"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

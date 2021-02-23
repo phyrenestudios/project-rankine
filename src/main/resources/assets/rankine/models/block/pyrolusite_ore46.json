@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/siltstone",
+    "base": "rankine:block/chalk",
     "overlay": "rankine:block/pyrolusite_ore",
-    "particle": "rankine:block/siltstone"
+    "particle": "rankine:block/chalk"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

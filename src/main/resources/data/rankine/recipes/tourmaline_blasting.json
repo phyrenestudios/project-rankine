@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:tourmaline"
-      },
-      "result": "rankine:boron_ingot",
-      "experience": 1.0,
-      "cookingtime": 100
-    }

@@ -75,8 +75,8 @@ public class ProjectRankine {
     public ProjectRankine() {
         IEventBus Bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-client.toml"));
-        Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("rankine-common.toml"));
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "rankine-common.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "rankine-worldgen.toml");
 
         MinecraftForge.EVENT_BUS.register(this);

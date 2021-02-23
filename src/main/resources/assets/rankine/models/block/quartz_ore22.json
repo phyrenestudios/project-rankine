@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/peridotite",
+    "base": "rankine:block/purple_porphyry",
     "overlay": "rankine:block/quartz_ore",
-    "particle": "rankine:block/peridotite"
+    "particle": "rankine:block/purple_porphyry"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

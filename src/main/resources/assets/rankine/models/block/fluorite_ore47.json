@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/quartz_sandstone",
+    "base": "rankine:block/carbonaceous_shale",
     "overlay": "rankine:block/fluorite_ore",
-    "particle": "rankine:block/quartz_sandstone"
+    "particle": "rankine:block/carbonaceous_shale"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],
