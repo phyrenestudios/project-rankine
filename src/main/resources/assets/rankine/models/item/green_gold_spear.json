@@ -1,5 +1,5 @@
 {
-  "parent": "item/handheld",
+  "parent": "rankine:item/alloy_spear",
   "textures": {
     "layer0": "rankine:item/green_gold_spear"
   }

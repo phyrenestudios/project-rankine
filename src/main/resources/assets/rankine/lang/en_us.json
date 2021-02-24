@@ -923,6 +923,8 @@
   "block.rankine.laser_pylon_base": "Laser Pylon Base",
   "block.rankine.quarry_barrier": "Quarry Barrier",
   "block.rankine.diamond_anvil_cell": "Diamond Anvil Cell",
+  "block.rankine.pcf": "Power Cell Fabricator",
+  "block.rankine.rankine_box": "Rankine Box",
   "item.rankine.transformation_staff": "Transformation Staff",
   "item.rankine.glass_cutter": "Glass Cutter",
   "item.rankine.borax": "Borax",
@@ -1355,7 +1357,7 @@
   "item.rankine.seaborgium_nugget": "Seaborgium Nugget",
   "item.rankine.bohrium_nugget": "Bohrium Nugget",
   "item.rankine.hassium_nugget": "Hassium Nugget",
-  "item.rankine.meiterium_nugget": "Meiterium Nugget",
+  "item.rankine.meitnerium_nugget": "Meitnerium Nugget",
   "item.rankine.darmstadtium_nugget": "Darmstadtium Nugget",
   "item.rankine.roentgenium_nugget": "Roentgenium Nugget",
   "item.rankine.copernicium_nugget": "Copernicium Nugget",
@@ -1474,7 +1476,7 @@
   "item.rankine.seaborgium_ingot": "Seaborgium Ingot",
   "item.rankine.bohrium_ingot": "Bohrium Ingot",
   "item.rankine.hassium_ingot": "Hassium Ingot",
-  "item.rankine.meiterium_ingot": "Meiterium Ingot",
+  "item.rankine.meitnerium_ingot": "Meitnerium Ingot",
   "item.rankine.darmstadtium_ingot": "Darmstadtium Ingot",
   "item.rankine.roentgenium_ingot": "Roentgenium Ingot",
   "item.rankine.copernicium_ingot": "Copernicium Ingot",
@@ -1592,7 +1594,7 @@
   "block.rankine.seaborgium_block": "Block of Seaborgium",
   "block.rankine.bohrium_block": "Block of Bohrium",
   "block.rankine.hassium_block": "Block of Hassium",
-  "block.rankine.meiterium_block": "Block of Meiterium",
+  "block.rankine.meitnerium_block": "Block of Meitnerium",
   "block.rankine.darmstadtium_block": "Block of Darmstadtium",
   "block.rankine.roentgenium_block": "Block of Roentgenium",
   "block.rankine.copernicium_block": "Block of Copernicium",
@@ -1648,7 +1650,11 @@
   "item.minecraft.splash_potion.effect.mercury_poison": "Splash Potion of Mercury Poison",
   "item.minecraft.lingering_potion.effect.mercury_poison": "Lingering Potion of Mercury Poison",
   "item.minecraft.tipped_arrow.effect.mercury_poison": "Arrow of Mercury Poison",
-
+  "effect.rankine.conductive": "Conductive",
+  "item.minecraft.potion.effect.conductive_potion": "Potion of Conductivity",
+  "item.minecraft.splash_potion.effect.conductive_potion": "Splash Potion of Conductivity",
+  "item.minecraft.lingering_potion.effect.conductive_potion": "Lingering Potion of Conductivity",
+  "item.minecraft.tipped_arrow.effect.conductive_potion": "Arrow of Conductivity",
 
 
 
@@ -1880,6 +1886,14 @@
   "item.rankine.brigandine_chestplate": "Brigandine Chestplate",
   "item.rankine.brigandine_leggings": "Brigandine Leggings",
   "item.rankine.brigandine_boots": "Brigandine Boots",
+  "item.rankine.diving_helmet": "Diving Helmet",
+  "item.rankine.diving_chestplate": "Diving Chestplate",
+  "item.rankine.diving_leggings": "Diving Leggings",
+  "item.rankine.diving_boots": "Diving Boots",
+  "item.rankine.conduit_diving_helmet": "Conduit-Powered Diving Helmet",
+  "item.rankine.conduit_diving_chestplate": "Conduit-Powered Diving Chestplate",
+  "item.rankine.conduit_diving_leggings": "Conduit-Powered Diving Leggings",
+  "item.rankine.conduit_diving_boots": "Conduit-Powered Diving Boots",
 
 
   "block.rankine.mineral_wool": "Mineral Wool",
@@ -1922,6 +1936,7 @@
   "item.rankine.silver_remedy": "Silver Remedy",
   "item.rankine.spark_lighter": "Spark Lighter",
   "item.rankine.thorium_arrow": "Thorium Arrow",
+  "item.rankine.magnesium_arrow": "Magnesium Arrow",
 
   "block.rankine.fire_clay": "Fire Clay",
   "item.rankine.fire_clay_ball": "Fire Clay Ball",
@@ -1989,9 +2004,10 @@
   "block.rankine.celestine_ore": "Celestine Ore",
   "block.rankine.botanist_station": "Botanist Station",
 
-
+  "item.rankine.coin": "Coin",
   "item.rankine.pia": "Personal Inventory Assistant",
   "item.rankine.indium_tin_oxide": "Indium Tin Oxide",
+  "item.rankine.cadmium_telluride_cell": "Cadmium Telluride Cell",
   "item.rankine.pyrite": "Pyrite",
   "item.rankine.cryolite": "Cryolite",
   "item.rankine.molybdenite": "Molybdenite",
@@ -2009,6 +2025,7 @@
   "item.rankine.celestine": "Celestine",
   "item.rankine.tourmaline": "Tourmaline",
   "item.rankine.chalcopyrite": "Chalcopyrite",
+  "item.rankine.lepidolite": "Lepidolite",
   "item.rankine.bismuthinite": "Bismuthinite",
   "item.rankine.cobaltite": "Cobaltite",
   "item.rankine.vanadinite": "Vanadinite",

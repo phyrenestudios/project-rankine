@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "rankine:block/pcf_top",
+        "front": "rankine:block/pcf_front",
+        "side": "rankine:block/pcf_side"
+    }
+}

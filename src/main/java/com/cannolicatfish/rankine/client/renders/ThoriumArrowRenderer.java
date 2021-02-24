@@ -21,7 +21,6 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 @OnlyIn(Dist.CLIENT)
 public class ThoriumArrowRenderer extends EntityRenderer<ThoriumArrowEntity> {
-    private final SpearEntityModel spearModel = new SpearEntityModel();
 
     public static final ThoriumArrowRenderer.ThoriumArrowRenderFactory instance = new ThoriumArrowRenderer.ThoriumArrowRenderFactory();
     public ThoriumArrowRenderer(EntityRendererManager renderManager) {

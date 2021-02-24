@@ -2,9 +2,7 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,6 +29,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.PISTON_CRUSHER_TILE;
@@ -330,16 +329,23 @@ public class PistonCrusherTile extends TileEntity implements ISidedInventory, IT
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
+        CrushingRecipe recipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
+        List<ItemStack> outputs = Arrays.asList(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);
+        if (recipe != null) {
+            outputs = recipe.getPossibleResults(3, this.world);
+        }
         switch (index)
         {
             case 0:
-                return !RankineRecipes.getCrushingOutputs(stack).getKey().isEmpty();
+                return true;
             case 1:
                 return AbstractFurnaceTileEntity.isFuel(stack);
             case 2:
-                return ItemStack.areItemsEqual(PistonCrusherRecipes.getInstance().getPrimaryResult(getStackInSlot(0)).getKey(), stack);
+                return ItemStack.areItemsEqual(outputs.get(0), stack);
             case 3:
-                return ItemStack.areItemsEqual(PistonCrusherRecipes.getInstance().getSecondaryResult(getStackInSlot(0)).getKey(), stack);
+                return ItemStack.areItemsEqual(outputs.get(1), stack);
+            case 4:
+                return ItemStack.areItemsEqual(outputs.get(2), stack);
             default:
                 return false;
         }

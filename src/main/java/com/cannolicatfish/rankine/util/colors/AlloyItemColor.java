@@ -14,7 +14,7 @@ import java.util.List;
 public class AlloyItemColor implements IItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
-        PeriodicTableUtils utils = new PeriodicTableUtils();
+        PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
         INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
         if (nbt != null && nbt.getString().contains("-"))
         {

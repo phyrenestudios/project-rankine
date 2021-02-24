@@ -13,7 +13,6 @@ public class InductionFurnaceScreen extends ContainerScreen<InductionFurnaceCont
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/induction_furnace.png");
     public InductionFurnaceScreen(InductionFurnaceContainer container, PlayerInventory inv, ITextComponent name) {
         super(container, inv, name);
-        this.ySize = 182;
     }
 
     @Override
@@ -37,25 +36,23 @@ public class InductionFurnaceScreen extends ContainerScreen<InductionFurnaceCont
         {
 
             int k = this.container.getBurnLeftScaled(13);
-            this.blit(p_230450_1_, this.guiLeft + 11, this.guiTop + 37 + 12 - k, 176, 12 - k, 14, k + 1);
+            this.blit(p_230450_1_, this.guiLeft + 10, this.guiTop + 22 + 12 - k, 176, 12 - k, 14, k + 1);
 
         }
 
         int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_, this.guiLeft + 98, this.guiTop + 48, 176, 14, l + 1, 16);
+        this.blit(p_230450_1_, this.guiLeft + 98, this.guiTop + 32, 176, 14, l + 1, 16);
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Induction Furnace", 92, 10, 0xffffff);
-        if (!this.container.isRecipeMode())
-        {
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 21, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 21, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() +"%", 86, 21, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot4() + "%", 51, 74, 0xff55ff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot5() + "%", 75, 74, 0xff55ff);
+        int ymod = 0;
+        for (String s : this.container.getOutputString().getKey()) {
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, s, 92, 60 + ymod, this.container.getOutputString().getValue());
+            ymod += 10;
         }
+
     }
 
 

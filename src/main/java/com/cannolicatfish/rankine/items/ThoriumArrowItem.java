@@ -33,9 +33,9 @@ public class ThoriumArrowItem extends ArrowItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (Screen.hasShiftDown()) {
-            tooltip.add(new StringTextComponent("Summons lightning upon landing").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Summons lightning upon landing. Does not require rain.").mergeStyle(TextFormatting.GRAY));
         } else {
-            tooltip.add(new StringTextComponent("Hold shift for mineral information...").mergeStyle(TextFormatting.GRAY));
+            tooltip.add(new StringTextComponent("Hold shift for more information...").mergeStyle(TextFormatting.GRAY));
         }
 
     }

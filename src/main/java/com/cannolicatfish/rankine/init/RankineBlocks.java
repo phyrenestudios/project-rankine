@@ -1202,7 +1202,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SEABORGIUM_BLOCK = REGISTRY.register("seaborgium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> BOHRIUM_BLOCK = REGISTRY.register("bohrium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> HASSIUM_BLOCK = REGISTRY.register("hassium_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> MEITERIUM_BLOCK = REGISTRY.register("meiterium_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> MEITNERIUM_BLOCK = REGISTRY.register("meitnerium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> DARMSTADTIUM_BLOCK = REGISTRY.register("darmstadtium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> ROENTGENIUM_BLOCK = REGISTRY.register("roentgenium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> COPERNICIUM_BLOCK = REGISTRY.register("copernicium_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1414,9 +1414,11 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TEMPLATE_TABLE = REGISTRY.register("template_table", () -> new TemplateTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ALLOY_FURNACE = REGISTRY.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)));
     public static final RegistryObject<Block> PISTON_CRUSHER = REGISTRY.register("piston_crusher", () -> new PistonCrusherBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
+    public static final RegistryObject<Block> PCF = REGISTRY.register("pcf", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> INDUCTION_FURNACE = REGISTRY.register("induction_furnace", () -> new InductionFurnaceBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)));
     public static final RegistryObject<Block> EVAPORATION_TOWER = REGISTRY.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = REGISTRY.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> RANKINE_BOX = REGISTRY.register("rankine_box", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));

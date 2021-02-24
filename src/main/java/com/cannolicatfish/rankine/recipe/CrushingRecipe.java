@@ -239,6 +239,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             count = 0;
             for (float chance : recipe.chances) {
                 buffer.writeFloat(chance);
+                count++;
             }
             while (count < 6) {
                 buffer.writeFloat(0f);
@@ -248,6 +249,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             count = 0;
             for (float add : recipe.additional) {
                 buffer.writeFloat(add);
+                count++;
             }
             while (count < 6) {
                 buffer.writeFloat(0f);

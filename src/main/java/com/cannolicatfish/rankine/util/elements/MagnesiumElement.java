@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.util.elements;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 
-public class MagnesiumElement implements ElementInterface{
+public class MagnesiumElement implements ElementInterface {
     @Override
     public PeriodicTableUtils.Element getReference() {
         return PeriodicTableUtils.Element.MAGNESIUM;

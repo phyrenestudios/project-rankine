@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "rankine:thorium_arrow"
+    "rankine:thorium_arrow",
+    "rankine:magnesium_arrow"
   ]
 }

@@ -52,12 +52,12 @@ public class AlloyFurnaceScreen extends ContainerScreen<AlloyFurnaceContainer> {
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Alloy Furnace", 92, 10, 0xffffff);
-        if (!this.container.isRecipeMode())
-        {
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 42, 50, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 64, 50, 0xffffff);
-            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() + "%", 86, 50, 0x00aa00);
+        int ymod = 0;
+        for (String s : this.container.getOutputString().getKey()) {
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, s, 92, 60 + ymod, this.container.getOutputString().getValue());
+            ymod += 10;
         }
+
     }
 
 

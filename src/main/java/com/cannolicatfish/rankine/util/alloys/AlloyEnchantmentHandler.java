@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.items.tools.SpearItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.*;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,19 +13,19 @@ import java.util.List;
 
 public class AlloyEnchantmentHandler {
     static AlloyEnchantmentHandler EMPTY = new AlloyEnchantmentHandler();
-    private final List<Enchantment> axeEnchants;
-    private final List<Enchantment> hammerEnchants;
-    private final List<Enchantment> hoeEnchants;
-    private final List<Enchantment> pickaxeEnchants;
-    private final List<Enchantment> shovelEnchants;
-    private final List<Enchantment> spearEnchants;
-    private final List<Enchantment> swordEnchants;
+    private final List<ResourceLocation> axeEnchants;
+    private final List<ResourceLocation> hammerEnchants;
+    private final List<ResourceLocation> hoeEnchants;
+    private final List<ResourceLocation> pickaxeEnchants;
+    private final List<ResourceLocation> shovelEnchants;
+    private final List<ResourceLocation> spearEnchants;
+    private final List<ResourceLocation> swordEnchants;
     private final int start;
     private final int interval;
     private final int maxLvl;
-    public AlloyEnchantmentHandler(List<Enchantment> axeEnchantsIn, List<Enchantment> hammerEnchantsIn, List<Enchantment> hoeEnchantsIn,
-                                   List<Enchantment> pickaxeEnchantsIn, List<Enchantment> shovelEnchantsIn, List<Enchantment> spearEnchantsIn,
-                                   List<Enchantment> swordEnchantsIn, int start, int interval, int maxLvl) {
+    public AlloyEnchantmentHandler(List<ResourceLocation> axeEnchantsIn, List<ResourceLocation> hammerEnchantsIn, List<ResourceLocation> hoeEnchantsIn,
+                                   List<ResourceLocation> pickaxeEnchantsIn, List<ResourceLocation> shovelEnchantsIn, List<ResourceLocation> spearEnchantsIn,
+                                   List<ResourceLocation> swordEnchantsIn, int start, int interval, int maxLvl) {
         this.axeEnchants = axeEnchantsIn;
         this.hammerEnchants = hammerEnchantsIn;
         this.hoeEnchants = hoeEnchantsIn;
@@ -37,11 +38,12 @@ public class AlloyEnchantmentHandler {
         this.maxLvl = maxLvl;
     }
 
-    public AlloyEnchantmentHandler(List<Enchantment> axeEnchantsIn, List<Enchantment> hammerEnchantsIn, List<Enchantment> hoeEnchantsIn,
-                                   List<Enchantment> pickaxeEnchantsIn, List<Enchantment> shovelEnchantsIn, List<Enchantment> spearEnchantsIn,
-                                   List<Enchantment> swordEnchantsIn) {
+    public AlloyEnchantmentHandler(List<ResourceLocation> axeEnchantsIn, List<ResourceLocation> hammerEnchantsIn, List<ResourceLocation> hoeEnchantsIn,
+                                   List<ResourceLocation> pickaxeEnchantsIn, List<ResourceLocation> shovelEnchantsIn, List<ResourceLocation> spearEnchantsIn,
+                                   List<ResourceLocation> swordEnchantsIn) {
         this(axeEnchantsIn,hammerEnchantsIn,hoeEnchantsIn,pickaxeEnchantsIn,shovelEnchantsIn,spearEnchantsIn,swordEnchantsIn,15,5,5);
     }
+
     public AlloyEnchantmentHandler() {
         this(Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),15,5,5);
     }
@@ -50,11 +52,11 @@ public class AlloyEnchantmentHandler {
         this(Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),Collections.emptyList(),start,interval,maxLvl);
     }
 
-    public List<Enchantment> getEnchantmentsForItem(ItemStack stack) {
+    public List<ResourceLocation> getEnchantmentsForItem(ItemStack stack) {
         return getEnchantmentsForItem(stack.getItem());
     }
 
-    public List<Enchantment> getEnchantmentsForItem(Item item) {
+    public List<ResourceLocation> getEnchantmentsForItem(Item item) {
         if (item instanceof AxeItem)
         {
             return this.axeEnchants;
@@ -75,17 +77,17 @@ public class AlloyEnchantmentHandler {
     }
 
     public int returnEnchantmentLevel(Enchantment en, int enchantability) {
-        int lvl = 1;
         if (enchantability < start)
         {
             return 0;
+        } else if (enchantability >= start + interval*maxLvl) {
+            return Math.min(maxLvl,en.getMaxLevel());
         }
         for (int i = 1; i < maxLvl + 1; i++) {
-            if (enchantability >= start + (interval*i) && enchantability < start + (interval*i+1)) {
-                return Math.min(lvl,en.getMaxLevel());
+            if (enchantability >= start + (interval*(i-1)) && enchantability < start + (interval*i)) {
+                return Math.min(i,en.getMaxLevel());
             }
-            lvl += 1;
         }
-        return Math.min(lvl,en.getMaxLevel());
+        return 0;
     }
 }

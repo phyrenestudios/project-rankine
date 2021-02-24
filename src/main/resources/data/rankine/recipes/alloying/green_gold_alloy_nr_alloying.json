@@ -3,32 +3,32 @@
   "total": 6,
   "tier": 2,
   "input1": {
-    "tag": "netherite",
+    "element": "netherite",
     "min": 0.30,
     "max": 0.70
   },
   "input2": {
-    "tag": "silver",
+    "element": "silver",
     "min": 0.30,
     "max": 0.70
   },
   "input3": {
-    "tag": "copper",
+    "element": "copper",
     "min": 0.0,
     "max": 0.10
   },
   "input4": {
-    "tag": "cadmium",
+    "element": "cadmium",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "tag": "platinum",
+    "element": "platinum",
     "min": 0.0,
     "max": 0.10
   },
   "input6": {
-    "tag": "selenium",
+    "element": "selenium",
     "min": 0.0,
     "max": 0.10
   },

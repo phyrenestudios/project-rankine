@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.blocks.pistoncrusher;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -11,7 +10,6 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
@@ -52,11 +50,11 @@ public class PistonCrusherContainer extends Container {
 
         this.addSlot(new Slot(furnaceInventory, 0, 56, 31));
         this.addSlot(new Slot(furnaceInventory, 1, 10,37));
-        this.addSlot(new Slot(furnaceInventory, 2, 124,17));
-        this.addSlot(new Slot(furnaceInventory, 3, 149,17));
-        this.addSlot(new Slot(furnaceInventory, 4, 136,42));
+        this.addSlot(new Slot(furnaceInventory, 2, 98,60));
+        this.addSlot(new Slot(furnaceInventory, 3, 124,60));
+        this.addSlot(new Slot(furnaceInventory, 4, 150,60));
 
-        layoutPlayerInventorySlots(10, 70);
+        layoutPlayerInventorySlots(10, 86);
 
         this.trackIntArray(furnaceData);
 

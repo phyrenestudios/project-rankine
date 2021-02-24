@@ -20,7 +20,7 @@ import java.util.Random;
 
 public interface IAlloyTool {
 
-    PeriodicTableUtils utils = new PeriodicTableUtils();
+    PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
 
 /*
     default double getDurabilityForDisplay(ItemStack stack,) {
@@ -220,7 +220,7 @@ public interface IAlloyTool {
     default List<PeriodicTableUtils.Element> getElements(String c)
     {
         //String c = getComposition(stack).getCompound(0).get("comp").getString();
-        PeriodicTableUtils utils = new PeriodicTableUtils();
+        PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
         String[] comp = c.split("-");
         List<PeriodicTableUtils.Element> list = new ArrayList<>();
         for (String e: comp)

@@ -48,21 +48,13 @@ public class ElementIndexerContainer extends Container {
     public PeriodicTableUtils.Element getSlotItem() {
         ItemStack stack = this.handler.getStackInSlot(0);
 
-        if (stack.getItem().getTags().contains(new ResourceLocation("rankine:elements")))
+        if (utils.hasElement(stack.getItem()))
         {
-            for (ResourceLocation tag: stack.getItem().getTags())
-            {
-                if (tag.toString().contains("rankine:elements/"))
-                {
-                    String temp = tag.getPath().split("/")[1];
-                    if (utils.getImplementedElementNames().contains(temp))
-                    {
-                        return utils.getElementBySymbol(utils.getElementByMaterial(temp));
-                    }
-                }
-            }
+            return utils.getElementFromItem(stack.getItem());
+        } else {
+            return null;
         }
-        return null;
+
     }
 
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {

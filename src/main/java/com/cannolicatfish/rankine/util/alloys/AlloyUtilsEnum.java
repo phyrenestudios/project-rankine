@@ -7,13 +7,12 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public enum AlloyUtilsEnum implements AlloyUtils {
     ALLOY(RankineToolMaterials.ALLOY, 0,0,0,0,0,0,0,0,0f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
@@ -21,67 +20,67 @@ public enum AlloyUtilsEnum implements AlloyUtils {
     BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,1,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
     INVAR(RankineToolMaterials.INVAR, 0,0,0,0,2,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
     ROSE_GOLD(RankineToolMaterials.ROSE_GOLD, 48,0,0,0,0,0,0.05f,0.35f,-0.1f,
-            new AlloyEnchantmentHandler(Collections.singletonList(Enchantments.EFFICIENCY), //axe
-                    Collections.singletonList(RankineEnchantments.SWING), //hammer
-                    Collections.singletonList(Enchantments.EFFICIENCY), //hoe
-                    Collections.singletonList(Enchantments.EFFICIENCY), //pickaxe
-                    Collections.singletonList(Enchantments.EFFICIENCY), //shovel
-                    Collections.singletonList(RankineEnchantments.PUNCTURE), //spear
-                    Collections.singletonList(Enchantments.SHARPNESS)), //sword
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","swing")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //shovel
+                    Collections.singletonList(new ResourceLocation("rankine","puncture")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","sharpness"))), //sword
             "75Au-22Cu-3Ni", TextFormatting.YELLOW),
     WHITE_GOLD(RankineToolMaterials.WHITE_GOLD, 32,0,0,0,0,0,0.1f,0.3f,-0.2f,
-            new AlloyEnchantmentHandler(Collections.singletonList(Enchantments.FORTUNE), //axe
-                    Collections.singletonList(RankineEnchantments.SWING), //hammer
-                    Collections.singletonList(Enchantments.FORTUNE), //hoe
-                    Collections.singletonList(Enchantments.FORTUNE), //pickaxe
-                    Collections.singletonList(Enchantments.FORTUNE), //shovel
-                    Collections.singletonList(RankineEnchantments.PUNCTURE), //spear
-                    Collections.singletonList(Enchantments.LOOTING)), //sword
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","fortune")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","atomize")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","fortune")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","fortune")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","fortune")), //shovel
+                    Collections.singletonList(new ResourceLocation("rankine","impaling")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","looting"))), //sword
             "90Au-10Zn", TextFormatting.YELLOW),
     GREEN_GOLD(RankineToolMaterials.GREEN_GOLD, 32,0,0,0,0,0,0.25f,0.45f,-0.15f,
-            new AlloyEnchantmentHandler(Collections.singletonList(Enchantments.MENDING), //axe
-                    Collections.singletonList(Enchantments.MENDING), //hammer
-                    Collections.singletonList(Enchantments.MENDING), //hoe
-                    Collections.singletonList(Enchantments.MENDING), //pickaxe
-                    Collections.singletonList(Enchantments.MENDING), //shovel
-                    Collections.singletonList(Enchantments.MENDING), //spear
-                    Collections.singletonList(Enchantments.MENDING)), //sword
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","mending")), //axe
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //shovel
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","mending"))), //sword
             "50Au-50Ag", TextFormatting.YELLOW),
     BLUE_GOLD(RankineToolMaterials.BLUE_GOLD, 32,0,0,0,1,0,0,0.2f,-0.05f,
-            new AlloyEnchantmentHandler(Collections.singletonList(Enchantments.UNBREAKING), //axe
-                    Collections.singletonList(Enchantments.UNBREAKING), //hammer
-                    Collections.singletonList(Enchantments.UNBREAKING), //hoe
-                    Collections.singletonList(Enchantments.UNBREAKING), //pickaxe
-                    Collections.singletonList(Enchantments.UNBREAKING), //shovel
-                    Collections.singletonList(Enchantments.UNBREAKING), //spear
-                    Collections.singletonList(Enchantments.UNBREAKING)), //sword
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //axe
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //shovel
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking"))), //sword
             "75Au-25Fe", TextFormatting.YELLOW),
     PURPLE_GOLD(RankineToolMaterials.PURPLE_GOLD, 32,0,0,0,0,0,0.25f,0.25f,-0.1f,
-            new AlloyEnchantmentHandler(Collections.singletonList(Enchantments.SILK_TOUCH), //axe
-                    Collections.singletonList(RankineEnchantments.DAZE), //hammer
-                    Collections.singletonList(Enchantments.SILK_TOUCH), //hoe
-                    Collections.singletonList(Enchantments.SILK_TOUCH), //pickaxe
-                    Collections.singletonList(Enchantments.SILK_TOUCH), //shovel
-                    Collections.singletonList(RankineEnchantments.IMPACT), //spear
-                    Collections.singletonList(Enchantments.KNOCKBACK)), //sword
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","daze")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //shovel
+                    Collections.singletonList(new ResourceLocation("rankine","impact")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","knockback"))), //sword
             "80Au-20Al", TextFormatting.YELLOW),
     BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, 32,0,0,0,1,0,0f,0.2f,-0.05f,
-            new AlloyEnchantmentHandler(Collections.singletonList(Enchantments.BANE_OF_ARTHROPODS), //axe
-                    Collections.singletonList(RankineEnchantments.EXCAVATE), //hammer
-                    Collections.singletonList(RankineEnchantments.FORAGING), //hoe
-                    Collections.singletonList(RankineEnchantments.QUAKE), //pickaxe
-                    Collections.singletonList(RankineEnchantments.QUAKE), //shovel
-                    Collections.singletonList(Enchantments.LOYALTY), //spear
-                    Collections.singletonList(Enchantments.BANE_OF_ARTHROPODS)), //sword
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","excavate")), //hammer
+                    Collections.singletonList(new ResourceLocation("rankine","foraging")), //hoe
+                    Collections.singletonList(new ResourceLocation("rankine","quake")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("rankine","quake")), //shovel
+                    Collections.singletonList(new ResourceLocation("minecraft","loyalty")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods"))), //sword
             "75Au-25Co", TextFormatting.YELLOW),
     PEWTER(RankineToolMaterials.PEWTER, 20,4,1,5,0,0,0.25F,0,-0.05f,
-            new AlloyEnchantmentHandler(Collections.singletonList(RankineEnchantments.ANTIQUATED),
-                    Collections.singletonList(RankineEnchantments.ANTIQUATED),
-                    Collections.singletonList(RankineEnchantments.ANTIQUATED),
-                    Collections.singletonList(RankineEnchantments.ANTIQUATED),
-                    Collections.singletonList(RankineEnchantments.ANTIQUATED),
-                    Collections.singletonList(RankineEnchantments.ANTIQUATED),
-                    Collections.singletonList(RankineEnchantments.ANTIQUATED)),
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),14,2,3),
             "90Sn-10Sb", TextFormatting.DARK_GREEN),
     STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
     STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
@@ -180,7 +179,14 @@ public enum AlloyUtilsEnum implements AlloyUtils {
 
     @Override
     public List<Enchantment> getEnchantmentBonus(Item item) {
-        return this.toolEnchants.getEnchantmentsForItem(item);
+        List<ResourceLocation> rslist = this.toolEnchants.getEnchantmentsForItem(item);
+        List<Enchantment> enchants = new ArrayList<>();
+        for (ResourceLocation rs : rslist) {
+            if (ForgeRegistries.ENCHANTMENTS.getValue(rs) != null) {
+                enchants.add(ForgeRegistries.ENCHANTMENTS.getValue(rs));
+            }
+        }
+        return enchants;
     }
 
     @Override

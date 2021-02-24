@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rankine:item/alloy_template"
+    "layer0": "rankine:item/alloy_template",
+    "layer1": "rankine:item/alloy_template_overlay"
   }
 }

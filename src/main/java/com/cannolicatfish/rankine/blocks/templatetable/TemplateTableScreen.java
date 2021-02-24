@@ -37,12 +37,12 @@ public class TemplateTableScreen extends ContainerScreen<TemplateTableContainer>
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Template Table", 110, 10, 0xffffff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot1() + "%", 16, 72, 0xffffff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot2() +"%", 34, 72, 0xffffff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot3() +"%", 52, 72, 0x00aa00);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot4() + "%", 70, 72, 0xff55ff);
-        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, this.container.getPercentSlot5() + "%", 88, 72, 0xff55ff);
+        drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Template Table", 116, 10, 0xffffff);
+        int ymod = 0;
+        for (String s : this.container.getOutputString().getKey()) {
+            drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, s, 116, 65 + ymod, this.container.getOutputString().getValue());
+            ymod += 10;
+        }
     }
 
 

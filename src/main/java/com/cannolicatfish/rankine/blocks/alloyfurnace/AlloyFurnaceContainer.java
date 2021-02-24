@@ -2,26 +2,36 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.items.AlloyTemplateItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+
+import java.util.AbstractMap;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_FURNACE_CONTAINER;
 
@@ -33,7 +43,7 @@ public class AlloyFurnaceContainer extends Container {
     private final IIntArray data;
 
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(6),new IntArray(8));
+        this(windowId,world,pos,playerInventory,player,new Inventory(9),new IntArray(5));
 
 
 
@@ -41,24 +51,64 @@ public class AlloyFurnaceContainer extends Container {
     public AlloyFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(ALLOY_FURNACE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 6);
-        assertIntArraySize(furnaceData, 8);
+        assertInventorySize(furnaceInventoryIn, 9);
+        assertIntArraySize(furnaceData, 5);
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
         this.data = furnaceData;
         this.playerInventory = new InvWrapper(playerInventory);
 
-        this.addSlot(new Slot(furnaceInventory, 0, 33, 31));
-        this.addSlot(new Slot(furnaceInventory, 1, 55,31));
-        this.addSlot(new Slot(furnaceInventory, 2, 77,31));
-        this.addSlot(new Slot(furnaceInventory, 3, 10,37));
-        this.addSlot(new Slot(furnaceInventory, 4, 134,7));
-        this.addSlot(new Slot(furnaceInventory, 5, 134,31));
+        this.addSlot(new Slot(furnaceInventory, 0, 33, 23));
+        this.addSlot(new Slot(furnaceInventory, 1, 33, 41));
+        this.addSlot(new Slot(furnaceInventory, 2, 51,23));
+        this.addSlot(new Slot(furnaceInventory, 3, 51, 41));
+        this.addSlot(new Slot(furnaceInventory, 4, 69,23));
+        this.addSlot(new Slot(furnaceInventory, 5, 69, 41));
+        this.addSlot(new Slot(furnaceInventory, 6, 10,37));
+        this.addSlot(new Slot(furnaceInventory, 7, 134,7));
+        this.addSlot(new Slot(furnaceInventory, 8, 134,31));
 
 
-        layoutPlayerInventorySlots(8, 70);
+        layoutPlayerInventorySlots(8, 86);
 
         this.trackIntArray(furnaceData);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
+
+        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
+            ItemStack template = furnaceInventory.getStackInSlot(7);
+            boolean correctInputs = true;
+            if ((AlloyTemplateItem.getTier(template) & 1) != 1) {
+                correctInputs = false;
+            }
+            if (correctInputs) {
+                for (ItemStack input : AlloyTemplateItem.getInputStacks(template))
+                {
+                    Item tempItem = input.getItem();
+                    int count = input.getCount();
+                    if (furnaceInventory.count(tempItem) < count) {
+                        correctInputs = false;
+                    }
+                }
+            }
+            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItem.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItem.getOutputAlloyData(template)},
+                    correctInputs ? 0x55FF55 : 0xFF5555);
+        }
+        AlloyingRecipe recipe = playerEntity.getEntityWorld().getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, furnaceInventory, playerEntity.getEntityWorld()).orElse(null);
+        if (recipe != null) {
+            ItemStack stack = recipe.generateResult(furnaceInventory,1);
+            INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
+            if (nbt != null){
+                return new AbstractMap.SimpleEntry<>(new String[]{new TranslationTextComponent(stack.getItem().getTranslationKey()).getString(),nbt.getString()},0x55FF55);
+            } else {
+                return new AbstractMap.SimpleEntry<>(new String[]{},0xffffff);
+            }
+        } else {
+            String ret = RankineRecipes.generateAlloyString(furnaceInventory);
+            return new AbstractMap.SimpleEntry<>(new String[]{"None", ret},0xFF5555);
+        }
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -81,28 +131,12 @@ public class AlloyFurnaceContainer extends Container {
         return this.data.get(3);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public boolean isRecipeMode() {
-        return this.data.get(7) == 1;
-    };
-
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot1(){
-        return Integer.toString(this.data.get(4));
-    }
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot2(){
-        return Integer.toString(this.data.get(5));
-    }
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot3(){
-        return Integer.toString(this.data.get(6));
-    }
-
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.ALLOY_FURNACE.get());
     }
+
+    //TO-DO: REDO +3
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
     {
@@ -113,32 +147,32 @@ public class AlloyFurnaceContainer extends Container {
         {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 5) {
-                if (!this.mergeItemStack(stack, 6, 42, true)) {
+            if (index == 8) {
+                if (!this.mergeItemStack(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (index != 0 && index != 1 && index != 2 && index != 3) {
-                if (!AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("none") && !AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("nope")) {
-                    if (!this.mergeItemStack(stack, 0, 3, false)) {
+            } else if (index > 6) {
+                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
+                    if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
-                    if (!this.mergeItemStack(stack, 3, 4, false)) {
+                    if (!this.mergeItemStack(stack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (stack.getItem() == RankineItems.ALLOY_TEMPLATE.get()) {
-                    if (!this.mergeItemStack(stack, 4, 5, false)) {
+                    if (!this.mergeItemStack(stack, 7, 8, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 33) {
-                    if (!this.mergeItemStack(stack, 33, 42, false)) {
+                } else if (index < 36) {
+                    if (!this.mergeItemStack(stack, 36, 45, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 42 && !this.mergeItemStack(stack, 6, 33, false)) {
+                } else if (index < 45 && !this.mergeItemStack(stack, 9, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 6, 42, false)) {
+            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -184,9 +218,6 @@ public class AlloyFurnaceContainer extends Container {
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
 
-    public int getOutputSlot() {
-        return 2;
-    }
 
     @OnlyIn(Dist.CLIENT)
     public int getBurnLeftScaled(int pixels)

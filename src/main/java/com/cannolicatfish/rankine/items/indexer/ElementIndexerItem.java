@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class ElementIndexerItem extends Item {
     private static final ElementIndexerContainerProvider INSTANCE = new ElementIndexerContainerProvider();
-    private static final PeriodicTableUtils utils = new PeriodicTableUtils();
+    private static final PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
 
     @CapabilityInject(IItemHandler.class)
     public static Capability<IItemHandler> ITEM_HANDLER_CAPABILITY = null;
@@ -54,21 +54,7 @@ public class ElementIndexerItem extends Item {
     {
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-        if (stack.getItem().getTags().contains(new ResourceLocation("rankine:elements")))
-        {
-            for (ResourceLocation tag: stack.getItem().getTags())
-            {
-                if (tag.toString().contains("rankine:elements/"))
-                {
-                    String temp = tag.getPath().split("/")[1];
-                    if (utils.getImplementedElementNames().contains(temp))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return utils.hasElement(stack.getItem());
     }
 
 }

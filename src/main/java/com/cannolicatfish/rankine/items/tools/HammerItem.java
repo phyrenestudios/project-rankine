@@ -4,12 +4,8 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.PistonCrusherRecipes;
 import com.google.common.collect.Sets;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -23,18 +19,16 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class HammerItem extends ToolItem {
 
@@ -111,12 +105,12 @@ public class HammerItem extends ToolItem {
                 PlayerEntity player = (PlayerEntity) attacker;
                 if (player.getCooledAttackStrength(0) >= (1f))
                 {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 2));
+                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*10, getDazeModifier(stack)*2));
                 } else {
-                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+                    target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*10, 1));
                 }
             } else {
-                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*20, 1));
+                target.addPotionEffect(new EffectInstance(Effects.SLOWNESS,getDazeModifier(stack)*10, 1));
             }
 
         }
@@ -238,5 +232,27 @@ public class HammerItem extends ToolItem {
             return false;
         }
         return super.canApplyAtEnchantingTable(stack,enchantment);
+    }
+
+
+    @Override
+    public ActionResultType onItemUse(ItemUseContext context) {
+        if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getWorld().getBlockState(context.getPos()).getBlock() instanceof AnvilBlock) {
+            World worldIn = context.getWorld();
+            BlockPos pos = context.getPos();
+            BlockState anvil = worldIn.getBlockState(pos);
+            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (context.getItem().getMaxDamage() - context.getItem().getDamage()) >= 100) {
+                worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                return ActionResultType.PASS;
+            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItem().getMaxDamage() - context.getItem().getDamage()) >= 100) {
+                worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                return ActionResultType.PASS;
+            }
+        }
+        return ActionResultType.FAIL;
     }
 }
