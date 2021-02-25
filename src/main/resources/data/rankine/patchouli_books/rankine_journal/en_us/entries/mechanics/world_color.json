@@ -1,6 +1,6 @@
 {
   "name": "World Coloring",
-  "icon": "minecraft:red_concrete",
+  "icon": "minecraft:red_dye",
   "category": "mechanics",
   "pages": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "type": "text",
-      "text": "The blocks that are affected are: $(li)Wool $(li)Terracotta $(li)Glazed Terracotta $(li)Stained Glass $(li)Stained Glass Panes $(li)Concrete Powder $(li)Concrete $(li)LEDs"
+      "text": "The blocks that are affected are: $(li)Wool $(li)Mineral Wool $(li)Terracotta $(li)Glazed Terracotta $(li)Stained Glass $(li)Stained Glass Panes $(li)Concrete Powder $(li)Concrete $(li)LEDs"
     }
   ]
 }

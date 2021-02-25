@@ -1,0 +1,35 @@
+{
+  "type": "rankine:alloying",
+  "total": 15,
+  "input1": {
+    "element": "mercury",
+    "min": 0.50,
+    "max": 0.90
+  },
+  "input2": {
+    "element": "lithium",
+    "min": 0.10,
+    "max": 0.50
+  },
+  "input2": {
+    "element": "sodium",
+    "min": 0.10,
+    "max": 0.50
+  },
+  "input2": {
+    "element": "",
+    "min": 0.10,
+    "max": 0.50
+  },
+  "input2": {
+    "element": "lithium",
+    "min": 0.10,
+    "max": 0.50
+  },
+  "input2": {
+    "element": "lithium",
+    "min": 0.10,
+    "max": 0.50
+  },
+  "result": "rankine:amalgam_alloy"
+}

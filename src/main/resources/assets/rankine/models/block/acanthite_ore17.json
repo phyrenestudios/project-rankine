@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/comendite",
+    "base": "rankine:block/rhyolite",
     "overlay": "rankine:block/acanthite_ore",
-    "particle": "rankine:block/comendite"
+    "particle": "rankine:block/rhyolite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

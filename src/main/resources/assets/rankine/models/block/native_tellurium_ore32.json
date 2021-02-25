@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/phyllite",
+    "base": "rankine:block/gneiss",
     "overlay": "rankine:block/native_tellurium_ore",
-    "particle": "rankine:block/phyllite"
+    "particle": "rankine:block/gneiss"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

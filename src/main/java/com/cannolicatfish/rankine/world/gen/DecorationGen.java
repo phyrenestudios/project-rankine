@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.world.gen;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.WGConfig;
 import net.minecraft.util.ResourceLocation;

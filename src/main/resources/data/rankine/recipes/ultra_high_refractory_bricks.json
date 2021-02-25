@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "bmb",
-    "mbm",
+    "mRm",
     "bmb"
   ],
   "key": {
     "b": {
       "item": "rankine:ultra_high_refractory_brick"
+    },
+    "R": {
+      "item": "rankine:high_refractory_bricks"
     },
     "m": {
       "item": "rankine:mortar"
@@ -15,6 +18,6 @@
   },
   "result": {
     "item": "rankine:ultra_high_refractory_bricks",
-    "count": 2
+    "count": 1
   }
 }

@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipes;
@@ -20,7 +19,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,15 +33,9 @@ public class BeehiveOvenPitBlock extends Block {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     private float chance;
     private final Block blockType;
-    public BeehiveOvenPitBlock(Properties properties) {
-        super(properties);
-        this.chance = Config.T1_BEEHIVE_OVEN_CHANCE.get().floatValue();
-        this.blockType = RankineBlocks.REFRACTORY_BRICKS.get();
-    }
 
-    public BeehiveOvenPitBlock(float chancePerRandomTick, Block blockType, Properties properties) {
+    public BeehiveOvenPitBlock(Block blockType, Properties properties) {
         super(properties);
-        this.chance = chancePerRandomTick;
         this.blockType = blockType;
     }
 
@@ -102,107 +94,114 @@ public class BeehiveOvenPitBlock extends Block {
         return ActionResultType.SUCCESS;
     }
 
-    /*
+
+    int height;
+
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         super.tick(state, worldIn, pos, rand);
         World world = worldIn.getWorld();
-        BlockPos uppos = pos.up();
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-
-        if (state.get((LIT))) {
-        //
-
-
-        }
-
-
-
-
         getBeehiveOven(world,pos);
-        if (state.get((LIT)))
-        {
-            if (rand.nextFloat() <= chance)
-            {
+        if (state.get((LIT))) {
+            height = 2;
+            if (rand.nextFloat() <= structureCheck(worldIn, pos)) {
                 boolean flag = true;
-                List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
-                        uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
-                        uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
-
-                for (BlockPos p: surroundingBlockPos)
-                {
+                for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,height,1))) {
                     ItemStack output = RankineRecipes.getBeehiveOutput(new ItemStack(world.getBlockState(p).getBlock()));
-                    if (!output.isEmpty())
-                    {
-                        if (output.getItem() instanceof BlockItem)
-                        {
+                    if (!output.isEmpty()) {
+                        if (output.getItem() instanceof BlockItem) {
                             world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
                             flag = false;
-                            if (!Config.TOTAL_CONVERSION.get()) {
+                            if (chance <= 1.0) {
+                                break;
+                            } else if (rand.nextFloat()+1.0 > chance) {
                                 break;
                             }
                         }
                     }
                 }
-                if (flag)
-                {
+                if (flag) {
                     world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
                 }
-
             }
         }
-
     }
 
-*/
+    private float structureCheck(World world, BlockPos pos) {
+        List<BlockPos> oven = Arrays.asList(
+            pos.add(-1,0,-1),
+            pos.add(-1,0,0),
+            pos.add(-1,0,1),
+            pos.add(1,0,-1),
+            pos.add(1,0,0),
+            pos.add(1,0,1),
+            pos.add(0,0,-1),
+            pos.add(0,0,1),
 
-    @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        super.tick(state, worldIn, pos, rand);
-        World world = worldIn.getWorld();
-        BlockPos uppos = pos.up();
-        if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        getBeehiveOven(world,pos);
-        if (state.get((LIT)))
-        {
-            if (rand.nextFloat() <= chance)
-            {
-                boolean flag = true;
-                List<BlockPos> surroundingBlockPos = Arrays.asList(uppos.north(),uppos.south(),uppos.east(),uppos.west(),uppos.north().east(),
-                        uppos.north().west(),uppos.south().east(),uppos.south().west(), uppos.north().up(),uppos.south().up(),uppos.east().up(),uppos.west().up(),uppos.north().east().up(),
-                        uppos.north().west().up(),uppos.south().east().up(),uppos.south().west().up());
+            pos.add(-2,0,-1),
+            pos.add(-2,0,0),
+            pos.add(-2,0,1),
+            pos.add(2,0,-1),
+            pos.add(2,0,0),
+            pos.add(2,0,1),
+            pos.add(-1,0,-2),
+            pos.add(0,0,-2),
+            pos.add(1,0,-2),
+            pos.add(-1,0,2),
+            pos.add(0,0,2),
+            pos.add(1,0,2),
 
-                for (BlockPos p: surroundingBlockPos)
-                {
-                    ItemStack output = RankineRecipes.getBeehiveOutput(new ItemStack(world.getBlockState(p).getBlock()));
-                    if (!output.isEmpty())
-                    {
-                        if (output.getItem() instanceof BlockItem)
-                        {
-                            world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
-                            flag = false;
-                            if (!Config.TOTAL_CONVERSION.get()) {
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (flag)
-                {
-                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
-                }
+            pos.add(-2,1,-1),
+            pos.add(-2,1,1),
+            pos.add(2,1,-1),
+            pos.add(2,1,1),
+            pos.add(-1,1,-2),
+            pos.add(1,1,-2),
+            pos.add(-1,1,2),
+            pos.add(1,1,2),
 
+            pos.add(-2,2,-1),
+            pos.add(-2,2,1),
+            pos.add(2,2,-1),
+            pos.add(2,2,1),
+            pos.add(-1,2,-2),
+            pos.add(1,2,-2),
+            pos.add(-1,2,2),
+            pos.add(1,2,2),
+
+            pos.add(-1,3,-1),
+            pos.add(-2,3,0),
+            pos.add(-1,3,1),
+            pos.add(1,3,-1),
+            pos.add(2,3,0),
+            pos.add(1,3,1),
+            pos.add(0,3,-2),
+            pos.add(0,3,2),
+            pos.add(0,3,-1),
+            pos.add(0,3,1),
+            pos.add(-1,3,0),
+            pos.add(1,3,0)
+        );
+
+        int count = 1;
+        for (BlockPos b : oven) {
+            if (world.getBlockState(b) == RankineBlocks.REFRACTORY_BRICKS.get().getDefaultState()) {
+                count += 1;
+            } else if (this.blockType != RankineBlocks.REFRACTORY_BRICKS.get() && world.getBlockState(b) == RankineBlocks.HIGH_REFRACTORY_BRICKS.get().getDefaultState()) {
+                count += 2;
+            } else if (this.blockType == RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get() && world.getBlockState(b) == RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get().getDefaultState()) {
+                count += 4;
             }
         }
-
+        System.out.println((float) count/97);
+        return (float) count/97;
     }
 
     private void getBeehiveOven(World world, BlockPos pos) {
         boolean canSeeSky = true;
-        for (int i = 1; i <= 8; i++)
-        {
-            if (!world.isAirBlock(pos.up(i)))
-            {
+        for (int i = 1; i <= 8; i++) {
+            if (!world.isAirBlock(pos.up(i))) {
                 canSeeSky = false;
             }
         }
@@ -212,9 +211,7 @@ public class BeehiveOvenPitBlock extends Block {
                 && world.getBlockState(pos.south().west()).getBlock() == blockType && world.getBlockState(pos.south().east()).getBlock() == blockType)
         {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
-        }
-        else
-        {
+        } else {
             world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
         }
     }

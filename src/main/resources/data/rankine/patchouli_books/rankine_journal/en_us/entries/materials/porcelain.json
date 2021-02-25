@@ -1,0 +1,16 @@
+{
+  "name": "Porcelain",
+  "icon": "rankine:kaolinite_ball",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:kaolinite_ball",
+      "text": ""
+    }
+  ]
+}

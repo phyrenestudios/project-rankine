@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:slag"
+    },
+    {
+      "item": "minecraft:purple_wool"
+    }
+  ],
+  "result": {
+    "item": "rankine:purple_mineral_wool",
+    "count": 1
+  }
+}

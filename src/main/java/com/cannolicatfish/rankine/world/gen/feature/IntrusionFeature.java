@@ -1,17 +1,12 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
-import com.cannolicatfish.rankine.compatibility.TerraForged;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -62,24 +57,26 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
 
 
             for (int y = startY; y <= endY; ++y) {
-                for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-3*radius, y, -3*radius), pos.add(3*radius, y, 3*radius))) {
-                    if (blockpos.distanceSq(new BlockPos(pos.getX()+x1, y, pos.getZ()+z1)) <= Math.pow(radius + 0.5, 2) || blockpos.distanceSq(new BlockPos(pos.getX()+x2, y, pos.getZ()+z2)) <= Math.pow(radius + 0.5, 2) || blockpos.distanceSq(new BlockPos(pos.getX()+x3, y, pos.getZ()+z3)) <= Math.pow(radius + 0.5, 2) || blockpos.distanceSq(new BlockPos(pos.getX()+x4, y, pos.getZ()+z4)) <= Math.pow(radius + 0.5, 2)) {
-                        if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("rankine:intrusion_passable"))) {
+                for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-3*radius, y, -3*radius), pos.add(3*radius, y, 3*radius))) {
+                    if (b.distanceSq(new BlockPos(pos.getX()+x1, y, pos.getZ()+z1)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX()+x2, y, pos.getZ()+z2)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX()+x3, y, pos.getZ()+z3)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX()+x4, y, pos.getZ()+z4)) <= Math.pow(radius + 0.5, 2)) {
+                        if (reader.getBlockState(b).getBlock().getTags().contains(new ResourceLocation("rankine:intrusion_passable"))) {
                             float chance = rand.nextFloat();
                             if (INTRUSION == RankineBlocks.KIMBERLITE.get().getDefaultState()) {
                                 if (chance < WGConfig.INTRUSIONS.ILMENITE_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(blockpos, RankineBlocks.ILMENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 9), 4);
+                                    reader.setBlockState(b, RankineBlocks.ILMENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 26), 4);
                                 } else if (chance < WGConfig.INTRUSIONS.DIAMON_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(blockpos, RankineBlocks.DIAMOND_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 9), 4);
+                                    reader.setBlockState(b, RankineBlocks.DIAMOND_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 26), 4);
                                 } else {
-                                    reader.setBlockState(blockpos, INTRUSION, 4);
+                                    reader.setBlockState(b, INTRUSION, 4);
                                 }
                             } else if (INTRUSION == RankineBlocks.PEGMATITE.get().getDefaultState()) {
                                 if (chance < WGConfig.INTRUSIONS.PETALITE_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(blockpos, RankineBlocks.PETALITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 9), 4);
+                                    reader.setBlockState(b, RankineBlocks.PETALITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 23), 4);
+                                } else {
+                                    reader.setBlockState(b, INTRUSION, 4);
                                 }
                             } else {
-                                reader.setBlockState(blockpos, INTRUSION, 4);
+                                reader.setBlockState(b, INTRUSION, 4);
                             }
                         }
                     }

@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/black_marble",
+    "base": "rankine:block/scoria",
     "overlay": "rankine:block/pink_halite_ore",
-    "particle": "rankine:block/black_marble"
+    "particle": "rankine:block/scoria"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

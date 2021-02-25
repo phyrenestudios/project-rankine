@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:checkered_marble"
+        }
+      },
+      "result": {
+        "item": "rankine:checkered_marble_vertical_slab",
+        "count": 6
+      }
+}

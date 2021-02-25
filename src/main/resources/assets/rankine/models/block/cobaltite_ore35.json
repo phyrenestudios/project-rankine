@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/mariposite",
+    "base": "rankine:block/slate",
     "overlay": "rankine:block/cobaltite_ore",
-    "particle": "rankine:block/mariposite"
+    "particle": "rankine:block/slate"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -12,7 +10,6 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.registries.ForgeRegistries;

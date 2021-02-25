@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:element_transmuter"
+    },
+    {
+      "tag": "forge:gems/rhodonite"
+    }
+  ],
+  "result": {
+    "item": "rankine:manganese_ingot",
+    "count": 3
+  }
+}

@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.util;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.elements.*;
-import com.sun.jna.platform.mac.Carbon;
 import net.minecraft.enchantment.Enchantment;
 
 import java.util.*;
@@ -43,7 +42,7 @@ public final class PeriodicTableUtils {
         {
             if (e != Element.MERCURY && e != Element.GOLD && !amalgamNonmetals.contains(e))
             {
-                if (Config.AMALGAM_EXTRAS.get() || (!amalgamExtras.contains(e)))
+                if (Config.ALLOYS.AMALGAM_EXTRAS.get() || (!amalgamExtras.contains(e)))
                 {
                     elements.add(e.toString().toLowerCase());
                 }

@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/ringwoodite",
+    "base": "rankine:block/mariposite",
     "overlay": "rankine:block/pink_halite_ore",
-    "particle": "rankine:block/ringwoodite"
+    "particle": "rankine:block/mariposite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

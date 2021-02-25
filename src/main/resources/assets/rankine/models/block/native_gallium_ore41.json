@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/perovskite",
+    "base": "rankine:block/bridgmanite",
     "overlay": "rankine:block/native_gallium_ore",
-    "particle": "rankine:block/perovskite"
+    "particle": "rankine:block/bridgmanite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

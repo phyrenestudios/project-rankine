@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.Block;
@@ -33,8 +33,8 @@ public class CharcoalPitBlock extends Block {
     }
 
     int TICKS = 1;
-    int MAX_HEIGHT = Config.CHARCOAL_PIT_HEIGHT.get();
-    int RADIUS = Config.CHARCOAL_PIT_RADIUS.get();
+    int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
+    int RADIUS = Config.MACHINES.CHARCOAL_PIT_RADIUS.get();
 
 
     @Nullable
@@ -100,7 +100,7 @@ public class CharcoalPitBlock extends Block {
             if (worldIn.getBlockState(pos.down()) == this.getDefaultState().with(LIT, true)) {
                 return;
             }
-            if (TICKS % Config.CHARCOAL_PIT_SPEED.get() == 0) {
+            if (TICKS % Config.MACHINES.CHARCOAL_PIT_SPEED.get() == 0) {
                 for (int y = 0; y <= HEIGHT; ++y) {
                     Connected.add(pos.up(y));
                     if (worldIn.getBlockState(pos.up(y).north()).getBlock().getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
@@ -259,7 +259,7 @@ public class CharcoalPitBlock extends Block {
 
     private int heightCheck(ServerWorld worldIn, BlockPos pos) {
         int HEIGHT = 0;
-        for (int i = 1; i <= Config.CHARCOAL_PIT_HEIGHT.get()-1; ++i) {
+        for (int i = 1; i <= Config.MACHINES.CHARCOAL_PIT_HEIGHT.get()-1; ++i) {
             if (worldIn.getBlockState(pos.up(i)) == this.getDefaultState()) {
                 ++HEIGHT;
             } else {

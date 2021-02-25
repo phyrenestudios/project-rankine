@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/mica_schist",
+    "base": "rankine:block/black_marble",
     "overlay": "rankine:block/emerald_ore",
-    "particle": "rankine:block/mica_schist"
+    "particle": "rankine:block/black_marble"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

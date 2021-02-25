@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class RankineOreBlock extends Block {
     public int type = 0;
-    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,61);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,88);
     public RankineOreBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));

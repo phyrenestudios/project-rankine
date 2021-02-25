@@ -1,0 +1,8 @@
+{
+      "parent": "block/stairs",
+      "textures": {
+        "bottom": "rankine:block/checkered_dacite",
+        "top": "rankine:block/checkered_dacite",
+        "side": "rankine:block/checkered_dacite"
+      }
+    }

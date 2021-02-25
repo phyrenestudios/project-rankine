@@ -217,7 +217,7 @@ public class VanillaIntegration {
     }
 
     public static void registerFlamables(Block block, int encouragement, int flammability) {
-       // ((FireBlock)Blocks.FIRE).setFireInfo(block, encouragement, flammability);
+        //((FireBlock)Blocks.FIRE).setFireInfo(block, encouragement, flammability);
     }
 
 }

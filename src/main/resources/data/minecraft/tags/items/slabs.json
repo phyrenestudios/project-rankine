@@ -3,6 +3,9 @@
   "values": [
     "rankine:cast_iron_support_slab",
     "rankine:uncolored_concrete_slab",
+    "rankine:checkered_marble_slab",
+    "rankine:checkered_dacite_slab",
+    "rankine:checkered_porphyry_slab",
     "#forge:stone_bricks_slabs",
     "#forge:polished_stone_slabs",
     "#forge:stone_slabs"

@@ -1,0 +1,8 @@
+{
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+          "item": "rankine:checkered_porphyry"
+      },
+      "result": "rankine:checkered_porphyry_stairs",
+      "count": 1
+    }

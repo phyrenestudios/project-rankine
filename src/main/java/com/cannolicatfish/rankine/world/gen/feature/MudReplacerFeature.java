@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CoralBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.chunk.IChunk;
@@ -32,16 +33,12 @@ public class MudReplacerFeature extends Feature<NoFeatureConfig> {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
                 for (int y = 0; y <= endY; ++y) {
-                    if (reader.getBlockState(new BlockPos(x, y, z)) == Blocks.DIRT.getDefaultState() && reader.getBlockState(new BlockPos(x, y+1, z)) == Blocks.WATER.getDefaultState()) {
+                    if (reader.getBlockState(new BlockPos(x, y, z)) == Blocks.DIRT.getDefaultState() && (reader.getBlockState(pos.up()) == Blocks.WATER.getDefaultState() || reader.getBlockState(pos.down()) == Blocks.WATER.getDefaultState() || reader.getBlockState(pos.west()) == Blocks.WATER.getDefaultState() || reader.getBlockState(pos.east()) == Blocks.WATER.getDefaultState() || reader.getBlockState(pos.south()) == Blocks.WATER.getDefaultState() || reader.getBlockState(pos.north()) == Blocks.WATER.getDefaultState())) {
                         reader.setBlockState(new BlockPos(x, y, z), RankineBlocks.MUD.get().getDefaultState(), 2);
                     }
                 }
-
             }
         }
-
-
         return true;
     }
-
 }

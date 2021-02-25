@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/mudstone",
+    "base": "rankine:block/quartz_sandstone",
     "overlay": "rankine:block/bauxite_ore",
-    "particle": "rankine:block/mudstone"
+    "particle": "rankine:block/quartz_sandstone"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

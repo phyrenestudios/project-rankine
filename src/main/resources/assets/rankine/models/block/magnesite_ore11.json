@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/granodiorite",
+    "base": "rankine:block/gray_granite",
     "overlay": "rankine:block/magnesite_ore",
-    "particle": "rankine:block/granodiorite"
+    "particle": "rankine:block/gray_granite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/red_dacite",
+    "base": "rankine:block/black_dacite",
     "overlay": "rankine:block/native_arsenic_ore",
-    "particle": "rankine:block/red_dacite"
+    "particle": "rankine:block/black_dacite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

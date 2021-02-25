@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.client.integration.jei;
 
-import com.cannolicatfish.rankine.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;

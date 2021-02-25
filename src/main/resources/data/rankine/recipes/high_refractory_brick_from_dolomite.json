@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:fire_clay_ball"
+    },
+    {
+      "item": "rankine:dolomite_block"
+    },
+    {
+      "tag": "forge:nuggets/magnesium"
+    },
+    {
+      "tag": "forge:nuggets/magnesium"
+    }
+  ],
+  "result": {
+    "item": "rankine:high_refractory_brick",
+    "count": 1
+  }
+}

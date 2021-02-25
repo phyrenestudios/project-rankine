@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/pumice",
+    "base": "rankine:block/kimberlite",
     "overlay": "rankine:block/cryolite_ore",
-    "particle": "rankine:block/pumice"
+    "particle": "rankine:block/kimberlite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

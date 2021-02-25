@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/create_textures/gabbro",
+    "base": "rankine:block/enstatite",
     "overlay": "rankine:block/lignite_ore",
-    "particle": "rankine:block/create_textures/gabbro"
+    "particle": "rankine:block/enstatite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

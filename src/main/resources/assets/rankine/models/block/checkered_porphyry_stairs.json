@@ -1,0 +1,8 @@
+{
+      "parent": "block/stairs",
+      "textures": {
+        "bottom": "rankine:block/checkered_porphyry",
+        "top": "rankine:block/checkered_porphyry",
+        "side": "rankine:block/checkered_porphyry"
+      }
+    }

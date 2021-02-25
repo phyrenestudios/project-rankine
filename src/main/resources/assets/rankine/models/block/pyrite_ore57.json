@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/quark_textures/marble",
+    "base": "rankine:block/create_textures/dolomite",
     "overlay": "rankine:block/pyrite_ore",
-    "particle": "rankine:block/quark_textures/marble"
+    "particle": "rankine:block/create_textures/dolomite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

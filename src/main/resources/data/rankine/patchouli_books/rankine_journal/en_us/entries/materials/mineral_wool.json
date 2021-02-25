@@ -1,0 +1,25 @@
+{
+  "name": "Mineral Wool",
+  "icon": "rankine:mineral_wool",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Mineral wool is a fiber matrix of slag and string. It is identical to vanilla wool except it is fireproof."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:mineral_wool",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:mineral_wool_from_color"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:white_mineral_wool",
+      "text": "Colored variants of mineral wool can be made by crafting slag with the wool block. Mineral wool can also be $(li:mechanics/world_color)colored in world$()."
+    }
+  ]
+}

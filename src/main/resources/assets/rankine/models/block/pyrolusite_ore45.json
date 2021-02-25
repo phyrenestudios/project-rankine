@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/carbonaceous_shale",
+    "base": "rankine:block/dolostone",
     "overlay": "rankine:block/pyrolusite_ore",
-    "particle": "rankine:block/carbonaceous_shale"
+    "particle": "rankine:block/dolostone"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

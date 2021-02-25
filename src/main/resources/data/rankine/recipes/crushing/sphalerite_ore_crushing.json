@@ -14,13 +14,13 @@
   },
   "output3": {
     "item": "rankine:dolomite",
-    "chance": 0.5,
-    "additional": 0.2
+    "chance": 0.50,
+    "additional": 0.20
   },
   "output4": {
     "item": "rankine:lead_nugget",
-    "chance": 0.2,
-    "additional": 0.1
+    "chance": 0.20,
+    "additional": 0.10
   },
   "output5": {
     "item": "rankine:cadmium_nugget",
@@ -28,7 +28,7 @@
     "additional": 0.1
   },
   "output6": {
-    "item": "rankine:fluorite",
-    "chance": 0.4
+    "item": "rankine:rhodonite",
+    "chance": 0.40
   }
 }

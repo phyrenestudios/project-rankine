@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.events;
 
-import com.cannolicatfish.rankine.Config;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
@@ -34,7 +34,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
@@ -155,7 +154,7 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
             level5.add(new BasicTrade(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
         }
-        if (Config.VILLAGER_TRADES.get())
+        if (Config.GENERAL.VILLAGER_TRADES.get())
         {
             if (event.getType() == VillagerProfession.MASON)
             {
@@ -175,7 +174,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void addWandererTrades(WandererTradesEvent event)
     {
-        if (Config.VILLAGER_TRADES.get())
+        if (Config.GENERAL.VILLAGER_TRADES.get())
         {
             event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
 
@@ -191,7 +190,7 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void fuelValues(FurnaceFuelBurnTimeEvent event) {
-        if (Config.FUEL_VALUES.get()) {
+        if (Config.GENERAL.FUEL_VALUES.get()) {
             Item Fuel = event.getItemStack().getItem();
             String path = Fuel.getRegistryName().getPath();
             if (Fuel.getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
@@ -337,51 +336,76 @@ public class RankineEventHandler {
         String path = ground.getRegistryName().getPath();
         ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
-        if (Config.MOVEMENT_MODIFIERS.get()) {
-            if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && !movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.GRASS_PATH_MS);
+        if (Config.GENERAL.MOVEMENT_MODIFIERS.get()) {
+            List<AttributeModifier> mods = Arrays.asList(RankineAttributes.BRICKS_MS, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
+            if (player.isCreative() || player.isElytraFlying()) {
+                for (AttributeModifier m : mods) {
+                    movementSpeed.removeModifier(m);
+                }
+            } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && !movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.GRASS_PATH_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/grass_path")) && movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
-                movementSpeed.removeModifier(RankineAttributes.GRASS_PATH_MS);
+                    movementSpeed.removeModifier(RankineAttributes.GRASS_PATH_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(RankineAttributes.SAND_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.SAND_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.SAND_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && movementSpeed.hasModifier(RankineAttributes.SAND_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.SAND_MS);
+                    movementSpeed.removeModifier(RankineAttributes.SAND_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/mud")) && !movementSpeed.hasModifier(RankineAttributes.MUD_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.MUD_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.MUD_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/mud")) && movementSpeed.hasModifier(RankineAttributes.MUD_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.MUD_MS);
+                    movementSpeed.removeModifier(RankineAttributes.MUD_MS);
             } else if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(RankineAttributes.SNOW_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.SNOW_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.SNOW_MS);
+                }
             } else if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && movementSpeed.hasModifier(RankineAttributes.SNOW_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.SNOW_MS);
+                    movementSpeed.removeModifier(RankineAttributes.SNOW_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/dirt")) && !movementSpeed.hasModifier(RankineAttributes.DIRT_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.DIRT_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.DIRT_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/dirt")) && movementSpeed.hasModifier(RankineAttributes.DIRT_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.DIRT_MS);
+                    movementSpeed.removeModifier(RankineAttributes.DIRT_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/wooden")) && !movementSpeed.hasModifier(RankineAttributes.WOODEN_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.WOODEN_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.WOODEN_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/wooden")) && movementSpeed.hasModifier(RankineAttributes.WOODEN_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.WOODEN_MS);
+                    movementSpeed.removeModifier(RankineAttributes.WOODEN_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/polished_stone")) && !movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.POLISHED_STONE_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.POLISHED_STONE_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/polished_stone")) && movementSpeed.hasModifier(RankineAttributes.POLISHED_STONE_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.POLISHED_STONE_MS);
+                    movementSpeed.removeModifier(RankineAttributes.POLISHED_STONE_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/bricks")) && !movementSpeed.hasModifier(RankineAttributes.BRICKS_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.BRICKS_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.BRICKS_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/bricks")) && movementSpeed.hasModifier(RankineAttributes.BRICKS_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.BRICKS_MS);
+                    movementSpeed.removeModifier(RankineAttributes.BRICKS_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/concrete")) && !movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.CONCRETE_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.CONCRETE_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/concrete")) && movementSpeed.hasModifier(RankineAttributes.CONCRETE_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.CONCRETE_MS);
+                    movementSpeed.removeModifier(RankineAttributes.CONCRETE_MS);
             } else if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/roman_concrete")) && !movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.ROMAN_CONCRETE_MS);
+                if (!player.isCreative() && !player.isElytraFlying()) {
+                    movementSpeed.applyNonPersistentModifier(RankineAttributes.ROMAN_CONCRETE_MS);
+                }
             } else if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/roman_concrete")) && movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS) && ground != Blocks.AIR) {
-                movementSpeed.removeModifier(RankineAttributes.ROMAN_CONCRETE_MS);
+                    movementSpeed.removeModifier(RankineAttributes.ROMAN_CONCRETE_MS);
             }
         }
         if (ground == Blocks.ICE) {
-            if (new Random().nextFloat() < Config.ICE_BREAK.get() && !(EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0)) {
+            if (new Random().nextFloat() < Config.GENERAL.ICE_BREAK.get() && !(EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0)) {
                 for (BlockPos B : BlockPos.getAllInBoxMutable(pos.add(-2, -1, -2), pos.add(2, -1, 2))) {
                     if (world.getBlockState(B).getBlock() == Blocks.ICE) {
                         world.setBlockState(B, Blocks.FROSTED_ICE.getDefaultState().with(FrostedIceBlock.AGE, 2));
@@ -554,7 +578,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onFluidInteraction(BlockEvent.FluidPlaceBlockEvent event)
     {
-        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
+        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
         {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
@@ -637,7 +661,7 @@ public class RankineEventHandler {
                     event.setNewState(RankineBlocks.PURPLE_PORPHYRY.get().getDefaultState());
                     break;
             }
-        } else if (event.getState() == Blocks.BASALT.getDefaultState() && Config.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
+        } else if (event.getState() == Blocks.BASALT.getDefaultState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
         {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
@@ -701,7 +725,7 @@ public class RankineEventHandler {
                     event.setNewState(Blocks.ANDESITE.getDefaultState());
                     break;
             }
-        } else if (event.getState() == Blocks.STONE.getDefaultState() && Config.METAMORPHIC_STONE_GEN.get()) { // Change to metamorphic gen
+        } else if (event.getState() == Blocks.STONE.getDefaultState() && Config.GENERAL.METAMORPHIC_STONE_GEN.get()) { // Change to metamorphic gen
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
@@ -824,146 +848,146 @@ public class RankineEventHandler {
     
     @SubscribeEvent
     public static void onToolUse(BlockEvent.BlockToolInteractEvent event) {
-        if (Config.DISABLE_WOODEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setCanceled(true); }
-        if (Config.DISABLE_WOODEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setCanceled(true); }
-        if (Config.DISABLE_WOODEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setCanceled(true); }
-        if (Config.DISABLE_WOODEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_PICKAXE) { event.setCanceled(true); }
-        if (Config.DISABLE_WOODEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_HOE) { event.setCanceled(true); }
-        if (Config.DISABLE_STONE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SWORD) { event.setCanceled(true); }
-        if (Config.DISABLE_STONE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_AXE) { event.setCanceled(true); }
-        if (Config.DISABLE_STONE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SHOVEL) { event.setCanceled(true); }
-        if (Config.DISABLE_STONE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_PICKAXE) { event.setCanceled(true); }
-        if (Config.DISABLE_STONE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_HOE) { event.setCanceled(true); }
-        if (Config.DISABLE_IRON_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SWORD) { event.setCanceled(true); }
-        if (Config.DISABLE_IRON_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_AXE) { event.setCanceled(true); }
-        if (Config.DISABLE_IRON_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SHOVEL) { event.setCanceled(true); }
-        if (Config.DISABLE_IRON_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_PICKAXE) { event.setCanceled(true); }
-        if (Config.DISABLE_IRON_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_HOE) { event.setCanceled(true); }
-        if (Config.DISABLE_GOLDEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) { event.setCanceled(true); }
-        if (Config.DISABLE_GOLDEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_AXE) { event.setCanceled(true); }
-        if (Config.DISABLE_GOLDEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SHOVEL) { event.setCanceled(true); }
-        if (Config.DISABLE_GOLDEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_PICKAXE) { event.setCanceled(true); }
-        if (Config.DISABLE_GOLDEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_HOE) { event.setCanceled(true); }
-        if (Config.DISABLE_DIAMOND_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SWORD) { event.setCanceled(true); }
-        if (Config.DISABLE_DIAMOND_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_AXE) { event.setCanceled(true); }
-        if (Config.DISABLE_DIAMOND_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SHOVEL) { event.setCanceled(true); }
-        if (Config.DISABLE_DIAMOND_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_PICKAXE) { event.setCanceled(true); }
-        if (Config.DISABLE_DIAMOND_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_HOE) { event.setCanceled(true); }
-        if (Config.DISABLE_NETHERITE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SWORD) { event.setCanceled(true); }
-        if (Config.DISABLE_NETHERITE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_AXE) { event.setCanceled(true); }
-        if (Config.DISABLE_NETHERITE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setCanceled(true); }
-        if (Config.DISABLE_NETHERITE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setCanceled(true); }
-        if (Config.DISABLE_NETHERITE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_WOODEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_WOODEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_WOODEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_WOODEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_PICKAXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_WOODEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_HOE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_STONE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SWORD) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_STONE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_AXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_STONE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SHOVEL) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_STONE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_PICKAXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_STONE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_HOE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_IRON_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SWORD) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_IRON_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_AXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_IRON_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SHOVEL) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_IRON_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_PICKAXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_IRON_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_HOE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_GOLDEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_GOLDEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_AXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_GOLDEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SHOVEL) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_GOLDEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_PICKAXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_GOLDEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_HOE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_DIAMOND_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SWORD) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_DIAMOND_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_AXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_DIAMOND_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SHOVEL) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_DIAMOND_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_PICKAXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_DIAMOND_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_HOE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_NETHERITE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SWORD) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_NETHERITE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_AXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_NETHERITE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_NETHERITE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setCanceled(true); }
+        if (Config.GENERAL.DISABLE_NETHERITE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setCanceled(true); }
     }
 
     @SubscribeEvent
     public static void onBlockBreak(PlayerEvent.BreakSpeed event)
     {
-        if (!(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && event.getState().getBlock().getTags().contains(new ResourceLocation("minecraft/logs")) && Config.MANDATORY_AXE.get()) { event.setNewSpeed(0f); }
+        if (!(event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof AxeItem) && event.getState().getBlock().getTags().contains(new ResourceLocation("minecraft/logs")) && Config.GENERAL.MANDATORY_AXE.get()) { event.setNewSpeed(0f); }
         if (event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof HammerItem) { event.setNewSpeed(0f); }
         
-        if (Config.DISABLE_WOODEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_WOODEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_WOODEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_WOODEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_WOODEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_HOE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_STONE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SWORD) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_STONE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_AXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_STONE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_STONE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_STONE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_HOE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_IRON_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SWORD) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_IRON_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_AXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_IRON_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_IRON_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_IRON_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_HOE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_GOLDEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_GOLDEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_AXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_GOLDEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_GOLDEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_GOLDEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_HOE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_DIAMOND_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SWORD) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_DIAMOND_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_AXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_DIAMOND_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_DIAMOND_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_DIAMOND_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_HOE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_NETHERITE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SWORD) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_NETHERITE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_AXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_NETHERITE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_NETHERITE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setNewSpeed(0f); }
-        if (Config.DISABLE_NETHERITE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_WOODEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_WOODEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_WOODEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_WOODEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_PICKAXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_WOODEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_HOE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_STONE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SWORD) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_STONE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_AXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_STONE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SHOVEL) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_STONE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_PICKAXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_STONE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_HOE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_IRON_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SWORD) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_IRON_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_AXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_IRON_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SHOVEL) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_IRON_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_PICKAXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_IRON_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_HOE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_GOLDEN_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_GOLDEN_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_AXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_GOLDEN_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SHOVEL) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_GOLDEN_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_PICKAXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_GOLDEN_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_HOE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_DIAMOND_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SWORD) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_DIAMOND_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_AXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_DIAMOND_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SHOVEL) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_DIAMOND_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_PICKAXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_DIAMOND_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_HOE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_NETHERITE_SWORD.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SWORD) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_NETHERITE_AXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_AXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_NETHERITE_SHOVEL.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_NETHERITE_PICKAXE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setNewSpeed(0f); }
+        if (Config.GENERAL.DISABLE_NETHERITE_HOE.get() && event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setNewSpeed(0f); }
     }
 
     @SubscribeEvent
     public static void onDamageEntity(LivingDamageEvent event) {
         if (event.getSource().getTrueSource() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getSource().getTrueSource();
-            if (Config.DISABLE_WOODEN_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setAmount(1f); }
-            if (Config.DISABLE_WOODEN_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setAmount(1f); }
-            if (Config.DISABLE_WOODEN_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setAmount(1f); }
-            if (Config.DISABLE_WOODEN_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_PICKAXE) { event.setAmount(1f); }
-            if (Config.DISABLE_WOODEN_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_HOE) { event.setAmount(1f); }
-            if (Config.DISABLE_STONE_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SWORD) { event.setAmount(1f); }
-            if (Config.DISABLE_STONE_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_AXE) { event.setAmount(1f); }
-            if (Config.DISABLE_STONE_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SHOVEL) { event.setAmount(1f); }
-            if (Config.DISABLE_STONE_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_PICKAXE) { event.setAmount(1f); }
-            if (Config.DISABLE_STONE_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_HOE) { event.setAmount(1f); }
-            if (Config.DISABLE_IRON_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SWORD) { event.setAmount(1f); }
-            if (Config.DISABLE_IRON_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_AXE) { event.setAmount(1f); }
-            if (Config.DISABLE_IRON_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SHOVEL) { event.setAmount(1f); }
-            if (Config.DISABLE_IRON_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_PICKAXE) { event.setAmount(1f); }
-            if (Config.DISABLE_IRON_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_HOE) { event.setAmount(1f); }
-            if (Config.DISABLE_GOLDEN_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) { event.setAmount(1f); }
-            if (Config.DISABLE_GOLDEN_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_AXE) { event.setAmount(1f); }
-            if (Config.DISABLE_GOLDEN_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SHOVEL) { event.setAmount(1f); }
-            if (Config.DISABLE_GOLDEN_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_PICKAXE) { event.setAmount(1f); }
-            if (Config.DISABLE_GOLDEN_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_HOE) { event.setAmount(1f); }
-            if (Config.DISABLE_DIAMOND_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SWORD) { event.setAmount(1f); }
-            if (Config.DISABLE_DIAMOND_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_AXE) { event.setAmount(1f); }
-            if (Config.DISABLE_DIAMOND_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SHOVEL) { event.setAmount(1f); }
-            if (Config.DISABLE_DIAMOND_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_PICKAXE) { event.setAmount(1f); }
-            if (Config.DISABLE_DIAMOND_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_HOE) { event.setAmount(1f); }
-            if (Config.DISABLE_NETHERITE_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SWORD) { event.setAmount(1f); }
-            if (Config.DISABLE_NETHERITE_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_AXE) { event.setAmount(1f); }
-            if (Config.DISABLE_NETHERITE_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setAmount(1f); }
-            if (Config.DISABLE_NETHERITE_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setAmount(1f); }
-            if (Config.DISABLE_NETHERITE_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_WOODEN_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SWORD) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_WOODEN_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_AXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_WOODEN_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_SHOVEL) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_WOODEN_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_PICKAXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_WOODEN_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.WOODEN_HOE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_STONE_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SWORD) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_STONE_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_AXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_STONE_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_SHOVEL) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_STONE_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_PICKAXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_STONE_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.STONE_HOE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_IRON_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SWORD) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_IRON_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_AXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_IRON_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_SHOVEL) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_IRON_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_PICKAXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_IRON_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.IRON_HOE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_GOLDEN_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SWORD) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_GOLDEN_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_AXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_GOLDEN_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_SHOVEL) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_GOLDEN_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_PICKAXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_GOLDEN_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.GOLDEN_HOE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_DIAMOND_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SWORD) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_DIAMOND_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_AXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_DIAMOND_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_SHOVEL) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_DIAMOND_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_PICKAXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_DIAMOND_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.DIAMOND_HOE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_NETHERITE_SWORD.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SWORD) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_NETHERITE_AXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_AXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_NETHERITE_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_NETHERITE_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setAmount(1f); }
+            if (Config.GENERAL.DISABLE_NETHERITE_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setAmount(1f); }
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onTooltipCheck(ItemTooltipEvent event) {
-        if (Config.DISABLE_WOODEN_SWORD.get() && event.getItemStack().getItem() == Items.WOODEN_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_WOODEN_AXE.get() && event.getItemStack().getItem() == Items.WOODEN_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_WOODEN_SHOVEL.get() && event.getItemStack().getItem() == Items.WOODEN_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_WOODEN_PICKAXE.get() && event.getItemStack().getItem() == Items.WOODEN_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_WOODEN_HOE.get() && event.getItemStack().getItem() == Items.WOODEN_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_STONE_SWORD.get() && event.getItemStack().getItem() == Items.STONE_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_STONE_AXE.get() && event.getItemStack().getItem() == Items.STONE_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_STONE_SHOVEL.get() && event.getItemStack().getItem() == Items.STONE_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_STONE_PICKAXE.get() && event.getItemStack().getItem() == Items.STONE_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_STONE_HOE.get() && event.getItemStack().getItem() == Items.STONE_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_IRON_SWORD.get() && event.getItemStack().getItem() == Items.IRON_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_IRON_AXE.get() && event.getItemStack().getItem() == Items.IRON_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_IRON_SHOVEL.get() && event.getItemStack().getItem() == Items.IRON_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_IRON_PICKAXE.get() && event.getItemStack().getItem() == Items.IRON_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_IRON_HOE.get() && event.getItemStack().getItem() == Items.IRON_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_GOLDEN_SWORD.get() && event.getItemStack().getItem() == Items.GOLDEN_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_GOLDEN_AXE.get() && event.getItemStack().getItem() == Items.GOLDEN_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_GOLDEN_SHOVEL.get() && event.getItemStack().getItem() == Items.GOLDEN_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_GOLDEN_PICKAXE.get() && event.getItemStack().getItem() == Items.GOLDEN_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_GOLDEN_HOE.get() && event.getItemStack().getItem() == Items.GOLDEN_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_DIAMOND_SWORD.get() && event.getItemStack().getItem() == Items.DIAMOND_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_DIAMOND_AXE.get() && event.getItemStack().getItem() == Items.DIAMOND_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_DIAMOND_SHOVEL.get() && event.getItemStack().getItem() == Items.DIAMOND_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_DIAMOND_PICKAXE.get() && event.getItemStack().getItem() == Items.DIAMOND_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_DIAMOND_HOE.get() && event.getItemStack().getItem() == Items.DIAMOND_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_NETHERITE_SWORD.get() && event.getItemStack().getItem() == Items.NETHERITE_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_NETHERITE_AXE.get() && event.getItemStack().getItem() == Items.NETHERITE_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_NETHERITE_SHOVEL.get() && event.getItemStack().getItem() == Items.NETHERITE_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_NETHERITE_PICKAXE.get() && event.getItemStack().getItem() == Items.NETHERITE_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
-        if (Config.DISABLE_NETHERITE_HOE.get() && event.getItemStack().getItem() == Items.NETHERITE_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_WOODEN_SWORD.get() && event.getItemStack().getItem() == Items.WOODEN_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_WOODEN_AXE.get() && event.getItemStack().getItem() == Items.WOODEN_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_WOODEN_SHOVEL.get() && event.getItemStack().getItem() == Items.WOODEN_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_WOODEN_PICKAXE.get() && event.getItemStack().getItem() == Items.WOODEN_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_WOODEN_HOE.get() && event.getItemStack().getItem() == Items.WOODEN_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_STONE_SWORD.get() && event.getItemStack().getItem() == Items.STONE_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_STONE_AXE.get() && event.getItemStack().getItem() == Items.STONE_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_STONE_SHOVEL.get() && event.getItemStack().getItem() == Items.STONE_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_STONE_PICKAXE.get() && event.getItemStack().getItem() == Items.STONE_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_STONE_HOE.get() && event.getItemStack().getItem() == Items.STONE_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_IRON_SWORD.get() && event.getItemStack().getItem() == Items.IRON_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_IRON_AXE.get() && event.getItemStack().getItem() == Items.IRON_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_IRON_SHOVEL.get() && event.getItemStack().getItem() == Items.IRON_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_IRON_PICKAXE.get() && event.getItemStack().getItem() == Items.IRON_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_IRON_HOE.get() && event.getItemStack().getItem() == Items.IRON_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_GOLDEN_SWORD.get() && event.getItemStack().getItem() == Items.GOLDEN_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_GOLDEN_AXE.get() && event.getItemStack().getItem() == Items.GOLDEN_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_GOLDEN_SHOVEL.get() && event.getItemStack().getItem() == Items.GOLDEN_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_GOLDEN_PICKAXE.get() && event.getItemStack().getItem() == Items.GOLDEN_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_GOLDEN_HOE.get() && event.getItemStack().getItem() == Items.GOLDEN_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_DIAMOND_SWORD.get() && event.getItemStack().getItem() == Items.DIAMOND_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_DIAMOND_AXE.get() && event.getItemStack().getItem() == Items.DIAMOND_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_DIAMOND_SHOVEL.get() && event.getItemStack().getItem() == Items.DIAMOND_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_DIAMOND_PICKAXE.get() && event.getItemStack().getItem() == Items.DIAMOND_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_DIAMOND_HOE.get() && event.getItemStack().getItem() == Items.DIAMOND_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_NETHERITE_SWORD.get() && event.getItemStack().getItem() == Items.NETHERITE_SWORD) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_NETHERITE_AXE.get() && event.getItemStack().getItem() == Items.NETHERITE_AXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_NETHERITE_SHOVEL.get() && event.getItemStack().getItem() == Items.NETHERITE_SHOVEL) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_NETHERITE_PICKAXE.get() && event.getItemStack().getItem() == Items.NETHERITE_PICKAXE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
+        if (Config.GENERAL.DISABLE_NETHERITE_HOE.get() && event.getItemStack().getItem() == Items.NETHERITE_HOE) { event.getToolTip().add(new StringTextComponent("This tool is disabled in the config.").mergeStyle(TextFormatting.RED)); }
     }
 
 /*
@@ -1032,7 +1056,7 @@ public class RankineEventHandler {
         BlockState oldBlock = event.getWorld().getBlockState(event.getPos());
 
         BlockState newBlock = null;
-        if (Config.COLOR_WORLD.get() && !event.getWorld().isRemote()) {
+        if (Config.GENERAL.COLOR_WORLD.get() && !event.getWorld().isRemote()) {
             if (hand.contains(new ResourceLocation("forge:dyes/red"))) {
                 if (target.contains(new ResourceLocation("rankine:leds"))) {
                     newBlock = RankineBlocks.RED_LED.get().getDefaultState().with(LEDBlock.LIT, oldBlock.get(LEDBlock.LIT));
@@ -1040,6 +1064,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.RED_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.RED_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.RED_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.RED_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1058,6 +1084,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.ORANGE_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.ORANGE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.ORANGE_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.ORANGE_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1076,6 +1104,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.YELLOW_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.YELLOW_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.YELLOW_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.YELLOW_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1094,6 +1124,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.LIME_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.LIME_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.LIME_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.LIME_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1112,6 +1144,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.GREEN_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.GREEN_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.GREEN_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.GREEN_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1130,6 +1164,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.CYAN_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.CYAN_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.CYAN_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.CYAN_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1148,6 +1184,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.BLUE_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.BLUE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.BLUE_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.BLUE_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1166,6 +1204,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.LIGHT_BLUE_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.LIGHT_BLUE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.LIGHT_BLUE_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.LIGHT_BLUE_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1184,6 +1224,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.MAGENTA_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.MAGENTA_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.MAGENTA_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.MAGENTA_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1202,6 +1244,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.PURPLE_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.PURPLE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.PURPLE_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.PURPLE_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1220,6 +1264,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.PINK_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.PINK_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.PINK_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.PINK_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1238,6 +1284,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.BROWN_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.BROWN_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.BROWN_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.BROWN_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:eglass_panes"))) {
@@ -1256,6 +1304,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.BLACK_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.BLACK_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.BLACK_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.BLACK_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1274,6 +1324,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.WHITE_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.WHITE_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.WHITE_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.WHITE_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1292,6 +1344,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.GRAY_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.GRAY_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.GRAY_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.GRAY_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1310,6 +1364,8 @@ public class RankineEventHandler {
                     newBlock = Blocks.LIGHT_GRAY_CONCRETE.getDefaultState();
                 } else if (target.contains(new ResourceLocation("minecraft:wool"))) {
                     newBlock = Blocks.LIGHT_GRAY_WOOL.getDefaultState();
+                } else if (target.contains(new ResourceLocation("forge:mineral_wool"))) {
+                    newBlock = RankineBlocks.LIGHT_GRAY_MINERAL_WOOL.get().getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass"))) {
                     newBlock = Blocks.LIGHT_GRAY_STAINED_GLASS.getDefaultState();
                 } else if (target.contains(new ResourceLocation("forge:glass_panes"))) {
@@ -1372,7 +1428,7 @@ public class RankineEventHandler {
         BlockPos blockpos1 = event.getPos().offset(event.getFace());
         if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
             if (world.getBlockState(pos) == RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, false)) {
-                for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0,-Config.CHARCOAL_PIT_HEIGHT.get(),0), pos.add(0, Config.CHARCOAL_PIT_HEIGHT.get(),0))) {
+                for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0,-Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(),0), pos.add(0, Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(),0))) {
                     if (world.getBlockState(blockpos).getBlock() == RankineBlocks.CHARCOAL_PIT.get() && !world.isRemote) {
                         world.setBlockState(blockpos, world.getBlockState(blockpos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
                     }
@@ -1410,7 +1466,7 @@ public class RankineEventHandler {
         Block target = worldIn.getBlockState(pos).getBlock();
         if (target.getTags().contains(new ResourceLocation("rankine:nugget_stones"))) {
             BlockPos foundPos = null;
-            for (int x = 1; x < Config.NUGGET_DISTANCE.get(); x++) {
+            for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
                 if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOreBlock) {
                     foundPos = pos.down(x);
                 } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOreBlock) {
@@ -1424,7 +1480,7 @@ public class RankineEventHandler {
                 } else if (worldIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOreBlock) {
                     foundPos = pos.west(x);
                 }
-                if (foundPos != null && new Random().nextFloat() < Config.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode) {
+                if (foundPos != null && new Random().nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode) {
                     Block b = worldIn.getBlockState(foundPos).getBlock();
                     ItemStack nug = null;
                     if (b == RankineBlocks.MAGNETITE_ORE.get()) {
@@ -1528,7 +1584,7 @@ public class RankineEventHandler {
         if (!player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
                 if ( player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
-                    if (CHANCE < Config.FLINT_DROP_CHANCE.get()) {
+                    if (CHANCE < Config.GENERAL.FLINT_DROP_CHANCE.get()) {
                         double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
                         double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
                         double d2 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
@@ -1578,7 +1634,7 @@ public class RankineEventHandler {
                             break;
                     }
 
-                    if (CHANCE < Config.FORAGING_CHANCE.get())
+                    if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get())
                     {
                         FOOD = new ItemStack(possibleItems.get(event.getWorld().getRandom().nextInt(possibleItems.size())));
                     } else {
@@ -1593,11 +1649,11 @@ public class RankineEventHandler {
                 }
                 else if (player.getHeldItem(Hand.MAIN_HAND).isEmpty() || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
                     ItemStack FOOD;
-                    if (CHANCE < Config.FORAGING_CHANCE.get() * 0.3) {
+                    if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get() * 0.3) {
                         FOOD = new ItemStack(Items.POTATO,1);
-                    } else if (CHANCE < Config.FORAGING_CHANCE.get() * 0.6) {
+                    } else if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get() * 0.6) {
                         FOOD = new ItemStack(Items.CARROT,1);
-                    } else if (CHANCE < Config.FORAGING_CHANCE.get()) {
+                    } else if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get()) {
                         FOOD = new ItemStack(Items.BEETROOT,1);
                     } else {
                         return;

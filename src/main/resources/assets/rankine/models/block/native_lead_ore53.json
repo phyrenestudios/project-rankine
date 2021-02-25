@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/create_textures/dolomite",
+    "base": "rankine:block/meteorite",
     "overlay": "rankine:block/native_lead_ore",
-    "particle": "rankine:block/create_textures/dolomite"
+    "particle": "rankine:block/meteorite"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

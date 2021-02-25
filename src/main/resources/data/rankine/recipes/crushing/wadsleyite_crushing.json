@@ -25,8 +25,8 @@
   },
   "output5": {
     "item": "rankine:silicon",
-    "chance": 0.01,
-    "additional": 0.04
+    "chance": 0.20,
+    "additional": 0.30
   },
   "output6": {
     "item": "rankine:magnesium_nugget",

@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/quark_textures/slate",
+    "base": "rankine:block/create_textures/scoria",
     "overlay": "rankine:block/native_arsenic_ore",
-    "particle": "rankine:block/quark_textures/slate"
+    "particle": "rankine:block/create_textures/scoria"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

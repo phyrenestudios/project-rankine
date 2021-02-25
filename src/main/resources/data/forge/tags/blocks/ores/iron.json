@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "rankine:magnetite_ore"
+    "rankine:magnetite_ore",
+    "rankine:kamacite_ore",
+    "rankine:taenite_ore",
+    "rankine:tetrataenite_ore",
+    "rankine:antitaenite_ore"
   ]
 }

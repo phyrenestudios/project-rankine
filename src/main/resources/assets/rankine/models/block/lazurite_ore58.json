@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/quark_textures/jasper",
+    "base": "rankine:block/create_textures/gabbro",
     "overlay": "rankine:block/lazurite_ore",
-    "particle": "rankine:block/quark_textures/jasper"
+    "particle": "rankine:block/create_textures/gabbro"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

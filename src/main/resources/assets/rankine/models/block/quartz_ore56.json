@@ -1,9 +1,9 @@
 {
   "parent": "block/block",
   "textures": {
-    "base": "rankine:block/quark_textures/limestone",
+    "base": "rankine:block/create_textures/limestone",
     "overlay": "rankine:block/quartz_ore",
-    "particle": "rankine:block/quark_textures/limestone"
+    "particle": "rankine:block/create_textures/limestone"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

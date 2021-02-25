@@ -1,0 +1,30 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:taenite_ore"
+  },
+  "output2": {
+    "item": "rankine:meteoric_iron",
+    "alloyData": "60Fe-40Ni",
+    "chance": 1
+  },
+  "output3": {
+    "item": "rankine:copper_nugget",
+    "chance": 0.4,
+    "additional": 0.1
+  },
+  "output4": {
+    "item": "rankine:germanium_nugget",
+    "chance": 0.2,
+    "additional": 0.1
+  },
+  "output5": {
+    "item": "rankine:cobalt_nugget",
+    "chance": 0.2,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:chromium_nugget",
+    "chance": 0.1
+  }
+}
