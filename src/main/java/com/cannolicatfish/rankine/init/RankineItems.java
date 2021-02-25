@@ -1398,7 +1398,6 @@ public class RankineItems {
     public static final RegistryObject<Item> TUNGSTEN_HEAVY_ALLOY_BLOCK = REGISTRY.register("tungsten_heavy_alloy_block", () -> new BlockItem(RankineBlocks.TUNGSTEN_HEAVY_ALLOY_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
     //Components
-    public static final RegistryObject<Item> INDIUM_TIN_OXIDE = REGISTRY.register("indium_tin_oxide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> CAST_IRON_ROD = REGISTRY.register("cast_iron_rod", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> STEEL_ROD = REGISTRY.register("steel_rod", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> GRAPHITE_ELECTRODE = REGISTRY.register("graphite_electrode", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));

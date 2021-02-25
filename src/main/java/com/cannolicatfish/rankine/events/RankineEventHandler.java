@@ -28,6 +28,7 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -47,6 +48,7 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -61,6 +63,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -812,13 +815,11 @@ public class RankineEventHandler {
         }
     }
 
-    /*
-        private static final String NBT_KEY = "rankine.firstjoin";
-        @SubscribeEvent
-        public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-            if (!Config.STARTING_BOOK.get()) {
-                return;
-            }
+
+    private static final String NBT_KEY = "rankine.firstjoin";
+    @SubscribeEvent
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (Config.GENERAL.STARTING_BOOK.get()) {
 
             CompoundNBT data = event.getPlayer().getPersistentData();
             CompoundNBT persistent;
@@ -830,10 +831,14 @@ public class RankineEventHandler {
 
             if (!persistent.hasUniqueId(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
-                event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
+                event.getPlayer().addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
+                event.getPlayer().addItemStackToInventory(new ItemStack(RankineItems.ROPE.get(),5));
             }
+            event.getPlayer().addItemStackToInventory(new ItemStack(RankineItems.ACANTHITE.get(),7));
+
         }
-     */
+    }
+
 
 
     @SubscribeEvent
