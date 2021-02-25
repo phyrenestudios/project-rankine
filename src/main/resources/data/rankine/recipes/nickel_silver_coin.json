@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:nickel_silver_alloy"
+    }
+  ],
+  "result": {
+    "item": "rankine:coin",
+    "count": 2
+  }
+}

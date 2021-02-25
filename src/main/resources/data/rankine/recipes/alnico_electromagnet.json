@@ -10,10 +10,10 @@
       "item": "rankine:alnico_alloy"
     },
     "w": {
-      "item": "rankine:copper_wire"
+      "item": "rankine:alloy_wire"
     },
     "r": {
-      "item": "rankine:battery0"
+      "item": "rankine:power_cell_2"
     }
   },
   "result": {

@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -169,7 +170,10 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
         {
-            stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy)));
+            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+            if (enchLvl > 0) {
+                stack.addEnchantment(e,enchLvl);
+            }
         }
         super.onCreated(stack, worldIn, playerIn);
     }
@@ -180,7 +184,10 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
             ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()),this.getItem());
             for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
             {
-                stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy)));
+                int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+                if (enchLvl > 0) {
+                    stack.addEnchantment(e,enchLvl);
+                }
             }
             items.add(stack);
         }
@@ -194,5 +201,26 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
     @Override
     public AlloyUtils returnAlloyUtils() {
         return this.alloy;
+    }
+
+    @Override
+    public ActionResultType onItemUse(ItemUseContext context) {
+        if (context.getPlayer() != null && context.getPlayer().isCrouching() && context.getWorld().getBlockState(context.getPos()).getBlock() instanceof AnvilBlock) {
+            World worldIn = context.getWorld();
+            BlockPos pos = context.getPos();
+            BlockState anvil = worldIn.getBlockState(pos);
+            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (getAlloyDurability(returnCompositionString(context.getItem(),this.alloy),this.alloy) - context.getItem().getDamage()) >= 100) {
+                worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                return ActionResultType.PASS;
+            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(returnCompositionString(context.getItem(),this.alloy),this.alloy) - context.getItem().getDamage()) >= 100) {
+                worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
+                worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+                context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+                return ActionResultType.PASS;
+            }
+        }
+        return ActionResultType.FAIL;
     }
 }

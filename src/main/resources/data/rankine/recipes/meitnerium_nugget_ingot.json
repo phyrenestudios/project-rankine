@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:nuggets/meitnerium"
+    }
+  },
+  "result": {
+    "item": "rankine:meitnerium_ingot",
+    "count": 1
+  }
+}

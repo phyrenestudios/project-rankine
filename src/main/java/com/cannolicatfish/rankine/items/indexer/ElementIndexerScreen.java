@@ -69,7 +69,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Corrosion Resistance: "+ df.format(corr * 100) + "%",12,102,(corr > 0 ? 0x55FF55 : corr < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Heat Resistance: "+ df.format(heat * 100) + "%",12,114,(heat > 0 ? 0x55FF55 : heat < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness: "+ df.format(tough * 100) + "%",12,126,(tough > 0 ? 0x55FF55 : tough < 0 ? 0xFF5555 : 0xffffff));
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ elec +"V",110,126,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ elec +"V",110,126,0x55FFFF);
         } else
         {
             //drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,"MATERIALNAME",88,12,0xffffff);
@@ -82,7 +82,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Corrosion Resistance:",12,102,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Heat Resistance:",12,114,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness:",12,126,0xffffff);
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E:",110,126,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E:",110,126,0x55FFFF);
         }
 
     }

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dcd",
+    "dsd",
+    "drd"
+  ],
+  "key": {
+    "d": {
+      "item": "rankine:duralumin_alloy"
+    },
+    "c": {
+      "item": "rankine:cadmium_telluride_cell"
+    },
+    "r": {
+      "item": "minecraft:redstone_block"
+    },
+    "s": {
+      "item": "rankine:silicon_carbide_block"
+    }
+  },
+  "result": {
+    "item": "rankine:pcf",
+    "count": 1
+  }
+}

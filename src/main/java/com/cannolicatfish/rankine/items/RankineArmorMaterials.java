@@ -16,6 +16,12 @@ import java.util.function.Supplier;
 public enum RankineArmorMaterials implements IArmorMaterial {
     BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> {
         return Ingredient.fromItems(Items.LEATHER, RankineItems.STEEL_ALLOY.get());
+    }),
+    DIVING("rankine:diving", 10, new int[]{2, 4, 5, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
+        return Ingredient.fromItems(RankineItems.BRASS_ALLOY.get());
+    }),
+    CONDUIT_DIVING("rankine:conduit_diving", 24, new int[]{3, 5, 6, 3}, 16, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0.0F, 0.1F, () -> {
+        return Ingredient.fromItems(Items.PRISMARINE,Items.PRISMARINE_CRYSTALS,Items.CONDUIT);
     });
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};

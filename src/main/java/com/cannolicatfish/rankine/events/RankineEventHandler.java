@@ -28,7 +28,10 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
@@ -89,7 +92,6 @@ public class RankineEventHandler {
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COPPER_INGOT.get(), 4), new ItemStack(Items.EMERALD),12,2,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.METEORIC_IRON.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add(new BasicTrade(1, new ItemStack(RankineItems.TRIPLE_ALLOY_TEMPLATE.get()),12,5,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MANGANESE_INGOT.get(), 2),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MOLYBDENUM_INGOT.get(), 2),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.VANADIUM_INGOT.get(), 2),12,10,0.05f));
@@ -169,7 +171,28 @@ public class RankineEventHandler {
 
     }
 
-    
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        if (player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.DIVING_HELMET.get()) {
+            int headSlot = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.DIVING_HELMET.get() ? 1 : 0;
+            int chestSlot = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == RankineItems.DIVING_CHESTPLATE.get() ? 1 : 0;
+            int legsSlot = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == RankineItems.DIVING_LEGGINGS.get() ? 1 : 0;
+            int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.DIVING_BOOTS.get() ? 1 : 0;
+
+            if (!player.isInWater()) {
+                player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200 * (headSlot+chestSlot+legsSlot+feetSlot), 0, false, false, true));
+            }
+        } else if (player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.CONDUIT_DIVING_HELMET.get() && !player.areEyesInFluid(FluidTags.WATER) && player.isInWater()) {
+            int headSlot = player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.CONDUIT_DIVING_HELMET.get() ? 1 : 0;
+            int chestSlot = player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() == RankineItems.CONDUIT_DIVING_CHESTPLATE.get() ? 1 : 0;
+            int legsSlot = player.getItemStackFromSlot(EquipmentSlotType.LEGS).getItem() == RankineItems.CONDUIT_DIVING_LEGGINGS.get() ? 1 : 0;
+            int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.CONDUIT_DIVING_BOOTS.get() ? 1 : 0;
+
+            player.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 400 * (headSlot+chestSlot+legsSlot+feetSlot), 0, false, false, true));
+        }
+    }
+
 
     @SubscribeEvent
     public static void addWandererTrades(WandererTradesEvent event)
@@ -839,9 +862,17 @@ public class RankineEventHandler {
                     alloyTool.getAlloyAttackSpeed(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils()),
                     AttributeModifier.Operation.ADDITION));
         }
-        if ((stack.getItem() instanceof HammerItem) && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING,stack) > 0 && event.getSlotType() == EquipmentSlotType.MAINHAND) {
-            event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc3"), "Rankine Swing modifier",
-                    0.5D * EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING,stack),
+        if ((stack.getItem() instanceof HammerItem)) {
+            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING,stack) > 0 && event.getSlotType() == EquipmentSlotType.MAINHAND) {
+                event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc3"), "Rankine Swing modifier",
+                        0.5D * EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING,stack),
+                        AttributeModifier.Operation.ADDITION));
+            }
+        }
+
+        if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ANTIQUATED,stack) > 0 && (event.getSlotType() == EquipmentSlotType.MAINHAND || event.getSlotType() == EquipmentSlotType.OFFHAND)) {
+            event.addModifier(Attributes.LUCK, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fd1"), "Rankine Antiquated modifier",
+                    EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ANTIQUATED,stack),
                     AttributeModifier.Operation.ADDITION));
         }
     }

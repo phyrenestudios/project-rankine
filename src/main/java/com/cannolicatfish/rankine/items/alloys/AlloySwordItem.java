@@ -107,7 +107,10 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
         {
-            stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy)));
+            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+            if (enchLvl > 0) {
+                stack.addEnchantment(e,enchLvl);
+            }
         }
         super.onCreated(stack, worldIn, playerIn);
     }
@@ -118,7 +121,10 @@ public class AlloySwordItem extends SwordItem implements IAlloyTool {
             ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()),this.getItem());
             for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
             {
-                stack.addEnchantment(e,alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy)));
+                int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+                if (enchLvl > 0) {
+                    stack.addEnchantment(e,enchLvl);
+                }
             }
             items.add(stack);
         }

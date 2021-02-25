@@ -3,7 +3,7 @@
   "pattern":
   [
     "ppp",
-    "r s",
+    "res",
     "ppp"
   ],
   "key":
@@ -19,6 +19,10 @@
     "s":
     {
       "item": "rankine:sapphire"
+    },
+    "e":
+    {
+      "item": "rankine:element_transmuter"
     }
   },
   "result":

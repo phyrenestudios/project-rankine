@@ -12,12 +12,12 @@ public class RankineSetup {
 
     public ItemGroup rankineMetals = new ItemGroup("rankine_metallurgy") {
         @Override
-        public ItemStack createIcon() { return new ItemStack(RankineItems.NIOBIUM_INGOT.get()); }
+        public ItemStack createIcon() { return new ItemStack(RankineItems.CINNABAR_ORE.get()); }
     };
 
     public ItemGroup rankineElements = new ItemGroup("rankine_elements") {
         @Override
-        public ItemStack createIcon() { return new ItemStack(RankineItems.ELEMENT.get()); }
+        public ItemStack createIcon() { return new ItemStack(RankineItems.NIOBIUM_INGOT.get()); }
     };
 
     public ItemGroup rankineTools = new ItemGroup("rankine_misc") {

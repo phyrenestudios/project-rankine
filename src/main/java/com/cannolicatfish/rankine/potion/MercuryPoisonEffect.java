@@ -30,27 +30,20 @@ public class MercuryPoisonEffect extends Effect {
 
     @Override
     public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
-        Random rand = new Random();
-        if (entityLivingBaseIn instanceof CreeperEntity)
-        {
-            ((CreeperEntity)entityLivingBaseIn).ignite();
-        }
-        else if (entityLivingBaseIn instanceof PlayerEntity)
-        {
 
+        if (entityLivingBaseIn instanceof PlayerEntity)
+        {
             PlayerEntity player = ((PlayerEntity)entityLivingBaseIn);
-            if (rand.nextFloat() < .25f)
-            {
-                player.swingArm(Hand.MAIN_HAND);
-                player.addExhaustion(0.05f);
 
-            } else if (rand.nextFloat() < .1f && player.isOnGround())
+            if (player.isSprinting() || player.isSwimming() || player.isSwingInProgress)
             {
-                player.jump();
+                player.addExhaustion(0.05f * amplifier);
             }
 
         }
     }
+
+
 
     @Override
     public boolean isReady(int duration, int amplifier) {

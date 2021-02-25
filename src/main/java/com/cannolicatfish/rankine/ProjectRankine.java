@@ -28,6 +28,7 @@ import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.POIFixer;
+import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
@@ -43,6 +44,8 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.PointOfInterestType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.*;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -128,6 +131,7 @@ public class ProjectRankine {
     public static class RegistryEvents {
 
         @SubscribeEvent
+        @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
@@ -142,11 +146,9 @@ public class ProjectRankine {
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HOE::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_SPEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HAMMER::get);
+            event.getItemColors().register(new TemplateItemColor(), RankineItems.ALLOY_TEMPLATE::get);
         }
 
-        @SubscribeEvent
-        public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
-        }
 
         @SubscribeEvent
         public static void onPOIRegistry(final RegistryEvent.Register<PointOfInterestType> event) {
@@ -203,6 +205,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.ALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.STAINLESS_STEEL_SPEAR);
             event.getRegistry().register(RankineEntityTypes.THORIUM_ARROW);
+            event.getRegistry().register(RankineEntityTypes.MAGNESIUM_ARROW);
             event.getRegistry().register(RankineEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
             event.getRegistry().register(RankineEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
@@ -247,6 +250,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.THORIUM_ARROW,ThoriumArrowRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MAGNESIUM_ARROW,MagnesiumArrowRenderer.instance);
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
@@ -292,14 +296,16 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void registerEffects(final RegistryEvent.Register<Effect> event) {
             event.getRegistry().registerAll(
-                    ModEffects.MERCURY_POISONING
+                    ModEffects.MERCURY_POISONING,
+                    ModEffects.CONDUCTIVE
             );
         }
 
         @SubscribeEvent
         public static void registerPotions(final RegistryEvent.Register<Potion> event) {
             event.getRegistry().registerAll(
-                    ModPotions.MERCURY_POISON
+                    ModPotions.MERCURY_POISON,
+                    ModPotions.CONDUCTIVE_POTION
             );
         }
 
@@ -328,6 +334,7 @@ public class ProjectRankine {
             event.getRegistry().register(new DuneWalkerEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"dune_walker"));
             event.getRegistry().register(new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"snow_drifter"));
             event.getRegistry().register(new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"speed_skater"));
+            event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
         }
 /*
         @SubscribeEvent

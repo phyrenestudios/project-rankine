@@ -1,21 +1,32 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.items.AlloyTemplateItem;
+import com.cannolicatfish.rankine.items.PowerCellItem;
 import com.cannolicatfish.rankine.items.TripleAlloyTemplateItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -23,6 +34,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import java.util.AbstractMap;
 import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_CONTAINER;
 
 public class InductionFurnaceContainer extends Container {
@@ -33,30 +45,30 @@ public class InductionFurnaceContainer extends Container {
     private final IIntArray data;
 
     public InductionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId, world, pos, playerInventory, player, new Inventory(8), new IntArray(10));
+        this(windowId,world,pos,playerInventory,player,new Inventory(9),new IntArray(5));
+
 
 
     }
-
-    public InductionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
+    public InductionFurnaceContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(INDUCTION_FURNACE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 8);
-        assertIntArraySize(furnaceData, 10);
+        assertInventorySize(furnaceInventoryIn, 9);
+        assertIntArraySize(furnaceData, 5);
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
         this.data = furnaceData;
         this.playerInventory = new InvWrapper(playerInventory);
 
-        this.addSlot(new Slot(furnaceInventory, 0, 33, 33));
-        this.addSlot(new Slot(furnaceInventory, 1, 55, 33));
-        this.addSlot(new Slot(furnaceInventory, 2, 77, 33));
-        this.addSlot(new Slot(furnaceInventory, 3, 44, 55));
-        this.addSlot(new Slot(furnaceInventory, 4, 67, 55));
-
-        this.addSlot(new Slot(furnaceInventory, 5, 10, 53));
-        this.addSlot(new Slot(furnaceInventory, 6, 134, 23));
-        this.addSlot(new Slot(furnaceInventory, 7, 134, 47));
+        this.addSlot(new Slot(furnaceInventory, 0, 33, 23));
+        this.addSlot(new Slot(furnaceInventory, 1, 33, 41));
+        this.addSlot(new Slot(furnaceInventory, 2, 51,23));
+        this.addSlot(new Slot(furnaceInventory, 3, 51, 41));
+        this.addSlot(new Slot(furnaceInventory, 4, 69,23));
+        this.addSlot(new Slot(furnaceInventory, 5, 69, 41));
+        this.addSlot(new Slot(furnaceInventory, 6, 10,39));
+        this.addSlot(new Slot(furnaceInventory, 7, 134,7));
+        this.addSlot(new Slot(furnaceInventory, 8, 134,31));
 
 
         layoutPlayerInventorySlots(8, 86);
@@ -65,55 +77,60 @@ public class InductionFurnaceContainer extends Container {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getBurnTime() {
+    public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
+
+        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
+            ItemStack template = furnaceInventory.getStackInSlot(7);
+            boolean correctInputs = true;
+            if ((AlloyTemplateItem.getTier(template) & 2) != 2) {
+                correctInputs = false;
+            }
+            if (correctInputs) {
+                for (ItemStack input : AlloyTemplateItem.getInputStacks(template))
+                {
+                    Item tempItem = input.getItem();
+                    int count = input.getCount();
+                    if (furnaceInventory.count(tempItem) < count) {
+                        correctInputs = false;
+                    }
+                }
+            }
+            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItem.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItem.getOutputAlloyData(template)},
+                    correctInputs ? 0x55FF55 : 0xFF5555);
+        }
+        AlloyingRecipe recipe = playerEntity.getEntityWorld().getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, furnaceInventory, playerEntity.getEntityWorld()).orElse(null);
+        if (recipe != null) {
+            ItemStack stack = recipe.generateResult(furnaceInventory,2);
+            INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
+            if (nbt != null){
+                return new AbstractMap.SimpleEntry<>(new String[]{new TranslationTextComponent(stack.getItem().getTranslationKey()).getString(),nbt.getString()},0x55FF55);
+            } else {
+                return new AbstractMap.SimpleEntry<>(new String[]{new TranslationTextComponent(stack.getItem().getTranslationKey()).getString()},0xffffff);
+            }
+        } else {
+            String ret = RankineRecipes.generateAlloyString(furnaceInventory);
+            return new AbstractMap.SimpleEntry<>(new String[]{"None", ret},0xFF5555);
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getBurnTime(){
         return this.data.get(0);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getCurrentBurnTime() {
+    public int getCurrentBurnTime(){
         return this.data.get(1);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getCookTime() {
+    public int getCookTime(){
         return this.data.get(2);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getTotalCookTime() {
+    public int getTotalCookTime(){
         return this.data.get(3);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public boolean isRecipeMode() {
-        return this.data.get(9) == 1;
-    }
-
-    ;
-
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot1() {
-        return Integer.toString(this.data.get(4));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot2() {
-        return Integer.toString(this.data.get(5));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot3() {
-        return Integer.toString(this.data.get(6));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot4() {
-        return Integer.toString(this.data.get(7));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public String getPercentSlot5() {
-        return Integer.toString(this.data.get(8));
     }
 
     @Override
@@ -121,40 +138,43 @@ public class InductionFurnaceContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.INDUCTION_FURNACE.get());
     }
 
+    //TO-DO: REDO +3
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
+    {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
-        if (slot != null && slot.getHasStack()) {
+        if(slot != null && slot.getHasStack())
+        {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 7) {
-                if (!this.mergeItemStack(stack, 8, 44, true)) {
+            if (index == 8) {
+                if (!this.mergeItemStack(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (index != 0 && index != 1 && index != 2 && index != 3 && index != 4 && index != 5) {
-                if (!AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("none") && !AlloyRecipeHelper.getInstance().returnItemMaterial(stack).getKey().contains("nope")) {
-                    if (!this.mergeItemStack(stack, 0, 5, false)) {
+            } else if (index > 6) {
+                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
+                    if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (AbstractFurnaceTileEntity.isFuel(stack)) {
-                    if (!this.mergeItemStack(stack, 5, 6, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (stack.getItem() instanceof TripleAlloyTemplateItem) {
+                } else if (stack.getItem() instanceof PowerCellItem) {
                     if (!this.mergeItemStack(stack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 35) {
-                    if (!this.mergeItemStack(stack, 35, 44, false)) {
+                } else if (stack.getItem() == RankineItems.ALLOY_TEMPLATE.get()) {
+                    if (!this.mergeItemStack(stack, 7, 8, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 44 && !this.mergeItemStack(stack, 8, 44, false)) {
+                } else if (index < 36) {
+                    if (!this.mergeItemStack(stack, 36, 45, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index < 45 && !this.mergeItemStack(stack, 9, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 8, 44, false)) {
+            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -175,7 +195,7 @@ public class InductionFurnaceContainer extends Container {
     }
 
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
-        for (int i = 0; i < amount; i++) {
+        for (int i = 0 ; i < amount ; i++) {
             addSlot(new SlotItemHandler(handler, index, x, y));
             x += dx;
             index++;
@@ -184,7 +204,7 @@ public class InductionFurnaceContainer extends Container {
     }
 
     private int addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0; j < verAmount; j++) {
+        for (int j = 0 ; j < verAmount ; j++) {
             index = addSlotRange(handler, index, x, y, horAmount, dx);
             y += dy;
         }
@@ -200,29 +220,29 @@ public class InductionFurnaceContainer extends Container {
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
 
-    public int getOutputSlot() {
-        return 2;
-    }
 
     @OnlyIn(Dist.CLIENT)
-    public int getBurnLeftScaled(int pixels) {
+    public int getBurnLeftScaled(int pixels)
+    {
         int i = getCurrentBurnTime();
-        if (i == 0) i = 200;
+        if(i == 0) i = 200;
         return getBurnTime() * pixels / i;
     }
 
 
     @OnlyIn(Dist.CLIENT)
-    public int getCookProgressScaled(int pixels) {
+    public int getCookProgressScaled(int pixels)
+    {
         int i = getCookTime();
         int j = getTotalCookTime();
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isBurning() {
+    public boolean isBurning()
+    {
         return getBurnTime() > 0;
     }
+
+
 }
-
-

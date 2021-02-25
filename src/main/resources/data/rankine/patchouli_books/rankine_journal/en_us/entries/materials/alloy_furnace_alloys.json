@@ -23,13 +23,6 @@
     },
     {
       "type": "spotlight",
-      "title": "Aluminum Bronze",
-      "anchor": "aluminum_bronze",
-      "item": "rankine:aluminum_bronze_alloy",
-      "text": "Used for $(li)Bronze Tools$()"
-    },
-    {
-      "type": "spotlight",
       "title": "Brass",
       "anchor": "brass",
       "item": "rankine:brass_alloy",

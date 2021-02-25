@@ -3,7 +3,7 @@
   "total": 13,
   "input1": {
     "element": "copper",
-    "min": 0.80,
+    "min": 0.70,
     "max": 0.90
   },
   "input2": {
@@ -14,57 +14,57 @@
   "input3": {
     "element": "aluminum",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input4": {
     "element": "manganese",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input5": {
     "element": "nickel",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input6": {
     "element": "zinc",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input7": {
     "element": "arsenic",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input8": {
     "element": "iron",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input9": {
     "element": "bismuth",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input10": {
     "element": "lead",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input11": {
     "element": "antimony",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input12": {
     "element": "silicon",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "input13": {
     "element": "phosphorus",
     "min": 0,
-    "max": 0.10
+    "max": 0.12
   },
   "result": "rankine:bronze_alloy"
 }

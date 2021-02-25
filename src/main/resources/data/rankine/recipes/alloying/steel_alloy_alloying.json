@@ -1,0 +1,81 @@
+{
+  "type": "rankine:alloying",
+  "tier": 2,
+  "total": 15,
+  "input1": {
+    "element": "iron",
+    "min": 0.93,
+    "max": 0.99
+  },
+  "input2": {
+    "element": "carbon",
+    "min": 0.01,
+    "max": 0.02
+  },
+  "input3": {
+    "element": "manganese",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input4": {
+    "element": "chromium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input5": {
+    "element": "cobalt",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input6": {
+    "element": "molybdenum",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input7": {
+    "element": "nickel",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input8": {
+    "element": "niobium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input9": {
+    "element": "titanium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input10": {
+    "element": "vanadium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input11": {
+    "element": "zirconium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input12": {
+    "element": "copper",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input13": {
+    "element": "calcium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input14": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input15": {
+    "element": "phosphorus",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "result": "rankine:steel_alloy"
+}

@@ -1,16 +1,22 @@
 package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
+import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.ITag;
@@ -67,10 +73,10 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return this.tier;
     }
 
-    public List<Ingredient> getRequiredIngredients() {
+    public List<Ingredient> getIngredientsList(boolean required) {
         List<Ingredient> ret = new ArrayList<>();
         for (int i = 0; i < this.recipeItems.size(); i++) {
-            if (this.mins.get(i) > 0) {
+            if ((this.mins.get(i) > 0 && required) || (this.mins.get(i) == 0 && !required)) {
                 ret.add(this.recipeItems.get(i));
             }
         }
@@ -87,8 +93,132 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-    public ItemStack generateRandomResult() {
-        return ItemStack.EMPTY;
+    public List<PeriodicTableUtils.Element> getElementList(boolean required) {
+        List<PeriodicTableUtils.Element> ret = new ArrayList<>();
+        for (int i = 0; i < this.recipeItems.size(); i++) {
+            if ((this.mins.get(i) > 0 && required) || (this.mins.get(i) == 0 && !required)) {
+                ret.add(this.elements.get(i));
+            }
+        }
+        return ret;
+    }
+
+    public ItemStack generateResult(IInventory inv, int type) {
+         if ((getTier() & type) != Math.min(getTier(),type) && getTier() != 0 && type != 0) {
+            return ItemStack.EMPTY;
+        }
+
+        List<PeriodicTableUtils.Element> currentElements = new ArrayList<>();
+        List<Integer> currentMaterial = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            int workingIndex = 0;
+            ItemStack stack = inv.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                boolean flag = false;
+                for (Ingredient s : getIngredients()) {
+                    if (s.test(stack)) {
+                        PeriodicTableUtils.Element element = getElements().get(getIngredients().indexOf(s));
+                        if (!currentElements.contains(element)) {
+                            currentElements.add(element);
+                            currentMaterial.add(0);
+                        }
+                        workingIndex = currentElements.indexOf(element);
+                        flag = true;
+                    }
+                }
+                if (flag) {
+                    Item item = stack.getItem();
+                    ResourceLocation reg = item.getRegistryName();
+                    String registry = "";
+                    if (reg != null) {
+                        registry = reg.getPath();
+                    }
+
+                    if (stack.getItem().getTags().contains(new ResourceLocation("forge:storage_blocks")) || stack.getItem() instanceof BlockItem || registry.contains("block")) {
+                        currentMaterial.set(workingIndex, currentMaterial.get(workingIndex) + 81 * stack.getCount());
+                    } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || registry.contains("ingot")) {
+                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + 9 * stack.getCount());
+                    } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:nuggets")) || registry.contains("nugget")) {
+                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + stack.getCount());
+                    } else if (stack.getItem() == Items.NETHERITE_SCRAP || registry.contains("scrap")){
+                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + 2 * stack.getCount());
+                    } else {
+                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + 9 * stack.getCount());
+                    }
+                } else {
+                    return ItemStack.EMPTY;
+                }
+            }
+        }
+
+        int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
+
+        if ((Math.round(sum/10f) > 64 || Math.round(sum/10f) < 1) && currentElements.size() >= this.required){
+            //System.out.println("Required total " + this.required + " not present or material total not between 1 and 64!");
+            return ItemStack.EMPTY;
+        }
+        for (PeriodicTableUtils.Element e : getElementList(true))
+        {
+            if (!currentElements.contains(e)) {
+                //System.out.println("Required element " + e + " not present!");
+                return ItemStack.EMPTY;
+            }
+        }
+
+        List<Integer> percents = new ArrayList<>();
+        List<String> symbols = new ArrayList<>();
+        for (int j = 0; j < currentElements.size(); j++) {
+            PeriodicTableUtils.Element curEl = currentElements.get(j);
+            int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
+            int windex = getElements().indexOf(curEl);
+            if (Math.round(getMins().get(windex) * 100) > curPer || Math.round(getMaxes().get(windex) * 100) < curPer) {
+                //System.out.println("Element " + curEl + " does not fall between max or min!");
+                //System.out.println("Min: " + Math.round(getMins().get(windex) * 100) + "%");
+                //System.out.println("Max: " + Math.round(getMaxes().get(windex) * 100) + "%");
+                //System.out.println("Element %: " + curPer + "%");
+                return ItemStack.EMPTY;
+            }
+            symbols.add(curEl.getSymbol());
+            percents.add(curPer);
+        }
+        if (percents.stream().mapToInt(Integer::intValue).sum() != 100 || percents.contains(0)) {
+            return ItemStack.EMPTY;
+        }
+        ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.round(sum/10f));
+        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getInstance().getDirectComposition(percents,symbols)));
+        return out;
+    }
+
+    public ItemStack generateRandomResult(World worldIn) {
+        List<Integer> percents = new ArrayList<>();
+        List<String> symbols = new ArrayList<>();
+        List<PeriodicTableUtils.Element> req = getElementList(true);
+        List<PeriodicTableUtils.Element> nonreq = getElementList(false);
+        int r = worldIn.getRandom().nextInt(6 - required) + required;
+        int total = 0;
+        for (int j = 0; j < r; j++) {
+            PeriodicTableUtils.Element curEl;
+            if (j < req.size()) {
+                curEl = req.get(j);
+            } else {
+                curEl = nonreq.get(worldIn.getRandom().nextInt(nonreq.size()));
+            }
+
+            if (symbols.contains(curEl.getSymbol()) || total >= 100) {
+                break;
+            }
+            int windex = getElements().indexOf(curEl);
+            int min = Math.round(getMins().get(windex) * 100);
+            int max = Math.round(getMaxes().get(windex) * 100);
+
+            int curPer = Math.min(worldIn.getRandom().nextInt(max - min) + min, 100 - total);
+            total += curPer;
+            symbols.add(curEl.getSymbol());
+            percents.add(curPer);
+        }
+        ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),1);
+        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getInstance().getDirectComposition(percents,symbols)));
+        return out;
     }
 
     public NonNullList<Float> getMins() {
@@ -103,7 +233,15 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return true;
+        if (inv instanceof AlloyFurnaceTile) {
+            return !generateResult(inv,1).isEmpty();
+        } else if (inv instanceof InductionFurnaceTile) {
+            return !generateResult(inv,2).isEmpty();
+        } else if (getTier() != 0){
+            return !generateResult(inv,3).isEmpty();
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -284,6 +422,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             int count = 0;
             for(Ingredient ingredient : recipe.recipeItems) {
                 ingredient.write(buffer);
+                count++;
             }
             while (count < recipe.total) {
                 Ingredient.EMPTY.write(buffer);
@@ -293,6 +432,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             count = 0;
             for(PeriodicTableUtils.Element element : recipe.elements) {
                 buffer.writeString(element.name());
+                count++;
             }
             while (count < recipe.total) {
                 buffer.writeString(PeriodicTableUtils.Element.MERCURY.name());
@@ -304,6 +444,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             count = 0;
             for (float chance : recipe.mins) {
                 buffer.writeFloat(chance);
+                count++;
             }
             while (count < recipe.total) {
                 buffer.writeFloat(0f);
@@ -313,6 +454,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             count = 0;
             for (float add : recipe.maxes) {
                 buffer.writeFloat(add);
+                count++;
             }
             while (count < recipe.total) {
                 buffer.writeFloat(0f);

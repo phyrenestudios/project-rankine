@@ -7,6 +7,6 @@
     "east": "rankine:block/alloy_furnace_front",
     "west": "rankine:block/alloy_furnace_front",
     "up": "rankine:block/alloy_furnace_top",
-    "down": "rankine:block/refractory_bricks"
+    "down": "rankine:block/alloy_furnace_top"
   }
 }

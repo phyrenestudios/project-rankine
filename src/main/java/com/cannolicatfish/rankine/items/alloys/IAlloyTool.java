@@ -19,7 +19,7 @@ import java.util.Random;
 
 public interface IAlloyTool {
 
-    PeriodicTableUtils utils = new PeriodicTableUtils();
+    PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
 
 /*
     default double getDurabilityForDisplay(ItemStack stack,) {
@@ -219,7 +219,7 @@ public interface IAlloyTool {
     default List<PeriodicTableUtils.Element> getElements(String c)
     {
         //String c = getComposition(stack).getCompound(0).get("comp").getString();
-        PeriodicTableUtils utils = new PeriodicTableUtils();
+        PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
         String[] comp = c.split("-");
         List<PeriodicTableUtils.Element> list = new ArrayList<>();
         for (String e: comp)
@@ -248,15 +248,18 @@ public interface IAlloyTool {
         List<Enchantment> elementEn = utils.getEnchantments(getElements(c),getPercents(c));
         for (Enchantment e: elementEn)
         {
-            if (e != null)
+            if (e != null && !enchantments.contains(e))
             {
                 enchantments.add(e);
             }
         }
-        Enchantment en = alloy.getEnchantmentBonus(item);
-        if (en != null)
+        List<Enchantment> en = alloy.getEnchantmentBonus(item);
+        for (Enchantment e: en)
         {
-            enchantments.add(en);
+            if (e != null && !enchantments.contains(e))
+            {
+                enchantments.add(e);
+            }
         }
         return enchantments;
     }

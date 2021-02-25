@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.text.TextFormatting;
 
+import java.util.List;
+
 public interface AlloyUtils {
 
         IItemTier getMaterial();
@@ -28,7 +30,7 @@ public interface AlloyUtils {
 
         float getToughnessBonus();
 
-        Enchantment getEnchantmentBonus(Item item);
+        List<Enchantment> getEnchantmentBonus(Item item);
 
         int getEnchantmentLevel(Enchantment en, int enchantability);
 

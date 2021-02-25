@@ -7,37 +7,86 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public enum AlloyUtilsEnum implements AlloyUtils{
-    ALLOY(RankineToolMaterials.ALLOY, 0,0,0,0,0,0,0,0,0f, Collections.emptyList(),"80Hg-20Au", null),
-    AMALGAM(RankineToolMaterials.AMALGAM, 0,0,0,0,0,0,0,0,-0.2f, Collections.emptyList(),"80Hg-20Au", null),
-    BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,1,0,0,0.25f,0.05f, Collections.emptyList(),"80Cu-20Sn", TextFormatting.GOLD),
-    INVAR(RankineToolMaterials.INVAR, 0,0,0,0,2,0,0,0.25f,0.05f, Collections.emptyList(),"90Fe-10Ni", TextFormatting.DARK_AQUA),
+public enum AlloyUtilsEnum implements AlloyUtils {
+    ALLOY(RankineToolMaterials.ALLOY, 0,0,0,0,0,0,0,0,0f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
+    AMALGAM(RankineToolMaterials.AMALGAM, 0,0,0,0,0,0,0,0,-0.2f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
+    BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,1,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
+    INVAR(RankineToolMaterials.INVAR, 0,0,0,0,2,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
     ROSE_GOLD(RankineToolMaterials.ROSE_GOLD, 48,0,0,0,0,0,0.05f,0.35f,-0.1f,
-            Collections.emptyList(),"75Au-22Cu-3Ni", TextFormatting.YELLOW),
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","swing")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //shovel
+                    Collections.singletonList(new ResourceLocation("rankine","puncture")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","sharpness"))), //sword
+            "75Au-22Cu-3Ni", TextFormatting.YELLOW),
     WHITE_GOLD(RankineToolMaterials.WHITE_GOLD, 32,0,0,0,0,0,0.1f,0.3f,-0.2f,
-            Collections.emptyList(),"90Au-10Zn", TextFormatting.YELLOW),
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","fortune")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","atomize")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","fortune")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","fortune")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","fortune")), //shovel
+                    Collections.singletonList(new ResourceLocation("rankine","impaling")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","looting"))), //sword
+            "90Au-10Zn", TextFormatting.YELLOW),
     GREEN_GOLD(RankineToolMaterials.GREEN_GOLD, 32,0,0,0,0,0,0.25f,0.45f,-0.15f,
-            Collections.emptyList(),"50Au-50Ag", TextFormatting.YELLOW),
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","mending")), //axe
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //shovel
+                    Collections.singletonList(new ResourceLocation("minecraft","mending")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","mending"))), //sword
+            "50Au-50Ag", TextFormatting.YELLOW),
     BLUE_GOLD(RankineToolMaterials.BLUE_GOLD, 32,0,0,0,1,0,0,0.2f,-0.05f,
-            Collections.emptyList(),"75Au-25Fe", TextFormatting.YELLOW),
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //axe
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //shovel
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","unbreaking"))), //sword
+            "75Au-25Fe", TextFormatting.YELLOW),
     PURPLE_GOLD(RankineToolMaterials.PURPLE_GOLD, 32,0,0,0,0,0,0.25f,0.25f,-0.1f,
-            Collections.emptyList(),"80Au-20Al", TextFormatting.YELLOW),
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","daze")), //hammer
+                    Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //hoe
+                    Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //shovel
+                    Collections.singletonList(new ResourceLocation("rankine","impact")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","knockback"))), //sword
+            "80Au-20Al", TextFormatting.YELLOW),
     BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, 32,0,0,0,1,0,0f,0.2f,-0.05f,
-            Collections.emptyList(),"75Au-25Co", TextFormatting.YELLOW),
-    PEWTER(RankineToolMaterials.PEWTER, 20,4,1,5,0,0,0.25F,0,-0.05f, Collections.emptyList(),"90Sn-10Sb", TextFormatting.DARK_GREEN),
-    STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, Collections.emptyList(),"99Fe-1C", TextFormatting.DARK_GRAY),
-    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, Collections.emptyList(),"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
-    TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,0,0,0F,0,0.15f, Collections.emptyList(),"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
-    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0F,0,0.15f, Collections.emptyList(),"75Ni-15Cr-10Fe", TextFormatting.DARK_BLUE),
-    COBALT_SA(RankineToolMaterials.COBALT_SA, 370,3.5f,1,3,0,0,0F,0,0.3f, Collections.emptyList(),"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods")), //axe
+                    Collections.singletonList(new ResourceLocation("rankine","excavate")), //hammer
+                    Collections.singletonList(new ResourceLocation("rankine","foraging")), //hoe
+                    Collections.singletonList(new ResourceLocation("rankine","quake")), //pickaxe
+                    Collections.singletonList(new ResourceLocation("rankine","quake")), //shovel
+                    Collections.singletonList(new ResourceLocation("minecraft","loyalty")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods"))), //sword
+            "75Au-25Co", TextFormatting.YELLOW),
+    PEWTER(RankineToolMaterials.PEWTER, 20,4,1,5,0,0,0.25F,0,-0.05f,
+            new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+                    Collections.singletonList(new ResourceLocation("rankine","antiquated")),14,2,3),
+            "90Sn-10Sb", TextFormatting.DARK_GREEN),
+    STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
+    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
+    TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
+    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"75Ni-15Cr-10Fe", TextFormatting.DARK_BLUE),
+    COBALT_SA(RankineToolMaterials.COBALT_SA, 370,3.5f,1,3,0,0,0F,0,0.3f, AlloyEnchantmentHandler.EMPTY,"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
 
     IItemTier tier;
     int durabilityBonus;
@@ -50,11 +99,11 @@ public enum AlloyUtilsEnum implements AlloyUtils{
     float heatResistBonus;
     float toughnessBonus;
     TextFormatting groupColor;
-    List<AbstractMap.SimpleEntry<Item,Enchantment>> toolEnchants;
+    AlloyEnchantmentHandler toolEnchants;
     String comp;
 
     AlloyUtilsEnum(IItemTier tierIn, int durabilityIn, float miningSpeedIn, int miningLevelIn, int enchantabilityIn, float attackDamageIn,
-                   float attackSpeedIn, float corrResistIn, float heatResistIn, float toughnessIn, List<AbstractMap.SimpleEntry<Item, Enchantment>> toolEnchantsIn,
+                   float attackSpeedIn, float corrResistIn, float heatResistIn, float toughnessIn, AlloyEnchantmentHandler toolEnchantsIn,
                    String defaultCompIn, @Nullable TextFormatting groupColorIn)
     {
 
@@ -129,34 +178,20 @@ public enum AlloyUtilsEnum implements AlloyUtils{
     }
 
     @Override
-    public Enchantment getEnchantmentBonus(Item item) {
-        for (AbstractMap.SimpleEntry<Item, Enchantment> entry : this.toolEnchants){
-            if (entry.getKey() == item) {
-                return entry.getValue();
+    public List<Enchantment> getEnchantmentBonus(Item item) {
+        List<ResourceLocation> rslist = this.toolEnchants.getEnchantmentsForItem(item);
+        List<Enchantment> enchants = new ArrayList<>();
+        for (ResourceLocation rs : rslist) {
+            if (ForgeRegistries.ENCHANTMENTS.getValue(rs) != null) {
+                enchants.add(ForgeRegistries.ENCHANTMENTS.getValue(rs));
             }
         }
-        return null;
+        return enchants;
     }
 
     @Override
     public int getEnchantmentLevel(Enchantment en, int enchantability) {
-        if (enchantability >= 35 && en.getMaxLevel() >= 5)
-        {
-            return 5;
-        }
-        else if (enchantability >= 30 && en.getMaxLevel() >= 4)
-        {
-            return 4;
-        }
-        else if (enchantability >= 25 && en.getMaxLevel() >= 3)
-        {
-            return 3;
-        }
-        else if (enchantability >= 20 && en.getMaxLevel() >= 2)
-        {
-            return 2;
-        }
-        return 1;
+        return this.toolEnchants.returnEnchantmentLevel(en,enchantability);
     }
 
     @Override
