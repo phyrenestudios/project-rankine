@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " t ",
+    "trt",
+    " t "
+  ],
+  "key": {
+    "t": {
+      "item": "rankine:element_transmuter"
+    },
+    "r": {
+      "item": "rankine:peridot"
+    }
+  },
+  "result": {
+    "item": "rankine:down_transmuter",
+    "count": 16
+  }
+}

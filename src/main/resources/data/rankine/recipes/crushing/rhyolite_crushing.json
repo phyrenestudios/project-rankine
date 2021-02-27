@@ -29,7 +29,7 @@
     "additional": 0.05
   },
   "output6": {
-    "item": "rankine:sodium_nugget",
-    "chance": 0.04
+    "item": "rankine:topaz",
+    "chance": 0.03
   }
 }

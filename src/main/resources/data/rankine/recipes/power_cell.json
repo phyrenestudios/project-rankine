@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "lrl",
+    "rgr",
+    "lrl"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "l":
+    {
+      "tag": "forge:ingots/lead"
+    },
+    "g":
+    {
+      "item": "rankine:graphite_electrode"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:power_cell",
+    "count": 1
+  }
+}

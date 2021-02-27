@@ -38,10 +38,10 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     private final IDrawable icon;
 
     public AlloyingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 140);
+        background = guiHelper.createBlankDrawable(185, 146);
         localizedName = I18n.format("rankine.jei.alloy");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloying_jei.png"),
-                0, 15, 140, 110);
+                0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()));
     }
 
@@ -109,21 +109,21 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     public void setRecipe(IRecipeLayout recipeLayout, AlloyingRecipe recipe, IIngredients ingredients) {
         int index = 0;
         List<Integer> reqIndex = recipe.getIndexList(true);
-        List<Integer> nonreqIndex = recipe.getIndexList(false);
+        int reqCounter = 0;
+        int nonReqCounter = 0;
+        int reducer = 0;
+        int ymod = -1;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            if (index < 2)
-            {
-                recipeLayout.getItemStacks().init(index, true, 33 + index * 64, 39);
+            if (reqIndex.contains(ingredients.getInputs(VanillaTypes.ITEM).indexOf(o))) {
+                recipeLayout.getItemStacks().init(index, true, reqCounter * 18, 39);
+                reqCounter++;
             } else {
-                if (index < 10)
-                {
-                    recipeLayout.getItemStacks().init(index, true, (index - 2) * 18, 64);
-                } else if (index < 18) {
-                    recipeLayout.getItemStacks().init(index, true, (index - 10) * 18, 80);
-                } else
-                {
-                    recipeLayout.getItemStacks().init(index, true, (index - 18) * 18, 96);
+                if (nonReqCounter % 10 == 0) {
+                    reducer = nonReqCounter;
+                    ymod += 1;
                 }
+                recipeLayout.getItemStacks().init(index, true, (nonReqCounter - reducer) * 18, 58 + (18*ymod));
+                nonReqCounter++;
             }
             recipeLayout.getItemStacks().set(index, o);
 
@@ -146,12 +146,12 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
             recipeLayout.getItemStacks().set(index + i, stacks);
         }
         ResourceLocation recipeId = recipe.getId();
-        recipeLayout.getItemStacks().addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+        /*recipeLayout.getItemStacks().addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if (slotIndex >= endIndex) {
                 if (Minecraft.getInstance().gameSettings.advancedItemTooltips || Screen.hasShiftDown()) {
                     tooltip.add(new TranslationTextComponent("jei.tooltip.recipe.id", recipeId).mergeStyle(TextFormatting.DARK_GRAY));
                 }
             }
-        });
+        });*/
     }
 }

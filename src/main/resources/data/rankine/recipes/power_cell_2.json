@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "zrz",
+    "mgm",
+    "zrz"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "m":
+    {
+      "tag": "forge:ingots/magnesium"
+    },
+    "z":
+    {
+      "tag": "forge:ingots/zinc"
+    },
+    "g":
+    {
+      "item": "rankine:graphite_electrode"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:power_cell_2",
+    "count": 1
+  }
+}

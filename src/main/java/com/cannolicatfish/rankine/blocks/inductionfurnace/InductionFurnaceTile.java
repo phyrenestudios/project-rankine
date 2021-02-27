@@ -54,6 +54,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     private int currentBurnTime;
     private int cookTime;
     private int cookTimeTotal = 1600;
+    private int tickAdd = 1;
     private final IIntArray furnaceData = new IIntArray() {
         public int get(int index) {
             switch (index) {
@@ -122,26 +123,25 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-
+        if (this.isBurning() && (PowerCellItem.getTier(this.items.get(6)) != this.tickAdd || PowerCellItem.getTier(this.items.get(6)) == 0)) {
+            burnTime--;
+        }
         if (!this.world.isRemote) {
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3), this.items.get(4), this.items.get(5)};
             ItemStack fuel = this.items.get(6);
-            if (this.isBurning() && (fuel.isEmpty() || PowerCellItem.getTier(fuel) == 0)) {
-                this.burnTime = 0;
-                this.currentBurnTime = this.burnTime;
-            }
             if ((this.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.burnTime = PowerCellItem.getTier(fuel) != 0 ? 6400 : 0;
+                    this.burnTime = PowerCellItem.getTier(fuel) != 0 ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
+                    this.tickAdd = PowerCellItem.getTier(fuel);
                     if (this.isBurning()) {
                         flag1 = true;
                     }
                 }
 
                 if (this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.cookTime += PowerCellItem.getTier(fuel);
+                    this.cookTime += this.tickAdd;
                     if (this.cookTime >= this.cookTimeTotal) {
                         int[] x;
                         ItemStack output;

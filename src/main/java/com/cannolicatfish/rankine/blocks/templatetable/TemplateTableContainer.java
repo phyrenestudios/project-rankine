@@ -34,7 +34,6 @@ public class TemplateTableContainer extends Container {
 
     private IItemHandler playerInventory;
     private World world;
-    private final CraftResultInventory resultInventory = new CraftResultInventory();
     public final IInventory inputInventory = new Inventory(8) {
         public void markDirty() {
             super.markDirty();
@@ -96,11 +95,11 @@ public class TemplateTableContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (index == 9) {
-                if (!this.mergeItemStack(stack, 10, 46, true)) {
+                if (!this.mergeItemStack(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (!(index < 9)) {
+            } else if (!(index < 8)) {
                 if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
@@ -113,14 +112,14 @@ public class TemplateTableContainer extends Container {
                     if (!this.mergeItemStack(stack, 7, 8, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37) {
-                    if (!this.mergeItemStack(stack, 37, 46, false)) {
+                } else if (index < 36) {
+                    if (!this.mergeItemStack(stack, 36, 45, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 46 && !this.mergeItemStack(stack, 10, 37, false)) {
+                } else if (index < 45 && !this.mergeItemStack(stack, 10, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 10, 46, false)) {
+            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 

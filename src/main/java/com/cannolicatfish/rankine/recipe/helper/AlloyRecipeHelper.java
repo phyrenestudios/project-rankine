@@ -1,14 +1,10 @@
-package com.cannolicatfish.rankine.recipe;
+package com.cannolicatfish.rankine.recipe.helper;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Table;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.*;

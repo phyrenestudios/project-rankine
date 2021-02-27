@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ata",
+    "tct",
+    "ata"
+  ],
+  "key": {
+    "c": {
+      "item": "rankine:lonsdaleite_diamond"
+    },
+    "t": {
+      "item": "rankine:element_transmuter"
+    },
+    "a": {
+      "item": "rankine:amalgam_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:rankine_box",
+    "count": 1
+  }
+}

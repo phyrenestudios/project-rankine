@@ -152,7 +152,7 @@ public class AlloyFurnaceContainer extends Container {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (index > 6) {
+            } else if (index > 8) {
                 if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;

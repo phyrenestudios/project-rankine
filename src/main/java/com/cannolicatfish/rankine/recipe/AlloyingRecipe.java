@@ -1,14 +1,14 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
+import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
@@ -19,19 +19,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.CraftingHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 public class AlloyingRecipe implements IRecipe<IInventory> {
 
@@ -347,7 +342,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                             nonnulllist.set(i, Ingredient.fromStacks(new ItemStack(RankineItems.ELEMENT.get())));
                         }
                     } else {
-                        nonnulllist.set(i,AlloyIngredientHelper.deserialize(object,null));
+                        nonnulllist.set(i, AlloyIngredientHelper.deserialize(object,null));
                     }
 
 

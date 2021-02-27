@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "mrc",
+    "lgl",
+    "nra"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone_block"
+    },
+    "l":
+    {
+      "tag": "forge:storage_blocks/sodium"
+    },
+    "m":
+    {
+      "tag": "forge:storage_blocks/manganese"
+    },
+    "c":
+    {
+      "tag": "forge:storage_blocks/titanium"
+    },
+    "n":
+    {
+      "tag": "forge:storage_blocks/nickel"
+    },
+    "a":
+    {
+      "tag": "forge:storage_blocks/aluminum"
+    },
+    "g":
+    {
+      "item": "rankine:hard_carbon_electrode"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:power_cell_6",
+    "count": 1
+  }
+}

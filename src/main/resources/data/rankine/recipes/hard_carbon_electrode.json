@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  X",
+    " X ",
+    "X  "
+  ],
+  "key": {
+    "X": {
+      "item": "rankine:carbon_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:hard_carbon_electrode",
+    "count": 2
+  }
+}

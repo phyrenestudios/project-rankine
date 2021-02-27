@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
@@ -22,9 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.function.UnaryOperator;
 
 public class CrushingRecipe implements IRecipe<IInventory> {
 
@@ -167,7 +165,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "crushing");
         public CrushingRecipe read(ResourceLocation recipeId, JsonObject json) {
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(1,Ingredient.EMPTY);
-            nonnulllist.set(0,AlloyIngredientHelper.deserialize(json.get("input"),null));
+            nonnulllist.set(0, AlloyIngredientHelper.deserialize(json.get("input"),null));
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(6, ItemStack.EMPTY);
             NonNullList<Float> chances = NonNullList.withSize(6, 0f);
