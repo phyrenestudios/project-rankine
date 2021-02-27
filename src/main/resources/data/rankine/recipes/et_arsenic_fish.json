@@ -1,18 +1,22 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " w ",
-    "wmw",
-    " w "
-  ],
-  "key": {
-    "w": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:element_transmuter"
+    },
+    {
       "tag": "minecraft:fishes"
     },
-    "m": {
-      "item": "rankine:element_transmuter"
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
     }
-  },
+  ],
   "result": {
     "item": "rankine:arsenic_ingot",
     "count": 1

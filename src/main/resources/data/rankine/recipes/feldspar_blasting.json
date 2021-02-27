@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:feldspar"
+  },
+  "result": "rankine:potassium_nugget",
+  "experience": 0.3,
+  "cookingtime": 100
+}

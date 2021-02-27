@@ -96,8 +96,6 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
         return compound;
     }
 
-
-    int RANGE = Config.MACHINES.LASER_QUARRY_RANGE.get();
     int i = 0;
     int x = 0;
     int y = 1;
@@ -106,8 +104,10 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     @Override
     public void tick() {
         World worldIn = this.getWorld();
-        if (!worldIn.isRemote && i <= 5){
-            if (worldIn.isBlockPowered(pos) && checkStructure(pos,worldIn) && this.items.get(0).getItem() instanceof PowerCellItem) {
+        int maxRadius = checkStructure(pos,worldIn);
+        System.out.print(maxRadius);
+        if (!worldIn.isRemote && i <= maxRadius){
+            if (worldIn.isBlockPowered(pos) && maxRadius > 0 && this.items.get(0).getItem() instanceof PowerCellItem) {
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
                     for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
@@ -131,11 +131,6 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                         y = 1;
                         ++i;
                     }
-
-
-
-
-
 
                     /*BlockPos TARGET_POS = pos.add(x,-y,z);
                     Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
@@ -168,40 +163,23 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
         }
     }
 
-    private boolean checkStructure(BlockPos pos, World worldIn) {
-        /*for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(1,0,0), pos.add(6,0,0))) {
-            if (worldIn.getBlockState(blockpos) != ModBlocks.STAINLESS_STEEL_SHEETMETAL.getDefaultState()) {
-                return false;
+    private int checkStructure(BlockPos pos, World worldIn) {
+        List<BlockPos> Base = Arrays.asList(pos.add(1,0,0),pos.add(2,0,0),pos.add(0,0,1),pos.add(0,0,2),pos.add(-1,0,0),pos.add(-2,0,0),pos.add(0,0,-1),pos.add(0,0,-2),pos.add(1,0,1),pos.add(1,0,-1),pos.add(-1,0,1),pos.add(-1,0,-1));
+        for(BlockPos b : Base) {
+            if (worldIn.getBlockState(b) != RankineBlocks.STAINLESS_STEEL_SHEETMETAL.get().getDefaultState()) {
+                return 0;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1,0,0), pos.add(-6,0,0))) {
-            if (worldIn.getBlockState(blockpos) != ModBlocks.STAINLESS_STEEL_SHEETMETAL.getDefaultState()) {
-                return false;
+        BlockState lqb = RankineBlocks.LASER_PYLON_BASE.get().getDefaultState();
+        BlockState lqt = RankineBlocks.LASER_PYLON_TOP.get().getDefaultState();
+        for (int i = 1; i <= Config.MACHINES.LASER_QUARRY_RANGE.get(); ++i) {
+            if (worldIn.getBlockState(pos.add(2,i,0)) == lqt && worldIn.getBlockState(pos.add(-2,i,0)) == lqt && worldIn.getBlockState(pos.add(0,i,-2)) == lqt && worldIn.getBlockState(pos.add(0,i,2)) == lqt) {
+                return i;
+            } else if (worldIn.getBlockState(pos.add(2,i,0)) != lqb && worldIn.getBlockState(pos.add(-2,i,0)) != lqb && worldIn.getBlockState(pos.add(0,i,-2)) != lqb && worldIn.getBlockState(pos.add(0,i,2)) != lqb) {
+                return -1;
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0,0,1), pos.add(0,0,6))) {
-            if (worldIn.getBlockState(blockpos) != ModBlocks.STAINLESS_STEEL_SHEETMETAL.getDefaultState()) {
-                return false;
-            }
-        }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0,0,-1), pos.add(0,0,-6))) {
-            if (worldIn.getBlockState(blockpos) != ModBlocks.STAINLESS_STEEL_SHEETMETAL.getDefaultState()) {
-                return false;
-            }
-        }*/
-        List<BlockPos> Pillars = Arrays.asList(pos.add(8,0,0),pos.add(8,2,0),pos.add(-8,0,0),pos.add(-8,2,0),pos.add(0,0,8),pos.add(0,2,8),pos.add(0,0,-8),pos.add(0,2,-8));
-        for(BlockPos blockpos : Pillars) {
-            if (worldIn.getBlockState(blockpos) != RankineBlocks.LASER_PYLON_BASE.get().getDefaultState()) {
-                return false;
-            }
-        }
-        List<BlockPos> Tops = Arrays.asList(pos.add(8,3,0),pos.add(-8,3,0),pos.add(0,3,8),pos.add(0,3,-8));
-        for(BlockPos blockpos : Tops) {
-            if (worldIn.getBlockState(blockpos) != RankineBlocks.LASER_PYLON_TOP.get().getDefaultState()) {
-                return false;
-            }
-        }
-        return true;
+        return -3;
     }
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =

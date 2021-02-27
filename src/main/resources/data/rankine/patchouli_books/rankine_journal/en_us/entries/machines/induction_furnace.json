@@ -2,6 +2,7 @@
   "name": "Induction Furnace",
   "icon": "rankine:induction_furnace",
   "category": "machines",
+  "sortnum": 6,
   "pages": [
     {
       "type": "text",

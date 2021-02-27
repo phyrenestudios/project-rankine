@@ -5,16 +5,19 @@
   },
   "output1": {
     "item": "rankine:rhodium_nugget",
+    "count": 2,
     "chance": 0.1,
     "additional": 0.8
   },
   "output2": {
     "item": "rankine:ruthenium_nugget",
+    "count": 2,
     "chance": 0.1,
     "additional": 0.8
   },
   "output3": {
     "item": "rankine:platinum_nugget",
+    "count": 2,
     "chance": 0.25,
     "additional": 0.75
   },
@@ -24,12 +27,11 @@
   },
   "output5": {
     "item": "rankine:osmiridium_alloy",
-    "chance": 0.25,
-    "additional": 0.1
+    "chance": 1
   },
   "output6": {
     "item": "rankine:tellurium_nugget",
-    "count": 5,
+    "count": 2,
     "chance": 0.4
   }
 }

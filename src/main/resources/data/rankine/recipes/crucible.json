@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "# #",
-    "# #",
+    "#C#",
     "###"
   ],
   "key": {
     "#": {
       "item": "rankine:high_refractory_bricks"
+    },
+    "C": {
+      "item": "minecraft:cauldron"
     }
   },
   "result": {

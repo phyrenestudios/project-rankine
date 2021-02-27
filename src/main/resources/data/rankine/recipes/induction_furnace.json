@@ -1,19 +1,23 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "pattern": [
-    "CSC",
-    "C#C",
-    "CSC"
+    "SWS",
+    "WCW",
+    "SES"
   ],
   "key": {
     "S": {
-      "item": "rankine:steel_block"
-    },
-    "#": {
-      "item": "rankine:crucible"
+      "tag": "forge:storage_blocks/steel"
     },
     "C": {
-      "tag": "forge:ingots/cupronickel"
+      "item": "rankine:crucible"
+    },
+    "E": {
+      "item": "rankine:alnico_electromagnet"
+    },
+    "W": {
+      "item": "rankine:alloy_wire",
+      "alloyData": "90Cu-10Ni"
     }
   },
   "result": {

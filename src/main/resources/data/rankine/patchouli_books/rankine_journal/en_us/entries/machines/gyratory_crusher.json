@@ -1,8 +1,8 @@
 {
-  "name": "Piston Crusher",
+  "name": "Gyratory Crusher",
   "icon": "rankine:piston_crusher",
   "category": "machines",
-  "sortnum": 4,
+  "sortnum": 7,
   "pages": [
     {
       "type": "text",
