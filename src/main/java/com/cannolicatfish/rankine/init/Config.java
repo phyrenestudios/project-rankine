@@ -321,10 +321,10 @@ public class Config {
                         .defineInRange("rareEarthMagnetRange",10,1,15);
                 ELECTROMAGNET_MATERIAL_REQ = b.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
                         .define("electromagnetMaterialReq",true);
-                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry.")
-                        .defineInRange("laserQuarryRange", 7, 0, 15);
+                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag.")
+                        .defineInRange("laserQuarryRange", 31, 0, 63);
                 LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
-                        .defineInRange("laserQuarrySpeed", 10, 10, 300);
+                        .defineInRange("laserQuarrySpeed", 5, 1, 300);
             b.pop();
         }
     }

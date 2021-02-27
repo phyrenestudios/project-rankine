@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": false,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "S": {
+      "item": "rankine:solder_alloy"
+    },
+    "I": {
+      "item": "rankine:cupronickel_alloy",
+      "alloyData": "90Cu-10Ni"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_wire",
+    "alloyData": "90Cu-10Ni",
+    "count": 8
+  }
+}

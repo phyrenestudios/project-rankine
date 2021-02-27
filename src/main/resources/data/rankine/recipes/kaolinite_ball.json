@@ -1,15 +1,1 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "tag": "rankine:feldspars"
-    }
-  ],
-  "result": {
-    "item": "rankine:kaolinite_ball",
-    "count": 1
-  }
-}
+{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:feldspar_block" } ], "result": { "item": "rankine:feldspar", "count": 4 } }

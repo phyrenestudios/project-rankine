@@ -176,8 +176,7 @@ public class RankineFeatures {
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(30)));
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = new FireClayDiskFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4)));
-    public static final ConfiguredFeature<?, ?> MUD_FEATURE = new MudReplacerFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+
 
 
     // VEGETAL_DECORATION
@@ -261,7 +260,8 @@ public class RankineFeatures {
             .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> OVERWORLD_STONE_GEN = new StoneReplacerFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
             .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-
+    public static final ConfiguredFeature<?, ?> MUD_FEATURE = new MudReplacerFeature(NoFeatureConfig.field_236558_a_).withConfiguration(new NoFeatureConfig())
+            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     //ORES
     public static final ConfiguredFeature<?,?> ORE_NATIVE_COPPER_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_COPPER, RankineBlocks.NATIVE_COPPER_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.NATIVE_COPPER_ORE_SIZE.get()))

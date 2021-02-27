@@ -11,6 +11,16 @@
       "type": "crafting",
       "recipe": "rankine:kaolinite_ball",
       "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:kaolinite_block",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:porcelain_block",
+      "text": "Made by cooking a kaolinite block in a beehive oven."
     }
   ]
 }

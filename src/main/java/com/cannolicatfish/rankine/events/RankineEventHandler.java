@@ -831,12 +831,14 @@ public class RankineEventHandler {
 
             if (!persistent.hasUniqueId(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
-                event.getPlayer().addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
-                event.getPlayer().addItemStackToInventory(new ItemStack(RankineItems.ROPE.get(),5));
+                event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
+                event.getPlayer().inventory.addItemStackToInventory(new ItemStack(RankineItems.ROPE.get(),5));
             }
-            event.getPlayer().addItemStackToInventory(new ItemStack(RankineItems.ACANTHITE.get(),7));
+            event.getPlayer().inventory.addItemStackToInventory(new ItemStack(RankineItems.ACANTHITE.get(),7));
 
         }
+        event.getPlayer().inventory.addItemStackToInventory(new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(),7));
+
     }
 
 
@@ -1421,39 +1423,6 @@ public class RankineEventHandler {
                 }
             }
         }
-    }
-
-    @SubscribeEvent
-    public static void slice(PlayerInteractEvent.RightClickBlock event) {
-        BlockPos pos = event.getPos();
-        World world = event.getWorld();
-        PlayerEntity player = event.getPlayer();
-        BlockState state = world.getBlockState(pos);
-        if (player.getHeldItemMainhand().getItem() instanceof KnifeItem) {
-            if (state.getBlock() == RankineBlocks.AGED_CHEESE.get()) {
-                if (state.get(BlockStateProperties.BITES_0_6) < 6) {
-                    world.setBlockState(pos, state.with(BlockStateProperties.BITES_0_6, state.get(BlockStateProperties.BITES_0_6) + 1));
-                    player.addItemStackToInventory(new ItemStack(RankineItems.CHEESE.get(), 1));
-                } else {
-                    world.removeBlock(pos, false);
-                }
-                player.getHeldItemMainhand().damageItem(1, player, (p_220040_1_) -> {
-                    p_220040_1_.sendBreakAnimation(event.getHand());
-                });
-            } else if (state.getBlock() == Blocks.CAKE) {
-                if (state.get(BlockStateProperties.BITES_0_6) < 6) {
-                    world.setBlockState(pos, state.with(BlockStateProperties.BITES_0_6, state.get(BlockStateProperties.BITES_0_6) + 1));
-                    player.addItemStackToInventory(new ItemStack(RankineItems.CAKE_SLICE.get(), 1));
-                } else {
-                    world.removeBlock(pos, false);
-                }
-                player.getHeldItemMainhand().damageItem(1, player, (p_220040_1_) -> {
-                    p_220040_1_.sendBreakAnimation(event.getHand());
-                });
-
-            }
-        }
-
     }
 
     @SubscribeEvent

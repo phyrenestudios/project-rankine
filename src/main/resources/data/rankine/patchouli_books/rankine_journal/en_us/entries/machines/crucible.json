@@ -2,6 +2,7 @@
   "name": "Crucible",
   "icon": "rankine:crucible",
   "category": "machines",
+  "sortnum": 5,
   "pages": [
     {
       "type": "text",

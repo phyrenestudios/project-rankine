@@ -1,12 +1,10 @@
 {
-  "name": "Piston Crusher",
-  "icon": "rankine:piston_crusher",
+  "name": "Power Cell Fabricator",
+  "icon": "rankine:pfc",
   "category": "machines",
-  "sortnum": 4,
   "pages": [
     {
       "type": "text",
-      "anchor": "piston_crusher",
       "text": "Crushing materials is the best method of obtaining resources for refinement. Simply place materials into the middle slot and fuel the machine."
     },
     {

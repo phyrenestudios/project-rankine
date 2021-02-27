@@ -2,6 +2,7 @@
   "name": "Charcoal Pit",
   "icon": "rankine:charcoal_pit",
   "category": "machines",
+  "sortnum": 1,
   "pages": [
     {
       "type": "text",

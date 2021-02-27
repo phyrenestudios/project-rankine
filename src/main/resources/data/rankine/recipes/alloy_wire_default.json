@@ -2,20 +2,20 @@
   "type": "rankine:alloy_crafting",
   "inherit": true,
   "pattern": [
-    " X ",
-    "XcX",
-    " X "
+    " I ",
+    "ISI",
+    " I "
   ],
   "key": {
-    "X": {
+    "S": {
       "item": "rankine:solder_alloy"
     },
-    "c": {
+    "I": {
       "item": "rankine:copper_ingot"
     }
   },
   "result": {
     "item": "rankine:alloy_wire",
-    "count": 4
+    "count": 8
   }
 }

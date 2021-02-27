@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.blocks.RankineBerryBushBlock;
+import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SweetBerryBushBlock;
@@ -9,6 +11,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
@@ -42,7 +45,7 @@ public class KnifeItem extends SwordItem {
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.STICK,random.nextInt(6)));
+                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.STICK, 2+random.nextInt(6)));
                 itementity.setDefaultPickupDelay();
                 worldIn.addEntity(itementity);
                 worldIn.removeBlock(pos,false);
@@ -108,30 +111,55 @@ public class KnifeItem extends SwordItem {
 
     public ActionResultType onItemUse(ItemUseContext context) {
         PlayerEntity playerentity = context.getPlayer();
-        IWorld iworld = context.getWorld();
+        World iworld = context.getWorld();
         BlockPos blockpos = context.getPos();
-        BlockState blockstate = iworld.getBlockState(blockpos);
-        if (playerentity != null) {
-            context.getItem().damageItem(2, playerentity, (p_219998_1_) -> {
-                p_219998_1_.sendBreakAnimation(context.getHand());
-            });
-        }
-        if (blockstate.getBlock() == Blocks.GRASS_BLOCK && context.getFace() == Direction.UP) {
+        BlockState bs = iworld.getBlockState(blockpos);
+
+        if (bs.getBlock() == Blocks.GRASS_BLOCK && context.getFace() == Direction.UP) {
             iworld.playSound(playerentity, blockpos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
-            iworld.setBlockState(blockpos,Blocks.DIRT.getDefaultState(),2);
+            iworld.setBlockState(blockpos, Blocks.DIRT.getDefaultState(), 2);
 
             float f = 0.5F;
-            double d0 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-            double d1 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-            double d2 = (double)(context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
-            ItemEntity itementity = new ItemEntity(context.getWorld(), (double)blockpos.getX() + d0, (double)blockpos.getY() + d1 + 1, (double)blockpos.getZ() + d2, new ItemStack(Items.GRASS,1));
+            double d0 = (double) (context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
+            double d1 = (double) (context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
+            double d2 = (double) (context.getWorld().rand.nextFloat() * 0.5F) + 0.25D;
+            ItemEntity itementity = new ItemEntity(context.getWorld(), (double) blockpos.getX() + d0, (double) blockpos.getY() + d1 + 1, (double) blockpos.getZ() + d2, new ItemStack(Items.GRASS, 1));
             itementity.setDefaultPickupDelay();
             context.getWorld().addEntity(itementity);
+            playerentity.getHeldItemMainhand().damageItem(2, playerentity, (p_220040_1_) -> {
+                p_220040_1_.sendBreakAnimation(context.getHand());
+            });
             return ActionResultType.SUCCESS;
-        }
-        else
-        {
+        } else if (bs.getBlock() == RankineBlocks.AGED_CHEESE.get()) {
+            if (bs.get(BlockStateProperties.BITES_0_6) <= 6) {
+                iworld.setBlockState(blockpos, bs.with(BlockStateProperties.BITES_0_6, bs.get(BlockStateProperties.BITES_0_6) + 1));
+                playerentity.addItemStackToInventory(new ItemStack(RankineItems.CHEESE.get(), 1));
+            } else {
+                iworld.removeBlock(blockpos, false);
+            }
+            playerentity.getHeldItemMainhand().damageItem(1, playerentity, (p_220040_1_) -> {
+                p_220040_1_.sendBreakAnimation(context.getHand());
+            });
+            return ActionResultType.SUCCESS;
+        } else if (bs.getBlock() == Blocks.CAKE) {
+            if (bs.get(BlockStateProperties.BITES_0_6) <= 6) {
+                iworld.setBlockState(blockpos, bs.with(BlockStateProperties.BITES_0_6, bs.get(BlockStateProperties.BITES_0_6) + 1));
+                playerentity.addItemStackToInventory(new ItemStack(RankineItems.CAKE_SLICE.get(), 1));
+            } else {
+                iworld.removeBlock(blockpos, false);
+            }
+            playerentity.getHeldItemMainhand().damageItem(1, playerentity, (p_220040_1_) -> {
+                p_220040_1_.sendBreakAnimation(context.getHand());
+            });
+            return ActionResultType.SUCCESS;
+        } else {
             return ActionResultType.FAIL;
         }
     }
+
+
+
 }
+
+
+
