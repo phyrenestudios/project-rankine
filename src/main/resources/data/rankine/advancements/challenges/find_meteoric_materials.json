@@ -2,7 +2,7 @@
   "parent": "rankine:challenges/rankine_challenges",
   "display": {
     "icon": {
-      "item": "rankine:antitaenite"
+      "item": "rankine:antitaenite_ore"
     },
     "title": {
       "translate": "rankine.advancements.challenges.find_meteoric_materials.title"

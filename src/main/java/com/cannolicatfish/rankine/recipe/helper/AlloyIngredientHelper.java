@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.recipe;
+package com.cannolicatfish.rankine.recipe.helper;
 
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;

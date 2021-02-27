@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " t ",
+    "t t"
+  ],
+  "key": {
+    "t": {
+      "item": "rankine:element_transmuter"
+    }
+  },
+  "result": {
+    "item": "rankine:up_transmuter",
+    "count": 3
+  }
+}
