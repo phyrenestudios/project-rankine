@@ -192,5 +192,245 @@
     "min": 0.0,
     "max": 0.50
   },
+  "input39": {
+    "element": "molybdenum",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input40": {
+    "element": "technetium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input41": {
+    "element": "ruthenium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input42": {
+    "element": "rhodium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input43": {
+    "element": "palladium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input44": {
+    "element": "cadmium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input45": {
+    "element": "lanthanum",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input46": {
+    "element": "hafnium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input47": {
+    "element": "rhenium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input48": {
+    "element": "osmium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input49": {
+    "element": "iridium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input50": {
+    "element": "actinium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input51": {
+    "element": "rutherfordium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input52": {
+    "element": "dubnium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input53": {
+    "element": "seaborgium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input54": {
+    "element": "bohrium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input55": {
+    "element": "hassium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input56": {
+    "element": "meitnerium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input57": {
+    "element": "darmastadium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input58": {
+    "element": "roentgenium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input59": {
+    "element": "copernicium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input60": {
+    "element": "cerium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input61": {
+    "element": "praseodymium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input62": {
+    "element": "neodymium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input63": {
+    "element": "promethium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input64": {
+    "element": "samarium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input65": {
+    "element": "europium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input66": {
+    "element": "gadolininium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input67": {
+    "element": "dysprosium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input68": {
+    "element": "holmium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input69": {
+    "element": "erbium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input70": {
+    "element": "thulium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input71": {
+    "element": "ytterbium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input72": {
+    "element": "lutetium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input73": {
+    "element": "thorium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input74": {
+    "element": "protactinium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input75": {
+    "element": "uranium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input76": {
+    "element": "neptunium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input77": {
+    "element": "plutonium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input78": {
+    "element": "americium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input79": {
+    "element": "curium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input80": {
+    "element": "berkelium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input81": {
+    "element": "californium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input82": {
+    "element": "einsteinium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input83": {
+    "element": "fermium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input84": {
+    "element": "mendelevium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input85": {
+    "element": "nobelium",
+    "min": 0.0,
+    "max": 0.50
+  },
+  "input86": {
+    "element": "lawrencium",
+    "min": 0.0,
+    "max": 0.50
+  },
   "result": "rankine:amalgam_alloy"
 }

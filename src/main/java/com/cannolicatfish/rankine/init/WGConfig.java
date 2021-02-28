@@ -52,7 +52,7 @@ public class WGConfig {
                 METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                         .defineInRange("meteoriteSize", 1, 0, 10);
                 METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                        .defineInRange("meteoriteChance", 120, 0, 1000);
+                        .defineInRange("meteoriteChance", 150, 0, 1000);
                 SILL_CHANCE = b.comment("Chance per chunk to generate a sill of ironstone or phosphorite.")
                         .defineInRange("sillChance", 0.2D, 0.0D, 1.0D);
                 SILL_IRONSTONE_GEN = b.comment("Enables the generation of ironstone sills.")

@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -8,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
@@ -28,14 +26,8 @@ public class SillFeature extends Feature<NoFeatureConfig> {
             int height = rand.nextInt(30) + 30;
             int radius = 10 + rand.nextInt(5);
             for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX() - radius, height - 1, pos.getZ() - radius), new BlockPos(pos.getX() + radius, height, pos.getZ() + radius))) {
-                if (target == RankineBlocks.IRONSTONE.get().getDefaultState()) {
-                    if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:stones/sandstone")) && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
-                        reader.setBlockState(blockpos, target, 2);
-                    }
-                } else {
-                    if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("minecraft:base_stone_overworld")) && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
-                        reader.setBlockState(blockpos, target, 2);
-                    }
+                if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("minecraft:base_stone_overworld")) && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
+                    reader.setBlockState(blockpos, target, 2);
                 }
             }
         }

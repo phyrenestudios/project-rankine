@@ -16,52 +16,132 @@
     "hidden": false
   },
   "criteria": {
-    "rankine:copper_ingot": {
+    "rankine:iron_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:copper_ingot"
+            "item": "minecraft:iron_ingot"
           }
         ]
       }
     },
-    "rankine:tin_ingot": {
+    "rankine:gold_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:tin_ingot"
+            "item": "minecraft:gold_ingot"
           }
         ]
       }
     },
-    "rankine:zinc_ingot": {
+    "rankine:hydrogen_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:zinc_ingot"
+            "item": "rankine:hydrogen_ingot"
           }
         ]
       }
     },
-    "rankine:aluminum_ingot": {
+    "rankine:helium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:aluminum_ingot"
+            "item": "rankine:helium_ingot"
           }
         ]
       }
     },
-    "rankine:nickel_ingot": {
+    "rankine:lithium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:nickel_ingot"
+            "item": "rankine:lithium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:beryllium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:beryllium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:boron_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:boron_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:carbon_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:carbon_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:nitrogen_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nitrogen_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:oxygen_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:oxygen_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:fluorine_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:fluorine_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:neon_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:neon_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:sodium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sodium_ingot"
           }
         ]
       }
@@ -76,82 +156,92 @@
         ]
       }
     },
-    "rankine:lead_ingot": {
+    "rankine:aluminum_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:lead_ingot"
+            "item": "rankine:aluminum_ingot"
           }
         ]
       }
     },
-    "rankine:bismuth_ingot": {
+    "rankine:silicon": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:bismuth_ingot"
+            "item": "rankine:silicon"
           }
         ]
       }
     },
-    "rankine:vanadium_ingot": {
+    "rankine:phosphorus": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:vanadium_ingot"
+            "item": "rankine:phosphorus"
           }
         ]
       }
     },
-    "rankine:silver_ingot": {
+    "rankine:sulfur": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:silver_ingot"
+            "item": "rankine:sulfur"
           }
         ]
       }
     },
-    "rankine:manganese_ingot": {
+    "rankine:chlorine_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:manganese_ingot"
+            "item": "rankine:chlorine_ingot"
           }
         ]
       }
     },
-    "rankine:chromium_ingot": {
+    "rankine:argon_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:chromium_ingot"
+            "item": "rankine:argon_ingot"
           }
         ]
       }
     },
-    "rankine:molybdenum_ingot": {
+    "rankine:potassium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:molybdenum_ingot"
+            "item": "rankine:potassium_ingot"
           }
         ]
       }
     },
-    "rankine:tungsten_ingot": {
+    "rankine:calcium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:tungsten_ingot"
+            "item": "rankine:calcium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:scandium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:scandium_ingot"
           }
         ]
       }
@@ -166,22 +256,32 @@
         ]
       }
     },
-    "rankine:niobium_ingot": {
+    "rankine:vanadium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:niobium_ingot"
+            "item": "rankine:vanadium_ingot"
           }
         ]
       }
     },
-    "rankine:tantalum_ingot": {
+    "rankine:chromium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:tantalum_ingot"
+            "item": "rankine:chromium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:manganese_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:manganese_ingot"
           }
         ]
       }
@@ -196,22 +296,52 @@
         ]
       }
     },
-    "rankine:iridium_ingot": {
+    "rankine:nickel_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:iridium_ingot"
+            "item": "rankine:nickel_ingot"
           }
         ]
       }
     },
-    "rankine:platinum_ingot": {
+    "rankine:copper_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:platinum_ingot"
+            "item": "rankine:copper_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:zinc_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:zinc_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:gallium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gallium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:germanium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:germanium_ingot"
           }
         ]
       }
@@ -226,12 +356,102 @@
         ]
       }
     },
-    "rankine:osmium_ingot": {
+    "rankine:selenium_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:osmium_ingot"
+            "item": "rankine:selenium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:bromine_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bromine_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:krypton_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:krypton_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:rubidium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rubidium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:strontium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:strontium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:yttrium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:yttrium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:zirconium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:zirconium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:niobium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:niobium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:molybdenum_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:molybdenum_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:technetium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:technetium_ingot"
           }
         ]
       }
@@ -256,6 +476,336 @@
         ]
       }
     },
+    "rankine:palladium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:palladium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:silver_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:silver_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:cadmium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cadmium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:indium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:indium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:tin_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tin_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:antimony_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:antimony_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:tellurium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tellurium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:iodine_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:iodine_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:xenon_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:xenon_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:cesium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cesium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:barium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:barium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:lanthanum_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:lanthanum_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:cerium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cerium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:praseodymium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:praseodymium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:neodymium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:neodymium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:promethium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:promethium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:samarium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:samarium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:europium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:europium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:gadolinium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gadolinium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:terbium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:terbium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:dysprosium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:dysprosium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:holmium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:holmium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:eribium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:eribium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:thulium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:thulium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:ytterbium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ytterbium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:lutetium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:lutetium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:hafnium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hafnium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:tantalum_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tantalum_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:tungsten_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tungsten_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:rhenium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rhenium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:osmium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:osmium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:iridium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:iridium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:platinum_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:platinum_ingot"
+          }
+        ]
+      }
+    },
     "rankine:mercury_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -265,51 +815,510 @@
           }
         ]
       }
+    },
+    "rankine:thallium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:thallium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:lead_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:lead_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:bismuth_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bismuth_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:polonium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polonium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:astatine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:astatine"
+          }
+        ]
+      }
+    },
+    "rankine:radon_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:radon_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:francium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:francium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:radium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:radium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:actinium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:actinium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:thorium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:thorium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:protactinium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:protactinium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:uranium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:uranium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:neptunium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:neptunium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:plutonium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:plutonium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:americium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:americium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:curium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:curium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:berkelium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:berkelium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:californium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:californium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:einsteinium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:einsteinium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:fermium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:fermium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:mendelevium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mendelevium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:nobelium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nobelium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:lawrencium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:lawrencium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:rutherfordium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rutherfordium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:dubnium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:dubnium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:seaborgium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:seaborgium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:bohrium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bohrium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:hassium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hassium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:meitnerium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:meitnerium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:darmstadtium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:darmstadtium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:roentgenium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:roentgenium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:copernicium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:copernicium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:nihonium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nihonium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:flerovium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:flerovium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:moscovium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:moscovium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:livermorium_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:livermorium_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:tennessine_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tennessine_ingot"
+          }
+        ]
+      }
+    },
+    "rankine:oganesson_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:oganesson_ingot"
+          }
+        ]
+      }
     }
   },
 
   "requirements": [
-    [
-      "rankine:tantalum_ingot"
-    ], [
-      "rankine:copper_ingot"
-    ], [
-      "rankine:zinc_ingot"
-    ], [
-      "rankine:tin_ingot"
-    ], [
-      "rankine:aluminum_ingot"
-    ], [
-      "rankine:nickel_ingot"
-    ], [
-      "rankine:magnesium_ingot"
-    ], [
-      "rankine:lead_ingot"
-    ], [
-      "rankine:bismuth_ingot"
-    ], [
-      "rankine:vanadium_ingot"
-    ], [
-      "rankine:silver_ingot"
-    ], [
-      "rankine:manganese_ingot"
-    ], [
-      "rankine:chromium_ingot"
-    ], [
-      "rankine:molybdenum_ingot"
-    ], [
-      "rankine:niobium_ingot"
-    ],[
-      "rankine:tungsten_ingot"
-    ],
+    ["rankine:iron_ingot"],
+    ["rankine:gold_ingot"],
+    ["rankine:hydrogen_ingot"],
+    ["rankine:helium_ingot"],
+    ["rankine:lithium_ingot"],
+    ["rankine:beryllium_ingot"],
+    ["rankine:boron_ingot"],
+    ["rankine:carbon_ingot"],
+    ["rankine:nitrogen_ingot"],
+    ["rankine:oxygen_ingot"],
+    ["rankine:fluorine_ingot"],
+    ["rankine:neon_ingot"],
+    ["rankine:sodium_ingot"],
+    ["rankine:magnesium_ingot"],
+    ["rankine:aluminum_ingot"],
+    ["rankine:silicon"],
+    ["rankine:phosphorus"],
+    ["rankine:sulfur"],
+    ["rankine:chlorine_ingot"],
+    ["rankine:argon_ingot"],
+    ["rankine:potassium_ingot"],
+    ["rankine:calcium_ingot"],
+    ["rankine:scandium_ingot"],
     ["rankine:titanium_ingot"],
+    ["rankine:vanadium_ingot"],
+    ["rankine:chromium_ingot"],
+    ["rankine:manganese_ingot"],
     ["rankine:cobalt_ingot"],
+    ["rankine:nickel_ingot"],
+    ["rankine:copper_ingot"],
+    ["rankine:zinc_ingot"],
+    ["rankine:gallium_ingot"],
+    ["rankine:germanium_ingot"],
+    ["rankine:arsenic_ingot"],
+    ["rankine:selenium_ingot"],
+    ["rankine:bromine_ingot"],
+    ["rankine:krypton_ingot"],
+    ["rankine:rubidium_ingot"],
+    ["rankine:strontium_ingot"],
+    ["rankine:yttrium_ingot"],
+    ["rankine:zirconium_ingot"],
+    ["rankine:niobium_ingot"],
+    ["rankine:molybdenum_ingot"],
+    ["rankine:technetium_ingot"],
+    ["rankine:ruthenium_ingot"],
+    ["rankine:rhodium_ingot"],
+    ["rankine:palladium_ingot"],
+    ["rankine:silver_ingot"],
+    ["rankine:cadmium_ingot"],
+    ["rankine:indium_ingot"],
+    ["rankine:tin_ingot"],
+    ["rankine:antimony_ingot"],
+    ["rankine:tellurium_ingot"],
+    ["rankine:iodine_ingot"],
+    ["rankine:xenon_ingot"],
+    ["rankine:cesium_ingot"],
+    ["rankine:barium_ingot"],
+    ["rankine:lanthanum_ingot"],
+    ["rankine:cerium_ingot"],
+    ["rankine:praseodymium_ingot"],
+    ["rankine:neodymium_ingot"],
+    ["rankine:promethium_ingot"],
+    ["rankine:samarium_ingot"],
+    ["rankine:europium_ingot"],
+    ["rankine:gadolinium_ingot"],
+    ["rankine:terbium_ingot"],
+    ["rankine:dysprosium_ingot"],
+    ["rankine:holmium_ingot"],
+    ["rankine:eribium_ingot"],
+    ["rankine:thulium_ingot"],
+    ["rankine:ytterbium_ingot"],
+    ["rankine:lutetium_ingot"],
+    ["rankine:hafnium_ingot"],
+    ["rankine:tantalum_ingot"],
+    ["rankine:tungsten_ingot"],
+    ["rankine:rhenium_ingot"],
+    ["rankine:osmium_ingot"],
     ["rankine:iridium_ingot"],
     ["rankine:platinum_ingot"],
-    ["rankine:arsenic_ingot"],
     ["rankine:mercury_ingot"],
-    ["rankine:osmium_ingot"],
-    ["rankine:ruthenium_ingot"],
-    ["rankine:rhodium_ingot"]
+    ["rankine:thallium_ingot"],
+    ["rankine:lead_ingot"],
+    ["rankine:bismuth_ingot"],
+    ["rankine:polonium_ingot"],
+    ["rankine:astatine"],
+    ["rankine:radon_ingot"],
+    ["rankine:francium_ingot"],
+    ["rankine:radium_ingot"],
+    ["rankine:actinium_ingot"],
+    ["rankine:thorium_ingot"],
+    ["rankine:protactinium_ingot"],
+    ["rankine:uranium_ingot"],
+    ["rankine:neptunium_ingot"],
+    ["rankine:plutonium_ingot"],
+    ["rankine:americium_ingot"],
+    ["rankine:curium_ingot"],
+    ["rankine:berkelium_ingot"],
+    ["rankine:californium_ingot"],
+    ["rankine:einsteinium_ingot"],
+    ["rankine:fermium_ingot"],
+    ["rankine:mendelevium_ingot"],
+    ["rankine:nobelium_ingot"],
+    ["rankine:lawrencium_ingot"],
+    ["rankine:rutherfordium_ingot"],
+    ["rankine:dubnium_ingot"],
+    ["rankine:seaborgium_ingot"],
+    ["rankine:bohrium_ingot"],
+    ["rankine:hassium_ingot"],
+    ["rankine:meitnerium_ingot"],
+    ["rankine:darmstadtium_ingot"],
+    ["rankine:roentgenium_ingot"],
+    ["rankine:copernicium_ingot"],
+    ["rankine:nihonium_ingot"],
+    ["rankine:flerovium_ingot"],
+    ["rankine:moscovium_ingot"],
+    ["rankine:livermorium_ingot"],
+    ["rankine:tennessine_ingot"],
+    ["rankine:oganesson_ingot"]
+
     ]
+
+
 }

@@ -1,0 +1,11 @@
+{
+  "name": "Conduit-Powered Diving Armor",
+  "icon": "rankine:conduit_diving_chestplate",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Upgraded diving armor. Provides the wearer with conduit power when in water."
+    }
+  ]
+}
