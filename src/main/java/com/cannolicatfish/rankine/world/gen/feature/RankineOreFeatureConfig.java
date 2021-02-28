@@ -2103,6 +2103,41 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 }
             }
         }),
+        MONAZITE("monazite", (blockstate) -> {
+            if (blockstate == null) {
+                return false;
+            } else {
+                if (WGConfig.ORES.MONAZITE_ORE_STONE_SPECIFIC.get()) {
+                    for (String s : WGConfig.ORES.MONAZITE_ORE_BLOCK_LIST.get()) {
+                        List<String> name = Arrays.asList(s.split("#"));
+                        if (name.size() > 1) {
+                            if (name.get(0).equals("T")) {
+                                if (blockstate.getBlock().getTags().contains(new ResourceLocation(name.get(1)))) {
+                                    return true;
+                                }
+                            } else if (name.get(0).equals("B")) {
+                                if (blockstate.getBlock().getRegistryName().toString().equals(name.get(1))) {
+                                    return true;
+                                }
+                            } else {
+                                System.out.println(s+" is not a valid resource location for oregen");
+                            }
+                        } else {
+                            System.out.println(s+" is not a valid resource location for oregen");
+                        }
+                    }
+                    return false;
+                } else if (WGConfig.ORES.MONAZITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_overworld")));
+                } else if (WGConfig.ORES.MONAZITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("minecraft:base_stone_nether")));
+                } else if (WGConfig.ORES.MONAZITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                    return blockstate.getBlock().getTags().contains(new ResourceLocation(("forge:base_stone_end")));
+                } else {
+                    return false;
+                }
+            }
+        }),
         KAMACITE("kamacite", (blockstate) -> {
             if (blockstate == null) {
                 return false;

@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "pattern": [
-    "SWS",
+    "QWQ",
     "WCW",
     "SES"
   ],
@@ -11,6 +11,9 @@
     },
     "C": {
       "item": "rankine:crucible"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
     },
     "E": {
       "item": "rankine:alnico_electromagnet"

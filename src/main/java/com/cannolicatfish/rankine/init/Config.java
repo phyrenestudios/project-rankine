@@ -324,7 +324,7 @@ public class Config {
                 LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag.")
                         .defineInRange("laserQuarryRange", 31, 0, 63);
                 LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
-                        .defineInRange("laserQuarrySpeed", 5, 1, 300);
+                        .defineInRange("laserQuarrySpeed", 20, 1, 300);
             b.pop();
         }
     }

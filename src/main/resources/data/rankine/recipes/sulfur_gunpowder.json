@@ -8,10 +8,10 @@
       "item": "rankine:sulfur"
     },
     {
-      "item": "rankine:saltpeter"
+      "tag": "forge:saltpeter"
     },
     {
-      "item": "rankine:saltpeter"
+      "tag": "forge:saltpeter"
     }
   ],
   "result": {

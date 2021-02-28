@@ -9,7 +9,10 @@
     "minecraft:water",
     "minecraft:lava",
     "rankine:quarry_barrier",
+    "rankine:ironstone",
+    "rankine:phosphorite",
     "#forge:chests",
+    "#forge:ores",
     "#minecraft:shulker_boxes"
   ]
 }

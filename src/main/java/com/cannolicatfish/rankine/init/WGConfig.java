@@ -1006,6 +1006,19 @@ public class WGConfig {
         public final ForgeConfigSpec.IntValue CELESTINE_ORE_MEGA_SIZE;
         public final ForgeConfigSpec.IntValue CELESTINE_ORE_MEGA_CHANCE;
 
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_HL;
+        public final ForgeConfigSpec.ConfigValue<List<String>> MONAZITE_ORE_DIMENSION_LIST;
+        public final ForgeConfigSpec.BooleanValue MONAZITE_ORE_STONE_SPECIFIC;
+        public final ForgeConfigSpec.ConfigValue<List<String>> MONAZITE_ORE_BLOCK_LIST;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_MIN_HEIGHT;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_MAX_HEIGHT;
+        public final ForgeConfigSpec.BooleanValue MONAZITE_ORE_GENTYPE;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_CHANCE;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_SIZE;
+        public final ForgeConfigSpec.BooleanValue MONAZITE_ORE_MEGA_GEN;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_MEGA_SIZE;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_MEGA_CHANCE;
+        
         public final ForgeConfigSpec.IntValue KAMACITE_ORE_HL;
         public final ForgeConfigSpec.ConfigValue<List<String>> KAMACITE_ORE_DIMENSION_LIST;
         public final ForgeConfigSpec.BooleanValue KAMACITE_ORE_STONE_SPECIFIC;
@@ -1156,9 +1169,9 @@ public class WGConfig {
             NATIVE_GOLD_ORE_GENTYPE = b.comment("If false, nativeGoldOreChance will determine how many tries per chunk ore veins will generate. If true, nativeGoldOreChance will determine 1 in how many chunks a vein will spawn.")
                     .define("nativeGoldOreGentype",true);
             NATIVE_GOLD_ORE_CHANCE = b.comment("Count / chance number to be used depending on nativeGoldOreGentype.")
-                    .defineInRange("nativeGoldOreChance", 3, 0, 256);
+                    .defineInRange("nativeGoldOreChance", 5, 0, 256);
             NATIVE_GOLD_ORE_SIZE = b.comment("The maximum size of Native Gold Ore vein")
-                    .defineInRange("nativeGoldOreSize", 7, 0, 500);
+                    .defineInRange("nativeGoldOreSize", 6, 0, 500);
             NATIVE_GOLD_ORE_MEGA_GEN = b.comment("If true, a mega Native Gold Ore vein will generate according to the parameters nativeGoldOreMegaVeinSize andnativeGoldOreMegaVeinChance")
                     .define("nativeGoldOreMegaVeins",false);
             NATIVE_GOLD_ORE_MEGA_SIZE = b.comment("The maximum size of mega Native Gold Ore vein.")
@@ -1966,9 +1979,9 @@ public class WGConfig {
             PLUMBAGO_ORE_GENTYPE = b.comment("If false, plumbagoOreChance will determine how many tries per chunk ore veins will generate. If true, plumbagoOreChance will determine 1 in how many chunks a vein will spawn.")
                     .define("plumbagoOreGentype",true);
             PLUMBAGO_ORE_CHANCE = b.comment("Count / chance number to be used depending on plumbagoOreGentype.")
-                    .defineInRange("plumbagoOreChance", 2, 0, 256);
+                    .defineInRange("plumbagoOreChance", 1, 0, 256);
             PLUMBAGO_ORE_SIZE = b.comment("The maximum size of Plumbago Ore vein")
-                    .defineInRange("plumbagoOreSize", 16, 0, 500);
+                    .defineInRange("plumbagoOreSize", 12, 0, 500);
             PLUMBAGO_ORE_MEGA_GEN = b.comment("If true, a mega Plumbago Ore vein will generate according to the parameters plumbagoOreMegaVeinSize andplumbagoOreMegaVeinChance")
                     .define("plumbagoOreMegaVeins",false);
             PLUMBAGO_ORE_MEGA_SIZE = b.comment("The maximum size of mega Plumbago Ore vein.")
@@ -2677,6 +2690,33 @@ public class WGConfig {
                     .defineInRange("celestineOreMegaVeinSize", 50, 0, 500);
             CELESTINE_ORE_MEGA_CHANCE = b.comment("Determines 1 in how many chunks a mega Celestine Ore vein will spawn.")
                     .defineInRange("celestineOreMegaVeinChance", 80, 0, 500);
+            b.pop();
+
+            b.comment("Monazite Ore Settings").push("monaziteOre");
+            MONAZITE_ORE_HL = b.comment("Harvest Level of Monazite Ore.")
+                    .defineInRange("monaziteOreHL", 4, 0, 4);
+            MONAZITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Monazite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Monazite Ore generation.")
+                    .define("monaziteOreDimList", new ArrayList<>(Arrays.asList("nether")));
+            MONAZITE_ORE_STONE_SPECIFIC = b.comment("If true Monazite Ore will only spawn in the blocks listed under monaziteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in monaziteOreDimList.")
+                    .define("monaziteOreStoneSpecific",false);
+            MONAZITE_ORE_BLOCK_LIST = b.comment("Blocks to generate Monazite Ore in if monaziteOreStoneSpecific is enabled. The entries can be either individual blocks or tags. Use B#<modname:block_name> for blocks and T#<modname::tag_name> for tags (Ex: B#rankine:slate and T#forge:stones/gabbro). Rankine stones and some modded stones support background stone imitation.")
+                    .define("monaziteOreBlockList", new ArrayList<>(Arrays.asList()));
+            MONAZITE_ORE_MIN_HEIGHT = b.comment("Minimum height to generate Monazite Ore at (make sure it is less than the maximum)")
+                    .defineInRange("monaziteOreMin", 10, 0, 256);
+            MONAZITE_ORE_MAX_HEIGHT = b.comment("Maximum height to generate Monazite Ore at (make sure it is greater than the minimum)")
+                    .defineInRange("monaziteOreMax", 40, 0, 256);
+            MONAZITE_ORE_GENTYPE = b.comment("If false, monaziteOreChance will determine how many tries per chunk ore veins will generate. If true, monaziteOreChance will determine 1 in how many chunks a vein will spawn.")
+                    .define("monaziteOreGentype",false);
+            MONAZITE_ORE_CHANCE = b.comment("Count / chance number to be used depending on monaziteOreGentype.")
+                    .defineInRange("monaziteOreChance", 3, 0, 256);
+            MONAZITE_ORE_SIZE = b.comment("The maximum size of Monazite Ore vein")
+                    .defineInRange("monaziteOreSize", 7, 0, 500);
+            MONAZITE_ORE_MEGA_GEN = b.comment("If true, a mega Monazite Ore vein will generate according to the parameters monaziteOreMegaVeinSize andmonaziteOreMegaVeinChance")
+                    .define("monaziteOreMegaVeins",false);
+            MONAZITE_ORE_MEGA_SIZE = b.comment("The maximum size of mega Monazite Ore vein.")
+                    .defineInRange("monaziteOreMegaVeinSize", 50, 0, 500);
+            MONAZITE_ORE_MEGA_CHANCE = b.comment("Determines 1 in how many chunks a mega Monazite Ore vein will spawn.")
+                    .defineInRange("monaziteOreMegaVeinChance", 80, 0, 500);
             b.pop();
 
             b.comment("Kamacite Ore Settings").push("kamaciteOre");

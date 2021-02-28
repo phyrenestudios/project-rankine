@@ -618,7 +618,17 @@ public class RankineFeatures {
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.CELESTINE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.CELESTINE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.CELESTINE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.CELESTINE_ORE_CHANCE.get());
     public static final ConfiguredFeature<?,?> ORE_CELESTINE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.CELESTINE, RankineBlocks.CELESTINE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.CELESTINE_ORE_MEGA_SIZE.get()))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.CELESTINE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.CELESTINE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.CELESTINE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.CELESTINE_ORE_MEGA_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_MONAZITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.MONAZITE, RankineBlocks.MONAZITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.MONAZITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.MONAZITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.MONAZITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.MONAZITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.MONAZITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_MONAZITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.MONAZITE, RankineBlocks.MONAZITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.MONAZITE_ORE_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.MONAZITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.MONAZITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.MONAZITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.MONAZITE_ORE_CHANCE.get());
+    public static final ConfiguredFeature<?,?> ORE_MONAZITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.MONAZITE, RankineBlocks.MONAZITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.MONAZITE_ORE_MEGA_SIZE.get()))
+            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.MONAZITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.MONAZITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.MONAZITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.MONAZITE_ORE_MEGA_CHANCE.get());
 
+    
+    
+    
+    
     public static final ConfiguredFeature<?,?> ORE_KAMACITE_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.KAMACITE, RankineBlocks.KAMACITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.KAMACITE_ORE_SIZE.get()))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.KAMACITE_ORE_MAX_HEIGHT.get()))).square().func_242731_b(WGConfig.ORES.KAMACITE_ORE_CHANCE.get());
     public static final ConfiguredFeature<?,?> ORE_KAMACITE_CHANCE = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.KAMACITE, RankineBlocks.KAMACITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.KAMACITE_ORE_SIZE.get()))

@@ -113,7 +113,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                     for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
                         Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
                         boolean stop = false;
-                        if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable")) && !TARGET_BLOCK.getTags().contains(new ResourceLocation("forge:ores"))) {
+                        if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable"))) {
                             for (int height = TARGET_POS.getY(); height <= this.pos.getY(); ++height) {
                                 if (worldIn.getBlockState(new BlockPos(TARGET_POS.getX(), height, TARGET_POS.getZ())) == RankineBlocks.QUARRY_BARRIER.get().getDefaultState()) {
                                     stop = true;
