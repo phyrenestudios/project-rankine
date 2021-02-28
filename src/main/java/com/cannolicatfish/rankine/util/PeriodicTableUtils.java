@@ -4,7 +4,9 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.elements.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
@@ -56,53 +58,114 @@ public final class PeriodicTableUtils {
                 }
             }
         }
-        return Element.MERCURY;
+        return Element.NONE;
     }
 
-    public boolean hasElement(Item item) {
+    public Element getElementFromIngotItem(Item item) {
         for (ResourceLocation tag: item.getTags())
         {
             if (tag.toString().contains("rankine:elements/") || tag.toString().contains("forge:ingots/") || tag.toString().contains("forge:storage_blocks/") || tag.toString().contains("forge:nuggets/"))
             {
                 String temp = tag.getPath().split("/")[1];
-                if (getImplementedElementNames().contains(temp))
+                if (getImplementedElementNames().contains(temp) && (item.getTags().contains(new ResourceLocation("forge:ingots")) || (item.getRegistryName() != null && item.getRegistryName().toString().contains("ingot"))))
                 {
-                    return true;
+                    return Element.valueOfCaseIgnored(temp);
                 }
             }
         }
-        return false;
+        return Element.NONE;
     }
 
-    public List<String> getAmalgamNames() {
-        List<String> elements = new ArrayList<>();
-        for (Element e: Element.values())
-        {
-            if (e != Element.MERCURY && e != Element.GOLD && !amalgamNonmetals.contains(e))
-            {
-                if (Config.ALLOYS.AMALGAM_EXTRAS.get() || (!amalgamExtras.contains(e)))
-                {
-                    elements.add(e.toString().toLowerCase());
-                }
-            }
-        }
-        //System.out.println(elements);
-        return elements;
+    public boolean hasElement(Item item) {
+
+        return getElementFromItem(item) != Element.NONE;
     }
 
     public List<String> getElementSymbols() {
         return symbols;
     }
 
-    public String getElementbyNumber(int x, Boolean symbol)
+    public Element getElementbyNumber(int x)
     {
-        if (symbol)
+        for (Element i: Element.values())
         {
-            return symbols.get(x);
+            if (i.getAtomicNumber() == x)
+            {
+                return i;
+            }
         }
-        else
-        {
-            return names.get(x);
+        return Element.NONE;
+    }
+
+    public Item getElementIngot(Element element) {
+        String namespace = "rankine";
+        if (element == Element.IRON || element == Element.GOLD || element == Element.NETHERITE) {
+            namespace = "minecraft";
+        }
+        Item elementIngot = ForgeRegistries.ITEMS.getValue(new ResourceLocation(namespace, element.name().toLowerCase(Locale.ROOT) + "_ingot"));
+        if (elementIngot != null) {
+            return elementIngot;
+        }
+
+        return Items.AIR;
+    }
+
+    public Element getAdjacentElement(Element element, int direction) {
+        if (element == Element.NONE) {
+            return Element.NONE;
+        }
+        int atom = element.getAtomicNumber();
+        switch (direction) {
+            case 3: // UP
+                int up = 0;
+                if (atom == 3) {
+                    up = 1;
+                } else if (atom >= 10 && atom <= 20) {
+                    up = 8;
+                } else if (atom >= 31 && atom <= 57) {
+                    up = 18;
+                } else if (atom >= 72 && atom <= 121) {
+                    up = 32;
+                } else if (atom >= 140 && atom <= 218) {
+                    up = 50;
+                }
+                if (Config.MACHINES.RANKINE_BOX_UP.get() && up != 0) {
+                    return getElementbyNumber(atom - up);
+                } else {
+                    return Element.NONE;
+                }
+            case 4: // RIGHT
+                if (Config.MACHINES.RANKINE_BOX_RIGHT.get()) {
+                    return getElementbyNumber(atom + 1);
+                } else {
+                    return Element.NONE;
+                }
+            case 5: // DOWN
+                int down = 0;
+                if (atom == 1) {
+                    down = 1;
+                } else if (atom >= 3 && atom <= 12) {
+                    down = 8;
+                } else if (atom >= 19 && atom <= 39) {
+                    down = 18;
+                } else if (atom >= 40 && atom <= 89) {
+                    down = 32;
+                } else if (atom >= 90 && atom <= 168) {
+                    down = 50;
+                }
+                if (Config.MACHINES.RANKINE_BOX_DOWN.get() && down != 0) {
+                    return getElementbyNumber(atom + down);
+                } else {
+                    return Element.NONE;
+                }
+            case 6: // LEFT
+                if (Config.MACHINES.RANKINE_BOX_LEFT.get()) {
+                    return getElementbyNumber(atom - 1);
+                } else {
+                    return Element.NONE;
+                }
+            default:
+                return Element.NONE;
         }
     }
 
@@ -121,33 +184,7 @@ public final class PeriodicTableUtils {
                 return i;
             }
         }
-        return Element.MERCURY;
-    }
-
-    public String getElementByMaterial(String material)
-    {
-        if (material.equals("none") || material.equals("nope"))
-        {
-            return "";
-        }
-        if (material.equals("pure_carbon"))
-        {
-            return "C";
-        }
-        if (material.equals("unref_iron") || material.equals("ref_iron"))
-        {
-            return "Fe";
-        }
-        int index = 0;
-        for (String e:names) // change to use implemented elements?
-        {
-            if (material.equalsIgnoreCase(e))
-            {
-                return symbols.get(index);
-            }
-            index++;
-        }
-        return "";
+        return Element.NONE;
     }
 
     public int calcDurability(List<Element> elements, List<Integer> percents)
@@ -285,6 +322,7 @@ public final class PeriodicTableUtils {
     }
 
     public enum Element {
+        NONE(-1,"X",new NoneElement()),
         HYDROGEN(1,"H",new HydrogenElement()),
         HELIUM(2,"He",new HeliumElement()),
         LITHIUM(3,"Li",new LithiumElement(),14087935),

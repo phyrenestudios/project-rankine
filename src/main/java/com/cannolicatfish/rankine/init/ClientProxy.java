@@ -3,9 +3,11 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
+import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
+import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import net.minecraft.block.Block;
@@ -42,6 +44,8 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
         ScreenManager.registerFactory(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
         ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
+        ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
+        ScreenManager.registerFactory(RankineBlocks.RANKINE_BOX_CONTAINER, RankineBoxScreen::new);
         ScreenManager.registerFactory(RankineBlocks.LASER_QUARRY_CONTAINER, LaserQuarryScreen::new);
 
         addCutout(Arrays.asList(

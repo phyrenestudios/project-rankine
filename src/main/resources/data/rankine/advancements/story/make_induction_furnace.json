@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_steel_alloy",
+  "parent": "rankine:story/make_power_cell",
   "display": {
     "icon": {
       "item": "rankine:induction_furnace"

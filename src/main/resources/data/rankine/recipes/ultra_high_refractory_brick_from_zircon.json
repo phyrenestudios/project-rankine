@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rankine:fire_clay_ball"
+      "item": "rankine:refractory_brick"
     },
     {
       "item": "rankine:zircon"

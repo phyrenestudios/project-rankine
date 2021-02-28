@@ -13,6 +13,9 @@ import com.cannolicatfish.rankine.blocks.dac.DiamondAnvilCellBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
+import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherBlock;
+import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
+import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
@@ -22,6 +25,9 @@ import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherBlock;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
+import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxBlock;
+import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
+import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.fluids.ModFluids;
@@ -1450,9 +1456,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PISTON_CRUSHER = REGISTRY.register("piston_crusher", () -> new PistonCrusherBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
     public static final RegistryObject<Block> PCF = REGISTRY.register("pcf", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> INDUCTION_FURNACE = REGISTRY.register("induction_furnace", () -> new InductionFurnaceBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)));
+    public static final RegistryObject<Block> GYRATORY_CRUSHER = REGISTRY.register("gyratory_crusher", () -> new GyratoryCrusherBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
     public static final RegistryObject<Block> EVAPORATION_TOWER = REGISTRY.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = REGISTRY.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> RANKINE_BOX = REGISTRY.register("rankine_box", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> RANKINE_BOX = REGISTRY.register("rankine_box", () -> new RankineBoxBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));
@@ -1522,11 +1529,23 @@ public class RankineBlocks {
     @ObjectHolder("rankine:induction_furnace")
     public static TileEntityType<InductionFurnaceTile> INDUCTION_FURNACE_TILE;
 
+    @ObjectHolder("rankine:rankine_box")
+    public static ContainerType<RankineBoxContainer> RANKINE_BOX_CONTAINER;
+
+    @ObjectHolder("rankine:rankine_box")
+    public static TileEntityType<RankineBoxTile> RANKINE_BOX_TILE;
+
     @ObjectHolder("rankine:laser_quarry")
     public static ContainerType<LaserQuarryContainer> LASER_QUARRY_CONTAINER;
 
     @ObjectHolder("rankine:laser_quarry")
     public static TileEntityType<LaserQuarryTile> LASER_QUARRY_TILE;
+
+    @ObjectHolder("rankine:gyratory_crusher")
+    public static ContainerType<GyratoryCrusherContainer> GYRATORY_CRUSHER_CONTAINER;
+
+    @ObjectHolder("rankine:gyratory_crusher")
+    public static TileEntityType<GyratoryCrusherTile> GYRATORY_CRUSHER_TILE;
 
     @ObjectHolder("rankine:evaporation_tower")
     public static ContainerType<EvaporationTowerContainer> EVAPORATION_TOWER_CONTAINER;

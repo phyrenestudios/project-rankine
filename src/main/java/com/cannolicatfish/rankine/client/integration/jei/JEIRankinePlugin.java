@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
@@ -20,6 +21,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.gui.DisplayEffectsScreen;
 import net.minecraft.client.gui.screen.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
@@ -37,18 +39,19 @@ public class JEIRankinePlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(AlloyFurnaceScreen.class, 98, 32, 24, 16, AlloyingRecipeCategory.UID);
         registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, AlloyingRecipeCategory.UID);
-        registration.addRecipeClickArea(PistonCrusherScreen.class, 55, 58, 24, 16, AlloyingRecipeCategory.UID);
+        registration.addRecipeClickArea(PistonCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
+        registration.addRecipeClickArea(GyratoryCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
     }
 
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
-        registry.addRecipes(RankineRecipes.getBeehiveOvenRecipes(), BeehiveOvenRecipeCategory.UID);
-        registry.addRecipes(RankineRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
+        registry.addRecipes(rankineJEIRecipes.getBeehiveRecipes(), BeehiveOvenRecipeCategory.UID);
+        registry.addRecipes(rankineJEIRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
         registry.addRecipes(RankineRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getCrushingRecipes(), CrushingRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getAlloyingRecipes(), AlloyingRecipeCategory.UID);
-        registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous or Sub-bituminous Coal Blocks in a beehive oven.",
+        registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
@@ -67,7 +70,10 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(RankineItems.FLINT_KNIFE.get()), VanillaTypes.ITEM, "Right-clicking on grass blocks allows you to obtain grass and convert the original block into dirt at an increased durability cost." +
                 "The knife can also harvest grass and vines by left clicking.");
         registry.addIngredientInfo(new ItemStack(RankineItems.COMPOST.get()), VanillaTypes.ITEM, "Can be placed in the Composter.");
-
+        registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Steel Process requires Iron and a form of coal, as well as two additional unique inputs. These include: Sand/Glass/Quartz, Limestone/Quicklime/Dolomite, Saltpeter, Phosphorus, Fluorite, Trona, and Borax. ");
+        registry.addIngredientInfo(new ItemStack(RankineItems.STEEL_ALLOY.get()), VanillaTypes.ITEM, "The Crucible Steel Process requires Iron and a form of coal, as well as two additional unique inputs. These include: Sand/Glass/Quartz, Limestone/Quicklime/Dolomite, Saltpeter, Phosphorus, Fluorite, Trona, and Borax. ");
+        registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Redstone-Glowstone Process requires Cinnabar and three additional unique fluxes. These include: Phosphorus, Arsenic Ingot, Cobaltite, Cryolite, Alumina, and Quartz.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Glass Process requires a form of Quartz (Sand/Quartz) and three additional unique fluxes. These include: Galena, Alumina, Magnesia, Quicklime, Sodium Carbonate, Petalite, Plagioclase/Orthoclase Feldspar, and Dye.");
     }
 
     @Override
@@ -88,6 +94,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()), CrushingRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.GYRATORY_CRUSHER.get()), CrushingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);
     }

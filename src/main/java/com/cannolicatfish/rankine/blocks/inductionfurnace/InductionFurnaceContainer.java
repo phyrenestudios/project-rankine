@@ -135,7 +135,6 @@ public class InductionFurnaceContainer extends Container {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.INDUCTION_FURNACE.get());
     }
 
-    //TO-DO: REDO +3
     @Override
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index)
     {

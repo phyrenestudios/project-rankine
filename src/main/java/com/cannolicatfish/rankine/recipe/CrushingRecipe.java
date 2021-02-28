@@ -122,6 +122,16 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return outputs;
     }
 
+    public ItemStack getSpecificResult(int harvestLevel, int index, World worldIn) {
+        Random random = worldIn.getRandom();
+        ItemStack outputs = ItemStack.EMPTY;
+        float c = harvestLevel == index ? (this.chances.get(index) + this.additional.get(index)) : this.chances.get(index);
+        if (random.nextFloat() < c) {
+            outputs = this.recipeOutputs.get(index);
+        }
+        return outputs;
+    }
+
     @Override
     public boolean canFit(int width, int height) {
         return true;

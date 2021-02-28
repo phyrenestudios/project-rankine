@@ -145,11 +145,11 @@ public interface IAlloyTool {
             i += 1;
         }
         if (rand.nextFloat() > getHeatResist(stack,alloy) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
-            i += 1;
+            i += Config.ALLOYS.ALLOY_HEAT_AMT.get();
         }
         if ((rand.nextFloat() > getCorrResist(stack,alloy) && entityLiving.isWet()))
         {
-            i += 1;
+            i += Config.ALLOYS.ALLOY_CORROSION_AMT.get();
         }
         if (!isEfficient)
         {

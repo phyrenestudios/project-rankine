@@ -16,10 +16,16 @@
     "rankine:saltpeter",
     "rankine:phosphorus",
     "rankine:cinnabar",
+    "rankine:trona",
     "rankine:galena",
     "rankine:alumina",
     "rankine:magnesia",
     "rankine:cobaltite",
+    "rankine:cryolite",
+    "rankine:sodium_carbonate",
+    "rankine:petalite",
+    "rankine:feldspar",
+    "rankine:plagioclase_feldspar",
     "rankine:arsenic_ingot"
   ]
 }

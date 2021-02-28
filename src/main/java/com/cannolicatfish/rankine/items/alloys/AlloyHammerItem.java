@@ -97,6 +97,14 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
 
                         if (!creativeFlag) {
                             List<ItemStack> results = recipe.getResults(getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy),worldIn);
+                            if (getAtomizeModifier(stack) >= 1) {
+                                for (int i = 0; i < results.size(); i++) {
+                                    if (results.get(i).isEmpty()) {
+                                        ItemStack resu = recipe.getSpecificResult(getTier().getHarvestLevel(),i,worldIn);
+                                        results.set(i,resu);
+                                    }
+                                }
+                            }
                             for (ItemStack t : results)
                             {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
@@ -112,9 +120,9 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
 
                 }
             }
+            SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
-        SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
-        worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         return false;
     }
 

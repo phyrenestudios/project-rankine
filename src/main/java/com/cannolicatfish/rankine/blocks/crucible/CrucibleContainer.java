@@ -31,7 +31,7 @@ public class CrucibleContainer extends Container {
     private final IIntArray data;
 
     public CrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(5),new IntArray(3));
+        this(windowId,world,pos,playerInventory,player,new Inventory(6),new IntArray(3));
 
 
 
@@ -39,7 +39,7 @@ public class CrucibleContainer extends Container {
     public CrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray furnaceData) {
         super(CRUCIBLE_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 5);
+        assertInventorySize(furnaceInventoryIn, 6);
         assertIntArraySize(furnaceData, 3);
         this.playerEntity = player;
         this.data = furnaceData;
@@ -51,6 +51,7 @@ public class CrucibleContainer extends Container {
         this.addSlot(new Slot(furnaceInventory, 2, 88,16));
         this.addSlot(new Slot(furnaceInventory, 3, 106,23));
         this.addSlot(new Slot(furnaceInventory, 4, 79,57));
+        this.addSlot(new Slot(furnaceInventory, 5, 53,57));
 
         layoutPlayerInventorySlots(8, 84);
 
@@ -85,26 +86,26 @@ public class CrucibleContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 4) {
-                if (!this.mergeItemStack(stack, 5, 41, true)) {
+            if (index == 4 || index == 5) {
+                if (!this.mergeItemStack(stack, 6, 42, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
-            } else if (index > 4) {
+            } else if (index > 5) {
                 if (stack.getItem().getTags().contains(new ResourceLocation("rankine:crucible_fluxes"))) {
                     if (!this.mergeItemStack(stack, 0, 4, false)) {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index < 32) {
-                    if (!this.mergeItemStack(stack, 32, 41, false)) {
+                else if (index < 33) {
+                    if (!this.mergeItemStack(stack, 33, 42, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 41 && !this.mergeItemStack(stack, 5, 32, false)) {
+                } else if (index < 42 && !this.mergeItemStack(stack, 6, 33, false)) {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(stack, 5, 41, false)) {
+            else if (!this.mergeItemStack(stack, 6, 42, false)) {
                 return ItemStack.EMPTY;
             }
 

@@ -1,0 +1,46 @@
+{
+  "parent": "rankine:story/make_power_cell",
+  "display": {
+    "icon": {
+      "item": "rankine:alnico_electromagnet"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_electromagnet.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_electromagnet.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "alnico_electromagnet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:alnico_electromagnet"
+          }
+        ]
+      }
+    },
+    "rare_earth_electromagnet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rare_earth_electromagnet"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "alnico_electromagnet",
+      "rare_earth_electromagnet"
+    ]
+  ]
+}

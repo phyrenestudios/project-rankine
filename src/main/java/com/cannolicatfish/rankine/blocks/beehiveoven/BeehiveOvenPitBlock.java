@@ -2,10 +2,13 @@ package com.cannolicatfish.rankine.blocks.beehiveoven;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
@@ -73,12 +76,15 @@ public class BeehiveOvenPitBlock extends Block {
         } else if (player.getHeldItemMainhand().getItem() == Items.BLAZE_POWDER && state.get((LIT))) {
             boolean flag = true;
             for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,2,1))) {
-                ItemStack output = RankineRecipes.getBeehiveOutput(new ItemStack(worldIn.getBlockState(p).getBlock()));
-                if (!output.isEmpty()) {
-                    if (output.getItem() instanceof BlockItem) {
-                        worldIn.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
-                        flag = false;
-                        break;
+                BeehiveOvenRecipe recipe = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(worldIn.getBlockState(p).getBlock())), worldIn).orElse(null);
+                if (recipe != null) {
+                    ItemStack output = recipe.getRecipeOutput();
+                    if (!output.isEmpty()) {
+                        if (output.getItem() instanceof BlockItem) {
+                            worldIn.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                            flag = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -108,18 +114,23 @@ public class BeehiveOvenPitBlock extends Block {
             if (rand.nextFloat() <= structureCheck(worldIn, pos)) {
                 boolean flag = true;
                 for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,height,1))) {
-                    ItemStack output = RankineRecipes.getBeehiveOutput(new ItemStack(world.getBlockState(p).getBlock()));
-                    if (!output.isEmpty()) {
-                        if (output.getItem() instanceof BlockItem) {
-                            world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
-                            flag = false;
-                            if (chance <= 1.0) {
-                                break;
-                            } else if (rand.nextFloat()+1.0 > chance) {
-                                break;
+
+                    BeehiveOvenRecipe recipe = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(world.getBlockState(p).getBlock())), worldIn).orElse(null);
+                    if (recipe != null) {
+                        ItemStack output = recipe.getRecipeOutput();
+                        if (!output.isEmpty()) {
+                            if (output.getItem() instanceof BlockItem) {
+                                world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                                flag = false;
+                                if (chance <= 1.0) {
+                                    break;
+                                } else if (rand.nextFloat()+1.0 > chance) {
+                                    break;
+                                }
                             }
                         }
                     }
+
                 }
                 if (flag) {
                     world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
@@ -194,7 +205,6 @@ public class BeehiveOvenPitBlock extends Block {
                 count += 4;
             }
         }
-        System.out.println((float) count/97);
         return (float) count/97;
     }
 

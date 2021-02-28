@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.advancements;
 
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
@@ -25,7 +26,7 @@ public class HarvestLevelPredicate extends ItemPredicate {
 
     @Override
     public boolean test(ItemStack item) {
-        if (item.getItem() instanceof IAlloyTool && item.getItem() instanceof TieredItem) {
+        if (item.getItem() == RankineItems.BRONZE_PICKAXE.get()) {
             INBT nbt = AlloyItem.getComposition(item).getCompound(0).get("comp");
             if (nbt != null)
             {

@@ -15,6 +15,7 @@ import com.cannolicatfish.rankine.potion.ModEffects;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.MobEntity;
@@ -94,7 +95,9 @@ public class RankineEventHandler {
             level1.add(new BasicTrade(1, new ItemStack(RankineItems.ALLOY_TEMPLATE.get()),12,1,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COPPER_INGOT.get(), 4), new ItemStack(Items.EMERALD),12,2,0.05f));
+            level2.add(new BasicTrade(1, new ItemStack(RankineItems.ZINC_INGOT.get(), 2),12,10,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.METEORIC_IRON.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COIN.get(), 16), new ItemStack(Items.EMERALD),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MANGANESE_INGOT.get(), 2),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MOLYBDENUM_INGOT.get(), 2),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.VANADIUM_INGOT.get(), 2),12,10,0.05f));
@@ -210,7 +213,6 @@ public class RankineEventHandler {
             AlloyItem.addAlloy(met,new AlloyData("50Fe-50Ni"));
             event.getRareTrades().add(new BasicTrade(3,met,6,1,0.5f));
         }
-        event.getRareTrades().add(new BasicTrade(3,new ItemStack(RankineItems.PACKAGED_TOOL.get()),6,1,0.05f));
     }
 
 
@@ -495,110 +497,6 @@ public class RankineEventHandler {
                 event.setCost(30);
             }
         }
-
-        if (event.getPlayer() != null && event.getPlayer().getHeldItemOffhand().getItem() instanceof HammerItem)
-        {
-            ItemStack hammer = event.getPlayer().getHeldItemOffhand();
-            int enchLvl = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SMITHING,hammer);
-            int durability = hammer.getMaxDamage() - hammer.getDamage();
-            if (enchLvl > 0 && durability >= Math.round(hammer.getMaxDamage() * 1f/enchLvl))
-            {
-                if (event.getRight().getItem() instanceof EnchantedBookItem && !event.getLeft().isEnchanted())
-                {
-                    event.setOutput(input.copy());
-                    int i = 0;
-                    ItemStack itemstack = input.copy();
-                    ItemStack itemstack1 = input.copy();
-                    ItemStack itemstack2 = event.getRight().copy();
-                    boolean flag = event.getRight().getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(event.getRight()).isEmpty();
-                    boolean flag2 = false;
-                    boolean flag3 = false;
-                    Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
-                    Map<Enchantment, Integer> map1 = EnchantmentHelper.getEnchantments(itemstack2);
-                    for(Enchantment enchantment1 : map1.keySet()) {
-                        if (enchantment1 != null) {
-                            int i2 = map.getOrDefault(enchantment1, 0);
-                            int j2 = map1.get(enchantment1);
-                            j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
-                            boolean flag1 = enchantment1.canApply((itemstack));
-                            if (event.getPlayer().abilities.isCreativeMode || (itemstack.getItem() == Items.ENCHANTED_BOOK)) {
-                                flag1 = true;
-                            }
-
-                            for(Enchantment enchantment : map.keySet()) {
-                                if (enchantment != enchantment1 && !enchantment1.isCompatibleWith(enchantment)) {
-                                    flag1 = false;
-                                }
-                            }
-
-                            if (!flag1) {
-                                flag3 = true;
-                            } else {
-                                flag2 = true;
-                                if (j2 > enchantment1.getMaxLevel()) {
-                                    j2 = enchantment1.getMaxLevel();
-                                }
-
-                                map.put(enchantment1, j2);
-                                int k3 = 0;
-                                switch(enchantment1.getRarity()) {
-                                    case COMMON:
-                                        k3 = 1;
-                                        break;
-                                    case UNCOMMON:
-                                        k3 = 2;
-                                        break;
-                                    case RARE:
-                                        k3 = 4;
-                                        break;
-                                    case VERY_RARE:
-                                        k3 = 8;
-                                }
-
-                                if (flag) {
-                                    k3 = Math.max(1, k3 / 2);
-                                }
-
-                                i += k3 * j2;
-                                if (itemstack.getCount() > 1) {
-                                    i = 40;
-                                }
-                            }
-                        }
-                    }
-                    if (flag3 && !flag2) {
-                        return;
-                    }
-
-                    if (!itemstack1.isEmpty()) {
-                        EnchantmentHelper.setEnchantments(map, itemstack1);
-                    }
-                    event.setOutput(itemstack1.copy());
-                    event.setCost(1);
-                }
-
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onAnvilRepair(AnvilRepairEvent event)
-    {
-        if (event.getPlayer() != null && event.getPlayer().getHeldItemOffhand().getItem() instanceof HammerItem && event.getPlayer().getHeldItemOffhand().isEnchanted())
-        {
-            ItemStack hammer = event.getPlayer().getHeldItemOffhand();
-            int enchLvl = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SMITHING,hammer);
-            int durability = hammer.getMaxDamage() - hammer.getDamage();
-            if (enchLvl > 0 && event.getIngredientInput().getItem() instanceof EnchantedBookItem && !event.getItemInput().isEnchanted() && durability >= Math.round(hammer.getMaxDamage() * 1f/enchLvl))
-            {
-
-                float newBreakChance = Math.max(event.getBreakChance() - enchLvl * 0.02f,0);
-                event.setBreakChance(newBreakChance);
-                hammer.damageItem(Math.round(hammer.getMaxDamage() * 1f/enchLvl), event.getPlayer(), (p_220038_0_) -> {
-                    p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                });
-            }
-        }
     }
 
     @SubscribeEvent
@@ -845,7 +743,9 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void onBlockHarvest(PlayerEvent.HarvestCheck event) {
-        if (event.getPlayer().getHeldItemMainhand().getItem() instanceof IAlloyTool) {
+        Material mat = event.getTargetBlock().getMaterial();
+        boolean flag = mat == Material.ROCK || mat == Material.IRON || mat == Material.ANVIL;
+        if (flag && (event.getPlayer().getHeldItemMainhand().getItem() instanceof AlloyPickaxeItem || event.getPlayer().getHeldItemMainhand().getItem() instanceof AlloyPickaxeItem)) {
             ItemStack stack = event.getPlayer().getHeldItemMainhand();
             Item item = event.getPlayer().getHeldItemMainhand().getItem();
             boolean bool = item.canHarvestBlock(stack,event.getTargetBlock());
@@ -1487,7 +1387,7 @@ public class RankineEventHandler {
                 }
                 if (foundPos != null && new Random().nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode) {
                     Block b = worldIn.getBlockState(foundPos).getBlock();
-                    ItemStack nug = null;
+                    ItemStack nug = ItemStack.EMPTY;
                     if (b == RankineBlocks.MAGNETITE_ORE.get()) {
                         nug = new ItemStack(Items.IRON_NUGGET);
                     } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
@@ -1534,12 +1434,15 @@ public class RankineEventHandler {
                         nug = new ItemStack(RankineItems.URANIUM_NUGGET.get());
                     }
 
-                    double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                    double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                    double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                    ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, nug);
-                    itementity.setDefaultPickupDelay();
-                    worldIn.addEntity(itementity);
+                    if (!nug.isEmpty()) {
+                        double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                        ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, nug);
+                        itementity.setDefaultPickupDelay();
+                        worldIn.addEntity(itementity);
+                        break;
+                    }
                 }
             }
         }
@@ -1588,7 +1491,7 @@ public class RankineEventHandler {
         float CHANCE = new Random().nextFloat();
         if (!player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
-                if ( player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
+                if (player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
                     if (CHANCE < Config.GENERAL.FLINT_DROP_CHANCE.get()) {
                         double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
                         double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;

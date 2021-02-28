@@ -236,6 +236,16 @@
         ]
       }
     },
+    "rankine:osmiridium_alloy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:osmiridium_alloy"
+          }
+        ]
+      }
+    },
     "rankine:rose_gold_alloy": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -320,6 +330,7 @@
     "rankine:ferrocerium_alloy"],[
     "rankine:sterling_silver_alloy"],[
     "rankine:magnesium_alloy"],[
+      "rankine:osmiridium_alloy"],[
       "rankine:solder_alloy"],[
     "rankine:rose_gold_alloy"],[
     "rankine:rose_gold_alloy"],[

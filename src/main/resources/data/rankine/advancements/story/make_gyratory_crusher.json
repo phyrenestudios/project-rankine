@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_power_cell",
+  "display": {
+    "icon": {
+      "item": "rankine:gyratory_crusher"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_gyratory_crusher.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_gyratory_crusher.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gyratory_crusher": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gyratory_crusher"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gyratory_crusher"
+    ]
+  ]
+}

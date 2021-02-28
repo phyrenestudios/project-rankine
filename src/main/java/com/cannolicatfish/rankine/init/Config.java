@@ -65,6 +65,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
+        public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
         public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
         public final ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
@@ -86,6 +87,8 @@ public class Config {
                             .defineInRange("bricksResistanceMultiplier", 1.5D, 0.0D, 20.0D);
                     STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod)")
                             .define("startingBook",true);
+                    PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing")
+                            .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("An axe is required to harvest logs")
                             .define("axesOnly",false);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
@@ -232,64 +235,31 @@ public class Config {
     public static class Alloys {
 
         public final ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
+        public final ForgeConfigSpec.IntValue ALLOY_CORROSION_AMT;
         public final ForgeConfigSpec.BooleanValue ALLOY_HEAT;
+        public final ForgeConfigSpec.IntValue ALLOY_HEAT_AMT;
         public final ForgeConfigSpec.BooleanValue ALLOY_TOUGHNESS;
         public final ForgeConfigSpec.DoubleValue ALLOY_WEAR_MINING_AMT;
         public final ForgeConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
-        public final ForgeConfigSpec.BooleanValue AMALGAM_EXTRAS;
 
-        public final ForgeConfigSpec.BooleanValue ENABLE_AMALGAM_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_CUPRONICKEL_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_STERLING_SILVER_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_BRASS_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_NICKEL_SILVER_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_CAST_IRON_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_DURALUMIN_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_MAGNESIUM_ALLOY_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_ROSE_METAL_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_GALINSTAN_TOOLS;
-        public final ForgeConfigSpec.BooleanValue ENABLE_ALNICO_TOOLS;
 
         public Alloys(ForgeConfigSpec.Builder b) {
             b.comment("Settings for alloys and alloy tools").push("alloys");
                 ALLOY_CORROSION = b.comment("Enables the corrosion negative modifier for alloy tools (chance to consume extra points of durability in water and rain)")
                         .define("alloyCorrosion",true);
+                ALLOY_CORROSION_AMT = b.comment("If enabled, modifies the amount of durability damage taken in wet environments.")
+                        .defineInRange("alloyCorrosionDmgAmount", 1, 1, 10);
                 ALLOY_HEAT = b.comment("Enables the heat negative modifier for alloy tools (chance to consume extra points of durability in hot environments and lava)")
                         .define("alloyHeat",true);
+                ALLOY_HEAT_AMT = b.comment("If enabled, modifies the amount of durability damage taken in hot environments.")
+                        .defineInRange("alloyHeatDmgAmount", 1, 1, 10);
                 ALLOY_TOUGHNESS = b.comment("Enables the toughness negative modifier for alloy tools (chance to consume/resist loss of an extra point of durability)")
                         .define("alloyToughness",true);
                 ALLOY_WEAR_MINING_AMT = b.comment("Modifies the severity of the wear effect on mining speed (ex. 0.25 means mining speed will be reduced to 75% of the original value as durability is lost)")
                         .defineInRange("alloyWearMiningAmount", 0.25D, 0.00D, 0.99D);
                 ALLOY_WEAR_DAMAGE_AMT = b.comment("Modifies the severity of the wear effect on damage (ex. 0.25 means damage will be reduced to 75% of the original value as durability is lost)")
                         .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
-                AMALGAM_EXTRAS = b.comment("Enables the disabled metals for amalgam alloy (Fe, Pt, W, Ta)")
-                        .define("amalgamExtras",false);
-                ENABLE_AMALGAM_TOOLS = b.comment("Enables the construction of Amalgam Tools in the Coal Forge.")
-                        .define("amalgamToolsEnabled",true);
-    
-                b.comment("Experimental Alloy Tools").push("experimental");
-                ENABLE_CUPRONICKEL_TOOLS = b.comment("Enables the construction of Cupronickel Tools in the Coal Forge.")
-                        .define("cupronickelToolsEnabled",true);
-                ENABLE_STERLING_SILVER_TOOLS = b.comment("Enables the construction of Sterling Silver Tools in the Coal Forge.")
-                        .define("sterlingSilverToolsEnabled",true);
-                ENABLE_BRASS_TOOLS = b.comment("Enables the construction of Brass Tools in the Coal Forge.")
-                        .define("brassToolsEnabled",true);
-                ENABLE_NICKEL_SILVER_TOOLS = b.comment("Enables the construction of Nickel-silver Tools in the Coal Forge.")
-                        .define("nickelSilverToolsEnabled",true);
-                ENABLE_CAST_IRON_TOOLS = b.comment("Enables the construction of Cast Iron Tools in the Coal Forge.")
-                        .define("castIronToolsEnabled",true);
-                ENABLE_DURALUMIN_TOOLS = b.comment("Enables the construction of Duralumin Tools in the Coal Forge.")
-                        .define("duraluminToolsEnabled",true);
-                ENABLE_MAGNESIUM_ALLOY_TOOLS = b.comment("Enables the construction of Magnesium Alloy Tools in the Coal Forge.")
-                        .define("magnesiumAlloyToolsEnabled",true);
-                ENABLE_ROSE_METAL_TOOLS = b.comment("Enables the construction of Rose's Metal Tools in the Coal Forge.")
-                        .define("roseMetalToolsEnabled",true);
-                ENABLE_GALINSTAN_TOOLS = b.comment("Enables the construction of Galinstan Tools in the Coal Forge.")
-                        .define("galinstanToolsEnabled",true);
-                ENABLE_ALNICO_TOOLS = b.comment("Enables the construction of Alnico Tools in the Coal Forge.")
-                        .define("alnicoToolsEnabled",true);
                 b.pop();
-            b.pop();
         }
     }
 
@@ -299,6 +269,11 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
         public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
+        public final ForgeConfigSpec.IntValue RANKINE_BOX_SPEED;
+        public final ForgeConfigSpec.BooleanValue RANKINE_BOX_UP;
+        public final ForgeConfigSpec.BooleanValue RANKINE_BOX_DOWN;
+        public final ForgeConfigSpec.BooleanValue RANKINE_BOX_RIGHT;
+        public final ForgeConfigSpec.BooleanValue RANKINE_BOX_LEFT;
         public final ForgeConfigSpec.IntValue ALNICO_MAGNET_RANGE;
         public final ForgeConfigSpec.IntValue RARE_MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
@@ -315,6 +290,16 @@ public class Config {
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 EVAPORATION_TOWER_SPEED = b.comment("Speed (in ticks) at which the evaporation tower generates resources.")
                         .defineInRange("evaporationTowerSpeed", 800, 20, 12000);
+                RANKINE_BOX_SPEED = b.comment("Total amount of time required (in ticks) at which the Rankine Box transmutes elements.")
+                        .defineInRange("rankineBoxSpeed", 800, 20, 12000);
+                RANKINE_BOX_UP = b.comment("Allow for transmuting elements up periods in the Rankine Box.")
+                        .define("rankineBoxUp", true);
+                RANKINE_BOX_DOWN = b.comment("Allow for transmuting elements down periods in the Rankine Box.")
+                        .define("rankineBoxDown", true);
+                RANKINE_BOX_RIGHT = b.comment("Allow for transmuting elements to the next highest atomic number in the Rankine Box.")
+                        .define("rankineBoxRight", true);
+                RANKINE_BOX_LEFT = b.comment("Allow for transmuting elements to the next lowest atomic number in the Rankine Box.")
+                        .define("rankineBoxLeft", true);
                 ALNICO_MAGNET_RANGE = b.comment("Range for the Alnico Magnet's pickup radius and the Alnico Electromagnet range.")
                         .defineInRange("alnicoMagnetRange",5,1,10);
                 RARE_MAGNET_RANGE = b.comment("Range for the Rare Earth Magnet's pickup radius and the Rare Earth Electromagnet range.")

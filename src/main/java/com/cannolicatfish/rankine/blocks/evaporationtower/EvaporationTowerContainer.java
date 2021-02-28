@@ -46,6 +46,7 @@ public class EvaporationTowerContainer extends Container {
         this.addSlot(new Slot(furnaceInventoryIn, 0, 80, 26));
 
         layoutPlayerInventorySlots(8, 70);
+        this.trackIntArray(towerData);
     }
 
     @OnlyIn(Dist.CLIENT)

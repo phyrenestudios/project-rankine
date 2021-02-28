@@ -180,7 +180,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             return ItemStack.EMPTY;
         }
         ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.round(sum/10f));
-        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getInstance().getDirectComposition(percents,symbols)));
+        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getDirectComposition(percents,symbols)));
         return out;
     }
 
@@ -212,7 +212,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             percents.add(curPer);
         }
         ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),1);
-        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getInstance().getDirectComposition(percents,symbols)));
+        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getDirectComposition(percents,symbols)));
         return out;
     }
 
@@ -330,7 +330,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                         elementTag = "mercury";
                     }
 
-                    boolean e = !json.has("auto") || (json.has("auto") && JSONUtils.getBoolean(json, "auto"));
+                    boolean e = !object.has("auto") || (object.has("auto") && JSONUtils.getBoolean(object, "auto"));
                     if (e) {
                         String rs = "rankine:elements/" + elementTag;
                         JsonObject d = new JsonObject();
