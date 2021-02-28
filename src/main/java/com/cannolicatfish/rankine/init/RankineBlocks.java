@@ -1392,6 +1392,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TAENITE_ORE = REGISTRY.register("taenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PYRITE_ORE_HL.get())));
     public static final RegistryObject<Block> TETRATAENITE_ORE = REGISTRY.register("tetrataenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PYRITE_ORE_HL.get())));
     public static final RegistryObject<Block> LONSDALEITE_ORE = REGISTRY.register("lonsdaleite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PYRITE_ORE_HL.get())));
+    public static final RegistryObject<Block> MONAZITE_ORE = REGISTRY.register("monazite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PYRITE_ORE_HL.get())));
 
 
     public static final RegistryObject<Block> LIMESTONE_NODULE = REGISTRY.register("limestone_nodule", () -> new NoduleBlock(DEF_ORE.harvestLevel(0)));

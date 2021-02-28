@@ -24,6 +24,11 @@
     },
     {
       "type": "crafting",
+      "recipe": "rankine:hard_carbon_electrode",
+      "text": ""
+    },
+    {
+      "type": "crafting",
       "recipe": "rankine:yag_rod",
       "recipe2": "rankine:yag_rod_nd",
       "text": ""

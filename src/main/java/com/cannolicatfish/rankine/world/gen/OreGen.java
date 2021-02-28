@@ -679,6 +679,16 @@ public class OreGen {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_CELESTINE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
+            if (WGConfig.ORES.MONAZITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
+                if (WGConfig.ORES.MONAZITE_ORE_GENTYPE.get()) {
+                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+                } else {
+                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+                }
+                if (WGConfig.ORES.MONAZITE_ORE_MEGA_GEN.get()) {
+                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
+                }
+            }
             if (WGConfig.ORES.KAMACITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                 if (WGConfig.ORES.KAMACITE_ORE_GENTYPE.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_KAMACITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -1331,6 +1341,16 @@ public class OreGen {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_CELESTINE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
+            if (WGConfig.ORES.MONAZITE_ORE_DIMENSION_LIST.get().contains("nether")) {
+                if (WGConfig.ORES.MONAZITE_ORE_GENTYPE.get()) {
+                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+                } else {
+                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+                }
+                if (WGConfig.ORES.MONAZITE_ORE_MEGA_GEN.get()) {
+                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+                }
+            }
             if (WGConfig.ORES.KAMACITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                 if (WGConfig.ORES.KAMACITE_ORE_GENTYPE.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_KAMACITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
@@ -1981,6 +2001,16 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.CELESTINE_ORE_MEGA_GEN.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_CELESTINE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+                }
+            }
+            if (WGConfig.ORES.MONAZITE_ORE_DIMENSION_LIST.get().contains("end")) {
+                if (WGConfig.ORES.MONAZITE_ORE_GENTYPE.get()) {
+                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+                } else {
+                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+                }
+                if (WGConfig.ORES.MONAZITE_ORE_MEGA_GEN.get()) {
+                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MONAZITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
             if (WGConfig.ORES.KAMACITE_ORE_DIMENSION_LIST.get().contains("end")) {
