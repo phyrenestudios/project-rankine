@@ -1,7 +1,7 @@
 {
   "name": "Notes About Alloying",
   "icon": "rankine:element",
-  "category": "machines",
+  "category": "mechanics",
   "pages": [
     {
       "type": "text",
