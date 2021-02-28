@@ -2,6 +2,214 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.2.0 Major Changelog [2021-2-28]
+
+Since this is a major update, starting a new world and regenerating the config is suggested to prevent errors and missing items!
+### Additions
+#### Blocks
+- Added Black Dacite, Red Dacite, Porphyry, Purple Porphyry, Chalk, Mudstone, Arkose Sandstone, Quartz Sandstone, Troctolite, Pegmatite, Comendite, Dolostone, Mariposite, Skarn, Phyllite stones and variants
+
+- Added decorative checkered stone blocks and variants
+
+- Added vertical slabs for most blocks
+
+- Added cast iron support variants
+
+- Added uncolored concrete and variants
+
+- Added various storage blocks for minerals and gems
+
+- Added mud that replaces dirt under water
+
+- Added fire clay that spawns in dirt
+
+- Added Charcoal Pit, a block which converts nearby logs into Charred Wood that can be mined to give charcoal
+
+- Added Botanist Station, which is used as a job site for the Botanist Villager
+
+- Added Sediment Fan, which can be used to make generators for all sedimentary blocks
+
+- Added Rankine Box, which can be used to transmute elements into other elements
+
+- Added Gyratory Crusher, which acts as an upgraded piston crusher that uses power cells to determine crushing level
+
+- Added two types of electromagnets that can pull blocks
+
+- Added monazite ore, cryolite ore, lonsdaleite ore, pyrite ore
+
+- Added colored LEDs, a light source block that works like a redstone lamp
+
+- Added colored variants for mineral wool
+
+- Added enstatite and a new form of decorative block for enstatite and meteorite
+
+- Added kaolinite block and porcelain block
+
+
+#### Items
+- Added Alloy Dust, Alloy Gear, Alloy Ingot, Alloy Plate, Alloy Rod, and Alloy Wire which can be used for custom alloy recipes
+
+- Added Diving Armor and Conduit-Powered Diving Armor
+
+- Added Magnesium Arrow, a type of arrow which causes neaby undead mobs to attack the target hit by the arrow or blinds entities periodically in an area if in the ground
+
+- Added 6 tiers of Power Cells, which can be used in many post-steel machines
+
+- Added Up, Down, Left, and Right Element Transmuters for use in the Rankine Box
+
+- Added magnets that can pickup items in a radius around you on right-click
+
+- Added prospecting stick, an early game ore detector
+
+- Added trona, borax, rhodonite, rhodochrosite, labradorite, topaz, pearl, lonsdaleite diamond, chrome enstatite
+
+- Added fire clay ball for creating refractory brick
+
+- Added various crafting components; hard carbon electrode, indium tin oxide, cadmium telluride cell
+
+- Added a coin for villager trades
+
+- Added topaz
+
+- Added maple boat
+
+- Added cryolite and lepidolite
+
+- Added lodestone, a type of magnetite that can be used to make the Lodestone Block
+
+- Added plagioclase feldspar, mica, amphibole for stone crushing 
+
+- Added recipes for pendants and config option
+
+
+
+#### Misc Additions
+
+- Added JSON recipe types: alloy_crafting, alloying, crushing, beehive_oven, and sluicing
+(More information about these types will be posted to the new wiki on the GitHub page)
+
+- Reworked the Crucible into a tile entity that uses fluxes and heat to make various products, now including glass and redstone
+
+- Dyes can be used in world on various blocks to color them
+
+- Added recipes for minecart, shears, bucket, rails, anvil, chain and others using #rankine:crafting_metals
+
+- Added configs for stone generation (layers and intrusions)
+
+- Added igneous, sedimentary and metamorphic stone tags
+
+- Added movement speed modifiers for walking on certain blocks (with configs)
+
+- Added Mercury Poisoning, a potion effect which disrupts the senses of most mobs and reduces attack speed
+
+- Added Conductive, a potion which increases the likelyhood of being struck by lightning during a rainstorm
+
+
+- Added stats to all elements and modified stats of many existing elements* 
+
+- Added block breaking and hitting sounds to hammer and crowbar
+
+- Corrosion Resistance and Heat Resistance can no longer be negative for alloys (0% guarantees a loss of durability in aquatic/high heat environments respectively)
+
+- Added special generators for all igneous, sedimentary, and metamorphic rocks
+
+- Added the Metallurgist Villager, which uses the Alloy Template Table as a job site
+
+- Added the Mineralogist Villager, which uses the Piston Crusher as a job site
+
+- Added the Botanist Villager, which uses the Botanist Station as a job site
+
+
+- Adjusted fuel values of logs to match realistic heating values and adjusted wooden variants accordingly
+
+- Added Antiquated, an enchantment specific to Pewter tools which increases the luck stat
+
+- Added Impact, a spear enchantment which increases knockback of spears when thrown
+
+- Added Foraging, a hoe enchantment which adds a chance to obtain crops and other items from digging in dirt
+
+- Added Quake, a mining tool enchantment which increases mining speed based on depth
+
+- Added Dune Walker, a boot enchantment which increases walking speed on sand
+
+- Added Snow Drifter, a boot enchantment which increases walking speed on snow
+
+- Added Speed Skater, a boot enchantment which increases walking speed on ice
+
+- Added Sandals, Snowshoes, and Ice Skates which can be combined with boots in an anvil to give the enchantments above respectively
+
+- Added Excavate, a hammer enchantment which increases the number of blocks broken by a swing of the hammer
+
+- Hammers can now repair anvils at the cost of 100 durability when shift-right clicking on a broken anvil
+
+- Added more challenge advancements and new reordered story advancements
+
+- Added configs for various mechanics and blocks
+
+- Added ore texture support for Create, Quark and Unearthed
+
+
+
+
+### Changes
+- Removed Triple Alloy Template, Copper Wire, Redstone Battery, Lithium Power Cell, Pig Iron, Wrought Iron, Sponge Iron, and other unused items
+
+- Removed Coal Forge and associated templates
+
+- Changed the registry name for various blocks and items (will make them disappear from worlds using previous versions of Project Rankine)
+
+- All alloys can have up to 5 unique elements
+
+- Alloy Furnace and Induction Furnace both now have 6 slots in which inputs can be placed in any order and multiple slots can have the same input
+
+- Outputs of crushing are now based on the harvest level of the tool/machine used to crush, and there are now 6 possible outputs for a given block/item
+
+- Piston Crusher "harvest/crushing level" has been set to 2
+
+- By default all stones in the overworld have harvest level 0 except Peridotite with HL 2
+
+- All other stones from Project Rankine in the Nether and End are set to HL 2
+
+- Default stone and ore gen settings in the config have been changed significantly
+
+- Removed the vanilla recipe for charcoal
+
+- Changed recipes for all refractory bricks
+
+- Changed Laser Quarry structure
+
+- Retextured many blocks and items
+
+- Meteoric iron ores have to be crushed to yield meteoric iron chunks
+
+- Cinnabarite ore has to be crushed to yield redstone
+
+- Meteoric Iron tools have been relocalized to Invar tools
+
+- Alloy tools and items that do not have a default alloy now change color based on their composition
+
+- Changed enchantments given by default for Black Gold Tools
+
+- Alloy Template Table can now use any dye and colors the Alloy Template with respect to the dye used
+
+
+
+### Misc
+- #145 Fixed issue related with knife drops spawning inside the block
+
+- Fixed bugs related to the dynamic harvest level system of alloy tools
+
+- Fixed bugs related to the display of wear/tool efficiency
+
+- Fixed bugs related to items that should spawn with enchantments
+
+- Fixed bugs related to using an element that does not exist or inputting invalid alloy compositions
+
+
+*Many elements that are not in current use by the mod (mainly atomic numbers past 86) have placeholder values and will be changed in future updates
+
+
+
 ## Project Rankine Version 1.1.4 Minor Changelog [2021-1-1]
 ### Additions
 - Major modifications to the Netherite element formulas, and Netherite can now be used as an alloy ingredient in end-game tools and gold tools
@@ -35,6 +243,7 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Added more details to pages to the Rankine Journal
 
 ### Changes
+
 - Changed many of the crushing recipes of stones; Most stones now give cobblestone by default when crushing
 
 - Removed previous recipes to create cobblestone
@@ -66,7 +275,7 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 ### Misc
 - #135 Fixed the current implementation of Alloy Ingredients in JEI so that it appears more consistently on servers
 
-- Fixed Native Gold Ore lootable
+- Fixed Native Gold Ore loot table
 
 - Fixed Spawning of Molybdenite in the end
 
@@ -79,7 +288,6 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Relocalized Iron Scraper to Metal Scraper
 
 - Relocalized Magnesia Refractory Bricks and Zircon Refractory Bricks to High Refractory Bricks and Ultra-High Refractory Bricks respectively
-
 
 
 
