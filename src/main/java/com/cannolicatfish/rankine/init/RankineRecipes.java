@@ -63,6 +63,8 @@ public class RankineRecipes {
             List<Item> silicon = siliconTag != null  ? siliconTag.getAllElements() : Arrays.asList(RankineBlocks.BLACK_SAND.get().asItem(), Items.SAND, Items.RED_SAND, Items.QUARTZ);
             ITag<Item> limestoneTag = ItemTags.getCollection().get(new ResourceLocation("rankine:limestone_fluxes"));
             List<Item> limestone = limestoneTag != null ? limestoneTag.getAllElements() : Arrays.asList(RankineBlocks.TUFA_LIMESTONE.get().asItem(), RankineItems.QUICKLIME.get(), RankineItems.DOLOMITE.get());
+            ITag<Item> tronaTag = ItemTags.getCollection().get(new ResourceLocation("forge:trona"));
+            List<Item> trona = tronaTag != null ? tronaTag.getAllElements() : Collections.singletonList(RankineItems.TRONA.get());
             ITag<Item> saltpeterTag = ItemTags.getCollection().get(new ResourceLocation("forge:saltpeter"));
             List<Item> saltpeter = saltpeterTag != null ? saltpeterTag.getAllElements() : Collections.singletonList(RankineItems.SALTPETER.get());
             ITag<Item> phosphorusTag = ItemTags.getCollection().get(new ResourceLocation("forge:phosphorus"));
@@ -139,6 +141,20 @@ public class RankineRecipes {
             count = (int) limestones.count();
             limestones = items.stream().filter(limestone::contains);
             if (count == 1 && limestones.findFirst().isPresent()) {
+                if (sulfurlvl >= 1)
+                {
+                    ironlvl += sulfurlvl;
+                    sulfurlvl = 0;
+                }
+                ingCount += 1;
+            } else if (count > 1) {
+                return ItemStack.EMPTY;
+            }
+
+            Stream<Item> tronas = items.stream().filter(tronaTag::contains);
+            count = (int) tronas.count();
+            tronas = items.stream().filter(trona::contains);
+            if (count == 1 && tronas.findFirst().isPresent()) {
                 if (sulfurlvl >= 1)
                 {
                     ironlvl += sulfurlvl;
@@ -237,7 +253,7 @@ public class RankineRecipes {
                         percents.add(phosphoruslvl);
                         elements.add("P");
                     }
-                    alloyOutput = AlloyRecipeHelper.getInstance().getDirectComposition(percents,elements);
+                    alloyOutput = AlloyRecipeHelper.getDirectComposition(percents,elements);
                 }
 
                 ItemStack steel = new ItemStack(RankineItems.STEEL_ALLOY.get());
@@ -275,6 +291,16 @@ public class RankineRecipes {
             if (items.contains(RankineItems.COBALTITE.get())) {
                 ingCount += 1;
                 outputamt += 2;
+            }
+
+            if (items.contains(RankineItems.ALUMINA.get())) {
+                ingCount += 1;
+                outputamt += 2;
+            }
+
+            if (items.contains(RankineItems.CRYOLITE.get())) {
+                ingCount += 1;
+                outputamt += 3;
             }
 
             if (ingCount == 4) {
@@ -358,33 +384,33 @@ public class RankineRecipes {
                 outputamt += 2;
             }
 
+            if (items.contains(RankineItems.PETALITE.get()))
+            {
+                ingCount += 1;
+                outputamt += 3;
+            }
+
+
+            if (items.contains(RankineItems.SODIUM_CARBONATE.get()))
+            {
+                ingCount += 1;
+                outputamt += 2;
+            }
+
+
+            if (items.contains(RankineItems.PLAGIOCLASE_FELDSPAR.get()) || items.contains(RankineItems.FELDSPAR.get()))
+            {
+                ingCount += 1;
+                outputamt += 1;
+            }
+
+
             if (ingCount == 4) {
                 return new ItemStack(glassOut,outputamt);
             }
         }
 
         return ItemStack.EMPTY;
-    }
-
-    public static List<IBeehiveOvenRecipe> getBeehiveOvenRecipes()
-    {
-        List<IBeehiveOvenRecipe> recipes = new ArrayList<>();
-        recipes.add(beehiveOvenRecipe("limestone_oven_cooking", RankineBlocks.TUFA_LIMESTONE.get().asItem(),new ItemStack(RankineBlocks.QUICKLIME_BLOCK.get())));
-        recipes.add(beehiveOvenRecipe("magnesite_oven_cooking", RankineBlocks.MAGNESITE_BLOCK.get().asItem(),new ItemStack(RankineBlocks.MAGNESIA_BLOCK.get())));
-        recipes.add(beehiveOvenRecipe("subbituminous_oven_cooking", RankineBlocks.SUBBITUMINOUS_COAL_BLOCK.get().asItem(),new ItemStack(RankineBlocks.BITUMINOUS_COAL_BLOCK.get())));
-        recipes.add(beehiveOvenRecipe("bituminous_oven_cooking", RankineBlocks.BITUMINOUS_COAL_BLOCK.get().asItem(),new ItemStack(RankineBlocks.COKE_BLOCK.get())));
-        recipes.add(beehiveOvenRecipe("coal_oven_cooking", Blocks.COAL_BLOCK.asItem(),new ItemStack(RankineBlocks.BITUMINOUS_COAL_BLOCK.get())));
-        recipes.add(beehiveOvenRecipe("bone_char_cooking", Blocks.BONE_BLOCK.asItem(),new ItemStack(RankineBlocks.BONE_CHAR_BLOCK.get())));
-
-        return recipes;
-    }
-
-    public static List<ISluicingRecipe> getSluicingRecipes()
-    {
-        List<ISluicingRecipe> recipes = new ArrayList<>();
-        recipes.add(sluicingRecipe("alluvium_sluicing", RankineBlocks.ALLUVIUM.get().asItem(), GoldPanItem.returnAlluviumCollection()));
-        recipes.add(sluicingRecipe("black_sand_sluicing", RankineBlocks.BLACK_SAND.get().asItem(), GoldPanItem.returnBlackSandCollection()));
-        return recipes;
     }
 
     public static List<IEvaporationRecipe> getEvaporationRecipes()
@@ -396,19 +422,6 @@ public class RankineRecipes {
         return recipes;
     }
 
-
-    public static ItemStack getBeehiveOutput(ItemStack input1)
-    {
-        List<IBeehiveOvenRecipe> recipes = RankineRecipes.getBeehiveOvenRecipes();
-        for (IBeehiveOvenRecipe recipe: recipes)
-        {
-            if (recipe.getIngredients().get(0).getMatchingStacks()[0].getItem() == input1.getItem())
-            {
-                return recipe.getOutputs().get(0);
-            }
-        }
-        return ItemStack.EMPTY;
-    }
 
     public static String generateAlloyString(IInventory inv) {
         List<PeriodicTableUtils.Element> currentElements = new ArrayList<>();
@@ -454,17 +467,9 @@ public class RankineRecipes {
             symbols.add(curEl.getSymbol());
             percents.add(curPer);
         }
-        return AlloyRecipeHelper.getInstance().getDirectComposition(percents,symbols);
+        return AlloyRecipeHelper.getDirectComposition(percents,symbols);
     }
 
-
-    public static ISluicingRecipe sluicingRecipe(String registry, Item input, WeightedCollection<ItemStack> col)
-    {
-        List<ItemStack> output = new ArrayList<>(col.getEntries());
-        List<Float> weights = new ArrayList<>(col.getWeights());
-        return new ISluicingRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
-                Ingredient.fromStacks(new ItemStack(input)),weights);
-    }
 
     public static IEvaporationRecipe evaporationRecipe(String registry, Item input, WeightedCollection<ItemStack> col)
     {
@@ -475,11 +480,6 @@ public class RankineRecipes {
     }
 
 
-    public static IBeehiveOvenRecipe beehiveOvenRecipe(String registry, Item input, ItemStack output)
-    {
-        return new IBeehiveOvenRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
-                Ingredient.fromStacks(new ItemStack(input)));
-    }
 
     public static List<PeriodicTableUtils.Element> getElements(String c)
     {

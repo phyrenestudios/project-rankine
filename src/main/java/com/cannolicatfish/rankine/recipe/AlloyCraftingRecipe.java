@@ -150,20 +150,6 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
 
                     }
                 }
-
-                /*if (stackInSlot.getItem() instanceof AlloyItem)
-                {
-
-                    String comp = AlloyItem.getComposition(stackInSlot).getCompound(0).get("comp").getString();
-                    if (workingComposition.equals(""))
-                    {
-                        workingComposition = comp;
-                    }
-                    if (!comp.equals(composition) && !composition.equals("") || !comp.equals(workingComposition))
-                    {
-                        return false;
-                    }
-                }*/
             }
         }
 

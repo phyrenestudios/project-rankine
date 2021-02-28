@@ -64,7 +64,14 @@ public class HammerItem extends ToolItem {
 
                         if (!creativeFlag) {
                             List<ItemStack> results = recipe.getResults(getTier().getHarvestLevel(), worldIn);
-
+                            if (getAtomizeModifier(stack) >= 1) {
+                                for (int i = 0; i < results.size(); i++) {
+                                    if (results.get(i).isEmpty()) {
+                                        ItemStack resu = recipe.getSpecificResult(getTier().getHarvestLevel(),i,worldIn);
+                                        results.set(i,resu);
+                                    }
+                                }
+                            }
                             for (ItemStack t : results) {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
                                 itementity.setDefaultPickupDelay();
@@ -78,9 +85,9 @@ public class HammerItem extends ToolItem {
 
                 }
             }
+            SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+            worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         }
-        SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
-        worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getHitSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
         return false;
     }
 
@@ -224,6 +231,10 @@ public class HammerItem extends ToolItem {
 
     public static int getExcavateModifier(ItemStack stack) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.EXCAVATE, stack);
+    }
+
+    public static int getAtomizeModifier(ItemStack stack) {
+        return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ATOMIZE, stack);
     }
 
     @Override

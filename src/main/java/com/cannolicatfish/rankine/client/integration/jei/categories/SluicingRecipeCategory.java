@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.recipe.ISluicingRecipe;
+import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -25,7 +25,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.Arrays;
 import java.util.List;
 
-public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> {
+public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "sluicing");
     private final IDrawable background;
@@ -47,8 +47,8 @@ public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> 
     }
 
     @Override
-    public Class<? extends ISluicingRecipe> getRecipeClass() {
-        return ISluicingRecipe.class;
+    public Class<? extends SluicingRecipe> getRecipeClass() {
+        return SluicingRecipe.class;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> 
     }
 
     @Override
-    public void draw(ISluicingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+    public void draw(SluicingRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
         FontRenderer font = Minecraft.getInstance().fontRenderer;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
@@ -77,7 +77,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> 
     }
 
     @Override
-    public void setIngredients(ISluicingRecipe recipe, IIngredients iIngredients) {
+    public void setIngredients(SluicingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
@@ -87,7 +87,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> 
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, ISluicingRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, SluicingRecipe recipe, IIngredients ingredients) {
         //System.out.println(ingredients);
         //System.out.println(recipe.getOutputs());
         int index = 0, posX = 23;
@@ -116,14 +116,5 @@ public class SluicingRecipeCategory implements IRecipeCategory<ISluicingRecipe> 
             //Float weight = weights.get(i) - (i == 0 ? 0f : weights.get(i - 1));
         }
 
-        int endIndex = index;
-        ResourceLocation recipeId = recipe.getId();
-        recipeLayout.getItemStacks().addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (slotIndex >= endIndex) {
-                if (Minecraft.getInstance().gameSettings.advancedItemTooltips || Screen.hasShiftDown()) {
-                    tooltip.add(new TranslationTextComponent("jei.tooltip.recipe.id", recipeId).mergeStyle(TextFormatting.DARK_GRAY));
-                }
-            }
-        });
     }
 }

@@ -14,7 +14,7 @@
   "input3": {
     "element": "cobalt",
     "min": 0.0,
-    "max": 0.10
+    "max": 0.12
   },
   "input4": {
     "element": "chromium",

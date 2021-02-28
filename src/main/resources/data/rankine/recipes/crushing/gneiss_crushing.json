@@ -9,12 +9,12 @@
     "additional": 0.20
   },
   "output2": {
-    "item": "minecraft:quartz",
+    "item": "rankine:plagioclase_feldspar",
     "chance": 0.40,
     "additional": 0.20
   },
   "output3": {
-    "item": "rankine:plagioclase_feldspar",
+    "item": "minecraft:quartz",
     "chance": 0.20,
     "additional": 0.20
   },

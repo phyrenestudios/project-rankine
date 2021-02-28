@@ -38,12 +38,12 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_TILE;
 public class CrucibleTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
 
     private static final int[] SLOTS_UP = new int[]{0,1};
-    private static final int[] SLOTS_DOWN = new int[]{4};
+    private static final int[] SLOTS_DOWN = new int[]{4, 5};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public CrucibleTile() {
         super(CRUCIBLE_TILE);
     }
-    protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
     private int cookTime;
     private int cookTimeTotal = 3200;
     private int heatPower = 0;
@@ -111,7 +111,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             if ((this.isBurning() || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty())) {
                 if (this.isHeated(this.pos,this.world) && this.canSmelt()) {
                     ++this.cookTime;
-                    if (Arrays.stream(inputs).anyMatch(itemStack -> itemStack.getItem() == RankineItems.BORAX.get()))
+                    if (Arrays.stream(inputs).anyMatch(itemStack -> itemStack.getItem() == RankineItems.BORAX.get() || itemStack.getItem() == RankineItems.CRYOLITE.get() || itemStack.getItem() == RankineItems.SODIUM_CARBONATE.get()))
                     {
                         this.cookTime += 3;
                     }
@@ -122,6 +122,14 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
                         } else {
                             this.items.set(4, smelting);
                         }
+
+                        ItemStack extra = new ItemStack(RankineItems.SLAG.get());
+                        if (this.items.get(5).getCount() > 0) {
+                            this.items.get(5).grow(extra.getCount());
+                        } else {
+                            this.items.set(5, extra);
+                        }
+
                         this.cookTime = 0;
                         inputs[0].shrink(1);
                         inputs[1].shrink(1);

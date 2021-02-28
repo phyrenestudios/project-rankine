@@ -1,0 +1,99 @@
+{
+  "type": "rankine:sluicing",
+  "total": 18,
+  "input": {
+    "item": "rankine:alluvium"
+  },
+  "output1": {
+    "item": "minecraft:diamond",
+    "weight": 1
+  },
+  "output2": {
+    "item": "rankine:thorium_nugget",
+    "weight": 1,
+    "min": 2,
+    "max": 4
+  },
+  "output3": {
+    "item": "rankine:ruby",
+    "weight": 1.5
+  },
+  "output4": {
+    "item": "rankine:sapphire",
+    "weight": 1.5
+  },
+  "output5": {
+    "item": "rankine:peridot",
+    "weight": 1.5
+  },
+  "output6": {
+    "item": "rankine:topaz",
+    "weight": 1.5
+  },
+  "output7": {
+    "item": "rankine:samarium_monazite",
+    "weight": 2
+  },
+  "output8": {
+    "item": "rankine:zircon",
+    "weight": 2
+  },
+  "output9": {
+    "item": "rankine:cerium_monazite",
+    "weight": 3
+  },
+  "output10": {
+    "item": "rankine:iridium_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output11": {
+    "item": "rankine:osmium_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output12": {
+    "item": "rankine:rhodium_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output13": {
+    "item": "rankine:ruthenium_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output14": {
+    "item": "rankine:platinum_nugget",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  },
+  "output15": {
+    "item": "rankine:tin_nugget",
+    "weight": 6,
+    "min": 2,
+    "max": 4
+  },
+  "output16": {
+    "item": "rankine:fire_clay_ball",
+    "weight": 6,
+    "min": 2,
+    "max": 4
+  },
+  "output17": {
+    "item": "minecraft:gold_nugget",
+    "weight": 8,
+    "min": 4,
+    "max": 8
+  },
+  "output18": {
+    "item": "minecraft:clay_ball",
+    "weight": 10,
+    "min": 2,
+    "max": 4
+  }
+}

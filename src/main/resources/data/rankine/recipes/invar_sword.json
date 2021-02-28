@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " # ",
+    " # ",
+    " t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:invar_alloy"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:invar_sword",
+    "count": 1        }
+}

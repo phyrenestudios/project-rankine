@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.recipe.IBeehiveOvenRecipe;
+import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class BeehiveOvenRecipeCategory implements IRecipeCategory<IBeehiveOvenRecipe> {
+public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "beeoven");
     private final IDrawable background;
@@ -47,8 +47,8 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<IBeehiveOvenRe
     }
 
     @Override
-    public Class<? extends IBeehiveOvenRecipe> getRecipeClass() {
-        return IBeehiveOvenRecipe.class;
+    public Class<? extends BeehiveOvenRecipe> getRecipeClass() {
+        return BeehiveOvenRecipe.class;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<IBeehiveOvenRe
     }
 
     @Override
-    public void draw(IBeehiveOvenRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+    public void draw(BeehiveOvenRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
@@ -76,7 +76,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<IBeehiveOvenRe
     }
 
     @Override
-    public void setIngredients(IBeehiveOvenRecipe recipe, IIngredients iIngredients) {
+    public void setIngredients(BeehiveOvenRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
         for (Ingredient i : recipe.getIngredients()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
@@ -86,7 +86,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<IBeehiveOvenRe
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IBeehiveOvenRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, BeehiveOvenRecipe recipe, IIngredients ingredients) {
         int index = 0, posX = 31;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             recipeLayout.getItemStacks().init(index, true, posX, 21);

@@ -58,15 +58,15 @@ public class MagnesiumArrowEntity extends AbstractArrowEntity {
     public void tick() {
         super.tick();
         if (this.inGround) {
-            if (this.timeInGround % 200 == 0) {
+            if (this.timeInGround % 100 == 0) {
                 this.spawnParticles(1);
                 List<LivingEntity> mobEntities = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox().grow(5, 5, 5));
                 for (LivingEntity mob : mobEntities) {
-                    mob.addPotionEffect(new EffectInstance(Effects.BLINDNESS,100));
+                    mob.addPotionEffect(new EffectInstance(Effects.BLINDNESS,120));
                 }
             }
         } else {
-            if (this.ticksExisted % 200 == 0) {
+            if (this.ticksExisted % 100 == 0) {
                 this.spawnParticles(1);
             }
         }

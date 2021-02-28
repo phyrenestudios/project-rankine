@@ -11,11 +11,11 @@
     },
     {
       "type": "text",
-      "text": "The alloy furnace has 6 slots. The top right blue slot is for a alloy template which allows for custom automation of different alloys. See $(l:machines/template_table)Template Table$() for automation details. The fuel slot and output slot are similar to a standard furnace. The 3 remaing slots are the inputs for various materials. See $(l:alloying/alloying)NotesAbout Alloying$() for explanation on materials."
+      "text": "The alloy furnace has 6 input slots for materials and one slot for a template. The top right blue slot is for a alloy template which allows for custom automation of different alloys. See $(l:machines/template_table)Template Table$() for automation details. The fuel slot and output slot are similar to a standard furnace. The 6 remaining slots are the inputs for various materials. See $(l:alloying/alloying)NotesAbout Alloying$() for explanation on materials."
     },
     {
       "type": "text",
-      "text": "Currently, alloys have to be made with the major component in the first slot, secondary component in the second slot, and extra component in the third (green) slot (again, see JEI for now). The furnace will calculate the percentage of each material present and display it below the slots. If a valid recipe is detected and fuel is present the furnace will start."
+      "text": "The input inventory can contain duplicates and inputs can be placed in any order. The furnace will also calculate and display the output before inserting fuel. If a valid recipe is detected and fuel is present the furnace will start."
     },
     {
       "type": "text",

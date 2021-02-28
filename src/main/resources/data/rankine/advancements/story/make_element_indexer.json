@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_element_transmuter",
+  "parent": "rankine:story/make_power_cell",
   "display": {
     "icon": {
       "item": "rankine:element_indexer"

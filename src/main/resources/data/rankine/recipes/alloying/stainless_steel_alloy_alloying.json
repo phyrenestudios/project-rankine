@@ -1,12 +1,11 @@
 {
   "type": "rankine:alloying",
   "tier": 2,
-  "required": 4,
   "total": 23,
   "input1": {
     "element": "iron",
     "min": 0.65,
-    "max": 0.75
+    "max": 0.82
   },
   "input2": {
     "element": "chromium",

@@ -7,7 +7,7 @@
     {
       "type": "text",
       "anchor": "induction_furnace",
-      "text": "The Induction Furnace functions the same way as the $(l:machines/alloy_furnace)Alloy Furnace$(). It allows for the production of alloys that consist of 3 major components and 2 extra components. See JEI or $(l:alloying/induction_furnace_alloys)Induction Furnace Alloys$()."
+      "text": "The Induction Furnace functions the same way as the $(l:machines/alloy_furnace)Alloy Furnace$(), with the exception of requiring Power Cells. Higher tier power cells increase the speed of the machine. See JEI or $(l:alloying/induction_furnace_alloys)Induction Furnace Alloys$()."
     },
     {
       "type": "crafting",

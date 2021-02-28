@@ -115,15 +115,5 @@ public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRe
             recipeLayout.getItemStacks().set(index + i, ingredients.getOutputs(VanillaTypes.ITEM).get(i));
             //Float weight = weights.get(i) - (i == 0 ? 0f : weights.get(i - 1));
         }
-
-        int endIndex = index;
-        ResourceLocation recipeId = recipe.getId();
-        recipeLayout.getItemStacks().addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if (slotIndex >= endIndex) {
-                if (Minecraft.getInstance().gameSettings.advancedItemTooltips || Screen.hasShiftDown()) {
-                    tooltip.add(new TranslationTextComponent("jei.tooltip.recipe.id", recipeId).mergeStyle(TextFormatting.DARK_GRAY));
-                }
-            }
-        });
     }
 }
