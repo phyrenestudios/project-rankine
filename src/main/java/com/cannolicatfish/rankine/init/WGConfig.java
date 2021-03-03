@@ -123,7 +123,7 @@ public class WGConfig {
                 MUSHROOM_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
                         .defineInRange("mushroomHeight", 60, 0, 256);
                 DESERT_STONE_LIST = b.comment("Blocks to generate in Desert Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
-                        .define("desertBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite", "rankine:rhyolite", "rankine:gneiss", "rankine:red_dacite", "rankine:phyllite", "rankine:quartzite", "rankine:tufa_limestone", "rankine:quartz_sandstone")));
+                        .define("desertBlockLiisst", new ArrayList<>(Arrays.asList("rankine:troctolite", "rankine:rhyolite", "rankine:gneiss", "rankine:red_dacite", "rankine:phyllite", "rankine:quartzite", "rankine:tufa_limestone", "rankine:quartz_sandstone")));
                 DESERT_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
                         .defineInRange("desertHeight", 65, 0, 256);
                 MESA_STONE_LIST = b.comment("Blocks to generate in Mesa Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
@@ -173,11 +173,11 @@ public class WGConfig {
                 NETHER_STONE_LIST = b.comment("Blocks to generate in Nether layering. Layers generate from bottom to top. Leave empty to leave it as default gen.")
                         .define("netherStoneList", new ArrayList<>(Arrays.asList("rankine:black_sand","minecraft:blackstone","rankine:purple_porphyry","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","rankine:red_porphyry")));
                 NETHER_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
-                        .defineInRange("netherHeight", 65, 0, 256);
+                        .defineInRange("netherHeight", 127, 0, 256);
                 END_STONE_LIST = b.comment("Blocks to generate in End layering. Layers generate from bottom to top. Leave empty to leave it as default gen.")
                             .define("endStoneList", new ArrayList<>(Arrays.asList("rankine:enstatite","rankine:enstatite","rankine:enstatite","rankine:meteorite","rankine:meteorite","rankine:skarn","minecraft:end_stone")));
                 END_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
-                        .defineInRange("endHeight", 65, 0, 256);
+                        .defineInRange("endHeight", 60, 0, 256);
 
                 LAYER_WIDTH = b.comment("Determines the vertical spread of stone layers. 1.0 is flat, closer to 0.0 is more extreme, 0.0 will crash.")
                         .defineInRange("layerWidth", 0.2D, 0.0D, 1.0D);

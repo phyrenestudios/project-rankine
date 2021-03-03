@@ -269,6 +269,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
         public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
+        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_RANGE;
         public final ForgeConfigSpec.IntValue RANKINE_BOX_SPEED;
         public final ForgeConfigSpec.BooleanValue RANKINE_BOX_UP;
         public final ForgeConfigSpec.BooleanValue RANKINE_BOX_DOWN;
@@ -288,8 +289,10 @@ public class Config {
                         .defineInRange("charcoalPitSpeed", 5, 1, 200);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
-                EVAPORATION_TOWER_SPEED = b.comment("Speed (in ticks) at which the evaporation tower generates resources.")
-                        .defineInRange("evaporationTowerSpeed", 800, 20, 12000);
+                EVAPORATION_TOWER_SPEED = b.comment("Base speed (in ticks) at which the evaporation tower generates resources.")
+                        .defineInRange("evaporationTowerSpeed", 3200, 40, 120000);
+                EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
+                        .defineInRange("evaporationTowerHeight", 40, 0, 40);
                 RANKINE_BOX_SPEED = b.comment("Total amount of time required (in ticks) at which the Rankine Box transmutes elements.")
                         .defineInRange("rankineBoxSpeed", 800, 20, 12000);
                 RANKINE_BOX_UP = b.comment("Allow for transmuting elements up periods in the Rankine Box.")
@@ -306,7 +309,7 @@ public class Config {
                         .defineInRange("rareEarthMagnetRange",10,1,15);
                 ELECTROMAGNET_MATERIAL_REQ = b.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
                         .define("electromagnetMaterialReq",true);
-                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag.")
+                LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag. Set to 0 to disable functionality.")
                         .defineInRange("laserQuarryRange", 31, 0, 63);
                 LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
                         .defineInRange("laserQuarrySpeed", 20, 1, 300);
@@ -784,6 +787,22 @@ public class Config {
             b.pop();
         }
     }
+
+    public static class HardMode {
+        public final ForgeConfigSpec.BooleanValue WATER_REACTIVE;
+        public final ForgeConfigSpec.BooleanValue RADIOACTIVE;
+
+
+        public HardMode(ForgeConfigSpec.Builder b) {
+            b.comment("Settings for Hard Mode mechanics.").push("hardMode");
+            WATER_REACTIVE = b.comment("If enabled, certain elements will react with water. Generally creates an explosion.")
+                    .define("elementWaterReactive", true);
+            RADIOACTIVE = b.comment("If enabled, certain elements will be radioactive which applies a radiation potion effect that causes damage over time.")
+                    .define("elementRadioactive", true);
+            b.pop();
+        }
+    }
+
     
 
     public static final ForgeConfigSpec COMMON_CONFIG;
@@ -791,6 +810,7 @@ public class Config {
     public static final Machines MACHINES;
     public static final Alloys ALLOYS;
     public static final StoneProperties STONE_PROPERTIES;
+    public static final HardMode HARD_MODE;
 
     static {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -798,6 +818,7 @@ public class Config {
         MACHINES = new Machines(BUILDER);
         ALLOYS = new Alloys(BUILDER);
         STONE_PROPERTIES = new StoneProperties(BUILDER);
+        HARD_MODE = new HardMode(BUILDER);
 
 
         COMMON_CONFIG = BUILDER.build();

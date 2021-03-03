@@ -29,6 +29,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_TILE;
@@ -98,17 +100,14 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     public void tick() {
         World worldIn = this.getWorld();
         if (!worldIn.isRemote) {
-
-            boolean ready = checkStructure(this.getPos(),worldIn) && this.items.get(0).isEmpty();
-            if (ready)
-            {
+            int h = checkStructure(this.getPos(),worldIn);
+            if (h > 0 && this.items.get(0).isEmpty()) {
                 ++this.cookTime;
-                if (this.cookTime == this.cookTimeTotal) {
+                if (this.cookTime >= this.cookTimeTotal/h) {
                     this.items.set(0,randomOutput(worldIn.getRandom()));
                     cookTime = 0;
                 }
-            } else if (cookTime > 0)
-            {
+            } else if (cookTime > 0) {
                 this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
         }
@@ -138,43 +137,80 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             handlers[x].invalidate();
     }
 
-    private boolean checkStructure(BlockPos pos, World worldIn) {
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -1), pos.add(1, 0, 1))) {
-            if (worldIn.getBlockState(blockpos) != Blocks.MAGMA_BLOCK.getDefaultState() && worldIn.getBlockState(blockpos) != RankineBlocks.EVAPORATION_TOWER.get().getDefaultState()) {
-                return false;
+    private int checkStructure(BlockPos pos, World worldIn) {
+        int height = 0;
+        if (!worldIn.isRemote) {
+            List<BlockPos> Base = Arrays.asList(
+                    pos.add(2, 0, -1),
+                    pos.add(2, 0, 0),
+                    pos.add(2, 0, 1),
+                    pos.add(-2, 0, -1),
+                    pos.add(-2, 0, 0),
+                    pos.add(-2, 0, 1),
+                    pos.add(-1, 0, 2),
+                    pos.add(0, 0, 2),
+                    pos.add(1, 0, 2),
+                    pos.add(-1, 0, 2),
+                    pos.add(0, 0, 2),
+                    pos.add(1, 0, 2),
+                    pos.add(1, 0, 0),
+                    pos.add(0, 0, 1),
+                    pos.add(-1, 0, 0),
+                    pos.add(0, 0, -1),
+                    pos.add(1, 0, 1),
+                    pos.add(1, 0, -1),
+                    pos.add(-1, 0, 1),
+                    pos.add(-1, 0, -1));
+            for (BlockPos b : Base) {
+                if (worldIn.getBlockState(b) != Blocks.MAGMA_BLOCK.getDefaultState()) {
+                    return 0;
+                }
+            }
+            for (int i = 1; i <= Config.MACHINES.EVAPORATION_TOWER_RANGE.get(); ++i) {
+                if (worldIn.getBlockState(pos.add(3, i, -1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(3, i, 0)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(3, i, 1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-3, i, -1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-3, i, 0)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-3, i, 1)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-1, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(0, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(1, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-1, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(0, i, 3)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(2, i, 2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-2, i, -2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(2, i, -2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(-2, i, 2)).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))
+                        && worldIn.getBlockState(pos.add(2, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(2, i, 0)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(2, i, 1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-2, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-2, i, 0)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-2, i, 1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-1, i, 2)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(0, i, 2)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(1, i, 2)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-1, i, -2)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(0, i, -2)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(1, i, -2)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(1, i, 0)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-1, i, 0)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-1, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(1, i, 1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(-1, i, 1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(1, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(0, i, 1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(0, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
+                        && worldIn.getBlockState(pos.add(0, i, 0)).getBlock() == Blocks.WATER) {
+                    height = i;
+                }
             }
         }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-2, 0, -1), pos.add(-2, 4, 1))) {
-            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
-                return false;
-            }
-        }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(2, 0, -1), pos.add(2, 4, 1))) {
-            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
-                return false;
-            }
-        }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, -2), pos.add(1, 4, -2))) {
-            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
-                return false;
-            }
-        }
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 0, 2), pos.add(-1, 4, 2))) {
-            if (!worldIn.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("forge:functional_sheetmetals"))) {
-                return false;
-            }
-        }
-        /*
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-1, 1, -1), pos.add(1, 4, 1))) {
-            if (worldIn.getFluidState(blockpos) != Fluids.WATER.getDefaultState()) {
-                return false;
-            }
-        }
-
-         */
-
-        return true;
+        return height;
     }
+
+
 
     private ItemStack randomOutput(Random random)
     {

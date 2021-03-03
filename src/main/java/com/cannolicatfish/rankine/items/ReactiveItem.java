@@ -34,53 +34,8 @@ public class ReactiveItem extends Item {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        if (radius <= 1f)
-        {
-            tooltip.add(new StringTextComponent("Warning! Reactive with water!").mergeStyle(TextFormatting.GRAY));
-        }
-        else if (radius <= 2f)
-        {
-            tooltip.add(new StringTextComponent("Warning! Highly reactive with water!").mergeStyle(TextFormatting.GRAY));
-        }
-        else if (radius > 2f)
-        {
-            tooltip.add(new StringTextComponent("Warning! Exercise caution near water with this item!").mergeStyle(TextFormatting.GRAY));
-        }
-    }
-
-    @Override
     public boolean hasCustomEntity(ItemStack stack) {
         return true;
-    }
-
-    @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn.isInWater() && isSelected)
-        {
-            boolean canExplode = true;
-            if (entityIn instanceof PlayerEntity)
-            {
-                PlayerEntity player = (PlayerEntity) entityIn;
-                if (!player.abilities.isCreativeMode)
-                {
-                    canExplode = false;
-                }
-            }
-            if (canExplode)
-            {
-                stack.shrink(1);
-                BlockPos pos = entityIn.getPosition();
-                if (canBreakBlocks)
-                {
-                    entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.BREAK);
-                } else {
-                    entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.Mode.NONE);
-                }
-            }
-
-        }
     }
 
     @Override
