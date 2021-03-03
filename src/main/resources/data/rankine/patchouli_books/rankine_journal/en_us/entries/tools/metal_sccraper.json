@@ -1,0 +1,15 @@
+{
+  "name": "Metal Scraper",
+  "icon": "rankine:metal_scraper",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The metal scraper currently has one use. When used on stone bricks it will scrape of the $(l:materials/mortar)Mortar$() and convert the block into its respective stone block. This is the inverse functionality of mortar to convert stones to bricks."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:metal_scraper"
+    }
+  ]
+}

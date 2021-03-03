@@ -35,7 +35,7 @@ public class EndStoneReplacerFeature extends Feature<NoFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
-                layering(WGConfig.LAYERS.END_STONE_LIST.get(), 60, reader, x, z, 127);
+                layering(WGConfig.LAYERS.END_STONE_LIST.get(), WGConfig.LAYERS.END_HEIGHT.get(), reader, x, z, 127);
             }
         }
         return true;

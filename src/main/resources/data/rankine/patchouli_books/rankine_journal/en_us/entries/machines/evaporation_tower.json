@@ -2,6 +2,7 @@
   "name": "Evaporation Tower",
   "icon": "rankine:evaporation_tower",
   "category": "machines",
+  "sortnum": 8,
   "pages": [
 	{
       "type": "text",
@@ -19,25 +20,22 @@
       "multiblock_id": "multiblock",
       "multiblock": {
         "pattern": [
-          [ " SSS ","SBBBS", "SBWBS", "SBBBS", " SSS " ],
-          [ " SSS ","SBBBS", "SBWBS", "SBBBS", " SSS " ],
-          [ " SSS ","SBBBS", "SBWBS", "SBBBS", " SSS " ],
-          [ " SSS ","SBBBS", "SBWBS", "SBBBS", " SSS " ],
-          [ " SSS ","SMMMS", "SM0MS", "SMMMS", " SSS " ]
+          [ "  SSS  "," SBBBS ","SBBBBBS", "SBBWBBS","SBBBBBS"," SBBBS ", "  SSS  " ],
+          [ "       ","  MMM  "," MMMMM ", " MM0MM "," MMMMM ","  MMM  ", "       " ]
         ],
         "mapping": {
           "M": "minecraft:magma_block",
           "W": "minecraft:water",
           "B": "minecraft:bubble_column",
           "0": "rankine:evaporation_tower",
-          "S": "#forge:functional_sheetmetals"
+          "S": "#forge:sheetmetal"
         },
         "symmetrical": true
       }
     },
     {
       "type": "text",
-      "text": "Construction notes: $(li)The inside is filled with water.$() $(li)The walls are made from any #forge:functional_sheetmetals$(). In the future, height may affect speed."
+      "text": "Construction notes: $(li)The inside is filled with water $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and water can be added to increase processing speed. The speed in ticks is calculated as 3200 (defined in config) / number of layers (up to the max in the config, 40 by default)."
     }
   ]
 }

@@ -444,32 +444,41 @@ public class RankineEventHandler {
         if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.DUNE_WALKER, player) > 0) {
             if (ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && !movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.DUNE_WALKER);
+                player.stepHeight = 1.0f;
             }
         } else if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.DUNE_WALKER, player) <= 0 && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
             movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
+            player.stepHeight = 0.5f;
         }
         if (!ground.getTags().contains(new ResourceLocation("rankine:movement_modifiers/sand")) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.DUNE_WALKER)) {
             movementSpeed.removeModifier(RankineAttributes.DUNE_WALKER);
+            player.stepHeight = 0.5f;
         }
         if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SNOW_DRIFTER, player) > 0) {
             if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && !movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.SNOW_DRIFTER);
+                player.stepHeight = 1.0f;
             }
         } else  if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SNOW_DRIFTER, player) <= 0 && movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
             movementSpeed.removeModifier(RankineAttributes.SNOW_DRIFTER);
+            player.stepHeight = 0.5f;
         }
         if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow")) && !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/snow"))) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.SNOW_DRIFTER)) {
             movementSpeed.removeModifier(RankineAttributes.SNOW_DRIFTER);
+            player.stepHeight = 0.5f;
         }
         if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) > 0) {
             if ((world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/ice")) || world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/ice"))) && !movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
                 movementSpeed.applyNonPersistentModifier(RankineAttributes.SPEED_SKATER);
+                player.stepHeight = 1.0f;
             }
         } else  if (EnchantmentHelper.getMaxEnchantmentLevel(RankineEnchantments.SPEED_SKATER, player) <= 0 && movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
             movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
+            player.stepHeight = 0.5f;
         }
         if ((!world.getBlockState(player.getPosition()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/ice")) && !world.getBlockState(player.getPosition().down()).getBlock().getTags().contains(new ResourceLocation("rankine:movement_modifiers/ice"))) && ground != Blocks.AIR && movementSpeed.hasModifier(RankineAttributes.SPEED_SKATER)) {
             movementSpeed.removeModifier(RankineAttributes.SPEED_SKATER);
+            player.stepHeight = 0.5f;
         }
 
     }

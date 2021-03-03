@@ -176,10 +176,10 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
             if (worldIn.getBlockState(pos.add(2,i,0)) == lqt && worldIn.getBlockState(pos.add(-2,i,0)) == lqt && worldIn.getBlockState(pos.add(0,i,-2)) == lqt && worldIn.getBlockState(pos.add(0,i,2)) == lqt) {
                 return i;
             } else if (worldIn.getBlockState(pos.add(2,i,0)) != lqb && worldIn.getBlockState(pos.add(-2,i,0)) != lqb && worldIn.getBlockState(pos.add(0,i,-2)) != lqb && worldIn.getBlockState(pos.add(0,i,2)) != lqb) {
-                return -1;
+                return 0;
             }
         }
-        return -3;
+        return 0;
     }
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =

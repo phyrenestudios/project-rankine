@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 38,
+  "total": 86,
   "required": 2,
   "input1": {
     "element": "mercury",

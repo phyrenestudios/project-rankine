@@ -1,0 +1,16 @@
+{
+  "name": "Upgrades",
+  "icon": "rankine:high_refractory_bricks",
+  "category": "guide",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Harvest level 2 tools open you up to most ore in the overworld (no diamonds yet). "
+    },
+    {
+      "type": "text",
+      "text": ""
+    }
+  ]
+}
