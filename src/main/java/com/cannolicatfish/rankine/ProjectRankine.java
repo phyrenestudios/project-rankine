@@ -21,14 +21,14 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
-import com.cannolicatfish.rankine.potion.ModEffects;
-import com.cannolicatfish.rankine.potion.ModPotions;
+import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.client.renders.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
-import com.cannolicatfish.rankine.fluids.ModFluids;
+import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.util.POIFixer;
 import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
@@ -66,7 +66,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -313,16 +312,16 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void registerEffects(final RegistryEvent.Register<Effect> event) {
             event.getRegistry().registerAll(
-                    ModEffects.MERCURY_POISONING,
-                    ModEffects.CONDUCTIVE
+                    RankineEffects.MERCURY_POISONING,
+                    RankineEffects.CONDUCTIVE
             );
         }
 
         @SubscribeEvent
         public static void registerPotions(final RegistryEvent.Register<Potion> event) {
             event.getRegistry().registerAll(
-                    ModPotions.MERCURY_POISON,
-                    ModPotions.CONDUCTIVE_POTION
+                    RankinePotions.MERCURY_POISON,
+                    RankinePotions.CONDUCTIVE_POTION
             );
         }
 
@@ -330,9 +329,10 @@ public class ProjectRankine {
         public static void registerFluids(final RegistryEvent.Register<Fluid> event) {
             final ResourceLocation FLUID_STILL = new ResourceLocation("rankine:block/liquid_mercury_still");
             final ResourceLocation FLUID_FLOWING = new ResourceLocation("rankine:block/liquid_mercury_flow");
-            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_MERCURY, () -> ModFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF))
+            final ResourceLocation OVERLAY = new ResourceLocation("rankine:block/liquid_mercury_overlay");
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF).overlay(OVERLAY))
                     .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LIQUID_MERCURY_BLOCK.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury"));
-            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> ModFluids.LIQUID_MERCURY, () -> ModFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF))
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LIQUID_MERCURY, () -> RankineFluids.LIQUID_MERCURY_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(0xFFFFFFFF).overlay(OVERLAY))
                     .bucket(RankineItems.LIQUID_MERCURY_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LIQUID_MERCURY_BLOCK.get())).setRegistryName(ProjectRankine.MODID,"liquid_mercury_flowing"));
         }
 
@@ -351,6 +351,7 @@ public class ProjectRankine {
             event.getRegistry().register(new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"snow_drifter"));
             event.getRegistry().register(new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"speed_skater"));
             event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
+            event.getRegistry().register(new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"cleanse"));
         }
 /*
         @SubscribeEvent

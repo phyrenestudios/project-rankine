@@ -43,4 +43,7 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:antiquated")
     public static Enchantment ANTIQUATED;
+
+    @ObjectHolder("rankine:cleanse")
+    public static Enchantment CLEANSE;
 }

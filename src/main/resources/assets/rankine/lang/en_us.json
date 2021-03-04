@@ -2124,7 +2124,8 @@
   "block.rankine.rare_earth_electromagnet": "Rare Earth Electromagnet",
   "fluid.rankine.liquid_mercury": "Liquid Mercury",
 
-
+  "block.rankine.gas_vent": "Gas Vent",
+  "block.rankine.fluorine_gas_block": "Fluorine Gas",
 
   "item.rankine.mantle_golem_egg": "Garnet Mantle Golem Spawn Egg",
   "entity.rankine.mantle_golem": "Garnet Mantle Golem",
@@ -2179,6 +2180,8 @@
   "enchantment.rankine.impact.desc": "Increases knockback of thrown spears.",
   "enchantment.rankine.antiquated": "Antiquated",
   "enchantment.rankine.antiquated.desc": "Increases the luck stat while held in the main hand or off hand.",
+  "enchantment.rankine.cleanse": "Cleanse",
+  "enchantment.rankine.cleanse.desc": "Deals extra damage based on the number of potion effects the target has.",
 
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",
   "rankine.jei.crushing": "Crushing",

@@ -19,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ClientProxy implements IProxy {
@@ -32,6 +33,12 @@ public class ClientProxy implements IProxy {
     public static void addCutoutMipped(List<Block> blockList) {
         for (Block block : blockList) {
             RenderTypeLookup.setRenderLayer(block, RenderType.getCutoutMipped());
+        }
+    }
+
+    public static void addTranslucent(List<Block> blockList) {
+        for (Block block : blockList) {
+            RenderTypeLookup.setRenderLayer(block, RenderType.getTranslucent());
         }
     }
 
@@ -152,6 +159,8 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.ALUMINUM_LADDER.get(),
                 RankineBlocks.MAPLE_DOOR.get(),
                 RankineBlocks.MAPLE_TRAPDOOR.get()
+
+
         ));
 
         addCutoutMipped(Arrays.asList(
@@ -197,6 +206,12 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.MICA_BLOCK.get(),
                 RankineBlocks.SALT_BLOCK.get(),
                 RankineBlocks.PINK_SALT_BLOCK.get()
+
+
+        ));
+
+        addTranslucent(Collections.singletonList(
+                RankineBlocks.FLUORINE_GAS_BLOCK.get()
         ));
     }
 

@@ -16,7 +16,7 @@ import java.util.*;
 
 public enum AlloyUtilsEnum implements AlloyUtils {
     ALLOY(RankineToolMaterials.ALLOY, 0,0,0,0,0,0,0,0,0f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
-    AMALGAM(RankineToolMaterials.AMALGAM, 0,0,0,0,0,0,0,0,-0.2f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
+    AMALGAM(RankineToolMaterials.AMALGAM, 0,0,0,0,0,0,0,0,-0.2f, AlloyEnchantmentHandler.EMPTY,"60Hg-40Au", null),
     BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,1,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
     INVAR(RankineToolMaterials.INVAR, 0,0,0,0,2,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
     ROSE_GOLD(RankineToolMaterials.ROSE_GOLD, 48,0,0,0,0,0,0.05f,0.35f,-0.1f,
@@ -83,7 +83,13 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),14,2,3),
             "90Sn-10Sb", TextFormatting.DARK_GREEN),
     STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
-    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
+    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.emptyList(),
+            Collections.singletonList(new ResourceLocation("rankine","cleanse")),14,2,3),"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
     TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
     NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"75Ni-15Cr-10Fe", TextFormatting.DARK_BLUE),
     COBALT_SA(RankineToolMaterials.COBALT_SA, 370,3.5f,1,3,0,0,0F,0,0.3f, AlloyEnchantmentHandler.EMPTY,"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
