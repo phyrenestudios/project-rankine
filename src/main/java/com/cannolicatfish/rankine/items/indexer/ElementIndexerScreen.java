@@ -5,12 +5,15 @@ import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -49,7 +52,6 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
         }
         if (element != null)
         {
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.toString(),32,10,0xffffff);
             int durability = utils.calcDurability(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
             int harvest = utils.calcMiningLevel(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
             float mspeed = utils.calcMiningSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
@@ -70,6 +72,10 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Heat Resistance: "+ df.format(heat * 100) + "%",12,114,(heat > 0 ? 0x55FF55 : heat < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness: "+ df.format(tough * 100) + "%",12,126,(tough > 0 ? 0x55FF55 : tough < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ elec +"V",110,126,0x55FFFF);
+
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.toString(),32,10,0xffffff);
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getAtomicNumber()),138,32,0xffffff);
+            drawScaledString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getSymbol()),138,42, 2,0xffffff);
         } else
         {
             //drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,"MATERIALNAME",88,12,0xffffff);
@@ -87,6 +93,12 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
 
     }
 
+    public void drawScaledString(MatrixStack stack, FontRenderer fontRendererIn, String text, int x, int y, float size, int color) {
+        GL11.glScalef(size,size,size);
+        float mSize = (float)Math.pow(size,-1);
+        drawString(stack, fontRendererIn,text,Math.round(x / size),Math.round(y / size),color);
+        GL11.glScalef(mSize,mSize,mSize);
+    }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int x, int y) {

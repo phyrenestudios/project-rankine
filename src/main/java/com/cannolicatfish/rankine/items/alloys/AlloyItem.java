@@ -1,8 +1,11 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -10,6 +13,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -24,6 +28,20 @@ public class AlloyItem extends Item {
     public AlloyItem(String composition, Properties properties) {
         super(properties);
         this.defComp = composition;
+    }
+
+    @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        CompoundNBT nbt = stack.getTag();
+        if (getComposition(stack).size() > 0 && defComp.equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
+            String name = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
+            String[] sp = name.split(" ");
+            if (sp.length > 0) {
+                name = sp[sp.length - 1];
+            }
+            return new StringTextComponent(stack.getTag().getString("nameAdd") + " " + name);
+        }
+        return super.getDisplayName(stack);
     }
 
     @Override
@@ -53,6 +71,10 @@ public class AlloyItem extends Item {
         }
 
         p_92115_0_.getOrCreateTag().put("StoredComposition", listnbt);
+    }
+
+    public String getDefComp() {
+        return this.defComp;
     }
 
     /**
@@ -97,5 +119,26 @@ public class AlloyItem extends Item {
         }
     }
 
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        if (getComposition(stack).size() > 0 && defComp.equals("80Hg-20Au")) {
+            CompoundNBT nbt = stack.getTag();
+            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
+                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
+            }
+        }
+        super.onCreated(stack, worldIn, playerIn);
+    }
 
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (getComposition(stack).size() > 0 && defComp.equals("80Hg-20Au")) {
+            CompoundNBT nbt = stack.getTag();
+            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
+                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
+            }
+        }
+
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
 }

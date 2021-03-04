@@ -1,0 +1,5 @@
+{
+    "variants": {
+    "": { "model": "rankine:block/gas_vent" }
+    }
+}

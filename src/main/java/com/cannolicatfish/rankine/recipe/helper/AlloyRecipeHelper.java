@@ -1,15 +1,21 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
 import java.util.*;
 
 public class AlloyRecipeHelper {
+
+    private static final PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
 
     public static int returnMaterialCountFromStack(ItemStack stack) {
         Item item = stack.getItem();
@@ -76,5 +82,64 @@ public class AlloyRecipeHelper {
         return result;
     }
 
+    public static String getAlloyFromComposition(String comp, World worldIn) {
+        List<PeriodicTableUtils.Element> elements = new ArrayList<>();
+        List<Integer> percents = new ArrayList<>();
+        for (String s : comp.split("-")) {
+            String str = s.replaceAll("[^A-Za-z]+", "");
+            int num = Integer.parseInt(s.replaceAll("[A-Za-z]+",""));
+            elements.add(utils.getElementBySymbol(str));
+            percents.add(num);
+        }
+
+        for (AlloyingRecipe recipe: worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING)) {
+            boolean flag = true;
+            List<PeriodicTableUtils.Element> req = recipe.getElementList(true);
+            List<PeriodicTableUtils.Element> all = recipe.getElements();
+            List<Float> mins = recipe.getMins();
+            List<Float> maxes = recipe.getMaxes();
+
+            for (PeriodicTableUtils.Element e : req) {
+                if (!elements.contains(e)) {
+                    flag = false;
+                    break;
+                } else {
+                    int recindex = all.indexOf(e);
+                    int elemindex = elements.indexOf(e);
+                    int perc = percents.get(elemindex);
+                    if (Math.round(mins.get(recindex) * 100) > perc || Math.round(maxes.get(recindex) * 100) < perc) {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            if (flag) {
+                for (PeriodicTableUtils.Element el : elements) {
+                    if (!all.contains(el)) {
+                        flag = false;
+                        break;
+                    } else {
+                        int recindex = all.indexOf(el);
+                        int elemindex = elements.indexOf(el);
+                        int perc = percents.get(elemindex);
+                        if (Math.round(mins.get(recindex) * 100) > perc || Math.round(maxes.get(recindex) * 100) < perc) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            if (flag) {
+                String name = new TranslationTextComponent(recipe.getRecipeOutput().getTranslationKey()).getString();
+                if (name.contains(" Ingot")) {
+                    name = name.split(" Ingot")[0];
+                }
+                return name;
+            }
+        }
+        return "false";
+    }
 
 }

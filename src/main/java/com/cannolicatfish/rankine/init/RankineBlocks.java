@@ -30,7 +30,7 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
-import com.cannolicatfish.rankine.fluids.ModFluids;
+import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -872,6 +872,8 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> PACKED_SNOW = REGISTRY.register("packed_snow", () -> new Block(AbstractBlock.Properties.create(Material.SNOW_BLOCK).hardnessAndResistance(2.0F).setRequiresTool().harvestTool(ToolType.SHOVEL).sound(SoundType.SNOW)));
 
+    public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = REGISTRY.register("fluorine_gas_block", () -> new GasBlock(AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
     public static final RegistryObject<Block> ALLUVIUM = REGISTRY.register("alluvium", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> BLACK_SAND = REGISTRY.register("black_sand", () -> new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
@@ -1506,7 +1508,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ALNICO_ELECTROMAGNET = REGISTRY.register("alnico_electromagnet", () -> new ElectromagnetBlock(1,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
     public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(2,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
 
-    public static final RegistryObject<Block> LIQUID_MERCURY_BLOCK = REGISTRY.register("liquid_mercury_block", () -> new FlowingFluidBlock(()-> ModFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> LIQUID_MERCURY_BLOCK = REGISTRY.register("liquid_mercury_block", () -> new FlowingFluidBlock(()-> RankineFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
 
     //OTHER STUFFS

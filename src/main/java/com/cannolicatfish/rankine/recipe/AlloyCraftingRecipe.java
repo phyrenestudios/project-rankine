@@ -2,18 +2,22 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
+import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -394,20 +398,8 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
 
 
             for(Ingredient ingredient : recipe.recipeItems) {
-                /*for (ItemStack stack : ingredient.getMatchingStacks())
-                {
-                    if (stack.getItem() instanceof AlloyItem && !comp.equals(""))
-                    {
-                        AlloyItem.addAlloy(stack,new AlloyData(comp));
-                    }
-                }*/
                 ingredient.write(buffer);
             }
-
-            /*if (!comp.equals(""))
-            {
-                AlloyItem.addAlloy(result,new AlloyData(comp));
-            }*/
             buffer.writeItemStack(recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
         }

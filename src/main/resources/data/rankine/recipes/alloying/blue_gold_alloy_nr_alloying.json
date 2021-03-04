@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 5,
+  "tier": 2,
   "input1": {
     "element": "netherite",
     "min": 0.74,

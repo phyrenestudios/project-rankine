@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
@@ -10,14 +11,15 @@ import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
-import com.cannolicatfish.rankine.items.tools.KnifeItem;
-import com.cannolicatfish.rankine.potion.ModEffects;
+import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -27,6 +29,7 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -36,6 +39,8 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.GameRules;
@@ -49,11 +54,9 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.player.AnvilRepairEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -199,6 +202,44 @@ public class RankineEventHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onEnvironmentEffect(LivingEvent.LivingUpdateEvent event) {
+        LivingEntity ent = event.getEntityLiving();
+        World world = ent.getEntityWorld();
+        FluidState fluidstate = world.getFluidState(ent.getPosition());
+        boolean flag = (ent instanceof PlayerEntity && ((PlayerEntity) ent).isCreative());
+        ModifiableAttributeInstance maxHealth = ent.getAttribute(Attributes.MAX_HEALTH);
+        ModifiableAttributeInstance movementSpeed = ent.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY || fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY_FLOWING) {
+            Entity entity = ent.isBeingRidden() && ent.getControllingPassenger() != null ? ent.getControllingPassenger() : ent;
+            float f = entity == ent ? 0.35F : 0.4F;
+            Vector3d vector3d2 = entity.getMotion();
+            float f1 = MathHelper.sqrt(vector3d2.x * vector3d2.x * (double)0.2F + vector3d2.y * vector3d2.y + vector3d2.z * vector3d2.z * (double)0.2F) * f;
+            if (f1 > 1.0F) {
+                f1 = 1.0F;
+            }
+            entity.playSound(SoundEvents.ENTITY_GENERIC_SWIM, f1, 1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
+            ent.setAir(FluidHelper.decreaseAirSupply(ent,world,ent.getAir(),2));
+            ent.moveStrafing *= 0.98F;
+            ent.moveForward *= 0.98F;
+            FluidHelper.travel(fluidstate.getFlow(world,ent.getPosition()).scale(0.5f).mul(new Vector3d((double)ent.moveStrafing, (double)ent.moveVertical, (double)ent.moveForward)),ent,true);
+            /*if (movementSpeed != null && !movementSpeed.hasModifier(RankineAttributes.MERCURY_MS)) {
+                movementSpeed.applyNonPersistentModifier(RankineAttributes.MERCURY_MS);
+            }*/
+            if (!flag) {
+                EffectInstance cur = ent.getActivePotionEffect(RankineEffects.MERCURY_POISONING);
+                ent.addPotionEffect(new EffectInstance(RankineEffects.MERCURY_POISONING, Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));
+                if (cur != null && cur.getDuration() >= 1600 && maxHealth != null && !maxHealth.hasModifier(RankineAttributes.MERCURY_HEALTH)) {
+                    maxHealth.applyNonPersistentModifier(RankineAttributes.MERCURY_HEALTH);
+                }
+            }
+        } else {
+            if (movementSpeed != null && movementSpeed.hasModifier(RankineAttributes.MERCURY_MS)) {
+                movementSpeed.removeModifier(RankineAttributes.MERCURY_MS);
+            }
+        }
+
+    }
 
     @SubscribeEvent
     public static void addWandererTrades(WandererTradesEvent event)
@@ -890,7 +931,19 @@ public class RankineEventHandler {
             if (Config.GENERAL.DISABLE_NETHERITE_SHOVEL.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_SHOVEL) { event.setAmount(1f); }
             if (Config.GENERAL.DISABLE_NETHERITE_PICKAXE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_PICKAXE) { event.setAmount(1f); }
             if (Config.GENERAL.DISABLE_NETHERITE_HOE.get() && player.getHeldItem(Hand.MAIN_HAND).getItem() == Items.NETHERITE_HOE) { event.setAmount(1f); }
+
+            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.CLEANSE,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
+                LivingEntity receiver = event.getEntityLiving();
+                float damage = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.CLEANSE,player.getHeldItem(Hand.MAIN_HAND)) * receiver.getActivePotionEffects().size();
+                event.setAmount(event.getAmount() + damage);
+                boolean flag = damage >= 1;
+                if (flag) {
+                    receiver.clearActivePotions();
+                    receiver.playSound(SoundEvents.BLOCK_GRINDSTONE_USE,1.0f, 1.0f);
+                }
+            }
         }
+
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -1625,7 +1678,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving() instanceof MonsterEntity && event.getTarget() != null) {
-            if (event.getTarget().getHeldItemOffhand().getItem() == RankineItems.REPULSION_PENDANT.get() || event.getEntityLiving().getActivePotionEffect(ModEffects.MERCURY_POISONING) != null) {
+            if (event.getTarget().getHeldItemOffhand().getItem() == RankineItems.REPULSION_PENDANT.get() || event.getEntityLiving().getActivePotionEffect(RankineEffects.MERCURY_POISONING) != null) {
                 ((MobEntity) event.getEntityLiving()).setAttackTarget(null);
             }
         }
@@ -1634,7 +1687,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntityLiving() instanceof MonsterEntity && event.getEntityLiving().getRevengeTarget() != null) {
-            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == RankineItems.REPULSION_PENDANT.get() || event.getEntityLiving().getActivePotionEffect(ModEffects.MERCURY_POISONING) != null) {
+            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == RankineItems.REPULSION_PENDANT.get() || event.getEntityLiving().getActivePotionEffect(RankineEffects.MERCURY_POISONING) != null) {
                 event.getEntityLiving().setRevengeTarget(null);
             }
         }
