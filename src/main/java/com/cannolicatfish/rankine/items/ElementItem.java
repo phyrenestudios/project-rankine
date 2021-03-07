@@ -1,11 +1,14 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.potion.RankineEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +33,6 @@ public class ElementItem extends Item {
         this.canBreakBlocks = canBreakBlocks;
         this.radioactive = radioactive;
     }
-    private int ticks= 0;
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -49,34 +51,52 @@ public class ElementItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-
-        if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
-            if (entityIn.isInWater() && isSelected) {
+            if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
+                if (entityIn.isInWater() && isSelected) {
+                    if (entityIn instanceof PlayerEntity) {
+                        PlayerEntity player = (PlayerEntity) entityIn;
+                        if (!player.abilities.isCreativeMode) {
+                            stack.shrink(1);
+                            BlockPos pos = entityIn.getPosition();
+                            if (canBreakBlocks) {
+                                entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.BREAK);
+                            } else {
+                                entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.NONE);
+                            }
+                        }
+                    }
+                }
+            }
+            if (Config.HARD_MODE.RADIOACTIVE.get()) {
                 if (entityIn instanceof PlayerEntity) {
                     PlayerEntity player = (PlayerEntity) entityIn;
-                    if (!player.abilities.isCreativeMode) {
-                        stack.shrink(1);
-                        BlockPos pos = entityIn.getPosition();
-                        if (canBreakBlocks) {
-                            entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.BREAK);
-                        } else {
-                            entityIn.getEntityWorld().createExplosion(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.waterReactive, Explosion.Mode.NONE);
+                    if (!player.isCreative()) {
+                        EffectInstance rad = player.getActivePotionEffect(RankineEffects.RADIATION_POISONING);
+                        int dur = rad == null ? Math.max(0,this.radioactive * stack.getCount()) : Math.max(0,rad.getDuration() + this.radioactive * stack.getCount());
+                        if (dur > 0) {
+                            player.addPotionEffect(new EffectInstance(RankineEffects.RADIATION_POISONING,dur,0, false, false, false));
                         }
                     }
                 }
             }
         }
-        if (Config.HARD_MODE.RADIOACTIVE.get() && radioactive > 0) {
-            if (entityIn instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) entityIn;
-                ++ticks;
-                if (ticks % radioactive == 0) {
-                    player.attackEntityFrom(DamageSource.MAGIC, 1);
-                }
-            }
-        }
+
+    @Override
+    public boolean hasCustomEntity(ItemStack stack) {
+        return Config.HARD_MODE.WATER_REACTIVE.get();
     }
 
+    @Override
+    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+        if (Config.HARD_MODE.WATER_REACTIVE.get()) {
+            ReactiveItemEntity result = new ReactiveItemEntity(location.world,location.getPosX(),location.getPosY(),location.getPosZ(), this.waterReactive, this.canBreakBlocks, itemstack);
+            result.setPickupDelay(40);
+            result.setMotion(location.getMotion());
+            return result;
+        } else {
+            return null;
+        }
 
+    }
 
 }

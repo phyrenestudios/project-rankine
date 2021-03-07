@@ -11,7 +11,7 @@ public class HafniumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(6*x/5f);
     }
 
     @Override
@@ -36,12 +36,12 @@ public class HafniumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/10f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return x/150f;
     }
 
     @Override

@@ -1275,6 +1275,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> NICKEL_SILVER_BLOCK = REGISTRY.register("nickel_silver_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> STERLING_SILVER_BLOCK = REGISTRY.register("sterling_silver_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> NITINOL_BLOCK = REGISTRY.register("nitinol_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> TITANIUM_ALLOY_BLOCK = REGISTRY.register("titanium_alloy_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> GALINSTAN_BLOCK = REGISTRY.register("galinstan_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> MISCHMETAL_BLOCK = REGISTRY.register("mischmetal_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> FERROCERIUM_BLOCK = REGISTRY.register("ferrocerium_block", () -> new Block(DEF_METAL_BLOCK));

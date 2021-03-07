@@ -283,7 +283,7 @@
     "max": 0.50
   },
   "input57": {
-    "element": "darmastadium",
+    "element": "darmstadtium",
     "min": 0.0,
     "max": 0.50
   },
@@ -328,7 +328,7 @@
     "max": 0.50
   },
   "input66": {
-    "element": "gadolininium",
+    "element": "gadolinium",
     "min": 0.0,
     "max": 0.50
   },

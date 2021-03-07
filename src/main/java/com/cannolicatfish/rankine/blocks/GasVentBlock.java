@@ -35,7 +35,8 @@ public class GasVentBlock extends Block {
         if (!worldIn.isRemote) {
             int airCount = (int) surround.stream().filter(worldIn::isAirBlock).count();
             for (int i = 0; i < airCount; i++) {
-                BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> worldIn.isAirBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
+                BlockPos close = BlockPos.getClosestMatchingPosition(pos,3,3,B -> worldIn.isAirBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof GasBlock)
+                        && BlockPos.getClosestMatchingPosition(B,1,1,P -> worldIn.getBlockState(P).getBlock() instanceof GasBlock || worldIn.getBlockState(P).getBlock() instanceof GasVentBlock).orElse(null) != null).orElse(null);
                 if (close == null) {
                     break;
                 } else {

@@ -794,11 +794,11 @@ public class Config {
 
 
         public HardMode(ForgeConfigSpec.Builder b) {
-            b.comment("Settings for Hard Mode mechanics.").push("hardMode");
+            b.comment("Settings for Hard Mode mechanics (HIGHLY EXPERIMENTAL).").push("hardMode");
             WATER_REACTIVE = b.comment("If enabled, certain elements will react with water. Generally creates an explosion.")
-                    .define("elementWaterReactive", true);
+                    .define("elementWaterReactive", false);
             RADIOACTIVE = b.comment("If enabled, certain elements will be radioactive which applies a radiation potion effect that causes damage over time.")
-                    .define("elementRadioactive", true);
+                    .define("elementRadioactive", false);
             b.pop();
         }
     }

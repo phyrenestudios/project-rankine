@@ -19,11 +19,16 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
@@ -97,24 +102,27 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
             index++;
         }
 
-        List<Float> weights = recipe.getWeights();
-        Float wtotal = weights.get(weights.size() - 1);
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            if (index + i < 7)
-            {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i) * 18, 48);
-            } else if (index + i < 13) {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i - 6) * 18, 64);
-            } else if (index + i < 20)
-            {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i - 12) * 18, 80);
-            } else
-            {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i - 19) * 18, 96);
+        int reducer = 0;
+        int ymod = -1;
+        int outputcount = 0;
+        for (List<ItemStack> o : ingredients.getOutputs(VanillaTypes.ITEM)) {
+            if (outputcount % 6 == 0) {
+                reducer = index - 2;
+                ymod += 1;
             }
-            recipeLayout.getItemStacks().set(index + i, ingredients.getOutputs(VanillaTypes.ITEM).get(i));
-            //Float weight = weights.get(i) - (i == 0 ? 0f : weights.get(i - 1));
+            recipeLayout.getItemStacks().init(index, true, (outputcount - reducer) * 18, 48 + ymod * 18);
+            recipeLayout.getItemStacks().set(index, o);
+            outputcount++;
+            index++;
         }
+        recipeLayout.getItemStacks().addTooltipCallback((i, b, stack, list) -> {
+            DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
+                p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+            });
+            if (i != 0) {
+                list.add(new StringTextComponent("Chance: " + df.format(recipe.getChance(i - 1) * 100) + "%"));
+            }
+        });
 
     }
 }

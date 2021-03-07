@@ -139,6 +139,9 @@ public class AlloyRecipeHelper {
                 return name;
             }
         }
+        if (elements.size() == 2) {
+            return elements.get(0).name() + "-" + elements.get(1).name();
+        }
         return "false";
     }
 

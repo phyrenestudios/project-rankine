@@ -24,5 +24,9 @@ public class RankineAttributes {
 
     public static final AttributeModifier MERCURY_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1aa0"), "rankine:mercury_mod", -0.04D, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier MERCURY_HEALTH = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1aa1"), "rankine:mercury_mod", -2D, AttributeModifier.Operation.ADDITION);
+
+    public static final AttributeModifier MINOR_RADIATION_POISONING = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe9ba0"), "rankine:minor_rad", -2D, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier RADIATION_POISONING = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe9ba1"), "rankine:rad", -2D, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier EXTREME_RADIATION_POISONING = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe9ba2"), "rankine:extreme_rad", -4D, AttributeModifier.Operation.ADDITION);
 }
 
