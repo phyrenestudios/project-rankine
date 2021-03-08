@@ -334,8 +334,8 @@
     },
     {
       "type": "spotlight",
-      "anchor": "shale",
-      "item": "rankine:shale",
+      "anchor": "carbonaceous_shale",
+      "item": "rankine:carbonaceous_shale",
       "link_recipe": true,
       "text": "Classification: Sedimentary $(br2)Found in Icy, and Plains biomes."
     },
