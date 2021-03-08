@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "rankine:block/brass_ladder" },
+    "facing=east":  { "model": "rankine:block/brass_ladder", "y": 90 },
+    "facing=south": { "model": "rankine:block/brass_ladder", "y": 180 },
+    "facing=west":  { "model": "rankine:block/brass_ladder", "y": 270 }
+  }
+}

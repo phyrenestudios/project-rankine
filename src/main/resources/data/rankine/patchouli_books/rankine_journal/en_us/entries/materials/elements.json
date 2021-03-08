@@ -1,0 +1,11 @@
+{
+  "name": "Elements",
+  "icon": "rankine:element",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    }
+  ]
+}

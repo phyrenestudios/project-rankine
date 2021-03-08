@@ -9,6 +9,13 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:fire_clay",
+      "anchor": "fire_clay",
+      "link_recipe": true,
+      "text": "Generates as disks under grassy surfaces."
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:mud",
       "anchor": "mud",
       "link_recipe": true,
@@ -19,7 +26,7 @@
       "item": "rankine:alluvium",
       "anchor": "alluvium",
       "link_recipe": true,
-      "text": "Generates as disks in rivers and oceans. Can be mined by a pan to yeild resources."
+      "text": "Generates as disks in rivers and oceans. Can be mined by a pan to yield resources."
     },
     {
       "type": "spotlight",
@@ -33,7 +40,7 @@
       "item": "rankine:evaporite",
       "anchor": "evaporite",
       "link_recipe": true,
-      "text": ""
+      "text": "Found under water in non-ocean biomes. Can be crushed to yield various resources."
     },
     {
       "type": "spotlight",

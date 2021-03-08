@@ -51,7 +51,7 @@ public class GlassCutterItem extends ToolItem {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
-        return state.getBlock().getTags().contains(new ResourceLocation("rankine:glass_cutter")) ? this.efficiency : 0.4F;
+        return state.getBlock().getTags().contains(new ResourceLocation("rankine:glass_cutter")) ? this.efficiency : 0.1F;
     }
 
     @Nonnull

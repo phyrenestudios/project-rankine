@@ -1,0 +1,26 @@
+{
+  "name": "Power Cells",
+  "icon": "rankine:power_cell",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Power Cells are used in various late-game machinery."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:power_cell",
+      "recipe2": "rankine:power_cell_2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:power_cell_3",
+      "recipe2": "rankine:power_cell_4"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:power_cell_5",
+      "recipe2": "rankine:power_cell_6"
+    }
+  ]
+}

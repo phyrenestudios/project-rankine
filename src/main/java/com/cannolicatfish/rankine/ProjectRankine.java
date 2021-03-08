@@ -99,6 +99,7 @@ public class ProjectRankine {
         POIFixer.fixPOITypeBlockStates(RankinePOIs.TEMPLATE_TABLE_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.PISTON_CRUSHER_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.BOTANIST_STATION_POI);
+        POIFixer.fixPOITypeBlockStates(RankinePOIs.RANKINE_BOX_POI);
         proxy.init();
 
         DeferredWorkQueue.runLater(() -> {
@@ -155,6 +156,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankinePOIs.TEMPLATE_TABLE_POI.setRegistryName(ProjectRankine.MODID,"template_table_poi"));
             event.getRegistry().register(RankinePOIs.PISTON_CRUSHER_POI.setRegistryName(ProjectRankine.MODID,"piston_crusher_poi"));
             event.getRegistry().register(RankinePOIs.BOTANIST_STATION_POI.setRegistryName(ProjectRankine.MODID,"potted_plant_poi"));
+            event.getRegistry().register(RankinePOIs.RANKINE_BOX_POI.setRegistryName(ProjectRankine.MODID,"gem_cutter_poi"));
         }
 
         @SubscribeEvent
@@ -162,6 +164,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineVillagerProfessions.METALLURGIST.setRegistryName(ProjectRankine.MODID,"metallurgist"));
             event.getRegistry().register(RankineVillagerProfessions.MINERALOGIST.setRegistryName(ProjectRankine.MODID,"mineralogist"));
             event.getRegistry().register(RankineVillagerProfessions.BOTANIST.setRegistryName(ProjectRankine.MODID,"botanist"));
+            event.getRegistry().register(RankineVillagerProfessions.GEM_CUTTER.setRegistryName(ProjectRankine.MODID,"gem_cutter"));
         }
 
         @SubscribeEvent

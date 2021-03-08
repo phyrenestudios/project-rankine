@@ -1206,7 +1206,9 @@
   "block.rankine.cast_iron_block": "Block of Cast Iron",
   "block.rankine.graphite_block": "Block of Graphite",
   "block.rankine.perlite_block": "Block of Perlite",
-  "block.rankine.aluminum_ladder": "Aluminum Ladder",
+  "block.rankine.aluminum_ladder": "Duralumin Ladder",
+  "block.rankine.cast_iron_ladder": "Cast Iron Ladder",
+  "block.rankine.brass_ladder": "Brass Ladder",
   "block.rankine.brass_block": "Block of Brass",
   "block.rankine.nitinol_block": "Block of Nitinol",
   "block.rankine.titanium_alloy_block": "Block of Titanium Alloy",
@@ -2161,6 +2163,7 @@
   "entity.minecraft.villager.rankine.metallurgist": "Metallurgist",
   "entity.minecraft.villager.rankine.mineralogist": "Mineralogist",
   "entity.minecraft.villager.rankine.botanist": "Botanist",
+  "entity.minecraft.villager.rankine.gem_cutter": "Gem Cutter",
 
   "enchantment.rankine.puncture": "Puncture",
   "enchantment.rankine.puncture.desc": "Deals extra armor-piercing damage on direct attacks.",

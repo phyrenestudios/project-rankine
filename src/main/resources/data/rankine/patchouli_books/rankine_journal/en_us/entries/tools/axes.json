@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "A listing of the variety of axes that are able to be made. Rankine axes are made in the $(l:machines/coal_forge)Coal Forge$() with an axe template. $(br2)Vanilla tools can be enabled/disabled in the config and are disabled by default for progression."
+      "text": "A listing of the variety of axes that are able to be made. $(br2)Vanilla tools can be enabled/disabled in the config and are disabled by default for progression."
     },
     {
       "type": "text",
@@ -14,101 +14,118 @@
     {
       "type": "crafting",
       "recipe": "rankine:flint_axe",
-      "text": "Stats:$(li)Harvest Level: 0"
+      "text": "Stats:$(li)Harvest Level: 1"
     },
     {
       "type": "spotlight",
       "item": "rankine:pewter_axe",
-      "text": "Stats:$(li)Harvest Level: 1"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 2"
     },
     {
       "type": "spotlight",
       "item": "rankine:bronze_axe",
-      "text": "Stats:$(li)Harvest Level: 1"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 2"
     },
     {
       "type": "spotlight",
       "item": "rankine:invar_axe",
-      "text": "Stats:$(li)Harvest Level: 2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 3"
     },
     {
       "type": "crafting",
       "recipe": "minecraft:iron_axe",
-      "text": "Stats:$(li)Harvest wLevel: 1"
+      "text": "Stats:$(li)Harvest wLevel: 3"
     },
     {
       "type": "spotlight",
       "item": "rankine:steel_axe",
-      "text": "Stats:$(li)Harvest Level: 3"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 4"
     },
     {
       "type": "crafting",
       "recipe": "minecraft:diamond_axe",
-      "text": "Stats:$(li)Harvest Level: 3"
-    },
-    {
-      "type": "spotlight",
-      "item": "minecraft:netherite_axe",
       "text": "Stats:$(li)Harvest Level: 4"
     },
     {
       "type": "spotlight",
+      "item": "minecraft:netherite_axe",
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 5"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:stainless_steel_axe",
-      "text": "Stats:$(li)Harvest Level: 3-4"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 4-5"
     },
     {
       "type": "spotlight",
       "item": "rankine:nickel_superalloy_axe",
-      "text": "Stats:$(li)Harvest Level: 3-4"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 4-5"
     },
     {
       "type": "spotlight",
       "item": "rankine:cobalt_superalloy_axe",
-      "text": "Stats:$(li)Harvest Level: 3-4"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 4-6"
     },
     {
       "type": "spotlight",
       "item": "rankine:tungsten_heavy_alloy_axe",
-      "text": "Stats:$(li)Harvest Level: 3-4"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 4-5"
     },
     {
       "type": "spotlight",
       "item": "rankine:rose_gold_axe",
-      "text": "Stats:$(li)Harvest Level: 0-2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 1-3"
     },
     {
       "type": "spotlight",
       "item": "rankine:green_gold_axe",
-      "text": "Stats:$(li)Harvest Level: 0-2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 1-3"
     },
     {
       "type": "spotlight",
       "item": "rankine:blue_gold_axe",
-      "text": "Stats:$(li)Harvest Level: 0-2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 1-3"
     },
     {
       "type": "spotlight",
       "item": "rankine:purple_gold_axe",
-      "text": "Stats:$(li)Harvest Level: 0-2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 1-3"
     },
     {
       "type": "spotlight",
       "item": "rankine:white_gold_axe",
-      "text": "Stats:$(li)Harvest Level: 0-2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 1-3"
     },
     {
       "type": "spotlight",
       "item": "rankine:black_gold_axe",
-      "text": "Stats:$(li)Harvest Level: 0-2"
+      "link_recipe": true,
+      "text": "Stats:$(li)Harvest Level: 1-3"
     },
     {
       "type": "spotlight",
       "item": "rankine:amalgam_axe",
+      "link_recipe": true,
       "text": "Stats:$(li)Harvest Level: ???"
     },
     {
       "type": "spotlight",
       "item": "rankine:alloy_axe",
+      "link_recipe": true,
       "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
     }
   ]

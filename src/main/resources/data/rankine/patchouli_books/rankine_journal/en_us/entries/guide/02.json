@@ -10,7 +10,11 @@
     },
     {
       "type": "text",
-      "text": "In order to get to the next tier tools (invar), you will have to do a bit of exploring. If you want to progress quickly then the best option is to find and crush $(l:world/meteorites)Meteorite Ores$(). Otherwise, you can spend some time mining the new ores available to you. However, mining for ores isn't the only way to get certain resources. Stone blocks near certain ores will have a chance to drop a nugget from that ore when mined. This is the alternative way to get nickel for invar and other elements that can improve basic alloy tools (hint: challenge advancement for making a harvest level 2 bronze pick). "
+      "text": "In order to get to the next tier tools (invar), you will have to do a bit of exploring. If you want to progress quickly then the best option is to find and crush $(l:world/meteorites)Meteorite Ores$(). Otherwise, you can spend some time mining the new ores available to you. However, mining for ores isn't the only way to get certain resources. Stone blocks near certain ores will have a chance to drop a nugget from that ore when mined."
+    },
+    {
+      "type": "text",
+      "text": "This is the alternative way to get nickel for invar and other elements that can improve basic alloy tools (hint: challenge advancement for making a harvest level 2 bronze pick). "
     }
   ]
 }

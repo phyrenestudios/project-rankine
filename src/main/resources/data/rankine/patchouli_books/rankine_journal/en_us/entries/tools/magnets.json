@@ -5,7 +5,12 @@
   "pages": [
     {
       "type": "text",
-      "text": "Magnets are able to pull items and blocks around. Some config options exist for magnet ranges and allowed materials. Rare earth magnets have a longer range (10) than alnico (5)."
+      "text": "Magnets are able to pull items and blocks around when clicked. Some config options exist for magnet ranges and allowed materials. Rare earth magnets have a longer range (10) than alnico (5)."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lodestone",
+      "text": "A weakly powered natural magnet. Obtained by crushing $(world/ores#magnetite_ore)Magnetite Ore$()."
     },
     {
       "type": "crafting",

@@ -86,8 +86,19 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
-    public static void addVillagerTrades(VillagerTradesEvent event)
-    {
+    public static void addWandererTrades(WandererTradesEvent event) {
+        if (Config.GENERAL.VILLAGER_TRADES.get()) {
+            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
+            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineBlocks.TUFA_LIMESTONE.get(), 8),8,1,0.05f));
+            event.getRareTrades().add(new BasicTrade(1,new ItemStack(RankineItems.ELEMENT_TRANSMUTER.get(), 2),8,1,0.05f));
+            ItemStack met = new ItemStack(RankineItems.METEORIC_IRON.get());
+            AlloyItem.addAlloy(met,new AlloyData("50Fe-50Ni"));
+            event.getRareTrades().add(new BasicTrade(3,met,6,1,0.5f));
+        }
+    }
+
+    @SubscribeEvent
+    public static void addVillagerTrades(VillagerTradesEvent event) {
         List<VillagerTrades.ITrade> level1 = event.getTrades().get(1);
         List<VillagerTrades.ITrade> level2 = event.getTrades().get(2);
         List<VillagerTrades.ITrade> level3 = event.getTrades().get(3);
@@ -164,16 +175,32 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(1, new ItemStack(Items.MYCELIUM, 4),12,30,0.05f));
             level5.add(new BasicTrade(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
             level5.add(new BasicTrade(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
+        } else if (event.getType() == RankineVillagerProfessions.GEM_CUTTER) {
+            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AQUAMARINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OPAL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.GARNET.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RUBY.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.SAPPHIRE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PERIDOT.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TOPAZ.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level3.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PEARL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level3.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TOURMALINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level3.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIGER_IRON.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level3.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LABRADORITE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODONITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
+            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODOCHROSITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
+            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.CHROME_ENSTATITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
+            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.FLUORITE.get(), 3), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level5.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1), new ItemStack(Items.EMERALD, 5),12,20,0.05f));
+            level5.add(new BasicTrade(20, new ItemStack(Items.DIAMOND, 1),12,20,0.05f));
+            level5.add(new BasicTrade(30, new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1),12,50,0.05f));
+            level5.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
         }
-        if (Config.GENERAL.VILLAGER_TRADES.get())
-        {
-            if (event.getType() == VillagerProfession.MASON)
-            {
+        if (Config.GENERAL.VILLAGER_TRADES.get()) {
+            if (event.getType() == VillagerProfession.MASON) {
                 event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(RankineItems.MORTAR.get(), 16),16,1,0.05f));
                 event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(RankineItems.REFRACTORY_BRICK.get(), 10),16,1,0.05f));
-
-            } else if (event.getType() == VillagerProfession.CLERIC)
-            {
+            } else if (event.getType() == VillagerProfession.CLERIC) {
                 event.getTrades().get(1).add(new BasicTrade(1, new ItemStack(RankineItems.SALTPETER.get(),2),12,1,0.05f));
             }
         }
@@ -270,20 +297,7 @@ public class RankineEventHandler {
 
     }
 
-    @SubscribeEvent
-    public static void addWandererTrades(WandererTradesEvent event)
-    {
-        if (Config.GENERAL.VILLAGER_TRADES.get())
-        {
-            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
 
-            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineBlocks.TUFA_LIMESTONE.get(), 8),8,1,0.05f));
-            event.getRareTrades().add(new BasicTrade(1,new ItemStack(RankineItems.ELEMENT_TRANSMUTER.get(), 2),8,1,0.05f));
-            ItemStack met = new ItemStack(RankineItems.METEORIC_IRON.get());
-            AlloyItem.addAlloy(met,new AlloyData("50Fe-50Ni"));
-            event.getRareTrades().add(new BasicTrade(3,met,6,1,0.5f));
-        }
-    }
 
 
     @SubscribeEvent
@@ -1418,38 +1432,46 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void flintFire(PlayerInteractEvent.RightClickBlock event) {
-        BlockPos pos = event.getPos();
-        World world = event.getWorld();
-        PlayerEntity player = event.getPlayer();
-        BlockPos blockpos1 = event.getPos().offset(event.getFace());
-        if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
-            if (world.getBlockState(pos) == RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, false)) {
-                for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0,-Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(),0), pos.add(0, Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(),0))) {
-                    if (world.getBlockState(blockpos).getBlock() == RankineBlocks.CHARCOAL_PIT.get() && !world.isRemote) {
-                        world.setBlockState(blockpos, world.getBlockState(blockpos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+        if (Config.GENERAL.FLINT_FIRE.get()) {
+            BlockPos pos = event.getPos();
+            World world = event.getWorld();
+            PlayerEntity player = event.getPlayer();
+            BlockPos blockpos1 = event.getPos().offset(event.getFace());
+            if (player.getHeldItemMainhand().getItem() == Items.FLINT && player.getHeldItemOffhand().getItem() == Items.FLINT) {
+                if (world.getBlockState(pos) == RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, false)) {
+                    for (BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(0, -Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(), 0), pos.add(0, Config.MACHINES.CHARCOAL_PIT_HEIGHT.get(), 0))) {
+                        if (world.getBlockState(blockpos).getBlock() == RankineBlocks.CHARCOAL_PIT.get() && !world.isRemote) {
+                            world.setBlockState(blockpos, world.getBlockState(blockpos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                        }
                     }
-                }
-                player.swingArm(Hand.MAIN_HAND);
-                player.getHeldItem(Hand.MAIN_HAND).shrink(1);
-                player.getHeldItem(Hand.OFF_HAND).shrink(1);
-                world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
-            } else if (world.getBlockState(pos) == RankineBlocks.BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false) ||
-                    world.getBlockState(pos) == RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false) ||
-                    world.getBlockState(pos) == RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false)) {
-                if (!world.isRemote()) {
-                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
                     player.swingArm(Hand.MAIN_HAND);
-                    player.getHeldItem(Hand.MAIN_HAND).shrink(1);
-                    player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                    if (new Random().nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                        player.getHeldItem(Hand.MAIN_HAND).shrink(1);
+                        player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                    }
+                    world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+                } else if (world.getBlockState(pos) == RankineBlocks.BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false) ||
+                        world.getBlockState(pos) == RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false) ||
+                        world.getBlockState(pos) == RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false)) {
+                    if (!world.isRemote()) {
+                        world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
+                        player.swingArm(Hand.MAIN_HAND);
+                        if (new Random().nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                            player.getHeldItem(Hand.MAIN_HAND).shrink(1);
+                            player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                        }
+                        world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
+                    }
+                } else if (AbstractFireBlock.canLightBlock(world, blockpos1, event.getFace()) && !world.isRemote && !(world.getBlockState(pos).getBlock() instanceof BeehiveOvenPitBlock) &&
+                        world.getBlockState(pos) != RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, true)) {
+                    world.setBlockState(blockpos1, AbstractFireBlock.getFireForPlacement(world, blockpos1), 11);
+                    player.swingArm(Hand.MAIN_HAND);
+                    if (new Random().nextFloat() < Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
+                        player.getHeldItem(Hand.MAIN_HAND).shrink(1);
+                        player.getHeldItem(Hand.OFF_HAND).shrink(1);
+                    }
                     world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
                 }
-            } else if (AbstractFireBlock.canLightBlock(world, blockpos1, event.getFace()) && !world.isRemote && !(world.getBlockState(pos).getBlock() instanceof BeehiveOvenPitBlock) &&
-                    world.getBlockState(pos) != RankineBlocks.CHARCOAL_PIT.get().getDefaultState().with(CharcoalPitBlock.LIT, true)) {
-                world.setBlockState(blockpos1, AbstractFireBlock.getFireForPlacement(world, blockpos1), 11);
-                player.swingArm(Hand.MAIN_HAND);
-                player.getHeldItem(Hand.MAIN_HAND).shrink(1);
-                player.getHeldItem(Hand.OFF_HAND).shrink(1);
-                world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
             }
         }
     }

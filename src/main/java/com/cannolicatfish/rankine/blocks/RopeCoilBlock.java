@@ -65,9 +65,6 @@ public class RopeCoilBlock extends Block {
             i += 1;
         }
         if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.isCreative()) {
-            if (ropeCount < 8) {
-                ropeCount = 8;    
-            }
             double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
             double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;

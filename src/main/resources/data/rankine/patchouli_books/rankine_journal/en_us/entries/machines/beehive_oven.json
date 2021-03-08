@@ -2,11 +2,16 @@
   "name": "Beehive Oven",
   "icon": "rankine:beehive_oven_pit",
   "category": "machines",
-  "sortnum": 2,
+  "sortnum": 1,
   "pages": [
 	{
       "type": "text",
-      "text": "Some blocks are only able to be cooked over long periods of time. This is done using a beehive oven. $(br2)Currently converts:   $(li)Subbituminous Coal --> Bituminous Coal   $(li)Bituminous coal --> Coke   $(li)Limestone --> Quicklime   $(li)Magnesite --> Magnesia   $(li)Bone Block --> Bone Char"
+      "text": "The Beehive Oven acts as an in-world furnace. Only a couple recipes work however. And some blocks are only able to be cooked over long periods of time in the oven. *Supports datapacks."
+    },
+    {
+      "type": "text",
+      "title": "Current Conversions",
+      "text": "See JEI for a comprehensive list. $(li)Subbituminous Coal --> Bituminous Coal   $(li)Bituminous coal --> Coke   $(li)Limestone --> Quicklime   $(li)Magnesite --> Magnesia   $(li)Bone Block --> Bone Char   $(li)Kaolinite --> Porcelain   $(li)Clay --> Terracotta   $(li)Colored Terracotta --> Glazed Terracotta"
     },
     {
       "type": "crafting",
@@ -31,7 +36,7 @@
     },
     {
       "type": "text",
-      "text": "Light the pit to activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. The structure can be expanded to the size on the next page. The more complete the structure is, the faster the process is. The pit can be upgraded to allow for higher tier refractory bricks to be used in the structure."
+      "text": "$(mechanics/fire)Light$() the pit to activate. It will cook the blocks on the outer ring two blocks high (16 blocks total). The pit deactivates when no cookable blocks are detected. The structure can be expanded to the size on the next page. The more complete the structure is, the faster the process is. The pit can be upgraded to allow for higher tier refractory bricks to be used in the structure."
     },
     {
       "type": "multiblock",

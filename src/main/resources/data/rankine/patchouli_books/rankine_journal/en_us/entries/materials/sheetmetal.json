@@ -29,6 +29,11 @@
     },
     {
       "type": "crafting",
+      "recipe": "rankine:bismuth_sheetmetal",
+      "text": ""
+    },
+    {
+      "type": "crafting",
       "recipe": "rankine:aluminum_sheetmetal",
       "text": ""
     },
@@ -74,7 +79,12 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:wrought_iron_sheetmetal",
+      "recipe": "rankine:cupronickel_sheetmetal",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:invar_sheetmetal",
       "text": ""
     },
     {

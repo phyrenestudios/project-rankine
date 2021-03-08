@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "Vertical slabs, fairly self-explanatory. Crafted like slabs but vertically or in the stonecutter. Vertical slabs exist for stone variants, planks, sheetmetal and some miscellaneous blocks."
+      "text": "Vertical slabs, fairly self-explanatory. Crafted like slabs but vertically or in the stonecutter. Vertical slabs exist for stone variants, planks, sheetmetal and some miscellaneous blocks. Corner connections and waterlogged will be added in the future."
     }
   ]
 }

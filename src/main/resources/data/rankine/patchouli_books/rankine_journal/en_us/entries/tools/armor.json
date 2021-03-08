@@ -1,0 +1,26 @@
+{
+  "name": "Armor",
+  "icon": "rankine:brigandine_chestplate",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Various armor sets exist in the game."
+    },
+    {
+      "type": "text",
+      "title": "Brigandine Armor",
+      "text": "Steel plated leather armor. Made by combining leather armor and a steel ingot in the smithing table."
+    },
+    {
+      "type": "text",
+      "title": "Diving Armor",
+      "text": "Armor made from brass. Allows the wearer to hold their breath for a longer period of time."
+    },
+    {
+      "type": "text",
+      "title": "C-P Diving Armor",
+      "text": "Upgraded diving armor. Provides the wearer with conduit power when in water."
+    }
+  ]
+}

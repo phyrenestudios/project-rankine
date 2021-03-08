@@ -1,0 +1,39 @@
+{
+  "name": "Alloys",
+  "icon": "rankine:stainless_steel_alloy",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Alloys are created in the $(machines/alloy_furnace)Alloy Furnace$() and the $(machines/induction_furnace)Induction Furnace$(). See JEI for alloy recipes. Listed in this entry are the common uses for each alloy."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_alloy",
+      "link_recipe": true,
+      "text": "Made in: AF / IF  $(br2)Used for pewter tools."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_alloy",
+      "link_recipe": true,
+      "text": "Made in: AF / IF  $(br2)Used for bronze tools."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:brass_alloy",
+      "link_recipe": true,
+      "text": "Made in: AF / IF  $(br2)Used for decoration."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cast_iron_alloy",
+      "link_recipe": true,
+      "text": "Made in: AF / IF  $(br2)Used for decoration and machinery."
+    },
+    {
+      "type": "text",
+      "text": "More to be added..."
+    }
+  ]
+}

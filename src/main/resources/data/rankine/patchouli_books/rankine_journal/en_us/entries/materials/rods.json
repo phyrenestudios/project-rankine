@@ -1,37 +1,31 @@
 {
-  "name": "Rods",
+  "name": "Crafting Components",
   "icon": "rankine:steel_rod",
   "category": "materials",
   "pages": [
     {
       "type": "text",
-      "text": "Rods and other rod like components are documented here."
+      "text": "Various intermediate components are documented here."
     },
     {
       "type": "crafting",
       "recipe": "rankine:cast_iron_rod",
-      "text": ""
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:steel_rod",
-      "text": ""
+      "recipe2": "rankine:steel_rod"
     },
     {
       "type": "crafting",
       "recipe": "rankine:graphite_electrode",
-      "text": ""
+      "recipe2": "rankine:hard_carbon_electrode"
     },
     {
       "type": "crafting",
-      "recipe": "rankine:hard_carbon_electrode",
-      "text": ""
+      "recipe": "rankine:indium_tin_oxide",
+      "recipe2": "rankine:cadmium_telluride_cell"
     },
     {
       "type": "crafting",
       "recipe": "rankine:yag_rod",
-      "recipe2": "rankine:yag_rod_nd",
-      "text": ""
+      "recipe2": "rankine:yag_rod_nd"
     },
     {
       "type": "crafting",
