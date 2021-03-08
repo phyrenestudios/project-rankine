@@ -40,12 +40,12 @@ public class PlatinumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        if (x >= 50)
+        if (x >= 10)
         {
             return Math.round(3 * x/10f + 10);
         } else
         {
-            return Math.round(x/2f);
+            return Math.round(x + 3);
         }
     }
 

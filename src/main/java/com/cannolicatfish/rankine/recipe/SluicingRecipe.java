@@ -61,6 +61,11 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         return this.ingredient;
     }
 
+    public Float getChance(int index) {
+        float in = getWeights().get(index);
+        return (in/getWeights().stream().reduce(0f, Float::sum));
+    }
+
     public NonNullList<Float> getWeights() {
         return weights;
     }

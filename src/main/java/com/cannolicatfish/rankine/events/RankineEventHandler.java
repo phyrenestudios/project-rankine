@@ -239,6 +239,35 @@ public class RankineEventHandler {
             }
         }
 
+        if (Config.HARD_MODE.RADIOACTIVE.get()) {
+            EffectInstance rad = ent.getActivePotionEffect(RankineEffects.RADIATION_POISONING);
+            if (rad != null) {
+                int duration = rad.getDuration();
+                if (duration >= 400 && maxHealth != null && !maxHealth.hasModifier(RankineAttributes.MINOR_RADIATION_POISONING)) {
+                    maxHealth.applyPersistentModifier(RankineAttributes.MINOR_RADIATION_POISONING);
+                }
+
+                if (duration >= 1600 && maxHealth != null && !maxHealth.hasModifier(RankineAttributes.RADIATION_POISONING)) {
+                    maxHealth.applyPersistentModifier(RankineAttributes.RADIATION_POISONING);
+                }
+
+                if (duration >= 3200 && maxHealth != null && !maxHealth.hasModifier(RankineAttributes.EXTREME_RADIATION_POISONING)) {
+                    maxHealth.applyPersistentModifier(RankineAttributes.EXTREME_RADIATION_POISONING);
+                }
+            } else {
+                if (maxHealth != null && maxHealth.hasModifier(RankineAttributes.MINOR_RADIATION_POISONING)) {
+                    maxHealth.removeModifier(RankineAttributes.MINOR_RADIATION_POISONING);
+                }
+                if (maxHealth != null && maxHealth.hasModifier(RankineAttributes.RADIATION_POISONING)) {
+                    maxHealth.removeModifier(RankineAttributes.RADIATION_POISONING);
+                }
+                if (maxHealth != null && maxHealth.hasModifier(RankineAttributes.EXTREME_RADIATION_POISONING)) {
+                    maxHealth.removeModifier(RankineAttributes.EXTREME_RADIATION_POISONING);
+                }
+            }
+        }
+
+
     }
 
     @SubscribeEvent

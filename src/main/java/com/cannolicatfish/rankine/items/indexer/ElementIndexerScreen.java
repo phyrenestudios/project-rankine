@@ -8,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
@@ -73,6 +75,16 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness: "+ df.format(tough * 100) + "%",12,126,(tough > 0 ? 0x55FF55 : tough < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ elec +"V",110,126,0x55FFFF);
 
+            int ylvl = 0;
+            for (Enchantment e : utils.getEnchantments(Collections.singletonList(element),Collections.singletonList(this.currentScroll))) {
+                if (e != null) {
+                    drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,e.getDisplayName(1).getString(),125,66 + ylvl,0x55FF55);
+                    ylvl += 10;
+                }
+                if (ylvl == 30) {
+                    break;
+                }
+            }
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.toString(),32,10,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getAtomicNumber()),138,32,0xffffff);
             drawScaledString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getSymbol()),138,42, 2,0xffffff);

@@ -83,6 +83,7 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),14,2,3),
             "90Sn-10Sb", TextFormatting.DARK_GREEN),
     STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
+    TITANIUM(RankineToolMaterials.TITANIUM, 0,0,1,0,0,0,0F,0,0f, AlloyEnchantmentHandler.EMPTY,"90Ti-6Al-4V", TextFormatting.DARK_GRAY),
     STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
             Collections.emptyList(),
             Collections.emptyList(),

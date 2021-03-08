@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 20,
+  "total": 21,
   "tier": 2,
   "input1": {
     "element": "nickel",
@@ -9,12 +9,12 @@
   },
   "input2": {
     "element": "titanium",
-    "min": 0.1,
+    "min": 0.05,
     "max": 0.10
   },
   "input3": {
     "element": "aluminum",
-    "min": 0.1,
+    "min": 0.05,
     "max": 0.10
   },
   "input4": {
@@ -93,11 +93,16 @@
     "max": 0.15
   },
   "input19": {
-    "element": "phosphorus",
+    "element": "hafnium",
     "min": 0.0,
     "max": 0.15
   },
   "input20": {
+    "element": "phosphorus",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input21": {
     "element": "silicon",
     "min": 0.0,
     "max": 0.15

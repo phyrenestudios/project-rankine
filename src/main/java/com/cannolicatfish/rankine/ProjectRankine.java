@@ -150,7 +150,6 @@ public class ProjectRankine {
             event.getItemColors().register(new TemplateItemColor(), RankineItems.ALLOY_TEMPLATE::get);
         }
 
-
         @SubscribeEvent
         public static void onPOIRegistry(final RegistryEvent.Register<PointOfInterestType> event) {
             event.getRegistry().register(RankinePOIs.TEMPLATE_TABLE_POI.setRegistryName(ProjectRankine.MODID,"template_table_poi"));
@@ -208,6 +207,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.NICKEL_SUPERALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.COBALT_SUPERALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR);
+            event.getRegistry().register(RankineEntityTypes.TITANIUM_ALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.ALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.STAINLESS_STEEL_SPEAR);
             event.getRegistry().register(RankineEntityTypes.THORIUM_ARROW);
@@ -245,6 +245,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.COBALT_SUPERALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.TUNGSTEN_HEAVY_ALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.STAINLESS_STEEL_SPEAR, SpearRenderFactory.instance);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.TITANIUM_ALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_SPEAR, SpearRenderFactory.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.REACTIVE_ITEM, ReactiveItemRenderer::new);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MANTLE_GOLEM,MantleGolemRenderer.instance);
@@ -313,7 +314,8 @@ public class ProjectRankine {
         public static void registerEffects(final RegistryEvent.Register<Effect> event) {
             event.getRegistry().registerAll(
                     RankineEffects.MERCURY_POISONING,
-                    RankineEffects.CONDUCTIVE
+                    RankineEffects.CONDUCTIVE,
+                    RankineEffects.RADIATION_POISONING
             );
         }
 

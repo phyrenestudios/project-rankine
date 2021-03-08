@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 11,
+  "total": 17,
   "tier": 2,
   "input1": {
     "element": "cerium",
@@ -23,22 +23,22 @@
     "max": 0.15
   },
   "input5": {
-    "element": "dysprosium",
+    "element": "promethium",
     "min": 0.0,
     "max": 0.15
   },
   "input6": {
-    "element": "europium",
+    "element": "samarium",
     "min": 0.0,
     "max": 0.15
   },
   "input7": {
-    "element": "gadolinium",
+    "element": "europium",
     "min": 0.0,
     "max": 0.15
   },
   "input8": {
-    "element": "samarium",
+    "element": "gadolinium",
     "min": 0.0,
     "max": 0.15
   },
@@ -48,14 +48,44 @@
     "max": 0.15
   },
   "input10": {
-    "element": "iron",
+    "element": "dysprosium",
     "min": 0.0,
     "max": 0.15
   },
   "input11": {
-    "element": "silicon",
+    "element": "holmium",
     "min": 0.0,
     "max": 0.15
+  },
+  "input12": {
+    "element": "erbium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input13": {
+    "element": "thulium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input14": {
+    "element": "ytterbium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input15": {
+    "element": "lutetium",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input16": {
+    "element": "iron",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input17": {
+    "element": "silicon",
+    "min": 0.0,
+    "max": 0.05
   },
   "result": "rankine:mischmetal_alloy"
 }
