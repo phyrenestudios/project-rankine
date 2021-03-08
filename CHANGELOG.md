@@ -2,6 +2,118 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.2.1 Minor Changelog [2021-3-8]
+
+### Additions
+
+- Added Gem Cutter villager
+
+- Added the Diamond Anvil Cell, which is used as the POI for the Gem Cutter Villager
+
+- Added Titanium Alloy, which can be made in the Alloy Furnace and the Induction Furnace, and Block of Titanium Alloy
+
+- Added Titanium Alloy Pickaxe, Axe, Shovel, Hoe, Sword, Hammer, and Spear
+
+- Added Atomic Number, Symbol, and Enchantment information to Element Indexer
+
+- Conig option for Evaporation Tower max height
+
+- Config option to enable lighting fires with two flint
+
+- Added a chance and config for flint to be consumed when lighting a fire
+
+- Snow Drifter, Dune Walker and Speed Skater enchantments increase step height to 1 block while active
+
+- Added Cleanse enchantment for the Stainless Steel Sword
+
+- Added cast iron and brass ladders
+
+- Added Beehive Oven recipes for terracotta and glazed terracottas
+
+- Added experimental config options for radioactive and water-reactive items
+
+- Added challenge advancement for creating every Colored Gold Pendant
+
+### Changes
+- Netherite Blue Gold is now exclusive to the Induction Furnace, similar to other Colored Gold Netherite Alloys
+
+- Removed default extra damage from Bronze, Blue Gold, Black Gold, and Invar tools
+
+- Relocalized Aluminum Ladder to Duralumin ladder. Recipe reflects this change.
+
+- Added Atomic Number and Symbol to Element Indexer
+
+- Ultra-high Refractory Bricks require High Refractory Bricks
+
+- Increased amount of Silicon Carbide required for Ultra-high Refractory Bricks from 1 to 2
+
+- Induction Furnace now requires two Ultra-high refractory bricks, which replaces Quartz Blocks
+
+- Altered the structure for Evaporation Tower where adding layers increases processing speed
+
+- Custom alloy items (gears, plates, wire) now change their name based on their composition if there is a matching alloy or if its composition consists of only two elements
+
+- Modified element stats for Platinum, Titanium, Hafnium, and Oxygen
+
+- Added Hafnium to Nickel Superalloy
+
+- Added the rest of the metallic elements (except iron, platinum, tungsten, and tantalum) to Amalgam Alloy
+
+- Added the rest of the Lanthanide elements to Mischmetal
+
+- Recipe for silicon to silicon carbide moved from blast furnace to beehive oven
+
+- Other non-Lanthanide elements in Mischmetal restricted to less than or equal to 5%
+
+- Amalgam Alloy tools are now craftable again
+
+- Titanium and Aluminum modified to be able to go down to 5% in alternative Nickel Superalloy recipe
+
+- Titanium Crowbar is now crafted by using Titanium Alloy
+
+- Harvest level in information for Alloy Tools now matches Hardness Tester and Hammer crushing levels (Flint = 1, Bronze = 2, Invar = 3, Steel = 4, Superalloy = 5, Advanced = 6) 
+
+- (Highly Experimental) All rankine element ingots and nuggets now have stats for water reactivity and radiation. Lithium, Sodium, Potassium, Rubidium, Cesium and Francium explode in water. All elements with atomic number 84 and higher cause radiation poisoning to the player over time. These options will only be enabled if the respective config is enabled.
+
+### Misc
+- Fixed issue where Native gold and bismuth genType was set to true when it was intended to be set to false
+
+- Fixed bug with Evaporation Tower using incorrect tag
+
+- Fixed sluicing JEI and added information about percent chances per drop
+
+- Fixed issue where Etched Glass missing from creative menu
+
+- Fixed Health Pendant reseting when leaving a world
+
+- Stone layering feature for Nether and End now use their respective height config
+
+- Modified properties of Mercury Fluid for a future update
+
+- Rope Coil drops the correct amount of rope
+
+- Updated JEI Info tab for Beehive Oven
+
+- Fixed missing loottable for Cryolite Ore
+
+- Fixed Laser Quarry Debug code and allowing shift-clicking Power Cells into the inventory
+
+- Major Journal Updates
+
+- Updated Crucible GUI texture with result slots
+
+- Improved textures for sheetmetals
+
+- Modified some misc textures
+
+### Community Contributions
+- Fixed Silver and Bismuth Sheetmetal recipes (XBagon)
+
+
+
+
+
+
 ## Project Rankine Version 1.2.0 Major Changelog [2021-2-28]
 
 Since this is a major update, starting a new world and regenerating the config is suggested to prevent errors and missing items!
