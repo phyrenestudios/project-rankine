@@ -17,8 +17,8 @@ import java.util.*;
 public enum AlloyUtilsEnum implements AlloyUtils {
     ALLOY(RankineToolMaterials.ALLOY, 0,0,0,0,0,0,0,0,0f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
     AMALGAM(RankineToolMaterials.AMALGAM, 0,0,0,0,0,0,0,0,-0.2f, AlloyEnchantmentHandler.EMPTY,"60Hg-40Au", null),
-    BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,1,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
-    INVAR(RankineToolMaterials.INVAR, 0,0,0,0,2,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
+    BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,0,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
+    INVAR(RankineToolMaterials.INVAR, 0,0,0,0,0,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
     ROSE_GOLD(RankineToolMaterials.ROSE_GOLD, 48,0,0,0,0,0,0.05f,0.35f,-0.1f,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //axe
                     Collections.singletonList(new ResourceLocation("rankine","swing")), //hammer
@@ -46,7 +46,7 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("minecraft","mending")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","mending"))), //sword
             "50Au-50Ag", TextFormatting.YELLOW),
-    BLUE_GOLD(RankineToolMaterials.BLUE_GOLD, 32,0,0,0,1,0,0,0.2f,-0.05f,
+    BLUE_GOLD(RankineToolMaterials.BLUE_GOLD, 32,0,0,0,0,0,0,0.2f,-0.05f,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //axe
                     Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hammer
                     Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hoe
@@ -64,7 +64,7 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","impact")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","knockback"))), //sword
             "80Au-20Al", TextFormatting.YELLOW),
-    BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, 32,0,0,0,1,0,0f,0.2f,-0.05f,
+    BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, 32,0,0,0,0,0,0f,0.2f,-0.05f,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods")), //axe
                     Collections.singletonList(new ResourceLocation("rankine","excavate")), //hammer
                     Collections.singletonList(new ResourceLocation("rankine","foraging")), //hoe
@@ -83,7 +83,7 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),14,2,3),
             "90Sn-10Sb", TextFormatting.DARK_GREEN),
     STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
-    TITANIUM(RankineToolMaterials.TITANIUM, 0,0,1,0,0,0,0F,0,0f, AlloyEnchantmentHandler.EMPTY,"90Ti-6Al-4V", TextFormatting.DARK_GRAY),
+    TITANIUM(RankineToolMaterials.TITANIUM, 50,0,1,0,0,0,0F,0,0f, AlloyEnchantmentHandler.EMPTY,"90Ti-6Al-4V", TextFormatting.DARK_GRAY),
     STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
             Collections.emptyList(),
             Collections.emptyList(),

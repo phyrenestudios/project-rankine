@@ -11,7 +11,7 @@ public class OxygenElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return x;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class OxygenElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.min(2*x,4);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class OxygenElement implements ElementInterface {
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return 0.05f;
     }
 
     @Override
