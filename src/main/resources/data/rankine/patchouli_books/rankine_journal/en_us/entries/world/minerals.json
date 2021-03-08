@@ -378,7 +378,7 @@
       "item": "rankine:cinnabar",
       "anchor": "cinnabar",
       "link_recipe": true,
-      "text": "$(l)Source:$() Obtained from $(l:world/ores#cinnabarite)Cinnabarite Ore$() through crushing. $(br2)$(l)Uses:$() Smelted in a blast furnace to yield mercury ingots."
+      "text": "$(l)Source:$() Obtained from $(l:world/ores#cinnabar_ore)Cinnabar Ore$() through crushing. $(br2)$(l)Uses:$() Smelted in a blast furnace to yield mercury ingots."
     },
 
 
@@ -529,6 +529,13 @@
       "anchor": "rhodochrosite",
       "link_recipe": true,
       "text": "Found as a crushing component of Pyrolusite Ore."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:lonsdaleite_diamond",
+      "anchor": "lonsdaleite_diamond",
+      "link_recipe": true,
+      "text": "Found as an ore in the End."
     }
   ]
 }
