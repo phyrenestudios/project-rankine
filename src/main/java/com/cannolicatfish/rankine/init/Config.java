@@ -61,6 +61,8 @@ public class Config {
 
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
+        public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
+        public final ForgeConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
@@ -105,10 +107,14 @@ public class Config {
                             .define("villageTrades",true);
                     WANDERING_TRADE_SPECIAL = b.comment("Adds a trade to the Wandering Trader for a random tool which is not restricted by alloy constraints. May be unbalanced due to complete randomness.")
                             .define("wanderingSpecial",false);
-                    GLOBAL_BREAK_EXHAUSTION = b.comment("Amount of additional exhaustion when breaking a block")
+                    GLOBAL_BREAK_EXHAUSTION = b.comment("Amount of additional exhaustion when breaking a block.")
                             .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
                     ICE_BREAK = b.comment("Chance for ice to break when walking on it.")
                             .defineInRange("iceBreak", 0.002D, 0.0D, 1.0D);
+                    FLINT_FIRE = b.comment("Enable the lighting of fires and certain machines using two flint.")
+                            .define("flintFire",true);
+                    FLINT_FIRE_CHANCE = b.comment("Chance for flint to be consumed when lighting a fire.")
+                            .defineInRange("flintFireChance", 0.30D, 0.00D, 1.00D);
                 b.pop();
                 
                 b.comment("Movement speed modifiers").push("movementModifiers");

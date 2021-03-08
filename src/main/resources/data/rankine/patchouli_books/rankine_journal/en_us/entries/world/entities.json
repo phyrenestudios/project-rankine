@@ -1,0 +1,11 @@
+{
+  "name": "Entities",
+  "icon": "rankine:mantle_golem_egg",
+  "category": "world",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Although these creatures exist, they have yet to be seen in any of the known dimensions."
+    }
+  ]
+}

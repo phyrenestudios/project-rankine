@@ -11,7 +11,7 @@
     {
       "type": "crafting",
       "recipe": "rankine:charcoal_pit",
-      "text": "For a log to be converted, it must be covered on all six sides by a solid block. Log blocks also have to be connected to the charcoal pit through other log blocks."
+      "text": "For a log to be converted, it must be covered on all six sides by a solid block. Log blocks also have to be connected to the charcoal pit through other log blocks. $(mechanics/fire)Lighting$() a pit will light all pits in a vertical column."
     }
   ]
 }

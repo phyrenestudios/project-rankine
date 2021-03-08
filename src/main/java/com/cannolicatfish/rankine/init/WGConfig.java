@@ -1167,11 +1167,11 @@ public class WGConfig {
             NATIVE_GOLD_ORE_MAX_HEIGHT = b.comment("Maximum height to generate Native Gold Ore at (make sure it is greater than the minimum)")
                     .defineInRange("nativeGoldOreMax", 60, 0, 256);
             NATIVE_GOLD_ORE_GENTYPE = b.comment("If false, nativeGoldOreChance will determine how many tries per chunk ore veins will generate. If true, nativeGoldOreChance will determine 1 in how many chunks a vein will spawn.")
-                    .define("nativeGoldOreGentype",true);
+                    .define("nativeGoldOreGentype",false);
             NATIVE_GOLD_ORE_CHANCE = b.comment("Count / chance number to be used depending on nativeGoldOreGentype.")
-                    .defineInRange("nativeGoldOreChance", 5, 0, 256);
+                    .defineInRange("nativeGoldOreChance", 4, 0, 256);
             NATIVE_GOLD_ORE_SIZE = b.comment("The maximum size of Native Gold Ore vein")
-                    .defineInRange("nativeGoldOreSize", 6, 0, 500);
+                    .defineInRange("nativeGoldOreSize", 8, 0, 500);
             NATIVE_GOLD_ORE_MEGA_GEN = b.comment("If true, a mega Native Gold Ore vein will generate according to the parameters nativeGoldOreMegaVeinSize andnativeGoldOreMegaVeinChance")
                     .define("nativeGoldOreMegaVeins",false);
             NATIVE_GOLD_ORE_MEGA_SIZE = b.comment("The maximum size of mega Native Gold Ore vein.")
@@ -1250,7 +1250,7 @@ public class WGConfig {
             NATIVE_SILVER_ORE_GENTYPE = b.comment("If false, nativeSilverOreChance will determine how many tries per chunk ore veins will generate. If true, nativeSilverOreChance will determine 1 in how many chunks a vein will spawn.")
                     .define("nativeSilverOreGentype",false);
             NATIVE_SILVER_ORE_CHANCE = b.comment("Count / chance number to be used depending on nativeSilverOreGentype.")
-                    .defineInRange("nativeSilverOreChance", 5, 0, 256);
+                    .defineInRange("nativeSilverOreChance", 4, 0, 256);
             NATIVE_SILVER_ORE_SIZE = b.comment("The maximum size of Native Silver Ore vein")
                     .defineInRange("nativeSilverOreSize", 9, 0, 500);
             NATIVE_SILVER_ORE_MEGA_GEN = b.comment("If true, a mega Native Silver Ore vein will generate according to the parameters nativeSilverOreMegaVeinSize andnativeSilverOreMegaVeinChance")
@@ -1302,11 +1302,11 @@ public class WGConfig {
             NATIVE_BISMUTH_ORE_MAX_HEIGHT = b.comment("Maximum height to generate Native Bismuth Ore at (make sure it is greater than the minimum)")
                     .defineInRange("nativeBismuthOreMax", 85, 0, 256);
             NATIVE_BISMUTH_ORE_GENTYPE = b.comment("If false, nativeBismuthOreChance will determine how many tries per chunk ore veins will generate. If true, nativeBismuthOreChance will determine 1 in how many chunks a vein will spawn.")
-                    .define("nativeBismuthOreGentype",true);
+                    .define("nativeBismuthOreGentype",false);
             NATIVE_BISMUTH_ORE_CHANCE = b.comment("Count / chance number to be used depending on nativeBismuthOreGentype.")
                     .defineInRange("nativeBismuthOreChance", 3, 0, 256);
             NATIVE_BISMUTH_ORE_SIZE = b.comment("The maximum size of Native Bismuth Ore vein")
-                    .defineInRange("nativeBismuthOreSize", 9, 0, 500);
+                    .defineInRange("nativeBismuthOreSize", 6, 0, 500);
             NATIVE_BISMUTH_ORE_MEGA_GEN = b.comment("If true, a mega Native Bismuth Ore vein will generate according to the parameters nativeBismuthOreMegaVeinSize andnativeBismuthOreMegaVeinChance")
                     .define("nativeBismuthOreMegaVeins",false);
             NATIVE_BISMUTH_ORE_MEGA_SIZE = b.comment("The maximum size of mega Native Bismuth Ore vein.")

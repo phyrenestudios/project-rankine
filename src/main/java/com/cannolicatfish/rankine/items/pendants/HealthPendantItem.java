@@ -27,7 +27,7 @@ public class HealthPendantItem extends Item{
             PlayerEntity player = (PlayerEntity) entityIn;
             ModifiableAttributeInstance att = player.getAttribute(Attributes.MAX_HEALTH);
             if (player.getHeldItemOffhand().getItem() == this && !att.hasModifier(RankineAttributes.HEALTH_PENDANT)) {
-                att.applyNonPersistentModifier(RankineAttributes.HEALTH_PENDANT);
+                att.applyPersistentModifier(RankineAttributes.HEALTH_PENDANT);
             } else if (player.getHeldItemOffhand().getItem() != this && att.hasModifier(RankineAttributes.HEALTH_PENDANT)) {
                 att.removeModifier(RankineAttributes.HEALTH_PENDANT);
             }

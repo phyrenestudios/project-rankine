@@ -19,21 +19,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class MetalLadderBlock extends LadderBlock {
-    public MetalLadderBlock(Properties builder) {
+    private boolean teleport;
+    public MetalLadderBlock(Boolean teleport, Properties builder) {
         super(builder);
+        this.teleport = teleport;
     }
     
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        int n = 1;
-        IBlockReader reader = world;
-        while (reader.getBlockState(pos.up(n)).getBlock() == this.getBlock())
-        {
-            n += 1;
-        }
-        if (!world.isRemote) {
-            player.setPositionAndUpdate(pos.getX() + .5f,pos.getY() + n,pos.getZ() + .5f);
-            return ActionResultType.FAIL;
+        if (this.teleport) {
+            int n = 1;
+            IBlockReader reader = world;
+            while (reader.getBlockState(pos.up(n)).getBlock() == this.getBlock()) {
+                n += 1;
+            }
+            if (!world.isRemote) {
+                player.setPositionAndUpdate(pos.getX() + .5f, pos.getY() + n, pos.getZ() + .5f);
+                return ActionResultType.FAIL;
+            }
         }
         return super.onBlockActivated(state, world, pos, player, hand, result);
     }

@@ -55,7 +55,7 @@ public class RankineBlocks {
     //Base Properties
     public static Block.Properties DEF_STONE = Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F);
     public static Block.Properties DEF_ORE = Block.Properties.create(Material.ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 3.0F);
-    public static Block.Properties DEF_METAL_BLOCK = Block.Properties.create(Material.IRON).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F).sound(SoundType.METAL).harvestLevel(0);
+    public static Block.Properties DEF_METAL_BLOCK = Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F).harvestLevel(0);
     public static Block.Properties DEF_WOOD = Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0);
     public static Block.Properties DEF_LEAVES = Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid();
 
@@ -1497,7 +1497,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRAWBERRY_BUSH = REGISTRY.register("strawberry_bush", () -> new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),6));
     public static final RegistryObject<Block> PINEAPPLE_BUSH = REGISTRY.register("pineapple_bush",   () -> new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),7));
     public static final RegistryObject<Block> BANANA_YUCCA_BUSH = REGISTRY.register("banana_yucca_bush",  () -> new RankineBerryBushBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8));
-    public static final RegistryObject<Block> ALUMINUM_LADDER = REGISTRY.register("aluminum_ladder", () -> new MetalLadderBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> ALUMINUM_LADDER = REGISTRY.register("aluminum_ladder", () -> new MetalLadderBlock(true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> CAST_IRON_LADDER = REGISTRY.register("cast_iron_ladder", () -> new MetalLadderBlock(false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> BRASS_LADDER = REGISTRY.register("brass_ladder", () -> new MetalLadderBlock(false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
 
     public static final RegistryObject<Block> ROPE = REGISTRY.register("rope", () -> new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()));
     public static final RegistryObject<Block> ROPE_COIL = REGISTRY.register("rope_coil", () -> new RopeCoilBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(1.0F)));

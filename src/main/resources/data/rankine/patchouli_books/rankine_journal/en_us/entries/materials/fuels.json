@@ -11,7 +11,7 @@
       "type": "spotlight",
       "item": "rankine:biomass",
       "link_recipe": true,
-      "text": "Biomass is a fuel source derived from plant matter. Crops and leaves can be crushed by a $(l:tools/hammers)Hammer$() or $(l:machines/piston_crusher)Piston Crusher$() to yield biomass. Biomass has a fuel value of 50."
+      "text": "Biomass is a fuel source derived from plant matter. Crops and leaves can be $(mechanics)crushed$() to yield biomass. Biomass has a fuel value of 50."
     },
     {
       "type": "crafting",

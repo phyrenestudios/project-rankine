@@ -1,0 +1,17 @@
+{
+  "name": "Diamond Anvil Cell",
+  "icon": "rankine:diamond_anvil_cell",
+  "category": "machines",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Currently used as a POI for the Gem Cutter Villager."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:diamond_anvil_cell",
+      "text": ""
+    }
+  ]
+}

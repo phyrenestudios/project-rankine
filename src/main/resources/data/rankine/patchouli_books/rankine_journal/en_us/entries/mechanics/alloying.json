@@ -1,5 +1,5 @@
 {
-  "name": "Notes About Alloying",
+  "name": "Alloying",
   "icon": "rankine:element",
   "category": "mechanics",
   "pages": [
@@ -13,7 +13,7 @@
     },
     {
       "type": "text",
-      "text": "The more important aspect about alloying however, is tool creation. Each element that can be used in alloying is given stats in the foloowing categories: $(li)Harvest Level $(li)Durability $(li)Mining Speed $(li)Damage $(li)Attack Speed $(li)Enchantability $(li)Corrosion Resistance $(li)Heat Resistance $(li)Toughness $(li)Electric Potential"
+      "text": "The more important aspect about alloying however, is tool creation. Each element that can be used in alloying is given stats in the following categories: $(li)Harvest Level $(li)Durability $(li)Mining Speed $(li)Damage $(li)Attack Speed $(li)Enchantability $(li)Corrosion Resistance $(li)Heat Resistance $(li)Toughness $(li)Electric Potential"
     },
     {
       "type": "text",

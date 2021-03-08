@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:silicon"
-      },
-      "result": "rankine:silicon_carbide",
-      "experience": 0.7,
-      "cookingtime": 100
-    }

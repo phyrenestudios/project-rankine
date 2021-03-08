@@ -5,7 +5,6 @@
   "pages": [
     {
       "type": "text",
-      "anchor": "metal_decoration",
       "text": "Various blocks used for decoration."
     },
     {
@@ -27,6 +26,11 @@
       "type": "crafting",
       "recipe": "rankine:nickel_bars",
       "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cast_iron_support",
+      "text": "Slab, stairs, and vertical slab variants available."
     }
   ]
 }

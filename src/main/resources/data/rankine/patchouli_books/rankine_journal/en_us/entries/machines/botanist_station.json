@@ -1,0 +1,17 @@
+{
+  "name": "Botanist Station",
+  "icon": "rankine:botanist_station",
+  "category": "machines",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Currently used as a POI for the Botanist Villager."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:botanist_station",
+      "text": ""
+    }
+  ]
+}

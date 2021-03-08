@@ -157,6 +157,8 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.BRASS_DOOR.get(),
                 RankineBlocks.BRASS_TRAPDOOR.get(),
                 RankineBlocks.ALUMINUM_LADDER.get(),
+                RankineBlocks.BRASS_LADDER.get(),
+                RankineBlocks.CAST_IRON_LADDER.get(),
                 RankineBlocks.MAPLE_DOOR.get(),
                 RankineBlocks.MAPLE_TRAPDOOR.get()
 
