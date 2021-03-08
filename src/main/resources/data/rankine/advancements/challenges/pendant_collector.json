@@ -1,0 +1,95 @@
+{
+  "parent": "rankine:challenges/rankine_challenges",
+  "display": {
+    "icon": {
+      "item": "rankine:luck_pendant"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.pendant_collector.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.pendant_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rankine:haste_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:haste_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:luck_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:luck_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:health_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:health_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:speed_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:speed_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:levitation_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:levitation_pendant"
+          }
+        ]
+      }
+    },
+    "rankine:repulsion_pendant": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:repulsion_pendant"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rankine:haste_pendant"
+    ], [
+      "rankine:luck_pendant"
+    ],[
+      "rankine:health_pendant"
+    ], [
+      "rankine:speed_pendant"
+    ], [
+      "rankine:levitation_pendant"
+    ], [
+      "rankine:repulsion_pendant"
+    ]
+  ]
+}

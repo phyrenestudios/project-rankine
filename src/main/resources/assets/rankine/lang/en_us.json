@@ -2311,6 +2311,8 @@
   "rankine.advancements.challenges.element_collector.description": "Collect every element in the Periodic Table",
   "rankine.advancements.challenges.make_all_power_cells.title": "Energized",
   "rankine.advancements.challenges.make_all_power_cells.description": "Make every type of Power Cell",
+  "rankine.advancements.challenges.pendant_collector.title": "On the Other Hand",
+  "rankine.advancements.challenges.pendant_collector.description": "Make every type of Colored Gold Pendant",
   "rankine.advancements.story.make_element_indexer.title": "Elementary",
   "rankine.advancements.story.make_element_indexer.description": "Use a device to examine element properties",
   "rankine.advancements.challenges.alloy_collector.title": "Worldmoulder",

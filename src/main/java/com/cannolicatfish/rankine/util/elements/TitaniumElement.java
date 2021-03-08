@@ -21,12 +21,12 @@ public class TitaniumElement implements ElementInterface{
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        return Math.max(0,x/50f - 1.5f);
     }
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return x/16f;
+        return (float) Math.pow(x/25f,2);
     }
 
     @Override
@@ -44,18 +44,12 @@ public class TitaniumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        if (x >= 50)
-        {
-            return 1;
-        } else
-        {
-            return 0;
-        }
+        return Math.abs(Math.round((x-30)/10f));
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return (float) Math.pow(x/10f, 2)/100;
+        return (float) x/200 + 0.01f;
     }
 
     @Override
@@ -65,7 +59,7 @@ public class TitaniumElement implements ElementInterface{
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/1000f;
     }
 
     @Override
