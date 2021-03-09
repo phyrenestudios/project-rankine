@@ -125,7 +125,7 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
                 tooltip.add((new StringTextComponent("Composition: " + returnCompositionString(stack,this.alloy))).mergeStyle(alloy.getAlloyGroupColor()));
                 tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(wear) + "%")).mergeStyle(getWearColor(wear)));
                 tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy) - getDamage(stack)) + "/" + getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.DARK_GREEN));
-                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy) + 1))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy)))).mergeStyle(TextFormatting.GRAY));
                 tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
                 tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
                 if (Config.ALLOYS.ALLOY_CORROSION.get())

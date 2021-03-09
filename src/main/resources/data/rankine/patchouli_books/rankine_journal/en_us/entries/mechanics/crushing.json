@@ -17,7 +17,7 @@
     },
     {
       "type": "text",
-      "text": "Each block can have up to 6 possible outputs, with each output corresponding to a certain harvest level. This means that crushing a block with a tool that has a harvest level of 3 will give you the chance to obtain the outputs from crushing level 3, 2, and 1. Drops from crushing are determined by random chance."
+      "text": "Each block can have up to 6 possible outputs, with each output corresponding to a certain harvest level. This means that crushing a block with a tool that has a harvest level of 3 will give you the chance to obtain the outputs from crushing level 3, 2, 1, and 0. Drops from crushing are determined by random chance."
     },
     {
       "type": "text",
