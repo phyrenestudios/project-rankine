@@ -1,17 +1,26 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.recipe.helper.ConfigHelper;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.ForgeConfig;
+import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class RankineOreBlock extends Block {
     public int type = 0;
+    private List<String> hlpath = new ArrayList<>();
+    private int hl = -1;
     public static final IntegerProperty TYPE = IntegerProperty.create("type",0,88);
     public RankineOreBlock(Properties properties) {
         super(properties);
@@ -29,6 +38,41 @@ public class RankineOreBlock extends Block {
     @Override
     public int getExpDrop(BlockState state, net.minecraft.world.IWorldReader reader, BlockPos pos, int fortune, int silktouch) {
         return silktouch == 0 ? this.getExperience(RANDOM) : 0;
+    }
+
+    @Override
+    public int getHarvestLevel(BlockState state) {
+        if (hl == -1 && this.getRegistryName() != null) {
+            hl = modifyHarvestLevel(state);
+        }
+        return hl;
+    }
+
+    private int modifyHarvestLevel(BlockState state) {
+        if (this.hlpath.size() == 0 && this.getRegistryName() != null) {
+            this.hlpath.add("oregen");
+            StringBuilder s = new StringBuilder();
+            int count = 0;
+            for (String s1 : this.getRegistryName().getPath().split("_")) {
+                if (count == 0) {
+                    s.append(s1);
+                } else {
+                    s.append(s1.substring(0, 1).toUpperCase()).append(s1.substring(1));
+                }
+                count++;
+            }
+            this.hlpath.add(s.toString());
+            s.append("HL");
+            this.hlpath.add(s.toString());
+        }
+        //System.out.println("GENERATED PATH: " + this.hlpath);
+        int x = ConfigHelper.getOreHarvestLevel(this.hlpath);
+        if (x == -1) {
+            //System.out.println("HL NOT FOUND");
+            return super.getHarvestLevel(state);
+        } else {
+            return x;
+        }
     }
 
     protected int getExperience(Random rand) {

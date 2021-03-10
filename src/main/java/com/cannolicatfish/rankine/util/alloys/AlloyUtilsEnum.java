@@ -90,10 +90,10 @@ public enum AlloyUtilsEnum implements AlloyUtils {
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
-            Collections.singletonList(new ResourceLocation("rankine","cleanse")),14,2,3),"75Fe-13Cr-10Ni-2C", TextFormatting.WHITE),
+            Collections.singletonList(new ResourceLocation("rankine","cleanse")),14,2,3),"75Fe-18Cr-5Ni-2C", TextFormatting.WHITE),
     TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
-    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"75Ni-15Cr-10Fe", TextFormatting.DARK_BLUE),
-    COBALT_SA(RankineToolMaterials.COBALT_SA, 370,3.5f,1,3,0,0,0F,0,0.3f, AlloyEnchantmentHandler.EMPTY,"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
+    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"70Ni-20Cr-10Co", TextFormatting.DARK_BLUE),
+    COBALT_SA(RankineToolMaterials.COBALT_SA, 500,3.5f,1,3,0,0,0F,0,0.3f, AlloyEnchantmentHandler.EMPTY,"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
 
     IItemTier tier;
     int durabilityBonus;

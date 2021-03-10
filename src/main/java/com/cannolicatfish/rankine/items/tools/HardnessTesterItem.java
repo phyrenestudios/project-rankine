@@ -20,36 +20,37 @@ public class HardnessTesterItem extends Item {
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
-        if (!world.isRemote)
+        PlayerEntity player = context.getPlayer();
+        if (!world.isRemote && player != null)
         {
             Block b = world.getBlockState(context.getPos()).getBlock();
-            int harvest = b.getHarvestLevel(b.getDefaultState()) + 1;
+            int harvest = b.getHarvestLevel(b.getDefaultState());
             String desc;
             if (b.getHarvestTool(b.getDefaultState()) == ToolType.PICKAXE)
             {
                 switch (harvest)
                 {
-                    case 0:
                     case -1:
                     default:
+                        harvest = 0;
                         desc = " (None)";
                         break;
-                    case 1:
+                    case 0:
                         desc = " (Flint)";
                         break;
-                    case 2:
+                    case 1:
                         desc = " (Bronze)";
                         break;
-                    case 3:
+                    case 2:
                         desc = " (Invar)";
                         break;
-                    case 4:
+                    case 3:
                         desc = " (Steel)";
                         break;
-                    case 5:
+                    case 4:
                         desc = " (Superalloy)";
                         break;
-                    case 6:
+                    case 5:
                         desc = " (Advanced)";
                         break;
                 }
@@ -58,7 +59,7 @@ public class HardnessTesterItem extends Item {
                 desc = " (None)";
             }
 
-            context.getPlayer().sendMessage(new StringTextComponent("Hardness: " + harvest + desc),context.getPlayer().getUniqueID());
+            player.sendMessage(new StringTextComponent("Hardness: " + harvest + desc),player.getUniqueID());
         }
 
 

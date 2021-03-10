@@ -823,13 +823,8 @@ public class RankineEventHandler {
             if (!persistent.hasUniqueId(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
                 event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
-                event.getPlayer().inventory.addItemStackToInventory(new ItemStack(RankineItems.ROPE.get(),5));
             }
-            event.getPlayer().inventory.addItemStackToInventory(new ItemStack(RankineItems.ACANTHITE.get(),7));
-
         }
-        event.getPlayer().inventory.addItemStackToInventory(new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(),7));
-
     }
 
 
@@ -1432,7 +1427,7 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void flintFire(PlayerInteractEvent.RightClickBlock event) {
-        if (Config.GENERAL.FLINT_FIRE.get()) {
+        if (Config.GENERAL.FLINT_FIRE.get() && event.getFace() != null) {
             BlockPos pos = event.getPos();
             World world = event.getWorld();
             PlayerEntity player = event.getPlayer();
@@ -1570,7 +1565,6 @@ public class RankineEventHandler {
         World world = event.getWorld();
         Direction direction = event.getFace();
         BlockPos pos = event.getPos();
-        BlockPos posWithOffset = pos.offset(direction);
         PlayerEntity player = event.getPlayer();
 
         if(item instanceof AxeItem) {
