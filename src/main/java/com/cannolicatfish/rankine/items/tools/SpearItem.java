@@ -4,7 +4,9 @@ import com.cannolicatfish.rankine.entities.SpearEntity;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MoverType;
@@ -168,5 +170,13 @@ public class SpearItem extends Item {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == Enchantments.IMPALING || enchantment == Enchantments.LOYALTY) {
+            return true;
+        }
+        return super.canApplyAtEnchantingTable(stack,enchantment);
     }
 }

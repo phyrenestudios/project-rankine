@@ -1,0 +1,39 @@
+{
+  "parent": "rankine:challenges/rankine_challenges",
+  "display": {
+    "icon": {
+      "item": "rankine:pewter_sword"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.pewter_enchant.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.pewter_enchant.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rankine:pewter_tool": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pewter_sword"
+          },
+          {
+            "type": "rankine:enchant_check",
+            "ench": 14
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rankine:pewter_tool"
+    ]
+  ]
+}

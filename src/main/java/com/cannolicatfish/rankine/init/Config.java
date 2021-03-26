@@ -248,6 +248,15 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue ALLOY_WEAR_MINING_AMT;
         public final ForgeConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
 
+        public final ForgeConfigSpec.IntValue AMALGAM_ALLOY_BONUS_DURABILITY;
+        public final ForgeConfigSpec.DoubleValue AMALGAM_ALLOY_BONUS_MINING_SPEED;
+        public final ForgeConfigSpec.IntValue AMALGAM_ALLOY_BONUS_HL;
+        public final ForgeConfigSpec.IntValue AMALGAM_ALLOY_BONUS_ENCHANTABILITY;
+        public final ForgeConfigSpec.DoubleValue AMALGAM_ALLOY_BONUS_DAMAGE;
+        public final ForgeConfigSpec.DoubleValue AMALGAM_ALLOY_BONUS_ATTACK_SPEED;
+        public final ForgeConfigSpec.DoubleValue AMALGAM_ALLOY_BONUS_CORR_RESIST;
+        public final ForgeConfigSpec.DoubleValue AMALGAM_ALLOY_BONUS_HEAT_RESIST;
+        public final ForgeConfigSpec.DoubleValue AMALGAM_ALLOY_BONUS_TOUGHNESS;
 
         public Alloys(ForgeConfigSpec.Builder b) {
             b.comment("Settings for alloys and alloy tools").push("alloys");
@@ -265,6 +274,26 @@ public class Config {
                         .defineInRange("alloyWearMiningAmount", 0.25D, 0.00D, 0.99D);
                 ALLOY_WEAR_DAMAGE_AMT = b.comment("Modifies the severity of the wear effect on damage (ex. 0.25 means damage will be reduced to 75% of the original value as durability is lost)")
                         .defineInRange("alloyWearDamageAmount", 0.25D, 0.00D, 0.99D);
+                b.pop();
+            b.comment("Amalgam Alloy Tool Properties").push("amalgam");
+            AMALGAM_ALLOY_BONUS_DURABILITY = b.comment("Adds bonus durability for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusDurability", 0, 0, 10000);
+            AMALGAM_ALLOY_BONUS_MINING_SPEED = b.comment("Adds bonus mining speed for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusMiningSpeed", 0.0D, 0D, 20D);
+            AMALGAM_ALLOY_BONUS_HL = b.comment("Adds bonus to harvest level for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusHL", 0, 0, 10);
+            AMALGAM_ALLOY_BONUS_ENCHANTABILITY = b.comment("Adds bonus enchantability for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusEnchantability", 0, 0, 40);
+            AMALGAM_ALLOY_BONUS_ATTACK_SPEED = b.comment("Adds bonus attack speed for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusAttackSpeed", 0.0D, 0D, 4D);
+            AMALGAM_ALLOY_BONUS_DAMAGE = b.comment("Adds bonus damage for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusDamage", 0.0D, 0D, 20D);
+            AMALGAM_ALLOY_BONUS_CORR_RESIST = b.comment("Adds bonus corrosion resistance for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusCorrResist", 0.0D, 0D, 1D);
+            AMALGAM_ALLOY_BONUS_HEAT_RESIST = b.comment("Adds bonus heat resistance for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusHeatResist", 0.0D, 0D, 1D);
+            AMALGAM_ALLOY_BONUS_TOUGHNESS = b.comment("Adds bonus toughness for any composition Amalgam tool.")
+                    .defineInRange("amalgamBonusToughness", -0.2D, -1D, 1D);
                 b.pop();
         }
     }
