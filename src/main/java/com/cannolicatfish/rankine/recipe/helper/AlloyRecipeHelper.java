@@ -139,8 +139,12 @@ public class AlloyRecipeHelper {
                 return name;
             }
         }
-        if (elements.size() == 2) {
-            return elements.get(0).name().charAt(0) + elements.get(0).name().substring(1).toLowerCase() + "-" + elements.get(1).name().charAt(0) + elements.get(1).name().substring(1).toLowerCase();
+        if (elements.size() >= 3) {
+            return elements.get(0).name().charAt(0) + elements.get(0).name().substring(1).toLowerCase() + " Alloy";
+        } else if (elements.size() == 2) {
+            return elements.get(0).name().charAt(0) + elements.get(0).name().substring(1).toLowerCase() + "-" + elements.get(1).name().charAt(0) + elements.get(1).name().substring(1).toLowerCase() + " Alloy";
+        } else if (elements.size() == 1) {
+            return elements.get(0).name().charAt(0) + elements.get(0).name().substring(1).toLowerCase();
         }
         return "false";
     }

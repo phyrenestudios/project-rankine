@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "R#E",
+    "lP#"
+  ],
+  "key": {
+    "R": {
+      "item": "rankine:mica_block"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "P": {
+      "item": "minecraft:pufferfish"
+    },
+    "E": {
+      "item": "minecraft:piston"
+    },
+    "l": {
+      "item": "minecraft:lever"
+    },
+    "#": {
+      "item": "minecraft:shulker_shell"
+    }
+  },
+  "result": {
+    "item": "rankine:shulker_gas_vacuum",
+    "count": 1
+  }
+}

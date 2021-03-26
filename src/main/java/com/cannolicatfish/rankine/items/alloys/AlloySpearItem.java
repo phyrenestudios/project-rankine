@@ -9,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -67,6 +68,11 @@ public class AlloySpearItem extends SpearItem implements IAlloyTool {
     @Override
     public int getMaxDamage(ItemStack stack) {
         return this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+    }
+
+    @Override
+    public int getItemEnchantability(ItemStack stack) {
+        return this.getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy);
     }
 
     @Override
