@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_fence",
+    "rankine:black_walnut_fence",
+    "rankine:cork_oak_fence",
     "rankine:cedar_fence",
     "rankine:pinyon_pine_fence",
     "rankine:juniper_fence",

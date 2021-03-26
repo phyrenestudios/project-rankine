@@ -1,0 +1,7 @@
+{
+      "variants": {
+        "axis=y": { "model": "rankine:block/black_walnut_wood" },
+        "axis=z": { "model": "rankine:block/black_walnut_wood", "x": 90 },
+        "axis=x": { "model": "rankine:block/black_walnut_wood", "x": 90, "y": 90 }
+      }
+    }

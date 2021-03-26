@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:pulp"
+    },
+    {
+      "item": "rankine:pulp"
+    },
+    {
+      "item": "rankine:pulp"
+    },
+    {
+      "tag": "forge:saltpeter"
+    }
+  ],
+  "result": {
+    "item": "rankine:gun_cotton",
+    "count": 4
+  }
+}

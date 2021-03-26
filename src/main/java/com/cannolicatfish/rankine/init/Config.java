@@ -271,6 +271,14 @@ public class Config {
 
     public static class Machines {
 
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_WATER;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_LAVA;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_MAPLE_SAP;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_SAP;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_LATEX;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_RESIN;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_JUGALONE;
+
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
@@ -289,6 +297,20 @@ public class Config {
 
         public Machines(ForgeConfigSpec.Builder b) {
             b.comment("Settings for machines").push("machines");
+                TREE_TAP_WATER = b.comment("Enable the tapping of trees in #rankine:logs_water for water.")
+                        .define("tapWater", true);
+                TREE_TAP_LAVA = b.comment("Enable the tapping of trees in #rankine:logs_lava for lava.")
+                        .define("tapLava", true);
+                TREE_TAP_SAP = b.comment("Enable the tapping of trees in #rankine:logs_sap for sap.")
+                        .define("tapSap", true);
+                TREE_TAP_MAPLE_SAP = b.comment("Enable the tapping of trees in #rankine:logs_maple_sap for maple sap.")
+                        .define("tapMapleSap", true);
+                TREE_TAP_RESIN = b.comment("Enable the tapping of trees in #rankine:logs_resin for resin.")
+                        .define("tapResin", true);
+                TREE_TAP_LATEX = b.comment("Enable the tapping of trees in #rankine:logs_latex for latex.")
+                        .define("tapLatex", true);
+                TREE_TAP_JUGALONE = b.comment("Enable the tapping of trees in #rankine:logs_jugalone for jugalone.")
+                        .define("tapJugalone", true);
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")
                         .defineInRange("charcoalPitRadius", 7, 3, 15);
                 CHARCOAL_PIT_SPEED = b.comment("The number of random ticks it takes the Charcoal Pit to process")

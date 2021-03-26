@@ -119,7 +119,7 @@ public class BlastingPowderBlock extends FallingBlock {
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
         Random random = new Random();
-        if (random.nextFloat() <= 0.05f && !player.abilities.isCreativeMode)
+        if (random.nextFloat() <= 0.50f && !player.abilities.isCreativeMode)
         {
             catchFire(worldIn.getBlockState(pos), worldIn, pos, null,player);
         }
@@ -136,6 +136,6 @@ public class BlastingPowderBlock extends FallingBlock {
      */
     @Override
     public boolean canDropFromExplosion(BlockState state, IBlockReader world, BlockPos pos, Explosion explosion) {
-        return false;
+        return true;
     }
 }

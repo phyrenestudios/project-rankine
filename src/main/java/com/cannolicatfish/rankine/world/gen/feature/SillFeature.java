@@ -24,7 +24,7 @@ public class SillFeature extends Feature<NoFeatureConfig> {
         if (rand.nextFloat() < WGConfig.MISC.SILL_CHANCE.get()) {
             //int height = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             int height = rand.nextInt(30) + 30;
-            int radius = 10 + rand.nextInt(5);
+            int radius = 5 + rand.nextInt(5);
             for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX() - radius, height - 1, pos.getZ() - radius), new BlockPos(pos.getX() + radius, height, pos.getZ() + radius))) {
                 if (reader.getBlockState(blockpos).getBlock().getTags().contains(new ResourceLocation("minecraft:base_stone_overworld")) && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(radius + 0.5, 2)) {
                     reader.setBlockState(blockpos, target, 2);

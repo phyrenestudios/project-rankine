@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:yellow_birch"
+        }
+      },
+      "result": {
+        "item": "rankine:yellow_birch_trapdoor",
+        "count": 2
+      }
+}

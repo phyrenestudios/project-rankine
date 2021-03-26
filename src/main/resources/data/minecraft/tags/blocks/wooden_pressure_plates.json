@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_pressure_plate",
+    "rankine:black_walnut_pressure_plate",
+    "rankine:cork_oak_pressure_plate",
     "rankine:cedar_pressure_plate",
     "rankine:pinyon_pine_pressure_plate",
     "rankine:juniper_pressure_plate",

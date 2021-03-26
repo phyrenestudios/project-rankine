@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:jugalone_bucket"
+    },
+    {
+      "tag": "forge:salt"
+    },
+    {
+      "tag": "forge:salt"
+    }
+  ],
+  "result": {
+    "item": "rankine:herbicide",
+    "count": 4
+  }
+}

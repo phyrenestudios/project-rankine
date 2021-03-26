@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:jungle_logs",
+    "#minecraft:acacia_logs",
+    "#minecraft:dark_oak_logs",
+    "#minecraft:oak_logs",
+    "#rankine:coconut_palm_logs",
+    "#rankine:magnolia_logs",
+    "#rankine:cork_oak_logs"
+
+  ]
+}

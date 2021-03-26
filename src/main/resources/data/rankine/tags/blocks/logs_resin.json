@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:spruce_logs",
+    "#rankine:pinyon_pine_logs",
+    "#rankine:juniper_logs",
+    "#rankine:cedar_logs",
+    "#rankine:eastern_hemlock_logs"
+  ]
+}

@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_button",
+    "rankine:black_walnut_button",
+    "rankine:cork_oak_button",
     "rankine:cedar_button",
     "rankine:pinyon_pine_button",
     "rankine:juniper_button",

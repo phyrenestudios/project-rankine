@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_stairs",
+    "rankine:black_walnut_stairs",
+    "rankine:cork_oak_stairs",
     "rankine:cedar_stairs",
     "rankine:pinyon_pine_stairs",
     "rankine:juniper_stairs",

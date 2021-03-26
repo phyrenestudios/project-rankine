@@ -1,12 +1,18 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_trapdoor",
+    "rankine:black_walnut_trapdoor",
+    "rankine:cork_oak_trapdoor",
     "rankine:cedar_trapdoor",
-    "rankine:coconut_palm_trapdoor",
     "rankine:pinyon_pine_trapdoor",
     "rankine:juniper_trapdoor",
-    "rankine:magnolia_trapdoor",
+    "rankine:coconut_palm_trapdoor",
     "rankine:balsam_fir_trapdoor",
+    "rankine:magnolia_trapdoor",
+    "rankine:eastern_hemlock_trapdoor",
+    "rankine:bamboo_trapdoor",
+    "rankine:bamboo_culms_trapdoor",
     "rankine:maple_trapdoor"
   ]
 }

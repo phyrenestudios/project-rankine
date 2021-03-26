@@ -1,5 +1,8 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
+import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
+import com.cannolicatfish.rankine.blocks.treetap.TreeTapBlock;
 import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
@@ -175,6 +178,10 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(1, new ItemStack(Items.MYCELIUM, 4),12,30,0.05f));
             level5.add(new BasicTrade(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
             level5.add(new BasicTrade(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
+            level5.add(new BasicTrade(4, new ItemStack(RankineItems.CAMPHOR_BASIL_SEEDS.get()),12,30,0.05f));
+            level5.add(new BasicTrade(4, new ItemStack(RankineItems.ALOE.get()),12,30,0.05f));
+            level5.add(new BasicTrade(4, new ItemStack(RankineItems.SHARINGA_SAPLING.get()),12,30,0.05f));
+            level5.add(new BasicTrade(4, new ItemStack(RankineItems.CORK_OAK_SAPLING.get()),12,30,0.05f));
         } else if (event.getType() == RankineVillagerProfessions.GEM_CUTTER) {
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AQUAMARINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
             level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OPAL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
@@ -1471,6 +1478,76 @@ public class RankineEventHandler {
         }
     }
 
+/*
+    @SubscribeEvent
+    public static void knifeClick(PlayerInteractEvent.RightClickBlock event) {
+        ItemStack stack = event.getItemStack();
+        Item item = stack.getItem();
+        World world = event.getWorld();
+        Direction direction = event.getFace();
+        BlockPos pos = event.getPos();
+        BlockState state = world.getBlockState(pos);
+        PlayerEntity player = event.getPlayer();
+
+        if (player.getHeldItemMainhand().getTag() != null && player.getHeldItemMainhand().getTag().contains("rankine:knives")) {
+            Block target = state.getBlock();
+            ItemStack drops = null;
+            if (target == Blocks.GRASS_BLOCK) {
+                drops = new ItemStack(Items.GRASS, 1);
+                iworld.playSound(playerentity, blockpos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, random.nextFloat() * 0.4F + 0.8F);
+                iworld.setBlockState(blockpos, Blocks.DIRT.getDefaultState(), 2);
+            } else if (target == Blocks.TALL_GRASS) {
+                drops = new ItemStack(Items.GRASS, 2);
+            }
+        }
+
+    }
+    */
+
+    @SubscribeEvent
+    public static void knifeBreak(BlockEvent.BreakEvent event) {
+        ServerWorld worldIn = (ServerWorld) event.getWorld();
+        PlayerEntity player = event.getPlayer();
+        BlockPos pos = event.getPos();
+        Block target = worldIn.getBlockState(pos).getBlock();
+
+        if (player.getHeldItemMainhand().getTag() != null && player.getHeldItemMainhand().getTag().contains("rankine:knives")) {
+            ItemStack drops = null;
+
+            if (target == Blocks.GRASS) {
+                drops = new ItemStack(Items.GRASS, 1);
+            } else if (target == Blocks.TALL_GRASS) {
+                drops = new ItemStack(Items.GRASS, 2);
+            } else if (target == Blocks.FERN) {
+                drops = new ItemStack(Items.FERN, 2);
+            } else if (target == Blocks.LARGE_FERN) {
+                drops = new ItemStack(Items.LARGE_FERN, 2);
+            } else if (target == Blocks.VINE) {
+                drops = new ItemStack(Items.VINE, 2);
+            } else if (target == Blocks.TWISTING_VINES) {
+                drops = new ItemStack(Items.TWISTING_VINES, 2);
+            } else if (target == Blocks.WEEPING_VINES_PLANT) {
+                drops = new ItemStack(Items.WEEPING_VINES, 2);
+            } else if (target == Blocks.DEAD_BUSH || target instanceof RankinePlantBlock || target instanceof SweetBerryBushBlock) {
+                drops = new ItemStack(Items.STICK, 2 + worldIn.getRandom().nextInt(4));
+            }
+            if (drops != null && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
+                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, drops);
+                itementity.setDefaultPickupDelay();
+                worldIn.addEntity(itementity);
+                worldIn.destroyBlock(pos, false);
+            }
+            if (!worldIn.isRemote) {
+                player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
+                    p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                });
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void nuggetDrop(BlockEvent.BreakEvent event) {
         ServerWorld worldIn = (ServerWorld) event.getWorld();
@@ -1569,10 +1646,21 @@ public class RankineEventHandler {
 
         if(item instanceof AxeItem) {
         BlockState activatedBlock = world.getBlockState(pos);
-            if (activatedBlock.getBlock() == Blocks.BIRCH_LOG){
-                if (new Random().nextFloat() < 0.2f) {
-                spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(Items.PAPER, 1));
+        Block b = activatedBlock.getBlock();
+            ItemStack strip = null;
+            if (b == Blocks.BIRCH_LOG || b == RankineBlocks.YELLOW_BIRCH_LOG.get() || b == RankineBlocks.BLACK_BIRCH_LOG.get()) {
+                if (world.getRandom().nextFloat() < 0.3) {
+                    strip = new ItemStack(Items.PAPER, 1);
                 }
+            } else if (b == RankineBlocks.CORK_OAK_LOG.get()) {
+                strip = new ItemStack(RankineItems.CORK.get(), 1);
+            } else if (b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                if (world.getRandom().nextFloat() < 0.3) {
+                    strip = new ItemStack(Items.STICK, 1);
+                }
+            }
+            if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots && strip != null) {
+                spawnAsEntity(event.getWorld(), event.getPos(), strip);
             }
             if(stripping_map.get(activatedBlock.getBlock()) != null) {
                 Block block = activatedBlock.getBlock();

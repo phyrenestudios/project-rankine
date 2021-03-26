@@ -17,6 +17,10 @@ public class VanillaIntegration {
         registerCompostable(0.3F, RankineBlocks.BLACK_BIRCH_LEAVES.get());
         registerCompostable(0.3F, RankineBlocks.MAPLE_LEAVES.get());
         registerCompostable(0.3F, RankineBlocks.YELLOW_BIRCH_LEAVES.get());
+        registerCompostable(0.3F, RankineBlocks.SHARINGA_LEAVES.get());
+        registerCompostable(0.3F, RankineBlocks.BLACK_WALNUT_LEAVES.get());
+        registerCompostable(0.3F, RankineBlocks.CORK_OAK_LEAVES.get());
+
         registerCompostable(0.3F, RankineBlocks.CEDAR_SAPLING.get());
         registerCompostable(0.3F, RankineBlocks.PINYON_PINE_SAPLING.get());
         registerCompostable(0.3F, RankineBlocks.COCONUT_PALM_SAPLING.get());
@@ -24,12 +28,32 @@ public class VanillaIntegration {
         registerCompostable(0.3F, RankineBlocks.BALSAM_FIR_SAPLING.get());
         registerCompostable(0.3F, RankineBlocks.MAGNOLIA_SAPLING.get());
         registerCompostable(0.3F, RankineBlocks.EASTERN_HEMLOCK_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.YELLOW_BIRCH_SAPLING.get());
         registerCompostable(0.3F, RankineBlocks.BLACK_BIRCH_SAPLING.get());
         registerCompostable(0.3F, RankineBlocks.MAPLE_SAPLING.get());
+        registerCompostable(0.3F, RankineBlocks.YELLOW_BIRCH_SAPLING.get());
+        registerCompostable(0.3F, RankineBlocks.SHARINGA_SAPLING.get());
+        registerCompostable(0.3F, RankineBlocks.BLACK_WALNUT_SAPLING.get());
+        registerCompostable(0.3F, RankineBlocks.CORK_OAK_SAPLING.get());
+
         registerCompostable(0.5F, RankineItems.COMPOST.get());
+        registerCompostable(1.0F, RankineItems.PINEAPPLE_SLEEVES.get());
 
-
+        registerCompostable(0.3F, RankineItems.ELDERBERRIES.get());
+        registerCompostable(0.3F, RankineItems.BLUEBERRIES.get());
+        registerCompostable(0.3F, RankineItems.STRAWBERRIES.get());
+        registerCompostable(0.3F, RankineItems.CRANBERRIES.get());
+        registerCompostable(0.3F, RankineItems.RASPBERRIES.get());
+        registerCompostable(0.3F, RankineItems.BLACKBERRIES.get());
+        registerCompostable(0.3F, RankineItems.PINEAPPLE.get());
+        registerCompostable(0.3F, RankineItems.ALOE.get());
+        registerCompostable(0.3F, RankineItems.CAMPHOR_BASIL_LEAF.get());
+        registerCompostable(0.3F, RankineItems.CAMPHOR_BASIL_SEEDS.get());
+        registerCompostable(0.3F, RankineItems.BANANA_YUCCA.get());
+        registerCompostable(0.3F, RankineItems.SNOWBERRIES.get());
+        registerCompostable(0.3F, RankineItems.JUNIPER_BERRIES.get());
+        registerCompostable(0.3F, RankineItems.BLACK_WALNUT.get());
+        registerCompostable(0.3F, RankineItems.COCONUT.get());
+        registerCompostable(0.3F, RankineItems.FLOWER_SEEDS.get());
 
         RankineEventHandler.stripping_map.put(RankineBlocks.CEDAR_LOG.get(), RankineBlocks.STRIPPED_CEDAR_LOG.get());
         RankineEventHandler.stripping_map.put(RankineBlocks.CEDAR_WOOD.get(), RankineBlocks.STRIPPED_CEDAR_WOOD.get());
@@ -45,12 +69,18 @@ public class VanillaIntegration {
         RankineEventHandler.stripping_map.put(RankineBlocks.JUNIPER_WOOD.get(), RankineBlocks.STRIPPED_JUNIPER_WOOD.get());
         RankineEventHandler.stripping_map.put(RankineBlocks.EASTERN_HEMLOCK_LOG.get(), RankineBlocks.STRIPPED_EASTERN_HEMLOCK_LOG.get());
         RankineEventHandler.stripping_map.put(RankineBlocks.EASTERN_HEMLOCK_WOOD.get(), RankineBlocks.STRIPPED_EASTERN_HEMLOCK_WOOD.get());
-        RankineEventHandler.stripping_map.put(RankineBlocks.YELLOW_BIRCH_LOG.get(), Blocks.STRIPPED_BIRCH_LOG);
-        RankineEventHandler.stripping_map.put(RankineBlocks.YELLOW_BIRCH_WOOD.get(), Blocks.STRIPPED_BIRCH_WOOD);
-        RankineEventHandler.stripping_map.put(RankineBlocks.BLACK_BIRCH_LOG.get(), Blocks.STRIPPED_BIRCH_LOG);
-        RankineEventHandler.stripping_map.put(RankineBlocks.BLACK_BIRCH_WOOD.get(), Blocks.STRIPPED_BIRCH_WOOD);
+        RankineEventHandler.stripping_map.put(RankineBlocks.YELLOW_BIRCH_LOG.get(), RankineBlocks.STRIPPED_YELLOW_BIRCH_LOG.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.YELLOW_BIRCH_WOOD.get(), RankineBlocks.STRIPPED_YELLOW_BIRCH_WOOD.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.BLACK_BIRCH_LOG.get(), RankineBlocks.STRIPPED_YELLOW_BIRCH_LOG.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.BLACK_BIRCH_WOOD.get(), RankineBlocks.STRIPPED_BLACK_BIRCH_WOOD.get());
         RankineEventHandler.stripping_map.put(RankineBlocks.MAPLE_LOG.get(), RankineBlocks.STRIPPED_MAPLE_LOG.get());
         RankineEventHandler.stripping_map.put(RankineBlocks.MAPLE_WOOD.get(), RankineBlocks.STRIPPED_MAPLE_WOOD.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.SHARINGA_LOG.get(), RankineBlocks.STRIPPED_SHARINGA_LOG.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.SHARINGA_WOOD.get(), RankineBlocks.STRIPPED_SHARINGA_WOOD.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.BLACK_WALNUT_LOG.get(), RankineBlocks.STRIPPED_BLACK_WALNUT_LOG.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.BLACK_WALNUT_WOOD.get(), RankineBlocks.STRIPPED_BLACK_WALNUT_WOOD.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.CORK_OAK_LOG.get(), RankineBlocks.STRIPPED_CORK_OAK_LOG.get());
+        RankineEventHandler.stripping_map.put(RankineBlocks.CORK_OAK_WOOD.get(), RankineBlocks.STRIPPED_CORK_OAK_WOOD.get());
 
         addFlowerPot(RankineBlocks.CEDAR_SAPLING.get(), RankineBlocks.POTTED_CEDAR_SAPLING.get());
         addFlowerPot(RankineBlocks.PINYON_PINE_SAPLING.get(), RankineBlocks.POTTED_PINYON_PINE_SAPLING.get());
@@ -62,6 +92,9 @@ public class VanillaIntegration {
         addFlowerPot(RankineBlocks.YELLOW_BIRCH_SAPLING.get(), RankineBlocks.POTTED_YELLOW_BIRCH_SAPLING.get());
         addFlowerPot(RankineBlocks.BLACK_BIRCH_SAPLING.get(), RankineBlocks.POTTED_BLACK_BIRCH_SAPLING.get());
         addFlowerPot(RankineBlocks.MAPLE_SAPLING.get(), RankineBlocks.POTTED_MAPLE_SAPLING.get());
+        addFlowerPot(RankineBlocks.SHARINGA_SAPLING.get(), RankineBlocks.POTTED_SHARINGA_SAPLING.get());
+        addFlowerPot(RankineBlocks.BLACK_WALNUT_SAPLING.get(), RankineBlocks.POTTED_BLACK_WALNUT_SAPLING.get());
+        addFlowerPot(RankineBlocks.CORK_OAK_SAPLING.get(), RankineBlocks.POTTED_CORK_OAK_SAPLING.get());
 
 /*
         registerFlamables(ModBlocks.CEDAR_LEAVES,30,60);

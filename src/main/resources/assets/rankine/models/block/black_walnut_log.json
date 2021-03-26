@@ -1,0 +1,12 @@
+{
+      "parent": "block/cube",
+      "textures": {
+        "particle": "rankine:block/black_walnut_log",
+        "down": "rankine:block/black_walnut_log_top",
+        "up": "rankine:block/black_walnut_log_top",
+        "east": "rankine:block/black_walnut_log",
+        "west": "rankine:block/black_walnut_log",
+        "north": "rankine:block/black_walnut_log",
+        "south": "rankine:block/black_walnut_log"
+      }
+    }

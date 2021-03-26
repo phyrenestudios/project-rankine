@@ -1,0 +1,7 @@
+{
+      "parent": "block/cube_column",
+      "textures": {
+        "end": "rankine:block/sharinga_log",
+        "side": "rankine:block/sharinga_log"
+      }
+    }

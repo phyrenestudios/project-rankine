@@ -1,0 +1,12 @@
+{
+      "parent": "block/cube",
+      "textures": {
+        "particle": "rankine:block/sharinga_log",
+        "down": "rankine:block/sharinga_log_top",
+        "up": "rankine:block/sharinga_log_top",
+        "east": "rankine:block/sharinga_log",
+        "west": "rankine:block/sharinga_log",
+        "north": "rankine:block/sharinga_log",
+        "south": "rankine:block/sharinga_log"
+      }
+    }

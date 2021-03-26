@@ -1,0 +1,7 @@
+{
+        "variants": {
+            "type=bottom": { "model": "rankine:block/yellow_birch_slab" },
+            "type=top": { "model": "rankine:block/yellow_birch_slab_top" },
+            "type=double": { "model": "rankine:block/yellow_birch" }
+            }
+        }

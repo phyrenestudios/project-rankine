@@ -1,0 +1,19 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#S#",
+        "#S#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:sharinga_planks"
+        },
+        "S": {
+          "item": "minecraft:stick"
+        }
+      },
+      "result": {
+        "item": "rankine:sharinga_fence",
+        "count": 3
+      }
+    }

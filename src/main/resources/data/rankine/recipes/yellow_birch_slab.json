@@ -1,0 +1,15 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:yellow_birch_planks"
+        }
+      },
+      "result": {
+        "item": "rankine:yellow_birch_slab",
+        "count": 6
+      }
+    }

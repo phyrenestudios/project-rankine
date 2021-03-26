@@ -1,0 +1,6 @@
+{
+      "parent": "block/cross",
+      "textures": {
+        "cross": "rankine:block/aloe_plant_stage3"
+      }
+    }

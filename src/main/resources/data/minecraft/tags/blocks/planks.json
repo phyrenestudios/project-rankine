@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:cork_oak_planks",
+    "rankine:black_walnut_planks",
+    "rankine:sharinga_planks",
     "rankine:cedar_planks",
     "rankine:coconut_palm_planks",
     "rankine:pinyon_pine_planks",
