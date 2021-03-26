@@ -13,5 +13,5 @@ public class RankineEffects {
 
     public static Effect CONDUCTIVE = new ConductiveEffect(EffectType.HARMFUL,15001958).setRegistryName(ProjectRankine.MODID,"conductive");
 
-    public static Effect RADIATION_POISONING = new RadiationPoisonEffect(EffectType.HARMFUL,5478720).setRegistryName(ProjectRankine.MODID,"radiation_poison");
+    public static Effect RADIATION_POISONING = new RadiationPoisonEffect(EffectType.HARMFUL,5478720).addAttributesModifier(Attributes.MAX_HEALTH, "3c4a1c57-ed5a-482e-946e-eb0b00fe9baa", -2D, AttributeModifier.Operation.ADDITION).setRegistryName(ProjectRankine.MODID,"radiation_poison");
 }

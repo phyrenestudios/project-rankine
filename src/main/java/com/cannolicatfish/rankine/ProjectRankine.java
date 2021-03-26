@@ -30,6 +30,7 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.util.POIFixer;
+import com.cannolicatfish.rankine.util.colors.SGVDItemColor;
 import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.enchantment.Enchantment;
@@ -39,6 +40,7 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
@@ -118,6 +120,10 @@ public class ProjectRankine {
 
     private void ClientSetup(FMLClientSetupEvent event) {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
+        event.enqueueWork(() ->
+                ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
+                        new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
+                                stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F));
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 
@@ -149,6 +155,11 @@ public class ProjectRankine {
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_SPEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HAMMER::get);
             event.getItemColors().register(new TemplateItemColor(), RankineItems.ALLOY_TEMPLATE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_HELMET::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_CHESTPLATE::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_LEGGINGS::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_BOOTS::get);
+            event.getItemColors().register(new SGVDItemColor(), RankineItems.SHULKER_GAS_VACUUM::get);
         }
 
         @SubscribeEvent

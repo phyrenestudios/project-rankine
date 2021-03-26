@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.util;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.elements.*;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
@@ -213,7 +214,7 @@ public final class PeriodicTableUtils {
         return miningSpeed;
     }
 
-    public int calcMiningLevel(List<Element> elements, List<Integer> percents) // takes max; 0 -> 4 (best)
+    public int calcMiningLevel(List<Element> elements, List<Integer> percents)
     {
         int index = 0;
         List<Integer> levels = new ArrayList<>();
@@ -224,6 +225,40 @@ public final class PeriodicTableUtils {
         }
 
         return Collections.max(levels);
+    }
+
+    public int calcDamageReduceAmount(List<Element> elements, List<Integer> percents, EquipmentSlotType slotType)
+    {
+        int base = slotType == EquipmentSlotType.CHEST ? 3 : slotType == EquipmentSlotType.LEGS ? 2 : 1;
+        int index = 0;
+        List<Integer> levels = new ArrayList<>();
+        for (Element e: elements)
+        {
+            levels.add(e.element.getMiningLevelFromPercent(percents.get(index)));
+            index++;
+        }
+        int dr = Collections.max(levels);
+        if (slotType == EquipmentSlotType.CHEST || slotType == EquipmentSlotType.LEGS) {
+            return Math.min(base + dr,10);
+        } else if (slotType == EquipmentSlotType.FEET) {
+            if (dr >= 5) {
+                return base + 2;
+            } else if (dr >= 3) {
+                return base + 1;
+            } else {
+                return base;
+            }
+        } else {
+            if (dr >= 5) {
+                return base + 3;
+            } else if (dr >= 3) {
+                return base + 2;
+            } else if (dr >= 1) {
+                return base + 1;
+            } else {
+                return base;
+            }
+        }
     }
 
     public float calcDamage(List<Element> elements, List<Integer> percents) // takes max; 0 -> 4 (strongest)
@@ -302,6 +337,28 @@ public final class PeriodicTableUtils {
         }
 
         return tough;
+    }
+
+    public int calcArmorToughness(List<Element> elements, List<Integer> percents)
+    {
+        int index = 0;
+        float tough = 0f;
+        for (Element e: elements)
+        {
+            tough += e.element.getToughnessFromPercent(percents.get(index));
+            index++;
+        }
+        if (tough >= 0.4) {
+            return 4;
+        } else if (tough >= 0.3) {
+            return 3;
+        } else if (tough >= 0.2){
+            return 2;
+        } else if (tough >= 0.1){
+           return 1;
+        } else {
+            return 0;
+        }
     }
 
     public List<Enchantment> getEnchantments(List<Element> elements, List<Integer> percents)

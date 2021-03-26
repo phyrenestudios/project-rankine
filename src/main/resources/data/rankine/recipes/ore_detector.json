@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "ss ",
+    "ssi",
     "scs",
     " sb"
   ],
@@ -15,6 +15,10 @@
     "c":
     {
       "item": "rankine:alloy_wire"
+    },
+    "i":
+    {
+      "item": "rankine:indium_tin_oxide"
     },
     "s":
     {

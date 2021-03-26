@@ -212,8 +212,19 @@ public class ClientProxy implements IProxy {
 
         ));
 
-        addTranslucent(Collections.singletonList(
-                RankineBlocks.FLUORINE_GAS_BLOCK.get()
+        addTranslucent(Arrays.asList(
+                RankineBlocks.HYDROGEN_GAS_BLOCK.get(),
+                RankineBlocks.HELIUM_GAS_BLOCK.get(),
+                RankineBlocks.NITROGEN_GAS_BLOCK.get(),
+                RankineBlocks.OXYGEN_GAS_BLOCK.get(),
+                RankineBlocks.FLUORINE_GAS_BLOCK.get(),
+                RankineBlocks.NEON_GAS_BLOCK.get(),
+                RankineBlocks.CHLORINE_GAS_BLOCK.get(),
+                RankineBlocks.ARGON_GAS_BLOCK.get(),
+                RankineBlocks.KRYPTON_GAS_BLOCK.get(),
+                RankineBlocks.XENON_GAS_BLOCK.get(),
+                RankineBlocks.RADON_GAS_BLOCK.get(),
+                RankineBlocks.OGANESSON_GAS_BLOCK.get()
         ));
     }
 

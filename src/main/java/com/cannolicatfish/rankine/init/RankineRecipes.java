@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
+import com.cannolicatfish.rankine.advancements.PewterEnchantabilityPredicate;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.potion.RankinePotions;
@@ -41,6 +42,7 @@ public class RankineRecipes {
 
     public static void registerPredicates() {
         ItemPredicate.register(new ResourceLocation("rankine","harvest_level_check"), HarvestLevelPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","enchant_check"), PewterEnchantabilityPredicate::new);
         ItemPredicate.register(new ResourceLocation("rankine","exact_composition"), ExactCompositionPredicate::new);
         ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
     }
