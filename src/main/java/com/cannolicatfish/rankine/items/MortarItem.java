@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
-import com.cannolicatfish.rankine.blocks.RankineVerticalSlab;
+import com.cannolicatfish.rankine.blocks.RankineVerticalSlabBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -79,7 +79,7 @@ public class MortarItem extends Item {
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 } else if (block == RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get() && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get().getDefaultState().with(RankineVerticalSlab.HORIZONTAL_FACING, state.get(RankineVerticalSlab.HORIZONTAL_FACING)).with(RankineVerticalSlab.TYPE, state.get(RankineVerticalSlab.TYPE)));
+                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get().getDefaultState().with(RankineVerticalSlabBlock.HORIZONTAL_FACING, state.get(RankineVerticalSlabBlock.HORIZONTAL_FACING)).with(RankineVerticalSlabBlock.TYPE, state.get(RankineVerticalSlabBlock.TYPE)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 }

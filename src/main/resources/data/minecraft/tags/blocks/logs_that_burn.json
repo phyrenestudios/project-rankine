@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "#rankine:cedar_logs",
+    "#rankine:sharinga_logs",
+    "#rankine:black_walnut_logs",
+    "#rankine:cork_oak_logs",
     "#rankine:coconut_palm_logs",
     "#rankine:pinyon_pine_logs",
     "#rankine:juniper_logs",

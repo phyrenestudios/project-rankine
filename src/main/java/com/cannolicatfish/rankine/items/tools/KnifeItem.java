@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
-import com.cannolicatfish.rankine.blocks.RankineBerryBushBlock;
+import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.BlockState;
@@ -18,10 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class KnifeItem extends SwordItem {
     private final float attackDamage;
@@ -31,82 +28,6 @@ public class KnifeItem extends SwordItem {
         super(tier, attackDamageIn, attackSpeedIn, builder);
         this.attackSpeed = attackSpeedIn;
         this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
-    }
-
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (!worldIn.isRemote) {
-            stack.damageItem(1, entityLiving, (p_220038_0_) -> {
-                p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-            });
-        }
-        if (state.getBlock() == Blocks.DEAD_BUSH || state.getBlock() instanceof RankineBerryBushBlock || state.getBlock() instanceof SweetBerryBushBlock) {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.STICK, 2+random.nextInt(6)));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                worldIn.removeBlock(pos,false);
-            }
-        } else if (state.getBlock() == Blocks.GRASS) {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.GRASS,1));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                worldIn.removeBlock(pos,false);
-            }
-        } else if (state.getBlock() == Blocks.VINE) {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.VINE,1));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                worldIn.removeBlock(pos,false);
-            }
-        } else if (state.getBlock() == Blocks.TALL_GRASS) {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.GRASS,2));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                worldIn.removeBlock(pos,false);
-            }
-        } else if (state.getBlock() == Blocks.FERN) {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.FERN,1));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                worldIn.removeBlock(pos,false);
-            }
-        } else if (state.getBlock() == Blocks.LARGE_FERN) {
-            if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                float f = 0.5F;
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.LARGE_FERN,1));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                worldIn.removeBlock(pos,false);
-            }
-        }
-        return true;
     }
 
     public ActionResultType onItemUse(ItemUseContext context) {

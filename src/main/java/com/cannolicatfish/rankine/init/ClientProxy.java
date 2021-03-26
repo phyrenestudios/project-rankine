@@ -137,7 +137,11 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.YELLOW_BIRCH_SAPLING.get(),
                 RankineBlocks.BLACK_BIRCH_SAPLING.get(),
                 RankineBlocks.MAPLE_SAPLING.get(),
+                RankineBlocks.SHARINGA_SAPLING.get(),
+                RankineBlocks.BLACK_WALNUT_SAPLING.get(),
+                RankineBlocks.CORK_OAK_SAPLING.get(),
 
+                RankineBlocks.TREE_TAP.get(),
                 RankineBlocks.CEDAR_TRAPDOOR.get(),
                 RankineBlocks.COCONUT_PALM_TRAPDOOR.get(),
                 RankineBlocks.PINYON_PINE_TRAPDOOR.get(),
@@ -192,6 +196,9 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CRANBERRY_BUSH.get(),
                 RankineBlocks.STRAWBERRY_BUSH.get(),
                 RankineBlocks.PINEAPPLE_BUSH.get(),
+                RankineBlocks.ALOE_PLANT.get(),
+                RankineBlocks.CAMPHOR_BASIL_PLANT.get(),
+
                 RankineBlocks.CEDAR_LEAVES.get(),
                 RankineBlocks.PINYON_PINE_LEAVES.get(),
                 RankineBlocks.JUNIPER_LEAVES.get(),
@@ -200,9 +207,12 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.MAGNOLIA_LEAVES.get(),
                 RankineBlocks.YELLOW_BIRCH_LEAVES.get(),
                 RankineBlocks.BLACK_BIRCH_LEAVES.get(),
-
                 RankineBlocks.MAPLE_LEAVES.get(),
                 RankineBlocks.EASTERN_HEMLOCK_LEAVES.get(),
+                RankineBlocks.SHARINGA_LEAVES.get(),
+                RankineBlocks.CORK_BLOCK.get(),
+                RankineBlocks.BLACK_WALNUT_LEAVES.get(),
+
                 RankineBlocks.CALCITE_BLOCK.get(),
                 RankineBlocks.CALCIUM_SILICATE_BLOCK.get(),
                 RankineBlocks.MICA_BLOCK.get(),

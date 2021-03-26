@@ -1,0 +1,173 @@
+{
+  "name": "Flora",
+  "icon": "rankine:cedar_sapling",
+  "category": "world",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Various trees and bushes are added to liven up the world. All trees drop their respective saplings and have the whole suite of wood variants. Bushes add an early game food to fuel your adventures."
+    },
+    {
+      "type": "spotlight",
+	  "item": "rankine:cedar_sapling",
+      "link_recipe": true,
+      "text": "Found in tiaga biomes."
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:pinyon_pine_sapling",
+      "link_recipe": true,
+      "text": "Found in savana biomes."
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:juniper_sapling",
+      "link_recipe": true,
+      "text": "Found in savana biomes."
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:coconut_palm_sapling",
+      "link_recipe": true,
+      "text": "Found in beach biomes."
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:balsam_fir_sapling",
+      "link_recipe": true,
+      "text": "Found in swamp biomes."
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:magnolia_sapling",
+      "link_recipe": true,
+      "text": "Found along river biomes."
+    },
+	{
+      "type": "spotlight",
+	  "item": "rankine:eastern_hemlock_sapling",
+      "link_recipe": true,
+      "text": "Found in taiga biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:yellow_birch_sapling",
+      "link_recipe": true,
+      "text": "Found in forest biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_birch_sapling",
+      "link_recipe": true,
+      "text": "Found in forest biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:maple_sapling",
+      "link_recipe": true,
+      "text": "Found in plains biomes. $(br2)Grows majestic leaves that slowly change colors."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_walnut_sapling",
+      "link_recipe": true,
+      "text": "Found in river biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sharinga_sapling",
+      "link_recipe": true,
+      "text": "Found in jungle biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cork_oak_sapling",
+      "link_recipe": true,
+      "text": "Found in mushroom biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:elderberries",
+      "link_recipe": true,
+      "text": "Found in forest and plains biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:snowberries",
+      "link_recipe": true,
+      "text": "Found in mountain and snowy biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cranberries",
+      "link_recipe": true,
+      "text": "Found in swamp biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blueberries",
+      "link_recipe": true,
+      "text": "Found in river and plains biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:raspberries",
+      "link_recipe": true,
+      "text": "Found in forest biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blackberries",
+      "link_recipe": true,
+      "text": "Found in forest biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:strawberries",
+      "link_recipe": true,
+      "text": "Found in plains biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pineapple",
+      "link_recipe": true,
+      "text": "Found in jungle biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:banana_yucca",
+      "link_recipe": true,
+      "text": "Found in desert, mesas, and savanna biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:coconut",
+      "link_recipe": true,
+      "text": "From Coconut Palm leaves."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:juniper_berries",
+      "link_recipe": true,
+      "text": "From Juniper leaves. Slightly toxic."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_walnut",
+      "link_recipe": true,
+      "text": "From Black Walnut leaves. Slightly toxic."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:aloe",
+      "link_recipe": true,
+      "text": "Found in desert, mesas, and savanna biomes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:camphor_basil_leaf",
+      "link_recipe": true,
+      "text": "Found in jungle and river biomes."
+    }
+  ]
+}

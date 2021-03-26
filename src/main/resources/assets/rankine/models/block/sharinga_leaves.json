@@ -1,0 +1,6 @@
+{
+        "parent": "block/leaves",
+        "textures": {
+            "all": "rankine:block/sharinga_leaves"
+        }
+    }

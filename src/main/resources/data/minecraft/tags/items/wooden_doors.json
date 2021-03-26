@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_door",
+    "rankine:black_walnut_door",
+    "rankine:cork_oak_door",
     "rankine:cedar_door",
     "rankine:coconut_palm_door",
     "rankine:pinyon_pine_door",
@@ -9,6 +12,7 @@
     "rankine:balsam_fir_door",
     "rankine:eastern_hemlock_door",
     "rankine:bamboo_door",
+    "rankine:bamboo_culms_door",
     "rankine:maple_door"
   ]
 }

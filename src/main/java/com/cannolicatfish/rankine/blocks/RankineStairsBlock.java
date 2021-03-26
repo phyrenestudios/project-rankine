@@ -13,7 +13,4 @@ public class RankineStairsBlock extends StairsBlock {
     public RankineStairsBlock(BlockState state, Properties properties) {
         super(state, properties);
     }
-    public RankineStairsBlock(Double modifier, BlockState state, Properties properties) {
-        super(state, properties);
-    }
 }

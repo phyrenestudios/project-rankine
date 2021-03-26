@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_slab",
+    "rankine:black_walnut_slab",
+    "rankine:cork_oak_slab",
     "rankine:cedar_slab",
     "rankine:pinyon_pine_slab",
     "rankine:juniper_slab",

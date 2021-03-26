@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:stone",
+    "#forge:dirt",
+    "#forge:sand",
+    "#rankine:tuff",
+    "#minecraft:logs",
+    "#minecraft:leaves",
+    "minecraft:gravel",
+    "minecraft:water",
+    "minecraft:lava",
+    "minecraft:obsidian"
+  ]
+}

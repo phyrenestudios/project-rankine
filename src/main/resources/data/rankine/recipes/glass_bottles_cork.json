@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "# #",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:glass"
+    },
+    "C": {
+      "item": "rankine:cork"
+    }
+  },
+  "result": {
+    "item": "minecraft:glass_bottle",
+    "count": 8
+  }
+}

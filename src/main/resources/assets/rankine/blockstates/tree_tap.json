@@ -1,0 +1,127 @@
+{
+  "variants": {
+    "fluid=none,facing=north": {"model": "rankine:block/tree_tap", "uvlock": false},
+    "fluid=none,facing=west": {"model": "rankine:block/tree_tap", "y": 270, "uvlock": false},
+    "fluid=none,facing=east": {"model": "rankine:block/tree_tap", "y": 90, "uvlock": false},
+    "fluid=none,facing=south": {"model": "rankine:block/tree_tap", "y": 180, "uvlock": false},
+    "fluid=empty,facing=north": {"model": "rankine:block/tree_tap_empty", "uvlock": false},
+    "fluid=empty,facing=west": {"model": "rankine:block/tree_tap_empty", "y": 270, "uvlock": false},
+    "fluid=empty,facing=east": {"model": "rankine:block/tree_tap_empty", "y": 90, "uvlock": false},
+    "fluid=empty,facing=south": {"model": "rankine:block/tree_tap_empty", "y": 180, "uvlock": false},
+    "fluid=water,facing=north": {"model": "rankine:block/tree_tap_water", "uvlock": false},
+    "fluid=water,facing=west": {
+      "model": "rankine:block/tree_tap_water",
+      "y": 270,
+      "uvlock": false
+    },
+    "fluid=water,facing=east": {
+      "model": "rankine:block/tree_tap_water",
+      "y": 90,
+      "uvlock": false
+    },
+    "fluid=water,facing=south": {
+      "model": "rankine:block/tree_tap_water",
+      "y": 180,
+      "uvlock": false
+    },
+    "fluid=lava,facing=north": {
+      "model": "rankine:block/tree_tap_lava",
+      "uvlock": false
+    },
+    "fluid=lava,facing=west": {
+      "model": "rankine:block/tree_tap_lava",
+      "y": 270,
+      "uvlock": false
+    },
+    "fluid=lava,facing=east": {
+      "model": "rankine:block/tree_tap_lava",
+      "y": 90,
+      "uvlock": false
+    },
+    "fluid=lava,facing=south": {
+      "model": "rankine:block/tree_tap_lava",
+      "y": 180,
+      "uvlock": false
+    },
+    "fluid=sap,facing=north": {
+      "model": "rankine:block/tree_tap_sap",
+      "uvlock": false
+    },
+    "fluid=sap,facing=west": {
+      "model": "rankine:block/tree_tap_sap",
+      "y": 270,
+      "uvlock": false
+    },
+    "fluid=sap,facing=east": {
+      "model": "rankine:block/tree_tap_sap",
+      "y": 90,
+      "uvlock": false
+    },
+    "fluid=sap,facing=south": {
+      "model": "rankine:block/tree_tap_sap",
+      "y": 180,
+      "uvlock": false
+    },
+    "fluid=maple_sap,facing=north": {"model": "rankine:block/tree_tap_maple_sap", "uvlock": false},
+    "fluid=maple_sap,facing=west": {"model": "rankine:block/tree_tap_maple_sap", "y": 270, "uvlock": false},
+    "fluid=maple_sap,facing=east": {"model": "rankine:block/tree_tap_maple_sap", "y": 90, "uvlock": false},
+    "fluid=maple_sap,facing=south": {"model": "rankine:block/tree_tap_maple_sap", "y": 180, "uvlock": false},
+    "fluid=resin,facing=north": {
+      "model": "rankine:block/tree_tap_resin",
+      "uvlock": false
+    },
+    "fluid=resin,facing=west": {
+      "model": "rankine:block/tree_tap_resin",
+      "y": 270,
+      "uvlock": false
+    },
+    "fluid=resin,facing=east": {
+      "model": "rankine:block/tree_tap_resin",
+      "y": 90,
+      "uvlock": false
+    },
+    "fluid=resin,facing=south": {
+      "model": "rankine:block/tree_tap_resin",
+      "y": 180,
+      "uvlock": false
+    },
+    "fluid=latex,facing=north": {
+      "model": "rankine:block/tree_tap_latex",
+      "uvlock": false
+    },
+    "fluid=latex,facing=west": {
+      "model": "rankine:block/tree_tap_latex",
+      "y": 270,
+      "uvlock": false
+    },
+    "fluid=latex,facing=east": {
+      "model": "rankine:block/tree_tap_latex",
+      "y": 90,
+      "uvlock": false
+    },
+    "fluid=latex,facing=south": {
+      "model": "rankine:block/tree_tap_latex",
+      "y": 180,
+      "uvlock": false
+    },
+    "fluid=jugalone,facing=north": {
+      "model": "rankine:block/tree_tap_jugalone",
+      "uvlock": false
+    },
+    "fluid=jugalone,facing=west": {
+      "model": "rankine:block/tree_tap_jugalone",
+      "y": 270,
+      "uvlock": false
+    },
+    "fluid=jugalone,facing=east": {
+      "model": "rankine:block/tree_tap_jugalone",
+      "y": 90,
+      "uvlock": false
+    },
+    "fluid=jugalone,facing=south": {
+      "model": "rankine:block/tree_tap_jugalone",
+      "y": 180,
+      "uvlock": false
+    }
+  }
+}

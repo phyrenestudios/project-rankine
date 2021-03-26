@@ -1,0 +1,6 @@
+{
+      "parent": "block/button",
+      "textures": {
+        "texture": "rankine:block/black_walnut_planks"
+      }
+    }

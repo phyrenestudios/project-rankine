@@ -1,0 +1,6 @@
+{
+      "parent": "block/fence_post",
+      "textures": {
+        "texture": "rankine:block/cork_oak_planks"
+      }
+    }

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#",
+        "#",
+        "#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:cork_oak_planks"
+        }
+      },
+      "result": {
+        "item": "rankine:cork_oak_vertical_slab",
+        "count": 6
+      }
+}

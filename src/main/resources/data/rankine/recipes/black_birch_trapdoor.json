@@ -1,0 +1,16 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:black_birch"
+        }
+      },
+      "result": {
+        "item": "rankine:black_birch_trapdoor",
+        "count": 2
+      }
+}

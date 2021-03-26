@@ -1,0 +1,19 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "#S#",
+        "#S#"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:yellow_birch_planks"
+        },
+        "S": {
+          "item": "minecraft:stick"
+        }
+      },
+      "result": {
+        "item": "rankine:yellow_birch_fence",
+        "count": 3
+      }
+    }

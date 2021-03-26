@@ -52,24 +52,30 @@ public class DecorationGen
                 new AbstractMap.SimpleEntry<>(RankineFeatures.ELDERBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.SNOWBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLUEBERRY_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.CAMPHOR_BASIL_PLANT,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.JUNGLE),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.RASPBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLACKBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CRANBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.STRAWBERRY_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.PINEAPPLE_BUSH,getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BANANA_YUCCA_BUSH,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.ALOE_PLANT,getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
 
                 new AbstractMap.SimpleEntry<>(RankineFeatures.YELLOW_BIRCH_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_BIRCH_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.EASTERN_HEMLOCK_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CEDAR_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.TAIGA), true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.COCONUT_PALM_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.COCONUT_PALM_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.BEACH), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.PINYON_PINE_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BALSAM_FIR_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.DEAD_BALSAM_FIR_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.MAGNOLIA_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.JUNIPER_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true))
+                new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_WALNUT_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MUSHROOM), true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true))
+
             );
         } else {
             return Collections.emptyList();

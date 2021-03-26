@@ -1,0 +1,7 @@
+{
+      "parent": "block/door_top_rh",
+      "textures": {
+        "bottom": "rankine:block/bamboo_culms_door_bottom",
+        "top": "rankine:block/bamboo_culms_door_top"
+      }
+    }
