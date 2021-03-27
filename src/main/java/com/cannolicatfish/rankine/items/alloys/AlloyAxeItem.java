@@ -107,6 +107,11 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     }
 
     @Override
+    public int getItemEnchantability(ItemStack stack) {
+        return this.getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy);
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {

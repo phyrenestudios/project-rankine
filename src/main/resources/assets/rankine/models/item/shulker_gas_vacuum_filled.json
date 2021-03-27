@@ -1,0 +1,7 @@
+{
+  "parent": "rankine:item/shulker_gas_vacuum",
+  "textures": {
+    "layer0": "rankine:item/shulker_gas_vacuum_filled",
+    "layer1": "rankine:item/shulker_gas_vacuum_filled_overlay"
+  }
+}

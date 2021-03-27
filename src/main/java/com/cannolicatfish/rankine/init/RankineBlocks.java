@@ -32,6 +32,7 @@ import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.blocks.treetap.TreeTapBlock;
 import com.cannolicatfish.rankine.fluids.RankineFluids;
+import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -848,7 +849,7 @@ public class RankineBlocks {
     
     
     
-    
+
     
     
     
@@ -874,7 +875,18 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PACKED_SNOW = REGISTRY.register("packed_snow", () -> new Block(AbstractBlock.Properties.create(Material.SNOW_BLOCK).hardnessAndResistance(2.0F).setRequiresTool().harvestTool(ToolType.SHOVEL).sound(SoundType.SNOW)));
 
     public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(DEF_STONE.harvestLevel(1)));
-    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = REGISTRY.register("fluorine_gas_block", () -> new GasBlock(AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = REGISTRY.register("hydrogen_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> HELIUM_GAS_BLOCK = REGISTRY.register("helium_gas_block", () -> new GasBlock(GasUtilsEnum.HELIUM,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = REGISTRY.register("nitrogen_gas_block", () -> new GasBlock(GasUtilsEnum.NITROGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> OXYGEN_GAS_BLOCK = REGISTRY.register("oxygen_gas_block", () -> new GasBlock(GasUtilsEnum.OXYGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> FLUORINE_GAS_BLOCK = REGISTRY.register("fluorine_gas_block", () -> new GasBlock(GasUtilsEnum.FLUORINE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> NEON_GAS_BLOCK = REGISTRY.register("neon_gas_block", () -> new GasBlock(GasUtilsEnum.NEON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> CHLORINE_GAS_BLOCK = REGISTRY.register("chlorine_gas_block", () -> new GasBlock(GasUtilsEnum.CHLORINE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> ARGON_GAS_BLOCK = REGISTRY.register("argon_gas_block", () -> new GasBlock(GasUtilsEnum.ARGON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> KRYPTON_GAS_BLOCK = REGISTRY.register("krypton_gas_block", () -> new GasBlock(GasUtilsEnum.KRYPTON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> XENON_GAS_BLOCK = REGISTRY.register("xenon_gas_block", () -> new GasBlock(GasUtilsEnum.XENON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> RADON_GAS_BLOCK = REGISTRY.register("radon_gas_block", () -> new GasBlock(GasUtilsEnum.RADON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = REGISTRY.register("oganesson_gas_block", () -> new GasBlock(GasUtilsEnum.OGANESSON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
     public static final RegistryObject<Block> ALLUVIUM = REGISTRY.register("alluvium", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> BLACK_SAND = REGISTRY.register("black_sand", () -> new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));

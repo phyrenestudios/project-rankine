@@ -3,6 +3,8 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.blocks.treetap.TreeTapBlock;
+import com.cannolicatfish.rankine.blocks.GasBlock;
+import com.cannolicatfish.rankine.compatibility.Patchouli;
 import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
@@ -18,8 +20,13 @@ import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -52,6 +59,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
@@ -78,6 +86,7 @@ import java.util.Random;
 import java.util.*;
 
 import static net.minecraft.block.Block.spawnAsEntity;
+import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.HELMET;
 
 @Mod.EventBusSubscriber
 public class RankineEventHandler {
@@ -802,22 +811,28 @@ public class RankineEventHandler {
             }
         }
     }
-
+/*
+    @SubscribeEvent
+    public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
+        if (event.getBlockSnapshot().getReplacedBlock().getBlock() instanceof GasBlock && event.getPlacedBlock().getBlock() instanceof AbstractFireBlock) {
+            event.setCanceled(true);
+        }
+    }*/
 
     private static final String NBT_KEY = "rankine.firstjoin";
     @SubscribeEvent
-    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (Config.GENERAL.STARTING_BOOK.get()) {
+    public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (Config.GENERAL.STARTING_BOOK.get() && !event.getPlayer().getEntityWorld().isRemote && Patchouli.isInstalled()) {
 
             CompoundNBT data = event.getPlayer().getPersistentData();
             CompoundNBT persistent;
-            if (!data.hasUniqueId(PlayerEntity.PERSISTED_NBT_TAG)) {
+            if (!data.contains(PlayerEntity.PERSISTED_NBT_TAG)) {
                 data.put(PlayerEntity.PERSISTED_NBT_TAG, (persistent = new CompoundNBT()));
             } else {
                 persistent = data.getCompound(PlayerEntity.PERSISTED_NBT_TAG);
             }
 
-            if (!persistent.hasUniqueId(NBT_KEY)) {
+            if (!persistent.contains(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
                 event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
             }
@@ -852,6 +867,18 @@ public class RankineEventHandler {
                     AttributeModifier.Operation.ADDITION));
             event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
                     alloyTool.getAlloyAttackSpeed(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils()),
+                    AttributeModifier.Operation.ADDITION));
+        } else if (stack.getItem() instanceof IAlloyArmor && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getEquipmentSlot())
+        {
+            IAlloyArmor alloyArmor = (IAlloyArmor) stack.getItem();
+
+            int tough = alloyArmor.getAlloyArmorToughness(alloyArmor.returnCompositionString(stack),alloyArmor.returnAlloyUtils());
+            int def = alloyArmor.getAlloyDamageReduceAmount(alloyArmor.returnCompositionString(stack),alloyArmor.returnAlloyUtils(),((ArmorItem)stack.getItem()).getEquipmentSlot());
+            event.addModifier(Attributes.ARMOR_TOUGHNESS,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa1"), "Rankine Armor Toughness modifier",
+                    tough,
+                    AttributeModifier.Operation.ADDITION));
+            event.addModifier(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa2"), "Rankine Armor modifier",
+                    def,
                     AttributeModifier.Operation.ADDITION));
         }
         if ((stack.getItem() instanceof HammerItem)) {

@@ -1,0 +1,5 @@
+{
+    "variants": {
+    "": { "model": "rankine:block/xenon_gas_block" }
+    }
+}

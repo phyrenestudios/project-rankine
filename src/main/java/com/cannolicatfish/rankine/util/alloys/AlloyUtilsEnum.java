@@ -34,7 +34,7 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("minecraft","fortune")), //hoe
                     Collections.singletonList(new ResourceLocation("minecraft","fortune")), //pickaxe
                     Collections.singletonList(new ResourceLocation("minecraft","fortune")), //shovel
-                    Collections.singletonList(new ResourceLocation("rankine","impaling")), //spear
+                    Collections.singletonList(new ResourceLocation("minecraft","impaling")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","looting"))), //sword
             "90Au-10Zn", TextFormatting.YELLOW),
     GREEN_GOLD(RankineToolMaterials.GREEN_GOLD, 32,0,0,0,0,0,0.25f,0.45f,-0.15f,
