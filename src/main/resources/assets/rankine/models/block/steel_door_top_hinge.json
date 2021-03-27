@@ -1,0 +1,7 @@
+{
+      "parent": "block/door_top_rh",
+      "textures": {
+        "bottom": "rankine:block/steel_door_bottom",
+        "top": "rankine:block/steel_door_top"
+      }
+    }

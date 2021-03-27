@@ -1,6 +1,6 @@
 {
           "parent": "item/handheld",
           "textures": {
-            "layer0": "rankine:item/jugalone_bucket"
+            "layer0": "rankine:item/juglone_bucket"
           }
         }

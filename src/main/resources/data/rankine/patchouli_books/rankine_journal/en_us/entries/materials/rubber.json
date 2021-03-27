@@ -1,0 +1,22 @@
+{
+  "name": "Rubber",
+  "icon": "rankine:dry_rubber",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:dry_rubber",
+      "link_recipe": true,
+      "text": "Dry Rubber is obtained from processing latex in the $(l:machines/evaporation_tower)Evaporation Tower$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:vulcanized_rubber",
+      "text": "A more elastic form of rubber that can be used to craft certain components."
+    }
+  ]
+}

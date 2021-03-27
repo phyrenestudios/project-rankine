@@ -143,18 +143,8 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(1, new ItemStack(RankineItems.COBALTITE.get()),12,30,0.05f));
             level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_HAMMER.get(),"99Fe-1C",15,3,30,0.2f));
         } else if (event.getType() == RankineVillagerProfessions.BOTANIST) {
-            level1.add(new BasicTrade(1, new ItemStack(Items.DANDELION, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.POPPY, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.BLUE_ORCHID, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.ALLIUM, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.AZURE_BLUET, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.RED_TULIP, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.ORANGE_TULIP, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.WHITE_TULIP, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.OXEYE_DAISY, 4),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.CORNFLOWER, 4),12,1,0.05f));
-            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("forge","berries"),RankineItems.ELDERBERRIES.get(),2,1,12,10,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(Items.LILY_OF_THE_VALLEY, 4),12,1,0.05f));
+            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("rankine","flowers"),Items.DANDELION,2,1,12,10,0.05f));
+            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("forge", "berries"),RankineItems.ELDERBERRIES.get(),2,1,12,10,0.05f));
             level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","saplings"),Items.OAK_SAPLING,2,1,12,10,0.05f));
             level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft","logs_that_burn"),Items.OAK_LOG,4,1,12,10,0.05f));
             level2.add(new BasicTrade(1, new ItemStack(Items.VINE, 4),12,10,0.05f));
@@ -1645,23 +1635,27 @@ public class RankineEventHandler {
         PlayerEntity player = event.getPlayer();
 
         if(item instanceof AxeItem) {
-        BlockState activatedBlock = world.getBlockState(pos);
-        Block b = activatedBlock.getBlock();
-            ItemStack strip = null;
-            if (b == Blocks.BIRCH_LOG || b == RankineBlocks.YELLOW_BIRCH_LOG.get() || b == RankineBlocks.BLACK_BIRCH_LOG.get()) {
-                if (world.getRandom().nextFloat() < 0.3) {
-                    strip = new ItemStack(Items.PAPER, 1);
+            BlockState activatedBlock = world.getBlockState(pos);
+            Block b = activatedBlock.getBlock();
+
+            if (Config.GENERAL.EXTRA_STRIPPABLES.get()) {
+                ItemStack strip = null;
+                if (b == Blocks.BIRCH_LOG || b == RankineBlocks.YELLOW_BIRCH_LOG.get() || b == RankineBlocks.BLACK_BIRCH_LOG.get()) {
+                    if (world.getRandom().nextFloat() < 0.3) {
+                        strip = new ItemStack(Items.PAPER, 1);
+                    }
+                } else if (b == RankineBlocks.CORK_OAK_LOG.get()) {
+                    strip = new ItemStack(RankineItems.CORK.get(), 1);
+                } else if (b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                    if (world.getRandom().nextFloat() < 0.3) {
+                        strip = new ItemStack(Items.STICK, 1);
+                    }
                 }
-            } else if (b == RankineBlocks.CORK_OAK_LOG.get()) {
-                strip = new ItemStack(RankineItems.CORK.get(), 1);
-            } else if (b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
-                if (world.getRandom().nextFloat() < 0.3) {
-                    strip = new ItemStack(Items.STICK, 1);
+                if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots && strip != null) {
+                    spawnAsEntity(event.getWorld(), event.getPos(), strip);
                 }
             }
-            if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots && strip != null) {
-                spawnAsEntity(event.getWorld(), event.getPos(), strip);
-            }
+
             if(stripping_map.get(activatedBlock.getBlock()) != null) {
                 Block block = activatedBlock.getBlock();
                 if(block instanceof RotatedPillarBlock) {
