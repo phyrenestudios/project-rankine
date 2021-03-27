@@ -38,10 +38,10 @@ public class RankinePlantBlock extends BushBlock implements IGrowable {
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        if (type == 7 || type == 8) {
+        if (type == 7 || type == 8 || type == 10) {
             return block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.SAND || block == Blocks.RED_SAND;
         }
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND;
+        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.MYCELIUM || block == Blocks.FARMLAND;
     }
 
     @Override
@@ -92,36 +92,47 @@ public class RankinePlantBlock extends BushBlock implements IGrowable {
             switch (type) {
                 case 0:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.ELDERBERRIES.get(), 1));
+                    break;
                 case 1:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.SNOWBERRIES.get(), 1));
+                    break;
                 case 2:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BLUEBERRIES.get(), 1));
+                    break;
                 case 3:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.RASPBERRIES.get(), 1));
+                    break;
                 case 4:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BLACKBERRIES.get(), 1));
+                    break;
                 case 5:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CRANBERRIES.get(), 1));
+                    break;
                 case 6:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.STRAWBERRIES.get(), 1));
+                    break;
                 case 7:
                     if (worldIn.getRandom().nextFloat() < 0.01) {
                         spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.PINEAPPLE_SLEEVES.get(), 1));
                     } else {
                         spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.PINEAPPLE.get(), 1));
                     }
+                    break;
                 case 8:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BANANA_YUCCA.get(), 1));
+                    break;
                 case 9:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CAMPHOR_BASIL_LEAF.get(), 1));
                     if (worldIn.getRandom().nextFloat() < 0.1) {
                         spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CAMPHOR_BASIL_SEEDS.get(), 1));
                     }
+                    break;
                 case 10:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.ALOE.get(), 1));
+                    break;
             }
 
-            if (type == 1 || type == 2 || type == 3 || type == 4 || type == 5 || type == 6 || type == 7 || type == 8) {
+            if (type == 0 || type == 1 || type == 2 || type == 3 || type == 4 || type == 5 || type == 6 || type == 7 || type == 8) {
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
             } else {
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.1F + worldIn.rand.nextFloat() * 0.4F);

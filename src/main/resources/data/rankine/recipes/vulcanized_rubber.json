@@ -2,17 +2,20 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rankine:latex_bucket"
+      "item": "rankine:dry_rubber"
     },
     {
       "item": "minecraft:bone_meal"
     },
     {
       "tag": "forge:sulfur"
+    },
+    {
+      "tag": "forge:nuggets/carbon"
     }
   ],
   "result": {
-    "item": "rankine:dry_rubber",
+    "item": "rankine:vulcanized_rubber",
     "count": 1
   }
 }

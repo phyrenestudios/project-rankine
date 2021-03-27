@@ -3,7 +3,7 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "rankine:block/tree_tap",
-		"1": "rankine:block/jugalone_still",
+		"1": "rankine:block/juglone_still",
 		"particle": "rankine:block/tree_tap"
 	},
 	"elements": [

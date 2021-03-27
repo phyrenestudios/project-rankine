@@ -12,6 +12,11 @@
       "type": "crafting",
       "recipe": "rankine:blasting_powder",
       "text": "A less controlled for of TNT and ignited in similar methods. Has a smaller blast size but can ignite upon placement and falling."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gun_cotton",
+      "text": ""
     }
   ]
 }

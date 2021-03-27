@@ -1,0 +1,59 @@
+{
+  "name": "Tree Tap",
+  "icon": "rankine:tree_tap",
+  "category": "machines",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": "The Tree Tap is a device that extracts various fluids from logs. The tap block is just a stick that protrudes from a log. Right click with an empty bucket to hang it on the tap. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. The extracted fluid is defined by the group of #rankine:logs_* tags."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:tree_tap",
+      "text": "The tap operates on random ticks. By default it will extract every 3 ticks, but this can be adjusted in the config. Tree taps will not work if there is another one in any adjacent block."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:water_bucket",
+      "link_recipe": true,
+      "text": "Water can be extracted from the three varieties of birch."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:lava_bucket",
+      "link_recipe": true,
+      "text": "Lava can be extracted from the nether trees."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:latex_bucket",
+      "link_recipe": true,
+      "text": "Latex can be extracted from sharinga trees."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:maple_sap_bucket",
+      "link_recipe": true,
+      "text": "Maple sap can be extracted from maple trees."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:jugalone_bucket",
+      "link_recipe": true,
+      "text": "Jugalone can be extracted from black walnut trees."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sap_bucket",
+      "link_recipe": true,
+      "text": "Sap can be extracted from any other deciduous tree."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:resin_bucket",
+      "link_recipe": true,
+      "text": "Resin can be extracted from any other coniferous tree."
+    }
+  ]
+}

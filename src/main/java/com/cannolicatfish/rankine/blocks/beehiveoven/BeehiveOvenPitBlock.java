@@ -34,7 +34,6 @@ import java.util.Random;
 
 public class BeehiveOvenPitBlock extends Block {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    private float chance;
     private final Block blockType;
 
     public BeehiveOvenPitBlock(Block blockType, Properties properties) {
@@ -111,7 +110,8 @@ public class BeehiveOvenPitBlock extends Block {
         getBeehiveOven(world,pos);
         if (state.get((LIT))) {
             height = 2;
-            if (rand.nextFloat() <= structureCheck(worldIn, pos)) {
+            float chance = structureCheck(worldIn, pos);
+            if (rand.nextFloat() <= chance) {
                 boolean flag = true;
                 for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,height,1))) {
 
@@ -122,9 +122,12 @@ public class BeehiveOvenPitBlock extends Block {
                             if (output.getItem() instanceof BlockItem) {
                                 world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
                                 flag = false;
-                                if (chance <= 1.0) {
-                                    break;
-                                } else if (rand.nextFloat()+1.0 > chance) {
+                                if (chance > 1.0) {
+                                    chance -= 1.0;
+                                    if (rand.nextFloat() < chance) {
+                                        break;
+                                    }
+                                } else {
                                     break;
                                 }
                             }
@@ -133,7 +136,7 @@ public class BeehiveOvenPitBlock extends Block {
 
                 }
                 if (flag) {
-                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
+                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 3);
                 }
             }
         }

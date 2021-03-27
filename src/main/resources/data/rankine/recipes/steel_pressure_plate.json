@@ -1,0 +1,18 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "group": "wooden_door",
+      "pattern": [
+        "##",
+        "##",
+        "##"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:steel_planks"
+        }
+      },
+      "result": {
+        "item": "rankine:steel_door",
+        "count": 3
+      }
+    }
