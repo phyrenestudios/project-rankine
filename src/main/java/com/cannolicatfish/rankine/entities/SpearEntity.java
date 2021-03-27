@@ -62,7 +62,6 @@ public class SpearEntity extends AbstractArrowEntity {
 
     @Override
     public IPacket<?> createSpawnPacket() {
-        Entity entity = this.func_234616_v_();
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -81,7 +80,7 @@ public class SpearEntity extends AbstractArrowEntity {
             this.setKnockbackStrength(r * 2);
         }
 
-        Entity entity = this.func_234616_v_();
+        Entity entity = this.getShooter();
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
             int i = this.dataManager.get(LOYALTY_LEVEL);
             if (i > 0 && !this.shouldReturnToThrower()) {
@@ -112,7 +111,7 @@ public class SpearEntity extends AbstractArrowEntity {
     }
 
     private boolean shouldReturnToThrower() {
-        Entity entity = this.func_234616_v_();
+        Entity entity = this.getShooter();
         if (entity != null && entity.isAlive()) {
             return !(entity instanceof ServerPlayerEntity) || !entity.isSpectator();
         } else {
@@ -158,7 +157,7 @@ public class SpearEntity extends AbstractArrowEntity {
             }
         }
 
-        Entity entity1 = this.func_234616_v_();
+        Entity entity1 = this.getShooter();
         DamageSource damagesource = DamageSource.causeTridentDamage(this, (Entity)(entity1 == null ? this : entity1));
         this.dealtDamage = true;
         SoundEvent soundevent = SoundEvents.ITEM_TRIDENT_HIT;
@@ -200,7 +199,7 @@ public class SpearEntity extends AbstractArrowEntity {
      * Called by a player entity when they collide with an entity
      */
     public void onCollideWithPlayer(PlayerEntity entityIn) {
-        Entity entity = this.func_234616_v_();
+        Entity entity = this.getShooter();
         if (entity == null || entity.getUniqueID() == entityIn.getUniqueID()) {
             super.onCollideWithPlayer(entityIn);
         }

@@ -45,7 +45,6 @@ public class MagnesiumArrowEntity extends AbstractArrowEntity {
 
     @Override
     public IPacket<?> createSpawnPacket() {
-        Entity entity = this.func_234616_v_();
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

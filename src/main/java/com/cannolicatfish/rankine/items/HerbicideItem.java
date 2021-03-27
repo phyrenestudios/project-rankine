@@ -39,7 +39,6 @@ public class HerbicideItem extends Item {
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
         BlockPos pos = context.getPos();
-
         if (!worldIn.isRemote) {
             int radius = Config.GENERAL.HERBICIDE_RANGE.get();
             for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {

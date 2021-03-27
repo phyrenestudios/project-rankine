@@ -83,7 +83,7 @@ public class SpearItem extends Item {
                         if (j == 0) {
                             SpearEntity spearentity;
                             spearentity = new SpearEntity(worldIn, playerentity, stack, entity, type, this.attackDamage);
-                            spearentity.func_234612_a_(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
+                            spearentity.setDirectionAndMovement(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, 2.5F + (float)j * 0.5F, 1.0F);
                             if (playerentity.abilities.isCreativeMode) {
                                 spearentity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
                             }

@@ -83,7 +83,7 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (context.getPosY()) {
+        if (context.isSneaking()) {
             return voxelshape;
         } else {
             return VoxelShapes.empty();

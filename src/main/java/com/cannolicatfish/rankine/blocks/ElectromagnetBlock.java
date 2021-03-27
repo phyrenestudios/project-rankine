@@ -52,7 +52,7 @@ public class ElectromagnetBlock extends DirectionalBlock {
                 if (flag) {
                     worldIn.getPendingBlockTicks().scheduleTick(pos, this, 4);
                 } else {
-                    worldIn.setBlockState(pos, state.func_235896_a_(POWERED), 2);
+                    worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
                     Direction direction = state.get(FACING);
                     BlockPos blockpos = pos.offset(direction);
                     if (worldIn.isAirBlock(blockpos))
@@ -95,7 +95,7 @@ public class ElectromagnetBlock extends DirectionalBlock {
 
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
         if (state.get(POWERED) && !worldIn.isBlockPowered(pos)) {
-            worldIn.setBlockState(pos, state.func_235896_a_(POWERED), 2);
+            worldIn.setBlockState(pos, state.cycleValue(POWERED), 2);
         }
     }
 }

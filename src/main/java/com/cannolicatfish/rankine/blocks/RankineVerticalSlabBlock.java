@@ -79,7 +79,7 @@ public class RankineVerticalSlabBlock extends Block {
         BlockPos blockpos = context.getPos();
         BlockState blockstate = context.getWorld().getBlockState(blockpos);
         BlockState blockstate1 = this.getDefaultState();
-        if (blockstate.isIn(this)) {
+        if (blockstate.matchesBlock(this)) {
             return blockstate.with(TYPE, SlabType.DOUBLE).with(HORIZONTAL_FACING, Direction.NORTH);
         } else {
             blockstate1 = blockstate1.with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite()).with(TYPE, SlabType.BOTTOM);

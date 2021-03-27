@@ -101,7 +101,7 @@ public class BlastingPowderBlock extends FallingBlock {
     public void onProjectileCollision(World worldIn, BlockState state, BlockRayTraceResult hit, ProjectileEntity projectile) {
         if (!worldIn.isRemote && projectile instanceof AbstractArrowEntity) {
             AbstractArrowEntity abstractarrowentity = (AbstractArrowEntity)projectile;
-            Entity entity = abstractarrowentity.func_234616_v_();
+            Entity entity = abstractarrowentity.getShooter();
             if (abstractarrowentity.isBurning()) {
                 BlockPos blockpos = hit.getPos();
                 catchFire(state, worldIn, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
