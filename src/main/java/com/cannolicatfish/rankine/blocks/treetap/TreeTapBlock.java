@@ -32,27 +32,47 @@ import java.util.Random;
 public class TreeTapBlock extends Block {
     public static final EnumProperty<TreeTapFluids> FLUID = EnumProperty.create("fluid", TreeTapFluids.class);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+    protected static final VoxelShape WEST_AABB = Block.makeCuboidShape(9.0D, 9.0D, 7.0D, 16.0D, 12.0D, 9.0D);
+    protected static final VoxelShape EAST_AABB = Block.makeCuboidShape(0.0D, 9.0D, 7.0D, 7.0D, 12.0D, 9.0D);
+    protected static final VoxelShape NORTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 9.0D, 9.0D, 12.0D, 16.0D);
+    protected static final VoxelShape SOUTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 0.0D, 9.0D, 12.0D, 7.0D);
     protected static final VoxelShape TAP_WEST_AABB = Block.makeCuboidShape(7.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
     protected static final VoxelShape TAP_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 4.0D, 9.0D, 13.0D, 12.0D);
     protected static final VoxelShape TAP_NORTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 7.0D, 12.0D, 13.0D, 16.0D);
     protected static final VoxelShape TAP_SOUTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 13.0D, 9.0D);
-    
+
+    private int ticks = 0;
+
     public TreeTapBlock(AbstractBlock.Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, TreeTapFluids.NONE  ).with(FACING, Direction.NORTH));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        switch((Direction)state.get(FACING)) {
-            case NORTH:
-                return TAP_NORTH_AABB;
-            case SOUTH:
-                return TAP_SOUTH_AABB;
-            case WEST:
-                return TAP_WEST_AABB;
-            case EAST:
-            default:
-                return TAP_EAST_AABB;
+        if (state.get(FLUID).equals(TreeTapFluids.NONE)) {
+            switch ((Direction) state.get(FACING)) {
+                case NORTH:
+                    return NORTH_AABB;
+                case SOUTH:
+                    return SOUTH_AABB;
+                case WEST:
+                    return WEST_AABB;
+                case EAST:
+                default:
+                    return EAST_AABB;
+            }
+        } else {
+            switch((Direction)state.get(FACING)) {
+                case NORTH:
+                    return TAP_NORTH_AABB;
+                case SOUTH:
+                    return TAP_SOUTH_AABB;
+                case WEST:
+                    return TAP_WEST_AABB;
+                case EAST:
+                default:
+                    return TAP_EAST_AABB;
+            }
         }
     }
 
@@ -63,7 +83,9 @@ public class TreeTapBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (!worldIn.isRemote() && random.nextFloat() < 0.3) {
+        ticks += 1;
+        if (!worldIn.isRemote() && ticks >= Config.MACHINES.TREE_TAP_SPEED.get()) {
+
             List<BlockPos> sides = Arrays.asList(pos.up(), pos.down(), pos.north(), pos.south(), pos.west(), pos.east());
             for (BlockPos s : sides) {
                 if (worldIn.getBlockState(s).getBlock() == RankineBlocks.TREE_TAP.get()) {
@@ -105,7 +127,10 @@ public class TreeTapBlock extends Block {
                     }
                 }
 
+            } else {
+                return;
             }
+            ticks = 0;
         }
     }
 

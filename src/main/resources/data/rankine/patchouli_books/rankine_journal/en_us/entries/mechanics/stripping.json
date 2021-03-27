@@ -1,0 +1,15 @@
+{
+  "name": "Axe Stripping",
+  "icon": "rankine:stripped_eastern_hemlock_log",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Axe stripping works the same as before, right click a log or wood block to convert it to it's stripped counterpart. However, there is a little bonus to stripping certain trees. A config option exists to enable/disable the extra items."
+    },
+    {
+      "type": "text",
+      "text": "Stripping varieties of birch trees will yield paper. Cork Oak trees yield cork. All other trees will yield sticks."
+    }
+  ]
+}

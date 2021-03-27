@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:grass",
+    "#minecraft:small_flowers",
+    "#minecraft:tall_flowers",
+    "minecraft:fern",
+    "minecraft:tall_grass",
+    "minecraft:large_fern",
+    "minecraft:vines",
+    "#minecraft:crops",
+    "#minecraft:coral_plants",
+    "#minecraft:wall_corals",
+    "minecraft:tube_coral_fan",
+    "minecraft:brain_coral_fan",
+    "minecraft:fire_coral_fan",
+    "minecraft:horn_coral_fan",
+    "minecraft:bubble_coral_fan",
+    "#minecraft:leaves",
+    "minecraft:lily_pad",
+    "#minecraft:saplings"
+  ]
+}

@@ -248,7 +248,7 @@ public class RankineFeatures {
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> CORK_OAK_TREE = Feature.TREE.withConfiguration(CORK_OAK_TREE_CONFIG)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
-    public static final ConfiguredFeature<?, ?> SHARINGA_TREE = Feature.TREE.withConfiguration(CORK_OAK_TREE_CONFIG)
+    public static final ConfiguredFeature<?, ?> SHARINGA_TREE = Feature.TREE.withConfiguration(SHARINGA_TREE_CONFIG)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4)));
 
 

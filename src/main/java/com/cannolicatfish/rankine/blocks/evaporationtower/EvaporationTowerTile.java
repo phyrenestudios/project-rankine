@@ -100,15 +100,53 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     public void tick() {
         World worldIn = this.getWorld();
         if (!worldIn.isRemote) {
-            int h = checkStructure(this.getPos(),worldIn);
-            if (h > 0 && this.items.get(0).isEmpty()) {
-                ++this.cookTime;
-                if (this.cookTime >= this.cookTimeTotal/h) {
-                    this.items.set(0,randomOutput(worldIn.getRandom()));
-                    cookTime = 0;
+            ItemStack output = this.items.get(0);
+            BlockPos p = this.getPos();
+
+            if (worldIn.getBlockState(p.up()).getBlock() == Blocks.WATER) {
+                int h = checkStructure(p, worldIn);
+                if (h > 0 && output.isEmpty()) {
+                    ++this.cookTime;
+                    if (this.cookTime >= this.cookTimeTotal / h) {
+                        this.items.set(0, waterOutputs(worldIn.getRandom()));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
-            } else if (cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if (worldIn.getBlockState(p.up()).getBlock() == Blocks.LAVA) {
+                int h = checkStructure(p, worldIn);
+                if (h > 0 && output.isEmpty()) {
+                    ++this.cookTime;
+                    if (this.cookTime >= this.cookTimeTotal / h) {
+                        this.items.set(0, lavaOutputs(worldIn.getRandom()));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                }
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.LIQUID_MERCURY_BLOCK.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == Items.SUGAR)) {
+                    ++this.cookTime;
+                    if (this.cookTime >= this.cookTimeTotal / 4) {
+                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
+                        this.items.set(0, new ItemStack(Items.SUGAR,4));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                }
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.BONE_CHAR_BLOCK.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.DRY_RUBBER.get())) {
+                    ++this.cookTime;
+                    if (this.cookTime >= this.cookTimeTotal / 4) {
+                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
+                        this.items.set(0, new ItemStack(RankineItems.DRY_RUBBER.get(),4));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                }
             }
         }
 
@@ -135,6 +173,14 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         super.remove();
         for (int x = 0; x < handlers.length; x++)
             handlers[x].invalidate();
+    }
+
+    private boolean boilerStructure(BlockPos pos, World worldIn) {
+        if (!worldIn.isRemote) {
+            return worldIn.getBlockState(pos.up().north()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) && worldIn.getBlockState(pos.up().east()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) && worldIn.getBlockState(pos.up().south()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) && worldIn.getBlockState(pos.up().west()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"));
+        } else {
+            return false;
+        }
     }
 
     private int checkStructure(BlockPos pos, World worldIn) {
@@ -211,12 +257,18 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     }
 
 
-
-    private ItemStack randomOutput(Random random)
-    {
+    private ItemStack lavaOutputs(Random random) {
         World worldIn = this.getWorld();
-        if (worldIn != null)
-        {
+        if (worldIn != null) {
+            return returnLavaCollection().getRandomElement();
+        } else {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    private ItemStack waterOutputs(Random random) {
+        World worldIn = this.getWorld();
+        if (worldIn != null) {
             WeightedCollection<ItemStack> COLLECTION;
             if (worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.OCEAN || worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.BEACH)
             {
@@ -232,10 +284,19 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         }
     }
 
+    public static WeightedCollection<ItemStack> returnLavaCollection(){
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(Items.GHAST_TEAR, 1));
+        col.add(1,new ItemStack(Items.BLAZE_ROD, 1));
+        col.add(1,new ItemStack(Items.GOLD_NUGGET, 1));
+        col.add(97,new ItemStack(RankineItems.SULFUR_NUGGET.get(), 1));
+        return col;
+    }
+
     public static WeightedCollection<ItemStack> returnOceanCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(RankineItems.BROMINE_NUGGET.get(), 1));
-        col.add(2,new ItemStack(RankineItems.SULFUR_NUGGET.get(), 1));
+        //col.add(2,new ItemStack(RankineItems.SULFUR_NUGGET.get(), 1));
         col.add(3,new ItemStack(RankineItems.POTASSIUM_NUGGET.get(),1));
         col.add(4,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),1));
         col.add(5,new ItemStack(RankineItems.MAGNESIUM_NUGGET.get(),1));

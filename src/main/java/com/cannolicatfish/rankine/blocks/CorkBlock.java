@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
@@ -18,7 +19,9 @@ public class CorkBlock extends Block {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        if (worldIn.getBlockState(pos).getBlock() == Blocks.WATER) {
 
+        }
     }
 
 

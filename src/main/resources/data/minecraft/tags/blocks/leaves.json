@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_leaves",
+    "rankine:cork_oak_leaves",
+    "rankine:black_walnut_leaves",
     "rankine:cedar_leaves",
     "rankine:coconut_palm_leaves",
     "rankine:pinyon_pine_leaves",

@@ -142,6 +142,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CORK_OAK_SAPLING.get(),
 
                 RankineBlocks.TREE_TAP.get(),
+                
                 RankineBlocks.CEDAR_TRAPDOOR.get(),
                 RankineBlocks.COCONUT_PALM_TRAPDOOR.get(),
                 RankineBlocks.PINYON_PINE_TRAPDOOR.get(),
@@ -150,6 +151,19 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.BALSAM_FIR_TRAPDOOR.get(),
                 RankineBlocks.BAMBOO_TRAPDOOR.get(),
                 RankineBlocks.EASTERN_HEMLOCK_TRAPDOOR.get(),
+                RankineBlocks.BAMBOO_CULMS_TRAPDOOR.get(),
+                RankineBlocks.YELLOW_BIRCH_TRAPDOOR.get(),
+                RankineBlocks.BLACK_BIRCH_TRAPDOOR.get(),
+                RankineBlocks.SHARINGA_TRAPDOOR.get(),
+                RankineBlocks.CORK_OAK_TRAPDOOR.get(),
+                RankineBlocks.BLACK_WALNUT_TRAPDOOR.get(),
+                RankineBlocks.MAPLE_DOOR.get(),
+                RankineBlocks.BRASS_TRAPDOOR.get(),
+                RankineBlocks.CUPRONICKEL_TRAPDOOR.get(),
+                RankineBlocks.BRONZE_TRAPDOOR.get(),
+                RankineBlocks.STEEL_TRAPDOOR.get(),
+
+
                 RankineBlocks.CEDAR_DOOR.get(),
                 RankineBlocks.COCONUT_PALM_DOOR.get(),
                 RankineBlocks.PINYON_PINE_DOOR.get(),
@@ -158,14 +172,22 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.BALSAM_FIR_DOOR.get(),
                 RankineBlocks.EASTERN_HEMLOCK_DOOR.get(),
                 RankineBlocks.BAMBOO_DOOR.get(),
+                RankineBlocks.BAMBOO_CULMS_DOOR.get(),
+                RankineBlocks.YELLOW_BIRCH_DOOR.get(),
+                RankineBlocks.BLACK_BIRCH_DOOR.get(),
+                RankineBlocks.SHARINGA_DOOR.get(),
+                RankineBlocks.CORK_OAK_DOOR.get(),
+                RankineBlocks.BLACK_WALNUT_DOOR.get(),
+                RankineBlocks.MAPLE_TRAPDOOR.get(),
                 RankineBlocks.BRASS_DOOR.get(),
-                RankineBlocks.BRASS_TRAPDOOR.get(),
+                RankineBlocks.CUPRONICKEL_DOOR.get(),
+                RankineBlocks.BRONZE_DOOR.get(),
+                RankineBlocks.STEEL_DOOR.get(),
+
+
                 RankineBlocks.ALUMINUM_LADDER.get(),
                 RankineBlocks.BRASS_LADDER.get(),
-                RankineBlocks.CAST_IRON_LADDER.get(),
-                RankineBlocks.MAPLE_DOOR.get(),
-                RankineBlocks.MAPLE_TRAPDOOR.get()
-
+                RankineBlocks.CAST_IRON_LADDER.get()
 
         ));
 
@@ -178,6 +200,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
+
                 RankineBlocks.POTTED_CEDAR_SAPLING.get(),
                 RankineBlocks.POTTED_JUNIPER_SAPLING.get(),
                 RankineBlocks.POTTED_COCONUT_PALM_SAPLING.get(),
@@ -185,7 +208,13 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.POTTED_BALSAM_FIR_SAPLING.get(),
                 RankineBlocks.POTTED_MAGNOLIA_SAPLING.get(),
                 RankineBlocks.POTTED_EASTERN_HEMLOCK_SAPLING.get(),
+                RankineBlocks.POTTED_MAPLE_SAPLING.get(),
                 RankineBlocks.POTTED_YELLOW_BIRCH_SAPLING.get(),
+                RankineBlocks.POTTED_BLACK_BIRCH_SAPLING.get(),
+                RankineBlocks.POTTED_BLACK_WALNUT_SAPLING.get(),
+                RankineBlocks.POTTED_SHARINGA_SAPLING.get(),
+                RankineBlocks.POTTED_CORK_OAK_SAPLING.get(),
+
                 RankineBlocks.BANANA_YUCCA_BUSH.get(),
                 RankineBlocks.ELDERBERRY_BUSH.get(),
                 RankineBlocks.SNOWBERRY_BUSH.get(),

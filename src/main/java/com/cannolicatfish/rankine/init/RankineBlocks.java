@@ -1168,7 +1168,13 @@ public class RankineBlocks {
 
 
     public static final RegistryObject<Block> BRASS_DOOR = REGISTRY.register("brass_door", RankineMetalDoor::new);
+    public static final RegistryObject<Block> BRONZE_DOOR = REGISTRY.register("bronze_door", RankineMetalDoor::new);
+    public static final RegistryObject<Block> CUPRONICKEL_DOOR = REGISTRY.register("cupronickel_door", RankineMetalDoor::new);
+    public static final RegistryObject<Block> STEEL_DOOR = REGISTRY.register("steel_door", RankineMetalDoor::new);
     public static final RegistryObject<Block> BRASS_TRAPDOOR = REGISTRY.register("brass_trapdoor", RankineMetalTrapdoor::new);
+    public static final RegistryObject<Block> BRONZE_TRAPDOOR = REGISTRY.register("bronze_trapdoor", RankineMetalTrapdoor::new);
+    public static final RegistryObject<Block> STEEL_TRAPDOOR = REGISTRY.register("steel_trapdoor", RankineMetalTrapdoor::new);
+    public static final RegistryObject<Block> CUPRONICKEL_TRAPDOOR = REGISTRY.register("cupronickel_trapdoor", RankineMetalTrapdoor::new);
 
 
     public static final RegistryObject<Block> CEDAR_LEAVES = REGISTRY.register("cedar_leaves", () -> new LeavesBlock(DEF_LEAVES));
