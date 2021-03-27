@@ -98,7 +98,7 @@ public class MortarItem extends Item {
             if (!blockstate.isAir(worldIn, posIn)) {
                 double d0 = 0.5D;
                 double d1;
-                if (blockstate.isIn(Blocks.WATER)) {
+                if (blockstate.matchesBlock(Blocks.WATER)) {
                     data *= 3;
                     d1 = 1.0D;
                     d0 = 3.0D;

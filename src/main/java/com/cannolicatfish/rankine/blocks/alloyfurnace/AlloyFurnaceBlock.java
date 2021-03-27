@@ -93,7 +93,7 @@ public class AlloyFurnaceBlock extends Block {
 
 
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.isIn(newState.getBlock())) {
+        if (!state.matchesBlock(newState.getBlock())) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof AlloyFurnaceTile) {
                 InventoryHelper.dropInventoryItems(worldIn, pos, (AlloyFurnaceTile)tileentity);

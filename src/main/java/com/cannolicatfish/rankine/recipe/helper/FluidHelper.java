@@ -45,7 +45,7 @@ public class FluidHelper {
                 double d7 = ent.getPosY();
                 ent.moveRelative(0.02F, travelVector);
                 ent.move(MoverType.SELF, ent.getMotion());
-                if (ent.func_233571_b_(FluidTags.LAVA) <= ent.func_233579_cu_()) {
+                if (ent.func_233571_b_(FluidTags.LAVA) <= ent.getFluidJumpHeight()) {
                     ent.setMotion(ent.getMotion().mul(0.5D, (double)0.8F, 0.5D));
                     Vector3d vector3d3 = ent.func_233626_a_(d0, flag, ent.getMotion());
                     ent.setMotion(vector3d3);

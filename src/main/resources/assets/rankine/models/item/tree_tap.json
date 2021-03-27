@@ -1,3 +1,6 @@
 {
-"parent": "rankine:block/tree_tap"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rankine:item/tree_tap"
+  }
 }

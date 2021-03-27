@@ -89,7 +89,7 @@ public class InductionFurnaceBlock extends Block{
 
 
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.isIn(newState.getBlock())) {
+        if (!state.matchesBlock(newState.getBlock())) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
             if (tileentity instanceof InductionFurnaceTile) {
                 InventoryHelper.dropInventoryItems(worldIn, pos, (InductionFurnaceTile)tileentity);
