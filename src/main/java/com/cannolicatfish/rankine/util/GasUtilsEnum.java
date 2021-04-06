@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.List;
 
 public enum GasUtilsEnum {
+    RANDOM(0f,0, Collections.emptyList(),false,0),
+    SET(0f,0, Collections.emptyList(),false,0),
     HYDROGEN(0.1f,0, Collections.singletonList(new EffectInstance(Effects.MINING_FATIGUE,25)),true,16767483),
     HELIUM(0.15f,0,Collections.singletonList(new EffectInstance(Effects.JUMP_BOOST,25)),true,16750204),
     NITROGEN(0.97f,0,Collections.singletonList(new EffectInstance(Effects.NAUSEA,25)),true,14459799),

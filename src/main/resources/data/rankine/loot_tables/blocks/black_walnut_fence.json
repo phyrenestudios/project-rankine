@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:black_walnut_fence_inventory"
+              "name": "rankine:black_walnut_fence"
             }
           ],
           "conditions":

@@ -25,6 +25,12 @@ public class SpeedSkaterEnchantment extends Enchantment {
         return false;
     }
 
+
+    @Override
+    public boolean canApply(ItemStack stack) {
+        return EnchantmentType.ARMOR_FEET.canEnchantItem(stack.getItem());
+    }
+
     /**
      * Returns the maximum level that the enchantment can have.
      */

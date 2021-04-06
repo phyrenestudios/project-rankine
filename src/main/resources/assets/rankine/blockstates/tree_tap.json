@@ -105,21 +105,21 @@
       "uvlock": false
     },
     "fluid=jugalone,facing=north": {
-      "model": "rankine:block/tree_tap_jugalone",
+      "model": "rankine:block/tree_tap_juglone",
       "uvlock": false
     },
     "fluid=jugalone,facing=west": {
-      "model": "rankine:block/tree_tap_jugalone",
+      "model": "rankine:block/tree_tap_juglone",
       "y": 270,
       "uvlock": false
     },
     "fluid=jugalone,facing=east": {
-      "model": "rankine:block/tree_tap_jugalone",
+      "model": "rankine:block/tree_tap_juglone",
       "y": 90,
       "uvlock": false
     },
     "fluid=jugalone,facing=south": {
-      "model": "rankine:block/tree_tap_jugalone",
+      "model": "rankine:block/tree_tap_juglone",
       "y": 180,
       "uvlock": false
     }

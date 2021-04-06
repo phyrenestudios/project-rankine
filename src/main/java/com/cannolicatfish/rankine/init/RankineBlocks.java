@@ -874,7 +874,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> PACKED_SNOW = REGISTRY.register("packed_snow", () -> new Block(AbstractBlock.Properties.create(Material.SNOW_BLOCK).hardnessAndResistance(2.0F).setRequiresTool().harvestTool(ToolType.SHOVEL).sound(SoundType.SNOW)));
 
-    public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(GasUtilsEnum.SET,DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = REGISTRY.register("hydrogen_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> HELIUM_GAS_BLOCK = REGISTRY.register("helium_gas_block", () -> new GasBlock(GasUtilsEnum.HELIUM,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = REGISTRY.register("nitrogen_gas_block", () -> new GasBlock(GasUtilsEnum.NITROGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
@@ -1608,6 +1608,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RARE_EARTH_ELECTROMAGNET = REGISTRY.register("rare_earth_electromagnet", () -> new ElectromagnetBlock(2,Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
 
     public static final RegistryObject<Block> LIQUID_MERCURY_BLOCK = REGISTRY.register("liquid_mercury_block", () -> new FlowingFluidBlock(()-> RankineFluids.LIQUID_MERCURY,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> SAP = REGISTRY.register("sap", () -> new FlowingFluidBlock(()-> RankineFluids.SAP,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> MAPLE_SAP = REGISTRY.register("maple_sap", () -> new FlowingFluidBlock(()-> RankineFluids.MAPLE_SAP,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> LATEX = REGISTRY.register("latex", () -> new FlowingFluidBlock(()-> RankineFluids.LATEX,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
 
     //OTHER STUFFS

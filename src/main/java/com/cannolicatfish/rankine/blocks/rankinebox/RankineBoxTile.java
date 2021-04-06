@@ -129,7 +129,7 @@ public class RankineBoxTile extends TileEntity implements ISidedInventory, ITick
             this.direction = getDirection(transmuter);
             PeriodicTableUtils.Element outputElement = utils.getAdjacentElement(utils.getElementFromIngotItem(input.getItem()),this.direction);
             this.powered = isPowered(fuel) ? 1 : 0;
-            boolean ready = this.powered == 1 && outputElement != PeriodicTableUtils.Element.NONE && canSmelt(outputElement);
+            boolean ready = this.powered == 1 && outputElement != PeriodicTableUtils.Element.NONE && canSmelt(outputElement) && !utils.getElementIngot(outputElement).equals(Items.AIR);
             if (ready)
             {
                 this.cookTime += PowerCellItem.getTier(fuel);

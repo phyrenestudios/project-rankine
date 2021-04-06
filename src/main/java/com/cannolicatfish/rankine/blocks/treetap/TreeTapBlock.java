@@ -173,7 +173,7 @@ public class TreeTapBlock extends Block {
                 player.addItemStackToInventory(new ItemStack(RankineItems.LATEX_BUCKET.get(), 1));
                 break;
             case JUGALONE:
-                player.addItemStackToInventory(new ItemStack(RankineItems.JUGALONE_BUCKET.get(), 1));
+                player.addItemStackToInventory(new ItemStack(RankineItems.JUGLONE_BUCKET.get(), 1));
                 break;
         }
         worldIn.setBlockState(pos, state.with(TreeTapBlock.FLUID, TreeTapFluids.NONE).with(TreeTapBlock.FACING, state.get(TreeTapBlock.FACING)));

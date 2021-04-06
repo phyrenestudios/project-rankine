@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.enchantment;
 
+import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
@@ -9,8 +10,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 
 public class AntiquatedEnchantment extends Enchantment {
     public AntiquatedEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, EnchantmentType.create("pewter", (itemIn) -> {
-            return itemIn instanceof IAlloyTool && ((IAlloyTool) itemIn).returnAlloyUtils().equals(AlloyUtilsEnum.PEWTER); }), p_i46721_2_);
+        super(p_i46721_1_, RankineEnchantmentTypes.PEWTER, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {

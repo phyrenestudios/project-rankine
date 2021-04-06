@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.enchantment;
 
+import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
@@ -19,7 +20,7 @@ import java.util.Iterator;
 
 public class CleanseEnchantment extends Enchantment {
     public CleanseEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, EnchantmentType.create("stainless", (itemIn) -> itemIn instanceof AlloySwordItem && ((IAlloyTool) itemIn).returnAlloyUtils().equals(AlloyUtilsEnum.STAINLESS)), p_i46721_2_);
+        super(p_i46721_1_, RankineEnchantmentTypes.STAINLESS_STEEL_SWORD, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {

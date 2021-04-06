@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "GXG",
+    "CXC"
+  ],
+  "key": {
+    "X": {
+      "item": "rankine:vulcanized_rubber"
+    },
+    "G": {
+      "item": "rankine:mica"
+    },
+    "C": {
+      "tag": "forge:ingots/carbon"
+    }
+  },
+  "result": {
+    "item": "rankine:gas_mask"
+  }
+}

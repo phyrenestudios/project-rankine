@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "rankine:{BLK}_trapdoor"
+          "name": "rankine:bronze_trapdoor"
         }
       ],
       "conditions": [

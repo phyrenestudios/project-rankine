@@ -4,12 +4,12 @@
     "item": "rankine:evaporite"
   },
   "output1": {
-    "item": "rankine:calcite",
+    "item": "rankine:salt",
     "chance": 0.80,
     "additional": 0.20
   },
   "output2": {
-    "item": "rankine:salt",
+    "item": "rankine:thenardite",
     "chance": 0.40,
     "additional": 0.10
   },

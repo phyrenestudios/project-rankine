@@ -1,18 +1,15 @@
 {
-      "type": "minecraft:crafting_shaped",
-      "group": "wooden_door",
-      "pattern": [
-        "##",
-        "##",
-        "##"
-      ],
-      "key": {
-        "#": {
-          "item": "rankine:bamboo_culms_planks"
-        }
-      },
-      "result": {
-        "item": "rankine:bamboo_culms_door",
-        "count": 3
-      }
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bamboo_culms"
     }
+  },
+  "result": {
+    "item": "rankine:bamboo_culms_pressure_plate"
+  }
+}

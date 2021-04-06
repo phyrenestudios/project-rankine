@@ -1,10 +1,12 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.blocks.treetap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
+import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
@@ -39,17 +41,24 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -59,12 +68,15 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -76,6 +88,7 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -84,6 +97,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
+import java.util.stream.Stream;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.HELMET;
@@ -235,6 +249,30 @@ public class RankineEventHandler {
         }
     }
 
+    /*@SubscribeEvent
+    public static void onLeafImpact (ProjectileImpactEvent event) {
+        World worldIn = event.getEntity().getEntityWorld();
+        if (event.getEntity() instanceof SpearEntity && event.getRayTraceResult().getType() == RayTraceResult.Type.BLOCK) {
+            BlockRayTraceResult e = (BlockRayTraceResult) event.getRayTraceResult();
+            Stream<BlockPos> pos = BlockPos.getAllInBox(event.getEntity().getBoundingBox());
+            BlockPos hit = new BlockPos(e.getPos().getX(), e.getPos().getY(), e.getPos().getZ());
+            if ((worldIn.getBlockState(hit).getBlock() instanceof LeavesBlock)) {
+                if (!worldIn.isRemote) {
+                    worldIn.destroyBlock(hit,true);
+                    for (BlockPos p : pos.toArray(BlockPos[]::new)) {
+                        if (worldIn.getBlockState(p).getBlock() instanceof LeavesBlock) {
+                            worldIn.destroyBlock(hit,true);
+                        }
+                    }
+
+                }
+
+                event.setCanceled(true);
+            }
+        }
+
+    }*/
+
     @SubscribeEvent
     public static void onEnvironmentEffect(LivingEvent.LivingUpdateEvent event) {
         LivingEntity ent = event.getEntityLiving();
@@ -243,22 +281,18 @@ public class RankineEventHandler {
         boolean flag = (ent instanceof PlayerEntity && ((PlayerEntity) ent).isCreative());
         ModifiableAttributeInstance maxHealth = ent.getAttribute(Attributes.MAX_HEALTH);
         ModifiableAttributeInstance movementSpeed = ent.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY || fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY_FLOWING) {
+        if (fluidstate.getFluid().getRegistryName() != null && fluidstate.getFluid().getRegistryName().getNamespace().equals("rankine")) {
             Entity entity = ent.isBeingRidden() && ent.getControllingPassenger() != null ? ent.getControllingPassenger() : ent;
             float f = entity == ent ? 0.35F : 0.4F;
-            Vector3d vector3d2 = entity.getMotion();
-            float f1 = MathHelper.sqrt(vector3d2.x * vector3d2.x * (double)0.2F + vector3d2.y * vector3d2.y + vector3d2.z * vector3d2.z * (double)0.2F) * f;
+            Vector3d v = (FluidHelper.handleFluidAcceleration(ent,0.114D));
+            float f1 = MathHelper.sqrt(v.x * v.x * (double)0.2F + v.y * v.y + v.z * v.z * (double)0.2F) * f;
             if (f1 > 1.0F) {
                 f1 = 1.0F;
             }
             entity.playSound(SoundEvents.ENTITY_GENERIC_SWIM, f1, 1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
-            ent.setAir(FluidHelper.decreaseAirSupply(ent,world,ent.getAir(),2));
-            ent.moveStrafing *= 0.98F;
-            ent.moveForward *= 0.98F;
-            FluidHelper.travel(fluidstate.getFlow(world,ent.getPosition()).scale(0.5f).mul(new Vector3d((double)ent.moveStrafing, (double)ent.moveVertical, (double)ent.moveForward)),ent,true);
-            /*if (movementSpeed != null && !movementSpeed.hasModifier(RankineAttributes.MERCURY_MS)) {
-                movementSpeed.applyNonPersistentModifier(RankineAttributes.MERCURY_MS);
-            }*/
+            entity.getMotion().add(v);
+        }
+        if (fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY || fluidstate.getFluid() == RankineFluids.LIQUID_MERCURY_FLOWING) {
             if (!flag) {
                 EffectInstance cur = ent.getActivePotionEffect(RankineEffects.MERCURY_POISONING);
                 ent.addPotionEffect(new EffectInstance(RankineEffects.MERCURY_POISONING, Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));

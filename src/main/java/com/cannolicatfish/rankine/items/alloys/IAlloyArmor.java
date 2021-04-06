@@ -16,9 +16,9 @@ import java.util.List;
 public interface IAlloyArmor {
     PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
 
-    default int getAlloyDurability(String comp, AlloyUtils alloy)
+    default int getAlloyArmorDurability(String comp, AlloyUtils alloy, EquipmentSlotType type)
     {
-        return utils.calcDurability(getElements(comp),getPercents(comp)) + alloy.getDurabilityBonus();
+        return utils.calcArmorDurability(getElements(comp),getPercents(comp),alloy.getDurabilityBonus(), type);
     }
 
     default int getAlloyEnchantability(String comp, AlloyUtils alloy) {

@@ -227,6 +227,14 @@ public final class PeriodicTableUtils {
         return Collections.max(levels);
     }
 
+    public float calcArrowDamage(List<Element> elements, List<Integer> percents)
+    {
+        int hl = calcMiningLevel(elements,percents);
+        float dmg = calcDamage(elements,percents);
+
+        return 2f + 0.5f*hl + 0.5f*dmg;
+    }
+
     public int calcDamageReduceAmount(List<Element> elements, List<Integer> percents, EquipmentSlotType slotType)
     {
         int base = slotType == EquipmentSlotType.CHEST ? 3 : slotType == EquipmentSlotType.LEGS ? 2 : 1;
@@ -337,6 +345,18 @@ public final class PeriodicTableUtils {
         }
 
         return tough;
+    }
+
+
+    public int calcArmorDurability(List<Element> elements, List<Integer> percents, int extra, EquipmentSlotType slotType)
+    {
+        final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
+        int durability = calcDurability(elements,percents) + extra;
+        if (durability <= 100) {
+            return Math.round(MAX_DAMAGE_ARRAY[slotType.getIndex()] * durability/10f);
+        } else {
+            return Math.round(MAX_DAMAGE_ARRAY[slotType.getIndex()] * (10 + (durability-100)/50f));
+        }
     }
 
     public int calcArmorToughness(List<Element> elements, List<Integer> percents)
@@ -498,7 +518,14 @@ public final class PeriodicTableUtils {
         LIVERMORIUM(116,"Lv", new LivermoriumElement()),
         TENNESSINE(117,"Ts", new TennessineElement()),
         OGANESSON(118,"Og", new OganessonElement()),
-        NETHERITE(156,"Nr", new NetheriteElement(),4997443);
+        NETHERITE(161,"Nr", new NetheriteElement(),4997443),
+        SLIME(162,"Sl", new SlimeElement(),7781997),
+        PRISMARINE(163,"Mr", new PrismarineElement(),10801602),
+        WITHER(164,"Wi", new NetheriteElement(),1513239),
+        GHASTIUM(165,"Gh", new NetheriteElement(),13627889),
+        PHLOGISTON(166,"Pg", new PhlogistonElement(),16761088),
+        ENDITE(167,"Ed", new EnditeElement(),2458740),
+        DRACOCAELI(168,"Dr", new DracocaeliElement(),11283579);
 
         public final int atomicNumber;
         public final String symbol;
