@@ -7,7 +7,7 @@
   [
     {
       "type": "minecraft:item",
-      "name": "rankine:cork_block"
+      "name": "rankine:vulcanized_rubber_block"
     }
   ],
   "conditions":

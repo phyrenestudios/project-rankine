@@ -11,7 +11,7 @@ public enum TreeTapFluids implements IStringSerializable {
     MAPLE_SAP("maple_sap"),
     RESIN("resin"),
     LATEX("latex"),
-    JUGALONE("jugalone");
+    JUGLONE("juglone");
 
     private final String name;
 

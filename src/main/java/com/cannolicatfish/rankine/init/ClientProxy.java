@@ -142,7 +142,8 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CORK_OAK_SAPLING.get(),
 
                 RankineBlocks.TREE_TAP.get(),
-                
+                RankineBlocks.TAP_LINE.get(),
+
                 RankineBlocks.CEDAR_TRAPDOOR.get(),
                 RankineBlocks.COCONUT_PALM_TRAPDOOR.get(),
                 RankineBlocks.PINYON_PINE_TRAPDOOR.get(),
@@ -239,7 +240,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.MAPLE_LEAVES.get(),
                 RankineBlocks.EASTERN_HEMLOCK_LEAVES.get(),
                 RankineBlocks.SHARINGA_LEAVES.get(),
-                RankineBlocks.CORK_BLOCK.get(),
                 RankineBlocks.BLACK_WALNUT_LEAVES.get(),
 
                 RankineBlocks.CALCITE_BLOCK.get(),

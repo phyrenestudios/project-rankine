@@ -41,12 +41,20 @@ public class HerbicideItem extends Item {
         BlockPos pos = context.getPos();
         if (!worldIn.isRemote) {
             int radius = Config.GENERAL.HERBICIDE_RANGE.get();
-            for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {
-                Block blk = worldIn.getBlockState(b).getBlock();
-                if (blk.getTags().contains(new ResourceLocation("rankine:herbicidal"))) {
-                    worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(),2);
-                } else if (blk.getTags().contains(new ResourceLocation("forge:dirt"))) {
-                    worldIn.setBlockState(pos, Blocks.COARSE_DIRT.getDefaultState(),2);
+
+            if (!context.getPlayer().isCrouching()) {
+                for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {
+                    Block blk = worldIn.getBlockState(b).getBlock();
+                    if (blk.getTags().contains(new ResourceLocation("rankine:herbicidal")) && b.distanceSq(pos) <= radius*radius) {
+                        worldIn.destroyBlock(b,false);
+                    }
+                }
+            } else {
+                for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-2, -2, -2), pos.add(2, 2, 2))) {
+                    Block blk = worldIn.getBlockState(b).getBlock();
+                    if (blk.getTags().contains(new ResourceLocation("forge:dirt")) && b.distanceSq(pos) <= 2*2) {
+                        worldIn.setBlockState(b, Blocks.COARSE_DIRT.getDefaultState(), 2);
+                    }
                 }
             }
             context.getItem().shrink(1);

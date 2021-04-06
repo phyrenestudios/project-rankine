@@ -1,5 +1,6 @@
-package com.cannolicatfish.rankine.blocks.treetap;
+package com.cannolicatfish.rankine.blocks.tap;
 
+import com.cannolicatfish.rankine.blocks.states.TapBarrelFluids;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
@@ -11,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -25,9 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class TreeTapBlock extends Block {
     public static final EnumProperty<TreeTapFluids> FLUID = EnumProperty.create("fluid", TreeTapFluids.class);
@@ -45,7 +44,7 @@ public class TreeTapBlock extends Block {
 
     public TreeTapBlock(AbstractBlock.Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, TreeTapFluids.NONE  ).with(FACING, Direction.NORTH));
+        this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, TreeTapFluids.NONE).with(FACING, Direction.NORTH));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -86,6 +85,7 @@ public class TreeTapBlock extends Block {
         ticks += 1;
         if (!worldIn.isRemote() && ticks >= Config.MACHINES.TREE_TAP_SPEED.get()) {
 
+            //checks for other taps
             List<BlockPos> sides = Arrays.asList(pos.up(), pos.down(), pos.north(), pos.south(), pos.west(), pos.east());
             for (BlockPos s : sides) {
                 if (worldIn.getBlockState(s).getBlock() == RankineBlocks.TREE_TAP.get()) {
@@ -111,29 +111,67 @@ public class TreeTapBlock extends Block {
                 }
                 if (log != null) {
                     if (log.getTags().contains(new ResourceLocation("rankine:logs_sap")) && Config.MACHINES.TREE_TAP_SAP.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.SAP).with(FACING, state.get(FACING)));
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.SAP).with(FACING, state.get(FACING)),3);
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_maple_sap")) && Config.MACHINES.TREE_TAP_MAPLE_SAP.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.MAPLE_SAP).with(FACING, state.get(FACING)));
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.MAPLE_SAP).with(FACING, state.get(FACING)),3);
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_resin")) && Config.MACHINES.TREE_TAP_RESIN.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.RESIN).with(FACING, state.get(FACING)));
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.RESIN).with(FACING, state.get(FACING)),3);
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_latex")) && Config.MACHINES.TREE_TAP_LATEX.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LATEX).with(FACING, state.get(FACING)));
-                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_jugalone")) && Config.MACHINES.TREE_TAP_JUGALONE.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.JUGALONE).with(FACING, state.get(FACING)));
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LATEX).with(FACING, state.get(FACING)),3);
+                    } else if (log.getTags().contains(new ResourceLocation("rankine:logs_juglone")) && Config.MACHINES.TREE_TAP_JUGLONE.get()) {
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.JUGLONE).with(FACING, state.get(FACING)),3);
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_water")) && Config.MACHINES.TREE_TAP_WATER.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.WATER).with(FACING, state.get(FACING)));
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.WATER).with(FACING, state.get(FACING)),3);
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_lava")) && Config.MACHINES.TREE_TAP_LAVA.get()) {
-                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LAVA).with(FACING, state.get(FACING)));
+                        worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LAVA).with(FACING, state.get(FACING)),3);
                     }
                 }
-
-            } else {
-                return;
             }
             ticks = 0;
         }
-    }
 
+        if (!worldIn.isRemote() && !state.get(FLUID).equals(TreeTapFluids.NONE) && !state.get(FLUID).equals(TreeTapFluids.EMPTY) && worldIn.getBlockState(pos.down()).getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+            BlockPos barrel = null;
+            Set<BlockPos> checkedBlocks = new HashSet<>();
+            Stack<BlockPos> toCheck = new Stack<>();
+
+            toCheck.add(pos.down());
+            while (!toCheck.isEmpty()) {
+                BlockPos cp = toCheck.pop();
+                if (!checkedBlocks.contains(cp)) {
+                    checkedBlocks.add(cp);
+                    if (worldIn.isBlockLoaded(cp)) {
+                        BlockState s = worldIn.getBlockState(cp);
+                        if (s.getBlock().matchesBlock(RankineBlocks.TAP_BARREL.get())) {
+                            if (s.get(TapBarrelBlock.LEVEL) < 6) {
+                                barrel = cp;
+                                break;
+                            }
+                        } else if (s.getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
+                            toCheck.add(cp.north());
+                            toCheck.add(cp.east());
+                            toCheck.add(cp.south());
+                            toCheck.add(cp.west());
+                        }
+                    }
+                    if (checkedBlocks.size() > 100) {
+                        break;
+                    }
+                }
+            }
+
+            if (barrel != null) {
+                worldIn.setBlockState(pos, state.with(FLUID, TreeTapFluids.EMPTY), 3);
+                BlockState bb = worldIn.getBlockState(barrel);
+                int level = bb.get(TapBarrelBlock.LEVEL);
+                if (level == 0) {
+                    worldIn.setBlockState(barrel, bb.with(TapBarrelBlock.FLUID, TapBarrelFluids.valueOf(state.get(FLUID).getString().toUpperCase())).with(TapBarrelBlock.LEVEL, 1),3);
+                } else if (level >= 1 && level < 6 && bb.get(TapBarrelBlock.FLUID).getString().equals(state.get(FLUID).getString())) {
+                    worldIn.setBlockState(barrel, bb.with(TapBarrelBlock.FLUID, TapBarrelFluids.valueOf(state.get(FLUID).getString().toUpperCase())).with(TapBarrelBlock.LEVEL, bb.get(TapBarrelBlock.LEVEL)+1), 3);
+                }
+            }
+        }
+    }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
@@ -172,8 +210,8 @@ public class TreeTapBlock extends Block {
             case LATEX:
                 player.addItemStackToInventory(new ItemStack(RankineItems.LATEX_BUCKET.get(), 1));
                 break;
-            case JUGALONE:
-                player.addItemStackToInventory(new ItemStack(RankineItems.JUGALONE_BUCKET.get(), 1));
+            case JUGLONE:
+                player.addItemStackToInventory(new ItemStack(RankineItems.JUGLONE_BUCKET.get(), 1));
                 break;
         }
         worldIn.setBlockState(pos, state.with(TreeTapBlock.FLUID, TreeTapFluids.NONE).with(TreeTapBlock.FACING, state.get(TreeTapBlock.FACING)));

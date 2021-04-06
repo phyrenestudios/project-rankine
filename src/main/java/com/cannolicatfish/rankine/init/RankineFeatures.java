@@ -39,15 +39,6 @@ public class RankineFeatures {
             .setIgnoreVines()
             .build();
 
-    public static final BaseTreeFeatureConfig SHARINGA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
-            new SimpleBlockStateProvider(RankineBlocks.SHARINGA_LOG.get().getDefaultState()),
-            new SimpleBlockStateProvider(RankineBlocks.SHARINGA_LEAVES.get().getDefaultState()),
-            new SpruceFoliagePlacer(FeatureSpread.create(0, 1), FeatureSpread.create(1, 2), FeatureSpread.create(1, 1)),
-            new StraightTrunkPlacer(6, 4, 0),
-            new TwoLayerFeature(4, 0, 2)))
-            .setIgnoreVines()
-            .build();
-
     public static final BaseTreeFeatureConfig TALL_BALSAM_FIR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.BALSAM_FIR_LEAVES.get().getDefaultState()),
@@ -144,7 +135,7 @@ public class RankineFeatures {
             new SimpleBlockStateProvider(RankineBlocks.MAPLE_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.MAPLE_LEAVES.get().getDefaultState()),
             new FancyFoliagePlacer(FeatureSpread.create(3, 0), FeatureSpread.create(4, 0), 4),
-            new FancyTrunkPlacer(6, 11, 0),
+            new FancyTrunkPlacer(8, 4, 0),
             new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
             .build();
@@ -152,18 +143,18 @@ public class RankineFeatures {
     public static final BaseTreeFeatureConfig YELLOW_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.YELLOW_BIRCH_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.YELLOW_BIRCH_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(1, 1), FeatureSpread.create(3, 0), 3),
-            new FancyTrunkPlacer(6, 2, 5),
-            new TwoLayerFeature(2, 0, 0, OptionalInt.of(4))))
+            new FancyFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(2, 0), 2),
+            new FancyTrunkPlacer(6, 2, 4),
+            new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
             .build();
 
     public static final BaseTreeFeatureConfig BLACK_BIRCH_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.BLACK_BIRCH_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.BLACK_BIRCH_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(1, 1), FeatureSpread.create(3, 0), 3),
-            new FancyTrunkPlacer(6, 2, 5),
-            new TwoLayerFeature(2, 0, 0, OptionalInt.of(4))))
+            new FancyFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(2, 0), 1),
+            new FancyTrunkPlacer(6, 2, 4),
+            new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
             .build();
 
@@ -179,9 +170,18 @@ public class RankineFeatures {
     public static final BaseTreeFeatureConfig CORK_OAK_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
             new SimpleBlockStateProvider(RankineBlocks.CORK_OAK_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.CORK_OAK_LEAVES.get().getDefaultState()),
-            new FancyFoliagePlacer(FeatureSpread.create(1, 1), FeatureSpread.create(4, 0), 1),
+            new FancyFoliagePlacer(FeatureSpread.create(3, 0), FeatureSpread.create(2, 0), 1),
             new FancyTrunkPlacer(6, 2, 5),
-            new TwoLayerFeature(2, 0, 0, OptionalInt.of(4))))
+            new TwoLayerFeature(2, 0, 3, OptionalInt.of(4))))
+            .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
+            .build();
+
+    public static final BaseTreeFeatureConfig SHARINGA_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(RankineBlocks.SHARINGA_LOG.get().getDefaultState()),
+            new SimpleBlockStateProvider(RankineBlocks.SHARINGA_LEAVES.get().getDefaultState()),
+            new FancyFoliagePlacer(FeatureSpread.create(2, 1), FeatureSpread.create(2, 0), 3),
+            new FancyTrunkPlacer(8, 2, 3),
+            new TwoLayerFeature(1, 0, 0, OptionalInt.of(4))))
             .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING)
             .build();
 
