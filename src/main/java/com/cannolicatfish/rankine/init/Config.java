@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -854,6 +855,26 @@ public class Config {
         }
     }
 
+    public static class Gases {
+        public final ForgeConfigSpec.EnumValue<GasUtilsEnum> GAS_VENT_TYPE;
+        public final ForgeConfigSpec.BooleanValue GAS_MOVEMENT;
+        public final ForgeConfigSpec.BooleanValue ENABLE_GAS_VENTS;
+
+
+        public Gases(ForgeConfigSpec.Builder b) {
+            b.comment("Settings for Gases.").push("gases");
+            GAS_MOVEMENT = b.comment("If enabled, gases will move on random tick and dissipate at or above y-level 95 (EXPERIMENTAL).")
+                    .define("gasMovement", false);
+            ENABLE_GAS_VENTS = b.comment("Enables blocks which emit gases on random tick.")
+                    .define("enableGasVents", true);
+            GAS_VENT_TYPE = b.comment("Defines the gas that will be released by the Gas Vent block. Do not use SET and RANDOM, as these will break the block.")
+                    .defineEnum("gasVentType",GasUtilsEnum.FLUORINE);
+
+
+            b.pop();
+        }
+    }
+
     public static class HardMode {
         public final ForgeConfigSpec.BooleanValue WATER_REACTIVE;
         public final ForgeConfigSpec.BooleanValue RADIOACTIVE;
@@ -877,6 +898,7 @@ public class Config {
     public static final Alloys ALLOYS;
     public static final StoneProperties STONE_PROPERTIES;
     public static final HardMode HARD_MODE;
+    public static final Gases GASES;
 
     static {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -884,6 +906,7 @@ public class Config {
         MACHINES = new Machines(BUILDER);
         ALLOYS = new Alloys(BUILDER);
         STONE_PROPERTIES = new StoneProperties(BUILDER);
+        GASES = new Gases(BUILDER);
         HARD_MODE = new HardMode(BUILDER);
 
 

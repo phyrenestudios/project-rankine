@@ -16,12 +16,22 @@ public class AlloyItemColor implements IItemColor {
     public int getColor(ItemStack stack, int tintIndex) {
         PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
         INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
-        if (nbt != null && nbt.getString().contains("-"))
+        if (nbt != null)
         {
             boolean weighted = true;
             List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements = new ArrayList<>();
-            String[] split = nbt.getString().split("-");
-            for (String s : split) {
+            if (nbt.getString().contains("-")) {
+                String[] split = nbt.getString().split("-");
+                for (String s : split) {
+                    if (s.replaceAll("[A-Za-z]+", "").matches("-?\\d+")) {
+                        elements.add(new AbstractMap.SimpleEntry<>(utils.getElementBySymbol(s.replaceAll("[^A-Za-z]+", "")),Integer.parseInt(s.replaceAll("[A-Za-z]+", ""))));
+                    } else {
+                        elements.add(new AbstractMap.SimpleEntry<>(utils.getElementBySymbol(s.replaceAll("[^A-Za-z]+", "")),null));
+                        weighted = false;
+                    }
+                }
+            } else {
+                String s = nbt.getString();
                 if (s.replaceAll("[A-Za-z]+", "").matches("-?\\d+")) {
                     elements.add(new AbstractMap.SimpleEntry<>(utils.getElementBySymbol(s.replaceAll("[^A-Za-z]+", "")),Integer.parseInt(s.replaceAll("[A-Za-z]+", ""))));
                 } else {
@@ -29,6 +39,7 @@ public class AlloyItemColor implements IItemColor {
                     weighted = false;
                 }
             }
+
             int color;
             if (elements.size() >= 2) {
                 color = weighted ? returnBlendWeighted(elements) : returnBlend(elements);

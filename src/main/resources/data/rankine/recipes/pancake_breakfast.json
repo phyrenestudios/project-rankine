@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "BBB",
+    "CCC"
+  ],
+  "key": {
+    "M": {
+      "item": "rankine:maple_sap_bucket"
+    },
+    "B": {
+      "tag": "forge:berries"
+    },
+    "C": {
+      "item": "rankine:pancake"
+    }
+  },
+  "result": {
+    "item": "rankine:pancake_breakfast"
+  }
+}

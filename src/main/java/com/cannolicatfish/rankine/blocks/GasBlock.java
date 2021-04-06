@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -36,7 +37,6 @@ import java.util.Random;
 public class GasBlock extends AirBlock {
 
     private final GasUtilsEnum gas;
-    private boolean canMove = true;
 
     public GasBlock(GasUtilsEnum gas, Properties properties) {
         super(properties);
@@ -45,20 +45,12 @@ public class GasBlock extends AirBlock {
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return this.canMove;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (stack.getItem() == RankineItems.SHULKER_GAS_VACUUM.get()) {
-            this.canMove = false;
-        }
-        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+        return Config.GASES.GAS_MOVEMENT.get();
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (canMove) {
+        if (Config.GASES.GAS_MOVEMENT.get()) {
             if (pos.getY() >= 95) {
                 worldIn.setBlockState(pos,Blocks.AIR.getDefaultState(),3);
             } else {

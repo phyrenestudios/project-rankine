@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:yellow_birch_fence_inventory"
+              "name": "rankine:yellow_birch_fence"
             }
           ],
           "conditions":

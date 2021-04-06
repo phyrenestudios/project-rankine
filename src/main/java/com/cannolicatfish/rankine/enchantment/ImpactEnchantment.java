@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.enchantment;
 
+import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
@@ -7,8 +8,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 
 public class ImpactEnchantment extends Enchantment {
     public ImpactEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, EnchantmentType.create("spear", (itemIn) -> {
-            return itemIn instanceof SpearItem; }), p_i46721_2_);
+        super(p_i46721_1_, RankineEnchantmentTypes.SPEAR, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {

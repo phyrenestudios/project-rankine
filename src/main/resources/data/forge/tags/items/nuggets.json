@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#forge:nuggets/netherite",
     "#forge:nuggets/hydrogen",
     "#forge:nuggets/helium",
     "#forge:nuggets/lithium",
@@ -117,6 +116,7 @@
     "#forge:nuggets/moscovium",
     "#forge:nuggets/livermorium",
     "#forge:nuggets/tennessine",
-    "#forge:nuggets/oganesson"
+    "#forge:nuggets/oganesson",
+    "#forge:nuggets/netherite"
   ]
 }

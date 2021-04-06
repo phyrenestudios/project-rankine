@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.enchantment;
 
+import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
@@ -7,8 +8,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 
 public class DazeEnchantment extends Enchantment {
     public DazeEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, EnchantmentType.create("hammer", (itemIn) -> {
-            return itemIn instanceof HammerItem; }), p_i46721_2_);
+        super(p_i46721_1_, RankineEnchantmentTypes.HAMMER, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {

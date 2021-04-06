@@ -2,6 +2,6 @@
         "variants": {
             "type=bottom": { "model": "rankine:block/cork_oak_slab" },
             "type=top": { "model": "rankine:block/cork_oak_slab_top" },
-            "type=double": { "model": "rankine:block/cork_oak" }
+            "type=double": { "model": "rankine:block/cork_oak_planks" }
             }
         }

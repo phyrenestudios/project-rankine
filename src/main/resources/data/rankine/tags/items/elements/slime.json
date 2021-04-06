@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:slimeballs",
+    "minecraft:slime_block"
+  ]
+}

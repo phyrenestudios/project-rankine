@@ -28,7 +28,14 @@ public class RankineOreBlock extends Block {
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).with(TYPE,0);
+        BlockPos match = BlockPos.getClosestMatchingPosition(context.getPos(),1,1,(p) -> context.getWorld().getBlockState(p).getBlock() instanceof RankineOreBlock).orElse(null);
+        if (match != null)
+        {
+            return this.getDefaultState().with(TYPE,context.getWorld().getBlockState(match).get(TYPE));
+        } else {
+            return this.getDefaultState().with(TYPE,0);
+        }
+
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

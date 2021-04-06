@@ -18,12 +18,16 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 public class AlloyArrowEntity extends AbstractArrowEntity {
     private double damage = 2.0D;
+    private ItemStack arrowStack = new ItemStack(RankineItems.ALLOY_ARROW.get());
+
     protected AlloyArrowEntity(EntityType<? extends ArrowEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
-    public AlloyArrowEntity(World worldIn, LivingEntity shooter) {
-        super(RankineEntityTypes.THORIUM_ARROW, shooter, worldIn);
+    public AlloyArrowEntity(World worldIn, ItemStack arrowStackIn, LivingEntity shooter, float damageIn) {
+        super(RankineEntityTypes.ALLOY_ARROW, shooter, worldIn);
+        this.arrowStack = arrowStackIn.copy();
+        this.damage = damageIn;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -38,28 +42,6 @@ public class AlloyArrowEntity extends AbstractArrowEntity {
 
     @Override
     protected ItemStack getArrowStack() {
-        return new ItemStack(RankineItems.THORIUM_ARROW.get());
-    }
-
-
-    @Override
-    public void tick() {
-        super.tick();
-        if (this.inGround) {
-            LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.world);
-            ent.setPosition(this.getPosX(),this.getPosY(),this.getPosZ());
-            this.world.addEntity(ent);
-            this.remove();
-        }
-    }
-
-    @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
-
-        LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.world);
-        ent.setPosition(living.getPosX(),living.getPosY(),living.getPosZ());
-        this.world.addEntity(ent);
-
+        return this.arrowStack.copy();
     }
 }

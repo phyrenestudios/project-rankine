@@ -46,4 +46,7 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:cleanse")
     public static Enchantment CLEANSE;
+
+    @ObjectHolder("rankine:endpoint")
+    public static Enchantment ENDPOINT;
 }

@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:sharinga_fence_inventory"
+              "name": "rankine:sharinga_fence"
             }
           ],
           "conditions":

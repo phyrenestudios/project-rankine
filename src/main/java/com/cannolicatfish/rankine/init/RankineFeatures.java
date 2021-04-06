@@ -1,12 +1,21 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
+import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.world.gen.feature.*;
 import com.cannolicatfish.rankine.world.gen.placement.IntrusionPlacement;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
@@ -15,10 +24,65 @@ import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.*;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.OptionalInt;
 
 public class RankineFeatures {
+
+    public static void registerConfiguredFeatures() {
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:meteorite",METEORITE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:fire_clay",FIRE_CLAY);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:elderberry_bush",ELDERBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:snowberry_bush",SNOWBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:blueberry_bush",BLUEBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:raspberry_bush",RASPBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:blackberry_bush",BLACKBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:cranberry_bush",CRANBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:strawberry_bush",STRAWBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:pineapple_bush",PINEAPPLE_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:banana_yucca_bush",BANANA_YUCCA_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:camphor_basil_plant",CAMPHOR_BASIL_PLANT);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:aloe_plant",ALOE_PLANT);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:yellow_birch_tree",YELLOW_BIRCH_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:black_birch_tree",BLACK_BIRCH_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:eastern_hemlock_tree",EASTERN_HEMLOCK_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:cedar_tree",CEDAR_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:coconut_palm_tree",COCONUT_PALM_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:pinyon_pine_tree",PINYON_PINE_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:balsam_fir_tree",BALSAM_FIR_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:dead_balsam_fir_tree",DEAD_BALSAM_FIR_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:magnolia_tree",MAGNOLIA_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:juniper_tree",JUNIPER_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:maple_tree",MAPLE_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:black_walnut_tree",BLACK_WALNUT_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:cork_oak_tree",CORK_OAK_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sharinga_tree",SHARINGA_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:flat_bedrock",FLAT_BEDROCK);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:flat_bedrock_nether",FLAT_BEDROCK_NETHER);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:gravel_disks",GRAVEL_DISKS);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sand_disks",SAND_DISKS);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:clay_disks",CLAY_DISKS);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_alluvium",ORE_ALLUVIUM);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_evaporite",ORE_EVAPORITE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_intrusion",ORE_INTRUSION);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sill_phosphorite",SILL_PHOSPHORITE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sill_ironstone",SILL_IRONSTONE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:nether_ore_intrusion",NETHER_ORE_INTRUSION);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:andesitic_tuff",ANDESITIC_TUFF);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:rhyolitic_tuff",RHYOLITIC_TUFF);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:tholeitic_basaltic_tuff",THOLEIITIC_BASALTIC_TUFF);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:dacitic_tuff",DACITIC_TUFF);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:andesite_var",ANDESITE_VAR);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_nodule",ORE_NODULE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:end_stone_gen",END_STONE_GEN);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:nether_stone_gen",NETHER_STONE_GEN);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:overworld_stone_gen",OVERWORLD_STONE_GEN);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:mud_feature",MUD_FEATURE);
+    }
 
     // FEATURE CONFIGS
     public static final BaseTreeFeatureConfig CEDAR_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
@@ -197,13 +261,35 @@ public class RankineFeatures {
     public static final BlockClusterFeatureConfig BANANA_YUCCA_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BANANA_YUCCA_BUSH.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), SimpleBlockPlacer.PLACER)).tries(64).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT, Blocks.SAND, Blocks.RED_SAND)).preventProjection().build();
     public static final BlockClusterFeatureConfig ALOE_PLANT_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.ALOE_PLANT.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), SimpleBlockPlacer.PLACER)).tries(16).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT, Blocks.SAND, Blocks.RED_SAND)).preventProjection().build();
 
+    // BASE FEATURES
+    public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.CODEC);
+    //public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig.CODEC);
+    public static final Feature<MeteoriteFeatureConfig> METEORITE_FEATURE = new MeteoriteFeature(MeteoriteFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> FIRE_CLAY_DISK = new FireClayDiskFeature(NoFeatureConfig.CODEC);
+    public static final Feature<ReplacerFeatureConfig> FLAT_BEDROCK_FEATURE = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC);
+    public static final Feature<ReplacerFeatureConfig> INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> PHOSPHORITE_SILL = new SillFeature(NoFeatureConfig.CODEC, RankineBlocks.PHOSPHORITE.get().getDefaultState());
+    public static final Feature<NoFeatureConfig> IRONSTONE_SILL = new SillFeature(NoFeatureConfig.CODEC, RankineBlocks.IRONSTONE.get().getDefaultState());
+    public static final Feature<ReplacerFeatureConfig> NETHER_INTRUSION = new NetherIntrusionFeature(ReplacerFeatureConfig.CODEC);
+    public static final Feature<OreFeatureConfig> ANDESITIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
+    public static final Feature<OreFeatureConfig> RHYOLITIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.RHYOLITE.get().getDefaultState());
+    public static final Feature<OreFeatureConfig> BASALTIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState());
+    public static final Feature<OreFeatureConfig> ORE_NODULE_FEATURE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState());
+    public static final Feature<NoFeatureConfig> END_STONE_REPLACER = new EndStoneReplacerFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> NETHER_STONE_REPLACER = new NetherStoneReplacerFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> MUD_REPLACER = new MudReplacerFeature(NoFeatureConfig.CODEC);
+
+    // BASE PLACEMENTS
+    public static final Placement<NoPlacementConfig> REPLACER_PLACEMENT = new ReplacerPlacement(NoPlacementConfig.CODEC);
+    public static final Placement<ChanceConfig> INTRUSION_PLACEMENT = new IntrusionPlacement(ChanceConfig.CODEC);
 
     // LOCAL_MODIFICATIONS
-    public static final ConfiguredFeature<?, ?> METEORITE = new MeteoriteFeature(MeteoriteFeatureConfig.CODEC).withConfiguration(new MeteoriteFeatureConfig(RankineBlocks.METEORITE.get().getDefaultState(), 1))
+    public static final ConfiguredFeature<?, ?> METEORITE = METEORITE_FEATURE.withConfiguration(new MeteoriteFeatureConfig(RankineBlocks.METEORITE.get().getDefaultState(), 1))
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(WGConfig.MISC.METEORITE_CHANCE.get())));
     public static final ConfiguredFeature<?, ?> VOLCANO = new VolcanoFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(30)));
-    public static final ConfiguredFeature<?, ?> FIRE_CLAY = new FireClayDiskFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
+    public static final ConfiguredFeature<?, ?> FIRE_CLAY = FIRE_CLAY_DISK.withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4)));
 
 
@@ -254,15 +340,14 @@ public class RankineFeatures {
 
 
     // UNDERGROUND_ORES
-    public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.CODEC);
-    public static final Feature<RankineMultiOreFeatureConfig> MULTI_RANKINE_ORE = new RankineMultiOreFeature(RankineMultiOreFeatureConfig.CODEC);
 
-    public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
-            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> FLAT_BEDROCK_NETHER = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
-            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
-    public static final ConfiguredFeature<?, ?> GRAVEL_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.GRAVEL.getDefaultState(), FeatureSpread.create(2, 5), 2,
+    public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = FLAT_BEDROCK_FEATURE.withConfiguration(
+            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> FLAT_BEDROCK_NETHER = FLAT_BEDROCK_FEATURE.withConfiguration(
+            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+
+    public static final ConfiguredFeature<?, ?> GRAVEL_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.GRAVEL.getDefaultState(), FeatureSpread.create(2, 4), 2,
             Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> SAND_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.SAND.getDefaultState(), FeatureSpread.create(2, 3), 2,
             Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
@@ -273,34 +358,34 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> ORE_EVAPORITE = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.EVAPORITE.get().getDefaultState(), FeatureSpread.create(1, 1), 1,
             Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
 
-    public static final ConfiguredFeature<?, ?> ORE_INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
-            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> SILL_PHOSPHORITE = new SillFeature(NoFeatureConfig.CODEC, RankineBlocks.PHOSPHORITE.get().getDefaultState()).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> SILL_IRONSTONE = new SillFeature(NoFeatureConfig.CODEC, RankineBlocks.IRONSTONE.get().getDefaultState()).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> NETHER_ORE_INTRUSION = new NetherIntrusionFeature(ReplacerFeatureConfig.CODEC).withConfiguration(
-            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(new IntrusionPlacement(ChanceConfig.CODEC).configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> ANDESITIC_TUFF = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.ANDESITIC_TUFF.get().getDefaultState(), 80))
+    public static final ConfiguredFeature<?, ?> ORE_INTRUSION = INTRUSION.withConfiguration(
+            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
+    public static final ConfiguredFeature<?, ?> SILL_PHOSPHORITE = PHOSPHORITE_SILL.withConfiguration(new NoFeatureConfig())
+            .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(2)));
+    public static final ConfiguredFeature<?, ?> SILL_IRONSTONE = IRONSTONE_SILL.withConfiguration(new NoFeatureConfig())
+            .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(2)));
+    public static final ConfiguredFeature<?, ?> NETHER_ORE_INTRUSION = NETHER_INTRUSION.withConfiguration(
+            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(2)));
+    public static final ConfiguredFeature<?, ?> ANDESITIC_TUFF = ANDESITIC_TUFF_FEATURE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.ANDESITIC_TUFF.get().getDefaultState(), 64))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(60, 60, 128))).square().count(1);
-    public static final ConfiguredFeature<?, ?> RHYOLITIC_TUFF = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.RHYOLITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.RHYOLITIC_TUFF.get().getDefaultState(), 80))
+    public static final ConfiguredFeature<?, ?> RHYOLITIC_TUFF = RHYOLITIC_TUFF_FEATURE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.RHYOLITIC_TUFF.get().getDefaultState(), 64))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 60))).square().count(1);
-    public static final ConfiguredFeature<?, ?> THOLEIITIC_BASALTIC_TUFF = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.BASALTIC_TUFF.get().getDefaultState(), 80))
+    public static final ConfiguredFeature<?, ?> THOLEIITIC_BASALTIC_TUFF = BASALTIC_TUFF_FEATURE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.BASALTIC_TUFF.get().getDefaultState(), 64))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 60))).square().count(1);
     public static final ConfiguredFeature<?, ?> DACITIC_TUFF = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.DACITES, RankineBlocks.DACITIC_TUFF.get().getStateContainer().getBaseState(), 60))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(0, 0, 60))).square().count(1);
-    public static final ConfiguredFeature<?, ?> ANDESITE_VAR = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.ANDESITE.getDefaultState(), 40))
+    public static final ConfiguredFeature<?, ?> ANDESITE_VAR = ANDESITIC_TUFF_FEATURE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, Blocks.ANDESITE.getDefaultState(), 40))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(64, 64, 150))).square().count(2);
-    public static final ConfiguredFeature<?, ?> ORE_NODULE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState()).withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.LIMESTONE_NODULE.get().getDefaultState(), 6))
+    public static final ConfiguredFeature<?, ?> ORE_NODULE = ORE_NODULE_FEATURE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, RankineBlocks.LIMESTONE_NODULE.get().getDefaultState(), 6))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(31, 31, 90))).square().count(20);
-    public static final ConfiguredFeature<?, ?> END_STONE_GEN = new EndStoneReplacerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> NETHER_STONE_GEN = new NetherStoneReplacerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> OVERWORLD_STONE_GEN = new StoneReplacerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> MUD_FEATURE = new MudReplacerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
-            .withPlacement(new ReplacerPlacement(NoPlacementConfig.CODEC).configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> END_STONE_GEN = END_STONE_REPLACER.withConfiguration(new NoFeatureConfig())
+            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> NETHER_STONE_GEN = NETHER_STONE_REPLACER.withConfiguration(new NoFeatureConfig())
+            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> OVERWORLD_STONE_GEN = STONE_REPLACER.withConfiguration(new NoFeatureConfig())
+            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> MUD_FEATURE = MUD_REPLACER.withConfiguration(new NoFeatureConfig())
+            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     //ORES
     public static final ConfiguredFeature<?,?> ORE_NATIVE_COPPER_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_COPPER, RankineBlocks.NATIVE_COPPER_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.NATIVE_COPPER_ORE_SIZE.get()))
@@ -698,6 +783,7 @@ public class RankineFeatures {
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.LONSDALEITE_ORE_CHANCE.get());
     public static final ConfiguredFeature<?,?> ORE_LONSDALEITE_MEGA = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.LONSDALEITE, RankineBlocks.LONSDALEITE_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.LONSDALEITE_ORE_MEGA_SIZE.get()))
             .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MIN_HEIGHT.get(), WGConfig.ORES.LONSDALEITE_ORE_MAX_HEIGHT.get()))).square().chance(WGConfig.ORES.LONSDALEITE_ORE_MEGA_CHANCE.get());
+
 
 }
 

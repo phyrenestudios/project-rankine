@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -54,9 +55,14 @@ public class HardnessTesterItem extends Item {
                         desc = " (Advanced)";
                         break;
                 }
+
             } else {
                 harvest = 0;
-                desc = " (None)";
+                if (b.getDefaultState().getBlockHardness(context.getWorld(),context.getPos()) < 0) {
+                    desc = " (Unbreakable)";
+                } else {
+                    desc = " (None)";
+                }
             }
 
             player.sendMessage(new StringTextComponent("Hardness: " + harvest + desc),player.getUniqueID());

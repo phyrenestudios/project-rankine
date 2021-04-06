@@ -12,4 +12,22 @@ public class RankineFluids {
 
     @ObjectHolder("rankine:liquid_mercury_flowing")
     public static FlowingFluid LIQUID_MERCURY_FLOWING;
+
+    @ObjectHolder("rankine:sap")
+    public static FlowingFluid SAP;
+
+    @ObjectHolder("rankine:flowing_sap")
+    public static FlowingFluid FLOWING_SAP;
+
+    @ObjectHolder("rankine:maple_sap")
+    public static FlowingFluid MAPLE_SAP;
+
+    @ObjectHolder("rankine:flowing_maple_sap")
+    public static FlowingFluid FLOWING_MAPLE_SAP;
+
+    @ObjectHolder("rankine:latex")
+    public static FlowingFluid LATEX;
+
+    @ObjectHolder("rankine:flowing_latex")
+    public static FlowingFluid FLOWING_LATEX;
 }

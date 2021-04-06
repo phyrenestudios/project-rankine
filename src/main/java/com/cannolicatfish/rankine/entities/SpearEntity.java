@@ -2,6 +2,8 @@ package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -15,7 +17,9 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
@@ -28,6 +32,7 @@ import javax.annotation.Nullable;
 
 public class SpearEntity extends AbstractArrowEntity {
     private static final DataParameter<Byte> LOYALTY_LEVEL = EntityDataManager.createKey(SpearEntity.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> TELEPORT_LEVEL = EntityDataManager.createKey(SpearEntity.class, DataSerializers.BYTE);
     private ItemStack thrownStack = new ItemStack(RankineItems.BRONZE_SPEAR.get());
     public ResourceLocation type;
     private boolean dealtDamage;
@@ -43,6 +48,7 @@ public class SpearEntity extends AbstractArrowEntity {
     public SpearEntity(World worldIn, LivingEntity thrower, ItemStack thrownStackIn, EntityType<SpearEntity> e, ResourceLocation type, float damage) {
         super(e, thrower, worldIn);
         this.thrownStack = thrownStackIn.copy();
+        this.dataManager.set(TELEPORT_LEVEL, (byte) EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDPOINT,thrownStackIn));
         this.dataManager.set(LOYALTY_LEVEL, (byte) EnchantmentHelper.getLoyaltyModifier(thrownStackIn));
         this.type = type;
         this.attackDamage = damage;
@@ -67,6 +73,7 @@ public class SpearEntity extends AbstractArrowEntity {
 
     protected void registerData() {
         super.registerData();
+        this.dataManager.register(TELEPORT_LEVEL, (byte)0);
         this.dataManager.register(LOYALTY_LEVEL, (byte)0);
     }
 
@@ -81,6 +88,21 @@ public class SpearEntity extends AbstractArrowEntity {
         }
 
         Entity entity = this.getShooter();
+        if (this.timeInGround == 4 && entity instanceof PlayerEntity && this.dataManager.get(TELEPORT_LEVEL) > 0) {
+            double x = this.getPosX();
+            double y = this.getPosY();
+            double z = this.getPosZ();
+            if (world.isRemote) {
+                world.addParticle(ParticleTypes.PORTAL, entity.getPosX(), entity.getPosY() + 0.5D, entity.getPosZ(), (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
+                world.addParticle(ParticleTypes.PORTAL, x, y + 0.5D, z, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
+            }
+            world.playSound(x,y,z,SoundEvents.ENTITY_ENDERMAN_TELEPORT,SoundCategory.PLAYERS,1f,1f,false);
+            entity.setPositionAndUpdate(x,y,z);
+            if (!((PlayerEntity) entity).isCreative()) {
+                entity.attackEntityFrom(DamageSource.FALL, Math.max(5.0F - 2.5F*(this.dataManager.get(TELEPORT_LEVEL) - 1),0));
+            }
+        }
+
         if ((this.dealtDamage || this.getNoClip()) && entity != null) {
             int i = this.dataManager.get(LOYALTY_LEVEL);
             if (i > 0 && !this.shouldReturnToThrower()) {
@@ -106,7 +128,6 @@ public class SpearEntity extends AbstractArrowEntity {
                 ++this.returningTicks;
             }
         }
-
         super.tick();
     }
 
