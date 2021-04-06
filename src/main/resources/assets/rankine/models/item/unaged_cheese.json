@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "rankine:item/cheese_wheel"
+    "layer0": "rankine:item/unaged_cheese_wheel"
   }
 }

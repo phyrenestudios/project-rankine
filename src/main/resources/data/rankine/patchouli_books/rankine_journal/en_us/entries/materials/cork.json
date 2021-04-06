@@ -5,18 +5,13 @@
   "pages": [
     {
       "type": "text",
-      "text": ""
+      "text": "Cork is obtained from Sharinga trees by $(l:mechanics/stripping)Stripping$(). It can be placed on the surface of water without any blocks below it."
     },
     {
       "type": "spotlight",
       "item": "rankine:cork",
       "link_recipe": true,
-      "text": "Cork is obtained from Sharinga trees by $(l:mechanics/stripping)Stripping$()."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:cork_block",
-      "text": "Cork blocks can be placed on the surface of water without any blocks below it."
+      "text": ""
     }
   ]
 }

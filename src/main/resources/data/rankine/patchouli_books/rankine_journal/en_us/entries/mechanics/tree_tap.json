@@ -1,17 +1,27 @@
 {
-  "name": "Tree Tap",
+  "name": "Tree Tapping",
   "icon": "rankine:tree_tap",
-  "category": "machines",
+  "category": "mechanics",
   "sortnum": 1,
   "pages": [
     {
       "type": "text",
-      "text": "The Tree Tap is a device that extracts various fluids from logs. The tap block is just a stick that protrudes from a log. Right click with an empty bucket to hang it on the tap. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. The extracted fluid is defined by the group of #rankine:logs_* tags."
+      "text": "The Tree Tap is a device that extracts various fluids from logs. The tap block is just a stick that protrudes from a log. Right click with an empty bucket to hang it on the tap. A tap with a bucket will eventually fill with liquid and can be retrieved by right clicking. The extracted fluid is defined by the group of #rankine:logs_* tags. Additional equipment can be used to automate the tapping process."
     },
     {
       "type": "crafting",
       "recipe": "rankine:tree_tap",
       "text": "The tap operates on random ticks. By default it will extract every 3 ticks, but this can be adjusted in the config. Tree taps will not work if there is another one in any adjacent block."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:tap_barrel",
+      "text": "The tap barrel is a tank for any fluid produced by tree tapping. It can hold six buckets worth of fluid. Right click with empty or full buckets to use. Has a comparator output based off level."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:tap_line",
+      "text": "Tap lines are essentially a pipe network for tree taps to output to a tap barrel. Fluids can not flow upwards. Tap lines will connect to a bucketed tree tap from below or to a tap barrel on the four sides. ~30 block max distance."
     },
     {
       "type": "spotlight",
@@ -41,7 +51,7 @@
       "type": "spotlight",
       "item": "rankine:juglone_bucket",
       "link_recipe": true,
-      "text": "Jugalone can be extracted from black walnut trees."
+      "text": "Juglone can be extracted from black walnut trees."
     },
     {
       "type": "spotlight",

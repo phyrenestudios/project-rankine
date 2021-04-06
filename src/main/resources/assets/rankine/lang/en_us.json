@@ -14,6 +14,8 @@
   "block.rankine.checkered_porphyry_stairs": "Checkered Porphyry Stairs",
   "block.rankine.checkered_porphyry_vertical_slab": "Checkered Porphyry Vertical Slab",
   "block.rankine.tree_tap": "Tree Tap",
+  "block.rankine.tap_barrel": "Tap Barrel",
+  "block.rankine.tap_line": "Tap Line",
   "block.rankine.amber_block": "Amber Block",
   "item.rankine.amber": "Amber",
   "item.rankine.sawdust": "Sawdust",
@@ -21,7 +23,7 @@
   "item.rankine.black_walnuts": "Black Walnuts",
   "item.rankine.flower_seeds": "Flower Seeds",
   "item.rankine.synthetic_leather": "Synthetic Leather",
-  "item.rankine.cork": "Cork",
+  "block.rankine.cork": "Cork",
   "block.rankine.black_walnut_planks": "Black Walnut Planks",
   "block.rankine.sharinga_planks": "Sharinga Planks",
   "block.rankine.cork_oak_planks": "Cork Oak Planks",
@@ -45,6 +47,14 @@
   "block.rankine.steel_door": "Steel Door",
   "block.rankine.bronze_door": "Bronze Door",
   "block.rankine.cupronickel_door": "Cupronickel Door",
+  "block.rankine.vulcanized_rubber_block": "Vulcanized Rubber Block",
+
+
+
+
+
+
+
 
   "block.rankine.granite_bricks": "Granite Bricks",
   "block.rankine.andesite_bricks": "Andesite Bricks",
@@ -896,7 +906,7 @@
   "item.rankine.pina_colada": "Pina Colada",
   "block.rankine.unaged_cheese": "Unaged Cheese",
   "block.rankine.aged_cheese": "Aged Cheese",
-  "item.rankine.cheese": "Cheese",
+  "item.rankine.cheese": "Cheese Slice",
   "item.rankine.cheese_wheel": "Cheese Wheel",
   "item.rankine.pancake_batter": "Pancake Batter",
   "item.rankine.pancake": "Pancake",

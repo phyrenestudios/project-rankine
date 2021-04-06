@@ -9,6 +9,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -35,6 +37,7 @@ public class FlowerSeedsItem extends Item {
             Block flower = tag.getRandomElement(worldIn.getRandom());
             if (!worldIn.isRemote) {
                 worldIn.setBlockState(pos.up(), flower.getDefaultState());
+                worldIn.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 0.7F, worldIn.getRandom().nextFloat() * 0.4F + 0.5F);
             }
         }
 

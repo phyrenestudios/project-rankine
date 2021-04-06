@@ -30,7 +30,9 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
-import com.cannolicatfish.rankine.blocks.treetap.TreeTapBlock;
+import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
+import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
+import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.fluids.RankineFluids;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.trees.*;
@@ -1491,7 +1493,11 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ENSTATITE = REGISTRY.register("enstatite", () -> new Block(DEF_ORE.harvestLevel(3)));
     public static final RegistryObject<Block> ENSTATITE_PAVER = REGISTRY.register("enstatite_paver", () -> new Block(DEF_ORE.harvestLevel(1)));
 
-    public static final RegistryObject<Block> CORK_BLOCK = REGISTRY.register("cork_block", () -> new Block(Block.Properties.create(Material.WOOL).sound(SoundType.CLOTH).hardnessAndResistance(1.0F, 2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> CORK = REGISTRY.register("cork", () -> new Block(Block.Properties.create(Material.WOOL).sound(SoundType.CLOTH).hardnessAndResistance(1.0F, 2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> VULCANIZED_RUBBER_BLOCK = REGISTRY.register("vulcanized_rubber_block", () -> new RubberBlock((AbstractBlock.Properties.create(Material.CLAY, MaterialColor.GRASS).slipperiness(0.8F).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SLIME))));
+
+
+
     public static final RegistryObject<Block> ALUMINUM_SHEETMETAL = REGISTRY.register("aluminum_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TITANIUM_SHEETMETAL = REGISTRY.register("titanium_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> NICKEL_SHEETMETAL = REGISTRY.register("nickel_sheetmetal", () -> new Block(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
@@ -1557,6 +1563,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TREE_TAP = REGISTRY.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
+    public static final RegistryObject<Block> TAP_BARREL = REGISTRY.register("tap_barrel", () -> new TapBarrelBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
+    public static final RegistryObject<Block> TAP_LINE = REGISTRY.register("tap_line", () -> new TapLineBlock(0.125f, AbstractBlock.Properties.create(Material.MISCELLANEOUS).sound(SoundType.CLOTH).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(0.5F).harvestLevel(0).notSolid()));
 
 
     public static final RegistryObject<Block> RED_LED = REGISTRY.register("red_led", () -> new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))));

@@ -75,6 +75,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
         public final ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
         public final ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
+        public final ForgeConfigSpec.DoubleValue CHEESE_AGE_CHANCE;
         public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
         public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
@@ -89,7 +90,9 @@ public class Config {
                     EXTRA_STRIPPABLES = b.comment("If enabled, extra items will drop from trees when stripped, such as paper, cork and sticks.")
                             .define("extraStrippables",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
-                                .defineInRange("herbicideRange", 2, 0, 5);
+                            .defineInRange("herbicideRange", 7, 0, 32);
+                    CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
+                            .defineInRange("cheeseAgeChance", 0.04D, 0.0D, 1.0D);
                     BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
                             .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
                     BRICKS_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")
@@ -313,7 +316,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue TREE_TAP_SAP;
         public final ForgeConfigSpec.BooleanValue TREE_TAP_LATEX;
         public final ForgeConfigSpec.BooleanValue TREE_TAP_RESIN;
-        public final ForgeConfigSpec.BooleanValue TREE_TAP_JUGALONE;
+        public final ForgeConfigSpec.BooleanValue TREE_TAP_JUGLONE;
         public final ForgeConfigSpec.IntValue TREE_TAP_SPEED;
 
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
@@ -346,8 +349,8 @@ public class Config {
                         .define("tapResin", true);
                 TREE_TAP_LATEX = b.comment("Enable the tapping of trees in #rankine:logs_latex for latex.")
                         .define("tapLatex", true);
-                TREE_TAP_JUGALONE = b.comment("Enable the tapping of trees in #rankine:logs_jugalone for jugalone.")
-                        .define("tapJugalone", true);
+                TREE_TAP_JUGLONE = b.comment("Enable the tapping of trees in #rankine:logs_juglone for juglone.")
+                        .define("tapJuglone", true);
                 TREE_TAP_SPEED = b.comment("The number of random ticks it takes the Tree Tap to process")
                         .defineInRange("treeTapSpeed", 3, 1, 1000);
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")

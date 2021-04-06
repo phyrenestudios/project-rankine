@@ -1,15 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "NR",
-    "NN"
+    "RRR",
+    "  R"
   ],
   "key": {
     "R": {
       "tag": "forge:rods/cast_iron"
-    },
-    "N": {
-      "tag": "rankine:crafting_metals_nuggets"
     }
   },
   "result": {
