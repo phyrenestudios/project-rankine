@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
 import com.cannolicatfish.rankine.blocks.states.TapLineShapes;
+import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.Maps;
 import net.minecraft.block.*;
@@ -50,8 +51,8 @@ public class TapLineBlock extends Block {
     }
 
     private VoxelShape[] makeShapes(float apothem) {
-        float f = 0.125F - apothem;
-        float f1 = 0.125F + apothem;
+        float f = 0.5F - apothem;
+        float f1 = 0.5F + apothem;
         VoxelShape voxelshape = Block.makeCuboidShape((double)(f * 16.0F), (double)(f * 16.0F), (double)(f * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F));
         VoxelShape[] avoxelshape = new VoxelShape[FACING_VALUES.length];
 
@@ -81,6 +82,22 @@ public class TapLineBlock extends Block {
         return false;
     }
 
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return this.shapes[this.getShapeIndex(state)];
+    }
+
+    protected int getShapeIndex(BlockState state) {
+        int i = 0;
+
+        for(int j = 0; j < FACING_VALUES.length; ++j) {
+            if (state.get(FACING_TO_PROPERTY_MAP.get(FACING_VALUES[j]))) {
+                i |= 1 << j;
+            }
+        }
+
+        return i;
+    }
+
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.makeConnections(context.getWorld(), context.getPos());
@@ -89,11 +106,17 @@ public class TapLineBlock extends Block {
     public BlockState makeConnections(IBlockReader blockReader, BlockPos pos) {
         Block block = blockReader.getBlockState(pos.down()).getBlock();
         Block block1 = blockReader.getBlockState(pos.up()).getBlock();
+        BlockState bs1 = blockReader.getBlockState(pos.up());
         Block block2 = blockReader.getBlockState(pos.north()).getBlock();
         Block block3 = blockReader.getBlockState(pos.east()).getBlock();
         Block block4 = blockReader.getBlockState(pos.south()).getBlock();
         Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-        return this.getDefaultState().with(DOWN, block == this).with(UP, block1 == this || block1 == RankineBlocks.TREE_TAP.get()).with(NORTH, block2 == this || block2 == RankineBlocks.TAP_BARREL.get()).with(EAST, block3 == this || block3 == RankineBlocks.TAP_BARREL.get()).with(SOUTH, block4 == this || block4 == RankineBlocks.TAP_BARREL.get()).with(WEST, block5 == this || block5 == RankineBlocks.TAP_BARREL.get());
+        return this.getDefaultState().with(DOWN, block == this)
+                .with(NORTH, block2 == this || block2 == RankineBlocks.TAP_BARREL.get())
+                .with(EAST, block3 == this || block3 == RankineBlocks.TAP_BARREL.get())
+                .with(SOUTH, block4 == this || block4 == RankineBlocks.TAP_BARREL.get())
+                .with(WEST, block5 == this || block5 == RankineBlocks.TAP_BARREL.get())
+                .with(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get() && bs1 != RankineBlocks.TREE_TAP.get().getDefaultState().with(TreeTapBlock.FLUID, TreeTapFluids.NONE)));
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
@@ -101,7 +124,22 @@ public class TapLineBlock extends Block {
             worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
             return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
         } else {
-            boolean flag = facingState.getBlock() == this || facingState.getBlock().matchesBlock(RankineBlocks.TREE_TAP.get()) || facingState.getBlock().matchesBlock(RankineBlocks.TAP_BARREL.get());
+            boolean flag = false;
+            Block fsb = facingState.getBlock();
+            switch (facing) {
+                case DOWN:
+                    flag = fsb == this;
+                    break;
+                case UP:
+                    flag = fsb == this || (fsb == RankineBlocks.TREE_TAP.get() && facingState != RankineBlocks.TREE_TAP.get().getDefaultState().with(TreeTapBlock.FLUID, TreeTapFluids.NONE));
+                    break;
+                case NORTH:
+                case SOUTH:
+                case EAST:
+                case WEST:
+                    flag = fsb == this || fsb.matchesBlock(RankineBlocks.TAP_BARREL.get());
+                    break;
+            }
             return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), flag);
         }
     }

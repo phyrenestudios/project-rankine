@@ -1,0 +1,21 @@
+{
+  "name": "Herbicide",
+  "icon": "rankine:herbicide",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Herbicide is used to kill plants. Right clicking will destroy all blocks in the tag #rankine:herbicidal in a radius (default 7, see config). If shift + right clicked, it will convert any block in #forge:dirt to coarse dirt in a 2 block radius."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:herbicide",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:herbicide_quicklime",
+      "text": ""
+    }
+  ]
+}

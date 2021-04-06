@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -26,7 +27,7 @@ public class UnagedCheeseBlock extends Block {
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
        super.tick(state, worldIn, pos, rand);
        World world = worldIn.getWorld();
-        if (rand.nextFloat() < 0.05 && !worldIn.isRemote) {
+        if (rand.nextFloat() < Config.GENERAL.CHEESE_AGE_CHANCE.get() && !worldIn.isRemote) {
             worldIn.setBlockState(pos, RankineBlocks.AGED_CHEESE.get().getDefaultState(),2);
             worldIn.neighborChanged(pos, RankineBlocks.AGED_CHEESE.get(), pos);
         }

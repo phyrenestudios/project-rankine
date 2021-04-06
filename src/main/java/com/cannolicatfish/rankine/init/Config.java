@@ -74,6 +74,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
         public final ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
         public final ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
+        public final ForgeConfigSpec.DoubleValue CHEESE_AGE_CHANCE;
         public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
         public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
@@ -88,7 +89,9 @@ public class Config {
                     EXTRA_STRIPPABLES = b.comment("If enabled, extra items will drop from trees when stripped, such as paper, cork and sticks.")
                             .define("extraStrippables",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
-                                .defineInRange("herbicideRange", 7, 0, 32);
+                            .defineInRange("herbicideRange", 7, 0, 32);
+                    CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
+                            .defineInRange("cheeseAgeChance", 0.04D, 0.0D, 1.0D);
                     BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
                             .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
                     BRICKS_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")

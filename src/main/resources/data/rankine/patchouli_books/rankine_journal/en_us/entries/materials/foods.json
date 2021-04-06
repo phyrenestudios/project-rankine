@@ -1,0 +1,33 @@
+{
+  "name": "Foods",
+  "icon": "rankine:pina_colada",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:pina_colada",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:unaged_cheese",
+      "text": "Place in the world for it to to convert to aged cheese which can be eaten like a cake."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cheese",
+      "link_recipe": true,
+      "text": "Obtained by right clicking aged cheese with a $(l:tools/knives)knife$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cake_slice",
+      "link_recipe": true,
+      "text": "Obtained by right clicking cake with a $(l:tools/knives)knife$()."
+    }
+  ]
+}
