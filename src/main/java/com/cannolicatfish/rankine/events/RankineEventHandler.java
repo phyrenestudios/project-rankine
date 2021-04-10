@@ -1,10 +1,8 @@
 package com.cannolicatfish.rankine.events;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
-import com.cannolicatfish.rankine.entities.*;
-import com.cannolicatfish.rankine.fluids.RankineFluids;
+import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
@@ -33,24 +31,17 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -60,16 +51,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -81,7 +67,6 @@ import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -90,7 +75,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
-import java.util.stream.Stream;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -1751,6 +1735,8 @@ public class RankineEventHandler {
                     }
                 } else if (b == RankineBlocks.CORK_OAK_LOG.get()) {
                     strip = new ItemStack(RankineItems.CORK.get(), 1);
+                } else if (b == RankineBlocks.CINNAMON_LOG.get()) {
+                    strip = new ItemStack(RankineItems.CINNAMON.get(), 1);
                 } else if (b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
                     if (world.getRandom().nextFloat() < 0.3) {
                         strip = new ItemStack(Items.STICK, 1);

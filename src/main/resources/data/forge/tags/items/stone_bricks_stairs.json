@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:granite_bricks_stairs",
+    "rankine:andesite_bricks_stairs",
+    "rankine:diorite_bricks_stairs",
     "rankine:gray_granite_bricks_stairs",
     "rankine:granodiorite_bricks_stairs",
     "rankine:hornblende_andesite_bricks_stairs",

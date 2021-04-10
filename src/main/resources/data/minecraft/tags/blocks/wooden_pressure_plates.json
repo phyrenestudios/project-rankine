@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "rankine:cinnamon_pressure_plate",
     "rankine:sharinga_pressure_plate",
     "rankine:black_walnut_pressure_plate",
     "rankine:cork_oak_pressure_plate",

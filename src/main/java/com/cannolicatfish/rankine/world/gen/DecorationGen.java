@@ -74,7 +74,8 @@ public class DecorationGen
                 new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_WALNUT_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MUSHROOM), true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true))
+                new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.CINNAMON_TREE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true))
 
             );
         } else {

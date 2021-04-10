@@ -61,6 +61,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:black_walnut_tree",BLACK_WALNUT_TREE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:cork_oak_tree",CORK_OAK_TREE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sharinga_tree",SHARINGA_TREE);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:cinnamon_tree",CINNAMON_TREE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:flat_bedrock",FLAT_BEDROCK);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:flat_bedrock_nether",FLAT_BEDROCK_NETHER);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:gravel_disks",GRAVEL_DISKS);
@@ -152,7 +153,16 @@ public class RankineFeatures {
             new SimpleBlockStateProvider(RankineBlocks.MAGNOLIA_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.MAGNOLIA_LEAVES.get().getDefaultState()),
             new AcaciaFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 0)),
-            new ForkyTrunkPlacer(3, 2, 2),
+            new ForkyTrunkPlacer(4, 2, 2),
+            new TwoLayerFeature(1, 0, 2)))
+            .setIgnoreVines()
+            .build();
+
+    public static final BaseTreeFeatureConfig CINNAMON_TREE_CONFIG = (new BaseTreeFeatureConfig.Builder(
+            new SimpleBlockStateProvider(RankineBlocks.CINNAMON_LOG.get().getDefaultState()),
+            new SimpleBlockStateProvider(RankineBlocks.CINNAMON_LEAVES.get().getDefaultState()),
+            new AcaciaFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 0)),
+            new ForkyTrunkPlacer(5, 2, 1),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
             .build();
@@ -179,7 +189,7 @@ public class RankineFeatures {
             new SimpleBlockStateProvider(RankineBlocks.COCONUT_PALM_LOG.get().getDefaultState()),
             new SimpleBlockStateProvider(RankineBlocks.COCONUT_PALM_LEAVES.get().getDefaultState()),
             new AcaciaFoliagePlacer(FeatureSpread.create(1, 0), FeatureSpread.create(0, 0)),
-            new ForkyTrunkPlacer(10, 2, 2),
+            new ForkyTrunkPlacer(7, 4, 2),
             new TwoLayerFeature(1, 0, 2)))
             .setIgnoreVines()
             .build();
@@ -335,7 +345,9 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> CORK_OAK_TREE = Feature.TREE.withConfiguration(CORK_OAK_TREE_CONFIG)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
     public static final ConfiguredFeature<?, ?> SHARINGA_TREE = Feature.TREE.withConfiguration(SHARINGA_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(4)));
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
+    public static final ConfiguredFeature<?, ?> CINNAMON_TREE = Feature.TREE.withConfiguration(CINNAMON_TREE_CONFIG)
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
 
 
 

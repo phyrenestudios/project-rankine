@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:toast"
+    },
+    {
+      "item": "rankine:cinnamon"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "rankine:cinnamon_toast",
+    "count": 1
+  }
+}

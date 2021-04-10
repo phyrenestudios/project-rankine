@@ -6,8 +6,6 @@
   "pages": [
 	{
       "type": "text",
-	  "title": "Evaporation Tower",
-	  "anchor": "evaporation_tower",
       "text": "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources. The resource lootable depends on the water of a location (biome). $(li)Oceans & Deserts $(li)Rivers and Swamps $(li)Elsewhere"
     },
     {
@@ -36,6 +34,26 @@
     {
       "type": "text",
       "text": "Construction notes: $(li)The inside is filled with water $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and water can be added to increase processing speed. The speed in ticks is calculated as 3200 (defined in config) / number of layers (up to the max in the config, 40 by default)."
+    },
+    {
+      "type": "text",
+      "title": "Evaporation Boiler",
+      "text": "A smaller version of the evaporation tower structure can be used to boil fluids down into certain materials. The structure is shown on the following page. FLuids are placed in the space above the Evaporation Tower block."
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "multiblock",
+      "multiblock": {
+        "pattern": [
+          [ " S ", "S S"," S " ],
+          [ " S ", "S0S"," S " ]
+        ],
+        "mapping": {
+          "0": "rankine:evaporation_tower",
+          "S": "#forge:sheetmetal"
+        },
+        "symmetrical": true
+      }
     }
   ]
 }

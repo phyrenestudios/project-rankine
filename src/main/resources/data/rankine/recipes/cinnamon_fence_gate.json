@@ -1,0 +1,19 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "S#S",
+        "S#S"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:cinnamon_planks"
+        },
+        "S": {
+          "item": "minecraft:stick"
+        }
+      },
+      "result": {
+        "item": "rankine:cinnamon_fence_gate",
+        "count": 1
+      }
+    }

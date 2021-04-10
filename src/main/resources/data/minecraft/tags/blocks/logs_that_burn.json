@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#rankine:cinnamon_logs",
     "#rankine:cedar_logs",
     "#rankine:sharinga_logs",
     "#rankine:black_walnut_logs",

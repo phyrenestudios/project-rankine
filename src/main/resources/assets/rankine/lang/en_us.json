@@ -20,7 +20,7 @@
   "item.rankine.amber": "Amber",
   "item.rankine.sawdust": "Sawdust",
   "item.rankine.juniper_berries": "Juniper Berries",
-  "item.rankine.black_walnuts": "Black Walnuts",
+  "item.rankine.black_walnut": "Black Walnut",
   "item.rankine.flower_seeds": "Flower Seeds",
   "item.rankine.synthetic_leather": "Synthetic Leather",
   "block.rankine.cork": "Cork",
@@ -48,12 +48,14 @@
   "block.rankine.bronze_door": "Bronze Door",
   "block.rankine.cupronickel_door": "Cupronickel Door",
   "block.rankine.vulcanized_rubber_block": "Vulcanized Rubber Block",
-
-
-
-
-
-
+  "item.rankine.maple_syrup": "Maple Syrup",
+  "item.rankine.roasted_walnut": "Roasted Walnut",
+  "item.rankine.cinnamon": "Cinnamon",
+  "item.rankine.trail_mix": "Trail Mix",
+  "item.rankine.toast": "Toast",
+  "item.rankine.cinnamon_toast": "Cinnamon Toast",
+  "block.rankine.trampoline": "Trampoline",
+  "item.rankine.bandage": "Bandage",
 
 
   "block.rankine.granite_bricks": "Granite Bricks",
@@ -957,6 +959,9 @@
   "block.rankine.sharinga_trapdoor": "Sharinga Trapdoor",
   "block.rankine.cork_oak_trapdoor": "Cork Oak Trapdoor",
   "block.rankine.black_walnut_trapdoor": "Black Walnut Trapdoor",
+  "block.rankine.sharinga_door": "Sharinga Door",
+  "block.rankine.cork_oak_door": "Cork Oak Door",
+  "block.rankine.black_walnut_door": "Black Walnut Door",
   "block.rankine.yellow_birch_vertical_slab": "Yellow Birch Vertical Slab",
   "block.rankine.black_birch_vertical_slab": "Black Birch Vertical Slab",
   "block.rankine.sharinga_vertical_slab": "Sharinga Vertical Slab",
@@ -1152,6 +1157,7 @@
   "fluid.rankine.sap": "Sap",
   "fluid.rankine.maple_sap": "Maple Sap",
   "fluid.rankine.latex": "Latex",
+  "fluid.rankine.resin": "Resin",
 
   "block.rankine.gas_vent": "Gas Vent",
   "block.rankine.hydrogen_gas_block": "Hydrogen Gas",
@@ -1358,6 +1364,23 @@
   "rankine.advancements.challenges.find_meteoric_materials.description": "Find all the forms of meteoric iron",
 
 
+  "block.rankine.cinnamon_planks": "Cinnamon Planks",
+  "block.rankine.cinnamon_vertical_slab": "Cinnamon Vertical Slab",
+  "block.rankine.cinnamon_trapdoor": "Cinnamon Trapdoor",
+  "block.rankine.cinnamon_slab": "Cinnamon Slab",
+  "block.rankine.cinnamon_stairs": "Cinnamon Stairs",
+  "block.rankine.cinnamon_fence": "Cinnamon Fence",
+  "block.rankine.cinnamon_fence_gate": "Cinnamon Fence Gate",
+  "block.rankine.cinnamon_pressure_plate": "Cinnamon Pressure Plate",
+  "block.rankine.cinnamon_button": "Cinnamon Button",
+  "block.rankine.cinnamon_door": "Cinnamon Door",
+  "block.rankine.cinnamon_log": "Cinnamon Log",
+  "block.rankine.cinnamon_wood": "Cinnamon Wood",
+  "block.rankine.stripped_cinnamon_log": "Stripped Cinnamon Log",
+  "block.rankine.stripped_cinnamon_wood": "Stripped Cinnamon Wood",
+  "block.rankine.cinnamon_leaves": "Cinnamon Leaves",
+  "block.rankine.cinnamon_sapling": "Cinnamon Sapling",
+  "block.rankine.potted_cinnamon_sapling": "Potted Cinnamon Sapling",
 
   "block.rankine.gray_granite": "Gray Granite",
   "block.rankine.polished_gray_granite": "Polished Gray Granite",
@@ -2116,6 +2139,7 @@
   "block.rankine.breccia_bricks_pressure_plate": "Breccia Bricks Pressure Plate",
   "block.rankine.breccia_button": "Breccia Button",
 
+  "item.rankine.netherite_nugget": "Solidified Netherite Nugget",
   "item.rankine.hydrogen_nugget": "Solidified Hydrogen Nugget",
   "item.rankine.helium_nugget": "Solidified Helium Nugget",
   "item.rankine.lithium_nugget": "Lithium Nugget",
@@ -2466,6 +2490,10 @@
   "block.rankine.livermorium_block": "Block of Livermorium",
   "block.rankine.tennessine_block": "Block of Tennessine",
   "block.rankine.oganesson_block": "Block of Solidified Oganesson",
+
+
+
+
   "rankine.advancements.story.root.title": "Project Rankine",
   "rankine.advancements.story.root.description": "Begin delving into the changed world",
   "rankine.advancements.story.gather_rope.title": "Knot Likely",

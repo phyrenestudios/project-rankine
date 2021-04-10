@@ -31,14 +31,14 @@ import java.util.*;
 public class TreeTapBlock extends Block {
     public static final EnumProperty<TreeTapFluids> FLUID = EnumProperty.create("fluid", TreeTapFluids.class);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    protected static final VoxelShape WEST_AABB = Block.makeCuboidShape(9.0D, 9.0D, 7.0D, 16.0D, 12.0D, 9.0D);
-    protected static final VoxelShape EAST_AABB = Block.makeCuboidShape(0.0D, 9.0D, 7.0D, 7.0D, 12.0D, 9.0D);
-    protected static final VoxelShape NORTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 9.0D, 9.0D, 12.0D, 16.0D);
-    protected static final VoxelShape SOUTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 0.0D, 9.0D, 12.0D, 7.0D);
-    protected static final VoxelShape TAP_WEST_AABB = Block.makeCuboidShape(7.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
-    protected static final VoxelShape TAP_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 4.0D, 9.0D, 13.0D, 12.0D);
-    protected static final VoxelShape TAP_NORTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 7.0D, 12.0D, 13.0D, 16.0D);
-    protected static final VoxelShape TAP_SOUTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 13.0D, 9.0D);
+    protected static final VoxelShape WEST_AABB = Block.makeCuboidShape(7.0D, 9.0D, 7.0D, 16.0D, 12.0D, 9.0D);
+    protected static final VoxelShape EAST_AABB = Block.makeCuboidShape(0.0D, 9.0D, 7.0D, 9.0D, 12.0D, 9.0D);
+    protected static final VoxelShape NORTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 7.0D, 9.0D, 12.0D, 16.0D);
+    protected static final VoxelShape SOUTH_AABB = Block.makeCuboidShape(7.0D, 9.0D, 0.0D, 9.0D, 12.0D, 9.0D);
+    protected static final VoxelShape TAP_WEST_AABB = Block.makeCuboidShape(5.0D, 0.0D, 4.0D, 16.0D, 13.0D, 12.0D);
+    protected static final VoxelShape TAP_EAST_AABB = Block.makeCuboidShape(0.0D, 0.0D, 4.0D, 11.0D, 13.0D, 12.0D);
+    protected static final VoxelShape TAP_NORTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 5.0D, 12.0D, 13.0D, 16.0D);
+    protected static final VoxelShape TAP_SOUTH_AABB = Block.makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 13.0D, 11.0D);
 
     private int ticks = 0;
 
@@ -152,9 +152,10 @@ public class TreeTapBlock extends Block {
                             toCheck.add(cp.east());
                             toCheck.add(cp.south());
                             toCheck.add(cp.west());
+                            toCheck.add(cp.down());
                         }
                     }
-                    if (checkedBlocks.size() > 100) {
+                    if (checkedBlocks.size() > 200) {
                         break;
                     }
                 }
