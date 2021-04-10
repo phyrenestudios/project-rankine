@@ -57,7 +57,7 @@ public class ZincElement implements ElementInterface {
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return -x/1000f;
     }
 
     @Override

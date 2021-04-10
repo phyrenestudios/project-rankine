@@ -38,20 +38,6 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
-        CompoundNBT nbt = stack.getTag();
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
-            String name = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
-            String[] sp = name.split(" ");
-            if (sp.length > 0) {
-                name = sp[sp.length - 1];
-            }
-            return new StringTextComponent(stack.getTag().getString("nameAdd") + " " + name);
-        }
-        return super.getDisplayName(stack);
-    }
-
-    @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
         if (getComposition(repair).size() != 0 && getComposition(toRepair).size() != 0 && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             INBT s = getComposition(repair).getCompound(0).get("comp");
@@ -115,6 +101,20 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineMetals) {
             items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
         }
+    }
+
+    @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        CompoundNBT nbt = stack.getTag();
+        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
+            String name = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
+            String[] sp = name.split(" ");
+            if (sp.length > 0) {
+                name = sp[sp.length - 1];
+            }
+            return new StringTextComponent(stack.getTag().getString("nameAdd") + " " + name);
+        }
+        return super.getDisplayName(stack);
     }
 
     @Override

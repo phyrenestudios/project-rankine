@@ -77,7 +77,10 @@ public class AlloyEnchantmentHandler {
     }
 
     public int returnEnchantmentLevel(Enchantment en, int enchantability) {
-        if (enchantability < start)
+        if (en.isCurse()) {
+            return 1;
+        }
+        else if (enchantability < start)
         {
             return 0;
         } else if (enchantability >= start + interval*maxLvl) {

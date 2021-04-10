@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " H ",
+    "WQL",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/rose_metal"
+    },
+    "Q": {
+      "tag": "forge:storage_blocks/quartz"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "H": {
+      "item": "rankine:stone_hammer"
+    }
+  },
+  "result": {
+    "item": "rankine:totem_of_cobbling",
+    "count": 1
+  }
+}

@@ -32,7 +32,7 @@ public class CleanseEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 1;
+        return 2;
     }
 
     public boolean canApplyTogether(Enchantment p_77326_1_) {

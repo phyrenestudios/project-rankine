@@ -12,7 +12,7 @@ public class PhlogistonElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/5f);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PhlogistonElement implements ElementInterface{
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return Math.max(-1,-x/10f);
     }
 
     @Override

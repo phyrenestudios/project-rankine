@@ -11,7 +11,7 @@ public class NitrogenElement implements ElementInterface {
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return 0;
+        return x;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class NitrogenElement implements ElementInterface {
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        return 0;
+        return Math.min(x/2f,1);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class NitrogenElement implements ElementInterface {
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(Math.min(x,2));
     }
 
     @Override

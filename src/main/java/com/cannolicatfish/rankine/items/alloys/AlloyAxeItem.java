@@ -2,7 +2,9 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
 import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,15 +14,18 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -150,8 +155,27 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+    public ITextComponent getDisplayName(ItemStack stack) {
+        CompoundNBT nbt = stack.getTag();
+        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
+            String name = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
+            String[] sp = name.split(" ");
+            if (sp.length > 0) {
+                name = sp[sp.length - 1];
+            }
+            return new StringTextComponent(stack.getTag().getString("nameAdd") + " " + name);
+        }
+        return super.getDisplayName(stack);
+    }
 
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
+            CompoundNBT nbt = stack.getTag();
+            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
+                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
+            }
+        }
         for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
         {
             int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
@@ -161,6 +185,18 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
         }
         super.onCreated(stack, worldIn, playerIn);
     }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
+            CompoundNBT nbt = stack.getTag();
+            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
+                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
+            }
+        }
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+    }
+
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {

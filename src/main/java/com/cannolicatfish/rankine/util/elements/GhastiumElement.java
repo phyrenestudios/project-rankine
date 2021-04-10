@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.util.elements;
 
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -12,7 +13,11 @@ public class GhastiumElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(x/5f);
+        if (x % 2 == 0) {
+            return Math.round(x*8f);
+        } else {
+            return Math.round(x*6f);
+        }
     }
 
     @Override
@@ -37,22 +42,26 @@ public class GhastiumElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        if (x % 2 == 0) {
+            return Math.round(x/10f);
+        } else {
+            return Math.round(x/5f);
+        }
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return -x/400f;
     }
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return x/250f;
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/200f;
     }
 
     @Override
@@ -62,6 +71,10 @@ public class GhastiumElement implements ElementInterface{
 
     @Override
     public Enchantment getEnchantments(int x) {
-        return Enchantments.MENDING;
+        if (x >= 10) {
+            return RankineEnchantments.GHAST_REGENERATION;
+        } else {
+            return null;
+        }
     }
 }

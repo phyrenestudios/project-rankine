@@ -1,0 +1,16 @@
+{
+  "name": "Gas Mask",
+  "icon": "rankine:gas_mask",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Gas blocks can be dangerous to linger around in due to the risks of suffocation and potentially negative effects. The Gas Mask blocks harmful effects and suffocation, while retaining the positive effects from gases."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:gas_mask",
+      "text": "The Gas Mask can be equipped as a helmet or can be combined with a helmet at an anvil. This will apply the $(l:mechanics/enchantments#gas_protection)Gas Protection$() enchantment."
+    }
+  ]
+}

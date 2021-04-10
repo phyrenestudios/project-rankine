@@ -28,9 +28,9 @@
     },
     {
       "type": "text",
-      "title": "Antiquated",
-      "anchor": "antiquated",
-      "text": "Antiquated increases the luck stat when held in the main hand or off hand. $(br2)Applicable to: $(li)Pewter Tools$() $(br)Levels: I-III"
+      "title": "Gas Protection",
+      "anchor": "gas_protection",
+      "text": "Applicable to Helmets. $(br2)Gas Protection prevents harmful effects and suffocation while in a gas block. Obtained by combining a helmet with a $(l:tools/gas_mask)Gas Mask$() in an anvil."
     },
     {
       "type": "text",
@@ -85,6 +85,36 @@
       "title": "Foraging",
       "anchor": "foraging",
       "text": "Foraging allows any level of hoe to be able to $(l:mechanics/foraging)Forage$(). The enchantment also expands the drops obtainable to include saltpeter, other food items and mob drops. Some drops are biome dependent. $(br2)Applicable to: $(li)$(l:tools/hoes)Hoes() $(br)Levels: I"
+    },
+    {
+      "type": "text",
+      "title": "Antiquated",
+      "anchor": "antiquated",
+      "text": "Antiquated increases the luck stat when held in the main hand or off hand. $(br2)Applicable to: $(li)Pewter Tools$() $(br)Levels: I-III"
+    },
+    {
+      "type": "text",
+      "title": "Cleanse",
+      "anchor": "cleanse",
+      "text": "Cleanse deals extra damage based on the number of effects the target has. $(br2)Applicable to: $(li)Stainless Steel Sword() $(br)Levels: I-II"
+    },
+    {
+      "type": "text",
+      "title": "Endpoint",
+      "anchor": "endpoint",
+      "text": "Endpoint teleports you to the end destination of your spear. Deals less damage as the level of the enchantment increases. $(br2)Only obtainable from the Endite element. $(br2)Applicable to: $(li)$(l:tools/spears)Spears$() $(br)Levels: I-III"
+    },
+    {
+      "type": "text",
+      "title": "Ghastly Regeneration",
+      "anchor": "ghastly_regeneration",
+      "text": "Ghastly Regeneration causes tools to repair themselves while the owner is under the effect of Regeneration. $(br2)Only obtainable from the Ghastium element. $(br2)Applicable to: $(li)Any tool$() $(br)Levels: I"
+    },
+    {
+      "type": "text",
+      "title": "Curse of Withering",
+      "anchor": "withering_curse",
+      "text": "Curse of Withering causes any damage to be taken (except Magic and Wither) to inflict the Wither effect on the owner. $(br2)Only obtainable from the Wither element. $(br2)Applicable to: $(li)Any tool$() $(br)Levels: I"
     }
   ]
 }

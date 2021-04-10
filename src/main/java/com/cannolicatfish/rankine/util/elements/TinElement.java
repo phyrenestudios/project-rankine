@@ -26,29 +26,26 @@ public class TinElement implements ElementInterface {
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        if (x >= 50)
-        {
-            return 4f;
-        } else
-        {
-            return (x-5)/10f;
-        }
+        return (x-5)/10f;
     }
 
     @Override
     public int getMiningLevelFromPercent(int x) {
-        return 0;
+        if (x >= 80) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        if (x >= 50)
-        {
-            return 5;
-        } else
-        {
+        if (x >= 50) {
+            return Math.round(x/15f + 3);
+        } else {
             return Math.round(x/20f + 2);
         }
+
     }
 
     @Override

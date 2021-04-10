@@ -28,7 +28,8 @@
     "additional": 0.2
   },
   "output6": {
-    "item": "rankine:fluorite",
+    "item": "rankine:thallium_nugget",
+    "count": 3,
     "chance": 0.2,
     "additional": 0.1
   }

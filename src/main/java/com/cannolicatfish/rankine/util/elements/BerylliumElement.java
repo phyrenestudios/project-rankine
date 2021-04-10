@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 
 public class BerylliumElement implements ElementInterface{
     @Override
@@ -61,6 +62,10 @@ public class BerylliumElement implements ElementInterface{
 
     @Override
     public Enchantment getEnchantments(int x) {
-        return null;
+        if (x >= 12) {
+            return Enchantments.FORTUNE;
+        } else {
+            return null;
+        }
     }
 }

@@ -9,6 +9,7 @@ import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerItem;
 import com.cannolicatfish.rankine.items.pendants.*;
 import com.cannolicatfish.rankine.items.tools.*;
+import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.util.alloys.*;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -1383,6 +1384,8 @@ public class RankineItems {
 
     //other
     public static final RegistryObject<Item> SODIUM_CARBONATE = REGISTRY.register("sodium_carbonate", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> SODIUM_SULFIDE = REGISTRY.register("sodium_sulfide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> SODIUM_HYDROXIDE = REGISTRY.register("sodium_hydroxide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BONE_CHAR = REGISTRY.register("bone_char", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> QUICKLIME = REGISTRY.register("quicklime", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> MAGNESIA = REGISTRY.register("magnesia", () -> new SimpleTooltipItem(Arrays.asList("Composition: MgO", "Used for high refractory bricks"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -1702,6 +1705,7 @@ public class RankineItems {
     public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_DETECTOR = REGISTRY.register("ore_detector", () -> new OreDetectorItem(Config.GENERAL.ORE_DETECTOR_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GLASS_CUTTER = REGISTRY.register("glass_cutter", () -> new GlassCutterItem(new Item.Properties().maxDamage(256).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> TOTEM_OF_COBBLING = REGISTRY.register("totem_of_cobbling", () -> new CobblingTotemItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HARDNESS_TESTER = REGISTRY.register("hardness_tester", () -> new HardnessTesterItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_CYCLER = REGISTRY.register("ore_cycler", () -> new OreCyclerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ELEMENT_INDEXER = REGISTRY.register("element_indexer", () -> new ElementIndexerItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
@@ -1944,24 +1948,24 @@ public class RankineItems {
     public static final RegistryObject<Item> OGANESSON_NUGGET = REGISTRY.register("oganesson_nugget", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> NETHERITE_NUGGET = REGISTRY.register("netherite_nugget", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
 
-    public static final RegistryObject<Item> HYDROGEN_INGOT = REGISTRY.register("hydrogen_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> HELIUM_INGOT = REGISTRY.register("helium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HYDROGEN_INGOT = REGISTRY.register("hydrogen_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.HYDROGEN, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HELIUM_INGOT = REGISTRY.register("helium_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.HELIUM, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> LITHIUM_INGOT = REGISTRY.register("lithium_ingot", () -> new ElementItem(1.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> BERYLLIUM_INGOT = REGISTRY.register("beryllium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> BORON_INGOT = REGISTRY.register("boron_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> CARBON_INGOT = REGISTRY.register("carbon_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> NITROGEN_INGOT = REGISTRY.register("nitrogen_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> OXYGEN_INGOT = REGISTRY.register("oxygen_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> FLUORINE_INGOT = REGISTRY.register("fluorine_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> NEON_INGOT = REGISTRY.register("neon_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> NITROGEN_INGOT = REGISTRY.register("nitrogen_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.NITROGEN, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> OXYGEN_INGOT = REGISTRY.register("oxygen_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.OXYGEN, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> FLUORINE_INGOT = REGISTRY.register("fluorine_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.FLUORINE, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> NEON_INGOT = REGISTRY.register("neon_ingot", () -> new GasElementItem(0.0f, false, 0,GasUtilsEnum.NEON, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> SODIUM_INGOT = REGISTRY.register("sodium_ingot", () -> new ElementItem(1.5f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> MAGNESIUM_INGOT = REGISTRY.register("magnesium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> ALUMINUM_INGOT = REGISTRY.register("aluminum_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> SILICON = REGISTRY.register("silicon", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> PHOSPHORUS = REGISTRY.register("phosphorus", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> SULFUR = REGISTRY.register("sulfur", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> CHLORINE_INGOT = REGISTRY.register("chlorine_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> ARGON_INGOT = REGISTRY.register("argon_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> CHLORINE_INGOT = REGISTRY.register("chlorine_ingot", () -> new GasElementItem(0.0f, false, 0,GasUtilsEnum.CHLORINE, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> ARGON_INGOT = REGISTRY.register("argon_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.ARGON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> POTASSIUM_INGOT = REGISTRY.register("potassium_ingot", () -> new ElementItem(2.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> CALCIUM_INGOT = REGISTRY.register("calcium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> SCANDIUM_INGOT = REGISTRY.register("scandium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -1978,7 +1982,7 @@ public class RankineItems {
     public static final RegistryObject<Item> ARSENIC_INGOT = REGISTRY.register("arsenic_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> SELENIUM_INGOT = REGISTRY.register("selenium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> BROMINE_INGOT = REGISTRY.register("bromine_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> KRYPTON_INGOT = REGISTRY.register("krypton_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> KRYPTON_INGOT = REGISTRY.register("krypton_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.KRYPTON, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> RUBIDIUM_INGOT = REGISTRY.register("rubidium_ingot", () -> new ElementItem(2.0f, true, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> STRONTIUM_INGOT = REGISTRY.register("strontium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> YTTRIUM_INGOT = REGISTRY.register("yttrium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -1996,7 +2000,7 @@ public class RankineItems {
     public static final RegistryObject<Item> ANTIMONY_INGOT = REGISTRY.register("antimony_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> TELLURIUM_INGOT = REGISTRY.register("tellurium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> IODINE_INGOT = REGISTRY.register("iodine_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> XENON_INGOT = REGISTRY.register("xenon_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> XENON_INGOT = REGISTRY.register("xenon_ingot", () -> new GasElementItem(0.0f, false, 0, GasUtilsEnum.XENON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> CESIUM_INGOT = REGISTRY.register("cesium_ingot", () -> new ElementItem(2.5f, true, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> BARIUM_INGOT = REGISTRY.register("barium_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> LANTHANUM_INGOT = REGISTRY.register("lanthanum_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -2027,7 +2031,7 @@ public class RankineItems {
     public static final RegistryObject<Item> BISMUTH_INGOT = REGISTRY.register("bismuth_ingot", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> POLONIUM_INGOT = REGISTRY.register("polonium_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> ASTATINE = REGISTRY.register("astatine", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> RADON_INGOT = REGISTRY.register("radon_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> RADON_INGOT = REGISTRY.register("radon_ingot", () -> new GasElementItem(0.0f, false, 1, GasUtilsEnum.RADON, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> FRANCIUM_INGOT = REGISTRY.register("francium_ingot", () -> new ElementItem(3.0f, true, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> RADIUM_INGOT = REGISTRY.register("radium_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> ACTINIUM_INGOT = REGISTRY.register("actinium_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -2059,7 +2063,7 @@ public class RankineItems {
     public static final RegistryObject<Item> MOSCOVIUM_INGOT = REGISTRY.register("moscovium_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> LIVERMORIUM_INGOT = REGISTRY.register("livermorium_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> TENNESSINE_INGOT = REGISTRY.register("tennessine_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> OGANESSON_INGOT = REGISTRY.register("oganesson_ingot", () -> new ElementItem(0.0f, false, 1, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> OGANESSON_INGOT = REGISTRY.register("oganesson_ingot", () -> new GasElementItem(0.0f, false, 1, GasUtilsEnum.OGANESSON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
 
     public static final RegistryObject<Item> HYDROGEN_BLOCK = REGISTRY.register("hydrogen_block", () -> new BlockItem(RankineBlocks.HYDROGEN_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HELIUM_BLOCK = REGISTRY.register("helium_block", () -> new BlockItem(RankineBlocks.HELIUM_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
