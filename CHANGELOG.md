@@ -2,7 +2,198 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
+## Project Rankine Version 1.2.2 Minor Changelog [2021-04-10]
+
+### Additions
+#### Blocks
+- Added blocks for Hydrogen Gas, Helium Gas, Nitrogen Gas, Oxygen Gas, Fluorine Gas, Neon Gas, Chlorine Gas, Argon Gas, Krypton Gas, Xenon Gas, Radon Gas, and Oganesson Gas. Gas blocks act as air blocks with special properties.
+
+
+- Added Sap, Maple Sap, Latex, Resin as fluids
+
+- Gun Cotton: creates small explosion
+
+- Camphor Basil Plant 
+
+- Aloe Plant
+
+- Sharinga tree and wood variants
+
+- Black Walnut tree and wood variants
+
+- Cork Oak tree and wood variants
+
+- Cinnamon tree and wood variants
+
+- Remaining wood variants of Black Birch, Yellow Birch and Bamboo Culms
+
+- Block of Amber
+
+- Tree Tap: used to collect liquids from trees
+
+- Tap Line: piping network for automated tree tapping
+
+- Tap Barrel: fluid barrel for any tree products
+
+- Trampoline: used to bounce entities upwards, scales with number of connected trampolines
+
+- Thenardite, Sodium Sulfide, Sodium Hydroxide
+
+- Added creative-only Gas Vent block that can emit a gas in an area (set via config)
+
+#### Items
+- On right click, Soldified Gas Ingots turn into their respective gas blocks
+
+- Shulker Gas Vacuum, which can be used to transport gas blocks
+
+- Totem of Cobbling, which places cobblestone and absorbs stones for durability when held either in the main hand or off-hand
+
+- Amber: decorative gem
+
+- Black Walnuts: droppped from black walnut leaves
+
+- Juniper Berries: droppped from juniper leaves
+
+- Added foods: Maple Syrup, Pancakes, Pancake Batter, Pancake Breakfast, Roasted Walnut, Toast, Cinnamon Toast, Trail Mix
+
+- Added miscellaneous materials for crafting: Cinnamon, Pulp, Sawdust, Dry Rubber
+
+- Added Buckets for tap fluids: Sap Bucket, Maple Sap Bucket, Latex Bucket, Resin Bucket, Jugalone Bucket
+
+- Cork: can place blocks directly on water
+
+- Synthetic Leather: used to craft leather
+
+- Bandage: instant heals for 2hp, 3 second cooldown
+
+- Flower Seeds: places a random flower from #rankine:flowers
+
+#### Misc Additions
+
+- Added recipes for new blocks/items
+
+- Added an alternative recipe for leather
+
+- Added an alternative recipe for sugar
+
+- Stripping log/wood blocks will drop items
+
+- Config options and tags for tree tapping
+
+- Config option for cheese aging time
+
+- Config options for various gas properties, such as dissipation rate and gas movement
+
+- Added more items to composter
+
+- Added crushing to Zircon
+ 
+
+
+### Changes
+
+- Blasting Powder will drop all items (like TNT)
+
+- Ore Detector now requires Indium Tin Oxide to craft
+
+- Evaporation Tower can use other liquids for processing
+
+- Functionality for knives now applies to all items in #rankine:knives
+
+- Gallium ore now gives Thallium nuggets at level 5 crushing
+
+#### Alloys
+- Bonus tool stats can now be changed via the config for all alloys
+
+- Reduced bonus stats for early-game alloy tools (these bonus stats have been transfered to main elements of the alloy)
+
+- Added Beryllium to Nickel Superalloy
+
+- Added Nitrogen to Stainless Steel
+
+
+#### Elements
+- Beryllium now gives the Fortune enchantment at greater than or equal to 12%
+
+- Copper now has Heat Resistance and Toughness as percentage increases
+
+- Tin has increased mining speed and enchantability at higher percentages (originally stopped increasing at 50%)
+
+- Tin increases mining level by 1 at percentages greater than 80%
+
+- Gold and Silver now has Heat Resistance as percentage increases
+
+- Silver and Tin gives more Enchantability at small percentages
+
+- Gold, Zinc, and Silver now has negative Toughness as percentage increases
+
+- Netherite is now has an Atomic Number of 161 rather than 156 (puts Netherite in the same period as Gold)
+
+- Added more Minecraft-related elements for compatibility with other modded alloys: 
+    - Mana (M), with an Atomic Number of 122 for Magic-related materials
+    - Slime (Sl), with an Atomic Number of 162 for Slime-related materials
+    - Prismarine (Mr), with an Atomic Number of 163 for Prismarine and Aquatic-related materials
+    - Wither (Wi), with an Atomic Number of 164 for Wither-related materials
+    - Ghast (Gh), with an Atomic Number of 165 for Ghast-related materials
+    - Phlogiston (Pg), with an Atomic Number of 166 for Blaze and Fire-related materials
+    - Endite (Ed), 167 - with an Atomic Number of 167 for End-related materials
+    - Dracocaeli (Dr), with an Atomic Number of 168 for Dragon-related materials 
+
+
+### Misc
+- Updated Forge version to 36.1.2
+
+- Ores should generate less often (hopefully never) with the base stone texture when they aren't supposed to
+
+- Ores now change their background stone texture if another ore is in the vacinity and has a background ore texture 
+
+- Journal Updates
+
+- Improved various older textures
+
+- Updated Tags
+
+- Updated misc textures
+
+- Added tags for vertical slabs
+
+- Fixed typo in localization of Block of Pewter
+
+- Fixed alloy tools not changing enchantability based on alloy composition
+
+- Fixed starting book config not giving the Rankine Journal if Patchouli is installed
+
+- Fixed steel advancement referencing an older process
+
+- Fixed bug with White Gold Spear not having its enchantment set
+
+- Fixed spears not having access to Impaling and Loyalty in the Enchantment Table
+
+- Fixed various bugs with incorrect values/registration for features
+
+- Fixed anvil item-related enchantments (Snowshoes, Ice Skates, Sandals) that could not be applied via commands
+
+
 ## Project Rankine Version 1.2.1 Minor Changelog [2021-3-8]
+
+
+### Hotfix 2 [2021-3-9]
+- Reverted Harvest Level change to Alloy tools
+
+- Crushing JEI, advancements, the Hardness Tester, and the journal now use actual harvest level values instead of the adjusted harvest level values
+
+- Fixed config to change harvest level of ores (stone config settings will be fixed in a later update)
+
+- Changed the default composition for Stainless Steel and Nickel Superalloy to a composition which gives Hardness Level 4
+
+- Fixed consistency between default composition of alloy ingots and alloy tools
+
+- Buffed Cobalt Superalloy tool bonus durability from 370 to 500
+
+- Removed debug code from some events
+
+### Hotfix 1 [2021-3-8]
+- Fixed Amalgam Sword recipe
 
 ### Additions
 
