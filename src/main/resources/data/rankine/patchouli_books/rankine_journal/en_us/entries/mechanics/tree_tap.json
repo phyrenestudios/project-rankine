@@ -39,31 +39,31 @@
       "type": "spotlight",
       "item": "rankine:latex_bucket",
       "link_recipe": true,
-      "text": "Latex can be extracted from sharinga trees."
+      "text": "Latex can be extracted from sharinga trees. Used to make dry rubber in the $(l:machines/evaporation_tower)Evaporation Tower$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:maple_sap_bucket",
       "link_recipe": true,
-      "text": "Maple sap can be extracted from maple trees."
+      "text": "Maple sap can be extracted from maple trees. Used to make maple syrup in the $(l:machines/evaporation_tower)Evaporation Tower$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:juglone_bucket",
       "link_recipe": true,
-      "text": "Juglone can be extracted from black walnut trees."
+      "text": "Juglone can be extracted from black walnut trees. Used to craft herbicide."
     },
     {
       "type": "spotlight",
       "item": "rankine:sap_bucket",
       "link_recipe": true,
-      "text": "Sap can be extracted from any other deciduous tree."
+      "text": "Sap can be extracted from any other deciduous tree. Used to make sugar in the $(l:machines/evaporation_tower)Evaporation Tower$()."
     },
     {
       "type": "spotlight",
       "item": "rankine:resin_bucket",
       "link_recipe": true,
-      "text": "Resin can be extracted from any other coniferous tree."
+      "text": "Resin can be extracted from any other coniferous tree. Used to make amber in the $(l:machines/evaporation_tower)Evaporation Tower$()."
     }
   ]
 }

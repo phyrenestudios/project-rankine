@@ -1,0 +1,12 @@
+{
+      "parent": "block/cube",
+      "textures": {
+        "particle": "rankine:block/stripped_cinnamon_log",
+        "down": "rankine:block/stripped_cinnamon_log_top",
+        "up": "rankine:block/stripped_cinnamon_log_top",
+        "east": "rankine:block/stripped_cinnamon_log",
+        "west": "rankine:block/stripped_cinnamon_log",
+        "north": "rankine:block/stripped_cinnamon_log",
+        "south": "rankine:block/stripped_cinnamon_log"
+      }
+    }

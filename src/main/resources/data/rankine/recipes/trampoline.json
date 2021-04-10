@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": false,
+  "pattern": [
+    "RRR",
+    "C C"
+  ],
+  "key": {
+    "R": {
+      "item": "rankine:vulcanized_rubber"
+    },
+    "C": {
+      "item": "rankine:alloy_rod",
+      "alloyData": "100Fe"
+    }
+  },
+  "result": {
+    "item": "rankine:trampoline",
+    "count": 3
+  }
+}

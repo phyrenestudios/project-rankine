@@ -1,0 +1,7 @@
+{
+        "variants": {
+            "type=bottom": { "model": "rankine:block/cinnamon_slab" },
+            "type=top": { "model": "rankine:block/cinnamon_slab_top" },
+            "type=double": { "model": "rankine:block/cinnamon_planks" }
+            }
+        }

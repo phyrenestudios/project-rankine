@@ -80,6 +80,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
         public final ForgeConfigSpec.IntValue HERBICIDE_RANGE;
+        public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
 
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
@@ -91,6 +92,8 @@ public class Config {
                             .define("extraStrippables",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
                             .defineInRange("herbicideRange", 7, 0, 32);
+                    TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
+                            .defineInRange("trampolineSize", 289, 0, 961);
                     CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
                             .defineInRange("cheeseAgeChance", 0.04D, 0.0D, 1.0D);
                     BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
@@ -323,6 +326,10 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
         public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
+        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_SAP;
+        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_MAPLE_SAP;
+        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_RESIN;
+        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_LATEX;
         public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_RANGE;
         public final ForgeConfigSpec.IntValue RANKINE_BOX_SPEED;
         public final ForgeConfigSpec.BooleanValue RANKINE_BOX_UP;
@@ -359,7 +366,15 @@ public class Config {
                         .defineInRange("charcoalPitSpeed", 5, 1, 200);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
-                EVAPORATION_TOWER_SPEED = b.comment("Base speed (in ticks) at which the evaporation tower generates resources.")
+                EVAPORATION_TOWER_SPEED_SAP = b.comment("Base speed (in ticks) at which the evaporation tower boils sap.")
+                    .defineInRange("evaporationTowerSpeedSap", 1600, 40, 120000);
+                EVAPORATION_TOWER_SPEED_MAPLE_SAP = b.comment("Base speed (in ticks) at which the evaporation tower boils maple sap.")
+                    .defineInRange("evaporationTowerSpeedMapleSap", 800, 40, 120000);
+                EVAPORATION_TOWER_SPEED_RESIN = b.comment("Base speed (in ticks) at which the evaporation tower boils resin.")
+                    .defineInRange("evaporationTowerSpeedResin", 1600, 40, 120000);
+                EVAPORATION_TOWER_SPEED_LATEX = b.comment("Base speed (in ticks) at which the evaporation tower boils latex.")
+                    .defineInRange("evaporationTowerSpeedLatex", 800, 40, 120000);
+                EVAPORATION_TOWER_SPEED = b.comment("Base speed (in ticks) at which the water / lava evaporation tower generates resources.")
                         .defineInRange("evaporationTowerSpeed", 3200, 40, 120000);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
                         .defineInRange("evaporationTowerHeight", 40, 0, 40);

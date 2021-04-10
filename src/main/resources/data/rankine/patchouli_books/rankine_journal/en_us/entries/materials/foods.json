@@ -19,6 +19,18 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:roasted_walnut",
+      "link_recipe": true,
+      "text": "Obtained by cooking a black walnut on a campfire"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:toast",
+      "link_recipe": true,
+      "text": "Obtained by cooking bread on a campfire"
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:cheese",
       "link_recipe": true,
       "text": "Obtained by right clicking aged cheese with a $(l:tools/knives)knife$()."
@@ -28,6 +40,26 @@
       "item": "rankine:cake_slice",
       "link_recipe": true,
       "text": "Obtained by right clicking cake with a $(l:tools/knives)knife$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:pancake_batter",
+      "text": "Cook on a campfire to make a pancake."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:pancake_breakfast",
+      "text": "Extra syrup please..."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:trail_mix",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cinnamon_toast",
+      "text": ""
     }
   ]
 }

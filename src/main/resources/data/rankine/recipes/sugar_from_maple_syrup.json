@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:maple_syrup"
+    }
+  ],
+  "result": {
+    "item": "minecraft:sugar",
+    "count": 2
+  }
+}

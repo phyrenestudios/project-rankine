@@ -1,4 +1,4 @@
-package com.cannolicatfish.rankine.fluids;
+package com.cannolicatfish.rankine.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.fluid.FlowingFluid;
@@ -30,4 +30,11 @@ public class RankineFluids {
 
     @ObjectHolder("rankine:flowing_latex")
     public static FlowingFluid FLOWING_LATEX;
+
+    @ObjectHolder("rankine:resin")
+    public static FlowingFluid RESIN;
+
+    @ObjectHolder("rankine:flowing_resin")
+    public static FlowingFluid FLOWING_RESIN;
+
 }

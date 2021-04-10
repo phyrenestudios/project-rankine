@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "rankine:cinnamon_button",
     "rankine:sharinga_button",
     "rankine:black_walnut_button",
     "rankine:cork_oak_button",

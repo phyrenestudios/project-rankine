@@ -125,29 +125,52 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                 } else if (cookTime > 0) {
                     this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.LIQUID_MERCURY_BLOCK.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == Items.SUGAR)) {
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.SAP.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == Items.SUGAR) && output.getCount() < 64) {
                     ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal / 4) {
+                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_SAP.get()) {
                         worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(Items.SUGAR,4));
+                        this.items.set(0, new ItemStack(Items.SUGAR,this.items.get(0).getCount()+1));
                         cookTime = 0;
                     }
                 } else if (cookTime > 0) {
                     this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.BONE_CHAR_BLOCK.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.DRY_RUBBER.get())) {
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.LATEX.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.DRY_RUBBER.get()) && output.getCount() < 64) {
                     ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal / 4) {
+                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_MAPLE_SAP.get()) {
                         worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(RankineItems.DRY_RUBBER.get(),4));
+                        this.items.set(0, new ItemStack(RankineItems.DRY_RUBBER.get(),this.items.get(0).getCount()+1));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                }
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.RESIN.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.AMBER.get()) && output.getCount() < 64) {
+                    ++this.cookTime;
+                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_RESIN.get()) {
+                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
+                        this.items.set(0, new ItemStack(RankineItems.AMBER.get(),this.items.get(0).getCount()+1));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                }
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.MAPLE_SAP.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.MAPLE_SYRUP.get()) && output.getCount() < 64) {
+                    ++this.cookTime;
+                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_LATEX.get()) {
+                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
+                        this.items.set(0, new ItemStack(RankineItems.MAPLE_SYRUP.get(),this.items.get(0).getCount()+1));
                         cookTime = 0;
                     }
                 } else if (cookTime > 0) {
                     this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
             }
+
         }
 
     }
@@ -177,7 +200,12 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     private boolean boilerStructure(BlockPos pos, World worldIn) {
         if (!worldIn.isRemote) {
-            return worldIn.getBlockState(pos.up().north()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) && worldIn.getBlockState(pos.up().east()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) && worldIn.getBlockState(pos.up().south()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal")) && worldIn.getBlockState(pos.up().west()).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"));
+            for (BlockPos p : Arrays.asList(pos.north(), pos.east(), pos.south(), pos.west(), pos.up().north(), pos.up().east(), pos.up().west(), pos.up().south())) {
+                if (!worldIn.getBlockState(p).getBlock().getTags().contains(new ResourceLocation("forge:sheetmetal"))) {
+                    return false;
+                }
+            }
+            return true;
         } else {
             return false;
         }
