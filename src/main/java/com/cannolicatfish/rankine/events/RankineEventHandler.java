@@ -1589,7 +1589,7 @@ public class RankineEventHandler {
         BlockState state = world.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
 
-        if (stack.getItem().getTags().contains(new ResourceLocation("rankine:knives"))) {
+        if (stack.getItem().getTags().contains(new ResourceLocation("rankine:knives")) && direction != null) {
             Block target = state.getBlock();
             if (target == Blocks.GRASS_BLOCK && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);

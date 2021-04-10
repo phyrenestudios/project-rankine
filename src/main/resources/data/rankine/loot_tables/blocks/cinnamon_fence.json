@@ -7,7 +7,7 @@
           [
             {
               "type": "minecraft:item",
-              "name": "rankine:cinnamon_fence_inventory"
+              "name": "rankine:cinnamon_fence"
             }
           ],
           "conditions":
