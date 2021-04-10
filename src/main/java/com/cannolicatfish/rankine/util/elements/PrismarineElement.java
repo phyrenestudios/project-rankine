@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util.elements;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 
 public class PrismarineElement implements ElementInterface{
     @Override
@@ -11,12 +12,17 @@ public class PrismarineElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(x/5f);
+        if (x < 20) {
+            return Math.round(Math.abs(x - 10));
+        } else {
+            return x - 10;
+        }
+
     }
 
     @Override
     public float getDamageFromPercent(int x) {
-        return 0;
+        return Math.min(1,x/25f);
     }
 
     @Override
@@ -36,12 +42,12 @@ public class PrismarineElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(x/10f);
     }
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return 0;
+        return Math.min(1,x/25f);
     }
 
     @Override
@@ -61,6 +67,10 @@ public class PrismarineElement implements ElementInterface{
 
     @Override
     public Enchantment getEnchantments(int x) {
-        return null;
+        if (x >= 20) {
+            return Enchantments.KNOCKBACK;
+        } else {
+            return null;
+        }
     }
 }

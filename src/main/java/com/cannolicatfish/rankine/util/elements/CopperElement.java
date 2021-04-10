@@ -72,12 +72,12 @@ public class CopperElement implements ElementInterface {
 
     @Override
     public float getHeatResistFromPercent(int x) {
-        return 0;
+        return x/400f;
     }
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/2000f;
     }
 
     @Override

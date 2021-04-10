@@ -11,7 +11,7 @@ public class SlimeElement implements ElementInterface{
 
     @Override
     public int getDurabilityFromPercent(int x) {
-        return Math.round(x/5f);
+        return 40*x;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SlimeElement implements ElementInterface{
 
     @Override
     public float getMiningSpeedFromPercent(int x) {
-        return 0;
+        return -x/10f;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SlimeElement implements ElementInterface{
 
     @Override
     public int getEnchantabilityFromPercent(int x) {
-        return 0;
+        return Math.round(Math.min(x/2f,8));
     }
 
     @Override

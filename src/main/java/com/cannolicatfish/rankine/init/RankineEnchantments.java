@@ -41,6 +41,9 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:speed_skater")
     public static Enchantment SPEED_SKATER;
 
+    @ObjectHolder("rankine:gas_protection")
+    public static Enchantment GAS_PROTECTION;
+
     @ObjectHolder("rankine:antiquated")
     public static Enchantment ANTIQUATED;
 
@@ -49,4 +52,10 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:endpoint")
     public static Enchantment ENDPOINT;
+
+    @ObjectHolder("rankine:ghast_regeneration")
+    public static Enchantment GHAST_REGENERATION;
+
+    @ObjectHolder("rankine:withering_curse")
+    public static Enchantment WITHERING_CURSE;
 }

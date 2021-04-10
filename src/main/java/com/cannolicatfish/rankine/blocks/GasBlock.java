@@ -1,12 +1,10 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineDamageSources;
-import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.tools.SparkLighterItem;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.block.*;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,6 +34,7 @@ import java.util.Random;
 
 public class GasBlock extends AirBlock {
 
+    private int ticks = 0;
     private final GasUtilsEnum gas;
 
     public GasBlock(GasUtilsEnum gas, Properties properties) {
@@ -45,11 +44,18 @@ public class GasBlock extends AirBlock {
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return Config.GASES.GAS_MOVEMENT.get();
+        return Config.GASES.GAS_MOVEMENT.get() || Config.GASES.GAS_DISSIPATION_SPEED.get() > 0;
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        if (Config.GASES.GAS_DISSIPATION_SPEED.get() > 0) {
+            if (ticks >= Config.GASES.GAS_DISSIPATION_SPEED.get()) {
+                worldIn.destroyBlock(pos,false);
+            } else {
+                ticks++;
+            }
+        }
         if (Config.GASES.GAS_MOVEMENT.get()) {
             if (pos.getY() >= 95) {
                 worldIn.setBlockState(pos,Blocks.AIR.getDefaultState(),3);
@@ -106,8 +112,9 @@ public class GasBlock extends AirBlock {
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity ent = (LivingEntity) entityIn;
+            boolean undead = ent.isEntityUndead() && Config.GASES.GAS_AFFECT_UNDEAD.get();
             boolean creative = (ent instanceof PlayerEntity && ((PlayerEntity) ent).isCreative());
-            boolean gasMask = ent.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.GAS_MASK.get();
+            boolean gasMask = ent.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.GAS_MASK.get() || EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.GAS_PROTECTION,ent.getItemStackFromSlot(EquipmentSlotType.HEAD)) > 0;
             if (!creative) {
                 if (gas.isSuffocating() && !gasMask) {
                     ent.setAir(Math.max(ent.getAir() - 3,0));
@@ -117,7 +124,7 @@ public class GasBlock extends AirBlock {
                 }
                 for (EffectInstance effect : gas.getEffects())
                 {
-                    if (effect.getPotion().isBeneficial() || !gasMask) {
+                    if (effect.getPotion().isBeneficial() || (!gasMask && !undead)) {
                         ent.addPotionEffect(effect);
                     }
 

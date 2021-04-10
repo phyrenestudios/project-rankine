@@ -119,6 +119,14 @@
     "#rankine:elements/livermorium",
     "#rankine:elements/tennessine",
     "#rankine:elements/oganesson",
-    "#rankine:elements/netherite"
+    "#rankine:elements/mana",
+    "#rankine:elements/netherite",
+    "#rankine:elements/slime",
+    "#rankine:elements/prismarine",
+    "#rankine:elements/wither",
+    "#rankine:elements/ghastium",
+    "#rankine:elements/phlogiston",
+    "#rankine:elements/endite",
+    "#rankine:elements/dracocaeli"
   ]
 }

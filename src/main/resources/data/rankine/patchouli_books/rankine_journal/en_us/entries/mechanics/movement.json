@@ -14,17 +14,17 @@
     {
       "type": "crafting",
       "recipe": "rankine:sandals",
-      "text": "Sandals can be used to walk faster on sand blocks. Combine boots of any type with sandals in an anvil to apply the $(l:magic/enchantments#dune_walker)Dune Walker$() enchantment."
+      "text": "Sandals can be used to walk faster on sand blocks. Combine boots of any type with sandals in an anvil to apply the $(l:mechanics/enchantments#dune_walker)Dune Walker$() enchantment."
     },
     {
       "type": "crafting",
       "recipe": "rankine:snowshoes",
-      "text": "Snowshoes can be used to walk faster on sand blocks. Combine boots of any type with snowshoes in an anvil to apply the $(l:magic/enchantments#snow_drifter)Snow Drifter$() enchantment."
+      "text": "Snowshoes can be used to walk faster on sand blocks. Combine boots of any type with snowshoes in an anvil to apply the $(l:mechanics/enchantments#snow_drifter)Snow Drifter$() enchantment."
     },
     {
       "type": "crafting",
       "recipe": "rankine:ice_skates",
-      "text": "Ice Skates can be used to walk faster on ice blocks. Combine boots of any type with ice skates in an anvil to apply the $(l:magic/enchantments#speed_skater)Speed Skater$() enchantment."
+      "text": "Ice Skates can be used to walk faster on ice blocks. Combine boots of any type with ice skates in an anvil to apply the $(l:mechanics/enchantments#speed_skater)Speed Skater$() enchantment."
     }
   ]
 }

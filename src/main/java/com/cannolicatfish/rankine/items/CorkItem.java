@@ -16,18 +16,26 @@ public class CorkItem extends BlockItem {
         super(blockIn, builder);
     }
 
+    @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        return ActionResultType.PASS;
+        ActionResultType actionresulttype = this.tryPlace(new BlockItemUseContext(context));
+        return !actionresulttype.isSuccessOrConsume() && this.isFood() ? this.onItemRightClick(context.getWorld(), context.getPlayer(), context.getHand()).getType() : actionresulttype;
     }
 
     /**
      * Called to trigger the item's "innate" right click behavior. To handle when this item is used on a Block, see
      * {@link #onItemUse}.
      */
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         BlockRayTraceResult blockraytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-        ActionResultType actionresulttype = super.onItemUse(new ItemUseContext(playerIn, handIn, blockraytraceresult));
-        return new ActionResult<>(actionresulttype, playerIn.getHeldItem(handIn));
+        if (!worldIn.getFluidState(blockraytraceresult.getPos()).isEmpty()) {
+            ActionResultType actionresulttype = super.onItemUse(new ItemUseContext(playerIn, handIn, blockraytraceresult));
+            return new ActionResult<>(actionresulttype, playerIn.getHeldItem(handIn));
+        } else {
+            return super.onItemRightClick(worldIn,playerIn,handIn);
+        }
+
     }
 
 }

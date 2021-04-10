@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloying",
   "tier": 2,
-  "total": 23,
+  "total": 24,
   "input1": {
     "element": "iron",
     "min": 0.65,
@@ -116,6 +116,11 @@
     "element": "phosphorus",
     "min": 0.0,
     "max": 0.12
+  },
+  "input24": {
+    "element": "nitrogen",
+    "min": 0.0,
+    "max": 0.02
   },
   "result": "rankine:stainless_steel_alloy"
 }

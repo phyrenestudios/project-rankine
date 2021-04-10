@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:trona"
+  },
+  "result": "rankine:sodium_carbonate",
+  "experience": 1.0,
+  "cookingtime": 100
+}

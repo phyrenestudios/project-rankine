@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.util.alloys;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
@@ -9,17 +10,37 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
 public enum AlloyUtilsEnum implements AlloyUtils {
-    ALLOY(RankineToolMaterials.ALLOY, 0,0,0,0,0,0,0,0,0f, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
-    AMALGAM(RankineToolMaterials.AMALGAM, 0,0,0,0,0,0,0,0,-0.2f, AlloyEnchantmentHandler.EMPTY,"60Hg-40Au", null),
-    BRONZE(RankineToolMaterials.BRONZE, 51,0,0,0,0,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
-    INVAR(RankineToolMaterials.INVAR, 0,0,0,0,0,0,0,0.25f,0.05f, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
-    ROSE_GOLD(RankineToolMaterials.ROSE_GOLD, 48,0,0,0,0,0,0.05f,0.35f,-0.1f,
+    ALLOY(RankineToolMaterials.ALLOY, Config.ALLOYS.ALLOY_BONUS_DURABILITY,Config.ALLOYS.ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.ALLOY_BONUS_HL,Config.ALLOYS.ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"80Hg-20Au", null),
+
+    AMALGAM(RankineToolMaterials.AMALGAM, Config.ALLOYS.AMALGAM_ALLOY_BONUS_DURABILITY,Config.ALLOYS.AMALGAM_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.AMALGAM_ALLOY_BONUS_HL,Config.ALLOYS.AMALGAM_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.AMALGAM_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.AMALGAM_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.AMALGAM_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.AMALGAM_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.AMALGAM_ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"60Hg-40Au", null),
+
+    BRONZE(RankineToolMaterials.BRONZE, Config.ALLOYS.BRONZE_ALLOY_BONUS_DURABILITY,Config.ALLOYS.BRONZE_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.BRONZE_ALLOY_BONUS_HL,Config.ALLOYS.BRONZE_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.BRONZE_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.BRONZE_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.BRONZE_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.BRONZE_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.BRONZE_ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"80Cu-20Sn", TextFormatting.GOLD),
+
+    INVAR(RankineToolMaterials.INVAR, Config.ALLOYS.INVAR_ALLOY_BONUS_DURABILITY,Config.ALLOYS.INVAR_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.INVAR_ALLOY_BONUS_HL,Config.ALLOYS.INVAR_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.INVAR_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.INVAR_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.INVAR_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.INVAR_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.INVAR_ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"90Fe-10Ni", TextFormatting.DARK_AQUA),
+
+    ROSE_GOLD(RankineToolMaterials.ROSE_GOLD, Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_DURABILITY,Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_HL,Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.ROSE_GOLD_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //axe
                     Collections.singletonList(new ResourceLocation("rankine","swing")), //hammer
                     Collections.singletonList(new ResourceLocation("minecraft","efficiency")), //hoe
@@ -28,7 +49,11 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","puncture")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","sharpness"))), //sword
             "75Au-22Cu-3Ni", TextFormatting.YELLOW),
-    WHITE_GOLD(RankineToolMaterials.WHITE_GOLD, 32,0,0,0,0,0,0.1f,0.3f,-0.2f,
+
+    WHITE_GOLD(RankineToolMaterials.WHITE_GOLD,  Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_DURABILITY,Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_HL,Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.WHITE_GOLD_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","fortune")), //axe
                     Collections.singletonList(new ResourceLocation("rankine","atomize")), //hammer
                     Collections.singletonList(new ResourceLocation("minecraft","fortune")), //hoe
@@ -37,7 +62,11 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("minecraft","impaling")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","looting"))), //sword
             "90Au-10Zn", TextFormatting.YELLOW),
-    GREEN_GOLD(RankineToolMaterials.GREEN_GOLD, 32,0,0,0,0,0,0.25f,0.45f,-0.15f,
+
+    GREEN_GOLD(RankineToolMaterials.GREEN_GOLD,  Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_DURABILITY,Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_HL,Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.GREEN_GOLD_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","mending")), //axe
                     Collections.singletonList(new ResourceLocation("minecraft","mending")), //hammer
                     Collections.singletonList(new ResourceLocation("minecraft","mending")), //hoe
@@ -46,7 +75,11 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("minecraft","mending")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","mending"))), //sword
             "50Au-50Ag", TextFormatting.YELLOW),
-    BLUE_GOLD(RankineToolMaterials.BLUE_GOLD, 32,0,0,0,0,0,0,0.2f,-0.05f,
+
+    BLUE_GOLD(RankineToolMaterials.BLUE_GOLD, Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_DURABILITY,Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_HL,Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.BLUE_GOLD_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //axe
                     Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hammer
                     Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //hoe
@@ -55,7 +88,11 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("minecraft","unbreaking")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","unbreaking"))), //sword
             "75Au-25Fe", TextFormatting.YELLOW),
-    PURPLE_GOLD(RankineToolMaterials.PURPLE_GOLD, 32,0,0,0,0,0,0.25f,0.25f,-0.1f,
+
+    PURPLE_GOLD(RankineToolMaterials.PURPLE_GOLD, Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_DURABILITY,Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_HL,Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.PURPLE_GOLD_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //axe
                     Collections.singletonList(new ResourceLocation("rankine","daze")), //hammer
                     Collections.singletonList(new ResourceLocation("minecraft","silk_touch")), //hoe
@@ -64,7 +101,11 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","impact")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","knockback"))), //sword
             "80Au-20Al", TextFormatting.YELLOW),
-    BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, 32,0,0,0,0,0,0f,0.2f,-0.05f,
+
+    BLACK_GOLD(RankineToolMaterials.BLACK_GOLD, Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_DURABILITY,Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_HL,Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.BLACK_GOLD_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods")), //axe
                     Collections.singletonList(new ResourceLocation("rankine","excavate")), //hammer
                     Collections.singletonList(new ResourceLocation("rankine","foraging")), //hoe
@@ -73,7 +114,11 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("minecraft","loyalty")), //spear
                     Collections.singletonList(new ResourceLocation("minecraft","bane_of_arthropods"))), //sword
             "75Au-25Co", TextFormatting.YELLOW),
-    PEWTER(RankineToolMaterials.PEWTER, 20,4,1,5,0,0,0.25F,0,-0.05f,
+
+    PEWTER(RankineToolMaterials.PEWTER, Config.ALLOYS.PEWTER_ALLOY_BONUS_DURABILITY,Config.ALLOYS.PEWTER_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.PEWTER_ALLOY_BONUS_HL,Config.ALLOYS.PEWTER_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.PEWTER_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.PEWTER_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.PEWTER_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.PEWTER_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.PEWTER_ALLOY_BONUS_TOUGHNESS,
             new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),
@@ -82,35 +127,59 @@ public enum AlloyUtilsEnum implements AlloyUtils {
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),
                     Collections.singletonList(new ResourceLocation("rankine","antiquated")),14,2,3),
             "90Sn-10Sb", TextFormatting.DARK_GREEN),
-    STEEL(RankineToolMaterials.STEEL, 460,4,1,0,0,0,0F,0,0.25f, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
-    TITANIUM(RankineToolMaterials.TITANIUM, 50,0,1,0,0,0,0F,0,0f, AlloyEnchantmentHandler.EMPTY,"90Ti-6Al-4V", TextFormatting.DARK_GRAY),
-    STAINLESS(RankineToolMaterials.STAINLESS, 760,4,1,0,0,0,0F,0,0.25f, new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
+
+    STEEL(RankineToolMaterials.STEEL, Config.ALLOYS.STEEL_ALLOY_BONUS_DURABILITY,Config.ALLOYS.STEEL_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.STEEL_ALLOY_BONUS_HL,Config.ALLOYS.STEEL_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.STEEL_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.STEEL_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.STEEL_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.STEEL_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.STEEL_ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"99Fe-1C", TextFormatting.DARK_GRAY),
+
+    TITANIUM(RankineToolMaterials.TITANIUM, Config.ALLOYS.TITANIUM_ALLOY_BONUS_DURABILITY,Config.ALLOYS.TITANIUM_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.TITANIUM_ALLOY_BONUS_HL,Config.ALLOYS.TITANIUM_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.TITANIUM_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.TITANIUM_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.TITANIUM_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.TITANIUM_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.TITANIUM_ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"90Ti-6Al-4V", TextFormatting.DARK_GRAY),
+
+    STAINLESS(RankineToolMaterials.STAINLESS, Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_DURABILITY,Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_HL,Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.STAINLESS_STEEL_ALLOY_BONUS_TOUGHNESS, new AlloyEnchantmentHandler(Collections.singletonList(new ResourceLocation("rankine","antiquated")),
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.emptyList(),
             Collections.singletonList(new ResourceLocation("rankine","cleanse")),14,2,3),"75Fe-18Cr-5Ni-2C", TextFormatting.WHITE),
-    TUNGSTEN(RankineToolMaterials.TUNGSTEN, 370,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
-    NICKEL_SA(RankineToolMaterials.NICKEL_SA, 970,3.5f,1,3,0,0,0F,0,0.15f, AlloyEnchantmentHandler.EMPTY,"70Ni-20Cr-10Co", TextFormatting.DARK_BLUE),
-    COBALT_SA(RankineToolMaterials.COBALT_SA, 500,3.5f,1,3,0,0,0F,0,0.3f, AlloyEnchantmentHandler.EMPTY,"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
+
+    TUNGSTEN(RankineToolMaterials.TUNGSTEN, Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_DURABILITY,Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_HL,Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_CORR_RESIST,Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.TUNGSTEN_HEAVY_ALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"90W-7Ni-3Fe", TextFormatting.DARK_PURPLE),
+
+    NICKEL_SA(RankineToolMaterials.NICKEL_SA, Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_DURABILITY,Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_HL,Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_CORR_RESIST,Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.NICKEL_SUPERALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"70Ni-20Cr-10Co", TextFormatting.DARK_BLUE),
+
+    COBALT_SA(RankineToolMaterials.COBALT_SA, Config.ALLOYS.COBALT_SUPERALLOY_BONUS_DURABILITY,Config.ALLOYS.COBALT_SUPERALLOY_BONUS_MINING_SPEED,
+            Config.ALLOYS.COBALT_SUPERALLOY_BONUS_HL,Config.ALLOYS.COBALT_SUPERALLOY_BONUS_ENCHANTABILITY,Config.ALLOYS.COBALT_SUPERALLOY_BONUS_DAMAGE,
+            Config.ALLOYS.COBALT_SUPERALLOY_BONUS_ATTACK_SPEED,Config.ALLOYS.COBALT_SUPERALLOY_BONUS_CORR_RESIST,Config.ALLOYS.COBALT_SUPERALLOY_BONUS_HEAT_RESIST,
+            Config.ALLOYS.COBALT_SUPERALLOY_BONUS_TOUGHNESS, AlloyEnchantmentHandler.EMPTY,"70Co-20Cr-10Ni", TextFormatting.DARK_BLUE);
 
     IItemTier tier;
-    int durabilityBonus;
-    float miningSpeedBonus;
-    int miningLevelBonus;
-    int enchantabilityBonus;
-    float attackDamageBonus;
-    float attackSpeedBonus;
-    float corrResistBonus;
-    float heatResistBonus;
-    float toughnessBonus;
+    ForgeConfigSpec.IntValue durabilityBonus;
+    ForgeConfigSpec.DoubleValue miningSpeedBonus;
+    ForgeConfigSpec.IntValue miningLevelBonus;
+    ForgeConfigSpec.IntValue enchantabilityBonus;
+    ForgeConfigSpec.DoubleValue attackDamageBonus;
+    ForgeConfigSpec.DoubleValue attackSpeedBonus;
+    ForgeConfigSpec.DoubleValue corrResistBonus;
+    ForgeConfigSpec.DoubleValue heatResistBonus;
+    ForgeConfigSpec.DoubleValue toughnessBonus;
     TextFormatting groupColor;
     AlloyEnchantmentHandler toolEnchants;
     String comp;
 
-    AlloyUtilsEnum(IItemTier tierIn, int durabilityIn, float miningSpeedIn, int miningLevelIn, int enchantabilityIn, float attackDamageIn,
-                   float attackSpeedIn, float corrResistIn, float heatResistIn, float toughnessIn, AlloyEnchantmentHandler toolEnchantsIn,
+    AlloyUtilsEnum(IItemTier tierIn, ForgeConfigSpec.IntValue durabilityIn, ForgeConfigSpec.DoubleValue miningSpeedIn, ForgeConfigSpec.IntValue miningLevelIn, ForgeConfigSpec.IntValue enchantabilityIn, ForgeConfigSpec.DoubleValue attackDamageIn,
+                   ForgeConfigSpec.DoubleValue attackSpeedIn, ForgeConfigSpec.DoubleValue corrResistIn, ForgeConfigSpec.DoubleValue heatResistIn, ForgeConfigSpec.DoubleValue toughnessIn, AlloyEnchantmentHandler toolEnchantsIn,
                    String defaultCompIn, @Nullable TextFormatting groupColorIn)
     {
 
@@ -136,47 +205,47 @@ public enum AlloyUtilsEnum implements AlloyUtils {
 
     @Override
     public int getDurabilityBonus() {
-        return this.durabilityBonus;
+        return this.durabilityBonus.get();
     }
 
     @Override
     public float getMiningSpeedBonus() {
-        return this.miningSpeedBonus;
+        return this.miningSpeedBonus.get().floatValue();
     }
 
     @Override
     public int getMiningLevelBonus() {
-        return this.miningLevelBonus;
+        return this.miningLevelBonus.get();
     }
 
     @Override
     public float getAttackDamageBonus() {
-        return this.attackDamageBonus;
+        return this.attackDamageBonus.get().floatValue();
     }
 
     @Override
     public float getAttackSpeedBonus() {
-        return this.attackSpeedBonus;
+        return this.attackSpeedBonus.get().floatValue();
     }
 
     @Override
     public int getEnchantabilityBonus() {
-        return this.enchantabilityBonus;
+        return this.enchantabilityBonus.get();
     }
 
     @Override
     public float getCorrResistBonus() {
-        return this.corrResistBonus;
+        return this.corrResistBonus.get().floatValue();
     }
 
     @Override
     public float getHeatResistBonus() {
-        return this.heatResistBonus;
+        return this.heatResistBonus.get().floatValue();
     }
 
     @Override
     public float getToughnessBonus() {
-        return this.toughnessBonus;
+        return this.toughnessBonus.get().floatValue();
     }
 
     @Override
