@@ -1783,24 +1783,22 @@ public class RankineEventHandler {
             BlockState activatedBlock = world.getBlockState(pos);
             Block b = activatedBlock.getBlock();
 
-            if (Config.GENERAL.EXTRA_STRIPPABLES.get()) {
-                ItemStack strip = null;
-                if (b == Blocks.BIRCH_LOG || b == RankineBlocks.YELLOW_BIRCH_LOG.get() || b == RankineBlocks.BLACK_BIRCH_LOG.get()) {
-                    if (world.getRandom().nextFloat() < 0.3) {
-                        strip = new ItemStack(Items.PAPER, 1);
-                    }
-                } else if (b == RankineBlocks.CORK_OAK_LOG.get()) {
-                    strip = new ItemStack(RankineItems.CORK.get(), 1);
-                } else if (b == RankineBlocks.CINNAMON_LOG.get()) {
-                    strip = new ItemStack(RankineItems.CINNAMON.get(), 1);
-                } else if (b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
-                    if (world.getRandom().nextFloat() < 0.3) {
-                        strip = new ItemStack(Items.STICK, 1);
-                    }
+            ItemStack strip = null;
+            if (Config.GENERAL.STRIPPABLES_PAPER.get() && b == Blocks.BIRCH_LOG || b == RankineBlocks.YELLOW_BIRCH_LOG.get() || b == RankineBlocks.BLACK_BIRCH_LOG.get()) {
+                if (world.getRandom().nextFloat() < 0.3) {
+                    strip = new ItemStack(Items.PAPER, 1);
                 }
-                if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots && strip != null) {
-                    spawnAsEntity(event.getWorld(), event.getPos(), strip);
+            } else if (Config.GENERAL.STRIPPABLES_CORK.get() && b == RankineBlocks.CORK_OAK_LOG.get()) {
+                strip = new ItemStack(RankineItems.CORK.get(), 1);
+            } else if (Config.GENERAL.STRIPPABLES_CINNAMON.get() && b == RankineBlocks.CINNAMON_LOG.get()) {
+                strip = new ItemStack(RankineItems.CINNAMON.get(), 1);
+            } else if (Config.GENERAL.STRIPPABLES_STICKS.get() && b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                if (world.getRandom().nextFloat() < 0.3) {
+                    strip = new ItemStack(Items.STICK, 1);
                 }
+            }
+            if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots && strip != null) {
+                spawnAsEntity(event.getWorld(), event.getPos(), strip);
             }
 
             if(stripping_map.get(activatedBlock.getBlock()) != null) {

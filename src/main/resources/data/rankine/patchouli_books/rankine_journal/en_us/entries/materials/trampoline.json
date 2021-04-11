@@ -1,0 +1,16 @@
+{
+  "name": "Trampoline",
+  "icon": "rankine:trampoline",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Trampolines are a simple way to remove moving parts from your entity transportation systems. Simply land on a trampoline to not take any fall damage and be bounced similar toa  slime block. However, the height of the bounce is determined by the number of trampolines."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:trampoline",
+      "text": ""
+    }
+  ]
+}

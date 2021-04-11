@@ -63,7 +63,10 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
-        public final ForgeConfigSpec.BooleanValue EXTRA_STRIPPABLES;
+        public final ForgeConfigSpec.BooleanValue STRIPPABLES_CORK;
+        public final ForgeConfigSpec.BooleanValue STRIPPABLES_PAPER;
+        public final ForgeConfigSpec.BooleanValue STRIPPABLES_CINNAMON;
+        public final ForgeConfigSpec.BooleanValue STRIPPABLES_STICKS;
         public final ForgeConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
@@ -88,8 +91,14 @@ public class Config {
                 b.comment("Miscellaneous").push("misc");
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
                             .define("colorWorld",true);
-                    EXTRA_STRIPPABLES = b.comment("If enabled, extra items will drop from trees when stripped, such as paper, cork and sticks.")
-                            .define("extraStrippables",true);
+                    STRIPPABLES_CINNAMON = b.comment("If enabled, cinnamon will drop from cinnamon trees when stripped.")
+                            .define("strippablesCinnamon",true);
+                    STRIPPABLES_CORK = b.comment("If enabled, cork will drop from cork oak trees when stripped.")
+                            .define("strippablesCork",true);
+                    STRIPPABLES_PAPER = b.comment("If enabled, paper will drop from birch trees when stripped (30% chance).")
+                            .define("strippablesPaper",true);
+                    STRIPPABLES_STICKS = b.comment("If enabled, sticks will drop from all other trees when stripped (30% chance).")
+                            .define("strippablesSticks",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
                             .defineInRange("herbicideRange", 7, 0, 32);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
