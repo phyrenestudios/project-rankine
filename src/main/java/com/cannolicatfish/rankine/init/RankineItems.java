@@ -1765,8 +1765,11 @@ public class RankineItems {
     public static final RegistryObject<Item> MAGNOLIA_BOAT = REGISTRY.register("magnolia_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.MAGNOLIA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HEMLOCK_BOAT = REGISTRY.register("eastern_hemlock_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.HEMLOCK, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MAPLE_BOAT = REGISTRY.register("maple_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.MAPLE, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BLACK_WALNUT_BOAT = REGISTRY.register("black_walnut_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BLACK_WALNUT, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SHARINGA_BOAT = REGISTRY.register("sharinga_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.SHARINGA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CORK_OAK_BOAT = REGISTRY.register("cork_oak_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.CORK_OAK, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CINNAMON_BOAT = REGISTRY.register("cinnamon_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.CINNAMON, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BAMBOO_BOAT = REGISTRY.register("bamboo_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BAMBOO, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-
     public static final RegistryObject<Item> DRIED_BAMBOO = REGISTRY.register("dried_bamboo", () -> new FuelItem(new Item.Properties().group(ProjectRankine.setup.rankineTools), 50));
     public static final RegistryObject<Item> HERBICIDE = REGISTRY.register("herbicide", () -> new HerbicideItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> DRY_RUBBER = REGISTRY.register("dry_rubber", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

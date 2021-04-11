@@ -87,6 +87,14 @@ public class RankineBoatEntity extends BoatEntity {
                 return RankineItems.HEMLOCK_BOAT.get();
             case MAPLE:
                 return RankineItems.MAPLE_BOAT.get();
+            case BLACK_WALNUT:
+                return RankineItems.BLACK_WALNUT_BOAT.get();
+            case SHARINGA:
+                return RankineItems.SHARINGA_BOAT.get();
+            case CORK_OAK:
+                return RankineItems.CORK_OAK_BOAT.get();
+            case CINNAMON:
+                return RankineItems.CINNAMON_BOAT.get();
             case BAMBOO:
                 return RankineItems.BAMBOO_BOAT.get();
         }
@@ -116,6 +124,10 @@ public class RankineBoatEntity extends BoatEntity {
         MAGNOLIA(RankineBlocks.MAGNOLIA_PLANKS.get(), "magnolia"),
         HEMLOCK(RankineBlocks.EASTERN_HEMLOCK_PLANKS.get(), "hemlock"),
         MAPLE(RankineBlocks.MAPLE_PLANKS.get(), "maple"),
+        BLACK_WALNUT(RankineBlocks.BLACK_WALNUT_PLANKS.get(), "black_walnut"),
+        SHARINGA(RankineBlocks.SHARINGA_PLANKS.get(), "sharinga"),
+        CORK_OAK(RankineBlocks.CORK_OAK_PLANKS.get(), "cork_oak"),
+        CINNAMON(RankineBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
         BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo");
 
 
