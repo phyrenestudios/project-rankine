@@ -952,16 +952,19 @@ public class RankineEventHandler {
             event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
                     alloyTool.getAlloyAttackSpeed(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils()),
                     AttributeModifier.Operation.ADDITION));
-        } else if (stack.getItem() instanceof IAlloyArmor && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getEquipmentSlot())
+        }
+
+        if (stack.getItem() instanceof IAlloyArmor && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getEquipmentSlot())
         {
             IAlloyArmor alloyArmor = (IAlloyArmor) stack.getItem();
-
+            int slot1 = event.getSlotType().getSlotIndex() * 2;
+            int slot2 = slot1 + 1;
             int tough = alloyArmor.getAlloyArmorToughness(alloyArmor.returnCompositionString(stack),alloyArmor.returnAlloyUtils());
             int def = alloyArmor.getAlloyDamageReduceAmount(alloyArmor.returnCompositionString(stack),alloyArmor.returnAlloyUtils(),((ArmorItem)stack.getItem()).getEquipmentSlot());
-            event.addModifier(Attributes.ARMOR_TOUGHNESS,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa1"), "Rankine Armor Toughness modifier",
+            event.addModifier(Attributes.ARMOR_TOUGHNESS,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa"+slot1), "Rankine Armor Toughness modifier",
                     tough,
                     AttributeModifier.Operation.ADDITION));
-            event.addModifier(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa2"), "Rankine Armor modifier",
+            event.addModifier(Attributes.ARMOR, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa"+slot2), "Rankine Armor modifier",
                     def,
                     AttributeModifier.Operation.ADDITION));
         }

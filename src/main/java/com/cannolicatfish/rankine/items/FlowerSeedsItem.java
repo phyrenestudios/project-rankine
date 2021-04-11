@@ -1,10 +1,9 @@
 package com.cannolicatfish.rankine.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
+import net.minecraft.item.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ActionResultType;
@@ -12,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -33,11 +33,14 @@ public class FlowerSeedsItem extends Item {
         BlockPos pos = context.getPos();
         Block b = worldIn.getBlockState(pos).getBlock();
         ITag<Block> tag =  BlockTags.getCollection().get(new ResourceLocation("rankine:flowers"));
-        if (tag != null && b.getTags().contains(new ResourceLocation("forge:dirt")) && worldIn.getBlockState(pos.up()).isAir()) {
+        if (!worldIn.isRemote && tag != null && b.getTags().contains(new ResourceLocation("forge:dirt")) && worldIn.getBlockState(pos.up()).isAir()) {
             Block flower = tag.getRandomElement(worldIn.getRandom());
-            if (!worldIn.isRemote) {
-                worldIn.setBlockState(pos.up(), flower.getDefaultState());
-                worldIn.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 0.7F, worldIn.getRandom().nextFloat() * 0.4F + 0.5F);
+            if (Minecraft.getInstance().objectMouseOver != null && context.getPlayer() != null) {
+                ActionResultType actionresulttype = ((BlockItem) flower.asItem()).tryPlace(new BlockItemUseContext(
+                        new ItemUseContext(context.getWorld(),context.getPlayer(),context.getHand(), context.getItem(),(BlockRayTraceResult) Minecraft.getInstance().objectMouseOver)));
+                return !actionresulttype.isSuccessOrConsume() && this.isFood() ? this.onItemRightClick(context.getWorld(), context.getPlayer(), context.getHand()).getType() : actionresulttype;
+            } else {
+                return ActionResultType.PASS;
             }
         }
 

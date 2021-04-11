@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": ""
+      "text": "Rubber is an elastic material used for various purposes."
     },
     {
       "type": "spotlight",
@@ -17,6 +17,11 @@
       "type": "crafting",
       "recipe": "rankine:vulcanized_rubber",
       "text": "A more elastic form of rubber that can be used to craft certain components."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:vulcanized_rubber_sodium_sulfide",
+      "text": "An alternative crafting method which produces more Vulcanized Rubber by using Sodium Sulfide."
     }
   ]
 }
