@@ -1,6 +1,5 @@
 {
-  "type": "rankine:alloy_crafting",
-  "inherit": false,
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "RRR",
     "C C"
@@ -10,8 +9,7 @@
       "item": "rankine:vulcanized_rubber"
     },
     "C": {
-      "item": "rankine:alloy_rod",
-      "alloyData": "100Fe"
+      "item": "rankine:cast_iron_rod"
     }
   },
   "result": {
