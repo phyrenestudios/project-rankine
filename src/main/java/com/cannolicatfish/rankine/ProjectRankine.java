@@ -141,6 +141,7 @@ public class ProjectRankine {
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
+
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
@@ -227,6 +228,7 @@ public class ProjectRankine {
             event.getRegistry().register(AlloyingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloying"));
             event.getRegistry().register(BeehiveOvenRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"beehive_oven"));
             event.getRegistry().register(SluicingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"sluicing"));
+            event.getRegistry().register(ElementRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"element"));
 
         }
 

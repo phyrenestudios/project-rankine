@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.indexer;
 
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -54,7 +55,7 @@ public class ElementIndexerItem extends Item {
     {
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-        return utils.hasElement(stack.getItem());
+        return true;
     }
 
 }

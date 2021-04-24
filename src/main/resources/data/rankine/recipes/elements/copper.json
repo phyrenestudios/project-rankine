@@ -1,0 +1,58 @@
+{
+  "type": "rankine:element",
+  "name": "copper",
+  "symbol": "Cu",
+  "color": 15382670,
+  "atomic": 29,
+  "potential": 0.52,
+  "items": ["T#forge:nuggets/copper","T#forge:ingots/copper","T#forge:blocks/copper"],
+  "values": [1,9,81],
+  "durability": {
+      "breaks": [100],
+      "formulas": ["EXPONENTIAL"],
+      "a": [1.055],
+      "b": [-1],
+      "modifiers": ["NONE"],
+      "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.05],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [2.5]
+  },
+  "mininglevel": {
+    "breaks": [20,100],
+    "formulas": ["CONSTANT","CONSTANT"],
+    "a": [0,1],
+    "b": [0,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [2],
+    "modifiers": ["MIN"],
+    "limit": [7]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0025],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0005],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

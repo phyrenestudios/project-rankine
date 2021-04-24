@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.items.indexer;
 
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -45,12 +47,12 @@ public class ElementIndexerContainer extends Container {
 
     }
 
-    public PeriodicTableUtils.Element getSlotItem() {
+    public ElementRecipe getSlotItem() {
         ItemStack stack = this.handler.getStackInSlot(0);
 
-        if (utils.hasElement(stack.getItem()))
+        if (utils.hasElementRecipe(stack, Minecraft.getInstance().world) && Minecraft.getInstance().world != null)
         {
-            return utils.getElementFromItem(stack.getItem());
+            return utils.getElementRecipe(stack, Minecraft.getInstance().world);
         } else {
             return null;
         }

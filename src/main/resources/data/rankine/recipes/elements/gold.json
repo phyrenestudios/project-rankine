@@ -1,0 +1,58 @@
+{
+  "type": "rankine:element",
+  "name": "gold",
+  "symbol": "Au",
+  "color": 16643423,
+  "atomic": 79,
+  "potential": 1.83,
+  "items": ["T#forge:nuggets/gold","T#forge:ingots/gold","T#forge:blocks/gold"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.8],
+    "b": [-48],
+    "modifiers": ["MAX"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [2],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [50,100],
+    "formulas": ["LINEAR","LINEAR"],
+    "a": [0.2,0.2],
+    "b": [0,2],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.01],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [1]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0025],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.0025],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

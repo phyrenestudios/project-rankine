@@ -1,0 +1,50 @@
+{
+  "type": "rankine:element",
+  "name": "aluminum",
+  "symbol": "Al",
+  "color": 15919335,
+  "atomic": 13,
+  "potential": -1.662,
+  "items": ["T#forge:nuggets/aluminum","T#forge:ingots/aluminum","T#forge:blocks/aluminum"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [2],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.2],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [17,100],
+    "formulas": ["CONSTANT","CONSTANT"],
+    "a": [0,1],
+    "b": [0,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.090909],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.02],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [1]
+  }
+}

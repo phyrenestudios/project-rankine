@@ -1,0 +1,60 @@
+{
+  "type": "rankine:element",
+  "name": "silver",
+  "symbol": "Ag",
+  "color": 15724527,
+  "atomic": 47,
+  "potential": 0.7996,
+  "items": ["T#forge:nuggets/silver","T#forge:ingots/silver","T#forge:blocks/silver"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LOGARITHMIC"],
+    "a": [20.6],
+    "b": [-35],
+    "modifiers": ["MAX"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.08],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [15,100],
+    "formulas": ["LINEAR","LINEAR"],
+    "a": [0.5,0.16],
+    "b": [0,5],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.01],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.002],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.002],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toolenchantment": "minecraft:smite",
+  "toolenchantmentmin": 10
+}

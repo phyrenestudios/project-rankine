@@ -1,0 +1,44 @@
+{
+  "type": "rankine:element",
+  "name": "beryllium",
+  "symbol": "Be",
+  "color": 6672537,
+  "atomic": 4,
+  "potential": -1.847,
+  "items": ["T#forge:nuggets/beryllium","T#forge:ingots/beryllium","T#forge:blocks/beryllium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [1.5],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.04],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [15,100],
+    "formulas": ["LINEAR"],
+    "a": [0.04],
+    "b": [1],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.004],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toolenchantment": "minecraft:fortune",
+  "toolenchantmentmin": 10
+}
