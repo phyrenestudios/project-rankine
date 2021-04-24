@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
@@ -16,6 +17,8 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
@@ -42,6 +45,11 @@ public class ClientProxy implements IProxy {
         }
     }
 
+    public static void registerItemProperties() {
+        ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
+                new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
+                        stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
+    }
     @Override
     public void init() {
         ScreenManager.registerFactory(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);

@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_tree_tap",
+  "display": {
+    "icon": {
+      "item": "rankine:bandage"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_bandage.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_bandage.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "bandage": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bandage"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bandage"
+    ]
+  ]
+}

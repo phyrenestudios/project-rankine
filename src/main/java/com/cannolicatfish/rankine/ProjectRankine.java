@@ -37,14 +37,12 @@ import com.cannolicatfish.rankine.util.POIFixer;
 import com.cannolicatfish.rankine.util.colors.SGVDItemColor;
 import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.block.WoodType;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
@@ -121,13 +119,7 @@ public class ProjectRankine {
 
     private void ClientSetup(FMLClientSetupEvent event) {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
-        event.enqueueWork(() ->
-                ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
-                        new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
-                                stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F));
-                WoodType.register(WoodType.create("cedar"));
-                WoodType.register(WoodType.create("white_birch"));
-                WoodType.register(WoodType.create("yellow_birch"));
+        event.enqueueWork(ClientProxy::registerItemProperties);
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 
