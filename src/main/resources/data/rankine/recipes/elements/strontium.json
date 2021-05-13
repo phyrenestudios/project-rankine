@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "strontium",
+          "symbol": "Sr",
+          "color": 16777215,
+          "atomic": 38,
+          "potential": 0,
+          "items": ["T#forge:nuggets/strontium","T#forge:ingots/strontium","T#forge:storage_blocks/strontium"],
+          "values": [1,9,81]
+        }

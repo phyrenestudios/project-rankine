@@ -1,0 +1,16 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bronze_block"
+    }
+  },
+  "result": {
+    "item": "rankine:bronze_alloy",
+    "count": 9
+  }
+}

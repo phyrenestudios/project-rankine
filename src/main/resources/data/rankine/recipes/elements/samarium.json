@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "samarium",
+          "symbol": "Sm",
+          "color": 16777215,
+          "atomic": 62,
+          "potential": 0,
+          "items": ["T#forge:nuggets/samarium","T#forge:ingots/samarium","T#forge:storage_blocks/samarium"],
+          "values": [1,9,81]
+        }

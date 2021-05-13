@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "scandium",
+          "symbol": "Sc",
+          "color": 16777215,
+          "atomic": 21,
+          "potential": 0,
+          "items": ["T#forge:nuggets/scandium","T#forge:ingots/scandium","T#forge:storage_blocks/scandium"],
+          "values": [1,9,81]
+        }

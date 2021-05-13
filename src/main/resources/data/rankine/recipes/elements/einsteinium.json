@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "einsteinium",
+          "symbol": "Es",
+          "color": 16777215,
+          "atomic": 99,
+          "potential": 0,
+          "items": ["T#forge:nuggets/einsteinium","T#forge:ingots/einsteinium","T#forge:storage_blocks/einsteinium"],
+          "values": [1,9,81]
+        }

@@ -5,8 +5,8 @@
   "color": 4997443,
   "atomic": 161,
   "potential": -0.04,
-  "items": ["T#forge:nuggets/netherite","T#forge:ingots/netherite","T#forge:blocks/netherite"],
-  "values": [1,9,81],
+  "items": ["T#forge:nuggets/netherite","I#minecraft:netherite_scrap","T#forge:ingots/netherite","T#forge:storage_blocks/netherite"],
+  "values": [1,2,9,81],
   "durability": {
     "breaks": [100],
     "formulas": ["LINEAR"],

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "radium",
+          "symbol": "Ra",
+          "color": 16777215,
+          "atomic": 88,
+          "potential": 0,
+          "items": ["T#forge:nuggets/radium","T#forge:ingots/radium","T#forge:storage_blocks/radium"],
+          "values": [1,9,81]
+        }

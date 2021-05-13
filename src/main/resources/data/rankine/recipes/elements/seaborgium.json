@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "seaborgium",
+          "symbol": "Sg",
+          "color": 16777215,
+          "atomic": 106,
+          "potential": 0,
+          "items": ["T#forge:nuggets/seaborgium","T#forge:ingots/seaborgium","T#forge:storage_blocks/seaborgium"],
+          "values": [1,9,81]
+        }

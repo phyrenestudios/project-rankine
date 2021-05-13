@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "titanium",
+          "symbol": "Ti",
+          "color": 16777215,
+          "atomic": 22,
+          "potential": 0,
+          "items": ["T#forge:nuggets/titanium","T#forge:ingots/titanium","T#forge:storage_blocks/titanium"],
+          "values": [1,9,81]
+        }

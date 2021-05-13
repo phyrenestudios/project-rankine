@@ -1,12 +1,16 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.NonNullList;
@@ -21,6 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AlloyItem extends Item {
 
@@ -115,6 +120,21 @@ public class AlloyItem extends Item {
 
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineMetals) {
+            /*if (Minecraft.getInstance().world != null) {
+                World worldIn = Minecraft.getInstance().world;
+                List<ICraftingRecipe> s = worldIn.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream().filter(iCraftingRecipe -> iCraftingRecipe.getRecipeOutput().getItem() == this).collect(Collectors.toList());
+                for (ICraftingRecipe recipe : s) {
+                    System.out.println("looking at recipes");
+                    if (recipe instanceof AlloyCraftingRecipe && !items.contains(recipe.getRecipeOutput())) {
+                        items.add(recipe.getRecipeOutput());
+                    }
+
+                }
+                ItemStack stack = getAlloyItemStack(new AlloyData(defComp));
+                if (!items.contains(stack)) {
+                    items.add(stack);
+                }
+            }*/
             items.add(getAlloyItemStack(new AlloyData(defComp)));
         }
     }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "americium",
+          "symbol": "Am",
+          "color": 16777215,
+          "atomic": 95,
+          "potential": 0,
+          "items": ["T#forge:nuggets/americium","T#forge:ingots/americium","T#forge:storage_blocks/americium"],
+          "values": [1,9,81]
+        }

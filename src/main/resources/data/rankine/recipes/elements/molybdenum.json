@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "molybdenum",
+          "symbol": "Mo",
+          "color": 16777215,
+          "atomic": 42,
+          "potential": 0,
+          "items": ["T#forge:nuggets/molybdenum","T#forge:ingots/molybdenum","T#forge:storage_blocks/molybdenum"],
+          "values": [1,9,81]
+        }

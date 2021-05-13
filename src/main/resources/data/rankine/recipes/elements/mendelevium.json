@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "mendelevium",
+          "symbol": "Md",
+          "color": 16777215,
+          "atomic": 101,
+          "potential": 0,
+          "items": ["T#forge:nuggets/mendelevium","T#forge:ingots/mendelevium","T#forge:storage_blocks/mendelevium"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "neon",
+          "symbol": "Ne",
+          "color": 16777215,
+          "atomic": 10,
+          "potential": 0,
+          "items": ["T#forge:nuggets/neon","T#forge:ingots/neon","T#forge:storage_blocks/neon"],
+          "values": [1,9,81]
+        }

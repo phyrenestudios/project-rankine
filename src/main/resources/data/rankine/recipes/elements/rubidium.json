@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "rubidium",
+          "symbol": "Rb",
+          "color": 16777215,
+          "atomic": 37,
+          "potential": 0,
+          "items": ["T#forge:nuggets/rubidium","T#forge:ingots/rubidium","T#forge:storage_blocks/rubidium"],
+          "values": [1,9,81]
+        }

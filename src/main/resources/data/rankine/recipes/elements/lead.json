@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "lead",
+          "symbol": "Pb",
+          "color": 16777215,
+          "atomic": 82,
+          "potential": 0,
+          "items": ["T#forge:nuggets/lead","T#forge:ingots/lead","T#forge:storage_blocks/lead"],
+          "values": [1,9,81]
+        }

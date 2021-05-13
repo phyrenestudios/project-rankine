@@ -1247,6 +1247,8 @@
   "enchantment.rankine.withering_curse.desc": "Taking damage (that isn't wither or magic related) causes you to receive the Wither effect for a short duration.",
   "enchantment.rankine.ghast_regeneration": "Ghastly Regeneration",
   "enchantment.rankine.ghast_regeneration.desc": "Regeneration potions restore durability.",
+  "enchantment.rankine.prying": "Prying",
+  "enchantment.rankine.prying.desc": "On hit, has a chance to cause the target to drop their held item. Chance is determined by rarity of the item.",
 
   "jei.description.crushing_basic": "Can be obtained by crushing ores using a machine or a Bronze Hammer.",
   "rankine.jei.crushing": "Crushing",
@@ -1255,6 +1257,7 @@
   "rankine.jei.sluicing": "Gold Panning",
   "rankine.jei.evaporation": "Evaporation",
   "rankine.jei.beeoven": "Beehive Oven",
+  "rankine.jei.element": "Element Details",
   "rankine.jei.finery": "Refining Iron",
   "itemGroup.rankine_world": "Project Rankine Building",
   "itemGroup.rankine_metallurgy": "Project Rankine Metallurgy",

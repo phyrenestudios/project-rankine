@@ -237,6 +237,19 @@ public class RankineEventHandler {
             player.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 400 * (headSlot+chestSlot+legsSlot+feetSlot), 0, false, false, true));
         }
 
+
+        if (player.getEntityWorld().getGameTime() % 1200L == 0) {
+            int count = 0;
+            for (ItemStack s : player.getArmorInventoryList()) {
+                if (s.isEnchanted() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.GUARD, s) > 0) {
+                    count+=2;
+                }
+            }
+            if (player.getAbsorptionAmount() < count) {
+                player.setAbsorptionAmount(count);
+            }
+        }
+
         ItemStack ghast = ItemStack.EMPTY;
         for(int i = 0; i < player.inventory.getSizeInventory(); ++i) {
             ItemStack itemstack = player.inventory.getStackInSlot(i);

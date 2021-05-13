@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "nickel",
+          "symbol": "Ni",
+          "color": 16777215,
+          "atomic": 28,
+          "potential": 0,
+          "items": ["T#forge:nuggets/nickel","T#forge:ingots/nickel","T#forge:storage_blocks/nickel"],
+          "values": [1,9,81]
+        }

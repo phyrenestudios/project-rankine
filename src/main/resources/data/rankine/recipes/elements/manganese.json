@@ -5,7 +5,7 @@
   "color": 15450555,
   "atomic": 25,
   "potential": 0.52,
-  "items": ["T#forge:nuggets/manganese","T#forge:ingots/manganese","T#forge:blocks/manganese"],
+  "items": ["T#forge:nuggets/manganese","T#forge:ingots/manganese","T#forge:storage_blocks/manganese"],
   "values": [1,9,81],
   "durability": {
     "breaks": [2,10,12,16,100],

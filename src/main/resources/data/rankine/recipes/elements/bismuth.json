@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "bismuth",
+          "symbol": "Bi",
+          "color": 16777215,
+          "atomic": 83,
+          "potential": 0,
+          "items": ["T#forge:nuggets/bismuth","T#forge:ingots/bismuth","T#forge:storage_blocks/bismuth"],
+          "values": [1,9,81]
+        }

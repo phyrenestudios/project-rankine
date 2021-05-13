@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "bromine",
+          "symbol": "Br",
+          "color": 16777215,
+          "atomic": 35,
+          "potential": 0,
+          "items": ["T#forge:nuggets/bromine","T#forge:ingots/bromine","T#forge:storage_blocks/bromine"],
+          "values": [1,9,81]
+        }

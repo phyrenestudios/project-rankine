@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "tungsten",
+          "symbol": "W",
+          "color": 16777215,
+          "atomic": 74,
+          "potential": 0,
+          "items": ["T#forge:nuggets/tungsten","T#forge:ingots/tungsten","T#forge:storage_blocks/tungsten"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "oganesson",
+          "symbol": "Og",
+          "color": 16777215,
+          "atomic": 118,
+          "potential": 0,
+          "items": ["T#forge:nuggets/oganesson","T#forge:ingots/oganesson","T#forge:storage_blocks/oganesson"],
+          "values": [1,9,81]
+        }

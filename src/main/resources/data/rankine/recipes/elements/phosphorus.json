@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "phosphorus",
+          "symbol": "P",
+          "color": 16777215,
+          "atomic": 15,
+          "potential": 0,
+          "items": ["T#forge:nuggets/phosphorus","T#forge:ingots/phosphorus","T#forge:storage_blocks/phosphorus"],
+          "values": [1,9,81]
+        }

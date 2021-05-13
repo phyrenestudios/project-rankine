@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "hassium",
+          "symbol": "Hs",
+          "color": 16777215,
+          "atomic": 108,
+          "potential": 0,
+          "items": ["T#forge:nuggets/hassium","T#forge:ingots/hassium","T#forge:storage_blocks/hassium"],
+          "values": [1,9,81]
+        }

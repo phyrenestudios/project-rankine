@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "dubnium",
+          "symbol": "Db",
+          "color": 16777215,
+          "atomic": 105,
+          "potential": 0,
+          "items": ["T#forge:nuggets/dubnium","T#forge:ingots/dubnium","T#forge:storage_blocks/dubnium"],
+          "values": [1,9,81]
+        }

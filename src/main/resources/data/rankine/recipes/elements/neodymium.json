@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "neodymium",
+          "symbol": "Nd",
+          "color": 16777215,
+          "atomic": 60,
+          "potential": 0,
+          "items": ["T#forge:nuggets/neodymium","T#forge:ingots/neodymium","T#forge:storage_blocks/neodymium"],
+          "values": [1,9,81]
+        }

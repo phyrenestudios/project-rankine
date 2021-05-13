@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "palladium",
+          "symbol": "Pd",
+          "color": 16777215,
+          "atomic": 46,
+          "potential": 0,
+          "items": ["T#forge:nuggets/palladium","T#forge:ingots/palladium","T#forge:storage_blocks/palladium"],
+          "values": [1,9,81]
+        }

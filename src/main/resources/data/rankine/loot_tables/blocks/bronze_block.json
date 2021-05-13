@@ -1,1 +1,32 @@
-{ "type": "minecraft:block", "pools": [ { "rolls": 1, "entries": [ { "type": "minecraft:item", "name": "rankine:bronze_block" } ], "conditions": [ { "condition": "minecraft:survives_explosion" } ] } ] }
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "comp",
+                  "target": "StoredComposition.comp",
+                  "op": "append"
+                }
+              ]
+            }
+          ],
+          "name": "rankine:bronze_block"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

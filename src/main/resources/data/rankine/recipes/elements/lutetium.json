@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "lutetium",
+          "symbol": "Lu",
+          "color": 16777215,
+          "atomic": 71,
+          "potential": 0,
+          "items": ["T#forge:nuggets/lutetium","T#forge:ingots/lutetium","T#forge:storage_blocks/lutetium"],
+          "values": [1,9,81]
+        }

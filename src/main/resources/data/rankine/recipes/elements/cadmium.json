@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "cadmium",
+          "symbol": "Cd",
+          "color": 16777215,
+          "atomic": 48,
+          "potential": 0,
+          "items": ["T#forge:nuggets/cadmium","T#forge:ingots/cadmium","T#forge:storage_blocks/cadmium"],
+          "values": [1,9,81]
+        }

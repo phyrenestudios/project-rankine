@@ -5,7 +5,7 @@
   "color": 15382670,
   "atomic": 29,
   "potential": 0.52,
-  "items": ["T#forge:nuggets/copper","T#forge:ingots/copper","T#forge:blocks/copper"],
+  "items": ["T#forge:nuggets/copper","T#forge:ingots/copper","T#forge:storage_blocks/copper"],
   "values": [1,9,81],
   "durability": {
       "breaks": [100],
@@ -24,12 +24,12 @@
     "limit": [2.5]
   },
   "mininglevel": {
-    "breaks": [20,100],
-    "formulas": ["CONSTANT","CONSTANT"],
-    "a": [0,1],
-    "b": [0,0],
-    "modifiers": ["NONE","NONE"],
-    "limit": [0,0]
+    "breaks": [9,19,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
   },
   "enchantability": {
     "breaks": [100],

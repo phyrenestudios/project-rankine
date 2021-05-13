@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "argon",
+          "symbol": "Ar",
+          "color": 16777215,
+          "atomic": 18,
+          "potential": 0,
+          "items": ["T#forge:nuggets/argon","T#forge:ingots/argon","T#forge:storage_blocks/argon"],
+          "values": [1,9,81]
+        }

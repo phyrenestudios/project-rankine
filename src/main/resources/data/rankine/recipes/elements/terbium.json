@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "terbium",
+          "symbol": "Tb",
+          "color": 16777215,
+          "atomic": 65,
+          "potential": 0,
+          "items": ["T#forge:nuggets/terbium","T#forge:ingots/terbium","T#forge:storage_blocks/terbium"],
+          "values": [1,9,81]
+        }

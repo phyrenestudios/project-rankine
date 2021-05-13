@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "vanadium",
+          "symbol": "V",
+          "color": 16777215,
+          "atomic": 23,
+          "potential": 0,
+          "items": ["T#forge:nuggets/vanadium","T#forge:ingots/vanadium","T#forge:storage_blocks/vanadium"],
+          "values": [1,9,81]
+        }

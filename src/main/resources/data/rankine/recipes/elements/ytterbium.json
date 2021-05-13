@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "ytterbium",
+          "symbol": "Yb",
+          "color": 16777215,
+          "atomic": 70,
+          "potential": 0,
+          "items": ["T#forge:nuggets/ytterbium","T#forge:ingots/ytterbium","T#forge:storage_blocks/ytterbium"],
+          "values": [1,9,81]
+        }

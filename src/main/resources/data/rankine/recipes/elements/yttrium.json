@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "yttrium",
+          "symbol": "Y",
+          "color": 16777215,
+          "atomic": 39,
+          "potential": 0,
+          "items": ["T#forge:nuggets/yttrium","T#forge:ingots/yttrium","T#forge:storage_blocks/yttrium"],
+          "values": [1,9,81]
+        }

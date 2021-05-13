@@ -49,8 +49,10 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     private final String group;
     private final boolean inherit;
     public static final AlloyCraftingRecipe.Serializer SERIALIZER = new AlloyCraftingRecipe.Serializer();
+    private final String displayComp;
 
-    public AlloyCraftingRecipe(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit) {
+    public AlloyCraftingRecipe(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit,
+                               String displayCompIn) {
         this.id = idIn;
         this.group = groupIn;
         this.recipeWidth = recipeWidthIn;
@@ -58,6 +60,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         this.recipeItems = recipeItemsIn;
         this.recipeOutput = recipeOutputIn;
         this.inherit = inherit;
+        this.displayComp = displayCompIn;
     }
 
     public ResourceLocation getId() {
@@ -80,6 +83,15 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
      * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
      */
     public ItemStack getRecipeOutput() {
+        ItemStack stack = this.recipeOutput;
+        if (!this.displayComp.equals(""))
+        {
+            AlloyItem.addAlloy(stack,new AlloyData(this.displayComp));
+            CompoundNBT nbt = stack.getTag();
+            if (nbt != null && nbt.getString("nameAdd").isEmpty() && Minecraft.getInstance().world != null) {
+                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(this.displayComp,Minecraft.getInstance().world));
+            }
+        }
         return this.recipeOutput;
     }
 
@@ -373,7 +385,8 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             NonNullList<Ingredient> nonnulllist = AlloyCraftingRecipe.deserializeIngredients(astring, map, i, j);
             ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
             boolean e = json.has("inherit") && JSONUtils.getBoolean(json, "inherit");
-            return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, e);
+            String dis = JSONUtils.getString(json, "displayComp", "");
+            return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, e,dis);
         }
 
         public AlloyCraftingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
@@ -388,7 +401,8 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
 
             ItemStack itemstack = buffer.readItemStack();
             boolean e = buffer.readBoolean();
-            return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, e);
+            String dis = buffer.readString();
+            return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, e,dis);
         }
 
         public void write(PacketBuffer buffer, AlloyCraftingRecipe recipe) {
@@ -402,6 +416,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             }
             buffer.writeItemStack(recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
+            buffer.writeString(recipe.displayComp);
         }
     }
 }

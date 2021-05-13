@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import com.google.gson.JsonArray;
@@ -12,10 +13,12 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -86,6 +89,15 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     @Override
+    public boolean isDynamic() {
+        return true;
+    }
+
+    public String getGroup() {
+        return "";
+    }
+
+    @Override
     public ItemStack getCraftingResult(IInventory inv) {
         return ItemStack.EMPTY;
     }
@@ -97,7 +109,30 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return ItemStack.EMPTY;
+        return new ItemStack(RankineItems.ELEMENT.get());
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.withSize(items.size(),Ingredient.EMPTY);
+        int count = 0;
+        for (String s : getItems()) {
+
+            if (s.contains("T#")) {
+                ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation(s.split("T#")[1]));
+
+                if (tag != null){
+                    list.set(count,Ingredient.fromTag(tag));
+                }
+            } else if (s.contains("I#")) {
+                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
+                if (item != null) {
+                    list.set(count,Ingredient.fromItems(() -> item));
+                }
+            }
+            count++;
+        }
+        return list;
     }
 
     @Override
@@ -254,6 +289,8 @@ public class ElementRecipe implements IRecipe<IInventory> {
     public IRecipeSerializer<?> getSerializer() {
         return SERIALIZER;
     }
+
+
 
     public int getMaterialCount(Item reg) {
         for (int i = 0; i < getItems().size(); i++) {

@@ -136,6 +136,9 @@ public class AlloyRecipeHelper {
                 if (name.contains(" Ingot")) {
                     name = name.split(" Ingot")[0];
                 }
+                if (name.contains(" Alloy") && !name.contains("Heavy Alloy")) {
+                    name = name.split(" Alloy")[0];
+                }
                 return name;
             }
         }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "germanium",
+          "symbol": "Ge",
+          "color": 16777215,
+          "atomic": 32,
+          "potential": 0,
+          "items": ["T#forge:nuggets/germanium","T#forge:ingots/germanium","T#forge:storage_blocks/germanium"],
+          "values": [1,9,81]
+        }

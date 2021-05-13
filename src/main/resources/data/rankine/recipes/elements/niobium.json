@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "niobium",
+          "symbol": "Nb",
+          "color": 16777215,
+          "atomic": 41,
+          "potential": 0,
+          "items": ["T#forge:nuggets/niobium","T#forge:ingots/niobium","T#forge:storage_blocks/niobium"],
+          "values": [1,9,81]
+        }

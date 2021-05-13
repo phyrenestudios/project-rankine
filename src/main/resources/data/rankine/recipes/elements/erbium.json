@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "erbium",
+          "symbol": "Er",
+          "color": 16777215,
+          "atomic": 68,
+          "potential": 0,
+          "items": ["T#forge:nuggets/erbium","T#forge:ingots/erbium","T#forge:storage_blocks/erbium"],
+          "values": [1,9,81]
+        }

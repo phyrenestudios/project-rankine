@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "hafnium",
+          "symbol": "Hf",
+          "color": 16777215,
+          "atomic": 72,
+          "potential": 0,
+          "items": ["T#forge:nuggets/hafnium","T#forge:ingots/hafnium","T#forge:storage_blocks/hafnium"],
+          "values": [1,9,81]
+        }

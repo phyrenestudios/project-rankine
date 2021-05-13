@@ -5,6 +5,8 @@ import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
+import com.cannolicatfish.rankine.blocks.alloys.AlloyBlock;
+import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleBlock;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
@@ -1368,7 +1370,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_GOLD_BLOCK = REGISTRY.register("black_gold_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> INVAR_BLOCK = REGISTRY.register("invar_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> PEWTER_BLOCK = REGISTRY.register("pewter_block", () -> new Block(DEF_METAL_BLOCK));
-    public static final RegistryObject<Block> BRONZE_BLOCK = REGISTRY.register("bronze_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> BRONZE_BLOCK = REGISTRY.register("bronze_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> OSMIRIDIUM_BLOCK = REGISTRY.register("osmiridium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> STEEL_BLOCK = REGISTRY.register("steel_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> STAINLESS_STEEL_BLOCK = REGISTRY.register("stainless_steel_block", () -> new Block(DEF_METAL_BLOCK));
@@ -1665,6 +1667,9 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:rankine_box")
     public static TileEntityType<RankineBoxTile> RANKINE_BOX_TILE;
+
+    @ObjectHolder("rankine:bronze_alloy_block")
+    public static TileEntityType<AlloyBlockTile> ALLOY_BLOCK_TILE;
 
     @ObjectHolder("rankine:laser_quarry")
     public static ContainerType<LaserQuarryContainer> LASER_QUARRY_CONTAINER;

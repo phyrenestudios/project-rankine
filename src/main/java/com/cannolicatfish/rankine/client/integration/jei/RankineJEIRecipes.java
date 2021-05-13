@@ -1,10 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
-import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.SluicingRecipe;
+import com.cannolicatfish.rankine.recipe.*;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -39,6 +36,10 @@ public class RankineJEIRecipes {
 
     public List<SluicingRecipe> getSluicingRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.SLUICING);
+    }
+
+    public List<ElementRecipe> getElementRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ELEMENT);
     }
 
     public static <T> void checkNotNull(@Nullable T object, String name) {

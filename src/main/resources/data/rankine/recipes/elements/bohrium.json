@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "bohrium",
+          "symbol": "Bh",
+          "color": 16777215,
+          "atomic": 107,
+          "potential": 0,
+          "items": ["T#forge:nuggets/bohrium","T#forge:ingots/bohrium","T#forge:storage_blocks/bohrium"],
+          "values": [1,9,81]
+        }

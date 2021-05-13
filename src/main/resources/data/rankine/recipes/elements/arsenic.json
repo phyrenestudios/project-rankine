@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "arsenic",
+          "symbol": "As",
+          "color": 16777215,
+          "atomic": 33,
+          "potential": 0,
+          "items": ["T#forge:nuggets/arsenic","T#forge:ingots/arsenic","T#forge:storage_blocks/arsenic"],
+          "values": [1,9,81]
+        }

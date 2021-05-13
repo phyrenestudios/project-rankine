@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "cobalt",
+          "symbol": "Co",
+          "color": 16777215,
+          "atomic": 27,
+          "potential": 0,
+          "items": ["T#forge:nuggets/cobalt","T#forge:ingots/cobalt","T#forge:storage_blocks/cobalt"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "barium",
+          "symbol": "Ba",
+          "color": 16777215,
+          "atomic": 56,
+          "potential": 0,
+          "items": ["T#forge:nuggets/barium","T#forge:ingots/barium","T#forge:storage_blocks/barium"],
+          "values": [1,9,81]
+        }

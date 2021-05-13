@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "livermorium",
+          "symbol": "Lv",
+          "color": 16777215,
+          "atomic": 116,
+          "potential": 0,
+          "items": ["T#forge:nuggets/livermorium","T#forge:ingots/livermorium","T#forge:storage_blocks/livermorium"],
+          "values": [1,9,81]
+        }

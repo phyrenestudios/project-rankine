@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "silicon",
+          "symbol": "Si",
+          "color": 16777215,
+          "atomic": 14,
+          "potential": 0,
+          "items": ["T#forge:nuggets/silicon","T#forge:ingots/silicon","T#forge:storage_blocks/silicon"],
+          "values": [1,9,81]
+        }

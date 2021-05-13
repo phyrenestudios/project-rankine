@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "tantalum",
+          "symbol": "Ta",
+          "color": 16777215,
+          "atomic": 73,
+          "potential": 0,
+          "items": ["T#forge:nuggets/tantalum","T#forge:ingots/tantalum","T#forge:storage_blocks/tantalum"],
+          "values": [1,9,81]
+        }

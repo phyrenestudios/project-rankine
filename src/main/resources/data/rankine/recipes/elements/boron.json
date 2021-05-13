@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "boron",
+          "symbol": "B",
+          "color": 16777215,
+          "atomic": 5,
+          "potential": 0,
+          "items": ["T#forge:nuggets/boron","T#forge:ingots/boron","T#forge:storage_blocks/boron"],
+          "values": [1,9,81]
+        }

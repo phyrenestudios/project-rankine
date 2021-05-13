@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "radon",
+          "symbol": "Rn",
+          "color": 16777215,
+          "atomic": 86,
+          "potential": 0,
+          "items": ["T#forge:nuggets/radon","T#forge:ingots/radon","T#forge:storage_blocks/radon"],
+          "values": [1,9,81]
+        }

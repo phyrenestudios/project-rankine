@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "iodine",
+          "symbol": "I",
+          "color": 16777215,
+          "atomic": 53,
+          "potential": 0,
+          "items": ["T#forge:nuggets/iodine","T#forge:ingots/iodine","T#forge:storage_blocks/iodine"],
+          "values": [1,9,81]
+        }

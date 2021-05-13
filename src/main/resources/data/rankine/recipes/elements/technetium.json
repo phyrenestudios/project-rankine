@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "technetium",
+          "symbol": "Tc",
+          "color": 16777215,
+          "atomic": 43,
+          "potential": 0,
+          "items": ["T#forge:nuggets/technetium","T#forge:ingots/technetium","T#forge:storage_blocks/technetium"],
+          "values": [1,9,81]
+        }

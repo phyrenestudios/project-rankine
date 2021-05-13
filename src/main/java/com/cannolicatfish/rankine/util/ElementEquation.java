@@ -74,6 +74,8 @@ public class ElementEquation {
                 return (float) (Math.pow(a[index],x) + b[index]);
             case LOGARITHMIC:
                 return (float) (a[index]*Math.log(x) + b[index]);
+            case LOG10:
+                return (float) (a[index]*Math.log10(x) + b[index]);
             case CONSTANT:
                 return (a[index]);
         }
@@ -113,6 +115,7 @@ public class ElementEquation {
         POWER,
         EXPONENTIAL,
         LOGARITHMIC,
+        LOG10,
         CONSTANT
 
     }
