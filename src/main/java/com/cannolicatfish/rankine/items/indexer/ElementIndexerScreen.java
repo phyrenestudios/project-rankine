@@ -6,16 +6,16 @@ import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
@@ -23,6 +23,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Collections;
 import java.util.Locale;
 
+@OnlyIn(Dist.CLIENT)
 public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContainer> {
     private int currentScroll = 100;
     private ElementRecipe element = null;
@@ -49,6 +50,7 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
+
         if (element != this.container.getSlotItem())
         {
             element = this.container.getSlotItem();

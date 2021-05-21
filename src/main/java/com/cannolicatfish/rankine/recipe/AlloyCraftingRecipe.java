@@ -17,7 +17,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -88,8 +87,9 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         {
             AlloyItem.addAlloy(stack,new AlloyData(this.displayComp));
             CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty() && Minecraft.getInstance().world != null) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(this.displayComp,Minecraft.getInstance().world));
+            World worldIn = Minecraft.getInstance().world;
+            if (nbt != null && nbt.getString("nameAdd").isEmpty() && worldIn != null) {
+                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(this.displayComp,worldIn));
             }
         }
         return this.recipeOutput;

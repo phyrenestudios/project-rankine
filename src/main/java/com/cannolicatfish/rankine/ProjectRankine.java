@@ -126,9 +126,6 @@ public class ProjectRankine {
                 ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
                         new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                                 stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F));
-                WoodType.register(WoodType.create("cedar"));
-                WoodType.register(WoodType.create("white_birch"));
-                WoodType.register(WoodType.create("yellow_birch"));
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 

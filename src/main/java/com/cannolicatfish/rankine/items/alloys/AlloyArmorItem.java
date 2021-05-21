@@ -105,8 +105,8 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
-            if (Minecraft.getInstance().world != null) {
-                World worldIn = Minecraft.getInstance().world;
+            World worldIn = Minecraft.getInstance().world;
+            if (worldIn != null) {
                 List<ICraftingRecipe> s = worldIn.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream().filter(iCraftingRecipe -> iCraftingRecipe.getRecipeOutput().getItem() == this.getItem()).collect(Collectors.toList());
                 for (ICraftingRecipe recipe : s) {
                     if (recipe instanceof AlloyCraftingRecipe && !items.contains(recipe.getRecipeOutput())) {
@@ -116,6 +116,8 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
             } else {
                 items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
             }
+
+            items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
         }
     }
 

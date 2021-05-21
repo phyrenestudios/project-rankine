@@ -1,8 +1,12 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.util.ElementUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -13,13 +17,15 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public interface IAlloyTool {
 
-    PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
+    ElementUtils utils = ElementUtils.getInstance();
 
 /*
     default double getDurabilityForDisplay(ItemStack stack,) {
@@ -33,21 +39,21 @@ public interface IAlloyTool {
 
     default int getAlloyDurability(String comp, AlloyUtils alloy)
     {
-        return utils.calcDurability(getElements(comp),getPercents(comp)) + alloy.getDurabilityBonus();
+        return utils.calcDurability(getElementRecipes(comp,null),getPercents(comp)) + alloy.getDurabilityBonus();
     }
 
     default float getAlloyEfficiency(String comp, AlloyUtils alloy)
     {
-        return utils.calcMiningSpeed(getElements(comp), getPercents(comp)) + alloy.getMiningSpeedBonus();
+        return utils.calcMiningSpeed(getElementRecipes(comp,null), getPercents(comp)) + alloy.getMiningSpeedBonus();
     }
 
     default int getAlloyEnchantability(String comp, AlloyUtils alloy) {
-        return utils.calcEnchantability(getElements(comp), getPercents(comp)) + alloy.getEnchantabilityBonus();
+        return utils.calcEnchantability(getElementRecipes(comp,null), getPercents(comp)) + alloy.getEnchantabilityBonus();
     }
 
     default int getAlloyMiningLevel(String comp, AlloyUtils alloy)
     {
-        return utils.calcMiningLevel(getElements(comp), getPercents(comp)) + alloy.getMiningLevelBonus();
+        return utils.calcMiningLevel(getElementRecipes(comp,null), getPercents(comp)) + alloy.getMiningLevelBonus();
     }
 
 
@@ -74,11 +80,11 @@ public interface IAlloyTool {
     }
 
     default float getAlloyAttackDamage(String comp, AlloyUtils alloy) {
-        return utils.calcDamage(getElements(comp), getPercents(comp)) + alloy.getAttackDamageBonus();
+        return utils.calcDamage(getElementRecipes(comp,null), getPercents(comp)) + alloy.getAttackDamageBonus();
     }
 
     default float getAlloyAttackSpeed(String comp, AlloyUtils alloy) {
-        return Math.max(utils.calcAttackSpeed(getElements(comp), getPercents(comp)) + alloy.getAttackSpeedBonus(), 0);
+        return Math.max(utils.calcAttackSpeed(getElementRecipes(comp,null), getPercents(comp)) + alloy.getAttackSpeedBonus(), 0);
     }
 
     default float getCorrResist(ItemStack stack, AlloyUtils alloy)
@@ -90,7 +96,7 @@ public interface IAlloyTool {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.max(Math.min(utils.calcCorrResist(getElements(comp),getPercents(comp)) + alloy.getCorrResistBonus(), 1),0);
+            return Math.max(Math.min(utils.calcCorrResist(getElementRecipes(comp,null),getPercents(comp)) + alloy.getCorrResistBonus(), 1),0);
         } else
         {
             return alloy.getCorrResistBonus();
@@ -108,7 +114,7 @@ public interface IAlloyTool {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.max(Math.min(utils.calcHeatResist(getElements(comp),getPercents(comp)) + alloy.getHeatResistBonus(),1),0);
+            return Math.max(Math.min(utils.calcHeatResist(getElementRecipes(comp,null),getPercents(comp)) + alloy.getHeatResistBonus(),1),0);
         } else
         {
             return alloy.getHeatResistBonus();
@@ -124,7 +130,7 @@ public interface IAlloyTool {
         if (getComposition(stack).size() != 0)
         {
             String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return utils.calcToughness(getElements(comp),getPercents(comp)) + alloy.getToughnessBonus();
+            return utils.calcToughness(getElementRecipes(comp,null),getPercents(comp)) + alloy.getToughnessBonus();
         } else
         {
             return alloy.getToughnessBonus();
@@ -216,18 +222,26 @@ public interface IAlloyTool {
         return itemstack;
     }
 
-    default List<PeriodicTableUtils.Element> getElements(String c)
-    {
-        //String c = getComposition(stack).getCompound(0).get("comp").getString();
-        PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
-        String[] comp = c.split("-");
-        List<PeriodicTableUtils.Element> list = new ArrayList<>();
-        for (String e: comp)
-        {
-            String str = e.replaceAll("[^A-Za-z]+", "");
-            list.add(utils.getElementBySymbol(str));
+
+
+    default List<ElementRecipe> getElementRecipes(String c, @Nullable World worldIn) {
+        World w = Minecraft.getInstance().world;
+        if (worldIn == null && w != null) {
+            worldIn = w;
         }
-        return list;
+        if (worldIn != null) {
+            String[] comp = c.split("-");
+            List<ElementRecipe> list = new ArrayList<>();
+            for (String e: comp)
+            {
+                String str = e.replaceAll("[^A-Za-z]+", "");
+                worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
+            }
+            return list;
+        } else {
+            return Collections.emptyList();
+        }
+
     }
 
     default List<Integer> getPercents(String c)
@@ -245,7 +259,7 @@ public interface IAlloyTool {
     default List<Enchantment> getEnchantments(String c, Item item, AlloyUtils alloy)
     {
         List<Enchantment> enchantments = new ArrayList<>();
-        List<Enchantment> elementEn = utils.getEnchantments(getElements(c),getPercents(c));
+        List<Enchantment> elementEn = utils.getToolEnchantments(getElementRecipes(c, null),getPercents(c));
         for (Enchantment e: elementEn)
         {
             if (e != null && !enchantments.contains(e))

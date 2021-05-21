@@ -10,6 +10,7 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
+import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -50,13 +51,13 @@ public class ElementIndexerContainer extends Container {
     public ElementRecipe getSlotItem() {
         ItemStack stack = this.handler.getStackInSlot(0);
 
-        if (utils.hasElementRecipe(stack, Minecraft.getInstance().world) && Minecraft.getInstance().world != null)
+        World worldIn = Minecraft.getInstance().world;
+        if (utils.hasElementRecipe(stack, worldIn))
         {
-            return utils.getElementRecipe(stack, Minecraft.getInstance().world);
+            return utils.getElementRecipe(stack, worldIn);
         } else {
             return null;
         }
-
     }
 
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {

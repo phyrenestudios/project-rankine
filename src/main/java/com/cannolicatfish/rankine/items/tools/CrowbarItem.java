@@ -108,7 +108,7 @@ public class CrowbarItem extends ToolItem {
         }
         return false;
     }
-
+/*
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
@@ -124,7 +124,7 @@ public class CrowbarItem extends ToolItem {
         }
         return super.onItemUse(context);
     }
-
+*/
     public static int getSwingModifier(ItemStack stack) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING, stack);
     }
