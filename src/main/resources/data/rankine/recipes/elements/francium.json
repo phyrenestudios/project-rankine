@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "francium",
+          "symbol": "Fr",
+          "color": 16777215,
+          "atomic": 87,
+          "potential": 0,
+          "items": ["T#forge:nuggets/francium","T#forge:ingots/francium","T#forge:storage_blocks/francium"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "protactinium",
+          "symbol": "Pa",
+          "color": 16777215,
+          "atomic": 91,
+          "potential": 0,
+          "items": ["T#forge:nuggets/protactinium","T#forge:ingots/protactinium","T#forge:storage_blocks/protactinium"],
+          "values": [1,9,81]
+        }

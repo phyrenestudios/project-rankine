@@ -51,6 +51,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(RankineRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getCrushingRecipes(), CrushingRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getAlloyingRecipes(), AlloyingRecipeCategory.UID);
+        registry.addRecipes(rankineJEIRecipes.getElementRecipes(), ElementRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
@@ -83,6 +84,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new CrushingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new ElementRecipeCategory(guiHelper));
         registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
     }
 
@@ -96,6 +98,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()), CrushingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.GYRATORY_CRUSHER.get()), CrushingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), ElementRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);
     }
 

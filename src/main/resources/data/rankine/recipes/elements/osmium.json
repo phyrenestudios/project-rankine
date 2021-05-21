@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "osmium",
+          "symbol": "Os",
+          "color": 16777215,
+          "atomic": 76,
+          "potential": 0,
+          "items": ["T#forge:nuggets/osmium","T#forge:ingots/osmium","T#forge:storage_blocks/osmium"],
+          "values": [1,9,81]
+        }

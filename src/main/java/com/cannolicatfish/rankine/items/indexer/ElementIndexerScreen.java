@@ -1,20 +1,21 @@
 package com.cannolicatfish.rankine.items.indexer;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
@@ -22,9 +23,10 @@ import java.text.DecimalFormatSymbols;
 import java.util.Collections;
 import java.util.Locale;
 
+@OnlyIn(Dist.CLIENT)
 public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContainer> {
     private int currentScroll = 100;
-    private PeriodicTableUtils.Element element = null;
+    private ElementRecipe element = null;
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/element_indexer.png");
     public ElementIndexerScreen(ElementIndexerContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
@@ -48,22 +50,23 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
+
         if (element != this.container.getSlotItem())
         {
             element = this.container.getSlotItem();
         }
         if (element != null)
         {
-            int durability = utils.calcDurability(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            int harvest = utils.calcMiningLevel(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float mspeed = utils.calcMiningSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float damage = utils.calcDamage(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float attspeed = utils.calcAttackSpeed(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            int enchant = utils.calcEnchantability(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float corr = utils.calcCorrResist(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float heat = utils.calcHeatResist(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float tough = utils.calcToughness(Collections.singletonList(element),Collections.singletonList(this.currentScroll));
-            float elec = element.element.getElectrodePotentialFromPercent(this.currentScroll);
+            int durability = element.getDurability(this.currentScroll);
+            int harvest = element.getMiningLevel(this.currentScroll);
+            float mspeed = element.getMiningSpeed(this.currentScroll);
+            float damage = element.getDamage(this.currentScroll);
+            float attspeed = element.getAttackSpeed(this.currentScroll);
+            int enchant = element.getEnchantability(this.currentScroll);
+            float corr = element.getCorrosionResistance(this.currentScroll);
+            float heat = element.getHeatResistance(this.currentScroll);
+            float tough = element.getToughness(this.currentScroll);
+            float elec = element.getElectrodePotential();
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Durability: " + durability,12,30,(durability > 0 ? 0x55FF55 : durability < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Harvest Level: "+ harvest,12,42,(harvest > 0 ? 0x55FF55 : harvest < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Mining Speed: "+ df.format(mspeed),12,54,(mspeed > 0 ? 0x55FF55 : mspeed < 0 ? 0xFF5555 : 0xffffff));
@@ -75,17 +78,12 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness: "+ df.format(tough * 100) + "%",12,126,(tough > 0 ? 0x55FF55 : tough < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ elec +"V",110,126,0x55FFFF);
 
-            int ylvl = 0;
-            for (Enchantment e : utils.getEnchantments(Collections.singletonList(element),Collections.singletonList(this.currentScroll))) {
-                if (e != null) {
-                    drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,e.getDisplayName(1).getString(),125,66 + ylvl,0x55FF55);
-                    ylvl += 10;
-                }
-                if (ylvl == 30) {
-                    break;
-                }
+            Enchantment e = element.getToolEnchantment(this.currentScroll);
+            if (e != null) {
+                drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,e.getDisplayName(1).getString(),125,66,0x55FF55);
             }
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.toString(),32,10,0xffffff);
+
+            drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT),32,10,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getAtomicNumber()),138,32,0xffffff);
             drawScaledString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getSymbol()),138,42, 2,0xffffff);
         } else

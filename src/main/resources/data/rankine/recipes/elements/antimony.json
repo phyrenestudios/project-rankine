@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "antimony",
+          "symbol": "Sb",
+          "color": 16777215,
+          "atomic": 51,
+          "potential": 0,
+          "items": ["T#forge:nuggets/antimony","T#forge:ingots/antimony","T#forge:storage_blocks/antimony"],
+          "values": [1,9,81]
+        }

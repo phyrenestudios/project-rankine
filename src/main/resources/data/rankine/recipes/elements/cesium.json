@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "cesium",
+          "symbol": "Cs",
+          "color": 16777215,
+          "atomic": 55,
+          "potential": 0,
+          "items": ["T#forge:nuggets/cesium","T#forge:ingots/cesium","T#forge:storage_blocks/cesium"],
+          "values": [1,9,81]
+        }

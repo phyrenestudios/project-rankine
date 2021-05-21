@@ -2,15 +2,20 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.NonNullList;
@@ -29,6 +34,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDyeableArmorItem {
     private final AlloyUtils alloy;
@@ -98,7 +104,19 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineMetals) {
+        if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
+            World worldIn = Minecraft.getInstance().world;
+            if (worldIn != null) {
+                List<ICraftingRecipe> s = worldIn.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream().filter(iCraftingRecipe -> iCraftingRecipe.getRecipeOutput().getItem() == this.getItem()).collect(Collectors.toList());
+                for (ICraftingRecipe recipe : s) {
+                    if (recipe instanceof AlloyCraftingRecipe && !items.contains(recipe.getRecipeOutput())) {
+                        items.add(recipe.getRecipeOutput());
+                    }
+                }
+            } else {
+                items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
+            }
+
             items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
         }
     }

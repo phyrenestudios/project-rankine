@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "copernicium",
+          "symbol": "Cn",
+          "color": 16777215,
+          "atomic": 112,
+          "potential": 0,
+          "items": ["T#forge:nuggets/copernicium","T#forge:ingots/copernicium","T#forge:storage_blocks/copernicium"],
+          "values": [1,9,81]
+        }

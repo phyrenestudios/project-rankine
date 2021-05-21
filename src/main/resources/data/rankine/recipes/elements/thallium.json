@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "thallium",
+          "symbol": "Tl",
+          "color": 16777215,
+          "atomic": 81,
+          "potential": 0,
+          "items": ["T#forge:nuggets/thallium","T#forge:ingots/thallium","T#forge:storage_blocks/thallium"],
+          "values": [1,9,81]
+        }

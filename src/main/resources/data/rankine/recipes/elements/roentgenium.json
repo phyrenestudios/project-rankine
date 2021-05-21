@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "roentgenium",
+          "symbol": "Rg",
+          "color": 16777215,
+          "atomic": 111,
+          "potential": 0,
+          "items": ["T#forge:nuggets/roentgenium","T#forge:ingots/roentgenium","T#forge:storage_blocks/roentgenium"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "promethium",
+          "symbol": "Pm",
+          "color": 16777215,
+          "atomic": 61,
+          "potential": 0,
+          "items": ["T#forge:nuggets/promethium","T#forge:ingots/promethium","T#forge:storage_blocks/promethium"],
+          "values": [1,9,81]
+        }

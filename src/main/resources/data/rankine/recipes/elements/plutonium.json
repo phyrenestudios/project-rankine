@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "plutonium",
+          "symbol": "Pu",
+          "color": 16777215,
+          "atomic": 94,
+          "potential": 0,
+          "items": ["T#forge:nuggets/plutonium","T#forge:ingots/plutonium","T#forge:storage_blocks/plutonium"],
+          "values": [1,9,81]
+        }

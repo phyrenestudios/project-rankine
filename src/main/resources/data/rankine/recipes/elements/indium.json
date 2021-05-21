@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "indium",
+          "symbol": "In",
+          "color": 16777215,
+          "atomic": 49,
+          "potential": 0,
+          "items": ["T#forge:nuggets/indium","T#forge:ingots/indium","T#forge:storage_blocks/indium"],
+          "values": [1,9,81]
+        }

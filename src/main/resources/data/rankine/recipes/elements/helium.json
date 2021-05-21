@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "helium",
+          "symbol": "He",
+          "color": 16777215,
+          "atomic": 2,
+          "potential": 0,
+          "items": ["T#forge:nuggets/helium","T#forge:ingots/helium","T#forge:storage_blocks/helium"],
+          "values": [1,9,81]
+        }

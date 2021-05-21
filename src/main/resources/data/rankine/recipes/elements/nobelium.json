@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "nobelium",
+          "symbol": "No",
+          "color": 16777215,
+          "atomic": 102,
+          "potential": 0,
+          "items": ["T#forge:nuggets/nobelium","T#forge:ingots/nobelium","T#forge:storage_blocks/nobelium"],
+          "values": [1,9,81]
+        }

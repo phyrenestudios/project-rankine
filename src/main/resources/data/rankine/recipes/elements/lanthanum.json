@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "lanthanum",
+          "symbol": "La",
+          "color": 16777215,
+          "atomic": 57,
+          "potential": 0,
+          "items": ["T#forge:nuggets/lanthanum","T#forge:ingots/lanthanum","T#forge:storage_blocks/lanthanum"],
+          "values": [1,9,81]
+        }

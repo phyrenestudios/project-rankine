@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "fermium",
+          "symbol": "Fm",
+          "color": 16777215,
+          "atomic": 100,
+          "potential": 0,
+          "items": ["T#forge:nuggets/fermium","T#forge:ingots/fermium","T#forge:storage_blocks/fermium"],
+          "values": [1,9,81]
+        }

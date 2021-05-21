@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "ruthenium",
+          "symbol": "Ru",
+          "color": 16777215,
+          "atomic": 44,
+          "potential": 0,
+          "items": ["T#forge:nuggets/ruthenium","T#forge:ingots/ruthenium","T#forge:storage_blocks/ruthenium"],
+          "values": [1,9,81]
+        }

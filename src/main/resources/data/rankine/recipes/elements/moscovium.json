@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "moscovium",
+          "symbol": "Mc",
+          "color": 16777215,
+          "atomic": 115,
+          "potential": 0,
+          "items": ["T#forge:nuggets/moscovium","T#forge:ingots/moscovium","T#forge:storage_blocks/moscovium"],
+          "values": [1,9,81]
+        }

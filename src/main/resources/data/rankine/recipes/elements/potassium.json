@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "potassium",
+          "symbol": "K",
+          "color": 16777215,
+          "atomic": 19,
+          "potential": 0,
+          "items": ["T#forge:nuggets/potassium","T#forge:ingots/potassium","T#forge:storage_blocks/potassium"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "fluorine",
+          "symbol": "F",
+          "color": 16777215,
+          "atomic": 9,
+          "potential": 0,
+          "items": ["T#forge:nuggets/fluorine","T#forge:ingots/fluorine","T#forge:storage_blocks/fluorine"],
+          "values": [1,9,81]
+        }

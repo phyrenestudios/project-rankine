@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "rutherfordium",
+          "symbol": "Rf",
+          "color": 16777215,
+          "atomic": 104,
+          "potential": 0,
+          "items": ["T#forge:nuggets/rutherfordium","T#forge:ingots/rutherfordium","T#forge:storage_blocks/rutherfordium"],
+          "values": [1,9,81]
+        }

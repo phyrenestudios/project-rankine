@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "thorium",
+          "symbol": "Th",
+          "color": 16777215,
+          "atomic": 90,
+          "potential": 0,
+          "items": ["T#forge:nuggets/thorium","T#forge:ingots/thorium","T#forge:storage_blocks/thorium"],
+          "values": [1,9,81]
+        }

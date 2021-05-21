@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "rhenium",
+          "symbol": "Re",
+          "color": 16777215,
+          "atomic": 75,
+          "potential": 0,
+          "items": ["T#forge:nuggets/rhenium","T#forge:ingots/rhenium","T#forge:storage_blocks/rhenium"],
+          "values": [1,9,81]
+        }

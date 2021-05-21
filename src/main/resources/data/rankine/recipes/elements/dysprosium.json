@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "dysprosium",
+          "symbol": "Dy",
+          "color": 16777215,
+          "atomic": 66,
+          "potential": 0,
+          "items": ["T#forge:nuggets/dysprosium","T#forge:ingots/dysprosium","T#forge:storage_blocks/dysprosium"],
+          "values": [1,9,81]
+        }

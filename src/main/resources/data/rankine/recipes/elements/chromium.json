@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "chromium",
+          "symbol": "Cr",
+          "color": 16777215,
+          "atomic": 24,
+          "potential": 0,
+          "items": ["T#forge:nuggets/chromium","T#forge:ingots/chromium","T#forge:storage_blocks/chromium"],
+          "values": [1,9,81]
+        }

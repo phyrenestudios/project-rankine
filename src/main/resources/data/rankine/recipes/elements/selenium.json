@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "selenium",
+          "symbol": "Se",
+          "color": 16777215,
+          "atomic": 34,
+          "potential": 0,
+          "items": ["T#forge:nuggets/selenium","T#forge:ingots/selenium","T#forge:storage_blocks/selenium"],
+          "values": [1,9,81]
+        }

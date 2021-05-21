@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "oxygen",
+          "symbol": "O",
+          "color": 16777215,
+          "atomic": 8,
+          "potential": 0,
+          "items": ["T#forge:nuggets/oxygen","T#forge:ingots/oxygen","T#forge:storage_blocks/oxygen"],
+          "values": [1,9,81]
+        }

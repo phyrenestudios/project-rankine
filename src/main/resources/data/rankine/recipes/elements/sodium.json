@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "sodium",
+          "symbol": "Na",
+          "color": 16777215,
+          "atomic": 11,
+          "potential": 0,
+          "items": ["T#forge:nuggets/sodium","T#forge:ingots/sodium","T#forge:storage_blocks/sodium"],
+          "values": [1,9,81]
+        }

@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "nitrogen",
+          "symbol": "N",
+          "color": 16777215,
+          "atomic": 7,
+          "potential": 0,
+          "items": ["T#forge:nuggets/nitrogen","T#forge:ingots/nitrogen","T#forge:storage_blocks/nitrogen"],
+          "values": [1,9,81]
+        }

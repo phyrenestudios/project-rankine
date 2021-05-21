@@ -27,12 +27,7 @@ public class NetheriteElement implements ElementInterface {
 
     @Override
     public float getAttackSpeedFromPercent(int x) {
-        if (x <= 20)
-        {
-            return x/20f;
-        } else {
-            return 1;
-        }
+        return 0;
     }
 
     @Override
@@ -60,7 +55,7 @@ public class NetheriteElement implements ElementInterface {
 
     @Override
     public float getCorrResistFromPercent(int x) {
-        return -x/100f;
+        return Math.min(-1,-x/50f);
     }
 
     @Override
@@ -75,7 +70,7 @@ public class NetheriteElement implements ElementInterface {
 
     @Override
     public float getToughnessFromPercent(int x) {
-        return 0;
+        return x/300f;
     }
 
     @Override

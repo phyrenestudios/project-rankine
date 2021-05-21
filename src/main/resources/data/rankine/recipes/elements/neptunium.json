@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "neptunium",
+          "symbol": "Np",
+          "color": 16777215,
+          "atomic": 93,
+          "potential": 0,
+          "items": ["T#forge:nuggets/neptunium","T#forge:ingots/neptunium","T#forge:storage_blocks/neptunium"],
+          "values": [1,9,81]
+        }

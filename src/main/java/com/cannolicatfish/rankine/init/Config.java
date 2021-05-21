@@ -54,6 +54,8 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue MOVEMENT_SNOW;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_MUD;
 
+        public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
+
         public final ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
         public final ForgeConfigSpec.IntValue NUGGET_DISTANCE;
         public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
@@ -109,11 +111,11 @@ public class Config {
                             .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
                     BRICKS_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")
                             .defineInRange("bricksResistanceMultiplier", 1.5D, 0.0D, 20.0D);
-                    STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod)")
+                    STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod).")
                             .define("startingBook",true);
-                    PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing")
+                    PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing.")
                             .define("pendantCurse",true);
-                    MANDATORY_AXE = b.comment("An axe is required to harvest logs")
+                    MANDATORY_AXE = b.comment("Makes axes required to harvest logs.")
                             .define("axesOnly",false);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
                             .define("fuelValuesChange",true);
@@ -176,7 +178,12 @@ public class Config {
                     NUGGET_DISTANCE = b.comment("Distance from an ore block in which nuggets have a chance to drop from blocks.")
                             .defineInRange("nuggetRange", 7, 1, 64);
                 b.pop();
-                
+
+                b.comment("Enchantments").push("enchantments");
+                    PLAYER_PRYING_ENCHANTMENT = b.comment("Enables the Prying enchantment to work on players (when hit by crowbar, chance to drop held item).")
+                            .define("playerPryingEnchantment",true);
+                b.pop();
+
                 b.comment("Vanilla Tools").push("vanillaTools");
                     b.comment("Wooden Tools").push("woodenTools");
                     DISABLE_WOODEN_SWORD = b.comment("Disable the use of the wooden sword (still allows crafting for other recipes). This is enabled by default for progression.")

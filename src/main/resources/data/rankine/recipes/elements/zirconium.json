@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "zirconium",
+          "symbol": "Zr",
+          "color": 16777215,
+          "atomic": 40,
+          "potential": 0,
+          "items": ["T#forge:nuggets/zirconium","T#forge:ingots/zirconium","T#forge:storage_blocks/zirconium"],
+          "values": [1,9,81]
+        }

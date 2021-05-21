@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "flerovium",
+          "symbol": "Ft",
+          "color": 16777215,
+          "atomic": 114,
+          "potential": 0,
+          "items": ["T#forge:nuggets/flerovium","T#forge:ingots/flerovium","T#forge:storage_blocks/flerovium"],
+          "values": [1,9,81]
+        }

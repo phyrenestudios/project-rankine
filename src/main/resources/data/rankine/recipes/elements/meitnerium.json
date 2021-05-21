@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "meitnerium",
+          "symbol": "Mt",
+          "color": 16777215,
+          "atomic": 109,
+          "potential": 0,
+          "items": ["T#forge:nuggets/meitnerium","T#forge:ingots/meitnerium","T#forge:storage_blocks/meitnerium"],
+          "values": [1,9,81]
+        }

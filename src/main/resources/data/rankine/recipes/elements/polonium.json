@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "polonium",
+          "symbol": "Po",
+          "color": 16777215,
+          "atomic": 84,
+          "potential": 0,
+          "items": ["T#forge:nuggets/polonium","T#forge:ingots/polonium","T#forge:storage_blocks/polonium"],
+          "values": [1,9,81]
+        }

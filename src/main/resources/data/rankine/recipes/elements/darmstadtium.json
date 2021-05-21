@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "darmstadtium",
+          "symbol": "Ds",
+          "color": 16777215,
+          "atomic": 110,
+          "potential": 0,
+          "items": ["T#forge:nuggets/darmstadtium","T#forge:ingots/darmstadtium","T#forge:storage_blocks/darmstadtium"],
+          "values": [1,9,81]
+        }

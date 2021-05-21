@@ -61,7 +61,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
-import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -217,6 +216,30 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
+    public static void onLeftClick(PlayerInteractEvent.LeftClickBlock event) {
+        if (event.getPlayer().getHeldItemMainhand().getItem() instanceof HammerItem) {
+            ItemStack stack = event.getPlayer().getHeldItemMainhand();
+            HammerItem hammer = (HammerItem) stack.getItem();
+            World worldIn = event.getWorld();
+            BlockPos pos = event.getPos();
+            PlayerEntity player = event.getPlayer();
+
+            if (event.getPlayer().getCooledAttackStrength(0) >= (1f)) {
+                event.getPlayer().resetCooldown();
+                if (HammerItem.getExcavateModifier(stack) != 0)
+                {
+                    hammer.getExcavationResult(pos,worldIn,player,stack);
+                } else {
+                    hammer.onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
+                }
+                event.getWorld().destroyBlock(event.getPos(),true);
+            } else {
+                event.getPlayer().resetCooldown();
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         if (player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem() == RankineItems.DIVING_HELMET.get()) {
@@ -235,6 +258,19 @@ public class RankineEventHandler {
             int feetSlot = player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == RankineItems.CONDUIT_DIVING_BOOTS.get() ? 1 : 0;
 
             player.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 400 * (headSlot+chestSlot+legsSlot+feetSlot), 0, false, false, true));
+        }
+
+
+        if (player.getEntityWorld().getGameTime() % 1200L == 0) {
+            int count = 0;
+            for (ItemStack s : player.getArmorInventoryList()) {
+                if (s.isEnchanted() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.GUARD, s) > 0) {
+                    count+=2;
+                }
+            }
+            if (player.getAbsorptionAmount() < count) {
+                player.setAbsorptionAmount(count);
+            }
         }
 
         ItemStack ghast = ItemStack.EMPTY;

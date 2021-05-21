@@ -1,0 +1,42 @@
+{
+  "type": "rankine:element",
+  "name": "iron",
+  "symbol": "Fe",
+  "color": 14211288,
+  "atomic": 26,
+  "potential": 0.44,
+  "items": ["T#forge:nuggets/iron","T#forge:ingots/iron","T#forge:storage_blocks/iron"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [2.5],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [-4],
+    "modifiers": ["MAX"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [4,14,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
+  },
+  "enchantability": {
+    "breaks": [50,100],
+    "formulas": ["LINEAR","LINEAR"],
+    "a": [0.1,0.2],
+    "b": [-1,-6],
+    "modifiers": ["MAX","NONE"],
+    "limit": [0,0]
+  }
+}

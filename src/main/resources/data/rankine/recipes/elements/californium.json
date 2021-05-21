@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "californium",
+          "symbol": "Cf",
+          "color": 16777215,
+          "atomic": 98,
+          "potential": 0,
+          "items": ["T#forge:nuggets/californium","T#forge:ingots/californium","T#forge:storage_blocks/californium"],
+          "values": [1,9,81]
+        }

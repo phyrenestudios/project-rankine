@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "praseodymium",
+          "symbol": "Pr",
+          "color": 16777215,
+          "atomic": 59,
+          "potential": 0,
+          "items": ["T#forge:nuggets/praseodymium","T#forge:ingots/praseodymium","T#forge:storage_blocks/praseodymium"],
+          "values": [1,9,81]
+        }

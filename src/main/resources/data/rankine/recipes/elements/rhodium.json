@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "rhodium",
+          "symbol": "Rh",
+          "color": 16777215,
+          "atomic": 45,
+          "potential": 0,
+          "items": ["T#forge:nuggets/rhodium","T#forge:ingots/rhodium","T#forge:storage_blocks/rhodium"],
+          "values": [1,9,81]
+        }

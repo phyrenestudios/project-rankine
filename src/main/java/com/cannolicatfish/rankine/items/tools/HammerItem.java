@@ -103,7 +103,7 @@ public class HammerItem extends ToolItem {
             LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
             //ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
             ent.setPosition(target.getPosX(),target.getPosY(),target.getPosZ());
-            ((ServerWorld)target.getEntityWorld()).addEntity(ent);
+            target.getEntityWorld().addEntity(ent);
         }
         if (getDazeModifier(stack) != 0)
         {
@@ -127,19 +127,7 @@ public class HammerItem extends ToolItem {
         return true;
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof PlayerEntity && isSelected)
-        {
-            PlayerEntity player = (PlayerEntity) entityIn;
-            if (player.swingingHand == Hand.OFF_HAND)
-            {
-                player.resetCooldown();
-                player.swingingHand = Hand.MAIN_HAND;
-            }
-        }
-    }
-
+/*
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity)
     {
@@ -171,7 +159,7 @@ public class HammerItem extends ToolItem {
         }
         return false;
     }
-
+*/
     public void getExcavationResult(BlockPos pos, World worldIn, PlayerEntity player, ItemStack stack) {
         BlockRayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
         List<BlockPos> positions = new ArrayList<>();
@@ -256,14 +244,14 @@ public class HammerItem extends ToolItem {
                 worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItem().getMaxDamage() - context.getItem().getDamage()) >= 100) {
                 worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             }
         }
-        return ActionResultType.FAIL;
+        return super.onItemUse(context);
     }
 }

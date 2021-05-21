@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "krypton",
+          "symbol": "Kr",
+          "color": 16777215,
+          "atomic": 36,
+          "potential": 0,
+          "items": ["T#forge:nuggets/krypton","T#forge:ingots/krypton","T#forge:storage_blocks/krypton"],
+          "values": [1,9,81]
+        }

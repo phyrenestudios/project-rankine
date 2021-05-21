@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "berkelium",
+          "symbol": "Bk",
+          "color": 16777215,
+          "atomic": 97,
+          "potential": 0,
+          "items": ["T#forge:nuggets/berkelium","T#forge:ingots/berkelium","T#forge:storage_blocks/berkelium"],
+          "values": [1,9,81]
+        }

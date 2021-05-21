@@ -9,7 +9,7 @@ import net.minecraft.util.LazyValue;
 import java.util.function.Supplier;
 
 public enum RankineToolMaterials implements IItemTier {
-    FLINT(0, 81, 2.0F, 0.0F, 5, () -> {
+    FLINT(1, 81, 3.0F, 1.0F, 8, () -> {
         return Ingredient.fromItems(Items.FLINT);
     }),
     ALLOY(0, 63, 2.0F, 0.0F, 5, () -> {

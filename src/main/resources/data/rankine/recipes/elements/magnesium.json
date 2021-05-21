@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "magnesium",
+          "symbol": "Mg",
+          "color": 16777215,
+          "atomic": 12,
+          "potential": 0,
+          "items": ["T#forge:nuggets/magnesium","T#forge:ingots/magnesium","T#forge:storage_blocks/magnesium"],
+          "values": [1,9,81]
+        }

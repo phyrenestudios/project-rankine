@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "calcium",
+          "symbol": "Ca",
+          "color": 16777215,
+          "atomic": 20,
+          "potential": 0,
+          "items": ["T#forge:nuggets/calcium","T#forge:ingots/calcium","T#forge:storage_blocks/calcium"],
+          "values": [1,9,81]
+        }

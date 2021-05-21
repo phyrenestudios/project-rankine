@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "actinium",
+          "symbol": "Ac",
+          "color": 16777215,
+          "atomic": 89,
+          "potential": 0,
+          "items": ["T#forge:nuggets/actinium","T#forge:ingots/actinium","T#forge:storage_blocks/actinium"],
+          "values": [1,9,81]
+        }

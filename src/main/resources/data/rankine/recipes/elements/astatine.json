@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "astatine",
+          "symbol": "At",
+          "color": 16777215,
+          "atomic": 85,
+          "potential": 0,
+          "items": ["T#forge:nuggets/astatine","T#forge:ingots/astatine","T#forge:storage_blocks/astatine"],
+          "values": [1,9,81]
+        }

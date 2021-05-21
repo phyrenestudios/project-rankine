@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "platinum",
+          "symbol": "Pt",
+          "color": 16777215,
+          "atomic": 78,
+          "potential": 0,
+          "items": ["T#forge:nuggets/platinum","T#forge:ingots/platinum","T#forge:storage_blocks/platinum"],
+          "values": [1,9,81]
+        }

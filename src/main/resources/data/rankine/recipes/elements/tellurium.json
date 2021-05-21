@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "tellurium",
+          "symbol": "Te",
+          "color": 16777215,
+          "atomic": 52,
+          "potential": 0,
+          "items": ["T#forge:nuggets/tellurium","T#forge:ingots/tellurium","T#forge:storage_blocks/tellurium"],
+          "values": [1,9,81]
+        }

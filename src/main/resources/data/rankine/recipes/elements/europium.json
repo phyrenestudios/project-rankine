@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "europium",
+          "symbol": "Eu",
+          "color": 16777215,
+          "atomic": 63,
+          "potential": 0,
+          "items": ["T#forge:nuggets/europium","T#forge:ingots/europium","T#forge:storage_blocks/europium"],
+          "values": [1,9,81]
+        }

@@ -54,7 +54,7 @@ public class ElementIndexerItem extends Item {
     {
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-        return utils.hasElement(stack.getItem());
+        return true;
     }
 
 }

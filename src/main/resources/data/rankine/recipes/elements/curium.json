@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "curium",
+          "symbol": "Cm",
+          "color": 16777215,
+          "atomic": 96,
+          "potential": 0,
+          "items": ["T#forge:nuggets/curium","T#forge:ingots/curium","T#forge:storage_blocks/curium"],
+          "values": [1,9,81]
+        }

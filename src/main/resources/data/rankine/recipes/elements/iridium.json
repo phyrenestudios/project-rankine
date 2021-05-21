@@ -1,0 +1,10 @@
+{
+          "type": "rankine:element",
+          "name": "iridium",
+          "symbol": "Ir",
+          "color": 16777215,
+          "atomic": 77,
+          "potential": 0,
+          "items": ["T#forge:nuggets/iridium","T#forge:ingots/iridium","T#forge:storage_blocks/iridium"],
+          "values": [1,9,81]
+        }

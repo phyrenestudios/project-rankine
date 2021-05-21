@@ -1263,7 +1263,7 @@ public class WGConfig {
 
             b.comment("Native Arsenic Ore Settings").push("nativeArsenicOre");
             NATIVE_ARSENIC_ORE_HL = b.comment("Harvest Level of Native Arsenic Ore.")
-                    .defineInRange("nativeArsenicOreHL", 1, 0, 4);
+                    .defineInRange("nativeArsenicOreHL", 2, 0, 4);
             NATIVE_ARSENIC_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Native Arsenic Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Native Arsenic Ore generation.")
                     .define("nativeArsenicOreDimList", new ArrayList<>(Arrays.asList("nether")));
             NATIVE_ARSENIC_ORE_STONE_SPECIFIC = b.comment("If true Native Arsenic Ore will only spawn in the blocks listed under nativeArsenicOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in nativeArsenicOreDimList.")
@@ -1317,7 +1317,7 @@ public class WGConfig {
 
             b.comment("Native Sulfur Ore Settings").push("nativeSulfurOre");
             NATIVE_SULFUR_ORE_HL = b.comment("Harvest Level of Native Sulfur Ore.")
-                    .defineInRange("nativeSulfurOreHL", 1, 0, 4);
+                    .defineInRange("nativeSulfurOreHL", 2, 0, 4);
             NATIVE_SULFUR_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Native Sulfur Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Native Sulfur Ore generation.")
                     .define("nativeSulfurOreDimList", new ArrayList<>(Arrays.asList("nether")));
             NATIVE_SULFUR_ORE_STONE_SPECIFIC = b.comment("If true Native Sulfur Ore will only spawn in the blocks listed under nativeSulfurOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in nativeSulfurOreDimList.")
@@ -1344,7 +1344,7 @@ public class WGConfig {
 
             b.comment("Native Gallium Ore Settings").push("nativeGalliumOre");
             NATIVE_GALLIUM_ORE_HL = b.comment("Harvest Level of Native Gallium Ore.")
-                    .defineInRange("nativeGalliumOreHL", 3, 0, 4);
+                    .defineInRange("nativeGalliumOreHL", 4, 0, 4);
             NATIVE_GALLIUM_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Native Gallium Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Native Gallium Ore generation.")
                     .define("nativeGalliumOreDimList", new ArrayList<>(Arrays.asList("end")));
             NATIVE_GALLIUM_ORE_STONE_SPECIFIC = b.comment("If true Native Gallium Ore will only spawn in the blocks listed under nativeGalliumOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in nativeGalliumOreDimList.")
@@ -1371,7 +1371,7 @@ public class WGConfig {
 
             b.comment("Native Indium Ore Settings").push("nativeIndiumOre");
             NATIVE_INDIUM_ORE_HL = b.comment("Harvest Level of Native Indium Ore.")
-                    .defineInRange("nativeIndiumOreHL", 3, 0, 4);
+                    .defineInRange("nativeIndiumOreHL", 4, 0, 4);
             NATIVE_INDIUM_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Native Indium Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Native Indium Ore generation.")
                     .define("nativeIndiumOreDimList", new ArrayList<>(Arrays.asList("end")));
             NATIVE_INDIUM_ORE_STONE_SPECIFIC = b.comment("If true Native Indium Ore will only spawn in the blocks listed under nativeIndiumOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in nativeIndiumOreDimList.")
@@ -1398,7 +1398,7 @@ public class WGConfig {
 
             b.comment("Native Tellurium Ore Settings").push("nativeTelluriumOre");
             NATIVE_TELLURIUM_ORE_HL = b.comment("Harvest Level of Native Tellurium Ore.")
-                    .defineInRange("nativeTelluriumOreHL", 3, 0, 4);
+                    .defineInRange("nativeTelluriumOreHL", 4, 0, 4);
             NATIVE_TELLURIUM_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Native Tellurium Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Native Tellurium Ore generation.")
                     .define("nativeTelluriumOreDimList", new ArrayList<>(Arrays.asList("end")));
             NATIVE_TELLURIUM_ORE_STONE_SPECIFIC = b.comment("If true Native Tellurium Ore will only spawn in the blocks listed under nativeTelluriumOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in nativeTelluriumOreDimList.")
@@ -1425,7 +1425,7 @@ public class WGConfig {
 
             b.comment("Native Selenium Ore Settings").push("nativeSeleniumOre");
             NATIVE_SELENIUM_ORE_HL = b.comment("Harvest Level of Native Selenium Ore.")
-                    .defineInRange("nativeSeleniumOreHL", 3, 0, 4);
+                    .defineInRange("nativeSeleniumOreHL", 4, 0, 4);
             NATIVE_SELENIUM_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Native Selenium Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Native Selenium Ore generation.")
                     .define("nativeSeleniumOreDimList", new ArrayList<>(Arrays.asList("end")));
             NATIVE_SELENIUM_ORE_STONE_SPECIFIC = b.comment("If true Native Selenium Ore will only spawn in the blocks listed under nativeSeleniumOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in nativeSeleniumOreDimList.")
@@ -1452,7 +1452,7 @@ public class WGConfig {
 
             b.comment("Malachite Ore Settings").push("malachiteOre");
             MALACHITE_ORE_HL = b.comment("Harvest Level of Malachite Ore.")
-                    .defineInRange("malachiteOreHL", 1, 0, 4);
+                    .defineInRange("malachiteOreHL", 2, 0, 4);
             MALACHITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Malachite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Malachite Ore generation.")
                     .define("malachiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             MALACHITE_ORE_STONE_SPECIFIC = b.comment("If true Malachite Ore will only spawn in the blocks listed under malachiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in malachiteOreDimList.")
@@ -1479,7 +1479,7 @@ public class WGConfig {
 
             b.comment("Cassiterite Ore Settings").push("cassiteriteOre");
             CASSITERITE_ORE_HL = b.comment("Harvest Level of Cassiterite Ore.")
-                    .defineInRange("cassiteriteOreHL", 1, 0, 4);
+                    .defineInRange("cassiteriteOreHL", 2, 0, 4);
             CASSITERITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Cassiterite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Cassiterite Ore generation.")
                     .define("cassiteriteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             CASSITERITE_ORE_STONE_SPECIFIC = b.comment("If true Cassiterite Ore will only spawn in the blocks listed under cassiteriteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in cassiteriteOreDimList.")
@@ -1506,7 +1506,7 @@ public class WGConfig {
 
             b.comment("Bauxite Ore Settings").push("bauxiteOre");
             BAUXITE_ORE_HL = b.comment("Harvest Level of Bauxite Ore.")
-                    .defineInRange("bauxiteOreHL", 1, 0, 4);
+                    .defineInRange("bauxiteOreHL", 2, 0, 4);
             BAUXITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Bauxite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Bauxite Ore generation.")
                     .define("bauxiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             BAUXITE_ORE_STONE_SPECIFIC = b.comment("If true Bauxite Ore will only spawn in the blocks listed under bauxiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in bauxiteOreDimList.")
@@ -1533,7 +1533,7 @@ public class WGConfig {
 
             b.comment("Sphalerite Ore Settings").push("sphaleriteOre");
             SPHALERITE_ORE_HL = b.comment("Harvest Level of Sphalerite Ore.")
-                    .defineInRange("sphaleriteOreHL", 1, 0, 4);
+                    .defineInRange("sphaleriteOreHL", 2, 0, 4);
             SPHALERITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Sphalerite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Sphalerite Ore generation.")
                     .define("sphaleriteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             SPHALERITE_ORE_STONE_SPECIFIC = b.comment("If true Sphalerite Ore will only spawn in the blocks listed under sphaleriteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in sphaleriteOreDimList.")
@@ -1560,7 +1560,7 @@ public class WGConfig {
 
             b.comment("Cinnabar Ore Settings").push("cinnabarOre");
             CINNABAR_ORE_HL = b.comment("Harvest Level of Cinnabar Ore.")
-                    .defineInRange("cinnabarOreHL", 2, 0, 4);
+                    .defineInRange("cinnabarOreHL", 3, 0, 4);
             CINNABAR_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Cinnabar Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Cinnabar Ore generation.")
                     .define("cinnabarOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             CINNABAR_ORE_STONE_SPECIFIC = b.comment("If true Cinnabar Ore will only spawn in the blocks listed under cinnabarOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in cinnabarOreDimList.")
@@ -1587,7 +1587,7 @@ public class WGConfig {
 
             b.comment("Magnetite Ore Settings").push("magnetiteOre");
             MAGNETITE_ORE_HL = b.comment("Harvest Level of Magnetite Ore.")
-                    .defineInRange("magnetiteOreHL", 2, 0, 4);
+                    .defineInRange("magnetiteOreHL", 3, 0, 4);
             MAGNETITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Magnetite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Magnetite Ore generation.")
                     .define("magnetiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             MAGNETITE_ORE_STONE_SPECIFIC = b.comment("If true Magnetite Ore will only spawn in the blocks listed under magnetiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in magnetiteOreDimList.")
@@ -1614,7 +1614,7 @@ public class WGConfig {
 
             b.comment("Pentlandite Ore Settings").push("pentlanditeOre");
             PENTLANDITE_ORE_HL = b.comment("Harvest Level of Pentlandite Ore.")
-                    .defineInRange("pentlanditeOreHL", 2, 0, 4);
+                    .defineInRange("pentlanditeOreHL", 3, 0, 4);
             PENTLANDITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Pentlandite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Pentlandite Ore generation.")
                     .define("pentlanditeOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             PENTLANDITE_ORE_STONE_SPECIFIC = b.comment("If true Pentlandite Ore will only spawn in the blocks listed under pentlanditeOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in pentlanditeOreDimList.")
@@ -1641,7 +1641,7 @@ public class WGConfig {
 
             b.comment("Magnesite Ore Settings").push("magnesiteOre");
             MAGNESITE_ORE_HL = b.comment("Harvest Level of Magnesite Ore.")
-                    .defineInRange("magnesiteOreHL", 2, 0, 4);
+                    .defineInRange("magnesiteOreHL", 3, 0, 4);
             MAGNESITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Magnesite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Magnesite Ore generation.")
                     .define("magnesiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             MAGNESITE_ORE_STONE_SPECIFIC = b.comment("If true Magnesite Ore will only spawn in the blocks listed under magnesiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in magnesiteOreDimList.")
@@ -1668,7 +1668,7 @@ public class WGConfig {
 
             b.comment("Galena Ore Settings").push("galenaOre");
             GALENA_ORE_HL = b.comment("Harvest Level of Galena Ore.")
-                    .defineInRange("galenaOreHL", 2, 0, 4);
+                    .defineInRange("galenaOreHL", 3, 0, 4);
             GALENA_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Galena Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Galena Ore generation.")
                     .define("galenaOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             GALENA_ORE_STONE_SPECIFIC = b.comment("If true Galena Ore will only spawn in the blocks listed under galenaOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in galenaOreDimList.")
@@ -1695,7 +1695,7 @@ public class WGConfig {
 
             b.comment("Vanadinite Ore Settings").push("vanadiniteOre");
             VANADINITE_ORE_HL = b.comment("Harvest Level of Vanadinite Ore.")
-                    .defineInRange("vanadiniteOreHL", 2, 0, 4);
+                    .defineInRange("vanadiniteOreHL", 3, 0, 4);
             VANADINITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Vanadinite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Vanadinite Ore generation.")
                     .define("vanadiniteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             VANADINITE_ORE_STONE_SPECIFIC = b.comment("If true Vanadinite Ore will only spawn in the blocks listed under vanadiniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in vanadiniteOreDimList.")
@@ -1722,7 +1722,7 @@ public class WGConfig {
 
             b.comment("Bismuthinite Ore Settings").push("bismuthiniteOre");
             BISMUTHINITE_ORE_HL = b.comment("Harvest Level of Bismuthinite Ore.")
-                    .defineInRange("bismuthiniteOreHL", 2, 0, 4);
+                    .defineInRange("bismuthiniteOreHL", 3, 0, 4);
             BISMUTHINITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Bismuthinite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Bismuthinite Ore generation.")
                     .define("bismuthiniteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             BISMUTHINITE_ORE_STONE_SPECIFIC = b.comment("If true Bismuthinite Ore will only spawn in the blocks listed under bismuthiniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in bismuthiniteOreDimList.")
@@ -1749,7 +1749,7 @@ public class WGConfig {
 
             b.comment("Acanthite Ore Settings").push("acanthiteOre");
             ACANTHITE_ORE_HL = b.comment("Harvest Level of Acanthite Ore.")
-                    .defineInRange("acanthiteOreHL", 2, 0, 4);
+                    .defineInRange("acanthiteOreHL", 3, 0, 4);
             ACANTHITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Acanthite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Acanthite Ore generation.")
                     .define("acanthiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             ACANTHITE_ORE_STONE_SPECIFIC = b.comment("If true Acanthite Ore will only spawn in the blocks listed under acanthiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in acanthiteOreDimList.")
@@ -1776,7 +1776,7 @@ public class WGConfig {
 
             b.comment("Pyrolusite Ore Settings").push("pyrolusiteOre");
             PYROLUSITE_ORE_HL = b.comment("Harvest Level of Pyrolusite Ore.")
-                    .defineInRange("pyrolusiteOreHL", 2, 0, 4);
+                    .defineInRange("pyrolusiteOreHL", 3, 0, 4);
             PYROLUSITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Pyrolusite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Pyrolusite Ore generation.")
                     .define("pyrolusiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             PYROLUSITE_ORE_STONE_SPECIFIC = b.comment("If true Pyrolusite Ore will only spawn in the blocks listed under pyrolusiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in pyrolusiteOreDimList.")
@@ -1803,7 +1803,7 @@ public class WGConfig {
 
             b.comment("Chromite Ore Settings").push("chromiteOre");
             CHROMITE_ORE_HL = b.comment("Harvest Level of Chromite Ore.")
-                    .defineInRange("chromiteOreHL", 3, 0, 4);
+                    .defineInRange("chromiteOreHL", 4, 0, 4);
             CHROMITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Chromite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Chromite Ore generation.")
                     .define("chromiteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             CHROMITE_ORE_STONE_SPECIFIC = b.comment("If true Chromite Ore will only spawn in the blocks listed under chromiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in chromiteOreDimList.")
@@ -1857,7 +1857,7 @@ public class WGConfig {
 
             b.comment("Ilmenite Ore Settings").push("ilmeniteOre");
             ILMENITE_ORE_HL = b.comment("Harvest Level of Ilmenite Ore.")
-                    .defineInRange("ilmeniteOreHL", 3, 0, 4);
+                    .defineInRange("ilmeniteOreHL", 4, 0, 4);
             ILMENITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Ilmenite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Ilmenite Ore generation.")
                     .define("ilmeniteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             ILMENITE_ORE_STONE_SPECIFIC = b.comment("If true Ilmenite Ore will only spawn in the blocks listed under ilmeniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in ilmeniteOreDimList.")
@@ -1884,7 +1884,7 @@ public class WGConfig {
 
             b.comment("Columbite Ore Settings").push("columbiteOre");
             COLUMBITE_ORE_HL = b.comment("Harvest Level of Columbite Ore.")
-                    .defineInRange("columbiteOreHL", 3, 0, 4);
+                    .defineInRange("columbiteOreHL", 4, 0, 4);
             COLUMBITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Columbite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Columbite Ore generation.")
                     .define("columbiteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             COLUMBITE_ORE_STONE_SPECIFIC = b.comment("If true Columbite Ore will only spawn in the blocks listed under columbiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in columbiteOreDimList.")
@@ -1911,7 +1911,7 @@ public class WGConfig {
 
             b.comment("Wolframite Ore Settings").push("wolframiteOre");
             WOLFRAMITE_ORE_HL = b.comment("Harvest Level of Wolframite Ore.")
-                    .defineInRange("wolframiteOreHL", 3, 0, 4);
+                    .defineInRange("wolframiteOreHL", 4, 0, 4);
             WOLFRAMITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Wolframite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Wolframite Ore generation.")
                     .define("wolframiteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             WOLFRAMITE_ORE_STONE_SPECIFIC = b.comment("If true Wolframite Ore will only spawn in the blocks listed under wolframiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in wolframiteOreDimList.")
@@ -1938,7 +1938,7 @@ public class WGConfig {
 
             b.comment("Tantalite Ore Settings").push("tantaliteOre");
             TANTALITE_ORE_HL = b.comment("Harvest Level of Tantalite Ore.")
-                    .defineInRange("tantaliteOreHL", 3, 0, 4);
+                    .defineInRange("tantaliteOreHL", 4, 0, 4);
             TANTALITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Tantalite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Tantalite Ore generation.")
                     .define("tantaliteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             TANTALITE_ORE_STONE_SPECIFIC = b.comment("If true Tantalite Ore will only spawn in the blocks listed under tantaliteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in tantaliteOreDimList.")
@@ -1965,7 +1965,7 @@ public class WGConfig {
 
             b.comment("Plumbago Ore Settings").push("plumbagoOre");
             PLUMBAGO_ORE_HL = b.comment("Harvest Level of Plumbago Ore.")
-                    .defineInRange("plumbagoOreHL", 2, 0, 4);
+                    .defineInRange("plumbagoOreHL", 3, 0, 4);
             PLUMBAGO_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Plumbago Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Plumbago Ore generation.")
                     .define("plumbagoOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             PLUMBAGO_ORE_STONE_SPECIFIC = b.comment("If true Plumbago Ore will only spawn in the blocks listed under plumbagoOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in plumbagoOreDimList.")
@@ -1992,7 +1992,7 @@ public class WGConfig {
 
             b.comment("Moissanite Ore Settings").push("moissaniteOre");
             MOISSANITE_ORE_HL = b.comment("Harvest Level of Moissanite Ore.")
-                    .defineInRange("moissaniteOreHL", 2, 0, 4);
+                    .defineInRange("moissaniteOreHL", 3, 0, 4);
             MOISSANITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Moissanite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Moissanite Ore generation.")
                     .define("moissaniteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             MOISSANITE_ORE_STONE_SPECIFIC = b.comment("If true Moissanite Ore will only spawn in the blocks listed under moissaniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in moissaniteOreDimList.")
@@ -2073,7 +2073,7 @@ public class WGConfig {
 
             b.comment("Subbituminous Ore Settings").push("subbituminousOre");
             SUBBITUMINOUS_ORE_HL = b.comment("Harvest Level of Subbituminous Ore.")
-                    .defineInRange("subbituminousOreHL", 1, 0, 4);
+                    .defineInRange("subbituminousOreHL", 2, 0, 4);
             SUBBITUMINOUS_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Subbituminous Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Subbituminous Ore generation.")
                     .define("subbituminousOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             SUBBITUMINOUS_ORE_STONE_SPECIFIC = b.comment("If true Subbituminous Ore will only spawn in the blocks listed under subbituminousOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in subbituminousOreDimList.")
@@ -2100,7 +2100,7 @@ public class WGConfig {
 
             b.comment("Bituminous Ore Settings").push("bituminousOre");
             BITUMINOUS_ORE_HL = b.comment("Harvest Level of Bituminous Ore.")
-                    .defineInRange("bituminousOreHL", 2, 0, 4);
+                    .defineInRange("bituminousOreHL", 3, 0, 4);
             BITUMINOUS_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Bituminous Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Bituminous Ore generation.")
                     .define("bituminousOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             BITUMINOUS_ORE_STONE_SPECIFIC = b.comment("If true Bituminous Ore will only spawn in the blocks listed under bituminousOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in bituminousOreDimList.")
@@ -2127,7 +2127,7 @@ public class WGConfig {
 
             b.comment("Anthracite Ore Settings").push("anthraciteOre");
             ANTHRACITE_ORE_HL = b.comment("Harvest Level of Anthracite Ore.")
-                    .defineInRange("anthraciteOreHL", 3, 0, 4);
+                    .defineInRange("anthraciteOreHL", 4, 0, 4);
             ANTHRACITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Anthracite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Anthracite Ore generation.")
                     .define("anthraciteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             ANTHRACITE_ORE_STONE_SPECIFIC = b.comment("If true Anthracite Ore will only spawn in the blocks listed under anthraciteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in anthraciteOreDimList.")
@@ -2154,7 +2154,7 @@ public class WGConfig {
 
             b.comment("Lazurite Ore Settings").push("lazuriteOre");
             LAZURITE_ORE_HL = b.comment("Harvest Level of Lazurite Ore.")
-                    .defineInRange("lazuriteOreHL", 1, 0, 4);
+                    .defineInRange("lazuriteOreHL", 2, 0, 4);
             LAZURITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Lazurite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Lazurite Ore generation.")
                     .define("lazuriteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             LAZURITE_ORE_STONE_SPECIFIC = b.comment("If true Lazurite Ore will only spawn in the blocks listed under lazuriteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in lazuriteOreDimList.")
@@ -2181,7 +2181,7 @@ public class WGConfig {
 
             b.comment("Diamond Ore Settings").push("diamondOre");
             DIAMOND_ORE_HL = b.comment("Harvest Level of Diamond Ore.")
-                    .defineInRange("diamondOreHL", 3, 0, 4);
+                    .defineInRange("diamondOreHL", 4, 0, 4);
             DIAMOND_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Diamond Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Diamond Ore generation.")
                     .define("diamondOreDimList", new ArrayList<>(Arrays.asList("")));
             DIAMOND_ORE_STONE_SPECIFIC = b.comment("If true Diamond Ore will only spawn in the blocks listed under diamondOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in diamondOreDimList.")
@@ -2208,7 +2208,7 @@ public class WGConfig {
 
             b.comment("Greenockite Ore Settings").push("greenockiteOre");
             GREENOCKITE_ORE_HL = b.comment("Harvest Level of Greenockite Ore.")
-                    .defineInRange("greenockiteOreHL", 3, 0, 4);
+                    .defineInRange("greenockiteOreHL", 4, 0, 4);
             GREENOCKITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Greenockite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Greenockite Ore generation.")
                     .define("greenockiteOreDimList", new ArrayList<>(Arrays.asList("end")));
             GREENOCKITE_ORE_STONE_SPECIFIC = b.comment("If true Greenockite Ore will only spawn in the blocks listed under greenockiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in greenockiteOreDimList.")
@@ -2235,7 +2235,7 @@ public class WGConfig {
 
             b.comment("Emerald Ore Settings").push("emeraldOre");
             EMERALD_ORE_HL = b.comment("Harvest Level of Emerald Ore.")
-                    .defineInRange("emeraldOreHL", 2, 0, 4);
+                    .defineInRange("emeraldOreHL", 3, 0, 4);
             EMERALD_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Emerald Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Emerald Ore generation.")
                     .define("emeraldOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             EMERALD_ORE_STONE_SPECIFIC = b.comment("If true Emerald Ore will only spawn in the blocks listed under emeraldOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in emeraldOreDimList.")
@@ -2262,7 +2262,7 @@ public class WGConfig {
 
             b.comment("Aquamarine Ore Settings").push("aquamarineOre");
             AQUAMARINE_ORE_HL = b.comment("Harvest Level of Aquamarine Ore.")
-                    .defineInRange("aquamarineOreHL", 2, 0, 4);
+                    .defineInRange("aquamarineOreHL", 3, 0, 4);
             AQUAMARINE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Aquamarine Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Aquamarine Ore generation.")
                     .define("aquamarineOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             AQUAMARINE_ORE_STONE_SPECIFIC = b.comment("If true Aquamarine Ore will only spawn in the blocks listed under aquamarineOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in aquamarineOreDimList.")
@@ -2289,7 +2289,7 @@ public class WGConfig {
 
             b.comment("Quartz Ore Settings").push("quartzOre");
             QUARTZ_ORE_HL = b.comment("Harvest Level of Quartz Ore.")
-                    .defineInRange("quartzOreHL", 1, 0, 4);
+                    .defineInRange("quartzOreHL", 2, 0, 4);
             QUARTZ_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Quartz Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Quartz Ore generation.")
                     .define("quartzOreDimList", new ArrayList<>(Arrays.asList("nether")));
             QUARTZ_ORE_STONE_SPECIFIC = b.comment("If true Quartz Ore will only spawn in the blocks listed under quartzOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in quartzOreDimList.")
@@ -2316,7 +2316,7 @@ public class WGConfig {
 
             b.comment("Opal Ore Settings").push("opalOre");
             OPAL_ORE_HL = b.comment("Harvest Level of Opal Ore.")
-                    .defineInRange("opalOreHL", 2, 0, 4);
+                    .defineInRange("opalOreHL", 3, 0, 4);
             OPAL_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Opal Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Opal Ore generation.")
                     .define("opalOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             OPAL_ORE_STONE_SPECIFIC = b.comment("If true Opal Ore will only spawn in the blocks listed under opalOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in opalOreDimList.")
@@ -2343,7 +2343,7 @@ public class WGConfig {
 
             b.comment("Majorite Ore Settings").push("majoriteOre");
             MAJORITE_ORE_HL = b.comment("Harvest Level of Majorite Ore.")
-                    .defineInRange("majoriteOreHL", 2, 0, 4);
+                    .defineInRange("majoriteOreHL", 3, 0, 4);
             MAJORITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Majorite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Majorite Ore generation.")
                     .define("majoriteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             MAJORITE_ORE_STONE_SPECIFIC = b.comment("If true Majorite Ore will only spawn in the blocks listed under majoriteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in majoriteOreDimList.")
@@ -2370,7 +2370,7 @@ public class WGConfig {
 
             b.comment("Fluorite Ore Settings").push("fluoriteOre");
             FLUORITE_ORE_HL = b.comment("Harvest Level of Fluorite Ore.")
-                    .defineInRange("fluoriteOreHL", 3, 0, 4);
+                    .defineInRange("fluoriteOreHL", 4, 0, 4);
             FLUORITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Fluorite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Fluorite Ore generation.")
                     .define("fluoriteOreDimList", new ArrayList<>(Arrays.asList("end")));
             FLUORITE_ORE_STONE_SPECIFIC = b.comment("If true Fluorite Ore will only spawn in the blocks listed under fluoriteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in fluoriteOreDimList.")
@@ -2532,7 +2532,7 @@ public class WGConfig {
 
             b.comment("Interspinifex Ore Settings").push("interspinifexOre");
             INTERSPINIFEX_ORE_HL = b.comment("Harvest Level of Interspinifex Ore.")
-                    .defineInRange("interspinifexOreHL", 2, 0, 4);
+                    .defineInRange("interspinifexOreHL", 3, 0, 4);
             INTERSPINIFEX_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Interspinifex Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Interspinifex Ore generation.")
                     .define("interspinifexOreDimList", new ArrayList<>(Arrays.asList()));
             INTERSPINIFEX_ORE_STONE_SPECIFIC = b.comment("If true Interspinifex Ore will only spawn in the blocks listed under interspinifexOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in interspinifexOreDimList.")
@@ -2559,7 +2559,7 @@ public class WGConfig {
 
             b.comment("Petalite Ore Settings").push("petaliteOre");
             PETALITE_ORE_HL = b.comment("Harvest Level of Petalite Ore.")
-                    .defineInRange("petaliteOreHL", 3, 0, 4);
+                    .defineInRange("petaliteOreHL", 4, 0, 4);
             PETALITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Petalite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Petalite Ore generation.")
                     .define("petaliteOreDimList", new ArrayList<>(Arrays.asList()));
             PETALITE_ORE_STONE_SPECIFIC = b.comment("If true Petalite Ore will only spawn in the blocks listed under petaliteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in petaliteOreDimList.")
@@ -2586,7 +2586,7 @@ public class WGConfig {
 
             b.comment("Cobaltite Ore Settings").push("cobaltiteOre");
             COBALTITE_ORE_HL = b.comment("Harvest Level of Cobaltite Ore.")
-                    .defineInRange("cobaltiteOreHL", 3, 0, 4);
+                    .defineInRange("cobaltiteOreHL", 4, 0, 4);
             COBALTITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Cobaltite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Cobaltite Ore generation.")
                     .define("cobaltiteOreDimList", new ArrayList<>(Arrays.asList("nether")));
             COBALTITE_ORE_STONE_SPECIFIC = b.comment("If true Cobaltite Ore will only spawn in the blocks listed under cobaltiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in cobaltiteOreDimList.")
@@ -2613,7 +2613,7 @@ public class WGConfig {
 
             b.comment("Cryolite Ore Settings").push("cryoliteOre");
             CRYOLITE_ORE_HL = b.comment("Harvest Level of Cryolite Ore.")
-                    .defineInRange("cryoliteOreHL", 3, 0, 4);
+                    .defineInRange("cryoliteOreHL", 4, 0, 4);
             CRYOLITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Cryolite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Cryolite Ore generation.")
                     .define("cryoliteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             CRYOLITE_ORE_STONE_SPECIFIC = b.comment("If true Cryolite Ore will only spawn in the blocks listed under cryoliteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in cryoliteOreDimList.")
@@ -2640,7 +2640,7 @@ public class WGConfig {
 
             b.comment("Pyrite Ore Settings").push("pyriteOre");
             PYRITE_ORE_HL = b.comment("Harvest Level of Pyrite Ore.")
-                    .defineInRange("pyriteOreHL", 1, 0, 4);
+                    .defineInRange("pyriteOreHL", 2, 0, 4);
             PYRITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Pyrite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Pyrite Ore generation.")
                     .define("pyriteOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             PYRITE_ORE_STONE_SPECIFIC = b.comment("If true Pyrite Ore will only spawn in the blocks listed under pyriteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in pyriteOreDimList.")
@@ -2667,7 +2667,7 @@ public class WGConfig {
 
             b.comment("Celestine Ore Settings").push("celestineOre");
             CELESTINE_ORE_HL = b.comment("Harvest Level of Celestine Ore.")
-                    .defineInRange("celestineOreHL", 2, 0, 4);
+                    .defineInRange("celestineOreHL", 3, 0, 4);
             CELESTINE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Celestine Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Celestine Ore generation.")
                     .define("celestineOreDimList", new ArrayList<>(Arrays.asList("overworld")));
             CELESTINE_ORE_STONE_SPECIFIC = b.comment("If true Celestine Ore will only spawn in the blocks listed under celestineOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in celestineOreDimList.")
@@ -2721,7 +2721,7 @@ public class WGConfig {
 
             b.comment("Kamacite Ore Settings").push("kamaciteOre");
             KAMACITE_ORE_HL = b.comment("Harvest Level of Kamacite Ore.")
-                    .defineInRange("kamaciteOreHL", 1, 0, 4);
+                    .defineInRange("kamaciteOreHL", 2, 0, 4);
             KAMACITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Kamacite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Kamacite Ore generation.")
                     .define("kamaciteOreDimList", new ArrayList<>(Arrays.asList("end")));
             KAMACITE_ORE_STONE_SPECIFIC = b.comment("If true Kamacite Ore will only spawn in the blocks listed under kamaciteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in kamaciteOreDimList.")
@@ -2748,7 +2748,7 @@ public class WGConfig {
 
             b.comment("Antitaenite Ore Settings").push("antitaeniteOre");
             ANTITAENITE_ORE_HL = b.comment("Harvest Level of Antitaenite Ore.")
-                    .defineInRange("antitaeniteOreHL", 1, 0, 4);
+                    .defineInRange("antitaeniteOreHL", 2, 0, 4);
             ANTITAENITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Antitaenite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Antitaenite Ore generation.")
                     .define("antitaeniteOreDimList", new ArrayList<>(Arrays.asList("end")));
             ANTITAENITE_ORE_STONE_SPECIFIC = b.comment("If true Antitaenite Ore will only spawn in the blocks listed under antitaeniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in antitaeniteOreDimList.")
@@ -2775,7 +2775,7 @@ public class WGConfig {
 
             b.comment("taenite Ore Settings").push("taeniteOre");
             TAENITE_ORE_HL = b.comment("Harvest Level of taenite Ore.")
-                    .defineInRange("taeniteOreHL", 1, 0, 4);
+                    .defineInRange("taeniteOreHL", 2, 0, 4);
             TAENITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate taenite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable taenite Ore generation.")
                     .define("taeniteOreDimList", new ArrayList<>(Arrays.asList("end")));
             TAENITE_ORE_STONE_SPECIFIC = b.comment("If true taenite Ore will only spawn in the blocks listed under taeniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in taeniteOreDimList.")
@@ -2802,7 +2802,7 @@ public class WGConfig {
 
             b.comment("Tetrataenite Ore Settings").push("tetrataeniteOre");
             TETRATAENITE_ORE_HL = b.comment("Harvest Level of Tetrataenite Ore.")
-                    .defineInRange("tetrataeniteOreHL", 1, 0, 4);
+                    .defineInRange("tetrataeniteOreHL", 2, 0, 4);
             TETRATAENITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Tetrataenite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Tetrataenite Ore generation.")
                     .define("tetrataeniteOreDimList", new ArrayList<>(Arrays.asList("end")));
             TETRATAENITE_ORE_STONE_SPECIFIC = b.comment("If true Tetrataenite Ore will only spawn in the blocks listed under tetrataeniteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in tetrataeniteOreDimList.")

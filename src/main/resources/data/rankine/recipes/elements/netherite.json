@@ -1,0 +1,82 @@
+{
+  "type": "rankine:element",
+  "name": "netherite",
+  "symbol": "Nr",
+  "color": 4997443,
+  "atomic": 161,
+  "potential": -0.04,
+  "items": ["T#forge:nuggets/netherite","I#minecraft:netherite_scrap","T#forge:ingots/netherite","T#forge:storage_blocks/netherite"],
+  "values": [1,2,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [20.31],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [-1],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [10,100],
+    "formulas": ["CONSTANT","CONSTANT"],
+    "a": [3,4],
+    "b": [0,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.15],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [2]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.02],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-1]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.04],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [1]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.003333],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "knockbackresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.01],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}
