@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/make_piston_crusher",
+  "display": {
+    "icon": {
+      "item": "rankine:pulp"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_pulp.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_pulp.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "pulp": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pulp"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pulp"
+    ]
+  ]
+}

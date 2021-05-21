@@ -419,6 +419,10 @@ public class RankineRecipes {
         recipes.add(evaporationRecipe("groundwater_evaporation", RankineItems.BIOME_INDICATOR_GENERIC.get(), EvaporationTowerTile.returnGroundwaterCollection()));
         recipes.add(evaporationRecipe("ocean_evaporation", RankineItems.BIOME_INDICATOR_OCEAN.get(), EvaporationTowerTile.returnOceanCollection()));
         recipes.add(evaporationRecipe("river_evaporation", RankineItems.BIOME_INDICATOR_RIVER.get(), EvaporationTowerTile.returnRiverCollection()));
+        recipes.add(evaporationRecipeSimple("latex", RankineItems.LATEX_BUCKET.get(), RankineItems.DRY_RUBBER.get()));
+        recipes.add(evaporationRecipeSimple("resin", RankineItems.RESIN_BUCKET.get(), RankineItems.AMBER.get()));
+        recipes.add(evaporationRecipeSimple("sap", RankineItems.SAP_BUCKET.get(), Items.SUGAR));
+        recipes.add(evaporationRecipeSimple("maple_sap", RankineItems.MAPLE_SAP_BUCKET.get(), RankineItems.MAPLE_SYRUP.get()));
         return recipes;
     }
 
@@ -479,7 +483,13 @@ public class RankineRecipes {
                 Ingredient.fromStacks(new ItemStack(input)),weights);
     }
 
-
+    public static IEvaporationRecipe evaporationRecipeSimple(String registry, Item input, Item col)
+    {
+        List<ItemStack> output = Collections.singletonList(new ItemStack(col));
+        List<Float> weights = Collections.singletonList(1f);
+        return new IEvaporationRecipe(new ResourceLocation(ProjectRankine.MODID,registry),output,
+                Ingredient.fromStacks(new ItemStack(input)),weights);
+    }
 
     public static List<PeriodicTableUtils.Element> getElements(String c)
     {
