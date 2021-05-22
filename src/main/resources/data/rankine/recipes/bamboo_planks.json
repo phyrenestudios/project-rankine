@@ -1,4 +1,0 @@
-{ "type": "minecraft:crafting_shaped",
-  "pattern": [ "xx", "xx"],
-  "key": { "x": { "item": "rankine:dried_bamboo" } },
-  "result": { "item": "rankine:bamboo_planks", "count": 1} }

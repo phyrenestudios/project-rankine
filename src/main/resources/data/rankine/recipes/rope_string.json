@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:string"
+      "tag": "forge:string"
     },
     {
-      "item": "minecraft:string"
+      "tag": "forge:string"
     },
     {
-      "item": "minecraft:string"
+      "tag": "forge:string"
     }
   ],
   "result": {
     "item": "rankine:rope",
-    "count": 3
+    "count": 4
   }
 }

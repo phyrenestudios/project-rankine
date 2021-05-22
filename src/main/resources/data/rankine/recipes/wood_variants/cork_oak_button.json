@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:cork_oak_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:cork_oak_button",
+    "count": 1
+  }
+}

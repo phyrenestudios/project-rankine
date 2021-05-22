@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/nitinol"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_gear",
+    "count": 1
+  }
+}

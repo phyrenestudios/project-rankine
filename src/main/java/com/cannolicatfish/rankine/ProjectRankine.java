@@ -1,5 +1,7 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.svl.SodiumVaporLampContainer;
+import com.cannolicatfish.rankine.blocks.svl.SodiumVaporLampTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
@@ -38,6 +40,7 @@ import com.cannolicatfish.rankine.util.colors.SGVDItemColor;
 import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.block.WoodType;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -48,6 +51,7 @@ import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
+import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -78,6 +82,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Locale;
+
 @Mod("rankine")
 public class ProjectRankine {
     public static final String MODID = "rankine";
@@ -95,8 +101,11 @@ public class ProjectRankine {
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
+
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
+        RankineTileEntityTypes.TILE_ENTITIES.register(Bus);
+
         Bus.addListener(this::LoadComplete);
 
     }
@@ -115,7 +124,11 @@ public class ProjectRankine {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineFeatures.registerConfiguredFeatures();
+            //WoodType.register(RankineBlocks.CEDAR);
         });
+
+        WoodType.register(RankineBlocks.CEDAR);
+
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
 
@@ -125,9 +138,10 @@ public class ProjectRankine {
                 ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
                         new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
                                 stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F));
-                WoodType.register(WoodType.create("cedar"));
-                WoodType.register(WoodType.create("white_birch"));
-                WoodType.register(WoodType.create("yellow_birch"));
+
+        event.enqueueWork(() ->
+                Atlases.addWoodType(RankineBlocks.CEDAR));
+
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 
@@ -240,6 +254,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
             event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
+            event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
 
         }
 
@@ -366,6 +381,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new LaserQuarryContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new SodiumVaporLampContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
         }
 
         @SubscribeEvent
@@ -443,6 +463,10 @@ public class ProjectRankine {
         public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
 
         }*/
+    }
+
+    public static ResourceLocation prefix(String name) {
+        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
     }
 
 

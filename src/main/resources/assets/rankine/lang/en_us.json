@@ -18,7 +18,7 @@
   "block.rankine.tap_line": "Tap Line",
   "block.rankine.amber_block": "Amber Block",
   "item.rankine.amber": "Amber",
-  "item.rankine.sawdust": "Sawdust",
+  "block.rankine.sawdust": "Sawdust",
   "item.rankine.totem_of_cobbling": "Totem of Cobbling",
   "item.rankine.juniper_berries": "Juniper Berries",
   "item.rankine.black_walnut": "Black Walnut",
@@ -57,7 +57,11 @@
   "item.rankine.cinnamon_toast": "Cinnamon Toast",
   "block.rankine.trampoline": "Trampoline",
   "item.rankine.bandage": "Bandage",
+  "block.rankine.sodium_vapor_lamp": "Sodium Vapor Lamp",
+  "item.rankine.sodium_arc_tube": "Sodium Arc Tube",
 
+
+  "block.rankine.cedar_sign": "Cedar Sign",
 
   "block.rankine.granite_bricks": "Granite Bricks",
   "block.rankine.andesite_bricks": "Andesite Bricks",
@@ -875,6 +879,7 @@
   "item.rankine.alloy_hoe": "Alloy Hoe",
   "item.rankine.alloy_pickaxe": "Alloy Pickaxe",
   "item.rankine.alloy_axe": "Alloy Axe",
+  "item.rankine.alloy_saw": "Alloy Saw",
   "item.rankine.alloy_shovel": "Alloy Shovel",
   "item.rankine.alloy_hammer": "Alloy Hammer",
   "item.rankine.alloy_ingot": "Alloy Ingot",
@@ -1094,6 +1099,7 @@
   "item.rankine.lodestone": "Lodestone",
   "item.rankine.cassiterite": "Cassiterite",
   "item.rankine.acanthite": "Acanthite",
+  "item.rankine.thortveitite": "Thortveitite",
   "item.rankine.galena": "Galena",
   "item.rankine.pentlandite": "Pentlandite",
   "item.rankine.sphalerite": "Sphalerite",

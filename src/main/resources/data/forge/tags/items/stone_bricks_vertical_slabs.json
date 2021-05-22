@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    "rankine:granite_bricks_vertical_slab",
+    "rankine:diorite_bricks_vertical_slab",
+    "rankine:andesite_bricks_vertical_slab",
+    "rankine:basalt_bricks_vertical_slab",
     "rankine:gray_granite_bricks_vertical_slab",
     "rankine:granodiorite_bricks_vertical_slab",
     "rankine:hornblende_andesite_bricks_vertical_slab",

@@ -2,6 +2,10 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
+import com.cannolicatfish.rankine.blocks.signs.RankineSignTileEntity;
+import com.cannolicatfish.rankine.blocks.signs.RankineStandingSignBlock;
+import com.cannolicatfish.rankine.blocks.signs.RankineWallSignBlock;
+import com.cannolicatfish.rankine.blocks.svl.SodiumVaporLampBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
@@ -39,7 +43,9 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.DyeColor;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
@@ -52,7 +58,6 @@ import java.util.function.ToIntFunction;
 public class RankineBlocks {
 
     public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, ProjectRankine.MODID);
-    
 
 
     //Base Properties
@@ -943,6 +948,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHECKERED_PORPHYRY_STAIRS = REGISTRY.register("checkered_porphyry_stairs", () -> new RankineStairsBlock(Block.getStateById(0),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CHECKERED_PORPHYRY_VERTICAL_SLAB = REGISTRY.register("checkered_porphyry_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> STICK_BLOCK = REGISTRY.register("stick_block", () -> new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)));
+    public static final RegistryObject<Block> SAWDUST = REGISTRY.register("sawdust", () -> new SawdustBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.25F)));
     public static final RegistryObject<Block> MINERAL_WOOL = REGISTRY.register("mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
     public static final RegistryObject<Block> WHITE_MINERAL_WOOL = REGISTRY.register("white_mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
     public static final RegistryObject<Block> ORANGE_MINERAL_WOOL = REGISTRY.register("orange_mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
@@ -961,6 +967,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_MINERAL_WOOL = REGISTRY.register("red_mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
     public static final RegistryObject<Block> BLACK_MINERAL_WOOL = REGISTRY.register("black_mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
     public static final RegistryObject<Block> GUN_COTTON = REGISTRY.register("gun_cotton", () -> new GunCottonBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
+    public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = REGISTRY.register("sodium_vapor_lamp", () -> new SodiumVaporLampBlock(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid()));
 
     //WOOD BLOCKS
     public static final RegistryObject<Block> BAMBOO_PLANKS = REGISTRY.register("bamboo_planks", () -> new Block(DEF_WOOD));
@@ -1181,6 +1188,13 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CINNAMON_DOOR = REGISTRY.register("cinnamon_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> CINNAMON_TRAPDOOR = REGISTRY.register("cinnamon_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CINNAMON_BUTTON = REGISTRY.register("cinnamon_button", RankineWoodenButton::new);
+
+
+    public static final WoodType CEDAR = WoodType.create(ProjectRankine.prefix("cedar").toString());
+
+    public static final RegistryObject<Block> CEDAR_SIGN = REGISTRY.register("cedar_sign", () -> new RankineStandingSignBlock(AbstractBlock.Properties.create(Material.WOOD, DyeColor.byId(RankineWoodColors.CEDAR_WOOD)).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD), CEDAR));
+    public static final RegistryObject<Block> CEDAR_WALL_SIGN = REGISTRY.register("cedar_wall_sign", () -> new RankineWallSignBlock(AbstractBlock.Properties.create(Material.WOOD, DyeColor.byId(RankineWoodColors.CEDAR_WOOD)).doesNotBlockMovement().hardnessAndResistance(1.0F).sound(SoundType.WOOD).lootFrom(CEDAR_SIGN.get()), CEDAR));
+
 
 
     public static final RegistryObject<Block> BRASS_DOOR = REGISTRY.register("brass_door", RankineMetalDoor::new);
@@ -1647,6 +1661,11 @@ public class RankineBlocks {
     @ObjectHolder("rankine:alloy_furnace")
     public static TileEntityType<AlloyFurnaceTile> ALLOY_FURNACE_TILE;
 
+    @ObjectHolder("rankine:sodium_vapor_lamp")
+    public static ContainerType<PistonCrusherContainer> SODIUM_VAPOR_LAMP_CONTAINER;
+
+    @ObjectHolder("rankine:sodium_vapor_lamp")
+    public static TileEntityType<PistonCrusherTile> SODIUM_VAPOR_LAMP_TILE;
 
     @ObjectHolder("rankine:piston_crusher")
     public static ContainerType<PistonCrusherContainer> PISTON_CRUSHER_CONTAINER;

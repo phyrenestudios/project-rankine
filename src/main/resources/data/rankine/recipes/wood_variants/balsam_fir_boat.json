@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:balsam_fir_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:balsam_fir_boat",
+    "count": 1
+  }
+}

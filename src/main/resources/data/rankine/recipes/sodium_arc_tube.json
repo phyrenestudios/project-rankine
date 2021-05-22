@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GXG",
+    "ASA",
+    "GXG"
+  ],
+  "key": {
+    "G": {
+      "item": "rankine:lead_glass"
+    },
+    "A": {
+      "item": "rankine:alumina"
+    },
+    "S": {
+      "tag": "forge:ingots/sodium"
+    },
+    "X": {
+      "tag": "forge:nuggets/xenon"
+    }
+  },
+  "result": {
+    "item": "rankine:sodium_arc_tube",
+    "count": 4
+  }
+}

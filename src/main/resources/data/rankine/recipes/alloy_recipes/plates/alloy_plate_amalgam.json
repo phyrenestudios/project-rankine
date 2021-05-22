@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    " I ",
+    "I I",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/amalgam"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_plate",
+    "count": 4
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:stripped_yellow_birch_log"
+    }
+  },
+  "result": {
+    "item": "rankine:stripped_yellow_birch_wood",
+    "count": 3
+  }
+}

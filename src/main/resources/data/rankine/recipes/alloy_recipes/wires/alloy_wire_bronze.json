@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/bronze"
+    },
+    "S": {
+      "tag": "forge:ingots/solder"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_wire",
+    "count": 1
+  }
+}

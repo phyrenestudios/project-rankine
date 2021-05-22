@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#A#"
+  ],
+  "key": {
+    "A": {
+      "item": "rankine:sodium_arc_tube"
+    },
+    "#": {
+      "tag": "rankine:crafting_metals_nuggets"
+    }
+  },
+  "result": {
+    "item": "rankine:sodium_vapor_lamp",
+    "count": 1
+  }
+}

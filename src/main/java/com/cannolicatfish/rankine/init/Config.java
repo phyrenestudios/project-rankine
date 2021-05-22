@@ -84,6 +84,8 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
         public final ForgeConfigSpec.IntValue HERBICIDE_RANGE;
         public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
+        public final ForgeConfigSpec.IntValue MAX_TREE;
+        public final ForgeConfigSpec.IntValue LEAF_DECAY_SPEED;
 
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
@@ -101,6 +103,10 @@ public class Config {
                             .define("strippablesSticks",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
                             .defineInRange("herbicideRange", 7, 0, 32);
+                    MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
+                            .defineInRange("maxTree", 256, 0, 1024);
+                    LEAF_DECAY_SPEED = b.comment("Number of leaves to break per tick during tree chopping. Lower numbers mean smoother decay..")
+                            .defineInRange("leafDecay", 10, 1, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
                             .defineInRange("trampolineSize", 289, 0, 961);
                     CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
