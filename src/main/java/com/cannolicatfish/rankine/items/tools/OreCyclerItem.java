@@ -2,8 +2,6 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;

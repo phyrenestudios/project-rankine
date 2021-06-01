@@ -7,7 +7,6 @@ import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -105,7 +104,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
-            World worldIn = Minecraft.getInstance().world;
+            /*World worldIn = ProjectRankine.proxy.getClientWorld();
             if (worldIn != null) {
                 List<ICraftingRecipe> s = worldIn.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream().filter(iCraftingRecipe -> iCraftingRecipe.getRecipeOutput().getItem() == this.getItem()).collect(Collectors.toList());
                 for (ICraftingRecipe recipe : s) {
@@ -115,7 +114,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
                 }
             } else {
                 items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
-            }
+            }*/
 
             items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
         }

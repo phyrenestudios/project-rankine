@@ -51,10 +51,9 @@ public class ElementIndexerContainer extends Container {
     public ElementRecipe getSlotItem() {
         ItemStack stack = this.handler.getStackInSlot(0);
 
-        World worldIn = Minecraft.getInstance().world;
-        if (utils.hasElementRecipe(stack, worldIn))
+        if (utils.hasElementRecipe(stack, null))
         {
-            return utils.getElementRecipe(stack, worldIn);
+            return utils.getElementRecipe(stack, null);
         } else {
             return null;
         }
