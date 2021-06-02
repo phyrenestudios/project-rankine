@@ -1,0 +1,8 @@
+{
+        "variants": {
+                "facing=north": { "model": "rankine:block/garnet_geode" },
+                "facing=east":  { "model": "rankine:block/garnet_geode", "y": 90 },
+                "facing=south": { "model": "rankine:block/garnet_geode", "y": 180 },
+                "facing=west":  { "model": "rankine:block/garnet_geode", "y": 270 }
+        }
+}

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:columbite"
+        }
+      },
+      "result": {
+        "item": "rankine:columbite_block",
+        "count": 1
+      }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:uncut_geode"
+  },
+  "output1": {
+    "item": "rankine:garnet_geode",
+    "chance": 1.00
+  }
+}

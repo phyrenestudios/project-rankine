@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "rankine:block/cotton_plant/cotton_plant_upper_stage1"
+  }
+}

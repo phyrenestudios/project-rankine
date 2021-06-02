@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:cassiterite"
+        }
+      },
+      "result": {
+        "item": "rankine:cassiterite_block",
+        "count": 1
+      }
+}

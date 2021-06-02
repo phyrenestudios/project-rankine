@@ -29,8 +29,7 @@ public class MetalLadderBlock extends LadderBlock {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         if (this.teleport) {
             int n = 1;
-            IBlockReader reader = world;
-            while (reader.getBlockState(pos.up(n)).getBlock() == this.getBlock()) {
+            while (world.getBlockState(pos.up(n)).getBlock() == this.getBlock()) {
                 n += 1;
             }
             if (!world.isRemote) {

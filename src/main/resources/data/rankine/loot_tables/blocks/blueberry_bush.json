@@ -14,7 +14,8 @@
 		  "condition": "minecraft:block_state_property",
 		  "block": "rankine:blueberry_bush",
 		  "properties": {
-			"age": "3"
+			"age": "3",
+			"half": "lower"
 		  }
 		}
 	  ],

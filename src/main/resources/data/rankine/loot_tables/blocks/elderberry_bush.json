@@ -1,23 +1,24 @@
 {
   "type": "minecraft:block",
   "pools": [
-    {
-      "rolls": 1.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "rankine:elderberries"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "rankine:elderberry_bush",
-          "properties": {
-            "age": "3"
-          }
-        }
-      ],
+	{
+	  "rolls": 1.0,
+	  "entries": [
+		{
+		  "type": "minecraft:item",
+		  "name": "rankine:elderberries"
+		}
+	  ],
+	  "conditions": [
+		{
+		  "condition": "minecraft:block_state_property",
+		  "block": "rankine:blueberry_bush",
+		  "properties": {
+			"age": "3",
+			"half": "lower"
+		  }
+		}
+	  ],
 	  "functions": [
 		{
 		  "function": "minecraft:set_count",

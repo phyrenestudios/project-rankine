@@ -37,4 +37,10 @@ public class RankineFluids {
     @ObjectHolder("rankine:flowing_resin")
     public static FlowingFluid FLOWING_RESIN;
 
+    @ObjectHolder("rankine:juglone")
+    public static FlowingFluid JUGLONE;
+
+    @ObjectHolder("rankine:flowing_juglone")
+    public static FlowingFluid FLOWING_JUGLONE;
+
 }

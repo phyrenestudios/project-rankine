@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:lanthanum_monazite"
+        }
+      },
+      "result": {
+        "item": "rankine:lanthanum_monazite_block",
+        "count": 1
+      }
+}

@@ -158,6 +158,17 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                 } else if (cookTime > 0) {
                     this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
+            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.JUGLONE.get()) {
+                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.AMBER.get()) && output.getCount() < 61) {
+                    ++this.cookTime;
+                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_RESIN.get()) {
+                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
+                        this.items.set(0, new ItemStack(Items.BROWN_DYE,this.items.get(0).getCount()+4));
+                        cookTime = 0;
+                    }
+                } else if (cookTime > 0) {
+                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+                }
             } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.MAPLE_SAP.get()) {
                 if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.MAPLE_SYRUP.get()) && output.getCount() < 64) {
                     ++this.cookTime;

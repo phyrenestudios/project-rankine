@@ -20,9 +20,11 @@ public class KnifeItem extends SwordItem {
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (state.matchesBlock(Blocks.COBWEB)) {
             return 15.0F;
+        } else if (state.isIn(BlockTags.LEAVES)) {
+            return 0.5F;
         } else {
             Material material = state.getMaterial();
-            return material != Material.CORAL && !state.isIn(BlockTags.LEAVES) && material != Material.GOURD ? 1.0F : 1.5F;
+            return material != Material.CORAL && material != Material.GOURD ? 1.0F : 1.5F;
         }
     }
 

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:vanadinite"
+        }
+      },
+      "result": {
+        "item": "rankine:vanadinite_block",
+        "count": 1
+      }
+}

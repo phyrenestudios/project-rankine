@@ -1,20 +1,12 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.blocks.RankinePlantBlock;
-import com.cannolicatfish.rankine.potion.RankinePotions;
+import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.world.gen.feature.*;
 import com.cannolicatfish.rankine.world.gen.placement.IntrusionPlacement;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.potion.Potions;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
@@ -24,10 +16,6 @@ import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.*;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.OptionalInt;
 

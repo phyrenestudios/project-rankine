@@ -17,10 +17,7 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
-import com.cannolicatfish.rankine.fluids.LatexFluid;
-import com.cannolicatfish.rankine.fluids.MapleSapFluid;
-import com.cannolicatfish.rankine.fluids.ResinFluid;
-import com.cannolicatfish.rankine.fluids.SapFluid;
+import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -429,6 +426,11 @@ public class ProjectRankine {
                     .bucket(RankineItems.LATEX_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"latex"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LATEX, () -> RankineFluids.FLOWING_LATEX, FluidAttributes.builder(LatexFluid.FLUID_STILL,LatexFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LatexFluid.OVERLAY))
                     .bucket(RankineItems.LATEX_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"flowing_latex"));
+
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY))
+                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"juglone"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY))
+                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"flowing_juglone"));
 
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY))
                     .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"resin"));

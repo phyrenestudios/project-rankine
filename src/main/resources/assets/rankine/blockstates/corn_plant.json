@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "section=bottom,age=0": { "model": "rankine:block/corn_plant/corn_plant_top1" },
+        "section=bottom,age=1": { "model": "rankine:block/corn_plant/corn_plant_top1" },
+        "section=bottom,age=2": { "model": "rankine:block/corn_plant/corn_plant_stalk1" },
+        "section=bottom,age=3": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=bottom,age=4": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=bottom,age=5": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=bottom,age=6": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=bottom,age=7": { "model": "rankine:block/corn_plant/corn_plant_stalk3" },
+        "section=middle,age=0": { "model": "minecraft:block/air" },
+        "section=middle,age=1": { "model": "minecraft:block/air" },
+        "section=middle,age=2": { "model": "rankine:block/corn_plant/corn_plant_top1" },
+        "section=middle,age=3": { "model": "rankine:block/corn_plant/corn_plant_stalk1" },
+        "section=middle,age=4": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=middle,age=5": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=middle,age=6": { "model": "rankine:block/corn_plant/corn_plant_stalk2" },
+        "section=middle,age=7": { "model": "rankine:block/corn_plant/corn_plant_stalk3" },
+        "section=top,age=0": { "model": "minecraft:block/air" },
+        "section=top,age=1": { "model": "minecraft:block/air" },
+        "section=top,age=2": { "model": "minecraft:block/air" },
+        "section=top,age=3": { "model": "rankine:block/corn_plant/corn_plant_top1" },
+        "section=top,age=4": { "model": "rankine:block/corn_plant/corn_plant_top2" },
+        "section=top,age=5": { "model": "rankine:block/corn_plant/corn_plant_top2" },
+        "section=top,age=6": { "model": "rankine:block/corn_plant/corn_plant_top3" },
+        "section=top,age=7": { "model": "rankine:block/corn_plant/corn_plant_top3" }
+    }
+}

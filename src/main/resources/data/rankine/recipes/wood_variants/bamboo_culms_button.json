@@ -3,7 +3,7 @@
   "group": "wooden_button",
   "ingredients": [
     {
-      "item": "rankine:bamboo_culms_planks"
+      "item": "rankine:bamboo_culms"
     }
   ],
   "result": {

@@ -2,83 +2,44 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.*;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
+public class RopeBlock extends Block implements IWaterLoggable {
+
     VoxelShape voxelshape = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
-    private static final VoxelShape field_220124_g = VoxelShapes.fullCube().withOffset(0.0D, -1.0D, 0.0D);
 
     public RopeBlock(Properties p_i49976_1_) {
         super(p_i49976_1_);
-        this.setDefaultState(this.stateContainer.getBaseState().with(DISTANCE, 7).with(WATERLOGGED, Boolean.FALSE).with(BOTTOM, Boolean.FALSE));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        if (!context.hasItem(state.getBlock().asItem())) {
-            return Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
-        } else {
-
-            return voxelshape;
-        }
-
+        return voxelshape;
     }
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return !worldIn.getBlockState(pos.up()).isAir(worldIn, pos.up()) || !worldIn.getBlockState(pos.down()).isAir(worldIn, pos.down());
-    }
-
-
-    @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        int i = func_220117_a(worldIn, pos);
-        BlockState blockstate = state.with(DISTANCE, i).with(BOTTOM, this.func_220116_a(worldIn, pos, i));
-        if (state != blockstate) {
-            worldIn.setBlockState(pos, blockstate, 3);
-        }
-
-    }
-
-    private boolean func_220116_a(IBlockReader p_220116_1_, BlockPos p_220116_2_, int p_220116_3_) {
-        return p_220116_3_ > 0 && p_220116_1_.getBlockState(p_220116_2_.down()).getBlock() != this;
-    }
-
-    private boolean func_220116_b(IBlockReader p_220116_1_, BlockPos p_220116_2_, int p_220116_3_) {
-        return p_220116_3_ > 0 && p_220116_1_.getBlockState(p_220116_2_.up()).getBlock() != this;
-    }
-
-    public static int func_220117_a(IBlockReader p_220117_0_, BlockPos p_220117_1_) {
-        BlockPos.Mutable blockpos$mutable = p_220117_1_.toMutable().move(Direction.DOWN);
-        BlockState blockstate = p_220117_0_.getBlockState(blockpos$mutable);
-        int i = 7;
-        if (blockstate.getBlock() == RankineBlocks.ROPE.get()) {
-            i = blockstate.get(DISTANCE);
-        } else if (blockstate.isSolidSide(p_220117_0_, blockpos$mutable, Direction.UP)) {
-            return 0;
-        }
-
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            BlockState blockstate1 = p_220117_0_.getBlockState(blockpos$mutable.setPos(p_220117_1_).move(direction));
-            if (blockstate1.getBlock() == RankineBlocks.ROPE.get()) {
-                i = Math.min(i, blockstate1.get(DISTANCE) + 1);
-                if (i == 1) {
-                    break;
-                }
-            }
-        }
-
-        return i;
+        return worldIn.getBlockState(pos.up()).matchesBlock(this) || state.isNormalCube(worldIn, pos.up());
     }
 
     @Override
@@ -88,6 +49,46 @@ public class RopeBlock extends ScaffoldingBlock implements IWaterLoggable {
         } else {
             return VoxelShapes.empty();
         }
+    }
+
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        int height = pos.getY();
+        if (player.getHeldItemMainhand().getItem().equals(this.asItem())) {
+            for (int i = 1; i < height; i++) {
+                if (worldIn.getBlockState(pos.down(i)).isReplaceable(new BlockItemUseContext(player, handIn, player.getHeldItem(handIn), hit))) {
+                    worldIn.setBlockState(pos.down(i), RankineBlocks.ROPE.get().getDefaultState());
+                    if (!player.isCreative()) {
+                        player.getHeldItemMainhand().shrink(1);
+                    }
+                    return ActionResultType.SUCCESS;
+                } else if (worldIn.getBlockState(pos.down(i)).getBlock() != RankineBlocks.ROPE.get()) {
+                    break;
+                }
+            }
+
+        }
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        int ropeCount = 0;
+        int i=1;
+        while (worldIn.getBlockState(pos.down(i)).matchesBlock(this)) {
+            worldIn.destroyBlock(pos.down(i),false);
+            ropeCount += 1;
+            i += 1;
+        }
+        if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.isCreative()) {
+            double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+            double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+            double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+            ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineBlocks.ROPE.get(),ropeCount));
+            itementity.setNoPickupDelay();
+            worldIn.addEntity(itementity);
+        }
+        super.onBlockHarvested(worldIn, pos, state, player);
     }
 
     @Override

@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:bauxite"
+        }
+      },
+      "result": {
+        "item": "rankine:bauxite_block",
+        "count": 1
+      }
+}
