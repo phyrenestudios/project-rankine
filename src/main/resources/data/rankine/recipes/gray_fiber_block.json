@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#",
+    "###"
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:dyes/gray"
+    },
+    "#": {
+      "item": "rankine:fiber_block"
+    }
+  },
+  "result": {
+    "item": "rankine:gray_fiber_block",
+    "count": 8
+  }
+}

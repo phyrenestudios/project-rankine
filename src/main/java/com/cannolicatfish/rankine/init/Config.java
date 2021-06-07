@@ -59,6 +59,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
         public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
         public final ForgeConfigSpec.BooleanValue ORE_DETECTOR_MSG;
+        public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
 
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
@@ -86,6 +87,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
         public final ForgeConfigSpec.IntValue MAX_TREE;
         public final ForgeConfigSpec.IntValue LEAF_DECAY_SPEED;
+        public final ForgeConfigSpec.IntValue FIRE_EXTINGUISHER_RANGE;
 
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
@@ -103,6 +105,10 @@ public class Config {
                             .define("strippablesSticks",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
                             .defineInRange("herbicideRange", 7, 0, 32);
+                    ROCK_DRILL = b.comment("Enable the use of the rock drill.")
+                            .define("rockDrill",true);
+                    FIRE_EXTINGUISHER_RANGE = b.comment("The radius of the fire extinguisher.")
+                            .defineInRange("fireExtinguisherRange", 5, 0, 32);
                     MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
                             .defineInRange("maxTree", 256, 0, 1024);
                     LEAF_DECAY_SPEED = b.comment("Number of leaves to break per tick during tree chopping. Lower numbers mean smoother decay..")
@@ -869,10 +875,10 @@ public class Config {
                     .defineInRange("evaporationTowerSpeedResin", 1600, 40, 120000);
                 EVAPORATION_TOWER_SPEED_LATEX = b.comment("Base speed (in ticks) at which the evaporation tower boils latex.")
                     .defineInRange("evaporationTowerSpeedLatex", 800, 40, 120000);
-                EVAPORATION_TOWER_SPEED = b.comment("Base speed (in ticks) at which the water / lava evaporation tower generates resources.")
-                        .defineInRange("evaporationTowerSpeed", 3200, 40, 120000);
+                EVAPORATION_TOWER_SPEED = b.comment("Base speed (in ticks) at which the water evaporation tower generates resources.")
+                        .defineInRange("evaporationTowerSpeed", 6400, 40, 120000);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
-                        .defineInRange("evaporationTowerHeight", 40, 0, 40);
+                        .defineInRange("evaporationTowerHeight", 15, 0, 30);
                 RANKINE_BOX_SPEED = b.comment("Total amount of time required (in ticks) at which the Rankine Box transmutes elements.")
                         .defineInRange("rankineBoxSpeed", 800, 20, 12000);
                 RANKINE_BOX_UP = b.comment("Allow for transmuting elements up periods in the Rankine Box.")

@@ -114,7 +114,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                 } else if (cookTime > 0) {
                     this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == Blocks.LAVA) {
+            }/* else if (worldIn.getBlockState(p.up()).getBlock() == Blocks.LAVA) {
                 int h = checkStructure(p, worldIn);
                 if (h > 0 && output.isEmpty()) {
                     ++this.cookTime;
@@ -125,7 +125,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                 } else if (cookTime > 0) {
                     this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.SAP.get()) {
+            }*/ else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.SAP.get()) {
                 if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == Items.SUGAR) && output.getCount() < 64) {
                     ++this.cookTime;
                     if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_SAP.get()) {
@@ -295,7 +295,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         return height;
     }
 
-
+/*
     private ItemStack lavaOutputs(Random random) {
         World worldIn = this.getWorld();
         if (worldIn != null) {
@@ -304,6 +304,8 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
             return ItemStack.EMPTY;
         }
     }
+
+ */
 
     private ItemStack waterOutputs(Random random) {
         World worldIn = this.getWorld();
@@ -323,6 +325,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         }
     }
 
+    /*
     public static WeightedCollection<ItemStack> returnLavaCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(Items.GHAST_TEAR, 1));
@@ -332,14 +335,18 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         return col;
     }
 
+     */
+
     public static WeightedCollection<ItemStack> returnOceanCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(RankineItems.BROMINE_NUGGET.get(), 1));
-        //col.add(2,new ItemStack(RankineItems.SULFUR_NUGGET.get(), 1));
-        col.add(3,new ItemStack(RankineItems.POTASSIUM_NUGGET.get(),1));
-        col.add(4,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),1));
+        col.add(1,new ItemStack(RankineItems.IODINE_NUGGET.get(),1));
+        col.add(2,new ItemStack(RankineItems.POTASSIUM_NUGGET.get(),1));
+        col.add(5,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),1));
         col.add(5,new ItemStack(RankineItems.MAGNESIUM_NUGGET.get(),1));
-        col.add(10,new ItemStack(RankineItems.SALT.get(),2));
+        col.add(1,new ItemStack(RankineItems.BORON_NUGGET.get(),1));
+        col.add(10,new ItemStack(Items.KELP,1));
+        col.add(80,new ItemStack(RankineItems.SALT.get(),1));
         return col;
     }
 
@@ -347,27 +354,33 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
         col.add(1,new ItemStack(RankineItems.CADMIUM_NUGGET.get(), 1));
         col.add(1,new ItemStack(RankineItems.CHROMIUM_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.LEAD_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.MANGANESE_NUGGET.get(),1));
         col.add(1,new ItemStack(RankineItems.MERCURY_NUGGET.get(),1));
-        col.add(2,new ItemStack(Items.IRON_NUGGET,1));
-        col.add(4,new ItemStack(RankineItems.ZINC_NUGGET.get(),1));
-        col.add(4,new ItemStack(RankineItems.COPPER_NUGGET.get(),1));
-        col.add(6,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),2));
+        col.add(1,new ItemStack(Items.IRON_NUGGET,1));
+        col.add(2,new ItemStack(Items.GOLD_NUGGET,1));
+        col.add(2,new ItemStack(RankineItems.COPPER_NUGGET.get(),1));
+        col.add(5,new ItemStack(RankineItems.SILICON_NUGGET.get(),1));
+        col.add(10,new ItemStack(RankineItems.PINK_SALT.get(),1));
+        col.add(5,new ItemStack(RankineItems.BORAX.get(),1));
+        col.add(5,new ItemStack(RankineItems.THENARDITE.get(),1));
+        col.add(5,new ItemStack(RankineItems.SALTPETER.get(),1));
+        col.add(5,new ItemStack(RankineItems.TRONA.get(),1));
+        col.add(15,new ItemStack(RankineItems.SLAG.get(),1));
         return col;
     }
 
     public static WeightedCollection<ItemStack> returnGroundwaterCollection(){
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        col.add(1,new ItemStack(RankineItems.ZINC_NUGGET.get(),1));
         col.add(1,new ItemStack(RankineItems.COBALT_NUGGET.get(), 1));
         col.add(1,new ItemStack(RankineItems.TITANIUM_NUGGET.get(),1));
         col.add(1,new ItemStack(RankineItems.ZIRCONIUM_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.BORON_NUGGET.get(),1));
         col.add(1,new ItemStack(RankineItems.SILVER_NUGGET.get(),1));
         col.add(2,new ItemStack(RankineItems.MANGANESE_NUGGET.get(),1));
-        col.add(4,new ItemStack(RankineItems.LEAD_NUGGET.get(),1));
-        col.add(4,new ItemStack(RankineItems.LITHIUM_NUGGET.get(),1));
-        col.add(6,new ItemStack(RankineItems.SILICON_NUGGET.get(),2));
+        col.add(2,new ItemStack(RankineItems.LEAD_NUGGET.get(),1));
+        col.add(2,new ItemStack(RankineItems.BISMUTH_NUGGET.get(),1));
+        col.add(10,new ItemStack(Items.DIRT,1));
+        col.add(10,new ItemStack(Items.SAND,1));
+        col.add(25,new ItemStack(RankineItems.CALCITE.get(),1));
         return col;
     }
 

@@ -19,6 +19,7 @@ import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -39,6 +40,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -84,8 +87,9 @@ public class RankineEventHandler {
 
     @SubscribeEvent
     public static void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        if ((event.getStack().getItem().getTags().contains(new ResourceLocation("forge:stone")) || event.getStack().getItem() == Items.COBBLESTONE) && (
-                event.getPlayer().getHeldItemMainhand().getItem() == RankineItems.TOTEM_OF_COBBLING.get() || event.getPlayer().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_COBBLING.get())) {
+
+        // Totem of Cobbling
+        if ((event.getStack().getItem().getTags().contains(new ResourceLocation("forge:stone")) || event.getStack().getItem() == Items.COBBLESTONE) && (event.getPlayer().getHeldItemMainhand().getItem() == RankineItems.TOTEM_OF_COBBLING.get() || event.getPlayer().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_COBBLING.get())) {
             PlayerEntity player = event.getPlayer();
             ItemStack totem = player.getHeldItemMainhand().getItem() == RankineItems.TOTEM_OF_COBBLING.get() ? player.getHeldItemMainhand() : player.getHeldItemOffhand();
             if (totem.getDamage() != 0) {
@@ -632,51 +636,28 @@ public class RankineEventHandler {
             event.setOutput(input.copy());
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.DUNE_WALKER,event.getOutput()) != 1) {
                 event.getOutput().addEnchantment(RankineEnchantments.DUNE_WALKER, 1);
-                event.setCost(30);
+                event.setCost(20);
             }
         } else if (event.getRight().getItem() == RankineItems.SNOWSHOES.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getEquipmentSlot() == EquipmentSlotType.FEET) {
             event.setOutput(input.copy());
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SNOW_DRIFTER,event.getOutput()) != 1) {
                 event.getOutput().addEnchantment(RankineEnchantments.SNOW_DRIFTER, 1);
-                event.setCost(30);
+                event.setCost(20);
             }
         } else if (event.getRight().getItem() == RankineItems.ICE_SKATES.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getEquipmentSlot() == EquipmentSlotType.FEET) {
             event.setOutput(input.copy());
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SPEED_SKATER,event.getOutput()) != 1) {
                 event.getOutput().addEnchantment(RankineEnchantments.SPEED_SKATER, 1);
-                event.setCost(30);
+                event.setCost(20);
             }
         } else if (event.getRight().getItem() == RankineItems.GAS_MASK.get() && input.getItem() instanceof ArmorItem && ((ArmorItem)input.getItem()).getEquipmentSlot() == EquipmentSlotType.HEAD) {
             event.setOutput(input.copy());
             if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.GAS_PROTECTION,event.getOutput()) != 1) {
                 event.getOutput().addEnchantment(RankineEnchantments.GAS_PROTECTION, 1);
-                event.setCost(30);
+                event.setCost(20);
             }
         }
     }
-
-    /*
-    @SubscribeEvent
-    public void onFOVUpdate(FOVUpdateEvent event) {
-        PlayerEntity player = event.getEntity();
-
-        ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
-
-        float modifier = 1.0f;
-        if (movementSpeed.hasModifier(RankineAttributes.GRASS_PATH_MS)) {
-            modifier = (float) RankineAttributes.GRASS_PATH_MS.getAmount();
-        } else if (movementSpeed.hasModifier(RankineAttributes.ROMAN_CONCRETE_MS)) {
-            modifier = 5.0f;
-        }
-
-       // event.setNewfov(event.getNewfov() * (float) movementSpeed.getValue() - modifier);
-        event.setNewfov(event.getFov() + modifier);
-    }
-
-     */
-
-
-
 
 
     @SubscribeEvent
@@ -1073,10 +1054,6 @@ public class RankineEventHandler {
                 float[] s = RankineMathHelper.linspace(maxPercent,minPercent,maxHeight-minHeight);
                 event.setNewSpeed(event.getNewSpeed() + event.getNewSpeed() * s[height - 10]);
             }
-        }
-
-        if (heldItem instanceof AxeItem && event.getState().getBlock().getTags().contains(new ResourceLocation(("minecraft:leaves")))) {
-            event.setNewSpeed(event.getNewSpeed()-2);
         }
 
     }
@@ -1852,10 +1829,10 @@ public class RankineEventHandler {
                 }
             }
         } else if (item instanceof ShovelItem) {
-            if (world.isRemote) {
+            if (!world.isRemote) {
                 if (activatedBlock == Blocks.MYCELIUM.getDefaultState()) {
                     world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, RankineBlocks.MYCELLIUM_PATH.get().getDefaultState(), 2);
+                    world.setBlockState(pos, RankineBlocks.MYCELIUM_PATH.get().getDefaultState(), 2);
                     stack.damageItem(1, player, (entity) -> {
                         entity.sendBreakAnimation(event.getHand());
                     });
@@ -1900,6 +1877,8 @@ public class RankineEventHandler {
     public static void forage(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         float CHANCE = new Random().nextFloat();
+
+        // Foraging
         if (!player.abilities.isCreativeMode) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:dirt"))) {
                 if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.FORAGING,player.getHeldItem(Hand.MAIN_HAND)) > 0)
@@ -1966,15 +1945,8 @@ public class RankineEventHandler {
                 }
             }
         }
-    }
 
-
-
-    //PENDANTS
-
-    @SubscribeEvent
-    public static void luckyBreak(BlockEvent.BreakEvent event) {
-        PlayerEntity player = event.getPlayer();
+        // Luck Pendant
         if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == RankineItems.LUCK_PENDANT.get()) {
             if (event.getState().getBlock().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
                 if (new Random().nextFloat() < 0.2f) {

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:bauxite_block"
+  },
+  "result": "rankine:aluminum_block",
+  "experience": 5.0,
+  "cookingtime": 100
+}

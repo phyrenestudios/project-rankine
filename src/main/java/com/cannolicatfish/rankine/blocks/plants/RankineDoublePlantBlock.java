@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
-import com.cannolicatfish.rankine.init.RankineBlocks;
+
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
@@ -64,9 +63,14 @@ public class RankineDoublePlantBlock extends BushBlock implements IGrowable {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         if (!worldIn.isRemote) {
-            worldIn.setBlockState(pos.up(1), this.getDefaultState().with(SECTION, DoubleBlockHalf.UPPER));
+            worldIn.setBlockState(pos.up(1), this.getDefaultState().with(SECTION, DoubleBlockHalf.UPPER), 3);
         }
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+    }
+
+    public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
+        worldIn.setBlockState(pos, this.getDefaultState().with(SECTION, DoubleBlockHalf.LOWER), flags);
+        worldIn.setBlockState(pos.up(), this.getDefaultState().with(SECTION, DoubleBlockHalf.UPPER), flags);
     }
 
     @Override
@@ -148,9 +152,11 @@ public class RankineDoublePlantBlock extends BushBlock implements IGrowable {
                 case LOWER:
                     worldIn.setBlockState(pos, state.with(AGE, 1).with(SECTION, DoubleBlockHalf.LOWER), 2);
                     worldIn.setBlockState(pos.up(), state.with(AGE, 1).with(SECTION, DoubleBlockHalf.UPPER), 2);
+                    break;
                 case UPPER:
                     worldIn.setBlockState(pos.down(), state.with(AGE, 1).with(SECTION, DoubleBlockHalf.LOWER), 2);
                     worldIn.setBlockState(pos, state.with(AGE, 1).with(SECTION, DoubleBlockHalf.UPPER), 2);
+                    break;
             }
 
             return ActionResultType.SUCCESS;

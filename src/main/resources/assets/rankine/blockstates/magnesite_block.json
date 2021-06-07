@@ -1,5 +1,5 @@
 {
-    "variants": {
-    "": { "model": "rankine:block/magnesite_block" }
-    }
+        "variants": {
+        "": { "model": "rankine:block/magnesite_block" }
+        }
 }

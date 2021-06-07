@@ -50,8 +50,8 @@ public class CrucibleContainer extends Container {
         this.addSlot(new Slot(furnaceInventory, 1, 71,16));
         this.addSlot(new Slot(furnaceInventory, 2, 88,16));
         this.addSlot(new Slot(furnaceInventory, 3, 106,23));
-        this.addSlot(new Slot(furnaceInventory, 4, 79,57));
-        this.addSlot(new Slot(furnaceInventory, 5, 53,57));
+        this.addSlot(new Slot(furnaceInventory, 4, 79,54));
+        this.addSlot(new Slot(furnaceInventory, 5, 50,54));
 
         layoutPlayerInventorySlots(8, 84);
 

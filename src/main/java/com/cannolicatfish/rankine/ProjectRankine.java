@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.svl.SodiumVaporLampContainer;
 import com.cannolicatfish.rankine.blocks.svl.SodiumVaporLampTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
@@ -252,6 +253,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
             event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
             event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
+            event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.FLUID_DRAIN.get()).build(null).setRegistryName(ProjectRankine.MODID,"fluid_drain"));
 
         }
 

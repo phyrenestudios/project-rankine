@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cyan_fiber_block"
+    }
+  },
+  "result": {
+    "item": "rankine:cyan_fiber_mat",
+    "count": 3
+  }
+}

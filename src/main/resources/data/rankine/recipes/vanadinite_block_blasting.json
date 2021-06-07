@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:vanadinite_block"
+  },
+  "result": "rankine:vanadium_block",
+  "experience": 5.0,
+  "cookingtime": 100
+}

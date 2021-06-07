@@ -1,10 +1,5 @@
 {
-  "variants": {
-    "lit=false": {
-      "model": "rankine:block/cinnabar_block"
-    },
-    "lit=true": {
-      "model": "rankine:block/cinnabar_block_on"
-    }
-  }
+        "variants": {
+        "": { "model": "rankine:block/cinnabar_block" }
+        }
 }

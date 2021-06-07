@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:resin_bucket"
+    },
+    {
+      "item": "rankine:dry_rubber"
+    }
+  ],
+  "result": {
+    "item": "minecraft:slime_ball",
+    "count": 4
+  }
+}

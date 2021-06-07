@@ -275,7 +275,7 @@ public class RankineRecipes {
             }
             if (items.contains(RankineItems.PHOSPHORUS.get())) {
                 ingCount += 1;
-                output = Items.GLOWSTONE;
+                output = Items.GLOWSTONE_DUST;
             }
 
             if (items.contains(RankineItems.ARSENIC_INGOT.get())) {

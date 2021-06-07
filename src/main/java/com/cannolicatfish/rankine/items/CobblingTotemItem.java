@@ -12,6 +12,13 @@ public class CobblingTotemItem extends Item {
         super(properties);
     }
 
+
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        stack.setDamage(stack.getMaxDamage()-1);
+        super.onCreated(stack, worldIn, playerIn);
+    }
+
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         if (Minecraft.getInstance().objectMouseOver != null && context.getPlayer() != null) {
