@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#N#",
+    "#W#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "rankine:crafting_metals"
+    },
+    "N": {
+      "tag": "rankine:crafting_metals_nuggets"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "rankine:fire_extinguisher",
+    "count": 1
+  }
+}

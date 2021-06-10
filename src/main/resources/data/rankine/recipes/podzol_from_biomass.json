@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "item": "rankine:biomass"
+    }
+  ],
+  "result": {
+    "item": "minecraft:podzol",
+    "count": 1
+  }
+}

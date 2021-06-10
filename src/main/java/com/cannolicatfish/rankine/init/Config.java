@@ -61,6 +61,13 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue ORE_DETECTOR_MSG;
         public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
 
+        public final ForgeConfigSpec.IntValue MAX_TREE;
+        public final ForgeConfigSpec.IntValue LEAF_DECAY_SPEED;
+        public final ForgeConfigSpec.BooleanValue TREE_CHOPPING;
+        public final ForgeConfigSpec.DoubleValue TREE_CHOP_SPEED;
+
+        public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
+        public final ForgeConfigSpec.BooleanValue PATH_CREATION;
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
@@ -85,14 +92,16 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
         public final ForgeConfigSpec.IntValue HERBICIDE_RANGE;
         public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
-        public final ForgeConfigSpec.IntValue MAX_TREE;
-        public final ForgeConfigSpec.IntValue LEAF_DECAY_SPEED;
         public final ForgeConfigSpec.IntValue FIRE_EXTINGUISHER_RANGE;
 
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
 
                 b.comment("Miscellaneous").push("misc");
+                    PATH_CREATION_TIME = b.comment("Time in seconds between chance for blocks to be changed to a path block when stepped on.")
+                            .defineInRange("pathCreationTime", 5, 0, 1200);
+                    PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
+                            .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
                             .define("colorWorld",true);
                     STRIPPABLES_CINNAMON = b.comment("If enabled, cinnamon will drop from cinnamon trees when stripped.")
@@ -109,10 +118,6 @@ public class Config {
                             .define("rockDrill",true);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The radius of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 5, 0, 32);
-                    MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
-                            .defineInRange("maxTree", 256, 0, 1024);
-                    LEAF_DECAY_SPEED = b.comment("Number of leaves to break per tick during tree chopping. Lower numbers mean smoother decay..")
-                            .defineInRange("leafDecay", 10, 1, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
                             .defineInRange("trampolineSize", 289, 0, 961);
                     CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
@@ -150,7 +155,18 @@ public class Config {
                     FLINT_FIRE_CHANCE = b.comment("Chance for flint to be consumed when lighting a fire.")
                             .defineInRange("flintFireChance", 0.30D, 0.00D, 1.00D);
                 b.pop();
-                
+
+                b.comment("Tree Chopping").push("treeChopping");
+                    TREE_CHOPPING = b.comment("Enable full tree chopping using #rankine:tree_choppers")
+                            .define("treeChopping",true);
+                    MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
+                        .defineInRange("maxTree", 256, 0, 1024);
+                    LEAF_DECAY_SPEED = b.comment("Number of leaves to break per tick during tree chopping. Lower numbers mean smoother decay..")
+                            .defineInRange("leafDecay", 10, 1, 64);
+                    TREE_CHOP_SPEED = b.comment("Speed factor for chopping trees after size is accounted for.")
+                            .defineInRange("treeChopSpeedFactor", 0.75D, 0.0D, 2.0D);
+                b.pop();
+
                 b.comment("Movement speed modifiers").push("movementModifiers");
                     MOVEMENT_MODIFIERS = b.comment("Set to false to disable movement speed modifiers.")
                             .define("movementModifiersEnabled",true);

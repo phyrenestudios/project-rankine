@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:block",
+    "pools":
+    [
+     { "rolls": 1,
+      "entries":
+      [
+        {
+          "type": "minecraft:item",
+          "name": "rankine:ruby_geode"
+        }
+      ],
+      "conditions":
+      [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+     }
+    ]
+}

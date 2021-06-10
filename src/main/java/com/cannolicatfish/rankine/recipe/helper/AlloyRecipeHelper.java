@@ -50,8 +50,11 @@ public class AlloyRecipeHelper {
         List<String> sInputs = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : mapStringsSort(map).entrySet())
         {
-            sPercents.add(entry.getValue());
-            sInputs.add(entry.getKey());
+            if (entry.getValue() > 0) {
+                sPercents.add(entry.getValue());
+                sInputs.add(entry.getKey());
+            }
+
         }
         Collections.reverse(sPercents);
         Collections.reverse(sInputs);
@@ -135,6 +138,9 @@ public class AlloyRecipeHelper {
                 String name = new TranslationTextComponent(recipe.getRecipeOutput().getTranslationKey()).getString();
                 if (name.contains(" Ingot")) {
                     name = name.split(" Ingot")[0];
+                }
+                if (name.contains(" Alloy") && !name.contains("Heavy Alloy")) {
+                    name = name.split(" Alloy")[0];
                 }
                 return name;
             }

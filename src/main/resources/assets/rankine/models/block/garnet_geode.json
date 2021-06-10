@@ -1,6 +1,6 @@
 {
-        "parent": "rankine:block/geode",
-        "textures": {
-                "face": "rankine:block/garnet_geode"
-        }
+  "parent": "rankine:block/template_geode",
+  "textures": {
+    "face": "rankine:block/garnet_geode"
+  }
 }

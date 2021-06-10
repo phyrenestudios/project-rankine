@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,22 +21,17 @@ import java.util.*;
 @Mod.EventBusSubscriber
 public class TreeChoppingEvents {
 
-    //private static List<BlockPos> leaves = new ArrayList<>();
-
     @SubscribeEvent
-    public static void treeChop(BlockEvent.BreakEvent event) {
-        ServerWorld worldIn = (ServerWorld) event.getWorld();
+    public static void treeChop(PlayerEvent.BreakSpeed event) {
         BlockPos pos = event.getPos();
-        BlockState state = worldIn.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
+        World worldIn = player.world;
+        BlockState state = event.getState();
 
-        if (!worldIn.isRemote && player.getHeldItemMainhand().getItem() instanceof AxeItem && state.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
-            Set<BlockPos> logs = new HashSet<>();
-            List<BlockPos> leaves = new ArrayList<>();
             Stack<BlockPos> toCheck = new Stack<>();
             boolean alive = false;
-
 
             toCheck.add(pos);
             while (!toCheck.isEmpty()) {
@@ -44,11 +40,48 @@ public class TreeChoppingEvents {
                     checkedBlocks.add(cp);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                         BlockState target = worldIn.getBlockState(b.toImmutable());
-                        if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                        if (worldIn.getBlockState(cp).getBlock().getTags().contains(new ResourceLocation("minecraft:logs")) && target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                            toCheck.add(b.toImmutable());
+                        } else if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:leaves"))) {
+                            if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
+                                alive = true;
+                            }
+                        }
+                    }
+                }
+            }
+            if (alive) event.setNewSpeed((event.getNewSpeed() / checkedBlocks.size()) * Config.GENERAL.TREE_CHOP_SPEED.get().floatValue());
+        }
+
+    }
+
+
+    @SubscribeEvent
+    public static void treeChop(BlockEvent.BreakEvent event) {
+        ServerWorld worldIn = (ServerWorld) event.getWorld();
+        BlockPos pos = event.getPos();
+        BlockState state = worldIn.getBlockState(pos);
+        PlayerEntity player = event.getPlayer();
+
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+            Set<BlockPos> checkedBlocks = new HashSet<>();
+            Set<BlockPos> logs = new HashSet<>();
+            List<BlockPos> leaves = new ArrayList<>();
+            Stack<BlockPos> toCheck = new Stack<>();
+            boolean alive = false;
+
+            toCheck.add(pos);
+            while (!toCheck.isEmpty()) {
+                BlockPos cp = toCheck.pop();
+                if (!checkedBlocks.contains(cp)) {
+                    checkedBlocks.add(cp);
+                    for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
+                        BlockState target = worldIn.getBlockState(b.toImmutable());
+                        if (worldIn.getBlockState(cp).getBlock().getTags().contains(new ResourceLocation("minecraft:logs")) && target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
                             toCheck.add(b.toImmutable());
                             logs.add(b.toImmutable());
                         } else if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:leaves"))) {
-                            if (!target.get(LeavesBlock.PERSISTENT) && target.get(LeavesBlock.DISTANCE) <= 5) {
+                            if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
                                 for (BlockPos log : logs) {
                                     if (log.distanceSq(b) <= 16) {
                                         toCheck.add(b.toImmutable());

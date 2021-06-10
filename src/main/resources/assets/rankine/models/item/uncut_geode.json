@@ -1,3 +1,6 @@
 {
-        "parent": "rankine:block/uncut_geode"
+        "parent": "item/handheld",
+        "textures": {
+                "layer0": "rankine:item/uncut_geode"
+        }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "###",
+    "#G#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "rankine:crafting_metals"
+    },
+    "G": {
+      "item": "rankine:alloy_gear",
+      "alloyData": "75Cu-13Sn-12Mn"
+    }
+  },
+  "result": {
+    "item": "rankine:rock_drill",
+    "count": 1
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "type": "rankine:crucible",
+  "result": {
+    "item": "rankine:steel_alloy"
+  },
+  "secondary": {
+    "item": "rankine:slag"
+  },
+  "cookTime": 3200,
+  "alloyData": "99Fe-1C",
+  "required": [true,true,false,false],
+  "total": 14,
+  "input1": {
+    "tag": "forge:ingots/iron",
+    "group": 0
+  },
+  "input2": {
+    "tag": "forge:coke",
+    "group": 1,
+    "shiftMod": ["-1Fe","1C"]
+  },
+  "input3": {
+    "item": "rankine:anthracite_coal",
+    "group": 1,
+    "shiftMod": ["-2Fe","1C","1S"]
+  },
+  "input4": {
+    "item": "rankine:bituminous_coal",
+    "group": 1,
+    "shiftMod": ["-3Fe","1C","2S"]
+  },
+  "input5": {
+    "item": "rankine:subbituminous_coal",
+    "group": 1,
+    "shiftMod": ["-3Fe","3S"]
+  },
+  "input6": {
+    "item": "minecraft:coal",
+    "group": 1,
+    "shiftMod": ["-3Fe","3S"]
+  },
+  "input7": {
+    "item": "rankine:lignite",
+    "group": 1,
+    "shiftMod": ["-4Fe","4S"]
+  },
+  "input8": {
+    "tag": "minecraft:sand",
+    "shiftMod": ["-1Fe","1Si"]
+  },
+  "input9": {
+    "tag": "forge:stones/limestone",
+    "shiftMod": ["-S","Fe"]
+  },
+  "input10": {
+    "tag": "forge:trona",
+    "shiftMod": ["-S","Fe"]
+  },
+  "input11": {
+    "tag": "forge:saltpeter",
+    "shiftMod": ["-1Fe","1K"]
+  },
+  "input12": {
+    "tag": "forge:phosphorus",
+    "shiftMod": ["-2Fe","2P"]
+  },
+  "input13": {
+    "tag": "forge:fluorite",
+    "shiftMod": ["-P","Fe"]
+  },
+  "input14": {
+    "item": "rankine:borax",
+    "cookMod": -1600
+  }
+}

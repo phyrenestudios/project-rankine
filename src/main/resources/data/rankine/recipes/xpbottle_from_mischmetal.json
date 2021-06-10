@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "LML",
+    " L "
+  ],
+  "key": {
+    "C": {
+      "item": "rankine:cork"
+    },
+    "M": {
+      "tag": "forge:ingots/mischmetal"
+    },
+    "L": {
+      "item": "rankine:lead_glass"
+    }
+  },
+  "result": {
+    "item": "minecraft:experience_bottle",
+    "count": 3
+  }
+}

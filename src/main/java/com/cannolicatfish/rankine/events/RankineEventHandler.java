@@ -19,7 +19,6 @@ import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -39,9 +38,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.TagCollectionManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -205,7 +203,25 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(20, new ItemStack(Items.DIAMOND, 1),12,20,0.05f));
             level5.add(new BasicTrade(30, new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1),12,50,0.05f));
             level5.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
+        } else if (event.getType() == RankineVillagerProfessions.ROCK_COLLECTOR) {
+            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("forge:stone"),RankineItems.ANORTHOSITE.get(),16,1,16,10,0.05f));
+            List<Block> rocks = BlockTags.getCollection().get(new ResourceLocation("forge:stone")).getAllElements();
+            if (!rocks.isEmpty()) {
+                for (Block rock : rocks) {
+                    level2.add((entity, rand) -> new MerchantOffer(new ItemStack(rock.asItem(), 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
+                }
+            } else {
+                level2.add((entity, rand) -> new MerchantOffer(new ItemStack(Items.SANDSTONE, 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
+                level2.add((entity, rand) -> new MerchantOffer(new ItemStack(Items.RED_SANDSTONE, 12), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
+            }
+            level3.add(new BasicTrade(1, new ItemStack(Items.DIRT, 1),12,10,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(Items.SAND, 1),12,10,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.OBSIDIAN, 1),12,10,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(RankineItems.PHOSPHORITE.get(), 1),12,10,0.05f));
+            level5.add(new BasicTrade(1, new ItemStack(Items.END_STONE, 2),12,10,0.05f));
+            level5.add(new BasicTrade(1, new ItemStack(Items.PURPUR_BLOCK, 2),12,10,0.05f));
         }
+
         if (Config.GENERAL.VILLAGER_TRADES.get()) {
             if (event.getType() == VillagerProfession.MASON) {
                 event.getTrades().get(1).add(new BasicTrade(1,new ItemStack(RankineItems.MORTAR.get(), 16),16,1,0.05f));
@@ -494,7 +510,6 @@ public class RankineEventHandler {
         }
     }
 
-
     @SubscribeEvent
     public static void movementModifier(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
@@ -509,6 +524,21 @@ public class RankineEventHandler {
         String path = ground.getRegistryName().getPath();
         ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
+        // Path Creation
+        if (Config.GENERAL.PATH_CREATION.get() && !player.isCreative() && world.getRandom().nextFloat() <= 1.0f/(Config.GENERAL.PATH_CREATION_TIME.get().floatValue()*20.0f) && !world.isRemote) {
+
+            if (ground.matchesBlock(Blocks.GRASS_BLOCK)) {
+                world.setBlockState(pos,Blocks.GRASS_PATH.getDefaultState(),2);
+            } else if (ground.matchesBlock(Blocks.MYCELIUM)) {
+                world.setBlockState(pos,RankineBlocks.MYCELIUM_PATH.get().getDefaultState(),2);
+            } else if (ground.matchesBlock(Blocks.PODZOL)) {
+                world.setBlockState(pos,RankineBlocks.PODZOL_PATH.get().getDefaultState(),2);
+            }
+
+        }
+
+
+        // Movement Modifiers
         if (Config.GENERAL.MOVEMENT_MODIFIERS.get()) {
             List<AttributeModifier> mods = Arrays.asList(RankineAttributes.BRICKS_MS, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
             if (player.isCreative() || player.isElytraFlying()) {

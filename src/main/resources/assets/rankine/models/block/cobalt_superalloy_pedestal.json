@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_pedestal",
+  "textures": {
+    "all": "rankine:block/cobalt_superalloy_block"
+  }
+}

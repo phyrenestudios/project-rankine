@@ -5,11 +5,14 @@
       "item": "minecraft:water_bucket"
     },
     {
-      "item": "rankine:pumice"
+      "tag": "forge:stones/pumice"
+    },
+    {
+      "tag": "forge:ash"
     }
   ],
   "result": {
     "item": "rankine:pumice_soap",
-    "count": 4
+    "count": 8
   }
 }

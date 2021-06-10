@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/tungsten_heavy_alloy"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/tungsten_heavy_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_pedestal",
+    "count": 6
+  }
+}

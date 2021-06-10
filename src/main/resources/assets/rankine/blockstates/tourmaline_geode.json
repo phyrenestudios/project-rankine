@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "rankine:block/tourmaline_geode" },
+        "facing=east":  { "model": "rankine:block/tourmaline_geode", "y": 90 },
+        "facing=south": { "model": "rankine:block/tourmaline_geode", "y": 180 },
+        "facing=west":  { "model": "rankine:block/tourmaline_geode", "y": 270 }
+    }
+}

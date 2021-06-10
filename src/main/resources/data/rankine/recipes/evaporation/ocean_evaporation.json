@@ -1,0 +1,14 @@
+{
+  "type": "rankine:evaporation",
+  "total": 1,
+  "biomes": "",
+  "input": {
+    "block": "minecraft:water"
+  },
+  "output1": {
+    "item": "minecraft:diamond",
+    "weight": 5,
+    "min": 2,
+    "max": 4
+  }
+}
