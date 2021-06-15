@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -77,12 +78,19 @@ public class TripleCropsBlock extends CropsBlock {
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        TripleBlockSection tripleblocksection = stateIn.get(SECTION);
-        if (facing.getAxis() != Direction.Axis.Y || ((tripleblocksection == TripleBlockSection.BOTTOM != (facing == Direction.UP)) || (tripleblocksection == TripleBlockSection.MIDDLE != (facing == Direction.UP)))  || facingState.matchesBlock(this) && facingState.get(SECTION) != tripleblocksection) {
-            return (tripleblocksection == TripleBlockSection.BOTTOM || tripleblocksection == TripleBlockSection.MIDDLE) && facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        } else {
-            return Blocks.AIR.getDefaultState();
+        TripleBlockSection tripleBlockSection = stateIn.get(SECTION);
+        switch (tripleBlockSection) {
+            case BOTTOM:
+            case MIDDLE:
+                if (facing.getAxis() != Direction.Axis.Y || !(facing == Direction.UP) || facingState.matchesBlock(this) && facingState.get(SECTION) != tripleBlockSection) {
+                    return facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+                } else {
+                    return Blocks.AIR.getDefaultState();
+                }
+            case TOP:
+                break;
         }
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override

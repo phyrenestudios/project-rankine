@@ -11,13 +11,25 @@
       "type": "spotlight",
       "item": "rankine:roasted_walnut",
       "link_recipe": true,
-      "text": "Obtained by cooking a black walnut on a campfire"
+      "text": "Obtained by cooking a black walnut."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:roasted_asparagus",
+      "link_recipe": true,
+      "text": "Obtained by cooking asparagus."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:popcorn",
+      "link_recipe": true,
+      "text": "Obtained by cooking corn."
     },
     {
       "type": "spotlight",
       "item": "rankine:toasted_coconut",
       "link_recipe": true,
-      "text": "Obtained by cooking a coconut on a campfire"
+      "text": "Obtained by cooking a coconut."
     },
     {
       "type": "spotlight",
@@ -40,18 +52,18 @@
     {
       "type": "crafting",
       "recipe": "rankine:dough",
-      "text": "Used to make bread in a smoker."
+      "text": "Used to make bread."
     },
     {
       "type": "spotlight",
       "item": "rankine:toast",
       "link_recipe": true,
-      "text": "Obtained by cooking bread on a campfire or smoker."
+      "text": "Obtained by cooking bread."
     },
     {
       "type": "crafting",
       "recipe": "rankine:cinnamon_toast",
-      "text": ""
+      "text": "For those with a sweet tooth."
     },
     {
       "type": "crafting",

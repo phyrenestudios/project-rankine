@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#forge:crops/coconut",
+    "#forge:crops/walnut",
     "#forge:crops/corn",
     "#forge:crops/rice",
     "#forge:crops/cotton",

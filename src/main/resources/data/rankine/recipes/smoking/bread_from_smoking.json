@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smoking",
   "ingredient": {
-    "item": "rankine:dough"
+    "tag": "forge:dough"
   },
   "result": "minecraft:bread",
-  "experience": 0.3,
+  "experience": 0.35,
   "cookingtime": 100
 }

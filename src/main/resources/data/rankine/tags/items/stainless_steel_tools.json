@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:stainless_steel_sword",
+    "rankine:stainless_steel_axe",
+    "rankine:stainless_steel_pickaxe",
+    "rankine:stainless_steel_shovel",
+    "rankine:stainless_steel_spear",
+    "rankine:stainless_steel_hammer",
+    "rankine:stainless_steel_hoe"
+  ]
+}

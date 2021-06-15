@@ -13,7 +13,7 @@
       "item": "minecraft:sugar"
     },
     "C": {
-      "item": "minecraft:wheat"
+      "tag": "forge:flour"
     },
     "E": {
       "tag": "forge:egg"
