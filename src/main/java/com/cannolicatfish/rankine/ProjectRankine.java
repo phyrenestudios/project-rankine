@@ -36,7 +36,6 @@ import com.cannolicatfish.rankine.util.colors.CrucibleColor;
 import com.cannolicatfish.rankine.util.colors.SGVDItemColor;
 import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.client.renderer.Atlases;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -128,10 +127,6 @@ public class ProjectRankine {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
 
         event.enqueueWork(ClientProxy::registerItemProperties);
-        event.enqueueWork(() ->
-                ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
-                        new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
-                                stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F));
 
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
@@ -178,7 +173,6 @@ public class ProjectRankine {
         public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
             event.getBlockColors().register(new CrucibleColor(), RankineBlocks.CRUCIBLE_BLOCK.get());
         }
-
 
         @SubscribeEvent
         public static void addEntityAttributes(final EntityAttributeCreationEvent event) {

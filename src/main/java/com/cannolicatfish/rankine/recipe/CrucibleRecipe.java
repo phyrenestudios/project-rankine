@@ -246,11 +246,11 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
     }
 
     public ItemStack getPrimaryOutput() {
-        return recipeOutput;
+        return this.recipeOutput.copy();
     }
 
     public ItemStack getSecondaryOutput() {
-        return secondaryOutput;
+        return this.secondaryOutput.copy();
     }
 
     public NonNullList<Boolean> getRequired() {
@@ -382,7 +382,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             NonNullList<Integer> cookMods = NonNullList.withSize(t,0);
             NonNullList<List<String>> shiftMods = NonNullList.withSize(t, Collections.emptyList());
 
-            for (int i = 0; i < req.size(); i++) {
+            for (int i = 0; i < 4; i++) {
                 req.set(i,buffer.readBoolean());
             }
 
@@ -392,12 +392,17 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
                 countMods.set(i,buffer.readInt());
                 cookMods.set(i,buffer.readInt());
 
-                List<String> str = new ArrayList<>();
+
                 int s = buffer.readInt();
-                for (int j = 0; j < s; j++) {
-                    str.set(j,buffer.readString());
+                String[] str = new String[s];
+                if (s > 0) {
+                    for (int j = 0; j < s; j++) {
+                        str[j] = buffer.readString();
+                    }
+                    shiftMods.set(i,Arrays.asList(str));
                 }
-                shiftMods.add(i,str);
+
+
             }
 
             ItemStack stack = buffer.readItemStack();
@@ -411,8 +416,12 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             buffer.writeInt(recipe.getCookTime());
             buffer.writeInt(recipe.getTotal());
             buffer.writeInt(recipe.getColor());
-            for (int i = 0; i < recipe.getRequired().size(); i++) {
-                buffer.writeBoolean(recipe.getRequired().get(i));
+            for (int i = 0; i < 4; i++) {
+                if (i < recipe.getRequired().size()) {
+                    buffer.writeBoolean(recipe.getRequired().get(i));
+                } else {
+                    buffer.writeBoolean(false);
+                }
             }
 
             for (int i = 0; i < recipe.getTotal(); i++) {
@@ -421,10 +430,15 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
                 buffer.writeInt(recipe.getCountMod().get(i));
                 buffer.writeInt(recipe.getCookMod().get(i));
 
-                buffer.writeInt(recipe.getShiftMod().size());
-                for (int j=0;j<recipe.getShiftMod().get(i).size();j++) {
-                    buffer.writeString(recipe.getShiftMod().get(i).get(j));
+
+                buffer.writeInt(recipe.getShiftMod().get(i).size());
+                if (recipe.getShiftMod().get(i).size() > 0) {
+                    for (int j=0;j<recipe.getShiftMod().get(i).size();j++) {
+                        buffer.writeString(recipe.getShiftMod().get(i).get(j));
+                    }
                 }
+
+
             }
 
             buffer.writeItemStack(recipe.getPrimaryOutput());

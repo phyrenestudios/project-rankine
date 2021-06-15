@@ -1763,7 +1763,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TENNESSINE_BLOCK = REGISTRY.register("tennessine_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> OGANESSON_BLOCK = REGISTRY.register("oganesson_block", () -> new Block(DEF_METAL_BLOCK));
 
-    public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = REGISTRY.register("sodium_vapor_lamp", () -> new Block(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid()));
+    public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = REGISTRY.register("sodium_vapor_lamp", () -> new SodiumVaporLampBlock(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid()));
 
 
     //OTHER STUFFS

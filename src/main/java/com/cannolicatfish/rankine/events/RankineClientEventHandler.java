@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 public class RankineClientEventHandler {
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     public static void fovUpdate(FOVUpdateEvent event) {
         PlayerEntity player = event.getEntity();
         ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);

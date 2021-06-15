@@ -124,7 +124,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                         this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                     }
                 } else {
-                    if (boilerStructure(p, worldIn) && (output.isEmpty() || recipe.getRecipeOutputs().size() == 1 && output.getCount() + recipe.getMaxes().get(0) <= recipe.getRecipeOutputs().get(0).getMaxStackSize())) {
+                    if (boilerStructure(p, worldIn) && output.isEmpty()) {
                         ++this.cookTime;
                         if (this.cookTime >= this.cookTimeTotal) {
                             worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(), 3);

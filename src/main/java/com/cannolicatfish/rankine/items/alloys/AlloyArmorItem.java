@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
-import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -127,7 +126,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
             }
         }
         if (!hasColor(stack)) {
-            setColor(stack,new AlloyItemColor().getColor(stack,0));
+            setColor(stack,new AlloyColorHelper().getColor(stack,0));
         }
         super.onCreated(stack, worldIn, playerIn);
     }

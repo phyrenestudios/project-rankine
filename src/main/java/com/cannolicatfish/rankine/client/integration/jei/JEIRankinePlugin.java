@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.client.integration.jei;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
+import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
@@ -42,7 +43,10 @@ public class JEIRankinePlugin implements IModPlugin {
         registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, AlloyingRecipeCategory.UID);
         registration.addRecipeClickArea(PistonCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
         registration.addRecipeClickArea(GyratoryCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
+        registration.addRecipeClickArea(EvaporationTowerScreen.class, 76, 50, 24, 16, EvaporationRecipeCategory.UID);
         registration.addRecipeClickArea(CrucibleScreen.class, 109, 46, 7, 26, CrucibleRecipeCategory.UID);
+
+
     }
 
     @Override
@@ -73,10 +77,6 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(RankineItems.FLINT_KNIFE.get()), VanillaTypes.ITEM, "Right-clicking on grass blocks allows you to obtain grass and convert the original block into dirt at an increased durability cost." +
                 "The knife can also harvest grass and vines by left clicking.");
         registry.addIngredientInfo(new ItemStack(RankineItems.COMPOST.get()), VanillaTypes.ITEM, "Can be placed in the Composter.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Steel Process requires Iron and a form of coal, as well as two additional unique inputs. These include: Sand/Glass/Quartz, Limestone/Quicklime/Dolomite, Saltpeter, Phosphorus, Fluorite, Trona, and Borax. ");
-        registry.addIngredientInfo(new ItemStack(RankineItems.STEEL_ALLOY.get()), VanillaTypes.ITEM, "The Crucible Steel Process requires Iron and a form of coal, as well as two additional unique inputs. These include: Sand/Glass/Quartz, Limestone/Quicklime/Dolomite, Saltpeter, Phosphorus, Fluorite, Trona, and Borax. ");
-        registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Redstone-Glowstone Process requires Cinnabar and three additional unique fluxes. These include: Phosphorus, Arsenic Ingot, Cobaltite, Cryolite, Alumina, and Quartz.");
-        registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Glass Process requires a form of Quartz (Sand/Quartz) and three additional unique fluxes. These include: Galena, Alumina, Magnesia, Quicklime, Sodium Carbonate, Petalite, Plagioclase/Orthoclase Feldspar, and Dye.");
         registry.addIngredientInfo(new ItemStack(RankineItems.GAS_MASK.get()), VanillaTypes.ITEM, "The gas mask prevents negative effects from standing in gas blocks when worn. Combine with a helmet in an anvil to add the enchantment Gas Protection which has the same effect.");
         registry.addIngredientInfo(new ItemStack(RankineItems.SANDALS.get()), VanillaTypes.ITEM, "Sandals increase movement speed on sand blocks when worn. Combine with boots in an anvil to add the enchantment Dune Walker which has the same effect.");
         registry.addIngredientInfo(new ItemStack(RankineItems.SNOWSHOES.get()), VanillaTypes.ITEM, "Snowshoes increase movement speed on snow blocks when worn. Combine with boots in an anvil to add the enchantment Snow Drifter which has the same effect.");

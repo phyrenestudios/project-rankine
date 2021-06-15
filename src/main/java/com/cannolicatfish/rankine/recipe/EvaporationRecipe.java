@@ -32,10 +32,7 @@ import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class EvaporationRecipe implements IRecipe<IInventory> {
 
@@ -299,7 +296,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         }
 
         public EvaporationRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-            List<String> biomes = new ArrayList<String>();
+
             boolean l = buffer.readBoolean();
             int t = buffer.readInt();
             int w = buffer.readInt();
@@ -307,9 +304,12 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             Ingredient b = Ingredient.read(buffer);
 
             int biomesSize = buffer.readInt();
+            String[] biomeArray = new String[biomesSize];
             for (int i = 0; i < biomesSize; i++) {
-                biomes.add(i, buffer.readString());
+                biomeArray[i] = buffer.readString();
             }
+
+            List<String> biomes = Arrays.asList(biomeArray);
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
