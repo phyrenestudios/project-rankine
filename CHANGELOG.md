@@ -1,6 +1,164 @@
 
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
+## Project Rankine Version 1.2.3 Minor Changelog [2021-06-15]
+
+### Blocks
+- Added Sodium Vapor Lamp
+- Added Cast Iron Pole
+- Added Fiber Blocks: plant based glazed terracotta
+- Added Fiber Mats: fiber blocks in carpet form
+- Added Fluid Drain: places fluids in-world from a tap barrel
+- Added Mycellium Path: work siilar to grass path
+- Podzol can be converted to grass path
+- Added blocks for each mineral: parity with changes in 1.17
+- Added bamboo culms, yellow  birch and black birch boats
+- Added Juglone Fluid
+- Added Corn Stalk
+- Added Aspargus Root: Grows aspargus over time, can die
+- Added Corn, Rice, Asparagus, Cotton and Jute Plants
+- Sawdust can be placed like snow layers
+- Added Ash: can be placed like sawdust
+- Added Bone Ash: can be placed like sawdust
+- Blueberry, Elderberry and Cranberry bushes are two blocks high
+
+
+### Items
+- F3 screen tools, display info while held. Position is at head level by default, sneak to get position at feet. Config options available.
+    - Compass: shows X,Z coordinates and direction
+    - Clock: shows game time, 24 hour format and in ticks
+    - Altimeter: shows Y value
+    - Photometer: shows light level
+    - Thermometer: shows temperature
+    - Speedometer: shows speed in blocks per second
+    - Biometer: shows current biome
+- Cotton
+- Jute
+- Corn Seeds
+- Rice Seeds
+- Asparagus Seeds
+- Cotton Seeds
+- Jute Seeds
+- New seeds can be obtained through foraging
+- Added Thortveitite: 4th crushing component of pegmatite
+- Plant Fiber: intermediary crafting component
+- Food Related Items
+    - Toasted Coconut
+    - Rice
+    - Asparagus
+    - Ear of Corn
+    - Wheat Flour
+    - Corn Flour
+    - Rice Flour
+    - Dough
+
+### Entities
+- Added Rock Collector Villager with a POI of Sediment Fan
+- Changed Gem Cutter trades
+
+### Mechanics
+- Added tree felling (logs only) to any items in #rankine:tree_choppers. Config options available.
+- Tree Taps will only produce fluid from living trees
+- Knives are effective at mining through leaves
+- While walking on grass, podzol, or mycelium, there is a chance for a path block to form under the player. Config options available.
+
+### Recipes
+- Added JSON recipe type for Crucible (rankine:crucible) and Evaporation Tower (rankine:evaporation)
+- Organized recipes folder into sub folders
+- Added recipes for alloy rods, alloy gears and alloy plates using default alloys
+- Updated recipes to include tags
+- Totem of Cobbling durability from 64 to 1 on craft
+- Crucible recipe for glowstone changed to glowstone dust
+- Adjusted all Crucible recipes
+- Added recipes for plant fiber
+- Crafting Rope now requires plant fiber
+- Changed Gun Cotton recipe
+- Changed Bandage recipe
+- Changed Pumice Soap recipe
+- Changed Thermometer recipe
+- Added recipe for podzol from biomass
+- Added a recipes for bread from flour
+- Added a recipe for slime balls from resin
+- Added a recipes for bonemeal
+- Added a recipe for Bottle o' Enchanting
+- Added a recipe for String from cotton
+- Adjusted Evaporation Tower outputs
+- All wood variant recipes should be implemented
+- Slag can be blasted to iron nugget
+- Added a recipe for Dry Mortar using slag
+- Lodestone can be blasted to iron ingot for more XP
+- Dyes
+    - Juglone to brown dye in evap tower
+    - Changed output of Strawberries to dye from red to pink
+    - Changed output of Elderberries to dye from black to purple
+    - Added recipe for lime dye from Aloe
+    - Added recipe for gray dye from ash
+    - Added recipe for light gray dye from bone ash
+
+### Tags
+- Tagged cupronickel in #forge:ingots/constantan
+- Tagged rope in #forge:string
+- Added missing items to various stone variants tags
+- Added #rankine:tree_choppers for tree chopping
+- Added tags for crops
+    - #forge:crops/cotton
+    - #forge:crops/jute
+    - #forge:crops/corn
+    - #forge:crops/cotton
+    - #forge:crops/rice
+    - #forge:crops/coconut
+    - #forge:crops/walnut
+- Added Cheese to #forge:cheese
+- Added wheat flour, rice flour, corn flour to #forge:flour
+- Added minecraft:bread to #forge:bread
+- Added minecraft:egg to #forge:eggs
+- Added ash and bone_ash to forge:ash
+- Added forge:storage_blocks/pewter
+- Added forge:storage_blocks/tungsten_heavy_alloy
+- forge:storage_blocks/cobalt_superalloy
+- Added rankine:geodes
+- Added #rankine:foraging_tools for foraging purposes
+- Added tool category tags
+    - #forge:wooden_tools
+    - #forge:stone_tools
+    - #forge:iron_tools
+    - #forge:diamond_tools
+    - #forge:golden_tools
+    - #forge:netherite_tools
+    - #rankine:amalgam_tools
+    - #rankine:alloy_tools
+    - #rankine:tungsten_heavy_alloy_tools
+    - #rankine:cobalt_superalloy_tools
+    - #rankine:nickel_superalloy_tools
+    - #rankine:stainless_steel_tools
+
+
+### Misc
+- Crucible no longer has set cook time and set ingredients that reduce cook time
+- Crucible liquid texture changed and can be modified slightly by color attribute from recipes
+- Fixed offsets of Crucible GUI and Evaporation Tower GUI
+- Fixed config option for requiredAxe
+- Added config options
+- Journal updates
+- Changed foraging drops
+- Mobs are less likely to path through berry bush blocks
+- Removed right click functionality of thermometer
+- Decreased sapling drop rate from black walnut leaves
+- Max storage for Totem of Cobbling increased from 64 to 512
+- Totem of Cobbling does not function at 0 durability
+- Removed lava from evaporation tower fluids
+- Reduced level cost of applying snowshoes, ice skates, sandals and gas mask from 30 to 20
+- Fixed server crash upon creating alloy armor
+- Added loottable for template table
+- Added loottable for Magnolia Planks
+- Fixed loottable for pinyon pine planks
+- Added advancement for collecting every geode
+- Tooltips added for pendants
+- JEI info pages for snowshoes, ice skates, sandals and gas mask
+- Fixed Cinnamon sapling growing into a cork oak tree
+- Rearrangement of creative tabs
+- Renamed Alumina to Bauxite
+- Fixed rope and ladders not being climbable
 
 ## Project Rankine Version 1.2.2 Minor Changelog [2021-04-10]
 
