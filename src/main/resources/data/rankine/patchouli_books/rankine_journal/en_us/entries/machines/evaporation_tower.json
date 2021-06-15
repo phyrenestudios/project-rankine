@@ -6,7 +6,7 @@
   "pages": [
 	{
       "type": "text",
-      "text": "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources. The resource lootable depends on the water of a location (biome). $(li)Oceans & Deserts $(li)Rivers and Swamps $(li)Elsewhere"
+      "text": "A method to remove heavy materials from water. When constructed, the tower will slowly and passively generate various resources (can only run when empty output, use a hopper!!). The resource lootable depends on the water of a location (biome). $(li)Oceans & Deserts $(li)Rivers and Swamps $(li)Elsewhere"
     },
     {
       "type": "crafting",

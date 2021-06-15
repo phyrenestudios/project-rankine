@@ -12,12 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -64,6 +66,23 @@ public class CornStalkBlock extends BushBlock {
     }
 
     @Override
+    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        TripleBlockSection tripleBlockSection = stateIn.get(SECTION);
+        switch (tripleBlockSection) {
+            case BOTTOM:
+            case MIDDLE:
+                if (facing.getAxis() != Direction.Axis.Y || !(facing == Direction.UP) || facingState.matchesBlock(this) && facingState.get(SECTION) != tripleBlockSection) {
+                    return facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+                } else {
+                    return Blocks.AIR.getDefaultState();
+                }
+            case TOP:
+                break;
+        }
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
+
+    @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         if (!worldIn.isRemote) {
             worldIn.setBlockState(pos.up(1), this.getDefaultState().with(SECTION, TripleBlockSection.MIDDLE));
@@ -78,7 +97,7 @@ public class CornStalkBlock extends BushBlock {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             } else {
-                spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
+                //spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
             }
         }
         super.onBlockHarvested(worldIn, pos, state, player);
