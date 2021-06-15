@@ -1,0 +1,43 @@
+{
+  "type": "rankine:evaporation",
+  "total": 8,
+  "biomes": ["C#ocean"],
+  "input": {
+    "block": "minecraft:water"
+  },
+  "bucket": {
+    "item": "minecraft:water_bucket"
+  },
+  "output1": {
+    "item": "rankine:bromine_nugget",
+    "weight": 1
+  },
+  "output2": {
+    "item": "rankine:iodine_nugget",
+    "weight": 1
+  },
+  "output3": {
+    "item": "rankine:boron_nugget",
+    "weight": 1
+  },
+  "output4": {
+    "item": "rankine:potassium_nugget",
+    "weight": 2
+  },
+  "output5": {
+    "item": "rankine:calcium_nugget",
+    "weight": 5
+  },
+  "output6": {
+    "item": "rankine:magnesium_nugget",
+    "weight": 5
+  },
+  "output7": {
+    "item": "minecraft:kelp",
+    "weight": 10
+  },
+  "output8": {
+    "item": "rankine:salt",
+    "weight": 80
+  }
+}

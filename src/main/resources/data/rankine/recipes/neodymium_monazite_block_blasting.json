@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:neodymium_monazite_block"
+  },
+  "result": "rankine:neodymium_block",
+  "experience": 5.0,
+  "cookingtime": 100
+}

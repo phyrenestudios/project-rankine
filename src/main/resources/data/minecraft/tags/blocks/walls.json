@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    "rankine:diorite_bricks_wall",
+    "rankine:granite_bricks_wall",
+    "rankine:andesite_bricks_wall",
+    "rankine:basalt_bricks_wall",
     "rankine:gray_granite_wall",
     "rankine:polished_gray_granite_wall",
     "rankine:gray_granite_bricks_wall",

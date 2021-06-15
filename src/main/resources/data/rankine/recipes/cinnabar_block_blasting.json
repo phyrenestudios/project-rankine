@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:cinnabar_block"
+  },
+  "result": "rankine:mercury_block",
+  "experience": 5.0,
+  "cookingtime": 100
+}

@@ -1,6 +1,6 @@
 {
-          "parent": "item/handheld",
-          "textures": {
-            "layer0": "rankine:item/sawdust"
-          }
-        }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rankine:item/sawdust"
+  }
+}

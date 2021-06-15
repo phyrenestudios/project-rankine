@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:seeds/flower",
+    "#forge:seeds/asparagus",
+    "#forge:seeds/corn",
+    "#forge:seeds/cotton",
+    "#forge:seeds/rice",
+    "#forge:seeds/camphor_basil",
+    "#forge:seeds/jute"
+  ]
+}

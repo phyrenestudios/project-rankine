@@ -1,0 +1,59 @@
+{
+  "type": "rankine:evaporation",
+  "total": 12,
+  "biomes": ["C#river"],
+  "input": {
+    "block": "minecraft:water"
+  },
+  "bucket": {
+    "item": "minecraft:water_bucket"
+  },
+  "output1": {
+    "item": "rankine:cadmium_nugget",
+    "weight": 1
+  },
+  "output2": {
+    "item": "rankine:chromium_nugget",
+    "weight": 1
+  },
+  "output3": {
+    "item": "rankine:mercury_nugget",
+    "weight": 1
+  },
+  "output4": {
+    "item": "minecraft:iron_nugget",
+    "weight": 1
+  },
+  "output5": {
+    "item": "minecraft:gold_nugget",
+    "weight": 2
+  },
+  "output6": {
+    "item": "rankine:copper_nugget",
+    "weight": 2
+  },
+  "output7": {
+    "item": "rankine:borax",
+    "weight": 4
+  },
+  "output8": {
+    "item": "rankine:thenardite",
+    "weight": 4
+  },
+  "output9": {
+    "item": "rankine:trona",
+    "weight": 4
+  },
+  "output10": {
+    "item": "rankine:slag",
+    "weight": 4
+  },
+  "output11": {
+    "item": "minecraft:clay_ball",
+    "weight": 5
+  },
+  "output12": {
+    "item": "minecraft:sand",
+    "weight": 15
+  }
+}

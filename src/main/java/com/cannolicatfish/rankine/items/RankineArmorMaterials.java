@@ -20,8 +20,8 @@ public enum RankineArmorMaterials implements IArmorMaterial {
     ALLOY("rankine:alloy", 10, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.fromItems(RankineItems.ALLOY_INGOT.get());
     }),
-    PLASTIC("rankine:plastic", 15, new int[]{1, 3, 5, 2}, 7, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
-        return Ingredient.fromItems(RankineItems.MICA.get()); // CHANGE TO PLASTIC WHEN ADDED
+    RUBBER("rankine:rubber", 15, new int[]{1, 3, 5, 2}, 7, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> {
+        return Ingredient.fromItems(RankineItems.VULCANIZED_RUBBER.get());
     }),
     DIVING("rankine:diving", 10, new int[]{2, 4, 5, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
         return Ingredient.fromItems(RankineItems.BRASS_ALLOY.get());

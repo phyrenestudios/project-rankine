@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "rankine:bone_ash"
+    },
+    {
+      "item": "rankine:bone_ash"
+    },
+    {
+      "item": "rankine:bone_ash"
+    }
+  ],
+  "result": {
+    "item": "minecraft:light_gray_dye",
+    "count": 2
+  }
+}

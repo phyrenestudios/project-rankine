@@ -262,14 +262,14 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
                 worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(returnCompositionString(context.getItem(),this.alloy),this.alloy) - context.getItem().getDamage()) >= 100) {
                 worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             }
         }
-        return ActionResultType.FAIL;
+        return super.onItemUse(context);
     }
 }

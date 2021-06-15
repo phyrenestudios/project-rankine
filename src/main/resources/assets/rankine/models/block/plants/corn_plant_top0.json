@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "rankine:block/plants/corn_plant_top0"
+  }
+}

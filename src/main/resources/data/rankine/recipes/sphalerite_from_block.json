@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:sphalerite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:sphalerite",
+    "count": 9
+  }
+}

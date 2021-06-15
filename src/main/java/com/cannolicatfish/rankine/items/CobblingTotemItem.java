@@ -12,9 +12,16 @@ public class CobblingTotemItem extends Item {
         super(properties);
     }
 
+
+    @Override
+    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
+        stack.setDamage(stack.getMaxDamage()-1);
+        super.onCreated(stack, worldIn, playerIn);
+    }
+
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        if (Minecraft.getInstance().objectMouseOver != null && context.getPlayer() != null) {
+        if (Minecraft.getInstance().objectMouseOver != null && context.getPlayer() != null && context.getItem().getDamage() < context.getItem().getMaxDamage()) {
             ActionResultType actionresulttype = ((BlockItem) Items.COBBLESTONE).tryPlace(new BlockItemUseContext(
                     new ItemUseContext(context.getWorld(),context.getPlayer(),context.getHand(),new ItemStack(Items.COBBLESTONE),(BlockRayTraceResult) Minecraft.getInstance().objectMouseOver)));
             if (context.getItem().getDamage() < context.getItem().getMaxDamage()) {

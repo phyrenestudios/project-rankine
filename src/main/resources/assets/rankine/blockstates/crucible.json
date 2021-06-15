@@ -1,9 +1,6 @@
 {
   "variants": {
-    "level=0": { "model": "rankine:block/crucible" },
-    "level=1": { "model": "rankine:block/crucible_level1" },
-    "level=2": { "model": "rankine:block/crucible_level2" },
-    "level=3": { "model": "rankine:block/crucible_level3" },
-    "level=4": { "model": "rankine:block/crucible_level4" }
+    "fluid=false": { "model": "rankine:block/crucible" },
+    "fluid=true": { "model": "rankine:block/crucible_with_fluid" }
   }
 }

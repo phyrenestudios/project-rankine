@@ -2,18 +2,24 @@ package com.cannolicatfish.rankine.blocks.crucible;
 
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -45,7 +51,8 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
     private int cookTime;
-    private int cookTimeTotal = 3200;
+    private int cookTimeTotal;
+    private int color = 16777215;
     private int heatPower = 0;
     private final IIntArray furnaceData = new IIntArray(){
         public int get(int index)
@@ -90,6 +97,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         ItemStackHelper.loadAllItems(nbt,this.items);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
+        this.color = nbt.getInt("color");
     }
 
     @Override
@@ -97,33 +105,43 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         super.write(compound);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
+        compound.putInt("color", this.color);
         ItemStackHelper.saveAllItems(compound, this.items);
 
         return compound;
     }
 
     public void tick() {
-        boolean flag = this.isBurning();
-        boolean flag1 = false;
+        boolean flag = this.isHeated(this.pos,this.world);
+        boolean flag1 = this.isCooking();
+        boolean flag2 = false;
 
         if (!this.world.isRemote) {
+            if (!flag1) {
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.FLUID, false), 3);
+            } else if (this.getTileData().getInt("color") != this.color) {
+                this.getTileData().putInt("color",this.color);
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.FLUID, this.isCooking()), 3);
+            }
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
-            if ((this.isBurning() || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty())) {
-                if (this.isHeated(this.pos,this.world) && this.canSmelt()) {
-                    ++this.cookTime;
-                    if (Arrays.stream(inputs).anyMatch(itemStack -> itemStack.getItem() == RankineItems.BORAX.get() || itemStack.getItem() == RankineItems.CRYOLITE.get() || itemStack.getItem() == RankineItems.SODIUM_CARBONATE.get()))
-                    {
-                        this.cookTime += 3;
+            if ((this.isCooking() && flag) || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
+                CrucibleRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUCIBLE, this, this.world).orElse(null);
+                if (this.canSmelt(irecipe, this)) {
+                    if (this.cookTime == 0) {
+                        this.cookTimeTotal = getCookTime();
+                        this.color = irecipe.getColor();
+
                     }
+                    ++this.cookTime;
                     if (this.cookTime >= this.cookTimeTotal) {
-                        ItemStack smelting = RankineRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
+                        ItemStack smelting = irecipe.generateResult(this);
                         if (this.items.get(4).getCount() > 0) {
                             this.items.get(4).grow(smelting.getCount());
                         } else {
                             this.items.set(4, smelting);
                         }
 
-                        ItemStack extra = new ItemStack(RankineItems.SLAG.get());
+                        ItemStack extra = irecipe.getSecondaryOutput();
                         if (this.items.get(5).getCount() > 0) {
                             this.items.get(5).grow(extra.getCount());
                         } else {
@@ -140,36 +158,28 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
                 } else {
                     this.cookTime = 0;
                 }
-            } else if ((!this.isBurning()) && this.cookTime > 0) {
+            } else if ((flag) && this.cookTime > 0) {
                 this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
             }
 
-            if (flag != this.isBurning()) {
-                flag1 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.LEVEL, this.isBurning() ? checkResultingOutput() : 0), 3);
+            if (flag1 != this.isCooking()) {
+                flag2 = true;
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CrucibleBlock.FLUID, this.isCooking()), 3);
             }
         }
 
-        if (flag1) {
+        if (flag2) {
             this.markDirty();
         }
 
     }
 
-    private int checkResultingOutput() {
-        ItemStack smelting = RankineRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
-        if (smelting.getItem() == RankineItems.STEEL_ALLOY.get())
-        {
-            return 1;
-        } else if (smelting.getItem() == Items.REDSTONE)
-        {
-            return 3;
-        } else if (smelting.getItem() == Items.GLOWSTONE) {
-            return 4;
-        } else if (!smelting.isEmpty()) {
-            return 2;
+    public int getCookTime() {
+        CrucibleRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUCIBLE, this, this.world).orElse(null);
+        if (irecipe != null) {
+            return irecipe.getRecipeCookTime(this);
         } else {
-            return 0;
+            return 3200;
         }
     }
 
@@ -190,26 +200,27 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         return false;
     }
 
-    public boolean isBurning()
+    public boolean isCooking()
     {
         return this.cookTime > 0;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static boolean isBurning(CrucibleTile te)
+    public static boolean isCooking(CrucibleTile te)
     {
         return te.furnaceData.get(0) > 0;
     }
 
-    private boolean canSmelt()
+    private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, IInventory inv)
     {
-        if(this.items.get(0).isEmpty() || this.items.get(1).isEmpty() || this.items.get(2).isEmpty() || this.items.get(3).isEmpty())
+        if (recipeIn == null)
         {
             return false;
         }
         else
         {
-            ItemStack result = RankineRecipes.returnCrucibleOutput(Arrays.asList(this.items.get(0).getItem(),this.items.get(1).getItem(),this.items.get(2).getItem(),this.items.get(3).getItem()));
+            ItemStack result = recipeIn.generateResult(inv);
+            ItemStack sec = recipeIn.getSecondaryOutput();
             if(result.isEmpty())
             {
                 return false;
@@ -217,15 +228,21 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             else
             {
                 ItemStack output = this.items.get(4);
-                if(output.isEmpty()) return true;
+                ItemStack secondary = this.items.get(5);
+                if(output.isEmpty() && (secondary.isEmpty() || sec.isEmpty())) {
+                    this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+                    return true;
+                }
 
-                if(!output.isItemEqual(result))
+                if(!output.isItemEqual(result) || !secondary.isItemEqual(sec))
                 {
                     return false;
                 }
                 int res = output.getCount() + result.getCount();
-                if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result)) {
-                    return res <= 64 && res <= output.getMaxStackSize();
+                int res2 = secondary.getCount() + sec.getCount();
+                if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result) && ItemStack.areItemStackTagsEqual(secondary, sec) && ItemStack.areItemsEqual(secondary, sec)) {
+                    this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+                    return res <= 64 && res2 <= 64 && res <= output.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
                 } else {
                     return false;
                 }
@@ -328,7 +345,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
         }
 
         if (index == 0 && !flag) {
-            this.cookTimeTotal = 3200;
+            this.cookTimeTotal = this.getCookTime();
             this.cookTime = 0;
             this.markDirty();
         }
@@ -351,9 +368,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, ITickab
             case 1:
             case 2:
             case 3:
-                return stack.getItem().getTags().contains(new ResourceLocation("rankine:crucible_fluxes"));
-            case 4:
-                return ItemStack.areItemsEqual(RankineRecipes.returnCrucibleOutput(Arrays.asList(getStackInSlot(0).getItem(),getStackInSlot(1).getItem(),getStackInSlot(2).getItem(),getStackInSlot(3).getItem())), stack);
+                return true;
             default:
                 return false;
         }

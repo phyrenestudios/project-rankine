@@ -1,0 +1,55 @@
+{
+  "type": "rankine:evaporation",
+  "total": 11,
+  "biomes": ["C#taiga","C#extreme_hills","C#jungle","C#plains","C#savanna","C#beach","C#forest","C#swamp","C#mushroom"],
+  "input": {
+    "block": "minecraft:water"
+  },
+  "bucket": {
+    "item": "minecraft:water_bucket"
+  },
+  "output1": {
+    "item": "rankine:zinc_nugget",
+    "weight": 1
+  },
+  "output2": {
+    "item": "rankine:cobalt_nugget",
+    "weight": 1
+  },
+  "output3": {
+    "item": "rankine:titanium_nugget",
+    "weight": 1
+  },
+  "output4": {
+    "item": "rankine:zirconium_nugget",
+    "weight": 1
+  },
+  "output5": {
+    "item": "rankine:silver_nugget",
+    "weight": 1
+  },
+  "output6": {
+    "item": "rankine:manganese_nugget",
+    "weight": 2
+  },
+  "output7": {
+    "item": "rankine:lead_nugget",
+    "weight": 2
+  },
+  "output8": {
+    "item": "rankine:bismuth_nugget",
+    "weight": 2
+  },
+  "output9": {
+    "item": "rankine:pink_salt",
+    "weight": 4
+  },
+  "output10": {
+    "item": "rankine:calcite",
+    "weight": 8
+  },
+  "output11": {
+    "item": "minecraft:dirt",
+    "weight": 10
+  }
+}

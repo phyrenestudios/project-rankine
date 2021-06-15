@@ -1,0 +1,48 @@
+{
+  "type": "rankine:crucible",
+  "result": {
+    "item": "minecraft:glowstone_dust"
+  },
+  "secondary": {
+    "item": "rankine:slag"
+  },
+  "cookTime": 1200,
+  "color": 13403732,
+  "required": [true,true,false,false],
+  "total": 9,
+  "input1": {
+    "item": "rankine:phosphorus",
+    "countMod": 1,
+    "group": 0
+  },
+  "input2": {
+    "item": "minecraft:blaze_powder",
+    "countMod": 3,
+    "cookMod": -400,
+    "group": 0
+  },
+  "input3": {
+    "tag": "forge:silicon"
+  },
+  "input4": {
+    "tag": "forge:nuggets/arsenic"
+  },
+  "input5": {
+    "tag": "forge:gems/quartz"
+  },
+  "input6": {
+    "tag": "forge:sulfur"
+  },
+  "input7": {
+    "tag": "forge:ingots/sodium",
+    "countMod": 1
+  },
+  "input8": {
+    "tag": "forge:ingots/neon",
+    "countMod": 2
+  },
+  "input9": {
+    "tag": "forge:ingots/argon",
+    "countMod": 2
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bamboo_culms"
+    }
+  },
+  "result": {
+    "item": "rankine:bamboo_culms_vertical_slab",
+    "count": 6
+  }
+}

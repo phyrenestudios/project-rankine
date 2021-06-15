@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:chromite_block"
+  },
+  "result": "rankine:chromite_block",
+  "experience": 5.0,
+  "cookingtime": 100
+}

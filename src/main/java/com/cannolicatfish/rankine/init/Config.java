@@ -59,7 +59,24 @@ public class Config {
         public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
         public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
         public final ForgeConfigSpec.BooleanValue ORE_DETECTOR_MSG;
+        public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
 
+        public final ForgeConfigSpec.BooleanValue DISABLE_COMPASS;
+        public final ForgeConfigSpec.BooleanValue DISABLE_CLOCK;
+        public final ForgeConfigSpec.BooleanValue DISABLE_ALTIMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_THERMOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_PHOTOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_SPEEDOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
+
+
+        public final ForgeConfigSpec.IntValue MAX_TREE;
+        public final ForgeConfigSpec.BooleanValue TREE_CHOPPING;
+        public final ForgeConfigSpec.DoubleValue TREE_CHOP_SPEED;
+
+        public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
+        public final ForgeConfigSpec.BooleanValue PATH_CREATION;
+        public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
@@ -82,13 +99,24 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
         public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
+        public final ForgeConfigSpec.DoubleValue GEODE_CHANCE;
         public final ForgeConfigSpec.IntValue HERBICIDE_RANGE;
         public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
+        public final ForgeConfigSpec.IntValue FIRE_EXTINGUISHER_RANGE;
 
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
 
+                b.comment("Enchantments").push("enchantments");
+                PLAYER_PRYING_ENCHANTMENT = b.comment("Enables the Prying enchantment to work on players (when hit by crowbar, chance to drop held item).")
+                        .define("playerPryingEnchantment",true);
+                b.pop();
+
                 b.comment("Miscellaneous").push("misc");
+                    PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
+                            .defineInRange("pathCreationTime", 40, 0, 600);
+                    PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
+                            .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
                             .define("colorWorld",true);
                     STRIPPABLES_CINNAMON = b.comment("If enabled, cinnamon will drop from cinnamon trees when stripped.")
@@ -101,10 +129,16 @@ public class Config {
                             .define("strippablesSticks",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
                             .defineInRange("herbicideRange", 7, 0, 32);
+                    ROCK_DRILL = b.comment("Enable the use of the rock drill.")
+                            .define("rockDrill",true);
+                    FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
+                            .defineInRange("fireExtinguisherRange", 16, 0, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
                             .defineInRange("trampolineSize", 289, 0, 961);
                     CHEESE_AGE_CHANCE = b.comment("Chance for unaged cheese to age in a random tick.")
                             .defineInRange("cheeseAgeChance", 0.04D, 0.0D, 1.0D);
+                    GEODE_CHANCE = b.comment("Chance for a geode to be found in stone.")
+                            .defineInRange("geodeChance", 0.0005D, 0.0D, 1.0D);
                     BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
                             .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
                     BRICKS_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")
@@ -114,13 +148,13 @@ public class Config {
                     PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing")
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("An axe is required to harvest logs")
-                            .define("axesOnly",false);
+                            .define("axesOnly",true);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
                             .define("fuelValuesChange",true);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
-                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable")
-                            .defineInRange("foragingChance", 0.15D, 0.00D, 1.00D);
+                    FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
+                            .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
                             .define("igneousGen",true);
                     METAMORPHIC_STONE_GEN = b.comment("Change the output of a stone generator from stone to metamorphic rocks.")
@@ -128,7 +162,7 @@ public class Config {
                     VILLAGER_TRADES = b.comment("Adds trades for Project Rankine to Villagers and the Wandering Trader.")
                             .define("villageTrades",true);
                     WANDERING_TRADE_SPECIAL = b.comment("Adds a trade to the Wandering Trader for a random tool which is not restricted by alloy constraints. May be unbalanced due to complete randomness.")
-                            .define("wanderingSpecial",false);
+                            .define("wanderingSpecial",true);
                     GLOBAL_BREAK_EXHAUSTION = b.comment("Amount of additional exhaustion when breaking a block.")
                             .defineInRange("breakExhaustion", 0.00D, 0.00D, 1.00D);
                     ICE_BREAK = b.comment("Chance for ice to break when walking on it.")
@@ -138,7 +172,33 @@ public class Config {
                     FLINT_FIRE_CHANCE = b.comment("Chance for flint to be consumed when lighting a fire.")
                             .defineInRange("flintFireChance", 0.30D, 0.00D, 1.00D);
                 b.pop();
-                
+
+                b.comment("Tree Chopping").push("treeChopping");
+                    TREE_CHOPPING = b.comment("Enable full tree chopping using #rankine:tree_choppers")
+                            .define("treeChopping",true);
+                    MAX_TREE = b.comment("Maximum blocks to be considered a tree. Set to 0 to disable tree capitation.")
+                        .defineInRange("maxTree", 256, 0, 1024);
+                    TREE_CHOP_SPEED = b.comment("Speed factor for chopping trees after size is accounted for.")
+                            .defineInRange("treeChopSpeedFactor", 0.75D, 0.0D, 2.0D);
+                b.pop();
+
+                b.comment("Tree Chopping").push("treeChopping");
+                    DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
+                            .define("disableCompass",false);
+                    DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
+                            .define("disableClock",false);
+                    DISABLE_ALTIMETER = b.comment("Disable status bar message from altimeter.")
+                            .define("disableAltimeter",false);
+                    DISABLE_PHOTOMETER = b.comment("Disable status bar message from photometer.")
+                            .define("disablePhotmeter",false);
+                    DISABLE_SPEEDOMETER = b.comment("Disable status bar message from speedometer.")
+                            .define("disableSpeedometer",false);
+                    DISABLE_THERMOMETER = b.comment("Disable status bar message from thermometer.")
+                            .define("disableThermometer",false);
+                    DISABLE_BIOMETER = b.comment("Disable status bar message from biometer.")
+                            .define("disableBiometer",false);
+                b.pop();
+
                 b.comment("Movement speed modifiers").push("movementModifiers");
                     MOVEMENT_MODIFIERS = b.comment("Set to false to disable movement speed modifiers.")
                             .define("movementModifiersEnabled",true);
@@ -814,11 +874,6 @@ public class Config {
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_SAP;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_MAPLE_SAP;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_RESIN;
-        public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_SPEED_LATEX;
         public final ForgeConfigSpec.IntValue EVAPORATION_TOWER_RANGE;
         public final ForgeConfigSpec.IntValue RANKINE_BOX_SPEED;
         public final ForgeConfigSpec.BooleanValue RANKINE_BOX_UP;
@@ -855,18 +910,8 @@ public class Config {
                         .defineInRange("charcoalPitSpeed", 5, 1, 200);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
-                EVAPORATION_TOWER_SPEED_SAP = b.comment("Base speed (in ticks) at which the evaporation tower boils sap.")
-                    .defineInRange("evaporationTowerSpeedSap", 1600, 40, 120000);
-                EVAPORATION_TOWER_SPEED_MAPLE_SAP = b.comment("Base speed (in ticks) at which the evaporation tower boils maple sap.")
-                    .defineInRange("evaporationTowerSpeedMapleSap", 800, 40, 120000);
-                EVAPORATION_TOWER_SPEED_RESIN = b.comment("Base speed (in ticks) at which the evaporation tower boils resin.")
-                    .defineInRange("evaporationTowerSpeedResin", 1600, 40, 120000);
-                EVAPORATION_TOWER_SPEED_LATEX = b.comment("Base speed (in ticks) at which the evaporation tower boils latex.")
-                    .defineInRange("evaporationTowerSpeedLatex", 800, 40, 120000);
-                EVAPORATION_TOWER_SPEED = b.comment("Base speed (in ticks) at which the water / lava evaporation tower generates resources.")
-                        .defineInRange("evaporationTowerSpeed", 3200, 40, 120000);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")
-                        .defineInRange("evaporationTowerHeight", 40, 0, 40);
+                        .defineInRange("evaporationTowerHeight", 15, 0, 30);
                 RANKINE_BOX_SPEED = b.comment("Total amount of time required (in ticks) at which the Rankine Box transmutes elements.")
                         .defineInRange("rankineBoxSpeed", 800, 20, 12000);
                 RANKINE_BOX_UP = b.comment("Allow for transmuting elements up periods in the Rankine Box.")

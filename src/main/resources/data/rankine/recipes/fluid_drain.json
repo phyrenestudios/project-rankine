@@ -1,0 +1,20 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "# #",
+        "#H#",
+        " # "
+      ],
+      "key": {
+        "H": {
+          "item": "minecraft:hopper"
+        },
+        "#": {
+          "tag": "forge:ingots/cupronickel"
+        }
+      },
+      "result": {
+        "item": "rankine:fluid_drain",
+        "count": 1
+      }
+}

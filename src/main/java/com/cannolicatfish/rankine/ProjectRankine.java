@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine;
 
+import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
@@ -15,10 +16,7 @@ import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
-import com.cannolicatfish.rankine.fluids.LatexFluid;
-import com.cannolicatfish.rankine.fluids.MapleSapFluid;
-import com.cannolicatfish.rankine.fluids.ResinFluid;
-import com.cannolicatfish.rankine.fluids.SapFluid;
+import com.cannolicatfish.rankine.fluids.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -34,9 +32,11 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.util.POIFixer;
+import com.cannolicatfish.rankine.util.colors.CrucibleColor;
 import com.cannolicatfish.rankine.util.colors.SGVDItemColor;
 import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
 import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.client.renderer.Atlases;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -76,6 +76,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Locale;
+
 @Mod("rankine")
 public class ProjectRankine {
     public static final String MODID = "rankine";
@@ -93,8 +95,10 @@ public class ProjectRankine {
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
+
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
+
         Bus.addListener(this::LoadComplete);
 
     }
@@ -106,20 +110,29 @@ public class ProjectRankine {
         POIFixer.fixPOITypeBlockStates(RankinePOIs.TEMPLATE_TABLE_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.PISTON_CRUSHER_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.BOTANIST_STATION_POI);
-        POIFixer.fixPOITypeBlockStates(RankinePOIs.RANKINE_BOX_POI);
+        POIFixer.fixPOITypeBlockStates(RankinePOIs.GEM_CUTTER_POI);
+        POIFixer.fixPOITypeBlockStates(RankinePOIs.ROCK_COLLECTOR_POI);
         proxy.init();
 
         DeferredWorkQueue.runLater(() -> {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineFeatures.registerConfiguredFeatures();
+            //WoodType.register(RankineBlocks.CEDAR);
         });
+
         LOGGER.info("Rankine: \"CommonSetup\" Event Complete!");
     }
 
     private void ClientSetup(FMLClientSetupEvent event) {
         LOGGER.debug("Rankine: \"ClientSetup Event\" Starting...");
+
         event.enqueueWork(ClientProxy::registerItemProperties);
+        event.enqueueWork(() ->
+                ItemModelsProperties.registerProperty(RankineItems.SHULKER_GAS_VACUUM.get(),
+                        new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living) ->
+                                stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F));
+
         LOGGER.info("Rankine: \"ClientSetup\" Event Complete!");
     }
 
@@ -133,6 +146,7 @@ public class ProjectRankine {
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
+
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
@@ -158,6 +172,14 @@ public class ProjectRankine {
             event.getItemColors().register(new SGVDItemColor(), RankineItems.SHULKER_GAS_VACUUM::get);
         }
 
+
+        @SubscribeEvent
+        @OnlyIn(Dist.CLIENT)
+        public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
+            event.getBlockColors().register(new CrucibleColor(), RankineBlocks.CRUCIBLE_BLOCK.get());
+        }
+
+
         @SubscribeEvent
         public static void addEntityAttributes(final EntityAttributeCreationEvent event) {
             event.put(RankineEntityTypes.BEAVER, BeaverEntity.getAttributes().create());
@@ -169,12 +191,15 @@ public class ProjectRankine {
             event.put(RankineEntityTypes.DRAGONYTE, DragonyteEntity.getAttributes().create());
         }
 
+
+
         @SubscribeEvent
         public static void onPOIRegistry(final RegistryEvent.Register<PointOfInterestType> event) {
             event.getRegistry().register(RankinePOIs.TEMPLATE_TABLE_POI.setRegistryName(ProjectRankine.MODID,"template_table_poi"));
             event.getRegistry().register(RankinePOIs.PISTON_CRUSHER_POI.setRegistryName(ProjectRankine.MODID,"piston_crusher_poi"));
             event.getRegistry().register(RankinePOIs.BOTANIST_STATION_POI.setRegistryName(ProjectRankine.MODID,"potted_plant_poi"));
-            event.getRegistry().register(RankinePOIs.RANKINE_BOX_POI.setRegistryName(ProjectRankine.MODID,"gem_cutter_poi"));
+            event.getRegistry().register(RankinePOIs.GEM_CUTTER_POI.setRegistryName(ProjectRankine.MODID,"gem_cutter_poi"));
+            event.getRegistry().register(RankinePOIs.ROCK_COLLECTOR_POI.setRegistryName(ProjectRankine.MODID,"rock_collector_poi"));
         }
 
         @SubscribeEvent
@@ -210,6 +235,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineVillagerProfessions.MINERALOGIST.setRegistryName(ProjectRankine.MODID,"mineralogist"));
             event.getRegistry().register(RankineVillagerProfessions.BOTANIST.setRegistryName(ProjectRankine.MODID,"botanist"));
             event.getRegistry().register(RankineVillagerProfessions.GEM_CUTTER.setRegistryName(ProjectRankine.MODID,"gem_cutter"));
+            event.getRegistry().register(RankineVillagerProfessions.ROCK_COLLECTOR.setRegistryName(ProjectRankine.MODID,"rock_collector"));
         }
 
         @SubscribeEvent
@@ -219,7 +245,8 @@ public class ProjectRankine {
             event.getRegistry().register(AlloyingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"alloying"));
             event.getRegistry().register(BeehiveOvenRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"beehive_oven"));
             event.getRegistry().register(SluicingRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"sluicing"));
-
+            event.getRegistry().register(CrucibleRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crucible"));
+            event.getRegistry().register(EvaporationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"evaporation"));
         }
 
         @SubscribeEvent
@@ -232,6 +259,8 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
             event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
+            //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
+            event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.FLUID_DRAIN.get()).build(null).setRegistryName(ProjectRankine.MODID,"fluid_drain"));
 
         }
 
@@ -358,6 +387,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new LaserQuarryContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
+
+        //    event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+        //        BlockPos pos = data.readBlockPos();
+         //       return new SodiumVaporLampContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+         //   }).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
         }
 
         @SubscribeEvent
@@ -402,6 +436,11 @@ public class ProjectRankine {
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.LATEX, () -> RankineFluids.FLOWING_LATEX, FluidAttributes.builder(LatexFluid.FLUID_STILL,LatexFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(LatexFluid.OVERLAY))
                     .bucket(RankineItems.LATEX_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.LATEX.get())).setRegistryName(ProjectRankine.MODID,"flowing_latex"));
 
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY))
+                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"juglone"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.JUGLONE, () -> RankineFluids.FLOWING_JUGLONE, FluidAttributes.builder(JugloneFluid.FLUID_STILL,JugloneFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(JugloneFluid.OVERLAY))
+                    .bucket(RankineItems.JUGLONE_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.JUGLONE.get())).setRegistryName(ProjectRankine.MODID,"flowing_juglone"));
+
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY))
                     .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"resin"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY))
@@ -428,13 +467,9 @@ public class ProjectRankine {
             event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
             event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
             event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
-
+            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
         }
-/*
-        @SubscribeEvent
-        public static void registerModifierSerializers(@Nonnull final RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
 
-        }*/
     }
 
 

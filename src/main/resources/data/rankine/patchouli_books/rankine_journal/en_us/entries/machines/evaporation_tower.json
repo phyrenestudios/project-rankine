@@ -33,7 +33,7 @@
     },
     {
       "type": "text",
-      "text": "Construction notes: $(li)The inside is filled with water $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and water can be added to increase processing speed. The speed in ticks is calculated as 3200 (defined in config) / number of layers (up to the max in the config, 40 by default)."
+      "text": "Construction notes: $(li)The inside is filled with water $(li)The walls are made from any #forge:sheetmetals. $(li)More layers of sheet metal and water can be added to increase processing speed. The speed in ticks is calculated as 3200 (defined in config) / number of layers (up to the max in the config, 15 by default)."
     },
     {
       "type": "text",

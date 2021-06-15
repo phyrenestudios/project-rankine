@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/green_gold"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/green_gold"
+    }
+  },
+  "result": {
+    "item": "rankine:green_gold_pedestal",
+    "count": 6
+  }
+}

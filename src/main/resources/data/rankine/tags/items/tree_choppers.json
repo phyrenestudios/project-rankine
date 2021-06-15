@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:bronze_axe",
+    "rankine:pewter_axe",
+    "rankine:invar_axe",
+    "rankine:steel_axe",
+    "rankine:cobalt_superalloy_axe",
+    "rankine:tungsten_heavy_alloy_axe",
+    "rankine:titanium_alloy_axe",
+    "rankine:nickel_superalloy_axe",
+    "rankine:stainless_steel_axe",
+    "rankine:alloy_axe",
+    "rankine:rose_gold_axe",
+    "rankine:blue_gold_axe",
+    "rankine:green_gold_axe",
+    "rankine:white_gold_axe",
+    "rankine:black_gold_axe",
+    "rankine:purple_gold_axe",
+    "rankine:amalgam_axe"
+  ]
+}

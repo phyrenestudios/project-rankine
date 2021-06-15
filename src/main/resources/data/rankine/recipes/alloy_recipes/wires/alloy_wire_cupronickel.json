@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": false,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/cupronickel",
+      "alloyData": "90Cu-10Ni"
+    },
+    "S": {
+      "tag": "forge:ingots/solder"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_wire",
+    "alloyData": "90Cu-10Ni",
+    "count": 8
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/stainless_steel"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/stainless_steel"
+    }
+  },
+  "result": {
+    "item": "rankine:stainless_steel_pedestal",
+    "count": 6
+  }
+}

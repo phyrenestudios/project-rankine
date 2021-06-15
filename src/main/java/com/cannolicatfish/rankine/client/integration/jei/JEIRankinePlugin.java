@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
@@ -41,6 +42,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registration.addRecipeClickArea(InductionFurnaceScreen.class, 98, 32, 24, 16, AlloyingRecipeCategory.UID);
         registration.addRecipeClickArea(PistonCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
         registration.addRecipeClickArea(GyratoryCrusherScreen.class, 55, 58, 24, 16, CrushingRecipeCategory.UID);
+        registration.addRecipeClickArea(CrucibleScreen.class, 109, 46, 7, 26, CrucibleRecipeCategory.UID);
     }
 
     @Override
@@ -48,9 +50,10 @@ public class JEIRankinePlugin implements IModPlugin {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
         registry.addRecipes(rankineJEIRecipes.getBeehiveRecipes(), BeehiveOvenRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getSluicingRecipes(), SluicingRecipeCategory.UID);
-        registry.addRecipes(RankineRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
+        registry.addRecipes(rankineJEIRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getCrushingRecipes(), CrushingRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getAlloyingRecipes(), AlloyingRecipeCategory.UID);
+        registry.addRecipes(rankineJEIRecipes.getCrucibleRecipes(), CrucibleRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
@@ -74,6 +77,16 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(RankineItems.STEEL_ALLOY.get()), VanillaTypes.ITEM, "The Crucible Steel Process requires Iron and a form of coal, as well as two additional unique inputs. These include: Sand/Glass/Quartz, Limestone/Quicklime/Dolomite, Saltpeter, Phosphorus, Fluorite, Trona, and Borax. ");
         registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Redstone-Glowstone Process requires Cinnabar and three additional unique fluxes. These include: Phosphorus, Arsenic Ingot, Cobaltite, Cryolite, Alumina, and Quartz.");
         registry.addIngredientInfo(new ItemStack(RankineItems.CRUCIBLE.get()), VanillaTypes.ITEM, "The Crucible Glass Process requires a form of Quartz (Sand/Quartz) and three additional unique fluxes. These include: Galena, Alumina, Magnesia, Quicklime, Sodium Carbonate, Petalite, Plagioclase/Orthoclase Feldspar, and Dye.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.GAS_MASK.get()), VanillaTypes.ITEM, "The gas mask prevents negative effects from standing in gas blocks when worn. Combine with a helmet in an anvil to add the enchantment Gas Protection which has the same effect.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.SANDALS.get()), VanillaTypes.ITEM, "Sandals increase movement speed on sand blocks when worn. Combine with boots in an anvil to add the enchantment Dune Walker which has the same effect.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.SNOWSHOES.get()), VanillaTypes.ITEM, "Snowshoes increase movement speed on snow blocks when worn. Combine with boots in an anvil to add the enchantment Snow Drifter which has the same effect.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.ICE_SKATES.get()), VanillaTypes.ITEM, "Ice Skates increase movement speed on ice blocks when worn. Combine with boots in an anvil to add the enchantment Speed Skater which has the same effect.");
+        //Tools
+        registry.addIngredientInfo(new ItemStack(Items.COMPASS), VanillaTypes.ITEM, "While held, the compass will display the holder's coordinates and direction. Default is head position, sneak for position at feet.");
+        registry.addIngredientInfo(new ItemStack(Items.CLOCK), VanillaTypes.ITEM, "While held, the clock will display the current game time on a 24 hour clock and in ticks.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.ALTIMETER.get()), VanillaTypes.ITEM, "While held, the altimeter will display the holder's Y value. Default is head position, sneak for position at feet.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.PHOTOMETER.get()), VanillaTypes.ITEM, "While held, the photometer will display the current light level. Default is head position, sneak for position at feet.");
+        registry.addIngredientInfo(new ItemStack(RankineItems.THERMOMETER.get()), VanillaTypes.ITEM, "While held, the thermometer will display the current block temperature. Default is head position, sneak for position at feet.");
     }
 
     @Override
@@ -84,6 +97,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new CrucibleRecipeCategory(guiHelper));
     }
 
     @Override
@@ -97,6 +111,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.GYRATORY_CRUSHER.get()), CrushingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineItems.STEEL_GOLD_PAN.get()), SluicingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()), CrucibleRecipeCategory.UID);
     }
 
 }

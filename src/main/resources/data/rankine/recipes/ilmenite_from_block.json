@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:ilmenite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:ilmenite",
+    "count": 9
+  }
+}

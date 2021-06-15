@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
@@ -140,7 +141,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
             }
         }
         if (!hasColor(stack)) {
-            setColor(stack,new AlloyItemColor().getColor(stack,0));
+            setColor(stack,new AlloyColorHelper().getColor(stack,0));
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }

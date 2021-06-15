@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:magnetite_block"
+  },
+  "result": "minecraft:iron_block",
+  "experience": 5.0,
+  "cookingtime": 100
+}

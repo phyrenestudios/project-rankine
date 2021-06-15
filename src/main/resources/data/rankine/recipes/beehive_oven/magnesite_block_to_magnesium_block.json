@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:magnesite_block"
+  },
+  "result": {
+    "block": "rankine:magnesium_block"
+  }
+}

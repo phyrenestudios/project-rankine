@@ -33,7 +33,7 @@ public class EvaporationTowerScreen extends ContainerScreen<EvaporationTowerCont
         this.blit(p_230450_1_,relX, relY, 0, 0, this.xSize, this.ySize);
 
         int l = this.container.getCookProgressScaled(24);
-        this.blit(p_230450_1_, this.guiLeft + 81, this.guiTop + 50, 176, 14, l + 1, 16);
+        this.blit(p_230450_1_, this.guiLeft + 76, this.guiTop + 50, 176, 0, l + 1, 16);
     }
 
     @Override
