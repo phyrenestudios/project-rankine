@@ -1,0 +1,123 @@
+{
+  "parent": "rankine:challenges/rankine_challenges",
+  "display": {
+    "icon": {
+      "item": "rankine:tourmaline_geode"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.geode_collector.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.challenges.geode_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rankine:diamond_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:diamond_geode"
+          }
+        ]
+      }
+    },
+    "rankine:emerald_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:emerald_geode"
+          }
+        ]
+      }
+    },
+    "rankine:aquamarine_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:aquamarine_geode"
+          }
+        ]
+      }
+    },
+    "rankine:opal_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:opal_geode"
+          }
+        ]
+      }
+    },
+    "rankine:topaz_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:topaz_geode"
+          }
+        ]
+      }
+    },
+    "rankine:peridot_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:peridot_geode"
+          }
+        ]
+      }
+    },
+    "rankine:sapphire_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:sapphire_geode"
+          }
+        ]
+      }
+    },
+    "rankine:ruby_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ruby_geode"
+          }
+        ]
+      }
+    },
+    "rankine:tourmaline_geode": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tourmaline_geode"
+          }
+        ]
+      }
+    }
+  },
+
+  "requirements": [
+    ["rankine:diamond_geode"],[
+    "rankine:emerald_geode"],[
+    "rankine:aquamarine_geode"],[
+    "rankine:opal_geode"],[
+    "rankine:topaz_geode"],[
+    "rankine:topaz_geode"],[
+    "rankine:peridot_geode"],[
+    "rankine:sapphire_geode"],[
+    "rankine:ruby_geode"],[
+    "rankine:tourmaline_geode"]
+  ]
+}

@@ -58,4 +58,7 @@ public class RankineEnchantments {
 
     @ObjectHolder("rankine:withering_curse")
     public static Enchantment WITHERING_CURSE;
+
+    @ObjectHolder("rankine:prying")
+    public static Enchantment PRYING;
 }

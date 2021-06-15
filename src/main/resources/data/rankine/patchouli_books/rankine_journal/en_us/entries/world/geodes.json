@@ -1,0 +1,61 @@
+{
+  "name": "Geodes",
+  "icon": "rankine:uncut_geode",
+  "category": "world",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Geodes are mineral and gemstone deposits that accumulate in rock cavities. When mining through stones, there is a chance to find an uncut_geode. This item can be traded with a $(mechanics/villagers)Gem Cutter Villager$() to receive on of the many varieties of geodes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:diamond_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:emerald_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:aquamarine_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:opal_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:sapphire_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:garnet_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:ruby_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:topaz_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:peridot_geode",
+      "link_recipe": true
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tourmaline_geode",
+      "link_recipe": true
+    }
+  ]
+}

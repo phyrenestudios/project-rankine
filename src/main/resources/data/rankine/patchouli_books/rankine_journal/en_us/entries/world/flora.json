@@ -167,7 +167,42 @@
       "type": "spotlight",
       "item": "rankine:camphor_basil_leaf",
       "link_recipe": true,
-      "text": "Found in jungle and river biomes."
+      "text": "Found in jungle and river biomes. $(br2)Seeds exist for this plant."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rice",
+      "link_recipe": true,
+      "text": "Used for rice flour. $(br2)Seeds can be found by foraging."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:corn_ear",
+      "link_recipe": true,
+      "text": "Used for corn flour. $(br2)Seeds can be found by foraging."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:jute",
+      "link_recipe": true,
+      "text": "Used for plant fiber. $(br2)Seeds can be found by foraging."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cotton",
+      "link_recipe": true,
+      "text": "Used for crafting. $(br2)Seeds can be found by foraging."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:asparagus",
+      "link_recipe": true,
+      "text": "Used for food. Can only be harvested in middle growth stages for food. $(br2)Seeds can be found by foraging."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:asparagus_root",
+      "text": "Automatically grows asparagus. Will die eventually."
     }
   ]
 }

@@ -19,10 +19,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -92,8 +89,8 @@ public class HammerItem extends ToolItem {
     }
 
     public boolean canHarvestBlock(BlockState blockIn) {
-        Block block = blockIn.getBlock();
-        return block == RankineBlocks.TUFA_LIMESTONE.get();
+        int i = this.getTier().getHarvestLevel();
+        return i >= blockIn.getHarvestLevel();
     }
 
     @Override
@@ -103,7 +100,7 @@ public class HammerItem extends ToolItem {
             LightningBoltEntity ent = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,attacker.world);
             //ent.func_233576_c_(Vector3d.func_237492_c_(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
             ent.setPosition(target.getPosX(),target.getPosY(),target.getPosZ());
-            ((ServerWorld)target.getEntityWorld()).addEntity(ent);
+            target.getEntityWorld().addEntity(ent);
         }
         if (getDazeModifier(stack) != 0)
         {
@@ -127,51 +124,39 @@ public class HammerItem extends ToolItem {
         return true;
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (entityIn instanceof PlayerEntity && isSelected)
+    /*
+        @Override
+        public boolean onEntitySwing(ItemStack stack, LivingEntity entity)
         {
-            PlayerEntity player = (PlayerEntity) entityIn;
-            if (player.swingingHand == Hand.OFF_HAND)
+            if (entity instanceof PlayerEntity)
             {
-                player.resetCooldown();
-                player.swingingHand = Hand.MAIN_HAND;
-            }
-        }
-    }
-
-    @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity)
-    {
-        if (entity instanceof PlayerEntity)
-        {
-            PlayerEntity player = (PlayerEntity) entity;
-            World worldIn = player.getEntityWorld();
-            RayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
-            BlockPos pos;
-            if (raytraceresult instanceof BlockRayTraceResult)
-            {
-                final BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) raytraceresult;
-                pos = rayTraceResult.getPos();
-            } else
-            {
-                pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
-            }
-            if (player.getCooledAttackStrength(0) >= (1f))
-            {
-                player.resetCooldown();
-
-                if (getExcavateModifier(stack) != 0)
+                PlayerEntity player = (PlayerEntity) entity;
+                World worldIn = player.getEntityWorld();
+                RayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
+                BlockPos pos;
+                if (raytraceresult instanceof BlockRayTraceResult)
                 {
-                    getExcavationResult(pos,worldIn,player,stack);
-                } else {
-                    onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
+                    final BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) raytraceresult;
+                    pos = rayTraceResult.getPos();
+                } else
+                {
+                    pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
+                }
+                if (player.getCooledAttackStrength(0) >= (1f))
+                {
+                    player.resetCooldown();
+
+                    if (getExcavateModifier(stack) != 0)
+                    {
+                        getExcavationResult(pos,worldIn,player,stack);
+                    } else {
+                        onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
+                    }
                 }
             }
+            return false;
         }
-        return false;
-    }
-
+    */
     public void getExcavationResult(BlockPos pos, World worldIn, PlayerEntity player, ItemStack stack) {
         BlockRayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
         List<BlockPos> positions = new ArrayList<>();
@@ -256,14 +241,14 @@ public class HammerItem extends ToolItem {
                 worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItem().getMaxDamage() - context.getItem().getDamage()) >= 100) {
                 worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-                return ActionResultType.PASS;
+                return ActionResultType.SUCCESS;
             }
         }
-        return ActionResultType.FAIL;
+        return super.onItemUse(context);
     }
 }

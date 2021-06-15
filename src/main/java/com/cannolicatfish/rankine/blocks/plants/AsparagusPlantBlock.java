@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -28,10 +29,13 @@ public class AsparagusPlantBlock extends DoubleCropsBlock {
         }
     }
 
-    @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
         return block == RankineBlocks.ASPARAGUS_ROOT.get();
+    }
+
+    protected IItemProvider getSeedsItem() {
+        return RankineItems.ASPARAGUS_SEEDS.get();
     }
 
     public AbstractBlock.OffsetType getOffsetType() {

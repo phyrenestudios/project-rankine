@@ -2,7 +2,8 @@ package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.recipe.IEvaporationRecipe;
+import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -14,18 +15,20 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.StringTextComponent;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
-public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRecipe> {
+public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRecipe> {
 
     public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "evaporation");
     private final IDrawable background;
@@ -34,10 +37,10 @@ public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRe
     private final IDrawable icon;
 
     public EvaporationRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(145, 125);
+        background = guiHelper.createBlankDrawable(185, 146);
         localizedName = I18n.format("rankine.jei.evaporation");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/evaporation_jei.png"),
-                0, 15, 140, 120);
+                0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()));
     }
 
@@ -47,8 +50,8 @@ public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRe
     }
 
     @Override
-    public Class<? extends IEvaporationRecipe> getRecipeClass() {
-        return IEvaporationRecipe.class;
+    public Class<? extends EvaporationRecipe> getRecipeClass() {
+        return EvaporationRecipe.class;
     }
 
     @Override
@@ -67,19 +70,48 @@ public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRe
     }
 
     @Override
-    public void draw(IEvaporationRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
+    public void draw(EvaporationRecipe recipe, MatrixStack ms, double mouseX, double mouseY) {
         FontRenderer font = Minecraft.getInstance().fontRenderer;
         RenderSystem.enableAlphaTest();
         RenderSystem.enableBlend();
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();
+        String s = "Made in:";
+        String large = recipe.isLarge() ? "Evaporation Tower" : "Evaporation Boiler";
+
+
+        int ymod = 0;
+        if (!recipe.getBiomeString().isEmpty()) {
+            StringBuilder str = new StringBuilder();
+            str.append("Biomes: ");
+            int count = 1;
+            for (int i = 0; i < recipe.getBiomeString().size(); i++) {
+                str.append(recipe.getBiomeString().get(i));
+                count++;
+                if (count == 3 || i == recipe.getBiomeString().size() - 1) {
+                    font.drawString(ms, str.toString(), (float)(ymod >= 50 ? 32 : 0), ymod, 0x000000);
+                    count = 0;
+                    ymod += 10;
+                    str = new StringBuilder();
+                } else if (i != recipe.getBiomeString().size() - 1) {
+                    str.append(", ");
+                }
+            }
+
+        }
+        int r = ymod + 10 >= 50 ? 32 : 0;
+        font.drawString(ms, s, (float)(r), ymod, 0x000000);
+        ymod += 10;
+        font.drawString(ms, large, (float)(r), ymod, recipe.isLarge() ? 0xaa0000 : 0x00aa00);
+
+
     }
 
     @Override
-    public void setIngredients(IEvaporationRecipe recipe, IIngredients iIngredients) {
+    public void setIngredients(EvaporationRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredients()) {
+        for (Ingredient i : recipe.getJEIIngredient()) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
@@ -87,33 +119,37 @@ public class EvaporationRecipeCategory implements IRecipeCategory<IEvaporationRe
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IEvaporationRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, EvaporationRecipe recipe, IIngredients ingredients) {
         //System.out.println(ingredients);
         //System.out.println(recipe.getOutputs());
         int index = 0, posX = 23;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, 63, 10);
+            recipeLayout.getItemStacks().init(index, true, 4, 54);
             recipeLayout.getItemStacks().set(index, o);
             index++;
         }
 
-        List<Float> weights = recipe.getWeights();
-        Float wtotal = weights.get(weights.size() - 1);
-        for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
-            if (index + i < 7)
-            {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i) * 18, 48);
-            } else if (index + i < 13) {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i - 6) * 18, 64);
-            } else if (index + i < 20)
-            {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i - 12) * 18, 80);
-            } else
-            {
-                recipeLayout.getItemStacks().init(index + i, true, (index + i - 19) * 18, 96);
+        int reducer = 0;
+        int ymod = -1;
+        int outputcount = 0;
+        for (List<ItemStack> o : ingredients.getOutputs(VanillaTypes.ITEM)) {
+            if (outputcount % 10 == 0) {
+                reducer = index - 1;
+                ymod += 1;
             }
-            recipeLayout.getItemStacks().set(index + i, ingredients.getOutputs(VanillaTypes.ITEM).get(i));
-            //Float weight = weights.get(i) - (i == 0 ? 0f : weights.get(i - 1));
+            recipeLayout.getItemStacks().init(index, true, (outputcount - reducer) * 18, 80 + ymod * 18);
+            recipeLayout.getItemStacks().set(index, o);
+            outputcount++;
+            index++;
         }
+        recipeLayout.getItemStacks().addTooltipCallback((i, b, stack, list) -> {
+            DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
+                p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+            });
+            if (i != 0) {
+                list.add(new StringTextComponent("Chance: " + df.format(recipe.getChance(i - 1) * 100) + "%"));
+            }
+        });
+
     }
 }

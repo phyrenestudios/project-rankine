@@ -13,6 +13,9 @@ public class RankineEnchantmentTypes {
     public static EnchantmentType HAMMER = EnchantmentType.create("hammer", (itemIn) -> {
         return itemIn instanceof HammerItem; });
 
+    public static EnchantmentType CROWBAR = EnchantmentType.create("crowbar", (itemIn) -> {
+        return itemIn instanceof CrowbarItem; });
+
     public static EnchantmentType SWING = EnchantmentType.create("swing", (itemIn) -> {
         return itemIn instanceof HammerItem || itemIn instanceof CrowbarItem; });
 

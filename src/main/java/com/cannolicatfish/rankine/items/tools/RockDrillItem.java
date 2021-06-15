@@ -6,6 +6,8 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 
 import java.util.ArrayList;
@@ -30,11 +32,15 @@ public class RockDrillItem extends Item {
         }
 
         if (!stones.isEmpty()) {
-            System.out.println(stones);
+            for (Block s : stones) {
+                context.getPlayer().sendMessage(new TranslationTextComponent(s.getTranslationKey()),context.getPlayer().getUniqueID());
+            }
         } else {
-            System.out.println("No stones detected");
+            context.getPlayer().sendMessage(new StringTextComponent("No stones detected"),context.getPlayer().getUniqueID());
         }
-        context.getItem().shrink(1);
+        context.getItem().damageItem(1,context.getPlayer(),(p_220040_1_) -> {
+            p_220040_1_.sendBreakAnimation(context.getHand());
+        });
         return ActionResultType.SUCCESS;
 
     }

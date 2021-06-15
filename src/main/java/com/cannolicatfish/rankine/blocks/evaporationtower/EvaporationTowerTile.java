@@ -3,12 +3,17 @@ package com.cannolicatfish.rankine.blocks.evaporationtower;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
+import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
 import com.cannolicatfish.rankine.util.WeightedCollection;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -42,7 +47,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
     private int cookTime;
-    private int cookTimeTotal = Config.MACHINES.EVAPORATION_TOWER_SPEED.get();
+    private int cookTimeTotal = 6400;
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
     private final IIntArray towerData = new IIntArray(){
         public int get(int index)
@@ -102,88 +107,48 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         if (!worldIn.isRemote) {
             ItemStack output = this.items.get(0);
             BlockPos p = this.getPos();
-
-            if (worldIn.getBlockState(p.up()).getBlock() == Blocks.WATER) {
-                int h = checkStructure(p, worldIn);
-                if (h > 0 && output.isEmpty()) {
-                    ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal / h) {
-                        this.items.set(0, waterOutputs(worldIn.getRandom()));
-                        cookTime = 0;
-                    }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            EvaporationRecipe recipe = this.getEvaporationRecipe(p.up());
+            if (recipe != null) {
+                if (this.cookTimeTotal != recipe.getTime()) {
+                    this.cookTimeTotal = recipe.getTime();
                 }
-            }/* else if (worldIn.getBlockState(p.up()).getBlock() == Blocks.LAVA) {
-                int h = checkStructure(p, worldIn);
-                if (h > 0 && output.isEmpty()) {
-                    ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal / h) {
-                        this.items.set(0, lavaOutputs(worldIn.getRandom()));
-                        cookTime = 0;
+                if (recipe.isLarge()) {
+                    int h = checkStructure(p, worldIn, worldIn.getBlockState(p.up()).getBlock());
+                    if (h > 0 && output.isEmpty()) {
+                        ++this.cookTime;
+                        if (this.cookTime >= this.cookTimeTotal / h) {
+                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).getRegistryName()));
+                            cookTime = 0;
+                        }
+                    } else if (cookTime > 0) {
+                        this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                     }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-                }
-            }*/ else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.SAP.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == Items.SUGAR) && output.getCount() < 64) {
-                    ++this.cookTime;
-                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_SAP.get()) {
-                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(Items.SUGAR,this.items.get(0).getCount()+1));
-                        cookTime = 0;
+                } else {
+                    if (boilerStructure(p, worldIn) && (output.isEmpty() || recipe.getRecipeOutputs().size() == 1 && output.getCount() + recipe.getMaxes().get(0) <= recipe.getRecipeOutputs().get(0).getMaxStackSize())) {
+                        ++this.cookTime;
+                        if (this.cookTime >= this.cookTimeTotal) {
+                            worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(), 3);
+                            this.items.set(0, recipe.getEvaporationResult(worldIn,worldIn.getBiome(p).getRegistryName()));
+                            cookTime = 0;
+                        }
+                    } else if (cookTime > 0) {
+                        this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                     }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-                }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.LATEX.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.DRY_RUBBER.get()) && output.getCount() < 64) {
-                    ++this.cookTime;
-                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_MAPLE_SAP.get()) {
-                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(RankineItems.DRY_RUBBER.get(),this.items.get(0).getCount()+1));
-                        cookTime = 0;
-                    }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-                }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.RESIN.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.AMBER.get()) && output.getCount() < 64) {
-                    ++this.cookTime;
-                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_RESIN.get()) {
-                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(RankineItems.AMBER.get(),this.items.get(0).getCount()+1));
-                        cookTime = 0;
-                    }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-                }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.JUGLONE.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.AMBER.get()) && output.getCount() < 61) {
-                    ++this.cookTime;
-                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_RESIN.get()) {
-                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(Items.BROWN_DYE,this.items.get(0).getCount()+4));
-                        cookTime = 0;
-                    }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
-                }
-            } else if (worldIn.getBlockState(p.up()).getBlock() == RankineBlocks.MAPLE_SAP.get()) {
-                if (boilerStructure(p, worldIn) && (output.isEmpty() || output.getItem() == RankineItems.MAPLE_SYRUP.get()) && output.getCount() < 64) {
-                    ++this.cookTime;
-                    if (this.cookTime >= Config.MACHINES.EVAPORATION_TOWER_SPEED_LATEX.get()) {
-                        worldIn.setBlockState(p.up(), Blocks.AIR.getDefaultState(),3);
-                        this.items.set(0, new ItemStack(RankineItems.MAPLE_SYRUP.get(),this.items.get(0).getCount()+1));
-                        cookTime = 0;
-                    }
-                } else if (cookTime > 0) {
-                    this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
                 }
             }
-
         }
 
+    }
+
+    private EvaporationRecipe getEvaporationRecipe(BlockPos pos) {
+        if (this.world != null) {
+            for (EvaporationRecipe recipe : this.world.getRecipeManager().getRecipesForType(RankineRecipeTypes.EVAPORATION)) {
+                if (!recipe.getEvaporationResult(this.world,world.getBiome(pos).getRegistryName()).isEmpty() && recipe.fluidMatch(this.world.getFluidState(pos).getFluid())){
+                    return recipe;
+                }
+            }
+        }
+        return null;
     }
 
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
@@ -222,7 +187,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
         }
     }
 
-    private int checkStructure(BlockPos pos, World worldIn) {
+    private int checkStructure(BlockPos pos, World worldIn, Block fluid) {
         int height = 0;
         if (!worldIn.isRemote) {
             List<BlockPos> Base = Arrays.asList(
@@ -287,101 +252,12 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
                         && worldIn.getBlockState(pos.add(1, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
                         && worldIn.getBlockState(pos.add(0, i, 1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
                         && worldIn.getBlockState(pos.add(0, i, -1)) == Blocks.BUBBLE_COLUMN.getDefaultState()
-                        && worldIn.getBlockState(pos.add(0, i, 0)).getBlock() == Blocks.WATER) {
+                        && worldIn.getBlockState(pos.add(0, i, 0)).getBlock() == fluid) {
                     height = i;
                 }
             }
         }
         return height;
-    }
-
-/*
-    private ItemStack lavaOutputs(Random random) {
-        World worldIn = this.getWorld();
-        if (worldIn != null) {
-            return returnLavaCollection().getRandomElement();
-        } else {
-            return ItemStack.EMPTY;
-        }
-    }
-
- */
-
-    private ItemStack waterOutputs(Random random) {
-        World worldIn = this.getWorld();
-        if (worldIn != null) {
-            WeightedCollection<ItemStack> COLLECTION;
-            if (worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.OCEAN || worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.BEACH)
-            {
-                COLLECTION = returnOceanCollection();
-            } else if (worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.RIVER || worldIn.getBiome(this.getPos()).getCategory() == Biome.Category.SWAMP) {
-                COLLECTION = returnRiverCollection();
-            } else {
-                COLLECTION = returnGroundwaterCollection();
-            }
-            return COLLECTION.getRandomElement();
-        } else {
-            return ItemStack.EMPTY;
-        }
-    }
-
-    /*
-    public static WeightedCollection<ItemStack> returnLavaCollection(){
-        WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(Items.GHAST_TEAR, 1));
-        col.add(1,new ItemStack(Items.BLAZE_ROD, 1));
-        col.add(1,new ItemStack(Items.GOLD_NUGGET, 1));
-        col.add(97,new ItemStack(RankineItems.SULFUR_NUGGET.get(), 1));
-        return col;
-    }
-
-     */
-
-    public static WeightedCollection<ItemStack> returnOceanCollection(){
-        WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(RankineItems.BROMINE_NUGGET.get(), 1));
-        col.add(1,new ItemStack(RankineItems.IODINE_NUGGET.get(),1));
-        col.add(2,new ItemStack(RankineItems.POTASSIUM_NUGGET.get(),1));
-        col.add(5,new ItemStack(RankineItems.CALCIUM_NUGGET.get(),1));
-        col.add(5,new ItemStack(RankineItems.MAGNESIUM_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.BORON_NUGGET.get(),1));
-        col.add(10,new ItemStack(Items.KELP,1));
-        col.add(80,new ItemStack(RankineItems.SALT.get(),1));
-        return col;
-    }
-
-    public static WeightedCollection<ItemStack> returnRiverCollection(){
-        WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(RankineItems.CADMIUM_NUGGET.get(), 1));
-        col.add(1,new ItemStack(RankineItems.CHROMIUM_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.MERCURY_NUGGET.get(),1));
-        col.add(1,new ItemStack(Items.IRON_NUGGET,1));
-        col.add(2,new ItemStack(Items.GOLD_NUGGET,1));
-        col.add(2,new ItemStack(RankineItems.COPPER_NUGGET.get(),1));
-        col.add(5,new ItemStack(RankineItems.SILICON_NUGGET.get(),1));
-        col.add(10,new ItemStack(RankineItems.PINK_SALT.get(),1));
-        col.add(5,new ItemStack(RankineItems.BORAX.get(),1));
-        col.add(5,new ItemStack(RankineItems.THENARDITE.get(),1));
-        col.add(5,new ItemStack(RankineItems.SALTPETER.get(),1));
-        col.add(5,new ItemStack(RankineItems.TRONA.get(),1));
-        col.add(15,new ItemStack(RankineItems.SLAG.get(),1));
-        return col;
-    }
-
-    public static WeightedCollection<ItemStack> returnGroundwaterCollection(){
-        WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        col.add(1,new ItemStack(RankineItems.ZINC_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.COBALT_NUGGET.get(), 1));
-        col.add(1,new ItemStack(RankineItems.TITANIUM_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.ZIRCONIUM_NUGGET.get(),1));
-        col.add(1,new ItemStack(RankineItems.SILVER_NUGGET.get(),1));
-        col.add(2,new ItemStack(RankineItems.MANGANESE_NUGGET.get(),1));
-        col.add(2,new ItemStack(RankineItems.LEAD_NUGGET.get(),1));
-        col.add(2,new ItemStack(RankineItems.BISMUTH_NUGGET.get(),1));
-        col.add(10,new ItemStack(Items.DIRT,1));
-        col.add(10,new ItemStack(Items.SAND,1));
-        col.add(25,new ItemStack(RankineItems.CALCITE.get(),1));
-        return col;
     }
 
     @Override

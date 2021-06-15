@@ -77,11 +77,21 @@ public class TreeChoppingEvents {
                     checkedBlocks.add(cp);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                         BlockState target = worldIn.getBlockState(b.toImmutable());
-                        if (worldIn.getBlockState(cp).getBlock().getTags().contains(new ResourceLocation("minecraft:logs")) && target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                        if (worldIn.getBlockState(cp).getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_logs")) && target.getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_logs"))) {
                             toCheck.add(b.toImmutable());
                             logs.add(b.toImmutable());
-                        } else if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:leaves"))) {
-                            if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
+                        } else if (target.getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_leaves"))) {
+                            if (target.getBlock() instanceof LeavesBlock) {
+                                if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
+                                    for (BlockPos log : logs) {
+                                        if (log.distanceSq(b) <= 16) {
+                                            toCheck.add(b.toImmutable());
+                                            leaves.add(b.toImmutable());
+                                            alive = true;
+                                        }
+                                    }
+                                }
+                            } else {
                                 for (BlockPos log : logs) {
                                     if (log.distanceSq(b) <= 16) {
                                         toCheck.add(b.toImmutable());

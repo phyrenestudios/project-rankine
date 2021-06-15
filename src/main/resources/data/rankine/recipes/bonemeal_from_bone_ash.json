@@ -8,7 +8,7 @@
       "item": "rankine:bone_ash"
     },
     {
-      "item": "rankine:sulfur"
+      "tag": "forge:sulfur"
     }
   ],
   "result": {

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:wooden_tools",
+    "#forge:stone_tools",
+    "#forge:iron_tools",
+    "#rankine:flint_tools",
+    "#rankine:pewter_tools",
+    "#rankine:bronze_tools",
+    "#rankine:invar_tools",
+    "#rankine:colored_gold_tools",
+    "#rankine:amalgam_tools",
+    "#rankine:alloy_tools"
+  ]
+}

@@ -13,13 +13,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.ToolItem;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceContext;
@@ -108,20 +108,32 @@ public class CrowbarItem extends ToolItem {
         }
         return false;
     }
-
+    /*
+        @Override
+        public ActionResultType onItemUse(ItemUseContext context) {
+            World worldIn = context.getWorld();
+            BlockPos blockpos = context.getPos();
+            BlockState bs = worldIn.getBlockState(blockpos);
+            if (worldIn.getTileEntity(blockpos) == null && worldIn.getFluidState(blockpos).isEmpty() && bs.isSolid() && context.getFace() != Direction.UP && context.getFace() != Direction.DOWN && bs.getBlockHardness(worldIn,blockpos) >= 0) {
+                if (context.getPlayer() == null || context.getPlayer().getPosition().getY() <= blockpos.getY()){
+                    worldIn.setBlockState(blockpos.offset(context.getFace()),worldIn.getBlockState(blockpos),2);
+                    worldIn.setBlockState(blockpos,Blocks.AIR.getDefaultState(),2);
+                    SoundType soundtype = worldIn.getBlockState(blockpos).getSoundType(worldIn, blockpos, null);
+                    worldIn.playSound(blockpos.getX(),blockpos.getY(),blockpos.getZ(), soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
+                }
+            }
+            return super.onItemUse(context);
+        }
+    */
     public static int getSwingModifier(ItemStack stack) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING, stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == RankineEnchantments.SWING || enchantment == Enchantments.MENDING || enchantment == Enchantments.VANISHING_CURSE)
-        {
-            return true;
-        }
-        else
-        {
+        if (enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.SILK_TOUCH || enchantment == Enchantments.FORTUNE ) {
             return false;
         }
+        return super.canApplyAtEnchantingTable(stack,enchantment);
     }
 }

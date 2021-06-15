@@ -5,26 +5,17 @@
       "rolls": 1.0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
+          "type": "minecraft:item",
+          "conditions": [
             {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "rankine:rice_plant",
-                  "properties": {
-                    "age": "7"
-                  }
-                }
-              ],
-              "name": "rankine:rice"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "rankine:rice_seeds"
+              "condition": "minecraft:block_state_property",
+              "block": "rankine:rice_plant",
+              "properties": {
+                "age": "7"
+              }
             }
-          ]
+          ],
+          "name": "rankine:rice"
         }
       ]
     },

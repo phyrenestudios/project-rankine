@@ -1,0 +1,16 @@
+{
+  "type": "rankine:evaporation",
+  "large": false,
+  "total": 1,
+  "cookTime": 1200,
+  "input": {
+    "block": "rankine:latex"
+  },
+  "bucket": {
+    "item": "rankine:latex_bucket"
+  },
+  "output1": {
+    "item": "rankine:dry_rubber",
+    "weight": 1
+  }
+}

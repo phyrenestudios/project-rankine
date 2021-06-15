@@ -1,0 +1,16 @@
+{
+  "name": "Path Creation",
+  "icon": "minecraft:grass_path",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Do you want to increase your running speed without shoveling? Do you want to track players around the map? Well, while walking around players will occasionally convert the ground beneath them to path blocks. See config for timing."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:mycelium_path",
+      "text": "Mycelium paths can be created similar to grass. Podzol will form a grass path as parity with 1.17 changes."
+    }
+  ]
+}

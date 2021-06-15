@@ -35,6 +35,7 @@ public class FlowerSeedsItem extends Item {
         ITag<Block> tag =  BlockTags.getCollection().get(new ResourceLocation("rankine:flowers"));
         if (!worldIn.isRemote && tag != null && b.getTags().contains(new ResourceLocation("forge:dirt")) && worldIn.getBlockState(pos.up()).isAir()) {
             Block flower = tag.getRandomElement(worldIn.getRandom());
+            //worldIn.playSound(context.getPlayer(), pos,SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 0.4f, 0.5f);
             if (Minecraft.getInstance().objectMouseOver != null && context.getPlayer() != null) {
                 ActionResultType actionresulttype = ((BlockItem) flower.asItem()).tryPlace(new BlockItemUseContext(
                         new ItemUseContext(context.getWorld(),context.getPlayer(),context.getHand(), context.getItem(),(BlockRayTraceResult) Minecraft.getInstance().objectMouseOver)));

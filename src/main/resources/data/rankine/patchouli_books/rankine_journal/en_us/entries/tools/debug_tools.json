@@ -1,0 +1,46 @@
+{
+  "name": "Debug Tools",
+  "icon": "rankine:altimeter",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Too occupied to press F3? Or maybe it's disabled? Well, don't worry, various utility tools have been added to display information. Tools will display on the status bar while in your main hand or off hand. Default is head position, sneak for position at feet."
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:compass",
+      "text": "Displays direction and X,Z coordinates."
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:clock",
+      "text": "Displays 24 hour clock time and world tick time."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:altimeter",
+      "text": "Displays Y coordinate."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:photometer",
+      "text": "Displays light level."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:speedometer",
+      "text": "Displays speed in blocks per second"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:thermometer",
+      "text": "Displays block temperature."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:biometer",
+      "text": "Displays current biome."
+    }
+  ]
+}

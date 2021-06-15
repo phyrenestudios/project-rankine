@@ -65,6 +65,7 @@ public class AlloyRecipeHelper {
                 ret.append("-");
             }
         }
+        //System.out.println("Result: " + ret.toString());
         return ret.toString();
     }
 

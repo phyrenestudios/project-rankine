@@ -25,10 +25,10 @@ public class AsparagusRootBlock extends Block implements IGrowable {
     }
 
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (random.nextFloat() < 0.03) {
-            worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
-        } else {
-            if (worldIn.isAirBlock(pos.up()) && worldIn.getLightSubtracted(pos.up(), 0) >= 9) {
+        if (worldIn.isAirBlock(pos.up())) {
+            if (random.nextFloat() < 0.04) {
+                worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+            } else if (worldIn.getLightSubtracted(pos.up(), 0) >= 9) {
                 this.grow(worldIn, random, pos, state);
                 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
             }

@@ -1,20 +1,20 @@
 {
   "variants": {
-    "half=lower,age=0": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower0" },
-    "half=lower,age=1": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower1" },
-    "half=lower,age=2": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower2" },
-    "half=lower,age=3": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower3" },
-    "half=lower,age=4": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower4" },
-    "half=lower,age=5": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower5" },
-    "half=lower,age=6": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower6" },
-    "half=lower,age=7": { "model": "rankine:block/asparagus_plant/asparagus_plant_lower7" },
+    "half=lower,age=0": { "model": "rankine:block/plants/asparagus_plant_lower0" },
+    "half=lower,age=1": { "model": "rankine:block/plants/asparagus_plant_lower1" },
+    "half=lower,age=2": { "model": "rankine:block/plants/asparagus_plant_lower2" },
+    "half=lower,age=3": { "model": "rankine:block/plants/asparagus_plant_lower3" },
+    "half=lower,age=4": { "model": "rankine:block/plants/asparagus_plant_lower4" },
+    "half=lower,age=5": { "model": "rankine:block/plants/asparagus_plant_lower5" },
+    "half=lower,age=6": { "model": "rankine:block/plants/asparagus_plant_lower6" },
+    "half=lower,age=7": { "model": "rankine:block/plants/asparagus_plant_lower7" },
     "half=upper,age=0": { "model": "minecraft:block/air" },
     "half=upper,age=1": { "model": "minecraft:block/air" },
-    "half=upper,age=2": { "model": "rankine:block/asparagus_plant/asparagus_plant_upper2" },
-    "half=upper,age=3": { "model": "rankine:block/asparagus_plant/asparagus_plant_upper3" },
-    "half=upper,age=4": { "model": "rankine:block/asparagus_plant/asparagus_plant_upper4" },
-    "half=upper,age=5": { "model": "rankine:block/asparagus_plant/asparagus_plant_upper5" },
-    "half=upper,age=6": { "model": "rankine:block/asparagus_plant/asparagus_plant_upper6" },
-    "half=upper,age=7": { "model": "rankine:block/asparagus_plant/asparagus_plant_upper7" }
+    "half=upper,age=2": { "model": "rankine:block/plants/asparagus_plant_upper2" },
+    "half=upper,age=3": { "model": "rankine:block/plants/asparagus_plant_upper3" },
+    "half=upper,age=4": { "model": "rankine:block/plants/asparagus_plant_upper4" },
+    "half=upper,age=5": { "model": "rankine:block/plants/asparagus_plant_upper5" },
+    "half=upper,age=6": { "model": "rankine:block/plants/asparagus_plant_upper6" },
+    "half=upper,age=7": { "model": "rankine:block/plants/asparagus_plant_upper7" }
   }
 }

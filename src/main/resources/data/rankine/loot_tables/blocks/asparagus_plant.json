@@ -6,56 +6,55 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "parameters": {
-                "extra": 2,
-                "probability": 0.5714286
-              }
-            }
-          ],
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
               "block": "rankine:asparagus_plant",
               "properties": {
                 "age": "2",
-                "section": "bottom"
+                "half": "lower"
               }
-            },
+            }
+          ],
+          "name": "rankine:asparagus"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
             {
               "condition": "minecraft:block_state_property",
               "block": "rankine:asparagus_plant",
               "properties": {
                 "age": "3",
-                "section": "bottom"
+                "half": "lower"
               }
-            },
+            }
+          ],
+          "name": "rankine:asparagus"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
             {
               "condition": "minecraft:block_state_property",
               "block": "rankine:asparagus_plant",
               "properties": {
                 "age": "4",
-                "section": "bottom"
+                "half": "lower"
               }
-            },
+            }
+          ],
+          "name": "rankine:asparagus"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
             {
               "condition": "minecraft:block_state_property",
               "block": "rankine:asparagus_plant",
               "properties": {
                 "age": "5",
-                "section": "bottom"
-              }
-            },
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "rankine:asparagus_plant",
-              "properties": {
-                "age": "6",
-                "section": "bottom"
+                "half": "lower"
               }
             }
           ],
@@ -74,22 +73,22 @@
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
-                "extra": 1,
+                "extra": 0,
                 "probability": 0.5714286
               }
             }
           ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "rankine:asparagus_plant",
+              "properties": {
+                "age": "7",
+                "half": "lower"
+              }
+            }
+          ],
           "name": "rankine:asparagus_seeds"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "rankine:asparagus_plant",
-          "properties": {
-            "age": "7",
-            "section": "bottom"
-          }
         }
       ]
     }

@@ -10,7 +10,7 @@
       "item": "rankine:lead_glass"
     },
     "A": {
-      "item": "rankine:alumina"
+      "tag": "forge:ingots/aluminum"
     },
     "S": {
       "tag": "forge:ingots/sodium"

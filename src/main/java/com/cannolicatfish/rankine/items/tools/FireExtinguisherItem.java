@@ -10,9 +10,7 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -31,11 +29,16 @@ public class FireExtinguisherItem extends Item {
         BlockPos pos = playerIn.getPosition();
         int range = Config.GENERAL.FIRE_EXTINGUISHER_RANGE.get();
         if (!worldIn.isRemote) {
-            for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-range, -1, -range), pos.add(range, 3, range))) {
-                if (worldIn.getBlockState(b).getBlock() instanceof AbstractFireBlock) {
+            for (BlockPos b : BlockPos.getAllInBoxMutable(pos.offset(playerIn.getHorizontalFacing(), range/2).add(-range/2, -2, -range/2), pos.offset(playerIn.getHorizontalFacing(), range/2).add(range/2, range/2, range/2))) {
+                if (b.distanceSq(pos)<=Math.pow(range,2) && worldIn.getBlockState(b).getBlock() instanceof AbstractFireBlock) {
                     worldIn.setBlockState(b, Blocks.AIR.getDefaultState());
                 }
             }
+            worldIn.playSound(playerIn, pos, SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            playerIn.getHeldItem(handIn).damageItem(1,playerIn,(p_220040_1_) -> {
+                p_220040_1_.sendBreakAnimation(handIn);
+            });
+            return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
         }
 
         return super.onItemRightClick(worldIn, playerIn, handIn);

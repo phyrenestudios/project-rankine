@@ -1,0 +1,21 @@
+{
+  "name": "Sodium Vapor Lamp",
+  "icon": "rankine:sodium_vapor_lamp",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A snazzy lamp block that can be hung or placed against walls. Can connect to Cast Iron Pole. Much more future functionality is planned."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:sodium_arc_tube",
+      "text": ""
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:sodium_vapor_lamp",
+      "text": ""
+    }
+  ]
+}

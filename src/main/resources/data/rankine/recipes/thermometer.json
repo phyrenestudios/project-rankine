@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    " g ",
-    "gxg",
-    "ggg"
+    " G ",
+    "GIG",
+    " G "
   ],
   "key":
   {
-    "x":
+    "I":
     {
-      "item": "rankine:mercury_ingot"
+      "tag": "forge:ingots/mercury"
     },
-    "g":
+    "G":
     {
-      "tag": "forge:glass_panes"
+      "tag": "forge:glass"
     }
   },
   "result":

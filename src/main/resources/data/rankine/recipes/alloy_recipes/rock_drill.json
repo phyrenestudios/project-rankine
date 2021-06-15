@@ -1,13 +1,16 @@
 {
   "type": "rankine:alloy_crafting",
   "pattern": [
-    "###",
+    " R ",
     "#G#",
     " # "
   ],
   "key": {
     "#": {
-      "tag": "rankine:crafting_metals"
+      "tag": "forge:ingots/bronze"
+    },
+    "R": {
+      "tag": "forge:rods/cast_iron"
     },
     "G": {
       "item": "rankine:alloy_gear",

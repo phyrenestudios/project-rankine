@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    "###",
+    "# #",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:green_gold_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_helmet",
+    "count": 1
+  }
+}
