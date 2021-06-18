@@ -37,9 +37,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -165,24 +163,31 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(1, new ItemStack(RankineItems.COBALTITE.get()),12,30,0.05f));
             level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_HAMMER.get(),"99Fe-1C",15,3,30,0.2f));
         } else if (event.getType() == RankineVillagerProfessions.BOTANIST) {
-            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("rankine:flowers"),Items.DANDELION,2,1,12,10,0.05f));
+            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("rankine:flowers"),Items.DANDELION,3,1,12,10,0.05f));
+            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft:tall_flowers"),Items.ROSE_BUSH,2,1,12,10,0.05f));
             level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("forge:berries"),RankineItems.ELDERBERRIES.get(),2,1,12,10,0.05f));
             level2.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft:saplings"),Items.OAK_SAPLING,2,1,12,10,0.05f));
-            level1.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("minecraft:tall_flowers"),Items.ROSE_BUSH,3,1,12,10,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(RankineItems.FLOWER_SEEDS.get(), 4),12,10,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(Items.BAMBOO, 4),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.VINE, 4),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.LILY_PAD, 4),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.RED_MUSHROOM, 4),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.BROWN_MUSHROOM, 4),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.SEA_PICKLE, 4),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.KELP, 4),12,10,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(Items.SUGAR_CANE, 4),12,10,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(Items.CACTUS, 4),12,10,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(Items.DEAD_BUSH, 4),12,10,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(Items.NETHER_WART, 4),12,10,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.BAMBOO, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(RankineItems.CAMPHOR_BASIL_SEEDS.get()),12,30,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(RankineItems.ALOE.get()),12,30,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.SHROOMLIGHT, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.WARPED_FUNGUS, 4),12,15,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(Items.CRIMSON_FUNGUS, 4),12,15,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(Items.POISONOUS_POTATO, 4),12,10,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(RankineItems.ALOE.get(), 4),12,30,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.WARPED_NYLIUM, 1),12,15,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.CRIMSON_NYLIUM, 1),12,15,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.BRAIN_CORAL, 2),12,15,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.BUBBLE_CORAL, 2),12,15,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.FIRE_CORAL, 2),12,15,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.HORN_CORAL, 2),12,15,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(Items.TUBE_CORAL, 2),12,15,0.05f));
+            level5.add(new BasicTrade(1, new ItemStack(Items.SHROOMLIGHT, 2),12,15,0.05f));
             level5.add(new BasicTrade(1, new ItemStack(Items.MYCELIUM, 1),12,30,0.05f));
             level5.add(new BasicTrade(5, new ItemStack(Items.CHORUS_FLOWER, 1),12,30,0.05f));
             level5.add(new BasicTrade(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
@@ -2082,12 +2087,9 @@ public class RankineEventHandler {
                     event.getWorld().addEntity(itementity);
                 } else if (heldItemStack.isEmpty() || heldItem.getTags().contains(new ResourceLocation("rankine:foraging_tools"))) {
                     ItemStack FOOD;
-                    if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get() * 0.1) {
-                        FOOD = new ItemStack(Items.POTATO,1);
-                    } else if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get() * 0.2) {
-                        FOOD = new ItemStack(Items.CARROT,1);
-                    } else if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get()) {
-                        FOOD = new ItemStack(ItemTags.getCollection().get(new ResourceLocation("forge:seeds")).getRandomElement(player.world.getRandom()),1);
+                    ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation("rankine:foraging"));
+                    if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get() && !tag.getAllElements().isEmpty()) {
+                        FOOD = new ItemStack(tag.getRandomElement(player.world.getRandom()),1);
                     } else {
                         return;
                     }
