@@ -3,7 +3,7 @@
   "pattern": [
     "aua",
     "lcr",
-    "ada"
+    "sds"
   ],
   "key": {
     "c": {
@@ -23,6 +23,9 @@
     },
     "a": {
       "item": "rankine:amalgam_alloy"
+    },
+    "s": {
+      "item": "rankine:sodium_potassium_alloy"
     }
   },
   "result": {

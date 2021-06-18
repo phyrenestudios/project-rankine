@@ -148,7 +148,7 @@ public class Config {
                     PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing")
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("An axe is required to harvest logs")
-                            .define("axesOnly",true);
+                            .define("axesOnly",false);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
                             .define("fuelValuesChange",true);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")

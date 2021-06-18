@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 20,
+  "total": 21,
   "required": 2,
   "input1": {
     "element": "titanium",
@@ -38,66 +38,71 @@
     "max": 0.1
   },
   "input8": {
-    "element": "zirconium",
+    "element": "scandium",
     "min": 0.0,
     "max": 0.1
   },
   "input9": {
+    "element": "zirconium",
+    "min": 0.0,
+    "max": 0.1
+  },
+  "input10": {
     "element": "copper",
     "min": 0.0,
     "max": 0.05
   },
-  "input10": {
+  "input11": {
     "element": "tin",
     "min": 0.0,
     "max": 0.05
   },
-  "input11": {
+  "input12": {
     "element": "nickel",
     "min": 0.0,
     "max": 0.05
   },
-  "input12": {
+  "input13": {
     "element": "iron",
     "min": 0.0,
     "max": 0.05
   },
-  "input13": {
+  "input14": {
     "element": "cobalt",
     "min": 0.0,
     "max": 0.05
   },
-  "input14": {
+  "input15": {
     "element": "ruthenium",
     "min": 0.0,
     "max": 0.05
   },
-  "input15": {
+  "input16": {
     "element": "palladium",
     "min": 0.0,
     "max": 0.05
   },
-  "input16": {
+  "input17": {
     "element": "germanium",
     "min": 0.0,
     "max": 0.05
   },
-  "input17": {
+  "input18": {
     "element": "gallium",
     "min": 0.0,
     "max": 0.05
   },
-  "input18": {
+  "input19": {
     "element": "carbon",
     "min": 0.0,
     "max": 0.02
   },
-  "input19": {
+  "input20": {
     "element": "silicon",
     "min": 0.0,
     "max": 0.02
   },
-  "input20": {
+  "input21": {
     "element": "oxygen",
     "min": 0.0,
     "max": 0.02

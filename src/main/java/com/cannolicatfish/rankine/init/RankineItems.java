@@ -1671,6 +1671,8 @@ public class RankineItems {
     public static final RegistryObject<Item> PURPLE_GOLD_BLOCK = REGISTRY.register("purple_gold_block", () -> new BlockItem(RankineBlocks.PURPLE_GOLD_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BLACK_GOLD_ALLOY = REGISTRY.register("black_gold_alloy", () -> new AlloyItem(AlloyUtilsEnum.BLACK_GOLD.getDefComposition(), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BLACK_GOLD_BLOCK = REGISTRY.register("black_gold_block", () -> new BlockItem(RankineBlocks.BLACK_GOLD_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY = REGISTRY.register("sodium_potassium_alloy", () -> new AlloyItem("77K-23Na",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> SODIUM_POTASSIUM_ALLOY_BLOCK = REGISTRY.register("sodium_potassium_alloy_block", () -> new BlockItem(RankineBlocks.SODIUM_POTASSIUM_ALLOY_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SOLDER_ALLOY = REGISTRY.register("solder_alloy", () -> new AlloyItem("60Sn-40Pb",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> METEORIC_IRON = REGISTRY.register("meteoric_iron", () -> new AlloyItem("90Fe-10Ni",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 

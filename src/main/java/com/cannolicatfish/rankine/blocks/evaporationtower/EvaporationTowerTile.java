@@ -346,7 +346,7 @@ public class EvaporationTowerTile extends TileEntity implements ISidedInventory,
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return true;
+        return false;
     }
 
     @Override

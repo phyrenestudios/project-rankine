@@ -22,6 +22,7 @@
     "rankine:green_gold_block",
     "rankine:blue_gold_block",
     "rankine:purple_gold_block",
-    "rankine:black_gold_block"
+    "rankine:black_gold_block",
+    "rankine:sodium_potassium_alloy_block"
   ]
 }

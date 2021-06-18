@@ -30,6 +30,7 @@
     "rankine:black_gold_alloy",
     "rankine:ferrocerium_alloy",
     "rankine:sterling_silver_alloy",
-    "rankine:magnesium_alloy"
+    "rankine:magnesium_alloy",
+    "rankine:sodium_potassium_alloy"
   ]
 }

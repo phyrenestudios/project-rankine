@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 10,
+  "total": 11,
   "input1": {
     "element": "aluminum",
     "min": 0.91,
@@ -47,6 +47,11 @@
     "max": 0.04
   },
   "input10": {
+    "element": "scandium",
+    "min": 0.0,
+    "max": 0.04
+  },
+  "input11": {
     "element": "silicon",
     "min": 0.0,
     "max": 0.04

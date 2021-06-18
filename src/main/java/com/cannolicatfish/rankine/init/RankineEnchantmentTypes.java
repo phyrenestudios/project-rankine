@@ -30,4 +30,7 @@ public class RankineEnchantmentTypes {
 
     public static EnchantmentType STAINLESS_STEEL_SWORD = EnchantmentType.create("stainless_steel_sword", (itemIn) -> {
         return itemIn instanceof AlloySwordItem && ((IAlloyTool) itemIn).returnAlloyUtils().equals(AlloyUtilsEnum.STAINLESS); });
+
+    public static EnchantmentType ALLOYTOOL = EnchantmentType.create("alloytool", (itemIn) -> {
+        return itemIn instanceof IAlloyTool && itemIn.isDamageable(); });
 }

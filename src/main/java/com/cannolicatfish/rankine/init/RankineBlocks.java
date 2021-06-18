@@ -1323,6 +1323,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> NICKEL_SUPERALLOY_BLOCK = REGISTRY.register("nickel_superalloy_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> COBALT_SUPERALLOY_BLOCK = REGISTRY.register("cobalt_superalloy_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> TUNGSTEN_HEAVY_ALLOY_BLOCK = REGISTRY.register("tungsten_heavy_alloy_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_BLOCK = REGISTRY.register("sodium_potassium_alloy_block", () -> new Block(DEF_METAL_BLOCK));
 
     //GEM AND MINERALS
     public static final RegistryObject<Block> MALACHITE_BLOCK = REGISTRY.register("malachite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));

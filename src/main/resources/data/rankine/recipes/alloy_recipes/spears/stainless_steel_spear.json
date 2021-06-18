@@ -2,9 +2,9 @@
       "type": "rankine:alloy_crafting",
       "inherit": "true",
       "pattern": [
-      " # ",
-      "#t#",
-      " t "
+        " ##",
+        " t#",
+        "t  "
       ],
       "key": {
         "#": {
