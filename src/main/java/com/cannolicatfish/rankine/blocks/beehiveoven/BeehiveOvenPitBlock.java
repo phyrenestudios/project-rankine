@@ -211,13 +211,11 @@ public class BeehiveOvenPitBlock extends Block {
     private void getBeehiveOven(World world, BlockPos pos) {
         boolean canSeeSky = true;
         if (Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get()) {
-            canSeeSky = world.canSeeSky(pos);
-/*            for (int i = 1; i <= 8; i++) {
+            for (int i = 1; i <= 8; i++) {
                 if (!world.isAirBlock(pos.up(i))) {
                     canSeeSky = false;
                 }
             }
- */
         }
         if (canSeeSky && world.getBlockState(pos.north()).getBlock() == blockType && world.getBlockState(pos.south()).getBlock() == blockType
                 && world.getBlockState(pos.east()).getBlock() == blockType && world.getBlockState(pos.west()).getBlock() == blockType
