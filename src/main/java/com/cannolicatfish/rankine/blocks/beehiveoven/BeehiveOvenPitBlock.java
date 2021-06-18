@@ -1,9 +1,6 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -213,10 +210,14 @@ public class BeehiveOvenPitBlock extends Block {
 
     private void getBeehiveOven(World world, BlockPos pos) {
         boolean canSeeSky = true;
-        for (int i = 1; i <= 8; i++) {
-            if (!world.isAirBlock(pos.up(i))) {
-                canSeeSky = false;
+        if (Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get()) {
+            canSeeSky = world.canSeeSky(pos);
+/*            for (int i = 1; i <= 8; i++) {
+                if (!world.isAirBlock(pos.up(i))) {
+                    canSeeSky = false;
+                }
             }
+ */
         }
         if (canSeeSky && world.getBlockState(pos.north()).getBlock() == blockType && world.getBlockState(pos.south()).getBlock() == blockType
                 && world.getBlockState(pos.east()).getBlock() == blockType && world.getBlockState(pos.west()).getBlock() == blockType
