@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:petalite_block"
+  },
+  "result": "rankine:lithium_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

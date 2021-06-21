@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/ferrocerium"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/ferrocerium"
+    }
+  },
+  "result": {
+    "item": "rankine:ferrocerium_pedestal",
+    "count": 6
+  }
+}

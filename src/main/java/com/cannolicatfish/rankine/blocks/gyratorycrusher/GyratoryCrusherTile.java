@@ -119,11 +119,18 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
             burnTime--;
         }
         if (!this.world.isRemote) {
+
             ItemStack input = this.items.get(0);
             ItemStack fuel = this.items.get(1);
+
             if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty())) {
                 CrushingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
-                if (!this.isBurning() && this.canSmelt(irecipe)) {
+                boolean canSmelt = this.canSmelt(irecipe);
+                if (input.isEmpty() || !canSmelt) {
+                    this.burnTime = 0;
+                    this.currentBurnTime = this.burnTime;
+                }
+                if (!this.isBurning() && canSmelt) {
                     this.burnTime = PowerCellItem.getTier(fuel) != 0 ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
                     this.currentLevel = PowerCellItem.getTier(fuel);
@@ -132,7 +139,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     }
                 }
 
-                if (this.isBurning() && this.canSmelt(irecipe)) {
+                if (this.isBurning() && canSmelt) {
                     cookTime++;
                     if (cookTime >= cookTimeTotal) {
                         List<ItemStack> results = irecipe.getResults(this.currentLevel - 1,this.world);
@@ -186,7 +193,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
             if (itemstacks.isEmpty()) {
                 return false;
             } else {
-                for (int i = 0; i < this.currentLevel - 1; i++) {
+                for (int i = 0; i < this.currentLevel; i++) {
                     ItemStack itemstack = this.items.get(2 + i);
                     if ((!itemstack.isItemEqual(itemstacks.get(i)) && !itemstack.isEmpty())) {
                         return false;
@@ -316,23 +323,18 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        CrushingRecipe recipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
-        List<ItemStack> outputs = Arrays.asList(ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);
-        if (recipe != null) {
-            outputs = recipe.getPossibleResults(3, this.world);
-        }
         switch (index)
         {
             case 0:
                 return true;
             case 1:
-                return AbstractFurnaceTileEntity.isFuel(stack);
+                return stack.getItem() instanceof PowerCellItem;
             case 2:
-                return ItemStack.areItemsEqual(outputs.get(0), stack);
             case 3:
-                return ItemStack.areItemsEqual(outputs.get(1), stack);
             case 4:
-                return ItemStack.areItemsEqual(outputs.get(2), stack);
+            case 5:
+            case 6:
+            case 7:
             default:
                 return false;
         }

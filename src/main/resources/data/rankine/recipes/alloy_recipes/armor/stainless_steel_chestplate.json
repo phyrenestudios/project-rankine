@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:stainless_steel_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_chestplate",
+    "count": 1
+  }
+}

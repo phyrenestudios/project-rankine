@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "tag": "forge:stones/pumice"
+    },
+    {
+      "tag": "forge:ash"
+    }
+  ],
+  "result": {
+    "item": "rankine:pumice_soap",
+    "count": 8
+  }
+}

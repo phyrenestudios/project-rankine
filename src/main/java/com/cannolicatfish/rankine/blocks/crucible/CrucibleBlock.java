@@ -8,6 +8,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -28,22 +29,22 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class CrucibleBlock extends Block {
-    public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 4);
+    public static final BooleanProperty FLUID = BooleanProperty.create("fluid");
     private static final VoxelShape INSIDE = makeCuboidShape(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), VoxelShapes.or(makeCuboidShape(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), makeCuboidShape(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), IBooleanFunction.ONLY_FIRST);
 
 
     public CrucibleBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(LEVEL, 0));
+        this.setDefaultState(this.stateContainer.getBaseState().with(FLUID, false));
 
     }
-    
+
 
 
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.get(LEVEL) >= 1 ? super.getLightValue(state,world,pos) : 0;
+        return state.get(FLUID) ? super.getLightValue(state,world,pos) : 0;
     }
 
     @Override
@@ -59,9 +60,8 @@ public class CrucibleBlock extends Block {
 
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        int i = state.get(LEVEL);
         float f = (float)pos.getY() + (6.0F + (float)(3 * 3)) / 16.0F;
-        if (!worldIn.isRemote && i > 0 && entityIn.getPosY() <= (double)f) {
+        if (!worldIn.isRemote && state.get(FLUID) && entityIn.getPosY() <= (double)f) {
             entityIn.setFire(2);
         }
 
@@ -96,9 +96,9 @@ public class CrucibleBlock extends Block {
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        if (stateIn.get(LEVEL) >= 1) {
+        if (stateIn.get(FLUID)) {
             double d0 = (double)pos.getX() + 0.5;
-            double d1 = (double)pos.getY() + 0.3D * stateIn.get(LEVEL);
+            double d1 = (double)pos.getY() + 0.3D;
             double d2 = (double)pos.getZ() + 0.5;
             if (rand.nextDouble() < 0.1D) {
                 worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
@@ -131,18 +131,9 @@ public class CrucibleBlock extends Block {
         }
     }
 
-    @Override
-    public boolean hasComparatorInputOverride(BlockState state) {
-        return true;
-    }
-
-    @Override
-    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
-        return blockState.get(LEVEL);
-    }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LEVEL);
+        builder.add(FLUID);
     }
 
     public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {

@@ -32,9 +32,6 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:quake")
     public static Enchantment QUAKE;
 
-    @ObjectHolder("rankine:prying")
-    public static Enchantment PRYING;
-
     @ObjectHolder("rankine:dune_walker")
     public static Enchantment DUNE_WALKER;
 
@@ -62,7 +59,9 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:withering_curse")
     public static Enchantment WITHERING_CURSE;
 
-
     @ObjectHolder("rankine:guard")
     public static Enchantment GUARD;
+
+    @ObjectHolder("rankine:prying")
+    public static Enchantment PRYING;
 }

@@ -16,8 +16,7 @@
   "output3": {
     "item": "rankine:pozzolan",
     "count": 1,
-    "chance": 1.0,
-    "additional": 0.50
+    "chance": 1.0
   },
   "output4": {
     "item": "rankine:perlite",

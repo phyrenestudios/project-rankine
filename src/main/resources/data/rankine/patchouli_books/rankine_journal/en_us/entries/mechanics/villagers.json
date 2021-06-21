@@ -32,6 +32,11 @@
       "type": "text",
       "title": "Gem Cutter",
       "text": "POI: Diamond Anvil Cell  $(br2)The Gem Cutter deals with all things gems. Who doesn't want to have shiny things? Well if you don't, then maybe green will suit your fancy if you trade in."
+    },
+    {
+      "type": "text",
+      "title": "Rock Collector",
+      "text": "POI: Sediment Fan  $(br2)The Rock Collector has a lot of rocks, and wants more. Got a lot of extra rocks laying around? Well then maybe unload a few or pick up a new sample."
     }
   ]
 }

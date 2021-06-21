@@ -1,0 +1,47 @@
+{
+  "type": "rankine:crucible",
+  "result": {
+    "item": "minecraft:yellow_stained_glass"
+  },
+  "secondary": {
+    "item": "rankine:slag"
+  },
+  "cookTime": 2400,
+  "required": [true,true,false,false],
+  "total": 8,
+  "input1": {
+    "tag": "rankine:glass_inputs",
+    "countMod": 1,
+    "group": 0
+  },
+  "input2": {
+    "tag": "forge:dyes/yellow",
+    "countMod": 1,
+    "group": 1
+  },
+  "input3": {
+    "tag": "rankine:feldspars"
+  },
+  "input4": {
+    "item": "rankine:alumina",
+    "countMod": 1
+  },
+  "input5": {
+    "item": "rankine:magnesia",
+    "countMod": 1
+  },
+  "input6": {
+    "item": "rankine:quicklime",
+    "countMod": 1,
+    "cookMod": -600
+  },
+  "input7": {
+    "item": "rankine:petalite",
+    "countMod": 3
+  },
+  "input8": {
+    "item": "rankine:sodium_carbonate",
+    "countMod": 2,
+    "cookMod": -600
+  }
+}

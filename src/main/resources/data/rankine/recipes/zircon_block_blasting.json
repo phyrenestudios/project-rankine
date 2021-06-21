@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:zircon_block"
+  },
+  "result": "rankine:zirconium_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

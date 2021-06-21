@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "A listing of the variety of spears that are able to be made. Rankine spears are made in the $(l:machines/coal_forge)Coal Forge$() with an spear template."
+      "text": "A listing of the variety of spears that are able to be made."
     },
     {
       "type": "text",

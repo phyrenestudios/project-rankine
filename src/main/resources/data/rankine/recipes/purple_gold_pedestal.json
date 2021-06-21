@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/purple_gold"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/purple_gold"
+    }
+  },
+  "result": {
+    "item": "rankine:purple_gold_pedestal",
+    "count": 6
+  }
+}

@@ -108,23 +108,7 @@ public class CrowbarItem extends ToolItem {
         }
         return false;
     }
-/*
-    @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World worldIn = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        BlockState bs = worldIn.getBlockState(blockpos);
-        if (worldIn.getTileEntity(blockpos) == null && worldIn.getFluidState(blockpos).isEmpty() && bs.isSolid() && context.getFace() != Direction.UP && context.getFace() != Direction.DOWN && bs.getBlockHardness(worldIn,blockpos) >= 0) {
-            if (context.getPlayer() == null || context.getPlayer().getPosition().getY() <= blockpos.getY()){
-                worldIn.setBlockState(blockpos.offset(context.getFace()),worldIn.getBlockState(blockpos),2);
-                worldIn.setBlockState(blockpos,Blocks.AIR.getDefaultState(),2);
-                SoundType soundtype = worldIn.getBlockState(blockpos).getSoundType(worldIn, blockpos, null);
-                worldIn.playSound(blockpos.getX(),blockpos.getY(),blockpos.getZ(), soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
-            }
-        }
-        return super.onItemUse(context);
-    }
-*/
+
     public static int getSwingModifier(ItemStack stack) {
         return EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SWING, stack);
     }

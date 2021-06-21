@@ -1,0 +1,16 @@
+{
+  "type": "rankine:evaporation",
+  "large": false,
+  "total": 1,
+  "cookTime": 1200,
+  "input": {
+    "block": "rankine:sap"
+  },
+  "bucket": {
+    "item": "rankine:sap_bucket"
+  },
+  "output1": {
+    "item": "minecraft:sugar",
+    "weight": 1
+  }
+}

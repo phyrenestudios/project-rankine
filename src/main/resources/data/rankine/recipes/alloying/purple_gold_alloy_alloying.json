@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 3,
+  "total": 4,
   "input1": {
     "element": "gold",
     "min": 0.78,
@@ -13,6 +13,11 @@
   },
   "input3": {
     "element": "palladium",
+    "min": 0.0,
+    "max": 0.07
+  },
+  "input4": {
+    "element": "scandium",
     "min": 0.0,
     "max": 0.07
   },

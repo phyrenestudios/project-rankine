@@ -66,8 +66,8 @@ public class TapBarrelBlock extends Block {
                     break;
             }
             if (bucket != null && state.get(LEVEL) > 0) {
-                player.addItemStackToInventory(new ItemStack(bucket, 1));
                 player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(bucket, 1));
                 if (state.get(LEVEL)==1) {
                     worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, state.get(FLUID)).with(LEVEL, 0),3);
                 } else {

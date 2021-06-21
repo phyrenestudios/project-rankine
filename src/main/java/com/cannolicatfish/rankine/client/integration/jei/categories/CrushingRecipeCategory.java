@@ -39,7 +39,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
         localizedName = I18n.format("rankine.jei.crushing");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crushing_jei.png"),
                 0, 15, 140, 160);
-        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.PISTON_CRUSHER.get()));
+        icon = guiHelper.createDrawableIngredient(new ItemStack(RankineItems.STEEL_HAMMER.get()));
     }
 
     @Override

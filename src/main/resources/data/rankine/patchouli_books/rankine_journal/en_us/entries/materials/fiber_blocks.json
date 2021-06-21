@@ -1,0 +1,21 @@
+{
+  "name": "Fiber Blocks",
+  "icon": "rankine:fiber_block",
+  "category": "materials",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Plant fiber can be used to craft rope and blocks. The blocks are a simple fuel source, but primarily used for building. Dyed variants of the blocks and mats have functionality similar to glazed terracotta."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:fiber_block",
+      "text": "Dyed variants available."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:fiber_mat",
+      "text": "Dyed variants available"
+    }
+  ]
+}

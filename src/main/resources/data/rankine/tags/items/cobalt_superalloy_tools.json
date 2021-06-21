@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:cobalt_superalloy_sword",
+    "rankine:cobalt_superalloy_axe",
+    "rankine:cobalt_superalloy_pickaxe",
+    "rankine:cobalt_superalloy_shovel",
+    "rankine:cobalt_superalloy_spear",
+    "rankine:cobalt_superalloy_hammer",
+    "rankine:cobalt_superalloy_hoe"
+  ]
+}

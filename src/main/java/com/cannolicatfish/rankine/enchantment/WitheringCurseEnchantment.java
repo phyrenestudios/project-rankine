@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public class WitheringCurseEnchantment extends Enchantment {
 
     public WitheringCurseEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, EnchantmentType.BREAKABLE, p_i46721_2_);
+        super(p_i46721_1_, RankineEnchantmentTypes.ALLOYTOOL, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {

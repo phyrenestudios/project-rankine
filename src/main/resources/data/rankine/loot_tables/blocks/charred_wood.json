@@ -129,6 +129,15 @@
           ]
         }
       ]
+    },
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "rankine:ash"
+        }
+      ]
     }
   ]
 }

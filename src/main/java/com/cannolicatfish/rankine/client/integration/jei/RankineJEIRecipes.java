@@ -40,6 +40,13 @@ public class RankineJEIRecipes {
 
     public List<ElementRecipe> getElementRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ELEMENT);
+
+    public List<CrucibleRecipe> getCrucibleRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.CRUCIBLE);
+    }
+
+    public List<EvaporationRecipe> getEvaporationRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.EVAPORATION);
     }
 
     public static <T> void checkNotNull(@Nullable T object, String name) {

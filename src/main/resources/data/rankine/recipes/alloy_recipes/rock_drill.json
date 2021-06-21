@@ -1,0 +1,24 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    " R ",
+    "#G#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/bronze"
+    },
+    "R": {
+      "tag": "forge:rods/cast_iron"
+    },
+    "G": {
+      "item": "rankine:alloy_gear",
+      "alloyData": "75Cu-13Sn-12Mn"
+    }
+  },
+  "result": {
+    "item": "rankine:rock_drill",
+    "count": 1
+  }
+}

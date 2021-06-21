@@ -50,8 +50,11 @@ public class AlloyRecipeHelper {
         List<String> sInputs = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : mapStringsSort(map).entrySet())
         {
-            sPercents.add(entry.getValue());
-            sInputs.add(entry.getKey());
+            if (entry.getValue() > 0) {
+                sPercents.add(entry.getValue());
+                sInputs.add(entry.getKey());
+            }
+
         }
         Collections.reverse(sPercents);
         Collections.reverse(sInputs);
@@ -62,6 +65,7 @@ public class AlloyRecipeHelper {
                 ret.append("-");
             }
         }
+        //System.out.println("Result: " + ret.toString());
         return ret.toString();
     }
 

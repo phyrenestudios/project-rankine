@@ -19,9 +19,9 @@
     "additional": 0.10
   },
   "output4": {
-    "item": "rankine:mica",
-    "chance": 0.10,
-    "additional": 0.10
+    "item": "rankine:thortveitite",
+    "chance": 0.05,
+    "additional": 0.05
   },
   "output5": {
     "item": "rankine:lepidolite",

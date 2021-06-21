@@ -1,0 +1,16 @@
+{
+  "type": "rankine:evaporation",
+  "large": false,
+  "total": 1,
+  "cookTime": 1200,
+  "input": {
+    "block": "rankine:maple_sap"
+  },
+  "bucket": {
+    "item": "rankine:maple_sap_bucket"
+  },
+  "output1": {
+    "item": "rankine:maple_syrup",
+    "weight": 1
+  }
+}

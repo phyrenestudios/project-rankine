@@ -33,7 +33,7 @@
       "item": "rankine:alloy_chestplate",
       "link_recipe": true,
       "title": "Alloy Armor",
-      "text": "Like tools, alloy armor gets it's stats (armor, toughness, durability) depending on the composition of the alloy. Recipes for alloy armor can be added external using datapacks or mods. By default Bronze is the only recipe."
+      "text": "Like tools, alloy armor gets it's stats (armor, toughness, durability) depending on the composition of the alloy. Recipes for alloy armor can be added external using datapacks or mods. By default there are a few different recipes."
     }
   ]
 }

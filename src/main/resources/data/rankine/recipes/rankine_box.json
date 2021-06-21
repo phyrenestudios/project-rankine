@@ -1,19 +1,31 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ata",
-    "tct",
-    "ata"
+    "aua",
+    "lcr",
+    "sds"
   ],
   "key": {
     "c": {
-      "item": "rankine:lonsdaleite_diamond"
+      "item": "rankine:lonsdaleite_diamond_block"
     },
-    "t": {
-      "item": "rankine:element_transmuter"
+    "u": {
+      "item": "rankine:up_transmuter"
+    },
+    "d": {
+      "item": "rankine:down_transmuter"
+    },
+    "l": {
+      "item": "rankine:left_transmuter"
+    },
+    "r": {
+      "item": "rankine:right_transmuter"
     },
     "a": {
       "item": "rankine:amalgam_alloy"
+    },
+    "s": {
+      "item": "rankine:sodium_potassium_alloy"
     }
   },
   "result": {

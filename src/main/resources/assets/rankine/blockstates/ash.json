@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "rankine:block/ash_height1"
+    },
+    "layers=2": {
+      "model": "rankine:block/ash_height2"
+    },
+    "layers=3": {
+      "model": "rankine:block/ash_height3"
+    },
+    "layers=4": {
+      "model": "rankine:block/ash_height4"
+    },
+    "layers=5": {
+      "model": "rankine:block/ash_height5"
+    },
+    "layers=6": {
+      "model": "rankine:block/ash_height6"
+    },
+    "layers=7": {
+      "model": "rankine:block/ash_height7"
+    },
+    "layers=8": {
+      "model": "rankine:block/ash_height8"
+    },
+    "layers=9": {
+      "model": "rankine:block/ash_height9"
+    },
+    "layers=10": {
+      "model": "rankine:block/ash_height10"
+    },
+    "layers=11": {
+      "model": "rankine:block/ash_height11"
+    },
+    "layers=12": {
+      "model": "rankine:block/ash_height12"
+    },
+    "layers=13": {
+      "model": "rankine:block/ash_height13"
+    },
+    "layers=14": {
+      "model": "rankine:block/ash_height14"
+    },
+    "layers=15": {
+      "model": "rankine:block/ash_height15"
+    },
+    "layers=16": {
+      "model": "rankine:block/ash_block"
+    }
+  }
+}

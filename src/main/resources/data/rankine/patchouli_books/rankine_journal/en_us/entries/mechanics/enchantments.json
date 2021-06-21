@@ -88,6 +88,12 @@
     },
     {
       "type": "text",
+      "title": "Prying",
+      "anchor": "prying",
+      "text": "Prying has a chance of causing the target to drop their currently held item. Chance is determined by the rarity of the item held. $(br2)Applicable to: $(li)$(l:tools/crowbars)Crowbars$() $(br)Levels: I-III"
+    },
+    {
+      "type": "text",
       "title": "Antiquated",
       "anchor": "antiquated",
       "text": "Antiquated increases the luck stat when held in the main hand or off hand. $(br2)Applicable to: $(li)Pewter Tools$() $(br)Levels: I-III"

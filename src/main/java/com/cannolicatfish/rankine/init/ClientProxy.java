@@ -240,6 +240,12 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.PINEAPPLE_BUSH.get(),
                 RankineBlocks.ALOE_PLANT.get(),
                 RankineBlocks.CAMPHOR_BASIL_PLANT.get(),
+                RankineBlocks.ASPARAGUS_PLANT.get(),
+                RankineBlocks.CORN_STALK.get(),
+                RankineBlocks.CORN_PLANT.get(),
+                RankineBlocks.RICE_PLANT.get(),
+                RankineBlocks.COTTON_PLANT.get(),
+                RankineBlocks.JUTE_PLANT.get(),
 
                 RankineBlocks.CEDAR_LEAVES.get(),
                 RankineBlocks.PINYON_PINE_LEAVES.get(),

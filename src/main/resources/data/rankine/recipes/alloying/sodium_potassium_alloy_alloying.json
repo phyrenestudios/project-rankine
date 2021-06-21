@@ -1,0 +1,15 @@
+{
+  "type": "rankine:alloying",
+  "total": 2,
+  "input1": {
+    "element": "potassium",
+    "min": 0.40,
+    "max": 0.90
+  },
+  "input2": {
+    "element": "sodium",
+    "min": 0.10,
+    "max": 0.60
+  },
+  "result": "rankine:sodium_potassium_alloy"
+}

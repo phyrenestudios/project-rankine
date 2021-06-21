@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:xenotime_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:xenotime",
+    "count": 9
+  }
+}

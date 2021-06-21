@@ -1,21 +1,20 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "rankine:pulp"
-    },
-    {
-      "item": "rankine:pulp"
-    },
-    {
-      "item": "rankine:pulp"
-    },
-    {
-      "tag": "forge:saltpeter"
-    }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CSC",
+    "CCC"
   ],
+  "key": {
+    "S": {
+      "tag": "forge:saltpeter"
+    },
+    "C": {
+      "tag": "forge:crops/cotton"
+    }
+  },
   "result": {
     "item": "rankine:gun_cotton",
-    "count": 6
+    "count": 8
   }
 }

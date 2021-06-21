@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:grass_path"
+    "minecraft:grass_path",
+    "rankine:mycelium_path"
   ]
 }

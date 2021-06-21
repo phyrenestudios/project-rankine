@@ -1,0 +1,17 @@
+{
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "###",
+        "###",
+        "###"
+      ],
+      "key": {
+        "#": {
+          "item": "rankine:tantalite"
+        }
+      },
+      "result": {
+        "item": "rankine:tantalite_block",
+        "count": 1
+      }
+}

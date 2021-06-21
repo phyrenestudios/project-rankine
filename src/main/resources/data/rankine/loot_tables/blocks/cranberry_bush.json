@@ -12,9 +12,10 @@
 	  "conditions": [
 		{
 		  "condition": "minecraft:block_state_property",
-		  "block": "rankine:cranberry_bush",
+		  "block": "rankine:blueberry_bush",
 		  "properties": {
-			"age": "3"
+			"age": "3",
+			"half": "lower"
 		  }
 		}
 	  ],

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/brass"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/brass"
+    }
+  },
+  "result": {
+    "item": "rankine:brass_pedestal",
+    "count": 6
+  }
+}

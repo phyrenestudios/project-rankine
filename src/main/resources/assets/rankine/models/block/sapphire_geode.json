@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_geode",
+  "textures": {
+    "face": "rankine:block/sapphire_geode"
+  }
+}

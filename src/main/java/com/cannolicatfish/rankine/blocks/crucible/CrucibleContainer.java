@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -8,6 +10,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
@@ -28,6 +31,7 @@ public class CrucibleContainer extends Container {
     private TileEntity tileEntity;
     private PlayerEntity playerEntity;
     private IItemHandler playerInventory;
+    private World world;
     private final IIntArray data;
 
     public CrucibleContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
@@ -45,13 +49,14 @@ public class CrucibleContainer extends Container {
         this.data = furnaceData;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
+        this.world = playerEntity.world;
 
         this.addSlot(new Slot(furnaceInventory, 0, 53, 23));
         this.addSlot(new Slot(furnaceInventory, 1, 71,16));
         this.addSlot(new Slot(furnaceInventory, 2, 88,16));
         this.addSlot(new Slot(furnaceInventory, 3, 106,23));
-        this.addSlot(new Slot(furnaceInventory, 4, 79,57));
-        this.addSlot(new Slot(furnaceInventory, 5, 53,57));
+        this.addSlot(new Slot(furnaceInventory, 4, 79,53));
+        this.addSlot(new Slot(furnaceInventory, 5, 49,53));
 
         layoutPlayerInventorySlots(8, 84);
 
@@ -92,7 +97,7 @@ public class CrucibleContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else if (index > 5) {
-                if (stack.getItem().getTags().contains(new ResourceLocation("rankine:crucible_fluxes"))) {
+                if (hasRecipe(stack)) {
                     if (!this.mergeItemStack(stack, 0, 4, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -123,6 +128,17 @@ public class CrucibleContainer extends Container {
         }
 
         return itemstack;
+    }
+
+    protected boolean hasRecipe(ItemStack stack) {
+        for (CrucibleRecipe recipe : this.world.getRecipeManager().getRecipesForType(RankineRecipeTypes.CRUCIBLE)) {
+            for (Ingredient i : recipe.getIngredients()) {
+                if (i.test(stack)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {

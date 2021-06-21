@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WB",
+    "BW"
+  ],
+  "key": {
+    "W": {
+      "item": "rankine:red_porphyry"
+    },
+    "B": {
+      "item": "rankine:purple_porphyry"
+    }
+  },
+  "result": {
+    "item": "rankine:checkered_porphyry",
+    "count": 4
+  }
+}

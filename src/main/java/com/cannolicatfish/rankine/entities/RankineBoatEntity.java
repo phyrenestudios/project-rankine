@@ -124,11 +124,14 @@ public class RankineBoatEntity extends BoatEntity {
         MAGNOLIA(RankineBlocks.MAGNOLIA_PLANKS.get(), "magnolia"),
         HEMLOCK(RankineBlocks.EASTERN_HEMLOCK_PLANKS.get(), "hemlock"),
         MAPLE(RankineBlocks.MAPLE_PLANKS.get(), "maple"),
+        BLACK_BIRCH(RankineBlocks.BLACK_BIRCH_PLANKS.get(), "black_birch"),
+        YELLOW_BIRCH(RankineBlocks.YELLOW_BIRCH_PLANKS.get(), "yellow_birch"),
         BLACK_WALNUT(RankineBlocks.BLACK_WALNUT_PLANKS.get(), "black_walnut"),
         SHARINGA(RankineBlocks.SHARINGA_PLANKS.get(), "sharinga"),
         CORK_OAK(RankineBlocks.CORK_OAK_PLANKS.get(), "cork_oak"),
         CINNAMON(RankineBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
-        BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo");
+        BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo"),
+        BAMBOO_CULMS(RankineBlocks.BAMBOO_CULMS.get(), "bamboo_culms");
 
 
         private final String name;

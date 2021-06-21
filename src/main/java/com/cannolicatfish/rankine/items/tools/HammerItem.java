@@ -19,10 +19,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -92,8 +89,8 @@ public class HammerItem extends ToolItem {
     }
 
     public boolean canHarvestBlock(BlockState blockIn) {
-        Block block = blockIn.getBlock();
-        return block == RankineBlocks.TUFA_LIMESTONE.get();
+        int i = this.getTier().getHarvestLevel();
+        return i >= blockIn.getHarvestLevel();
     }
 
     @Override
@@ -127,39 +124,6 @@ public class HammerItem extends ToolItem {
         return true;
     }
 
-/*
-    @Override
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity)
-    {
-        if (entity instanceof PlayerEntity)
-        {
-            PlayerEntity player = (PlayerEntity) entity;
-            World worldIn = player.getEntityWorld();
-            RayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
-            BlockPos pos;
-            if (raytraceresult instanceof BlockRayTraceResult)
-            {
-                final BlockRayTraceResult rayTraceResult = (BlockRayTraceResult) raytraceresult;
-                pos = rayTraceResult.getPos();
-            } else
-            {
-                pos = new BlockPos(raytraceresult.getHitVec().x,raytraceresult.getHitVec().y,raytraceresult.getHitVec().z);
-            }
-            if (player.getCooledAttackStrength(0) >= (1f))
-            {
-                player.resetCooldown();
-
-                if (getExcavateModifier(stack) != 0)
-                {
-                    getExcavationResult(pos,worldIn,player,stack);
-                } else {
-                    onBlockDestroyed(stack,worldIn,worldIn.getBlockState(pos),pos, player);
-                }
-            }
-        }
-        return false;
-    }
-*/
     public void getExcavationResult(BlockPos pos, World worldIn, PlayerEntity player, ItemStack stack) {
         BlockRayTraceResult raytraceresult = rayTrace(worldIn, player, RayTraceContext.FluidMode.ANY);
         List<BlockPos> positions = new ArrayList<>();

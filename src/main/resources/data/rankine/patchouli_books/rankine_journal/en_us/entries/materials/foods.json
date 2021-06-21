@@ -5,29 +5,70 @@
   "pages": [
     {
       "type": "text",
-      "text": ""
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:pina_colada",
-      "text": ""
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:unaged_cheese",
-      "text": "Place in the world for it to to convert to aged cheese which can be eaten like a cake."
+      "text": "Various processed foods for consumption. See $(world/flora)Flora$() for raw plants."
     },
     {
       "type": "spotlight",
       "item": "rankine:roasted_walnut",
       "link_recipe": true,
-      "text": "Obtained by cooking a black walnut on a campfire"
+      "text": "Obtained by cooking a black walnut."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:roasted_asparagus",
+      "link_recipe": true,
+      "text": "Obtained by cooking asparagus."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:popcorn",
+      "link_recipe": true,
+      "text": "Obtained by cooking corn."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:toasted_coconut",
+      "link_recipe": true,
+      "text": "Obtained by cooking a coconut."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:wheat_flour",
+      "link_recipe": true,
+      "text": "Made by crushing wheat in the Piston Crusher."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:corn_flour",
+      "link_recipe": true,
+      "text": "Made by crushing corn in the Piston Crusher."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rice_flour",
+      "link_recipe": true,
+      "text": "Made by crushing rice in the Piston Crusher."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:dough",
+      "text": "Used to make bread."
     },
     {
       "type": "spotlight",
       "item": "rankine:toast",
       "link_recipe": true,
-      "text": "Obtained by cooking bread on a campfire"
+      "text": "Obtained by cooking bread."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:cinnamon_toast",
+      "text": "For those with a sweet tooth."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:unaged_cheese",
+      "text": "Place in the world for it to to convert to aged cheese which can be eaten like a cake."
     },
     {
       "type": "spotlight",
@@ -58,7 +99,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:cinnamon_toast",
+      "recipe": "rankine:pina_colada",
       "text": ""
     }
   ]

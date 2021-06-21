@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/metal_pole",
+  "textures": {
+    "side": "rankine:block/cast_iron_pole"
+  }
+}

@@ -8,13 +8,13 @@
       "item": "rankine:aloe"
     },
     {
-      "item": "minecraft:paper"
+      "tag": "forge:crops/cotton"
     },
     {
-      "item": "minecraft:paper"
+      "tag": "forge:crops/cotton"
     },
     {
-      "item": "minecraft:paper"
+      "tag": "forge:crops/cotton"
     }
   ],
   "result": {

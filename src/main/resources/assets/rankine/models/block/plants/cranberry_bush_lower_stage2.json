@@ -1,0 +1,6 @@
+{
+      "parent": "block/cross",
+      "textures": {
+        "cross": "rankine:block/plants/cranberry_bush_lower_stage2"
+      }
+    }

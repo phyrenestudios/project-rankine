@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:bismuthinite_block"
+  },
+  "result": "rankine:bismuth_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

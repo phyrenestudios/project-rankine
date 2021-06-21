@@ -105,7 +105,6 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     public void tick() {
         World worldIn = this.getWorld();
         int maxRadius = checkStructure(pos,worldIn);
-        //System.out.print(maxRadius);
         if (!worldIn.isRemote && i <= maxRadius){
             if (worldIn.isBlockPowered(pos) && maxRadius > 0 && this.items.get(0).getItem() instanceof PowerCellItem) {
                 ++this.cookTime;

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:platinum_arsenide_block"
+  },
+  "result": "rankine:platinum_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

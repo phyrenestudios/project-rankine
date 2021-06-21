@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:acanthite_block"
+  },
+  "result": "rankine:silver_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

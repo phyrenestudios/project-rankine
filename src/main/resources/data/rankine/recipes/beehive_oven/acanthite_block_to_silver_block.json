@@ -1,0 +1,9 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "item": "rankine:acanthite_block"
+  },
+  "result": {
+    "block": "rankine:silver_block"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sodium_potassium_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:sodium_potassium_alloy_block",
+    "count": 1
+  }
+}

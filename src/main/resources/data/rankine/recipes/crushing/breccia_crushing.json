@@ -24,12 +24,12 @@
     "additional": 0.40
   },
   "output5": {
-    "item": "rankine:opal",
-    "chance": 0.10,
-    "additional": 0.20
+    "item": "rankine:saltpeter",
+    "chance": 0.15,
+    "additional": 0.10
   },
   "output6": {
-    "item": "rankine:saltpeter",
-    "chance": 0.15
+    "item": "rankine:opal",
+    "chance": 0.10
   }
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:cassiterite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:cassiterite",
+    "count": 9
+  }
+}

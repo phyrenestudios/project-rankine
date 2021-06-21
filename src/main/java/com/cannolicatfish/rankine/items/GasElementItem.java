@@ -5,10 +5,11 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.*;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class GasElementItem extends ElementItem {
     GasUtilsEnum gas;
@@ -23,10 +24,13 @@ public class GasElementItem extends ElementItem {
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
-        if (Minecraft.getInstance().objectMouseOver != null && context.getPlayer() != null) {
-            ActionResultType actionresulttype = ((BlockItem) getGas().asItem()).tryPlace(new BlockItemUseContext(
-                    new ItemUseContext(context.getWorld(),context.getPlayer(),context.getHand(), context.getItem(),(BlockRayTraceResult) Minecraft.getInstance().objectMouseOver)));
-            return !actionresulttype.isSuccessOrConsume() && this.isFood() ? this.onItemRightClick(context.getWorld(), context.getPlayer(), context.getHand()).getType() : actionresulttype;
+        World worldIn = context.getWorld();
+        BlockPos pos = context.getPos();
+        Direction opp = context.getFace();
+        if (context.getPlayer() != null) {
+            worldIn.setBlockState(pos.offset(opp), this.getGas().getDefaultState());
+            context.getItem().shrink(1);
+            return ActionResultType.SUCCESS;
         } else {
             return ActionResultType.PASS;
         }

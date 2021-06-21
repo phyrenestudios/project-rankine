@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cast_iron_bars"
+    }
+  },
+  "result": {
+    "item": "rankine:cast_iron_pole",
+    "count": 1
+  }
+}

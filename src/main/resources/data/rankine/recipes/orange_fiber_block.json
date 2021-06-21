@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#D#",
+    "###"
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:dyes/orange"
+    },
+    "#": {
+      "item": "rankine:fiber_block"
+    }
+  },
+  "result": {
+    "item": "rankine:orange_fiber_block",
+    "count": 8
+  }
+}

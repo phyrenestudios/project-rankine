@@ -13,10 +13,10 @@
       "item": "minecraft:diamond_block"
     },
     "T": {
-      "item": "rankine:tungsten_heavy_alloy"
+      "tag": "forge:ingots/tungsten_heavy_alloy"
     },
     "R": {
-      "tag": "forge:storage_blocks/rhenium"
+      "tag": "forge:ingots/rhenium"
     }
   },
   "result": {

@@ -83,7 +83,7 @@ public class TreeTapBlock extends Block {
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         ticks += 1;
-        if (!worldIn.isRemote() && ticks >= Config.MACHINES.TREE_TAP_SPEED.get()) {
+        if (!worldIn.isRemote() && ticks >= Config.MACHINES.TREE_TAP_SPEED.get() && isTreeAlive(pos,worldIn)) {
 
             //checks for other taps
             List<BlockPos> sides = Arrays.asList(pos.up(), pos.down(), pos.north(), pos.south(), pos.west(), pos.east());
@@ -173,6 +173,34 @@ public class TreeTapBlock extends Block {
             }
         }
     }
+
+    private boolean isTreeAlive(BlockPos pos, World worldIn) {
+        Set<BlockPos> checkedBlocks = new HashSet<>();
+        Stack<BlockPos> toCheck = new Stack<>();
+
+        toCheck.add(pos.offset(worldIn.getBlockState(pos).get(FACING).getOpposite()));
+        while (!toCheck.isEmpty()) {
+            BlockPos cp = toCheck.pop();
+            if (!checkedBlocks.contains(cp)) {
+                checkedBlocks.add(cp);
+                for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
+                    BlockState target = worldIn.getBlockState(b.toImmutable());
+                    if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:leaves"))) {
+                        if (!target.get(LeavesBlock.PERSISTENT)) {
+                            return true;
+                        }
+                    } else if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                        toCheck.add(b.toImmutable());
+                    }
+                }
+                if (toCheck.size() > 300) {
+                    break;
+                }
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
