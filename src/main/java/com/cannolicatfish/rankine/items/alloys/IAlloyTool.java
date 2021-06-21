@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.ElementUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -225,10 +224,6 @@ public interface IAlloyTool {
 
 
     default List<ElementRecipe> getElementRecipes(String c, @Nullable World worldIn) {
-        World w = Minecraft.getInstance().world;
-        if (worldIn == null && w != null) {
-            worldIn = w;
-        }
         if (worldIn != null) {
             String[] comp = c.split("-");
             List<ElementRecipe> list = new ArrayList<>();

@@ -40,15 +40,15 @@ public class ElementRecipe implements IRecipe<IInventory> {
     private final List<String> items;
     private final List<Integer> values;
     private final List<ElementEquation> stats;
-    private final ResourceLocation toolEnchantment;
+    private final String toolEnchantment;
     private final int toolEnchantmentMin;
-    private final ResourceLocation armorEnchantment;
+    private final String armorEnchantment;
     private final int armorEnchantmentMin;
     private final String arrowType;
     private final int arrowTypeIn;
 
     public ElementRecipe(ResourceLocation idIn, String nameIn, String symbolIn, int numIn, int colorIn, float potentialIn, List<String> items, List<Integer> values, List<ElementEquation> statsIn,
-                         ResourceLocation toolEnchantmentsIn, int toolEnchantMinIn, ResourceLocation armorEnchantmentsIn, int armorEnchantMinIn,
+                         String toolEnchantmentsIn, int toolEnchantMinIn, String armorEnchantmentsIn, int armorEnchantMinIn,
                          String arrowTypeIn, int arrowTypeMinIn) {
         this.id = idIn;
         this.num = numIn;
@@ -224,16 +224,16 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
     public float getToughness(int x) { return this.getToughnessFormula().calculateFloat(x);}
 
-    public ResourceLocation getToolEnchantmentVar() {
-        return toolEnchantment;
+    public String getToolEnchantmentVar() {
+        return this.toolEnchantment;
     }
 
     public int getToolEnchantmentMin() {
         return toolEnchantmentMin;
     }
 
-    public ResourceLocation getArmorEnchantmentVar() {
-        return armorEnchantment;
+    public String getArmorEnchantmentVar() {
+        return this.armorEnchantment;
     }
 
     public int getArmorEnchantmentMin() {
@@ -249,8 +249,8 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     public Enchantment getToolEnchantment(int x) {
-        if (x >= getToolEnchantmentMin()) {
-            return ForgeRegistries.ENCHANTMENTS.getValue(this.toolEnchantment);
+        if (x >= getToolEnchantmentMin() && !toolEnchantment.isEmpty()) {
+            return ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(this.toolEnchantment));
         } else {
             return null;
         }
@@ -258,7 +258,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
     public Enchantment getArmorEnchantment(int x) {
         if (x >= getArmorEnchantmentMin()) {
-            return ForgeRegistries.ENCHANTMENTS.getValue(this.armorEnchantment);
+            return ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(this.armorEnchantment));
         } else {
             return null;
         }
@@ -311,6 +311,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ElementRecipe> {
+        private static final ResourceLocation NAME = new ResourceLocation("rankine", "element");
 
         @Override
         public ElementRecipe read(ResourceLocation elementId, JsonObject json) {
@@ -371,16 +372,16 @@ public class ElementRecipe implements IRecipe<IInventory> {
                 }
                 index++;
             }
-            ResourceLocation toolEnch;
+            String toolEnch;
             int toolEnchMin;
-            ResourceLocation armorEnch;
+            String armorEnch;
             int armorEnchMin;
             String arrowType;
             int arrowTypeMin;
             if (json.has("toolenchantment")) {
-                toolEnch = new ResourceLocation(json.get("toolenchantment").getAsString());
+                toolEnch = json.get("toolenchantment").getAsString();
             } else {
-                toolEnch = null;
+                toolEnch = "";
             }
             if (json.has("toolenchantmentmin")) {
                 toolEnchMin = json.get("toolenchantmentmin").getAsInt();
@@ -388,9 +389,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
                 toolEnchMin = 0;
             }
             if (json.has("armorenchantment")) {
-                armorEnch = new ResourceLocation(json.get("armorenchantment").getAsString());
+                armorEnch = json.get("armorenchantment").getAsString();
             } else {
-                armorEnch = null;
+                armorEnch = "";
             }
             if (json.has("armorenchantmentmin")) {
                 armorEnchMin = json.get("armorenchantmentmin").getAsInt();
@@ -400,7 +401,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
             if (json.has("arrowtype")) {
                 arrowType = json.get("arrowtype").getAsString();
             } else {
-                arrowType = null;
+                arrowType = "";
             }
             if (json.has("arrowtypemin")) {
                 arrowTypeMin = json.get("arrowtypemin").getAsInt();
@@ -414,6 +415,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
         @Override
         public ElementRecipe read(ResourceLocation elementId, PacketBuffer buffer) {
             List<ElementEquation> equations = new ArrayList<>();
+            List<String> itemList = new ArrayList<>();
+            List<Integer> valueList = new ArrayList<>();
+
             String name = buffer.readString();
             String sym = buffer.readString();
             int atomic = buffer.readInt();
@@ -421,8 +425,6 @@ public class ElementRecipe implements IRecipe<IInventory> {
             float potential = buffer.readFloat();
 
             int itemSize = buffer.readInt();
-            List<String> itemList = new ArrayList<>();
-            List<Integer> valueList = new ArrayList<>();
             for (int i = 0; i < itemSize; i++) {
                 itemList.add(i,buffer.readString());
                 valueList.add(i,buffer.readInt());
@@ -452,9 +454,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
                 }
             }
 
-            ResourceLocation toolEnch = new ResourceLocation(buffer.readString());
+            String toolEnch = buffer.readString();
             int toolEnchMin = buffer.readInt();
-            ResourceLocation armorEnch = new ResourceLocation(buffer.readString());
+            String armorEnch = buffer.readString();
             int armorEnchMin = buffer.readInt();
             String arrowType = buffer.readString();
             int arrowTypeMin = buffer.readInt();
@@ -492,9 +494,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
                     }
                 }
             }
-            buffer.writeString(element.getToolEnchantmentVar().toString());
+            buffer.writeString(element.getToolEnchantmentVar());
             buffer.writeInt(element.getToolEnchantmentMin());
-            buffer.writeString(element.getArmorEnchantmentVar().toString());
+            buffer.writeString(element.getArmorEnchantmentVar());
             buffer.writeInt(element.getArmorEnchantmentMin());
             buffer.writeString(element.getArrowTypeVar());
             buffer.writeInt(element.getArrowTypeMin());

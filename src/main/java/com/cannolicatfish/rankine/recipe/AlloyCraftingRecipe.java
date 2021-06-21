@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
@@ -7,7 +8,6 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -87,10 +87,11 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         {
             AlloyItem.addAlloy(stack,new AlloyData(this.displayComp));
             CompoundNBT nbt = stack.getTag();
-            World worldIn = Minecraft.getInstance().world;
+            /*
+            World worldIn = ProjectRankine.proxy.getClientWorld();
             if (nbt != null && nbt.getString("nameAdd").isEmpty() && worldIn != null) {
                 nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(this.displayComp,worldIn));
-            }
+            }*/
         }
         return this.recipeOutput;
     }
