@@ -40,6 +40,7 @@ public class RankineJEIRecipes {
 
     public List<ElementRecipe> getElementRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ELEMENT);
+    }
 
     public List<CrucibleRecipe> getCrucibleRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.CRUCIBLE);
