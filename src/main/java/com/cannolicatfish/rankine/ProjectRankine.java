@@ -468,7 +468,6 @@ public class ProjectRankine {
             event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
             event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
             event.getRegistry().register(new GuardEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"guard"));
-            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
 
         }
 

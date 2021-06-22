@@ -78,7 +78,6 @@ public class Config {
 
         public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
         public final ForgeConfigSpec.BooleanValue PATH_CREATION;
-        public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
@@ -108,11 +107,6 @@ public class Config {
 
         public General(ForgeConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
-
-                b.comment("Enchantments").push("enchantments");
-                PLAYER_PRYING_ENCHANTMENT = b.comment("Enables the Prying enchantment to work on players (when hit by crowbar, chance to drop held item).")
-                        .define("playerPryingEnchantment",true);
-                b.pop();
 
                 b.comment("Miscellaneous").push("misc");
                     PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
