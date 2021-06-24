@@ -51,9 +51,9 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
 
-        if (element != this.container.getSlotItem())
+        if (Minecraft.getInstance().world != null && element != this.container.getSlotItem(Minecraft.getInstance().world))
         {
-            element = this.container.getSlotItem();
+            element = this.container.getSlotItem(Minecraft.getInstance().world);
         }
         if (element != null)
         {

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.commands;
 
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -42,7 +43,12 @@ public class CreateAlloyCommand {
                 int j = Math.min(itemIn.getItem().getMaxStackSize(), i);
                 i -= j;
                 ItemStack itemstack = itemIn.createStack(j, false);
-                AlloyItem.addAlloy(itemstack,new AlloyData(data));
+                if (itemstack.getItem() instanceof IAlloyTool) {
+                    ((IAlloyTool) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.world,data,null,null);
+                } else {
+                    AlloyItem.addAlloy(itemstack,new AlloyData(data));
+                }
+
                 boolean flag = serverplayerentity.inventory.addItemStackToInventory(itemstack);
                 if (flag && itemstack.isEmpty()) {
                     itemstack.setCount(1);

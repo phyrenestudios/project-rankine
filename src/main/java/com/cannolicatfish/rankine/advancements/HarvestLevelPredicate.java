@@ -42,7 +42,7 @@ public class HarvestLevelPredicate extends ItemPredicate {
                 {
                     alloyUtils = AlloyUtilsEnum.BRONZE;
                 }
-                return e.getAlloyMiningLevel(nbt.getString(), alloyUtils) >= level;
+                return e.getAlloyHarvestLevel(item) >= level;
             }
         }
         return false;

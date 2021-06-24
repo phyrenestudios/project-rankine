@@ -43,10 +43,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class AlloyHammerItem extends HammerItem implements IAlloyTool{
-    private final AlloyUtils alloy;
-    public AlloyHammerItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Properties properties) {
+    private final String defaultComposition;
+    private final ResourceLocation defaultAlloyRecipe;
+    public AlloyHammerItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  Properties properties) {
         super(attackDamageIn, attackSpeedIn, tier, properties);
-        this.alloy = alloy;
+        this.defaultComposition = defaultCompositionIn;
+        this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
@@ -73,7 +75,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
             }
 
         }
-        stack.damageItem(calcDurabilityLoss(stack,this.alloy,attacker.getEntityWorld(),attacker,true), attacker, (entity) -> {
+        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,true), attacker, (entity) -> {
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
         return true;
@@ -89,9 +91,9 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
         if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isAirBlock(pos)) {
             for (CrushingRecipe recipe : worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.CRUSHING)) {
                 for (ItemStack s : recipe.getIngredientAsStackList()) {
-                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy) >= state.getBlock().getHarvestLevel(state)) {
+                    if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem() && getAlloyHarvestLevel(stack) >= state.getBlock().getHarvestLevel(state)) {
                         if (state.getBlockHardness(worldIn, pos) != 0.0F) {
-                            stack.damageItem(calcDurabilityLoss(stack,this.alloy,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
+                            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (p_220038_0_) -> {
                                 p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
                             });
                         }
@@ -100,7 +102,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
                         double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy),worldIn);
+                            List<ItemStack> results = recipe.getResults(getAlloyHarvestLevel(stack),worldIn);
                             if (getAtomizeModifier(stack) >= 1) {
                                 for (int i = 0; i < results.size(); i++) {
                                     if (results.get(i).isEmpty()) {
@@ -132,17 +134,17 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        return getDamage(stack) * 1f / this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+        return getDamage(stack) * 1f / this.getAlloyDurability(stack);
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+        return this.getAlloyDurability(stack);
     }
 
     @Override
     public int getItemEnchantability(ItemStack stack) {
-        return this.getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy);
+        return this.getAlloyEnchantability(stack);
     }
 
     @Override
@@ -151,7 +153,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        if (returnCompositionString(stack,this.alloy) != null)
+        if (this.isAlloyInit(stack))
         {
             if (!Screen.hasShiftDown())
             {
@@ -159,31 +161,32 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
             }
             if (Screen.hasShiftDown())
             {
-                float eff = getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
+                float eff = getAlloyEfficiency(stack);
                 float wear = getWearAsPercent(eff,getAlloyWear(getWearModifierMining(eff),getDamage(stack),getMaxDamage(stack)));
-                tooltip.add((new StringTextComponent("Composition: " + returnCompositionString(stack,this.alloy))).mergeStyle(alloy.getAlloyGroupColor()));
+                tooltip.add((new StringTextComponent("Composition: " + getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
                 tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(wear) + "%")).mergeStyle(getWearColor(wear)));
-                tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy) - getDamage(stack)) + "/" + getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.DARK_GREEN));
-                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy)))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - getDamage(stack)) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).mergeStyle(TextFormatting.GRAY));
                 tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
-                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
                 if (Config.ALLOYS.ALLOY_CORROSION.get())
                 {
-                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
                 if (Config.ALLOYS.ALLOY_HEAT.get())
                 {
-                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
                 if (Config.ALLOYS.ALLOY_TOUGHNESS.get())
                 {
-                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
             }
         }
     }
 
-    @Override
+    /*
+        @Override
     public ITextComponent getDisplayName(ItemStack stack) {
         CompoundNBT nbt = stack.getTag();
         if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
@@ -197,7 +200,8 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
         return super.getDisplayName(stack);
     }
 
-    @Override
+
+        @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
             CompoundNBT nbt = stack.getTag();
@@ -207,33 +211,30 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
         }
         for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
         {
-            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(stack));
             if (enchLvl > 0) {
                 stack.addEnchantment(e,enchLvl);
             }
         }
         super.onCreated(stack, worldIn, playerIn);
     }
+     */
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
-
-            CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
+        if (!this.isAlloyInit(stack)) {
+            this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
-
+/*
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
             ItemStack stack = getAlloyItemStack(new AlloyData(alloy.getDefComposition()),this.getItem());
             for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
             {
-                int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+                int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(stack));
                 if (enchLvl > 0) {
                     stack.addEnchantment(e,enchLvl);
                 }
@@ -241,16 +242,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
             items.add(stack);
         }
     }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return super.canApplyAtEnchantingTable(stack, enchantment);
-    }
-
-    @Override
-    public AlloyUtils returnAlloyUtils() {
-        return this.alloy;
-    }
+*/
 
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
@@ -258,12 +250,12 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
             World worldIn = context.getWorld();
             BlockPos pos = context.getPos();
             BlockState anvil = worldIn.getBlockState(pos);
-            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (getAlloyDurability(returnCompositionString(context.getItem(),this.alloy),this.alloy) - context.getItem().getDamage()) >= 100) {
+            if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (getAlloyDurability(context.getItem()) - context.getItem().getDamage()) >= 100) {
                 worldIn.setBlockState(pos,Blocks.ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));
                 return ActionResultType.SUCCESS;
-            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(returnCompositionString(context.getItem(),this.alloy),this.alloy) - context.getItem().getDamage()) >= 100) {
+            } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (getAlloyDurability(context.getItem()) - context.getItem().getDamage()) >= 100) {
                 worldIn.setBlockState(pos,Blocks.CHIPPED_ANVIL.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING,anvil.get(HorizontalBlock.HORIZONTAL_FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR,SoundCategory.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
                 context.getItem().damageItem(100, context.getPlayer(), (entity) -> entity.sendBreakAnimation(EquipmentSlotType.MAINHAND));

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.ElementUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -10,49 +11,161 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.*;
 
 public interface IAlloyTool {
 
-    ElementUtils utils = ElementUtils.getInstance();
+    default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
+            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
+        });
+        ListNBT alloyData = getAlloyNBT(stack);
+        List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
+        List<Integer> percents = this.getPercents(composition);
 
-/*
-    default double getDurabilityForDisplay(ItemStack stack,) {
-        if (getComposition(stack).size() != 0) {
-            return getDamage(stack) * 1f / this.getMaxDamage(stack);
-        } else {
-            return getDamage(stack) * 1f / this.getTier().getMaxUses();
+        CompoundNBT listnbt = new CompoundNBT();
+        int dur = 0;
+        float ms = 0;
+        int ench = 0;
+        float cr = 0;
+        float hr = 0;
+        float tough = 0;
+
+        int hlmin = 0;
+        int hlmax = 0;
+        float dmgmin = 0;
+        float dmgmax = 0;
+        float asmin = 0;
+        float asmax = 0;
+        for (int i = 0; i < elements.size(); i++) {
+            ElementRecipe element = elements.get(i);
+            int percentage = percents.get(i);
+
+            dur += element.getDurability(percentage);
+            ms += element.getMiningSpeed(percentage);
+            ench += element.getEnchantability(percentage);
+            cr += element.getCorrosionResistance(percentage);
+            hr += element.getHeatResistance(percentage);
+            tough += element.getToughness(percentage);
+
+            int hl = element.getMiningLevel(percentage);
+            float dmg = element.getDamage(percentage);
+            float as = element.getAttackSpeed(percentage);
+
+            hlmin = Math.min(hl,hlmin);
+            hlmax = Math.max(hl,hlmax);
+            dmgmin = Math.min(dmg,dmgmin);
+            dmgmax = Math.max(dmg,dmgmax);
+            asmin = Math.min(as,asmin);
+            asmax = Math.max(as,asmax);
+        }
+
+        int hl = hlmax - hlmin;
+        float dmg = dmgmax - dmgmin;
+        float as = asmax - asmin;
+
+        if (alloyRecipe != null) {
+            Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().getRecipe(alloyRecipe);
+            if (opt.isPresent()) {
+                AlloyingRecipe recipe = (AlloyingRecipe) opt.get();
+            }
+        }
+
+        listnbt.putString("comp",composition);
+        if (alloyRecipe != null) {
+            listnbt.putString("recipe",alloyRecipe.toString());
+        }
+        listnbt.putInt("durability",dur);
+        listnbt.putFloat("miningSpeed",Math.round(ms*100)/100f);
+        listnbt.putInt("harvestLevel",hl);
+        listnbt.putInt("enchantability",ench);
+        listnbt.putFloat("damage",Math.round(dmg*100)/100f);
+        listnbt.putFloat("attackSpeed",Math.round(as*100)/100f);
+        listnbt.putFloat("corrResist",Math.round(cr*100)/100f);
+        listnbt.putFloat("heatResist",Math.round(hr*100)/100f);
+        listnbt.putFloat("toughness",Math.round(tough*100)/100f);
+        alloyData.add(listnbt);
+        stack.getOrCreateTag().put("StoredAlloy", listnbt);
+
+        if (nameOverride != null && stack.getTag() != null) {
+            stack.getTag().putString("nameAdd",nameOverride);
         }
     }
-*/
 
-    default int getAlloyDurability(String comp, AlloyUtils alloy)
-    {
-        return utils.calcDurability(getElementRecipes(comp,null),getPercents(comp)) + alloy.getDurabilityBonus();
+    default ListNBT getAlloyNBT(ItemStack stack) {
+        CompoundNBT compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
     }
 
-    default float getAlloyEfficiency(String comp, AlloyUtils alloy)
-    {
-        return utils.calcMiningSpeed(getElementRecipes(comp,null), getPercents(comp)) + alloy.getMiningSpeedBonus();
+    default boolean isAlloyInit(ItemStack stack) {
+
+        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty();
     }
 
-    default int getAlloyEnchantability(String comp, AlloyUtils alloy) {
-        return utils.calcEnchantability(getElementRecipes(comp,null), getPercents(comp)) + alloy.getEnchantabilityBonus();
+    default String getAlloyComposition(ItemStack stack)
+    {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getString("comp");
+        } else {
+            return "80Hg-20Au";
+        }
     }
 
-    default int getAlloyMiningLevel(String comp, AlloyUtils alloy)
+    default ResourceLocation getAlloyRecipe(ItemStack stack)
     {
-        return utils.calcMiningLevel(getElementRecipes(comp,null), getPercents(comp)) + alloy.getMiningLevelBonus();
+        if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").getString("recipe").isEmpty()) {
+            return new ResourceLocation(stack.getTag().getCompound("StoredAlloy").getString("recipe"));
+        } else {
+            return null;
+        }
+    }
+
+    default int getAlloyDurability(ItemStack stack)
+    {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getInt("durability");
+        } else {
+            return 1;
+        }
+
+    }
+
+    default float getAlloyEfficiency(ItemStack stack)
+    {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("miningSpeed");
+        } else {
+            return 1;
+        }
+    }
+
+    default int getAlloyEnchantability(ItemStack stack) {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getInt("enchantability");
+        } else {
+            return 1;
+        }
+    }
+
+    default int getAlloyHarvestLevel(ItemStack stack)
+    {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getInt("harvestLevel");
+        } else {
+            return 0;
+        }
     }
 
 
@@ -78,69 +191,68 @@ public interface IAlloyTool {
         return (modstat - wear)/modstat * 100;
     }
 
-    default float getAlloyAttackDamage(String comp, AlloyUtils alloy) {
-        return utils.calcDamage(getElementRecipes(comp,null), getPercents(comp)) + alloy.getAttackDamageBonus();
+    default float getAlloyAttackDamage(ItemStack stack) {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("damage");
+        } else {
+            return 1;
+        }
     }
 
-    default float getAlloyAttackSpeed(String comp, AlloyUtils alloy) {
-        return Math.max(utils.calcAttackSpeed(getElementRecipes(comp,null), getPercents(comp)) + alloy.getAttackSpeedBonus(), 0);
+    default float getAlloyAttackSpeed(ItemStack stack) {
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("attackSpeed");
+        } else {
+            return 1;
+        }
     }
 
-    default float getCorrResist(ItemStack stack, AlloyUtils alloy)
+    default float getCorrResist(ItemStack stack)
     {
         if (!Config.ALLOYS.ALLOY_CORROSION.get())
         {
             return 100;
         }
-        if (getComposition(stack).size() != 0)
-        {
-            String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.max(Math.min(utils.calcCorrResist(getElementRecipes(comp,null),getPercents(comp)) + alloy.getCorrResistBonus(), 1),0);
-        } else
-        {
-            return alloy.getCorrResistBonus();
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("corrResist");
+        } else {
+            return 0;
         }
 
     }
 
 
-    default float getHeatResist(ItemStack stack, AlloyUtils alloy)
+    default float getHeatResist(ItemStack stack)
     {
         if (!Config.ALLOYS.ALLOY_HEAT.get())
         {
             return 100;
         }
-        if (getComposition(stack).size() != 0)
-        {
-            String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return Math.max(Math.min(utils.calcHeatResist(getElementRecipes(comp,null),getPercents(comp)) + alloy.getHeatResistBonus(),1),0);
-        } else
-        {
-            return alloy.getHeatResistBonus();
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("heatResist");
+        } else {
+            return 0;
         }
     }
 
-    default float getToughness(ItemStack stack, AlloyUtils alloy)
+    default float getToughness(ItemStack stack)
     {
         if (!Config.ALLOYS.ALLOY_TOUGHNESS.get())
         {
             return 0;
         }
-        if (getComposition(stack).size() != 0)
-        {
-            String comp = getComposition(stack).getCompound(0).get("comp").getString();
-            return utils.calcToughness(getElementRecipes(comp,null),getPercents(comp)) + alloy.getToughnessBonus();
-        } else
-        {
-            return alloy.getToughnessBonus();
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("toughness");
+        } else {
+            return 0;
         }
     }
 
-    default int calcDurabilityLoss(ItemStack stack, AlloyUtils alloy, World worldIn, LivingEntity entityLiving, boolean isEfficient)
+    default int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
         Random rand = new Random();
         int i = 1;
-        float toughness = getToughness(stack,alloy);
+        float toughness = getToughness(stack);
         if (toughness > 0 && rand.nextFloat() < toughness)
         {
             i += -1;
@@ -149,10 +261,10 @@ public interface IAlloyTool {
         {
             i += 1;
         }
-        if (rand.nextFloat() > getHeatResist(stack,alloy) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
             i += Config.ALLOYS.ALLOY_HEAT_AMT.get();
         }
-        if ((rand.nextFloat() > getCorrResist(stack,alloy) && entityLiving.isWet()))
+        if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
         {
             i += Config.ALLOYS.ALLOY_CORROSION_AMT.get();
         }
@@ -187,42 +299,6 @@ public interface IAlloyTool {
 
     }
 
-    default String returnCompositionString(ItemStack stack, AlloyUtils alloy) {
-        INBT nbt = getComposition(stack).getCompound(0).get("comp");
-        return nbt != null ? nbt.getString() : alloy.getDefComposition();
-    }
-
-    default String returnCompositionString(ItemStack stack) {
-        INBT nbt = getComposition(stack).getCompound(0).get("comp");
-        return nbt != null ? nbt.getString() : "100Fe";
-    }
-
-    default ListNBT getComposition(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("StoredComposition", 10) : new ListNBT();
-    }
-
-    default void addAlloy(ItemStack p_92115_0_, AlloyData stack) {
-        ListNBT listnbt = getComposition(p_92115_0_);
-
-        CompoundNBT compoundnbt1 = new CompoundNBT();
-        compoundnbt1.putString("comp", stack.alloyComposition);
-        listnbt.add(compoundnbt1);
-
-        p_92115_0_.getOrCreateTag().put("StoredComposition", listnbt);
-    }
-
-    /**
-     * Returns the ItemStack of an enchanted version of this item.
-     */
-    default ItemStack getAlloyItemStack(AlloyData alloyData, Item item) {
-        ItemStack itemstack = new ItemStack(item);
-        addAlloy(itemstack, alloyData);
-        return itemstack;
-    }
-
-
-
     default List<ElementRecipe> getElementRecipes(String c, @Nullable World worldIn) {
         if (worldIn != null) {
             String[] comp = c.split("-");
@@ -251,27 +327,9 @@ public interface IAlloyTool {
         return list;
     }
 
-    default List<Enchantment> getEnchantments(String c, Item item, AlloyUtils alloy)
-    {
-        List<Enchantment> enchantments = new ArrayList<>();
-        List<Enchantment> elementEn = utils.getToolEnchantments(getElementRecipes(c, null),getPercents(c));
-        for (Enchantment e: elementEn)
-        {
-            if (e != null && !enchantments.contains(e))
-            {
-                enchantments.add(e);
-            }
-        }
-        List<Enchantment> en = alloy.getEnchantmentBonus(item);
-        for (Enchantment e: en)
-        {
-            if (e != null && !enchantments.contains(e))
-            {
-                enchantments.add(e);
-            }
-        }
-        return enchantments;
+    default ItemStack createAlloyItemStack(Item item, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        ItemStack itemstack = new ItemStack(item);
+        this.createAlloyNBT(itemstack,worldIn,composition,alloyRecipe,nameOverride);
+        return itemstack;
     }
-
-    AlloyUtils returnAlloyUtils();
 }

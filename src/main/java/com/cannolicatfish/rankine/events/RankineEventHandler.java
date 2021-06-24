@@ -1059,12 +1059,12 @@ public class RankineEventHandler {
 
             IAlloyTool alloyTool = (IAlloyTool) stack.getItem();
 
-            double damage = alloyTool.getAlloyAttackDamage(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils());
+            double damage = alloyTool.getAlloyAttackDamage(stack);
             event.addModifier(Attributes.ATTACK_DAMAGE,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc1"), "Rankine Damage modifier",
                     Math.max(damage - alloyTool.getAlloyWear(alloyTool.getWearModifierDmg((float) damage),stack.getItem().getDamage(stack),stack.getItem().getMaxDamage(stack)),0),
                     AttributeModifier.Operation.ADDITION));
             event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
-                    alloyTool.getAlloyAttackSpeed(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils()),
+                    alloyTool.getAlloyAttackSpeed(stack),
                     AttributeModifier.Operation.ADDITION));
         }
 
