@@ -1,0 +1,7 @@
+{
+  "parent": "rankine:block/template_rankine_ore",
+  "textures": {
+    "background": "rankine:block/tufa_limestone",
+    "overlay": "rankine:block/native_indium_ore"
+  }
+}

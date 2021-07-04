@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/ironstone"
+      },
+      {
+        "model": "rankine:block/ironstone",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/ironstone",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/ironstone",
+        "y": 270
+      }
+    ]
+  }
+}

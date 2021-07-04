@@ -1,0 +1,15 @@
+{
+  "type": "rankine:sluicing",
+  "total": 2,
+  "input": {
+    "item": "rankine:white_sand"
+  },
+  "output1": {
+    "item": "minecraft:quartz",
+    "weight": 1
+  },
+  "output2": {
+    "item": "rankine:feldspar",
+    "weight": 4
+  }
+}

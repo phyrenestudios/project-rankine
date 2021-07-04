@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab_top",
-  "textures": {
-    "bottom": "rankine:block/tin_sheetmetal",
-    "top": "rankine:block/tin_sheetmetal",
-    "side": "rankine:block/tin_sheetmetal"
-  }
-}

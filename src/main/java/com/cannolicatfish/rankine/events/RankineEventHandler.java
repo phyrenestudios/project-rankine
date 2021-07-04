@@ -49,12 +49,10 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.BasicTrade;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -153,7 +151,7 @@ public class RankineEventHandler {
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.INVAR_HAMMER.get(),"90Fe-10Ni",8,3,10,0.2f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.ZIRCON.get()),12,15,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(RankineItems.ALUMINA.get()),12,15,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(RankineItems.BAUXITE.get()),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MAGNESITE.get()),12,15,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.VANADINITE.get()),12,15,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.PETALITE.get()),12,15,0.05f));
@@ -805,7 +803,7 @@ public class RankineEventHandler {
             BlockPos pos = event.getPos();
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-            if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(Blocks.QUARTZ_BLOCK))
+            if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(Blocks.QUARTZ_BLOCK))
             {
                 event.setNewState(Blocks.GRANITE.getDefaultState());
                 return;
@@ -813,7 +811,7 @@ public class RankineEventHandler {
             {
                 event.setNewState(RankineBlocks.GRAY_GRANITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
+            } else if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
                 return;
@@ -829,7 +827,7 @@ public class RankineEventHandler {
             {
                 event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
+            } else if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
                 return;
@@ -889,7 +887,7 @@ public class RankineEventHandler {
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock());
 
-            if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()))
+            if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.RHYOLITE.get().getDefaultState());
                 return;

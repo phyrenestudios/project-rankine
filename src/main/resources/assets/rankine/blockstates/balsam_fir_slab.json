@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "type=bottom": { "model": "rankine:block/balsam_fir_slab" },
-    "type=top": { "model": "rankine:block/balsam_fir_slab_top" },
-    "type=double": { "model": "rankine:block/balsam_fir_planks" }
-  }
-}

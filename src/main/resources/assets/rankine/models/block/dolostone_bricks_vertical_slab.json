@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/dolostone_bricks",
-    "top": "rankine:block/dolostone_bricks",
-    "side": "rankine:block/dolostone_bricks"
-  }
-}

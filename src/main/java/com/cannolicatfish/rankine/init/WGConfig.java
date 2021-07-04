@@ -27,8 +27,14 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue SILL_IRONSTONE_GEN;
         public final ForgeConfigSpec.BooleanValue SILL_PHOSPHORITE_GEN;
 
+        public final ForgeConfigSpec.ConfigValue<List<String>> ORE_STONES;
+
+
         public Misc(ForgeConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen features").push("misc");
+                ORE_STONES = b.comment("Textures of blocks for ores.")
+                        .define("oreStones", Arrays.asList("minecraft:stone","minecraft:granite","minecraft:diorite","minecraft:andesite","minecraft:sandstone","minecraft:red_sandstone","minecraft:netherrack","minecraft:blackstone","minecraft:basalt_side","minecraft:end_stone","minecraft:obsidian","rankine:gray_granite","rankine:granodiorite","rankine:hornblende_andesite","rankine:tholeiitic_basalt","rankine:pyroxene_gabbro","rankine:anorthosite","rankine:rhyolite","rankine:comendite","rankine:red_dacite","rankine:black_dacite","rankine:red_porphyry","rankine:purple_porphyry","rankine:pegmatite","rankine:peridotite","rankine:troctolite","rankine:kimberlite","rankine:komatiite","rankine:pumice","rankine:scoria","rankine:white_marble","rankine:black_marble","rankine:rose_marble","rankine:gray_marble","rankine:gneiss","rankine:mica_schist","rankine:slate","rankine:phyllite","rankine:quartzite","rankine:mariposite","rankine:skarn","rankine:ringwoodite","rankine:wadsleyite","rankine:bridgmanite","rankine:ferropericlase","rankine:perovskite","rankine:tufa_limestone","rankine:dolostone","rankine:chalk","rankine:carbonaceous_shale","rankine:siltstone","rankine:quartz_sandstone","rankine:arkose_sandstone","rankine:mudstone","rankine:breccia","rankine:meteorite","rankine:enstatite"));
+
                 FLAT_BEDROCK = b.comment("Generates with a flat bedrock layer (includes the Nether)")
                         .define("flatBedrock",false);
                 BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
@@ -208,7 +214,7 @@ public class WGConfig {
         public Intrusions(ForgeConfigSpec.Builder b) {
             b.comment("Settings for intrusions").push("intrusions");
             OVERWORLD_INTRUSION_LIST = b.comment("List of blocks to be generated as intrusions. Each block is followed by its weight.")
-                    .define("overworldIntrusionList", new ArrayList<>(Arrays.asList("rankine:kimberlite","1","rankine:gray_granite","1","rankine:granodiorite","1","minecraft:granite","1","minecraft:diorite","1","rankine:pyroxene_gabbro","1","rankine:pegmatite","1")));
+                    .define("overworldIntrusionList", new ArrayList<>(Arrays.asList("rankine:kimberlite&1&rankine:diamond_ore")));
             OVERWORLD_INTRUSION_CHANCE = b.comment("Chance for an overworld intrusion to spawn in a chunk. Set to 0 to disable.")
                     .defineInRange("overworldIntrusionChance", 0.5D, 0.0D, 1.0D);
             OVERWORLD_INTRUSION_RADIUS = b.comment("Size of an intrusion")
@@ -641,6 +647,19 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue WOLFRAMITE_ORE_MEGA_GEN;
         public final ForgeConfigSpec.IntValue WOLFRAMITE_ORE_MEGA_SIZE;
         public final ForgeConfigSpec.IntValue WOLFRAMITE_ORE_MEGA_CHANCE;
+
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_HL;
+        public final ForgeConfigSpec.ConfigValue<List<String>> RHENIITE_ORE_DIMENSION_LIST;
+        public final ForgeConfigSpec.BooleanValue RHENIITE_ORE_STONE_SPECIFIC;
+        public final ForgeConfigSpec.ConfigValue<List<String>> RHENIITE_ORE_BLOCK_LIST;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_MIN_HEIGHT;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_MAX_HEIGHT;
+        public final ForgeConfigSpec.BooleanValue RHENIITE_ORE_GENTYPE;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_CHANCE;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_SIZE;
+        public final ForgeConfigSpec.BooleanValue RHENIITE_ORE_MEGA_GEN;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_MEGA_SIZE;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_MEGA_CHANCE;
 
         public final ForgeConfigSpec.IntValue TANTALITE_ORE_HL;
         public final ForgeConfigSpec.ConfigValue<List<String>> TANTALITE_ORE_DIMENSION_LIST;
@@ -1936,6 +1955,33 @@ public class WGConfig {
                     .defineInRange("wolframiteOreMegaVeinChance", 40, 0, 500);
             b.pop();
 
+            b.comment("Rheniite Ore Settings").push("rheniiteOre");
+            RHENIITE_ORE_HL = b.comment("Harvest Level of Rheniite Ore.")
+                    .defineInRange("rheniiteOreHL", 4, 0, 4);
+            RHENIITE_ORE_DIMENSION_LIST = b.comment("Dimensions to generate Rheniite Ore in (supports overworld / nether / end). The same spawning parameters are used if multiple dimenstions are listed. Leave empty to disable Rheniite Ore generation.")
+                    .define("rheniiteOreDimList", new ArrayList<>(Arrays.asList("end")));
+            RHENIITE_ORE_STONE_SPECIFIC = b.comment("If true Rheniite Ore will only spawn in the blocks listed under rheniiteOreBlockList If false it will generate in blocks with the tag #minecraft:base_stone_overworld or #minecraft:base_stone_nether or #forge:base_stone_end depending on the dimensions listed in rheniiteOreDimList.")
+                    .define("rheniiteOreStoneSpecific",false);
+            RHENIITE_ORE_BLOCK_LIST = b.comment("Blocks to generate Rheniite Ore in if rheniiteOreStoneSpecific is enabled. The entries can be either individual blocks or tags. Use B#<modname:block_name> for blocks and T#<modname::tag_name> for tags (Ex: B#rankine:slate and T#forge:stones/gabbro). Rankine stones and some modded stones support background stone imitation.")
+                    .define("rheniiteOreBlockList", new ArrayList<>(Arrays.asList()));
+            RHENIITE_ORE_MIN_HEIGHT = b.comment("Minimum height to generate Rheniite Ore at (make sure it is less than the maximum)")
+                    .defineInRange("rheniiteOreMin", 10, 0, 256);
+            RHENIITE_ORE_MAX_HEIGHT = b.comment("Maximum height to generate Rheniite Ore at (make sure it is greater than the minimum)")
+                    .defineInRange("rheniiteOreMax", 60, 0, 256);
+            RHENIITE_ORE_GENTYPE = b.comment("If false, rheniiteOreChance will determine how many tries per chunk ore veins will generate. If true, rheniiteOreChance will determine 1 in how many chunks a vein will spawn.")
+                    .define("rheniiteOreGentype",false);
+            RHENIITE_ORE_CHANCE = b.comment("Count / chance number to be used depending on rheniiteOreGentype.")
+                    .defineInRange("rheniiteOreChance", 1, 0, 256);
+            RHENIITE_ORE_SIZE = b.comment("The maximum size of Rheniite Ore vein")
+                    .defineInRange("rheniiteOreSize", 5, 0, 500);
+            RHENIITE_ORE_MEGA_GEN = b.comment("If true, a mega Rheniite Ore vein will generate according to the parameters rheniiteOreMegaVeinSize andrheniiteOreMegaVeinChance")
+                    .define("rheniiteOreMegaVeins",false);
+            RHENIITE_ORE_MEGA_SIZE = b.comment("The maximum size of mega Rheniite Ore vein.")
+                    .defineInRange("rheniiteOreMegaVeinSize", 50, 0, 500);
+            RHENIITE_ORE_MEGA_CHANCE = b.comment("Determines 1 in how many chunks a mega Rheniite Ore vein will spawn.")
+                    .defineInRange("rheniiteOreMegaVeinChance", 40, 0, 500);
+            b.pop();
+
             b.comment("Tantalite Ore Settings").push("tantaliteOre");
             TANTALITE_ORE_HL = b.comment("Harvest Level of Tantalite Ore.")
                     .defineInRange("tantaliteOreHL", 4, 0, 4);
@@ -2039,7 +2085,7 @@ public class WGConfig {
             SPERRYLITE_ORE_MEGA_GEN = b.comment("If true, a mega Sperrylite Ore vein will generate according to the parameters sperryliteOreMegaVeinSize andsperryliteOreMegaVeinChance")
                     .define("sperryliteOreMegaVeins",false);
             SPERRYLITE_ORE_MEGA_SIZE = b.comment("The maximum size of mega Sperrylite Ore vein.")
-                    .defineInRange("sperryliteOreMegaVeinSize", 50, 0, 500);
+                    .defineInRange("berrylikeOreMegaVeinSize", 50, 0, 500);
             SPERRYLITE_ORE_MEGA_CHANCE = b.comment("Determines 1 in how many chunks a mega Sperrylite Ore vein will spawn.")
                     .defineInRange("sperryliteOreMegaVeinChance", 40, 0, 500);
             b.pop();

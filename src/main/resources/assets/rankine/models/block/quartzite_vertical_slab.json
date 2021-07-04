@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/quartzite",
-    "top": "rankine:block/quartzite",
-    "side": "rankine:block/quartzite"
-  }
-}

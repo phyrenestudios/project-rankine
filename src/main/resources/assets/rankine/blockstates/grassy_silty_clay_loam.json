@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "rankine:block/grassy_silty_clay_loam"
+      },
+      {
+        "model": "rankine:block/grassy_silty_clay_loam",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/grassy_silty_clay_loam",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/grassy_silty_clay_loam",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "rankine:block/grassy_silty_clay_loam_snow"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "rankine:block/pinyon_pine_log",
+    "end": "rankine:block/pinyon_pine_log"
+  }
+}

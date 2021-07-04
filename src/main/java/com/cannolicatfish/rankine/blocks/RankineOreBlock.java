@@ -9,6 +9,7 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -21,17 +22,16 @@ public class RankineOreBlock extends Block {
     public int type = 0;
     private List<String> hlpath = new ArrayList<>();
     private int hl = -1;
-    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,88);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,WGConfig.MISC.ORE_STONES.get().size()-1);
     public RankineOreBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockPos match = BlockPos.getClosestMatchingPosition(context.getPos(),1,1,(p) -> context.getWorld().getBlockState(p).getBlock() instanceof RankineOreBlock).orElse(null);
-        if (match != null)
-        {
-            return this.getDefaultState().with(TYPE,context.getWorld().getBlockState(match).get(TYPE));
+        World world = context.getWorld();
+        if (context.getPlayer().isSneaking()) {
+            return this.getDefaultState().with(TYPE, world.getBlockState(context.getPos().offset(context.getFace().getOpposite())).get(TYPE));
         } else {
             return this.getDefaultState().with(TYPE,0);
         }

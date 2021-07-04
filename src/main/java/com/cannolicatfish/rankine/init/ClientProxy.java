@@ -65,6 +65,7 @@ public class ClientProxy implements IProxy {
 
         addCutout(Arrays.asList(
                 RankineBlocks.ACANTHITE_ORE.get(),
+                RankineBlocks.RHENIITE_ORE.get(),
                 RankineBlocks.NATIVE_BISMUTH_ORE.get(),
                 RankineBlocks.HALITE_ORE.get(),
                 RankineBlocks.PINK_HALITE_ORE.get(),
@@ -281,7 +282,11 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.KRYPTON_GAS_BLOCK.get(),
                 RankineBlocks.XENON_GAS_BLOCK.get(),
                 RankineBlocks.RADON_GAS_BLOCK.get(),
-                RankineBlocks.OGANESSON_GAS_BLOCK.get()
+                RankineBlocks.OGANESSON_GAS_BLOCK.get(),
+                RankineBlocks.BLACK_TEKTITE.get(),
+                RankineBlocks.GREEN_TEKTITE.get(),
+                RankineBlocks.GRAY_TEKTITE.get(),
+                RankineBlocks.BROWN_TEKTITE.get()
         ));
     }
 

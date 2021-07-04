@@ -1,9 +1,7 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.DiamondMantleGolemModel;
-import com.cannolicatfish.rankine.client.models.MantleGolemModel;
+import com.cannolicatfish.rankine.client.models.entities.DiamondMantleGolemModel;
 import com.cannolicatfish.rankine.entities.DiamondMantleGolemEntity;
-import com.cannolicatfish.rankine.entities.MantleGolemEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;

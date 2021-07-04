@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/silt"
+      },
+      {
+        "model": "rankine:block/silt",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silt",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silt",
+        "y": 270
+      }
+    ]
+  }
+}

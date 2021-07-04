@@ -132,6 +132,7 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                         worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, blockList.indexOf(b)+1), 2);
                                                         ++i;
                                                     } else  */
+                                                    /*
                                                     if (rs.getNamespace().equals("rankine")) {
                                                         switch (rs.getPath()) {
                                                             case "gray_granite":
@@ -435,6 +436,7 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                         }
                                                         ++i;
                                                     }
+                                                    */
                                                 } else {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
                                                     ++i;

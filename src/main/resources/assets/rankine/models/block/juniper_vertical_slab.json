@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/juniper_planks",
-    "top": "rankine:block/juniper_planks",
-    "side": "rankine:block/juniper_planks"
-  }
-}

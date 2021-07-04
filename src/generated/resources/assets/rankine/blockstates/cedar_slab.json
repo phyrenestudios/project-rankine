@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/cedar_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/cedar_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/cedar_planks"
+    }
+  }
+}

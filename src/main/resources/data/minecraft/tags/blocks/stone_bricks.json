@@ -48,7 +48,8 @@
     "rankine:arkose_sandstone_bricks",
     "rankine:mudstone_bricks",
     "rankine:breccia_bricks",
-    "rankine:meteorite_paver",
-    "rankine:enstatite_paver"
+    "rankine:frozen_meteorite_bricks",
+    "rankine:meteorite_bricks",
+    "rankine:enstatite_bricks"
   ]
 }

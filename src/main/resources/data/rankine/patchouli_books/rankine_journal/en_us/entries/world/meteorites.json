@@ -15,7 +15,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:meteorite_paver",
+      "recipe": "rankine:meteorite_bricks",
       "text": "Decorative form of meteorite. Increases movement speed like stone bricks."
     },
     {
@@ -26,7 +26,7 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:enstatite_paver",
+      "recipe": "rankine:enstatite_bricks",
       "text": "Decorative form of enstatite. Increases movement speed like stone bricks."
     },
     {

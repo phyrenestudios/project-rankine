@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "rankine:block/wadsleyite",
+    "bottom": "rankine:block/wadsleyite",
+    "top": "rankine:block/wadsleyite"
+  }
+}

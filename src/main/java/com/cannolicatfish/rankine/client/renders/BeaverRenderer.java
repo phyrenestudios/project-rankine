@@ -1,15 +1,12 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.BeaverModel;
+import com.cannolicatfish.rankine.client.models.entities.BeaverModel;
 import com.cannolicatfish.rankine.entities.BeaverEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.model.WolfModel;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 

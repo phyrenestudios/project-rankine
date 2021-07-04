@@ -9,8 +9,8 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:feldspar",
-      "anchor": "feldspar",
+      "item": "rankine:orthoclase_feldspar",
+      "anchor": "orthoclase_feldspar",
       "link_recipe": true,
       "text": "$(l)Source:$() Obtained from various stones and ores through crushing."
     },

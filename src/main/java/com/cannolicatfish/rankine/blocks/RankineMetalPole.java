@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.FourWayBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;

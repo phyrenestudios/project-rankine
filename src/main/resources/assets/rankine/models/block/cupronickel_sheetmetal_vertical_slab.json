@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/cupronickel_sheetmetal",
-    "top": "rankine:block/cupronickel_sheetmetal",
-    "side": "rankine:block/cupronickel_sheetmetal"
-  }
-}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "rankine:block/quartz_sandstone_bricks"
+  }
+}

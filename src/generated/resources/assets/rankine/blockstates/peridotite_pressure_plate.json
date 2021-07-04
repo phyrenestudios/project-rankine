@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "rankine:block/peridotite_pressure_plate_up"
+    },
+    "powered=true": {
+      "model": "rankine:block/peridotite_pressure_plate_down"
+    }
+  }
+}

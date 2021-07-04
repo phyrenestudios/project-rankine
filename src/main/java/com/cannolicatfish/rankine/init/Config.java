@@ -999,9 +999,15 @@ public class Config {
         public final ForgeConfigSpec.IntValue SCORIA_HL;
         public final ForgeConfigSpec.DoubleValue SCORIA_HARD;
         public final ForgeConfigSpec.DoubleValue SCORIA_RESIST;
+        public final ForgeConfigSpec.IntValue ROSE_MARBLE_HL;
+        public final ForgeConfigSpec.DoubleValue ROSE_MARBLE_HARD;
+        public final ForgeConfigSpec.DoubleValue ROSE_MARBLE_RESIST;
         public final ForgeConfigSpec.IntValue WHITE_MARBLE_HL;
         public final ForgeConfigSpec.DoubleValue WHITE_MARBLE_HARD;
         public final ForgeConfigSpec.DoubleValue WHITE_MARBLE_RESIST;
+        public final ForgeConfigSpec.IntValue GRAY_MARBLE_HL;
+        public final ForgeConfigSpec.DoubleValue GRAY_MARBLE_HARD;
+        public final ForgeConfigSpec.DoubleValue GRAY_MARBLE_RESIST;
         public final ForgeConfigSpec.IntValue BLACK_MARBLE_HL;
         public final ForgeConfigSpec.DoubleValue BLACK_MARBLE_HARD;
         public final ForgeConfigSpec.DoubleValue BLACK_MARBLE_RESIST;
@@ -1223,6 +1229,14 @@ public class Config {
                 SCORIA_RESIST = b.comment("Resistance of Scoria (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("scoriaResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
+                b.comment("Rose Marble Properties").push("RoseMarble");
+                ROSE_MARBLE_HL = b.comment("Harvest Level of Rose Marble.")
+                        .defineInRange("RoseMarbleHL", 0, 0, 10);
+                ROSE_MARBLE_HARD = b.comment("Hardness of Rose Marble (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("RoseMarbleHardness", 2.5D, 0.0D, 100.0D);
+                ROSE_MARBLE_RESIST = b.comment("Resistance of Rose Marble (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("RoseMarbleResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
                 b.comment("White Marble Properties").push("WhiteMarble");
                 WHITE_MARBLE_HL = b.comment("Harvest Level of White Marble.")
                         .defineInRange("WhiteMarbleHL", 0, 0, 10);
@@ -1230,6 +1244,14 @@ public class Config {
                         .defineInRange("WhiteMarbleHardness", 2.5D, 0.0D, 100.0D);
                 WHITE_MARBLE_RESIST = b.comment("Resistance of White Marble (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("WhiteMarbleResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Gray Marble Properties").push("GrayMarble");
+                GRAY_MARBLE_HL = b.comment("Harvest Level of Gray Marble.")
+                        .defineInRange("GrayMarbleHL", 0, 0, 10);
+                GRAY_MARBLE_HARD = b.comment("Hardness of Gray Marble (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("GrayMarbleHardness", 2.5D, 0.0D, 100.0D);
+                GRAY_MARBLE_RESIST = b.comment("Resistance of Gray Marble (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("GrayMarbleResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Black Marble Properties").push("BlackMarble");
                 BLACK_MARBLE_HL = b.comment("Harvest Level of Black Marble.")

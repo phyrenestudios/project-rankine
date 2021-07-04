@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "rankine:block/checkered_dacite",
+    "bottom": "rankine:block/checkered_dacite",
+    "top": "rankine:block/checkered_dacite"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_rh",
+  "textures": {
+    "bottom": "rankine:block/magnolia_door_bottom",
+    "top": "rankine:block/magnolia_door_top"
+  }
+}

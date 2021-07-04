@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/clay_loam"
+      },
+      {
+        "model": "rankine:block/clay_loam",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/clay_loam",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/clay_loam",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/maple_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/maple_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/maple_planks"
+    }
+  }
+}

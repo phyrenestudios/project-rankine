@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "rankine:block/balsam_fir_log",
-    "side": "rankine:block/balsam_fir_log"
-  }
-}
