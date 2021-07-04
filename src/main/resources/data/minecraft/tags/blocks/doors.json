@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "rankine:brass_door"
+    "rankine:brass_door",
+    "rankine:bronze_door",
+    "rankine:steel_door",
+    "rankine:cupronickel_door"
   ]
 }
