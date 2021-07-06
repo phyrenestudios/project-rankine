@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
+import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import net.minecraft.enchantment.EnchantmentType;
@@ -16,6 +17,9 @@ public class RankineEnchantmentTypes {
 
     public static EnchantmentType CROWBAR = EnchantmentType.create("crowbar", (itemIn) -> {
         return itemIn instanceof CrowbarItem; });
+
+    public static EnchantmentType KNIFE = EnchantmentType.create("knife", (itemIn) -> {
+        return itemIn instanceof KnifeItem; });
 
     public static EnchantmentType SWING = EnchantmentType.create("swing", (itemIn) -> {
         return itemIn instanceof HammerItem || itemIn instanceof CrowbarItem; });

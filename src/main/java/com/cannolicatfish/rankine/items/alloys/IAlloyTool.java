@@ -25,12 +25,10 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
-public interface IAlloyTool {
+public interface IAlloyTool extends IAlloyItem {
 
+    @Override
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
-        DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
-            p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
-        });
         ListNBT alloyData = getAlloyNBT(stack);
         List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
         List<Integer> percents = this.getPercents(composition);
@@ -72,16 +70,35 @@ public interface IAlloyTool {
             asmax = Math.max(as,asmax);
         }
 
-        int hl = hlmax - hlmin;
-        float dmg = dmgmax - dmgmin;
-        float as = asmax - asmin;
+
 
         if (alloyRecipe != null) {
             Optional<? extends IRecipe<?>> opt = worldIn.getRecipeManager().getRecipe(alloyRecipe);
             if (opt.isPresent()) {
                 AlloyingRecipe recipe = (AlloyingRecipe) opt.get();
+                dur += recipe.getBonusDurability();
+                ms += recipe.getBonusMiningSpeed();
+                ench += recipe.getBonusEnchantability();
+                cr += recipe.getBonusCorrosionResistance();
+                hr += recipe.getBonusHeatResistance();
+                tough += recipe.getBonusToughness();
+
+                int hl = recipe.getBonusMiningLevel();
+                float dmg = recipe.getBonusDamage();
+                float as = recipe.getBonusAttackSpeed();
+
+                hlmin = Math.min(hl,hlmin);
+                hlmax = Math.max(hl,hlmax);
+                dmgmin = Math.min(dmg,dmgmin);
+                dmgmax = Math.max(dmg,dmgmax);
+                asmin = Math.min(as,asmin);
+                asmax = Math.max(as,asmax);
             }
         }
+
+        int hl = hlmax - hlmin;
+        float dmg = dmgmax - dmgmin;
+        float as = asmax - asmin;
 
         listnbt.putString("comp",composition);
         if (alloyRecipe != null) {
@@ -101,34 +118,6 @@ public interface IAlloyTool {
 
         if (nameOverride != null && stack.getTag() != null) {
             stack.getTag().putString("nameAdd",nameOverride);
-        }
-    }
-
-    default ListNBT getAlloyNBT(ItemStack stack) {
-        CompoundNBT compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
-    }
-
-    default boolean isAlloyInit(ItemStack stack) {
-
-        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty();
-    }
-
-    default String getAlloyComposition(ItemStack stack)
-    {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloy").getString("comp");
-        } else {
-            return "80Hg-20Au";
-        }
-    }
-
-    default ResourceLocation getAlloyRecipe(ItemStack stack)
-    {
-        if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").getString("recipe").isEmpty()) {
-            return new ResourceLocation(stack.getTag().getCompound("StoredAlloy").getString("recipe"));
-        } else {
-            return null;
         }
     }
 
@@ -299,37 +288,5 @@ public interface IAlloyTool {
 
     }
 
-    default List<ElementRecipe> getElementRecipes(String c, @Nullable World worldIn) {
-        if (worldIn != null) {
-            String[] comp = c.split("-");
-            List<ElementRecipe> list = new ArrayList<>();
-            for (String e: comp)
-            {
-                String str = e.replaceAll("[^A-Za-z]+", "");
-                worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
-            }
-            return list;
-        } else {
-            return Collections.emptyList();
-        }
 
-    }
-
-    default List<Integer> getPercents(String c)
-    {
-        String[] comp = c.split("-");
-        List<Integer> list = new ArrayList<>();
-        for (String e: comp)
-        {
-            String str = e.replaceAll("\\D+", "");
-            list.add(Integer.parseInt(str));
-        }
-        return list;
-    }
-
-    default ItemStack createAlloyItemStack(Item item, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
-        ItemStack itemstack = new ItemStack(item);
-        this.createAlloyNBT(itemstack,worldIn,composition,alloyRecipe,nameOverride);
-        return itemstack;
-    }
 }

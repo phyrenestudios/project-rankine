@@ -1,10 +1,58 @@
 {
-          "type": "rankine:element",
-          "name": "titanium",
-          "symbol": "Ti",
-          "color": 16777215,
-          "atomic": 22,
-          "potential": 0,
-          "items": ["T#forge:nuggets/titanium","T#forge:ingots/titanium","T#forge:storage_blocks/titanium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "titanium",
+  "symbol": "Ti",
+  "color": 16777215,
+  "atomic": 22,
+  "potential": -1.63,
+  "items": ["T#forge:nuggets/titanium","T#forge:ingots/titanium","T#forge:storage_blocks/titanium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [3.2],
+    "b": [16],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["EXPONENTIAL","LOGARITHMIC"],
+    "a": [1.04,9],
+    "b": [-1,-25],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "mininglevel": {
+    "breaks": [3,7,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [-0.3],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.005],
+    "b": [0.01],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.001],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

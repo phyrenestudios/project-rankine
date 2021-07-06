@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.util.ElementEquation;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -39,11 +40,12 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     private final ResourceLocation id;
     private final NonNullList<Float> mins;
     private final NonNullList<Float> maxes;
+    private final List<Float> bonusValues;
 
     public static final AlloyingRecipe.Serializer SERIALIZER = new AlloyingRecipe.Serializer();
 
     public AlloyingRecipe(ResourceLocation idIn, int totalIn, int requiredIn, int tierIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<PeriodicTableUtils.Element> elementsIn,
-                          ItemStack outputIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn) {
+                          ItemStack outputIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn, List<Float> bonusValuesIn) {
         this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
@@ -53,6 +55,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         this.recipeOutput = outputIn;
         this.mins = minsIn;
         this.maxes = maxesIn;
+        this.bonusValues = bonusValuesIn;
     }
 
     public String getGroup() {
@@ -224,7 +227,29 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return maxes;
     }
 
+    public List<Float> getBonusValues() {
+        return bonusValues;
+    }
 
+    public int getBonusDurability() { return Math.round(this.getBonusValues().get(0));}
+
+    public float getBonusMiningSpeed() { return this.getBonusValues().get(1);}
+
+    public int getBonusMiningLevel() { return Math.round(this.getBonusValues().get(2));}
+
+    public int getBonusEnchantability() { return Math.round(this.getBonusValues().get(3));}
+
+    public float getBonusDamage() { return this.getBonusValues().get(4);}
+
+    public float getBonusAttackSpeed() { return this.getBonusValues().get(5);}
+
+    public float getBonusCorrosionResistance() { return this.getBonusValues().get(6);}
+
+    public float getBonusHeatResistance() { return this.getBonusValues().get(7);}
+
+    public float getBonusKnockbackResistance() { return this.getBonusValues().get(8);}
+
+    public float getBonusToughness() { return this.getBonusValues().get(9);}
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
@@ -317,6 +342,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             NonNullList<PeriodicTableUtils.Element> elements = NonNullList.withSize(t, PeriodicTableUtils.Element.MERCURY);
             NonNullList<Float> mins = NonNullList.withSize(t, 0f);
             NonNullList<Float> maxes = NonNullList.withSize(t, 0f);
+
             for (int i = 0; i < t; i++) {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
@@ -374,7 +400,17 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 throw new JsonParseException("Unsupported number of alloy ingredient requirements (" + r + ") in " + json);
             }
 
-            return new AlloyingRecipe(recipeId, t,r, y, nonnulllist, elements, stack, mins, maxes);
+            String[] stats = new String[]{"durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
+                    "corrosionresist","heatresist","knockbackresist","toughness"};
+            List<Float> bonusStats = new ArrayList<>();
+            for (String stat : stats) {
+                if (json.has(stat)) {
+                    bonusStats.add(JSONUtils.getFloat(json, stat));
+                } else {
+                    bonusStats.add(0f);
+                }
+            }
+            return new AlloyingRecipe(recipeId, t,r, y, nonnulllist, elements, stack, mins, maxes, bonusStats);
         }
 
         public AlloyingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
@@ -382,6 +418,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             int r = buffer.readInt();
             int y = buffer.readInt();
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(t, Ingredient.EMPTY);
+            List<Float> bonusStats = new ArrayList<>();
 
             for(int k = 0; k < nonnulllist.size(); ++k) {
                 nonnulllist.set(k, Ingredient.read(buffer));
@@ -406,8 +443,11 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readFloat());
             }
 
+            for (int k = 0; k < 10; k++) {
+                bonusStats.add(buffer.readFloat());
+            }
 
-            return new AlloyingRecipe(recipeId,t,r,y,nonnulllist, elements, stack, mins, maxes);
+            return new AlloyingRecipe(recipeId,t,r,y,nonnulllist, elements, stack, mins, maxes,bonusStats);
         }
 
         public void write(PacketBuffer buffer, AlloyingRecipe recipe) {
@@ -454,6 +494,10 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             while (count < recipe.total) {
                 buffer.writeFloat(0f);
                 count++;
+            }
+
+            for (int k = 0; k < 10; k++) {
+                buffer.writeFloat(recipe.getBonusValues().get(k));
             }
 
         }

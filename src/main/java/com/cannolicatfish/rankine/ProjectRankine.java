@@ -447,6 +447,7 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
             final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[]{EquipmentSlotType.HEAD, EquipmentSlotType.CHEST, EquipmentSlotType.LEGS, EquipmentSlotType.FEET};
+            final EquipmentSlotType[] HAND_SLOTS = new EquipmentSlotType[]{EquipmentSlotType.MAINHAND, EquipmentSlotType.OFFHAND};
 
             event.getRegistry().register(new PunctureEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"puncture"));
             event.getRegistry().register(new SwingEnchantment(Enchantment.Rarity.COMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"swing"));
@@ -457,7 +458,7 @@ public class ProjectRankine {
             event.getRegistry().register(new QuakeEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"quake"));
             event.getRegistry().register(new ForagingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"foraging"));
             event.getRegistry().register(new LightningAspectEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"lightning_aspect"));
-            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
+
             event.getRegistry().register(new DuneWalkerEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"dune_walker"));
             event.getRegistry().register(new SnowDrifterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"snow_drifter"));
             event.getRegistry().register(new SpeedSkaterEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"speed_skater"));
@@ -469,6 +470,18 @@ public class ProjectRankine {
             event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
             event.getRegistry().register(new GuardEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"guard"));
 
+            event.getRegistry().register(new PreparationEnchantment(Enchantment.Rarity.COMMON, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"preparation"));
+            event.getRegistry().register(new PoisonAspectEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"poison_aspect"));
+            event.getRegistry().register(new BackstabEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"backstab"));
+            event.getRegistry().register(new GraftingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"grafting"));
+            event.getRegistry().register(new RetaliateEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"retaliate"));
+            event.getRegistry().register(new RetreatEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"retreat"));
+
+
+            event.getRegistry().register(new LeverageEnchantment(Enchantment.Rarity.UNCOMMON, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"leverage"));
+            event.getRegistry().register(new PryingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"prying"));
+            event.getRegistry().register(new LiftEnchantment(Enchantment.Rarity.VERY_RARE, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"lift"));
+            event.getRegistry().register(new RetrievalEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"retrieval"));
         }
 
     }
