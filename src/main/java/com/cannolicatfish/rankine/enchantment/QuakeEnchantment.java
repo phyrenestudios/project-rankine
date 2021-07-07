@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.enchantment;
 
+import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.Enchantments;
@@ -8,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class QuakeEnchantment extends Enchantment {
     public QuakeEnchantment(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.DIGGER, slots);
+        super(rarityIn, RankineEnchantmentTypes.MINING, slots);
     }
 
     /**

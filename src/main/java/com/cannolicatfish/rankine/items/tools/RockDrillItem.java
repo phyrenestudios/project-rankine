@@ -7,6 +7,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 
@@ -30,17 +31,21 @@ public class RockDrillItem extends Item {
                 stones.add(stone);
             }
         }
-
-        if (!stones.isEmpty()) {
-            for (Block s : stones) {
-                context.getPlayer().sendMessage(new TranslationTextComponent(s.getTranslationKey()),context.getPlayer().getUniqueID());
+        if (!context.getWorld().isRemote && context.getPlayer() != null) {
+            if (!stones.isEmpty()) {
+                context.getPlayer().sendMessage(new StringTextComponent("== STONES LIST ==").mergeStyle(TextFormatting.GOLD),context.getPlayer().getUniqueID());
+                for (Block s : stones) {
+                    context.getPlayer().sendMessage(new TranslationTextComponent(s.getTranslationKey()),context.getPlayer().getUniqueID());
+                }
+            } else {
+                context.getPlayer().sendMessage(new StringTextComponent("No stones detected"),context.getPlayer().getUniqueID());
             }
-        } else {
-            context.getPlayer().sendMessage(new StringTextComponent("No stones detected"),context.getPlayer().getUniqueID());
+            context.getItem().damageItem(1,context.getPlayer(),(p_220040_1_) -> {
+                p_220040_1_.sendBreakAnimation(context.getHand());
+            });
         }
-        context.getItem().damageItem(1,context.getPlayer(),(p_220040_1_) -> {
-            p_220040_1_.sendBreakAnimation(context.getHand());
-        });
+
+
         return ActionResultType.SUCCESS;
 
     }

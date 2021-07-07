@@ -87,6 +87,10 @@ public class RankineBoatEntity extends BoatEntity {
                 return RankineItems.HEMLOCK_BOAT.get();
             case MAPLE:
                 return RankineItems.MAPLE_BOAT.get();
+            case BLACK_BIRCH:
+                return RankineItems.BLACK_BIRCH_BOAT.get();
+            case YELLOW_BIRCH:
+                return RankineItems.YELLOW_BIRCH_BOAT.get();
             case BLACK_WALNUT:
                 return RankineItems.BLACK_WALNUT_BOAT.get();
             case SHARINGA:
@@ -97,6 +101,8 @@ public class RankineBoatEntity extends BoatEntity {
                 return RankineItems.CINNAMON_BOAT.get();
             case BAMBOO:
                 return RankineItems.BAMBOO_BOAT.get();
+            case BAMBOO_CULMS:
+                return RankineItems.BAMBOO_CULMS_BOAT.get();
         }
     }
 

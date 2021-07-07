@@ -78,7 +78,7 @@
       "type": "text",
       "title": "Quake",
       "anchor": "quake",
-      "text": "Quake increases mining speed of a tool based off y-level. The lower in the world you are, the faster it mines. Each level increases the maximum speed that can be reached. $(br2)Applicable to: $(li)$(l:tools/hammers)Hammers$() $(br)Levels: I-III"
+      "text": "Quake increases mining speed of a tool based off y-level. The lower in the world you are, the faster it mines. Each level increases the maximum speed that can be reached. $(br2)Applicable to: $(li)$(l:tools/pickaxes)Pickaxes$() $(li)$(l:tools/shovels)Shovels$() $(br)Levels: I-III"
     },
     {
       "type": "text",
