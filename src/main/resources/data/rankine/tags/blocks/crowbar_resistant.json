@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:bedrock",
+    "minecraft:end_portal",
+    "minecraft:end_portal_frame",
+    "minecraft:spawner",
+    "minecraft:barrier",
+    "minecraft:water",
+    "minecraft:lava",
+    "rankine:quarry_barrier",
+    "#forge:chests",
+    "#minecraft:shulker_boxes"
+  ]
+}

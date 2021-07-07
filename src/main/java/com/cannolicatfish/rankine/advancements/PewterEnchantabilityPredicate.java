@@ -9,6 +9,7 @@ import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.ResourceLocation;
 
 public class PewterEnchantabilityPredicate extends ItemPredicate {
 
@@ -30,8 +31,10 @@ public class PewterEnchantabilityPredicate extends ItemPredicate {
             if (nbt != null)
             {
                 IAlloyTool e = (IAlloyTool) item.getItem();
-                AlloyUtils alloyUtils = it.returnAlloyUtils();
-                return alloyUtils.equals(AlloyUtilsEnum.PEWTER) && e.getAlloyEnchantability(nbt.getString(), alloyUtils) >= ench;
+                if (e.getAlloyRecipe(item) != null) {
+                    return e.getAlloyRecipe(item).equals(new ResourceLocation("rankine:alloying/pewter_alloy_alloying")) && e.getAlloyEnchantability(item) >= ench;
+                }
+
             }
         }
 

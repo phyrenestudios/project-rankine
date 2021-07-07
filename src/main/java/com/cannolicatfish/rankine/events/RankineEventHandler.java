@@ -15,6 +15,7 @@ import com.cannolicatfish.rankine.items.InformationItem;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
+import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
@@ -26,6 +27,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
@@ -40,6 +42,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -61,6 +64,7 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -81,6 +85,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -399,21 +405,67 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
-    public static void onLivingDamaged(LivingDamageEvent event) {
-        if (event.getEntityLiving() instanceof PlayerEntity && !(event.getSource() == DamageSource.WITHER && event.getSource() == DamageSource.MAGIC)) {
-            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
-            boolean wither = false;
-            for(int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-                ItemStack itemstack = player.inventory.getStackInSlot(i);
-                if (!itemstack.isEmpty() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.WITHERING_CURSE, itemstack) > 0) {
-                    wither = true;
-                    break;
+    public static void onLightningEvent(EntityJoinWorldEvent event) {
+        if (event.getEntity() instanceof LightningBoltEntity) {
+            LightningBoltEntity entity = (LightningBoltEntity) event.getEntity();
+            World worldIn = event.getWorld();
+            ITag<Block> fulgurite = BlockTags.getCollection().get(new ResourceLocation("rankine:lightning_vitrified"));
+            BlockPos startPos = entity.getPosition().down();
+            if (fulgurite != null && fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
+                Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
+                for (BlockPos pos : positions) {
+                    double rand;
+                    if (startPos.getX() == pos.getX() && startPos.getZ() == pos.getZ()) {
+                        rand = 1/(1f + Math.abs(startPos.getY() - pos.getY()));
+                    } else {
+                        rand = pos.distanceSq(startPos.getX(),startPos.getY(),startPos.getZ(),true);
+                    }
+
+                    if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
+                        worldIn.setBlockState(pos,RankineBlocks.FULGURITE.get().getDefaultState(),3);
+                    }
                 }
             }
-            if (wither) {
-                player.addPotionEffect(new EffectInstance(Effects.WITHER,100));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDamaged(LivingDamageEvent event) {
+        if (event.getEntityLiving() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+            World worldIn = player.getEntityWorld();
+            for (int i = 0; i < player.inventory.armorInventory.size(); ++i) {
+                ItemStack s = player.inventory.armorInventory.get(i);
+                if (s.getItem() instanceof IAlloyArmor) {
+                    IAlloyArmor armor = (IAlloyArmor) s.getItem();
+                    if (worldIn.getRandom().nextFloat() > armor.getHeatResist(s) && (player.isInLava() || player.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
+                        int finalI = i;
+                        s.damageItem(1,player,(entity) -> {
+                            entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI));
+                        });
+                    } else if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isWet())) {
+                        int finalI1 = i;
+                        s.damageItem(1,player,(entity) -> {
+                            entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI1));
+                        });
+                    }
+                }
+            }
+            if (!(event.getSource() == DamageSource.WITHER && event.getSource() == DamageSource.MAGIC)) {
+                boolean wither = false;
+                for(int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+                    ItemStack itemstack = player.inventory.getStackInSlot(i);
+                    if (!itemstack.isEmpty() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.WITHERING_CURSE, itemstack) > 0) {
+                        wither = true;
+                        break;
+                    }
+                }
+                if (wither) {
+                    player.addPotionEffect(new EffectInstance(Effects.WITHER,100));
+                }
             }
         }
+
 
     }
     /*@SubscribeEvent
@@ -1058,6 +1110,33 @@ public class RankineEventHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void onParryEvent(LivingDamageEvent event) {
+        if (event.getEntityLiving() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+            ItemStack stack = player.getHeldItemMainhand().getItem() instanceof KnifeItem ? player.getHeldItemMainhand() : player.getHeldItemOffhand().getItem() instanceof KnifeItem ? player.getHeldItemOffhand() : ItemStack.EMPTY;
+            if (!stack.isEmpty()) {
+                int i = stack.getItem().getUseDuration(stack) - player.getItemInUseCount();
+                if (i < (10 + EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.PREPARATION,stack))) {
+
+
+                    if (!event.getSource().isUnblockable()) {
+                        player.playSound(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,1.0f, 1.0f);
+                        if (event.getSource().getTrueSource() instanceof LivingEntity && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.RETALIATE,stack) >= 1) {
+                            LivingEntity ent = (LivingEntity) event.getSource().getTrueSource();
+                            ent.attackEntityFrom(event.getSource(),event.getAmount());
+                        } else if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.RETREAT,stack) >= 1) {
+                            player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY,60));
+                        }
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
 
     @SubscribeEvent
@@ -1080,12 +1159,12 @@ public class RankineEventHandler {
 
             IAlloyTool alloyTool = (IAlloyTool) stack.getItem();
 
-            double damage = alloyTool.getAlloyAttackDamage(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils());
+            double damage = alloyTool.getAlloyAttackDamage(stack);
             event.addModifier(Attributes.ATTACK_DAMAGE,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc1"), "Rankine Damage modifier",
                     Math.max(damage - alloyTool.getAlloyWear(alloyTool.getWearModifierDmg((float) damage),stack.getItem().getDamage(stack),stack.getItem().getMaxDamage(stack)),0),
                     AttributeModifier.Operation.ADDITION));
             event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
-                    alloyTool.getAlloyAttackSpeed(alloyTool.returnCompositionString(stack),alloyTool.returnAlloyUtils()),
+                    alloyTool.getAlloyAttackSpeed(stack),
                     AttributeModifier.Operation.ADDITION));
         }
 
@@ -1094,8 +1173,8 @@ public class RankineEventHandler {
             IAlloyArmor alloyArmor = (IAlloyArmor) stack.getItem();
             int slot1 = event.getSlotType().getSlotIndex() * 2;
             int slot2 = slot1 + 1;
-            int tough = alloyArmor.getAlloyArmorToughness(alloyArmor.returnCompositionString(stack),alloyArmor.returnAlloyUtils());
-            int def = alloyArmor.getAlloyDamageReduceAmount(alloyArmor.returnCompositionString(stack),alloyArmor.returnAlloyUtils(),((ArmorItem)stack.getItem()).getEquipmentSlot());
+            int tough = alloyArmor.getAlloyArmorToughness(stack);
+            int def = alloyArmor.getAlloyDamageReduceAmount(stack);
             event.addModifier(Attributes.ARMOR_TOUGHNESS,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1fa"+slot1), "Rankine Armor Toughness modifier",
                     tough,
                     AttributeModifier.Operation.ADDITION));
@@ -1260,6 +1339,30 @@ public class RankineEventHandler {
                     receiver.clearActivePotions();
                     receiver.playSound(SoundEvents.BLOCK_GRINDSTONE_USE,1.0f, 1.0f);
                 }
+            }
+
+            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.BACKSTAB,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
+                ItemStack stack = player.getHeldItem(Hand.MAIN_HAND);
+
+                LivingEntity receiver = event.getEntityLiving();
+                if (receiver.getHorizontalFacing().equals(player.getHorizontalFacing())) {
+                    receiver.playSound(SoundEvents.ITEM_TRIDENT_HIT,1.0f, 1.0f);
+                    float damage = event.getAmount() + event.getAmount() * EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.BACKSTAB,stack);
+                    event.setAmount(damage);
+                }
+            }
+
+            if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LEVERAGE,player.getHeldItem(Hand.MAIN_HAND)) >= 1 && !player.world.isRemote) {
+                ItemStack stack = player.getHeldItem(Hand.MAIN_HAND);
+
+                LivingEntity receiver = event.getEntityLiving();
+                float size = receiver.getSize(receiver.getPose()).height * receiver.getSize(receiver.getPose()).width;
+                int lvl = EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LEVERAGE,stack);
+                System.out.println(size);
+                float mod = -2 + lvl;
+                float damage = event.getAmount() + Math.max(0,Math.min(size + mod,1.5f*EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LEVERAGE,stack)));
+                System.out.println("damageOut: " + damage);
+                event.setAmount(damage);
             }
         }
 

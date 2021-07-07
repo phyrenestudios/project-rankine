@@ -19,6 +19,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -36,18 +37,19 @@ import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
-    private final AlloyUtils alloy;
-
+    private final String defaultComposition;
+    private final ResourceLocation defaultAlloyRecipe;
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.POWERED_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.NETHER_GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.BLUE_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.CHISELED_SANDSTONE, Blocks.CUT_SANDSTONE, Blocks.CHISELED_RED_SANDSTONE, Blocks.CUT_RED_SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.GRANITE, Blocks.POLISHED_GRANITE, Blocks.DIORITE, Blocks.POLISHED_DIORITE, Blocks.ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.STONE_SLAB, Blocks.SMOOTH_STONE_SLAB, Blocks.SANDSTONE_SLAB, Blocks.PETRIFIED_OAK_SLAB, Blocks.COBBLESTONE_SLAB, Blocks.BRICK_SLAB, Blocks.STONE_BRICK_SLAB, Blocks.NETHER_BRICK_SLAB, Blocks.QUARTZ_SLAB, Blocks.RED_SANDSTONE_SLAB, Blocks.PURPUR_SLAB, Blocks.SMOOTH_QUARTZ, Blocks.SMOOTH_RED_SANDSTONE, Blocks.SMOOTH_SANDSTONE, Blocks.SMOOTH_STONE, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE, Blocks.POLISHED_GRANITE_SLAB, Blocks.SMOOTH_RED_SANDSTONE_SLAB, Blocks.MOSSY_STONE_BRICK_SLAB, Blocks.POLISHED_DIORITE_SLAB, Blocks.MOSSY_COBBLESTONE_SLAB, Blocks.END_STONE_BRICK_SLAB, Blocks.SMOOTH_SANDSTONE_SLAB, Blocks.SMOOTH_QUARTZ_SLAB, Blocks.GRANITE_SLAB, Blocks.ANDESITE_SLAB, Blocks.RED_NETHER_BRICK_SLAB, Blocks.POLISHED_ANDESITE_SLAB, Blocks.DIORITE_SLAB, Blocks.SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX, Blocks.PISTON, Blocks.STICKY_PISTON, Blocks.PISTON_HEAD);
 
-    public AlloyPickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, AlloyUtils alloy, Item.Properties properties) {
+    public AlloyPickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Item.Properties properties) {
         super(tier, attackDamageIn, attackSpeedIn, properties.addToolType(ToolType.PICKAXE, tier.getHarvestLevel()));
-        this.alloy = alloy;
+        this.defaultComposition = defaultCompositionIn;
+        this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
     public boolean canHarvestBlock(ItemStack stack, BlockState blockIn) {
-        int i = getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy);
+        int i = getAlloyHarvestLevel(stack);
         if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.PICKAXE) {
             return i >= blockIn.getHarvestLevel();
         }
@@ -58,11 +60,11 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? getToolItemDestroySpeed(stack,state) : getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
+        return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? getToolItemDestroySpeed(stack,state) : getAlloyEfficiency(stack);
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damageItem(calcDurabilityLoss(stack,this.alloy,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
+        stack.damageItem(calcDurabilityLoss(stack,attacker.getEntityWorld(),attacker,false), attacker, (entity) -> {
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         });
         return true;
@@ -73,7 +75,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
      */
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if (!worldIn.isRemote && state.getBlockHardness(worldIn, pos) != 0.0F) {
-            stack.damageItem(calcDurabilityLoss(stack,this.alloy,worldIn,entityLiving,true), entityLiving, (entity) -> {
+            stack.damageItem(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
                 entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
             });
         }
@@ -82,23 +84,23 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     }
 
     public float getToolItemDestroySpeed(ItemStack stack, BlockState state) {
-        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
-        return EFFECTIVE_ON.contains(state.getBlock()) ? getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy) : 1.0F;
+        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return getAlloyEfficiency(stack);
+        return EFFECTIVE_ON.contains(state.getBlock()) ? getAlloyEfficiency(stack) : 1.0F;
     }
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        return getDamage(stack) * 1f / this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+        return getDamage(stack) * 1f / this.getAlloyDurability(stack);
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy);
+        return this.getAlloyDurability(stack);
     }
 
     @Override
     public int getItemEnchantability(ItemStack stack) {
-        return this.getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy);
+        return this.getAlloyEnchantability(stack);
     }
 
     @Override
@@ -107,7 +109,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        if (returnCompositionString(stack,this.alloy) != null)
+        if (this.isAlloyInit(stack))
         {
             if (!Screen.hasShiftDown())
             {
@@ -115,31 +117,32 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             }
             if (Screen.hasShiftDown())
             {
-                float eff = getAlloyEfficiency(returnCompositionString(stack,this.alloy),this.alloy);
+                float eff = getAlloyEfficiency(stack);
                 float wear = getWearAsPercent(eff,getAlloyWear(getWearModifierMining(eff),getDamage(stack),getMaxDamage(stack)));
-                tooltip.add((new StringTextComponent("Composition: " + returnCompositionString(stack,this.alloy))).mergeStyle(alloy.getAlloyGroupColor()));
+                tooltip.add((new StringTextComponent("Composition: " + getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
                 tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(wear) + "%")).mergeStyle(getWearColor(wear)));
-                tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy) - getDamage(stack)) + "/" + getAlloyDurability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.DARK_GREEN));
-                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyMiningLevel(returnCompositionString(stack,this.alloy),this.alloy)))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - getDamage(stack)) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).mergeStyle(TextFormatting.GRAY));
                 tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
-                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
                 if (Config.ALLOYS.ALLOY_CORROSION.get())
                 {
-                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
                 if (Config.ALLOYS.ALLOY_HEAT.get())
                 {
-                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
                 if (Config.ALLOYS.ALLOY_TOUGHNESS.get())
                 {
-                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
             }
         }
     }
 
-    @Override
+    /*
+        @Override
     public ITextComponent getDisplayName(ItemStack stack) {
         CompoundNBT nbt = stack.getTag();
         if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au") && nbt != null && !nbt.getString("nameAdd").isEmpty() && !nbt.getString("nameAdd").equals("false")) {
@@ -153,7 +156,8 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
         return super.getDisplayName(stack);
     }
 
-    @Override
+
+        @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
             CompoundNBT nbt = stack.getTag();
@@ -163,26 +167,23 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
         }
         for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
         {
-            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy));
+            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(stack));
             if (enchLvl > 0) {
                 stack.addEnchantment(e,enchLvl);
             }
         }
         super.onCreated(stack, worldIn, playerIn);
     }
+     */
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
-
-            CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
+        if (!this.isAlloyInit(stack)) {
+            this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
-
+/*
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
@@ -197,10 +198,5 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
             items.add(stack);
         }
     }
-
-    @Override
-    public AlloyUtils returnAlloyUtils() {
-        return this.alloy;
-    }
-
+*/
 }

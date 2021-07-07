@@ -48,12 +48,12 @@ public class ElementIndexerContainer extends Container {
 
     }
 
-    public ElementRecipe getSlotItem() {
+    public ElementRecipe getSlotItem(World worldIn) {
         ItemStack stack = this.handler.getStackInSlot(0);
 
-        if (utils.hasElementRecipe(stack, null))
+        if (utils.hasElementRecipe(stack, worldIn))
         {
-            return utils.getElementRecipe(stack, null);
+            return utils.getElementRecipe(stack, worldIn);
         } else {
             return null;
         }

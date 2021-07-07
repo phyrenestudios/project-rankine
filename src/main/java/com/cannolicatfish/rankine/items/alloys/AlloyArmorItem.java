@@ -36,17 +36,19 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDyeableArmorItem {
-    private final AlloyUtils alloy;
-    public AlloyArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, AlloyUtils alloy, Properties builderIn) {
+    private final String defaultComposition;
+    private final ResourceLocation defaultAlloyRecipe;
+    public AlloyArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {
         super(materialIn, slot, builderIn);
-        this.alloy = alloy;
+        this.defaultComposition = defaultCompositionIn;
+        this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        if (getComposition(repair).size() != 0 && getComposition(toRepair).size() != 0 && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
-            INBT s = getComposition(repair).getCompound(0).get("comp");
-            INBT r = getComposition(toRepair).getCompound(0).get("comp");
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+            String s = getAlloyComposition(repair);
+            String r = getAlloyComposition(toRepair);
             return s != null && s.equals(r);
         }
         return false;
@@ -54,22 +56,18 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        return getDamage(stack) * 1f / this.getAlloyArmorDurability(returnCompositionString(stack,this.alloy),this.alloy,this.slot);
+        return getDamage(stack) * 1f / this.getAlloyArmorDurability(stack);
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return this.getAlloyArmorDurability(returnCompositionString(stack,this.alloy),this.alloy,this.slot);
+        return this.getAlloyArmorDurability(stack);
     }
 
-    @Override
-    public AlloyUtils returnAlloyUtils() {
-        return this.alloy;
-    }
 
     @Override
     public int getItemEnchantability(ItemStack stack) {
-        return this.getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy);
+        return this.getAlloyEnchantability(stack);
     }
 
     @Override
@@ -78,7 +76,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
         DecimalFormat df = Util.make(new DecimalFormat("##.#"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        if (returnCompositionString(stack,this.alloy) != null)
+        if (getAlloyComposition(stack) != null)
         {
             if (!Screen.hasShiftDown())
             {
@@ -86,25 +84,25 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
             }
             if (Screen.hasShiftDown())
             {
-                tooltip.add((new StringTextComponent("Composition: " + returnCompositionString(stack,this.alloy))).mergeStyle(alloy.getAlloyGroupColor()));
-                tooltip.add((new StringTextComponent("Durability: " + (getAlloyArmorDurability(returnCompositionString(stack,this.alloy),this.alloy,this.slot) - getDamage(stack)) + "/" + getAlloyArmorDurability(returnCompositionString(stack,this.alloy),this.alloy,this.slot))).mergeStyle(TextFormatting.DARK_GREEN));
-                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(returnCompositionString(stack,this.alloy),this.alloy))).mergeStyle(TextFormatting.GRAY));
+                tooltip.add((new StringTextComponent("Composition: " + getAlloyComposition(stack))).mergeStyle(TextFormatting.GOLD));
+                tooltip.add((new StringTextComponent("Durability: " + (getAlloyArmorDurability(stack) - getDamage(stack)) + "/" + getAlloyArmorDurability(stack)).mergeStyle(TextFormatting.DARK_GREEN)));
+                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack)).mergeStyle(TextFormatting.GRAY)));
                 if (Config.ALLOYS.ALLOY_CORROSION.get())
                 {
-                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
                 if (Config.ALLOYS.ALLOY_HEAT.get())
                 {
-                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack,this.alloy) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
                 }
             }
         }
     }
 
-    @Override
+    /*@Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (group == ItemGroup.SEARCH || group == ProjectRankine.setup.rankineTools) {
-            /*World worldIn = ProjectRankine.proxy.getClientWorld();
+            World worldIn = ProjectRankine.proxy.getClientWorld();
             if (worldIn != null) {
                 List<ICraftingRecipe> s = worldIn.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream().filter(iCraftingRecipe -> iCraftingRecipe.getRecipeOutput().getItem() == this.getItem()).collect(Collectors.toList());
                 for (ICraftingRecipe recipe : s) {
@@ -114,7 +112,7 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
                 }
             } else {
                 items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
-            }*/
+            }
 
             items.add(getAlloyItemStack(new AlloyData(this.alloy.getDefComposition()),this.getItem()));
         }
@@ -146,15 +144,12 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
             setColor(stack,new AlloyColorHelper().getColor(stack,0));
         }
         super.onCreated(stack, worldIn, playerIn);
-    }
+    }*/
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
-            CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
+        if (!this.isAlloyInit(stack)) {
+            this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
         }
         if (!hasColor(stack)) {
             setColor(stack,new AlloyColorHelper().getColor(stack,0));

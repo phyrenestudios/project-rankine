@@ -64,18 +64,24 @@ public class ElementEquation {
     }
 
     public float constructFormula(int x, int index) {
+        float percent = x;
+        if (formulaModifiers[index].equals(FormulaModifier.MULTIPLIER)) {
+            percent = x * limit[index];
+        } else if (formulaModifiers[index].equals(FormulaModifier.ADDITION)) {
+            percent = x + limit[index];
+        }
         switch (formulaTypes[index]) {
             case LINEAR:
             default:
-                return a[index] * x + b[index];
+                return a[index] * percent + b[index];
             case POWER:
-                return (float) (Math.pow(x,a[index]) + b[index]);
+                return (float) (Math.pow(percent,a[index]) + b[index]);
             case EXPONENTIAL:
-                return (float) (Math.pow(a[index],x) + b[index]);
+                return (float) (Math.pow(a[index],percent) + b[index]);
             case LOGARITHMIC:
-                return (float) (a[index]*Math.log(x) + b[index]);
+                return (float) (a[index]*Math.log(percent) + b[index]);
             case LOG10:
-                return (float) (a[index]*Math.log10(x) + b[index]);
+                return (float) (a[index]*Math.log10(percent) + b[index]);
             case CONSTANT:
                 return (a[index]);
         }
@@ -126,6 +132,8 @@ public class ElementEquation {
         CEILING,
         MAX,
         MIN,
+        ADDITION,
+        MULTIPLIER,
         NONE
     }
 }

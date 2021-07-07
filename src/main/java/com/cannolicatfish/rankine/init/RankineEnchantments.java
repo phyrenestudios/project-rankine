@@ -53,6 +53,24 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:endpoint")
     public static Enchantment ENDPOINT;
 
+    @ObjectHolder("rankine:backstab")
+    public static Enchantment BACKSTAB;
+
+    @ObjectHolder("rankine:grafting")
+    public static Enchantment GRAFTING;
+
+    @ObjectHolder("rankine:poison_aspect")
+    public static Enchantment POISON_ASPECT;
+
+    @ObjectHolder("rankine:preparation")
+    public static Enchantment PREPARATION;
+
+    @ObjectHolder("rankine:retaliate")
+    public static Enchantment RETALIATE;
+
+    @ObjectHolder("rankine:retreat")
+    public static Enchantment RETREAT;
+
     @ObjectHolder("rankine:ghast_regeneration")
     public static Enchantment GHAST_REGENERATION;
 
@@ -62,6 +80,15 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:guard")
     public static Enchantment GUARD;
 
+    @ObjectHolder("rankine:leverage")
+    public static Enchantment LEVERAGE;
+
     @ObjectHolder("rankine:prying")
     public static Enchantment PRYING;
+
+    @ObjectHolder("rankine:retrieval")
+    public static Enchantment RETRIEVAL;
+
+    @ObjectHolder("rankine:lift")
+    public static Enchantment LIFT;
 }

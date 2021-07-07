@@ -22,7 +22,7 @@ public class AntiquatedEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 3;
+        return 5;
     }
 
     public boolean canApplyTogether(Enchantment p_77326_1_) {
