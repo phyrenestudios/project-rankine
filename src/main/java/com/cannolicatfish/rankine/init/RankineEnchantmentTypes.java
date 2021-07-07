@@ -8,6 +8,8 @@ import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
 
 public class RankineEnchantmentTypes {
     public static EnchantmentType HAMMER = EnchantmentType.create("hammer", (itemIn) -> {
@@ -24,6 +26,9 @@ public class RankineEnchantmentTypes {
 
     public static EnchantmentType HOE = EnchantmentType.create("hoe", (itemIn) -> {
         return itemIn instanceof HoeItem; });
+
+    public static EnchantmentType MINING = EnchantmentType.create("mining", (itemIn) -> {
+        return itemIn instanceof ShovelItem || itemIn instanceof PickaxeItem; });
 
     public static EnchantmentType PEWTER = EnchantmentType.create("pewter", (itemIn) -> {
         return itemIn instanceof IAlloyTool && ((IAlloyTool) itemIn).returnAlloyUtils().equals(AlloyUtilsEnum.PEWTER); });

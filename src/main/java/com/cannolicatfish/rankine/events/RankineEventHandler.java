@@ -11,6 +11,7 @@ import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.items.InformationItem;
 import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
@@ -42,6 +43,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -264,65 +266,74 @@ public class RankineEventHandler {
             if (!Config.GENERAL.DISABLE_COMPASS.get() && (player.getHeldItemOffhand().getItem() == Items.COMPASS || player.getHeldItemMainhand().getItem() == Items.COMPASS)) {
                 switch (player.getHorizontalFacing()) {
                     case NORTH:
-                        player.sendStatusMessage(new StringTextComponent("Facing North with coordinates: X=" + new DecimalFormat("###,###").format(pos.getX()) + " Z=" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
+                        player.sendStatusMessage(new StringTextComponent("Facing North with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
                         break;
                     case EAST:
-                        player.sendStatusMessage(new StringTextComponent("Facing East with coordinates: X=" + new DecimalFormat("###,###").format(pos.getX()) + " Z=" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
+                        player.sendStatusMessage(new StringTextComponent("Facing East with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
                         break;
                     case SOUTH:
-                        player.sendStatusMessage(new StringTextComponent("Facing South with coordinates: X=" + new DecimalFormat("###,###").format(pos.getX()) + " Z=" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
+                        player.sendStatusMessage(new StringTextComponent("Facing South with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
                         break;
                     case WEST:
-                        player.sendStatusMessage(new StringTextComponent("Facing West with coordinates: X=" + new DecimalFormat("###,###").format(pos.getX()) + " Z=" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
+                        player.sendStatusMessage(new StringTextComponent("Facing West with coordinates: X =" + new DecimalFormat("###,###").format(pos.getX()) + " Z =" + new DecimalFormat("###,###").format(pos.getZ())).mergeStyle(TextFormatting.GOLD), true);
                         break;
                 }
             } else if (!Config.GENERAL.DISABLE_CLOCK.get() && (player.getHeldItemOffhand().getItem() == Items.CLOCK || player.getHeldItemMainhand().getItem() == Items.CLOCK)) {
                 double hours = ((Math.floor(world.getDayTime() / 1000f)) + 6) % 24;
                 double minutes = ((world.getDayTime() / 1000f) % 1) * 60;
-                player.sendStatusMessage(new StringTextComponent("Time=" + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + world.getDayTime() + ")").mergeStyle(TextFormatting.GOLD), true);
+                player.sendStatusMessage(new StringTextComponent("Time = " + new DecimalFormat("00").format(hours) + ":" + new DecimalFormat("00").format(minutes) + " (" + world.getDayTime() + ")").mergeStyle(TextFormatting.GOLD), true);
             } else if (!Config.GENERAL.DISABLE_THERMOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.THERMOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.THERMOMETER.get())) {
                 float temp = world.getBiome(pos).getTemperature(pos);
                 if (temp < 0.0) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature= " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD), true);
-                } else if (temp < 0.3) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature= " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD), true);
+                } else if (temp < 0.15) {
+                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
                 } else if (temp < 0.8) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature= " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
-                } else if (temp < 1.3) {
-                    player.sendStatusMessage(new StringTextComponent("Temperature= " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.YELLOW, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
+                } else if (temp < 0.95) {
+                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.YELLOW, TextFormatting.BOLD), true);
                 } else {
-                    player.sendStatusMessage(new StringTextComponent("Temperature= " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Temperature = " + new DecimalFormat("#.###").format(temp)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
                 }
             } else if (!Config.GENERAL.DISABLE_ALTIMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.ALTIMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.ALTIMETER.get())) {
                 int y = pos.getY();
                 if (y < 0) {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y= " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.WHITE, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.WHITE, TextFormatting.BOLD), true);
                 } else if (y < 64) {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y= " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.DARK_PURPLE, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.DARK_PURPLE, TextFormatting.BOLD), true);
                 } else if (y < 128) {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y= " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.DARK_AQUA, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.DARK_AQUA, TextFormatting.BOLD), true);
                 } else {
-                    player.sendStatusMessage(new StringTextComponent("Altitude: Y= " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Altitude: Y = " + new DecimalFormat("###,###").format(y)).mergeStyle(TextFormatting.AQUA, TextFormatting.BOLD), true);
                 }
             } else if (!Config.GENERAL.DISABLE_PHOTOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.PHOTOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.PHOTOMETER.get())) {
                 int SLL = world.getLightFor(LightType.SKY,pos);
                 int BLL = world.getLightFor(LightType.BLOCK,pos);
 
                 if (world.getBlockState(player.getPosition()).getBlock().canCreatureSpawn(world.getBlockState(player.getPosition()), world, player.getPosition(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, EntityType.ZOMBIE)) {
-                    player.sendStatusMessage(new StringTextComponent("Sky Light Level=" + new DecimalFormat("##").format(SLL) + " Block Light Level=" + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.RED, TextFormatting.BOLD), true);
                 } else {
-                    player.sendStatusMessage(new StringTextComponent("Sky Light Level=" + new DecimalFormat("##").format(SLL) + " Block Light Level=" + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
+                    player.sendStatusMessage(new StringTextComponent("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).mergeStyle(TextFormatting.GREEN, TextFormatting.BOLD), true);
                 }
             } else if (!Config.GENERAL.DISABLE_BIOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.BIOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.BIOMETER.get())) {
-                player.sendStatusMessage(new StringTextComponent("Biome=" + new TranslationTextComponent(world.getBiome(pos).getRegistryName().getPath()).getString()).mergeStyle(TextFormatting.GOLD), true);
+                player.sendStatusMessage(new StringTextComponent("Biome = " + new TranslationTextComponent(Util.makeTranslationKey("biome",world.func_241828_r().getRegistry(Registry.BIOME_KEY).getKey(world.getBiome(pos)))).getString()).mergeStyle(TextFormatting.GOLD), true);
             }
         }
-        if (!Config.GENERAL.DISABLE_SPEEDOMETER.get() && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
-            double d0 = Math.abs(player.getPosX() - player.lastTickPosX);
-            double d1 = Math.abs(player.getPosZ() - player.lastTickPosZ);
+        if (!Config.GENERAL.DISABLE_SPEEDOMETER.get() && world.isRemote() && world.getDayTime()%5==0 && (player.getHeldItemOffhand().getItem() == RankineItems.SPEEDOMETER.get() || player.getHeldItemMainhand().getItem() == RankineItems.SPEEDOMETER.get())) {
+            Entity ent = player;
+            if (player.getRidingEntity() != null) {
+                ent = player.getRidingEntity();
+            }
+
+            double d0 = Math.abs(ent.getPosX() - player.lastTickPosX);
+            double d1 = Math.abs(ent.getPosZ() - player.lastTickPosZ);
             //double d2 = Math.abs(player.getPosY() - player.lastTickPosY);
             double speed = Math.sqrt(Math.pow(d0, 2) + Math.pow(d1, 2));
-            player.sendStatusMessage(new StringTextComponent("Speed=" + new DecimalFormat("#.##").format(speed * 20) + " blocks per second").mergeStyle(TextFormatting.GOLD), true);
+            Item mainhand = player.getHeldItemMainhand().getItem();
+            Item offhand = player.getHeldItemOffhand().getItem();
+            if ((offhand == RankineItems.SPEEDOMETER.get() && !(mainhand.getItem() instanceof InformationItem || mainhand.getItem() == Items.COMPASS || mainhand.getItem() == Items.CLOCK)) ||
+                    (mainhand == RankineItems.SPEEDOMETER.get() && !(offhand instanceof InformationItem || offhand.getItem() == Items.COMPASS || offhand.getItem() == Items.CLOCK)))
+            player.sendStatusMessage(new StringTextComponent("Speed = " + new DecimalFormat("#.##").format(speed * 20) + " blocks per second").mergeStyle(TextFormatting.GOLD), true);
 
         }
 
@@ -361,6 +372,16 @@ public class RankineEventHandler {
             if (eff.getDuration() % k == 0) {
                 ghast.setDamage(Math.max(0,ghast.getDamage() - 1));
             }
+        }
+
+        ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (player.getHeldItemOffhand().getItem() == RankineItems.SPEED_PENDANT.get() && att != null && !att.hasModifier(RankineAttributes.SPEED_PENDANT_MS)) {
+            att.applyNonPersistentModifier(RankineAttributes.SPEED_PENDANT_MS);
+        }
+
+        ModifiableAttributeInstance att2 = player.getAttribute(Attributes.MAX_HEALTH);
+        if (player.getHeldItemOffhand().getItem() == RankineItems.HEALTH_PENDANT.get() && att2 != null && !att2.hasModifier(RankineAttributes.HEALTH_PENDANT)) {
+            att2.applyNonPersistentModifier(RankineAttributes.HEALTH_PENDANT);
         }
     }
 

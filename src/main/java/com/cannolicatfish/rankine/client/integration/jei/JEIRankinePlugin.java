@@ -87,6 +87,8 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(RankineItems.ALTIMETER.get()), VanillaTypes.ITEM, "While held, the altimeter will display the holder's Y value. Default is head position, sneak for position at feet.");
         registry.addIngredientInfo(new ItemStack(RankineItems.PHOTOMETER.get()), VanillaTypes.ITEM, "While held, the photometer will display the current light level. Default is head position, sneak for position at feet.");
         registry.addIngredientInfo(new ItemStack(RankineItems.THERMOMETER.get()), VanillaTypes.ITEM, "While held, the thermometer will display the current block temperature. Default is head position, sneak for position at feet.");
+        registry.addIngredientInfo(new ItemStack(RankineBlocks.RANKINE_BOX.get()), VanillaTypes.ITEM, "The Rankine Box is a machine that allows you to transmute between different elements. " +
+                "To transmute an element, you must provide a Power Cell and a Directional Element Transmuter (Up, Down, Left, and Right). The direction determines which element you will receive.");
     }
 
     @Override

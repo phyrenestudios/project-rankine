@@ -1871,11 +1871,11 @@ public class RankineItems {
     public static final RegistryObject<Item> STEEL_GOLD_PAN = REGISTRY.register("steel_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> STEEL_CROWBAR = REGISTRY.register("steel_crowbar", () -> new CrowbarItem(1.5f, -2.2F, RankineToolMaterials.STEEL,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> TITANIUM_CROWBAR = REGISTRY.register("titanium_crowbar", () -> new CrowbarItem(1.5f, -1.8F, RankineToolMaterials.TITANIUM,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> ALTIMETER = REGISTRY.register("altimeter", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> PHOTOMETER = REGISTRY.register("photometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> SPEEDOMETER = REGISTRY.register("speedometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> BIOMETER = REGISTRY.register("biometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new InformationItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> ALTIMETER = REGISTRY.register("altimeter", () -> new InformationItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> PHOTOMETER = REGISTRY.register("photometer", () -> new InformationItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SPEEDOMETER = REGISTRY.register("speedometer", () -> new InformationItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BIOMETER = REGISTRY.register("biometer", () -> new InformationItem(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_DETECTOR = REGISTRY.register("ore_detector", () -> new OreDetectorItem(Config.GENERAL.ORE_DETECTOR_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ROCK_DRILL = REGISTRY.register("rock_drill", () -> new RockDrillItem(new Item.Properties().maxStackSize(1).maxDamage(15).group(ProjectRankine.setup.rankineTools)));
