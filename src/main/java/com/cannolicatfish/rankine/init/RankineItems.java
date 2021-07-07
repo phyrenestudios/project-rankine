@@ -1872,11 +1872,13 @@ public class RankineItems {
     //Other Tools
     public static final RegistryObject<Item> SPARK_LIGHTER = REGISTRY.register("spark_lighter", () -> new SparkLighterItem(new Item.Properties().maxStackSize(1).maxDamage(1023).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> STEEL_GOLD_PAN = REGISTRY.register("steel_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
+
     public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALTIMETER = REGISTRY.register("altimeter", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> PHOTOMETER = REGISTRY.register("photometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SPEEDOMETER = REGISTRY.register("speedometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BIOMETER = REGISTRY.register("biometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
+  
     public static final RegistryObject<Item> PROSPECTING_STICK = REGISTRY.register("prospecting_stick", () -> new OreDetectorItem(Config.GENERAL.PROSPECTING_STICK_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ORE_DETECTOR = REGISTRY.register("ore_detector", () -> new OreDetectorItem(Config.GENERAL.ORE_DETECTOR_RANGE.get(), new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ROCK_DRILL = REGISTRY.register("rock_drill", () -> new RockDrillItem(new Item.Properties().maxStackSize(1).maxDamage(15).group(ProjectRankine.setup.rankineTools)));
@@ -1930,8 +1932,8 @@ public class RankineItems {
     public static final RegistryObject<Item> MAGNOLIA_BOAT = REGISTRY.register("magnolia_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.MAGNOLIA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> HEMLOCK_BOAT = REGISTRY.register("eastern_hemlock_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.HEMLOCK, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MAPLE_BOAT = REGISTRY.register("maple_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.MAPLE, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> YELLOW_BIIRCH_BOAT = REGISTRY.register("yellow_birch_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.YELLOW_BIRCH, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> BLACK_BIIRCH_BOAT = REGISTRY.register("black_birch_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BLACK_BIRCH, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> YELLOW_BIRCH_BOAT = REGISTRY.register("yellow_birch_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.YELLOW_BIRCH, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> BLACK_BIRCH_BOAT = REGISTRY.register("black_birch_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BLACK_BIRCH, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> BLACK_WALNUT_BOAT = REGISTRY.register("black_walnut_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.BLACK_WALNUT, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SHARINGA_BOAT = REGISTRY.register("sharinga_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.SHARINGA, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> CORK_OAK_BOAT = REGISTRY.register("cork_oak_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.CORK_OAK, new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));

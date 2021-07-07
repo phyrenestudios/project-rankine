@@ -34,11 +34,15 @@ public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
             new ResourceLocation("rankine:textures/entity/boat/magnolia.png"),
             new ResourceLocation("rankine:textures/entity/boat/eastern_hemlock.png"),
             new ResourceLocation("rankine:textures/entity/boat/maple.png"),
+            new ResourceLocation("rankine:textures/entity/boat/black_birch.png"),
+            new ResourceLocation("rankine:textures/entity/boat/yellow_birch.png"),
             new ResourceLocation("rankine:textures/entity/boat/black_walnut.png"),
             new ResourceLocation("rankine:textures/entity/boat/sharinga.png"),
             new ResourceLocation("rankine:textures/entity/boat/cork_oak.png"),
             new ResourceLocation("rankine:textures/entity/boat/cinnamon.png"),
-            new ResourceLocation("rankine:textures/entity/boat/bamboo.png")
+            new ResourceLocation("rankine:textures/entity/boat/bamboo.png"),
+            new ResourceLocation("rankine:textures/entity/boat/bamboo_culms.png")
+
     };
     protected final BoatModel modelBoat = new BoatModel();
     public static final RankineBoatRenderer.RenderFactory instance = new RankineBoatRenderer.RenderFactory();

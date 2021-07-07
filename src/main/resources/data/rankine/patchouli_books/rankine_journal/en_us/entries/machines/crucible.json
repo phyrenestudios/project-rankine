@@ -12,7 +12,7 @@
     {
       "type": "text",
       "anchor": "crucible_2",
-      "text": "In the following pages, there will be a list of recipes for making various outputs in the crucible. Ingredients separated by slashes (/) can only have one unique member be used in the recipe as a flux."
+      "text": "In the following pages, there will be a list of recipes for making various outputs in the crucible. Ingredients separated by slashes (/) can only have one unique member be used in the recipe as a flux. Additionally, recipes are also available via JEI, where the top row of ingredients (with numbers) are required and the bottom box of ingredients you can choose between to complete the recipe."
     },
     {
       "type": "crafting",
