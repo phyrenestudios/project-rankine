@@ -206,9 +206,6 @@ public class ClientProxy implements IProxy {
         ));
 
         addCutoutMipped(Arrays.asList(
-                RankineBlocks.ALUMINUM_BARS.get(),
-                RankineBlocks.MAGNESIUM_BARS.get(),
-                RankineBlocks.NICKEL_BARS.get(),
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),

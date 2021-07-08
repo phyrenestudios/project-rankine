@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/checkered_marble",
-        "top": "rankine:block/checkered_marble",
-        "side": "rankine:block/checkered_marble"
-      }
-    }

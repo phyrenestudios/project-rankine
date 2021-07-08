@@ -95,7 +95,7 @@ public class RankineBlocks {
 
 
      */
-Blocks
+
     public static final RegistryObject<Block> GRAY_GRANITE = REGISTRY.register("gray_granite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.GRAY_GRANITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.GRAY_GRANITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.GRAY_GRANITE_HL.get())));
     public static final RegistryObject<Block> POLISHED_GRAY_GRANITE = REGISTRY.register("polished_gray_granite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.GRAY_GRANITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.GRAY_GRANITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.GRAY_GRANITE_HL.get())));
     public static final RegistryObject<Block> GRAY_GRANITE_BRICKS = REGISTRY.register("gray_granite_bricks", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.GRAY_GRANITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.GRAY_GRANITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.GRAY_GRANITE_HL.get())));
@@ -1620,9 +1620,6 @@ Blocks
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_SLAB = REGISTRY.register("cast_iron_support_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_STAIRS = REGISTRY.register("cast_iron_support_stairs", () -> new RankineStairsBlock(Block.getStateById(0),Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_VERTICAL_SLAB = REGISTRY.register("cast_iron_support_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F).notSolid()));
-    public static final RegistryObject<Block> ALUMINUM_BARS = REGISTRY.register("aluminum_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
-    public static final RegistryObject<Block> MAGNESIUM_BARS = REGISTRY.register("magnesium_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
-    public static final RegistryObject<Block> NICKEL_BARS = REGISTRY.register("nickel_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_BARS = REGISTRY.register("cast_iron_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
 
 
@@ -1762,7 +1759,6 @@ Blocks
     public static final RegistryObject<Block> BLACK_GOLD_PEDESTAL = REGISTRY.register("black_gold_pedestal", () -> new PedestalBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,10.0F).harvestLevel(0)));
  
     public static final RegistryObject<Block> ROPE = REGISTRY.register("rope", () -> new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()));
-    public static final RegistryObject<Block> ROPE_COIL = REGISTRY.register("rope_coil", () -> new RopeCoilBlock(Block.Properties.create(Material.CARPET).hardnessAndResistance(1.0F)));
     public static final RegistryObject<Block> BOTANIST_STATION = REGISTRY.register("botanist_station", () -> new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
 
     public static final RegistryObject<Block> SEDIMENT_FAN = REGISTRY.register("sediment_fan", () -> new SedimentFanBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));

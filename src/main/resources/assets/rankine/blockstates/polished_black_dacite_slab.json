@@ -1,7 +1,0 @@
-{
-                "variants": {
-                "type=bottom": { "model": "rankine:block/polished_black_dacite_slab" },
-                "type=top": { "model": "rankine:block/polished_black_dacite_slab_top" },
-                "type=double": { "model": "rankine:block/polished_black_dacite" }
-                }
-                }

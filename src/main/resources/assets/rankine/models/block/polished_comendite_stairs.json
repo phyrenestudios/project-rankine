@@ -1,8 +1,0 @@
-{
-      "parent": "block/stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_comendite",
-        "top": "rankine:block/polished_comendite",
-        "side": "rankine:block/polished_comendite"
-      }
-    }

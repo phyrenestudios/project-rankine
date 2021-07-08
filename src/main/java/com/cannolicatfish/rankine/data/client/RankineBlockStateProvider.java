@@ -50,49 +50,43 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
         for (String s : RankineLists.WOODS) {
-            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_planks")));
-            axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_log")), modLoc("block/"+s+"_log"), modLoc("block/"+s+"_log_top"));
-            axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","stripped_"+s+"_log")), modLoc("block/"+"stripped_"+s+"_log"), modLoc("block/"+"stripped_"+s+"_log_top"));
-            axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_wood")), modLoc("block/"+s+"_log"), modLoc("block/"+s+"_log"));
-            axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","stripped_"+s+"_wood")), modLoc("block/"+"stripped_"+s+"_log"), modLoc("block/"+"stripped_"+s+"_log"));
-            slabBlock((RankineSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_slab")), new ResourceLocation("rankine","block/"+s+"_planks"), new ResourceLocation("rankine","block/"+s+"_planks"));
-            stairsBlock((RankineStairsBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_stairs")), s, new ResourceLocation("rankine","block/"+s+"_planks"));
-            fenceBlock((RankineWoodenFence) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_fence")), new ResourceLocation("rankine","block/"+s+"_planks"));
-            fenceGateBlock((RankineWoodenFenceGate) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_fence_gate")), new ResourceLocation("rankine","block/"+s+"_planks"));
-            doorBlock((RankineWoodenDoor) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_door")), new ResourceLocation("rankine","block/"+s+"_door_bottom"), new ResourceLocation("rankine","block/"+s+"_door_top"));
-            trapdoorBlock((RankineWoodenTrapDoor) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_trapdoor")), new ResourceLocation("rankine","block/"+s+"_planks"), true);
-            verticalSlabBlock((RankineVerticalSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_vertical_slab")), new ResourceLocation("rankine:block/"+s+"_planks"), new ResourceLocation("rankine:block/"+s+"_planks"));
-            //button
-            pressurePlateBlock((RankineWoodenPressurePlate) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_pressure_plate")), new ResourceLocation("rankine", "block/" + s+"_planks"));
-            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_leaves")));
-            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_sapling")), models().cross(s+"_sapling", modLoc("block/"+s+"_sapling")));
-            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","potted_"+s+"_sapling")), models().withExistingParent("potted_"+s+"_sapling", "block/flower_pot_cross").texture("plant", "block/"+s+"_sapling"));
+            if (s.equals("bamboo_culms")) {
+                simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)));
+                slabBlock((RankineSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_slab")), new ResourceLocation("rankine","block/"+s), new ResourceLocation("rankine","block/"+s));
+                stairsBlock((RankineStairsBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_stairs")), s, new ResourceLocation("rankine","block/"+s));
+                fenceBlock((RankineWoodenFence) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_fence")), new ResourceLocation("rankine","block/"+s));
+                fenceGateBlock((RankineWoodenFenceGate) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_fence_gate")), new ResourceLocation("rankine","block/"+s));
+                doorBlock((RankineWoodenDoor) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_door")), new ResourceLocation("rankine","block/"+s+"_door_bottom"), new ResourceLocation("rankine","block/"+s+"_door_top"));
+                trapdoorBlock((RankineWoodenTrapDoor) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_trapdoor")), new ResourceLocation("rankine","block/"+s), true);
+                verticalSlabBlock((RankineVerticalSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_vertical_slab")), new ResourceLocation("rankine:block/"+s), new ResourceLocation("rankine:block/"+s));
+                buttonBlock(s, (RankineWoodenButton) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_button")), new ResourceLocation("rankine", "block/" + s));
+                pressurePlateBlock((RankineWoodenPressurePlate) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_pressure_plate")), new ResourceLocation("rankine", "block/" + s));
+                wallBlock((RankineWallBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_wall")), new ResourceLocation("rankine", "block/" + s));
+            } else {
+                if (!s.equals("bamboo")) {
+                    axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_log")), modLoc("block/"+s+"_log"), modLoc("block/"+s+"_log_top"));
+                    axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","stripped_"+s+"_log")), modLoc("block/"+"stripped_"+s+"_log"), modLoc("block/"+"stripped_"+s+"_log_top"));
+                    axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_wood")), modLoc("block/"+s+"_log"), modLoc("block/"+s+"_log"));
+                    axisBlock((RotatedPillarBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","stripped_"+s+"_wood")), modLoc("block/"+"stripped_"+s+"_log"), modLoc("block/"+"stripped_"+s+"_log"));
+                    simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_leaves")));
+                    simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_sapling")), models().cross(s+"_sapling", modLoc("block/"+s+"_sapling")));
+                    simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","potted_"+s+"_sapling")), models().withExistingParent("potted_"+s+"_sapling", "block/flower_pot_cross").texture("plant", "block/"+s+"_sapling"));
+                } else {
+                    wallBlock((RankineWallBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_wall")), new ResourceLocation("rankine", "block/" + s+"_planks"));
+                }
+                simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_planks")));
+                slabBlock((RankineSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_slab")), new ResourceLocation("rankine","block/"+s+"_planks"), new ResourceLocation("rankine","block/"+s+"_planks"));
+                stairsBlock((RankineStairsBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_stairs")), s, new ResourceLocation("rankine","block/"+s+"_planks"));
+                fenceBlock((RankineWoodenFence) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_fence")), new ResourceLocation("rankine","block/"+s+"_planks"));
+                fenceGateBlock((RankineWoodenFenceGate) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_fence_gate")), new ResourceLocation("rankine","block/"+s+"_planks"));
+                doorBlock((RankineWoodenDoor) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_door")), new ResourceLocation("rankine","block/"+s+"_door_bottom"), new ResourceLocation("rankine","block/"+s+"_door_top"));
+                trapdoorBlock((RankineWoodenTrapDoor) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_trapdoor")), new ResourceLocation("rankine","block/"+s+"_planks"), true);
+                verticalSlabBlock((RankineVerticalSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_vertical_slab")), new ResourceLocation("rankine:block/"+s+"_planks"), new ResourceLocation("rankine:block/"+s+"_planks"));
+                buttonBlock(s, (RankineWoodenButton) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_button")), new ResourceLocation("rankine", "block/" + s+"_planks"));
+                pressurePlateBlock((RankineWoodenPressurePlate) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", s + "_pressure_plate")), new ResourceLocation("rankine", "block/" + s+"_planks"));
+            }
+
         }
-
-        //BAMBOO
-        simpleBlock(RankineBlocks.BAMBOO_CULMS.get());
-        slabBlock((RankineSlabBlock) RankineBlocks.BAMBOO_CULMS_SLAB.get(), new ResourceLocation("rankine:block/bamboo_culms"), new ResourceLocation("rankine:block/bamboo_culms"));
-        stairsBlock((RankineStairsBlock) RankineBlocks.BAMBOO_CULMS_STAIRS.get(), new ResourceLocation("rankine:block/bamboo_culms"));
-        fenceBlock((RankineWoodenFence) RankineBlocks.BAMBOO_CULMS_FENCE.get(), new ResourceLocation("rankine:block/bamboo_culms"));
-        fenceGateBlock((RankineWoodenFenceGate) RankineBlocks.BAMBOO_CULMS_FENCE_GATE.get(), new ResourceLocation("rankine:block/bamboo_culms"));
-        doorBlock((RankineWoodenDoor) RankineBlocks.BAMBOO_CULMS_DOOR.get(), new ResourceLocation("rankine:block/bamboo_culms_door_bottom"), new ResourceLocation("rankine:block/bamboo_culms_door_top"));
-        trapdoorBlock((RankineWoodenTrapDoor) RankineBlocks.BAMBOO_CULMS_TRAPDOOR.get(), new ResourceLocation("rankine:block/bamboo_culms_trapdoor"), true);
-        verticalSlabBlock((RankineVerticalSlabBlock) RankineBlocks.BAMBOO_CULMS_VERTICAL_SLAB.get(), new ResourceLocation("rankine:block/bamboo_culms"), new ResourceLocation("rankine:block/bamboo_culms"));
-        //button
-        pressurePlateBlock((RankineWoodenPressurePlate) RankineBlocks.BAMBOO_CULMS_PRESSURE_PLATE.get(), new ResourceLocation("rankine:block/bamboo_culms"));
-        wallBlock((RankineWallBlock) RankineBlocks.BAMBOO_CULMS_WALL.get(), new ResourceLocation("rankine:block/bamboo_culms"));
-        simpleBlock(RankineBlocks.BAMBOO_PLANKS.get());
-        slabBlock((RankineSlabBlock) RankineBlocks.BAMBOO_SLAB.get(), new ResourceLocation("rankine:block/bamboo_planks"), new ResourceLocation("rankine:block/bamboo_planks"));
-        stairsBlock((RankineStairsBlock) RankineBlocks.BAMBOO_STAIRS.get(), new ResourceLocation("rankine:block/bamboo_planks"));
-        fenceBlock((RankineWoodenFence) RankineBlocks.BAMBOO_FENCE.get(), new ResourceLocation("rankine:block/bamboo_planks"));
-        fenceGateBlock((RankineWoodenFenceGate) RankineBlocks.BAMBOO_FENCE_GATE.get(), new ResourceLocation("rankine:block/bamboo_planks"));
-        doorBlock((RankineWoodenDoor) RankineBlocks.BAMBOO_DOOR.get(), new ResourceLocation("rankine:block/bamboo_door_bottom"), new ResourceLocation("rankine:block/bamboo_door_top"));
-        trapdoorBlock((RankineWoodenTrapDoor) RankineBlocks.BAMBOO_TRAPDOOR.get(), new ResourceLocation("rankine:block/bamboo_trapdoor"), true);
-        verticalSlabBlock((RankineVerticalSlabBlock) RankineBlocks.BAMBOO_VERTICAL_SLAB.get(), new ResourceLocation("rankine:block/bamboo_planks"), new ResourceLocation("rankine:block/bamboo_planks"));
-        //button
-        pressurePlateBlock((RankineWoodenPressurePlate) RankineBlocks.BAMBOO_PRESSURE_PLATE.get(), new ResourceLocation("rankine:block/bamboo_planks"));
-        wallBlock((RankineWallBlock) RankineBlocks.BAMBOO_WALL.get(), new ResourceLocation("rankine:block/bamboo_planks"));
-
 
         //Ores
         for (String ore : RankineLists.ORES) {
@@ -159,26 +153,18 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
 
-
-        simpleBlock(RankineBlocks.MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.WHITE_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.ORANGE_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.MAGENTA_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.LIGHT_BLUE_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.YELLOW_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.LIME_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.PINK_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.GRAY_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.LIGHT_GRAY_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.CYAN_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.PURPLE_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.BLUE_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.GREEN_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.BROWN_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.RED_MINERAL_WOOL.get());
-        simpleBlock(RankineBlocks.BLACK_MINERAL_WOOL.get());
-
-
+        for (String s : RankineLists.GAS_BLOCKS) {
+            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)));
+        }
+        for (String s : RankineLists.MINERAL_WOOL) {
+            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)));
+        }
+        for (String s : RankineLists.FIBER_BLOCKS) {
+            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)));
+        }
+        for (String s : RankineLists.FIBER_MATS) {
+            fiberMatBlock((FiberMatBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)), new ResourceLocation("rankine", "block/"+s.replace("_mat","_block")));
+        }
     }
 
 
@@ -215,6 +201,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         return models().withExistingParent(name, modLoc("block/template_metal_pole_side")).texture("side", texture);
     }
 
+    public void fiberMatBlock(FiberMatBlock block, ResourceLocation texture) {
+        models().withExistingParent(block.getRegistryName().getPath(), mcLoc("block/carpet"))
+                .texture("texture", texture);
+    }
 
     @Override
     public void fenceBlock(FenceBlock block, ResourceLocation texture) {
@@ -260,11 +250,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void buttonBlock(String name, AbstractButtonBlock block, ResourceLocation texture) {
-        buttonInventory(name);
+        buttonInventory(name, texture);
         buttonBlock(block, models().withExistingParent(name+"_button", mcLoc("block/button")).texture("texture", texture), models().withExistingParent(name+"_button_pressed", mcLoc("block/button_pressed")).texture("texture", texture));
     }
-    public ModelBuilder<BlockModelBuilder> buttonInventory(String name) {
-        return models().withExistingParent(name+"_button_inventory", mcLoc("block/button_inventory")).texture("texture", modLoc("block/"+name));
+    public ModelBuilder<BlockModelBuilder> buttonInventory(String name, ResourceLocation texture) {
+        return models().withExistingParent(name+"_button_inventory", mcLoc("block/button_inventory")).texture("texture", texture);
     }
     public void buttonBlock(AbstractButtonBlock block, ModelFile button, ModelFile pressed) {
         getVariantBuilder(block).forAllStatesExcept(state -> {

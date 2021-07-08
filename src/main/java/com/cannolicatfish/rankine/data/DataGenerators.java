@@ -1,4 +1,5 @@
 package com.cannolicatfish.rankine.data;
+import com.cannolicatfish.rankine.data.loot.RankineLootTableProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -20,6 +21,7 @@ public final class DataGenerators {
 
         gen.addProvider(new RankineBlockStateProvider(gen, existingFileHelper));
         gen.addProvider(new RankineItemModelProvider(gen, existingFileHelper));
-        //gen.addProvider(new RankineLootTableProvider(gen));
+        gen.addProvider(new RankineLootTableProvider(gen));
+
     }
 }

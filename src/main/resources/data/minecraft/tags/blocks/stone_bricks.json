@@ -2,10 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:polished_blackstone_bricks",
-    "rankine:granite_bricks",
-    "rankine:andesite_bricks",
-    "rankine:diorite_bricks",
-    "rankine:basalt_bricks",
     "rankine:gray_granite_bricks",
     "rankine:granodiorite_bricks",
     "rankine:hornblende_andesite_bricks",

@@ -1,8 +1,0 @@
-{
-      "parent": "block/stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_white_marble",
-        "top": "rankine:block/polished_white_marble",
-        "side": "rankine:block/polished_white_marble"
-      }
-    }

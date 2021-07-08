@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "texture": "rankine:block/balsam_fir_planks"
+  }
+}

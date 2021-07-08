@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "rankine:block/andesitic_tuff"
-    }
+    "": [
+      {
+        "model": "rankine:block/andesitic_tuff"
+      },
+      {
+        "model": "rankine:block/andesitic_tuff",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/andesitic_tuff",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/andesitic_tuff",
+        "y": 270
+      }
+    ]
   }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "texture": "rankine:block/light_gray_fiber_block"
+  }
+}

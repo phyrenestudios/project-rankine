@@ -1,8 +1,0 @@
-{
-                "parent": "block/slab_top",
-                "textures": {
-                "bottom": "rankine:block/polished_black_dacite",
-                "top": "rankine:block/polished_black_dacite",
-                "side": "rankine:block/polished_black_dacite"
-                }
-                }

@@ -77,47 +77,40 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         //Wood Items
         for (String s : RankineLists.WOODS) {
-            withExistingParent(s+"_planks", modLoc("block/"+s+"_planks"));
-            withExistingParent(s+"_log", modLoc("block/"+s+"_log"));
-            withExistingParent(s+"_wood", modLoc("block/"+s+"_wood"));
-            withExistingParent("stripped_"+s+"_log", modLoc("block/"+"stripped_"+s+"_log"));
-            withExistingParent("stripped_"+s+"_wood", modLoc("block/"+"stripped_"+s+"_wood"));
+            if (s.equals("bamboo")) {
+                withExistingParent(s+"_planks", modLoc("block/"+s+"_planks"));
+                withExistingParent(s+"_wall", modLoc("block/"+s+"_planks"));
+            } else if (s.equals("bamboo_culms")) {
+                withExistingParent(s, modLoc("block/"+s));
+                withExistingParent(s+"_wall", modLoc("block/"+s));
+            } else {
+                withExistingParent(s+"_planks", modLoc("block/"+s+"_planks"));
+                withExistingParent(s+"_log", modLoc("block/"+s+"_log"));
+                withExistingParent(s+"_wood", modLoc("block/"+s+"_wood"));
+                withExistingParent("stripped_"+s+"_log", modLoc("block/"+"stripped_"+s+"_log"));
+                withExistingParent("stripped_"+s+"_wood", modLoc("block/"+"stripped_"+s+"_wood"));
+                withExistingParent(s+"_leaves", modLoc("block/"+s+"_leaves"));
+                basicItemBlockTexture(s+"_sapling");
+            }
             withExistingParent(s+"_slab", modLoc("block/"+s+"_slab"));
             withExistingParent(s+"_stairs", modLoc("block/"+s+"_stairs"));
             basicItem(s+"_door");
             withExistingParent(s+"_trapdoor", modLoc("block/"+s+"_trapdoor_bottom"));
             withExistingParent(s+"_fence", modLoc("block/"+s+"_fence_inventory"));
             withExistingParent(s+"_fence_gate", modLoc("block/"+s+"_fence_gate"));
-            withExistingParent(s+"_leaves", modLoc("block/"+s+"_leaves"));
-            basicItemBlockTexture(s+"_sapling");
             withExistingParent(s+"_vertical_slab", modLoc("block/"+s+"_vertical_slab"));
-            // withExistingParent(s, modLoc("block/"+s+"_button"));
+            withExistingParent(s, modLoc("block/"+s+"_button_inventory"));
             withExistingParent(s, modLoc("block/"+s+"_pressure_plate"));
         }
-        withExistingParent("bamboo_culms", modLoc("block/"+"bamboo_culms"));
-        withExistingParent("bamboo_culms"+"_slab", modLoc("block/"+"bamboo_culms"+"_slab"));
-        withExistingParent("bamboo_culms"+"_stairs", modLoc("block/"+"bamboo_culms"+"_stairs"));
-        basicItem("bamboo_culms"+"_door");
-        withExistingParent("bamboo_culms"+"_trapdoor", modLoc("block/"+"bamboo_culms"+"_trapdoor_bottom"));
-        withExistingParent("bamboo_culms"+"_fence", modLoc("block/"+"bamboo_culms"+"_fence_inventory"));
-        withExistingParent("bamboo_culms"+"_fence_gate", modLoc("block/"+"bamboo_culms"+"_fence_gate"));
-        withExistingParent("bamboo_culms"+"_vertical_slab", modLoc("block/"+"bamboo_culms"+"_vertical_slab"));
-        withExistingParent("bamboo_culms"+"_pressure_plate", modLoc("block/"+"bamboo_culms"+"_pressure_plate"));
-
-        withExistingParent("bamboo"+"_planks", modLoc("block/"+"bamboo"+"_planks"));
-        withExistingParent("bamboo"+"_slab", modLoc("block/"+"bamboo"+"_slab"));
-        withExistingParent("bamboo"+"_stairs", modLoc("block/"+"bamboo"+"_stairs"));
-        basicItem("bamboo"+"_door");
-        withExistingParent("bamboo"+"_trapdoor", modLoc("block/"+"bamboo"+"_trapdoor_bottom"));
-        withExistingParent("bamboo"+"_fence", modLoc("block/"+"bamboo"+"_fence_inventory"));
-        withExistingParent("bamboo"+"_fence_gate", modLoc("block/"+"bamboo"+"_fence_gate"));
-        withExistingParent("bamboo"+"_vertical_slab", modLoc("block/"+"bamboo"+"_vertical_slab"));
-        withExistingParent("bamboo"+"_pressure_plate", modLoc("block/"+"bamboo"+"_pressure_plate"));
 
 
         //ORES
         for (String s : RankineLists.ORES) {
             withExistingParent(s, modLoc("block/"+s+"0"));
+        }
+        //GAS BLOCKS
+        for (String s : RankineLists.GAS_BLOCKS) {
+            withExistingParent(s, modLoc("block/"+s));
         }
 
         //ELEMENTS
@@ -152,24 +145,17 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
 
-        //block models
-        withExistingParent("mineral_wool", modLoc("block/mineral_wool"));
-        withExistingParent("white_mineral_wool", modLoc("block/white_mineral_wool"));
-        withExistingParent("orange_mineral_wool", modLoc("block/orange_mineral_wool"));
-        withExistingParent("magenta_mineral_wool", modLoc("block/magenta_mineral_wool"));
-        withExistingParent("light_blue_mineral_wool", modLoc("block/light_blue_mineral_wool"));
-        withExistingParent("yellow_mineral_wool", modLoc("block/yellow_mineral_wool"));
-        withExistingParent("lime_mineral_wool", modLoc("block/lime_mineral_wool"));
-        withExistingParent("pink_mineral_wool", modLoc("block/pink_mineral_wool"));
-        withExistingParent("gray_mineral_wool", modLoc("block/gray_mineral_wool"));
-        withExistingParent("light_gray_mineral_wool", modLoc("block/light_gray_mineral_wool"));
-        withExistingParent("cyan_mineral_wool", modLoc("block/cyan_mineral_wool"));
-        withExistingParent("purple_mineral_wool", modLoc("block/purple_mineral_wool"));
-        withExistingParent("blue_mineral_wool", modLoc("block/blue_mineral_wool"));
-        withExistingParent("green_mineral_wool", modLoc("block/green_mineral_wool"));
-        withExistingParent("brown_mineral_wool", modLoc("block/brown_mineral_wool"));
-        withExistingParent("red_mineral_wool", modLoc("block/red_mineral_wool"));
-        withExistingParent("black_mineral_wool", modLoc("block/black_mineral_wool"));
+
+        for (String s : RankineLists.MINERAL_WOOL) {
+            withExistingParent(s, modLoc("block/"+s));
+        }
+        for (String s : RankineLists.FIBER_BLOCKS) {
+            withExistingParent(s, modLoc("block/"+s));
+        }
+        for (String s : RankineLists.FIBER_MATS) {
+            withExistingParent(s, modLoc("block/"+s));
+        }
+
     }
 
     private ItemModelBuilder basicItem(String name) {

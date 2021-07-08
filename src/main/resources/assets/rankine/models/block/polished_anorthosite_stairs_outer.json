@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_anorthosite",
-        "top": "rankine:block/polished_anorthosite",
-        "side": "rankine:block/polished_anorthosite"
-      }
-    }
