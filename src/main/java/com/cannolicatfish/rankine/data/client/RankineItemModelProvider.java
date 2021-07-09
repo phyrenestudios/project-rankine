@@ -28,11 +28,13 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
 
 
-        for (String s : Arrays.asList("fiber_block","uncolored_concrete","roman_concrete","polished_roman_concrete","roman_concrete_bricks","checkered_marble","checkered_dacite","checkered_porphyry","clay_bricks","refractory_bricks","high_refractory_bricks","ultra_high_refractory_bricks")) {
+        for (String s : Arrays.asList("cast_iron_support","fiber_block","uncolored_concrete","roman_concrete","polished_roman_concrete","roman_concrete_bricks","checkered_marble","checkered_dacite","checkered_porphyry","clay_bricks","refractory_bricks","high_refractory_bricks","ultra_high_refractory_bricks")) {
+            if (!s.equals("cast_iron_support")) {
+                withExistingParent(s+"_wall", modLoc("block/"+s+"_wall_inventory"));
+            }
             withExistingParent(s, modLoc("block/"+s));
             withExistingParent(s+"_slab", modLoc("block/"+s+"_slab"));
             withExistingParent(s+"_stairs", modLoc("block/"+s+"_stairs"));
-            withExistingParent(s+"_wall", modLoc("block/"+s+"_wall_inventory"));
             withExistingParent(s+"_vertical_slab", modLoc("block/"+s+"_vertical_slab"));
         }
 
@@ -95,12 +97,13 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(s+"_slab", modLoc("block/"+s+"_slab"));
             withExistingParent(s+"_stairs", modLoc("block/"+s+"_stairs"));
             basicItem(s+"_door");
+            basicItem(s+"_boat");
             withExistingParent(s+"_trapdoor", modLoc("block/"+s+"_trapdoor_bottom"));
             withExistingParent(s+"_fence", modLoc("block/"+s+"_fence_inventory"));
             withExistingParent(s+"_fence_gate", modLoc("block/"+s+"_fence_gate"));
             withExistingParent(s+"_vertical_slab", modLoc("block/"+s+"_vertical_slab"));
-            withExistingParent(s, modLoc("block/"+s+"_button_inventory"));
-            withExistingParent(s, modLoc("block/"+s+"_pressure_plate"));
+            withExistingParent(s+"_button", modLoc("block/"+s+"_button_inventory"));
+            withExistingParent(s+"_pressure_plate", modLoc("block/"+s+"_pressure_plate_up"));
         }
 
 

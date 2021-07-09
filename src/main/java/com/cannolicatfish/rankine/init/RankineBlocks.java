@@ -954,7 +954,7 @@ public class RankineBlocks {
 
 
     public static final RegistryObject<Block> PACKED_SNOW = REGISTRY.register("packed_snow", () -> new Block(AbstractBlock.Properties.create(Material.SNOW_BLOCK).hardnessAndResistance(2.0F).setRequiresTool().harvestTool(ToolType.SHOVEL).sound(SoundType.SNOW)));
-    public static final RegistryObject<Block> METEORIC_ICE = REGISTRY.register("meteoric_ice", () -> new BreakableBlock(AbstractBlock.Properties.create(Material.PACKED_ICE).hardnessAndResistance(3.5F).slipperiness(1.0F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> METEORIC_ICE = REGISTRY.register("meteoric_ice", () -> new BreakableBlock(AbstractBlock.Properties.create(Material.PACKED_ICE).hardnessAndResistance(3.5F).slipperiness(1.1F).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> DIAMOND_GEODE = REGISTRY.register("diamond_geode", () -> new GeodeBlock(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> EMERALD_GEODE = REGISTRY.register("emerald_geode", () -> new GeodeBlock(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> AQUAMARINE_GEODE = REGISTRY.register("aquamarine_geode", () -> new GeodeBlock(DEF_STONE.harvestLevel(0)));

@@ -21,7 +21,7 @@ public final class DataGenerators {
 
         gen.addProvider(new RankineBlockStateProvider(gen, existingFileHelper));
         gen.addProvider(new RankineItemModelProvider(gen, existingFileHelper));
-        gen.addProvider(new RankineLootTableProvider(gen));
+        //gen.addProvider(new RankineLootTableProvider(gen));
 
     }
 }

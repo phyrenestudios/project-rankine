@@ -35,11 +35,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
 
-        for (String s : Arrays.asList("fiber_block","uncolored_concrete","roman_concrete","polished_roman_concrete","roman_concrete_bricks","clay_bricks","refractory_bricks","high_refractory_bricks","ultra_high_refractory_bricks","checkered_marble","checkered_dacite","checkered_porphyry")) {
+        for (String s : Arrays.asList("cast_iron_support","fiber_block","uncolored_concrete","roman_concrete","polished_roman_concrete","roman_concrete_bricks","clay_bricks","refractory_bricks","high_refractory_bricks","ultra_high_refractory_bricks","checkered_marble","checkered_dacite","checkered_porphyry")) {
+            if (!s.equals("cast_iron_support")) {
+                wallBlock((RankineWallBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_wall")), new ResourceLocation("rankine","block/"+s));
+            }
             simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)));
             slabBlock((RankineSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_slab")), new ResourceLocation("rankine","block/"+s), new ResourceLocation("rankine","block/"+s));
             stairsBlock((RankineStairsBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_stairs")), s, new ResourceLocation("rankine","block/"+s));
-            wallBlock((RankineWallBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_wall")), new ResourceLocation("rankine","block/"+s));
             verticalSlabBlock((RankineVerticalSlabBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_vertical_slab")), new ResourceLocation("rankine:block/"+s), new ResourceLocation("rankine:block/"+s));
         }
 
@@ -203,7 +205,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     public void fiberMatBlock(FiberMatBlock block, ResourceLocation texture) {
         models().withExistingParent(block.getRegistryName().getPath(), mcLoc("block/carpet"))
-                .texture("texture", texture);
+                .texture("wool", texture);
     }
 
     @Override
