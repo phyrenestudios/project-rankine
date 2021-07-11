@@ -172,29 +172,19 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
     }
 
 
-        @Override
+*/
+    @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
-            CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
-        }
-        for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
-        {
-            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(stack));
-            if (enchLvl > 0) {
-                stack.addEnchantment(e,enchLvl);
-            }
-        }
+        this.applyAlloyEnchantments(stack,worldIn);
         super.onCreated(stack, worldIn, playerIn);
     }
-     */
+
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
+            this.applyAlloyEnchantments(stack,worldIn);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }

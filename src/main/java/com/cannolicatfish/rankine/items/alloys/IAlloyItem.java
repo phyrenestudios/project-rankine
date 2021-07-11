@@ -20,6 +20,9 @@ import java.util.Optional;
 public interface IAlloyItem {
 
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
+            stack.getTag().remove("RegenerateAlloy");
+        }
         ListNBT alloyData = getAlloyNBT(stack);
 
         CompoundNBT listnbt = new CompoundNBT();
@@ -32,7 +35,7 @@ public interface IAlloyItem {
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
 
         if (nameOverride != null && stack.getTag() != null) {
-            stack.getTag().putString("nameAdd",nameOverride);
+            stack.getTag().putString("nameOverride",nameOverride);
         }
     }
 
@@ -43,7 +46,7 @@ public interface IAlloyItem {
 
     default boolean isAlloyInit(ItemStack stack) {
 
-        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty();
+        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty() && !stack.getTag().getBoolean("RegenerateAlloy");
     }
 
     default String getAlloyComposition(ItemStack stack)
@@ -52,6 +55,15 @@ public interface IAlloyItem {
             return stack.getTag().getCompound("StoredAlloy").getString("comp");
         } else {
             return "80Hg-20Au";
+        }
+    }
+
+    default String getNameOverride(ItemStack stack)
+    {
+        if (stack.getTag() != null) {
+            return stack.getTag().getString("nameOverride");
+        } else {
+            return "";
         }
     }
 

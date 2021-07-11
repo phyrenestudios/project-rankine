@@ -40,16 +40,12 @@ public class ElementRecipe implements IRecipe<IInventory> {
     private final List<String> items;
     private final List<Integer> values;
     private final List<ElementEquation> stats;
-    private final String toolEnchantment;
-    private final int toolEnchantmentMin;
-    private final String armorEnchantment;
-    private final int armorEnchantmentMin;
-    private final String arrowType;
-    private final int arrowTypeIn;
+    private final List<String> enchantments;
+    private final List<String> enchantmentTypes;
+    private final List<Float> enchantmentFactors;
 
     public ElementRecipe(ResourceLocation idIn, String nameIn, String symbolIn, int numIn, int colorIn, float potentialIn, List<String> items, List<Integer> values, List<ElementEquation> statsIn,
-                         String toolEnchantmentsIn, int toolEnchantMinIn, String armorEnchantmentsIn, int armorEnchantMinIn,
-                         String arrowTypeIn, int arrowTypeMinIn) {
+                         List<String> enchantmentsIn, List<String> enchantmentTypesIn, List<Float> enchantmentFactorsIn) {
         this.id = idIn;
         this.num = numIn;
         this.color = colorIn;
@@ -59,12 +55,9 @@ public class ElementRecipe implements IRecipe<IInventory> {
         this.name = nameIn;
         this.symbol = symbolIn;
         this.stats = statsIn;
-        this.toolEnchantment = toolEnchantmentsIn;
-        this.toolEnchantmentMin =toolEnchantMinIn;
-        this.armorEnchantment = armorEnchantmentsIn;
-        this.armorEnchantmentMin = armorEnchantMinIn;
-        this.arrowType = arrowTypeIn;
-        this.arrowTypeIn = arrowTypeMinIn;
+        this.enchantments = enchantmentsIn;
+        this.enchantmentTypes = enchantmentTypesIn;
+        this.enchantmentFactors = enchantmentFactorsIn;
     }
 
     @Override
@@ -224,54 +217,6 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
     public float getToughness(int x) { return this.getToughnessFormula().calculateFloat(x);}
 
-    public String getToolEnchantmentVar() {
-        return this.toolEnchantment;
-    }
-
-    public int getToolEnchantmentMin() {
-        return toolEnchantmentMin;
-    }
-
-    public String getArmorEnchantmentVar() {
-        return this.armorEnchantment;
-    }
-
-    public int getArmorEnchantmentMin() {
-        return armorEnchantmentMin;
-    }
-
-    public String getArrowTypeVar() {
-        return arrowType;
-    }
-
-    public int getArrowTypeMin() {
-        return arrowTypeIn;
-    }
-
-    public Enchantment getToolEnchantment(int x) {
-        if (x >= getToolEnchantmentMin() && !toolEnchantment.isEmpty()) {
-            return ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(this.toolEnchantment));
-        } else {
-            return null;
-        }
-    }
-
-    public Enchantment getArmorEnchantment(int x) {
-        if (x >= getArmorEnchantmentMin()) {
-            return ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(this.armorEnchantment));
-        } else {
-            return null;
-        }
-    }
-
-    public Enchantment getArrowType(int x) {
-        if (x >= getArrowTypeMin()) {
-            return null;
-        } else {
-            return null;
-        }
-    }
-
     public List<String> getItems() {
         return items;
     }
@@ -290,7 +235,17 @@ public class ElementRecipe implements IRecipe<IInventory> {
         return SERIALIZER;
     }
 
+    public List<String> getEnchantments() {
+        return enchantments;
+    }
 
+    public List<String> getEnchantmentTypes() {
+        return enchantmentTypes;
+    }
+
+    public List<Float> getEnchantmentFactors() {
+        return enchantmentFactors;
+    }
 
     public int getMaterialCount(Item reg) {
         for (int i = 0; i < getItems().size(); i++) {
@@ -372,43 +327,20 @@ public class ElementRecipe implements IRecipe<IInventory> {
                 }
                 index++;
             }
-            String toolEnch;
-            int toolEnchMin;
-            String armorEnch;
-            int armorEnchMin;
-            String arrowType;
-            int arrowTypeMin;
-            if (json.has("toolenchantment")) {
-                toolEnch = json.get("toolenchantment").getAsString();
-            } else {
-                toolEnch = "";
+            List<String> enchantments = new ArrayList<>();
+            List<String> enchantmentTypes = new ArrayList<>();
+            List<Float> enchantmentFactors = new ArrayList<>();
+            if (json.has("enchantments")) {
+                JsonArray e = JSONUtils.getJsonArray(json,"enchantments");
+                JsonArray eTypes = JSONUtils.getJsonArray(json,"enchantmentTypes");
+                JsonArray eFactors = JSONUtils.getJsonArray(json,"enchantmentFactors");
+                for (int i = 0; i < e.size(); i++) {
+                    enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
+                    enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
+                    enchantmentFactors.add(Math.min(1,Math.max(-1,eFactors.get(i).getAsFloat())));
+                }
             }
-            if (json.has("toolenchantmentmin")) {
-                toolEnchMin = json.get("toolenchantmentmin").getAsInt();
-            } else {
-                toolEnchMin = 0;
-            }
-            if (json.has("armorenchantment")) {
-                armorEnch = json.get("armorenchantment").getAsString();
-            } else {
-                armorEnch = "";
-            }
-            if (json.has("armorenchantmentmin")) {
-                armorEnchMin = json.get("armorenchantmentmin").getAsInt();
-            } else {
-                armorEnchMin = 0;
-            }
-            if (json.has("arrowtype")) {
-                arrowType = json.get("arrowtype").getAsString();
-            } else {
-                arrowType = "";
-            }
-            if (json.has("arrowtypemin")) {
-                arrowTypeMin = json.get("arrowtypemin").getAsInt();
-            } else {
-                arrowTypeMin = 0;
-            }
-            return new ElementRecipe(elementId,n,s,t,c,p,itemList,valueList,equations,toolEnch,toolEnchMin,armorEnch,armorEnchMin,arrowType,arrowTypeMin);
+            return new ElementRecipe(elementId,n,s,t,c,p,itemList,valueList,equations,enchantments,enchantmentTypes,enchantmentFactors);
         }
 
         @Nullable
@@ -454,15 +386,17 @@ public class ElementRecipe implements IRecipe<IInventory> {
                 }
             }
 
-            String toolEnch = buffer.readString();
-            int toolEnchMin = buffer.readInt();
-            String armorEnch = buffer.readString();
-            int armorEnchMin = buffer.readInt();
-            String arrowType = buffer.readString();
-            int arrowTypeMin = buffer.readInt();
+            int size = buffer.readInt();
+            List<String> enchantments = new ArrayList<>();
+            List<String> enchantmentTypes = new ArrayList<>();
+            List<Float> enchantmentFactors = new ArrayList<>();
+            for (int j = 0; j < size; j++) {
+                enchantments.add(buffer.readString().toLowerCase(Locale.ROOT));
+                enchantmentTypes.add(buffer.readString().toUpperCase(Locale.ROOT));
+                enchantmentFactors.add(buffer.readFloat());
+            }
 
-
-            return new ElementRecipe(elementId,name,sym,atomic,color,potential,itemList,valueList,equations,toolEnch,toolEnchMin,armorEnch,armorEnchMin,arrowType,arrowTypeMin);
+            return new ElementRecipe(elementId,name,sym,atomic,color,potential,itemList,valueList,equations,enchantments,enchantmentTypes,enchantmentFactors);
         }
 
         @Override
@@ -494,12 +428,13 @@ public class ElementRecipe implements IRecipe<IInventory> {
                     }
                 }
             }
-            buffer.writeString(element.getToolEnchantmentVar());
-            buffer.writeInt(element.getToolEnchantmentMin());
-            buffer.writeString(element.getArmorEnchantmentVar());
-            buffer.writeInt(element.getArmorEnchantmentMin());
-            buffer.writeString(element.getArrowTypeVar());
-            buffer.writeInt(element.getArrowTypeMin());
+            int size = element.getEnchantments().size();
+            buffer.writeInt(size);
+            for (int i = 0; i < size; i++) {
+                buffer.writeString(element.getEnchantments().get(i));
+                buffer.writeString(element.getEnchantmentTypes().get(i));
+                buffer.writeFloat(element.getEnchantmentFactors().get(i));
+            }
         }
     }
 }

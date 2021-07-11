@@ -1,13 +1,9 @@
 package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.potion.RankineEffects;
-import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentHandler;
-import net.minecraft.item.IItemTier;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.text.TextFormatting;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

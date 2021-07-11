@@ -39,6 +39,7 @@
     "modifiers": ["NONE"],
     "limit": [0]
   },
-  "toolenchantment": "minecraft:fortune",
-  "toolenchantmentmin": 10
+  "enchantments": ["minecraft:fortune"],
+  "enchantmentTypes": ["ALL"],
+  "enchantmentFactors": [0.1]
 }

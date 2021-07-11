@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.ElementUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
@@ -29,6 +30,9 @@ public interface IAlloyTool extends IAlloyItem {
 
     @Override
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
+            stack.getTag().remove("RegenerateAlloy");
+        }
         ListNBT alloyData = getAlloyNBT(stack);
         List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
         List<Integer> percents = this.getPercents(composition);
@@ -117,7 +121,17 @@ public interface IAlloyTool extends IAlloyItem {
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
 
         if (nameOverride != null && stack.getTag() != null) {
-            stack.getTag().putString("nameAdd",nameOverride);
+            stack.getTag().putString("nameOverride",nameOverride);
+        }
+    }
+
+    default void applyAlloyEnchantments(ItemStack stack, World worldIn) {
+        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(getAlloyComposition(stack),worldIn),getPercents(getAlloyComposition(stack)),stack))
+        {
+            int enchLvl = Math.floorDiv(Math.max(getAlloyEnchantability(stack) - 10,0),5);
+            if (enchLvl > 0) {
+                stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+            }
         }
     }
 

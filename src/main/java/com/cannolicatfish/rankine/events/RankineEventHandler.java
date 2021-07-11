@@ -122,9 +122,7 @@ public class RankineEventHandler {
             event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
             event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineBlocks.TUFA_LIMESTONE.get(), 8),8,1,0.05f));
             event.getRareTrades().add(new BasicTrade(1,new ItemStack(RankineItems.ELEMENT_TRANSMUTER.get(), 2),8,1,0.05f));
-            ItemStack met = new ItemStack(RankineItems.METEORIC_IRON.get());
-            AlloyItem.addAlloy(met,new AlloyData("50Fe-50Ni"));
-            event.getRareTrades().add(new BasicTrade(3,met,6,1,0.5f));
+            event.getRareTrades().add(new BasicTrade(3,new ItemStack(RankineItems.METEORIC_IRON.get()),6,1,0.5f));
         }
     }
 

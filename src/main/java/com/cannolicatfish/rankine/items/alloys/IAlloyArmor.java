@@ -28,6 +28,9 @@ public interface IAlloyArmor extends IAlloyItem {
 
     @Override
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
+            stack.getTag().remove("RegenerateAlloy");
+        }
         EquipmentSlotType slotType;
         if (stack.getItem() instanceof ArmorItem) {
             ArmorItem armor = (ArmorItem) stack.getItem();
@@ -103,7 +106,7 @@ public interface IAlloyArmor extends IAlloyItem {
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
 
         if (nameOverride != null && stack.getTag() != null) {
-            stack.getTag().putString("nameAdd",nameOverride);
+            stack.getTag().putString("nameOverride",nameOverride);
         }
     }
 

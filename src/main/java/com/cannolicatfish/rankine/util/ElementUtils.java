@@ -221,37 +221,4 @@ public class ElementUtils {
         }
     }
 
-    public List<Enchantment> getToolEnchantments(List<ElementRecipe> elements, List<Integer> percents)
-    {
-        int index = 0;
-        List<Enchantment> enchantments = new ArrayList<>();
-        for (ElementRecipe e: elements)
-        {
-            Enchantment en = e.getToolEnchantment(percents.get(index));
-            if (en != null)
-            {
-                enchantments.add(en);
-            }
-            index++;
-        }
-
-        return enchantments;
-    }
-
-    public List<Enchantment> getArmorEnchantments(List<ElementRecipe> elements, List<Integer> percents)
-    {
-        int index = 0;
-        List<Enchantment> enchantments = new ArrayList<>();
-        for (ElementRecipe e: elements)
-        {
-            Enchantment en = e.getToolEnchantment(percents.get(index));
-            if (en != null && !enchantments.contains(en))
-            {
-                enchantments.add(en);
-            }
-            index++;
-        }
-
-        return enchantments;
-    }
 }

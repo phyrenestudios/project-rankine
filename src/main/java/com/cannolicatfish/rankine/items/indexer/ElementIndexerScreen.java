@@ -78,10 +78,10 @@ public class ElementIndexerScreen extends ContainerScreen<ElementIndexerContaine
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Toughness: "+ df.format(tough * 100) + "%",12,126,(tough > 0 ? 0x55FF55 : tough < 0 ? 0xFF5555 : 0xffffff));
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,"E: "+ elec +"V",110,126,0x55FFFF);
 
-            Enchantment e = element.getToolEnchantment(this.currentScroll);
+            /*Enchantment e = element.getToolEnchantment(this.currentScroll);
             if (e != null) {
                 drawCenteredString(matrixStack,Minecraft.getInstance().fontRenderer,e.getDisplayName(1).getString(),125,66,0x55FF55);
-            }
+            }*/
 
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT),32,10,0xffffff);
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,String.valueOf(element.getAtomicNumber()),138,32,0xffffff);

@@ -3,9 +3,11 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
+import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.Entity;
@@ -130,29 +132,20 @@ public class AlloyKnifeItem extends KnifeItem implements IAlloyTool{
     }
 
 
-        @Override
+     */
+
+    @Override
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-        if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
-            CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
-        }
-        for (Enchantment e: getEnchantments(returnCompositionString(stack,this.alloy),stack.getItem(),this.alloy))
-        {
-            int enchLvl = alloy.getEnchantmentLevel(e,getAlloyEnchantability(stack));
-            if (enchLvl > 0) {
-                stack.addEnchantment(e,enchLvl);
-            }
-        }
+        this.applyAlloyEnchantments(stack,worldIn);
         super.onCreated(stack, worldIn, playerIn);
     }
-     */
+
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
+            this.applyAlloyEnchantments(stack,worldIn);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
