@@ -44,8 +44,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -66,35 +69,9 @@ public class RankineBlocks {
     public static Block.Properties DEF_WOOD = Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F, 3.0F).harvestLevel(0);
     public static Block.Properties DEF_LEAVES = Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid();
 
-    //STONES
-    /*
-    public static final RegistryObject<Block> GRANITE_BRICKS = REGISTRY.register("granite_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> DIORITE_BRICKS = REGISTRY.register("diorite_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> ANDESITE_BRICKS = REGISTRY.register("andesite_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> BASALT_BRICKS = REGISTRY.register("basalt_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> GRANITE_BRICKS_SLAB = REGISTRY.register("granite_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> DIORITE_BRICKS_SLAB = REGISTRY.register("diorite_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_SLAB = REGISTRY.register("andesite_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> BASALT_BRICKS_SLAB = REGISTRY.register("basalt_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> GRANITE_BRICKS_STAIRS = REGISTRY.register("granite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> DIORITE_BRICKS_STAIRS = REGISTRY.register("diorite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_STAIRS = REGISTRY.register("andesite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> BASALT_BRICKS_STAIRS = REGISTRY.register("basalt_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> GRANITE_BRICKS_WALL = REGISTRY.register("granite_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> DIORITE_BRICKS_WALL = REGISTRY.register("diorite_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_WALL = REGISTRY.register("andesite_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> BASALT_BRICKS_WALL = REGISTRY.register("basalt_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> GRANITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("granite_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> DIORITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("diorite_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> ANDESITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("andesite_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> BASALT_BRICKS_PRESSURE_PLATE = REGISTRY.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> GRANITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("granite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> DIORITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("diorite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("andesite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> BASALT_BRICKS_VERTICAL_SLAB = REGISTRY.register("basalt_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
 
+    public static final RegistryObject<Block> TEST = REGISTRY.register("test", () -> new RankineStoneBricksBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
 
-     */
 
     public static final RegistryObject<Block> GRAY_GRANITE = REGISTRY.register("gray_granite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.GRAY_GRANITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.GRAY_GRANITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.GRAY_GRANITE_HL.get())));
     public static final RegistryObject<Block> POLISHED_GRAY_GRANITE = REGISTRY.register("polished_gray_granite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.GRAY_GRANITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.GRAY_GRANITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.GRAY_GRANITE_HL.get())));
@@ -1953,6 +1930,18 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;
+
+
+    public static Block getBlock(String name) {
+        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",name));
+        if (block != null) {
+            return block;
+        } else {
+            return Blocks.AIR;
+        }
+    }
+
+
 
     private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
         return (state) -> {

@@ -2,14 +2,13 @@ package com.cannolicatfish.rankine.blocks.states;
 
 import net.minecraft.util.IStringSerializable;
 
-public enum MetalPoleStates implements IStringSerializable {
-    BOTTOM("bottom"),
-    MIDDLE("middle"),
-    TOP("top");
+public enum StoneBricksStates implements IStringSerializable {
+    BRICKS("bricks"),
+    SMALL_BRICKS("small_bricks");
 
     private final String name;
 
-    MetalPoleStates(String name) {
+    StoneBricksStates(String name) {
         this.name = name;
     }
 

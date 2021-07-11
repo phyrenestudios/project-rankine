@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "rankine:block/cast_iron_support",
+    "bottom": "rankine:block/cast_iron_support",
+    "top": "rankine:block/cast_iron_support"
+  }
+}

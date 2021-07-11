@@ -214,7 +214,7 @@ public class WGConfig {
         public Intrusions(ForgeConfigSpec.Builder b) {
             b.comment("Settings for intrusions").push("intrusions");
             OVERWORLD_INTRUSION_LIST = b.comment("List of blocks to be generated as intrusions. Each block is followed by its weight.")
-                    .define("overworldIntrusionList", new ArrayList<>(Arrays.asList("rankine:kimberlite&1&rankine:diamond_ore")));
+                    .define("overworldIntrusionList", new ArrayList<>(Arrays.asList("rankine:kimberlite","1")));
             OVERWORLD_INTRUSION_CHANCE = b.comment("Chance for an overworld intrusion to spawn in a chunk. Set to 0 to disable.")
                     .defineInRange("overworldIntrusionChance", 0.5D, 0.0D, 1.0D);
             OVERWORLD_INTRUSION_RADIUS = b.comment("Size of an intrusion")

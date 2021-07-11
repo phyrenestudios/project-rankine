@@ -2,11 +2,11 @@ package com.cannolicatfish.rankine.data.client;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
+import com.cannolicatfish.rankine.blocks.states.StoneBricksStates;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.WGConfig;
 import net.minecraft.block.*;
-import net.minecraft.data.BlockModelFields;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.*;
 import net.minecraft.util.Direction;
@@ -167,6 +167,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (String s : RankineLists.FIBER_MATS) {
             fiberMatBlock((FiberMatBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s)), new ResourceLocation("rankine", "block/"+s.replace("_mat","_block")));
         }
+
+
+        fancyBricksBlock(RankineBlocks.TEST.get());
+
+
     }
 
 
@@ -271,10 +276,26 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .uvLock(true)
                     .build();
         });
-
     }
 
-
+    public void fancyBricksBlock(Block block) {
+        String name = block.getRegistryName().getPath();
+        ModelFile BRICKS = models().withExistingParent(name+"_bricks", mcLoc("block/cube_all")).texture("all", "block/"+name+"_bricks");
+        ModelFile SMALL_BRICKS = models().withExistingParent(name+"_small_bricks", mcLoc("block/cube_all")).texture("all", "block/"+name+"_small_bricks");
+        getVariantBuilder(block)
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.BRICKS).with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+                .modelForState().modelFile(BRICKS).addModel()
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.BRICKS).with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+                .modelForState().modelFile(BRICKS).rotationX(90).addModel()
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.BRICKS).with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+                .modelForState().modelFile(BRICKS).rotationX(90).rotationY(90).addModel()
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.SMALL_BRICKS).with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+                .modelForState().modelFile(SMALL_BRICKS).addModel()
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.SMALL_BRICKS).with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+                .modelForState().modelFile(SMALL_BRICKS).rotationX(90).addModel()
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.SMALL_BRICKS).with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+                .modelForState().modelFile(SMALL_BRICKS).rotationX(90).rotationY(90).addModel();
+    };
 
 
 }

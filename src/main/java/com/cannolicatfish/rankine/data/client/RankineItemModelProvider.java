@@ -26,7 +26,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-
+        withExistingParent("test", modLoc("block/"+"test"));
 
         for (String s : Arrays.asList("cast_iron_support","fiber_block","uncolored_concrete","roman_concrete","polished_roman_concrete","roman_concrete_bricks","checkered_marble","checkered_dacite","checkered_porphyry","clay_bricks","refractory_bricks","high_refractory_bricks","ultra_high_refractory_bricks")) {
             if (!s.equals("cast_iron_support")) {

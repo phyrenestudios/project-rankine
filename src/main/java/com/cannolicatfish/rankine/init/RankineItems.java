@@ -26,34 +26,10 @@ public class RankineItems {
 
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
 
-    //Stone Blocks
-    /*
-    public static final RegistryObject<Item> GRANITE_BRICKS = REGISTRY.register("granite_bricks", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> GRANITE_BRICKS_SLAB = REGISTRY.register("granite_bricks_slab", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> GRANITE_BRICKS_STAIRS = REGISTRY.register("granite_bricks_stairs", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> GRANITE_BRICKS_WALL = REGISTRY.register("granite_bricks_wall", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_WALL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> GRANITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("granite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> GRANITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("granite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.GRANITE_BRICKS_PRESSURE_PLATE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> DIORITE_BRICKS = REGISTRY.register("diorite_bricks", () -> new BlockItem(RankineBlocks.DIORITE_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> DIORITE_BRICKS_SLAB = REGISTRY.register("diorite_bricks_slab", () -> new BlockItem(RankineBlocks.DIORITE_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> DIORITE_BRICKS_STAIRS = REGISTRY.register("diorite_bricks_stairs", () -> new BlockItem(RankineBlocks.DIORITE_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> DIORITE_BRICKS_WALL = REGISTRY.register("diorite_bricks_wall", () -> new BlockItem(RankineBlocks.DIORITE_BRICKS_WALL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> DIORITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("diorite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.DIORITE_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> DIORITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("diorite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.DIORITE_BRICKS_PRESSURE_PLATE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ANDESITE_BRICKS = REGISTRY.register("andesite_bricks", () -> new BlockItem(RankineBlocks.ANDESITE_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ANDESITE_BRICKS_SLAB = REGISTRY.register("andesite_bricks_slab", () -> new BlockItem(RankineBlocks.ANDESITE_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ANDESITE_BRICKS_STAIRS = REGISTRY.register("andesite_bricks_stairs", () -> new BlockItem(RankineBlocks.ANDESITE_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ANDESITE_BRICKS_WALL = REGISTRY.register("andesite_bricks_wall", () -> new BlockItem(RankineBlocks.ANDESITE_BRICKS_WALL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ANDESITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("andesite_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.ANDESITE_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> ANDESITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("andesite_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.ANDESITE_BRICKS_PRESSURE_PLATE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> BASALT_BRICKS = REGISTRY.register("basalt_bricks", () -> new BlockItem(RankineBlocks.BASALT_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> BASALT_BRICKS_SLAB = REGISTRY.register("basalt_bricks_slab", () -> new BlockItem(RankineBlocks.BASALT_BRICKS_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> BASALT_BRICKS_STAIRS = REGISTRY.register("basalt_bricks_stairs", () -> new BlockItem(RankineBlocks.BASALT_BRICKS_STAIRS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> BASALT_BRICKS_WALL = REGISTRY.register("basalt_bricks_wall", () -> new BlockItem(RankineBlocks.BASALT_BRICKS_WALL.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> BASALT_BRICKS_VERTICAL_SLAB = REGISTRY.register("basalt_bricks_vertical_slab", () -> new BlockItem(RankineBlocks.BASALT_BRICKS_VERTICAL_SLAB.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-    public static final RegistryObject<Item> BASALT_BRICKS_PRESSURE_PLATE = REGISTRY.register("basalt_bricks_pressure_plate", () -> new BlockItem(RankineBlocks.BASALT_BRICKS_PRESSURE_PLATE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
-     */
+    public static final RegistryObject<Item> TEST = REGISTRY.register("test", () -> new BlockItem(RankineBlocks.TEST.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
 
+
+    //Stone Blocks
     public static final RegistryObject<Item> GRAY_GRANITE = REGISTRY.register("gray_granite", () -> new BlockItem(RankineBlocks.GRAY_GRANITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> POLISHED_GRAY_GRANITE = REGISTRY.register("polished_gray_granite", () -> new BlockItem(RankineBlocks.POLISHED_GRAY_GRANITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> GRAY_GRANITE_BRICKS = REGISTRY.register("gray_granite_bricks", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_BRICKS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
@@ -2484,6 +2460,7 @@ public class RankineItems {
     public static final RegistryObject<Item> TENNESSINE_BLOCK = REGISTRY.register("tennessine_block", () -> new BlockItem(RankineBlocks.TENNESSINE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> OGANESSON_BLOCK = REGISTRY.register("oganesson_block", () -> new BlockItem(RankineBlocks.OGANESSON_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
 
+
     public static final RegistryObject<Item> HYDROGEN_GAS_BLOCK = REGISTRY.register("hydrogen_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> HELIUM_GAS_BLOCK = REGISTRY.register("helium_gas_block", () -> new BlockItem(RankineBlocks.HELIUM_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> NITROGEN_GAS_BLOCK = REGISTRY.register("nitrogen_gas_block", () -> new BlockItem(RankineBlocks.NITROGEN_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
@@ -2496,16 +2473,32 @@ public class RankineItems {
     public static final RegistryObject<Item> XENON_GAS_BLOCK = REGISTRY.register("xenon_gas_block", () -> new BlockItem(RankineBlocks.XENON_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> RADON_GAS_BLOCK = REGISTRY.register("radon_gas_block", () -> new BlockItem(RankineBlocks.RADON_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> OGANESSON_GAS_BLOCK = REGISTRY.register("oganesson_gas_block", () -> new BlockItem(RankineBlocks.OGANESSON_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
-    
+
     
 
     @ObjectHolder("rankine:element_indexer")
     public static ContainerType<ElementIndexerContainer> ELEMENT_INDEXER_CONTAINER;
 
-    public static Item getBlockAsItem(Block block)
-    {
-        ItemStack stack = new ItemStack(block);
-        return stack.getItem();
+/*
+    public static void itemInit() {
+        for (String registryName : RankineLists.GAS_BLOCKS) {
+            REGISTRY.register(registryName, () -> new BlockItem(RankineBlocks.getBlock(registryName),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+        }
     }
+
+
+ */
+    public static Item getItem(String name) {
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation("rankine",name));
+        if (item != null) {
+            return item;
+        } else {
+            return Items.AIR;
+        }
+    }
+
+
+
+
 }
 
