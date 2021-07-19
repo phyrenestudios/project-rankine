@@ -133,6 +133,20 @@ jar {
     }
 }
 
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    from (sourceSets.main.output) {
+        include 'LICENSE'
+    }
+
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = "deobf"
+}
+
 // Example configuration to allow publishing using the maven-publish task
 // we define a custom artifact that is sourced from the reobfJar output task
 // and then declare that to be published
@@ -153,4 +167,9 @@ publishing {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
+}
+
+artifacts {
+    archives sourcesJar
+    archives deobfJar
 }
