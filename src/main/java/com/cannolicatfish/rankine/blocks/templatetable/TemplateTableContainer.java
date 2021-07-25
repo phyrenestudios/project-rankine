@@ -169,7 +169,7 @@ public class TemplateTableContainer extends Container {
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
         AlloyingRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this.inputInventory, world).orElse(null);
         if (recipe != null) {
-            ItemStack stack = recipe.generateResult(this.inputInventory,3);
+            ItemStack stack = recipe.generateResult(world,this.inputInventory,3);
             INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
             if (nbt != null){
                 return new AbstractMap.SimpleEntry<>(new String[]{new TranslationTextComponent(stack.getItem().getTranslationKey()).getString(),nbt.getString()},0x55FF55);
@@ -190,10 +190,10 @@ public class TemplateTableContainer extends Container {
             AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this.inputInventory, this.world).orElse(null);
             //calcPercentages();
             if (recipeIn != null) {
-                ItemStack recipeOutput = recipeIn.generateResult(this.inputInventory, 3);
+                ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
                 if (!recipeOutput.isEmpty()) {
                     ItemStack st = new ItemStack(RankineItems.ALLOY_TEMPLATE.get());
-                    AlloyTemplateItem.addTemplate(st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getStackInSlot(7).getItem());
+                    AlloyTemplateItem.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getStackInSlot(7).getItem());
 
                     this.outputInventory.setInventorySlotContents(0, st);
                     return;

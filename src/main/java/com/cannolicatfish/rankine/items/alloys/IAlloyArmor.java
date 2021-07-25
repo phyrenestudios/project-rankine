@@ -39,7 +39,7 @@ public interface IAlloyArmor extends IAlloyItem {
             slotType = EquipmentSlotType.CHEST;
         }
 
-        ListNBT alloyData = getAlloyNBT(stack);
+        ListNBT alloyData = IAlloyItem.getAlloyNBT(stack);
         List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
         List<Integer> percents = this.getPercents(composition);
 

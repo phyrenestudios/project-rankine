@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.GrindstoneBlock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
@@ -92,25 +93,42 @@ public class AlloyKnifeItem extends KnifeItem implements IAlloyTool{
             }
             if (Screen.hasShiftDown())
             {
-                float eff = getAlloyEfficiency(stack);
-                float wear = getWearAsPercent(eff,getAlloyWear(getWearModifierMining(eff),getDamage(stack),getMaxDamage(stack)));
-                tooltip.add((new StringTextComponent("Composition: " + getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
-                tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(wear) + "%")).mergeStyle(getWearColor(wear)));
-                tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - getDamage(stack)) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
-                tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).mergeStyle(TextFormatting.GRAY));
-                tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
-                tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
-                if (Config.ALLOYS.ALLOY_CORROSION.get())
-                {
-                    tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
+                    tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
+                } else {
+                    tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
                 }
-                if (Config.ALLOYS.ALLOY_HEAT.get())
-                {
-                    tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+
+                if (!IAlloyItem.needsRefresh(stack)) {
+                    float eff = getAlloyEfficiency(stack);
+                    float wear = getWearAsPercent(eff,getAlloyWear(getWearModifierMining(eff),getDamage(stack),getMaxDamage(stack)));
+
+                    tooltip.add((new StringTextComponent("Tool Efficiency: " + Math.round(wear) + "%")).mergeStyle(getWearColor(wear)));
+                    tooltip.add((new StringTextComponent("Durability: " + (getAlloyDurability(stack) - getDamage(stack)) + "/" + getAlloyDurability(stack))).mergeStyle(TextFormatting.DARK_GREEN));
+                    tooltip.add((new StringTextComponent("Harvest Level: " + (getAlloyHarvestLevel(stack)))).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Mining Speed: " + df.format(eff))).mergeStyle(TextFormatting.GRAY));
+                    tooltip.add((new StringTextComponent("Enchantability: " + getAlloyEnchantability(stack))).mergeStyle(TextFormatting.GRAY));
+                    if (Config.ALLOYS.ALLOY_CORROSION.get())
+                    {
+                        tooltip.add((new StringTextComponent("Corrosion Resistance: " + (df.format(getCorrResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    }
+                    if (Config.ALLOYS.ALLOY_HEAT.get())
+                    {
+                        tooltip.add((new StringTextComponent("Heat Resistance: " + (df.format(getHeatResist(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    }
+                    if (Config.ALLOYS.ALLOY_TOUGHNESS.get())
+                    {
+                        tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+                    }
                 }
-                if (Config.ALLOYS.ALLOY_TOUGHNESS.get())
-                {
-                    tooltip.add((new StringTextComponent("Toughness: " + (df.format(getToughness(stack) * 100)) + "%")).mergeStyle(TextFormatting.GRAY));
+
+                if (flagIn.isAdvanced()) {
+                    if (IAlloyItem.getAlloyRecipe(stack) != null) {
+                        tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).mergeStyle(TextFormatting.LIGHT_PURPLE)));
+                    } else {
+                        tooltip.add((new StringTextComponent("No Recipe Defined").mergeStyle(TextFormatting.LIGHT_PURPLE)));
+                    }
+
                 }
             }
         }
@@ -146,6 +164,8 @@ public class AlloyKnifeItem extends KnifeItem implements IAlloyTool{
         if (!this.isAlloyInit(stack)) {
             this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
             this.applyAlloyEnchantments(stack,worldIn);
+        } else if (IAlloyItem.needsRefresh(stack)) {
+            this.createAlloyNBT(stack,worldIn,IAlloyItem.getAlloyComposition(stack),IAlloyItem.getAlloyRecipe(stack),null);
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }

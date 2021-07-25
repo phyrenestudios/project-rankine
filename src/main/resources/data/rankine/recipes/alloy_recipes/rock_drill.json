@@ -14,7 +14,9 @@
     },
     "G": {
       "item": "rankine:alloy_gear",
-      "alloyData": "75Cu-13Sn-12Mn"
+      "alloyRecipe": "rankine:alloying/bronze_alloy_alloying",
+      "name": "Bronze Alloy Gear",
+      "color": 12622179
     }
   },
   "result": {

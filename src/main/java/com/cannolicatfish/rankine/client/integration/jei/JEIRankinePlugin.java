@@ -10,23 +10,27 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.client.integration.jei.categories.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCatalystRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import net.minecraft.client.gui.DisplayEffectsScreen;
 import net.minecraft.client.gui.screen.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import java.util.Comparator;
+import java.util.List;
 
 @JeiPlugin
 public class JEIRankinePlugin implements IModPlugin {
@@ -49,6 +53,14 @@ public class JEIRankinePlugin implements IModPlugin {
 
     }
 
+    private static List<ElementRecipe> getSortedElementRecipes() {
+        RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
+        List<ElementRecipe> elements = rankineJEIRecipes.getElementRecipes();
+        final Comparator<ElementRecipe> BY_ATOMIC_NUM = Comparator.comparing(ElementRecipe::getAtomicNumber);
+        elements.sort(BY_ATOMIC_NUM);
+        return elements;
+    }
+
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
@@ -57,7 +69,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(rankineJEIRecipes.getEvaporationRecipes(), EvaporationRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getCrushingRecipes(), CrushingRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getAlloyingRecipes(), AlloyingRecipeCategory.UID);
-        registry.addRecipes(rankineJEIRecipes.getElementRecipes(), ElementRecipeCategory.UID);
+        registry.addRecipes(getSortedElementRecipes(), ElementRecipeCategory.UID);
         registry.addRecipes(rankineJEIRecipes.getCrucibleRecipes(), CrucibleRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
@@ -90,6 +102,17 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addIngredientInfo(new ItemStack(RankineItems.THERMOMETER.get()), VanillaTypes.ITEM, "While held, the thermometer will display the current block temperature. Default is head position, sneak for position at feet.");
         registry.addIngredientInfo(new ItemStack(RankineBlocks.RANKINE_BOX.get()), VanillaTypes.ITEM, "The Rankine Box is a machine that allows you to transmute between different elements. " +
                 "To transmute an element, you must provide a Power Cell and a Directional Element Transmuter (Up, Down, Left, and Right). The direction determines which element you will receive.");
+    }
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_DUST.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_GEAR.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_INGOT.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_PLATE.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_ROD.get(), IAlloyItem::getSubtype);
+        registration.registerSubtypeInterpreter(RankineItems.ALLOY_WIRE.get(), IAlloyItem::getSubtype);
+
     }
 
     @Override

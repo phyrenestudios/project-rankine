@@ -98,7 +98,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     @Override
     public void setIngredients(AlloyingRecipe recipe, IIngredients iIngredients) {
         ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getIngredients()) {
+        for (Ingredient i : recipe.getIngredientsList(Minecraft.getInstance().world)) {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
@@ -108,7 +108,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     @Override
     public void setRecipe(IRecipeLayout recipeLayout, AlloyingRecipe recipe, IIngredients ingredients) {
         int index = 0;
-        List<Integer> reqIndex = recipe.getIndexList(true);
+        List<Integer> reqIndex = recipe.getIndexList(Minecraft.getInstance().world, true);
         int reqCounter = 0;
         int nonReqCounter = 0;
         int reducer = 0;

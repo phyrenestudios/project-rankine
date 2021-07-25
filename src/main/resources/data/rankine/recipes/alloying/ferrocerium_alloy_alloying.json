@@ -3,32 +3,35 @@
   "total": 6,
   "tier": 2,
   "input1": {
-    "element": "cerium",
+    "element": "rankine:elements/cerium",
     "min": 0.40,
-    "max": 0.50
+    "max": 0.50,
+    "required": true
   },
   "input2": {
-    "element": "lanthanum",
+    "element": "rankine:elements/lanthanum",
     "min": 0.23,
-    "max": 0.25
+    "max": 0.25,
+    "required": true
   },
   "input3": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.19,
-    "max": 0.21
+    "max": 0.21,
+    "required": true
   },
   "input4": {
-    "element": "praseodymium",
+    "element": "rankine:elements/praseodymium",
     "min": 0.0,
     "max": 0.04
   },
   "input5": {
-    "element": "neodymium",
+    "element": "rankine:elements/neodymium",
     "min": 0.0,
     "max": 0.04
   },
   "input6": {
-    "element": "magnesium",
+    "element": "rankine:elements/magnesium",
     "min": 0.0,
     "max": 0.04
   },

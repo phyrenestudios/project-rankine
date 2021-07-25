@@ -180,7 +180,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                                 this.items.set(8, smelting);
                             }
                         } else {
-                            output = irecipe.generateResult(this, 2).copy();
+                            output = irecipe.generateResult(world,this, 2).copy();
                             x = new int[]{inputs[0].getCount(), inputs[1].getCount(), inputs[2].getCount(), inputs[3].getCount(), inputs[4].getCount(), inputs[5].getCount()};
                             smelting = output;
                             if (this.items.get(8).getCount() > 0) {
@@ -246,14 +246,14 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                     }
                 }
             }
-            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(template) : recipeIn.generateResult(inv, 2);
+            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(template) : recipeIn.generateResult(world,inv, 2);
             if (stack.isEmpty()) {
                 return false;
             } else {
                 ItemStack itemstack1 = this.items.get(8);
                 if (itemstack1.isEmpty()) {
                     return true;
-                } else if ((!itemstack1.isItemEqual(stack) && !itemstack1.isEmpty())) {
+                } else if ((!itemstack1.isItemEqual(stack) || !ItemStack.areItemStackTagsEqual(stack,itemstack1)) && !itemstack1.isEmpty()) {
                     return false;
                 } else if (itemstack1.getCount() + stack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + stack.getCount() <= itemstack1.getMaxStackSize()) {
                     return true;
@@ -376,7 +376,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             stack.setCount(this.getInventoryStackLimit());
         }
 
-        if (index == 0 && !flag) {
+        if (index >= 0 && index <= 5  && !flag) {
             this.cookTimeTotal = 1600;
             this.cookTime = 0;
             this.markDirty();

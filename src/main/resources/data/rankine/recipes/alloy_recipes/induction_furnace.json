@@ -20,7 +20,9 @@
     },
     "W": {
       "item": "rankine:alloy_wire",
-      "alloyData": "90Cu-10Ni"
+      "alloyRecipe": "rankine:alloying/cupronickel_alloy_alloying",
+      "name": "Cupronickel Alloy Wire",
+      "color": 11946807
     }
   },
   "result": {

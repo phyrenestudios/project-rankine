@@ -33,7 +33,7 @@ public interface IAlloyTool extends IAlloyItem {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
             stack.getTag().remove("RegenerateAlloy");
         }
-        ListNBT alloyData = getAlloyNBT(stack);
+        ListNBT alloyData = IAlloyItem.getAlloyNBT(stack);
         List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
         List<Integer> percents = this.getPercents(composition);
 
@@ -126,7 +126,7 @@ public interface IAlloyTool extends IAlloyItem {
     }
 
     default void applyAlloyEnchantments(ItemStack stack, World worldIn) {
-        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(getAlloyComposition(stack),worldIn),getPercents(getAlloyComposition(stack)),stack))
+        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack))
         {
             int enchLvl = Math.floorDiv(Math.max(getAlloyEnchantability(stack) - 10,0),5);
             if (enchLvl > 0) {

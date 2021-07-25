@@ -3,14 +3,16 @@
   "total": 2,
   "tier": 2,
   "input1": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.48,
-    "max": 0.56
+    "max": 0.56,
+    "required": true
   },
   "input2": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.44,
-    "max": 0.52
+    "max": 0.52,
+    "required": true
   },
   "result": "rankine:nitinol_alloy"
 }

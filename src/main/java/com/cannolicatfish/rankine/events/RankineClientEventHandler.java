@@ -3,31 +3,59 @@ package com.cannolicatfish.rankine.events;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
+import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ICraftingRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Mod.EventBusSubscriber
 public class RankineClientEventHandler {
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public static void onRecipesUpdated(RecipesUpdatedEvent event) {
+        ClientWorld world = Minecraft.getInstance().world;
+        if (world != null) {
+            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING));
+            AlloyCustomHelper.setAlloyingRecipes(alloyingRecipes);
+
+            List<AlloyCraftingRecipe> alloyCraftingRecipes = world.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream()
+                    .filter((iCraftingRecipe -> iCraftingRecipe instanceof AlloyCraftingRecipe))
+                    .map(AlloyCraftingRecipe.class::cast)
+                    .collect(Collectors.toList());
+            AlloyCustomHelper.setCraftingRecipes(alloyCraftingRecipes);
+        }
+    }
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)

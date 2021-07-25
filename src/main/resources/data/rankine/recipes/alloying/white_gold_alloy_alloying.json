@@ -2,32 +2,34 @@
   "type": "rankine:alloying",
   "total": 6,
   "input1": {
-    "element": "gold",
+    "element": "rankine:elements/gold",
     "min": 0.74,
-    "max": 0.90
+    "max": 0.90,
+    "required": true
   },
   "input2": {
-    "element": "zinc",
+    "element": "rankine:elements/zinc",
     "min": 0.05,
-    "max": 0.10
+    "max": 0.10,
+    "required": true
   },
   "input3": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.10
   },
   "input4": {
-    "element": "silver",
+    "element": "rankine:elements/silver",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "element": "palladium",
+    "element": "rankine:elements/palladium",
     "min": 0.0,
     "max": 0.10
   },
   "input6": {
-    "element": "platinum",
+    "element": "rankine:elements/platinum",
     "min": 0.0,
     "max": 0.10
   },

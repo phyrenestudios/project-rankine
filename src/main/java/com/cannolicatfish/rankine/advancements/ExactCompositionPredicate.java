@@ -26,7 +26,7 @@ public class ExactCompositionPredicate extends ItemPredicate {
     @Override
     public boolean test(ItemStack stack) {
         if (stack.getItem() instanceof IAlloyItem && stack.getItem() == item) {
-            return ((IAlloyItem) stack.getItem()).getAlloyComposition(stack).equals(str);
+            return IAlloyItem.getAlloyComposition(stack).equals(str);
         }
         return false;
     }

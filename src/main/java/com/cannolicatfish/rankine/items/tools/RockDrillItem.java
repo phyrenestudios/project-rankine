@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
@@ -32,17 +33,19 @@ public class RockDrillItem extends Item {
             }
         }
         if (!context.getWorld().isRemote && context.getPlayer() != null) {
+            PlayerEntity player = context.getPlayer();
             if (!stones.isEmpty()) {
-                context.getPlayer().sendMessage(new StringTextComponent("== STONES LIST ==").mergeStyle(TextFormatting.GOLD),context.getPlayer().getUniqueID());
+                player.sendMessage(new StringTextComponent("== STONES LIST ==").mergeStyle(TextFormatting.GOLD),player.getUniqueID());
                 for (Block s : stones) {
-                    context.getPlayer().sendMessage(new TranslationTextComponent(s.getTranslationKey()),context.getPlayer().getUniqueID());
+                    player.sendMessage(new TranslationTextComponent(s.getTranslationKey()),player.getUniqueID());
                 }
             } else {
-                context.getPlayer().sendMessage(new StringTextComponent("No stones detected"),context.getPlayer().getUniqueID());
+                player.sendMessage(new StringTextComponent("No stones detected"),player.getUniqueID());
             }
-            context.getItem().damageItem(1,context.getPlayer(),(p_220040_1_) -> {
+            context.getItem().damageItem(1,player,(p_220040_1_) -> {
                 p_220040_1_.sendBreakAnimation(context.getHand());
             });
+            player.getCooldownTracker().setCooldown(this, 60);
         }
 
 

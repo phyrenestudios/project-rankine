@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.*;
@@ -91,7 +92,7 @@ public class CrowbarItem extends ToolItem {
         Direction face = context.getFace();
         PlayerEntity player = context.getPlayer();
         if (worldIn.getTileEntity(blockpos) == null && worldIn.getFluidState(blockpos).isEmpty() && bs.isSolid() && face != Direction.UP && face != Direction.DOWN && bs.getBlockHardness(worldIn,blockpos) >= 0) {
-            if (player != null && player.getPosition().getY() <= blockpos.getY() && !player.getPosition().equals(blockpos.offset(face)) && player.isOnGround()){
+            if (player != null && (player.getPosition().getY() <= blockpos.getY() || Config.GENERAL.CROWBAR_FROM_ABOVE.get()) && !player.getPosition().equals(blockpos.offset(face)) && player.isOnGround()){
                 BlockState state = worldIn.getBlockState(blockpos);
                 state = state.getBlock() instanceof GrassBlock ? state.getBlock().getDefaultState() : state;
                 worldIn.setBlockState(blockpos.offset(face),state,3);

@@ -152,11 +152,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             elements.add(s.replaceAll("[\\d.-]", ""));
             nums.add(Integer.parseInt(s.replaceAll("[^\\d.-]", "")));
         }
-        //System.out.println("PRE-TASK COMP:");
-        //System.out.println(elements);
-        //System.out.println(nums);
         for (List<String> strL : alloyCommands) {
-            //System.out.println("TASK: " + strL);
             int cons = 0;
             for (String str : strL) {
                 int negative = str.contains("-") ? -1 : 1;
@@ -189,13 +185,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
 
                 }
             }
-            //System.out.println("POST-TASK OUTCOME:");
-            //System.out.println(elements);
-            //System.out.println(nums);
         }
-        //System.out.println("FINAL OUTCOME:");
-        //System.out.println(elements);
-        //System.out.println(nums);
         return AlloyRecipeHelper.getDirectComposition(nums,elements);
     }
 
@@ -347,7 +337,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
                     JsonObject object = JSONUtils.getJsonObject(json, input);
-                    ingredients.set(i, AlloyIngredientHelper.deserialize(object,null));
+                    ingredients.set(i, AlloyIngredientHelper.deserialize(object,null,null,null));
                     if (object.has("group")) {
                         groups.set(i,object.get("group").getAsInt());
                     }

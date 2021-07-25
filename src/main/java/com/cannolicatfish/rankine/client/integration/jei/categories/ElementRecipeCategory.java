@@ -88,7 +88,9 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
         float p = recipe.getElectrodePotential();
         String e = "Electrode Potential: " + (p > 0 ? "+" : "") + df.format(recipe.getElectrodePotential())+"V";
 
-        font.drawString(ms,String.valueOf(recipe.getAtomicNumber()),60, 10,0x000000);
+        if (recipe.getAtomicNumber() >= 0) {
+            font.drawString(ms,String.valueOf(recipe.getAtomicNumber()),60, 10,0x000000);
+        }
         font.drawString(ms,String.valueOf(recipe.getSymbol()),60, 20,0x000000);
         font.drawString(ms,name,(float)(70 - font.getStringWidth(name) / 2),40,0x000000);
         font.drawString(ms,e,(float)(70 - font.getStringWidth(e) / 2),50,0x000000);

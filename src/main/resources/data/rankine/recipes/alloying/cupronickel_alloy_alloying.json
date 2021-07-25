@@ -2,77 +2,79 @@
   "type": "rankine:alloying",
   "total": 15,
   "input1": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.70,
-    "max": 0.90
+    "max": 0.90,
+    "required": true
   },
   "input2": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.10,
-    "max": 0.30
+    "max": 0.30,
+    "required": true
   },
   "input3": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.05
   },
   "input4": {
-    "element": "manganese",
+    "element": "rankine:elements/manganese",
     "min": 0.0,
     "max": 0.05
   },
   "input5": {
-    "element": "tin",
+    "element": "rankine:elements/tin",
     "min": 0.0,
     "max": 0.05
   },
   "input6": {
-    "element": "niobium",
+    "element": "rankine:elements/niobium",
     "min": 0.0,
     "max": 0.05
   },
   "input7": {
-    "element": "tantalum",
+    "element": "rankine:elements/tantalum",
     "min": 0.0,
     "max": 0.05
   },
   "input8": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.05
   },
   "input9": {
-    "element": "lead",
+    "element": "rankine:elements/lead",
     "min": 0.0,
     "max": 0.05
   },
   "input10": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.05
   },
   "input11": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.0,
     "max": 0.05
   },
   "input12": {
-    "element": "bismuth",
+    "element": "rankine:elements/bismuth",
     "min": 0.0,
     "max": 0.05
   },
   "input13": {
-    "element": "beryllium",
+    "element": "rankine:elements/beryllium",
     "min": 0.0,
     "max": 0.05
   },
   "input14": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.05
   },
   "input15": {
-    "element": "phosphorus",
+    "element": "rankine:elements/phosphorus",
     "min": 0.0,
     "max": 0.05
   },

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.recipe.helper;
 
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.item.Item;
@@ -24,35 +25,42 @@ import java.util.stream.StreamSupport;
 
 public class AlloyIngredientHelper {
 
-    public static Ingredient deserialize(@Nullable JsonElement json, @Nullable String alloyData) {
+    public static Ingredient deserialize(@Nullable JsonElement json, @Nullable String alloyComp, @Nullable String alloyRecipe, @Nullable String name) {
         if (json != null && !json.isJsonNull()) {
             Ingredient ret = net.minecraftforge.common.crafting.CraftingHelper.getIngredient(json);
-            if (alloyData != null)
+            if (alloyRecipe != null)
             {
                 List<ItemStack> stacks = new ArrayList<>();
                 for (ItemStack s : ret.getMatchingStacks())
                 {
-                    AlloyItem.addAlloy(s,new AlloyData(alloyData));
+                    IAlloyItem.createDirectAlloyNBT(s,alloyComp,alloyRecipe,name);
                     stacks.add(s);
                 }
                 ret = Ingredient.fromStacks(stacks.toArray(new ItemStack[0]));
             }
 
-            if (ret != null) return ret;
-            if (json.isJsonObject()) {
-                return Ingredient.fromItemListStream(Stream.of(deserializeItemList(json.getAsJsonObject())));
-            } else if (json.isJsonArray()) {
-                JsonArray jsonarray = json.getAsJsonArray();
-                if (jsonarray.size() == 0) {
-                    throw new JsonSyntaxException("Item array cannot be empty, at least one item must be defined");
-                } else {
-                    return Ingredient.fromItemListStream(StreamSupport.stream(jsonarray.spliterator(), false).map((element) -> {
-                        return deserializeItemList(JSONUtils.getJsonObject(element, "item"));
-                    }));
+            return ret;
+        } else {
+            throw new JsonSyntaxException("Item cannot be null");
+        }
+    }
+
+    public static Ingredient deserialize(@Nullable JsonElement json, @Nullable String alloyComp, @Nullable String alloyRecipe, @Nullable String name, int color) {
+        if (json != null && !json.isJsonNull()) {
+            Ingredient ret = net.minecraftforge.common.crafting.CraftingHelper.getIngredient(json);
+            if (alloyComp != null || alloyRecipe != null || name != null || color != 16777215)
+            {
+                List<ItemStack> stacks = new ArrayList<>();
+                for (ItemStack s : ret.getMatchingStacks())
+                {
+                    IAlloyItem.createDirectAlloyNBT(s,alloyComp,alloyRecipe,name);
+                    IAlloyItem.addColorNBT(s,color);
+                    stacks.add(s);
                 }
-            } else {
-                throw new JsonSyntaxException("Expected item to be object or array of objects");
+                ret = Ingredient.fromStacks(stacks.toArray(new ItemStack[0]));
             }
+
+            return ret;
         } else {
             throw new JsonSyntaxException("Item cannot be null");
         }
@@ -137,10 +145,13 @@ public class AlloyIngredientHelper {
         }
 
         ItemStack ret = new ItemStack(item, JSONUtils.getInt(json, "count", 1));
-        if (json.has("alloyData"))
+        if (json.has("alloyComp") || json.has("alloyRecipe"))
         {
+
+            String alloyComp = json.has("alloyComp") ? JSONUtils.getString(json, "alloyComp") : "";
+            String alloyRecipe = json.has("alloyRecipe") ? JSONUtils.getString(json, "alloyRecipe") : "";
             //System.out.println("AlloyData detected in recipe!: " + JSONUtils.getString(json, "alloyData"));
-            AlloyItem.addAlloy(ret,new AlloyData(JSONUtils.getString(json, "alloyData")));
+            IAlloyItem.createDirectAlloyNBT(ret,alloyComp,alloyRecipe,null);
         }
         return ret;
     }

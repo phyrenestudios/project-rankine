@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "pattern": [
     " G ",
     "R#E",
-    "lP#"
+    "Pl#"
   ],
   "key": {
     "R": {
@@ -19,7 +19,10 @@
       "item": "minecraft:piston"
     },
     "l": {
-      "item": "minecraft:lever"
+      "item": "rankine:alloy_ingot",
+      "alloyRecipe": "rankine:alloying/stabil_alloy_alloying",
+      "color": 11848920,
+      "name": "NEG Alloy Ingot"
     },
     "#": {
       "item": "minecraft:shulker_shell"

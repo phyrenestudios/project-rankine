@@ -8,24 +8,25 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.ResourceLocation;
 
 public class IncludesCompositionPredicate extends ItemPredicate {
 
     String str;
-    Item item;
-    public IncludesCompositionPredicate(String str, Item itemIn) {
+    ResourceLocation tag;
+    public IncludesCompositionPredicate(String str, ResourceLocation tagIn) {
         this.str = str;
-        this.item = itemIn;
+        this.tag = tagIn;
     }
 
     public IncludesCompositionPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getString(jsonObject, "comp"),JSONUtils.getItem(jsonObject,"item"));
+        this(JSONUtils.getString(jsonObject, "comp"),new ResourceLocation(JSONUtils.getString(jsonObject,"tag")));
     }
 
     @Override
     public boolean test(ItemStack stack) {
-        if (stack.getItem() instanceof IAlloyItem && stack.getItem() == item) {
-            return ((IAlloyItem) stack.getItem()).getAlloyComposition(stack).contains(str);
+        if (stack.getItem() instanceof IAlloyItem && stack.getItem().getTags().contains(tag)) {
+            return IAlloyItem.getAlloyComposition(stack).contains(str);
         }
         return false;
     }

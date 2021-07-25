@@ -1,12 +1,15 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -24,10 +27,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class AlloyItem extends Item implements IAlloyItem {
@@ -46,8 +51,8 @@ public class AlloyItem extends Item implements IAlloyItem {
 
     @Override
     public ITextComponent getDisplayName(ItemStack stack) {
-        if (!getNameOverride(stack).isEmpty()) {
-            return new StringTextComponent(getNameOverride(stack));
+        if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
+            return new StringTextComponent(IAlloyItem.getNameOverride(stack));
         }
         return super.getDisplayName(stack);
     }
@@ -56,14 +61,28 @@ public class AlloyItem extends Item implements IAlloyItem {
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if (this.isAlloyInit(stack)) {
-            tooltip.add((new StringTextComponent("Composition: " + getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
+            if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
+                tooltip.add((new StringTextComponent("Any Composition").mergeStyle(TextFormatting.GOLD)));
+            } else {
+                tooltip.add((new StringTextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).mergeStyle(TextFormatting.GOLD)));
+            }
+            if (flagIn.isAdvanced()) {
+                if (IAlloyItem.getAlloyRecipe(stack) != null) {
+                    tooltip.add((new StringTextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).mergeStyle(TextFormatting.LIGHT_PURPLE)));
+                } else {
+                    tooltip.add((new StringTextComponent("No Recipe Defined").mergeStyle(TextFormatting.LIGHT_PURPLE)));
+                }
+
+            }
         }
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!this.isAlloyInit(stack)) {
-            this.createAlloyNBT(stack, worldIn, this.defaultComposition, this.defaultAlloyRecipe, null);
+            this.createAlloyNBT(stack,worldIn,this.defaultComposition,this.defaultAlloyRecipe,null);
+        } else if (IAlloyItem.needsRefresh(stack)) {
+            this.createAlloyNBT(stack,worldIn,IAlloyItem.getAlloyComposition(stack),IAlloyItem.getAlloyRecipe(stack),null);
         }
     }
 
@@ -121,6 +140,18 @@ public class AlloyItem extends Item implements IAlloyItem {
         }
         return list;
     }
+
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
+            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
+            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
+        } else if (this.isInGroup(group)) {
+            super.fillItemGroup(group,items);
+        }
+    }
+
+
 
 
 

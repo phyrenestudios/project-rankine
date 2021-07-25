@@ -3,112 +3,115 @@
   "total": 22,
   "tier": 2,
   "input1": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.50,
-    "max": 0.75
+    "max": 0.75,
+    "required": true
   },
   "input2": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.14,
-    "max": 0.27
+    "max": 0.27,
+    "required": true
   },
   "input3": {
-    "element": "cobalt",
+    "element": "rankine:elements/cobalt",
     "min": 0.01,
-    "max": 0.20
+    "max": 0.20,
+    "required": true
   },
   "input4": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.15
   },
   "input5": {
-    "element": "niobium",
+    "element": "rankine:elements/niobium",
     "min": 0.0,
     "max": 0.15
   },
   "input6": {
-    "element": "molybdenum",
+    "element": "rankine:elements/molybdenum",
     "min": 0.0,
     "max": 0.15
   },
   "input7": {
-    "element": "tantalum",
+    "element": "rankine:elements/tantalum",
     "min": 0.0,
     "max": 0.15
   },
   "input8": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.0,
     "max": 0.15
   },
   "input9": {
-    "element": "manganese",
+    "element": "rankine:elements/manganese",
     "min": 0.0,
     "max": 0.15
   },
   "input10": {
-    "element": "boron",
+    "element": "rankine:elements/boron",
     "min": 0.0,
     "max": 0.15
   },
   "input11": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.15
   },
   "input12": {
-    "element": "netherite",
+    "element": "rankine:elements/netherite",
     "min": 0.0,
     "max": 0.15
   },
   "input13": {
-    "element": "zirconium",
+    "element": "rankine:elements/zirconium",
     "min": 0.0,
     "max": 0.15
   },
   "input14": {
-    "element": "vanadium",
+    "element": "rankine:elements/vanadium",
     "min": 0.0,
     "max": 0.15
   },
   "input15": {
-    "element": "carbon",
+    "element": "rankine:elements/carbon",
     "min": 0.0,
     "max": 0.15
   },
   "input16": {
-    "element": "tungsten",
+    "element": "rankine:elements/tungsten",
     "min": 0.0,
     "max": 0.15
   },
   "input17": {
-    "element": "ruthenium",
+    "element": "rankine:elements/ruthenium",
     "min": 0.0,
     "max": 0.15
   },
   "input18": {
-    "element": "beryllium",
+    "element": "rankine:elements/beryllium",
     "min": 0.0,
     "max": 0.15
   },
   "input19": {
-    "element": "rhenium",
+    "element": "rankine:elements/rhenium",
     "min": 0.0,
     "max": 0.15
   },
   "input20": {
-    "element": "hafnium",
+    "element": "rankine:elements/hafnium",
     "min": 0.0,
     "max": 0.15
   },
   "input21": {
-    "element": "phosphorus",
+    "element": "rankine:elements/phosphorus",
     "min": 0.0,
     "max": 0.15
   },
   "input22": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.15
   },

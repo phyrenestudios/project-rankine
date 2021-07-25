@@ -3,87 +3,90 @@
   "total": 17,
   "tier": 2,
   "input1": {
-    "element": "cerium",
+    "element": "rankine:elements/cerium",
     "min": 0.50,
-    "max": 0.55
+    "max": 0.55,
+    "required": true
   },
   "input2": {
-    "element": "lanthanum",
+    "element": "rankine:elements/lanthanum",
     "min": 0.20,
-    "max": 0.25
+    "max": 0.25,
+    "required": true
   },
   "input3": {
-    "element": "neodymium",
+    "element": "rankine:elements/neodymium",
     "min": 0.15,
-    "max": 0.20
+    "max": 0.20,
+    "required": true
   },
   "input4": {
-    "element": "praseodymium",
+    "element": "rankine:elements/praseodymium",
     "min": 0.0,
     "max": 0.15
   },
   "input5": {
-    "element": "promethium",
+    "element": "rankine:elements/promethium",
     "min": 0.0,
     "max": 0.15
   },
   "input6": {
-    "element": "samarium",
+    "element": "rankine:elements/samarium",
     "min": 0.0,
     "max": 0.15
   },
   "input7": {
-    "element": "europium",
+    "element": "rankine:elements/europium",
     "min": 0.0,
     "max": 0.15
   },
   "input8": {
-    "element": "gadolinium",
+    "element": "rankine:elements/gadolinium",
     "min": 0.0,
     "max": 0.15
   },
   "input9": {
-    "element": "terbium",
+    "element": "rankine:elements/terbium",
     "min": 0.0,
     "max": 0.15
   },
   "input10": {
-    "element": "dysprosium",
+    "element": "rankine:elements/dysprosium",
     "min": 0.0,
     "max": 0.15
   },
   "input11": {
-    "element": "holmium",
+    "element": "rankine:elements/holmium",
     "min": 0.0,
     "max": 0.15
   },
   "input12": {
-    "element": "erbium",
+    "element": "rankine:elements/erbium",
     "min": 0.0,
     "max": 0.15
   },
   "input13": {
-    "element": "thulium",
+    "element": "rankine:elements/thulium",
     "min": 0.0,
     "max": 0.15
   },
   "input14": {
-    "element": "ytterbium",
+    "element": "rankine:elements/ytterbium",
     "min": 0.0,
     "max": 0.15
   },
   "input15": {
-    "element": "lutetium",
+    "element": "rankine:elements/lutetium",
     "min": 0.0,
     "max": 0.15
   },
   "input16": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.05
   },
   "input17": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.05
   },

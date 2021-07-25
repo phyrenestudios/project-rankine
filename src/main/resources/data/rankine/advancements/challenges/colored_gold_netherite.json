@@ -25,6 +25,7 @@
           },
           {
             "type": "rankine:includes_composition",
+            "tag": "rankine:colored_gold_tools",
             "comp": "Nr"
           }
         ]

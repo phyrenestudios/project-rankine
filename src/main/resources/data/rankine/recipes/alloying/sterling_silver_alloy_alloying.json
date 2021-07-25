@@ -2,37 +2,39 @@
   "type": "rankine:alloying",
   "total": 7,
   "input1": {
-    "element": "silver",
+    "element": "rankine:elements/silver",
     "min": 0.92,
-    "max": 0.96
+    "max": 0.96,
+    "required": true
   },
   "input2": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.01,
-    "max": 0.08
+    "max": 0.08,
+    "required": true
   },
   "input3": {
-    "element": "zinc",
+    "element": "rankine:elements/zinc",
     "min": 0.0,
     "max": 0.07
   },
   "input4": {
-    "element": "platinum",
+    "element": "rankine:elements/platinum",
     "min": 0.0,
     "max": 0.07
   },
   "input5": {
-    "element": "boron",
+    "element": "rankine:elements/boron",
     "min": 0.0,
     "max": 0.07
   },
   "input6": {
-    "element": "germanium",
+    "element": "rankine:elements/germanium",
     "min": 0.0,
     "max": 0.07
   },
   "input7": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.07
   },

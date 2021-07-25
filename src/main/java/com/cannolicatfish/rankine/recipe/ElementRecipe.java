@@ -145,6 +145,7 @@ public class ElementRecipe implements IRecipe<IInventory> {
         return this.num;
     }
 
+
     public int getColor() {
         return this.color;
     }
