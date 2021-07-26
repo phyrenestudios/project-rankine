@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:flerovium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:flerovium_nugget",
+    "count": 9
+  }
+}

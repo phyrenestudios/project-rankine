@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:black_birch_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:balsam_fir_trapdoor",
+    "count": 2
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:columbite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:columbite",
+    "count": 9
+  }
+}

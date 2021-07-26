@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_shonkinite"
+  },
+  "result": "rankine:polished_shonkinite_vertical_slab",
+  "count": 2
+}

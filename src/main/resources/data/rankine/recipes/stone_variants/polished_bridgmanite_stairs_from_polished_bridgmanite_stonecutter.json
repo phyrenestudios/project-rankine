@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_bridgmanite"
-      },
-      "result": "rankine:polished_bridgmanite_stairs",
-      "count": 1
-    }

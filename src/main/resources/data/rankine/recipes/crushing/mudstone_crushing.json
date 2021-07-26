@@ -4,7 +4,7 @@
     "item": "rankine:mudstone"
   },
   "output1": {
-    "item": "rankine:mud",
+    "item": "minecraft:dirt",
     "chance": 0.80,
     "additional": 0.20
   },

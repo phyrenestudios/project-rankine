@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:copper_block_from_malachite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_malachite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:malachite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:copper_block_from_malachite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_malachite",
+      "has_the_recipe"
+    ]
+  ]
+}

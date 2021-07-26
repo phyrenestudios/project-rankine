@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_gray_marble_wall"
+    ]
+  },
+  "criteria": {
+    "has_polished_gray_marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_gray_marble"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_gray_marble_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_gray_marble",
+      "has_the_recipe"
+    ]
+  ]
+}

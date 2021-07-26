@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_hornblende_andesite"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_hornblende_andesite_stairs",
+    "count": 4
+  }
+}

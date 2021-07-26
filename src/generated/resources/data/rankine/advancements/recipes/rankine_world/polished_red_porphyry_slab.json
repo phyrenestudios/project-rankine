@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_red_porphyry_slab"
+    ]
+  },
+  "criteria": {
+    "has_polished_red_porphyry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_red_porphyry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_red_porphyry_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_red_porphyry",
+      "has_the_recipe"
+    ]
+  ]
+}

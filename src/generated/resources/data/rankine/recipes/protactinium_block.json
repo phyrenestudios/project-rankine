@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:protactinium_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:protactinium_block"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:limestone_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:limestone_bricks_wall",
+    "count": 6
+  }
+}

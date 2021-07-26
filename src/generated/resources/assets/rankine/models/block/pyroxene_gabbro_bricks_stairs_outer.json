@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/pyroxene_gabbro_bricks",
-    "bottom": "rankine:block/pyroxene_gabbro_bricks",
-    "top": "rankine:block/pyroxene_gabbro_bricks"
-  }
-}

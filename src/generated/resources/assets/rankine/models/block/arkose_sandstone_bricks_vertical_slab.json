@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab",
-  "textures": {
-    "side": "rankine:block/arkose_sandstone_bricks",
-    "bottom": "rankine:block/arkose_sandstone_bricks",
-    "top": "rankine:block/arkose_sandstone_bricks"
-  }
-}

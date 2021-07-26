@@ -1,0 +1,20 @@
+{
+  "name": "Flint Age",
+  "icon": "minecraft:flint",
+  "category": "introduction",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Ah yes, a very classic starting tool system: flint. You will need these tools to survive the first few days since vanilla tools are disabled by default. Additionally, this will make you appreciate technological progress just that little bit more. Begin by finding $(l:mechanics/flint)flint$() (4 are needed at minimum to begin). Traditionally flint is derived from gravel at a 10% chance."
+    },
+    {
+      "type": "text",
+      "text": "Craft a $(l:tools/flint_knife)Flint Knife$() and harvest materials to make $(l:materials/rope)Rope$(). With rope, flint, and sticks any of the flint tools can be made (see the Tools category for more info on different tools). The priority should be to make a pick for a few reasons, it has a chance to drop flint when mining stones, you need stone to craft the Stone Hammer, and you can mine Native Ores to begin your metallurgic adventures."
+    },
+    {
+      "type": "text",
+      "text": "Use the Stone Hammer to crush stones into cobblestone which is used for its traditional purposes. $(l:mechanics:crushing)Crushing$() certain blocks can yield other products as well, like clay from shale (see JEI for all recipes). $(br2)If you need help determining which ores / stones you can mine, use the $(l:tools/hardness_tester)Hardness Tester$(). And if you are having trouble finding ores, use a $(l:tools/prospecting_stick)Prospecting Stick$()."
+    }
+  ]
+}

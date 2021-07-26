@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:acanthite"
-  },
-  "result": "rankine:silver_ingot",
-  "experience": 1.0,
-  "cookingtime": 100
-}

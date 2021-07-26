@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sodium_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:sodium_block"
+  }
+}

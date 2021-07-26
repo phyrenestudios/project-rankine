@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_slate_wall_from_polished_slate__stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_slate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_slate"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:polished_slate_wall_from_polished_slate__stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_slate",
+      "has_the_recipe"
+    ]
+  ]
+}

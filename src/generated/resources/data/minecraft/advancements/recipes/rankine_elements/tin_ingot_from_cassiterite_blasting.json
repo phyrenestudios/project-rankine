@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:tin_ingot_from_cassiterite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_cassiterite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cassiterite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:tin_ingot_from_cassiterite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cassiterite",
+      "has_the_recipe"
+    ]
+  ]
+}

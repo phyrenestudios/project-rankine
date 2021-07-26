@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_siltstone_wall"
+    ]
+  },
+  "criteria": {
+    "has_polished_siltstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_siltstone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_siltstone_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_siltstone",
+      "has_the_recipe"
+    ]
+  ]
+}

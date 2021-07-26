@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:hydrogen_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:hydrogen_ingot",
+    "count": 9
+  }
+}

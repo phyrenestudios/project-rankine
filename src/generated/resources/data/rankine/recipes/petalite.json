@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:petalite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:petalite",
+    "count": 9
+  }
+}

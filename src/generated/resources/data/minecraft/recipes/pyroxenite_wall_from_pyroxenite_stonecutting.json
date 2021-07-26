@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:pyroxenite"
+  },
+  "result": "rankine:pyroxenite_wall",
+  "count": 1
+}

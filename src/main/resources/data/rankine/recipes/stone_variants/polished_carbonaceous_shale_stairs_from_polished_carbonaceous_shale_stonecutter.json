@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_carbonaceous_shale"
-      },
-      "result": "rankine:polished_carbonaceous_shale_stairs",
-      "count": 1
-    }

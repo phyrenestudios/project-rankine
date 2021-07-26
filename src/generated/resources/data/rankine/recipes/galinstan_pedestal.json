@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:galinstan_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:galinstan_pedestal"
+  }
+}

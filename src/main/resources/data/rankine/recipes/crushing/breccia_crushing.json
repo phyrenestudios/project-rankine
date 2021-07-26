@@ -4,7 +4,7 @@
     "item": "rankine:breccia"
   },
   "output1": {
-    "item": "rankine:quartz_sandstone",
+    "item": "rankine:itacolumite",
     "chance": 0.40,
     "additional": 0.40
   },

@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:peridotite_bricks"
-      },
-      "result": "rankine:peridotite_bricks_wall",
-      "count": 1
-    }

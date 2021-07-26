@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sterling_silver_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:sterling_silver_block"
+  }
+}

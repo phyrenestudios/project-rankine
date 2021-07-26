@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:gneiss_bricks"
-      },
-      "result": "rankine:gneiss_bricks_pressure_plate",
-      "count": 1
-}

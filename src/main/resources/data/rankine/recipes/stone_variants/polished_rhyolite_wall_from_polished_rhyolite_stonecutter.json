@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_rhyolite"
-      },
-      "result": "rankine:polished_rhyolite_wall",
-      "count": 1
-    }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:rhyolite_bricks"
+  },
+  "result": "rankine:rhyolite_bricks_wall",
+  "count": 1
+}

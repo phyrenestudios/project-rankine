@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/anorthosite",
+    "background": "rankine:block/red_porphyry",
     "overlay": "rankine:block/lonsdaleite_ore"
   }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:white_marble_slab"
+    ]
+  },
+  "criteria": {
+    "has_white_marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:white_marble"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:white_marble_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_marble",
+      "has_the_recipe"
+    ]
+  ]
+}

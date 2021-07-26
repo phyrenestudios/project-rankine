@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:plagioclase_feldspar"
+    }
+  },
+  "result": {
+    "item": "rankine:plagioclase_feldspar_block"
+  }
+}

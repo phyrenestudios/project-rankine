@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_vertical_slab",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:breccia"
+    }
+  },
+  "result": {
+    "item": "rankine:breccia_vertical_slab",
+    "count": 6
+  }
+}

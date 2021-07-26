@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:azurite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:azurite",
+    "count": 9
+  }
+}

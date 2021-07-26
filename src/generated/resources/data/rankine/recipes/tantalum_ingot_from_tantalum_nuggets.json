@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tantalum_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:tantalum_ingot"
+  }
+}

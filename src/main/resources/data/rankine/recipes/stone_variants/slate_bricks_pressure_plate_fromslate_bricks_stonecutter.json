@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-        "item": "rankine:slate_bricks"
-      },
-      "result": "rankine:slate_bricks_pressure_plate",
-      "count": 1
-        }

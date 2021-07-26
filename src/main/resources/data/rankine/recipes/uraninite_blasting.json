@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:uraninite"
-      },
-      "result": "rankine:uranium_ingot",
-      "experience": 1.0,
-      "cookingtime": 100
-    }

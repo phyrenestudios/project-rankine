@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:xenotime"
+  },
+  "result": "rankine:yttrium_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

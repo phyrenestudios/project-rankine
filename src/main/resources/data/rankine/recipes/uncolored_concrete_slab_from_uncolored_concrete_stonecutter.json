@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:uncolored_concrete"
-      },
-      "result": "rankine:uncolored_concrete_slab",
-      "count": 2
-    }

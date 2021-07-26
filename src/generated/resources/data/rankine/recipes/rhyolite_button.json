@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:rhyolite"
+    }
+  ],
+  "result": {
+    "item": "rankine:rhyolite_button"
+  }
+}

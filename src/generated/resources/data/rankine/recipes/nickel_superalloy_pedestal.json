@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nickel_superalloy"
+    }
+  },
+  "result": {
+    "item": "rankine:nickel_superalloy_pedestal"
+  }
+}

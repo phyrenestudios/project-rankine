@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cupronickel_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:cupronickel_pedestal"
+  }
+}

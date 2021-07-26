@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:petrified_chorus_vertical_slab",
+    "rankine:balsam_fir_vertical_slab",
+    "rankine:black_birch_vertical_slab",
+    "rankine:black_walnut_vertical_slab",
+    "rankine:cedar_vertical_slab",
+    "rankine:cinnamon_vertical_slab",
+    "rankine:coconut_palm_vertical_slab",
+    "rankine:cork_oak_vertical_slab",
+    "rankine:eastern_hemlock_vertical_slab",
+    "rankine:juniper_vertical_slab",
+    "rankine:magnolia_vertical_slab",
+    "rankine:pinyon_pine_vertical_slab",
+    "rankine:yellow_birch_vertical_slab",
+    "rankine:maple_vertical_slab",
+    "rankine:bamboo_vertical_slab",
+    "rankine:bamboo_culms_vertical_slab"
+  ]
+}

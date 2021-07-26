@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:subbituminous_ore"
-  },
-  "result": "rankine:subbituminous_coal",
-  "experience": 0.1,
-  "cookingtime": 100
-}

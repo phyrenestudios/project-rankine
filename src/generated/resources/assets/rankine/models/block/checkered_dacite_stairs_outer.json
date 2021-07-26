@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/checkered_dacite",
-    "bottom": "rankine:block/checkered_dacite",
-    "top": "rankine:block/checkered_dacite"
-  }
-}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:anorthosite_slab_from_anorthosite_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_anorthosite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:anorthosite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:anorthosite_slab_from_anorthosite_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_anorthosite",
+      "has_the_recipe"
+    ]
+  ]
+}

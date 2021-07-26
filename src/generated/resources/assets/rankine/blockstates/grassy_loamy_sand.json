@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "rankine:block/grassy_loamy_sand"
+      },
+      {
+        "model": "rankine:block/grassy_loamy_sand",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/grassy_loamy_sand",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/grassy_loamy_sand",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "rankine:block/grassy_loamy_sand"
+    }
+  }
+}

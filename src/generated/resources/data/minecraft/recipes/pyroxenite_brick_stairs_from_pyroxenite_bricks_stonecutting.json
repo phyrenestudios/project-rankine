@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:pyroxenite_bricks"
+  },
+  "result": "rankine:pyroxenite_bricks_stairs",
+  "count": 1
+}

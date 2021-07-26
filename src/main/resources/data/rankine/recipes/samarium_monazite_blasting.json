@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:samarium_monazite"
-  },
-  "result": "rankine:samarium_ingot",
-  "experience": 1.0,
-  "cookingtime": 100
-}

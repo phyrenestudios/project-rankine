@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:flint_pickaxe",
+    "rankine:pewter_pickaxe",
+    "rankine:alloy_pickaxe",
+    "rankine:bronze_pickaxe",
+    "rankine:invar_pickaxe",
+    "rankine:steel_pickaxe",
+    "rankine:stainless_steel_pickaxe",
+    "rankine:nickel_superalloy_pickaxe",
+    "rankine:cobalt_superalloy_pickaxe",
+    "rankine:tungsten_heavy_alloy_pickaxe",
+    "rankine:rose_gold_pickaxe",
+    "rankine:blue_gold_pickaxe",
+    "rankine:green_gold_pickaxe",
+    "rankine:white_gold_pickaxe",
+    "rankine:purple_gold_pickaxe",
+    "rankine:black_gold_pickaxe",
+    "rankine:amalgam_pickaxe"
+  ]
+}

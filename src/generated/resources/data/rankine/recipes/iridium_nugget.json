@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:iridium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:iridium_nugget",
+    "count": 9
+  }
+}

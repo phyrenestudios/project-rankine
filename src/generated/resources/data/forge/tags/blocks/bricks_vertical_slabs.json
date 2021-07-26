@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:clay_bricks_vertical_slab",
+    "rankine:refractory_bricks_vertical_slab",
+    "rankine:high_refractory_bricks_vertical_slab",
+    "rankine:ultra_high_refractory_bricks_vertical_slab"
+  ]
+}

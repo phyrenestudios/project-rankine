@@ -2318,7 +2318,7 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
                 return false;
             } else {
                 Block block = blockstate.getBlock();
-                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == RankineBlocks.ARKOSE_SANDSTONE.get() || block == RankineBlocks.QUARTZ_SANDSTONE.get();
+                return block == Blocks.SANDSTONE || block == Blocks.RED_SANDSTONE || block == RankineBlocks.ITACOLUMITE.get() || block == RankineBlocks.ARKOSE.get();
             }
         }),
         DACITES("dacites", (blockstate) -> {

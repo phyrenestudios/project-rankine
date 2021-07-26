@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:flint_axe",
+    "rankine:flint_pickaxe",
+    "rankine:flint_hoe",
+    "rankine:flint_shovel",
+    "rankine:flint_knife",
+    "rankine:stone_hammer",
+    "rankine:flint_spear"
+  ]
+}

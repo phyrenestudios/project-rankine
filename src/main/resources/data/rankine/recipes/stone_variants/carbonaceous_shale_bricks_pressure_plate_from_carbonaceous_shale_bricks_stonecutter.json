@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:carbonaceous_shale_bricks"
-      },
-      "result": "rankine:carbonaceous_shale_bricks_pressure_plate",
-      "count": 1
-}

@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shaped", "pattern": [ "xx", "xx" ], "key": { "x": { "item": "rankine:dolomite" } }, "result": { "item": "rankine:dolomite_block", "count": 1 } }

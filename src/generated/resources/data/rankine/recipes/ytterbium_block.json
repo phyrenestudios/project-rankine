@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ytterbium_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:ytterbium_block"
+  }
+}

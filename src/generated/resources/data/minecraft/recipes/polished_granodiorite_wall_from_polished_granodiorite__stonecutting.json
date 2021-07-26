@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_granodiorite"
+  },
+  "result": "rankine:polished_granodiorite_wall",
+  "count": 1
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:tin_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:tin_ingot",
+    "count": 9
+  }
+}

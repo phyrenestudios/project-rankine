@@ -56,15 +56,15 @@ public class SedimentFanBlock extends Block {
                     BlockPos end = pos.up().offset(dir,3);
 
                     if ((sediment == Blocks.RED_SAND && sediment2 == Blocks.QUARTZ_BLOCK) || (sediment2 == Blocks.RED_SAND && sediment == Blocks.QUARTZ_BLOCK)) {
-                        worldIn.setBlockState(end, RankineBlocks.ARKOSE_SANDSTONE.get().getDefaultState(),2);
+                        worldIn.setBlockState(end, RankineBlocks.ARKOSE.get().getDefaultState(),2);
                         return;
                     } else if ((sediment == Blocks.SAND && sediment2 == Blocks.QUARTZ_BLOCK) || (sediment2 == Blocks.SAND && sediment == Blocks.QUARTZ_BLOCK)) {
-                        worldIn.setBlockState(end, RankineBlocks.QUARTZ_SANDSTONE.get().getDefaultState(),2);
+                        worldIn.setBlockState(end, RankineBlocks.ITACOLUMITE.get().getDefaultState(),2);
                         return;
                     }else if ((sediment == Blocks.SAND && sediment2 == Blocks.CLAY) || (sediment == Blocks.CLAY && sediment2 == Blocks.SAND)) {
                         worldIn.setBlockState(end, RankineBlocks.SILTSTONE.get().getDefaultState(), 2);
                         return;
-                    }  else if ((sediment == RankineBlocks.MUD.get()) && (sediment2 == RankineBlocks.MUD.get())) {
+                    }  else if ((sediment == Blocks.DIRT) && (sediment2 == Blocks.DIRT)) {
                         worldIn.setBlockState(end, RankineBlocks.MUDSTONE.get().getDefaultState(), 2);
                         return;
                     } else if ((sediment == Blocks.RED_SAND) && (sediment2 == Blocks.RED_SAND)) {
@@ -74,16 +74,13 @@ public class SedimentFanBlock extends Block {
                         worldIn.setBlockState(end, Blocks.SANDSTONE.getDefaultState(),2);
                         return;
                     } else if ((sediment == Blocks.CLAY) && (sediment2 == Blocks.CLAY)) {
-                        worldIn.setBlockState(end, RankineBlocks.CARBONACEOUS_SHALE.get().getDefaultState(),2);
+                        worldIn.setBlockState(end, RankineBlocks.SHALE.get().getDefaultState(),2);
                         return;
                     }  else if ((sediment == RankineBlocks.DOLOMITE_BLOCK.get()) && (sediment2 == RankineBlocks.DOLOMITE_BLOCK.get())) {
                         worldIn.setBlockState(end, RankineBlocks.DOLOSTONE.get().getDefaultState(), 2);
                         return;
                     } else if ((sediment == RankineBlocks.CALCITE_BLOCK.get()) && (sediment2 == RankineBlocks.CALCITE_BLOCK.get())) {
-                        worldIn.setBlockState(end, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState(), 2);
-                        return;
-                    } else if ((sediment == RankineBlocks.CALCITE_BLOCK.get()) && (sediment2 == RankineBlocks.CALCITE_BLOCK.get())) {
-                        worldIn.setBlockState(end, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState(), 2);
+                        worldIn.setBlockState(end, RankineBlocks.LIMESTONE.get().getDefaultState(), 2);
                         return;
                     }
                     switch (worldIn.getRandom().nextInt(11))
@@ -95,13 +92,13 @@ public class SedimentFanBlock extends Block {
                             worldIn.setBlockState(end,Blocks.RED_SANDSTONE.getDefaultState(),2);
                             break;
                         case 2:
-                            worldIn.setBlockState(end,RankineBlocks.QUARTZ_SANDSTONE.get().getDefaultState(),2);
+                            worldIn.setBlockState(end,RankineBlocks.ITACOLUMITE.get().getDefaultState(),2);
                             break;
                         case 3:
-                            worldIn.setBlockState(end,RankineBlocks.ARKOSE_SANDSTONE.get().getDefaultState(),2);
+                            worldIn.setBlockState(end,RankineBlocks.ARKOSE.get().getDefaultState(),2);
                             break;
                         case 4:
-                            worldIn.setBlockState(end,RankineBlocks.TUFA_LIMESTONE.get().getDefaultState(),2);
+                            worldIn.setBlockState(end,RankineBlocks.LIMESTONE.get().getDefaultState(),2);
                             break;
                         case 5:
                             worldIn.setBlockState(end,RankineBlocks.DOLOSTONE.get().getDefaultState(),2);
@@ -113,7 +110,7 @@ public class SedimentFanBlock extends Block {
                             worldIn.setBlockState(end,RankineBlocks.MUDSTONE.get().getDefaultState(),2);
                             break;
                         case 8:
-                            worldIn.setBlockState(end,RankineBlocks.CARBONACEOUS_SHALE.get().getDefaultState(),2);
+                            worldIn.setBlockState(end,RankineBlocks.SHALE.get().getDefaultState(),2);
                             break;
                         case 9:
                             worldIn.setBlockState(end,RankineBlocks.SILTSTONE.get().getDefaultState(),2);

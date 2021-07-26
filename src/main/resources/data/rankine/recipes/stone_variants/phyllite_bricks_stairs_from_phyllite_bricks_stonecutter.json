@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:phyllite_bricks"
-      },
-      "result": "rankine:phyllite_bricks_stairs",
-      "count": 1
-    }

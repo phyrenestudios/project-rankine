@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:kimberlite"
-      },
-      "result": "rankine:polished_kimberlite",
-      "count": 1
-    }

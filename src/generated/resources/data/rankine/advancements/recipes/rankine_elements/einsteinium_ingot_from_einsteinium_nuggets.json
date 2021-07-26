@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:einsteinium_ingot_from_einsteinium_nuggets"
+    ]
+  },
+  "criteria": {
+    "flint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:flint"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:einsteinium_ingot_from_einsteinium_nuggets"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "flint",
+      "has_the_recipe"
+    ]
+  ]
+}

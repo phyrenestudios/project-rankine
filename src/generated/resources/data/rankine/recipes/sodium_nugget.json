@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:sodium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:sodium_nugget",
+    "count": 9
+  }
+}

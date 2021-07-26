@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:black_dacite_pressure_plate_from_black_dacite_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_black_dacite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:black_dacite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:black_dacite_pressure_plate_from_black_dacite_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_dacite",
+      "has_the_recipe"
+    ]
+  ]
+}

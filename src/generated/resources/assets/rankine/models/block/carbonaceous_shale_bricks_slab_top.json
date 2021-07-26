@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/carbonaceous_shale_bricks",
-    "bottom": "rankine:block/carbonaceous_shale_bricks",
-    "top": "rankine:block/carbonaceous_shale_bricks"
-  }
-}

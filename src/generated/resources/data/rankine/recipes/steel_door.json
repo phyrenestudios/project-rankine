@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "metal_door",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:steel_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:steel_door",
+    "count": 3
+  }
+}

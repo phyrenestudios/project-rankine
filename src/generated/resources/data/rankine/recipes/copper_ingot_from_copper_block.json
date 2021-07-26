@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:copper_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:copper_ingot",
+    "count": 9
+  }
+}

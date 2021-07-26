@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:orthoclase_feldspar_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:orthoclase_feldspar",
+    "count": 9
+  }
+}

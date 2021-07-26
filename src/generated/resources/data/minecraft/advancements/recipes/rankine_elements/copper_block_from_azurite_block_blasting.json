@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:copper_block_from_azurite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_azurite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:azurite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:copper_block_from_azurite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_azurite",
+      "has_the_recipe"
+    ]
+  ]
+}

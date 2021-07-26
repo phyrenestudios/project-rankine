@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shaped", "pattern": [ "xxx", "xxx", "xxx" ], "key": { "x": { "item": "rankine:nitinol_alloy" } }, "result": { "item": "rankine:nitinol_block", "count": 1 } }

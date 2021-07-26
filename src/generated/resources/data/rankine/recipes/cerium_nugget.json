@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:cerium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:cerium_nugget",
+    "count": 9
+  }
+}

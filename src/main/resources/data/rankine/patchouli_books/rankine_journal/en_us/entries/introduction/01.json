@@ -1,0 +1,16 @@
+{
+  "name": "The Basics",
+  "icon": "rankine:refractory_brick",
+  "category": "introduction",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": "In order to make better tools, you will need an $(l:machines)Alloy Furnace$(). The primary ingredients are $(l:refractory_bricks)Refractory Bricks$() and $(l:materials/mortar)Mortar$(). Additionally, with refractory bricks you can make a $(l:machines/beehive_oven)Beehive Oven$(). They are a little slow so make sure to build them early."
+    },
+    {
+      "type": "text",
+      "text": "The process of alloying is described $(l:mechanics/alloying)here$(), but a quick summary is that you can combine elemental metals together to make various alloys. Alloys can be used to craft tools which will have various stats depending on the metals used. See the $(l:tools)Tools$() category for more information on which types are available."
+    }
+  ]
+}

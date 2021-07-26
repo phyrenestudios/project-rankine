@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "rankine:block/tufa_limestone",
-    "bottom": "rankine:block/tufa_limestone",
-    "top": "rankine:block/tufa_limestone"
-  }
-}

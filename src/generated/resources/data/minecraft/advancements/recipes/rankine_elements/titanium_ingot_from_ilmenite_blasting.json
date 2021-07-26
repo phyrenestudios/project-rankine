@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:titanium_ingot_from_ilmenite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_ilmenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:ilmenite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:titanium_ingot_from_ilmenite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ilmenite",
+      "has_the_recipe"
+    ]
+  ]
+}

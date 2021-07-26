@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:native_gallium_ore"
+  },
+  "result": "rankine:gallium_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

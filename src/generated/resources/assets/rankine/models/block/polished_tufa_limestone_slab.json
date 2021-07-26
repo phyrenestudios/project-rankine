@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "rankine:block/polished_tufa_limestone",
-    "bottom": "rankine:block/polished_tufa_limestone",
-    "top": "rankine:block/polished_tufa_limestone"
-  }
-}

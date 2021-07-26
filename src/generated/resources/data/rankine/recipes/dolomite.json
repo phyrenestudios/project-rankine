@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:dolomite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:dolomite",
+    "count": 9
+  }
+}

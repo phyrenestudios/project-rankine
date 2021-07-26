@@ -170,6 +170,12 @@
     },
     "type=56": {
       "model": "rankine:block/emerald_ore56"
+    },
+    "type=57": {
+      "model": "rankine:block/emerald_ore57"
+    },
+    "type=58": {
+      "model": "rankine:block/emerald_ore58"
     }
   }
 }

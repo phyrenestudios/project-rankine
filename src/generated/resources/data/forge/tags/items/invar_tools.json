@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:invar_axe",
+    "rankine:invar_pickaxe",
+    "rankine:invar_hoe",
+    "rankine:invar_shovel",
+    "rankine:invar_sword",
+    "rankine:invar_hammer",
+    "rankine:invar_spear"
+  ]
+}

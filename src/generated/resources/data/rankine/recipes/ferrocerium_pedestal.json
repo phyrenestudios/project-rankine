@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ferrocerium_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:ferrocerium_pedestal"
+  }
+}

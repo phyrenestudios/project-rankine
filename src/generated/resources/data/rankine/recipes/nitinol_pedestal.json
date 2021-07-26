@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nitinol_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:nitinol_pedestal"
+  }
+}

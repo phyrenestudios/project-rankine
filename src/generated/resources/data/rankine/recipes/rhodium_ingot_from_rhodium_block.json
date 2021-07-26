@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:rhodium_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:rhodium_ingot",
+    "count": 9
+  }
+}

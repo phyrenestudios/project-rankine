@@ -224,7 +224,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineFeatures.END_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"end_stone_replacer"));
             event.getRegistry().register(RankineFeatures.NETHER_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"nether_stone_replacer"));
             event.getRegistry().register(RankineFeatures.STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"stone_replacer"));
-            event.getRegistry().register(RankineFeatures.MUD_REPLACER.setRegistryName(ProjectRankine.MODID,"mud_replacer"));
+            //event.getRegistry().register(RankineFeatures.MUD_REPLACER.setRegistryName(ProjectRankine.MODID,"mud_replacer"));
 
         }
 

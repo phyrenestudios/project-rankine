@@ -1,6 +1,6 @@
 {
   "variants": {
-    "": [
+    "wet=false": [
       {
         "model": "rankine:block/silty_loam"
       },
@@ -14,6 +14,23 @@
       },
       {
         "model": "rankine:block/silty_loam",
+        "y": 270
+      }
+    ],
+    "wet=true": [
+      {
+        "model": "rankine:block/silty_loam_wet"
+      },
+      {
+        "model": "rankine:block/silty_loam_wet",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silty_loam_wet",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silty_loam_wet",
         "y": 270
       }
     ]

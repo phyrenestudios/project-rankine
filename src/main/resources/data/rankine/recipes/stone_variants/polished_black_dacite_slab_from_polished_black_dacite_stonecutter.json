@@ -1,8 +1,0 @@
-{
-                "type": "minecraft:stonecutting",
-                "ingredient": {
-                  "item": "rankine:polished_black_dacite"
-                },
-                "result": "rankine:polished_black_dacite_slab",
-                "count": 2
-                }

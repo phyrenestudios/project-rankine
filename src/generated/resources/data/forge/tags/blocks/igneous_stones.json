@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:stones/andesite",
+    "#forge:stones/basalt",
+    "#forge:stones/dacite",
+    "#forge:stones/gabbro",
+    "#forge:stones/granodiorite",
+    "#forge:stones/porphyry",
+    "#forge:stones/granite",
+    "#forge:stones/shonkinite",
+    "#forge:stones/peridotite",
+    "#forge:stones/kimberlite",
+    "#forge:stones/komatiite",
+    "#forge:stones/pumice",
+    "#forge:stones/scoria",
+    "#forge:stones/rhyolite"
+  ]
+}

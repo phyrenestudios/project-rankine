@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/ferropericlase_bricks",
-    "bottom": "rankine:block/ferropericlase_bricks",
-    "top": "rankine:block/ferropericlase_bricks"
-  }
-}

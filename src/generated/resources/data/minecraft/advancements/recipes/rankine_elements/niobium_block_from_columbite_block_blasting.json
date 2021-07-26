@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:niobium_block_from_columbite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_columbite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:columbite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:niobium_block_from_columbite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_columbite",
+      "has_the_recipe"
+    ]
+  ]
+}

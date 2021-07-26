@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:sheetmetals/aluminum",
+    "#forge:sheetmetals/bismuth",
+    "#forge:sheetmetals/brass",
+    "#forge:sheetmetals/bronze",
+    "#forge:sheetmetals/copper",
+    "#forge:sheetmetals/cupronickel",
+    "#forge:sheetmetals/gold",
+    "#forge:sheetmetals/invar",
+    "#forge:sheetmetals/lead",
+    "#forge:sheetmetals/nickel",
+    "#forge:sheetmetals/platinum",
+    "#forge:sheetmetals/silver",
+    "#forge:sheetmetals/stainless_steel",
+    "#forge:sheetmetals/steel",
+    "#forge:sheetmetals/tin",
+    "#forge:sheetmetals/titanium",
+    "#forge:sheetmetals/tungsten"
+  ]
+}

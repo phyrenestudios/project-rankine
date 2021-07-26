@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/meteorite",
+    "background": "rankine:block/blueschist",
     "overlay": "rankine:block/pentlandite_ore"
   }
 }

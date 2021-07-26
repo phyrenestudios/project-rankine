@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:calcium_silicate"
-      },
-      "result": "rankine:silicon",
-      "experience": 0.3,
-      "cookingtime": 100
-    }

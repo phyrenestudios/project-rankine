@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shaped", "pattern": [ "xx", "xx" ], "key": { "x": { "item": "rankine:kaolinite_ball" } }, "result": { "item": "rankine:kaolinite_block", "count": 1 } }

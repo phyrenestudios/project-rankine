@@ -20,6 +20,17 @@
     },
     {
       "type": "spotlight",
+      "item": "rankine:frozen_meteorite",
+      "link_recipe": true,
+      "text": "Base meteorite material. Can be crushed into silicon and sulfur."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:frozen_meteorite_bricks",
+      "text": "Decorative form of frozen meteorite. Increases movement speed like stone bricks."
+    },
+    {
+      "type": "spotlight",
       "item": "rankine:enstatite",
       "link_recipe": true,
       "text": "Similar to standard meteorite. Only found in the End."
@@ -58,6 +69,36 @@
       "item": "rankine:lonsdaleite_ore",
       "link_recipe": true,
       "text": "Material found in meteorites which has a composition very similar to diamond."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:meteoric_ice",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_tektite",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:brown_tektite",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:gray_tektite",
+      "link_recipe": true,
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_tektite",
+      "link_recipe": true,
+      "text": ""
     }
   ]
 }

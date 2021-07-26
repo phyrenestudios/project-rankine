@@ -1,8 +1,0 @@
-{
-                "type": "minecraft:stonecutting",
-                "ingredient": {
-                  "item": "rankine:arkose_sandstone_bricks"
-                },
-                "result": "rankine:arkose_sandstone_bricks_stairs",
-                "count": 1
-                }

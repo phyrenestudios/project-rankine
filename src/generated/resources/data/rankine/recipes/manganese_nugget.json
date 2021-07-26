@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:manganese_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:manganese_nugget",
+    "count": 9
+  }
+}

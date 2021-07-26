@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "rankine:block/template_fiber_block",
   "textures": {
-    "all": "rankine:block/magenta_fiber_block"
+    "pattern": "rankine:block/magenta_fiber_block"
   }
 }

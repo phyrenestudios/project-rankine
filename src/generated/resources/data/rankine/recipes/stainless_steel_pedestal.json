@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:stainless_steel_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:stainless_steel_pedestal"
+  }
+}

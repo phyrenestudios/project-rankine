@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:aquamarine_ore"
-  },
-  "result": "rankine:aquamarine",
-  "experience": 1.0,
-  "cookingtime": 100
-}

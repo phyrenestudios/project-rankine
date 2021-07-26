@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "#rankine:cedar_logs",
+    "#rankine:pinyon_pine_logs",
+    "#rankine:juniper_logs",
+    "#rankine:coconut_palm_logs",
+    "#rankine:balsam_fir_logs",
+    "#rankine:eastern_hemlock_logs",
+    "#rankine:maple_logs",
+    "#rankine:magnolia_logs",
+    "#rankine:sharinga_logs",
+    "#rankine:cork_oak_logs",
+    "#rankine:cinnamon_logs",
+    "#rankine:black_birch_logs",
+    "#rankine:yellow_birch_logs",
+    "#rankine:black_walnut_logs"
+  ]
+}

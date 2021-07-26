@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:quartzite"
-      },
-      "result": "rankine:quartzite_slab",
-      "count": 2
-}

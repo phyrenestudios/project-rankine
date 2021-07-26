@@ -3,8 +3,11 @@ package com.cannolicatfish.rankine.blocks.states;
 import net.minecraft.util.IStringSerializable;
 
 public enum StoneBricksStates implements IStringSerializable {
-    BRICKS("bricks"),
-    SMALL_BRICKS("small_bricks");
+    LARGE("large"),
+    VERTICAL_LARGE("vertical_large"),
+    SMALL("small"),
+    VERTICAL_SMALL("vertical_small"),
+    SPECIAL("special");
 
     private final String name;
 

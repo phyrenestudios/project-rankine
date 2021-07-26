@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tin_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:tin_block"
+  }
+}

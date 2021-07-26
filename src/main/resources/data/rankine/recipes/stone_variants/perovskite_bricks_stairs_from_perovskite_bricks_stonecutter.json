@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:perovskite_bricks"
-      },
-      "result": "rankine:perovskite_bricks_stairs",
-      "count": 1
-    }

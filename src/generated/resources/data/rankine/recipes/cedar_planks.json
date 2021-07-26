@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "tag": "rankine:cedar_logs"
+    }
+  ],
+  "result": {
+    "item": "rankine:cedar_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:samarium_monazite"
+    }
+  },
+  "result": {
+    "item": "rankine:samarium_monazite_block"
+  }
+}
