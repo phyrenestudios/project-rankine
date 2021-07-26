@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:eastern_hemlock_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:cork_oak_boat"
+  }
+}

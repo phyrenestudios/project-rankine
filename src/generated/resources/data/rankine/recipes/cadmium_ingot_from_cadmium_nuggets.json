@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cadmium_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:cadmium_ingot"
+  }
+}

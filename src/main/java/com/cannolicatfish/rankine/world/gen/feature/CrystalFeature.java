@@ -24,7 +24,7 @@ public class CrystalFeature extends Feature<NoFeatureConfig> {
         BlockPos underBlock = pos.down();
         ChunkPos chunkpos = new ChunkPos(pos);
         if ((reader.getBlockState(underBlock).getBlock() == Blocks.SAND || reader.getBlockState(underBlock).getBlock() == Blocks.SANDSTONE ||
-                reader.getBlockState(underBlock).getBlock() == RankineBlocks.TUFA_LIMESTONE.get() || reader.getBlockState(underBlock).getBlock() == RankineBlocks.RHYOLITE.get() || reader.getBlockState(underBlock).getBlock() == Blocks.STONE)
+                reader.getBlockState(underBlock).getBlock() == RankineBlocks.LIMESTONE.get() || reader.getBlockState(underBlock).getBlock() == RankineBlocks.RHYOLITE.get() || reader.getBlockState(underBlock).getBlock() == Blocks.STONE)
                 && reader.isAirBlock(pos) && pos.getY() >= 48 && pos.getY() <= 64) {
             return true;
         } else {

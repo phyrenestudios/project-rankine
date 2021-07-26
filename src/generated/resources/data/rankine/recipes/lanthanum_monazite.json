@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:lanthanum_monazite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:lanthanum_monazite",
+    "count": 9
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:thallium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:thallium_nugget",
+    "count": 9
+  }
+}

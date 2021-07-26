@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:tin_ingot_from_native_ore_smelting"
+    ]
+  },
+  "criteria": {
+    "has_native_tin_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:native_tin_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:tin_ingot_from_native_ore_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_native_tin_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

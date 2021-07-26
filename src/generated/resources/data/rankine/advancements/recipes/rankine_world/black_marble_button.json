@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:black_marble_button"
+    ]
+  },
+  "criteria": {
+    "has_black_marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:black_marble"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:black_marble_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_marble",
+      "has_the_recipe"
+    ]
+  ]
+}

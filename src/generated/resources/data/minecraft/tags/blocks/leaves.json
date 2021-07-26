@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:balsam_fir_leaves",
+    "rankine:black_birch_leaves",
+    "rankine:black_walnut_leaves",
+    "rankine:cedar_leaves",
+    "rankine:cinnamon_leaves",
+    "rankine:coconut_palm_leaves",
+    "rankine:cork_oak_leaves",
+    "rankine:eastern_hemlock_leaves",
+    "rankine:juniper_leaves",
+    "rankine:magnolia_leaves",
+    "rankine:pinyon_pine_leaves",
+    "rankine:yellow_birch_leaves",
+    "rankine:maple_leaves"
+  ]
+}

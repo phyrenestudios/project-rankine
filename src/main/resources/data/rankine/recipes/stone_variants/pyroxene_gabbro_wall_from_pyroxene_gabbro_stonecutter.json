@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:pyroxene_gabbro"
-      },
-      "result": "rankine:pyroxene_gabbro_wall",
-      "count": 1
-    }

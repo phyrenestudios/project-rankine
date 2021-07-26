@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_phyllite"
+    ]
+  },
+  "criteria": {
+    "has_phyllite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:phyllite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_phyllite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_phyllite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,7 +1,5 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.SpearEntityModel;
-import com.cannolicatfish.rankine.entities.SpearEntity;
 import com.cannolicatfish.rankine.entities.ThoriumArrowEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;

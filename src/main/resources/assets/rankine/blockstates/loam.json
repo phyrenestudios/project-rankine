@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/loam"
+      },
+      {
+        "model": "rankine:block/loam",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loam",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loam",
+        "y": 270
+      }
+    ]
+  }
+}

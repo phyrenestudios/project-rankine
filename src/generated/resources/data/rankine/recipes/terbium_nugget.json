@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:terbium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:terbium_nugget",
+    "count": 9
+  }
+}

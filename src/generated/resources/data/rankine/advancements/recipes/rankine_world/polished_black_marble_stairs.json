@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_black_marble_stairs"
+    ]
+  },
+  "criteria": {
+    "has_polished_black_marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_black_marble"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_black_marble_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_black_marble",
+      "has_the_recipe"
+    ]
+  ]
+}

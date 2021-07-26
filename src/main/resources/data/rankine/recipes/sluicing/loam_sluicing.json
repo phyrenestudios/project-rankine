@@ -1,0 +1,23 @@
+{
+  "type": "rankine:sluicing",
+  "total": 4,
+  "input": {
+    "item": "rankine:loam"
+  },
+  "output1": {
+    "item": "rankine:loam",
+    "weight": 40
+  },
+  "output2": {
+    "item": "minecraft:sand",
+    "weight": 4
+  },
+  "output3": {
+    "item": "minecraft:clay_ball",
+    "weight": 2
+  },
+  "output4": {
+    "item": "rankine:silt",
+    "weight": 4
+  }
+}

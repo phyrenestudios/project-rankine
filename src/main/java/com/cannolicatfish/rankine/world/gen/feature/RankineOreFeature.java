@@ -123,15 +123,16 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                             ResourceLocation rs = b.getRegistryName();
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 List<Block> blockList = Arrays.asList(Blocks.GRANITE,Blocks.DIORITE,Blocks.ANDESITE,Blocks.SANDSTONE,Blocks.RED_SANDSTONE,Blocks.NETHERRACK, Blocks.BLACKSTONE,Blocks.BASALT,Blocks.END_STONE,Blocks.OBSIDIAN,
-                                                        RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.PYROXENE_GABBRO.get(), RankineBlocks.ANORTHOSITE.get(), RankineBlocks.RHYOLITE.get(), RankineBlocks.COMENDITE.get(), RankineBlocks.BLACK_DACITE.get(), RankineBlocks.RED_DACITE.get(), RankineBlocks.RED_PORPHYRY.get(), RankineBlocks.PURPLE_PORPHYRY.get(), RankineBlocks.PEGMATITE.get(), RankineBlocks.PERIDOTITE.get(), RankineBlocks.TROCTOLITE.get(), RankineBlocks.KIMBERLITE.get(), RankineBlocks.KOMATIITE.get(), RankineBlocks.PUMICE.get(), RankineBlocks.SCORIA.get(),
-                                                        RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.BLACK_MARBLE.get(), RankineBlocks.GNEISS.get(), RankineBlocks.MICA_SCHIST.get(), RankineBlocks.PHYLLITE.get(), RankineBlocks.SLATE.get(), RankineBlocks.QUARTZITE.get(), RankineBlocks.MARIPOSITE.get(), RankineBlocks.SKARN.get(), RankineBlocks.RINGWOODITE.get(), RankineBlocks.WADSLEYITE.get(), RankineBlocks.BRIDGMANITE.get(), RankineBlocks.FERROPERICLASE.get(), RankineBlocks.PEROVSKITE.get(),
-                                                        RankineBlocks.TUFA_LIMESTONE.get(), RankineBlocks.DOLOSTONE.get(), RankineBlocks.CHALK.get(), RankineBlocks.CARBONACEOUS_SHALE.get(), RankineBlocks.SILTSTONE.get(), RankineBlocks.QUARTZ_SANDSTONE.get(), RankineBlocks.ARKOSE_SANDSTONE.get(), RankineBlocks.MUDSTONE.get(), RankineBlocks.BRECCIA.get(),
+                                                        RankineBlocks.GRAY_GRANITE.get(), RankineBlocks.GRANODIORITE.get(), RankineBlocks.HORNBLENDE_ANDESITE.get(), RankineBlocks.THOLEIITIC_BASALT.get(), RankineBlocks.GABBRO.get(), RankineBlocks.ANORTHOSITE.get(), RankineBlocks.RHYOLITE.get(), RankineBlocks.COMENDITE.get(), RankineBlocks.BLACK_DACITE.get(), RankineBlocks.RED_DACITE.get(), RankineBlocks.RED_PORPHYRY.get(), RankineBlocks.PURPLE_PORPHYRY.get(), RankineBlocks.PEGMATITE.get(), RankineBlocks.PERIDOTITE.get(), RankineBlocks.TROCTOLITE.get(), RankineBlocks.KIMBERLITE.get(), RankineBlocks.KOMATIITE.get(), RankineBlocks.PUMICE.get(), RankineBlocks.SCORIA.get(),
+                                                        RankineBlocks.WHITE_MARBLE.get(), RankineBlocks.BLACK_MARBLE.get(), RankineBlocks.GNEISS.get(), RankineBlocks.MICA_SCHIST.get(), RankineBlocks.PHYLLITE.get(), RankineBlocks.SLATE.get(), RankineBlocks.QUARTZITE.get(), RankineBlocks.SKARN.get(),
+                                                        RankineBlocks.LIMESTONE.get(), RankineBlocks.DOLOSTONE.get(), RankineBlocks.CHALK.get(), RankineBlocks.SHALE.get(), RankineBlocks.SILTSTONE.get(), RankineBlocks.ITACOLUMITE.get(), RankineBlocks.ARKOSE.get(), RankineBlocks.MUDSTONE.get(), RankineBlocks.BRECCIA.get(),
                                                         RankineBlocks.METEORITE.get(), RankineBlocks.ENSTATITE.get());
                                                 if (config.state.getBlock() instanceof RankineOreBlock) {
                                                     /*if (blockList.contains(b)) {
                                                         worldIn.setBlockState(blockpos$mutableblockpos, config.state.with(RankineOreBlock.TYPE, blockList.indexOf(b)+1), 2);
                                                         ++i;
                                                     } else  */
+                                                    /*
                                                     if (rs.getNamespace().equals("rankine")) {
                                                         switch (rs.getPath()) {
                                                             case "gray_granite":
@@ -435,6 +436,7 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                                         }
                                                         ++i;
                                                     }
+                                                    */
                                                 } else {
                                                     worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 2);
                                                     ++i;

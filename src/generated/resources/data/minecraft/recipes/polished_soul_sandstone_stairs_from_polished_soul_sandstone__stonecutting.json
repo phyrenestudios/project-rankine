@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_soul_sandstone"
+  },
+  "result": "rankine:polished_soul_sandstone_stairs",
+  "count": 1
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "rankine:block/dolostone_pressure_plate_up"
+    },
+    "powered=true": {
+      "model": "rankine:block/dolostone_pressure_plate_down"
+    }
+  }
+}

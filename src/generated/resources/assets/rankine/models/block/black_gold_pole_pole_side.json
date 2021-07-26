@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_metal_pole_side",
+  "textures": {
+    "side": "rankine:block/black_gold_block"
+  }
+}

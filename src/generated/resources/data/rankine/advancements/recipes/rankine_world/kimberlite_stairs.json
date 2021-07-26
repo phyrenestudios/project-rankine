@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:kimberlite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_kimberlite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:kimberlite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:kimberlite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_kimberlite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_gabbro"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_gabbro_wall",
+    "count": 6
+  }
+}

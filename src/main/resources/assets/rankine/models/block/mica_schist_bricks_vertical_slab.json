@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/mica_schist_bricks",
-    "top": "rankine:block/mica_schist_bricks",
-    "side": "rankine:block/mica_schist_bricks"
-  }
-}

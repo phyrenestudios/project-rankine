@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:tholeiitic_basalt_brick_button_from_tholeiitic_basalt_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_tholeiitic_basalt_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tholeiitic_basalt_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:tholeiitic_basalt_brick_button_from_tholeiitic_basalt_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tholeiitic_basalt_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

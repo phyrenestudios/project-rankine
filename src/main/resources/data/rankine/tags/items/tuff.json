@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:andesitic_tuff",
-    "rankine:basaltic_tuff",
-    "rankine:rhyolitic_tuff",
-    "rankine:dacitic_tuff"
-  ]
-}

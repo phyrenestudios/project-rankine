@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:platinum_ingot_from_platinum_arsenide_blasting"
+    ]
+  },
+  "criteria": {
+    "has_platinum_arsenide": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:platinum_arsenide"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:platinum_ingot_from_platinum_arsenide_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_platinum_arsenide",
+      "has_the_recipe"
+    ]
+  ]
+}

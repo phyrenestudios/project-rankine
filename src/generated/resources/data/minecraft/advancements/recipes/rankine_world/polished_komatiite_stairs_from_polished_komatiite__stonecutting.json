@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_komatiite_stairs_from_polished_komatiite__stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_komatiite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_komatiite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:polished_komatiite_stairs_from_polished_komatiite__stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_komatiite",
+      "has_the_recipe"
+    ]
+  ]
+}

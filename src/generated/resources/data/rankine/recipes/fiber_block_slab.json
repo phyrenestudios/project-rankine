@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:fiber_block"
+    }
+  },
+  "result": {
+    "item": "rankine:fiber_block_slab",
+    "count": 6
+  }
+}

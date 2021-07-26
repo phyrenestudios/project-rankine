@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:itacolumite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_itacolumite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:itacolumite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:itacolumite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_itacolumite",
+      "has_the_recipe"
+    ]
+  ]
+}

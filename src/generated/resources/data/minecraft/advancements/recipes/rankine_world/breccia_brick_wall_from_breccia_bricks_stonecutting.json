@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:breccia_brick_wall_from_breccia_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_breccia_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:breccia_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:breccia_brick_wall_from_breccia_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_breccia_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

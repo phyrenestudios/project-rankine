@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:petrified_chorus_stairs",
+    "rankine:balsam_fir_stairs",
+    "rankine:black_birch_stairs",
+    "rankine:black_walnut_stairs",
+    "rankine:cedar_stairs",
+    "rankine:cinnamon_stairs",
+    "rankine:coconut_palm_stairs",
+    "rankine:cork_oak_stairs",
+    "rankine:eastern_hemlock_stairs",
+    "rankine:juniper_stairs",
+    "rankine:magnolia_stairs",
+    "rankine:pinyon_pine_stairs",
+    "rankine:yellow_birch_stairs",
+    "rankine:maple_stairs",
+    "rankine:bamboo_stairs",
+    "rankine:bamboo_culms_stairs"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:scoria"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "result": {
+    "item": "rankine:scoria_bricks",
+    "count": 2
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_red_dacite"
+    ]
+  },
+  "criteria": {
+    "has_red_dacite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:red_dacite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_red_dacite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_dacite",
+      "has_the_recipe"
+    ]
+  ]
+}

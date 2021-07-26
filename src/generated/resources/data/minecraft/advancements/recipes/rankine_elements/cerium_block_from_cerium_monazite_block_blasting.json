@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:cerium_block_from_cerium_monazite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_cerium_monazite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cerium_monazite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:cerium_block_from_cerium_monazite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cerium_monazite",
+      "has_the_recipe"
+    ]
+  ]
+}

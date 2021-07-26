@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:astatine"
+    }
+  ],
+  "result": {
+    "item": "rankine:astatine_nugget",
+    "count": 9
+  }
+}

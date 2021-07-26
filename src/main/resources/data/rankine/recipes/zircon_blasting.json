@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:zircon"
-      },
-      "result": "rankine:zirconium_ingot",
-      "experience": 1.0,
-      "cookingtime": 100
-    }

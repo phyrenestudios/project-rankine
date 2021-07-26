@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:mica"
-      },
-      "result": "rankine:silicon_nugget",
-      "experience": 0.3,
-      "cookingtime": 100
-    }

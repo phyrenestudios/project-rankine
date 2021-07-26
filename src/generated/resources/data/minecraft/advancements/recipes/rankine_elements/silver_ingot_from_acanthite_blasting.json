@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:silver_ingot_from_acanthite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_acanthite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:acanthite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:silver_ingot_from_acanthite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_acanthite",
+      "has_the_recipe"
+    ]
+  ]
+}

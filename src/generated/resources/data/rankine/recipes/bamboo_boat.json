@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bamboo_culms"
+    }
+  },
+  "result": {
+    "item": "rankine:bamboo_boat"
+  }
+}

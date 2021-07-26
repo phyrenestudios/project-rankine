@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "wet=false": [
+      {
+        "model": "rankine:block/silty_clay"
+      },
+      {
+        "model": "rankine:block/silty_clay",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silty_clay",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silty_clay",
+        "y": 270
+      }
+    ],
+    "wet=true": [
+      {
+        "model": "rankine:block/silty_clay_wet"
+      },
+      {
+        "model": "rankine:block/silty_clay_wet",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silty_clay_wet",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silty_clay_wet",
+        "y": 270
+      }
+    ]
+  }
+}

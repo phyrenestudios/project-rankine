@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:silicon"
+    }
+  ],
+  "result": {
+    "item": "rankine:silicon_nugget",
+    "count": 9
+  }
+}

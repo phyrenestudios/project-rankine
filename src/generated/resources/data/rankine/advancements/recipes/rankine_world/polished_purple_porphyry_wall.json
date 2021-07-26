@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_purple_porphyry_wall"
+    ]
+  },
+  "criteria": {
+    "has_polished_purple_porphyry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_purple_porphyry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_purple_porphyry_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_purple_porphyry",
+      "has_the_recipe"
+    ]
+  ]
+}

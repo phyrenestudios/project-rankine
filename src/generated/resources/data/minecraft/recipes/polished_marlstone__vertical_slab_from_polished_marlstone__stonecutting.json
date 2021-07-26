@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_marlstone"
+  },
+  "result": "rankine:polished_marlstone_vertical_slab",
+  "count": 2
+}

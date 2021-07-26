@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:lodestone"
-  },
-  "result": "minecraft:iron_ingot",
-  "experience": 15.0,
-  "cookingtime": 100
-}

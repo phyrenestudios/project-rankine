@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "wet=false": [
+      {
+        "model": "rankine:block/loamy_sand"
+      },
+      {
+        "model": "rankine:block/loamy_sand",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loamy_sand",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loamy_sand",
+        "y": 270
+      }
+    ],
+    "wet=true": [
+      {
+        "model": "rankine:block/loamy_sand_wet"
+      },
+      {
+        "model": "rankine:block/loamy_sand_wet",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loamy_sand_wet",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loamy_sand_wet",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:flint_shovel",
+    "rankine:pewter_shovel",
+    "rankine:alloy_shovel",
+    "rankine:bronze_shovel",
+    "rankine:invar_shovel",
+    "rankine:steel_shovel",
+    "rankine:stainless_steel_shovel",
+    "rankine:nickel_superalloy_shovel",
+    "rankine:cobalt_superalloy_shovel",
+    "rankine:tungsten_heavy_alloy_shovel",
+    "rankine:rose_gold_shovel",
+    "rankine:blue_gold_shovel",
+    "rankine:green_gold_shovel",
+    "rankine:white_gold_shovel",
+    "rankine:purple_gold_shovel",
+    "rankine:black_gold_shovel",
+    "rankine:amalgam_shovel"
+  ]
+}

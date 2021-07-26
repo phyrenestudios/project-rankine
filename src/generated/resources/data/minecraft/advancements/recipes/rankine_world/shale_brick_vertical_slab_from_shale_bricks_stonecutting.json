@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:shale_brick_vertical_slab_from_shale_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_shale_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:shale_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:shale_brick_vertical_slab_from_shale_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shale_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

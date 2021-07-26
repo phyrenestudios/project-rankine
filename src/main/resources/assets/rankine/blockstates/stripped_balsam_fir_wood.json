@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "axis=y": { "model": "rankine:block/stripped_balsam_fir_wood" },
-    "axis=z": { "model": "rankine:block/stripped_balsam_fir_wood", "x": 90 },
-    "axis=x": { "model": "rankine:block/stripped_balsam_fir_wood", "x": 90, "y": 90 }
-  }
-}
-

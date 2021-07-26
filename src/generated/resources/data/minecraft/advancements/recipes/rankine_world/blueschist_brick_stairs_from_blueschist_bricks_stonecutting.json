@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:blueschist_brick_stairs_from_blueschist_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_blueschist_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:blueschist_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:blueschist_brick_stairs_from_blueschist_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blueschist_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

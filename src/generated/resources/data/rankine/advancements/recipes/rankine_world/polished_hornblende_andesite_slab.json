@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_hornblende_andesite_slab"
+    ]
+  },
+  "criteria": {
+    "has_polished_hornblende_andesite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_hornblende_andesite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_hornblende_andesite_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_hornblende_andesite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "variants": {
+    "facing=north,type=top": {
+      "model": "rankine:block/polished_dolostone_vertical_slab_top",
+      "uvlock": true
+    },
+    "facing=south,type=top": {
+      "model": "rankine:block/polished_dolostone_vertical_slab_top",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,type=top": {
+      "model": "rankine:block/polished_dolostone_vertical_slab_top",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,type=top": {
+      "model": "rankine:block/polished_dolostone_vertical_slab_top",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,type=bottom": {
+      "model": "rankine:block/polished_dolostone_vertical_slab",
+      "uvlock": true
+    },
+    "facing=south,type=bottom": {
+      "model": "rankine:block/polished_dolostone_vertical_slab",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,type=bottom": {
+      "model": "rankine:block/polished_dolostone_vertical_slab",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,type=bottom": {
+      "model": "rankine:block/polished_dolostone_vertical_slab",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,type=double": {
+      "model": "rankine:block/polished_dolostone",
+      "uvlock": true
+    },
+    "facing=south,type=double": {
+      "model": "rankine:block/polished_dolostone",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,type=double": {
+      "model": "rankine:block/polished_dolostone",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,type=double": {
+      "model": "rankine:block/polished_dolostone",
+      "y": 90,
+      "uvlock": true
+    }
+  }
+}

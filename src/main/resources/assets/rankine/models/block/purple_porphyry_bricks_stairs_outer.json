@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/purple_porphyry_bricks",
-        "top": "rankine:block/purple_porphyry_bricks",
-        "side": "rankine:block/purple_porphyry_bricks"
-      }
-    }

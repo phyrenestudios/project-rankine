@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:red_porphyry_bricks"
-      },
-      "result": "rankine:red_porphyry_bricks_pressure_plate",
-      "count": 1
-}

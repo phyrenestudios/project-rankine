@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:arkose"
+  },
+  "result": "rankine:arkose_vertical_slab",
+  "count": 2
+}

@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:rope",
-    "rankine:cast_iron_ladder",
-    "rankine:brass_ladder",
-    "rankine:aluminum_ladder"
-  ]
-}

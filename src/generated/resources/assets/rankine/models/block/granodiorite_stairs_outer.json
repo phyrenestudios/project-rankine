@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "rankine:block/granodiorite",
+    "bottom": "rankine:block/granodiorite",
+    "top": "rankine:block/granodiorite"
+  }
+}

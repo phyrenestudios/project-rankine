@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:purple_gold_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:purple_gold_pedestal"
+  }
+}

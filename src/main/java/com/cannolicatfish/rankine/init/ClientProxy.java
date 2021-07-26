@@ -22,7 +22,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ClientProxy implements IProxy {
@@ -65,6 +64,7 @@ public class ClientProxy implements IProxy {
 
         addCutout(Arrays.asList(
                 RankineBlocks.ACANTHITE_ORE.get(),
+                RankineBlocks.RHENIITE_ORE.get(),
                 RankineBlocks.NATIVE_BISMUTH_ORE.get(),
                 RankineBlocks.HALITE_ORE.get(),
                 RankineBlocks.PINK_HALITE_ORE.get(),
@@ -200,14 +200,24 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.ALUMINUM_LADDER.get(),
                 RankineBlocks.BRASS_LADDER.get(),
-                RankineBlocks.CAST_IRON_LADDER.get()
+                RankineBlocks.CAST_IRON_LADDER.get(),
+
+                RankineBlocks.CEDAR_LEAVES.get(),
+                RankineBlocks.PINYON_PINE_LEAVES.get(),
+                RankineBlocks.JUNIPER_LEAVES.get(),
+                RankineBlocks.BALSAM_FIR_LEAVES.get(),
+                RankineBlocks.COCONUT_PALM_LEAVES.get(),
+                RankineBlocks.MAGNOLIA_LEAVES.get(),
+                RankineBlocks.YELLOW_BIRCH_LEAVES.get(),
+                RankineBlocks.BLACK_BIRCH_LEAVES.get(),
+                RankineBlocks.MAPLE_LEAVES.get(),
+                RankineBlocks.EASTERN_HEMLOCK_LEAVES.get(),
+                RankineBlocks.SHARINGA_LEAVES.get(),
+                RankineBlocks.BLACK_WALNUT_LEAVES.get()
 
         ));
 
         addCutoutMipped(Arrays.asList(
-                RankineBlocks.ALUMINUM_BARS.get(),
-                RankineBlocks.MAGNESIUM_BARS.get(),
-                RankineBlocks.NICKEL_BARS.get(),
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
@@ -246,19 +256,15 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.RICE_PLANT.get(),
                 RankineBlocks.COTTON_PLANT.get(),
                 RankineBlocks.JUTE_PLANT.get(),
+                RankineBlocks.RED_LILY.get(),
+                RankineBlocks.ORANGE_LILY.get(),
+                RankineBlocks.WHITE_LILY.get(),
+                RankineBlocks.BLUE_MORNING_GLORY.get(),
+                RankineBlocks.PURPLE_MORNING_GLORY.get(),
+                RankineBlocks.BLACK_MORNING_GLORY.get(),
+                RankineBlocks.GOLDENROD.get(),
 
-                RankineBlocks.CEDAR_LEAVES.get(),
-                RankineBlocks.PINYON_PINE_LEAVES.get(),
-                RankineBlocks.JUNIPER_LEAVES.get(),
-                RankineBlocks.BALSAM_FIR_LEAVES.get(),
-                RankineBlocks.COCONUT_PALM_LEAVES.get(),
-                RankineBlocks.MAGNOLIA_LEAVES.get(),
-                RankineBlocks.YELLOW_BIRCH_LEAVES.get(),
-                RankineBlocks.BLACK_BIRCH_LEAVES.get(),
-                RankineBlocks.MAPLE_LEAVES.get(),
-                RankineBlocks.EASTERN_HEMLOCK_LEAVES.get(),
-                RankineBlocks.SHARINGA_LEAVES.get(),
-                RankineBlocks.BLACK_WALNUT_LEAVES.get(),
+
 
                 RankineBlocks.CALCITE_BLOCK.get(),
                 RankineBlocks.CALCIUM_SILICATE_BLOCK.get(),
@@ -281,7 +287,11 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.KRYPTON_GAS_BLOCK.get(),
                 RankineBlocks.XENON_GAS_BLOCK.get(),
                 RankineBlocks.RADON_GAS_BLOCK.get(),
-                RankineBlocks.OGANESSON_GAS_BLOCK.get()
+                RankineBlocks.OGANESSON_GAS_BLOCK.get(),
+                RankineBlocks.BLACK_TEKTITE.get(),
+                RankineBlocks.GREEN_TEKTITE.get(),
+                RankineBlocks.GRAY_TEKTITE.get(),
+                RankineBlocks.BROWN_TEKTITE.get()
         ));
     }
 

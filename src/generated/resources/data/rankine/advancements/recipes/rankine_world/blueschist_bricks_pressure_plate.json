@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:blueschist_bricks_pressure_plate"
+    ]
+  },
+  "criteria": {
+    "has_blueschist_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:blueschist_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:blueschist_bricks_pressure_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blueschist_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

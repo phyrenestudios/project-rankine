@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:alnico_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:alnico_pedestal"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "wet=false": [
+      {
+        "model": "rankine:block/loam"
+      },
+      {
+        "model": "rankine:block/loam",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loam",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loam",
+        "y": 270
+      }
+    ],
+    "wet=true": [
+      {
+        "model": "rankine:block/loam_wet"
+      },
+      {
+        "model": "rankine:block/loam_wet",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/loam_wet",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/loam_wet",
+        "y": 270
+      }
+    ]
+  }
+}

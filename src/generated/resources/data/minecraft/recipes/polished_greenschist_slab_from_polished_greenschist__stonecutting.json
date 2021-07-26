@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_greenschist"
+  },
+  "result": "rankine:polished_greenschist_slab",
+  "count": 2
+}

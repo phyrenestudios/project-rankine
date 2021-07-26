@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:cryolite"
-  },
-  "result": "rankine:sodium_ingot",
-  "experience": 1.0,
-  "cookingtime": 100
-}

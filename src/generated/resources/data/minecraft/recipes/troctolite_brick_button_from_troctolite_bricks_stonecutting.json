@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:troctolite_bricks"
+  },
+  "result": "rankine:troctolite_bricks_pressure_plate",
+  "count": 1
+}

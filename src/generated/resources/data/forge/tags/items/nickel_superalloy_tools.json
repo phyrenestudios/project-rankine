@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:nickel_superalloy_axe",
+    "rankine:nickel_superalloy_pickaxe",
+    "rankine:nickel_superalloy_hoe",
+    "rankine:nickel_superalloy_shovel",
+    "rankine:nickel_superalloy_sword",
+    "rankine:nickel_superalloy_hammer",
+    "rankine:nickel_superalloy_spear"
+  ]
+}

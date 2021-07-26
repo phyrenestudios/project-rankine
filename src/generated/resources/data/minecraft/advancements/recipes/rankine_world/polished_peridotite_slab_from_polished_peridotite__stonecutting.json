@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_peridotite_slab_from_polished_peridotite__stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_peridotite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_peridotite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:polished_peridotite_slab_from_polished_peridotite__stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_peridotite",
+      "has_the_recipe"
+    ]
+  ]
+}

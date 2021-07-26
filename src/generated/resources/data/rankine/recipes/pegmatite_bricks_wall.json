@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pegmatite_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:pegmatite_bricks_wall",
+    "count": 6
+  }
+}

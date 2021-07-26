@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:petrified_chorus_door",
+    "rankine:balsam_fir_door",
+    "rankine:black_birch_door",
+    "rankine:black_walnut_door",
+    "rankine:cedar_door",
+    "rankine:cinnamon_door",
+    "rankine:coconut_palm_door",
+    "rankine:cork_oak_door",
+    "rankine:eastern_hemlock_door",
+    "rankine:juniper_door",
+    "rankine:magnolia_door",
+    "rankine:pinyon_pine_door",
+    "rankine:yellow_birch_door",
+    "rankine:maple_door",
+    "rankine:bamboo_door",
+    "rankine:bamboo_culms_door"
+  ]
+}

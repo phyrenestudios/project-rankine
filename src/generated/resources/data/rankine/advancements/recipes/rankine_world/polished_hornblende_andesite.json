@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_hornblende_andesite"
+    ]
+  },
+  "criteria": {
+    "has_hornblende_andesite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:hornblende_andesite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_hornblende_andesite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hornblende_andesite",
+      "has_the_recipe"
+    ]
+  ]
+}

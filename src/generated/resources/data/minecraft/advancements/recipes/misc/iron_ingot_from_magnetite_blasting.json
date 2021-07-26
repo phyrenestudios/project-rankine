@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:iron_ingot_from_magnetite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_magnetite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:magnetite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:iron_ingot_from_magnetite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magnetite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -27,7 +27,7 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class RopeBlock extends Block implements IWaterLoggable {
+public class RopeBlock extends Block {
 
     VoxelShape voxelshape = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
 

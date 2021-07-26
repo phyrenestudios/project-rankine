@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:calcite"
-  },
-  "result": "rankine:calcium_nugget",
-  "experience": 0.3,
-  "cookingtime": 100
-}

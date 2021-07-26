@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:plutonium_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:plutonium_ingot"
+  }
+}

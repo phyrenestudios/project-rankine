@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_fiber_block",
+  "textures": {
+    "pattern": "rankine:block/orange_fiber_block"
+  }
+}

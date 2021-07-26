@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/skarn_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/skarn_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/skarn"
+    }
+  }
+}

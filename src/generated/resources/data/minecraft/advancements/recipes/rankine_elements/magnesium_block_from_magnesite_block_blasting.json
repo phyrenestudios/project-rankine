@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:magnesium_block_from_magnesite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_magnesite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:magnesite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:magnesium_block_from_magnesite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magnesite",
+      "has_the_recipe"
+    ]
+  ]
+}

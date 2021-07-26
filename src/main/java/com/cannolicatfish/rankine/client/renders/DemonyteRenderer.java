@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.DemonyteModel;
+import com.cannolicatfish.rankine.client.models.entities.DemonyteModel;
 import com.cannolicatfish.rankine.entities.DemonyteEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

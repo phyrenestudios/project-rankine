@@ -35,7 +35,7 @@ public class MudReplacerFeature extends Feature<NoFeatureConfig> {
                 for (int y = 0; y <= endY; ++y) {
                     BlockPos b = new BlockPos(x,y,z);
                     if (reader.getBlockState(b) == Blocks.DIRT.getDefaultState() && (reader.getBlockState(b.up()) == Blocks.WATER.getDefaultState() || reader.getBlockState(b.down()) == Blocks.WATER.getDefaultState() || reader.getBlockState(b.east()) == Blocks.WATER.getDefaultState() || reader.getBlockState(b.west()) == Blocks.WATER.getDefaultState() || reader.getBlockState(b.south()) == Blocks.WATER.getDefaultState() || reader.getBlockState(b.north()) == Blocks.WATER.getDefaultState()) ) {
-                        reader.setBlockState(b, RankineBlocks.MUD.get().getDefaultState(), 2);
+                        //reader.setBlockState(b, RankineBlocks.MUD.get().getDefaultState(), 2);
                     }
                 }
             }

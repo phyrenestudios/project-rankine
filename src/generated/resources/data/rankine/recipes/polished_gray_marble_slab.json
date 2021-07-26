@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_gray_marble"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_gray_marble_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:pumice_brick_stairs_from_pumice_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_pumice_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pumice_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:pumice_brick_stairs_from_pumice_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pumice_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

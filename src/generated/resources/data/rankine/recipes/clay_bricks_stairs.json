@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:clay_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:clay_bricks_stairs",
+    "count": 4
+  }
+}

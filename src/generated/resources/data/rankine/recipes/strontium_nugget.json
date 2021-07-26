@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:strontium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:strontium_nugget",
+    "count": 9
+  }
+}

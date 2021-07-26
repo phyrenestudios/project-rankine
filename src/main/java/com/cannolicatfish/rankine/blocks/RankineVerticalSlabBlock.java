@@ -1,8 +1,11 @@
 package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.block.*;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -23,6 +26,7 @@ import javax.annotation.Nullable;
 public class RankineVerticalSlabBlock extends Block {
     public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape NORTH_B = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape SOUTH_B = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
     protected static final VoxelShape EAST_B = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
@@ -35,7 +39,7 @@ public class RankineVerticalSlabBlock extends Block {
 
     public RankineVerticalSlabBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE, SlabType.BOTTOM).with(HORIZONTAL_FACING, Direction.NORTH));
+        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE, SlabType.BOTTOM).with(HORIZONTAL_FACING, Direction.NORTH).with(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
@@ -79,11 +83,12 @@ public class RankineVerticalSlabBlock extends Block {
         BlockPos blockpos = context.getPos();
         BlockState blockstate = context.getWorld().getBlockState(blockpos);
         BlockState blockstate1 = this.getDefaultState();
+        FluidState fluidstate = context.getWorld().getFluidState(blockpos);
         if (blockstate.matchesBlock(this)) {
             return blockstate.with(TYPE, SlabType.DOUBLE).with(HORIZONTAL_FACING, Direction.NORTH);
         } else {
             blockstate1 = blockstate1.with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite()).with(TYPE, SlabType.BOTTOM);
-            return blockstate1;
+            return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
         }
     }
 
@@ -103,6 +108,9 @@ public class RankineVerticalSlabBlock extends Block {
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.get(WATERLOGGED)) {
+            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+        }
         return facing.getOpposite() == stateIn.get(HORIZONTAL_FACING) && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : stateIn;
     }
 
@@ -114,8 +122,12 @@ public class RankineVerticalSlabBlock extends Block {
         return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
     }
 
+    public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+    }
+
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, HORIZONTAL_FACING);
+        builder.add(TYPE, HORIZONTAL_FACING, WATERLOGGED);
     }
 
 }

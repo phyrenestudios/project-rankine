@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/nitrogen_gas_block"
+    }
+  }
+}

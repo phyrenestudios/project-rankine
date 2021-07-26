@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:kimberlite_brick_wall_from_kimberlite_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_kimberlite_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:kimberlite_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:kimberlite_brick_wall_from_kimberlite_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_kimberlite_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

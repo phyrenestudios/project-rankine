@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:amphibole_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:amphibole",
+    "count": 9
+  }
+}

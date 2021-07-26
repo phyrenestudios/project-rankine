@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:fiber_mat",
+    "rankine:black_fiber_mat",
+    "rankine:blue_fiber_mat",
+    "rankine:light_blue_fiber_mat",
+    "rankine:brown_fiber_mat",
+    "rankine:lime_fiber_mat",
+    "rankine:cyan_fiber_mat",
+    "rankine:gray_fiber_mat",
+    "rankine:green_fiber_mat",
+    "rankine:light_gray_fiber_mat",
+    "rankine:magenta_fiber_mat",
+    "rankine:orange_fiber_mat",
+    "rankine:pink_fiber_mat",
+    "rankine:purple_fiber_mat",
+    "rankine:red_fiber_mat",
+    "rankine:white_fiber_mat",
+    "rankine:yellow_fiber_mat"
+  ]
+}

@@ -16,13 +16,6 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:mud",
-      "anchor": "mud",
-      "link_recipe": true,
-      "text": "Mud is found under water in non-ocean biomes. It applies a slowing movement speed modifier. Can be used to generate mudstone."
-    },
-    {
-      "type": "spotlight",
       "item": "rankine:alluvium",
       "anchor": "alluvium",
       "link_recipe": true,

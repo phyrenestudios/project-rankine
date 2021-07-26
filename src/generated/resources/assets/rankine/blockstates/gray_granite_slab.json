@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/gray_granite_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/gray_granite_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/gray_granite"
+    }
+  }
+}

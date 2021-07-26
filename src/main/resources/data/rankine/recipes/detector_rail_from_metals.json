@@ -13,7 +13,7 @@
       "item": "minecraft:redstone"
     },
     "P": {
-      "tag": "minecraft:stone_pressure_plates"
+      "tag": "forge:stone_pressure_plates"
     }
   },
   "result": {

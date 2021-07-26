@@ -1,8 +1,0 @@
-{
-                "parent": "block/stairs",
-                "textures": {
-                "bottom": "rankine:block/black_dacite_bricks",
-                "top": "rankine:block/black_dacite_bricks",
-                "side": "rankine:block/black_dacite_bricks"
-                }
-                }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:yellow_birch_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:pinyon_pine_boat"
+  }
+}

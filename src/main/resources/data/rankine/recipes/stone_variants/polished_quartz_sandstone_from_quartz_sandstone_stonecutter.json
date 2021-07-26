@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:quartz_sandstone"
-      },
-      "result": "rankine:polished_quartz_sandstone",
-      "count": 1
-    }

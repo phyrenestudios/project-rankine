@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:magnesite"
-      },
-      "result": "rankine:magnesium_ingot",
-      "experience": 1.0,
-      "cookingtime": 100
-    }

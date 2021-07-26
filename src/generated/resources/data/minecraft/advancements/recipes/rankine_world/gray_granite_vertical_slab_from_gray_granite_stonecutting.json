@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:gray_granite_vertical_slab_from_gray_granite_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_gray_granite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gray_granite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:gray_granite_vertical_slab_from_gray_granite_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_granite",
+      "has_the_recipe"
+    ]
+  ]
+}

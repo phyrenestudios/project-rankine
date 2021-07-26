@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_dolostone_wall"
+    ]
+  },
+  "criteria": {
+    "has_polished_dolostone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_dolostone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_dolostone_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_dolostone",
+      "has_the_recipe"
+    ]
+  ]
+}

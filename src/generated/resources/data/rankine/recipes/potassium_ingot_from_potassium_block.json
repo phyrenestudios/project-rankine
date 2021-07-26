@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:potassium_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:potassium_ingot",
+    "count": 9
+  }
+}

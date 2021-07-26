@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:serpentinite"
+    }
+  ],
+  "result": {
+    "item": "rankine:serpentinite_button"
+  }
+}

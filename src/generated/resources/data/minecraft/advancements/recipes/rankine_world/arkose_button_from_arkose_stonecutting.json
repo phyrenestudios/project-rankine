@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:arkose_button_from_arkose_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_arkose": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:arkose"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:arkose_button_from_arkose_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_arkose",
+      "has_the_recipe"
+    ]
+  ]
+}

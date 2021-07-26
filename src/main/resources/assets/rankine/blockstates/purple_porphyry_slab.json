@@ -1,7 +1,0 @@
-{
-"variants": {
-    "type=bottom": { "model": "rankine:block/purple_porphyry_slab" },
-    "type=top": { "model": "rankine:block/purple_porphyry_slab_top" },
-    "type=double": { "model": "rankine:block/purple_porphyry" }
-    }
-}

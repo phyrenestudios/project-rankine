@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "rankine:block/comendite_bricks_pressure_plate_up"
+    },
+    "powered=true": {
+      "model": "rankine:block/comendite_bricks_pressure_plate_down"
+    }
+  }
+}

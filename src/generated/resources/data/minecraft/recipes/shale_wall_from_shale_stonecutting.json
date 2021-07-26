@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:shale"
+  },
+  "result": "rankine:shale_wall",
+  "count": 1
+}

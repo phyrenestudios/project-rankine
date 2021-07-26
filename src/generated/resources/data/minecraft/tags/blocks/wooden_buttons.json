@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:petrified_chorus_button",
+    "rankine:balsam_fir_button",
+    "rankine:black_birch_button",
+    "rankine:black_walnut_button",
+    "rankine:cedar_button",
+    "rankine:cinnamon_button",
+    "rankine:coconut_palm_button",
+    "rankine:cork_oak_button",
+    "rankine:eastern_hemlock_button",
+    "rankine:juniper_button",
+    "rankine:magnolia_button",
+    "rankine:pinyon_pine_button",
+    "rankine:yellow_birch_button",
+    "rankine:maple_button",
+    "rankine:bamboo_button",
+    "rankine:bamboo_culms_button"
+  ]
+}

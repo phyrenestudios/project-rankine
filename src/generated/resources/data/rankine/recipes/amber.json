@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:amber_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:amber",
+    "count": 9
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:arkose"
+    }
+  },
+  "result": {
+    "item": "rankine:arkose_stairs",
+    "count": 4
+  }
+}

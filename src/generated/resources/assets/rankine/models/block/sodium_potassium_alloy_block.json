@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rankine:block/sodium_potassium_alloy_block"
+  }
+}

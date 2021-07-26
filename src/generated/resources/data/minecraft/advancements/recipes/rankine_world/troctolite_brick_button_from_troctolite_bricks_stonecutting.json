@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:troctolite_brick_button_from_troctolite_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_troctolite_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:troctolite_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:troctolite_brick_button_from_troctolite_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_troctolite_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.DragonyteModel;
+import com.cannolicatfish.rankine.client.models.entities.DragonyteModel;
 import com.cannolicatfish.rankine.entities.DragonyteEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

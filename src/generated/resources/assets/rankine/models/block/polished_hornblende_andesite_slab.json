@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "rankine:block/polished_hornblende_andesite",
+    "bottom": "rankine:block/polished_hornblende_andesite",
+    "top": "rankine:block/polished_hornblende_andesite"
+  }
+}

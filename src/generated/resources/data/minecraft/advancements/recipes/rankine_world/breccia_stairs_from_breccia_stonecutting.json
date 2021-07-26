@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:breccia_stairs_from_breccia_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_breccia": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:breccia"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:breccia_stairs_from_breccia_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_breccia",
+      "has_the_recipe"
+    ]
+  ]
+}

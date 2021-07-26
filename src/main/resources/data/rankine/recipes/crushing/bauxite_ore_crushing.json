@@ -13,7 +13,7 @@
     "chance": 1
   },
   "output3": {
-    "item": "rankine:kaolinite_ball",
+    "item": "rankine:fire_clay_ball",
     "chance": 0.5,
     "additional": 0.2
   },

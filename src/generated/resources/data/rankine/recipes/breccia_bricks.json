@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:breccia"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "result": {
+    "item": "rankine:breccia_bricks",
+    "count": 2
+  }
+}

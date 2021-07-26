@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:comendite_vertical_slab"
+    ]
+  },
+  "criteria": {
+    "has_comendite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:comendite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:comendite_vertical_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_comendite",
+      "has_the_recipe"
+    ]
+  ]
+}
