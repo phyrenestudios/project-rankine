@@ -2,52 +2,54 @@
   "type": "rankine:alloying",
   "total": 10,
   "input1": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.86,
-    "max": 0.98
+    "max": 0.98,
+    "required": true
   },
   "input2": {
-    "element": "carbon",
+    "element": "rankine:elements/carbon",
     "min": 0.02,
-    "max": 0.04
+    "max": 0.04,
+    "required": true
   },
   "input3": {
-    "element": "manganese",
+    "element": "rankine:elements/manganese",
     "min": 0.0,
     "max": 0.10
   },
   "input4": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.10
   },
   "input6": {
-    "element": "molybdenum",
+    "element": "rankine:elements/molybdenum",
     "min": 0.0,
     "max": 0.10
   },
   "input7": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.10
   },
   "input8": {
-    "element": "vanadium",
+    "element": "rankine:elements/vanadium",
     "min": 0.0,
     "max": 0.10
   },
   "input9": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.10
   },
   "input10": {
-    "element": "phosphorus",
+    "element": "rankine:elements/phosphorus",
     "min": 0.0,
     "max": 0.10
   },

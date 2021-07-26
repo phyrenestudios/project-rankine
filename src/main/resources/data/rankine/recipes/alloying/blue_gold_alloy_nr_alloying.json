@@ -3,27 +3,29 @@
   "total": 5,
   "tier": 2,
   "input1": {
-    "element": "netherite",
+    "element": "rankine:elements/netherite",
     "min": 0.74,
-    "max": 0.76
+    "max": 0.76,
+    "required": true
   },
   "input2": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.20,
-    "max": 0.25
+    "max": 0.25,
+    "required": true
   },
   "input3": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.06
   },
   "input4": {
-    "element": "rhodium",
+    "element": "rankine:elements/rhodium",
     "min": 0.0,
     "max": 0.06
   },
   "input5": {
-    "element": "ruthenium",
+    "element": "rankine:elements/ruthenium",
     "min": 0.0,
     "max": 0.06
   },

@@ -3,42 +3,46 @@
   "tier": 2,
   "total": 8,
   "input1": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.58,
-    "max": 0.72
+    "max": 0.72,
+    "required": true
   },
   "input2": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.17,
-    "max": 0.25
+    "max": 0.25,
+    "required": true
   },
   "input3": {
-    "element": "cobalt",
+    "element": "rankine:elements/cobalt",
     "min": 0.06,
-    "max": 0.12
+    "max": 0.12,
+    "required": true
   },
   "input4": {
-    "element": "molybdenum",
+    "element": "rankine:elements/molybdenum",
     "min": 0.03,
-    "max": 0.05
+    "max": 0.05,
+    "required": true
   },
   "input5": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.05
   },
   "input6": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.0,
     "max": 0.05
   },
   "input7": {
-    "element": "cadmium",
+    "element": "rankine:elements/cadmium",
     "min": 0.0,
     "max": 0.05
   },
   "input8": {
-    "element": "niobium",
+    "element": "rankine:elements/niobium",
     "min": 0.0,
     "max": 0.05
   },

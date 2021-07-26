@@ -11,15 +11,16 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public interface IAlloyItem {
 
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
+            stack.getTag().remove("RegenerateAlloy");
+        }
         ListNBT alloyData = getAlloyNBT(stack);
 
         CompoundNBT listnbt = new CompoundNBT();
@@ -32,11 +33,32 @@ public interface IAlloyItem {
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
 
         if (nameOverride != null && stack.getTag() != null) {
-            stack.getTag().putString("nameAdd",nameOverride);
+            stack.getTag().putString("nameOverride",nameOverride);
         }
     }
 
-    default ListNBT getAlloyNBT(ItemStack stack) {
+    static void createDirectAlloyNBT(ItemStack stack, @Nullable String composition, @Nullable String alloyRecipe, @Nullable String nameOverride) {
+        stack.getOrCreateTag().putBoolean("RegenerateAlloy",true);
+        CompoundNBT listnbt = new CompoundNBT();
+        if (composition != null) {
+            listnbt.putString("comp",composition);
+        }
+        if (alloyRecipe != null) {
+            listnbt.putString("recipe",alloyRecipe);
+        }
+        getAlloyNBT(stack).add(listnbt);
+        stack.getOrCreateTag().put("StoredAlloy",listnbt);
+
+        if (nameOverride != null) {
+            stack.getOrCreateTag().putString("nameOverride",nameOverride);
+        }
+    }
+
+    static void addColorNBT(ItemStack stack, int color) {
+        stack.getOrCreateTag().putInt("color",color);
+    }
+
+    static ListNBT getAlloyNBT(ItemStack stack) {
         CompoundNBT compoundnbt = stack.getTag();
         return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
     }
@@ -46,16 +68,29 @@ public interface IAlloyItem {
         return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty();
     }
 
-    default String getAlloyComposition(ItemStack stack)
+    static boolean needsRefresh(ItemStack stack) {
+        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty() && stack.getTag().getBoolean("RegenerateAlloy");
+    }
+
+    static String getAlloyComposition(ItemStack stack)
     {
         if (stack.getTag() != null) {
             return stack.getTag().getCompound("StoredAlloy").getString("comp");
         } else {
-            return "80Hg-20Au";
+            return "";
         }
     }
 
-    default ResourceLocation getAlloyRecipe(ItemStack stack)
+    static String getNameOverride(ItemStack stack)
+    {
+        if (stack.getTag() != null) {
+            return stack.getTag().getString("nameOverride");
+        } else {
+            return "";
+        }
+    }
+
+    static ResourceLocation getAlloyRecipe(ItemStack stack)
     {
         if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").getString("recipe").isEmpty()) {
             return new ResourceLocation(stack.getTag().getCompound("StoredAlloy").getString("recipe"));
@@ -66,14 +101,18 @@ public interface IAlloyItem {
 
     default List<ElementRecipe> getElementRecipes(String c, @Nullable World worldIn) {
         if (worldIn != null) {
-            String[] comp = c.split("-");
-            List<ElementRecipe> list = new ArrayList<>();
-            for (String e: comp)
-            {
-                String str = e.replaceAll("[^A-Za-z]+", "");
-                worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
+            if (c.contains("-")) {
+                String[] comp = c.split("-");
+                List<ElementRecipe> list = new ArrayList<>();
+                for (String e: comp)
+                {
+                    String str = e.replaceAll("[^A-Za-z]+", "");
+                    worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
+                }
+                return list;
             }
-            return list;
+            return Collections.emptyList();
+
         } else {
             return Collections.emptyList();
         }
@@ -82,19 +121,29 @@ public interface IAlloyItem {
 
     default List<Integer> getPercents(String c)
     {
-        String[] comp = c.split("-");
-        List<Integer> list = new ArrayList<>();
-        for (String e: comp)
-        {
-            String str = e.replaceAll("\\D+", "");
-            list.add(Integer.parseInt(str));
+        if (c.contains("-")) {
+            String[] comp = c.split("-");
+            List<Integer> list = new ArrayList<>();
+            for (String e: comp)
+            {
+                String str = e.replaceAll("\\D+", "");
+                list.add(Integer.parseInt(str));
+            }
+            return list;
         }
-        return list;
+        return Collections.emptyList();
+
+
     }
 
     default ItemStack createAlloyItemStack(Item item, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         ItemStack itemstack = new ItemStack(item);
         this.createAlloyNBT(itemstack,worldIn,composition,alloyRecipe,nameOverride);
         return itemstack;
+    }
+
+    @Nonnull
+    static String getSubtype(ItemStack stack) {
+        return stack.hasTag() ? IAlloyItem.getNameOverride(stack).toLowerCase(Locale.ROOT).replace(" ","_") : "";
     }
 }

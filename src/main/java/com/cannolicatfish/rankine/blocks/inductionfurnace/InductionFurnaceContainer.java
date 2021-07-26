@@ -97,7 +97,7 @@ public class InductionFurnaceContainer extends Container {
         }
         AlloyingRecipe recipe = playerEntity.getEntityWorld().getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, furnaceInventory, playerEntity.getEntityWorld()).orElse(null);
         if (recipe != null) {
-            ItemStack stack = recipe.generateResult(furnaceInventory,2);
+            ItemStack stack = recipe.generateResult(playerEntity.getEntityWorld(),furnaceInventory,2);
             INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
             if (nbt != null){
                 return new AbstractMap.SimpleEntry<>(new String[]{new TranslationTextComponent(stack.getItem().getTranslationKey()).getString(),nbt.getString()},0x55FF55);

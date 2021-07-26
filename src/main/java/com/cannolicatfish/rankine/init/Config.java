@@ -54,6 +54,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue MOVEMENT_SNOW;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_MUD;
 
+        public final ForgeConfigSpec.BooleanValue CROWBAR_FROM_ABOVE;
         public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
 
         public final ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
@@ -145,6 +146,8 @@ public class Config {
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("Makes axes required to harvest logs.")
                             .define("axesOnly",false);
+                    CROWBAR_FROM_ABOVE = b.comment("Allows crowbars to move blocks below where the player is standing.")
+                            .define("crowbarFromAbove",true);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
                             .define("fuelValuesChange",true);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")

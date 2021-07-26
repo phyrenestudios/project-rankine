@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.commands;
 
-import com.cannolicatfish.rankine.items.alloys.AlloyData;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -43,8 +42,14 @@ public class CreateAlloyCommand {
                 int j = Math.min(itemIn.getItem().getMaxStackSize(), i);
                 i -= j;
                 ItemStack itemstack = itemIn.createStack(j, false);
-                if (itemstack.getItem() instanceof IAlloyTool) {
-                    ((IAlloyTool) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.world,data,null,null);
+                if (itemstack.getItem() instanceof IAlloyItem) {
+                    ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.world,data,null,null);
+                    if (itemstack.getItem() instanceof IAlloyTool) {
+                        ((IAlloyTool) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);
+                    } else if (itemstack.getItem() instanceof IAlloyArmor) {
+                        //((IAlloyArmor) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);
+                    }
+
                 } else {
                     AlloyItem.addAlloy(itemstack,new AlloyData(data));
                 }

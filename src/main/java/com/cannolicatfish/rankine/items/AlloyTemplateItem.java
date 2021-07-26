@@ -105,9 +105,9 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    public static void addTemplate(ItemStack stack, AlloyingRecipe recipe, IInventory inv, DyeItem dye) {
+    public static void addTemplate(World worldIn, ItemStack stack, AlloyingRecipe recipe, IInventory inv, DyeItem dye) {
         ListNBT listnbt = new ListNBT();
-        ItemStack output = recipe.generateResult(inv,3);
+        ItemStack output = recipe.generateResult(worldIn,inv,3);
 
         stack.getOrCreateTag().putString("StoredTemplate",assembleTemplateData(inv,0,6));
         stack.getOrCreateTag().putString("NameAdd",output.getCount() + "x#" + output.getTranslationKey());
@@ -230,7 +230,7 @@ public class AlloyTemplateItem extends Item {
             }
             return x;
         }
-        return null;
+        return new ItemStack[0];
     }
 
     @Override
@@ -295,7 +295,7 @@ public class AlloyTemplateItem extends Item {
             sim = new Inventory(inputs);
             recipeIn = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, sim, worldIn).orElse(null);
             if (recipeIn != null) {
-                AlloyTemplateItem.addTemplate(stack, recipeIn, new Inventory(inputs), (DyeItem) Items.WHITE_DYE);
+                AlloyTemplateItem.addTemplate(worldIn,stack, recipeIn, new Inventory(inputs), (DyeItem) Items.WHITE_DYE);
             }
 
         }

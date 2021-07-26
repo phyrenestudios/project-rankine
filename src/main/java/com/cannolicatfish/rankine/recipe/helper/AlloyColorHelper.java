@@ -12,7 +12,10 @@ import java.util.List;
 
 public class AlloyColorHelper {
 
-    public int getColor(ItemStack stack, int tintIndex) {
+    public static int getColor(ItemStack stack, int tintIndex) {
+        if (stack.getTag() != null && stack.getTag().contains("color")) {
+            return stack.getTag().getInt("color");
+        }
         PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
         INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
         if (nbt != null)
@@ -52,7 +55,7 @@ public class AlloyColorHelper {
         return 16777215;
     }
 
-    private int returnBlend(List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements) {
+    private static int returnBlend(List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements) {
         float r = 0;
         float g = 0;
         float b = 0;
@@ -68,7 +71,7 @@ public class AlloyColorHelper {
         return rgb;
     }
 
-    private int returnBlendWeighted(List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements) {
+    private static int returnBlendWeighted(List<AbstractMap.SimpleEntry<PeriodicTableUtils.Element,Integer>> elements) {
         float r = 0;
         float g = 0;
         float b = 0;

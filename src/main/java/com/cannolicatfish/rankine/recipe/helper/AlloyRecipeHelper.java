@@ -86,7 +86,7 @@ public class AlloyRecipeHelper {
         return result;
     }
 
-    public static String getAlloyFromComposition(String comp, World worldIn) {
+    /*public static String getAlloyFromComposition(String comp, World worldIn) {
         List<PeriodicTableUtils.Element> elements = new ArrayList<>();
         List<Integer> percents = new ArrayList<>();
         for (String s : comp.split("-")) {
@@ -155,5 +155,11 @@ public class AlloyRecipeHelper {
         }
         return "false";
     }
+
+        public static AlloyingRecipe getRecipeFromComposition(String comp, World worldIn) {
+
+    }
+    */
+
 
 }

@@ -81,9 +81,6 @@ public class AlloyArrowItem extends ArrowItem implements IAlloyArrow {
     public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
         if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
             CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
         }
         super.onCreated(stack, worldIn, playerIn);
     }
@@ -92,9 +89,6 @@ public class AlloyArrowItem extends ArrowItem implements IAlloyArrow {
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (getComposition(stack).size() > 0 && alloy.getDefComposition().equals("80Hg-20Au")) {
             CompoundNBT nbt = stack.getTag();
-            if (nbt != null && nbt.getString("nameAdd").isEmpty()) {
-                nbt.putString("nameAdd", AlloyRecipeHelper.getAlloyFromComposition(getComposition(stack).getCompound(0).get("comp").getString(),worldIn));
-            }
         }
 
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);

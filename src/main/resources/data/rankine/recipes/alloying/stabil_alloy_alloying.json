@@ -1,0 +1,33 @@
+{
+  "type": "rankine:alloying",
+  "total": 5,
+  "color": 11848920,
+  "name": "NEG Alloy Ingot",
+  "input1": {
+    "element": "rankine:elements/zirconium",
+    "min": 0.70,
+    "max": 0.84,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/vanadium",
+    "min": 0.20,
+    "max": 0.25
+  },
+  "input3": {
+    "element": "rankine:elements/cobalt",
+    "min": 0.0,
+    "max": 0.16
+  },
+  "input4": {
+    "element": "rankine:elements/aluminum",
+    "min": 0.0,
+    "max": 0.16
+  },
+  "input5": {
+    "element": "rankine:elements/iron",
+    "min": 0.00,
+    "max": 0.06
+  },
+  "result": "rankine:alloy_ingot"
+}

@@ -1,10 +1,61 @@
 {
-          "type": "rankine:element",
-          "name": "sulfur",
-          "symbol": "S",
-          "color": 16777215,
-          "atomic": 16,
-          "potential": 0,
-          "items": ["T#forge:nuggets/sulfur","T#forge:ingots/sulfur","T#forge:storage_blocks/sulfur"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "sulfur",
+  "symbol": "S",
+  "color": 14737504,
+  "atomic": 16,
+  "potential": 0.5,
+  "items": ["T#forge:nuggets/sulfur","T#forge:sulfur","T#forge:storage_blocks/sulfur"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [4,100],
+    "formulas": ["LINEAR","LINEAR"],
+    "a": [-50,2],
+    "b": [0,-199],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.04],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-1]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.02],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-1]
+  },
+  "mininglevel": {
+    "breaks": [3,99,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,-1,0],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [15]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.01],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantments": ["minecraft:vanishing_curse"],
+  "enchantmentTypes": ["ALL"],
+  "enchantmentFactors": [0.25]
+}

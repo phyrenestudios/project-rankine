@@ -1,10 +1,42 @@
 {
-          "type": "rankine:element",
-          "name": "bismuth",
-          "symbol": "Bi",
-          "color": 16777215,
-          "atomic": 83,
-          "potential": 0,
-          "items": ["T#forge:nuggets/bismuth","T#forge:ingots/bismuth","T#forge:storage_blocks/bismuth"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "bismuth",
+  "symbol": "Bi",
+  "color": 14407127,
+  "atomic": 83,
+  "potential": 0.308,
+  "items": ["T#forge:nuggets/bismuth","T#forge:ingots/bismuth","T#forge:storage_blocks/bismuth"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["POWER"],
+    "a": [1.15],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [1],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [11,100],
+    "formulas": ["CONSTANT","CONSTANT"],
+    "a": [0,1],
+    "b": [0,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.16667],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

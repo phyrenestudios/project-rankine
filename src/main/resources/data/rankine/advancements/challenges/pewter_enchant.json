@@ -25,6 +25,7 @@
           },
           {
             "type": "rankine:enchant_check",
+            "item": "rankine:pewter_sword",
             "ench": 14
           }
         ]

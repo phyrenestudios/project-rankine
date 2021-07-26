@@ -3,27 +3,30 @@
   "total": 6,
   "tier": 2,
   "input1": {
-    "element": "gallium",
+    "element": "rankine:elements/gallium",
     "min": 0.68,
-    "max": 0.80
+    "max": 0.80,
+    "required": true
   },
   "input2": {
-    "element": "indium",
+    "element": "rankine:elements/indium",
     "min": 0.12,
-    "max": 0.22
+    "max": 0.22,
+    "required": true
   },
   "input3": {
-    "element": "tin",
+    "element": "rankine:elements/tin",
     "min": 0.08,
-    "max": 0.10
+    "max": 0.10,
+    "required": true
   },
   "input4": {
-    "element": "antimony",
+    "element": "rankine:elements/antimony",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "element": "bismuth",
+    "element": "rankine:elements/bismuth",
     "min": 0.0,
     "max": 0.10
   },
