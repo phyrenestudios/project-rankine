@@ -9,11 +9,6 @@
     },
     {
       "type": "crafting",
-      "recipe": "rankine:cast_iron_rod",
-      "recipe2": "rankine:steel_rod"
-    },
-    {
-      "type": "crafting",
       "recipe": "rankine:graphite_electrode",
       "recipe2": "rankine:hard_carbon_electrode"
     },

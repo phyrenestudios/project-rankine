@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/pumice",
-        "top": "rankine:block/pumice",
-        "side": "rankine:block/pumice"
-      }
-    }

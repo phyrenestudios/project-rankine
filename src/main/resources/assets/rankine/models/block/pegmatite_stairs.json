@@ -1,8 +1,0 @@
-{
-      "parent": "block/stairs",
-      "textures": {
-        "bottom": "rankine:block/pegmatite",
-        "top": "rankine:block/pegmatite",
-        "side": "rankine:block/pegmatite"
-      }
-    }

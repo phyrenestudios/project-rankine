@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
 
 public class ElectromagnetBlock extends DirectionalBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
     int type;
 
     public ElectromagnetBlock(int type, Properties properties) {

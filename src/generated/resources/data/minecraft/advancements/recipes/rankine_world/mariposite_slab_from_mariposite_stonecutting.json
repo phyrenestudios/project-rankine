@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:mariposite_slab_from_mariposite_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_mariposite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mariposite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:mariposite_slab_from_mariposite_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mariposite",
+      "has_the_recipe"
+    ]
+  ]
+}

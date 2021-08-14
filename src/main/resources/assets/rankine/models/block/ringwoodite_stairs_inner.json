@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/ringwoodite",
-        "top": "rankine:block/ringwoodite",
-        "side": "rankine:block/ringwoodite"
-      }
-    }

@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_sapling",
+    "rankine:erythrina_sapling",
     "rankine:balsam_fir_sapling",
     "rankine:black_birch_sapling",
     "rankine:black_walnut_sapling",

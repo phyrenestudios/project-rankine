@@ -105,6 +105,10 @@ public class RankineBoatEntity extends BoatEntity {
                 return RankineItems.BAMBOO_CULMS_BOAT.get();
             case PETRIFIED_CHORUS:
                 return RankineItems.PETRIFIED_CHORUS_BOAT.get();
+            case ERYTHRINA:
+                return RankineItems.ERYTHRINA_BOAT.get();
+            case CHARRED:
+                return RankineItems.CHARRED_BOAT.get();
         }
     }
 
@@ -140,7 +144,9 @@ public class RankineBoatEntity extends BoatEntity {
         CINNAMON(RankineBlocks.CINNAMON_PLANKS.get(), "cinnamon"),
         BAMBOO(RankineBlocks.BAMBOO_PLANKS.get(), "bamboo"),
         BAMBOO_CULMS(RankineBlocks.BAMBOO_CULMS.get(), "bamboo_culms"),
-        PETRIFIED_CHORUS(RankineBlocks.PETRIFIED_CHORUS_PLANKS.get(), "petrified_chorus");
+        PETRIFIED_CHORUS(RankineBlocks.PETRIFIED_CHORUS_PLANKS.get(), "petrified_chorus"),
+        ERYTHRINA(RankineBlocks.ERYTHRINA_PLANKS.get(), "erythrina"),
+        CHARRED(RankineBlocks.CHARRED_PLANKS.get(), "charred");
 
 
         private final String name;

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=y":  { "model": "rankine:block/brass_pipe" },
-    "axis=z":   { "model": "rankine:block/brass_pipe", "x": 90 },
-    "axis=x":   { "model": "rankine:block/brass_pipe", "x": 90, "y": 90 }
-  }
-}

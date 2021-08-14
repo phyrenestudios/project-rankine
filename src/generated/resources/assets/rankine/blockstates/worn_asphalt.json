@@ -1,0 +1,139 @@
+{
+  "variants": {
+    "facing=north,line_type=none": {
+      "model": "rankine:block/worn_asphalt_none",
+      "y": 180
+    },
+    "facing=south,line_type=none": {
+      "model": "rankine:block/worn_asphalt_none"
+    },
+    "facing=west,line_type=none": {
+      "model": "rankine:block/worn_asphalt_none",
+      "y": 90
+    },
+    "facing=east,line_type=none": {
+      "model": "rankine:block/worn_asphalt_none",
+      "y": 270
+    },
+    "facing=north,line_type=white_line": {
+      "model": "rankine:block/worn_asphalt_white_line",
+      "y": 180
+    },
+    "facing=south,line_type=white_line": {
+      "model": "rankine:block/worn_asphalt_white_line"
+    },
+    "facing=west,line_type=white_line": {
+      "model": "rankine:block/worn_asphalt_white_line",
+      "y": 90
+    },
+    "facing=east,line_type=white_line": {
+      "model": "rankine:block/worn_asphalt_white_line",
+      "y": 270
+    },
+    "facing=north,line_type=white_dashed_line": {
+      "model": "rankine:block/worn_asphalt_white_dashed_line",
+      "y": 180
+    },
+    "facing=south,line_type=white_dashed_line": {
+      "model": "rankine:block/worn_asphalt_white_dashed_line"
+    },
+    "facing=west,line_type=white_dashed_line": {
+      "model": "rankine:block/worn_asphalt_white_dashed_line",
+      "y": 90
+    },
+    "facing=east,line_type=white_dashed_line": {
+      "model": "rankine:block/worn_asphalt_white_dashed_line",
+      "y": 270
+    },
+    "facing=north,line_type=yellow_line": {
+      "model": "rankine:block/worn_asphalt_yellow_line",
+      "y": 180
+    },
+    "facing=south,line_type=yellow_line": {
+      "model": "rankine:block/worn_asphalt_yellow_line"
+    },
+    "facing=west,line_type=yellow_line": {
+      "model": "rankine:block/worn_asphalt_yellow_line",
+      "y": 90
+    },
+    "facing=east,line_type=yellow_line": {
+      "model": "rankine:block/worn_asphalt_yellow_line",
+      "y": 270
+    },
+    "facing=north,line_type=yellow_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_double_line",
+      "y": 180
+    },
+    "facing=south,line_type=yellow_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_double_line"
+    },
+    "facing=west,line_type=yellow_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_double_line",
+      "y": 90
+    },
+    "facing=east,line_type=yellow_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_double_line",
+      "y": 270
+    },
+    "facing=north,line_type=yellow_dashed_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_line",
+      "y": 180
+    },
+    "facing=south,line_type=yellow_dashed_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_line"
+    },
+    "facing=west,line_type=yellow_dashed_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_line",
+      "y": 90
+    },
+    "facing=east,line_type=yellow_dashed_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_line",
+      "y": 270
+    },
+    "facing=north,line_type=yellow_dashed_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_double_line",
+      "y": 180
+    },
+    "facing=south,line_type=yellow_dashed_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_double_line"
+    },
+    "facing=west,line_type=yellow_dashed_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_double_line",
+      "y": 90
+    },
+    "facing=east,line_type=yellow_dashed_double_line": {
+      "model": "rankine:block/worn_asphalt_yellow_dashed_double_line",
+      "y": 270
+    },
+    "facing=north,line_type=crosswalk": {
+      "model": "rankine:block/worn_asphalt_crosswalk",
+      "y": 180
+    },
+    "facing=south,line_type=crosswalk": {
+      "model": "rankine:block/worn_asphalt_crosswalk"
+    },
+    "facing=west,line_type=crosswalk": {
+      "model": "rankine:block/worn_asphalt_crosswalk",
+      "y": 90
+    },
+    "facing=east,line_type=crosswalk": {
+      "model": "rankine:block/worn_asphalt_crosswalk",
+      "y": 270
+    },
+    "facing=north,line_type=manhole": {
+      "model": "rankine:block/worn_asphalt_manhole",
+      "y": 180
+    },
+    "facing=south,line_type=manhole": {
+      "model": "rankine:block/worn_asphalt_manhole"
+    },
+    "facing=west,line_type=manhole": {
+      "model": "rankine:block/worn_asphalt_manhole",
+      "y": 90
+    },
+    "facing=east,line_type=manhole": {
+      "model": "rankine:block/worn_asphalt_manhole",
+      "y": 270
+    }
+  }
+}

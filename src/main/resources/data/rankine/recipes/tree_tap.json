@@ -6,7 +6,10 @@
   ],
   "key": {
     "R": {
-      "tag": "forge:rods/cast_iron"
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/cast_iron_alloy_alloying",
+      "name": "Cast Iron Alloy Rod",
+      "color": 986895
     }
   },
   "result": {

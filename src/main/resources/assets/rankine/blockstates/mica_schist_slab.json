@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/mica_schist_slab" },
-            "type=top": { "model": "rankine:block/mica_schist_slab_top" },
-            "type=double": { "model": "rankine:block/mica_schist" }
-            }
-        }

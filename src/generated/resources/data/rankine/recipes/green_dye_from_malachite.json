@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:malachite"
+    }
+  },
+  "result": {
+    "item": "minecraft:green_dye",
+    "count": 16
+  }
+}

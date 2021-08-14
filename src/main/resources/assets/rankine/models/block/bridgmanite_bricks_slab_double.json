@@ -1,7 +1,0 @@
-{
-          "parent": "block/cube_column",
-          "textures": {
-            "end": "rankine:block/bridgmanite_bricks",
-            "side": "rankine:block/bridgmanite_bricks"
-          }
-        }

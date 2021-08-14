@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "rankine:block/silty_clay_loam"
-  }
-}

@@ -1,59 +1,67 @@
 {
   "variants": {
     "face=floor,facing=north,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
       "y": 180,
       "uvlock": true
     },
     "face=wall,facing=north,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 90,
       "y": 180,
       "uvlock": true
     },
     "face=ceiling,facing=north,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 180,
       "y": 180,
       "uvlock": true
     },
     "face=floor,facing=south,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
       "uvlock": true
     },
     "face=wall,facing=south,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 90,
       "uvlock": true
     },
     "face=ceiling,facing=south,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 180,
       "uvlock": true
     },
     "face=floor,facing=west,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
       "y": 90,
       "uvlock": true
     },
     "face=wall,facing=west,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 90,
       "y": 90,
       "uvlock": true
     },
     "face=ceiling,facing=west,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 180,
       "y": 90,
       "uvlock": true
     },
     "face=floor,facing=east,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
       "y": 270,
       "uvlock": true
     },
     "face=wall,facing=east,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 90,
       "y": 270,
       "uvlock": true
     },
     "face=ceiling,facing=east,powered=false": {
-      "model": "rankine:block/cinnamon_button_pressed",
+      "model": "rankine:block/cinnamon_button",
+      "x": 180,
       "y": 270,
       "uvlock": true
     },
@@ -64,11 +72,13 @@
     },
     "face=wall,facing=north,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 90,
       "y": 180,
       "uvlock": true
     },
     "face=ceiling,facing=north,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 180,
       "y": 180,
       "uvlock": true
     },
@@ -78,10 +88,12 @@
     },
     "face=wall,facing=south,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 90,
       "uvlock": true
     },
     "face=ceiling,facing=south,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 180,
       "uvlock": true
     },
     "face=floor,facing=west,powered=true": {
@@ -91,11 +103,13 @@
     },
     "face=wall,facing=west,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 90,
       "y": 90,
       "uvlock": true
     },
     "face=ceiling,facing=west,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 180,
       "y": 90,
       "uvlock": true
     },
@@ -106,11 +120,13 @@
     },
     "face=wall,facing=east,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 90,
       "y": 270,
       "uvlock": true
     },
     "face=ceiling,facing=east,powered=true": {
       "model": "rankine:block/cinnamon_button_pressed",
+      "x": 180,
       "y": 270,
       "uvlock": true
     }

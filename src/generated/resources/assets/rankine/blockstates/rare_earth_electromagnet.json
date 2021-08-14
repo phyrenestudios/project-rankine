@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,powered=false": {
+      "model": "rankine:block/rare_earth_electromagnet",
+      "x": 180
+    },
+    "facing=up,powered=false": {
+      "model": "rankine:block/rare_earth_electromagnet"
+    },
+    "facing=north,powered=false": {
+      "model": "rankine:block/rare_earth_electromagnet",
+      "x": 90
+    },
+    "facing=south,powered=false": {
+      "model": "rankine:block/rare_earth_electromagnet",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "rankine:block/rare_earth_electromagnet",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,powered=false": {
+      "model": "rankine:block/rare_earth_electromagnet",
+      "x": 90,
+      "y": 90
+    },
+    "facing=down,powered=true": {
+      "model": "rankine:block/rare_earth_electromagnet_on",
+      "x": 180
+    },
+    "facing=up,powered=true": {
+      "model": "rankine:block/rare_earth_electromagnet_on"
+    },
+    "facing=north,powered=true": {
+      "model": "rankine:block/rare_earth_electromagnet_on",
+      "x": 90
+    },
+    "facing=south,powered=true": {
+      "model": "rankine:block/rare_earth_electromagnet_on",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,powered=true": {
+      "model": "rankine:block/rare_earth_electromagnet_on",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "rankine:block/rare_earth_electromagnet_on",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

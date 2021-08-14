@@ -1,8 +1,0 @@
-{
-                "parent": "block/stairs",
-                "textures": {
-                "bottom": "rankine:block/mudstone",
-                "top": "rankine:block/mudstone",
-                "side": "rankine:block/mudstone"
-                }
-                }

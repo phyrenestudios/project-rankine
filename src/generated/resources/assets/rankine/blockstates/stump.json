@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "rot=false": {
+      "model": "rankine:block/stump"
+    },
+    "rot=true": {
+      "model": "rankine:block/rotten_stump"
+    }
+  }
+}

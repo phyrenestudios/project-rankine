@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/limestone",
+    "background": "rankine:block/mariposite",
     "overlay": "rankine:block/halite_ore"
   }
 }

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cac",
+    "aGa",
+    "cac"
+  ],
+  "key": {
+    "G": {
+      "item": "rankine:alloy_gear",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloy_alloying",
+      "name": "Cupronickel Alloy Gear",
+      "color": 12622179
+    },
+    "a": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "c": {
+      "item": "rankine:cupronickel_sheetmetal"
+    }
+  },
+  "result": {
+    "item": "rankine:sediment_fan",
+    "count": 1
+  }
+}

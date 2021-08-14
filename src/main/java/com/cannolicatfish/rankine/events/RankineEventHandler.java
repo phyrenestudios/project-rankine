@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
+import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
@@ -42,7 +44,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -84,8 +85,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -406,9 +405,10 @@ public class RankineEventHandler {
         if (event.getEntity() instanceof LightningBoltEntity) {
             LightningBoltEntity entity = (LightningBoltEntity) event.getEntity();
             World worldIn = event.getWorld();
-            ITag<Block> fulgurite = BlockTags.getCollection().get(new ResourceLocation("rankine:lightning_vitrified"));
+            ITag<Block> fulgurite = RankineTags.Blocks.LIGHTNING_VITRIFIED;
+            ITag<Block> lightningGlass = BlockTags.SAND;
             BlockPos startPos = entity.getPosition().down();
-            if (fulgurite != null && fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
+            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
                 Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
                 for (BlockPos pos : positions) {
                     double rand;
@@ -420,6 +420,21 @@ public class RankineEventHandler {
 
                     if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
                         worldIn.setBlockState(pos,RankineBlocks.FULGURITE.get().getDefaultState(),3);
+                    }
+                }
+            }
+            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
+                Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
+                for (BlockPos pos : positions) {
+                    double rand;
+                    if (startPos.getX() == pos.getX() && startPos.getZ() == pos.getZ()) {
+                        rand = 1/(1f + Math.abs(startPos.getY() - pos.getY()));
+                    } else {
+                        rand = pos.distanceSq(startPos.getX(),startPos.getY(),startPos.getZ(),true);
+                    }
+
+                    if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
+                        worldIn.setBlockState(pos,RankineBlocks.LIGHTNING_GLASS.get().getDefaultState(),3);
                     }
                 }
             }
@@ -2129,6 +2144,54 @@ public class RankineEventHandler {
                 } else if (activatedBlock == Blocks.PODZOL.getDefaultState()) {
                     world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     world.setBlockState(pos, Blocks.GRASS_PATH.getDefaultState(), 2);
+                    stack.damageItem(1, player, (entity) -> {
+                        entity.sendBreakAnimation(event.getHand());
+                    });
+                    player.swingArm(event.getHand());
+                    event.setResult(Event.Result.ALLOW);
+                }
+            }
+        } else if (item instanceof HoeItem) {
+            if (!world.isRemote) {
+                TilledSoilTypes TYPE = null;
+                if (b == Blocks.DIRT) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.GRASS_BLOCK) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.PODZOL) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.MYCELIUM) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.COARSE_DIRT) {
+                    TYPE = TilledSoilTypes.COARSE_DIRT;
+                } else if (b == Blocks.SOUL_SOIL) {
+                    TYPE = TilledSoilTypes.SOUL_SOIL;
+                } else if (b == RankineBlocks.END_SOIL.get()) {
+                    TYPE = TilledSoilTypes.END_SOIL;
+                } else if (b == RankineBlocks.END_GRASS_BLOCK.get()) {
+                    TYPE = TilledSoilTypes.END_SOIL;
+                } else if (b == RankineBlocks.LOAM.get()) {
+                    TYPE = TilledSoilTypes.LOAM;
+                } else if (b == RankineBlocks.LOAMY_SAND.get()) {
+                    TYPE = TilledSoilTypes.LOAMY_SAND;
+                } else if (b == RankineBlocks.CLAY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.CLAY_LOAM;
+                } else if (b == RankineBlocks.SILTY_CLAY.get()) {
+                    TYPE = TilledSoilTypes.SILTY_CLAY;
+                } else if (b == RankineBlocks.SILTY_CLAY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SILTY_CLAY_LOAM;
+                } else if (b == RankineBlocks.SILTY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SILTY_LOAM;
+                } else if (b == RankineBlocks.SANDY_CLAY.get()) {
+                    TYPE = TilledSoilTypes.SANDY_CLAY;
+                } else if (b == RankineBlocks.SANDY_CLAY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SANDY_CLAY_LOAM;
+                } else if (b == RankineBlocks.SANDY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SANDY_LOAM;
+                }
+                if (TYPE != null) {
+                    world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.setBlockState(pos, RankineBlocks.TILLED_SOIL.get().getDefaultState().with(TilledSoilBlock.MOISTURE, 0).with(TilledSoilBlock.SOIL_TYPE, TYPE), 2);
                     stack.damageItem(1, player, (entity) -> {
                         entity.sendBreakAnimation(event.getHand());
                     });

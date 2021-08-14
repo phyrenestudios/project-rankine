@@ -1,7 +1,0 @@
-{
-"variants": {
-    "type=bottom": { "model": "rankine:block/quartzite_slab" },
-    "type=top": { "model": "rankine:block/quartzite_slab_top" },
-    "type=double": { "model": "rankine:block/quartzite" }
-    }
-}

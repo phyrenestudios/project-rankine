@@ -1,8 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "rankine:block/gyratory_crusher_top",
-        "front": "rankine:block/gyratory_crusher_front",
-        "side": "rankine:block/gyratory_crusher_side"
-    }
-}

@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_fence_gate",
+    "rankine:erythrina_fence_gate",
+    "rankine:charred_fence_gate",
     "rankine:petrified_chorus_fence_gate",
     "rankine:balsam_fir_fence_gate",
     "rankine:black_birch_fence_gate",

@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_polished_skarn": {
+    "has_polished_mariposite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:polished_skarn"
+            "item": "rankine:polished_mariposite"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_polished_skarn",
+      "has_polished_mariposite",
       "has_the_recipe"
     ]
   ]

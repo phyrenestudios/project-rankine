@@ -1,6 +1,0 @@
-{
-    "parent": "block/cube_all",
-    "textures": {
-    "all": "rankine:block/xenon_gas_block"
-    }
-}

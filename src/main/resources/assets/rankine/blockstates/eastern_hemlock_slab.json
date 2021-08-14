@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/eastern_hemlock_slab" },
-            "type=top": { "model": "rankine:block/eastern_hemlock_slab_top" },
-            "type=double": { "model": "rankine:block/eastern_hemlock_slab_double" }
-            }
-        }

@@ -1,7 +1,11 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_planks",
+    "rankine:erythrina_planks",
+    "rankine:charred_planks",
     "rankine:petrified_chorus_planks",
+    "rankine:balsam_fir_planks",
     "rankine:black_birch_planks",
     "rankine:black_walnut_planks",
     "rankine:cedar_planks",

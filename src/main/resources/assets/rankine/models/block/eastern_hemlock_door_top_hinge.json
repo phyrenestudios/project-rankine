@@ -1,7 +1,0 @@
-{
-      "parent": "block/door_top_rh",
-      "textures": {
-        "bottom": "rankine:block/eastern_hemlock_door_bottom",
-        "top": "rankine:block/eastern_hemlock_door_top"
-      }
-    }

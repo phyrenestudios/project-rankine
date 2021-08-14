@@ -1,14 +1,23 @@
 package com.cannolicatfish.rankine.init;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber
 public class WGConfig {
+
+
+    static Predicate<Object> ELEMENT_VALIDATOR = o -> o instanceof String;
+
 
     public static class Misc {
         public final ForgeConfigSpec.IntValue BEDROCK_LAYERS;
@@ -16,7 +25,6 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue VANILLA_ORES;
         public final ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
         public final ForgeConfigSpec.BooleanValue FIRE_CLAY_GEN;
-        public final ForgeConfigSpec.BooleanValue MUD_GEN;
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue TUFF_GEN;
@@ -27,13 +35,13 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue SILL_IRONSTONE_GEN;
         public final ForgeConfigSpec.BooleanValue SILL_PHOSPHORITE_GEN;
 
-        public final ForgeConfigSpec.ConfigValue<List<String>> ORE_STONES;
+        public final ForgeConfigSpec.ConfigValue<List<? extends String>> ORE_STONES;
 
 
         public Misc(ForgeConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen features").push("misc");
                 ORE_STONES = b.comment("Textures of blocks for ores.")
-                        .define("oreStones", Arrays.asList("minecraft:stone","minecraft:granite","minecraft:diorite","minecraft:andesite","minecraft:sandstone","minecraft:red_sandstone","minecraft:netherrack","minecraft:blackstone","minecraft:basalt_side","minecraft:end_stone","minecraft:obsidian","rankine:pegmatite","rankine:gray_granite","rankine:rhyolite","rankine:comendite","rankine:granodiorite","rankine:red_porphyry","rankine:purple_porphyry","rankine:hornblende_andesite","rankine:black_dacite","rankine:red_dacite","rankine:tholeiitic_basalt","rankine:gabbro","rankine:anorthosite","rankine:peridotite","rankine:troctolite","rankine:kimberlite","rankine:komatiite","rankine:pumice","rankine:scoria","rankine:shonkinite","rankine:norite","rankine:pyroxenite","rankine:rose_marble","rankine:white_marble","rankine:gray_marble","rankine:black_marble","rankine:gneiss","rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:quartzite","rankine:skarn","rankine:limestone","rankine:dolostone","rankine:chalk","rankine:shale","rankine:siltstone","rankine:itacolumite","rankine:arkose","rankine:mudstone","rankine:breccia","rankine:serpentinite","rankine:marlstone","rankine:soul_sandstone","rankine:blueschist","rankine:greenschist","rankine:meteorite","rankine:enstatite"));
+                        .defineList("oreTextures", Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:sandstone", "minecraft:red_sandstone", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt_side", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:gabbro", "rankine:anorthosite", "rankine:peridotite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite", "rankine:pumice", "rankine:scoria", "rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite", "rankine:skarn", "rankine:mariposite", "rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone", "rankine:breccia", "rankine:serpentinite", "rankine:marlstone", "rankine:soul_sandstone", "rankine:blueschist", "rankine:greenschist", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite"), WGConfig.ELEMENT_VALIDATOR);
 
                 FLAT_BEDROCK = b.comment("Generates with a flat bedrock layer (includes the Nether)")
                         .define("flatBedrock",false);
@@ -45,8 +53,6 @@ public class WGConfig {
                         .define("generateFauna",true);
                 FIRE_CLAY_GEN = b.comment("Enables the generation of fire clay disks in dirt.")
                         .define("generateFireClay",true);
-                MUD_GEN = b.comment("Enables the generation of mud in dirt.")
-                        .define("generateMud",true);
                 EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
                         .define("generateEvaporite",true);
                 ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
@@ -129,7 +135,7 @@ public class WGConfig {
                 MUSHROOM_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
                         .defineInRange("mushroomHeight", 60, 0, 256);
                 DESERT_STONE_LIST = b.comment("Blocks to generate in Desert Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")
-                        .define("desertBlockLiisst", new ArrayList<>(Arrays.asList("rankine:troctolite", "rankine:rhyolite", "rankine:gneiss", "rankine:red_dacite", "rankine:phyllite", "rankine:quartzite", "rankine:tufa_limestone", "rankine:itacolumite")));
+                        .define("desertBlockList", new ArrayList<>(Arrays.asList("rankine:troctolite", "rankine:rhyolite", "rankine:gneiss", "rankine:red_dacite", "rankine:phyllite", "rankine:quartzite", "rankine:tufa_limestone", "rankine:itacolumite")));
                 DESERT_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
                         .defineInRange("desertHeight", 65, 0, 256);
                 MESA_STONE_LIST = b.comment("Blocks to generate in Mesa Biomes. Layers generate from bottom to top. Leave empty to leave it as vanilla stone.")

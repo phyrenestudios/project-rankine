@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "rankine:block/aluminum_ladder" },
-    "facing=east":  { "model": "rankine:block/aluminum_ladder", "y": 90 },
-    "facing=south": { "model": "rankine:block/aluminum_ladder", "y": 180 },
-    "facing=west":  { "model": "rankine:block/aluminum_ladder", "y": 270 }
-  }
-}

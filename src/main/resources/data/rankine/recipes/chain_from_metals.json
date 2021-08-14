@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "tag": "rankine:crafting_metals_nuggets"
+      "tag": "rankine:crafting_metal_nuggets"
     },
     "I": {
-      "tag": "rankine:crafting_metals"
+      "tag": "rankine:crafting_metal_ingots"
     }
   },
   "result": {

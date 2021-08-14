@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "rankine:block/pinyon_pine_planks",
-    "top": "rankine:block/pinyon_pine_planks",
-    "side": "rankine:block/pinyon_pine_planks"
-  }
-}

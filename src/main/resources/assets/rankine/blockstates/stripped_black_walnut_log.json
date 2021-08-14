@@ -1,7 +1,0 @@
-{
-      "variants": {
-        "axis=y":  { "model": "rankine:block/stripped_black_walnut_log" },
-        "axis=z":   { "model": "rankine:block/stripped_black_walnut_log", "x": 90 },
-        "axis=x":   { "model": "rankine:block/stripped_black_walnut_log", "x": 90, "y": 90 }
-      }
-    }

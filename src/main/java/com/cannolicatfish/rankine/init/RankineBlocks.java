@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
+import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
@@ -38,14 +39,13 @@ import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
 import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
+import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
@@ -70,6 +70,7 @@ public class RankineBlocks {
     public static Block.Properties DEF_LEAVES = Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid();
 
 
+    public static final RegistryObject<Block> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
 
 
     public static final RegistryObject<Block> PEGMATITE = REGISTRY.register("pegmatite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.PEGMATITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.PEGMATITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.PEGMATITE_HL.get())));
@@ -612,7 +613,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GREENSCHIST_PRESSURE_PLATE = REGISTRY.register("greenschist_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GREENSCHIST_BRICKS_PRESSURE_PLATE = REGISTRY.register("greenschist_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> GREENSCHIST_BUTTON = REGISTRY.register("greenschist_button", RankineStoneButton::new);
-
     public static final RegistryObject<Block> PHYLLITE = REGISTRY.register("phyllite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.PHYLLITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.PHYLLITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.PHYLLITE_HL.get())));
     public static final RegistryObject<Block> POLISHED_PHYLLITE = REGISTRY.register("polished_phyllite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.PHYLLITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.PHYLLITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.PHYLLITE_HL.get())));
     public static final RegistryObject<Block> PHYLLITE_BRICKS = REGISTRY.register("phyllite_bricks", () -> new RankineStoneBricksBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.PHYLLITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.PHYLLITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.PHYLLITE_HL.get())));
@@ -685,6 +685,24 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SKARN_PRESSURE_PLATE = REGISTRY.register("skarn_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SKARN_BRICKS_PRESSURE_PLATE = REGISTRY.register("skarn_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> SKARN_BUTTON = REGISTRY.register("skarn_button", RankineStoneButton::new);
+    public static final RegistryObject<Block> MARIPOSITE = REGISTRY.register("mariposite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> POLISHED_MARIPOSITE = REGISTRY.register("polished_mariposite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS = REGISTRY.register("mariposite_bricks", () -> new RankineStoneBricksBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_SLAB = REGISTRY.register("mariposite_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> POLISHED_MARIPOSITE_SLAB = REGISTRY.register("polished_mariposite_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS_SLAB = REGISTRY.register("mariposite_bricks_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_STAIRS = REGISTRY.register("mariposite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> POLISHED_MARIPOSITE_STAIRS = REGISTRY.register("polished_mariposite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS_STAIRS = REGISTRY.register("mariposite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_WALL = REGISTRY.register("mariposite_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> POLISHED_MARIPOSITE_WALL = REGISTRY.register("polished_mariposite_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS_WALL = REGISTRY.register("mariposite_bricks_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_VERTICAL_SLAB = REGISTRY.register("mariposite_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> POLISHED_MARIPOSITE_VERTICAL_SLAB = REGISTRY.register("polished_mariposite_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("mariposite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
+    public static final RegistryObject<Block> MARIPOSITE_PRESSURE_PLATE = REGISTRY.register("mariposite_pressure_plate", RankineStonePressurePlate::new);
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("mariposite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final RegistryObject<Block> MARIPOSITE_BUTTON = REGISTRY.register("mariposite_button", RankineStoneButton::new);
     public static final RegistryObject<Block> LIMESTONE = REGISTRY.register("limestone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.LIMESTONE_HARD.get().floatValue(), Config.STONE_PROPERTIES.LIMESTONE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.LIMESTONE_HL.get())));
     public static final RegistryObject<Block> POLISHED_LIMESTONE = REGISTRY.register("polished_limestone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.LIMESTONE_HARD.get().floatValue(), Config.STONE_PROPERTIES.LIMESTONE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.LIMESTONE_HL.get())));
     public static final RegistryObject<Block> LIMESTONE_BRICKS = REGISTRY.register("limestone_bricks", () -> new RankineStoneBricksBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.LIMESTONE_HARD.get().floatValue()*Config.GENERAL.BRICKS_HARDNESS_MULT.get().floatValue(), Config.STONE_PROPERTIES.LIMESTONE_RESIST.get().floatValue()*Config.GENERAL.BRICKS_RESISTANCE_MULT.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.LIMESTONE_HL.get())));
@@ -902,16 +920,25 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MARLSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("marlstone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> MARLSTONE_BUTTON = REGISTRY.register("marlstone_button", RankineStoneButton::new);
 
-    /*
-    public static final RegistryObject<Block> MARIPOSITE = REGISTRY.register("mariposite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.MARIPOSITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.MARIPOSITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.MARIPOSITE_HL.get())));
-    public static final RegistryObject<Block> RINGWOODITE = REGISTRY.register("ringwoodite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.RINGWOODITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.RINGWOODITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.RINGWOODITE_HL.get())));
-    public static final RegistryObject<Block> WADSLEYITE = REGISTRY.register("wadsleyite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.WADSLEYITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.WADSLEYITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.WADSLEYITE_HL.get())));
-    public static final RegistryObject<Block> BRIDGMANITE = REGISTRY.register("bridgmanite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.BRIDGMANITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.BRIDGMANITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.BRIDGMANITE_HL.get())));
-    public static final RegistryObject<Block> FERROPERICLASE = REGISTRY.register("ferropericlase", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.FERROPERICLASE_HARD.get().floatValue(), Config.STONE_PROPERTIES.FERROPERICLASE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.FERROPERICLASE_HL.get())));
-    public static final RegistryObject<Block> PEROVSKITE = REGISTRY.register("perovskite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.PEROVSKITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.PEROVSKITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.PEROVSKITE_HL.get())));
+    //wierd mineral blocks
+    //public static final RegistryObject<Block> MELLITE_BLOCK = REGISTRY.register("mellite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> MELLITE_STONE = REGISTRY.register("mellite_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> RINGWOODITE_BLOCK = REGISTRY.register("ringwoodite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> RINGWOODITE_STONE = REGISTRY.register("ringwoodite_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> WADSLEYITE_BLOCK = REGISTRY.register("wadsleyite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> WADSLEYITE_STONE = REGISTRY.register("wadsleyite_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> FORSTERITE_BLOCK = REGISTRY.register("forsterite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> FORSTERITE_STONE = REGISTRY.register("forsterite_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> SPINEL_BLOCK = REGISTRY.register("spinel_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> SPINEL_STONE = REGISTRY.register("spinel_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> BRIDGMANITE_BLOCK = REGISTRY.register("bridgmanite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> BRIDGMANITE_STONE = REGISTRY.register("bridgmanite_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> FERROPERICLASE_BLOCK = REGISTRY.register("ferropericlase_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> FERROPERICLASE_STONE = REGISTRY.register("ferropericlase_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    //public static final RegistryObject<Block> PEROVSKITE_BLOCK = REGISTRY.register("perovskite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> PEROVSKITE_STONE = REGISTRY.register("perovskite_stone", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
 
 
-     */
 
     public static final RegistryObject<Block> CLAY_BRICKS = REGISTRY.register("clay_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> REFRACTORY_BRICKS = REGISTRY.register("refractory_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
@@ -1003,7 +1030,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RADON_GAS_BLOCK = REGISTRY.register("radon_gas_block", () -> new GasBlock(GasUtilsEnum.RADON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = REGISTRY.register("oganesson_gas_block", () -> new GasBlock(GasUtilsEnum.OGANESSON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
-    public static final RegistryObject<Block> MELLITE = REGISTRY.register("mellite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F,5.0F).harvestLevel(0)));
+
+
+
 
     public static final RegistryObject<Block> SILT = REGISTRY.register("silt", () -> new SandBlock(00000000, Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> LOAM = REGISTRY.register("loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
@@ -1024,14 +1053,28 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRASSY_SILTY_CLAY_LOAM = REGISTRY.register("grassy_silty_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
     public static final RegistryObject<Block> GRASSY_SANDY_CLAY = REGISTRY.register("grassy_sandy_clay", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
     public static final RegistryObject<Block> GRASSY_SILTY_CLAY = REGISTRY.register("grassy_silty_clay", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_LOAM_PATH = REGISTRY.register("grassy_loam_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_SILTY_LOAM_PATH = REGISTRY.register("grassy_silty_loam_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_LOAMY_SAND_PATH = REGISTRY.register("grassy_loamy_sand_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_SANDY_LOAM_PATH = REGISTRY.register("grassy_sandy_loam_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_CLAY_LOAM_PATH = REGISTRY.register("grassy_clay_loam_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_SANDY_CLAY_LOAM_PATH = REGISTRY.register("grassy_sandy_clay_loam_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_SILTY_CLAY_LOAM_PATH = REGISTRY.register("grassy_silty_clay_loam_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_SANDY_CLAY_PATH = REGISTRY.register("grassy_sandy_clay_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> GRASSY_SILTY_CLAY_PATH = REGISTRY.register("grassy_silty_clay_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> MYCELIUM_PATH = REGISTRY.register("mycelium_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    //gravel path?
+    //
+    public static final RegistryObject<Block> END_GRASS_BLOCK = REGISTRY.register("end_grass_block", () -> new GrassySoilBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> END_SOIL = REGISTRY.register("end_soil", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> TILLED_SOIL = REGISTRY.register("tilled_soil", () -> new TilledSoilBlock(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+    public static final RegistryObject<Block> LIGHTNING_GLASS = REGISTRY.register("lightning_glass", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
+
 
     public static final RegistryObject<Block> ALLUVIUM = REGISTRY.register("alluvium", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> BLACK_SAND = REGISTRY.register("black_sand", () -> new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> WHITE_SAND = REGISTRY.register("white_sand", () -> new SandBlock(16777215, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
-    public static final RegistryObject<Block> ETCHED_GLASS0 = REGISTRY.register("etched_glass0", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
-    public static final RegistryObject<Block> ETCHED_GLASS1 = REGISTRY.register("etched_glass1", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
-    public static final RegistryObject<Block> ETCHED_GLASS2 = REGISTRY.register("etched_glass2", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
     public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> QUICKLIME_BLOCK = REGISTRY.register("quicklime_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
@@ -1064,9 +1107,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_WALL = REGISTRY.register("roman_concrete_bricks_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> BONE_CHAR_BLOCK = REGISTRY.register("bone_char_block", () -> new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> CHARRED_WOOD = REGISTRY.register("charred_wood", () -> new CharredWoodBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(0.2F, 3.0F).harvestLevel(0)));
     public static final RegistryObject<Block> FIRE_CLAY = REGISTRY.register("fire_clay", () -> new Block(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> MYCELIUM_PATH = REGISTRY.register("mycelium_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> KAOLINITE_BLOCK = REGISTRY.register("kaolinite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PORCELAIN_BLOCK = REGISTRY.register("porcelain_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CHECKERED_MARBLE = REGISTRY.register("checkered_marble", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
@@ -1075,11 +1116,19 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHECKERED_MARBLE_VERTICAL_SLAB = REGISTRY.register("checkered_marble_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_WALL = REGISTRY.register("checkered_marble_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
 
+    public static final RegistryObject<Block> ASPHALT = REGISTRY.register("asphalt", () -> new AsphaltBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)));
+    public static final RegistryObject<Block> WORN_ASPHALT = REGISTRY.register("worn_asphalt", () -> new WornAsphaltBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)));
+    public static final RegistryObject<Block> WEATHERED_ASPHALT = REGISTRY.register("weathered_asphalt", () -> new WeatheredAsphaltBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)));
+    public static final RegistryObject<Block> CRACKED_ASPHALT = REGISTRY.register("cracked_asphalt", () -> new CrackedAsphaltBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)));
+    public static final RegistryObject<Block> POTHOLE = REGISTRY.register("pothole", () -> new PotholeBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)));
+    //public static final RegistryObject<Block> MANHOLE = REGISTRY.register("manhole", () -> new ManholeBlock(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(0)));
+
 
     public static final RegistryObject<Block> STICK_BLOCK = REGISTRY.register("stick_block", () -> new StickBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(1.2F)));
-    public static final RegistryObject<Block> SAWDUST = REGISTRY.register("sawdust", () -> new RankineSixteenLayerBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.25F)));
-    public static final RegistryObject<Block> ASH = REGISTRY.register("ash", () -> new RankineSixteenLayerBlock(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).hardnessAndResistance(0.25F)));
-    public static final RegistryObject<Block> BONE_ASH = REGISTRY.register("bone_ash", () -> new RankineSixteenLayerBlock(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).hardnessAndResistance(0.25F)));
+    public static final RegistryObject<Block> CHARCOAL_BLOCK = REGISTRY.register("charcoal_block", () -> new CharcoalLayerBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.25F)));
+    public static final RegistryObject<Block> SAWDUST = REGISTRY.register("sawdust", () -> new RankineEightLayerBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).hardnessAndResistance(0.25F)));
+    public static final RegistryObject<Block> ASH = REGISTRY.register("ash", () -> new RankineEightLayerBlock(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).hardnessAndResistance(0.25F)));
+    public static final RegistryObject<Block> BONE_ASH = REGISTRY.register("bone_ash", () -> new RankineEightLayerBlock(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).hardnessAndResistance(0.25F)));
     public static final RegistryObject<Block> MINERAL_WOOL = REGISTRY.register("mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
     public static final RegistryObject<Block> WHITE_MINERAL_WOOL = REGISTRY.register("white_mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
     public static final RegistryObject<Block> ORANGE_MINERAL_WOOL = REGISTRY.register("orange_mineral_wool", () -> new MineralWoolBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
@@ -1330,7 +1379,37 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PETRIFIED_CHORUS_DOOR = REGISTRY.register("petrified_chorus_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> PETRIFIED_CHORUS_TRAPDOOR = REGISTRY.register("petrified_chorus_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> PETRIFIED_CHORUS_BUTTON = REGISTRY.register("petrified_chorus_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> ERYTHRINA_LOG = REGISTRY.register("erythrina_log", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_WOOD = REGISTRY.register("erythrina_wood", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_ERYTHRINA_LOG = REGISTRY.register("stripped_erythrina_log", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_ERYTHRINA_WOOD = REGISTRY.register("stripped_erythrina_wood", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_PLANKS = REGISTRY.register("erythrina_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_SLAB = REGISTRY.register("erythrina_slab", () -> new RankineSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_STAIRS = REGISTRY.register("erythrina_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_VERTICAL_SLAB = REGISTRY.register("erythrina_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_FENCE = REGISTRY.register("erythrina_fence", () -> new RankineWoodenFence(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_FENCE_GATE = REGISTRY.register("erythrina_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_PRESSURE_PLATE = REGISTRY.register("erythrina_pressure_plate", RankineWoodenPressurePlate::new);
+    public static final RegistryObject<Block> ERYTHRINA_DOOR = REGISTRY.register("erythrina_door", RankineWoodenDoor::new);
+    public static final RegistryObject<Block> ERYTHRINA_TRAPDOOR = REGISTRY.register("erythrina_trapdoor", RankineWoodenTrapDoor::new);
+    public static final RegistryObject<Block> ERYTHRINA_BUTTON = REGISTRY.register("erythrina_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> CHARRED_LOG = REGISTRY.register("charred_log", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_WOOD = REGISTRY.register("charred_wood", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_CHARRED_LOG = REGISTRY.register("stripped_charred_log", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> STRIPPED_CHARRED_WOOD = REGISTRY.register("stripped_charred_wood", () -> new RotatedPillarBlock(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_PLANKS = REGISTRY.register("charred_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_SLAB = REGISTRY.register("charred_slab", () -> new RankineSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_STAIRS = REGISTRY.register("charred_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_VERTICAL_SLAB = REGISTRY.register("charred_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_FENCE = REGISTRY.register("charred_fence", () -> new RankineWoodenFence(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_FENCE_GATE = REGISTRY.register("charred_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_PRESSURE_PLATE = REGISTRY.register("charred_pressure_plate", RankineWoodenPressurePlate::new);
+    public static final RegistryObject<Block> CHARRED_DOOR = REGISTRY.register("charred_door", RankineWoodenDoor::new);
+    public static final RegistryObject<Block> CHARRED_TRAPDOOR = REGISTRY.register("charred_trapdoor", RankineWoodenTrapDoor::new);
+    public static final RegistryObject<Block> CHARRED_BUTTON = REGISTRY.register("charred_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> STUMP = REGISTRY.register("stump", () -> new StumpBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(16.0F, 9.0F).harvestLevel(3)));
 
+    
     public static final RegistryObject<Block> BRASS_DOOR = REGISTRY.register("brass_door", RankineMetalDoor::new);
     public static final RegistryObject<Block> BRONZE_DOOR = REGISTRY.register("bronze_door", RankineMetalDoor::new);
     public static final RegistryObject<Block> CUPRONICKEL_DOOR = REGISTRY.register("cupronickel_door", RankineMetalDoor::new);
@@ -1362,6 +1441,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_WALNUT_LEAVES = REGISTRY.register("black_walnut_leaves", () -> new LeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> CORK_OAK_LEAVES = REGISTRY.register("cork_oak_leaves", () -> new LeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> CINNAMON_LEAVES = REGISTRY.register("cinnamon_leaves", () -> new LeavesBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> ERYTHRINA_LEAVES = REGISTRY.register("erythrina_leaves", () -> new LeavesBlock(DEF_LEAVES));
 
     private static final Block.Properties DEF_SAPLING = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
     public static final RegistryObject<Block> CEDAR_SAPLING = REGISTRY.register("cedar_sapling", () -> new RankineSaplingBlock(new CedarTree(), DEF_SAPLING, 3));
@@ -1378,6 +1458,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_WALNUT_SAPLING = REGISTRY.register("black_walnut_sapling", () -> new RankineSaplingBlock(new BlackWalnutTree(), DEF_SAPLING, 3));
     public static final RegistryObject<Block> CORK_OAK_SAPLING = REGISTRY.register("cork_oak_sapling", () -> new RankineSaplingBlock(new CorkOakTree(), DEF_SAPLING, 3));
     public static final RegistryObject<Block> CINNAMON_SAPLING = REGISTRY.register("cinnamon_sapling", () -> new RankineSaplingBlock(new CinnamonTree(), DEF_SAPLING, 3));
+    public static final RegistryObject<Block> ERYTHRINA_SAPLING = REGISTRY.register("erythrina_sapling", () -> new RankineSaplingBlock(new CinnamonTree(), DEF_SAPLING, 3));
 
     public static final RegistryObject<Block> POTTED_CEDAR_SAPLING = REGISTRY.register("potted_cedar_sapling", () -> new FlowerPotBlock(null, CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_PINYON_PINE_SAPLING = REGISTRY.register("potted_pinyon_pine_sapling", () -> new FlowerPotBlock(null, PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -1393,6 +1474,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> POTTED_BLACK_WALNUT_SAPLING = REGISTRY.register("potted_black_walnut_sapling", () -> new FlowerPotBlock(null,BLACK_WALNUT_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_CORK_OAK_SAPLING = REGISTRY.register("potted_cork_oak_sapling", () -> new FlowerPotBlock(null,CORK_OAK_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_CINNAMON_SAPLING = REGISTRY.register("potted_cinnamon_sapling", () -> new FlowerPotBlock(null,CINNAMON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
+    public static final RegistryObject<Block> POTTED_ERYTHRINA_SAPLING = REGISTRY.register("potted_erythrina_sapling", () -> new FlowerPotBlock(null,CINNAMON_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
 
 
     //ALLOY BLOCKS
@@ -1640,7 +1722,6 @@ public class RankineBlocks {
 
 
     public static final RegistryObject<Block> BLASTING_POWDER = REGISTRY.register("blasting_powder", () -> new BlastingPowderBlock(Block.Properties.create(Material.SAND).sound(SoundType.SAND).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> HEART_OF_THE_MANTLE = REGISTRY.register("heart_of_the_mantle", () -> new MantleTeleporterBlock(Block.Properties.create(Material.IRON).harvestLevel(2).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
 
     public static final RegistryObject<Block> BEEHIVE_OVEN_PIT = REGISTRY.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(REFRACTORY_BRICKS.get(),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(HIGH_REFRACTORY_BRICKS.get(),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
@@ -1699,16 +1780,17 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ASPARAGUS_PLANT = REGISTRY.register("asparagus_plant",  () -> new AsparagusPlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.STEM)));
     public static final RegistryObject<Block> CORN_PLANT = REGISTRY.register("corn_plant",  () -> new CornPlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.STEM)));
     public static final RegistryObject<Block> CORN_STALK = REGISTRY.register("corn_stalk",  () -> new CornStalkBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().sound(SoundType.STEM)));
-    public static final RegistryObject<Block> ASPARAGUS_ROOT = REGISTRY.register("asparagus_root",  () -> new AsparagusRootBlock(Block.Properties.create(Material.EARTH).tickRandomly().sound(SoundType.GROUND).hardnessAndResistance(0.5F)));
+    //public static final RegistryObject<Block> ASPARAGUS_ROOT = REGISTRY.register("asparagus_root",  () -> new AsparagusRootBlock(Block.Properties.create(Material.EARTH).tickRandomly().sound(SoundType.GROUND).hardnessAndResistance(0.5F)));
     public static final RegistryObject<Block> RICE_PLANT = REGISTRY.register("rice_plant",  () -> new RicePlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> COTTON_PLANT = REGISTRY.register("cotton_plant",  () -> new CottonPlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> JUTE_PLANT = REGISTRY.register("jute_plant",  () -> new JutePlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
 
 
 
-    public static final RegistryObject<Block> ALUMINUM_LADDER = REGISTRY.register("aluminum_ladder", () -> new MetalLadderBlock(true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
-    public static final RegistryObject<Block> CAST_IRON_LADDER = REGISTRY.register("cast_iron_ladder", () -> new MetalLadderBlock(false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
-    public static final RegistryObject<Block> BRASS_LADDER = REGISTRY.register("brass_ladder", () -> new MetalLadderBlock(false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> DURALUMIN_LADDER = REGISTRY.register("duralumin_ladder", () -> new MetalLadderBlock(true, false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> CAST_IRON_LADDER = REGISTRY.register("cast_iron_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> BRASS_LADDER = REGISTRY.register("brass_ladder", () -> new MetalLadderBlock(false, false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> CUPRONICKEL_LADDER = REGISTRY.register("cupronickel_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
 
     public static final RegistryObject<Block> PEWTER_POLE = REGISTRY.register("pewter_pole", () -> new RankineMetalPole(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> BRONZE_POLE = REGISTRY.register("bronze_pole", () -> new RankineMetalPole(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
@@ -1969,6 +2051,9 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;
+
+    @ObjectHolder("rankine:tilled_soil")
+    public static TileEntityType<FluidDrainTile> TILLED_SOIL_TILE;
 
 
     public static Block getBlock(String name) {

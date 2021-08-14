@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.cannolicatfish.rankine.recipe.helper.ConfigHelper;
 import net.minecraft.block.*;
@@ -10,11 +11,8 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfig;
-import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -22,7 +20,7 @@ public class RankineOreBlock extends Block {
     public int type = 0;
     private List<String> hlpath = new ArrayList<>();
     private int hl = -1;
-    public static final IntegerProperty TYPE = IntegerProperty.create("type",0,WGConfig.MISC.ORE_STONES.get().size()-1);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type",0, WGConfig.MISC.ORE_STONES.get().size() -1);
     public RankineOreBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));

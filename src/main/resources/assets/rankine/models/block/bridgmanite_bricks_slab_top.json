@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab_top",
-      "textures": {
-        "bottom": "rankine:block/bridgmanite_bricks",
-        "top": "rankine:block/bridgmanite_bricks",
-        "side": "rankine:block/bridgmanite_bricks"
-      }
-    }

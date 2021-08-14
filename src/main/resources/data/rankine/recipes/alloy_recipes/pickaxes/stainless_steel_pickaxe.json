@@ -10,9 +10,12 @@
         "#": {
             "item": "rankine:stainless_steel_alloy"
             },
-        "t": {
-            "tag": "forge:rods/steel"
-            }
+    "t": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/steel_alloy_alloying",
+      "name": "Steel Alloy Rod",
+      "color": 3291714
+    }
       },
       "result": {
           "item": "rankine:stainless_steel_pickaxe",

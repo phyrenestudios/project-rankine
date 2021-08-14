@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "lit=false": {
       "model": "rankine:block/cyan_led"
+    },
+    "lit=true": {
+      "model": "rankine:block/cyan_led_on"
     }
   }
 }

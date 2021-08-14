@@ -11,7 +11,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -28,10 +31,14 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class MetalLadderBlock extends LadderBlock {
+    //public static final BooleanProperty FACE = BlockStateProperties.FACE;
+
     private boolean teleport;
-    public MetalLadderBlock(Boolean teleport, Properties builder) {
+    private boolean autoPlace;
+    public MetalLadderBlock(Boolean teleport, Boolean autoPlace, Properties builder) {
         super(builder);
         this.teleport = teleport;
+        this.autoPlace = autoPlace;
     }
 
     @Override
@@ -47,8 +54,15 @@ public class MetalLadderBlock extends LadderBlock {
             }
             if (!world.isRemote) {
                 player.setPositionAndUpdate(pos.getX() + .5f, pos.getY() + n, pos.getZ() + .5f);
-                return ActionResultType.FAIL;
+                return ActionResultType.PASS;
             }
+        }
+        if (this.autoPlace) {
+            if (world.isAirBlock(pos.up()) && player.inventory.hasItemStack(new ItemStack(state.getBlock()))) {
+                world.setBlockState(pos.up(), state, 2);
+
+            }
+            return ActionResultType.PASS;
         }
         return super.onBlockActivated(state, world, pos, player, hand, result);
     }

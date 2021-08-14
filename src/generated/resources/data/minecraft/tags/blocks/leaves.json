@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_leaves",
+    "rankine:erythrina_leaves",
     "rankine:balsam_fir_leaves",
     "rankine:black_birch_leaves",
     "rankine:black_walnut_leaves",

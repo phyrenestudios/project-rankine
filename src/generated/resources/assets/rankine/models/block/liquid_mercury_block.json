@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "rankine:block/liquid_mercury_block_still"
+  }
+}

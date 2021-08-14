@@ -1,6 +1,0 @@
-{
-      "parent": "block/cross",
-      "textures": {
-        "cross": "rankine:block/plants/elderberry_bush_upper_stage3"
-      }
-    }

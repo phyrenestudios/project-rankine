@@ -1,7 +1,0 @@
-{
-"variants": {
-    "type=bottom": { "model": "rankine:block/clay_bricks_slab" },
-    "type=top": { "model": "rankine:block/clay_bricks_slab_top" },
-    "type=double": { "model": "rankine:block/clay_bricks" }
-    }
-}

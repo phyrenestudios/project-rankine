@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_trapdoor",
+    "rankine:erythrina_trapdoor",
+    "rankine:charred_trapdoor",
     "rankine:petrified_chorus_trapdoor",
     "rankine:balsam_fir_trapdoor",
     "rankine:black_birch_trapdoor",

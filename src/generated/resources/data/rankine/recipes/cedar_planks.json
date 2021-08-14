@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "rankine",
+  "group": "planks",
   "ingredients": [
     {
       "tag": "rankine:cedar_logs"

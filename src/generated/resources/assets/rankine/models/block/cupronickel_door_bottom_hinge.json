@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_rh",
+  "textures": {
+    "bottom": "rankine:block/cupronickel_door_bottom",
+    "top": "rankine:block/cupronickel_door_top"
+  }
+}

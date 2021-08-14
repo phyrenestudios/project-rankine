@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/pyroxene_gabbro",
-        "top": "rankine:block/pyroxene_gabbro",
-        "side": "rankine:block/pyroxene_gabbro"
-      }
-    }

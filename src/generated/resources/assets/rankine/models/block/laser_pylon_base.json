@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rankine:block/laser_pylon_base",
+    "bottom": "rankine:block/laser_pylon_bottom",
+    "top": "rankine:block/laser_pylon_bottom"
+  }
+}

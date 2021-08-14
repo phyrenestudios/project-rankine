@@ -29,19 +29,7 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:iron_spear"
-    },
-    {
-      "type": "spotlight",
       "item": "rankine:steel_spear"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:diamond_spear"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:netherite_spear"
     },
     {
       "type": "spotlight",

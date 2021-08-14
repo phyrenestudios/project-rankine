@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_stairs",
+    "rankine:erythrina_stairs",
+    "rankine:charred_stairs",
     "rankine:petrified_chorus_stairs",
     "rankine:balsam_fir_stairs",
     "rankine:black_birch_stairs",

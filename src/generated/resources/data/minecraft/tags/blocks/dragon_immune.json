@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#rankine:petrified_chorus_logs"
+    "#rankine:petrified_chorus_logs",
+    "#rankine:charred_logs",
+    "#rankine:erythrina_logs"
   ]
 }

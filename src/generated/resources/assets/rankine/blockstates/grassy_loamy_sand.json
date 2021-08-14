@@ -18,7 +18,7 @@
       }
     ],
     "snowy=true": {
-      "model": "rankine:block/grassy_loamy_sand"
+      "model": "rankine:block/grassy_loamy_sand_snow"
     }
   }
 }

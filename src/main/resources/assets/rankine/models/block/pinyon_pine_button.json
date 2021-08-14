@@ -1,6 +1,0 @@
-{
-  "parent": "block/button",
-  "textures": {
-    "texture": "rankine:block/pinyon_pine_planks"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "rankine:block/plants/rice_plant_stage0"
-  }
-}

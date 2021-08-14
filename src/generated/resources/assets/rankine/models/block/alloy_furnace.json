@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "rankine:block/alloy_furnace_front",
+    "bottom": "rankine:block/refractory_bricks",
+    "top": "rankine:block/alloy_furnace_top"
+  }
+}

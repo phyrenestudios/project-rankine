@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "rankine:sharinga_button",
+    "rankine:erythrina_button",
+    "rankine:charred_button",
     "rankine:petrified_chorus_button",
     "rankine:balsam_fir_button",
     "rankine:black_birch_button",

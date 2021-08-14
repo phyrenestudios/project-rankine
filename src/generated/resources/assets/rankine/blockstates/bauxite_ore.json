@@ -176,6 +176,12 @@
     },
     "type=58": {
       "model": "rankine:block/bauxite_ore58"
+    },
+    "type=59": {
+      "model": "rankine:block/bauxite_ore59"
+    },
+    "type=60": {
+      "model": "rankine:block/bauxite_ore60"
     }
   }
 }

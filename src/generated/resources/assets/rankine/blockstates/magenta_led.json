@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "lit=false": {
       "model": "rankine:block/magenta_led"
+    },
+    "lit=true": {
+      "model": "rankine:block/magenta_led_on"
     }
   }
 }

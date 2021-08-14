@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -110,10 +112,19 @@ public class TreeChoppingEvents {
 
             if (alive) {
                 for (BlockPos b : logs) {
-                    worldIn.destroyBlock(b, true);
+                    if (Tags.Blocks.DIRT.contains(worldIn.getBlockState(b.down()).getBlock())) {
+                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState());
+                    } else {
+                        worldIn.destroyBlock(b, true);
+                    }
+
+                }
+                if (Tags.Blocks.DIRT.contains(worldIn.getBlockState(pos.down()).getBlock())) {
+                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState());
                 }
                 for (BlockPos b : leaves) {
-                    worldIn.getBlockState(b).randomTick(worldIn, b, worldIn.getRandom());
+                    worldIn.destroyBlock(b, true);
+                    //worldIn.getBlockState(b).randomTick(worldIn, b, worldIn.getRandom());
                     //worldIn.getPendingBlockTicks().scheduleTick(b,worldIn.getBlockState(b).getBlock(),1);
                 }
                 //worldIn.playSound(player, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
