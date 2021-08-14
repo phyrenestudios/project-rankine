@@ -1,10 +1,45 @@
 {
-          "type": "rankine:element",
-          "name": "cadmium",
-          "symbol": "Cd",
-          "color": 16777215,
-          "atomic": 48,
-          "potential": 0,
-          "items": ["T#forge:nuggets/cadmium","T#forge:ingots/cadmium","T#forge:storage_blocks/cadmium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "cadmium",
+  "symbol": "Cd",
+  "color": 14278474,
+  "atomic": 48,
+  "potential": -0.4,
+  "items": ["T#forge:nuggets/cadmium","T#forge:ingots/cadmium","T#forge:storage_blocks/cadmium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.5],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.05],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.5]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.125],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.01],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.15]
+  },
+  "enchantments": ["rankine:poison_aspect"],
+  "enchantmentTypes": ["KNIFE"],
+  "enchantmentFactors": [0.1]
+}

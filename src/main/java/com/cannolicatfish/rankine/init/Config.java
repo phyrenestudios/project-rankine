@@ -90,6 +90,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
+        public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
         public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
@@ -142,6 +143,8 @@ public class Config {
                             .defineInRange("bricksResistanceMultiplier", 1.5D, 0.0D, 20.0D);
                     STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod, requires Patchouli)")
                             .define("startingBook",true);
+                    REFRESH_ALLOYS = b.comment("If enabled, alloy-related content in the player's inventory will always refresh on world join.")
+                            .define("refreshAlloys",true);
                     PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing.")
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("Makes axes required to harvest logs.")

@@ -33,5 +33,7 @@
     "min": 0.0,
     "max": 0.10
   },
-  "result": "rankine:green_gold_alloy"
+  "result": "rankine:green_gold_alloy",
+  "enchantments": ["minecraft:mending"],
+  "enchantmentTypes": ["ALL"]
 }

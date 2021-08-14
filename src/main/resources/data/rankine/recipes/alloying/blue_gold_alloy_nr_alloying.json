@@ -29,5 +29,7 @@
     "min": 0.0,
     "max": 0.06
   },
-  "result": "rankine:blue_gold_alloy"
+  "result": "rankine:blue_gold_alloy",
+  "enchantments": ["minecraft:unbreaking"],
+  "enchantmentTypes": ["ALL"]
 }

@@ -79,5 +79,6 @@
     "min": 0.0,
     "max": 0.05
   },
-  "result": "rankine:steel_alloy"
+  "result": "rankine:steel_alloy",
+  "durability": 450
 }

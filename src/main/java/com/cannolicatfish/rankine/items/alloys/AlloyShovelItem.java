@@ -233,4 +233,14 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         }
     }
 */
+
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
 }

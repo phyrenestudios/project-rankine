@@ -14,19 +14,19 @@ import net.minecraft.util.ResourceLocation;
 public class AlloyEnchantabilityPredicate extends ItemPredicate {
 
     int ench;
-    Item item;
-    public AlloyEnchantabilityPredicate(int ench, Item itemIn) {
+    ResourceLocation tag;
+    public AlloyEnchantabilityPredicate(int ench, ResourceLocation tagIn) {
         this.ench = ench;
-        this.item = itemIn;
+        this.tag = tagIn;
     }
 
     public AlloyEnchantabilityPredicate(JsonObject jsonObject) {
-        this(JSONUtils.getInt(jsonObject, "ench"),JSONUtils.getItem(jsonObject,"item"));
+        this(JSONUtils.getInt(jsonObject, "ench"),new ResourceLocation(JSONUtils.getString(jsonObject,"tag")));
     }
 
     @Override
     public boolean test(ItemStack stack) {
-        if (stack.getItem() instanceof IAlloyTool && stack.getItem() == item) {
+        if (stack.getItem() instanceof IAlloyTool && stack.getItem().getTags().contains(tag)) {
             return ((IAlloyTool) stack.getItem()).getAlloyEnchantability(stack) >= ench;
         }
 

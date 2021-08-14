@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 13,
+  "total": 14,
   "input1": {
     "element": "rankine:elements/copper",
     "min": 0.76,
@@ -59,14 +59,20 @@
     "max": 0.12
   },
   "input12": {
-    "element": "rankine:elements/silicon",
+    "element": "rankine:elements/beryllium",
     "min": 0,
     "max": 0.12
   },
   "input13": {
+    "element": "rankine:elements/silicon",
+    "min": 0,
+    "max": 0.12
+  },
+  "input14": {
     "element": "rankine:elements/phosphorus",
     "min": 0,
     "max": 0.12
   },
-  "result": "rankine:bronze_alloy"
+  "result": "rankine:bronze_alloy",
+  "durability": 100
 }

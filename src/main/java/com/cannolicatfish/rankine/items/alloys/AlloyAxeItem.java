@@ -226,4 +226,14 @@ public class AlloyAxeItem extends AxeItem implements IAlloyTool {
         }
     }
 */
+
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
 }

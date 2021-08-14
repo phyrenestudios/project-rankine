@@ -25,7 +25,7 @@
           },
           {
             "type": "rankine:enchant_check",
-            "item": "rankine:pewter_sword",
+            "tag": "forge:pewter_tools",
             "ench": 14
           }
         ]

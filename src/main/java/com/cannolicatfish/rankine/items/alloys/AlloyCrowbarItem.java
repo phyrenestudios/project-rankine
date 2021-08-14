@@ -193,4 +193,13 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool{
     }
 */
 
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
 }

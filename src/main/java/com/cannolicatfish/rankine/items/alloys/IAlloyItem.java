@@ -72,6 +72,12 @@ public interface IAlloyItem {
         return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty() && stack.getTag().getBoolean("RegenerateAlloy");
     }
 
+    static void setRefresh(ItemStack stack) {
+        if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty()) {
+            stack.getTag().putBoolean("RegenerateAlloy",true);
+        }
+    }
+
     static String getAlloyComposition(ItemStack stack)
     {
         if (stack.getTag() != null) {
@@ -146,4 +152,8 @@ public interface IAlloyItem {
     static String getSubtype(ItemStack stack) {
         return stack.hasTag() ? IAlloyItem.getNameOverride(stack).toLowerCase(Locale.ROOT).replace(" ","_") : "";
     }
+
+    String getDefaultComposition();
+
+    ResourceLocation getDefaultRecipe();
 }

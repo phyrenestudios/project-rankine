@@ -33,5 +33,6 @@
     "min": 0.0,
     "max": 0.12
   },
-  "result": "rankine:invar_alloy"
+  "result": "rankine:invar_alloy",
+  "durability": 150
 }

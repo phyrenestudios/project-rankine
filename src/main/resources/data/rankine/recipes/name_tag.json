@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "# #",
+    "C# "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/stainless_steel"
+    },
+    "C": {
+      "item": "rankine:cork"
+    }
+  },
+  "result": {
+    "item": "minecraft:name_tag"
+  }
+}

@@ -19,5 +19,7 @@
     "min": 0.0,
     "max": 0.10
   },
-  "result": "rankine:black_gold_alloy"
+  "result": "rankine:black_gold_alloy",
+  "enchantments": ["minecraft:bane_of_arthropods","rankine:excavate","rankine:foraging","rankine:quake","rankine:quake","minecraft:loyalty","minecraft:bane_of_arthropods","rankine:retreat","rankine:prying"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
 }

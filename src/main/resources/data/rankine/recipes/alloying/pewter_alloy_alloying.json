@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 5,
+  "total": 9,
   "input1": {
     "element": "rankine:elements/tin",
     "min": 0.85,
@@ -19,14 +19,40 @@
     "max": 0.13
   },
   "input4": {
-    "element": "rankine:elements/bismuth",
+    "element": "rankine:elements/lead",
     "min": 0.0,
     "max": 0.13
   },
   "input5": {
+    "element": "rankine:elements/bismuth",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input6": {
     "element": "rankine:elements/silver",
     "min": 0.0,
     "max": 0.13
   },
-  "result": "rankine:pewter_alloy"
+  "input7": {
+    "element": "rankine:elements/zinc",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input8": {
+    "element": "rankine:elements/arsenic",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input9": {
+    "element": "rankine:elements/cadmium",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "result": "rankine:pewter_alloy",
+  "durability": 50,
+  "enchantments": ["rankine:antiquated"],
+  "enchantmentTypes": ["ALL"],
+  "minEnchantability": 14,
+  "enchantInterval": 2,
+  "maxEnchantLevel": 3
 }
