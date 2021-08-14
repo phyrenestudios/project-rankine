@@ -1084,6 +1084,15 @@ public class RankineEventHandler {
     private static final String NBT_KEY = "rankine.firstjoin";
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (Config.GENERAL.REFRESH_ALLOYS.get()) {
+            for(int i = 0; i < event.getPlayer().inventory.getSizeInventory(); ++i) {
+                ItemStack itemstack = event.getPlayer().inventory.getStackInSlot(i);
+                if (!itemstack.isEmpty() && itemstack.getItem() instanceof IAlloyItem) {
+                    IAlloyItem.setRefresh(itemstack);
+                }
+            }
+        }
+
         if (Config.GENERAL.STARTING_BOOK.get() && !event.getPlayer().getEntityWorld().isRemote && Patchouli.isInstalled()) {
 
             CompoundNBT data = event.getPlayer().getPersistentData();
@@ -1150,9 +1159,8 @@ public class RankineEventHandler {
 
             IAlloyTool alloyTool = (IAlloyTool) stack.getItem();
 
-            double damage = alloyTool.getAlloyAttackDamage(stack);
             event.addModifier(Attributes.ATTACK_DAMAGE,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc1"), "Rankine Damage modifier",
-                    Math.max(damage - alloyTool.getAlloyWear(alloyTool.getWearModifierDmg((float) damage),stack.getItem().getDamage(stack),stack.getItem().getMaxDamage(stack)),0),
+                    alloyTool.getAlloyAttackDamage(stack),
                     AttributeModifier.Operation.ADDITION));
             event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
                     alloyTool.getAlloyAttackSpeed(stack),

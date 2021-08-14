@@ -9,11 +9,11 @@
   "values": [1,9,81],
   "durability": {
       "breaks": [100],
-      "formulas": ["EXPONENTIAL"],
-      "a": [1.055],
-      "b": [-1],
-      "modifiers": ["NONE"],
-      "limit": [0]
+      "formulas": ["POWER"],
+      "a": [2.8],
+      "b": [5],
+      "modifiers": ["MULTIPLIER"],
+      "limit": [0.06667]
   },
   "miningspeed": {
     "breaks": [100],
@@ -21,7 +21,7 @@
     "a": [0.05],
     "b": [0],
     "modifiers": ["MIN"],
-    "limit": [2.5]
+    "limit": [5]
   },
   "mininglevel": {
     "breaks": [9,19,100],
@@ -47,10 +47,10 @@
     "modifiers": ["NONE"],
     "limit": [0]
   },
-  "toughness": {
+  "heatresist": {
     "breaks": [100],
     "formulas": ["LINEAR"],
-    "a": [0.0005],
+    "a": [0.005],
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]

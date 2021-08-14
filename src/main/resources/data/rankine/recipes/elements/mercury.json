@@ -14,5 +14,21 @@
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["CONSTANT"],
+    "a": [5],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "harvestlevel": {
+    "breaks": [100],
+    "formulas": ["CONSTANT"],
+    "a": [-1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
   }
 }

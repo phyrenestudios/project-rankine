@@ -1,10 +1,58 @@
 {
-          "type": "rankine:element",
-          "name": "carbon",
-          "symbol": "C",
-          "color": 16777215,
-          "atomic": 6,
-          "potential": 0,
-          "items": ["T#forge:nuggets/carbon","T#forge:ingots/carbon","T#forge:storage_blocks/carbon"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "carbon",
+  "symbol": "C",
+  "color": 6513507,
+  "atomic": 6,
+  "potential": 0.52,
+  "items": ["T#forge:nuggets/carbon","T#forge:ingots/carbon","T#forge:storage_blocks/carbon"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["POWER"],
+    "a": [0.967],
+    "b": [0],
+    "modifiers": ["MULTIPLIER"],
+    "limit": [20]
+  },
+  "damage": {
+    "breaks": [5,79,100],
+    "formulas": ["LINEAR","CONSTANT","CONSTANT"],
+    "a": [0.5,0.5,1],
+    "b": [0,0,0],
+    "modifiers": ["MIN","NONE","NONE"],
+    "limit": [1,0,0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [-2],
+    "modifiers": ["ABSOLUTE_VALUE"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [79,100],
+    "formulas": ["CONSTANT","LINEAR"],
+    "a": [1,0.1],
+    "b": [0,-7],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toughness": {
+    "breaks": [4,100],
+    "formulas": ["LINEAR","LINEAR"],
+    "a": [-0.002,0],
+    "b": [0.008,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  }
+}

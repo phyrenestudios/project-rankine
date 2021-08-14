@@ -15,6 +15,7 @@ import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryTile;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
+import com.cannolicatfish.rankine.client.RopeCoilArrowRenderer;
 import com.cannolicatfish.rankine.enchantment.*;
 import com.cannolicatfish.rankine.entities.*;
 import com.cannolicatfish.rankine.fluids.*;
@@ -287,6 +288,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.TITANIUM_ALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.ALLOY_SPEAR);
             event.getRegistry().register(RankineEntityTypes.STAINLESS_STEEL_SPEAR);
+            event.getRegistry().register(RankineEntityTypes.ROPE_COIL_ARROW);
             event.getRegistry().register(RankineEntityTypes.THORIUM_ARROW);
             event.getRegistry().register(RankineEntityTypes.MAGNESIUM_ARROW);
             event.getRegistry().register(RankineEntityTypes.ALLOY_ARROW);
@@ -334,6 +336,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DEMONYTE, DemonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.DRAGONYTE, DragonyteRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.RANKINE_BOAT,RankineBoatRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ROPE_COIL_ARROW, RopeCoilArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.THORIUM_ARROW,ThoriumArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MAGNESIUM_ARROW,MagnesiumArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);

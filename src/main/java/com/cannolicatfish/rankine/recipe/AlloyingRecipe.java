@@ -11,6 +11,7 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
@@ -28,10 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class AlloyingRecipe implements IRecipe<IInventory> {
 
@@ -46,12 +44,18 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     private final NonNullList<Boolean> required;
     private final List<Float> bonusValues;
     private final int color;
+    private final List<String> enchantments;
+    private final List<String> enchantmentTypes;
+    private final int minEnchantability;
+    private final int enchantInterval;
+    private final int maxEnchantLevelIn;
     private final String localName;
 
     public static final AlloyingRecipe.Serializer SERIALIZER = new AlloyingRecipe.Serializer();
 
     public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
-                          ItemStack outputIn, List<Float> bonusValuesIn, String nameIn, int colorIn) {
+                          ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
+                          String nameIn, int colorIn) {
         this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
@@ -61,6 +65,11 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         this.mins = minsIn;
         this.maxes = maxesIn;
         this.bonusValues = bonusValuesIn;
+        this.enchantments = enchantmentsIn;
+        this.enchantmentTypes = enchantmentTypesIn;
+        this.minEnchantability = minEnchantabilityIn;
+        this.enchantInterval = enchantIntervalIn;
+        this.maxEnchantLevelIn = maxEnchantLevelIn;
         this.color = colorIn;
         this.localName = nameIn;
     }
@@ -235,6 +244,14 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return out;
     }*/
 
+    public List<String> getEnchantments() {
+        return enchantments;
+    }
+
+    public List<String> getEnchantmentTypes() {
+        return enchantmentTypes;
+    }
+
     public NonNullList<Float> getMins() {
         return mins;
     }
@@ -278,6 +295,18 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     public float getBonusKnockbackResistance() { return this.getBonusValues().get(8);}
 
     public float getBonusToughness() { return this.getBonusValues().get(9);}
+
+    public int getMinEnchantability() {
+        return minEnchantability;
+    }
+
+    public int getEnchantInterval() {
+        return enchantInterval;
+    }
+
+    public int getMaxEnchantLevelIn() {
+        return maxEnchantLevelIn;
+    }
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
@@ -431,7 +460,22 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                     bonusStats.add(0f);
                 }
             }
-            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,n,c);
+
+            List<String> enchantments = new ArrayList<>();
+            List<String> enchantmentTypes = new ArrayList<>();
+            if (json.has("enchantments")) {
+                JsonArray e = JSONUtils.getJsonArray(json,"enchantments");
+                JsonArray eTypes = JSONUtils.getJsonArray(json,"enchantmentTypes");
+                for (int i = 0; i < e.size(); i++) {
+                    enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
+                    enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
+                }
+            }
+
+            int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 10;
+            int interval = json.has("enchantInterval") ? json.get("enchantInterval").getAsInt() : 5;
+            int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 5;
+            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,c);
         }
 
         public AlloyingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
@@ -470,7 +514,18 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             String n = buffer.readString();
             int c = buffer.readInt();
 
-            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,n,c);
+            int size = buffer.readInt();
+            List<String> enchantments = new ArrayList<>();
+            List<String> enchantmentTypes = new ArrayList<>();
+            for (int j = 0; j < size; j++) {
+                enchantments.add(buffer.readString().toLowerCase(Locale.ROOT));
+                enchantmentTypes.add(buffer.readString().toUpperCase(Locale.ROOT));
+            }
+
+            int startEnchant = buffer.readInt();
+            int interval = buffer.readInt();
+            int maxLvl = buffer.readInt();
+            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,c);
         }
 
         public void write(PacketBuffer buffer, AlloyingRecipe recipe) {
@@ -525,6 +580,17 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
             buffer.writeString(recipe.getLocalName());
             buffer.writeInt(recipe.getColor());
+
+            int size = recipe.getEnchantments().size();
+            buffer.writeInt(size);
+            for (int i = 0; i < size; i++) {
+                buffer.writeString(recipe.getEnchantments().get(i));
+                buffer.writeString(recipe.getEnchantmentTypes().get(i));
+            }
+
+            buffer.writeInt(recipe.minEnchantability);
+            buffer.writeInt(recipe.enchantInterval);
+            buffer.writeInt(recipe.maxEnchantLevelIn);
         }
     }
 

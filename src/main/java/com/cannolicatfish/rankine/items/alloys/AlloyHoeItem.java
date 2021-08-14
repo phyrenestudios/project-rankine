@@ -221,4 +221,14 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
     }
 */
 
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
+
 }

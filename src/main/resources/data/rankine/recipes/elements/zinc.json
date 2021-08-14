@@ -1,10 +1,42 @@
 {
-          "type": "rankine:element",
-          "name": "zinc",
-          "symbol": "Zn",
-          "color": 16777215,
-          "atomic": 30,
-          "potential": 0,
-          "items": ["T#forge:nuggets/zinc","T#forge:ingots/zinc","T#forge:storage_blocks/zinc"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "zinc",
+  "symbol": "Zn",
+  "color": 14870226,
+  "atomic": 30,
+  "potential": 0,
+  "items": ["T#forge:nuggets/zinc","T#forge:ingots/zinc","T#forge:storage_blocks/zinc"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.5],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.04],
+    "b": [-1.2],
+    "modifiers": ["ABSOLUTE_VALUE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["POWER"],
+    "a": [0.45],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.008],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

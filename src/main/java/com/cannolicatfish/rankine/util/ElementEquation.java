@@ -70,6 +70,7 @@ public class ElementEquation {
         } else if (formulaModifiers[index].equals(FormulaModifier.ADDITION)) {
             percent = x + limit[index];
         }
+        int modulo = 2;
         switch (formulaTypes[index]) {
             case LINEAR:
             default:
@@ -82,8 +83,32 @@ public class ElementEquation {
                 return (float) (a[index]*Math.log(percent) + b[index]);
             case LOG10:
                 return (float) (a[index]*Math.log10(percent) + b[index]);
+            case QUADRATIC:
+                return (float) (a[index]*Math.pow(percent,2) + b[index]*percent);
+            case SIN:
+                return (float) (a[index]*Math.sin(b[index]*percent));
+            case COS:
+                return (float) (a[index]*Math.cos(b[index]*percent));
+            case ALTERNATING:
+                if (formulaModifiers[index].equals(FormulaModifier.ALTERNATING_MODULO)) {
+                    modulo = (int) limit[index];
+                }
+                if (x % modulo == 0) {
+                    return a[index] * percent;
+                } else {
+                    return b[index] * percent;
+                }
             case CONSTANT:
                 return (a[index]);
+            case CONSTANT_ALTERNATING:
+                if (formulaModifiers[index].equals(FormulaModifier.ALTERNATING_MODULO)) {
+                    modulo = (int) limit[index];
+                }
+                if (x % modulo == 0) {
+                    return a[index];
+                } else {
+                    return b[index];
+                }
         }
 
     }
@@ -122,7 +147,12 @@ public class ElementEquation {
         EXPONENTIAL,
         LOGARITHMIC,
         LOG10,
-        CONSTANT
+        QUADRATIC,
+        SIN,
+        COS,
+        ALTERNATING,
+        CONSTANT,
+        CONSTANT_ALTERNATING
 
     }
 
@@ -134,6 +164,7 @@ public class ElementEquation {
         MIN,
         ADDITION,
         MULTIPLIER,
+        ALTERNATING_MODULO,
         NONE
     }
 }

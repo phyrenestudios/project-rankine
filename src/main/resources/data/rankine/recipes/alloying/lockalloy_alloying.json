@@ -12,7 +12,8 @@
   "input2": {
     "element": "rankine:elements/aluminum",
     "min": 0.35,
-    "max": 0.40
+    "max": 0.40,
+    "required": true
   },
   "result": "rankine:alloy_ingot"
 }

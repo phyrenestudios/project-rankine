@@ -39,7 +39,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
 
     public AlloyingRecipeCategory(IGuiHelper guiHelper) {
         background = guiHelper.createBlankDrawable(185, 146);
-        localizedName = I18n.format("rankine.jei.alloy");
+        localizedName = I18n.format("rankine.jei.alloying");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloying_jei.png"),
                 0, 15, 180, 141);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()));
@@ -78,21 +78,6 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
         overlay.draw(ms, 0, 4);
         RenderSystem.disableBlend();
         RenderSystem.disableAlphaTest();
-        String s = "Made in:";
-        int tier = recipe.getTier();
-
-        int ymod = 0;
-        font.drawString(ms, s, (float)(90 - font.getStringWidth(s) / 2), ymod, 0x000000);
-        if ((tier & 1) != 0) {
-            ymod += 10;
-            s = "Alloy Furnace";
-            font.drawString(ms, s, (float)(90 - font.getStringWidth(s) / 2), ymod, 0x000000);
-        }
-        if ((tier & 2) != 0) {
-            ymod += 10;
-            s = "Induction Furnace";
-            font.drawString(ms, s, (float)(90 - font.getStringWidth(s) / 2), ymod, 0x000000);
-        }
     }
 
     @Override

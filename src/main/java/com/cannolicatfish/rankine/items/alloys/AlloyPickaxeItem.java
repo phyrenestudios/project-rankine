@@ -210,4 +210,14 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
         }
     }
 */
+
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
 }

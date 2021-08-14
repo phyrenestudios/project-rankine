@@ -7,8 +7,10 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.ElementUtils;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
+import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -100,7 +102,7 @@ public interface IAlloyTool extends IAlloyItem {
             }
         }
 
-        int hl = hlmax - hlmin;
+        int hl = Math.max(hlmax - hlmin,0);
         float dmg = dmgmax - dmgmin;
         float as = asmax - asmin;
 
@@ -112,7 +114,7 @@ public interface IAlloyTool extends IAlloyItem {
         listnbt.putFloat("miningSpeed",Math.round(ms*100)/100f);
         listnbt.putInt("harvestLevel",hl);
         listnbt.putInt("enchantability",ench);
-        listnbt.putFloat("damage",Math.round(dmg*100)/100f);
+        listnbt.putFloat("attackDamage",Math.round(dmg*100)/100f);
         listnbt.putFloat("attackSpeed",Math.round(as*100)/100f);
         listnbt.putFloat("corrResist",Math.round(cr*100)/100f);
         listnbt.putFloat("heatResist",Math.round(hr*100)/100f);
@@ -126,13 +128,31 @@ public interface IAlloyTool extends IAlloyItem {
     }
 
     default void applyAlloyEnchantments(ItemStack stack, World worldIn) {
+        int start = 10;
+        int interval = 5;
+        int maxLvl = 5;
+        ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
+        if (rs != null && worldIn.getRecipeManager().getRecipe(rs).isPresent()) {
+            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+            start = recipe.getMinEnchantability();
+            interval = recipe.getEnchantInterval();
+            maxLvl = recipe.getMaxEnchantLevelIn();
+            for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack))
+            {
+                int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
+                if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
+                    stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+                }
+            }
+        }
         for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack))
         {
-            int enchLvl = Math.floorDiv(Math.max(getAlloyEnchantability(stack) - 10,0),5);
-            if (enchLvl > 0) {
+            int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
+            if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
                 stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
             }
         }
+
     }
 
     default int getAlloyDurability(ItemStack stack)
@@ -196,7 +216,7 @@ public interface IAlloyTool extends IAlloyItem {
 
     default float getAlloyAttackDamage(ItemStack stack) {
         if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloy").getFloat("damage");
+            return stack.getTag().getCompound("StoredAlloy").getFloat("attackDamage");
         } else {
             return 1;
         }
@@ -298,9 +318,53 @@ public interface IAlloyTool extends IAlloyItem {
         } else{
             return TextFormatting.GRAY;
         }
-
-
     }
 
+    default void applyBonusModifier(ItemStack stack, AlloyModifier modifier) {
+        if (stack.getTag() != null && (!stack.getTag().contains("AlloyModifiers") || !stack.getTag().getCompound("AlloyModifiers").contains(modifier.getName()))) {
+            if (!stack.getTag().contains("AlloyModifiers")) {
+                stack.getTag().put("AlloyModifiers",new CompoundNBT());
+            }
+            switch (modifier.getType()) {
+                case DURABILITY:
+                    stack.getTag().getCompound("StoredAlloy").putInt("durability", (int) modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
+                    return;
+                case HARVEST_LEVEL:
+                    stack.getTag().getCompound("StoredAlloy").putInt("harvestLevel", (int) modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
+                    return;
+                case ENCHANTABILITY:
+                    stack.getTag().getCompound("StoredAlloy").putInt("enchantability", (int) modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
+                    return;
+                case MINING_SPEED:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("miningSpeed", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case ATTACK_DAMAGE:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("attackDamage", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case ATTACK_SPEED:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("attackSpeed", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case CORROSION_RESISTANCE:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("corrResist", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case HEAT_RESISTANCE:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("heatResist", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+                    return;
+                case TOUGHNESS:
+                    stack.getTag().getCompound("StoredAlloy").putFloat("toughness", modifier.returnModification(this.getAlloyDurability(stack)));
+                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
+            }
+
+        }
+
+    }
 
 }

@@ -142,6 +142,16 @@ public class AlloyItem extends Item implements IAlloyItem {
     }
 
     @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
+
+    @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (this.isInGroup(group) && this.defaultAlloyRecipe == null) {
             items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));

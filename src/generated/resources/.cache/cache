@@ -10994,7 +10994,7 @@ deef461c802f98957a7ca3567ff6c5912fa90ac2 data/forge/tags/items/clay_balls.json
 8fda5d4cdf8e21f817aed61ea1803dc3157e92dc data/forge/tags/items/coke.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/concrete.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/concrete_powder.json
-057ba6d667cd4ad4d27f4ec08a7d276a7389bba3 data/forge/tags/items/crowbars.json
+589018d2208e1413caed9809b40905c2e03bdbdb data/forge/tags/items/crowbars.json
 dc3a75e66a4ba0f9ffb484b32c7991762859994c data/forge/tags/items/diamond_tools.json
 c652cc00b5d241af9d0e4881d46e6c0248f101e6 data/forge/tags/items/dough.json
 beeffb578c69f458992a178806c3b9038f3fce75 data/forge/tags/items/feldspar.json
@@ -11013,12 +11013,12 @@ c4913337674079df26cd3520ef9af8420e569002 data/forge/tags/items/hoes.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/igneous_stones.json
 a8f4d2b862ede8524a9f6a785bbd356b729643a8 data/forge/tags/items/invar_tools.json
 ffb64b19c26face6b17741179f6b6e9d9e789ce1 data/forge/tags/items/iron_tools.json
-c58018fe3d579dd0a9136af03b677b481c4e361a data/forge/tags/items/knives.json
+3eea386f442fc2ab97aa4c9b5d0365019d78c2aa data/forge/tags/items/knives.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/metamorphic_stones.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/mineral_wool.json
 634e69a87eb1aa8e2f8aa48f7f8829e7eb2b3c8c data/forge/tags/items/netherite_tools.json
 58b034f1abd9af1de6f8c10ef4fd33c086a9dc91 data/forge/tags/items/nickel_superalloy_tools.json
-6a98dfb617bfbbcb76f6146f494af9a73814b7b3 data/forge/tags/items/pewter_tools.json
+b39f814aacbdd665221f8ac95996be4140d1a88c data/forge/tags/items/pewter_tools.json
 8de7d0078cfe5b8d948d90366790032b1e2fada8 data/forge/tags/items/phosphorus.json
 123c30729dd9a0c5fe900833af3176081be76601 data/forge/tags/items/pickaxes.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/polished_stone_slabs.json
@@ -12782,7 +12782,7 @@ cef3587c8460601858f685cb25ba8b693fa17e53 data/minecraft/tags/blocks/trapdoors.js
 eb72526191fa226d602c222a7ef702fde0ed2793 data/minecraft/tags/blocks/wooden_slabs.json
 13053e4735c235d5b7ec8aeddc98d173db54a98a data/minecraft/tags/blocks/wooden_stairs.json
 1ff3a301b3058686e0a1fc64dcc17948bab9dfb0 data/minecraft/tags/blocks/wooden_trapdoors.json
-b38c3ce82f1367b8e8b05e321397c6ffd6ff6f0f data/minecraft/tags/items/arrows.json
+1473971d1fb1f9ae1ee9ca1c5ae2caf20a89687f data/minecraft/tags/items/arrows.json
 4af14c7228a475dcf2e25cf078979c76fa79cfd8 data/minecraft/tags/items/coals.json
 a8df5e4e46f2470b579690c75bf979b26b153cbf data/minecraft/tags/items/piglin_loved.json
 f2af93ffa0467103bb0edda5cab8d93f37f2ca79 data/rankine/advancements/recipes/misc/black_dye_from_blackberries.json

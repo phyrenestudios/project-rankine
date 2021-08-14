@@ -185,4 +185,13 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
         stack.getOrCreateTag().putInt("color", color);
     }
 
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
 }

@@ -275,4 +275,14 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool{
         }
         return super.onItemUse(context);
     }
+
+    @Override
+    public String getDefaultComposition() {
+        return this.defaultComposition;
+    }
+
+    @Override
+    public ResourceLocation getDefaultRecipe() {
+        return this.defaultAlloyRecipe;
+    }
 }

@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -18,6 +19,21 @@ import java.util.List;
 
 public class AlloyEnchantmentUtils {
 
+    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack) {
+        List<Enchantment> enchantments = new ArrayList<>();
+        List<String> alloyEnchants = recipe.getEnchantments();
+        List<String> alloyEnchantTypes = recipe.getEnchantmentTypes();
+        for (int i = 0; i < alloyEnchants.size(); i++) {
+            Enchantment en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(alloyEnchants.get(i)));
+            if (en != null && matchesEnchantmentType(en,stack,EnchantmentTypes.valueOf(alloyEnchantTypes.get(i)))) {
+                if (!enchantments.contains(en)) {
+                    enchantments.add(en);
+                }
+            }
+        }
+
+        return enchantments;
+    }
 
     public static List<Enchantment> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack) {
         List<Enchantment> enchantments = new ArrayList<>();
