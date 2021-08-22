@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:erythrina_log",
+    "rankine:erythrina_wood",
+    "rankine:stripped_erythrina_log",
+    "rankine:stripped_erythrina_wood"
+  ]
+}

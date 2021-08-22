@@ -38,5 +38,13 @@
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0005],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
   }
 }

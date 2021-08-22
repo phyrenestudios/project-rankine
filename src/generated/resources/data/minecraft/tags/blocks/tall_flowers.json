@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:white_lily",
+    "rankine:red_lily",
+    "rankine:orange_lily",
+    "rankine:purple_morning_glory",
+    "rankine:black_morning_glory",
+    "rankine:blue_morning_glory",
+    "rankine:goldenrod"
+  ]
+}

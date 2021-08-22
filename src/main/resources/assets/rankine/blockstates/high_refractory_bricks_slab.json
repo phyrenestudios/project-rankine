@@ -1,7 +1,0 @@
-{
-"variants": {
-    "type=bottom": { "model": "rankine:block/high_refractory_bricks_slab" },
-    "type=top": { "model": "rankine:block/high_refractory_bricks_slab_top" },
-    "type=double": { "model": "rankine:block/high_refractory_bricks" }
-    }
-}

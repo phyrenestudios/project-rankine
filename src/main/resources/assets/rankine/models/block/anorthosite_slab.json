@@ -1,8 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "bottom": "rankine:block/anorthosite",
-    "top": "rankine:block/anorthosite",
-    "side": "rankine:block/anorthosite"
-  }
-}

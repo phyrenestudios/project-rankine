@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_norite_wall"
+    ]
+  },
+  "criteria": {
+    "has_polished_norite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_norite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_norite_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_norite",
+      "has_the_recipe"
+    ]
+  ]
+}

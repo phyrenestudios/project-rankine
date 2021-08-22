@@ -70,7 +70,7 @@ public class OreGen {
         }
         if (WGConfig.MISC.ALLUVIUM_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
         if (WGConfig.MISC.EVAPORITE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false)));}
-        if (WGConfig.MISC.MUD_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MUD_FEATURE, getBiomeNamesFromCategory(Collections.emptyList(), false))); }
+        //if (WGConfig.MISC.MUD_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.MUD_FEATURE, getBiomeNamesFromCategory(Collections.emptyList(), false))); }
         if (WGConfig.MISC.FIRE_CLAY_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, getBiomeNamesFromCategory(Collections.emptyList(), false))); }
         if (WGConfig.LAYERS.OVERWORLD_STONE_LAYERS.get() != 0) {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.OVERWORLD_STONE_GEN, getBiomeNamesFromCategory(Collections.emptyList(), false)));

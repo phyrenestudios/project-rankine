@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pedestal",
+  "pattern": [
+    "###",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:invar_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:invar_pedestal"
+  }
+}

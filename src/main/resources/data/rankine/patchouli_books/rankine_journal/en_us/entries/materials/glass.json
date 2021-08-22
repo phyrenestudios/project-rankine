@@ -11,21 +11,6 @@
       "type": "crafting",
       "recipe": "rankine:lead_glass",
       "text": "Increased resistance."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:etched_glass0",
-      "text": "For Decoration."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:etched_glass1",
-      "text": "For Decoration."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:etched_glass2",
-      "text": "For Decoration."
     }
   ]
 }

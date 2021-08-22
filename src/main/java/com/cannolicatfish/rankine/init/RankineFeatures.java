@@ -73,7 +73,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:end_stone_gen",END_STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:nether_stone_gen",NETHER_STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:overworld_stone_gen",OVERWORLD_STONE_GEN);
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:mud_feature",MUD_FEATURE);
+        //WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:mud_feature",MUD_FEATURE);
     }
 
     // FEATURE CONFIGS
@@ -275,11 +275,11 @@ public class RankineFeatures {
     public static final Feature<OreFeatureConfig> ANDESITIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
     public static final Feature<OreFeatureConfig> RHYOLITIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.RHYOLITE.get().getDefaultState());
     public static final Feature<OreFeatureConfig> BASALTIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState());
-    public static final Feature<OreFeatureConfig> ORE_NODULE_FEATURE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.TUFA_LIMESTONE.get().getDefaultState());
+    public static final Feature<OreFeatureConfig> ORE_NODULE_FEATURE = new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.LIMESTONE.get().getDefaultState());
     public static final Feature<NoFeatureConfig> END_STONE_REPLACER = new EndStoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> NETHER_STONE_REPLACER = new NetherStoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
-    public static final Feature<NoFeatureConfig> MUD_REPLACER = new MudReplacerFeature(NoFeatureConfig.CODEC);
+    //public static final Feature<NoFeatureConfig> MUD_REPLACER = new MudReplacerFeature(NoFeatureConfig.CODEC);
 
     // BASE PLACEMENTS
     public static final Placement<NoPlacementConfig> REPLACER_PLACEMENT = new ReplacerPlacement(NoPlacementConfig.CODEC);
@@ -351,15 +351,15 @@ public class RankineFeatures {
             new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     public static final ConfiguredFeature<?, ?> GRAVEL_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.GRAVEL.getDefaultState(), FeatureSpread.create(2, 4), 2,
-            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> SAND_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.SAND.getDefaultState(), FeatureSpread.create(2, 3), 2,
-            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> CLAY_DISKS = Feature.DISK.withConfiguration(new SphereReplaceConfig(Blocks.CLAY.getDefaultState(), FeatureSpread.create(2, 2), 1,
-            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> ORE_ALLUVIUM = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.ALLUVIUM.get().getDefaultState(), FeatureSpread.create(1, 2), 1,
-            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> ORE_EVAPORITE = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.EVAPORITE.get().getDefaultState(), FeatureSpread.create(1, 1), 1,
-            Lists.newArrayList(RankineBlocks.MUD.get().getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
 
     public static final ConfiguredFeature<?, ?> ORE_INTRUSION = INTRUSION.withConfiguration(
             new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
@@ -387,8 +387,8 @@ public class RankineFeatures {
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> OVERWORLD_STONE_GEN = STONE_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> MUD_FEATURE = MUD_REPLACER.withConfiguration(new NoFeatureConfig())
-            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    //public static final ConfiguredFeature<?, ?> MUD_FEATURE = MUD_REPLACER.withConfiguration(new NoFeatureConfig())
+    //        .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
     //ORES
     public static final ConfiguredFeature<?,?> ORE_NATIVE_COPPER_COUNT = RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.NATIVE_COPPER, RankineBlocks.NATIVE_COPPER_ORE.get().getStateContainer().getBaseState(), WGConfig.ORES.NATIVE_COPPER_ORE_SIZE.get()))

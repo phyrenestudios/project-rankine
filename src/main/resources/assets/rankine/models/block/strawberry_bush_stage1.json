@@ -1,6 +1,0 @@
-{
-      "parent": "block/cross",
-      "textures": {
-        "cross": "rankine:block/strawberry_bush_stage1"
-      }
-    }

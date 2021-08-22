@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.MantleGolemModel;
-import com.cannolicatfish.rankine.client.models.PeridotMantleGolemModel;
+import com.cannolicatfish.rankine.client.models.entities.PeridotMantleGolemModel;
 import com.cannolicatfish.rankine.entities.PeridotMantleGolemEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:copernicium_ingot_from_copernicium_block"
+    ]
+  },
+  "criteria": {
+    "flint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:flint"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:copernicium_ingot_from_copernicium_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "flint",
+      "has_the_recipe"
+    ]
+  ]
+}

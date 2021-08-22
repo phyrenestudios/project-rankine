@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "a a",
+    "aaa",
+    "a a"
+  ],
+  "key":
+  {
+    "a":
+    {
+      "tag": "forge:ingots/duralumin"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:duralumin_ladder",
+    "count": 8
+  }
+}

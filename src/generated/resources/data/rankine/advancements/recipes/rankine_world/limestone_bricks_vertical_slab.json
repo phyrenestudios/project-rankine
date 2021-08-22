@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:limestone_bricks_vertical_slab"
+    ]
+  },
+  "criteria": {
+    "has_limestone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:limestone_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:limestone_bricks_vertical_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_limestone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

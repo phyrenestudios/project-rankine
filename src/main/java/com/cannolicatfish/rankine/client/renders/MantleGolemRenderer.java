@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.MantleGolemModel;
-import com.cannolicatfish.rankine.entities.DesmoxyteEntity;
+import com.cannolicatfish.rankine.client.models.entities.MantleGolemModel;
 import com.cannolicatfish.rankine.entities.MantleGolemEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

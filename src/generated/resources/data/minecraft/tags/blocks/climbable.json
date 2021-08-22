@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:rope",
+    "rankine:cast_iron_support",
+    "rankine:cast_iron_ladder",
+    "rankine:duralumin_ladder",
+    "rankine:brass_ladder",
+    "rankine:cupronickel_ladder"
+  ]
+}

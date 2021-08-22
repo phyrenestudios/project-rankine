@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:sodium_ingot_from_cryolite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_cryolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cryolite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:sodium_ingot_from_cryolite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cryolite",
+      "has_the_recipe"
+    ]
+  ]
+}

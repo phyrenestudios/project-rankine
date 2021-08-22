@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_komatiite"
+    ]
+  },
+  "criteria": {
+    "has_komatiite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:komatiite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_komatiite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_komatiite",
+      "has_the_recipe"
+    ]
+  ]
+}

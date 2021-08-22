@@ -3,24 +3,28 @@
   "total": 4,
   "tier": 2,
   "input1": {
-    "element": "netherite",
+    "element": "rankine:elements/netherite",
     "min": 0.74,
-    "max": 0.76
+    "max": 0.76,
+    "required": true
   },
   "input2": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.20,
-    "max": 0.25
+    "max": 0.25,
+    "required": true
   },
   "input3": {
-    "element": "silver",
+    "element": "rankine:elements/silver",
     "min": 0.0,
     "max": 0.06
   },
   "input4": {
-    "element": "zinc",
+    "element": "rankine:elements/zinc",
     "min": 0.0,
     "max": 0.06
   },
-  "result": "rankine:rose_gold_alloy"
+  "result": "rankine:rose_gold_alloy",
+  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
 }

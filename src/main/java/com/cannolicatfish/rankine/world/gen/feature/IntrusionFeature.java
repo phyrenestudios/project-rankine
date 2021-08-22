@@ -63,15 +63,15 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                             float chance = rand.nextFloat();
                             if (INTRUSION == RankineBlocks.KIMBERLITE.get().getDefaultState()) {
                                 if (chance < WGConfig.INTRUSIONS.ILMENITE_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(b, RankineBlocks.ILMENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 26), 4);
+                                //    reader.setBlockState(b, RankineBlocks.ILMENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 26), 4);
                                 } else if (chance < WGConfig.INTRUSIONS.DIAMON_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(b, RankineBlocks.DIAMOND_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 26), 4);
+                                 //   reader.setBlockState(b, RankineBlocks.DIAMOND_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 26), 4);
                                 } else {
                                     reader.setBlockState(b, INTRUSION, 4);
                                 }
                             } else if (INTRUSION == RankineBlocks.PEGMATITE.get().getDefaultState()) {
                                 if (chance < WGConfig.INTRUSIONS.PETALITE_CHANCE.get().floatValue() && y <= 50) {
-                                    reader.setBlockState(b, RankineBlocks.PETALITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 23), 4);
+                                 //   reader.setBlockState(b, RankineBlocks.PETALITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 23), 4);
                                 } else {
                                     reader.setBlockState(b, INTRUSION, 4);
                                 }

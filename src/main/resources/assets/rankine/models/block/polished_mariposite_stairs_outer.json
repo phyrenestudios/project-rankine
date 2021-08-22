@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_mariposite",
-        "top": "rankine:block/polished_mariposite",
-        "side": "rankine:block/polished_mariposite"
-      }
-    }

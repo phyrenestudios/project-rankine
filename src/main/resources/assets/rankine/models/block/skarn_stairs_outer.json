@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/skarn",
-        "top": "rankine:block/skarn",
-        "side": "rankine:block/skarn"
-      }
-    }

@@ -54,6 +54,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue MOVEMENT_SNOW;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_MUD;
 
+        public final ForgeConfigSpec.BooleanValue CROWBAR_FROM_ABOVE;
         public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
 
         public final ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
@@ -89,6 +90,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
+        public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
         public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
@@ -141,10 +143,14 @@ public class Config {
                             .defineInRange("bricksResistanceMultiplier", 1.5D, 0.0D, 20.0D);
                     STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod, requires Patchouli)")
                             .define("startingBook",true);
+                    REFRESH_ALLOYS = b.comment("If enabled, alloy-related content in the player's inventory will always refresh on world join.")
+                            .define("refreshAlloys",true);
                     PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing.")
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("Makes axes required to harvest logs.")
                             .define("axesOnly",false);
+                    CROWBAR_FROM_ABOVE = b.comment("Allows crowbars to move blocks below where the player is standing.")
+                            .define("crowbarFromAbove",true);
                     FUEL_VALUES = b.comment("Change the fuel values of items for realism.")
                             .define("fuelValuesChange",true);
                     FLINT_DROP_CHANCE = b.comment("Chance for a stone block to drop a flint")
@@ -954,12 +960,21 @@ public class Config {
         public final ForgeConfigSpec.IntValue THOLEIITIC_BASALT_HL;
         public final ForgeConfigSpec.DoubleValue THOLEIITIC_BASALT_HARD;
         public final ForgeConfigSpec.DoubleValue THOLEIITIC_BASALT_RESIST;
-        public final ForgeConfigSpec.IntValue PYROXENE_GABBRO_HL;
-        public final ForgeConfigSpec.DoubleValue PYROXENE_GABBRO_HARD;
-        public final ForgeConfigSpec.DoubleValue PYROXENE_GABBRO_RESIST;
+        public final ForgeConfigSpec.IntValue GABBRO_HL;
+        public final ForgeConfigSpec.DoubleValue GABBRO_HARD;
+        public final ForgeConfigSpec.DoubleValue GABBRO_RESIST;
         public final ForgeConfigSpec.IntValue ANORTHOSITE_HL;
         public final ForgeConfigSpec.DoubleValue ANORTHOSITE_HARD;
         public final ForgeConfigSpec.DoubleValue ANORTHOSITE_RESIST;
+        public final ForgeConfigSpec.IntValue SHONKINITE_HL;
+        public final ForgeConfigSpec.DoubleValue SHONKINITE_HARD;
+        public final ForgeConfigSpec.DoubleValue SHONKINITE_RESIST;
+        public final ForgeConfigSpec.IntValue PYROXENITE_HL;
+        public final ForgeConfigSpec.DoubleValue PYROXENITE_HARD;
+        public final ForgeConfigSpec.DoubleValue PYROXENITE_RESIST;
+        public final ForgeConfigSpec.IntValue NORITE_HL;
+        public final ForgeConfigSpec.DoubleValue NORITE_HARD;
+        public final ForgeConfigSpec.DoubleValue NORITE_RESIST;
         public final ForgeConfigSpec.IntValue RHYOLITE_HL;
         public final ForgeConfigSpec.DoubleValue RHYOLITE_HARD;
         public final ForgeConfigSpec.DoubleValue RHYOLITE_RESIST;
@@ -999,9 +1014,15 @@ public class Config {
         public final ForgeConfigSpec.IntValue SCORIA_HL;
         public final ForgeConfigSpec.DoubleValue SCORIA_HARD;
         public final ForgeConfigSpec.DoubleValue SCORIA_RESIST;
+        public final ForgeConfigSpec.IntValue ROSE_MARBLE_HL;
+        public final ForgeConfigSpec.DoubleValue ROSE_MARBLE_HARD;
+        public final ForgeConfigSpec.DoubleValue ROSE_MARBLE_RESIST;
         public final ForgeConfigSpec.IntValue WHITE_MARBLE_HL;
         public final ForgeConfigSpec.DoubleValue WHITE_MARBLE_HARD;
         public final ForgeConfigSpec.DoubleValue WHITE_MARBLE_RESIST;
+        public final ForgeConfigSpec.IntValue GRAY_MARBLE_HL;
+        public final ForgeConfigSpec.DoubleValue GRAY_MARBLE_HARD;
+        public final ForgeConfigSpec.DoubleValue GRAY_MARBLE_RESIST;
         public final ForgeConfigSpec.IntValue BLACK_MARBLE_HL;
         public final ForgeConfigSpec.DoubleValue BLACK_MARBLE_HARD;
         public final ForgeConfigSpec.DoubleValue BLACK_MARBLE_RESIST;
@@ -1011,6 +1032,12 @@ public class Config {
         public final ForgeConfigSpec.IntValue MICA_SCHIST_HL;
         public final ForgeConfigSpec.DoubleValue MICA_SCHIST_HARD;
         public final ForgeConfigSpec.DoubleValue MICA_SCHIST_RESIST;
+        public final ForgeConfigSpec.IntValue BLUESCHIST_HL;
+        public final ForgeConfigSpec.DoubleValue BLUESCHIST_HARD;
+        public final ForgeConfigSpec.DoubleValue BLUESCHIST_RESIST;
+        public final ForgeConfigSpec.IntValue GREENSCHIST_HL;
+        public final ForgeConfigSpec.DoubleValue GREENSCHIST_HARD;
+        public final ForgeConfigSpec.DoubleValue GREENSCHIST_RESIST;
         public final ForgeConfigSpec.IntValue PHYLLITE_HL;
         public final ForgeConfigSpec.DoubleValue PHYLLITE_HARD;
         public final ForgeConfigSpec.DoubleValue PHYLLITE_RESIST;
@@ -1041,33 +1068,42 @@ public class Config {
         public final ForgeConfigSpec.IntValue PEROVSKITE_HL;
         public final ForgeConfigSpec.DoubleValue PEROVSKITE_HARD;
         public final ForgeConfigSpec.DoubleValue PEROVSKITE_RESIST;
-        public final ForgeConfigSpec.IntValue TUFA_LIMESTONE_HL;
-        public final ForgeConfigSpec.DoubleValue TUFA_LIMESTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue TUFA_LIMESTONE_RESIST;
+        public final ForgeConfigSpec.IntValue LIMESTONE_HL;
+        public final ForgeConfigSpec.DoubleValue LIMESTONE_HARD;
+        public final ForgeConfigSpec.DoubleValue LIMESTONE_RESIST;
         public final ForgeConfigSpec.IntValue DOLOSTONE_HL;
         public final ForgeConfigSpec.DoubleValue DOLOSTONE_HARD;
         public final ForgeConfigSpec.DoubleValue DOLOSTONE_RESIST;
         public final ForgeConfigSpec.IntValue CHALK_HL;
         public final ForgeConfigSpec.DoubleValue CHALK_HARD;
         public final ForgeConfigSpec.DoubleValue CHALK_RESIST;
-        public final ForgeConfigSpec.IntValue CARBONACEOUS_SHALE_HL;
-        public final ForgeConfigSpec.DoubleValue CARBONACEOUS_SHALE_HARD;
-        public final ForgeConfigSpec.DoubleValue CARBONACEOUS_SHALE_RESIST;
+        public final ForgeConfigSpec.IntValue SHALE_HL;
+        public final ForgeConfigSpec.DoubleValue SHALE_HARD;
+        public final ForgeConfigSpec.DoubleValue SHALE_RESIST;
         public final ForgeConfigSpec.IntValue SILTSTONE_HL;
         public final ForgeConfigSpec.DoubleValue SILTSTONE_HARD;
         public final ForgeConfigSpec.DoubleValue SILTSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue QUARTZ_SANDSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue QUARTZ_SANDSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue QUARTZ_SANDSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue ARKOSE_SANDSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue ARKOSE_SANDSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue ARKOSE_SANDSTONE_RESIST;
+        public final ForgeConfigSpec.IntValue ITACOLUMITE_HL;
+        public final ForgeConfigSpec.DoubleValue ITACOLUMITE_HARD;
+        public final ForgeConfigSpec.DoubleValue ITACOLUMITE_RESIST;
+        public final ForgeConfigSpec.IntValue ARKOSE_HL;
+        public final ForgeConfigSpec.DoubleValue ARKOSE_HARD;
+        public final ForgeConfigSpec.DoubleValue ARKOSE_RESIST;
         public final ForgeConfigSpec.IntValue MUDSTONE_HL;
         public final ForgeConfigSpec.DoubleValue MUDSTONE_HARD;
         public final ForgeConfigSpec.DoubleValue MUDSTONE_RESIST;
         public final ForgeConfigSpec.IntValue BRECCIA_HL;
         public final ForgeConfigSpec.DoubleValue BRECCIA_HARD;
         public final ForgeConfigSpec.DoubleValue BRECCIA_RESIST;
+        public final ForgeConfigSpec.IntValue MARLSTONE_HL;
+        public final ForgeConfigSpec.DoubleValue MARLSTONE_HARD;
+        public final ForgeConfigSpec.DoubleValue MARLSTONE_RESIST;
+        public final ForgeConfigSpec.IntValue SOUL_SANDSTONE_HL;
+        public final ForgeConfigSpec.DoubleValue SOUL_SANDSTONE_HARD;
+        public final ForgeConfigSpec.DoubleValue SOUL_SANDSTONE_RESIST;
+        public final ForgeConfigSpec.IntValue SERPENTINITE_HL;
+        public final ForgeConfigSpec.DoubleValue SERPENTINITE_HARD;
+        public final ForgeConfigSpec.DoubleValue SERPENTINITE_RESIST;
         
         public StoneProperties(ForgeConfigSpec.Builder b) {
             b.comment("Properties of Stones").push("stoneProperties");
@@ -1104,11 +1140,11 @@ public class Config {
                         .defineInRange("TholeiiticBasaltResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Pyroxene Gabbro Properties").push("PyroxeneGabbro");
-                PYROXENE_GABBRO_HL = b.comment("Harvest Level of Pyroxene Gabbro.")
+                GABBRO_HL = b.comment("Harvest Level of Pyroxene Gabbro.")
                         .defineInRange("PyroxeneGabbroHL", 0, 0, 10);
-                PYROXENE_GABBRO_HARD = b.comment("Hardness of Pyroxene Gabbro (Obsidian is 50 and vanilla stone is 2).")
+                GABBRO_HARD = b.comment("Hardness of Pyroxene Gabbro (Obsidian is 50 and vanilla stone is 2).")
                         .defineInRange("PyroxeneGabbroHardness", 2.5D, 0.0D, 100.0D);
-                PYROXENE_GABBRO_RESIST = b.comment("Resistance of Pyroxene Gabbro (Obsidian is 1200 and vanilla stone is 6).")
+                GABBRO_RESIST = b.comment("Resistance of Pyroxene Gabbro (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("PyroxeneGabbroResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Anorthosite Properties").push("anorthosite");
@@ -1118,6 +1154,30 @@ public class Config {
                         .defineInRange("anorthositeHardness", 2.5D, 0.0D, 100.0D);
                 ANORTHOSITE_RESIST = b.comment("Resistance of Anorthosite (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("anorthositeResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Shonkinite Properties").push("shonkinite");
+                SHONKINITE_HL = b.comment("Harvest Level of Shonkinite.")
+                        .defineInRange("shonkiniteHL", 0, 0, 10);
+                SHONKINITE_HARD = b.comment("Hardness of Shonkinite (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("shonkiniteHardness", 2.5D, 0.0D, 100.0D);
+                SHONKINITE_RESIST = b.comment("Resistance of Shonkinite (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("shonkiniteResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Pyroxenite Properties").push("pyroxenite");
+                PYROXENITE_HL = b.comment("Harvest Level of Pyroxenite.")
+                        .defineInRange("pyroxeniteHL", 0, 0, 10);
+                PYROXENITE_HARD = b.comment("Hardness of Pyroxenite (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("pyroxeniteHardness", 2.5D, 0.0D, 100.0D);
+                PYROXENITE_RESIST = b.comment("Resistance of Pyroxenite (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("pyroxeniteResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Norite Properties").push("norite");
+                NORITE_HL = b.comment("Harvest Level of Norite.")
+                        .defineInRange("noriteHL", 0, 0, 10);
+                NORITE_HARD = b.comment("Hardness of Norite (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("noriteHardness", 2.5D, 0.0D, 100.0D);
+                NORITE_RESIST = b.comment("Resistance of Norite (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("noriteResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Rhyolite Properties").push("rhyolite");
                 RHYOLITE_HL = b.comment("Harvest Level of Rhyolite.")
@@ -1223,6 +1283,14 @@ public class Config {
                 SCORIA_RESIST = b.comment("Resistance of Scoria (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("scoriaResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
+                b.comment("Rose Marble Properties").push("RoseMarble");
+                ROSE_MARBLE_HL = b.comment("Harvest Level of Rose Marble.")
+                        .defineInRange("RoseMarbleHL", 0, 0, 10);
+                ROSE_MARBLE_HARD = b.comment("Hardness of Rose Marble (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("RoseMarbleHardness", 2.5D, 0.0D, 100.0D);
+                ROSE_MARBLE_RESIST = b.comment("Resistance of Rose Marble (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("RoseMarbleResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
                 b.comment("White Marble Properties").push("WhiteMarble");
                 WHITE_MARBLE_HL = b.comment("Harvest Level of White Marble.")
                         .defineInRange("WhiteMarbleHL", 0, 0, 10);
@@ -1230,6 +1298,14 @@ public class Config {
                         .defineInRange("WhiteMarbleHardness", 2.5D, 0.0D, 100.0D);
                 WHITE_MARBLE_RESIST = b.comment("Resistance of White Marble (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("WhiteMarbleResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Gray Marble Properties").push("GrayMarble");
+                GRAY_MARBLE_HL = b.comment("Harvest Level of Gray Marble.")
+                        .defineInRange("GrayMarbleHL", 0, 0, 10);
+                GRAY_MARBLE_HARD = b.comment("Hardness of Gray Marble (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("GrayMarbleHardness", 2.5D, 0.0D, 100.0D);
+                GRAY_MARBLE_RESIST = b.comment("Resistance of Gray Marble (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("GrayMarbleResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Black Marble Properties").push("BlackMarble");
                 BLACK_MARBLE_HL = b.comment("Harvest Level of Black Marble.")
@@ -1254,6 +1330,22 @@ public class Config {
                         .defineInRange("MicaSchistHardness", 2.5D, 0.0D, 100.0D);
                 MICA_SCHIST_RESIST = b.comment("Resistance of Mica Schist (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("MicaSchistResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Blue Schist Properties").push("BlueSchist");
+                BLUESCHIST_HL = b.comment("Harvest Level of Blue Schist.")
+                        .defineInRange("BlueSchistHL", 0, 0, 10);
+                BLUESCHIST_HARD = b.comment("Hardness of Blue Schist (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("BlueSchistHardness", 2.5D, 0.0D, 100.0D);
+                BLUESCHIST_RESIST = b.comment("Resistance of Blue Schist (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("BlueSchistResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+                b.comment("Green Schist Properties").push("GreenSchist");
+                GREENSCHIST_HL = b.comment("Harvest Level of Green Schist.")
+                        .defineInRange("GreenSchistHL", 0, 0, 10);
+                GREENSCHIST_HARD = b.comment("Hardness of Green Schist (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("GreenSchistHardness", 2.5D, 0.0D, 100.0D);
+                GREENSCHIST_RESIST = b.comment("Resistance of Green Schist (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("GreenSchistResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Phyllite Properties").push("phyllite");
                 PHYLLITE_HL = b.comment("Harvest Level of Phyllite.")
@@ -1335,13 +1427,13 @@ public class Config {
                 PEROVSKITE_RESIST = b.comment("Resistance of Perovskite (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("perovskiteResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
-                b.comment("Tufa Limestone Properties").push("TufaLimestone");
-                TUFA_LIMESTONE_HL = b.comment("Harvest Level of Tufa Limestone.")
-                        .defineInRange("TufaLimestoneHL", 0, 0, 10);
-                TUFA_LIMESTONE_HARD = b.comment("Hardness of Tufa Limestone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("TufaLimestoneHardness", 1.5D, 0.0D, 100.0D);
-                TUFA_LIMESTONE_RESIST = b.comment("Resistance of Tufa Limestone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("TufaLimestoneResistance", 6.0D, 0.00D, 2000.0D);
+                b.comment("Limestone Properties").push("Limestone");
+                LIMESTONE_HL = b.comment("Harvest Level of Limestone.")
+                        .defineInRange("LimestoneHL", 0, 0, 10);
+                LIMESTONE_HARD = b.comment("Hardness of Limestone (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("LimestoneHardness", 1.5D, 0.0D, 100.0D);
+                LIMESTONE_RESIST = b.comment("Resistance of Limestone (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("LimestoneResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Dolostone Properties").push("dolostone");
                 DOLOSTONE_HL = b.comment("Harvest Level of Dolostone.")
@@ -1359,13 +1451,13 @@ public class Config {
                 CHALK_RESIST = b.comment("Resistance of Chalk (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("chalkResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
-                b.comment("Carbonaceous Shale Properties").push("CarbonaceousShale");
-                CARBONACEOUS_SHALE_HL = b.comment("Harvest Level of Carbonaceous Shale.")
-                        .defineInRange("CarbonaceousShaleHL", 0, 0, 10);
-                CARBONACEOUS_SHALE_HARD = b.comment("Hardness of Carbonaceous Shale (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("CarbonaceousShaleHardness", 1.5D, 0.0D, 100.0D);
-                CARBONACEOUS_SHALE_RESIST = b.comment("Resistance of Carbonaceous Shale (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("CarbonaceousShaleResistance", 6.0D, 0.00D, 2000.0D);
+                b.comment("Shale Properties").push("Shale");
+                SHALE_HL = b.comment("Harvest Level of Shale.")
+                        .defineInRange("ShaleHL", 0, 0, 10);
+                SHALE_HARD = b.comment("Hardness of Shale (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("ShaleHardness", 1.5D, 0.0D, 100.0D);
+                SHALE_RESIST = b.comment("Resistance of Shale (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("ShaleResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Siltstone Properties").push("siltstone");
                 SILTSTONE_HL = b.comment("Harvest Level of Siltstone.")
@@ -1375,21 +1467,21 @@ public class Config {
                 SILTSTONE_RESIST = b.comment("Resistance of Siltstone (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("siltstoneResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
-                b.comment("Quartz Sandstone Properties").push("QuartzSandstone");
-                QUARTZ_SANDSTONE_HL = b.comment("Harvest Level of Quartz Sandstone.")
-                        .defineInRange("QuartzSandstoneHL", 0, 0, 10);
-                QUARTZ_SANDSTONE_HARD = b.comment("Hardness of Quartz Sandstone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("QuartzSandstoneHardness", 1.5D, 0.0D, 100.0D);
-                QUARTZ_SANDSTONE_RESIST = b.comment("Resistance of Quartz Sandstone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("QuartzSandstoneResistance", 6.0D, 0.00D, 2000.0D);
+                b.comment("Itacolumite Properties").push("Itacolumite");
+                ITACOLUMITE_HL = b.comment("Harvest Level of Itacolumite.")
+                        .defineInRange("ItacolumiteHL", 0, 0, 10);
+                ITACOLUMITE_HARD = b.comment("Hardness of Itacolumite (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("ItacolumiteHardness", 1.5D, 0.0D, 100.0D);
+                ITACOLUMITE_RESIST = b.comment("Resistance of Itacolumite (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("ItacolumiteResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
-                b.comment("Arkose Sandstone Properties").push("ArkoseSandstone");
-                ARKOSE_SANDSTONE_HL = b.comment("Harvest Level of Arkose Sandstone.")
-                        .defineInRange("ArkoseSandstoneHL", 0, 0, 10);
-                ARKOSE_SANDSTONE_HARD = b.comment("Hardness of Arkose Sandstone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("ArkoseSandstoneHardness", 1.5D, 0.0D, 100.0D);
-                ARKOSE_SANDSTONE_RESIST = b.comment("Resistance of Arkose Sandstone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("ArkoseSandstoneResistance", 6.0D, 0.00D, 2000.0D);
+                b.comment("Arkose Properties").push("Arkose");
+                ARKOSE_HL = b.comment("Harvest Level of Arkose.")
+                        .defineInRange("ArkoseHL", 0, 0, 10);
+                ARKOSE_HARD = b.comment("Hardness of Arkose (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("ArkoseHardness", 1.5D, 0.0D, 100.0D);
+                ARKOSE_RESIST = b.comment("Resistance of Arkose (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("ArkoseResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
                 b.comment("Mudstone Properties").push("mudstone");
                 MUDSTONE_HL = b.comment("Harvest Level of Mudstone.")
@@ -1406,6 +1498,30 @@ public class Config {
                         .defineInRange("brecciaHardness", 1.5D, 0.0D, 100.0D);
                 BRECCIA_RESIST = b.comment("Resistance of Breccia (Obsidian is 1200 and vanilla stone is 6).")
                         .defineInRange("brecciaResistance", 6.0D, 0.00D, 2000.0D);
+                b.pop();
+            b.comment("Soul Sandstone Properties").push("soul_sandstone");
+            SOUL_SANDSTONE_HL = b.comment("Harvest Level of Soul Sandstone.")
+                    .defineInRange("soul_sandstoneHL", 0, 0, 10);
+            SOUL_SANDSTONE_HARD = b.comment("Hardness of Soul Sandstone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("soul_sandstoneHardness", 1.5D, 0.0D, 100.0D);
+            SOUL_SANDSTONE_RESIST = b.comment("Resistance of Soul Sandstone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("soul_sandstoneResistance", 6.0D, 0.00D, 2000.0D);
+            b.pop();
+            b.comment("Marlstone Properties").push("marlstone");
+            MARLSTONE_HL = b.comment("Harvest Level of Marlstone.")
+                    .defineInRange("marlstoneHL", 0, 0, 10);
+            MARLSTONE_HARD = b.comment("Hardness of Marlstone (Obsidian is 50 and vanilla stone is 2).")
+                    .defineInRange("marlstoneHardness", 1.5D, 0.0D, 100.0D);
+            MARLSTONE_RESIST = b.comment("Resistance of Marlstone (Obsidian is 1200 and vanilla stone is 6).")
+                    .defineInRange("marlstoneResistance", 6.0D, 0.00D, 2000.0D);
+            b.pop();
+                b.comment("Serpentinite Properties").push("serpentinite");
+                SERPENTINITE_HL = b.comment("Harvest Level of Serpentinite.")
+                        .defineInRange("serpentiniteHL", 0, 0, 10);
+                SERPENTINITE_HARD = b.comment("Hardness of Serpentinite (Obsidian is 50 and vanilla stone is 2).")
+                        .defineInRange("serpentiniteHardness", 1.5D, 0.0D, 100.0D);
+                SERPENTINITE_RESIST = b.comment("Resistance of Serpentinite (Obsidian is 1200 and vanilla stone is 6).")
+                        .defineInRange("serpentiniteResistance", 6.0D, 0.00D, 2000.0D);
                 b.pop();
             b.pop();
         }

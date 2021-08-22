@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:norite"
+  },
+  "result": "rankine:norite_pressure_plate",
+  "count": 1
+}

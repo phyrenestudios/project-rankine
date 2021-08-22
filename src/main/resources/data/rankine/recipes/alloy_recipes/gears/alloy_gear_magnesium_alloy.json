@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
+  "name": "Magnesium Alloy Gear",
+  "color": 12362927,
   "pattern": [
     " I ",
     "ISI",

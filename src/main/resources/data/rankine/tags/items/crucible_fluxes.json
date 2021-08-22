@@ -24,8 +24,7 @@
     "rankine:cryolite",
     "rankine:sodium_carbonate",
     "rankine:petalite",
-    "rankine:feldspar",
-    "rankine:plagioclase_feldspar",
+    "#forge:feldspar",
     "rankine:arsenic_ingot"
   ]
 }

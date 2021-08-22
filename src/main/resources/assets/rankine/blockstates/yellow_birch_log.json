@@ -1,7 +1,0 @@
-{
-      "variants": {
-        "axis=y":  { "model": "rankine:block/yellow_birch_log" },
-        "axis=z":   { "model": "rankine:block/yellow_birch_log", "x": 90 },
-        "axis=x":   { "model": "rankine:block/yellow_birch_log", "x": 90, "y": 90 }
-      }
-    }

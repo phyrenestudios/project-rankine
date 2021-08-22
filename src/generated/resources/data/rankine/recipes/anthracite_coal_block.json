@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:anthracite_coal"
+    }
+  },
+  "result": {
+    "item": "rankine:anthracite_coal_block"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "rankine:block/alloy_furnace"
+    },
+    "lit=true": {
+      "model": "rankine:block/alloy_furnace_on"
+    }
+  }
+}

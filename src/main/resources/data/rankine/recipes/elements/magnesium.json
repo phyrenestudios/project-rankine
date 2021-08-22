@@ -1,10 +1,66 @@
 {
-          "type": "rankine:element",
-          "name": "magnesium",
-          "symbol": "Mg",
-          "color": 16777215,
-          "atomic": 12,
-          "potential": 0,
-          "items": ["T#forge:nuggets/magnesium","T#forge:ingots/magnesium","T#forge:storage_blocks/magnesium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "magnesium",
+  "symbol": "Mg",
+  "color": 15724505,
+  "atomic": 12,
+  "potential": -2.7,
+  "items": ["T#forge:nuggets/magnesium","T#forge:ingots/magnesium","T#forge:storage_blocks/magnesium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [1.2],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.16],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.5]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.11111],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.005],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.008],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LOG10"],
+    "a": [0.2],
+    "b": [0],
+    "modifiers": ["ADDITION"],
+    "limit": [1]
+  }
+}

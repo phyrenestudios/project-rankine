@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:cedar_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:cedar_button"
+  }
+}

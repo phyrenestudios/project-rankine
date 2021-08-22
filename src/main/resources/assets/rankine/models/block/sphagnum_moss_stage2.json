@@ -1,6 +1,0 @@
-{
-  "parent": "block/crop",
-  "textures": {
-    "crop": "rankine:block/sphagnum_moss_stage2"
-  }
-}

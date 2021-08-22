@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:enstatite_bricks"
+    ]
+  },
+  "criteria": {
+    "has_frozen_meteorite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:enstatite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:enstatite_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_frozen_meteorite",
+      "has_the_recipe"
+    ]
+  ]
+}

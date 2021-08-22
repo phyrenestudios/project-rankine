@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_vertical_slab",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:magnolia_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:magnolia_vertical_slab",
+    "count": 6
+  }
+}

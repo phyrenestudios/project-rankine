@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_purple_porphyry"
+  },
+  "result": "rankine:polished_purple_porphyry_stairs",
+  "count": 1
+}

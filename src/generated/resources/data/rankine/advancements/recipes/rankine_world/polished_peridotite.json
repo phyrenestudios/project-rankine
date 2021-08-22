@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_peridotite"
+    ]
+  },
+  "criteria": {
+    "has_peridotite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:peridotite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_peridotite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_peridotite",
+      "has_the_recipe"
+    ]
+  ]
+}

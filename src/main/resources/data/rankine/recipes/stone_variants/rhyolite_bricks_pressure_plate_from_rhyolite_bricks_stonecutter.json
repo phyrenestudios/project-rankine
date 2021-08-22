@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:rhyolite_bricks"
-      },
-      "result": "rankine:rhyolite_bricks_pressure_plate",
-      "count": 1
-}

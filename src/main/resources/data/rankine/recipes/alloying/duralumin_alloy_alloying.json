@@ -2,57 +2,60 @@
   "type": "rankine:alloying",
   "total": 11,
   "input1": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.91,
-    "max": 0.95
+    "max": 0.95,
+    "required": true
   },
   "input2": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.03,
-    "max": 0.05
+    "max": 0.05,
+    "required": true
   },
   "input3": {
-    "element": "magnesium",
+    "element": "rankine:elements/magnesium",
     "min": 0.01,
-    "max": 0.03
+    "max": 0.03,
+    "required": true
   },
   "input4": {
-    "element": "manganese",
+    "element": "rankine:elements/manganese",
     "min": 0.0,
     "max": 0.04
   },
   "input5": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.04
   },
   "input6": {
-    "element": "zinc",
+    "element": "rankine:elements/zinc",
     "min": 0.0,
     "max": 0.04
   },
   "input7": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.04
   },
   "input8": {
-    "element": "calcium",
+    "element": "rankine:elements/calcium",
     "min": 0.0,
     "max": 0.04
   },
   "input9": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.04
   },
   "input10": {
-    "element": "scandium",
+    "element": "rankine:elements/scandium",
     "min": 0.0,
     "max": 0.04
   },
   "input11": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.04
   },

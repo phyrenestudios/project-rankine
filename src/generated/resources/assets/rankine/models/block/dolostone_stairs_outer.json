@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "rankine:block/dolostone",
+    "bottom": "rankine:block/dolostone",
+    "top": "rankine:block/dolostone"
+  }
+}

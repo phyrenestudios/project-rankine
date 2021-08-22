@@ -1,6 +1,0 @@
-{
-  "parent": "block/crop",
-  "textures": {
-    "crop": "rankine:block/plants/jute_plant_top1"
-  }
-}

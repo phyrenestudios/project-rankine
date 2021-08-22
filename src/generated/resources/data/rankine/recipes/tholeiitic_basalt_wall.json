@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tholeiitic_basalt"
+    }
+  },
+  "result": {
+    "item": "rankine:tholeiitic_basalt_wall",
+    "count": 6
+  }
+}

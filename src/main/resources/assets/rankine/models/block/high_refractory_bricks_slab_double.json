@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "rankine:block/high_refractory_bricks",
-    "side": "rankine:block/high_refractory_bricks"
-  }
-}

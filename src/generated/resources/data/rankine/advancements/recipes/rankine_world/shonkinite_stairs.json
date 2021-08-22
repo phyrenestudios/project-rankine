@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:shonkinite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_shonkinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:shonkinite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:shonkinite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shonkinite",
+      "has_the_recipe"
+    ]
+  ]
+}

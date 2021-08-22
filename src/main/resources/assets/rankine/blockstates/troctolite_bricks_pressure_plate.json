@@ -1,6 +1,0 @@
-{
-      "variants": {
-        "powered=false": { "model": "rankine:block/troctolite_bricks_pressure_plate" },
-        "powered=true": { "model": "rankine:block/troctolite_bricks_pressure_plate_down" }
-      }
-    }

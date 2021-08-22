@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:gray_granite_button"
+    ]
+  },
+  "criteria": {
+    "has_gray_granite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gray_granite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:gray_granite_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_granite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_vertical_slab",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_quartzite"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_quartzite_vertical_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:troctolite_button"
+    ]
+  },
+  "criteria": {
+    "has_troctolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:troctolite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:troctolite_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_troctolite",
+      "has_the_recipe"
+    ]
+  ]
+}

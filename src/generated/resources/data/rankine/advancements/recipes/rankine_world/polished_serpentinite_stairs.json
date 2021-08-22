@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_serpentinite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_polished_serpentinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_serpentinite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_serpentinite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_serpentinite",
+      "has_the_recipe"
+    ]
+  ]
+}

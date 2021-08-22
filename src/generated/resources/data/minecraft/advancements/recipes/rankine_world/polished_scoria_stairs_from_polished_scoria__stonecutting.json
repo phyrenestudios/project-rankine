@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_scoria_stairs_from_polished_scoria__stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_scoria": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_scoria"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:polished_scoria_stairs_from_polished_scoria__stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_scoria",
+      "has_the_recipe"
+    ]
+  ]
+}

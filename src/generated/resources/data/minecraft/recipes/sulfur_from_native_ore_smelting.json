@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:native_sulfur_ore"
+  },
+  "result": "rankine:sulfur",
+  "experience": 0.5,
+  "cookingtime": 200
+}

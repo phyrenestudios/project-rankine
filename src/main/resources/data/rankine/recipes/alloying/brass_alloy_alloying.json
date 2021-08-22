@@ -2,42 +2,44 @@
   "type": "rankine:alloying",
   "total": 8,
   "input1": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.30,
-    "max": 0.70
+    "max": 0.70,
+    "required": true
   },
   "input2": {
-    "element": "zinc",
+    "element": "rankine:elements/zinc",
     "min": 0.15,
-    "max": 0.60
+    "max": 0.60,
+    "required": true
   },
   "input3": {
-    "element": "tin",
+    "element": "rankine:elements/tin",
     "min": 0.0,
     "max": 0.10
   },
   "input4": {
-    "element": "lead",
+    "element": "rankine:elements/lead",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.0,
     "max": 0.10
   },
   "input6": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.10
   },
   "input7": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.10
   },
   "input8": {
-    "element": "selenium",
+    "element": "rankine:elements/selenium",
     "min": 0.0,
     "max": 0.10
   },

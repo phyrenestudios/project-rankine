@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "rankine:block/piston_crusher_top",
-    "front": "rankine:block/piston_crusher_front",
-    "side": "rankine:block/piston_crusher_side"
-  }
-}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:norite_bricks_pressure_plate"
+    ]
+  },
+  "criteria": {
+    "has_norite_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:norite_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:norite_bricks_pressure_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_norite_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

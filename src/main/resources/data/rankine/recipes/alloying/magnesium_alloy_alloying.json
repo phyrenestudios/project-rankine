@@ -2,122 +2,125 @@
   "type": "rankine:alloying",
   "total": 24,
   "input1": {
-    "element": "magnesium",
+    "element": "rankine:elements/magnesium",
     "min": 0.85,
-    "max": 0.90
+    "max": 0.90,
+    "required": true
   },
   "input2": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.03,
-    "max": 0.10
+    "max": 0.10,
+    "required": true
   },
   "input3": {
-    "element": "zinc",
+    "element": "rankine:elements/zinc",
     "min": 0.01,
-    "max": 0.03
+    "max": 0.03,
+    "required": true
   },
   "input4": {
-    "element": "beryllium",
+    "element": "rankine:elements/beryllium",
     "min": 0.0,
     "max": 0.06
   },
   "input5": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.0,
     "max": 0.06
   },
   "input6": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.06
   },
   "input7": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.06
   },
   "input8": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.06
   },
   "input9": {
-    "element": "lead",
+    "element": "rankine:elements/lead",
     "min": 0.0,
     "max": 0.06
   },
   "input10": {
-    "element": "tin",
+    "element": "rankine:elements/tin",
     "min": 0.0,
     "max": 0.06
   },
   "input11": {
-    "element": "zirconium",
+    "element": "rankine:elements/zirconium",
     "min": 0.0,
     "max": 0.06
   },
   "input12": {
-    "element": "yttrium",
+    "element": "rankine:elements/yttrium",
     "min": 0.0,
     "max": 0.06
   },
   "input13": {
-    "element": "calcium",
+    "element": "rankine:elements/calcium",
     "min": 0.0,
     "max": 0.06
   },
   "input14": {
-    "element": "silver",
+    "element": "rankine:elements/silver",
     "min": 0.0,
     "max": 0.06
   },
   "input15": {
-    "element": "cadmium",
+    "element": "rankine:elements/cadmium",
     "min": 0.0,
     "max": 0.06
   },
   "input16": {
-    "element": "thorium",
+    "element": "rankine:elements/thorium",
     "min": 0.0,
     "max": 0.06
   },
   "input17": {
-    "element": "lithium",
+    "element": "rankine:elements/lithium",
     "min": 0.0,
     "max": 0.06
   },
   "input18": {
-    "element": "antimony",
+    "element": "rankine:elements/antimony",
     "min": 0.0,
     "max": 0.06
   },
   "input19": {
-    "element": "bismuth",
+    "element": "rankine:elements/bismuth",
     "min": 0.0,
     "max": 0.06
   },
   "input20": {
-    "element": "strontium",
+    "element": "rankine:elements/strontium",
     "min": 0.0,
     "max": 0.06
   },
   "input21": {
-    "element": "neodymium",
+    "element": "rankine:elements/neodymium",
     "min": 0.0,
     "max": 0.06
   },
   "input22": {
-    "element": "manganese",
+    "element": "rankine:elements/manganese",
     "min": 0.0,
     "max": 0.06
   },
   "input23": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.06
   },
   "input24": {
-    "element": "gadolinium",
+    "element": "rankine:elements/gadolinium",
     "min": 0.0,
     "max": 0.06
   },

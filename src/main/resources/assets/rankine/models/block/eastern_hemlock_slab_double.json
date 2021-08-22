@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab",
-      "textures": {
-        "bottom": "rankine:block/eastern_hemlock_planks",
-        "top": "rankine:block/eastern_hemlock_planks",
-        "side": "rankine:block/eastern_hemlock_planks"
-      }
-    }

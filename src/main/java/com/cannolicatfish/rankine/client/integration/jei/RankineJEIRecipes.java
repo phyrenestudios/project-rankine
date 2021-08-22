@@ -11,6 +11,7 @@ import net.minecraft.item.crafting.RecipeManager;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RankineJEIRecipes {
 
@@ -28,6 +29,14 @@ public class RankineJEIRecipes {
 
     public List<AlloyingRecipe> getAlloyingRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING);
+    }
+
+    public List<AlloyingRecipe> getAlloyFurnaceRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 1) != 0).collect(Collectors.toList());
+    }
+
+    public List<AlloyingRecipe> getInductionFurnaceRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 2) != 0).collect(Collectors.toList());
     }
 
     public List<BeehiveOvenRecipe> getBeehiveRecipes() {

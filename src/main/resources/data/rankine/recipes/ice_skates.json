@@ -13,7 +13,7 @@
           "item": "minecraft:leather"
         },
         "N": {
-          "tag": "rankine:crafting_metals_nuggets"
+          "tag": "rankine:crafting_metal_nuggets"
         }
       },
       "result": {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "rankine:block/ultra_high_beehive_oven_pit"
+    },
+    "lit=true": {
+      "model": "rankine:block/ultra_high_beehive_oven_pit_on"
+    }
+  }
+}

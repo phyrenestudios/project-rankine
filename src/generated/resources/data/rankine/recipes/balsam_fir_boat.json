@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:balsam_fir_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:balsam_fir_boat"
+  }
+}

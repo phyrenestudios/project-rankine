@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_dolostone",
-        "top": "rankine:block/polished_dolostone",
-        "side": "rankine:block/polished_dolostone"
-      }
-    }

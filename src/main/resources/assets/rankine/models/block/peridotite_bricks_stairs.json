@@ -1,8 +1,0 @@
-{
-      "parent": "block/stairs",
-      "textures": {
-        "bottom": "rankine:block/peridotite_bricks",
-        "top": "rankine:block/peridotite_bricks",
-        "side": "rankine:block/peridotite_bricks"
-      }
-    }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/magnolia_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/magnolia_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/magnolia_planks"
+    }
+  }
+}

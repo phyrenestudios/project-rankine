@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:gneiss_bricks_wall"
+    ]
+  },
+  "criteria": {
+    "has_gneiss_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gneiss_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:gneiss_bricks_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gneiss_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

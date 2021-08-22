@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:stones/limestone",
+    "#forge:stones/dolomite",
+    "#forge:stones/mudstone",
+    "#forge:stones/shale",
+    "#forge:stones/siltstone",
+    "#forge:stones/sandstone",
+    "#forge:stones/breccia",
+    "#forge:stones/marlstone",
+    "#forge:stones/chalk"
+  ]
+}

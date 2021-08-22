@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_soul_sandstone"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_soul_sandstone_wall",
+    "count": 6
+  }
+}

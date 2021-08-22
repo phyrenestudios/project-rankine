@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:thorite"
-  },
-  "result": "rankine:thorium_ingot",
-  "experience": 1.0,
-  "cookingtime": 100
-}

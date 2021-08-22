@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/bismuth_sheetmetal",
-    "top": "rankine:block/bismuth_sheetmetal",
-    "side": "rankine:block/bismuth_sheetmetal"
-  }
-}

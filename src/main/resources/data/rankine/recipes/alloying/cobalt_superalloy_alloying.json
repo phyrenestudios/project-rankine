@@ -3,82 +3,85 @@
   "total": 16,
   "tier": 2,
   "input1": {
-    "element": "cobalt",
+    "element": "rankine:elements/cobalt",
     "min": 0.60,
-    "max": 0.80
+    "max": 0.80,
+    "required": true
   },
   "input2": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.18,
-    "max": 0.30
+    "max": 0.30,
+    "required": true
   },
   "input3": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.02,
-    "max": 0.12
+    "max": 0.12,
+    "required": true
   },
   "input4": {
-    "element": "molybdenum",
+    "element": "rankine:elements/molybdenum",
     "min": 0.0,
     "max": 0.20
   },
   "input5": {
-    "element": "tantalum",
+    "element": "rankine:elements/tantalum",
     "min": 0.0,
     "max": 0.20
   },
   "input6": {
-    "element": "tungsten",
+    "element": "rankine:elements/tungsten",
     "min": 0.0,
     "max": 0.20
   },
   "input7": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.20
   },
   "input8": {
-    "element": "aluminum",
+    "element": "rankine:elements/aluminum",
     "min": 0.0,
     "max": 0.20
   },
   "input9": {
-    "element": "iridium",
+    "element": "rankine:elements/iridium",
     "min": 0.0,
     "max": 0.20
   },
   "input10": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.0,
     "max": 0.20
   },
   "input11": {
-    "element": "rhenium",
+    "element": "rankine:elements/rhenium",
     "min": 0.0,
     "max": 0.20
   },
   "input12": {
-    "element": "boron",
+    "element": "rankine:elements/boron",
     "min": 0.0,
     "max": 0.20
   },
   "input13": {
-    "element": "netherite",
+    "element": "rankine:elements/netherite",
     "min": 0.0,
     "max": 0.20
   },
   "input14": {
-    "element": "carbon",
+    "element": "rankine:elements/carbon",
     "min": 0.0,
     "max": 0.20
   },
   "input15": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.20
   },
   "input16": {
-    "element": "phosphorus",
+    "element": "rankine:elements/phosphorus",
     "min": 0.0,
     "max": 0.20
   },

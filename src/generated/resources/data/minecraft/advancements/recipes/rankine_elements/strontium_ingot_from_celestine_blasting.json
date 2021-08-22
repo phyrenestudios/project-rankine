@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:strontium_ingot_from_celestine_blasting"
+    ]
+  },
+  "criteria": {
+    "has_celestine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:celestine"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:strontium_ingot_from_celestine_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_celestine",
+      "has_the_recipe"
+    ]
+  ]
+}

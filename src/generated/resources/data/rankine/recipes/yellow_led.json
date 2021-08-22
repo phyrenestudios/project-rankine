@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "led",
+  "pattern": [
+    "DRD",
+    "RSR",
+    "DRD"
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:dyes/yellow"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "S": {
+      "item": "rankine:silicon_carbide"
+    }
+  },
+  "result": {
+    "item": "rankine:yellow_led",
+    "count": 4
+  }
+}

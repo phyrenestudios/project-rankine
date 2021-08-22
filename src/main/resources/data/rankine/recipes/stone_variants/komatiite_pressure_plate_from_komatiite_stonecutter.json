@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:komatiite"
-      },
-      "result": "rankine:komatiite_pressure_plate",
-      "count": 1
-}

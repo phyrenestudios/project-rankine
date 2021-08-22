@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:kimberlite_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:kimberlite_bricks_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/polished_roman_concrete_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/polished_roman_concrete_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_roman_concrete"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:vanadium_nugget"
+    }
+  },
+  "result": {
+    "item": "rankine:vanadium_ingot"
+  }
+}

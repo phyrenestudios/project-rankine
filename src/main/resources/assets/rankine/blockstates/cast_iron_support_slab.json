@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/cast_iron_support_slab" },
-            "type=top": { "model": "rankine:block/cast_iron_support_slab_top" },
-            "type=double": { "model": "rankine:block/cast_iron_support" }
-            }
-        }

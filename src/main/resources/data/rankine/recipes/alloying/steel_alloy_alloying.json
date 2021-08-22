@@ -3,79 +3,82 @@
   "tier": 2,
   "total": 15,
   "input1": {
-    "element": "iron",
+    "element": "rankine:elements/iron",
     "min": 0.93,
-    "max": 0.99
+    "max": 0.99,
+    "required": true
   },
   "input2": {
-    "element": "carbon",
+    "element": "rankine:elements/carbon",
     "min": 0.01,
-    "max": 0.02
+    "max": 0.02,
+    "required": true
   },
   "input3": {
-    "element": "manganese",
+    "element": "rankine:elements/manganese",
     "min": 0.0,
     "max": 0.05
   },
   "input4": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.05
   },
   "input5": {
-    "element": "cobalt",
+    "element": "rankine:elements/cobalt",
     "min": 0.0,
     "max": 0.05
   },
   "input6": {
-    "element": "molybdenum",
+    "element": "rankine:elements/molybdenum",
     "min": 0.0,
     "max": 0.05
   },
   "input7": {
-    "element": "nickel",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.05
   },
   "input8": {
-    "element": "niobium",
+    "element": "rankine:elements/niobium",
     "min": 0.0,
     "max": 0.05
   },
   "input9": {
-    "element": "titanium",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
     "max": 0.05
   },
   "input10": {
-    "element": "vanadium",
+    "element": "rankine:elements/vanadium",
     "min": 0.0,
     "max": 0.05
   },
   "input11": {
-    "element": "zirconium",
+    "element": "rankine:elements/zirconium",
     "min": 0.0,
     "max": 0.05
   },
   "input12": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.0,
     "max": 0.05
   },
   "input13": {
-    "element": "calcium",
+    "element": "rankine:elements/calcium",
     "min": 0.0,
     "max": 0.05
   },
   "input14": {
-    "element": "silicon",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.05
   },
   "input15": {
-    "element": "phosphorus",
+    "element": "rankine:elements/phosphorus",
     "min": 0.0,
     "max": 0.05
   },
-  "result": "rankine:steel_alloy"
+  "result": "rankine:steel_alloy",
+  "durability": 450
 }

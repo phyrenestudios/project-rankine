@@ -19,19 +19,9 @@ public class AsparagusPlantBlock extends DoubleCropsBlock {
         super(properties);
     }
 
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (worldIn.getBlockState(pos.down()).getBlock().getTags().contains(new ResourceLocation("forge:dirt"))) {
-            worldIn.setBlockState(pos.down(), RankineBlocks.ASPARAGUS_ROOT.get().getDefaultState());
-            worldIn.removeBlock(pos, false);
-            stack.shrink(1);
-            worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_STEM_PLACE, SoundCategory.BLOCKS, 0.4f, 0.4f, false);
-        }
-    }
-
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
         Block block = state.getBlock();
-        return block == RankineBlocks.ASPARAGUS_ROOT.get();
+        return block == RankineBlocks.GRASSY_LOAM.get();
     }
 
     protected IItemProvider getSeedsItem() {

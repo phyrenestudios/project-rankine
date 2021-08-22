@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/alluvium"
+      },
+      {
+        "model": "rankine:block/alluvium",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/alluvium",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/alluvium",
+        "y": 270
+      }
+    ]
+  }
+}

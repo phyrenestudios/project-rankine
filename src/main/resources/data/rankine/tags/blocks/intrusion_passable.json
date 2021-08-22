@@ -5,7 +5,7 @@
     "#minecraft:base_stone_nether",
     "#forge:base_stone_end",
     "#forge:wg_stone",
-    "#rankine:tuff",
+    "#forge:tuff",
     "minecraft:soul_sand",
     "minecraft:soul_soil",
     "minecraft:lava"

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:gneiss_stairs_from_gneiss_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_gneiss": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gneiss"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:gneiss_stairs_from_gneiss_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gneiss",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -198,11 +198,6 @@
       "item": "rankine:asparagus",
       "link_recipe": true,
       "text": "Used for food. Can only be harvested in middle growth stages for food. $(br2)Seeds can be found by foraging."
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:asparagus_root",
-      "text": "Automatically grows asparagus. Will die eventually."
     }
   ]
 }

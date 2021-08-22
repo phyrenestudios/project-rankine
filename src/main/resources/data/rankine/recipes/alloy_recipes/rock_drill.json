@@ -10,11 +10,16 @@
       "tag": "forge:ingots/bronze"
     },
     "R": {
-      "tag": "forge:rods/cast_iron"
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/cast_iron_alloy_alloying",
+      "name": "Cast Iron Alloy Rod",
+      "color": 986895
     },
     "G": {
       "item": "rankine:alloy_gear",
-      "alloyData": "75Cu-13Sn-12Mn"
+      "alloyRecipe": "rankine:alloying/bronze_alloy_alloying",
+      "name": "Bronze Alloy Gear",
+      "color": 12622179
     }
   },
   "result": {

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "rankine:block/grassy_sandy_clay_loam_top",
+    "bottom": "rankine:block/sandy_clay_loam",
+    "side": "minecraft:block/grass_block_snow"
+  }
+}

@@ -6,14 +6,17 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,36 +29,49 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AlloyingRecipe implements IRecipe<IInventory> {
 
     private final int total;
-    private final int required;
+
     private final int tier;
-    private final NonNullList<Ingredient> recipeItems;
-    private final NonNullList<PeriodicTableUtils.Element> elements;
+    private final NonNullList<ResourceLocation> elements;
     private final ItemStack recipeOutput;
     private final ResourceLocation id;
     private final NonNullList<Float> mins;
     private final NonNullList<Float> maxes;
+    private final NonNullList<Boolean> required;
     private final List<Float> bonusValues;
+    private final int color;
+    private final List<String> enchantments;
+    private final List<String> enchantmentTypes;
+    private final int minEnchantability;
+    private final int enchantInterval;
+    private final int maxEnchantLevelIn;
+    private final String localName;
 
     public static final AlloyingRecipe.Serializer SERIALIZER = new AlloyingRecipe.Serializer();
 
-    public AlloyingRecipe(ResourceLocation idIn, int totalIn, int requiredIn, int tierIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<PeriodicTableUtils.Element> elementsIn,
-                          ItemStack outputIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn, List<Float> bonusValuesIn) {
+    public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
+                          ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
+                          String nameIn, int colorIn) {
         this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
         this.tier = tierIn; // Binary: 1 = Alloy Furnace, 2 = Induction Furnace, 3 = Alloy Furnace && Induction Furnace
-        this.recipeItems = recipeItemsIn;
         this.elements = elementsIn;
         this.recipeOutput = outputIn;
         this.mins = minsIn;
         this.maxes = maxesIn;
         this.bonusValues = bonusValuesIn;
+        this.enchantments = enchantmentsIn;
+        this.enchantmentTypes = enchantmentTypesIn;
+        this.minEnchantability = minEnchantabilityIn;
+        this.enchantInterval = enchantIntervalIn;
+        this.maxEnchantLevelIn = maxEnchantLevelIn;
+        this.color = colorIn;
+        this.localName = nameIn;
     }
 
     public String getGroup() {
@@ -64,86 +80,96 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return this.recipeItems;
+        return NonNullList.withSize(1,Ingredient.EMPTY);
     }
 
     public int getTier() {
         return this.tier;
     }
 
-    public List<Ingredient> getIngredientsList(boolean required) {
+    public List<Ingredient> getIngredientsList(World worldIn) {
         List<Ingredient> ret = new ArrayList<>();
-        for (int i = 0; i < this.recipeItems.size(); i++) {
-            if ((this.mins.get(i) > 0 && required) || (this.mins.get(i) == 0 && !required)) {
-                ret.add(this.recipeItems.get(i));
+        for (ResourceLocation rs : this.elements) {
+            if (worldIn.getRecipeManager().getRecipe(rs).isPresent()) {
+                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+                ret.add(Ingredient.merge(recipe.getIngredients()));
             }
         }
         return ret;
     }
 
-    public List<Integer> getIndexList(boolean required) {
+    public List<Ingredient> getIngredientsList(World worldIn, boolean required) {
+        List<Ingredient> ret = new ArrayList<>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            ResourceLocation rs = this.elements.get(i);
+            if (worldIn.getRecipeManager().getRecipe(rs).isPresent() && this.required.get(i).equals(required)) {
+                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+                ret.add(Ingredient.merge(recipe.getIngredients()));
+            }
+        }
+        return ret;
+    }
+
+    public List<ElementRecipe> getElementList(World worldIn, boolean required) {
+        List<ElementRecipe> ret = new ArrayList<>();
+        for (int i = 0; i < this.elements.size(); i++) {
+            ResourceLocation rs = this.elements.get(i);
+            if (worldIn.getRecipeManager().getRecipe(rs).isPresent() && this.required.get(i).equals(required)) {
+                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+                ret.add(recipe);
+            }
+        }
+        return ret;
+    }
+
+    public List<ElementRecipe> getElementList(World worldIn) {
+        List<ElementRecipe> ret = new ArrayList<>();
+        for (ResourceLocation rs : this.elements) {
+            if (worldIn.getRecipeManager().getRecipe(rs).isPresent()) {
+                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+                ret.add(recipe);
+            }
+        }
+        return ret;
+    }
+
+    public int getTotalRequired() {
+        return Collections.frequency(this.required,true);
+    }
+
+    public List<Integer> getIndexList(World worldIn, boolean required) {
         List<Integer> ret = new ArrayList<>();
-        for (int i = 0; i < this.recipeItems.size(); i++) {
-            if ((this.mins.get(i) > 0 && required) || (this.mins.get(i) == 0 && !required)) {
+        for (int i = 0; i < this.elements.size(); i++) {
+            ResourceLocation rs = this.elements.get(i);
+            if (worldIn.getRecipeManager().getRecipe(rs).isPresent() && this.required.get(i).equals(required)) {
                 ret.add(i);
             }
         }
         return ret;
     }
 
-    public List<PeriodicTableUtils.Element> getElementList(boolean required) {
-        List<PeriodicTableUtils.Element> ret = new ArrayList<>();
-        for (int i = 0; i < this.recipeItems.size(); i++) {
-            if ((this.mins.get(i) > 0 && required) || (this.mins.get(i) == 0 && !required)) {
-                ret.add(this.elements.get(i));
-            }
-        }
-        return ret;
-    }
-
-    public ItemStack generateResult(IInventory inv, int type) {
-         if ((getTier() & type) != Math.min(getTier(),type) && getTier() != 0 && type != 0) {
+    public ItemStack generateResult(World worldIn, IInventory inv, int type) {
+        if ((getTier() & type) != Math.min(getTier(),type) && getTier() != 0 && type != 0) {
             return ItemStack.EMPTY;
         }
 
-        List<PeriodicTableUtils.Element> currentElements = new ArrayList<>();
+        List<ElementRecipe> currentElements = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            int workingIndex = 0;
             ItemStack stack = inv.getStackInSlot(i);
             if (!stack.isEmpty()) {
                 boolean flag = false;
-                for (Ingredient s : getIngredients()) {
-                    if (s.test(stack)) {
-                        PeriodicTableUtils.Element element = getElements().get(getIngredients().indexOf(s));
-                        if (!currentElements.contains(element)) {
-                            currentElements.add(element);
-                            currentMaterial.add(0);
-                        }
-                        workingIndex = currentElements.indexOf(element);
-                        flag = true;
-                    }
-                }
-                if (flag) {
-                    Item item = stack.getItem();
-                    ResourceLocation reg = item.getRegistryName();
-                    String registry = "";
-                    if (reg != null) {
-                        registry = reg.getPath();
-                    }
-
-                    if (stack.getItem().getTags().contains(new ResourceLocation("forge:storage_blocks")) || stack.getItem() instanceof BlockItem || registry.contains("block")) {
-                        currentMaterial.set(workingIndex, currentMaterial.get(workingIndex) + 81 * stack.getCount());
-                    } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || registry.contains("ingot")) {
-                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + 9 * stack.getCount());
-                    } else if (stack.getItem().getTags().contains(new ResourceLocation("forge:nuggets")) || registry.contains("nugget")) {
-                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + stack.getCount());
-                    } else if (stack.getItem() == Items.NETHERITE_SCRAP || registry.contains("scrap")){
-                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + 2 * stack.getCount());
+                ElementRecipe element = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, new Inventory(stack), worldIn).orElse(null);
+                if (element != null && getElements().contains(element.getId())) {
+                    if (!currentElements.contains(element)) {
+                        currentElements.add(element);
+                        currentMaterial.add(element.getMaterialCount(stack.getItem()) * stack.getCount());
                     } else {
-                        currentMaterial.set(workingIndex,currentMaterial.get(workingIndex) + 9 * stack.getCount());
+                        currentMaterial.set(currentElements.indexOf(element),currentMaterial.get(currentElements.indexOf(element)) + element.getMaterialCount(stack.getItem()) * stack.getCount());
                     }
-                } else {
+                    flag = true;
+                }
+                if (!flag) {
                     return ItemStack.EMPTY;
                 }
             }
@@ -151,24 +177,17 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
         int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
 
-        if ((Math.round(sum/10f) > 64 || Math.round(sum/10f) < 1) && currentElements.size() >= this.required){
+        if (currentElements.size() > 1 && (Math.round(sum/10f) > 64 || Math.round(sum/10f) < 1) && currentElements.size() >= getTotalRequired()){
             //System.out.println("Required total " + this.required + " not present or material total not between 1 and 64!");
             return ItemStack.EMPTY;
-        }
-        for (PeriodicTableUtils.Element e : getElementList(true))
-        {
-            if (!currentElements.contains(e)) {
-                //System.out.println("Required element " + e + " not present!");
-                return ItemStack.EMPTY;
-            }
         }
 
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
         for (int j = 0; j < currentElements.size(); j++) {
-            PeriodicTableUtils.Element curEl = currentElements.get(j);
+            ElementRecipe curEl = currentElements.get(j);
             int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
-            int windex = getElements().indexOf(curEl);
+            int windex = getElements().indexOf(curEl.getId());
             if (Math.round(getMins().get(windex) * 100) > curPer || Math.round(getMaxes().get(windex) * 100) < curPer) {
                 //System.out.println("Element " + curEl + " does not fall between max or min!");
                 //System.out.println("Min: " + Math.round(getMins().get(windex) * 100) + "%");
@@ -183,19 +202,25 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             return ItemStack.EMPTY;
         }
         ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.round(sum/10f));
-        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getDirectComposition(percents,symbols)));
+        if (out.getItem() instanceof IAlloyItem) {
+            ((IAlloyItem) out.getItem()).createAlloyNBT(out, worldIn, AlloyRecipeHelper.getDirectComposition(percents,symbols), this.id, !this.getLocalName().isEmpty() ? this.getLocalName() : null);
+            if (this.getColor() != 16777215) {
+                out.getOrCreateTag().putInt("color",this.getColor());
+            }
+        }
+
         return out;
     }
 
-    public ItemStack generateRandomResult(World worldIn) {
+    /*public ItemStack generateRandomResult(World worldIn) {
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        List<PeriodicTableUtils.Element> req = getElementList(true);
-        List<PeriodicTableUtils.Element> nonreq = getElementList(false);
+        List<ResourceLocation> req = getElementList(true);
+        List<ResourceLocation> nonreq = getElementList(false);
         int r = worldIn.getRandom().nextInt(6 - required) + required;
         int total = 0;
         for (int j = 0; j < r; j++) {
-            PeriodicTableUtils.Element curEl;
+            ResourceLocation curEl;
             if (j < req.size()) {
                 curEl = req.get(j);
             } else {
@@ -217,6 +242,14 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),1);
         AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getDirectComposition(percents,symbols)));
         return out;
+    }*/
+
+    public List<String> getEnchantments() {
+        return enchantments;
+    }
+
+    public List<String> getEnchantmentTypes() {
+        return enchantmentTypes;
     }
 
     public NonNullList<Float> getMins() {
@@ -229,6 +262,18 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
     public List<Float> getBonusValues() {
         return bonusValues;
+    }
+
+    public NonNullList<Boolean> getRequired() {
+        return required;
+    }
+
+    public String getLocalName() {
+        return localName;
+    }
+
+    public int getColor() {
+        return color;
     }
 
     public int getBonusDurability() { return Math.round(this.getBonusValues().get(0));}
@@ -251,14 +296,26 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
     public float getBonusToughness() { return this.getBonusValues().get(9);}
 
+    public int getMinEnchantability() {
+        return minEnchantability;
+    }
+
+    public int getEnchantInterval() {
+        return enchantInterval;
+    }
+
+    public int getMaxEnchantLevelIn() {
+        return maxEnchantLevelIn;
+    }
+
     @Override
     public boolean matches(IInventory inv, World worldIn) {
         if (inv instanceof AlloyFurnaceTile) {
-            return !generateResult(inv,1).isEmpty();
+            return !generateResult(worldIn,inv,1).isEmpty();
         } else if (inv instanceof InductionFurnaceTile) {
-            return !generateResult(inv,2).isEmpty();
+            return !generateResult(worldIn, inv,2).isEmpty();
         } else if (getTier() != 0){
-            return !generateResult(inv,3).isEmpty();
+            return !generateResult(worldIn, inv,3).isEmpty();
         } else {
             return false;
         }
@@ -271,14 +328,22 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return this.recipeOutput.copy();
+        ItemStack out = this.recipeOutput.copy();
+        if (this.getColor() != 16777215) {
+            out.getOrCreateTag().putInt("color",this.getColor());
+        }
+
+        if (!this.getLocalName().isEmpty()) {
+            out.getOrCreateTag().putString("nameOverride",this.getLocalName());
+        }
+        return out;
     }
 
     public int getTotal() {
         return this.total;
     }
 
-    public NonNullList<PeriodicTableUtils.Element> getElements() {
+    public NonNullList<ResourceLocation> getElements() {
         return this.elements;
     }
 
@@ -332,71 +397,56 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             } else {
                 y = 3;
             }
-
-            NonNullList<Ingredient> nonnulllist = NonNullList.withSize(t,Ingredient.EMPTY);
+            int c;
+            if (json.has("color")) {
+                c = Math.max(0,json.get("color").getAsInt());
+            } else {
+                c = 16777215;
+            }
+            String n;
+            if (json.has("name")) {
+                n = json.get("name").getAsString();
+            } else {
+                n = "";
+            }
 
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
             ItemStack stack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
 
-            NonNullList<PeriodicTableUtils.Element> elements = NonNullList.withSize(t, PeriodicTableUtils.Element.MERCURY);
+            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, new ResourceLocation(""));
             NonNullList<Float> mins = NonNullList.withSize(t, 0f);
             NonNullList<Float> maxes = NonNullList.withSize(t, 0f);
+            NonNullList<Boolean> reqs = NonNullList.withSize(t, false);
 
             for (int i = 0; i < t; i++) {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
                     JsonObject object = JSONUtils.getJsonObject(json, input);
-                    String elementTag = "";
                     if (object.has("element")){
-                        elements.set(i, PeriodicTableUtils.Element.valueOfCaseIgnored(object.get("element").getAsString()));
-                        elementTag = object.get("element").getAsString().toLowerCase();
+                        elements.set(i, new ResourceLocation(object.get("element").getAsString()));
                     } else {
-                        elements.set(i,PeriodicTableUtils.Element.MERCURY);
-                        elementTag = "mercury";
-                    }
-
-                    boolean e = !object.has("auto") || (object.has("auto") && JSONUtils.getBoolean(object, "auto"));
-                    if (e) {
-                        String rs = "rankine:elements/" + elementTag;
-                        JsonObject d = new JsonObject();
-                        d.addProperty("tag",rs);
-                        Ingredient out = AlloyIngredientHelper.deserialize(d,null);
-                        if (out != Ingredient.EMPTY) {
-                            nonnulllist.set(i, AlloyIngredientHelper.deserialize(d,null));
-                        } else {
-                            nonnulllist.set(i, Ingredient.fromStacks(new ItemStack(RankineItems.ELEMENT.get())));
-                        }
-                    } else {
-                        nonnulllist.set(i, AlloyIngredientHelper.deserialize(object,null));
+                        throw new JsonParseException("Object 'element' for " + input + " does not exist!");
                     }
 
 
                     if (object.has("min")){
                         mins.set(i,Math.min(Math.max(object.get("min").getAsFloat(),0f),1f));
-                        if (object.get("min").getAsFloat() > 0) {
-                            reqcount += 1;
-                        }
-                    } else {
-                        mins.set(i,0f);
                     }
 
                     if (object.has("max")){
                         maxes.set(i,Math.min(Math.max(object.get("max").getAsFloat(),0f),1f));
-                    } else {
-                        maxes.set(i,0f);
+                    }
+
+                    if (object.has("required")){
+                        reqs.set(i,object.get("required").getAsBoolean());
                     }
 
                 }
             }
 
-            int r;
-            if (json.has("required") && reqcount < json.get("required").getAsInt()) {
-                r = json.get("required").getAsInt();
-            } else {
-                r = reqcount;
-            }
-            if (r > 5 || r <= 1) {
+            int r = Collections.frequency(reqs,true);
+            if (r > 6) {
                 throw new JsonParseException("Unsupported number of alloy ingredient requirements (" + r + ") in " + json);
             }
 
@@ -410,24 +460,33 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                     bonusStats.add(0f);
                 }
             }
-            return new AlloyingRecipe(recipeId, t,r, y, nonnulllist, elements, stack, mins, maxes, bonusStats);
+
+            List<String> enchantments = new ArrayList<>();
+            List<String> enchantmentTypes = new ArrayList<>();
+            if (json.has("enchantments")) {
+                JsonArray e = JSONUtils.getJsonArray(json,"enchantments");
+                JsonArray eTypes = JSONUtils.getJsonArray(json,"enchantmentTypes");
+                for (int i = 0; i < e.size(); i++) {
+                    enchantments.add(e.get(i).getAsString().toLowerCase(Locale.ROOT));
+                    enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
+                }
+            }
+
+            int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 10;
+            int interval = json.has("enchantInterval") ? json.get("enchantInterval").getAsInt() : 5;
+            int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 5;
+            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,c);
         }
 
         public AlloyingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
             int t = buffer.readInt();
-            int r = buffer.readInt();
             int y = buffer.readInt();
-            NonNullList<Ingredient> nonnulllist = NonNullList.withSize(t, Ingredient.EMPTY);
             List<Float> bonusStats = new ArrayList<>();
 
-            for(int k = 0; k < nonnulllist.size(); ++k) {
-                nonnulllist.set(k, Ingredient.read(buffer));
-            }
-
-            NonNullList<PeriodicTableUtils.Element> elements = NonNullList.withSize(t, PeriodicTableUtils.Element.MERCURY);
+            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, new ResourceLocation(""));
 
             for(int k = 0; k < elements.size(); ++k) {
-                elements.set(k, PeriodicTableUtils.Element.valueOfCaseIgnored(buffer.readString()));
+                elements.set(k, new ResourceLocation(buffer.readString()));
             }
 
             ItemStack stack = buffer.readItemStack();
@@ -443,34 +502,43 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readFloat());
             }
 
+            NonNullList<Boolean> reqs = NonNullList.withSize(t,false);
+            for(int k = 0; k < reqs.size(); ++k) {
+                reqs.set(k, buffer.readBoolean());
+            }
+
             for (int k = 0; k < 10; k++) {
                 bonusStats.add(buffer.readFloat());
             }
 
-            return new AlloyingRecipe(recipeId,t,r,y,nonnulllist, elements, stack, mins, maxes,bonusStats);
+            String n = buffer.readString();
+            int c = buffer.readInt();
+
+            int size = buffer.readInt();
+            List<String> enchantments = new ArrayList<>();
+            List<String> enchantmentTypes = new ArrayList<>();
+            for (int j = 0; j < size; j++) {
+                enchantments.add(buffer.readString().toLowerCase(Locale.ROOT));
+                enchantmentTypes.add(buffer.readString().toUpperCase(Locale.ROOT));
+            }
+
+            int startEnchant = buffer.readInt();
+            int interval = buffer.readInt();
+            int maxLvl = buffer.readInt();
+            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,c);
         }
 
         public void write(PacketBuffer buffer, AlloyingRecipe recipe) {
             buffer.writeInt(recipe.total);
-            buffer.writeInt(recipe.required);
             buffer.writeInt(recipe.tier);
-            int count = 0;
-            for(Ingredient ingredient : recipe.recipeItems) {
-                ingredient.write(buffer);
-                count++;
-            }
-            while (count < recipe.total) {
-                Ingredient.EMPTY.write(buffer);
-                count++;
-            }
 
-            count = 0;
-            for(PeriodicTableUtils.Element element : recipe.elements) {
-                buffer.writeString(element.name());
+            int count = 0;
+            for(ResourceLocation element : recipe.elements) {
+                buffer.writeString(element.toString());
                 count++;
             }
             while (count < recipe.total) {
-                buffer.writeString(PeriodicTableUtils.Element.MERCURY.name());
+                buffer.writeString("rankine:elements/mercury");
                 count++;
             }
 
@@ -496,10 +564,33 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 count++;
             }
 
+            count = 0;
+            for (boolean add : recipe.required) {
+                buffer.writeBoolean(add);
+                count++;
+            }
+            while (count < recipe.total) {
+                buffer.writeBoolean(false);
+                count++;
+            }
+
             for (int k = 0; k < 10; k++) {
                 buffer.writeFloat(recipe.getBonusValues().get(k));
             }
 
+            buffer.writeString(recipe.getLocalName());
+            buffer.writeInt(recipe.getColor());
+
+            int size = recipe.getEnchantments().size();
+            buffer.writeInt(size);
+            for (int i = 0; i < size; i++) {
+                buffer.writeString(recipe.getEnchantments().get(i));
+                buffer.writeString(recipe.getEnchantmentTypes().get(i));
+            }
+
+            buffer.writeInt(recipe.minEnchantability);
+            buffer.writeInt(recipe.enchantInterval);
+            buffer.writeInt(recipe.maxEnchantLevelIn);
         }
     }
 

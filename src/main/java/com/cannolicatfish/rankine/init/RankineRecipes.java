@@ -1,17 +1,12 @@
 package com.cannolicatfish.rankine.init;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
-import com.cannolicatfish.rankine.advancements.PewterEnchantabilityPredicate;
-import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
-import com.cannolicatfish.rankine.items.alloys.*;
+import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
 import com.cannolicatfish.rankine.potion.RankinePotions;
-import com.cannolicatfish.rankine.recipe.*;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.enchantment.Enchantment;
@@ -23,14 +18,10 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class RankineRecipes {
 
@@ -42,7 +33,7 @@ public class RankineRecipes {
 
     public static void registerPredicates() {
         ItemPredicate.register(new ResourceLocation("rankine","harvest_level_check"), HarvestLevelPredicate::new);
-        ItemPredicate.register(new ResourceLocation("rankine","enchant_check"), PewterEnchantabilityPredicate::new);
+        ItemPredicate.register(new ResourceLocation("rankine","enchant_check"), AlloyEnchantabilityPredicate::new);
         ItemPredicate.register(new ResourceLocation("rankine","exact_composition"), ExactCompositionPredicate::new);
         ItemPredicate.register(new ResourceLocation("rankine","includes_composition"), IncludesCompositionPredicate::new);
     }

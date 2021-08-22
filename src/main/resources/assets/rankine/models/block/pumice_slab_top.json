@@ -1,8 +1,0 @@
-{
-      "parent": "block/slab_top",
-      "textures": {
-        "bottom": "rankine:block/pumice",
-        "top": "rankine:block/pumice",
-        "side": "rankine:block/pumice"
-      }
-    }

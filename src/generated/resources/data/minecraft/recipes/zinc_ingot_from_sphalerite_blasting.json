@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:sphalerite"
+  },
+  "result": "rankine:zinc_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

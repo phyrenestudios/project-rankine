@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:shale_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:shale_bricks_wall",
+    "count": 6
+  }
+}

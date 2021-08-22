@@ -1,7 +1,0 @@
-{
-      "parent": "block/door_top",
-      "textures": {
-        "bottom": "rankine:block/cupronickel_door_bottom",
-        "top": "rankine:block/cupronickel_door_top"
-      }
-    }

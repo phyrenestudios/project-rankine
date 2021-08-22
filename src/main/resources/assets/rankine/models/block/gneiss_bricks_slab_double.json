@@ -1,7 +1,0 @@
-{
-          "parent": "block/cube_column",
-          "textures": {
-            "end": "rankine:block/gneiss_bricks",
-            "side": "rankine:block/gneiss_bricks"
-          }
-        }

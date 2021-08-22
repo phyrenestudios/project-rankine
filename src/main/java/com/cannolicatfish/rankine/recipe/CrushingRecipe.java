@@ -175,7 +175,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "crushing");
         public CrushingRecipe read(ResourceLocation recipeId, JsonObject json) {
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(1,Ingredient.EMPTY);
-            nonnulllist.set(0, AlloyIngredientHelper.deserialize(json.get("input"),null));
+            nonnulllist.set(0, AlloyIngredientHelper.deserialize(json.get("input"),null, null,null));
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(6, ItemStack.EMPTY);
             NonNullList<Float> chances = NonNullList.withSize(6, 0f);

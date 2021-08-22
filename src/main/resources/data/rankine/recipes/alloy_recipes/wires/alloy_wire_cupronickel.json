@@ -1,6 +1,9 @@
 {
   "type": "rankine:alloy_crafting",
-  "inherit": false,
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/cupronickel_alloy_alloying",
+  "name": "Cupronickel Alloy Wire",
+  "color": 11946807,
   "pattern": [
     " I ",
     "ISI",
@@ -9,7 +12,7 @@
   "key": {
     "I": {
       "tag": "forge:ingots/cupronickel",
-      "alloyData": "90Cu-10Ni"
+      "alloyRecipe": "rankine:alloying/cupronickel_alloy_alloying"
     },
     "S": {
       "tag": "forge:ingots/solder"
@@ -17,7 +20,6 @@
   },
   "result": {
     "item": "rankine:alloy_wire",
-    "alloyData": "90Cu-10Ni",
     "count": 8
   }
 }

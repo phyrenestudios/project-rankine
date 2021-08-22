@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=y":  { "model": "rankine:block/cast_iron_pipe_junction" },
-    "axis=z":   { "model": "rankine:block/cast_iron_pipe_junction", "x": 90 },
-    "axis=x":   { "model": "rankine:block/cast_iron_pipe_junction", "x": 90, "y": 90 }
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/skarn",
-    "top": "rankine:block/skarn",
-    "side": "rankine:block/skarn"
-  }
-}

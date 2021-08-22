@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/black_walnut_slab" },
-            "type=top": { "model": "rankine:block/black_walnut_slab_top" },
-            "type=double": { "model": "rankine:block/black_walnut_planks" }
-            }
-        }

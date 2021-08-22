@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:coconut_palm_planks"
+    }
+  ],
+  "result": {
+    "item": "rankine:coconut_palm_button"
+  }
+}

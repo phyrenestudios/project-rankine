@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:polished_ringwoodite"
-      },
-      "result": "rankine:polished_ringwoodite_wall",
-      "count": 1
-    }

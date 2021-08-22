@@ -3,19 +3,23 @@
   "total": 3,
   "tier": 2,
   "input1": {
-    "element": "netherite",
+    "element": "rankine:elements/netherite",
     "min": 0.75,
-    "max": 0.80
+    "max": 0.80,
+    "required": true
   },
   "input2": {
-    "element": "cobalt",
+    "element": "rankine:elements/cobalt",
     "min": 0.15,
-    "max": 0.20
+    "max": 0.20,
+    "required": true
   },
   "input3": {
-    "element": "chromium",
+    "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.10
   },
-  "result": "rankine:black_gold_alloy"
+  "result": "rankine:black_gold_alloy",
+  "enchantments": ["minecraft:bane_of_arthropods","rankine:excavate","rankine:foraging","rankine:quake","rankine:quake","minecraft:loyalty","minecraft:bane_of_arthropods","rankine:retreat","rankine:prying"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
 }

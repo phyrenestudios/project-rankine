@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:gray_marble_button_from_gray_marble_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_gray_marble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:gray_marble"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:gray_marble_button_from_gray_marble_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gray_marble",
+      "has_the_recipe"
+    ]
+  ]
+}

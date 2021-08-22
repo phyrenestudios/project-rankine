@@ -1,0 +1,35 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "sps",
+    "gGg",
+    "sas"
+  ],
+  "key": {
+    "s": {
+      "item": "rankine:steel_sheetmetal"
+    },
+    "p": {
+      "item": "minecraft:sticky_piston"
+    },
+    "g": {
+      "item": "rankine:alloy_gear",
+      "alloyRecipe": "rankine:alloying/magnesium_alloy_alloying",
+      "name": "Magnesium Alloy Gear",
+      "color": 12362927
+    },
+    "G": {
+      "item": "rankine:alloy_gear",
+      "alloyRecipe": "rankine:alloying/steel_alloy_alloying",
+      "name": "Steel Alloy Gear",
+      "color": 12622179
+    },
+    "a": {
+      "item": "minecraft:anvil"
+    }
+  },
+  "result": {
+    "item": "rankine:gyratory_crusher",
+    "count": 1
+  }
+}

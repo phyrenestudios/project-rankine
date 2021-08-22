@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rankine:block/erythrina_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rankine:block/erythrina_log"
+    },
+    "axis=z": {
+      "model": "rankine:block/erythrina_log_horizontal",
+      "x": 90
+    }
+  }
+}

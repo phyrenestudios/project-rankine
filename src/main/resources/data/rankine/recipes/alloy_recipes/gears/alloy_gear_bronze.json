@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
+  "name": "Bronze Alloy Gear",
+  "color": 12622179,
   "pattern": [
     " I ",
     "ISI",

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:anorthosite"
+  },
+  "result": "rankine:anorthosite_pressure_plate",
+  "count": 1
+}

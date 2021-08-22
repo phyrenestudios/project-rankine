@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:siltstone_bricks"
+  },
+  "result": "rankine:siltstone_bricks_stairs",
+  "count": 1
+}

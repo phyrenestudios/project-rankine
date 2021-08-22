@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:gray_marble_bricks"
+  },
+  "result": "rankine:gray_marble_bricks_pressure_plate",
+  "count": 1
+}

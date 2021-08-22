@@ -1,8 +1,0 @@
-{
-      "parent": "block/stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_komatiite",
-        "top": "rankine:block/polished_komatiite",
-        "side": "rankine:block/polished_komatiite"
-      }
-    }

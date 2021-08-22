@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab",
-  "textures": {
-    "bottom": "rankine:block/andesite_bricks",
-    "top": "rankine:block/andesite_bricks",
-    "side": "rankine:block/andesite_bricks"
-  }
-}

@@ -1,10 +1,58 @@
 {
-          "type": "rankine:element",
-          "name": "calcium",
-          "symbol": "Ca",
-          "color": 16777215,
-          "atomic": 20,
-          "potential": 0,
-          "items": ["T#forge:nuggets/calcium","T#forge:ingots/calcium","T#forge:storage_blocks/calcium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "calcium",
+  "symbol": "Ca",
+  "color": 15595448,
+  "atomic": 20,
+  "potential": 0,
+  "items": ["T#forge:nuggets/calcium","T#forge:ingots/calcium","T#forge:storage_blocks/calcium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-1],
+    "b": [15],
+    "modifiers": ["ABSOLUTE_VALUE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.5]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.075],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.75]
+  },
+  "miningspeed": {
+    "breaks": [9,100],
+    "formulas": ["ALTERNATING","CONSTANT_ALTERNATING"],
+    "a": [-0.5,-5],
+    "b": [0.5,5],
+    "modifiers": ["ALTERNATING_MODULO","ALTERNATING_MODULO"],
+    "limit": [3,3]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["ALTERNATING"],
+    "a": [-0.1],
+    "b": [0.1],
+    "modifiers": ["ALTERNATING_MODULO"],
+    "limit": [4]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.002],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

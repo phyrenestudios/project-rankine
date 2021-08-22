@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/roman_concrete",
-        "top": "rankine:block/roman_concrete",
-        "side": "rankine:block/roman_concrete"
-      }
-    }

@@ -1,7 +1,0 @@
-{
-          "parent": "block/cube_column",
-          "textures": {
-            "end": "rankine:block/carbonaceous_shale",
-            "side": "rankine:block/carbonaceous_shale"
-          }
-        }

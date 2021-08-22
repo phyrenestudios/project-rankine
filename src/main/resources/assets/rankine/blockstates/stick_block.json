@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "axis=y":  { "model": "rankine:block/stick_block" },
-    "axis=z":   { "model": "rankine:block/stick_block", "x": 90 },
-    "axis=x":   { "model": "rankine:block/stick_block", "x": 90, "y": 90 }
-  }
-}

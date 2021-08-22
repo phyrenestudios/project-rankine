@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:ferropericlase"
-      },
-      "result": "rankine:polished_ferropericlase",
-      "count": 1
-    }

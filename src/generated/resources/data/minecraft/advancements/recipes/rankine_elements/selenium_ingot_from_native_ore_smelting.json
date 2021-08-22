@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:selenium_ingot_from_native_ore_smelting"
+    ]
+  },
+  "criteria": {
+    "has_native_selenium_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:native_selenium_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:selenium_ingot_from_native_ore_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_native_selenium_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

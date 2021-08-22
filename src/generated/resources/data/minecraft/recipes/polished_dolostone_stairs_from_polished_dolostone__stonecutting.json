@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_dolostone"
+  },
+  "result": "rankine:polished_dolostone_stairs",
+  "count": 1
+}

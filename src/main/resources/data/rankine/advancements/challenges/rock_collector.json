@@ -2,7 +2,7 @@
   "parent": "rankine:challenges/rankine_challenges",
   "display": {
     "icon": {
-      "item": "rankine:wadsleyite"
+      "item": "rankine:skarn"
     },
     "title": {
       "translate": "rankine.advancements.challenges.rock_collector.title"
@@ -56,12 +56,12 @@
         ]
       }
     },
-    "rankine:pyroxene_gabbro": {
+    "rankine:gabbro": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:pyroxene_gabbro"
+            "item": "rankine:gabbro"
           }
         ]
       }
@@ -266,16 +266,6 @@
         ]
       }
     },
-    "rankine:mariposite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:mariposite"
-          }
-        ]
-      }
-    },
     "rankine:skarn": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -286,62 +276,12 @@
         ]
       }
     },
-    "rankine:ringwoodite": {
+    "rankine:limestone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:ringwoodite"
-          }
-        ]
-      }
-    },
-    "rankine:wadsleyite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:wadsleyite"
-          }
-        ]
-      }
-    },
-    "rankine:bridgmanite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:bridgmanite"
-          }
-        ]
-      }
-    },
-    "rankine:ferropericlase": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:ferropericlase"
-          }
-        ]
-      }
-    },
-    "rankine:perovskite": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:perovskite"
-          }
-        ]
-      }
-    },
-    "rankine:tufa_limestone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "rankine:tufa_limestone"
+            "item": "rankine:limestone"
           }
         ]
       }
@@ -366,12 +306,12 @@
         ]
       }
     },
-    "rankine:carbonaceous_shale": {
+    "rankine:shale": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:carbonaceous_shale"
+            "item": "rankine:shale"
           }
         ]
       }
@@ -386,22 +326,22 @@
         ]
       }
     },
-    "rankine:quartz_sandstone": {
+    "rankine:itacolumite": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:quartz_sandstone"
+            "item": "rankine:itacolumite"
           }
         ]
       }
     },
-    "rankine:arkose_sandstone": {
+    "rankine:arkose": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:arkose_sandstone"
+            "item": "rankine:arkose"
           }
         ]
       }
@@ -442,7 +382,7 @@
     ["rankine:granodiorite"],
     ["rankine:hornblende_andesite"],
     ["rankine:tholeiitic_basalt"],
-    ["rankine:pyroxene_gabbro"],
+    ["rankine:gabbro"],
     ["rankine:anorthosite"],
     ["rankine:rhyolite"],
     ["rankine:comendite"],
@@ -464,20 +404,14 @@
     ["rankine:phyllite"],
     ["rankine:slate"],
     ["rankine:quartzite"],
-    ["rankine:mariposite"],
     ["rankine:skarn"],
-    ["rankine:ringwoodite"],
-    ["rankine:wadsleyite"],
-    ["rankine:bridgmanite"],
-    ["rankine:ferropericlase"],
-    ["rankine:perovskite"],
-    ["rankine:tufa_limestone"],
+    ["rankine:limestone"],
     ["rankine:dolostone"],
     ["rankine:chalk"],
-    ["rankine:carbonaceous_shale"],
+    ["rankine:shale"],
     ["rankine:siltstone"],
-    ["rankine:quartz_sandstone"],
-    ["rankine:arkose_sandstone"],
+    ["rankine:itacolumite"],
+    ["rankine:arkose"],
     ["rankine:mudstone"],
     ["rankine:breccia"]
   ]

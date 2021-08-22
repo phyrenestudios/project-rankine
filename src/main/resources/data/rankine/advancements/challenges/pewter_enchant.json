@@ -25,6 +25,7 @@
           },
           {
             "type": "rankine:enchant_check",
+            "tag": "forge:pewter_tools",
             "ench": 14
           }
         ]

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:chrome_enstatite"
+    }
+  },
+  "result": {
+    "item": "rankine:chrome_enstatite_block"
+  }
+}

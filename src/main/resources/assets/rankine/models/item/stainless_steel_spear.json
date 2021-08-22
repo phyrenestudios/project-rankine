@@ -1,6 +1,0 @@
-{
-  "parent": "rankine:item/alloy_spear",
-  "textures": {
-    "layer0": "rankine:item/stainless_steel_spear"
-  }
-}

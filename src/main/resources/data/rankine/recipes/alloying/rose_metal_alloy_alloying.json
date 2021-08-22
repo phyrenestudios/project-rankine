@@ -2,19 +2,22 @@
   "type": "rankine:alloying",
   "total": 3,
   "input1": {
-    "element": "bismuth",
+    "element": "rankine:elements/bismuth",
     "min": 0.30,
-    "max": 0.50
+    "max": 0.50,
+    "required": true
   },
   "input2": {
-    "element": "lead",
+    "element": "rankine:elements/lead",
     "min": 0.18,
-    "max": 0.40
+    "max": 0.40,
+    "required": true
   },
   "input3": {
-    "element": "tin",
+    "element": "rankine:elements/tin",
     "min": 0.10,
-    "max": 0.25
+    "max": 0.25,
+    "required": true
   },
   "result": "rankine:rose_metal_alloy"
 }

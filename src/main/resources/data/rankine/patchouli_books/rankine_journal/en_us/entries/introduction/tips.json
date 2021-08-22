@@ -1,0 +1,16 @@
+{
+  "name": "Tips",
+  "icon": "rankine:laser_quarry",
+  "category": "introduction",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "text",
+      "text": "This entry is meant to provide the player with some miscellaneous information."
+    },
+    {
+      "type": "text",
+      "text": "Although they have low durability, colored gold tools come with useful enchantments. $(br2)Some berry bushes do not prick you, although snowberries have a chance to poison you. $(br2)Adding small percentages of certain elements can have large impacts on tools. $(br2)"
+    }
+  ]
+}

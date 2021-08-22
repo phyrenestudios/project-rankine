@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:rods/graphite",
+    "#forge:rods/carbon",
+    "rankine:alloy_rod"
+  ]
+}

@@ -33,23 +33,8 @@
     },
     {
       "type": "spotlight",
-      "item": "rankine:iron_hammer",
-      "text": "Stats:$(li)Harvest wLevel: 1"
-    },
-    {
-      "type": "spotlight",
       "item": "rankine:steel_hammer",
       "text": "Stats:$(li)Harvest Level: 3"
-    },
-    {
-      "type": "crafting",
-      "recipe": "rankine:diamond_hammer",
-      "text": "Stats:$(li)Harvest Level: 3"
-    },
-    {
-      "type": "spotlight",
-      "item": "rankine:netherite_hammer",
-      "text": "Stats:$(li)Harvest Level: 4"
     },
     {
       "type": "spotlight",

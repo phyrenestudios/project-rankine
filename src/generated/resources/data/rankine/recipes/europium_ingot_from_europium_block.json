@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:europium_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:europium_ingot",
+    "count": 9
+  }
+}

@@ -1,6 +1,0 @@
-{
-      "variants": {
-        "powered=false": { "model": "rankine:block/tholeiitic_basalt_pressure_plate" },
-        "powered=true": { "model": "rankine:block/tholeiitic_basalt_pressure_plate_down" }
-      }
-    }

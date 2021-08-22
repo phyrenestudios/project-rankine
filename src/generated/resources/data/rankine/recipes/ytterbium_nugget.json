@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:ytterbium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:ytterbium_nugget",
+    "count": 9
+  }
+}

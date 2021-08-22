@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:lime_led"
+    ]
+  },
+  "criteria": {
+    "has_silicon_carbide": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:silicon_carbide"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:lime_led"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silicon_carbide",
+      "has_the_recipe"
+    ]
+  ]
+}

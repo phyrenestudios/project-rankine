@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:nickel_ingot_from_pentlandite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_pentlandite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pentlandite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:nickel_ingot_from_pentlandite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pentlandite",
+      "has_the_recipe"
+    ]
+  ]
+}

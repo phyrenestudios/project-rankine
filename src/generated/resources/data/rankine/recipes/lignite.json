@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:lignite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:lignite",
+    "count": 9
+  }
+}

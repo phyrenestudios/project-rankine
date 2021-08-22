@@ -1,7 +1,0 @@
-{
-      "variants": {
-        "axis=y": { "model": "rankine:block/stripped_eastern_hemlock_wood" },
-        "axis=z": { "model": "rankine:block/stripped_eastern_hemlock_wood", "x": 90 },
-        "axis=x": { "model": "rankine:block/stripped_eastern_hemlock_wood", "x": 90, "y": 90 }
-      }
-    }

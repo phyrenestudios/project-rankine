@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "rankine:block/red_fiber_mat" },
-        "facing=east":  { "model": "rankine:block/red_fiber_mat", "y": 90 },
-        "facing=south": { "model": "rankine:block/red_fiber_mat", "y": 180 },
-        "facing=west":  { "model": "rankine:block/red_fiber_mat", "y": 270 }
-    }
-}

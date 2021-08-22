@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:native_indium_ore"
-      },
-      "result": "rankine:indium_ingot",
-      "experience": 0.7,
-      "cookingtime": 100
-    }

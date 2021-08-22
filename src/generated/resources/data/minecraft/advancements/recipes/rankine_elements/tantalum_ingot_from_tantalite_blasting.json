@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:tantalum_ingot_from_tantalite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_tantalite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:tantalite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:tantalum_ingot_from_tantalite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tantalite",
+      "has_the_recipe"
+    ]
+  ]
+}

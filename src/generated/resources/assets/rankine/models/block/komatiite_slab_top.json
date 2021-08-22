@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "rankine:block/komatiite",
+    "bottom": "rankine:block/komatiite",
+    "top": "rankine:block/komatiite"
+  }
+}

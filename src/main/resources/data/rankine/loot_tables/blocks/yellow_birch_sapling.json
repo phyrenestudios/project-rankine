@@ -1,3 +1,0 @@
-{
-    "type": "minecraft:block", "pools": [ { "rolls": 1, "entries": [ { "type": "minecraft:item", "name": "rankine:yellow_birch_sapling" } ], "conditions": [ { "condition": "minecraft:survives_explosion" } ] } ]
-    }

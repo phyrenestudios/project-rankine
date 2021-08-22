@@ -1,7 +1,0 @@
-{
-          "parent": "block/cube_column",
-          "textures": {
-                "end": "rankine:block/polished_komatiite",
-                "side": "rankine:block/polished_komatiite_slab_side"
-          }
-        }

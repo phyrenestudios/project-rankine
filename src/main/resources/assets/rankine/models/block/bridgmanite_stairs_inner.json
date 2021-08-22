@@ -1,8 +1,0 @@
-{
-      "parent": "block/inner_stairs",
-      "textures": {
-        "bottom": "rankine:block/bridgmanite",
-        "top": "rankine:block/bridgmanite",
-        "side": "rankine:block/bridgmanite"
-      }
-    }

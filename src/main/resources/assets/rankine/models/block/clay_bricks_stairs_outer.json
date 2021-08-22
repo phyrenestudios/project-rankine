@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "rankine:block/clay_bricks",
-    "top": "rankine:block/clay_bricks",
-    "side": "rankine:block/clay_bricks"
-  }
-}

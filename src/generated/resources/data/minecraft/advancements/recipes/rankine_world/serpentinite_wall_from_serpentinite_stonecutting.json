@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:serpentinite_wall_from_serpentinite_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_serpentinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:serpentinite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:serpentinite_wall_from_serpentinite_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_serpentinite",
+      "has_the_recipe"
+    ]
+  ]
+}

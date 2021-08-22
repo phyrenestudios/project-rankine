@@ -3,34 +3,38 @@
   "total": 6,
   "tier": 2,
   "input1": {
-    "element": "netherite",
+    "element": "rankine:elements/netherite",
     "min": 0.30,
-    "max": 0.70
+    "max": 0.70,
+    "required": true
   },
   "input2": {
-    "element": "silver",
+    "element": "rankine:elements/silver",
     "min": 0.30,
-    "max": 0.70
+    "max": 0.70,
+    "required": true
   },
   "input3": {
-    "element": "copper",
+    "element": "rankine:elements/copper",
     "min": 0.0,
     "max": 0.10
   },
   "input4": {
-    "element": "cadmium",
+    "element": "rankine:elements/cadmium",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "element": "platinum",
+    "element": "rankine:elements/platinum",
     "min": 0.0,
     "max": 0.10
   },
   "input6": {
-    "element": "selenium",
+    "element": "rankine:elements/selenium",
     "min": 0.0,
     "max": 0.10
   },
-  "result": "rankine:green_gold_alloy"
+  "result": "rankine:green_gold_alloy",
+  "enchantments": ["minecraft:mending"],
+  "enchantmentTypes": ["ALL"]
 }

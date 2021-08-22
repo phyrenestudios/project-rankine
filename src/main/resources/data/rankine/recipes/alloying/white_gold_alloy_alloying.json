@@ -1,35 +1,43 @@
 {
   "type": "rankine:alloying",
-  "total": 6,
+  "total": 7,
   "input1": {
-    "element": "gold",
-    "min": 0.74,
-    "max": 0.90
+    "element": "rankine:elements/gold",
+    "min": 0.75,
+    "max": 0.90,
+    "required": true
   },
   "input2": {
-    "element": "zinc",
-    "min": 0.05,
-    "max": 0.10
+    "element": "rankine:elements/palladium",
+    "min": 0.0,
+    "max": 0.25
   },
   "input3": {
-    "element": "nickel",
+    "element": "rankine:elements/platinum",
     "min": 0.0,
-    "max": 0.10
+    "max": 0.25
   },
   "input4": {
-    "element": "silver",
+    "element": "rankine:elements/silver",
     "min": 0.0,
     "max": 0.10
   },
   "input5": {
-    "element": "palladium",
+    "element": "rankine:elements/nickel",
     "min": 0.0,
     "max": 0.10
   },
   "input6": {
-    "element": "platinum",
+    "element": "rankine:elements/zinc",
     "min": 0.0,
     "max": 0.10
   },
-  "result": "rankine:white_gold_alloy"
+  "input7": {
+    "element": "rankine:elements/copper",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "result": "rankine:white_gold_alloy",
+  "enchantments": ["minecraft:fortune","rankine:atomize","minecraft:fortune","minecraft:fortune","minecraft:fortune","minecraft:impaling","minecraft:looting","rankine:preparation","rankine:leverage"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
 }

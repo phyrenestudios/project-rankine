@@ -1,9 +1,0 @@
-{
-      "type": "minecraft:blasting",
-      "ingredient": {
-        "item": "rankine:azurite"
-      },
-      "result": "rankine:copper_ingot",
-      "experience": 1.0,
-      "cookingtime": 100
-    }

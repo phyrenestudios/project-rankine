@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:loam",
+    "rankine:sandy_loam",
+    "rankine:silty_loam",
+    "rankine:clay_loam"
+  ]
+}

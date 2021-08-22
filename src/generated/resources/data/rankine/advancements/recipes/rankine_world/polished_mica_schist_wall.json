@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:polished_mica_schist_wall"
+    ]
+  },
+  "criteria": {
+    "has_polished_mica_schist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:polished_mica_schist"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:polished_mica_schist_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_mica_schist",
+      "has_the_recipe"
+    ]
+  ]
+}

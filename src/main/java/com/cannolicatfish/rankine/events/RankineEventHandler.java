@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
+import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
@@ -42,7 +44,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -54,7 +55,6 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -85,8 +85,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -120,11 +118,9 @@ public class RankineEventHandler {
     public static void addWandererTrades(WandererTradesEvent event) {
         if (Config.GENERAL.VILLAGER_TRADES.get()) {
             event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineItems.PINEAPPLE.get(), 1),4,1,0.5f));
-            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineBlocks.TUFA_LIMESTONE.get(), 8),8,1,0.05f));
+            event.getGenericTrades().add(new BasicTrade(1,new ItemStack(RankineBlocks.LIMESTONE.get(), 8),8,1,0.05f));
             event.getRareTrades().add(new BasicTrade(1,new ItemStack(RankineItems.ELEMENT_TRANSMUTER.get(), 2),8,1,0.05f));
-            ItemStack met = new ItemStack(RankineItems.METEORIC_IRON.get());
-            AlloyItem.addAlloy(met,new AlloyData("50Fe-50Ni"));
-            event.getRareTrades().add(new BasicTrade(3,met,6,1,0.5f));
+            event.getRareTrades().add(new BasicTrade(3,new ItemStack(RankineItems.METEORIC_IRON.get()),6,1,0.5f));
         }
     }
 
@@ -161,7 +157,7 @@ public class RankineEventHandler {
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.INVAR_HAMMER.get(),"90Fe-10Ni",8,3,10,0.2f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.ZIRCON.get()),12,15,0.05f));
-            level3.add(new BasicTrade(1, new ItemStack(RankineItems.ALUMINA.get()),12,15,0.05f));
+            level3.add(new BasicTrade(1, new ItemStack(RankineItems.BAUXITE.get()),12,15,0.05f));
             level3.add(new BasicTrade(1, new ItemStack(RankineItems.MAGNESITE.get()),12,15,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.VANADINITE.get()),12,15,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.PETALITE.get()),12,15,0.05f));
@@ -409,9 +405,10 @@ public class RankineEventHandler {
         if (event.getEntity() instanceof LightningBoltEntity) {
             LightningBoltEntity entity = (LightningBoltEntity) event.getEntity();
             World worldIn = event.getWorld();
-            ITag<Block> fulgurite = BlockTags.getCollection().get(new ResourceLocation("rankine:lightning_vitrified"));
+            ITag<Block> fulgurite = RankineTags.Blocks.LIGHTNING_VITRIFIED;
+            ITag<Block> lightningGlass = BlockTags.SAND;
             BlockPos startPos = entity.getPosition().down();
-            if (fulgurite != null && fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
+            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
                 Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
                 for (BlockPos pos : positions) {
                     double rand;
@@ -423,6 +420,21 @@ public class RankineEventHandler {
 
                     if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
                         worldIn.setBlockState(pos,RankineBlocks.FULGURITE.get().getDefaultState(),3);
+                    }
+                }
+            }
+            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
+                Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
+                for (BlockPos pos : positions) {
+                    double rand;
+                    if (startPos.getX() == pos.getX() && startPos.getZ() == pos.getZ()) {
+                        rand = 1/(1f + Math.abs(startPos.getY() - pos.getY()));
+                    } else {
+                        rand = pos.distanceSq(startPos.getX(),startPos.getY(),startPos.getZ(),true);
+                    }
+
+                    if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
+                        worldIn.setBlockState(pos,RankineBlocks.LIGHTNING_GLASS.get().getDefaultState(),3);
                     }
                 }
             }
@@ -878,7 +890,7 @@ public class RankineEventHandler {
             BlockPos pos = event.getPos();
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-            if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(Blocks.QUARTZ_BLOCK))
+            if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(Blocks.QUARTZ_BLOCK))
             {
                 event.setNewState(Blocks.GRANITE.getDefaultState());
                 return;
@@ -886,7 +898,7 @@ public class RankineEventHandler {
             {
                 event.setNewState(RankineBlocks.GRAY_GRANITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
+            } else if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
                 return;
@@ -896,13 +908,13 @@ public class RankineEventHandler {
                 return;
             }  else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
             {
-                event.setNewState(RankineBlocks.PYROXENE_GABBRO.get().getDefaultState());
+                event.setNewState(RankineBlocks.GABBRO.get().getDefaultState());
                 return;
             } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
+            } else if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
                 return;
@@ -940,7 +952,7 @@ public class RankineEventHandler {
                     event.setNewState(RankineBlocks.GRAY_GRANITE.get().getDefaultState());
                     break;
                 case 3:
-                    event.setNewState(RankineBlocks.PYROXENE_GABBRO.get().getDefaultState());
+                    event.setNewState(RankineBlocks.GABBRO.get().getDefaultState());
                     break;
                 case 4:
                     event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
@@ -962,7 +974,7 @@ public class RankineEventHandler {
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock());
 
-            if (adjPos.contains(RankineBlocks.FELDSPAR_BLOCK.get()))
+            if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()))
             {
                 event.setNewState(RankineBlocks.RHYOLITE.get().getDefaultState());
                 return;
@@ -1025,10 +1037,10 @@ public class RankineEventHandler {
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
 
-            if (adjPos.contains(RankineBlocks.QUARTZ_SANDSTONE.get()) || adjPos.contains(Blocks.SANDSTONE)) {
+            if (adjPos.contains(RankineBlocks.ITACOLUMITE.get()) || adjPos.contains(Blocks.SANDSTONE)) {
                 event.setNewState(RankineBlocks.QUARTZITE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.CARBONACEOUS_SHALE.get())) {
+            } else if (adjPos.contains(RankineBlocks.SHALE.get())) {
                 event.setNewState(RankineBlocks.SLATE.get().getDefaultState());
                 return;
             } else if (adjPos.contains(RankineBlocks.SLATE.get())) {
@@ -1037,7 +1049,7 @@ public class RankineEventHandler {
             } else if (adjPos.contains(RankineBlocks.DOLOSTONE.get())) {
                 event.setNewState(RankineBlocks.WHITE_MARBLE.get().getDefaultState());
                 return;
-            } else if (adjPos.contains(RankineBlocks.TUFA_LIMESTONE.get())) {
+            } else if (adjPos.contains(RankineBlocks.LIMESTONE.get())) {
                 event.setNewState(RankineBlocks.BLACK_MARBLE.get().getDefaultState());
                 return;
             } else if (adjPos.contains(RankineBlocks.GRAY_GRANITE.get()) || adjPos.contains(Blocks.GRANITE)) {
@@ -1045,9 +1057,6 @@ public class RankineEventHandler {
                 return;
             } else if (adjPos.contains(RankineBlocks.GRANODIORITE.get()) || adjPos.contains(Blocks.DIORITE)) {
                 event.setNewState(RankineBlocks.MICA_SCHIST.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.HORNBLENDE_ANDESITE.get()) || adjPos.contains(Blocks.ANDESITE)) {
-                event.setNewState(RankineBlocks.MARIPOSITE.get().getDefaultState());
                 return;
             } else if (adjPos.contains(RankineBlocks.BRECCIA.get()) || adjPos.contains(Blocks.ANDESITE)) {
                 event.setNewState(RankineBlocks.SKARN.get().getDefaultState());
@@ -1076,9 +1085,6 @@ public class RankineEventHandler {
                 case 6:
                     event.setNewState(RankineBlocks.MICA_SCHIST.get().getDefaultState());
                     break;
-                case 7:
-                    event.setNewState(RankineBlocks.MARIPOSITE.get().getDefaultState());
-                    break;
             }
         }
     }
@@ -1093,6 +1099,15 @@ public class RankineEventHandler {
     private static final String NBT_KEY = "rankine.firstjoin";
     @SubscribeEvent
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (Config.GENERAL.REFRESH_ALLOYS.get()) {
+            for(int i = 0; i < event.getPlayer().inventory.getSizeInventory(); ++i) {
+                ItemStack itemstack = event.getPlayer().inventory.getStackInSlot(i);
+                if (!itemstack.isEmpty() && itemstack.getItem() instanceof IAlloyItem) {
+                    IAlloyItem.setRefresh(itemstack);
+                }
+            }
+        }
+
         if (Config.GENERAL.STARTING_BOOK.get() && !event.getPlayer().getEntityWorld().isRemote && Patchouli.isInstalled()) {
 
             CompoundNBT data = event.getPlayer().getPersistentData();
@@ -1159,9 +1174,8 @@ public class RankineEventHandler {
 
             IAlloyTool alloyTool = (IAlloyTool) stack.getItem();
 
-            double damage = alloyTool.getAlloyAttackDamage(stack);
             event.addModifier(Attributes.ATTACK_DAMAGE,new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc1"), "Rankine Damage modifier",
-                    Math.max(damage - alloyTool.getAlloyWear(alloyTool.getWearModifierDmg((float) damage),stack.getItem().getDamage(stack),stack.getItem().getMaxDamage(stack)),0),
+                    alloyTool.getAlloyAttackDamage(stack),
                     AttributeModifier.Operation.ADDITION));
             event.addModifier(Attributes.ATTACK_SPEED, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fc2"), "Rankine Attspeed modifier",
                     alloyTool.getAlloyAttackSpeed(stack),
@@ -1892,7 +1906,7 @@ public class RankineEventHandler {
         BlockState state = world.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
 
-        if (stack.getItem().getTags().contains(new ResourceLocation("rankine:knives")) && direction != null) {
+        if (RankineTags.Items.KNIVES.contains(stack.getItem()) && direction != null) {
             Block target = state.getBlock();
             if (target == Blocks.GRASS_BLOCK && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
@@ -1949,7 +1963,7 @@ public class RankineEventHandler {
         BlockPos pos = event.getPos();
         Block target = worldIn.getBlockState(pos).getBlock();
 
-        if (target.getTags().contains(new ResourceLocation("forge:stone")) && player.getHeldItemMainhand().getItem() instanceof PickaxeItem) {
+        if (Tags.Blocks.STONE.contains(target) && player.getHeldItemMainhand().getItem() instanceof PickaxeItem) {
             if (worldIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get()) {
                 double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
                 double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
@@ -1958,7 +1972,7 @@ public class RankineEventHandler {
                 itementity.setDefaultPickupDelay();
                 worldIn.addEntity(itementity);
             }
-        } else if (player.getHeldItemMainhand().getTag() != null && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:knives"))) {
+        } else if (player.getHeldItemMainhand().getTag() != null && RankineTags.Items.KNIVES.contains(player.getHeldItemMainhand().getItem())) {
             ItemStack drops = null;
 
             if (target == Blocks.GRASS) {
@@ -2138,6 +2152,54 @@ public class RankineEventHandler {
                 } else if (activatedBlock == Blocks.PODZOL.getDefaultState()) {
                     world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     world.setBlockState(pos, Blocks.GRASS_PATH.getDefaultState(), 2);
+                    stack.damageItem(1, player, (entity) -> {
+                        entity.sendBreakAnimation(event.getHand());
+                    });
+                    player.swingArm(event.getHand());
+                    event.setResult(Event.Result.ALLOW);
+                }
+            }
+        } else if (item instanceof HoeItem) {
+            if (!world.isRemote) {
+                TilledSoilTypes TYPE = null;
+                if (b == Blocks.DIRT) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.GRASS_BLOCK) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.PODZOL) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.MYCELIUM) {
+                    TYPE = TilledSoilTypes.DIRT;
+                } else if (b == Blocks.COARSE_DIRT) {
+                    TYPE = TilledSoilTypes.COARSE_DIRT;
+                } else if (b == Blocks.SOUL_SOIL) {
+                    TYPE = TilledSoilTypes.SOUL_SOIL;
+                } else if (b == RankineBlocks.END_SOIL.get()) {
+                    TYPE = TilledSoilTypes.END_SOIL;
+                } else if (b == RankineBlocks.END_GRASS_BLOCK.get()) {
+                    TYPE = TilledSoilTypes.END_SOIL;
+                } else if (b == RankineBlocks.LOAM.get()) {
+                    TYPE = TilledSoilTypes.LOAM;
+                } else if (b == RankineBlocks.LOAMY_SAND.get()) {
+                    TYPE = TilledSoilTypes.LOAMY_SAND;
+                } else if (b == RankineBlocks.CLAY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.CLAY_LOAM;
+                } else if (b == RankineBlocks.SILTY_CLAY.get()) {
+                    TYPE = TilledSoilTypes.SILTY_CLAY;
+                } else if (b == RankineBlocks.SILTY_CLAY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SILTY_CLAY_LOAM;
+                } else if (b == RankineBlocks.SILTY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SILTY_LOAM;
+                } else if (b == RankineBlocks.SANDY_CLAY.get()) {
+                    TYPE = TilledSoilTypes.SANDY_CLAY;
+                } else if (b == RankineBlocks.SANDY_CLAY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SANDY_CLAY_LOAM;
+                } else if (b == RankineBlocks.SANDY_LOAM.get()) {
+                    TYPE = TilledSoilTypes.SANDY_LOAM;
+                }
+                if (TYPE != null) {
+                    world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.setBlockState(pos, RankineBlocks.TILLED_SOIL.get().getDefaultState().with(TilledSoilBlock.MOISTURE, 0).with(TilledSoilBlock.SOIL_TYPE, TYPE), 2);
                     stack.damageItem(1, player, (entity) -> {
                         entity.sendBreakAnimation(event.getHand());
                     });

@@ -1,6 +1,0 @@
-{
-      "variants": {
-        "powered=false": { "model": "rankine:block/red_porphyry_bricks_pressure_plate" },
-        "powered=true": { "model": "rankine:block/red_porphyry_bricks_pressure_plate_down" }
-      }
-    }

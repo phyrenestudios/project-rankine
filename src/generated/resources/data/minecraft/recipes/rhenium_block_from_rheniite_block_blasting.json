@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:rheniite_block"
+  },
+  "result": "rankine:rhenium_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

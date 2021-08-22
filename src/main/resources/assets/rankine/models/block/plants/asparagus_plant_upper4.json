@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "rankine:block/plants/asparagus_plant_upper_stage4"
-  }
-}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:greenschist"
+  },
+  "result": "rankine:greenschist_vertical_slab",
+  "count": 2
+}

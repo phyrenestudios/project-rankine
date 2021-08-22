@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
+  "name": "Cast Iron Alloy Gear",
+  "color": 986895,
   "pattern": [
     " I ",
     "ISI",

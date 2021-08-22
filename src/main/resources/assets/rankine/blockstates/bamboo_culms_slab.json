@@ -1,7 +1,0 @@
-{
-    "variants": {
-        "type=bottom": { "model": "rankine:block/bamboo_culms_slab" },
-        "type=top": { "model": "rankine:block/bamboo_culms_slab_top" },
-        "type=double": { "model": "rankine:block/bamboo_culms" }
-        }
-    }

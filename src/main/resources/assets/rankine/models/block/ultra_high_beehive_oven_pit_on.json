@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "rankine:block/ultra_high_beehive_oven_lit",
-    "front": "rankine:block/ultra_high_refractory_bricks",
-    "side": "rankine:block/ultra_high_refractory_bricks"
-  }
-}

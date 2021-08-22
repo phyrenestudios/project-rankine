@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:radon_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:radon_nugget",
+    "count": 9
+  }
+}

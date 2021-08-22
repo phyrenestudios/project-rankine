@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.util.ElementEquation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.Items;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;

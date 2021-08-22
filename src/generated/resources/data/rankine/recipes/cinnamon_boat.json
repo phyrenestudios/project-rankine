@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cinnamon_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:cinnamon_boat"
+  }
+}

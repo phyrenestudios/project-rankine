@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_pillar_four",
+  "textures": {
+    "all": "rankine:block/rope"
+  }
+}

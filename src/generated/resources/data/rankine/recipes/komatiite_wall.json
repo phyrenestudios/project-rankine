@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:komatiite"
+    }
+  },
+  "result": {
+    "item": "rankine:komatiite_wall",
+    "count": 6
+  }
+}

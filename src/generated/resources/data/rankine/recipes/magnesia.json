@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:magnesia_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:magnesia",
+    "count": 9
+  }
+}

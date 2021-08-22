@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
+  "name": "Steel Alloy Gear",
+  "color": 3291714,
   "pattern": [
     " I ",
     "ISI",

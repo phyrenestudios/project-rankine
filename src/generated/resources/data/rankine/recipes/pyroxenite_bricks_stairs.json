@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pyroxenite_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:pyroxenite_bricks_stairs",
+    "count": 4
+  }
+}

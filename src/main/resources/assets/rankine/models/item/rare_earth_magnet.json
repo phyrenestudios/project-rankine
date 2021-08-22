@@ -1,6 +1,0 @@
-{
-  "parent": "item/handheld",
-  "textures": {
-    "layer0": "rankine:item/rare_earth_magnet"
-  }
-}

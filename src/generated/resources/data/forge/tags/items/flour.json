@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:rice_flour",
+    "rankine:corn_flour",
+    "rankine:wheat_flour"
+  ]
+}

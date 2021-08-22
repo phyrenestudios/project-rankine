@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_skarn"
+  },
+  "result": "rankine:polished_mariposite_vertical_slab",
+  "count": 2
+}

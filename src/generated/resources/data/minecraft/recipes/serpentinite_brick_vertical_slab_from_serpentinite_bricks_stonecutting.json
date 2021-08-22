@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:serpentinite_bricks"
+  },
+  "result": "rankine:serpentinite_bricks_vertical_slab",
+  "count": 2
+}

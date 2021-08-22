@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:purple_porphyry"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_purple_porphyry",
+    "count": 4
+  }
+}

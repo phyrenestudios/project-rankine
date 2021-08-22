@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "rankine:block/gray_granite_pillar_side",
+    "end": "rankine:block/gray_granite_pillar_end"
+  }
+}

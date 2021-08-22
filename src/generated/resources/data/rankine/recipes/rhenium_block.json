@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:rhenium_ingot"
+    }
+  },
+  "result": {
+    "item": "rankine:rhenium_block"
+  }
+}

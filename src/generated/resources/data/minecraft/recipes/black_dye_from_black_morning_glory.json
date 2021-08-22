@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:black_morning_glory"
+    }
+  ],
+  "result": {
+    "item": "minecraft:black_dye"
+  }
+}

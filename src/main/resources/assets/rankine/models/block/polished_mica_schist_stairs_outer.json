@@ -1,8 +1,0 @@
-{
-      "parent": "block/outer_stairs",
-      "textures": {
-        "bottom": "rankine:block/polished_mica_schist",
-        "top": "rankine:block/polished_mica_schist",
-        "side": "rankine:block/polished_mica_schist"
-      }
-    }

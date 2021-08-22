@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:mica_schist_bricks_vertical_slab"
+    ]
+  },
+  "criteria": {
+    "has_mica_schist_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mica_schist_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:mica_schist_bricks_vertical_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mica_schist_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

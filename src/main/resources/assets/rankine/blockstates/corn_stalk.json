@@ -1,7 +1,0 @@
-{
-"variants": {
-    "section=bottom": { "model": "rankine:block/corn_stalk" },
-    "section=middle": { "model": "rankine:block/corn_stalk" },
-    "section=top": { "model": "rankine:block/corn_stalk_top" }
-    }
-}

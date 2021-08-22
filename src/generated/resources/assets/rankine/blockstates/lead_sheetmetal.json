@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/lead_sheetmetal"
+    }
+  }
+}

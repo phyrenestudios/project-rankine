@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "rankine:block/balsam_fir_planks",
-    "top": "rankine:block/balsam_fir_planks",
-    "side": "rankine:block/balsam_fir_planks"
-  }
-}

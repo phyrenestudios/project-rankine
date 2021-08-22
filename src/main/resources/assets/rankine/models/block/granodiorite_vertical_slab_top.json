@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab_top",
-  "textures": {
-    "bottom": "rankine:block/granodiorite",
-    "top": "rankine:block/granodiorite",
-    "side": "rankine:block/granodiorite"
-  }
-}

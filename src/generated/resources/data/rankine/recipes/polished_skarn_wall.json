@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_skarn"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_skarn_wall",
+    "count": 6
+  }
+}

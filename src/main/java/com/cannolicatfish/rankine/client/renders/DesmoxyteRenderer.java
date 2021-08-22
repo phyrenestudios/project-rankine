@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.client.renders;
 
-import com.cannolicatfish.rankine.client.models.DesmoxyteModel;
+import com.cannolicatfish.rankine.client.models.entities.DesmoxyteModel;
 import com.cannolicatfish.rankine.entities.DesmoxyteEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

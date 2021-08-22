@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "rankine:block/sapphire_geode" },
-        "facing=east":  { "model": "rankine:block/sapphire_geode", "y": 90 },
-        "facing=south": { "model": "rankine:block/sapphire_geode", "y": 180 },
-        "facing=west":  { "model": "rankine:block/sapphire_geode", "y": 270 }
-    }
-}

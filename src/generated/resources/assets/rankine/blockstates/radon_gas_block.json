@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/radon_gas_block"
+    }
+  }
+}

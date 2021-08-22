@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:purple_porphyry_slab_from_purple_porphyry_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_purple_porphyry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:purple_porphyry"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:purple_porphyry_slab_from_purple_porphyry_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_purple_porphyry",
+      "has_the_recipe"
+    ]
+  ]
+}

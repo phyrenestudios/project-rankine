@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:magnolia_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:magnolia_boat"
+  }
+}

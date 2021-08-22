@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:scandium_block_from_thortveitite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_thortveitite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:thortveitite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:scandium_block_from_thortveitite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_thortveitite",
+      "has_the_recipe"
+    ]
+  ]
+}

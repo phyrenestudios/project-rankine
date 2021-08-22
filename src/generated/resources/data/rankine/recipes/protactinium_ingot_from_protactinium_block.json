@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:protactinium_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:protactinium_ingot",
+    "count": 9
+  }
+}

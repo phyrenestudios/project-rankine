@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:germanium_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:germanium_nugget",
+    "count": 9
+  }
+}

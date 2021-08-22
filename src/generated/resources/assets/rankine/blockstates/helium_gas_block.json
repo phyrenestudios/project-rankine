@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/helium_gas_block"
+    }
+  }
+}

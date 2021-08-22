@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "rankine:block/magnolia_log",
-    "side": "rankine:block/magnolia_log"
-  }
-}

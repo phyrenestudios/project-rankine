@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:sharinga_trapdoor",
+    "rankine:erythrina_trapdoor",
+    "rankine:charred_trapdoor",
+    "rankine:petrified_chorus_trapdoor",
+    "rankine:balsam_fir_trapdoor",
+    "rankine:black_birch_trapdoor",
+    "rankine:black_walnut_trapdoor",
+    "rankine:cedar_trapdoor",
+    "rankine:cinnamon_trapdoor",
+    "rankine:coconut_palm_trapdoor",
+    "rankine:cork_oak_trapdoor",
+    "rankine:eastern_hemlock_trapdoor",
+    "rankine:juniper_trapdoor",
+    "rankine:magnolia_trapdoor",
+    "rankine:pinyon_pine_trapdoor",
+    "rankine:yellow_birch_trapdoor",
+    "rankine:maple_trapdoor",
+    "rankine:bamboo_trapdoor",
+    "rankine:bamboo_culms_trapdoor"
+  ]
+}

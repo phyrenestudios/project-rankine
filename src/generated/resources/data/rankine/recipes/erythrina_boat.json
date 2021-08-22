@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:erythrina_planks"
+    }
+  },
+  "result": {
+    "item": "rankine:erythrina_boat"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/vertical_slab_top",
-  "textures": {
-    "bottom": "rankine:block/high_refractory_bricks",
-    "top": "rankine:block/high_refractory_bricks",
-    "side": "rankine:block/high_refractory_bricks"
-  }
-}

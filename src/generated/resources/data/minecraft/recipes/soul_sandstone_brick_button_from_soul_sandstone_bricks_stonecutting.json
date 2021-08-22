@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:soul_sandstone_bricks"
+  },
+  "result": "rankine:soul_sandstone_bricks_pressure_plate",
+  "count": 1
+}

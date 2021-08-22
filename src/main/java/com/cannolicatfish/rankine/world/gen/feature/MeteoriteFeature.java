@@ -40,13 +40,13 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 BlockState ORE;
                 float CHANCE = rand.nextFloat();
                 if (CHANCE < 0.25F) {
-                    ORE = RankineBlocks.KAMACITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
+            //        ORE = RankineBlocks.KAMACITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
                 } else if (CHANCE < 0.50F) {
-                    ORE = RankineBlocks.ANTITAENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
+            //        ORE = RankineBlocks.ANTITAENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
                 } else if (CHANCE < 0.75F) {
-                    ORE = RankineBlocks.TAENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
+            //        ORE = RankineBlocks.TAENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
                 } else {
-                    ORE = RankineBlocks.TETRATAENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
+            //        ORE = RankineBlocks.TETRATAENITE_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 53);
                 }
 
                 int j = WGConfig.MISC.METEORITE_SIZE.get() + rand.nextInt(2);
@@ -56,7 +56,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-j, -k, -l), pos.add(j, k, l))) {
                     if (blockpos.distanceSq(pos) <= (double)(f * f)) {
                         if (rand.nextFloat() < 0.3F) {
-                            reader.setBlockState(blockpos.down(1), ORE, 4);
+                            reader.setBlockState(blockpos.down(1), RankineBlocks.TETRATAENITE_ORE.get().getDefaultState(), 4);
                         } else {
                             reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 4);
                         }
@@ -69,7 +69,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                 for(BlockPos blockpos : BlockPos.getAllInBoxMutable(newpos.add(-j, -k, -l), newpos.add(j, k, l))) {
                     if (blockpos.distanceSq(newpos) <= (double)(f * f)) {
                         if (rand.nextFloat() < 0.3F) {
-                            reader.setBlockState(blockpos.down(1), ORE, 4);
+                            reader.setBlockState(blockpos.down(1), RankineBlocks.TETRATAENITE_ORE.get().getDefaultState(), 4);
                         } else {
                             reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 4);
                         }

@@ -55,6 +55,7 @@
     "modifiers": ["NONE"],
     "limit": [0]
   },
-  "toolenchantment": "minecraft:smite",
-  "toolenchantmentmin": 10
+  "enchantments": ["minecraft:smite"],
+  "enchantmentTypes": ["ALL"],
+  "enchantmentFactors": [0.1]
 }

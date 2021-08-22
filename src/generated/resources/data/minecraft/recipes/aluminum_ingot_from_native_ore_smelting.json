@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:native_aluminum_ore"
+  },
+  "result": "rankine:aluminum_ingot",
+  "experience": 0.5,
+  "cookingtime": 200
+}

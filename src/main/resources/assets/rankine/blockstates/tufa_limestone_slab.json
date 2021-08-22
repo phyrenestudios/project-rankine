@@ -1,7 +1,0 @@
-{
-        "variants": {
-            "type=bottom": { "model": "rankine:block/tufa_limestone_slab" },
-            "type=top": { "model": "rankine:block/tufa_limestone_slab_top" },
-            "type=double": { "model": "rankine:block/tufa_limestone" }
-            }
-        }

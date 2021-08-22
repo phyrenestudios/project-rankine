@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:pumice_bricks"
-      },
-      "result": "rankine:pumice_bricks_stairs",
-      "count": 1
-    }

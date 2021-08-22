@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:cadmium_block_from_greenockite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_greenockite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:greenockite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:cadmium_block_from_greenockite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_greenockite",
+      "has_the_recipe"
+    ]
+  ]
+}

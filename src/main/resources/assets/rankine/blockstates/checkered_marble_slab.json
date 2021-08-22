@@ -1,7 +1,0 @@
-{
-"variants": {
-    "type=bottom": { "model": "rankine:block/checkered_marble_slab" },
-    "type=top": { "model": "rankine:block/checkered_marble_slab_top" },
-    "type=double": { "model": "rankine:block/checkered_marble" }
-    }
-}
