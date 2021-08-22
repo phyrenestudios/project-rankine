@@ -44,6 +44,7 @@ public class AlloyTemplateItem extends Item {
             String comp = getTemplate(stack).get("NameAdd").getString();
             String p1;
             String p2;
+            String p3;
             if (comp.contains("#"))
             {
                 p1 = comp.split("#")[0];
@@ -54,7 +55,14 @@ public class AlloyTemplateItem extends Item {
                 p2 = new TranslationTextComponent(comp).getString();
             }
 
-            String p3 = new TranslationTextComponent(this.getTranslationKey(stack)).getString().split(" ")[1];
+            ITextComponent text = new TranslationTextComponent(this.getTranslationKey(stack));
+            if (text.getString().split(" ").length <= 1) {
+                // local is Chinese or Japanese
+                p3 = text.getString();
+            } else {
+                p3 = text.getString().split(" ")[1];
+            }
+
             return new StringTextComponent( p1 + " " + p2 + " " + p3);
         } else {
             return new TranslationTextComponent(this.getTranslationKey(stack));
@@ -76,10 +84,13 @@ public class AlloyTemplateItem extends Item {
                 String end = "";
                 int num = Integer.parseInt(s.replaceAll("[A-Za-z]+",""));
 
+                String namespace, path;
                 ListNBT nbt = getTemplate(stack).getList("Inputs",10);
-                String t = nbt.getString(count).split("\"")[1];
-                String namespace = t.split(":")[0];
-                String path = t.split(":")[1];
+                String nbtstring = nbt.getString(count);
+                String t = nbtstring.split("\"")[3];
+                namespace = t.split(":")[0];
+                path = t.split(":")[1];
+
                 Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(namespace,path));
                 if (item != null) {
                     int reduce = AlloyRecipeHelper.returnMaterialCountFromStack(new ItemStack(item,1));
