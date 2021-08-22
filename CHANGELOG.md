@@ -1,7 +1,194 @@
 
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
+
+## Project Rankine Version 1.3 Major Changelog [2021-XX-XX]
+
+### REGISTRY CHANGES
+- feldspar to orthoclase_feldspar
+- feldspar_block to orthoclase_feldspar_block
+- meteorite_paver to meteorite_bricks
+- enstatite_paver to enstatite_bricks
+- uncolored_concrete_* to plain_concrete_*
+- pyroxene_gabbro to gabbro
+- tufa limestone to limestone
+- arkose_sandstone to arkose
+- quart_sandstone to itacolumite
+- carbonaceous_shale to shale
+
+### BLOCKS
+#### --- Removals ---
+- Removed all variants of Pumice and Scoria
+- Removed polished and bricks Variants of Skarn and Breccia
+- Removed Andesite Bricks, Diorite Bricks, Granite Bricks, Basalt Bricks and all variants
+- Removed Rope Coil (functionality was migrated to rope block)
+- Removed Aluminum Bars, Nickel Bars, and Magnesium Bars (replaced by alloy bars)
+- Removed Mud (replaced by soil variants)
+- Removed Checkered Dacite and Checkered Porphyry
+- Removed Bamboo Wall and Banboo Culms Wall
+- Removed Lead Glass and all Etched Glasses (replaced with other variants)
+- Removed Dacitic Tuff
+
+
+
+
+#### --- Additions ---
+- Added Rose Marble, Gray Marble, Serpetinite, Marlstone, Norite, Shonkinite, Pyroxenite, Soul Sandstone, Blueschist, Greenschist, Diabase as stones with variants
+- Soils: clay loam, sandy loam, silty loam, loamy sand, sandy clay loam, silty clay loam
+- Grassy version of each soil
+- Grassy Soil Path
+- Tilled Soil (multi texture farmland block with nutrient values)
+- Tall Flowers: Goldenrod, Red Lily, Orange Lily, White Lily, Purple Morning Glory, Black Morning Glory, Blue Morning Glory
+- Added Vertical Slab variants for Roman Concrete, Roman Concrete Bricks, and Polished Roman Concrete
+- Added Wall variants for Clay Bricks, Refractory Bricks, High Refractory Bricks, Ultra High Refractory Bricks, Checkered Marble
+- Added Green, Brown, Gray, and Black Tektite
+- Added Rheniite Ore
+- Added Pedestal variants for Galinstan Alloy and Sodium Potassium Alloy
+- Added Frozen Meteorite and Frozen Meteorite Bricks
+- Added Meteoric Ice (more slippery than blue ice)
+- Added Metal Bars variants for all alloys
+- Added slab, stairs, vertical slab and wall variants for Fiber Block
+#### --- Changes ---
+- Updated many miscellaneous block textures
+
+
+### Items
+#### ---Removals---
+- Removed Metal Scraper (functionality migrated to pumice soap)
+- Removed Stone Hammer
+#### ---Additions---
+- Added Gas Bottles
+- Added Alloy Knives
+- Added Alloy Crowbars
+- WIP Added Alloy Shields
+- WIP Added Alloy Fishing Rods
+- WIP Added Alloy Bows
+- Minerals: Added bauxite, ringwoodite, wadsleyite, forsterite, mellite, bridgmanite, ferropericlase
+#### ---Changes---
+- Functionality of Solidified Gas Ingots has been transferred over to Gas Bottles, and now act as normal ingots
+- Shulker Gas Vaccuum can now make Gas Bottles if an empty bottle is held in the off-hand
+- Shulker Gas Vaccum places Gas Blocks similar to Gas Bottles
+- 
+- Updated Flint toolset textures
+- Updated textures for elements and alloys
+- Updated many miscellaneous item textures
+
+
+#### Elements
+- Element stats are now determined by the Element recipe type instead of being internally defined
+- Netherite now gives Toughness as percentage increases
+- Netherite loses Corrosion Resistance at a quicker rate as percentage increases
+- Netherite no longer modifies Attack Speed
+- Carbon now provides toughness at small percentages
+- Lithium increases in Heat Resistance as percentage increases (originally decreased)
+- Lithium has a rescaled toughness stat and no longer provides Unbreaking
+- Silver, Beryllium, now receive enchantments at 10% or higher
+- Nickel durability and mining speed increased at lower percentages
+- Modified Titanium Mining Level formula to be better at smaller percentages
+- Bismuth and Lead now grant a harvest level at 12% and 15% respectively
+- Boron grants a harvest level at 6%
+- Copper now gives heat resistance 
+- Nickel now gives toughness
+- Arsenic and Cadmium now can give Poison Aspect to Knives
+- Lead and Bismuth now give up to Harvest Level 2
+- Significantly changed or newly added stats for: Calcium, Cadmium, Arsenic
+- Iron now has negative corrosion resistance
+- Mercury now reduces harvest level by 1, but has other stats improved
+- All other element formulas simplified and slightly modified
+
+#### Alloys
+- Lead, Zinc, Arsenic, Cadmium, can now be used in Pewter
+- Beryllium can now be used in all Bronze recipes
+- Potential compositions of White Gold Alloy have been modified
+- Copper can now be used in White Gold
+- Alloys now have bonus stats again (which can be modified in Alloying JSON format)
+
+#### Crushing
+- Many crushing recipes have now been completely modified
+
+
+### Fluids
+
+### Enchantments
+
+### Recipes
+
+#### --- Alloying Recipe ---
+- Removed int argument "required"
+- Added boolean argument "required" to any input variable, which defines an ingredient as required to make the output
+- Alloy Furnace and Induction Furnace recipes are now separated in JEI
+
+#### --- Alloy Crafting Recipe ---
+- Added inheritRecipe, an optional string argument which defines a specific recipe that will be used to define the output's composition and recipe variables
+- Added additional arguements to key definitions, alloyComp and alloyRecipe, which define specific compositions and alloy recipes that can be used for that ingredient
+
+#### --- Element Recipe ---
+- Added Element JSON recipe type, to now define stats of elements in a more dynamic matter
+- Added JEI support
+
+#### --- Rock Generator Recipe ---
+- Added Rock Generator JSON recipe type, to define custom generators for Cobblestone, Basalt, Stone, and Sediment Fan generation types
+- Contains five "types": intrusive_igneous, extrusive_igneous, sedimentary, metamorphic, volcanic
+- Added JEI support
+
+### Fixes
+- Fixed crash with water bucket and rope interaction
+- Fixed crash relating to the rendering of Bamboo Boat
+
+### Community Contributions
+- Fixed Alloy Template crash (Yuesha-yc)
+- Added deobf and sources jar artifacts (Yuesha-yc)
+
+
+
 ## Project Rankine Version 1.2.3 Minor Changelog [2021-06-15]
+
+### Hotfix 2 [2021-7-7]
+
+- Added smelting recipe for Stibnite into Antimony Ingot
+- Added Yellow Birch and Black Birch items to various wood tags
+- Added missing metal door items to #minecraft:doors
+- Added JEI information page for Rankine Box
+- Fixed Yellow Birch, Black Birch and Bamboo Culms Boats
+- Changed Quake to only be applied to Pickaxes and Shovels
+- Changed recipe for Gyratory Crusher
+- Changed Speedometer to update less frequently and be more accurate
+- Changed text format for F3 tools
+- Changed thermometer bounds to reflect certain conditions (snow, rain, etc.)
+- Changed Path Creation config option to be disabled by default
+- Fixed Rock Drill outputting its information twice
+- Fixed model files for F3 tools
+- Fixed permanent effects from Health Pendant and Speed Pendant
+- Reduced health gain from Health Pendant from 20 to 10
+- Removed extra Magnesite Block recipe
+- Updated Rankine Journal
+
+
+#### Community Contributions
+- Added Simplified Chinese (zh_cn) translation (Yuesha-yc and Duckegg128)
+
+### Hotfix 1 [2021-6-18]
+- Added Sodium Potassium (NaK) Alloy Ingot and Block
+- Modified recipe for Rankine Box
+- Added Scandium to Duralumin, Titanium, and Purple Gold Alloy recipes
+- Added additional recipe advancements for plant fiber
+- Changed alloy spear recipes to use the shape of the Flint Spear recipe (amount of materials unchanged)
+- Gyratory Crusher now stops spinning if there is no input
+- Fixed Gyratory Crusher bug where not all outputs were checked
+- Fluid drain texture modified to reflect its recipe
+- Ghast Regeneration and Curse of Withering can now only be applied to Alloy Tools
+- Added Prying entry to Enchantments in Rankine Journal
+- Set axeRequired config to be false by default
+- Added beehiveOvenSkylight config
+- Added #rankine:foraging, which includes #forge:seeds, minecraft:potato by default
+- Foraging (for tools in #rankine:foraging_tools) now uses the #rankine:foraging tag for drops
+- All stone variant recipes moved to rankine/recipes/stone_variants
+- Fixed #forge:cheese
+- Added #forge:crops/aloe
+- Removed recipe for Power Cell Fabricator
+- Changed Botanist Villager trades
+- Fixed Block of Chromite to Block of Chromium blasting recipe
+- Cooktime of all mineral blocks increased from 100 to 800 in the blast furnace
 
 ### Blocks
 - Added Sodium Vapor Lamp
@@ -160,7 +347,31 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Renamed Alumina to Bauxite
 - Fixed rope and ladders not being climbable
 
+
+
+
 ## Project Rankine Version 1.2.2 Minor Changelog [2021-04-10]
+
+### Hotfix 2 [2021-4-24]
+- Added simple JEI information for boiling treetap liquids
+- Added advancements for treetapping
+- Added recipes for polished troctolite and troctolite bricks
+- Added pegmatite bricks, troctolite bricks, comendite bricks to #minecraft:stone_bricks
+- Added granite, diorite, andesite bricks variants to missing tags
+- Changed texture for Maple Sap Bucket to look more distinct from Sap Bucket
+- Fixed incorrect version number in-game
+- Fixed critical multiplayer bug
+
+### Hotfix 1 [2021-4-11]
+- Added boats for new wood types
+- Added missing Steel Alloy Arrow recipe
+- Added alternative recipe for Vulcanized Rubber that uses Sodium Sulfide
+- Added more journal entries and information
+- Changed trampoline recipe to use Cast Iron Rods
+- Fixed infinite Flower seeds bug
+- Fixed Alloy armor not applying armor values properly
+- Fixed localization for Netherite Nugget
+
 
 ### Additions
 #### Blocks
@@ -258,7 +469,7 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 
 - Functionality for knives now applies to all items in #rankine:knives
 
-- Gallium ore now gives Thallium nuggets at level 5 crushing
+- Galena ore now gives Thallium nuggets at level 5 crushing
 
 #### Alloys
 - Bonus tool stats can now be changed via the config for all alloys
