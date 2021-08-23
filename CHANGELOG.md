@@ -15,67 +15,153 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - arkose_sandstone to arkose
 - quart_sandstone to itacolumite
 - carbonaceous_shale to shale
+- ringwoodite to ringwoodine
+- wadsleyite to wadsleyone
+- perovskite to post-perovskite
+- ferropericlase to sommanite
+- bridgmandine to bridgmanham
+- salt to sodium_chloride
+- pozzolan to pozzolana
+
 
 ### BLOCKS
 #### --- Removals ---
 - Removed all variants of Pumice and Scoria
-- Removed polished and bricks Variants of Skarn and Breccia
+- Reduced the variants of Skarn and Breccia to just slab, vertical slab, stairs and walls
 - Removed Andesite Bricks, Diorite Bricks, Granite Bricks, Basalt Bricks and all variants
+- Removed Checkered Dacite and Checkered Porphyry and all variants
+- Removed Columbite Ore, Pink Salt Ore, Tantalite Ore, Aquamarine Ore, Majorite Ore, Opal Ore, Vanadinite Ore, Native ALuminum Ore, Native Copper Ore, Moissanite Ore
+- Removed Dacitic Tuff
+- Removed Mud (replaced by soil variants)
+- Removed Bamboo Wall and Banboo Culms Wall
+- Removed Etched Glasses (replaced with other variants - WIP)
 - Removed Rope Coil (functionality was migrated to rope block)
 - Removed Aluminum Bars, Nickel Bars, and Magnesium Bars (replaced by alloy bars)
-- Removed Mud (replaced by soil variants)
-- Removed Checkered Dacite and Checkered Porphyry
-- Removed Bamboo Wall and Banboo Culms Wall
-- Removed Lead Glass and all Etched Glasses (replaced with other variants)
-- Removed Dacitic Tuff
-
-
-
-
 #### --- Additions ---
-- Added Rose Marble, Gray Marble, Serpetinite, Marlstone, Norite, Shonkinite, Pyroxenite, Soul Sandstone, Blueschist, Greenschist, Diabase as stones with variants
-- Soils: clay loam, sandy loam, silty loam, loamy sand, sandy clay loam, silty clay loam
-- Grassy version of each soil
-- Grassy Soil Path
-- Tilled Soil (multi texture farmland block with nutrient values)
-- Tall Flowers: Goldenrod, Red Lily, Orange Lily, White Lily, Purple Morning Glory, Black Morning Glory, Blue Morning Glory
-- Added Vertical Slab variants for Roman Concrete, Roman Concrete Bricks, and Polished Roman Concrete
-- Added Wall variants for Clay Bricks, Refractory Bricks, High Refractory Bricks, Ultra High Refractory Bricks, Checkered Marble
+- Added Rose Marble, Gray Marble, Serpetinite, Marlstone, Norite, Shonkinite, Pyroxenite, Soul Sandstone, Blueschist, Greenschist, Diabase, Eclogite as stones with variants
+- Added Honeystone
+- Added Komatiitic Tuff, Kimberlitic Tuff
+- Added Clay Loam, Sandy Loam, Silty Loam, Loamy Sand, Sandy Clay Loam, Silty Clay Loam as soils
+- Added Grassy Soil version of each soil (WIP)
+- Added Grassy Paths for each Grass Soil (WIP)
+- Added End Soil and End Grass
+- Added Tilled Soil (multi texture farmland block with nutrient values WIP)
+- Added Goldenrod, Red Lily, Orange Lily, White Lily, Purple Morning Glory, Black Morning Glory, Blue Morning Glory as double block flowers
+- Added vertical slab variants for Roman Concrete, Roman Concrete Bricks, and Polished Roman Concrete
+- Added wall variants for Clay Bricks, Refractory Bricks, High Refractory Bricks, Ultra High Refractory Bricks, Checkered Marble
 - Added Green, Brown, Gray, and Black Tektite
-- Added Rheniite Ore
+- Added Rheniite Ore, Coltan Ore, Chalcocite Ore
 - Added Pedestal variants for Galinstan Alloy and Sodium Potassium Alloy
 - Added Frozen Meteorite and Frozen Meteorite Bricks
 - Added Meteoric Ice (more slippery than blue ice)
-- Added Metal Bars variants for all alloys
+- Added Metal Bars variants for all alloys (WIP)
 - Added slab, stairs, vertical slab and wall variants for Fiber Block
+- Added Asphalt (full block, 3/4 block, 1/2 block, 1/4 block)
+- Added Erythrina as a new tree type with all variants
+- Added Petrified Chorus and Charred variants of wooden blocks
+- Added Lightning Glass and Fulgurite which are obtained from lightning stikes
+- Added Cement, Cement Slab, Cement Vertical Slab, Cement Stairs, Cement Wall, Cement Pole
+- Added Light Gravel and Dark Gravel as End and Nether counterparts to Gravel
+- Added Charcoal Block and Pozzolana as layer blocks
+- Added White Sand and Silt
 #### --- Changes ---
 - Updated many miscellaneous block textures
+- Harvest level, hardness and resistance values adjusted for many stones and ores
 
 
-### Items
+### ITEMS
 #### ---Removals---
 - Removed Metal Scraper (functionality migrated to pumice soap)
-- Removed Stone Hammer
+- Removed Stone Hammer, Iron Hammer, Diamond Hammer, and Netherite Hammer
+- Removed Iron Spear, Diamond Spear and Netherite Spear
+- Removed Titanium Crowbar and changed Steel Crowbar to an alloy tool
+- Removed Dry Mortar
 #### ---Additions---
 - Added Gas Bottles
-- Added Alloy Knives
-- Added Alloy Crowbars
-- WIP Added Alloy Shields
-- WIP Added Alloy Fishing Rods
-- WIP Added Alloy Bows
-- Minerals: Added bauxite, ringwoodite, wadsleyite, forsterite, mellite, bridgmanite, ferropericlase
+- Added Cement Mix
+- Added Alloy Knives to all existing Alloy toolsets
+- Added Alloy Crowbars to all existing Alloy toolsets
+- WIP Added Alloy Shields to all existing Alloy toolsets
+- WIP Added Alloy Fishing Rods to all existing Alloy toolsets
+- WIP Added Alloy Bows to all existing Alloy toolsets
+- Added Rope Coil Arrow, which can deploy rope held in the off-hand
+- Minerals: Added bauxite, ringwoodite, wadsleyite, forsterite, mellite, bridgmanite, ferropericlase, apatite, laurite, realgar, gypsum, rutile, diopside, azurmalachite, goethite, monazite (Gd), monazite (Y), pyrite, spodumene, cooperite, sanidine, hedenbergite, talc, stishovite, asbestos, serpentine, potash
+- Added Kaolinite Ball
 #### ---Changes---
 - Functionality of Solidified Gas Ingots has been transferred over to Gas Bottles, and now act as normal ingots
+- Right-click functionality has been added to knives in order to Parry, which causes a brief window where damage cannot be taken
+- Right-click functionality has been added to crowbars, which can now be used to pull blocks towards the user based on the face of the block that they right-click
 - Shulker Gas Vaccuum can now make Gas Bottles if an empty bottle is held in the off-hand
 - Shulker Gas Vaccum places Gas Blocks similar to Gas Bottles
-- 
+- Modified alloy item NBT format significantly
 - Updated Flint toolset textures
 - Updated textures for elements and alloys
 - Updated many miscellaneous item textures
 
 
-#### Elements
+### FLUIDS
+
+
+### ENCHANTMENTS
+#### ---Additions---
+- Added Backstab, a knife enchantment which deals a multiplier of the current knife's damage when attacking an enemy's back
+- Added Grafting, a knife enchantment which causes one sapling to always drop from a leaf block
+- Added Poison Aspect, a knife enchantment which inflicts Poison or Weak on hit depending on the type of enemy for a short duration
+- Added Preparation, a knife enchantment which increases the window for a successful parry
+- Added Retreat, a knife enchantment which turns you invisible for a short duration when you parry damage
+- Added Retaliate, a knife enchantment which on parry returns the damage you would've taken to the attacker
+- Added Leverage, a crowbar enchantment which increases the damage of the tool based on the size of the target you are attacking
+- Added Lift, a crowbar enchantment which allows you to right-click a block in the air to bring the user to the top of the block if there is space
+- Added Retrieval, a crowbar enchantment that allows harvesting any block provided its harvest level is less than or equal to the crowbar's harvest level and the block is not in the tag #rankine:crowbar_resistant
+
+### WORLDGEN
+- WIP
+
+
+### TAGS
+- Many tags switched over to #forge from #rankine
+- Added #rankine:crowbar_resistant
+
+
+### RECIPES
+####  --- Crushing Recipes ---
+- All ores and stones have had their crushing outputs overhauled
+
+####  --- Crafting Recipes ---
+- Alloy Furnace now uses a campfire instead of a furnace
+- WIP
+#### --- Alloying Json Recipe ---
+- Removed int argument "required"
+- Added boolean argument "required" to any input variable, which defines an ingredient as required to make the output
+- Alloy Furnace and Induction Furnace recipes are now separated in JEI
+#### --- Alloy Crafting Json Recipe ---
+- Added inheritRecipe, an optional string argument which defines a specific recipe that will be used to define the output's composition and recipe variables
+- Added additional arguements to key definitions, alloyComp and alloyRecipe, which define specific compositions and alloy recipes that can be used for that ingredient
+#### --- Element Json Recipe ---
+- Added Element JSON recipe type, to now define stats of elements in a more dynamic matter
+- Added JEI support
+#### --- Rock Generator Json Recipe ---
+- Added Rock Generator JSON recipe type, to define custom generators for Cobblestone, Basalt, Stone, and Sediment Fan generation types
+- Contains five "types": intrusive_igneous, extrusive_igneous, sedimentary, metamorphic, volcanic
+- Added JEI support
+
+
+### MISC
+#### --- Changes ---
+- Charcoal Pit produces Charcoal Blocks instead of Charred Wood
+- Vanilla tools are now enabled by default
+#### --- Alloying ---
+##### Alloys
+- Lead, Zinc, Arsenic, Cadmium, can now be used in Pewter
+- Beryllium can now be used in all Bronze recipes
+- Potential compositions of White Gold Alloy have been modified
+- Copper can now be used in White Gold
+- Cadmium and Lithium can now be used in Duralumin
+- Alloys now have bonus stats again (which can be modified in Alloying JSON format)
 - Element stats are now determined by the Element recipe type instead of being internally defined
+##### Elements
+- Element enchantments now work by associating a factor per each percent of an element for a specific enchantment, and can now be considered between multiple enchantments
+- Elements can now enchant armor
 - Netherite now gives Toughness as percentage increases
 - Netherite loses Corrosion Resistance at a quicker rate as percentage increases
 - Netherite no longer modifies Attack Speed
@@ -90,52 +176,25 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Copper now gives heat resistance 
 - Nickel now gives toughness
 - Arsenic and Cadmium now can give Poison Aspect to Knives
-- Lead and Bismuth now give up to Harvest Level 2
+- Lead and Bismuth now give up to Harvest Level 2 and give corrosion resistance
 - Significantly changed or newly added stats for: Calcium, Cadmium, Arsenic
 - Iron now has negative corrosion resistance
 - Mercury now reduces harvest level by 1, but has other stats improved
 - All other element formulas simplified and slightly modified
 
-#### Alloys
-- Lead, Zinc, Arsenic, Cadmium, can now be used in Pewter
-- Beryllium can now be used in all Bronze recipes
-- Potential compositions of White Gold Alloy have been modified
-- Copper can now be used in White Gold
-- Alloys now have bonus stats again (which can be modified in Alloying JSON format)
-
-#### Crushing
-- Many crushing recipes have now been completely modified
 
 
-### Fluids
 
-### Enchantments
 
-### Recipes
 
-#### --- Alloying Recipe ---
-- Removed int argument "required"
-- Added boolean argument "required" to any input variable, which defines an ingredient as required to make the output
-- Alloy Furnace and Induction Furnace recipes are now separated in JEI
 
-#### --- Alloy Crafting Recipe ---
-- Added inheritRecipe, an optional string argument which defines a specific recipe that will be used to define the output's composition and recipe variables
-- Added additional arguements to key definitions, alloyComp and alloyRecipe, which define specific compositions and alloy recipes that can be used for that ingredient
 
-#### --- Element Recipe ---
-- Added Element JSON recipe type, to now define stats of elements in a more dynamic matter
-- Added JEI support
-
-#### --- Rock Generator Recipe ---
-- Added Rock Generator JSON recipe type, to define custom generators for Cobblestone, Basalt, Stone, and Sediment Fan generation types
-- Contains five "types": intrusive_igneous, extrusive_igneous, sedimentary, metamorphic, volcanic
-- Added JEI support
-
-### Fixes
+### FIXES
 - Fixed crash with water bucket and rope interaction
 - Fixed crash relating to the rendering of Bamboo Boat
+- Fixed and improved advancement triggers
 
-### Community Contributions
+### COMMUNITY CONTRIBUTIONS
 - Fixed Alloy Template crash (Yuesha-yc)
 - Added deobf and sources jar artifacts (Yuesha-yc)
 
