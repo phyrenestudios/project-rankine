@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.client.integration.jei;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.*;
+import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
@@ -37,6 +38,26 @@ public class RankineJEIRecipes {
 
     public List<AlloyingRecipe> getInductionFurnaceRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 2) != 0).collect(Collectors.toList());
+    }
+
+    public List<RockGeneratorRecipe> getIntrusiveGeneratorRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS))).collect(Collectors.toList());
+    }
+
+    public List<RockGeneratorRecipe> getExtrusiveGeneratorRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS))).collect(Collectors.toList());
+    }
+
+    public List<RockGeneratorRecipe> getSedimentaryGeneratorRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY))).collect(Collectors.toList());
+    }
+
+    public List<RockGeneratorRecipe> getMetamorphicGeneratorRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC))).collect(Collectors.toList());
+    }
+
+    public List<RockGeneratorRecipe> getVolcanicGeneratorRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().filter(recipe -> (recipe.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC))).collect(Collectors.toList());
     }
 
     public List<BeehiveOvenRecipe> getBeehiveRecipes() {

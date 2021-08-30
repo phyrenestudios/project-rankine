@@ -248,6 +248,7 @@ public class ProjectRankine {
             event.getRegistry().register(ElementRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"element"));
             event.getRegistry().register(CrucibleRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crucible"));
             event.getRegistry().register(EvaporationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"evaporation"));
+            event.getRegistry().register(RockGeneratorRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"rock_generator"));
         }
 
         @SubscribeEvent
@@ -475,7 +476,9 @@ public class ProjectRankine {
             event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
             event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
             event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
+            event.getRegistry().register(new ShapeMemoryEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"shape_memory"));
             event.getRegistry().register(new GuardEnchantment(Enchantment.Rarity.UNCOMMON, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"guard"));
+
 
             event.getRegistry().register(new PreparationEnchantment(Enchantment.Rarity.COMMON, HAND_SLOTS).setRegistryName(ProjectRankine.MODID,"preparation"));
             event.getRegistry().register(new PoisonAspectEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"poison_aspect"));

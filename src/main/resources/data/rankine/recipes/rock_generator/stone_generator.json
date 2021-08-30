@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "rankine:orthoclase_feldspar_block"
+  },
+  "input2": {
+    "item": "rankine:plagioclase_feldspar_block"
+  },
+  "result": {
+    "block": "minecraft:stone"
+  }
+}

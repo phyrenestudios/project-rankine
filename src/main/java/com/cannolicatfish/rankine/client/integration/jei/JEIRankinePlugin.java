@@ -22,6 +22,7 @@ import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.*;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.DisplayEffectsScreen;
 import net.minecraft.client.gui.screen.inventory.*;
 import net.minecraft.item.ItemStack;
@@ -79,6 +80,11 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedElementRecipes(), ElementRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getCrucibleRecipes()), CrucibleRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getExtrusiveGeneratorRecipes()), ExtrusiveGeneratorRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSedimentaryGeneratorRecipes()), SedimentaryGeneratorRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);
         registry.addIngredientInfo(new ItemStack(RankineItems.COKE.get()), VanillaTypes.ITEM, "Coke can be obtained by cooking Bituminous Coal Blocks in a beehive oven.",
                 "See Beehive Oven Pit for more details.");
         registry.addIngredientInfo(new ItemStack(RankineItems.QUICKLIME.get()), VanillaTypes.ITEM, "Quicklime can be obtained by cooking Limestone in a beehive oven.",
@@ -134,6 +140,12 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new ElementRecipeCategory(guiHelper));
         registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CrucibleRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new IntrusiveGeneratorRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new ExtrusiveGeneratorRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new SedimentaryGeneratorRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new MetamorphicGeneratorRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new VolcanicGeneratorRecipeCategory(guiHelper));
+
     }
 
     @Override
@@ -149,6 +161,11 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(RankineItems.ELEMENT_INDEXER.get()), ElementRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.EVAPORATION_TOWER.get()), EvaporationRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.CRUCIBLE_BLOCK.get()), CrucibleRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(Blocks.COBBLESTONE), IntrusiveGeneratorRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(Blocks.BLACKSTONE), ExtrusiveGeneratorRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BRECCIA.get()), SedimentaryGeneratorRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.SKARN.get()), MetamorphicGeneratorRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(Blocks.OBSIDIAN), VolcanicGeneratorRecipeCategory.UID);
     }
 
 }

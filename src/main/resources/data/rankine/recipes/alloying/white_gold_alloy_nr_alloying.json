@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 7,
+  "total": 9,
   "tier": 2,
   "input1": {
     "element": "rankine:elements/netherite",
@@ -35,6 +35,16 @@
   },
   "input7": {
     "element": "rankine:elements/copper",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input8": {
+    "element": "rankine:elements/osmium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input9": {
+    "element": "rankine:elements/iridium",
     "min": 0.0,
     "max": 0.05
   },

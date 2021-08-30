@@ -363,6 +363,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
             }
             withExistingParent(s+"_block", modLoc("block/"+s+"_block"));
         }
+        for (Item BOTTLE : RankineLists.GAS_BOTTLES) {
+            basicItem(BOTTLE);
+        }
 
         //GEODES
         basicItem(RankineItems.UNCUT_GEODE.get().getRegistryName().getPath());

@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " # ",
+    " # ",
+    " t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:titanium_alloy"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:nitinol_alloy_sword",
+    "count": 1
+  }
+}

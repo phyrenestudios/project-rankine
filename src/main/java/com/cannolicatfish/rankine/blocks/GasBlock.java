@@ -42,6 +42,10 @@ public class GasBlock extends AirBlock {
         this.gas = gas;
     }
 
+    public GasUtilsEnum getGasEnum() {
+        return gas;
+    }
+
     @Override
     public boolean ticksRandomly(BlockState state) {
         return Config.GASES.GAS_MOVEMENT.get() || Config.GASES.GAS_DISSIPATION_SPEED.get() > 0;

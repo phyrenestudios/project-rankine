@@ -57,4 +57,11 @@ public class RankineRecipeTypes {
             return recipe.matches(inv, worldIn) ? Optional.of((CrucibleRecipe) recipe) : Optional.empty();
         }
     };
+
+    public static final IRecipeType<RockGeneratorRecipe> ROCK_GENERATOR = new IRecipeType<RockGeneratorRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<RockGeneratorRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((RockGeneratorRecipe) recipe) : Optional.empty();
+        }
+    };
 }

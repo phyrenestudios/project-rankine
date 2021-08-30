@@ -30,6 +30,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public class CreateAlloyCommand {
 
@@ -44,18 +45,20 @@ public class CreateAlloyCommand {
             return p_198496_0_.hasPermissionLevel(2);
         }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((p_198492_0_) -> {
             Item in = ItemArgument.getItem(p_198492_0_, "item").getItem();
-            return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1);
+            return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1,16777215);
         }).then(Commands.argument("composition", StringArgumentType.string()).executes((p_198493_0_) -> {
             Item in = ItemArgument.getItem(p_198493_0_, "item").getItem();
-            return giveItem(p_198493_0_.getSource(), ItemArgument.getItem(p_198493_0_, "item"), StringArgumentType.getString(p_198493_0_, "composition"), in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""),  EntityArgument.getPlayers(p_198493_0_, "targets"), 1);
+            return giveItem(p_198493_0_.getSource(), ItemArgument.getItem(p_198493_0_, "item"), StringArgumentType.getString(p_198493_0_, "composition"), in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""),  EntityArgument.getPlayers(p_198493_0_, "targets"), 1,16777215);
         }).then(Commands.argument("recipe", ResourceLocationArgument.resourceLocation()).suggests(ALLOY_RECIPE_SUGGESTER).executes((p_198494_0_) -> {
-            return giveItem(p_198494_0_.getSource(), ItemArgument.getItem(p_198494_0_, "item"), StringArgumentType.getString(p_198494_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198494_0_, "recipe"), EntityArgument.getPlayers(p_198494_0_, "targets"), 1);
+            return giveItem(p_198494_0_.getSource(), ItemArgument.getItem(p_198494_0_, "item"), StringArgumentType.getString(p_198494_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198494_0_, "recipe"), EntityArgument.getPlayers(p_198494_0_, "targets"), 1,16777215);
         }).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((p_198495_0_) -> {
-            return giveItem(p_198495_0_.getSource(), ItemArgument.getItem(p_198495_0_, "item"), StringArgumentType.getString(p_198495_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198495_0_, "recipe"), EntityArgument.getPlayers(p_198495_0_, "targets"), IntegerArgumentType.getInteger(p_198495_0_, "count"));
-        })))))));
+            return giveItem(p_198495_0_.getSource(), ItemArgument.getItem(p_198495_0_, "item"), StringArgumentType.getString(p_198495_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198495_0_, "recipe"), EntityArgument.getPlayers(p_198495_0_, "targets"), IntegerArgumentType.getInteger(p_198495_0_, "count"),16777215);
+        }).then(Commands.argument("color", IntegerArgumentType.integer(1)).executes((p_198495_0_) -> {
+            return giveItem(p_198495_0_.getSource(), ItemArgument.getItem(p_198495_0_, "item"), StringArgumentType.getString(p_198495_0_, "composition"), ResourceLocationArgument.getResourceLocation(p_198495_0_, "recipe"), EntityArgument.getPlayers(p_198495_0_, "targets"), IntegerArgumentType.getInteger(p_198495_0_, "count"), IntegerArgumentType.getInteger(p_198495_0_, "color"));
+        }))))))));
     }
 
-    private static int giveItem(CommandSource source, ItemInput itemIn, String data, ResourceLocation recipe, Collection<ServerPlayerEntity> targets, int count) throws CommandSyntaxException {
+    private static int giveItem(CommandSource source, ItemInput itemIn, String data, ResourceLocation recipe, Collection<ServerPlayerEntity> targets, int count, int color) throws CommandSyntaxException {
         for(ServerPlayerEntity serverplayerentity : targets) {
             int i = count;
 
@@ -64,7 +67,25 @@ public class CreateAlloyCommand {
                 i -= j;
                 ItemStack itemstack = itemIn.createStack(j, false);
                 if (itemstack.getItem() instanceof IAlloyItem) {
-                    ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.world,data,recipe,null);
+                    if (!recipe.equals(new ResourceLocation("")) || color != 16777215) {
+                        if (!recipe.equals(new ResourceLocation(""))) {
+                            Optional<? extends IRecipe<?>> r = serverplayerentity.getEntityWorld().getRecipeManager().getRecipe(recipe);
+                            if (r.isPresent() && r.get() instanceof AlloyingRecipe) {
+                                AlloyingRecipe alloy = (AlloyingRecipe) r.get();
+                                ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.world,data,recipe,alloy.getLocalName());
+                                if (color != 16777215) {
+                                    IAlloyItem.addColorNBT(itemstack,Math.min(Math.max(color,0),16777215));
+                                } else {
+                                    IAlloyItem.addColorNBT(itemstack,alloy.getColor());
+                                }
+                            }
+                        } else {
+                            ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.world,data,recipe,null);
+                            IAlloyItem.addColorNBT(itemstack,Math.min(Math.max(color,0),16777215));
+                        }
+
+                    }
+
                     if (itemstack.getItem() instanceof IAlloyTool) {
                         ((IAlloyTool) itemstack.getItem()).applyAlloyEnchantments(itemstack,serverplayerentity.world);
                     } else if (itemstack.getItem() instanceof IAlloyArmor) {
