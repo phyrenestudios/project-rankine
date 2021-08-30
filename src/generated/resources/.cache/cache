@@ -9680,6 +9680,7 @@ d22f056aadc4087c114ae54252a5e3fee4e75686 assets/rankine/models/item/anorthosite_
 8b971462d3c8a51be8954d0aa7f6cae6e92582d1 assets/rankine/models/item/aquamarine_ore.json
 0f6e66d579341465f36e8671361aead0e6868711 assets/rankine/models/item/argon_block.json
 88e632ec954e0ee8f1391bc51894a37443206c47 assets/rankine/models/item/argon_gas_block.json
+9e4ddf96bafb2be8e0229036c5838200b540291f assets/rankine/models/item/argon_gas_bottle.json
 7a9e4568dc0c2567efa8a6c1837863786bad2d05 assets/rankine/models/item/argon_ingot.json
 87c0984b030800a892b981848f494f0a54613a9f assets/rankine/models/item/argon_nugget.json
 a4bbba37a44a71e1cd209032b6f82d3210662889 assets/rankine/models/item/arkose.json
@@ -10048,6 +10049,7 @@ bd656ec81a5d0478dbace3a5c3b43e92d69ea220 assets/rankine/models/item/checkered_ma
 ba3ffba1b3352e29a066d3d487739010f7dcac73 assets/rankine/models/item/cheese.json
 7d94441f73a111835e7f934df4f7e2addf3d3f50 assets/rankine/models/item/chlorine_block.json
 cbef2a20cb68aeff3540ae35f0d0cd570d56fb01 assets/rankine/models/item/chlorine_gas_block.json
+7d6e3d3e36f9118f3eb6ac33110bf8a64ee33b44 assets/rankine/models/item/chlorine_gas_bottle.json
 b2404e00a273485cd539f0febf0f9d5a1d1a69a7 assets/rankine/models/item/chlorine_ingot.json
 aabe31baa78cfe9f0321ca5fa20577a35010b067 assets/rankine/models/item/chlorine_nugget.json
 b1bcc6b9ebbd7fd91d5d00e80d1bc7b16fb121ca assets/rankine/models/item/chrome_enstatite.json
@@ -10322,6 +10324,7 @@ dd1955560344762b4aa8d0a0e5852fbd27310422 assets/rankine/models/item/flint_spear.
 51a9aa985fd1cdf4db8fe60a3db93e26c6ff44a0 assets/rankine/models/item/fluid_drain.json
 88d9ce8d07d6b4b34a5679584d05f4d5a1f3a74d assets/rankine/models/item/fluorine_block.json
 9285e91d04c1bdf41e85df75f0e2250bd1743c09 assets/rankine/models/item/fluorine_gas_block.json
+018df10e91888b27e6945e46edb1f25ef2ef9011 assets/rankine/models/item/fluorine_gas_bottle.json
 bd1f150ec92239dad6b3856cfd1ee5d665931f64 assets/rankine/models/item/fluorine_ingot.json
 abcf161ee43a7a34739edf469079a4f4583c23d9 assets/rankine/models/item/fluorine_nugget.json
 fc86c21e5dc4bbb1fe9a8ed7c3fdf58b508c0f59 assets/rankine/models/item/fluorite.json
@@ -10500,6 +10503,7 @@ d0caa44c8829e520e2b3ea6b18c41f057f3ab734 assets/rankine/models/item/hassium_nugg
 a3831be8e4df8ad660600a307bf6e4e1d4bd39b3 assets/rankine/models/item/health_pendant.json
 fd7a593a741c0f11929a8e3a6cb0e2a9314b2738 assets/rankine/models/item/helium_block.json
 73cda4889a4d57716a7a91230d2526c35aeae5f3 assets/rankine/models/item/helium_gas_block.json
+68566b821c1d4bc6cb51559245e3c5c0f01dae29 assets/rankine/models/item/helium_gas_bottle.json
 d358db4185e0bdac721db7514f05fd37e170adf4 assets/rankine/models/item/helium_ingot.json
 79d5c2d71926a23c7e90eaa04dccd72cb09877cf assets/rankine/models/item/helium_nugget.json
 08b35e29c61ef983aead9c4999edc1771297ed5f assets/rankine/models/item/herbicide.json
@@ -10528,6 +10532,7 @@ d8d853fd3f896df27cf3705be4e7eab3032bfdcb assets/rankine/models/item/hornblende_a
 61571e7ddf97c22787d6813b7ace817bd69b3887 assets/rankine/models/item/hornblende_andesite_wall.json
 7f9e4aba3ab0ce44d41485dfa865cf5f204303ab assets/rankine/models/item/hydrogen_block.json
 67019dc100e9c19a628ac4954286e909da982525 assets/rankine/models/item/hydrogen_gas_block.json
+16fb65beae3765c3add79a28e6ac53386c1a3dd0 assets/rankine/models/item/hydrogen_gas_bottle.json
 e5be4c5b8f997e1991ae20dc3dc2cd36e7eb1a1a assets/rankine/models/item/hydrogen_ingot.json
 8554dc9629b567245b3cd31231375a443bdc34ba assets/rankine/models/item/hydrogen_nugget.json
 7af7fe4a81bd2497c737ef2da9a27b8eb240bc46 assets/rankine/models/item/ice_skates.json
@@ -10622,6 +10627,7 @@ f16a022af66f959d94ba2a64179734b96edf22d0 assets/rankine/models/item/komatiite_sl
 c16d8f3209c86d0a91b94392958deb005c4803ff assets/rankine/models/item/komatiite_wall.json
 28c5c6a4ddc6d944b5fd98b9242d962540de4981 assets/rankine/models/item/krypton_block.json
 975fe687cd25b2fe680a52023c5e5304655ba6c3 assets/rankine/models/item/krypton_gas_block.json
+33b12cacb36b6b36caaf14e382c2b3ed38eec69a assets/rankine/models/item/krypton_gas_bottle.json
 0df4426038382e70e385428bccb2b99cc4bfe3cb assets/rankine/models/item/krypton_ingot.json
 684bf789ff61314b2361e7563ecfe0ead7c6f6fc assets/rankine/models/item/krypton_nugget.json
 805b34cabf5c7d04b60e88edbeb7c6b9092b219c assets/rankine/models/item/labradorite.json
@@ -10862,6 +10868,7 @@ ac5fe0e9a06fad604cefd1bd91379780b591d48d assets/rankine/models/item/neodymium_mo
 4536130c27761f0456cccb30579a2a30d10ab3a1 assets/rankine/models/item/neodymium_nugget.json
 515d8c4b6dde42e7f0309de5f8833968b18b7c7d assets/rankine/models/item/neon_block.json
 4f1bce9b18020f5261dc2af2bb09b7d826d06023 assets/rankine/models/item/neon_gas_block.json
+0f1dc93e87ba63ec6686eebd7c690048e37fed41 assets/rankine/models/item/neon_gas_bottle.json
 079c5d116c7c3c26adc6ccb14123a8f0b453dd7f assets/rankine/models/item/neon_ingot.json
 562b326620d70edc32c0c2d4243e29f66dd3b0d3 assets/rankine/models/item/neon_nugget.json
 1792bdc8c290b1bff2a595b3d3ff652624f03c10 assets/rankine/models/item/neptunium_block.json
@@ -10900,6 +10907,7 @@ b9f1446b46ef077d8eebee87a692c3c6fba5a377 assets/rankine/models/item/nitinol_bloc
 ab1300bc62926e9d7a0739d816a715874cf53160 assets/rankine/models/item/nitinol_pole.json
 4003833368cdd9b8124ff6dffd206e14fa37f033 assets/rankine/models/item/nitrogen_block.json
 75c035dff8eea4b0892d7ee902c1a224b309a4fc assets/rankine/models/item/nitrogen_gas_block.json
+962ce627089f10fa708ce0cfa271b409bae1bade assets/rankine/models/item/nitrogen_gas_bottle.json
 7cdcad53775d53bf817f179c741865b10ef2785d assets/rankine/models/item/nitrogen_ingot.json
 61aeacc0ab2256673e593694792ef73829e19009 assets/rankine/models/item/nitrogen_nugget.json
 8cc0ebd77a576000842a0652fed58ce221749a5c assets/rankine/models/item/nobelium_block.json
@@ -10920,6 +10928,7 @@ e755a533acbbc00af5cc9714aa9f66f542a94717 assets/rankine/models/item/norite_stair
 3175457ab5b1c8fcad686b4a48e4d6841a428608 assets/rankine/models/item/norite_wall.json
 99ae88a311b2c33776a9ea8695b083d89ae30e1e assets/rankine/models/item/oganesson_block.json
 497deea2ffadea53c026e4ab04d3ff9e2d97554e assets/rankine/models/item/oganesson_gas_block.json
+25c47e75ad5baf925fd4eaa5c66d90a85a34f5b8 assets/rankine/models/item/oganesson_gas_bottle.json
 de2ee22f40a0d1b1b60003238b7dc46bae312229 assets/rankine/models/item/oganesson_ingot.json
 ab883adf1f18ec79efdea944cc56ebf61a6830a2 assets/rankine/models/item/oganesson_nugget.json
 be638dff5e7146ef1dcf9b78af0957922112b79a assets/rankine/models/item/olivine.json
@@ -10946,6 +10955,7 @@ d82378c8ec02f508250a6c53de71f67a05da24be assets/rankine/models/item/osmium_ingot
 ac1024be7d191c8508a25234700db5a6f45ef4c6 assets/rankine/models/item/osmium_nugget.json
 eea65ff05e5f0be60a644e99c638692fe32d8eb0 assets/rankine/models/item/oxygen_block.json
 df0fccc701ac3ca1fd9c198f7be9d1f480275efa assets/rankine/models/item/oxygen_gas_block.json
+21e3c14eabcd7e99eec013a8446ce8a8a5232a07 assets/rankine/models/item/oxygen_gas_bottle.json
 143550eb3e9b78897265099f5bc5a855a4b2e87a assets/rankine/models/item/oxygen_ingot.json
 9bcac8f52d5fe0cc8cfdbc3dec0740d6b229f750 assets/rankine/models/item/oxygen_nugget.json
 3fd397dea23d97f7ccea673c3e50e04568c2cfb6 assets/rankine/models/item/packaged_tool.json
@@ -11435,6 +11445,7 @@ ff54e9f02a5fcfcce0c69b51e1a61652b664efd4 assets/rankine/models/item/radium_ingot
 b48e139d458735e3a1f71933b8cfafea9ac50191 assets/rankine/models/item/radium_nugget.json
 c88b8cdc695b888b6f2f2044fc3ca1c52cbf4b3a assets/rankine/models/item/radon_block.json
 8d56c81fc7cb7ede6f063a12c6c2779fcaee8b28 assets/rankine/models/item/radon_gas_block.json
+a652129f94cb706072ed40a5a8abfb6c8f4befaf assets/rankine/models/item/radon_gas_bottle.json
 6786172075a8a4794df11b397519400da8d7d37a assets/rankine/models/item/radon_ingot.json
 204ae6d7d93175a086892d756c41451a50a39aa7 assets/rankine/models/item/radon_nugget.json
 0d632f371fcadd33794822e78eff468c79902597 assets/rankine/models/item/rankine_box.json
@@ -12030,6 +12041,7 @@ c09eeb61a4eeedb422ea0b939d92224810961a8c assets/rankine/models/item/white_marble
 f0a68d2dd3c8b13b15a02ef44cdd28ae4f61caea assets/rankine/models/item/worn_asphalt.json
 aad3822880021efc26fafeeb80979221051e238c assets/rankine/models/item/xenon_block.json
 337a2379e4056aae0af9e0e958fac5831d52c59f assets/rankine/models/item/xenon_gas_block.json
+52e8babb3d01bcd6712db190b9d9d91683e4d264 assets/rankine/models/item/xenon_gas_bottle.json
 82914e7d179948ed84bcb6b6306f14f15b07ae20 assets/rankine/models/item/xenon_ingot.json
 9c3beda5b18ba8180b9fe54035186233b0229580 assets/rankine/models/item/xenon_nugget.json
 d4adb008025dec84f670f9345ad1ac1d63da6fd6 assets/rankine/models/item/xenotime.json
@@ -12175,6 +12187,7 @@ deef461c802f98957a7ca3567ff6c5912fa90ac2 data/forge/tags/items/clay_balls.json
 8fda5d4cdf8e21f817aed61ea1803dc3157e92dc data/forge/tags/items/coke.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/concrete.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/concrete_powder.json
+589018d2208e1413caed9809b40905c2e03bdbdb data/forge/tags/items/crowbars.json
 dc3a75e66a4ba0f9ffb484b32c7991762859994c data/forge/tags/items/diamond_tools.json
 c652cc00b5d241af9d0e4881d46e6c0248f101e6 data/forge/tags/items/dough.json
 beeffb578c69f458992a178806c3b9038f3fce75 data/forge/tags/items/feldspar.json
@@ -12192,7 +12205,7 @@ c4913337674079df26cd3520ef9af8420e569002 data/forge/tags/items/hoes.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/igneous_stones.json
 a8f4d2b862ede8524a9f6a785bbd356b729643a8 data/forge/tags/items/invar_tools.json
 ffb64b19c26face6b17741179f6b6e9d9e789ce1 data/forge/tags/items/iron_tools.json
-48c96db823f0a1a6aafd84d29ccb3d3b6958c3ff data/forge/tags/items/knives.json
+25135bc0ad5a32769c7de5dfc00601e6c6ccc622 data/forge/tags/items/knives.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/metamorphic_stones.json
 74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/forge/tags/items/mineral_wool.json
 634e69a87eb1aa8e2f8aa48f7f8829e7eb2b3c8c data/forge/tags/items/netherite_tools.json
@@ -14021,7 +14034,7 @@ e1147bcdf898eff52915d73393d9e18605585ff1 data/minecraft/tags/blocks/wooden_press
 545b4cb84e238b9e7034b1477a5709b1c38e00ec data/minecraft/tags/blocks/wooden_slabs.json
 4257024210f15a9c1e3885f271d34adf164b8049 data/minecraft/tags/blocks/wooden_stairs.json
 cda1cc9b40ca8c07ac3a5f6e018f7d468cde8cda data/minecraft/tags/blocks/wooden_trapdoors.json
-b38c3ce82f1367b8e8b05e321397c6ffd6ff6f0f data/minecraft/tags/items/arrows.json
+1473971d1fb1f9ae1ee9ca1c5ae2caf20a89687f data/minecraft/tags/items/arrows.json
 4af14c7228a475dcf2e25cf078979c76fa79cfd8 data/minecraft/tags/items/coals.json
 a8df5e4e46f2470b579690c75bf979b26b153cbf data/minecraft/tags/items/piglin_loved.json
 f2af93ffa0467103bb0edda5cab8d93f37f2ca79 data/rankine/advancements/recipes/misc/black_dye_from_blackberries.json

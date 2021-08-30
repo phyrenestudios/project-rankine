@@ -14,5 +14,7 @@
     "max": 0.52,
     "required": true
   },
-  "result": "rankine:nitinol_alloy"
+  "result": "rankine:nitinol_alloy",
+  "enchantments": ["rankine:shape_memory"],
+  "enchantmentTypes": ["ALL"]
 }

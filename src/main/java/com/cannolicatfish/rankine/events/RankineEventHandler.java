@@ -19,9 +19,12 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
+import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
+import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -37,6 +40,7 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
@@ -85,6 +89,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -884,207 +889,84 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onFluidInteraction(BlockEvent.FluidPlaceBlockEvent event)
     {
-        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
+        if (event.getState() == Blocks.COBBLESTONE.getDefaultState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get())
         {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-            if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(Blocks.QUARTZ_BLOCK))
-            {
-                event.setNewState(Blocks.GRANITE.getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(Blocks.QUARTZ_BLOCK))
-            {
-                event.setNewState(RankineBlocks.GRAY_GRANITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
-            {
-                event.setNewState(Blocks.DIORITE.getDefaultState());
-                return;
-            }  else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.GABBRO.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.PURPLE_PORPHYRY.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.PERIDOTITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()) && adjPos.contains(RankineBlocks.CALCIUM_SILICATE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.TROCTOLITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.MAGNESIA_BLOCK.get()) && adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.KOMATIITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.MAGNESIA_BLOCK.get()) && adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.KIMBERLITE.get().getDefaultState());
-                return;
+            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+                if (r.getGenType().equals(RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS)) {
+                    return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
+                }
+                return null;
+            }).findFirst().orElse(null);
+            if (recipe != null) {
+                ItemStack output = recipe.getRecipeOutput();
+                if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                    event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                }
             }
 
-            switch (event.getWorld().getRandom().nextInt(8))
-            {
-                case 0:
-                    event.setNewState(Blocks.GRANITE.getDefaultState());
-                    break;
-                case 1:
-                    event.setNewState(Blocks.DIORITE.getDefaultState());
-                    break;
-                case 2:
-                    event.setNewState(RankineBlocks.GRAY_GRANITE.get().getDefaultState());
-                    break;
-                case 3:
-                    event.setNewState(RankineBlocks.GABBRO.get().getDefaultState());
-                    break;
-                case 4:
-                    event.setNewState(RankineBlocks.GRANODIORITE.get().getDefaultState());
-                    break;
-                case 5:
-                    event.setNewState(RankineBlocks.ANORTHOSITE.get().getDefaultState());
-                    break;
-                case 6:
-                    event.setNewState(RankineBlocks.RED_PORPHYRY.get().getDefaultState());
-                    break;
-                case 7:
-                    event.setNewState(RankineBlocks.PURPLE_PORPHYRY.get().getDefaultState());
-                    break;
-            }
-        } else if (event.getState() == Blocks.BASALT.getDefaultState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get() && event.getWorld() instanceof World)
+        } else if (event.getState() == Blocks.BASALT.getDefaultState() && Config.GENERAL.IGNEOUS_COBBLE_GEN.get())
         {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock());
-
-            if (adjPos.contains(RankineBlocks.ORTHOCLASE_FELDSPAR_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.RHYOLITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(Blocks.QUARTZ_BLOCK))
-            {
-                event.setNewState(RankineBlocks.BLACK_DACITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.MICA_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.RED_DACITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.PLAGIOCLASE_FELDSPAR_BLOCK.get()))
-            {
-                event.setNewState(Blocks.ANDESITE.getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.AMPHIBOLE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.PYROXENE_BLOCK.get()))
-            {
-                event.setNewState(Blocks.BASALT.getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.OLIVINE_BLOCK.get()))
-            {
-                event.setNewState(RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(Blocks.CRYING_OBSIDIAN))
-            {
-                event.setNewState(RankineBlocks.COMENDITE.get().getDefaultState());
-                return;
+            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+                if (r.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS)) {
+                    return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
+                }
+                return null;
+            }).findFirst().orElse(null);
+            if (recipe != null) {
+                ItemStack output = recipe.getRecipeOutput();
+                if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                    event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                }
+            } else {
+                event.setNewState(Blocks.BLACKSTONE.getDefaultState());
             }
-            switch (event.getWorld().getRandom().nextInt(7))
-            {
-                case 0:
-                    event.setNewState(Blocks.BASALT.getDefaultState());
-                    break;
-                case 1:
-                    event.setNewState(RankineBlocks.THOLEIITIC_BASALT.get().getDefaultState());
-                    break;
-                case 2:
-                    event.setNewState(RankineBlocks.RED_DACITE.get().getDefaultState());
-                    break;
-                case 3:
-                    event.setNewState(RankineBlocks.BLACK_DACITE.get().getDefaultState());
-                    break;
-                case 4:
-                    event.setNewState(RankineBlocks.RHYOLITE.get().getDefaultState());
-                    break;
-                case 5:
-                    event.setNewState(RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
-                    break;
-                case 6:
-                    event.setNewState(Blocks.ANDESITE.getDefaultState());
-                    break;
-            }
-        } else if (event.getState() == Blocks.STONE.getDefaultState() && Config.GENERAL.METAMORPHIC_STONE_GEN.get()) { // Change to metamorphic gen
+        } else if (event.getState() == Blocks.STONE.getDefaultState()) {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
             List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
                     worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-
-            if (adjPos.contains(RankineBlocks.ITACOLUMITE.get()) || adjPos.contains(Blocks.SANDSTONE)) {
-                event.setNewState(RankineBlocks.QUARTZITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.SHALE.get())) {
-                event.setNewState(RankineBlocks.SLATE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.SLATE.get())) {
-                event.setNewState(RankineBlocks.PHYLLITE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.DOLOSTONE.get())) {
-                event.setNewState(RankineBlocks.WHITE_MARBLE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.LIMESTONE.get())) {
-                event.setNewState(RankineBlocks.BLACK_MARBLE.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.GRAY_GRANITE.get()) || adjPos.contains(Blocks.GRANITE)) {
-                event.setNewState(RankineBlocks.GNEISS.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.GRANODIORITE.get()) || adjPos.contains(Blocks.DIORITE)) {
-                event.setNewState(RankineBlocks.MICA_SCHIST.get().getDefaultState());
-                return;
-            } else if (adjPos.contains(RankineBlocks.BRECCIA.get()) || adjPos.contains(Blocks.ANDESITE)) {
+            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+                if (r.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC)) {
+                    return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
+                }
+                return null;
+            }).findFirst().orElse(null);
+            if (recipe != null) {
+                ItemStack output = recipe.getRecipeOutput();
+                if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                    event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                }
+            } else {
                 event.setNewState(RankineBlocks.SKARN.get().getDefaultState());
-                return;
             }
-            switch (event.getWorld().getRandom().nextInt(8))
-            {
-                case 0:
-                    event.setNewState(RankineBlocks.QUARTZITE.get().getDefaultState());
-                    break;
-                case 1:
-                    event.setNewState(RankineBlocks.SLATE.get().getDefaultState());
-                    break;
-                case 2:
-                    event.setNewState(RankineBlocks.PHYLLITE.get().getDefaultState());
-                    break;
-                case 3:
-                    event.setNewState(RankineBlocks.WHITE_MARBLE.get().getDefaultState());
-                    break;
-                case 4:
-                    event.setNewState(RankineBlocks.BLACK_MARBLE.get().getDefaultState());
-                    break;
-                case 5:
-                    event.setNewState(RankineBlocks.GNEISS.get().getDefaultState());
-                    break;
-                case 6:
-                    event.setNewState(RankineBlocks.MICA_SCHIST.get().getDefaultState());
-                    break;
+        } else if (event.getState() == Blocks.OBSIDIAN.getDefaultState()) {
+            World worldIn = (World) event.getWorld();
+            BlockPos pos = event.getPos();
+            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
+                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
+            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+                if (r.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
+                    return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
+                }
+                return null;
+            }).findFirst().orElse(null);
+            if (recipe != null) {
+                ItemStack output = recipe.getRecipeOutput();
+                if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                    event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                }
             }
         }
     }

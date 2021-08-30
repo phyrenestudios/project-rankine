@@ -77,6 +77,9 @@ public class RankineEnchantments {
     @ObjectHolder("rankine:withering_curse")
     public static Enchantment WITHERING_CURSE;
 
+    @ObjectHolder("rankine:shape_memory")
+    public static Enchantment SHAPE_MEMORY;
+
     @ObjectHolder("rankine:guard")
     public static Enchantment GUARD;
 

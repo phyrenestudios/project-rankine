@@ -1,10 +1,50 @@
 {
-          "type": "rankine:element",
-          "name": "tungsten",
-          "symbol": "W",
-          "color": 16777215,
-          "atomic": 74,
-          "potential": 0,
-          "items": ["T#forge:nuggets/tungsten","T#forge:ingots/tungsten","T#forge:storage_blocks/tungsten"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "tungsten",
+  "symbol": "W",
+  "color": 12693657,
+  "atomic": 74,
+  "potential": -0.12,
+  "items": ["T#forge:nuggets/tungsten","T#forge:ingots/tungsten","T#forge:storage_blocks/tungsten"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [10],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.25],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [5,11,17,50,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2,3,4],
+    "b": [0,0,0,0,0],
+    "modifiers": ["NONE","NONE","NONE","NONE","NONE"],
+    "limit": [0,0,0,0,0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0625],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.01],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [1]
+  }
+}

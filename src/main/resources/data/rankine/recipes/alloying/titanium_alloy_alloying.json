@@ -93,17 +93,17 @@
     "max": 0.05
   },
   "input19": {
+    "element": "rankine:elements/iridium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input20": {
     "element": "rankine:elements/carbon",
     "min": 0.0,
     "max": 0.02
   },
-  "input20": {
-    "element": "rankine:elements/silicon",
-    "min": 0.0,
-    "max": 0.02
-  },
   "input21": {
-    "element": "rankine:elements/oxygen",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.02
   },

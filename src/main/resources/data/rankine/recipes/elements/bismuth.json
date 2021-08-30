@@ -38,5 +38,13 @@
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.008],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [1]
   }
 }

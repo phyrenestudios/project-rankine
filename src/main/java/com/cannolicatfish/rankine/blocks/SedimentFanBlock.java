@@ -1,13 +1,20 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
+import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -47,84 +54,30 @@ public class SedimentFanBlock extends Block {
                     break;
             }
 
-            if (dir != null)
-            {
-                List<Fluid> waterChecks = Arrays.asList(worldIn.getFluidState(pos.up().offset(dir,2)).getFluid(),worldIn.getFluidState(pos.up().offset(dir,3)).getFluid());
+            if (dir != null) {
+                List<Fluid> waterChecks = Arrays.asList(worldIn.getFluidState(pos.up().offset(dir, 2)).getFluid(), worldIn.getFluidState(pos.up().offset(dir, 3)).getFluid());
                 if (waterChecks.stream().allMatch((e) -> e == Fluids.FLOWING_WATER)) {
                     Block sediment = worldIn.getBlockState(pos.offset(dir)).getBlock();
-                    Block sediment2 = worldIn.getBlockState(pos.offset(dir,2)).getBlock();
-                    BlockPos end = pos.up().offset(dir,3);
-
-                    if ((sediment == Blocks.RED_SAND && sediment2 == Blocks.QUARTZ_BLOCK) || (sediment2 == Blocks.RED_SAND && sediment == Blocks.QUARTZ_BLOCK)) {
-                        worldIn.setBlockState(end, RankineBlocks.ARKOSE.get().getDefaultState(),2);
-                        return;
-                    } else if ((sediment == Blocks.SAND && sediment2 == Blocks.QUARTZ_BLOCK) || (sediment2 == Blocks.SAND && sediment == Blocks.QUARTZ_BLOCK)) {
-                        worldIn.setBlockState(end, RankineBlocks.ITACOLUMITE.get().getDefaultState(),2);
-                        return;
-                    }else if ((sediment == Blocks.SAND && sediment2 == Blocks.CLAY) || (sediment == Blocks.CLAY && sediment2 == Blocks.SAND)) {
-                        worldIn.setBlockState(end, RankineBlocks.SILTSTONE.get().getDefaultState(), 2);
-                        return;
-                    }  else if ((sediment == Blocks.DIRT) && (sediment2 == Blocks.DIRT)) {
-                        worldIn.setBlockState(end, RankineBlocks.MUDSTONE.get().getDefaultState(), 2);
-                        return;
-                    } else if ((sediment == Blocks.RED_SAND) && (sediment2 == Blocks.RED_SAND)) {
-                        worldIn.setBlockState(end, Blocks.RED_SANDSTONE.getDefaultState(),2);
-                        return;
-                    } else if ((sediment == Blocks.SAND) && (sediment2 == Blocks.SAND)) {
-                        worldIn.setBlockState(end, Blocks.SANDSTONE.getDefaultState(),2);
-                        return;
-                    } else if ((sediment == Blocks.CLAY) && (sediment2 == Blocks.CLAY)) {
-                        worldIn.setBlockState(end, RankineBlocks.SHALE.get().getDefaultState(),2);
-                        return;
-                    }  else if ((sediment == RankineBlocks.DOLOMITE_BLOCK.get()) && (sediment2 == RankineBlocks.DOLOMITE_BLOCK.get())) {
-                        worldIn.setBlockState(end, RankineBlocks.DOLOSTONE.get().getDefaultState(), 2);
-                        return;
-                    } else if ((sediment == RankineBlocks.CALCITE_BLOCK.get()) && (sediment2 == RankineBlocks.CALCITE_BLOCK.get())) {
-                        worldIn.setBlockState(end, RankineBlocks.LIMESTONE.get().getDefaultState(), 2);
-                        return;
-                    }
-                    switch (worldIn.getRandom().nextInt(11))
-                    {
-                        case 0:
-                            worldIn.setBlockState(end,Blocks.SANDSTONE.getDefaultState(),2);
-                            break;
-                        case 1:
-                            worldIn.setBlockState(end,Blocks.RED_SANDSTONE.getDefaultState(),2);
-                            break;
-                        case 2:
-                            worldIn.setBlockState(end,RankineBlocks.ITACOLUMITE.get().getDefaultState(),2);
-                            break;
-                        case 3:
-                            worldIn.setBlockState(end,RankineBlocks.ARKOSE.get().getDefaultState(),2);
-                            break;
-                        case 4:
-                            worldIn.setBlockState(end,RankineBlocks.LIMESTONE.get().getDefaultState(),2);
-                            break;
-                        case 5:
-                            worldIn.setBlockState(end,RankineBlocks.DOLOSTONE.get().getDefaultState(),2);
-                            break;
-                        case 6:
-                            worldIn.setBlockState(end,RankineBlocks.BRECCIA.get().getDefaultState(),2);
-                            break;
-                        case 7:
-                            worldIn.setBlockState(end,RankineBlocks.MUDSTONE.get().getDefaultState(),2);
-                            break;
-                        case 8:
-                            worldIn.setBlockState(end,RankineBlocks.SHALE.get().getDefaultState(),2);
-                            break;
-                        case 9:
-                            worldIn.setBlockState(end,RankineBlocks.SILTSTONE.get().getDefaultState(),2);
-                            break;
-                        case 10:
-                            worldIn.setBlockState(end,RankineBlocks.CHALK.get().getDefaultState(),2);
-                            break;
+                    Block sediment2 = worldIn.getBlockState(pos.offset(dir, 2)).getBlock();
+                    List<Block> adjPos2 = Arrays.asList(sediment,sediment2);
+                    BlockPos end = pos.up().offset(dir, 3);
+                    ItemStack[] items = adjPos2.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+                    RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
+                        if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
+                            return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
+                        }
+                        return null;
+                    }).findFirst().orElse(null);
+                    if (recipe != null) {
+                        ItemStack output = recipe.getRecipeOutput();
+                        if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
+                            worldIn.setBlockState(end, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
+                        }
+                    } else {
+                        worldIn.setBlockState(end, RankineBlocks.BRECCIA.get().getDefaultState(), 2);
                     }
                 }
-
             }
-
-
-
         }
 
     }
