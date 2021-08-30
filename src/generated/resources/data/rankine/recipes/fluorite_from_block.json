@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:fluorite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:fluorite",
+    "count": 9
+  }
+}

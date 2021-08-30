@@ -1,4 +1,12 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "#forge:stones/gneiss",
+    "#forge:stones/schist",
+    "#forge:stones/skarn",
+    "#forge:stones/marble",
+    "#forge:stones/phylite",
+    "#forge:stones/slate",
+    "#forge:stones/serpetinite"
+  ]
 }

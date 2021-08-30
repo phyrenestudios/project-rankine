@@ -7,7 +7,7 @@
       "model": "rankine:block/sharinga_slab"
     },
     "type=double": {
-      "model": "rankine:block/sharinga_planks"
+      "model": "rankine:block/sharinga_slab"
     }
   }
 }

@@ -3,7 +3,7 @@
   "textures": {
     "soil": "rankine:block/loamy_sand",
     "grassy_soil_top": "rankine:block/grassy_loamy_sand_top",
-    "grassy_soil_side": "minecraft:block/grass_block_side",
-    "grassy_soil_side_overlay": "minecraft:block/grass_block_side_overlay"
+    "grassy_soil_side": "rankine:block/grassy_loamy_sand_side",
+    "grassy_soil_side_overlay": "rankine:block/grassy_loamy_sand_side_overlay"
   }
 }

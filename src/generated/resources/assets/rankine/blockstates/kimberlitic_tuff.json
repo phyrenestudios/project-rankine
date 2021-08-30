@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/kimberlitic_tuff"
+      },
+      {
+        "model": "rankine:block/kimberlitic_tuff",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/kimberlitic_tuff",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/kimberlitic_tuff",
+        "y": 270
+      }
+    ]
+  }
+}

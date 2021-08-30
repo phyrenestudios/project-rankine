@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:tholeiitic_basalt",
+    "minecraft:basalt"
+  ]
 }

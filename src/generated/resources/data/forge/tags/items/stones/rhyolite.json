@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:rhyolite",
+    "rankine:comendite"
+  ]
 }

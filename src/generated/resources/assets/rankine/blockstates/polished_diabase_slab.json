@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/polished_diabase_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/polished_diabase_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/polished_diabase"
+    }
+  }
+}

@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:fire_clay",
+    "minecraft:clay"
+  ]
 }

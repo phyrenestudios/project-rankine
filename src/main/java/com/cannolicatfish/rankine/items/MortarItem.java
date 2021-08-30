@@ -51,7 +51,7 @@ public class MortarItem extends Item {
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT.get() && !worldIn.isRemote()) {
                     int i = 0;
                     while (worldIn.getBlockState(pos.up(i)) == RankineBlocks.CAST_IRON_SUPPORT.get().getDefaultState()) {
-                        worldIn.setBlockState(pos.up(i), RankineBlocks.UNCOLORED_CONCRETE.get().getDefaultState());
+                        worldIn.setBlockState(pos.up(i), RankineBlocks.CONCRETE.get().getDefaultState());
                         ++i;
                         if (context.getItem().getCount() >= 1) {
                             context.getItem().shrink(1);
@@ -61,7 +61,7 @@ public class MortarItem extends Item {
                     }
                     i = 1;
                     while (worldIn.getBlockState(pos.down(i)) == RankineBlocks.CAST_IRON_SUPPORT.get().getDefaultState()) {
-                        worldIn.setBlockState(pos.down(i), RankineBlocks.UNCOLORED_CONCRETE.get().getDefaultState());
+                        worldIn.setBlockState(pos.down(i), RankineBlocks.CONCRETE.get().getDefaultState());
                         ++i;
                         if (context.getItem().getCount() >= 1) {
                             context.getItem().shrink(1);
@@ -71,15 +71,15 @@ public class MortarItem extends Item {
                     }
                     return ActionResultType.SUCCESS;
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT_SLAB.get() && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_SLAB.get().getDefaultState().with(BlockStateProperties.SLAB_TYPE, state.get(BlockStateProperties.SLAB_TYPE)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
+                    worldIn.setBlockState(pos, RankineBlocks.CONCRETE_SLAB.get().getDefaultState().with(BlockStateProperties.SLAB_TYPE, state.get(BlockStateProperties.SLAB_TYPE)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 } else if (block == RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get() && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_STAIRS.get().getDefaultState().with(StairsBlock.SHAPE, state.get(StairsBlock.SHAPE)).with(StairsBlock.FACING, state.get(StairsBlock.FACING)).with(StairsBlock.HALF, state.get(StairsBlock.HALF)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
+                    worldIn.setBlockState(pos, RankineBlocks.CONCRETE_STAIRS.get().getDefaultState().with(StairsBlock.SHAPE, state.get(StairsBlock.SHAPE)).with(StairsBlock.FACING, state.get(StairsBlock.FACING)).with(StairsBlock.HALF, state.get(StairsBlock.HALF)).with(BlockStateProperties.WATERLOGGED, state.get(BlockStateProperties.WATERLOGGED)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
-                } else if (block == RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get() && !worldIn.isRemote()) {
-                    worldIn.setBlockState(pos, RankineBlocks.UNCOLORED_CONCRETE_VERTICAL_SLAB.get().getDefaultState().with(RankineVerticalSlabBlock.HORIZONTAL_FACING, state.get(RankineVerticalSlabBlock.HORIZONTAL_FACING)).with(RankineVerticalSlabBlock.TYPE, state.get(RankineVerticalSlabBlock.TYPE)));
+                } else if (block == RankineBlocks.CONCRETE_VERTICAL_SLAB.get() && !worldIn.isRemote()) {
+                    worldIn.setBlockState(pos, RankineBlocks.CONCRETE_VERTICAL_SLAB.get().getDefaultState().with(RankineVerticalSlabBlock.HORIZONTAL_FACING, state.get(RankineVerticalSlabBlock.HORIZONTAL_FACING)).with(RankineVerticalSlabBlock.TYPE, state.get(RankineVerticalSlabBlock.TYPE)));
                     context.getItem().shrink(1);
                     return ActionResultType.SUCCESS;
                 }

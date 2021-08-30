@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:sodium_chloride_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:sodium_chloride",
+    "count": 9
+  }
+}

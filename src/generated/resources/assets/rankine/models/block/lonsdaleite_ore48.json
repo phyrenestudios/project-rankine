@@ -1,7 +1,7 @@
 {
   "parent": "rankine:block/template_rankine_ore",
   "textures": {
-    "background": "rankine:block/siltstone",
+    "background": "rankine:block/itacolumite",
     "overlay": "rankine:block/lonsdaleite_ore"
   }
 }

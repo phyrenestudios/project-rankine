@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:diabase_bricks"
+  },
+  "result": "rankine:diabase_bricks_vertical_slab",
+  "count": 2
+}

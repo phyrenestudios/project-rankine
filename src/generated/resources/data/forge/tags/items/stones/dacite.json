@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:black_dacite",
+    "rankine:red_dacite"
+  ]
 }

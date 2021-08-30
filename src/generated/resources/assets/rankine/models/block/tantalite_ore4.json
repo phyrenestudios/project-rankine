@@ -1,7 +1,0 @@
-{
-  "parent": "rankine:block/template_rankine_ore",
-  "textures": {
-    "background": "minecraft:block/sandstone",
-    "overlay": "rankine:block/tantalite_ore"
-  }
-}

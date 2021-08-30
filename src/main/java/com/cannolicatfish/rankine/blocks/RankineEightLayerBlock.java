@@ -150,7 +150,7 @@ public class RankineEightLayerBlock extends FallingBlock {
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (worldIn.isAirBlock(pos.down()) || worldIn.getBlockState(pos.down()).getBlock().equals(state.getBlock()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
+        if (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
             FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
             this.onStartFalling(fallingblockentity);
             worldIn.addEntity(fallingblockentity);

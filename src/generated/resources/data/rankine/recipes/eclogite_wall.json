@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:eclogite"
+    }
+  },
+  "result": {
+    "item": "rankine:eclogite_wall",
+    "count": 6
+  }
+}

@@ -1,4 +1,8 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:mica_schist",
+    "rankine:greenschist",
+    "rankine:blueschist"
+  ]
 }

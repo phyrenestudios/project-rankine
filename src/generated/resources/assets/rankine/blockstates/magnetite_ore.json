@@ -179,9 +179,6 @@
     },
     "type=59": {
       "model": "rankine:block/magnetite_ore59"
-    },
-    "type=60": {
-      "model": "rankine:block/magnetite_ore60"
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:eclogite_vertical_slab"
+    ]
+  },
+  "criteria": {
+    "has_eclogite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:eclogite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:eclogite_vertical_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_eclogite",
+      "has_the_recipe"
+    ]
+  ]
+}

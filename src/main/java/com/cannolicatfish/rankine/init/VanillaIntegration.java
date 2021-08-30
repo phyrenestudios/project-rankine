@@ -44,6 +44,7 @@ public class VanillaIntegration {
         registerCompostable(0.3F, RankineItems.BLUEBERRIES.get());
         registerCompostable(0.3F, RankineItems.STRAWBERRIES.get());
         registerCompostable(0.3F, RankineItems.CRANBERRIES.get());
+        registerCompostable(0.3F, RankineItems.POKEBERRIES.get());
         registerCompostable(0.3F, RankineItems.RASPBERRIES.get());
         registerCompostable(0.3F, RankineItems.BLACKBERRIES.get());
         registerCompostable(0.3F, RankineItems.PINEAPPLE.get());

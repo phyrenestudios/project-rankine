@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_path_block",
-  "textures": {
-    "top": "rankine:block/grassy_sandy_clay_loam_path_top",
-    "side": "rankine:block/grassy_sandy_clay_loam_path_side",
-    "bottom": "rankine:block/sandy_clay_loam"
-  }
-}

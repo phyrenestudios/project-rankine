@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "rankine:clay_bricks_stairs",
+    "rankine:fire_clay_bricks_stairs",
     "rankine:refractory_bricks_stairs",
     "rankine:high_refractory_bricks_stairs",
     "rankine:ultra_high_refractory_bricks_stairs",

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:calcite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:calcite",
+    "count": 9
+  }
+}

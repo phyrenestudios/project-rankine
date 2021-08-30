@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:perovskite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:perovskite",
+    "count": 9
+  }
+}

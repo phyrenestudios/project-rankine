@@ -1,8 +1,13 @@
 {
   "replace": false,
   "values": [
-    "rankine:rice_flour",
-    "rankine:corn_flour",
-    "rankine:wheat_flour"
+    "rankine:barley_grain",
+    "rankine:oat_grain",
+    "rankine:corn_grain",
+    "rankine:sorghum_grain",
+    "rankine:millet_grain",
+    "rankine:wheat_grain",
+    "rankine:rye_grain",
+    "rankine:rice_grain"
   ]
 }

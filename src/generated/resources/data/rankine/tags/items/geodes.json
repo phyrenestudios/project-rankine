@@ -1,4 +1,25 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:diamond_geode",
+    "rankine:emerald_geode",
+    "rankine:aquamarine_geode",
+    "rankine:opal_geode",
+    "rankine:ruby_geode",
+    "rankine:sapphire_geode",
+    "rankine:peridot_geode",
+    "rankine:garnet_geode",
+    "rankine:topaz_geode",
+    "rankine:tourmaline_geode",
+    "rankine:diamond_geode",
+    "rankine:emerald_geode",
+    "rankine:aquamarine_geode",
+    "rankine:opal_geode",
+    "rankine:ruby_geode",
+    "rankine:sapphire_geode",
+    "rankine:peridot_geode",
+    "rankine:garnet_geode",
+    "rankine:topaz_geode",
+    "rankine:tourmaline_geode"
+  ]
 }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/cement_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/cement_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/cement"
+    }
+  }
+}

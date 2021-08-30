@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_breccia"
-  },
-  "result": "rankine:polished_breccia_slab",
-  "count": 2
-}

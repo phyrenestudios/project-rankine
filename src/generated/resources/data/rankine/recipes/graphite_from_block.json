@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:graphite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:graphite",
+    "count": 9
+  }
+}

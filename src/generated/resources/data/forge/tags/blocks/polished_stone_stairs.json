@@ -21,8 +21,6 @@
     "rankine:polished_peridotite_stairs",
     "rankine:polished_komatiite_stairs",
     "rankine:polished_kimberlite_stairs",
-    "rankine:polished_pumice_stairs",
-    "rankine:polished_scoria_stairs",
     "rankine:polished_black_marble_stairs",
     "rankine:polished_gray_marble_stairs",
     "rankine:polished_white_marble_stairs",
@@ -35,7 +33,7 @@
     "rankine:polished_gneiss_stairs",
     "rankine:polished_quartzite_stairs",
     "rankine:polished_serpentinite_stairs",
-    "rankine:polished_skarn_stairs",
+    "rankine:polished_eclogite_stairs",
     "rankine:polished_mariposite_stairs",
     "rankine:polished_limestone_stairs",
     "rankine:polished_dolostone_stairs",
@@ -46,7 +44,7 @@
     "rankine:polished_siltstone_stairs",
     "rankine:polished_arkose_stairs",
     "rankine:polished_soul_sandstone_stairs",
-    "rankine:polished_breccia_stairs",
+    "rankine:polished_diabase_stairs",
     "rankine:polished_itacolumite_stairs"
   ]
 }

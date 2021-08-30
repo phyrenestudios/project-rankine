@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:skarn_bricks"
-  },
-  "result": "rankine:skarn_bricks_vertical_slab",
-  "count": 2
-}

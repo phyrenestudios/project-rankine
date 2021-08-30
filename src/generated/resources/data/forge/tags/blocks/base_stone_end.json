@@ -21,8 +21,6 @@
     "rankine:peridotite",
     "rankine:komatiite",
     "rankine:kimberlite",
-    "rankine:pumice",
-    "rankine:scoria",
     "rankine:black_marble",
     "rankine:gray_marble",
     "rankine:white_marble",
@@ -35,7 +33,7 @@
     "rankine:gneiss",
     "rankine:quartzite",
     "rankine:serpentinite",
-    "rankine:skarn",
+    "rankine:eclogite",
     "rankine:mariposite",
     "rankine:limestone",
     "rankine:dolostone",
@@ -46,7 +44,7 @@
     "rankine:siltstone",
     "rankine:arkose",
     "rankine:soul_sandstone",
-    "rankine:breccia",
+    "rankine:diabase",
     "rankine:itacolumite"
   ]
 }

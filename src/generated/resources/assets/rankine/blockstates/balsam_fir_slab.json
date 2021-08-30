@@ -7,7 +7,7 @@
       "model": "rankine:block/balsam_fir_slab"
     },
     "type=double": {
-      "model": "rankine:block/balsam_fir_planks"
+      "model": "rankine:block/balsam_fir_slab"
     }
   }
 }

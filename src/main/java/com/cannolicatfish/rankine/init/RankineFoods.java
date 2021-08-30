@@ -10,14 +10,16 @@ public class RankineFoods {
     public static final Food TOAST = (new Food.Builder()).hunger(6).saturation(0.7F).build();
     public static final Food CINNAMON_TOAST = (new Food.Builder()).hunger(7).saturation(0.9F).build();
     public static final Food ELDERBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).build();
-    public static final Food SNOWBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).effect(new EffectInstance(Effects.POISON, 5 * 20, 0),.25f).build();
+    public static final Food SNOWBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).effect(new EffectInstance(Effects.POISON, 3 * 20, 0),.25f).build();
     public static final Food BLUEBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).build();
     public static final Food RASPBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).build();
     public static final Food BLACKBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).build();
     public static final Food CRANBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).build();
+    public static final Food POKEBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).effect(new EffectInstance(Effects.POISON, 10 * 20, 0),1.0f).build();
     public static final Food STRAWBERRIES = (new Food.Builder()).hunger(1).saturation(0.1F).build();
     public static final Food YUCCA = (new Food.Builder()).hunger(1).saturation(0.1F).build();
     public static final Food COCONUT = (new Food.Builder()).hunger(1).saturation(0.1F).build();
+    public static final Food JAM = (new Food.Builder()).hunger(7).saturation(0.7F).build();
     public static final Food TOASTED_COCONUT = (new Food.Builder()).hunger(2).saturation(0.2F).build();
     public static final Food ROASTED_ASPARAGUS = (new Food.Builder()).hunger(2).saturation(0.2F).build();
     public static final Food POPCORN = (new Food.Builder()).hunger(2).saturation(0.2F).build();

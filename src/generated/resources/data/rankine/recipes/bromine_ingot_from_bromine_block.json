@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "rankine",
   "ingredients": [
     {
       "item": "rankine:bromine_block"

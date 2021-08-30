@@ -1,4 +1,10 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:gabbro",
+    "rankine:anorthosite",
+    "rankine:norite",
+    "rankine:pyroxenite",
+    "rankine:troctolite"
+  ]
 }

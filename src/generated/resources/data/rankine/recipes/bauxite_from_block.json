@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:bauxite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:bauxite",
+    "count": 9
+  }
+}

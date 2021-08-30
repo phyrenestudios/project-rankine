@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:diabase"
+    }
+  ],
+  "result": {
+    "item": "rankine:diabase_button"
+  }
+}

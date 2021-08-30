@@ -89,8 +89,8 @@ public class ProjectRankine {
         IEventBus Bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "rankine-common.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "rankine-worldgen.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "project_rankine/rankine-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "project_rankine/rankine-worldgen.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
@@ -262,7 +262,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
             event.getRegistry().register(TileEntityType.Builder.create(AlloyBlockTile::new, RankineBlocks.BRONZE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"bronze_alloy_block"));
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
-            event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.FLUID_DRAIN.get()).build(null).setRegistryName(ProjectRankine.MODID,"fluid_drain"));
+            //event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.FLUID_DRAIN.get()).build(null).setRegistryName(ProjectRankine.MODID,"fluid_drain"));
             event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
         }
 

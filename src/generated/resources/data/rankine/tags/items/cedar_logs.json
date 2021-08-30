@@ -1,4 +1,9 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:cedar_log",
+    "rankine:cedar_wood",
+    "rankine:stripped_cedar_log",
+    "rankine:stripped_cedar_wood"
+  ]
 }

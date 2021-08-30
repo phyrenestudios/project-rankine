@@ -6,6 +6,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Mod.EventBusSubscriber
 public class Config {
 
@@ -246,81 +249,81 @@ public class Config {
 
                 b.comment("Vanilla Tools").push("vanillaTools");
                     b.comment("Wooden Tools").push("woodenTools");
-                    DISABLE_WOODEN_SWORD = b.comment("Disable the use of the wooden sword (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableWoodenSword",true);
-                    DISABLE_WOODEN_AXE = b.comment("Disable the use of the wooden axe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableWoodenAxe",true);
-                    DISABLE_WOODEN_SHOVEL = b.comment("Disable the use of the wooden shovel (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableWoodenShovel",true);
-                    DISABLE_WOODEN_PICKAXE = b.comment("Disable the use of the wooden pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableWoodenPickaxe",true);
-                    DISABLE_WOODEN_HOE = b.comment("Disable the use of the wooden hoe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableWoodenHoe",true);
+                    DISABLE_WOODEN_SWORD = b.comment("Disable the use of the wooden sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableWoodenSword",false);
+                    DISABLE_WOODEN_AXE = b.comment("Disable the use of the wooden axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableWoodenAxe",false);
+                    DISABLE_WOODEN_SHOVEL = b.comment("Disable the use of the wooden shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableWoodenShovel",false);
+                    DISABLE_WOODEN_PICKAXE = b.comment("Disable the use of the wooden pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableWoodenPickaxe",false);
+                    DISABLE_WOODEN_HOE = b.comment("Disable the use of the wooden hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableWoodenHoe",false);
                     b.pop();
 
                     b.comment("Stone Tools").push("stoneTools");
-                    DISABLE_STONE_SWORD = b.comment("Disable the use of the stone sword (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableStoneSword",true);
-                    DISABLE_STONE_AXE = b.comment("Disable the use of the stone axe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableStoneAxe",true);
-                    DISABLE_STONE_SHOVEL = b.comment("Disable the use of the stone shovel (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableStoneShovel",true);
-                    DISABLE_STONE_PICKAXE = b.comment("Disable the use of the stone pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableStonePickaxe",true);
-                    DISABLE_STONE_HOE = b.comment("Disable the use of the stone hoe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableStoneHoe",true);
+                    DISABLE_STONE_SWORD = b.comment("Disable the use of the stone sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableStoneSword",false);
+                    DISABLE_STONE_AXE = b.comment("Disable the use of the stone axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableStoneAxe",false);
+                    DISABLE_STONE_SHOVEL = b.comment("Disable the use of the stone shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableStoneShovel",false);
+                    DISABLE_STONE_PICKAXE = b.comment("Disable the use of the stone pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableStonePickaxe",false);
+                    DISABLE_STONE_HOE = b.comment("Disable the use of the stone hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableStoneHoe",false);
                     b.pop();
 
                     b.comment("Iron Tools").push("ironTools");
-                    DISABLE_IRON_SWORD = b.comment("Disable the use of the iron sword (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableIronSword",true);
-                    DISABLE_IRON_AXE = b.comment("Disable the use of the iron axe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableIronAxe",true);
-                    DISABLE_IRON_SHOVEL = b.comment("Disable the use of the iron shovel (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableIronShovel",true);
-                    DISABLE_IRON_PICKAXE = b.comment("Disable the use of the iron pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableIronPickaxe",true);
-                    DISABLE_IRON_HOE = b.comment("Disable the use of the iron hoe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableIronHoe",true);
+                    DISABLE_IRON_SWORD = b.comment("Disable the use of the iron sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableIronSword",false);
+                    DISABLE_IRON_AXE = b.comment("Disable the use of the iron axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableIronAxe",false);
+                    DISABLE_IRON_SHOVEL = b.comment("Disable the use of the iron shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableIronShovel",false);
+                    DISABLE_IRON_PICKAXE = b.comment("Disable the use of the iron pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableIronPickaxe",false);
+                    DISABLE_IRON_HOE = b.comment("Disable the use of the iron hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableIronHoe",false);
                     b.pop();
 
                     b.comment("Gold Tools").push("goldTools");
-                    DISABLE_GOLDEN_SWORD = b.comment("Disable the use of the gold sword (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableGoldSword",true);
-                    DISABLE_GOLDEN_AXE = b.comment("Disable the use of the gold axe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableGoldAxe",true);
-                    DISABLE_GOLDEN_SHOVEL = b.comment("Disable the use of the gold shovel (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableGoldShovel",true);
-                    DISABLE_GOLDEN_PICKAXE = b.comment("Disable the use of the gold pickaxe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableGoldPickaxe",true);
-                    DISABLE_GOLDEN_HOE = b.comment("Disable the use of the gold hoe (still allows crafting for other recipes). This is enabled by default for progression.")
-                            .define("disableGoldHoe",true);
+                    DISABLE_GOLDEN_SWORD = b.comment("Disable the use of the gold sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableGoldSword",false);
+                    DISABLE_GOLDEN_AXE = b.comment("Disable the use of the gold axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableGoldAxe",false);
+                    DISABLE_GOLDEN_SHOVEL = b.comment("Disable the use of the gold shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableGoldShovel",false);
+                    DISABLE_GOLDEN_PICKAXE = b.comment("Disable the use of the gold pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableGoldPickaxe",false);
+                    DISABLE_GOLDEN_HOE = b.comment("Disable the use of the gold hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                            .define("disableGoldHoe",false);
                     b.pop();
 
                     b.comment("Diamond Tools").push("diamondTools");
                     DISABLE_DIAMOND_SWORD = b.comment("Disable the use of the diamond sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondSword",true);
+                            .define("disableDiamondSword",false);
                     DISABLE_DIAMOND_AXE = b.comment("Disable the use of the diamond axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondAxe",true);
+                            .define("disableDiamondAxe",false);
                     DISABLE_DIAMOND_SHOVEL = b.comment("Disable the use of the diamond shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondShovel",true);
+                            .define("disableDiamondShovel",false);
                     DISABLE_DIAMOND_PICKAXE = b.comment("Disable the use of the diamond pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondPickaxe",true);
+                            .define("disableDiamondPickaxe",false);
                     DISABLE_DIAMOND_HOE = b.comment("Disable the use of the diamond hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondHoe",true);
+                            .define("disableDiamondHoe",false);
                     b.pop();
 
                     b.comment("Netherite Tools").push("netheriteTools");
                     DISABLE_NETHERITE_SWORD = b.comment("Disable the use of the netherite sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteSword",true);
+                            .define("disableNetheriteSword",false);
                     DISABLE_NETHERITE_AXE = b.comment("Disable the use of the netherite axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteAxe",true);
+                            .define("disableNetheriteAxe",false);
                     DISABLE_NETHERITE_SHOVEL = b.comment("Disable the use of the netherite shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteShovel",true);
+                            .define("disableNetheriteShovel",false);
                     DISABLE_NETHERITE_PICKAXE = b.comment("Disable the use of the netherite pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheritePickaxe",true);
+                            .define("disableNetheritePickaxe",false);
                     DISABLE_NETHERITE_HOE = b.comment("Disable the use of the netherite hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteHoe",true);
+                            .define("disableNetheriteHoe",false);
                     b.pop();
                 b.pop();
             b.pop();
@@ -1104,9 +1107,20 @@ public class Config {
         public final ForgeConfigSpec.IntValue SERPENTINITE_HL;
         public final ForgeConfigSpec.DoubleValue SERPENTINITE_HARD;
         public final ForgeConfigSpec.DoubleValue SERPENTINITE_RESIST;
+
+
+        public final ForgeConfigSpec.ConfigValue<List<Double>> ECLOGITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<Double>> DIABASE_STATS;
+
+
         
         public StoneProperties(ForgeConfigSpec.Builder b) {
             b.comment("Properties of Stones").push("stoneProperties");
+                ECLOGITE_STATS = b.comment("Harvest level, Hardness, and Resistance of Eclogite. ")
+                        .define("Eclogite_Stats", Arrays.asList(0.0D, 2.5D, 6.0D));
+                DIABASE_STATS = b.comment("Harvest level, Hardness, and Resistance of Diabase. ")
+                        .define("Diabase_Stats", Arrays.asList(0.0D, 2.5D, 6.0D));
+
                 b.comment("Gray Granite Properties").push("GrayGranite");
                 GRAY_GRANITE_HL = b.comment("Harvest Level of Gray Granite.")
                         .defineInRange("GrayGraniteHL", 0, 0, 10);

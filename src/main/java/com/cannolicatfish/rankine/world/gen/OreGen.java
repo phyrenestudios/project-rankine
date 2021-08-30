@@ -89,16 +89,7 @@ public class OreGen {
 
 
         if (WGConfig.ORES.RANKINE_ORES_O.get()) {
-            if (WGConfig.ORES.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.NATIVE_COPPER_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.NATIVE_COPPER_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
+
             if (WGConfig.ORES.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("overworld")) {
                 if (WGConfig.ORES.NATIVE_TIN_ORE_GENTYPE.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_TIN_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -117,16 +108,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.NATIVE_GOLD_ORE_MEGA_GEN.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_GOLD_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
-            if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
             if (WGConfig.ORES.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("overworld")) {
@@ -309,16 +290,6 @@ public class OreGen {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_GALENA_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
-            if (WGConfig.ORES.VANADINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.VANADINITE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.VANADINITE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
             if (WGConfig.ORES.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
                 if (WGConfig.ORES.BISMUTHINITE_ORE_GENTYPE.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_BISMUTHINITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -399,16 +370,6 @@ public class OreGen {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_WOLFRAMITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
-            if (WGConfig.ORES.TANTALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.TANTALITE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.TANTALITE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
             if (WGConfig.ORES.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("overworld")) {
                 if (WGConfig.ORES.PLUMBAGO_ORE_GENTYPE.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PLUMBAGO_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -417,16 +378,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.PLUMBAGO_ORE_MEGA_GEN.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PLUMBAGO_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
-            if (WGConfig.ORES.MOISSANITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.MOISSANITE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.MOISSANITE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
             if (WGConfig.ORES.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
@@ -519,16 +470,6 @@ public class OreGen {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EMERALD_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
-            if (WGConfig.ORES.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.AQUAMARINE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.AQUAMARINE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
             if (WGConfig.ORES.QUARTZ_ORE_DIMENSION_LIST.get().contains("overworld")) {
                 if (WGConfig.ORES.QUARTZ_ORE_GENTYPE.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_QUARTZ_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -537,36 +478,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.QUARTZ_ORE_MEGA_GEN.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_QUARTZ_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
-            if (WGConfig.ORES.OPAL_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.OPAL_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.OPAL_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
-            if (WGConfig.ORES.MAJORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.MAJORITE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.MAJORITE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
-            if (WGConfig.ORES.FLUORITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.FLUORITE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.FLUORITE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
             if (WGConfig.ORES.URANINITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
@@ -607,16 +518,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.HALITE_ORE_MEGA_GEN.get()) {
                     OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_HALITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-            }
-            if (WGConfig.ORES.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("overworld")) {
-                if (WGConfig.ORES.PINK_HALITE_ORE_GENTYPE.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_CHANCE, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                } else {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_COUNT, getBiomeNamesFromCategory(Collections.emptyList(), false)));
-                }
-                if (WGConfig.ORES.PINK_HALITE_ORE_MEGA_GEN.get()) {
-                    OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_MEGA, getBiomeNamesFromCategory(Collections.emptyList(), false)));
                 }
             }
             if (WGConfig.ORES.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("overworld")) {
@@ -751,16 +652,6 @@ public class OreGen {
         }
 
         if (WGConfig.ORES.RANKINE_ORES_N.get()) {
-            if (WGConfig.ORES.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.NATIVE_COPPER_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.NATIVE_COPPER_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
             if (WGConfig.ORES.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("nether")) {
                 if (WGConfig.ORES.NATIVE_TIN_ORE_GENTYPE.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_TIN_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
@@ -779,16 +670,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.NATIVE_GOLD_ORE_MEGA_GEN.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_GOLD_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
-            if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
             if (WGConfig.ORES.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("nether")) {
@@ -971,16 +852,6 @@ public class OreGen {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_GALENA_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
-            if (WGConfig.ORES.VANADINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.VANADINITE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.VANADINITE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
             if (WGConfig.ORES.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
                 if (WGConfig.ORES.BISMUTHINITE_ORE_GENTYPE.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_BISMUTHINITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
@@ -1061,16 +932,6 @@ public class OreGen {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_WOLFRAMITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
-            if (WGConfig.ORES.TANTALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.TANTALITE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.TANTALITE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
             if (WGConfig.ORES.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("nether")) {
                 if (WGConfig.ORES.PLUMBAGO_ORE_GENTYPE.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PLUMBAGO_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
@@ -1079,16 +940,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.PLUMBAGO_ORE_MEGA_GEN.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PLUMBAGO_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
-            if (WGConfig.ORES.MOISSANITE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.MOISSANITE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.MOISSANITE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
             if (WGConfig.ORES.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("nether")) {
@@ -1181,16 +1032,6 @@ public class OreGen {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EMERALD_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
-            if (WGConfig.ORES.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.AQUAMARINE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.AQUAMARINE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
             if (WGConfig.ORES.QUARTZ_ORE_DIMENSION_LIST.get().contains("nether")) {
                 if (WGConfig.ORES.QUARTZ_ORE_GENTYPE.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_QUARTZ_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
@@ -1199,36 +1040,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.QUARTZ_ORE_MEGA_GEN.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_QUARTZ_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
-            if (WGConfig.ORES.OPAL_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.OPAL_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.OPAL_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
-            if (WGConfig.ORES.MAJORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.MAJORITE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.MAJORITE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
-            if (WGConfig.ORES.FLUORITE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.FLUORITE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.FLUORITE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
             if (WGConfig.ORES.URANINITE_ORE_DIMENSION_LIST.get().contains("nether")) {
@@ -1269,16 +1080,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.HALITE_ORE_MEGA_GEN.get()) {
                     NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_HALITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-            }
-            if (WGConfig.ORES.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("nether")) {
-                if (WGConfig.ORES.PINK_HALITE_ORE_GENTYPE.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                } else {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-                }
-                if (WGConfig.ORES.PINK_HALITE_ORE_MEGA_GEN.get()) {
-                    NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
                 }
             }
             if (WGConfig.ORES.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("nether")) {
@@ -1413,16 +1214,6 @@ public class OreGen {
         }
 
         if (WGConfig.ORES.RANKINE_ORES_E.get()) {
-            if (WGConfig.ORES.NATIVE_COPPER_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.NATIVE_COPPER_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.NATIVE_COPPER_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_COPPER_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
             if (WGConfig.ORES.NATIVE_TIN_ORE_DIMENSION_LIST.get().contains("end")) {
                 if (WGConfig.ORES.NATIVE_TIN_ORE_GENTYPE.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_TIN_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
@@ -1441,16 +1232,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.NATIVE_GOLD_ORE_MEGA_GEN.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_GOLD_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
-            if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.NATIVE_ALUMINUM_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_NATIVE_ALUMINUM_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
             if (WGConfig.ORES.NATIVE_LEAD_ORE_DIMENSION_LIST.get().contains("end")) {
@@ -1633,16 +1414,6 @@ public class OreGen {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_GALENA_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
-            if (WGConfig.ORES.VANADINITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.VANADINITE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.VANADINITE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_VANADINITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
             if (WGConfig.ORES.BISMUTHINITE_ORE_DIMENSION_LIST.get().contains("end")) {
                 if (WGConfig.ORES.BISMUTHINITE_ORE_GENTYPE.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_BISMUTHINITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
@@ -1723,16 +1494,6 @@ public class OreGen {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_WOLFRAMITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
-            if (WGConfig.ORES.TANTALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.TANTALITE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.TANTALITE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_TANTALITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
             if (WGConfig.ORES.PLUMBAGO_ORE_DIMENSION_LIST.get().contains("end")) {
                 if (WGConfig.ORES.PLUMBAGO_ORE_GENTYPE.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PLUMBAGO_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
@@ -1741,16 +1502,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.PLUMBAGO_ORE_MEGA_GEN.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PLUMBAGO_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
-            if (WGConfig.ORES.MOISSANITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.MOISSANITE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.MOISSANITE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MOISSANITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
             if (WGConfig.ORES.SPERRYLITE_ORE_DIMENSION_LIST.get().contains("end")) {
@@ -1843,16 +1594,6 @@ public class OreGen {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EMERALD_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
-            if (WGConfig.ORES.AQUAMARINE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.AQUAMARINE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.AQUAMARINE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_AQUAMARINE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
             if (WGConfig.ORES.QUARTZ_ORE_DIMENSION_LIST.get().contains("end")) {
                 if (WGConfig.ORES.QUARTZ_ORE_GENTYPE.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_QUARTZ_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
@@ -1861,36 +1602,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.QUARTZ_ORE_MEGA_GEN.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_QUARTZ_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
-            if (WGConfig.ORES.OPAL_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.OPAL_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.OPAL_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_OPAL_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
-            if (WGConfig.ORES.MAJORITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.MAJORITE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.MAJORITE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_MAJORITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
-            if (WGConfig.ORES.FLUORITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.FLUORITE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.FLUORITE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_FLUORITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
             if (WGConfig.ORES.URANINITE_ORE_DIMENSION_LIST.get().contains("end")) {
@@ -1931,16 +1642,6 @@ public class OreGen {
                 }
                 if (WGConfig.ORES.HALITE_ORE_MEGA_GEN.get()) {
                     EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_HALITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-            }
-            if (WGConfig.ORES.PINK_HALITE_ORE_DIMENSION_LIST.get().contains("end")) {
-                if (WGConfig.ORES.PINK_HALITE_ORE_GENTYPE.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_CHANCE, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                } else {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_COUNT, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-                }
-                if (WGConfig.ORES.PINK_HALITE_ORE_MEGA_GEN.get()) {
-                    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_PINK_HALITE_MEGA, getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
                 }
             }
             if (WGConfig.ORES.INTERSPINIFEX_ORE_DIMENSION_LIST.get().contains("end")) {

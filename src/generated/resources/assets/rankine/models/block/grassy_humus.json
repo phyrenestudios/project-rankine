@@ -1,0 +1,9 @@
+{
+  "parent": "rankine:block/template_grassy_soil",
+  "textures": {
+    "soil": "rankine:block/humus",
+    "grassy_soil_top": "rankine:block/grassy_humus_top",
+    "grassy_soil_side": "rankine:block/grassy_humus_side",
+    "grassy_soil_side_overlay": "rankine:block/grassy_humus_side_overlay"
+  }
+}
