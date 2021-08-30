@@ -14,10 +14,12 @@ public final class DataGenerators {
         DataGenerator gen = event.getGenerator();
         if (event.includeServer()) {
             RankineBlockTagsProvider blockTagsGeneration = new RankineBlockTagsProvider(gen, event.getExistingFileHelper());
-            gen.addProvider(new RankineRecipesProvider(gen));
-            gen.addProvider(new RankineItemTagsProvider(gen, blockTagsGeneration, event.getExistingFileHelper()));
             gen.addProvider(blockTagsGeneration);
-          //  gen.addProvider(new RankineBlockLootTables(gen));
+            gen.addProvider(new RankineItemTagsProvider(gen, blockTagsGeneration, event.getExistingFileHelper()));
+
+            gen.addProvider(new RankineBlockLootTables(gen));
+            gen.addProvider(new RankineRecipesProvider(gen));
+
         }
         if (event.includeClient()) {
             gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));

@@ -21,8 +21,6 @@
     "rankine:polished_peridotite_wall",
     "rankine:polished_komatiite_wall",
     "rankine:polished_kimberlite_wall",
-    "rankine:polished_pumice_wall",
-    "rankine:polished_scoria_wall",
     "rankine:polished_black_marble_wall",
     "rankine:polished_gray_marble_wall",
     "rankine:polished_white_marble_wall",
@@ -35,7 +33,7 @@
     "rankine:polished_gneiss_wall",
     "rankine:polished_quartzite_wall",
     "rankine:polished_serpentinite_wall",
-    "rankine:polished_skarn_wall",
+    "rankine:polished_eclogite_wall",
     "rankine:polished_mariposite_wall",
     "rankine:polished_limestone_wall",
     "rankine:polished_dolostone_wall",
@@ -46,7 +44,7 @@
     "rankine:polished_siltstone_wall",
     "rankine:polished_arkose_wall",
     "rankine:polished_soul_sandstone_wall",
-    "rankine:polished_breccia_wall",
+    "rankine:polished_diabase_wall",
     "rankine:polished_itacolumite_wall"
   ]
 }

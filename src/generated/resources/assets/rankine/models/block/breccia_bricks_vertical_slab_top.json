@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab_top",
-  "textures": {
-    "side": "rankine:block/breccia_bricks",
-    "bottom": "rankine:block/breccia_bricks",
-    "top": "rankine:block/breccia_bricks"
-  }
-}

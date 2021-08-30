@@ -21,8 +21,6 @@
     "rankine:peridotite_bricks_stairs",
     "rankine:komatiite_bricks_stairs",
     "rankine:kimberlite_bricks_stairs",
-    "rankine:pumice_bricks_stairs",
-    "rankine:scoria_bricks_stairs",
     "rankine:black_marble_bricks_stairs",
     "rankine:gray_marble_bricks_stairs",
     "rankine:white_marble_bricks_stairs",
@@ -35,7 +33,7 @@
     "rankine:gneiss_bricks_stairs",
     "rankine:quartzite_bricks_stairs",
     "rankine:serpentinite_bricks_stairs",
-    "rankine:skarn_bricks_stairs",
+    "rankine:eclogite_bricks_stairs",
     "rankine:mariposite_bricks_stairs",
     "rankine:limestone_bricks_stairs",
     "rankine:dolostone_bricks_stairs",
@@ -46,7 +44,7 @@
     "rankine:siltstone_bricks_stairs",
     "rankine:arkose_bricks_stairs",
     "rankine:soul_sandstone_bricks_stairs",
-    "rankine:breccia_bricks_stairs",
+    "rankine:diabase_bricks_stairs",
     "rankine:itacolumite_bricks_stairs"
   ]
 }

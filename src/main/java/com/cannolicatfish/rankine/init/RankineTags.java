@@ -257,6 +257,20 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> SEEDS_CAMPHOR_BASIL = forgeItem("seeds/camphor_basil");
         public static final ITag.INamedTag<Item> SEEDS_COTTON = forgeItem("seeds/cotton");
 
+        public static final ITag.INamedTag<Item> PINEAPPLE = forgeItem("pineapple");
+
+        public static final ITag.INamedTag<Item> BERRIES_BLACKBERRY = forgeItem("berries/blackberry");
+        public static final ITag.INamedTag<Item> BERRIES_BLUEBERRY = forgeItem("berries/blueberry");
+        public static final ITag.INamedTag<Item> BERRIES_CRANBERRY = forgeItem("berries/cranberry");
+        public static final ITag.INamedTag<Item> BERRIES_ELDERBERRY = forgeItem("berries/elderberry");
+        public static final ITag.INamedTag<Item> BERRIES_JUNIPER = forgeItem("berries/juniper");
+        public static final ITag.INamedTag<Item> BERRIES_RASPBERRY = forgeItem("berries/raspberry");
+        public static final ITag.INamedTag<Item> BERRIES_SNOWBERRY = forgeItem("berries/snowberry");
+        public static final ITag.INamedTag<Item> BERRIES_STRAWBERRY = forgeItem("berries/strawberry");
+        public static final ITag.INamedTag<Item> BERRIES_POKEBERRY = forgeItem("berries/pokeberry");
+        public static final ITag.INamedTag<Item> BERRIES_SWEET_BERRY = forgeItem("berries/sweet_berry");
+        public static final ITag.INamedTag<Item> BERRIES = forgeItem("berries");
+
 
 
 
@@ -289,6 +303,7 @@ public final class RankineTags {
 
 
         public static final ITag.INamedTag<Item> CLAY = forgeItem("clay");
+        public static final ITag.INamedTag<Item> DIRT = forgeItem("dirt");
         public static final ITag.INamedTag<Item> HARDENED_GLASS = forgeItem("hardened_glass");
         public static final ITag.INamedTag<Item> TUFF = forgeItem("tuff");
         public static final ITag.INamedTag<Item> TERRACOTTA = forgeItem("terracotta");

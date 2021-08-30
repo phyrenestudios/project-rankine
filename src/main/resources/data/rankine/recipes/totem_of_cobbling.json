@@ -19,7 +19,7 @@
       "item": "minecraft:lava_bucket"
     },
     "H": {
-      "item": "rankine:stone_hammer"
+      "tag": "forge:hammers"
     }
   },
   "result": {

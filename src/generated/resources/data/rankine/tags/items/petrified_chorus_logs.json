@@ -1,4 +1,17 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:petrified_chorus_log",
+    "rankine:petrified_chorus_wood",
+    "rankine:stripped_petrified_chorus_log",
+    "rankine:stripped_petrified_chorus_wood",
+    "rankine:charred_log",
+    "rankine:charred_wood",
+    "rankine:stripped_charred_log",
+    "rankine:stripped_charred_wood",
+    "rankine:erythrina_log",
+    "rankine:erythrina_wood",
+    "rankine:stripped_erythrina_log",
+    "rankine:stripped_erythrina_wood"
+  ]
 }

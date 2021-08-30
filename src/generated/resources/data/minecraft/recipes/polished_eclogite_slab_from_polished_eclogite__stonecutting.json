@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_eclogite"
+  },
+  "result": "rankine:polished_mariposite_slab",
+  "count": 2
+}

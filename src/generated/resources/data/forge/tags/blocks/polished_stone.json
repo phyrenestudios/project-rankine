@@ -21,8 +21,6 @@
     "rankine:polished_peridotite",
     "rankine:polished_komatiite",
     "rankine:polished_kimberlite",
-    "rankine:polished_pumice",
-    "rankine:polished_scoria",
     "rankine:polished_black_marble",
     "rankine:polished_gray_marble",
     "rankine:polished_white_marble",
@@ -35,7 +33,7 @@
     "rankine:polished_gneiss",
     "rankine:polished_quartzite",
     "rankine:polished_serpentinite",
-    "rankine:polished_skarn",
+    "rankine:polished_eclogite",
     "rankine:polished_mariposite",
     "rankine:polished_limestone",
     "rankine:polished_dolostone",
@@ -46,7 +44,7 @@
     "rankine:polished_siltstone",
     "rankine:polished_arkose",
     "rankine:polished_soul_sandstone",
-    "rankine:polished_breccia",
+    "rankine:polished_diabase",
     "rankine:polished_itacolumite"
   ]
 }

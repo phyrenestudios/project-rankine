@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:silicon_carbide_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:silicon_carbide",
+    "count": 9
+  }
+}

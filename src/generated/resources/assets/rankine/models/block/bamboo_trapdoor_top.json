@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_orientable_trapdoor_top",
   "textures": {
-    "texture": "rankine:block/bamboo_planks"
+    "texture": "rankine:block/bamboo_trapdoor"
   }
 }

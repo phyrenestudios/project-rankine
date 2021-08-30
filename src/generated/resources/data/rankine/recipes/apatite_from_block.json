@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:apatite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:apatite",
+    "count": 9
+  }
+}

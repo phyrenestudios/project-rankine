@@ -37,34 +37,34 @@ import java.util.Random;
 
 public class BaseAsphaltBlock extends HorizontalBlock {
     public static final EnumProperty<AsphaltStates> LINE_TYPE = EnumProperty.create("line_type", AsphaltStates.class);
-
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
 
     public BaseAsphaltBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(LINE_TYPE, AsphaltStates.NONE).with(HORIZONTAL_FACING, Direction.NORTH));
+        this.setDefaultState(this.stateContainer.getBaseState().with(AGE,0).with(LINE_TYPE, AsphaltStates.NONE).with(HORIZONTAL_FACING, Direction.NORTH));
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(LINE_TYPE,HORIZONTAL_FACING);
-    }
-
-
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D);
+        builder.add(AGE,LINE_TYPE,HORIZONTAL_FACING);
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(LINE_TYPE, AsphaltStates.NONE).with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return this.getDefaultState().with(AGE,0).with(LINE_TYPE, AsphaltStates.NONE).with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return true;
+        return state.get(AGE) < 3;
     }
 
+    @Override
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        if (random.nextFloat() < 0.01) {
+            worldIn.setBlockState(pos, state.with(AGE, Math.min(state.get(AGE)+1,3)));
+        }
+    }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {

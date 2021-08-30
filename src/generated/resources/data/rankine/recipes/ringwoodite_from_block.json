@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:ringwoodite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:ringwoodite",
+    "count": 9
+  }
+}

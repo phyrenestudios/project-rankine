@@ -152,7 +152,6 @@ public class RankineEventHandler {
             level5.add(new BasicTrade(10, new ItemStack(RankineItems.ORE_DETECTOR.get()),12,30,0.05f));
         } else if (event.getType() == RankineVillagerProfessions.MINERALOGIST) {
             level1.add(new BasicTrade(1, new ItemStack(RankineItems.STIBNITE.get()),12,1,0.05f));
-            level1.add(new BasicTrade(1, new ItemStack(RankineItems.STONE_HAMMER.get()),12,1,0.2f));
             level1.add(new BasicTrade(1, new ItemStack(RankineItems.PROSPECTING_STICK.get()),12,1,0.05f));
             level1.add(new BasicTrade(1, new ItemStack(RankineItems.HARDNESS_TESTER.get()),12,1,0.05f));
             level2.add(new BasicTrade(1, new ItemStack(RankineItems.CHALCOPYRITE.get()),12,5,0.05f));
@@ -724,7 +723,7 @@ public class RankineEventHandler {
             if (ground.matchesBlock(Blocks.GRASS_BLOCK)) {
                 world.setBlockState(pos,Blocks.GRASS_PATH.getDefaultState(),2);
             } else if (ground.matchesBlock(Blocks.MYCELIUM)) {
-                world.setBlockState(pos,RankineBlocks.MYCELIUM_PATH.get().getDefaultState(),2);
+                world.setBlockState(pos,RankineBlocks.END_GRASS_PATH.get().getDefaultState(),2);
             } else if (ground.matchesBlock(Blocks.PODZOL)) {
                 world.setBlockState(pos,Blocks.GRASS_PATH.getDefaultState(),2);
             }
@@ -1946,16 +1945,12 @@ public class RankineEventHandler {
                         nug = new ItemStack(RankineItems.MANGANESE_NUGGET.get());
                     } else if (b == RankineBlocks.CHROMITE_ORE.get()) {
                         nug = new ItemStack(RankineItems.CHROMIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.COLUMBITE_ORE.get()) {
+                    } else if (b == RankineBlocks.COLTAN_ORE.get()) {
                         nug = new ItemStack(RankineItems.NIOBIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.TANTALITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.TANTALUM_NUGGET.get());
                     } else if (b == RankineBlocks.WOLFRAMITE_ORE.get()) {
                         nug = new ItemStack(RankineItems.TUNGSTEN_NUGGET.get());
                     } else if (b == RankineBlocks.GREENOCKITE_ORE.get()) {
                         nug = new ItemStack(RankineItems.CADMIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.VANADINITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.VANADIUM_NUGGET.get());
                     } else if (b == RankineBlocks.XENOTIME_ORE.get()) {
                         nug = new ItemStack(RankineItems.CERIUM_NUGGET.get());
                     } else if (b == RankineBlocks.URANINITE_ORE.get()) {
@@ -2025,7 +2020,7 @@ public class RankineEventHandler {
             if (!world.isRemote) {
                 if (activatedBlock == Blocks.MYCELIUM.getDefaultState()) {
                     world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, RankineBlocks.MYCELIUM_PATH.get().getDefaultState(), 2);
+                    world.setBlockState(pos, RankineBlocks.END_GRASS_PATH.get().getDefaultState(), 2);
                     stack.damageItem(1, player, (entity) -> {
                         entity.sendBreakAnimation(event.getHand());
                     });
@@ -2060,6 +2055,8 @@ public class RankineEventHandler {
                     TYPE = TilledSoilTypes.END_SOIL;
                 } else if (b == RankineBlocks.END_GRASS_BLOCK.get()) {
                     TYPE = TilledSoilTypes.END_SOIL;
+                } else if (b == RankineBlocks.HUMUS.get()) {
+                    TYPE = TilledSoilTypes.HUMUS;
                 } else if (b == RankineBlocks.LOAM.get()) {
                     TYPE = TilledSoilTypes.LOAM;
                 } else if (b == RankineBlocks.LOAMY_SAND.get()) {
@@ -2085,7 +2082,7 @@ public class RankineEventHandler {
                     stack.damageItem(1, player, (entity) -> {
                         entity.sendBreakAnimation(event.getHand());
                     });
-                    player.swingArm(event.getHand());
+                    //player.swingArm(event.getHand());
                     event.setResult(Event.Result.ALLOW);
                 }
             }

@@ -179,9 +179,6 @@
     },
     "type=59": {
       "model": "rankine:block/sperrylite_ore59"
-    },
-    "type=60": {
-      "model": "rankine:block/sperrylite_ore60"
     }
   }
 }

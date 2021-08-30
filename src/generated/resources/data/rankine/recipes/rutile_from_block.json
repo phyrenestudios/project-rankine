@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:rutile_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:rutile",
+    "count": 9
+  }
+}

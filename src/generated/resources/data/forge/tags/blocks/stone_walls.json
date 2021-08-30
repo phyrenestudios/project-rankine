@@ -21,8 +21,6 @@
     "rankine:peridotite_wall",
     "rankine:komatiite_wall",
     "rankine:kimberlite_wall",
-    "rankine:pumice_wall",
-    "rankine:scoria_wall",
     "rankine:black_marble_wall",
     "rankine:gray_marble_wall",
     "rankine:white_marble_wall",
@@ -35,7 +33,7 @@
     "rankine:gneiss_wall",
     "rankine:quartzite_wall",
     "rankine:serpentinite_wall",
-    "rankine:skarn_wall",
+    "rankine:eclogite_wall",
     "rankine:mariposite_wall",
     "rankine:limestone_wall",
     "rankine:dolostone_wall",
@@ -46,7 +44,7 @@
     "rankine:siltstone_wall",
     "rankine:arkose_wall",
     "rankine:soul_sandstone_wall",
-    "rankine:breccia_wall",
+    "rankine:diabase_wall",
     "rankine:itacolumite_wall"
   ]
 }

@@ -145,6 +145,9 @@ public class RankineDoublePlantBlock extends BushBlock implements IGrowable {
                 case 2:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CRANBERRIES.get(), 1 + worldIn.rand.nextInt(2)));
                     break;
+                case 3:
+                    spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.POKEBERRIES.get(), 1 + worldIn.rand.nextInt(2)));
+                    break;
             }
             worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
 

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_pressure_plate",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:eclogite"
+    }
+  },
+  "result": {
+    "item": "rankine:eclogite_pressure_plate"
+  }
+}

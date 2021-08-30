@@ -81,13 +81,13 @@ public class RankineOreBlock extends Block {
     }
 
     protected int getExperience(Random rand) {
-        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get()|| this == RankineBlocks.NATIVE_COPPER_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get() || this == RankineBlocks.NATIVE_ALUMINUM_ORE.get() || this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.HALITE_ORE.get() || this == RankineBlocks.PINK_HALITE_ORE.get()) {
+        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get()|| this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.HALITE_ORE.get()) {
             return MathHelper.nextInt(rand, 0, 2);
         } else if (this == RankineBlocks.NATIVE_SULFUR_ORE.get() || this == RankineBlocks.NATIVE_BISMUTH_ORE.get() || this == RankineBlocks.NATIVE_ARSENIC_ORE.get()) {
             return MathHelper.nextInt(rand, 1, 4);
-        } else if (this == RankineBlocks.MOISSANITE_ORE.get() || this == RankineBlocks.FLUORITE_ORE.get() ||this == RankineBlocks.ANTHRACITE_ORE.get() || this == RankineBlocks.BITUMINOUS_ORE.get() || this == RankineBlocks.QUARTZ_ORE.get() || this == RankineBlocks.LAZURITE_ORE.get() || this == RankineBlocks.NATIVE_INDIUM_ORE.get() || this == RankineBlocks.NATIVE_GALLIUM_ORE.get() || this == RankineBlocks.NATIVE_SELENIUM_ORE.get() || this == RankineBlocks.NATIVE_TELLURIUM_ORE.get()) {
+        } else if (this == RankineBlocks.ANTHRACITE_ORE.get() || this == RankineBlocks.BITUMINOUS_ORE.get() || this == RankineBlocks.QUARTZ_ORE.get() || this == RankineBlocks.LAZURITE_ORE.get() || this == RankineBlocks.NATIVE_INDIUM_ORE.get() || this == RankineBlocks.NATIVE_GALLIUM_ORE.get() || this == RankineBlocks.NATIVE_SELENIUM_ORE.get() || this == RankineBlocks.NATIVE_TELLURIUM_ORE.get()) {
             return MathHelper.nextInt(rand, 2, 5);
-        } else if (this == RankineBlocks.MAJORITE_ORE.get() || this == RankineBlocks.EMERALD_ORE.get() || this == RankineBlocks.AQUAMARINE_ORE.get() || this == RankineBlocks.DIAMOND_ORE.get() || this == RankineBlocks.OPAL_ORE.get() || this == RankineBlocks.PLUMBAGO_ORE.get()) {
+        } else if (this == RankineBlocks.EMERALD_ORE.get()|| this == RankineBlocks.DIAMOND_ORE.get() || this == RankineBlocks.PLUMBAGO_ORE.get()) {
             return MathHelper.nextInt(rand, 3, 7);
         } else {
             return this == Blocks.NETHER_GOLD_ORE ? MathHelper.nextInt(rand, 0, 1) : 0;

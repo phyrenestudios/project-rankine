@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cement"
+    }
+  },
+  "result": {
+    "item": "rankine:cement_wall",
+    "count": 6
+  }
+}

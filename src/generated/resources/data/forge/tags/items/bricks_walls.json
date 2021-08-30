@@ -1,4 +1,13 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:clay_bricks_wall",
+    "rankine:fire_clay_bricks_wall",
+    "rankine:refractory_bricks_wall",
+    "rankine:high_refractory_bricks_wall",
+    "rankine:ultra_high_refractory_bricks_wall",
+    "minecraft:brick_wall",
+    "minecraft:nether_brick_wall",
+    "minecraft:red_nether_brick_wall"
+  ]
 }

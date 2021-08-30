@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "rankine:pink_halite_ore"
-  },
-  "result": "rankine:pink_salt",
-  "experience": 0.3,
-  "cookingtime": 200
-}

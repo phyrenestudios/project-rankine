@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "rankine:block/scoria_bricks",
-    "bottom": "rankine:block/scoria_bricks",
-    "top": "rankine:block/scoria_bricks"
-  }
-}

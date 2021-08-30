@@ -7,7 +7,7 @@
     },
     "face=wall,facing=north,powered=false": {
       "model": "rankine:block/maple_button",
-      "x": 90,
+      "x": 270,
       "y": 180,
       "uvlock": true
     },
@@ -23,7 +23,7 @@
     },
     "face=wall,facing=south,powered=false": {
       "model": "rankine:block/maple_button",
-      "x": 90,
+      "x": 270,
       "uvlock": true
     },
     "face=ceiling,facing=south,powered=false": {
@@ -38,7 +38,7 @@
     },
     "face=wall,facing=west,powered=false": {
       "model": "rankine:block/maple_button",
-      "x": 90,
+      "x": 270,
       "y": 90,
       "uvlock": true
     },
@@ -55,7 +55,7 @@
     },
     "face=wall,facing=east,powered=false": {
       "model": "rankine:block/maple_button",
-      "x": 90,
+      "x": 270,
       "y": 270,
       "uvlock": true
     },
@@ -72,7 +72,7 @@
     },
     "face=wall,facing=north,powered=true": {
       "model": "rankine:block/maple_button_pressed",
-      "x": 90,
+      "x": 270,
       "y": 180,
       "uvlock": true
     },
@@ -88,7 +88,7 @@
     },
     "face=wall,facing=south,powered=true": {
       "model": "rankine:block/maple_button_pressed",
-      "x": 90,
+      "x": 270,
       "uvlock": true
     },
     "face=ceiling,facing=south,powered=true": {
@@ -103,7 +103,7 @@
     },
     "face=wall,facing=west,powered=true": {
       "model": "rankine:block/maple_button_pressed",
-      "x": 90,
+      "x": 270,
       "y": 90,
       "uvlock": true
     },
@@ -120,7 +120,7 @@
     },
     "face=wall,facing=east,powered=true": {
       "model": "rankine:block/maple_button_pressed",
-      "x": 90,
+      "x": 270,
       "y": 270,
       "uvlock": true
     },

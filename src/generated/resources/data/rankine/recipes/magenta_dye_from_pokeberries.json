@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pokeberries"
+    }
+  },
+  "result": {
+    "item": "minecraft:magenta_dye"
+  }
+}

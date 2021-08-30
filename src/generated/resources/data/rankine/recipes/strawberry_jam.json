@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "tag": "forge:berries/strawberry"
+    },
+    {
+      "tag": "forge:berries/strawberry"
+    },
+    {
+      "tag": "forge:berries/strawberry"
+    },
+    {
+      "tag": "forge:berries/strawberry"
+    },
+    {
+      "tag": "forge:berries/strawberry"
+    },
+    {
+      "tag": "forge:berries/strawberry"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "item": "rankine:strawberry_jam"
+  }
+}

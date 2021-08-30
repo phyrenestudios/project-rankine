@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "layers=1": {
+      "model": "rankine:block/pozzolana_height2"
+    },
+    "layers=2": {
+      "model": "rankine:block/pozzolana_height4"
+    },
+    "layers=3": {
+      "model": "rankine:block/pozzolana_height6"
+    },
+    "layers=4": {
+      "model": "rankine:block/pozzolana_height8"
+    },
+    "layers=5": {
+      "model": "rankine:block/pozzolana_height10"
+    },
+    "layers=6": {
+      "model": "rankine:block/pozzolana_height12"
+    },
+    "layers=7": {
+      "model": "rankine:block/pozzolana_height14"
+    },
+    "layers=8": {
+      "model": "rankine:block/pozzolana_height16"
+    }
+  }
+}

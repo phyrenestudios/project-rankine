@@ -7,7 +7,7 @@
       "model": "rankine:block/juniper_slab"
     },
     "type=double": {
-      "model": "rankine:block/juniper_planks"
+      "model": "rankine:block/juniper_slab"
     }
   }
 }

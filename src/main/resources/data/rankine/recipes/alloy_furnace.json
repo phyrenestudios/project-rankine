@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#t#",
-    "#f#",
-    "#t#"
+    "#t#",
+    "#c#"
   ],
   "key": {
     "t": {
@@ -12,8 +12,8 @@
     "#": {
       "item": "rankine:refractory_bricks"
     },
-    "f": {
-      "item": "minecraft:furnace"
+    "c": {
+      "item": "minecraft:campfire"
     }
   },
   "result": {

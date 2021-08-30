@@ -1,4 +1,11 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "#forge:bricks_vertical_slabs",
+    "#forge:wooden_vertical_slabs",
+    "#forge:sheetmetal_vertical_slabs",
+    "#forge:stone_vertical_slabs",
+    "#forge:polished_stone_vertical_slabs",
+    "#forge:stone_bricks_vertical_slabs"
+  ]
 }

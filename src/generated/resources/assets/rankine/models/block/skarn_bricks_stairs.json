@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "side": "rankine:block/skarn_bricks",
-    "bottom": "rankine:block/skarn_bricks",
-    "top": "rankine:block/skarn_bricks"
-  }
-}

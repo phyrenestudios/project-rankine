@@ -23,7 +23,6 @@ import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class ClientProxy implements IProxy {
 
@@ -70,80 +69,16 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.METAL_LADDERS);
         addCutout(RankineLists.LEAVES);
         addCutout(RankineLists.SAPLINGS);
+        addCutout(RankineLists.NATIVE_ORES);
+        addCutout(RankineLists.CRUSHING_ORES);
+        addCutout(RankineLists.SPECIAL_ORES);
         addCutout(Arrays.asList(
-                RankineBlocks.ACANTHITE_ORE.get(),
-                RankineBlocks.RHENIITE_ORE.get(),
-                RankineBlocks.NATIVE_BISMUTH_ORE.get(),
-                RankineBlocks.HALITE_ORE.get(),
-                RankineBlocks.PINK_HALITE_ORE.get(),
-                RankineBlocks.CRYOLITE_ORE.get(),
-                RankineBlocks.PYRITE_ORE.get(),
-                RankineBlocks.NATIVE_GALLIUM_ORE.get(),
-                RankineBlocks.NATIVE_INDIUM_ORE.get(),
-                RankineBlocks.NATIVE_SELENIUM_ORE.get(),
-                RankineBlocks.NATIVE_ARSENIC_ORE.get(),
-                RankineBlocks.NATIVE_SULFUR_ORE.get(),
-                RankineBlocks.NATIVE_TELLURIUM_ORE.get(),
-                RankineBlocks.ANTHRACITE_ORE.get(),
-                RankineBlocks.BAUXITE_ORE.get(),
-                RankineBlocks.BISMUTHINITE_ORE.get(),
-                RankineBlocks.BITUMINOUS_ORE.get(),
-                RankineBlocks.CASSITERITE_ORE.get(),
-                RankineBlocks.CHROMITE_ORE.get(),
-                RankineBlocks.CINNABAR_ORE.get(),
-                RankineBlocks.OPAL_ORE.get(),
-                RankineBlocks.COLUMBITE_ORE.get(),
-                RankineBlocks.DIAMOND_ORE.get(),
-                RankineBlocks.EMERALD_ORE.get(),
-                RankineBlocks.GALENA_ORE.get(),
-                RankineBlocks.ILMENITE_ORE.get(),
-                RankineBlocks.LAZURITE_ORE.get(),
-                RankineBlocks.LIGNITE_ORE.get(),
-                RankineBlocks.MALACHITE_ORE.get(),
-                RankineBlocks.MAGNESITE_ORE.get(),
-                RankineBlocks.MAGNETITE_ORE.get(),
-                RankineBlocks.MOLYBDENITE_ORE.get(),
-                RankineBlocks.NATIVE_COPPER_ORE.get(),
-                RankineBlocks.NATIVE_GOLD_ORE.get(),
-                RankineBlocks.NATIVE_TIN_ORE.get(),
-                RankineBlocks.NATIVE_ALUMINUM_ORE.get(),
-                RankineBlocks.NATIVE_LEAD_ORE.get(),
-                RankineBlocks.NATIVE_SILVER_ORE.get(),
-                RankineBlocks.PENTLANDITE_ORE.get(),
-                RankineBlocks.INTERSPINIFEX_ORE.get(),
-                RankineBlocks.PLUMBAGO_ORE.get(),
-                RankineBlocks.PYROLUSITE_ORE.get(),
-                RankineBlocks.FLUORITE_ORE.get(),
-                RankineBlocks.SPERRYLITE_ORE.get(),
-                RankineBlocks.AQUAMARINE_ORE.get(),
-                RankineBlocks.SPHALERITE_ORE.get(),
-                RankineBlocks.MOISSANITE_ORE.get(),
-                RankineBlocks.QUARTZ_ORE.get(),
-                RankineBlocks.SUBBITUMINOUS_ORE.get(),
-                RankineBlocks.TANTALITE_ORE.get(),
-                RankineBlocks.WOLFRAMITE_ORE.get(),
-                RankineBlocks.VANADINITE_ORE.get(),
-                RankineBlocks.GREENOCKITE_ORE.get(),
-                RankineBlocks.XENOTIME_ORE.get(),
-                RankineBlocks.STIBNITE_ORE.get(),
-                RankineBlocks.URANINITE_ORE.get(),
-                RankineBlocks.PETALITE_ORE.get(),
-                RankineBlocks.COBALTITE_ORE.get(),
-                RankineBlocks.MAJORITE_ORE.get(),
-                RankineBlocks.CELESTINE_ORE.get(),
-                RankineBlocks.KAMACITE_ORE.get(),
-                RankineBlocks.TAENITE_ORE.get(),
-                RankineBlocks.ANTITAENITE_ORE.get(),
-                RankineBlocks.TETRATAENITE_ORE.get(),
-                RankineBlocks.LONSDALEITE_ORE.get(),
-                RankineBlocks.MONAZITE_ORE.get(),
-
                 RankineBlocks.LEAD_GLASS.get(),
 
-                RankineBlocks.ASPHALT.get(),
-                RankineBlocks.WEATHERED_ASPHALT.get(),
-                RankineBlocks.WORN_ASPHALT.get(),
-                RankineBlocks.CRACKED_ASPHALT.get(),
+                RankineBlocks.ASPHALT_0.get(),
+                RankineBlocks.ASPHALT_1.get(),
+                RankineBlocks.ASPHALT_2.get(),
+                RankineBlocks.ASPHALT_3.get(),
 
                 RankineBlocks.TREE_TAP.get(),
                 RankineBlocks.TAP_LINE.get(),
@@ -181,6 +116,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.RASPBERRY_BUSH.get(),
                 RankineBlocks.BLACKBERRY_BUSH.get(),
                 RankineBlocks.CRANBERRY_BUSH.get(),
+                RankineBlocks.POKEBERRY_BUSH.get(),
                 RankineBlocks.STRAWBERRY_BUSH.get(),
                 RankineBlocks.PINEAPPLE_BUSH.get(),
                 RankineBlocks.ALOE_PLANT.get(),
@@ -204,7 +140,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CALCITE_BLOCK.get(),
                 RankineBlocks.CALCIUM_SILICATE_BLOCK.get(),
                 RankineBlocks.MICA_BLOCK.get(),
-                RankineBlocks.SALT_BLOCK.get(),
+                RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(),
                 RankineBlocks.PINK_SALT_BLOCK.get()
 
 

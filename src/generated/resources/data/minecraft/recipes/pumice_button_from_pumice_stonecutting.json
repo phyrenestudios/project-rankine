@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:pumice"
-  },
-  "result": "rankine:pumice_button",
-  "count": 1
-}

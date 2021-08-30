@@ -39,21 +39,21 @@
       "uvlock": true
     },
     "facing=north,type=double": {
-      "model": "rankine:block/coconut_palm_planks",
+      "model": "rankine:block/coconut_palm_vertical_slab",
       "uvlock": true
     },
     "facing=south,type=double": {
-      "model": "rankine:block/coconut_palm_planks",
+      "model": "rankine:block/coconut_palm_vertical_slab",
       "y": 180,
       "uvlock": true
     },
     "facing=west,type=double": {
-      "model": "rankine:block/coconut_palm_planks",
+      "model": "rankine:block/coconut_palm_vertical_slab",
       "y": 270,
       "uvlock": true
     },
     "facing=east,type=double": {
-      "model": "rankine:block/coconut_palm_planks",
+      "model": "rankine:block/coconut_palm_vertical_slab",
       "y": 90,
       "uvlock": true
     }

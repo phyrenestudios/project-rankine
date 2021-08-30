@@ -7,7 +7,7 @@
       "model": "rankine:block/petrified_chorus_slab"
     },
     "type=double": {
-      "model": "rankine:block/petrified_chorus_planks"
+      "model": "rankine:block/petrified_chorus_slab"
     }
   }
 }

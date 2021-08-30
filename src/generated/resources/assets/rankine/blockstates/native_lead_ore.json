@@ -179,9 +179,6 @@
     },
     "type=59": {
       "model": "rankine:block/native_lead_ore59"
-    },
-    "type=60": {
-      "model": "rankine:block/native_lead_ore60"
     }
   }
 }

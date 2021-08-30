@@ -21,8 +21,6 @@
     "rankine:peridotite_button",
     "rankine:komatiite_button",
     "rankine:kimberlite_button",
-    "rankine:pumice_button",
-    "rankine:scoria_button",
     "rankine:black_marble_button",
     "rankine:gray_marble_button",
     "rankine:white_marble_button",
@@ -35,7 +33,7 @@
     "rankine:gneiss_button",
     "rankine:quartzite_button",
     "rankine:serpentinite_button",
-    "rankine:skarn_button",
+    "rankine:eclogite_button",
     "rankine:mariposite_button",
     "rankine:limestone_button",
     "rankine:dolostone_button",
@@ -46,7 +44,7 @@
     "rankine:siltstone_button",
     "rankine:arkose_button",
     "rankine:soul_sandstone_button",
-    "rankine:breccia_button",
+    "rankine:diabase_button",
     "rankine:itacolumite_button"
   ]
 }

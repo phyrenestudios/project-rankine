@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:eclogite"
+  },
+  "result": "rankine:eclogite_wall",
+  "count": 1
+}

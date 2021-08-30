@@ -6,7 +6,7 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:clay_balls"
+      "item": "minecraft:clay_ball"
     },
     "M": {
       "item": "rankine:mortar"

@@ -248,7 +248,7 @@ public class CharcoalPitBlock extends Block {
                         } else if (count < 0) {
                             count = 0;
                         }
-                        worldIn.setBlockState(blockpos, RankineBlocks.CHARCOAL_BLOCK.get().getDefaultState().with(RankineEightLayerBlock.LAYERS, count));
+                        worldIn.setBlockState(blockpos, RankineBlocks.CHARCOAL_BLOCK.get().getDefaultState().with(RankineEightLayerBlock.LAYERS, count+1));
                     }
                 }
             }

@@ -7,7 +7,7 @@
       "model": "rankine:block/cork_oak_slab"
     },
     "type=double": {
-      "model": "rankine:block/cork_oak_planks"
+      "model": "rankine:block/cork_oak_slab"
     }
   }
 }

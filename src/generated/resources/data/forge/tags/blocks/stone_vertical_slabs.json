@@ -21,8 +21,6 @@
     "rankine:peridotite_vertical_slab",
     "rankine:komatiite_vertical_slab",
     "rankine:kimberlite_vertical_slab",
-    "rankine:pumice_vertical_slab",
-    "rankine:scoria_vertical_slab",
     "rankine:black_marble_vertical_slab",
     "rankine:gray_marble_vertical_slab",
     "rankine:white_marble_vertical_slab",
@@ -35,7 +33,7 @@
     "rankine:gneiss_vertical_slab",
     "rankine:quartzite_vertical_slab",
     "rankine:serpentinite_vertical_slab",
-    "rankine:skarn_vertical_slab",
+    "rankine:eclogite_vertical_slab",
     "rankine:mariposite_vertical_slab",
     "rankine:limestone_vertical_slab",
     "rankine:dolostone_vertical_slab",
@@ -46,7 +44,7 @@
     "rankine:siltstone_vertical_slab",
     "rankine:arkose_vertical_slab",
     "rankine:soul_sandstone_vertical_slab",
-    "rankine:breccia_vertical_slab",
+    "rankine:diabase_vertical_slab",
     "rankine:itacolumite_vertical_slab"
   ]
 }

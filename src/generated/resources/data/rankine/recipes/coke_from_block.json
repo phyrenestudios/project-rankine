@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:coke_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:coke",
+    "count": 9
+  }
+}

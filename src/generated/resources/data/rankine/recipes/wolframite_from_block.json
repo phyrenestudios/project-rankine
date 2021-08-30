@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:wolframite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:wolframite",
+    "count": 9
+  }
+}

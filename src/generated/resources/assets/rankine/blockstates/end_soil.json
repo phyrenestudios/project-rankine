@@ -1,7 +1,21 @@
 {
   "variants": {
-    "": {
-      "model": "rankine:block/end_soil"
-    }
+    "": [
+      {
+        "model": "rankine:block/end_soil"
+      },
+      {
+        "model": "rankine:block/end_soil",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/end_soil",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/end_soil",
+        "y": 270
+      }
+    ]
   }
 }

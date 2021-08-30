@@ -1,4 +1,10 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "rankine:arkose",
+    "rankine:itacolumite",
+    "rankine:soul_sandstone",
+    "minecraft:sandstone",
+    "minecraft:red_sandstone"
+  ]
 }

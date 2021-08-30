@@ -120,6 +120,30 @@
     "moisture=7,soil_type=loam": {
       "model": "rankine:block/tilled_soil_loam_moist"
     },
+    "moisture=0,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=1,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=2,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=3,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=4,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=5,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=6,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus"
+    },
+    "moisture=7,soil_type=humus": {
+      "model": "rankine:block/tilled_soil_humus_moist"
+    },
     "moisture=0,soil_type=clay_loam": {
       "model": "rankine:block/tilled_soil_clay_loam"
     },

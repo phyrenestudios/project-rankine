@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:eclogite"
+    }
+  },
+  "result": {
+    "item": "rankine:eclogite_slab",
+    "count": 6
+  }
+}
