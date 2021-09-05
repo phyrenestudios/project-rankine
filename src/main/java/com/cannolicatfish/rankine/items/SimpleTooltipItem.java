@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -16,22 +17,30 @@ import java.util.Collections;
 import java.util.List;
 
 public class SimpleTooltipItem extends Item {
-    List<String> tip;
-    public SimpleTooltipItem(String tooltip, Properties properties) {
+    private final int tooltipCount;
+    public SimpleTooltipItem(int tooltipCount, Properties properties) {
         super(properties);
-        this.tip = Collections.singletonList(tooltip);
+        this.tooltipCount = tooltipCount;
     }
-    public SimpleTooltipItem(List<String> tooltips, Properties properties) {
+
+    @Deprecated
+    public SimpleTooltipItem(List<String> stringList, Properties properties) {
         super(properties);
-        this.tip = tooltips;
+        this.tooltipCount = stringList.size();
+    }
+
+    @Deprecated
+    public SimpleTooltipItem(String stringList, Properties properties) {
+        super(properties);
+        this.tooltipCount = 1;
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
      //   if (Screen.hasShiftDown()) {
-            for (String s : tip) {
-                tooltip.add(new StringTextComponent(s).mergeStyle(TextFormatting.GRAY));
+            for (int i = 0; i < tooltipCount; i++) {
+                tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".tooltip" + i).mergeStyle(TextFormatting.GRAY));
             }
     //    } else {
    //         tooltip.add(new StringTextComponent("Hold shift for information...").mergeStyle(TextFormatting.GRAY));

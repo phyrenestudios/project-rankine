@@ -21,6 +21,7 @@ import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
+import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
@@ -1779,10 +1780,11 @@ public class RankineEventHandler {
 
 
     @SubscribeEvent
-    public static void knifeClick(PlayerInteractEvent.RightClickBlock event) {
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
         World world = event.getWorld();
         Direction direction = event.getFace();
+        Hand hand = event.getHand();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
@@ -1801,8 +1803,8 @@ public class RankineEventHandler {
                     world.addEntity(itementity);
                 }
                 if (!world.isRemote) {
-                    player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
-                        p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                    player.getHeldItem(hand).damageItem(1, player, (p_220038_0_) -> {
+                        p_220038_0_.sendBreakAnimation(hand);
                     });
                 }
             } else if (target == RankineBlocks.AGED_CHEESE.get()) {
@@ -1813,8 +1815,8 @@ public class RankineEventHandler {
                     player.addItemStackToInventory(new ItemStack(RankineItems.CHEESE.get(), 1));
                     world.removeBlock(pos, false);
                 }
-                player.getHeldItemMainhand().damageItem(1, player, (p_220040_1_) -> {
-                    p_220040_1_.sendBreakAnimation(player.swingingHand);
+                player.getHeldItem(hand).damageItem(1, player, (p_220040_1_) -> {
+                    p_220040_1_.sendBreakAnimation(hand);
                 });
                 world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.7F, world.getRandom().nextFloat() * 0.4F + 0.5F);
 
@@ -1831,6 +1833,31 @@ public class RankineEventHandler {
                 });
                 world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.7F, world.getRandom().nextFloat() * 0.4F + 0.5F);
 
+            }
+        } else if (RankineTags.Items.SLUICING_TOOLS.contains(stack.getItem()) && direction != null) {
+            SluicingRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.SLUICING, new Inventory(new ItemStack(world.getBlockState(pos).getBlock()), stack), world).orElse(null);
+            if (recipe != null) {
+                float r = world.getRandom().nextFloat();
+                world.playSound(player, pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.4F + 0.8F);
+                world.playSound(player, pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.6F + 0.8F);
+                world.playSound(player, pos, SoundEvents.BLOCK_SAND_FALL, SoundCategory.BLOCKS, 1.0F, r * 0.2F + 0.8F);
+                ItemStack out = recipe.getSluicingResult(world);
+                world.removeBlock(pos, false);
+                player.swing(hand,true);
+                if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) {
+
+                    double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
+                    double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
+                    double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
+                    ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, out);
+                    itementity.setDefaultPickupDelay();
+                    world.addEntity(itementity);
+                    if (stack.getItem().isDamageable()) {
+                        player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
+                            p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                        });
+                    }
+                }
             }
         }
 

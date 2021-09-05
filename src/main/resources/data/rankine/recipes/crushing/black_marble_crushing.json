@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:black_marble"
+  },
+  "output1": {
+    "item": "rankine:skarn",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:calcite",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:bitumen",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "minecraft:flint",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:mica",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:sapphire",
+    "chance": 0.05
+  }
+}

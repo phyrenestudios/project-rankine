@@ -10625,6 +10625,7 @@ c18613531b52945270a20dba058a10c4c7359cd3 assets/rankine/models/item/petrified_ch
 ff78924eff561e76413d4e7059820b0b48763d2b assets/rankine/models/item/pewter_alloy.json
 e2f332d88ba829c891a306ba8922bb0143da1ed8 assets/rankine/models/item/pewter_axe.json
 3d3fb5275e6a8a3ba7e44ee65650ad8aab6eb398 assets/rankine/models/item/pewter_block.json
+01be254bf851f439a299644488e74e83e960a5ea assets/rankine/models/item/pewter_gold_pan.json
 ff4a464d6d231083ab25c4759079dea7ff16ffbd assets/rankine/models/item/pewter_hammer.json
 f40deba2a867824c5062f22b23b121834f287cd1 assets/rankine/models/item/pewter_hoe.json
 c7d080923079799a0a8b43ca8bf13a1a5a815b85 assets/rankine/models/item/pewter_pedestal.json
@@ -11617,6 +11618,7 @@ c09eeb61a4eeedb422ea0b939d92224810961a8c assets/rankine/models/item/white_marble
 8a726b86e802c0f950cb5b24ab1b8e3052c18166 assets/rankine/models/item/wolframite.json
 5418a53582e8f4024d117310cf52ea8a111a0e6d assets/rankine/models/item/wolframite_block.json
 0b5360c63df540bfd2e9be0201fd3f3a1d7e34cf assets/rankine/models/item/wolframite_ore.json
+b0ffbbf2d20787948bed1575117cc8384c9f9e1a assets/rankine/models/item/wooden_gold_pan.json
 aad3822880021efc26fafeeb80979221051e238c assets/rankine/models/item/xenon_block.json
 337a2379e4056aae0af9e0e958fac5831d52c59f assets/rankine/models/item/xenon_gas_block.json
 52e8babb3d01bcd6712db190b9d9d91683e4d264 assets/rankine/models/item/xenon_gas_bottle.json
@@ -18896,6 +18898,7 @@ bd7d38f20923fda02e606fa443527fa2f97966bf data/rankine/tags/items/crafting_metal_
 ec46ee27f31658b17f17bbd3623a2c05fe2fd8f1 data/rankine/tags/items/foraging_items.json
 d8f51bc262fbef243ab728c0f7a4f952cac15584 data/rankine/tags/items/foraging_tools.json
 4b1653e98c6432268b5b4b04b98be6c98bdb27d7 data/rankine/tags/items/geodes.json
+2b27d49131cf949b8250b4256af355b3213eee92 data/rankine/tags/items/gold_pans.json
 97af2279cc76762e8c3732696667a45ebab0306e data/rankine/tags/items/juniper_logs.json
 15b6c1b2c5c8941d0d0731789af601bd1a24efb6 data/rankine/tags/items/leds.json
 736e8f38046394d507fc8363fd3daf1f10f6c6e5 data/rankine/tags/items/magnolia_logs.json
@@ -18903,4 +18906,5 @@ d8f51bc262fbef243ab728c0f7a4f952cac15584 data/rankine/tags/items/foraging_tools.
 fe949c8d80754614380fdfbe8016d2264cfb76ad data/rankine/tags/items/petrified_chorus_logs.json
 1284b13e00e383f05c8fa8340005d6618005bbb9 data/rankine/tags/items/pinyon_pine_logs.json
 b3cd035028a606c9ae141c6e85a4de8c1256d5e1 data/rankine/tags/items/sharinga_logs.json
+d80556b47123dd4f39e179ba5ce55abaf2327017 data/rankine/tags/items/sluicing_tools.json
 f37d7037f5932ef478c16340a627d7d80e3eb78b data/rankine/tags/items/yellow_birch_logs.json

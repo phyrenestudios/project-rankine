@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "minecraft:blackstone"
+  },
+  "output1": {
+    "item": "rankine:dark_gravel",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:black_sand",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:pyroxene",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:olivine",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "minecraft:quartz",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "minecraft:flint",
+    "chance": 0.05
+  }
+}

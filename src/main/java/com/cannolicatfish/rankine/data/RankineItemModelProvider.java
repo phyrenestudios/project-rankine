@@ -150,6 +150,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.PACKAGED_TOOL.get());
         basicItem(RankineItems.ALNICO_MAGNET.get());
         basicItem(RankineItems.RARE_EARTH_MAGNET.get());
+        basicItem(RankineItems.WOODEN_GOLD_PAN.get());
+        basicItem(RankineItems.PEWTER_GOLD_PAN.get());
         basicItem(RankineItems.STEEL_GOLD_PAN.get());
         basicItem(RankineItems.ALTIMETER.get());
         basicItem(RankineItems.SPEEDOMETER.get());

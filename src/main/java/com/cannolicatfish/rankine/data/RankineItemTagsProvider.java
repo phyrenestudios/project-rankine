@@ -102,6 +102,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.SPEARS).add(RankineItems.FLINT_SPEAR.get(),RankineItems.PEWTER_SPEAR.get(),RankineItems.ALLOY_SPEAR.get(),RankineItems.BRONZE_SPEAR.get(),RankineItems.INVAR_SPEAR.get(),RankineItems.STEEL_SPEAR.get(),RankineItems.STAINLESS_STEEL_SPEAR.get(),RankineItems.NICKEL_SUPERALLOY_SPEAR.get(),RankineItems.COBALT_SUPERALLOY_SPEAR.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_SPEAR.get(),RankineItems.ROSE_GOLD_SPEAR.get(),RankineItems.BLUE_GOLD_SPEAR.get(),RankineItems.GREEN_GOLD_SPEAR.get(),RankineItems.WHITE_GOLD_SPEAR.get(),RankineItems.PURPLE_GOLD_SPEAR.get(),RankineItems.BLACK_GOLD_SPEAR.get(),RankineItems.AMALGAM_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.CROWBARS).add(RankineItems.BRONZE_CROWBAR.get());
         getOrCreateBuilder(RankineTags.Items.KNIVES).add(RankineItems.FLINT_KNIFE.get(),RankineItems.PEWTER_KNIFE.get(),RankineItems.BRONZE_KNIFE.get());
+        getOrCreateBuilder(RankineTags.Items.GOLD_PANS).add(RankineItems.WOODEN_GOLD_PAN.get(), RankineItems.PEWTER_GOLD_PAN.get(), RankineItems.STEEL_GOLD_PAN.get());
+        getOrCreateBuilder(RankineTags.Items.SLUICING_TOOLS).addTag(RankineTags.Items.GOLD_PANS);
         getOrCreateBuilder(RankineTags.Items.BOWS).add(Items.BOW);
         getOrCreateBuilder(RankineTags.Items.FISHING_RODS).add(Items.FISHING_ROD);
         getOrCreateBuilder(RankineTags.Items.SHIELDS).add(Items.SHIELD);

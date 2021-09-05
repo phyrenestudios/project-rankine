@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pumice"
+  },
+  "output1": {
+    "item": "rankine:rhyolitic_tuff",
+    "chance": 0.50,
+    "additional": 0.50
+  },
+  "output2": {
+    "item": "rankine:andesitic_tuff",
+    "chance": 0.50,
+    "additional": 0.50
+  },
+  "output3": {
+    "item": "rankine:pozzolana",
+    "chance": 1
+  },
+  "output4": {
+    "item": "rankine:calcite",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:orthoclase_feldspar",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:zircon",
+    "chance": 0.05
+  }
+}

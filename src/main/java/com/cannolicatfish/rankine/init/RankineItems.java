@@ -1646,7 +1646,7 @@ public class RankineItems {
     public static final RegistryObject<Item> LIMESTONE_NODULE = REGISTRY.register("limestone_nodule", () -> new BlockItem(RankineBlocks.LIMESTONE_NODULE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
 
-    public static final RegistryObject<Item> ACANTHITE = REGISTRY.register("acanthite", () -> new SimpleTooltipItem(Arrays.asList("Composition: Ag2S", "Used as a source for silver"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> ACANTHITE = REGISTRY.register("acanthite", () -> new SimpleTooltipItem(2, new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ACANTHITE_BLOCK = REGISTRY.register("acanthite_block", () -> new BlockItem(RankineBlocks.ACANTHITE_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALUMINA = REGISTRY.register("alumina", () -> new SimpleTooltipItem(Arrays.asList("Composition: MgO", "Used for high refractory bricks"), new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> ALUMINA_BLOCK = REGISTRY.register("alumina_block", () -> new BlockItem(RankineBlocks.ALUMINA_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -2154,7 +2154,9 @@ public class RankineItems {
 
     //Other Tools
     public static final RegistryObject<Item> SPARK_LIGHTER = REGISTRY.register("spark_lighter", () -> new SparkLighterItem(new Item.Properties().maxStackSize(1).maxDamage(1023).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> STEEL_GOLD_PAN = REGISTRY.register("steel_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(63).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> WOODEN_GOLD_PAN = REGISTRY.register("wooden_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(12).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> PEWTER_GOLD_PAN = REGISTRY.register("pewter_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(36).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> STEEL_GOLD_PAN = REGISTRY.register("steel_gold_pan", () -> new GoldPanItem(new Item.Properties().maxStackSize(1).maxDamage(100).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> THERMOMETER = REGISTRY.register("thermometer", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> ALTIMETER = REGISTRY.register("altimeter", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankineTools)));

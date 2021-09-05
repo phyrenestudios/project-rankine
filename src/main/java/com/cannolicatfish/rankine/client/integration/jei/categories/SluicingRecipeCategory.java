@@ -95,10 +95,11 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
     public void setRecipe(IRecipeLayout recipeLayout, SluicingRecipe recipe, IIngredients ingredients) {
         //System.out.println(ingredients);
         //System.out.println(recipe.getOutputs());
-        int index = 0, posX = 23;
+        int index = 0, posY = 0;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, 63, 10);
+            recipeLayout.getItemStacks().init(index, true, 63, 9 + posY);
             recipeLayout.getItemStacks().set(index, o);
+            posY += 21;
             index++;
         }
 
@@ -107,7 +108,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
         int outputcount = 0;
         for (List<ItemStack> o : ingredients.getOutputs(VanillaTypes.ITEM)) {
             if (outputcount % 6 == 0) {
-                reducer = index - 2;
+                reducer = index - 3;
                 ymod += 1;
             }
             recipeLayout.getItemStacks().init(index, true, (outputcount - reducer) * 18, 48 + ymod * 18);
@@ -119,8 +120,8 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
             DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
                 p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
             });
-            if (i != 0) {
-                list.add(new StringTextComponent("Chance: " + df.format(recipe.getChance(i - 1) * 100) + "%"));
+            if (i != 0 && i != 1) {
+                list.add(new StringTextComponent("Chance: " + df.format(recipe.getChance(i - 2) * 100) + "%"));
             }
         });
 

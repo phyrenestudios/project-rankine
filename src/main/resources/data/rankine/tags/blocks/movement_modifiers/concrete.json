@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "#forge:concrete",
-    "rankine:uncolored_concrete_slab",
-    "rankine:uncolored_concrete_stairs",
-    "rankine:uncolored_concrete_wall"
+    "rankine:concrete_slab",
+    "rankine:concrete_stairs",
+    "rankine:concrete_wall"
   ]
 }
