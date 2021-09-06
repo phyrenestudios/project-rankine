@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -28,6 +29,9 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void registerTags() {
         //MINECRAFT
+        for (Block blk : RankineLists.SAPLINGS) {
+            getOrCreateBuilder(BlockTags.SAPLINGS).add(blk);
+        }
         getOrCreateBuilder(BlockTags.LOGS_THAT_BURN).addTag(RankineTags.Blocks.CEDAR_LOGS).addTag(RankineTags.Blocks.PINYON_PINE_LOGS).addTag(RankineTags.Blocks.JUNIPER_LOGS).addTag(RankineTags.Blocks.COCONUT_PALM_LOGS).addTag(RankineTags.Blocks.BALSAM_FIR_LOGS).addTag(RankineTags.Blocks.EASTERN_HEMLOCK_LOGS).addTag(RankineTags.Blocks.MAPLE_LOGS).addTag(RankineTags.Blocks.MAGNOLIA_LOGS).addTag(RankineTags.Blocks.SHARINGA_LOGS).addTag(RankineTags.Blocks.CORK_OAK_LOGS).addTag(RankineTags.Blocks.CINNAMON_LOGS).addTag(RankineTags.Blocks.BLACK_BIRCH_LOGS).addTag(RankineTags.Blocks.YELLOW_BIRCH_LOGS).addTag(RankineTags.Blocks.BLACK_WALNUT_LOGS);
         getOrCreateBuilder(BlockTags.CLIMBABLE).add(RankineBlocks.ROPE.get(),RankineBlocks.CAST_IRON_SUPPORT.get(),RankineBlocks.CAST_IRON_LADDER.get(),RankineBlocks.DURALUMIN_LADDER.get(),RankineBlocks.BRASS_LADDER.get(),RankineBlocks.CUPRONICKEL_LADDER.get());
         getOrCreateBuilder(BlockTags.GOLD_ORES).add(RankineBlocks.NATIVE_GOLD_ORE.get());

@@ -1,6 +1,6 @@
 {
   "type": "rankine:sluicing",
-  "total": 4,
+  "total": 6,
   "input": {
     "item": "rankine:grassy_humus"
   },
@@ -27,20 +27,8 @@
     "item": "rankine:silt",
     "weight": 3
   },
-  "output5": {
-    "item": "rankine:silt",
-    "weight": 5
-  },
-  "output5": {
-    "item": "rankine:silt",
-    "weight": 5
-  },
-  "output5": {
-    "item": "rankine:silt",
-    "weight": 5
-  },
-  "output5": {
-    "item": "rankine:silt",
-    "weight": 5
+  "output6": {
+    "tag": "minecraft:saplings",
+    "weight": 25
   }
 }

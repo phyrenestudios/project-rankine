@@ -88,7 +88,11 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
             builder.add(Arrays.asList(i.getMatchingStacks()));
         }
         iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
-        iIngredients.setOutputs(VanillaTypes.ITEM, recipe.getOutputs());
+        ImmutableList.Builder<List<ItemStack>> builder2 = ImmutableList.builder();
+        for (Ingredient i : recipe.getOutputs()) {
+            builder2.add(Arrays.asList(i.getMatchingStacks()));
+        }
+        iIngredients.setOutputLists(VanillaTypes.ITEM, builder2.build());
     }
 
     @Override

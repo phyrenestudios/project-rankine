@@ -13554,7 +13554,7 @@ e9efe2b637b714575627fa8107579402d50d91ab data/minecraft/tags/blocks/guarded_by_p
 60316c2f58e944260c98869eb7de4e6796adc9e5 data/minecraft/tags/blocks/logs_that_burn.json
 9026c57771d41921470e45d67183a87262380e28 data/minecraft/tags/blocks/planks.json
 e88037ea4cfc5b5388c7de263d02574d2d0cb299 data/minecraft/tags/blocks/sand.json
-90d2a86b17254720105aa8f941a233173c4ff0ae data/minecraft/tags/blocks/saplings.json
+fc5d7bac661b6d4e1a8329b66c7c771220f46b88 data/minecraft/tags/blocks/saplings.json
 2843aa985d5fd6f8ac6f9634eb761d2b3fadfb0e data/minecraft/tags/blocks/slabs.json
 469f181dc7340d354844390ecfbd162479a5ca92 data/minecraft/tags/blocks/stairs.json
 d94575e912f9c6a7c2df769c995a7c4e072ced60 data/minecraft/tags/blocks/stone_bricks.json
@@ -13572,6 +13572,7 @@ cda1cc9b40ca8c07ac3a5f6e018f7d468cde8cda data/minecraft/tags/blocks/wooden_trapd
 1473971d1fb1f9ae1ee9ca1c5ae2caf20a89687f data/minecraft/tags/items/arrows.json
 4af14c7228a475dcf2e25cf078979c76fa79cfd8 data/minecraft/tags/items/coals.json
 a8df5e4e46f2470b579690c75bf979b26b153cbf data/minecraft/tags/items/piglin_loved.json
+90d2a86b17254720105aa8f941a233173c4ff0ae data/minecraft/tags/items/saplings.json
 4ae245d37670697a1ef085cd6874aa5790d480bf data/minecraft/tags/items/stone_tool_materials.json
 f2af93ffa0467103bb0edda5cab8d93f37f2ca79 data/rankine/advancements/recipes/misc/black_dye_from_blackberries.json
 6dd15355c3dab46516c1956486b5ccb0bcc53a69 data/rankine/advancements/recipes/misc/blue_dye_from_blueberries.json

@@ -35,6 +35,9 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(ItemTags.COALS).add(RankineItems.LIGNITE.get(),RankineItems.SUBBITUMINOUS_COAL.get(),RankineItems.BITUMINOUS_COAL.get(),RankineItems.ANTHRACITE_COAL.get());
         getOrCreateBuilder(ItemTags.STONE_TOOL_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
         getOrCreateBuilder(ItemTags.PIGLIN_LOVED).addTag(RankineTags.Items.COLORED_GOLD_TOOLS).add(RankineItems.GREEN_GOLD_ALLOY.get(),RankineItems.BLUE_GOLD_ALLOY.get(),RankineItems.ROSE_GOLD_ALLOY.get(),RankineItems.WHITE_GOLD_ALLOY.get(),RankineItems.BLACK_GOLD_ALLOY.get(),RankineItems.PURPLE_GOLD_ALLOY.get(),RankineItems.GREEN_GOLD_BLOCK.get(),RankineItems.BLUE_GOLD_BLOCK.get(),RankineItems.ROSE_GOLD_BLOCK.get(),RankineItems.WHITE_GOLD_BLOCK.get(),RankineItems.BLACK_GOLD_BLOCK.get(),RankineItems.PURPLE_GOLD_BLOCK.get());
+        for (Block blk : RankineLists.SAPLINGS) {
+            getOrCreateBuilder(ItemTags.SAPLINGS).add(blk.asItem());
+        }
 
 
 
