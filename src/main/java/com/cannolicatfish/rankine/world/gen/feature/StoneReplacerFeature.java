@@ -1,13 +1,16 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
@@ -40,6 +43,12 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
+                Biome BIOME = reader.getBiome(new BlockPos(x, 0, z));
+                Biome.Category CAT = BIOME.getCategory();
+                if (WorldgenUtils.GEN_BIOMES.contains(CAT)) {
+                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)), 70, reader, x, z, endY);
+                }
+                /*
                 if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.OCEAN && !WGConfig.LAYERS.OCEAN_STONE_LIST.get().isEmpty()) {
                     layering(WGConfig.LAYERS.OCEAN_STONE_LIST.get(), WGConfig.LAYERS.OCEAN_HEIGHT.get(), reader, x, z, endY);
                 } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.MUSHROOM && !WGConfig.LAYERS.MUSHROOM_STONE_LIST.get().isEmpty()) {
@@ -69,6 +78,8 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
                 } else {
                     layering(WGConfig.LAYERS.OVERWORLD_STONE_LIST.get(), WGConfig.LAYERS.OVERWORLD_HEIGHT.get(), reader, x, z, endY);
                 }
+
+                 */
             }
         }
         return true;

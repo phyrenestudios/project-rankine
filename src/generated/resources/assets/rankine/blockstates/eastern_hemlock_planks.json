@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/eastern_hemlock_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/eastern_hemlock_planks_vertical"
     }
   }
 }

@@ -21,7 +21,7 @@
               }
             }
           ],
-          "name": "minecraft:air"
+          "name": "rankine:chalcocite_ore"
         },
         {
           "type": "minecraft:item",

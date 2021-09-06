@@ -7,7 +7,7 @@
       "model": "rankine:block/cedar_slab"
     },
     "type=double": {
-      "model": "rankine:block/cedar_slab"
+      "model": "rankine:block/cedar_planks"
     }
   }
 }

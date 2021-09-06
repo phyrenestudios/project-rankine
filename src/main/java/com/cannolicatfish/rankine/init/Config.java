@@ -8,6 +8,7 @@ import net.minecraftforge.fml.config.ModConfig;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Mod.EventBusSubscriber
 public class Config {
@@ -948,7 +949,8 @@ public class Config {
             b.pop();
         }
     }
-    
+
+    public static Predicate<Object> DoubleValidator = o -> o instanceof Double;
     public static class StoneProperties {
 
         public final ForgeConfigSpec.IntValue GRAY_GRANITE_HL;
@@ -1109,17 +1111,18 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue SERPENTINITE_RESIST;
 
 
-        public final ForgeConfigSpec.ConfigValue<List<Double>> ECLOGITE_STATS;
-        public final ForgeConfigSpec.ConfigValue<List<Double>> DIABASE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ECLOGITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> DIABASE_STATS;
 
 
         
         public StoneProperties(ForgeConfigSpec.Builder b) {
             b.comment("Properties of Stones").push("stoneProperties");
+
                 ECLOGITE_STATS = b.comment("Harvest level, Hardness, and Resistance of Eclogite. ")
-                        .define("Eclogite_Stats", Arrays.asList(0.0D, 2.5D, 6.0D));
+                        .defineList("eclogiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
                 DIABASE_STATS = b.comment("Harvest level, Hardness, and Resistance of Diabase. ")
-                        .define("Diabase_Stats", Arrays.asList(0.0D, 2.5D, 6.0D));
+                        .defineList("diabaseeStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
 
                 b.comment("Gray Granite Properties").push("GrayGranite");
                 GRAY_GRANITE_HL = b.comment("Harvest Level of Gray Granite.")

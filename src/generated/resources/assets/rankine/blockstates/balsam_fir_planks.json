@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/balsam_fir_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/balsam_fir_planks_vertical"
     }
   }
 }

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/magnolia_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/magnolia_planks_vertical"
     }
   }
 }

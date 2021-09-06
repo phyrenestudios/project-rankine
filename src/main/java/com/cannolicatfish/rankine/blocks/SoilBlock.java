@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -9,6 +10,7 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -33,20 +35,11 @@ public class SoilBlock extends Block {
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (state.get(WET) && !isWet(worldIn, pos)) {
+        if (state.get(WET) && !WorldgenUtils.isWet((ISeedReader) worldIn, pos)) {
             worldIn.setBlockState(pos,state.with(WET, false), 2);
-        } else if (!state.get(WET) && isWet(worldIn, pos)) {
+        } else if (!state.get(WET) && WorldgenUtils.isWet((ISeedReader) worldIn, pos)) {
             worldIn.setBlockState(pos,state.with(WET, true), 2);
         }
     }
 
-    public boolean isWet(World world, BlockPos pos) {
-        for(Direction direction : Direction.values()) {
-            FluidState fluidstate = world.getFluidState(pos.offset(direction));
-            if (fluidstate.isTagged(FluidTags.WATER)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

@@ -16,6 +16,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RankineItemTagsProvider extends ItemTagsProvider {
 
@@ -194,12 +197,15 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.RODS_CARBON).add(RankineItems.HARD_CARBON_ELECTRODE.get());
         getOrCreateBuilder(Tags.Items.RODS).addTags(RankineTags.Items.RODS_GRAPHITE,RankineTags.Items.RODS_CARBON).add(RankineItems.ALLOY_ROD.get());
 
+        for (Block blk : Stream.of(RankineLists.SOILS, RankineLists.GRASSY_SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            getOrCreateBuilder(RankineTags.Items.DIRT).add(blk.asItem());
+        }
+        getOrCreateBuilder(RankineTags.Items.GRAVEL).add(RankineItems.DARK_GRAVEL.get(),RankineItems.LIGHT_GRAVEL.get());
 
 
 
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);
-        copy(Tags.Blocks.DIRT, RankineTags.Items.DIRT);
         copy(RankineTags.Blocks.TUFF, RankineTags.Items.TUFF);
         copy(RankineTags.Blocks.TERRACOTTA, RankineTags.Items.TERRACOTTA);
         copy(RankineTags.Blocks.GLAZED_TERRACOTTA, RankineTags.Items.GLAZED_TERRACOTTA);

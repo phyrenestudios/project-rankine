@@ -7,7 +7,7 @@
       "model": "rankine:block/coconut_palm_slab"
     },
     "type=double": {
-      "model": "rankine:block/coconut_palm_slab"
+      "model": "rankine:block/coconut_palm_planks"
     }
   }
 }

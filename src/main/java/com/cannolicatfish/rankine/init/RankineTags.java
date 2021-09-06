@@ -304,6 +304,7 @@ public final class RankineTags {
 
         public static final ITag.INamedTag<Item> CLAY = forgeItem("clay");
         public static final ITag.INamedTag<Item> DIRT = forgeItem("dirt");
+        public static final ITag.INamedTag<Item> GRAVEL = forgeItem("gravel");
         public static final ITag.INamedTag<Item> HARDENED_GLASS = forgeItem("hardened_glass");
         public static final ITag.INamedTag<Item> TUFF = forgeItem("tuff");
         public static final ITag.INamedTag<Item> TERRACOTTA = forgeItem("terracotta");

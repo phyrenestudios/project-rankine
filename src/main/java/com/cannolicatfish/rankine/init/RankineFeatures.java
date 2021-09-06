@@ -71,6 +71,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:end_stone_gen",END_STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:nether_stone_gen",NETHER_STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:overworld_stone_gen",OVERWORLD_STONE_GEN);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:soil_gen",SOIL_GEN);
         //WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:mud_feature",MUD_FEATURE);
     }
 
@@ -277,6 +278,8 @@ public class RankineFeatures {
     public static final Feature<NoFeatureConfig> END_STONE_REPLACER = new EndStoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> NETHER_STONE_REPLACER = new NetherStoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> SOIL_REPLACER = new SoilReplacerFeature(NoFeatureConfig.CODEC);
+    //public static final Feature<NoFeatureConfig> SOIL_REPLACER2 = new FireClayDiskFeature(NoFeatureConfig.CODEC);
     //public static final Feature<NoFeatureConfig> MUD_REPLACER = new MudReplacerFeature(NoFeatureConfig.CODEC);
 
     // BASE PLACEMENTS
@@ -384,6 +387,8 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> NETHER_STONE_GEN = NETHER_STONE_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> OVERWORLD_STONE_GEN = STONE_REPLACER.withConfiguration(new NoFeatureConfig())
+            .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+    public static final ConfiguredFeature<?, ?> SOIL_GEN = SOIL_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     //public static final ConfiguredFeature<?, ?> MUD_FEATURE = MUD_REPLACER.withConfiguration(new NoFeatureConfig())
     //        .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
