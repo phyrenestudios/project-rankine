@@ -29,7 +29,8 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
     private final int total;
     private final Ingredient ingredient;
-    private final NonNullList<ItemStack> recipeOutputs;
+    private final Ingredient tool;
+    private final NonNullList<Ingredient> recipeOutputs;
     private final ResourceLocation id;
     private final NonNullList<Float> weights;
     private final NonNullList<Integer> mins;
@@ -37,10 +38,11 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
     public static final SluicingRecipe.Serializer SERIALIZER = new SluicingRecipe.Serializer();
 
-    public SluicingRecipe(ResourceLocation idIn, int totalIn, Ingredient ingredientIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
+    public SluicingRecipe(ResourceLocation idIn, int totalIn, Ingredient ingredientIn, Ingredient itemIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
         this.total = totalIn;
         this.id = idIn;
         this.ingredient = ingredientIn;
+        this.tool = itemIn;
         this.recipeOutputs = recipeOutputsIn;
         this.weights = weightsIn;
         this.mins = minsIn;
@@ -52,9 +54,13 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         return "";
     }
 
+    public Ingredient getTool() {
+        return tool;
+    }
+
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return NonNullList.withSize(1,this.ingredient);
+        return NonNullList.from(Ingredient.EMPTY, this.ingredient, this.tool);
     }
 
     public Ingredient getIngredient() {
@@ -70,13 +76,13 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         return weights;
     }
 
-    public NonNullList<ItemStack> getOutputs() {
+    public NonNullList<Ingredient> getOutputs() {
         return this.recipeOutputs;
     }
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return this.getIngredient().test(inv.getStackInSlot(0));
+        return this.getIngredient().test(inv.getStackInSlot(0)) && this.getTool().test(inv.getStackInSlot(1));
     }
 
     @Override
@@ -91,8 +97,10 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
     public ItemStack getSluicingResult(World worldIn) {
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        Random rand = worldIn.getRandom();
         for (int i = 0; i < this.recipeOutputs.size(); i++) {
-            col.add(this.weights.get(i),new ItemStack(this.recipeOutputs.get(i).getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
+            ItemStack[] curOut = this.recipeOutputs.get(i).getMatchingStacks();
+            col.add(this.weights.get(i),new ItemStack(curOut[rand.nextInt(curOut.length)].getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
         }
         return col.getRandomElement().copy();
     }
@@ -141,8 +149,8 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         public SluicingRecipe read(ResourceLocation recipeId, JsonObject json) {
             int t = json.get("total").getAsInt();
             Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "input"));
-
-            NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
+            Ingredient it = Ingredient.deserialize(JSONUtils.getJsonObject(json, "tool"));
+            NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
             NonNullList<Integer> mins = NonNullList.withSize(t, 1);
             NonNullList<Integer> maxes = NonNullList.withSize(t, 1);
@@ -150,7 +158,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
                 String output = "output" + (i+1);
                 if (json.has(output)) {
                     JsonObject object = JSONUtils.getJsonObject(json, output);
-                    stacks.set(i,SluicingRecipe.deserializeItem(object));
+                    stacks.set(i,Ingredient.deserialize(JSONUtils.getJsonObject(json, output)));
                     if (object.has("weight")){
                         weights.set(i,object.get("weight").getAsFloat());
                     } else {
@@ -173,16 +181,16 @@ public class SluicingRecipe implements IRecipe<IInventory> {
                 }
             }
 
-            return new SluicingRecipe(recipeId, t, ingredient, stacks, weights, mins,maxes);
+            return new SluicingRecipe(recipeId, t, ingredient, it, stacks, weights, mins,maxes);
         }
 
         public SluicingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
             int t = buffer.readInt();
             Ingredient input = Ingredient.read(buffer);
-
-            NonNullList<ItemStack> stacks = NonNullList.withSize(t, ItemStack.EMPTY);
+            Ingredient it = Ingredient.read(buffer);
+            NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
-                stacks.set(k, buffer.readItemStack());
+                stacks.set(k, Ingredient.read(buffer));
             }
 
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
@@ -201,20 +209,20 @@ public class SluicingRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readInt());
             }
 
-            return new SluicingRecipe(recipeId, t, input, stacks, weights, mins, maxes);
+            return new SluicingRecipe(recipeId, t, input, it, stacks, weights, mins, maxes);
         }
 
         public void write(PacketBuffer buffer, SluicingRecipe recipe) {
             buffer.writeInt(recipe.total);
             recipe.getIngredient().write(buffer);
-
+            recipe.getTool().write(buffer);
             int count = 0;
-            for(ItemStack stack : recipe.recipeOutputs) {
-                buffer.writeItemStack(stack);
+            for(Ingredient stack : recipe.recipeOutputs) {
+                stack.write(buffer);
                 count++;
             }
             while (count < recipe.total) {
-                buffer.writeItemStack(ItemStack.EMPTY);
+                Ingredient.EMPTY.write(buffer);
                 count++;
             }
 

@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:breccia"
+  },
+  "output1": {
+    "item": "rankine:light_gravel",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:white_sand",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:gypsum",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:chlorite",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:chrome_enstatite",
+    "chance": 0.02,
+    "additional": 0.02
+  },
+  "output6": {
+    "item": "minecraft:ender_pearl",
+    "chance": 0.05
+  }
+}

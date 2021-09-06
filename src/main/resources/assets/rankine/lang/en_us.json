@@ -1277,6 +1277,8 @@
   "item.rankine.lodestone": "Lodestone",
   "item.rankine.cassiterite": "Cassiterite",
   "item.rankine.acanthite": "Acanthite",
+  "item.rankine.acanthite.tooltip0": "Composition: Ag2S",
+  "item.rankine.acanthite.tooltip1": "Used as a source for silver",
   "item.rankine.thortveitite": "Thortveitite",
   "item.rankine.galena": "Galena",
   "item.rankine.pentlandite": "Pentlandite",

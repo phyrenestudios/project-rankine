@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:shale"
+  },
+  "output1": {
+    "item": "rankine:breccia",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:silty_clay",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "minecraft:clay_ball",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "minecraft:quartz",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:kaolinite_ball",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:graphite",
+    "chance": 0.05
+  }
+}

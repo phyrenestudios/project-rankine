@@ -1,0 +1,10 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "metamorphic",
+  "input1": {
+    "item": "rankine:greenschist"
+  },
+  "result": {
+    "block": "rankine:blueschist"
+  }
+}

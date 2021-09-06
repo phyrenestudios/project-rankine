@@ -4,6 +4,9 @@
   "input": {
     "item": "rankine:white_sand"
   },
+  "tool": {
+    "item": "rankine:steel_gold_pan"
+  },
   "output1": {
     "item": "minecraft:quartz",
     "weight": 1

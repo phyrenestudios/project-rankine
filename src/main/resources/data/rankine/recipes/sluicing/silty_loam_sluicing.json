@@ -4,8 +4,11 @@
   "input": {
     "item": "rankine:silty_loam"
   },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
   "output1": {
-    "item": "rankine:silty_loam",
+    "item": "minecraft:dirt",
     "weight": 40
   },
   "output2": {

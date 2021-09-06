@@ -4,6 +4,9 @@
   "input": {
     "item": "rankine:alluvium"
   },
+  "tool": {
+    "item": "rankine:steel_gold_pan"
+  },
   "output1": {
     "item": "minecraft:diamond",
     "weight": 1

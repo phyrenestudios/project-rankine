@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:serpentinite"
+  },
+  "output1": {
+    "item": "rankine:skarn",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:serpentine",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:asbestos",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:magnesite",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:talc",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:chlorite",
+    "chance": 0.05
+  }
+}

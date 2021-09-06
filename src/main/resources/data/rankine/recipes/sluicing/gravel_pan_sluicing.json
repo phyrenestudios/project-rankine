@@ -1,0 +1,30 @@
+{
+  "type": "rankine:sluicing",
+  "total": 5,
+  "input": {
+    "item": "minecraft:gravel"
+  },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
+  "output1": {
+    "item": "minecraft:sand",
+    "weight": 14
+  },
+  "output2": {
+    "item": "rankine:light_gravel",
+    "weight": 8
+  },
+  "output3": {
+    "item": "rankine:dark_gravel",
+    "weight": 8
+  },
+  "output4": {
+    "item": "minecraft:flint",
+    "weight": 5
+  },
+  "output5": {
+    "item": "minecraft:quartz",
+    "weight": 1
+  }
+}

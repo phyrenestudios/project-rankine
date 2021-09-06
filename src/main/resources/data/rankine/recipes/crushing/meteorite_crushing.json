@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:meteorite"
+  },
+  "output1": {
+    "item": "rankine:silicon",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:sulfur",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:sanidine",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:wadsleyite",
+    "chance": 0.25,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:graphite",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:chromite",
+    "chance": 0.05
+  }
+}

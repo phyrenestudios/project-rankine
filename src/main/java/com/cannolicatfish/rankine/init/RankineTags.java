@@ -146,7 +146,8 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> FORAGING_ITEMS = modItem("foraging_items");
         public static final ITag.INamedTag<Item> COLORED_GOLD_TOOLS = modItem("colored_gold_tools");
         public static final ITag.INamedTag<Item> FORAGING_TOOLS = modItem("foraging_tools");
-
+        public static final ITag.INamedTag<Item> GOLD_PANS = modItem("gold_pans");
+        public static final ITag.INamedTag<Item> SLUICING_TOOLS = modItem("sluicing_tools");
 
 
 
@@ -247,7 +248,6 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> FISHING_RODS = forgeItem("fishing_rods");
         public static final ITag.INamedTag<Item> BOWS = forgeItem("bows");
         public static final ITag.INamedTag<Item> SHIELDS = forgeItem("shields");
-
 
         public static final ITag.INamedTag<Item> SEEDS_FLOWER = forgeItem("seeds/flower");
         public static final ITag.INamedTag<Item> SEEDS_CORN = forgeItem("seeds/corn");
