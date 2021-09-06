@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/porphyry_copper"
+      },
+      {
+        "model": "rankine:block/porphyry_copper",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/porphyry_copper",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/porphyry_copper",
+        "y": 270
+      }
+    ]
+  }
+}

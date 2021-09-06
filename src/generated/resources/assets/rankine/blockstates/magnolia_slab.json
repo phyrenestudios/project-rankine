@@ -7,7 +7,7 @@
       "model": "rankine:block/magnolia_slab"
     },
     "type=double": {
-      "model": "rankine:block/magnolia_slab"
+      "model": "rankine:block/magnolia_planks"
     }
   }
 }

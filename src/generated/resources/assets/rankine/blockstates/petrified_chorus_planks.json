@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/petrified_chorus_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/petrified_chorus_planks_vertical"
     }
   }
 }

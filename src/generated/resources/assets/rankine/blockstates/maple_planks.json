@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/maple_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/maple_planks_vertical"
     }
   }
 }

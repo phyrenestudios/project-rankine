@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
+import com.cannolicatfish.rankine.blocks.states.PlanksBuildingStates;
 import com.cannolicatfish.rankine.blocks.states.StoneBricksStates;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
@@ -248,7 +249,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
         for (Block blk : RankineLists.PLANKS) {
-            simpleBlock(blk);
+            fancyPlanksBlock(blk);
         }
         for (Block blk : RankineLists.LEAVES) {
             simpleBlock(blk);
@@ -272,7 +273,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.WOODEN_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_SLABS.indexOf(blk));
             String name = blk.getRegistryName().getPath();
-            slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine","block/"+name), new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
+            slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()), new ResourceLocation("rankine","block/"+BASE.getRegistryName().getPath()));
         }
         for (Block blk : Stream.of(RankineLists.WOODEN_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             Block BASE = RankineLists.PLANKS.get(RankineLists.WOODEN_VERTICAL_SLABS.indexOf(blk));
@@ -392,6 +393,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             pathBlock(PATH, new ResourceLocation("minecraft","block/grass_path_top"), SIDE, BOTTOM);
         }
         pathBlock(RankineBlocks.END_GRASS_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
+        pathBlock(RankineBlocks.MYCELIUM_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
 
 
         //Sheetmetals
@@ -830,7 +832,16 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelForState().modelFile(models().withExistingParent(name+"_vertical_small", modLoc("block/template_rotation")).texture("all", small)).addModel()
                 .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.SPECIAL)
                 .modelForState().modelFile(models().withExistingParent(name+"_special", mcLoc("block/cube_all")).texture("all", special)).addModel();
-    };
+    }
+    public void fancyPlanksBlock(Block block) {
+        String name = block.getRegistryName().getPath();
+        ResourceLocation normal = modLoc("block/"+name);
+        getVariantBuilder(block)
+                .partialState().with(RankinePlanksBlock.TYPE, PlanksBuildingStates.NORMAL)
+                .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_all")).texture("all", normal)).addModel()
+                .partialState().with(RankinePlanksBlock.TYPE, PlanksBuildingStates.VERTICAL)
+                .modelForState().modelFile(models().withExistingParent(name+"_vertical", modLoc("block/template_rotation")).texture("all", normal)).addModel();
+    }
 
     public void doublePlant(Block block) {
         String name = block.getRegistryName().getPath();

@@ -88,6 +88,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
 
 
+        basicItem(RankineItems.VULCANIZED_RUBBER.get());
         basicItem(RankineItems.POZZOLANA.get());
         basicItem(RankineItems.BITUMEN.get());
         basicItem(RankineItems.FIRE_CLAY_BALL.get());
@@ -145,6 +146,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.RIGHT_TRANSMUTER.get());
         basicItem(RankineItems.DOWN_TRANSMUTER.get());
         basicItem(RankineItems.UP_TRANSMUTER.get());
+        basicItem(RankineItems.BUILDING_TOOL.get());
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
@@ -394,6 +396,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             String name = GRASSY_SOIL.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/"+name));
         }
+        withExistingParent(RankineBlocks.MYCELIUM_PATH.get());
         withExistingParent(RankineBlocks.END_GRASS_PATH.get());
         withExistingParent(RankineBlocks.END_GRASS_BLOCK.get());
         withExistingParent(RankineBlocks.END_SOIL.get());

@@ -1066,6 +1066,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
     public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> BOG_IRON = REGISTRY.register("bog_iron", () -> new Block(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> PORPHYRY_COPPER = REGISTRY.register("porphyry_copper", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> QUICKLIME_BLOCK = REGISTRY.register("quicklime_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> MAGNESITE_BLOCK = REGISTRY.register("magnesite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> MAGNESIA_BLOCK = REGISTRY.register("magnesia_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
@@ -1105,7 +1107,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> BONE_CHAR_BLOCK = REGISTRY.register("bone_char_block", () -> new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> FIRE_CLAY = REGISTRY.register("fire_clay", () -> new Block(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> KAOLINITE_BLOCK = REGISTRY.register("kaolinite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> KAOLINITE_BLOCK = REGISTRY.register("kaolinite_block", () -> new Block(Block.Properties.create(Material.CLAY).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PORCELAIN_BLOCK = REGISTRY.register("porcelain_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CHECKERED_MARBLE = REGISTRY.register("checkered_marble", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_SLAB = REGISTRY.register("checkered_marble_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
@@ -1148,7 +1150,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GUN_COTTON = REGISTRY.register("gun_cotton", () -> new GunCottonBlock(Block.Properties.create(Material.WOOL, MaterialColor.ADOBE).sound(SoundType.CLOTH).hardnessAndResistance(1F)));
 
     //WOOD BLOCKS
-    public static final RegistryObject<Block> BAMBOO_PLANKS = REGISTRY.register("bamboo_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> BAMBOO_PLANKS = REGISTRY.register("bamboo_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_SLAB = REGISTRY.register("bamboo_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_STAIRS = REGISTRY.register("bamboo_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_VERTICAL_SLAB = REGISTRY.register("bamboo_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1158,7 +1160,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BAMBOO_DOOR = REGISTRY.register("bamboo_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> BAMBOO_TRAPDOOR = REGISTRY.register("bamboo_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> BAMBOO_BUTTON = REGISTRY.register("bamboo_button", RankineWoodenButton::new);
-    public static final RegistryObject<Block> BAMBOO_CULMS = REGISTRY.register("bamboo_culms", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> BAMBOO_CULMS = REGISTRY.register("bamboo_culms", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_SLAB = REGISTRY.register("bamboo_culms_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_STAIRS = REGISTRY.register("bamboo_culms_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_VERTICAL_SLAB = REGISTRY.register("bamboo_culms_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1172,7 +1174,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CEDAR_WOOD = REGISTRY.register("cedar_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CEDAR_LOG = REGISTRY.register("stripped_cedar_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CEDAR_WOOD = REGISTRY.register("stripped_cedar_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CEDAR_PLANKS = REGISTRY.register("cedar_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> CEDAR_PLANKS = REGISTRY.register("cedar_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_SLAB = REGISTRY.register("cedar_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_STAIRS = REGISTRY.register("cedar_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_VERTICAL_SLAB = REGISTRY.register("cedar_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1186,7 +1188,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PINYON_PINE_WOOD = REGISTRY.register("pinyon_pine_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_PINYON_PINE_LOG = REGISTRY.register("stripped_pinyon_pine_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_PINYON_PINE_WOOD = REGISTRY.register("stripped_pinyon_pine_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> PINYON_PINE_PLANKS = REGISTRY.register("pinyon_pine_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> PINYON_PINE_PLANKS = REGISTRY.register("pinyon_pine_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_SLAB = REGISTRY.register("pinyon_pine_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_STAIRS = REGISTRY.register("pinyon_pine_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_VERTICAL_SLAB = REGISTRY.register("pinyon_pine_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1200,7 +1202,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> JUNIPER_WOOD = REGISTRY.register("juniper_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_JUNIPER_LOG = REGISTRY.register("stripped_juniper_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_JUNIPER_WOOD = REGISTRY.register("stripped_juniper_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> JUNIPER_PLANKS = REGISTRY.register("juniper_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> JUNIPER_PLANKS = REGISTRY.register("juniper_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_SLAB = REGISTRY.register("juniper_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_STAIRS = REGISTRY.register("juniper_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_VERTICAL_SLAB = REGISTRY.register("juniper_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1214,7 +1216,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> COCONUT_PALM_WOOD = REGISTRY.register("coconut_palm_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_COCONUT_PALM_LOG = REGISTRY.register("stripped_coconut_palm_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_COCONUT_PALM_WOOD = REGISTRY.register("stripped_coconut_palm_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> COCONUT_PALM_PLANKS = REGISTRY.register("coconut_palm_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> COCONUT_PALM_PLANKS = REGISTRY.register("coconut_palm_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_SLAB = REGISTRY.register("coconut_palm_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_STAIRS = REGISTRY.register("coconut_palm_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_VERTICAL_SLAB = REGISTRY.register("coconut_palm_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1228,7 +1230,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BALSAM_FIR_WOOD = REGISTRY.register("balsam_fir_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BALSAM_FIR_LOG = REGISTRY.register("stripped_balsam_fir_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BALSAM_FIR_WOOD = REGISTRY.register("stripped_balsam_fir_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BALSAM_FIR_PLANKS = REGISTRY.register("balsam_fir_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> BALSAM_FIR_PLANKS = REGISTRY.register("balsam_fir_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_SLAB = REGISTRY.register("balsam_fir_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_STAIRS = REGISTRY.register("balsam_fir_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_VERTICAL_SLAB = REGISTRY.register("balsam_fir_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1242,7 +1244,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MAGNOLIA_WOOD = REGISTRY.register("magnolia_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAGNOLIA_LOG = REGISTRY.register("stripped_magnolia_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAGNOLIA_WOOD = REGISTRY.register("stripped_magnolia_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> MAGNOLIA_PLANKS = REGISTRY.register("magnolia_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> MAGNOLIA_PLANKS = REGISTRY.register("magnolia_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_SLAB = REGISTRY.register("magnolia_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_STAIRS = REGISTRY.register("magnolia_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_VERTICAL_SLAB = REGISTRY.register("magnolia_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1256,7 +1258,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EASTERN_HEMLOCK_WOOD = REGISTRY.register("eastern_hemlock_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_EASTERN_HEMLOCK_LOG = REGISTRY.register("stripped_eastern_hemlock_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_EASTERN_HEMLOCK_WOOD = REGISTRY.register("stripped_eastern_hemlock_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_PLANKS = REGISTRY.register("eastern_hemlock_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_PLANKS = REGISTRY.register("eastern_hemlock_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_SLAB = REGISTRY.register("eastern_hemlock_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_STAIRS = REGISTRY.register("eastern_hemlock_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_VERTICAL_SLAB = REGISTRY.register("eastern_hemlock_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1270,7 +1272,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> YELLOW_BIRCH_WOOD = REGISTRY.register("yellow_birch_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_YELLOW_BIRCH_LOG = REGISTRY.register("stripped_yellow_birch_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_YELLOW_BIRCH_WOOD = REGISTRY.register("stripped_yellow_birch_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> YELLOW_BIRCH_PLANKS = REGISTRY.register("yellow_birch_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> YELLOW_BIRCH_PLANKS = REGISTRY.register("yellow_birch_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_SLAB = REGISTRY.register("yellow_birch_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_STAIRS = REGISTRY.register("yellow_birch_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_VERTICAL_SLAB = REGISTRY.register("yellow_birch_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1284,7 +1286,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_BIRCH_WOOD = REGISTRY.register("black_birch_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BLACK_BIRCH_LOG = REGISTRY.register("stripped_black_birch_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BLACK_BIRCH_WOOD = REGISTRY.register("stripped_black_birch_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BLACK_BIRCH_PLANKS = REGISTRY.register("black_birch_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> BLACK_BIRCH_PLANKS = REGISTRY.register("black_birch_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_SLAB = REGISTRY.register("black_birch_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_STAIRS = REGISTRY.register("black_birch_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_VERTICAL_SLAB = REGISTRY.register("black_birch_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1298,7 +1300,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MAPLE_WOOD = REGISTRY.register("maple_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAPLE_LOG = REGISTRY.register("stripped_maple_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = REGISTRY.register("stripped_maple_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> MAPLE_PLANKS = REGISTRY.register("maple_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> MAPLE_PLANKS = REGISTRY.register("maple_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_SLAB = REGISTRY.register("maple_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_STAIRS = REGISTRY.register("maple_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_VERTICAL_SLAB = REGISTRY.register("maple_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1312,7 +1314,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SHARINGA_WOOD = REGISTRY.register("sharinga_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_SHARINGA_LOG = REGISTRY.register("stripped_sharinga_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_SHARINGA_WOOD = REGISTRY.register("stripped_sharinga_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> SHARINGA_PLANKS = REGISTRY.register("sharinga_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> SHARINGA_PLANKS = REGISTRY.register("sharinga_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_SLAB = REGISTRY.register("sharinga_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_STAIRS = REGISTRY.register("sharinga_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_VERTICAL_SLAB = REGISTRY.register("sharinga_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1326,7 +1328,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_WALNUT_WOOD = REGISTRY.register("black_walnut_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BLACK_WALNUT_LOG = REGISTRY.register("stripped_black_walnut_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_BLACK_WALNUT_WOOD = REGISTRY.register("stripped_black_walnut_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BLACK_WALNUT_PLANKS = REGISTRY.register("black_walnut_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> BLACK_WALNUT_PLANKS = REGISTRY.register("black_walnut_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_SLAB = REGISTRY.register("black_walnut_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_STAIRS = REGISTRY.register("black_walnut_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_VERTICAL_SLAB = REGISTRY.register("black_walnut_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1340,7 +1342,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CORK_OAK_WOOD = REGISTRY.register("cork_oak_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CORK_OAK_LOG = REGISTRY.register("stripped_cork_oak_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CORK_OAK_WOOD = REGISTRY.register("stripped_cork_oak_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CORK_OAK_PLANKS = REGISTRY.register("cork_oak_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> CORK_OAK_PLANKS = REGISTRY.register("cork_oak_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_SLAB = REGISTRY.register("cork_oak_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_STAIRS = REGISTRY.register("cork_oak_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_VERTICAL_SLAB = REGISTRY.register("cork_oak_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1354,7 +1356,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CINNAMON_WOOD = REGISTRY.register("cinnamon_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CINNAMON_LOG = REGISTRY.register("stripped_cinnamon_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CINNAMON_WOOD = REGISTRY.register("stripped_cinnamon_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CINNAMON_PLANKS = REGISTRY.register("cinnamon_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> CINNAMON_PLANKS = REGISTRY.register("cinnamon_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_SLAB = REGISTRY.register("cinnamon_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_STAIRS = REGISTRY.register("cinnamon_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_VERTICAL_SLAB = REGISTRY.register("cinnamon_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1368,7 +1370,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PETRIFIED_CHORUS_WOOD = REGISTRY.register("petrified_chorus_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_CHORUS_LOG = REGISTRY.register("stripped_petrified_chorus_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_CHORUS_WOOD = REGISTRY.register("stripped_petrified_chorus_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> PETRIFIED_CHORUS_PLANKS = REGISTRY.register("petrified_chorus_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> PETRIFIED_CHORUS_PLANKS = REGISTRY.register("petrified_chorus_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_SLAB = REGISTRY.register("petrified_chorus_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_STAIRS = REGISTRY.register("petrified_chorus_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_VERTICAL_SLAB = REGISTRY.register("petrified_chorus_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1382,7 +1384,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ERYTHRINA_WOOD = REGISTRY.register("erythrina_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_ERYTHRINA_LOG = REGISTRY.register("stripped_erythrina_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_ERYTHRINA_WOOD = REGISTRY.register("stripped_erythrina_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> ERYTHRINA_PLANKS = REGISTRY.register("erythrina_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_PLANKS = REGISTRY.register("erythrina_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_SLAB = REGISTRY.register("erythrina_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_STAIRS = REGISTRY.register("erythrina_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_VERTICAL_SLAB = REGISTRY.register("erythrina_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1396,7 +1398,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHARRED_WOOD = REGISTRY.register("charred_wood", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CHARRED_LOG = REGISTRY.register("stripped_charred_log", () -> new RotatedPillarBlock(DEF_WOOD));
     public static final RegistryObject<Block> STRIPPED_CHARRED_WOOD = REGISTRY.register("stripped_charred_wood", () -> new RotatedPillarBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CHARRED_PLANKS = REGISTRY.register("charred_planks", () -> new Block(DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_PLANKS = REGISTRY.register("charred_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_SLAB = REGISTRY.register("charred_slab", () -> new RankineSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_STAIRS = REGISTRY.register("charred_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_VERTICAL_SLAB = REGISTRY.register("charred_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_WOOD));
@@ -1611,6 +1613,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ANDESINE_BLOCK = REGISTRY.register("andesine_block", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)));
 
     //ORES
+    public static final RegistryObject<Block> CHALCOCITE_ORE = REGISTRY.register("chalcocite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PETALITE_ORE_HL.get())));
     public static final RegistryObject<Block> PETALITE_ORE = REGISTRY.register("petalite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PETALITE_ORE_HL.get())));
     public static final RegistryObject<Block> LIGNITE_ORE = REGISTRY.register("lignite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.LIGNITE_ORE_HL.get())));
     public static final RegistryObject<Block> SUBBITUMINOUS_ORE = REGISTRY.register("subbituminous_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.SUBBITUMINOUS_ORE_HL.get())));
@@ -1628,7 +1631,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PENTLANDITE_ORE = REGISTRY.register("pentlandite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PENTLANDITE_ORE_HL.get())));
     public static final RegistryObject<Block> INTERSPINIFEX_ORE = REGISTRY.register("interspinifex_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.INTERSPINIFEX_ORE_HL.get())));
     //public static final RegistryObject<Block> NATIVE_COPPER_ORE = REGISTRY.register("native_copper_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_COPPER_ORE_HL.get())));
-    public static final RegistryObject<Block> CHALCOCITE_ORE = REGISTRY.register("chalcocite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MALACHITE_ORE_HL.get())));
     public static final RegistryObject<Block> MALACHITE_ORE = REGISTRY.register("malachite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MALACHITE_ORE_HL.get())));
     public static final RegistryObject<Block> SPHALERITE_ORE = REGISTRY.register("sphalerite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.SPHALERITE_ORE_HL.get())));
     public static final RegistryObject<Block> NATIVE_GALLIUM_ORE = REGISTRY.register("native_gallium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_GALLIUM_ORE_HL.get())));

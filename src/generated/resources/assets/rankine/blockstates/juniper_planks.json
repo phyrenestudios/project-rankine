@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/juniper_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/juniper_planks_vertical"
     }
   }
 }

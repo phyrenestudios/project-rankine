@@ -50,7 +50,7 @@ public class GrassySoilBlock extends GrassBlock {
 
                 for(int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                    if (worldIn.getBlockState(blockpos).matchesBlock(SOIL) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
+                    if (worldIn.getBlockState(blockpos).getBlock() instanceof SoilBlock && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
                         worldIn.setBlockState(blockpos, blockstate.with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
                     }
                 }

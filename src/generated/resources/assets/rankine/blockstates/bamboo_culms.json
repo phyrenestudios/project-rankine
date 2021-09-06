@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/bamboo_culms"
+    },
+    "type=vertical": {
+      "model": "rankine:block/bamboo_culms_vertical"
     }
   }
 }

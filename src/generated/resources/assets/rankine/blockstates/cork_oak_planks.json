@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/cork_oak_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/cork_oak_planks_vertical"
     }
   }
 }

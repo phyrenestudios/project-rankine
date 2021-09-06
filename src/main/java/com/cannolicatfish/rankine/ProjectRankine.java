@@ -23,7 +23,8 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.*;
-import com.cannolicatfish.rankine.util.colors.AlloyItemColor;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.util.colors.*;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.potion.RankinePotions;
@@ -34,9 +35,7 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.util.POIFixer;
-import com.cannolicatfish.rankine.util.colors.CrucibleColor;
-import com.cannolicatfish.rankine.util.colors.SGVDItemColor;
-import com.cannolicatfish.rankine.util.colors.TemplateItemColor;
+import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
@@ -89,8 +88,8 @@ public class ProjectRankine {
         IEventBus Bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "project_rankine/rankine-common.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "project_rankine/rankine-worldgen.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "rankine-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "rankine-worldgen.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
@@ -112,6 +111,10 @@ public class ProjectRankine {
     private void CommonSetup(final FMLCommonSetupEvent event)
     {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
+        WorldgenUtils.initConfigs();
+        LOGGER.debug(WorldgenUtils.GEN_BIOMES);
+        LOGGER.debug(WorldgenUtils.INTRUSION_COLLECTIONS);
+
         POIFixer.fixPOITypeBlockStates(RankinePOIs.TEMPLATE_TABLE_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.PISTON_CRUSHER_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.BOTANIST_STATION_POI);
@@ -151,6 +154,10 @@ public class ProjectRankine {
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
+            for (Block b : RankineLists.GRASSY_SOILS) {
+                event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
+            }
+
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_INGOT::get);
@@ -178,6 +185,9 @@ public class ProjectRankine {
         @OnlyIn(Dist.CLIENT)
         public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
             event.getBlockColors().register(new CrucibleColor(), RankineBlocks.CRUCIBLE_BLOCK.get());
+            for (Block b : RankineLists.GRASSY_SOILS) {
+                event.getBlockColors().register(new GrassBlockBaseColor(), b);
+            }
         }
 
         @SubscribeEvent
@@ -225,6 +235,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineFeatures.END_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"end_stone_replacer"));
             event.getRegistry().register(RankineFeatures.NETHER_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"nether_stone_replacer"));
             event.getRegistry().register(RankineFeatures.STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"stone_replacer"));
+            event.getRegistry().register(RankineFeatures.SOIL_REPLACER.setRegistryName(ProjectRankine.MODID,"soil_replacer"));
             //event.getRegistry().register(RankineFeatures.MUD_REPLACER.setRegistryName(ProjectRankine.MODID,"mud_replacer"));
 
         }

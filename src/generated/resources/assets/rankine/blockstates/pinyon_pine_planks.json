@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "type=normal": {
       "model": "rankine:block/pinyon_pine_planks"
+    },
+    "type=vertical": {
+      "model": "rankine:block/pinyon_pine_planks_vertical"
     }
   }
 }
