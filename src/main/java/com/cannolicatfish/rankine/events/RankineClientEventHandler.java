@@ -1,12 +1,10 @@
 package com.cannolicatfish.rankine.events;
 
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineAttributes;
-import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -19,6 +17,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
@@ -48,6 +47,9 @@ public class RankineClientEventHandler {
         if (world != null) {
             List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING));
             AlloyCustomHelper.setAlloyingRecipes(alloyingRecipes);
+
+            List<ElementRecipe> elementRecipes = new ArrayList<>(world.getRecipeManager().getRecipesForType(RankineRecipeTypes.ELEMENT));
+            AlloyCustomHelper.setElementRecipes(elementRecipes);
 
             List<AlloyCraftingRecipe> alloyCraftingRecipes = world.getRecipeManager().getRecipesForType(IRecipeType.CRAFTING).stream()
                     .filter((iCraftingRecipe -> iCraftingRecipe instanceof AlloyCraftingRecipe))

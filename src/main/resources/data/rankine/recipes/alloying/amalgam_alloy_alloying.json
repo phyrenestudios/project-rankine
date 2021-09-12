@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 86,
+  "color": 13881539,
   "input1": {
     "element": "rankine:elements/mercury",
     "min": 0.50,

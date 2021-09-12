@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 2,
   "tier": 2,
+  "color": 12882104,
   "input1": {
     "element": "rankine:elements/nickel",
     "min": 0.48,

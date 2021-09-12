@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 16,
   "tier": 2,
+  "color": 6534878,
   "input1": {
     "element": "rankine:elements/cobalt",
     "min": 0.60,

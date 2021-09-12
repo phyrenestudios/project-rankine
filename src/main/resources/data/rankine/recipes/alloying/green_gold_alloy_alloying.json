@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 6,
+  "color": 15728547,
   "input1": {
     "element": "rankine:elements/gold",
     "min": 0.30,

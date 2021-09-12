@@ -614,6 +614,15 @@
   "block.rankine.balsam_fir_sapling": "Balsam Fir Sapling",
   "block.rankine.juniper_log": "Juniper Log",
 
+  "block.rankine.material_testing_bench": "Material Testing Table",
+  "block.rankine.material_testing_bench.durability.test": "Durability tests show the following:",
+  "block.rankine.material_testing_bench.durability": "Durability",
+  "block.rankine.material_testing_bench.durability.error": "Does not appear to have significant use in terms of durability.",
+  "element.rankine:elements/copper.preview": "Commonly used in early alloys.",
+  "element.rankine:elements/copper.desc0": "Copper is a transition metal with an atomic number of 29.",
+  "element.rankine:elements/copper.desc1": "Commonly used in electrical components and early alloys.",
+  "element.rankine:elements/copper.desc2": "Commonly used in electrical components and early alloys.",
+
   "block.rankine.template_table": "Alloy Template Table",
   "block.rankine.alloy_furnace": "Alloy Furnace",
   "block.rankine.induction_furnace": "Induction Furnace",

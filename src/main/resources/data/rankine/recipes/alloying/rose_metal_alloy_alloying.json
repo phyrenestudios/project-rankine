@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 3,
+  "color": 11574435,
   "input1": {
     "element": "rankine:elements/bismuth",
     "min": 0.30,

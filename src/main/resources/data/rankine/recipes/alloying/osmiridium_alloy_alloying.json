@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 5,
+  "color": 13212593,
   "input1": {
     "element": "rankine:elements/osmium",
     "min": 0.20,

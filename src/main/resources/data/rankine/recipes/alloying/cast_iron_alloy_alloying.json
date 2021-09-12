@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 10,
+  "color": 2236962,
   "input1": {
     "element": "rankine:elements/iron",
     "min": 0.86,

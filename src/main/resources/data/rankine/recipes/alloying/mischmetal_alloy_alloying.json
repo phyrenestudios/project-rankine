@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 17,
   "tier": 2,
+  "color": 7304289,
   "input1": {
     "element": "rankine:elements/cerium",
     "min": 0.50,

@@ -233,6 +233,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.DIAMOND_ANVIL_CELL.get());
         withExistingParent(RankineBlocks.LASER_QUARRY.get());
         withExistingParent(RankineBlocks.TEMPLATE_TABLE.get());
+        withExistingParent(RankineBlocks.MATERIAL_TESTING_BENCH.get());
         withExistingParent(RankineBlocks.BOTANIST_STATION.get());
         withExistingParent(RankineBlocks.EVAPORATION_TOWER.get());
         withExistingParent(RankineBlocks.LASER_PYLON_TOP.get());

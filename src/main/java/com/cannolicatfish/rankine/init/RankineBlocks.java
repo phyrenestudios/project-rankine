@@ -4,6 +4,8 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
+import com.cannolicatfish.rankine.blocks.mtb.MaterialTestingBenchBlock;
+import com.cannolicatfish.rankine.blocks.mtb.MaterialTestingBenchContainer;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
@@ -1740,6 +1742,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(HIGH_REFRACTORY_BRICKS.get(),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ULTRA_HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("ultra_high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(ULTRA_HIGH_REFRACTORY_BRICKS.get(),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CRUCIBLE_BLOCK = REGISTRY.register("crucible", () -> new CrucibleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
+    public static final RegistryObject<Block> MATERIAL_TESTING_BENCH = REGISTRY.register("material_testing_bench", () -> new MaterialTestingBenchBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = REGISTRY.register("template_table", () -> new TemplateTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ALLOY_FURNACE = REGISTRY.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)));
     public static final RegistryObject<Block> PISTON_CRUSHER = REGISTRY.register("piston_crusher", () -> new PistonCrusherBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
@@ -2062,6 +2065,9 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:template_table")
     public static ContainerType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;
+
+    @ObjectHolder("rankine:material_testing_bench")
+    public static ContainerType<MaterialTestingBenchContainer> MATERIAL_TESTING_BENCH_CONTAINER;
 
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;

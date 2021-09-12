@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryScreen;
+import com.cannolicatfish.rankine.blocks.mtb.MaterialTestingBenchScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxScreen;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableScreen;
@@ -56,6 +57,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
         ScreenManager.registerFactory(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
         ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
+        ScreenManager.registerFactory(RankineBlocks.MATERIAL_TESTING_BENCH_CONTAINER, MaterialTestingBenchScreen::new);
         ScreenManager.registerFactory(RankineBlocks.CRUCIBLE_CONTAINER, CrucibleScreen::new);
         ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
         ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);

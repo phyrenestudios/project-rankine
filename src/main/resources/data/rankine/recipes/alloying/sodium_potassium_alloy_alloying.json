@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 2,
+  "color": 12564673,
   "input1": {
     "element": "rankine:elements/potassium",
     "min": 0.40,

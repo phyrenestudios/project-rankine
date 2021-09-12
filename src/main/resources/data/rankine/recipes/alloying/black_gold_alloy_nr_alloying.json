@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 3,
   "tier": 2,
+  "color": 3684408,
   "input1": {
     "element": "rankine:elements/netherite",
     "min": 0.75,

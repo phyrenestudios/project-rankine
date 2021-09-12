@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 18,
   "tier": 2,
+  "color": 11113071,
   "input1": {
     "element": "rankine:elements/tungsten",
     "min": 0.88,

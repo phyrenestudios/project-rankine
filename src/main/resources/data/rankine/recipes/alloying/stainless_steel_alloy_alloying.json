@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "tier": 2,
   "total": 24,
+  "color": 13292499,
   "input1": {
     "element": "rankine:elements/iron",
     "min": 0.65,

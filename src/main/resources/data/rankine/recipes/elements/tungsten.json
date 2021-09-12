@@ -18,7 +18,7 @@
   "miningspeed": {
     "breaks": [100],
     "formulas": ["LINEAR"],
-    "a": [0.25],
+    "a": [0.025],
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]

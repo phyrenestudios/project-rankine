@@ -12,6 +12,7 @@ import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContai
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryContainer;
 import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryTile;
+import com.cannolicatfish.rankine.blocks.mtb.MaterialTestingBenchContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
@@ -394,6 +395,10 @@ public class ProjectRankine {
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 return new TemplateTableContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"template_table"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                return new MaterialTestingBenchContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"material_testing_bench"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 return new ElementIndexerContainer(windowId, inv, ProjectRankine.proxy.getClientPlayer());

@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 24,
+  "color": 12362927,
   "input1": {
     "element": "rankine:elements/magnesium",
     "min": 0.85,

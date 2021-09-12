@@ -105,7 +105,10 @@ public interface IAlloyTool extends IAlloyItem {
         int hl = Math.max(hlmax - hlmin,0);
         float dmg = dmgmax - dmgmin;
         float as = asmax - asmin;
-
+        ench = Math.max(0,ench);
+        cr = Math.min(Math.max(0,cr),1);
+        hr = Math.min(Math.max(0,hr),1);
+        tough = Math.min(Math.max(-1,tough),1);
         listnbt.putString("comp",composition);
         if (alloyRecipe != null) {
             listnbt.putString("recipe",alloyRecipe.toString());
