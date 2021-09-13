@@ -4,8 +4,8 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
-import com.cannolicatfish.rankine.blocks.mtb.MaterialTestingBenchBlock;
-import com.cannolicatfish.rankine.blocks.mtb.MaterialTestingBenchContainer;
+import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
+import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.plants.*;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceContainer;
@@ -35,7 +35,6 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxBlock;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxContainer;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
-import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableBlock;
 import com.cannolicatfish.rankine.blocks.templatetable.TemplateTableContainer;
 import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
@@ -1526,6 +1525,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> APATITE_BLOCK = REGISTRY.register("apatite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> GYPSUM_BLOCK = REGISTRY.register("gypsum_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> LAURITE_BLOCK = REGISTRY.register("laurite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> LAUTARITE_BLOCK = REGISTRY.register("lautarite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> REALGAR_BLOCK = REGISTRY.register("realgar_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> RUTILE_BLOCK = REGISTRY.register("rutile_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> DIOPSIDE_BLOCK = REGISTRY.register("diopside_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
@@ -1742,7 +1742,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(HIGH_REFRACTORY_BRICKS.get(),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ULTRA_HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("ultra_high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(ULTRA_HIGH_REFRACTORY_BRICKS.get(),Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CRUCIBLE_BLOCK = REGISTRY.register("crucible", () -> new CrucibleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
-    public static final RegistryObject<Block> MATERIAL_TESTING_BENCH = REGISTRY.register("material_testing_bench", () -> new MaterialTestingBenchBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = REGISTRY.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = REGISTRY.register("template_table", () -> new TemplateTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ALLOY_FURNACE = REGISTRY.register("alloy_furnace", () -> new AlloyFurnaceBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 13)));
     public static final RegistryObject<Block> PISTON_CRUSHER = REGISTRY.register("piston_crusher", () -> new PistonCrusherBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
@@ -2006,6 +2006,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LIVERMORIUM_BLOCK = REGISTRY.register("livermorium_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> TENNESSINE_BLOCK = REGISTRY.register("tennessine_block", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> OGANESSON_BLOCK = REGISTRY.register("oganesson_block", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> ENDOSITUM_BLOCK = REGISTRY.register("endositum_block", () -> new Block(DEF_METAL_BLOCK));
+
 
     public static final RegistryObject<Block> SODIUM_VAPOR_LAMP = REGISTRY.register("sodium_vapor_lamp", () -> new SodiumVaporLampBlock(AbstractBlock.Properties.create(Material.IRON).setRequiresTool().hardnessAndResistance(3.5F).sound(SoundType.LANTERN).setLightLevel((state) -> 15).notSolid()));
 
@@ -2066,8 +2068,8 @@ public class RankineBlocks {
     @ObjectHolder("rankine:template_table")
     public static ContainerType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;
 
-    @ObjectHolder("rankine:material_testing_bench")
-    public static ContainerType<MaterialTestingBenchContainer> MATERIAL_TESTING_BENCH_CONTAINER;
+    @ObjectHolder("rankine:material_testing_table")
+    public static ContainerType<MaterialTestingTableContainer> MATERIAL_TESTING_TABLE_CONTAINER;
 
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;

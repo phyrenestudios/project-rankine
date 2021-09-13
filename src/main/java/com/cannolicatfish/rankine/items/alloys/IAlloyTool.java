@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
@@ -194,29 +195,6 @@ public interface IAlloyTool extends IAlloyItem {
         }
     }
 
-
-    default float getAlloyWear(float wmodifier, int currentDurability, int maxDurability) {
-        return wmodifier - wmodifier*(((float) maxDurability - (float) currentDurability)/ (float) maxDurability);
-    }
-
-    default float getWearModifierMining(float eff)
-    {
-        return eff * Config.ALLOYS.ALLOY_WEAR_MINING_AMT.get().floatValue();
-    }
-
-    default float getWearModifierDmg(float dmg)
-    {
-        return dmg * Config.ALLOYS.ALLOY_WEAR_DAMAGE_AMT.get().floatValue();
-
-    }
-
-
-    // modstat should be equal to either efficiency or damage depending on type of tool
-    default float getWearAsPercent(float modstat, float wear)
-    {
-        return (modstat - wear)/modstat * 100;
-    }
-
     default float getAlloyAttackDamage(ItemStack stack) {
         if (stack.getTag() != null) {
             return stack.getTag().getCompound("StoredAlloy").getFloat("attackDamage");
@@ -276,6 +254,7 @@ public interface IAlloyTool extends IAlloyItem {
 
     default int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
+        boolean memory = false;
         Random rand = new Random();
         int i = 1;
         float toughness = getToughness(stack);
@@ -289,6 +268,7 @@ public interface IAlloyTool extends IAlloyItem {
         }
         if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
             i += Config.ALLOYS.ALLOY_HEAT_AMT.get();
+            memory = true;
         }
         if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
         {
@@ -298,29 +278,12 @@ public interface IAlloyTool extends IAlloyItem {
         {
             i *= 2;
         }
-        return i;
-    }
 
-
-
-
-    default TextFormatting getWearColor(float wear)
-    {
-        if (wear >= 80f)
-        {
-            return TextFormatting.AQUA;
-        } else if (wear >= 60f)
-        {
-            return TextFormatting.GREEN;
-        } else if (wear >= 40f)
-        {
-            return TextFormatting.YELLOW;
-        } else if (wear >= 20f)
-        {
-            return TextFormatting.RED;
-        } else{
-            return TextFormatting.GRAY;
+        if (memory && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
+            stack.setDamage(Math.max(stack.getDamage() - i,0));
+            i = 0;
         }
+        return i;
     }
 
     default void applyBonusModifier(ItemStack stack, AlloyModifier modifier) {

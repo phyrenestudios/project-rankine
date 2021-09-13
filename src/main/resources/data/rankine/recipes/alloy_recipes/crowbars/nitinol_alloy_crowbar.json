@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nitinol_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:titanium_alloy_crowbar",
+    "count": 1        }
+}

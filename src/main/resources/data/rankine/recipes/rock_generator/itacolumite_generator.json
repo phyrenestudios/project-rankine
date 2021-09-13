@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "sedimentary",
+  "input1": {
+    "item": "rankine:loamy_sand"
+  },
+  "input2": {
+    "item": "rankine:mica_block"
+  },
+  "result": {
+    "block": "rankine:itacolumite"
+  }
+}

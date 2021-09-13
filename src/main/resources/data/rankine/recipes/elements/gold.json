@@ -13,7 +13,7 @@
     "a": [0.8],
     "b": [-48],
     "modifiers": ["MAX"],
-    "limit": [0]
+    "limit": [-16]
   },
   "miningspeed": {
     "breaks": [100],

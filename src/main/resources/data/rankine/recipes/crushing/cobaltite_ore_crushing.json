@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:cinnabar_ore"
+  },
+  "output1": {
+    "item": "rankine:cobaltite",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:calcite",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:pentlandite",
+    "chance": 0.25,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:sphalerite",
+    "chance": 0.15,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:chalcopyrite",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:magnetite",
+    "chance": 0.05
+  }
+}

@@ -126,5 +126,8 @@
     "min": 0.0,
     "max": 0.02
   },
-  "result": "rankine:stainless_steel_alloy"
+  "result": "rankine:stainless_steel_alloy",
+  "durability": 560,
+  "enchantments": ["rankine:cleanse","minecraft:projectile_protection"],
+  "enchantmentTypes": ["SWORD","ARMOR"]
 }

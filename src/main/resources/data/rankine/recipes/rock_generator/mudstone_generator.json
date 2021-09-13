@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "sedimentary",
+  "input1": {
+    "item": "rankine:loam"
+  },
+  "input2": {
+    "item": "rankine:kaolinite_block"
+  },
+  "result": {
+    "block": "rankine:mudstone"
+  }
+}

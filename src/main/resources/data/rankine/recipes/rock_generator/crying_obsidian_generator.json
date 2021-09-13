@@ -1,0 +1,10 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "volcanic",
+  "input1": {
+    "item": "rankine:hedenbergite_block"
+  },
+  "result": {
+    "block": "minecraft:crying_obsidian"
+  }
+}

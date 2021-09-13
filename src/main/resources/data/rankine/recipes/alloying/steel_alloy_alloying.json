@@ -81,5 +81,6 @@
     "max": 0.05
   },
   "result": "rankine:steel_alloy",
-  "durability": 450
+  "durability": 450,
+  "mininglevel": 1
 }

@@ -96,5 +96,7 @@
     "min": 0.0,
     "max": 0.09
   },
-  "result": "rankine:tungsten_heavy_alloy"
+  "result": "rankine:tungsten_heavy_alloy",
+  "enchantments": ["minecraft:fire_protection"],
+  "enchantmentTypes": ["ARMOR"]
 }

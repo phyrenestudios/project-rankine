@@ -218,6 +218,35 @@ public class ElementRecipe implements IRecipe<IInventory> {
 
     public float getToughness(int x) { return this.getToughnessFormula().calculateFloat(x);}
 
+    public ElementEquation getStatEquation(int stat){
+        return this.getStats().get(stat);
+    }
+
+    public float getStat(int stat, int x) {
+        switch (stat) {
+            case 0:
+                return this.getDurability(x);
+            case 1:
+                return this.getMiningSpeed(x);
+            case 2:
+                return this.getMiningLevel(x);
+            case 3:
+                return this.getEnchantability(x);
+            case 4:
+                return this.getDamage(x);
+            case 5:
+                return this.getAttackSpeed(x);
+            case 6:
+                return this.getCorrosionResistance(x);
+            case 7:
+                return this.getHeatResistance(x);
+            case 8:
+                return this.getKnockbackResistance(x);
+            case 9:
+                return this.getToughness(x);
+        }
+        return -1;
+    }
     public List<String> getItems() {
         return items;
     }

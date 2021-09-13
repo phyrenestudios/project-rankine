@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
+  "ingredients": [
+    {
+      "item": "rankine:endositum_ingot"
+    }
+  ],
+  "result": {
+    "item": "rankine:endositum_nugget",
+    "count": 9
+  }
+}

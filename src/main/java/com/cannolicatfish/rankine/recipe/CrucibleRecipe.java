@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -206,7 +207,12 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             return this.recipeOutput.copy();
         } else {
             ItemStack stack = this.recipeOutput.copy();
-            AlloyItem.addAlloy(stack,new AlloyData(alloyComp));
+            if (stack.getItem() == RankineItems.STEEL_ALLOY.get()) {
+                IAlloyItem.createDirectAlloyNBT(stack,alloyComp,"rankine:alloying/crucible_steel_alloy_alloying","Crucible Steel Ingot");
+            } else {
+                AlloyItem.addAlloy(stack,new AlloyData(alloyComp));
+            }
+
             return stack;
         }
     }

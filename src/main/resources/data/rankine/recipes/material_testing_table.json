@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "## ",
+    "tt ",
+    "tt "
+  ],
+  "key": {
+    "t": {
+      "tag": "minecraft:planks"
+    },
+    "#": {
+      "tag": "forge:stone"
+    }
+  },
+  "result": {
+    "item": "rankine:material_testing_table",
+    "count": 1
+  }
+}

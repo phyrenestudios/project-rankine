@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "rankine:forsterite_block"
+  },
+  "input2": {
+    "item": "minecraft:diamond_block"
+  },
+  "result": {
+    "block": "rankine:kimberlite"
+  }
+}

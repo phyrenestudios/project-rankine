@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:ender_amalgam_crowbar",
+    "count": 1        }
+}

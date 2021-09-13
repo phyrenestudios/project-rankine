@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:sperrylite_ore"
+  },
+  "output1": {
+    "item": "rankine:platinum_arsenide",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:cooperite",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:osmiridium_alloy",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:laurite",
+    "chance": 0.15,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:chalcopyrite",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:garnet",
+    "chance": 0.05
+  }
+}

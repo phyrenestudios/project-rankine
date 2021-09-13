@@ -1,0 +1,10 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "extrusive_igneous",
+  "input1": {
+    "item": "rankine:olivine_block"
+  },
+  "result": {
+    "block": "minecraft:basalt"
+  }
+}

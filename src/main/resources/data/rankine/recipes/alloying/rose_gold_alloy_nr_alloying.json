@@ -26,6 +26,6 @@
     "max": 0.06
   },
   "result": "rankine:rose_gold_alloy",
-  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
+  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing","minecraft:protection"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

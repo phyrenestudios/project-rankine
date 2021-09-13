@@ -87,7 +87,7 @@ public class AlloyEnchantmentUtils {
             case HOE:
                 return enchantment.canApply(stack) && (stack.getItem() instanceof HoeItem);
             case SWORD:
-                return enchantment.canApply(stack) && (stack.getItem() instanceof SwordItem);
+                return enchantment.canApply(stack) && (stack.getItem() instanceof SwordItem && !(stack.getItem() instanceof KnifeItem));
             case HAMMER:
                 return enchantment.canApply(stack) && (stack.getItem() instanceof HammerItem);
             case KNIFE:
@@ -102,6 +102,12 @@ public class AlloyEnchantmentUtils {
                 return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlotType.LEGS;
             case BOOTS:
                 return enchantment.canApply(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getEquipmentSlot() == EquipmentSlotType.FEET;
+            case SHIELD:
+                return enchantment.canApply(stack) && (stack.getItem() instanceof ShieldItem);
+            case FISHING_ROD:
+                return enchantment.canApply(stack) && (stack.getItem() instanceof FishingRodItem);
+            case BOW:
+                return enchantment.canApply(stack) && (stack.getItem() instanceof BowItem);
             default:
                 return enchantment.canApply(stack);
         }
@@ -124,7 +130,9 @@ public class AlloyEnchantmentUtils {
         CHESTPLATE,
         LEGGINGS,
         BOOTS,
-        SHIELD
+        SHIELD,
+        FISHING_ROD,
+        BOW
 
     }
 }

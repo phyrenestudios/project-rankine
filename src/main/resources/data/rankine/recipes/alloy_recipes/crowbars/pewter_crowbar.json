@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pewter_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:pewter_crowbar",
+    "count": 1        }
+}

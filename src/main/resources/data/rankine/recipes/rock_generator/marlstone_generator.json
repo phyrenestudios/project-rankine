@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "sedimentary",
+  "input1": {
+    "item": "rankine:silty_clay_loam"
+  },
+  "input2": {
+    "item": "minecraft:clay"
+  },
+  "result": {
+    "block": "rankine:marlstone"
+  }
+}

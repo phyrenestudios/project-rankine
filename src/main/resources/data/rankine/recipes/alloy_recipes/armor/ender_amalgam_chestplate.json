@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_chestplate",
+    "count": 1
+  }
+}
