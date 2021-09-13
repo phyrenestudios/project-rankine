@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 9,
+  "color": 16777207,
   "input1": {
     "element": "rankine:elements/gold",
     "min": 0.75,
@@ -48,6 +49,9 @@
     "max": 0.05
   },
   "result": "rankine:white_gold_alloy",
-  "enchantments": ["minecraft:fortune","rankine:atomize","minecraft:fortune","minecraft:fortune","minecraft:fortune","minecraft:impaling","minecraft:looting","rankine:preparation","rankine:leverage"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
+  "enchantments": ["minecraft:fortune","rankine:atomize","minecraft:fortune","minecraft:fortune","minecraft:fortune","minecraft:impaling","minecraft:looting","rankine:preparation","rankine:leverage","rankine:guard"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"],
+  "minEnchantability": 20,
+  "enchantInterval": 5,
+  "maxEnchantLevel": 3
 }

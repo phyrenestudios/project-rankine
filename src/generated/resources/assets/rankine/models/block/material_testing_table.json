@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "rankine:block/material_testing_table_side",
+    "front": "rankine:block/material_testing_table_front",
+    "top": "rankine:block/material_testing_table_top"
+  }
+}

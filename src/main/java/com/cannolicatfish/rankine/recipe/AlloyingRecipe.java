@@ -30,6 +30,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AlloyingRecipe implements IRecipe<IInventory> {
 
@@ -212,37 +214,68 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return out;
     }
 
-    /*public ItemStack generateRandomResult(World worldIn) {
+    public String generateRandomResult(World worldIn) {
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        List<ResourceLocation> req = getElementList(true);
-        List<ResourceLocation> nonreq = getElementList(false);
-        int r = worldIn.getRandom().nextInt(6 - required) + required;
-        int total = 0;
-        for (int j = 0; j < r; j++) {
-            ResourceLocation curEl;
-            if (j < req.size()) {
-                curEl = req.get(j);
-            } else {
-                curEl = nonreq.get(worldIn.getRandom().nextInt(nonreq.size()));
-            }
-
-            if (symbols.contains(curEl.getSymbol()) || total >= 100) {
-                break;
-            }
-            int windex = getElements().indexOf(curEl);
-            int min = Math.round(getMins().get(windex) * 100);
-            int max = Math.round(getMaxes().get(windex) * 100);
-
-            int curPer = Math.min(worldIn.getRandom().nextInt(max - min) + min, 100 - total);
-            total += curPer;
-            symbols.add(curEl.getSymbol());
-            percents.add(curPer);
+        Random rand = worldIn.getRandom();
+        List<ElementRecipe> req = getElementList(worldIn, true);
+        List<ElementRecipe> nonreq = getElementList(worldIn, false);
+        int limit = Math.min(5,req.size() + nonreq.size());
+        int size = req.size();
+        for (int i = 0; i < limit - size; i++) {
+            List<ElementRecipe> available = nonreq.stream().filter(o -> !req.contains(o)).collect(Collectors.toList());
+            req.add(available.get(rand.nextInt(available.size())));
         }
-        ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),1);
-        AlloyItem.addAlloy(out,new AlloyData(AlloyRecipeHelper.getDirectComposition(percents,symbols)));
-        return out;
-    }*/
+        System.out.println("Selected elements: " + req);
+        List<Integer> maxes = new ArrayList<>();
+        List<Integer> mins = new ArrayList<>();
+        for (ElementRecipe element : req) {
+            int windex = getElements().indexOf(element.getId());
+            symbols.add(element.getSymbol());
+            maxes.add(Math.round(getMaxes().get(windex) * 100));
+            mins.add(Math.round(getMins().get(windex) * 100));
+        }
+        System.out.println("Potential maxes: " + maxes);
+        System.out.println("Potential mins: " + mins);
+        List<String> options = new ArrayList<>();
+        for (int b = 0; b < Math.pow(2,limit); b++) {
+            List<Integer> sum = new ArrayList<>();
+            String s = String.format("%"+ limit +"s",Integer.toBinaryString(b)).replace(' ', '0');
+            for (int i = 0; i < s.length(); i++) {
+                int temp = Integer.parseInt(String.valueOf(s.charAt(i)));
+                if (temp == 0) {
+                    sum.add(maxes.get(i));
+                } else {
+                    sum.add(mins.get(i));
+                }
+            }
+            int summation = sum.stream().reduce(0, Integer::sum);
+            if (summation == 100) {
+                options.add(s);
+            }
+        }
+
+        System.out.println("OPTIONS: " + options);
+        if (options.size() != 0) {
+            String selectedOption = options.get(rand.nextInt(options.size()));
+            for (int i = 0; i < selectedOption.length(); i++) {
+                int temp = Integer.parseInt(String.valueOf(selectedOption.charAt(i)));
+                if (temp == 0) {
+                    percents.add(maxes.get(i));
+                } else {
+                    percents.add(mins.get(i));
+                }
+            }
+            return AlloyRecipeHelper.getDirectComposition(percents,symbols);
+        } else
+        {
+            return "None";
+        }
+
+
+
+
+    }
 
     public List<String> getEnchantments() {
         return enchantments;

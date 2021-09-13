@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 3,
+  "color": 9608841,
   "input1": {
     "element": "rankine:elements/copper",
     "min": 0.50,

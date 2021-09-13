@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 3,
   "tier": 2,
+  "color": 3684408,
   "input1": {
     "element": "rankine:elements/netherite",
     "min": 0.75,
@@ -20,6 +21,6 @@
     "max": 0.10
   },
   "result": "rankine:black_gold_alloy",
-  "enchantments": ["minecraft:bane_of_arthropods","rankine:excavate","rankine:foraging","rankine:quake","rankine:quake","minecraft:loyalty","minecraft:bane_of_arthropods","rankine:retreat","rankine:prying"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
+  "enchantments": ["minecraft:bane_of_arthropods","rankine:excavate","rankine:foraging","rankine:quake","rankine:quake","minecraft:loyalty","minecraft:bane_of_arthropods","rankine:retreat","rankine:prying","minecraft:blast_protection"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

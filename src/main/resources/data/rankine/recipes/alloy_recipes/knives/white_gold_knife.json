@@ -1,0 +1,19 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " #",
+    "t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:white_gold_alloy"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:white_gold_knife",
+    "count": 1        }
+}

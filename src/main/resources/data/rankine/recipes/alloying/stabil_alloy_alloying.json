@@ -2,7 +2,7 @@
   "type": "rankine:alloying",
   "total": 5,
   "color": 11848920,
-  "name": "NEG Alloy Ingot",
+  "name": "Stabil Alloy",
   "input1": {
     "element": "rankine:elements/zirconium",
     "min": 0.70,

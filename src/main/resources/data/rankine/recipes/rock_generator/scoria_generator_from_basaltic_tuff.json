@@ -1,0 +1,10 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "volcanic",
+  "input1": {
+    "item": "rankine:basaltic_tuff"
+  },
+  "result": {
+    "block": "rankine:scoria"
+  }
+}

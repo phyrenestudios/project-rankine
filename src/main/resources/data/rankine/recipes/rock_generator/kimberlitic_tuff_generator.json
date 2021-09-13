@@ -1,0 +1,10 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "volcanic",
+  "input1": {
+    "item": "rankine:forsterite_block"
+  },
+  "result": {
+    "block": "rankine:kimberlitic_tuff"
+  }
+}

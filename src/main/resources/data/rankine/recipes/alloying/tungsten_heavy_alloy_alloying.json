@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 18,
   "tier": 2,
+  "color": 11113071,
   "input1": {
     "element": "rankine:elements/tungsten",
     "min": 0.88,
@@ -95,5 +96,7 @@
     "min": 0.0,
     "max": 0.09
   },
-  "result": "rankine:tungsten_heavy_alloy"
+  "result": "rankine:tungsten_heavy_alloy",
+  "enchantments": ["minecraft:fire_protection"],
+  "enchantmentTypes": ["ARMOR"]
 }

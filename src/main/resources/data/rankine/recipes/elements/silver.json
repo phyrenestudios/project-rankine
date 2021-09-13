@@ -18,7 +18,7 @@
   "miningspeed": {
     "breaks": [100],
     "formulas": ["LINEAR"],
-    "a": [0.08],
+    "a": [0.07],
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
@@ -47,10 +47,18 @@
     "modifiers": ["NONE"],
     "limit": [0]
   },
+  "mininglevel": {
+    "breaks": [49,100],
+    "formulas": ["CONSTANT","CONSTANT"],
+    "a": [0,1],
+    "b": [0,0],
+    "modifiers": ["NONE","NONE"],
+    "limit": [0,0]
+  },
   "toughness": {
     "breaks": [100],
     "formulas": ["LINEAR"],
-    "a": [-0.002],
+    "a": [-0.001],
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]

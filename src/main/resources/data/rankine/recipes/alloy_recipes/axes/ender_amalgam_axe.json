@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    "## ",
+    "#t ",
+    " t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:ender_amalgam_alloy"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:ender_amalgam_axe",
+    "count": 1        }
+}

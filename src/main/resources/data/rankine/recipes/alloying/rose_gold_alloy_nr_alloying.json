@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 4,
   "tier": 2,
+  "color": 16756647,
   "input1": {
     "element": "rankine:elements/netherite",
     "min": 0.74,
@@ -25,6 +26,6 @@
     "max": 0.06
   },
   "result": "rankine:rose_gold_alloy",
-  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
+  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing","minecraft:protection"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

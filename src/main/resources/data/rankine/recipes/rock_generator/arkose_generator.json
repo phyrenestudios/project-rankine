@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "sedimentary",
+  "input1": {
+    "item": "rankine:sandy_loam"
+  },
+  "input2": {
+    "item": "rankine:sanidine_block"
+  },
+  "result": {
+    "block": "rankine:arkose"
+  }
+}

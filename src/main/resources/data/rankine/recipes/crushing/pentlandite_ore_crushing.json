@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pentlandite_ore"
+  },
+  "output1": {
+    "item": "rankine:pentlandite",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:olivine",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:sulfur",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:pyrite",
+    "chance": 0.15,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:spinel",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:cobaltite",
+    "chance": 0.05
+  }
+}

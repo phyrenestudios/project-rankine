@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "rankine:bridgmanite_block"
+  },
+  "input2": {
+    "item": "rankine:bridgmanite_block"
+  },
+  "result": {
+    "block": "rankine:bridgmanham"
+  }
+}

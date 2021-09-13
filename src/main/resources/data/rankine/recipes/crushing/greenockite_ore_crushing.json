@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:greenockite_ore"
+  },
+  "output1": {
+    "item": "rankine:greenockite",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:gypsum",
+    "chance": 0.75,
+    "additional": 0.15
+  },
+  "output3": {
+    "item": "rankine:sphalerite",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "rankine:fluorite",
+    "chance": 0.15,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:galena",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "rankine:pyrite",
+    "chance": 0.05
+  }
+}

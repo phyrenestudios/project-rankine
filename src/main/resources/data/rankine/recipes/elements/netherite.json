@@ -24,7 +24,7 @@
     "limit": [0]
   },
   "mininglevel": {
-    "breaks": [10,100],
+    "breaks": [54,100],
     "formulas": ["CONSTANT","CONSTANT"],
     "a": [3,4],
     "b": [0,0],

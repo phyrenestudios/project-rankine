@@ -45,6 +45,9 @@ public enum RankineToolMaterials implements IItemTier {
     AMALGAM(0, 63, 2.0F, 0.0F, 0, () -> {
         return Ingredient.fromItems(RankineItems.AMALGAM_ALLOY.get());
     }),
+    ENDER_AMALGAM(0, 63, 2.0F, 0.0F, 0, () -> {
+        return Ingredient.fromItems(RankineItems.ENDER_AMALGAM_ALLOY.get());
+    }),
     STEEL(3, 750, 8.0F, 3.0F, 10, () -> {
         return Ingredient.fromItems(RankineItems.STEEL_ALLOY.get());
     }),

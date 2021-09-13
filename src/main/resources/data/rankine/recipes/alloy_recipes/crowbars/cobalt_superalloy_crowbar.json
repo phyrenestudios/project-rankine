@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cobalt_superalloy"
+    }
+  },
+  "result": {
+    "item": "rankine:cobalt_superalloy_crowbar",
+    "count": 1        }
+}

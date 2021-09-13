@@ -33,11 +33,11 @@ public class RankineJEIRecipes {
     }
 
     public List<AlloyingRecipe> getAlloyFurnaceRecipes() {
-        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 1) != 0).collect(Collectors.toList());
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 1) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 
     public List<AlloyingRecipe> getInductionFurnaceRecipes() {
-        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 2) != 0).collect(Collectors.toList());
+        return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 2) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 
     public List<RockGeneratorRecipe> getIntrusiveGeneratorRecipes() {

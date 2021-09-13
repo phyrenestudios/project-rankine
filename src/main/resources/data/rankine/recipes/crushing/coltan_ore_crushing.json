@@ -1,0 +1,34 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:coltan_ore"
+  },
+  "output1": {
+    "item": "rankine:tantalite",
+    "chance": 1
+  },
+  "output2": {
+    "item": "rankine:columbite",
+    "chance": 0.75,
+    "additional": 0.25
+  },
+  "output3": {
+    "item": "rankine:mica",
+    "chance": 0.5,
+    "additional": 0.2
+  },
+  "output4": {
+    "item": "minecraft:quartz",
+    "chance": 0.15,
+    "additional": 0.15
+  },
+  "output5": {
+    "item": "rankine:orthoclase_feldspar",
+    "chance": 0.1,
+    "additional": 0.05
+  },
+  "output6": {
+    "item": "minecraft:emerald",
+    "chance": 0.05
+  }
+}

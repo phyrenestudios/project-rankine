@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 4,
   "tier": 2,
+  "color": 11836415,
   "input1": {
     "element": "rankine:elements/netherite",
     "min": 0.78,
@@ -25,6 +26,6 @@
     "max": 0.07
   },
   "result": "rankine:purple_gold_alloy",
-  "enchantments": ["minecraft:silk_touch","rankine:daze","minecraft:silk_touch","minecraft:silk_touch","minecraft:silk_touch","rankine:impact","minecraft:knockback","rankine:grafting","rankine:retrieval"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR"]
+  "enchantments": ["minecraft:silk_touch","rankine:daze","minecraft:silk_touch","minecraft:silk_touch","minecraft:silk_touch","rankine:impact","minecraft:knockback","rankine:grafting","rankine:retrieval","minecraft:thorns"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ALL"]
 }

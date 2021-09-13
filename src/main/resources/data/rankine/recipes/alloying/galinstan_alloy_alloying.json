@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 6,
   "tier": 2,
+  "color": 12564673,
   "input1": {
     "element": "rankine:elements/gallium",
     "min": 0.68,

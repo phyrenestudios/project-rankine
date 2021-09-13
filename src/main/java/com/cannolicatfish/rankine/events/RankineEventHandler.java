@@ -1064,7 +1064,7 @@ public class RankineEventHandler {
                     AttributeModifier.Operation.ADDITION));
         }
 
-        if (stack.getItem() instanceof IAlloyArmor && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getEquipmentSlot())
+        if (stack.getItem() instanceof IAlloyArmor && ((IAlloyArmor) stack.getItem()).isAlloyInit(stack) && stack.getItem() instanceof ArmorItem && event.getSlotType() == ((ArmorItem)stack.getItem()).getEquipmentSlot())
         {
             IAlloyArmor alloyArmor = (IAlloyArmor) stack.getItem();
             int slot1 = event.getSlotType().getSlotIndex() * 2;
@@ -1259,6 +1259,16 @@ public class RankineEventHandler {
                 float damage = event.getAmount() + Math.max(0,Math.min(size + mod,1.5f*EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.LEVERAGE,stack)));
                 System.out.println("damageOut: " + damage);
                 event.setAmount(damage);
+            }
+
+            for (ItemStack armor : event.getEntityLiving().getArmorInventoryList()) {
+                if (armor.getItem() instanceof IAlloyArmor ) {
+                    EquipmentSlotType slot = armor.getEquipmentSlot() != null ? armor.getEquipmentSlot() : EquipmentSlotType.HEAD;
+                    int i = ((IAlloyArmor) armor.getItem()).calcDurabilityLoss(armor,event.getEntity().getEntityWorld(),event.getEntityLiving(),true);
+                    armor.damageItem(i,player, (p_220287_1_) -> {
+                        p_220287_1_.sendBreakAnimation(slot);
+                    });
+                }
             }
         }
 

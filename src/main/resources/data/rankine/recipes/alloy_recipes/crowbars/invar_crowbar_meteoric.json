@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:meteoric_iron"
+    }
+  },
+  "result": {
+    "item": "rankine:invar_crowbar",
+    "count": 1        }
+}

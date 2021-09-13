@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:purple_gold_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:purple_gold_crowbar",
+    "count": 1        }
+}

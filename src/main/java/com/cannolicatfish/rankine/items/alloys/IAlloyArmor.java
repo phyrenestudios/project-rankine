@@ -1,10 +1,13 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -17,10 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public interface IAlloyArmor extends IAlloyItem {
 
@@ -222,5 +222,30 @@ public interface IAlloyArmor extends IAlloyItem {
         } else {
             return 0;
         }
+    }
+
+    default int calcDurabilityLoss(ItemStack stack, World worldIn, LivingEntity entityLiving, boolean isEfficient)
+    {
+        boolean memory = false;
+        Random rand = new Random();
+        int i = 1;
+        if (rand.nextFloat() > getHeatResist(stack) && (entityLiving.isInLava() || entityLiving.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
+            i += Config.ALLOYS.ALLOY_HEAT_AMT.get();
+            memory = true;
+        }
+        if ((rand.nextFloat() > getCorrResist(stack) && entityLiving.isWet()))
+        {
+            i += Config.ALLOYS.ALLOY_CORROSION_AMT.get();
+        }
+        if (!isEfficient)
+        {
+            i *= 2;
+        }
+
+        if (memory && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY,stack) >= 1) {
+            stack.setDamage(Math.max(stack.getDamage() - i,0));
+            i = 0;
+        }
+        return i;
     }
 }

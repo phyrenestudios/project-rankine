@@ -233,6 +233,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.DIAMOND_ANVIL_CELL.get());
         withExistingParent(RankineBlocks.LASER_QUARRY.get());
         withExistingParent(RankineBlocks.TEMPLATE_TABLE.get());
+        withExistingParent(RankineBlocks.MATERIAL_TESTING_TABLE.get());
         withExistingParent(RankineBlocks.BOTANIST_STATION.get());
         withExistingParent(RankineBlocks.EVAPORATION_TOWER.get());
         withExistingParent(RankineBlocks.LASER_PYLON_TOP.get());
@@ -350,7 +351,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block blk : Stream.of(RankineLists.MINERAL_STONES).flatMap(Collection::stream).collect(Collectors.toList())) {
             withExistingParent(blk);
         }
-        for (Item TOOL : Stream.of(RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item TOOL : Stream.of(RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(TOOL);
         }
         for (Item ARROW : RankineLists.ARROWS) {

@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 21,
+  "color": 13750746,
   "input1": {
     "element": "rankine:elements/titanium",
     "min": 0.55,

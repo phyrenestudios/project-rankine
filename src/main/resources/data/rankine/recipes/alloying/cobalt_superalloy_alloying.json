@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 16,
   "tier": 2,
+  "color": 6534878,
   "input1": {
     "element": "rankine:elements/cobalt",
     "min": 0.60,
@@ -85,5 +86,6 @@
     "min": 0.0,
     "max": 0.20
   },
-  "result": "rankine:cobalt_superalloy"
+  "result": "rankine:cobalt_superalloy",
+  "durability": 600
 }

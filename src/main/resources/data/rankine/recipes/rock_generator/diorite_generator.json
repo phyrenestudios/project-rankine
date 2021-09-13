@@ -1,0 +1,13 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "rankine:andesine_block"
+  },
+  "input2": {
+    "item": "rankine:mica_block"
+  },
+  "result": {
+    "block": "minecraft:diorite"
+  }
+}

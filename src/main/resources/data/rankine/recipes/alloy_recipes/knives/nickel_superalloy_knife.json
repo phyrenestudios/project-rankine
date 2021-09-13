@@ -1,0 +1,19 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " #",
+    "t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:nickel_superalloy"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:nickel_superalloy_knife",
+    "count": 1        }
+}

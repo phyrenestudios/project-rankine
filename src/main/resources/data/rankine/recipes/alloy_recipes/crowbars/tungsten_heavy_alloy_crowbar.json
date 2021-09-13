@@ -1,0 +1,17 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " ##",
+    " # ",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tungsten_heavy_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_crowbar",
+    "count": 1        }
+}

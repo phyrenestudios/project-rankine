@@ -2,6 +2,7 @@
   "type": "rankine:alloying",
   "total": 22,
   "tier": 2,
+  "color": 12769246,
   "input1": {
     "element": "rankine:elements/nickel",
     "min": 0.50,
@@ -115,5 +116,6 @@
     "min": 0.0,
     "max": 0.15
   },
-  "result": "rankine:nickel_superalloy"
+  "result": "rankine:nickel_superalloy",
+  "durability": 600
 }

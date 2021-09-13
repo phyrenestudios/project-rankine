@@ -1,6 +1,6 @@
 {
   "type": "rankine:sluicing",
-  "total": 6,
+  "total": 7,
   "input": {
     "item": "rankine:grassy_humus"
   },
@@ -29,6 +29,10 @@
   },
   "output6": {
     "tag": "minecraft:saplings",
-    "weight": 25
+    "weight": 12.5
+  },
+  "output7": {
+    "tag": "forge:berries",
+    "weight": 12.5
   }
 }

@@ -1,8 +1,13 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,15 +42,14 @@ public class PackagedToolItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         playerIn.getHeldItem(handIn).shrink(1);
-        playerIn.addItemStackToInventory(genRandomTool(worldIn.getRandom()));
+        playerIn.addItemStackToInventory(genRandomTool(worldIn));
         return super.onItemRightClick(worldIn, playerIn, handIn);
 
     }
 
-    public ItemStack genRandomTool(Random random){
+    public ItemStack genRandomTool(World worldIn){
+        Random random = worldIn.getRandom();
         ItemStack ret;
-        PeriodicTableUtils utils = new PeriodicTableUtils();
-        int mode = random.nextInt(2);
         switch(random.nextInt(7))
         {
             case 0:
@@ -71,29 +75,18 @@ public class PackagedToolItem extends Item {
                 ret = new ItemStack(RankineItems.ALLOY_HOE.get());
                 break;
         }
-        List<PeriodicTableUtils.Element> elements = Arrays.asList(PeriodicTableUtils.Element.values());
+        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING);
+        AlloyingRecipe alloy = recipes.get(worldIn.getRandom().nextInt(recipes.size()));
+        System.out.println(alloy.getId());
+        System.out.println(alloy.generateRandomResult(worldIn));
 
-        String one = elements.get(random.nextInt(elements.size() - 1)).getSymbol();
-        String two = elements.get(random.nextInt(elements.size() - 1)).getSymbol();
-        int x1 = random.nextInt(49 - mode) + 51;
-        int x2 = 100 - x1;
-        String alloy;
-        if (mode == 1)
-        {
-            String three = elements.get(random.nextInt(elements.size() - 1)).getSymbol();
-            x2 = x2 - random.nextInt(Math.round(x2/2f - 1)) - 1;
-            int x3 = 100 - x1 - x2;
-            alloy = x1 + one + "-" + x2 + two + "-" + x3 + three;
-
-        } else {
-            alloy = x1 + one + "-" + x2 + two;
+        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, alloy.generateRandomResult(worldIn), alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
+        if (alloy.getColor() != 16777215) {
+            ret.getOrCreateTag().putInt("color",alloy.getColor());
         }
-
-
-
-
-        AlloyItem.addAlloy(ret,new AlloyData(alloy));
-
+        if (ret.getItem() instanceof IAlloyTool) {
+            ((IAlloyTool) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
+        }
         return ret;
 
     }
