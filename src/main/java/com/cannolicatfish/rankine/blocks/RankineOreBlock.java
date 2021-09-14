@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.cannolicatfish.rankine.recipe.helper.ConfigHelper;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
@@ -20,7 +21,7 @@ public class RankineOreBlock extends Block {
     public int type = 0;
     private List<String> hlpath = new ArrayList<>();
     private int hl = -1;
-    public static final IntegerProperty TYPE = IntegerProperty.create("type",0, WGConfig.MISC.ORE_STONES.get().size() -1);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type",0, WorldgenUtils.ORE_TEXTURES.size() -1);
     public RankineOreBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(TYPE,0));
@@ -28,12 +29,13 @@ public class RankineOreBlock extends Block {
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         World world = context.getWorld();
-        if (context.getPlayer().isSneaking()) {
-            return this.getDefaultState().with(TYPE, world.getBlockState(context.getPos().offset(context.getFace().getOpposite())).get(TYPE));
-        } else {
-            return this.getDefaultState().with(TYPE,0);
+        BlockState target = world.getBlockState(context.getPos().offset(context.getFace().getOpposite()));
+        if (target.getBlock() instanceof  RankineOreBlock) {
+            return this.getDefaultState().with(TYPE, target.get(TYPE));
+        } else if (WorldgenUtils.ORE_STONES.contains(target.getBlock())) {
+            return this.getDefaultState().with(TYPE, WorldgenUtils.ORE_STONES.indexOf(target.getBlock()));
         }
-
+        return this.getDefaultState().with(TYPE,0);
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {

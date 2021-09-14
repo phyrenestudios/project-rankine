@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab_top",
-  "textures": {
-    "side": "rankine:block/cement",
-    "bottom": "rankine:block/cement",
-    "top": "rankine:block/cement"
-  }
-}

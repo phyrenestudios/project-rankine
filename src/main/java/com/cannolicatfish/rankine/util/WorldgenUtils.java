@@ -28,20 +28,43 @@ public class WorldgenUtils {
     public static List<List<Float>> INTRUSION_ORE_CHANCES = new ArrayList<>();
     public static List<WeightedCollection<BlockState>> INTRUSION_COLLECTIONS = new ArrayList<>();
     public static List<List<String>> LAYER_LISTS = new ArrayList<>();
+    public static List<Block> ORE_STONES = new ArrayList<>();
+    public static List<String> ORE_TEXTURES = new ArrayList<>();
 
-    
-    
+
+
+
+    public static void initOreTextures() {
+        for (String ORE : WGConfig.MISC.ORE_STONES.get()) {
+            String[] ores = ORE.split("\\|");
+            if (ores.length > 1) {
+                ORE_TEXTURES.add(ores[1]);
+            } else {
+                ORE_TEXTURES.add(ores[0]);
+            }
+
+        }
+
+    }
     public static void initConfigs() {
+
+        for (String ORE : WGConfig.MISC.ORE_STONES.get()) {
+            ORE_STONES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(ORE.split("\\|")[0])));
+        }
+
         for (List<Object> L : WGConfig.BIOME_GEN.BIOME_SETTINGS.get()) {
             GEN_BIOMES.add(Biome.Category.byName((String) L.get(0)));
-            List<String> DIRTS = (List<String>) L.get(1);
-            GEN_SOILS.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(DIRTS.get(0))));
-            GEN_SOILS2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(DIRTS.get(2))));
-            GEN_GRASSES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(DIRTS.get(1))));
-            GEN_GRASSES2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(DIRTS.get(3))));
+
+            GEN_SOILS.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(0))));
+            GEN_SOILS2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(2))));
+            GEN_GRASSES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(1))));
+            GEN_GRASSES2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(3))));
             INTRUSION_LISTS.add((List<String>) L.get(2));
             LAYER_LISTS.add((List<String>) L.get(3));
+
+
         }
+
         for (List<String> I : INTRUSION_LISTS) {
             int ind = 0;
             WeightedCollection<BlockState> col = new WeightedCollection<>();
@@ -64,6 +87,9 @@ public class WorldgenUtils {
             INTRUSION_COLLECTIONS.add(col);
         }
     }
+
+
+
 
     public static List<ResourceLocation> getBiomeNamesFromCategory(List<Biome.Category> biomeCats, boolean include) {
         List<ResourceLocation> b = new ArrayList<>();

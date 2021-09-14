@@ -3,6 +3,6 @@
   "textures": {
     "top": "rankine:block/grassy_loam_top",
     "bottom": "rankine:block/loam",
-    "side": "minecraft:block/grass_block_snow"
+    "side": "rankine:block/grassy_loam_snow"
   }
 }

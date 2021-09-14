@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:goethite"
+  },
+  "result": "minecraft:iron_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}

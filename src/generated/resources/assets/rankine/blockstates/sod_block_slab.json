@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/sod_block_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/sod_block_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/sod_block"
+    }
+  }
+}

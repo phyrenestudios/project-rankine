@@ -202,8 +202,11 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.RODS_CARBON).add(RankineItems.HARD_CARBON_ELECTRODE.get());
         getOrCreateBuilder(Tags.Items.RODS).addTags(RankineTags.Items.RODS_GRAPHITE,RankineTags.Items.RODS_CARBON).add(RankineItems.ALLOY_ROD.get());
 
-        for (Block blk : Stream.of(RankineLists.SOILS, RankineLists.GRASSY_SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.SOILS, RankineLists.GRASSY_SOILS, RankineLists.PATH_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(RankineTags.Items.DIRT).add(blk.asItem());
+        }
+        for (Block blk : Stream.of(RankineLists.GRASSY_SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            getOrCreateBuilder(RankineTags.Items.GRASS).add(blk.asItem());
         }
         getOrCreateBuilder(RankineTags.Items.GRAVEL).add(RankineItems.DARK_GRAVEL.get(),RankineItems.LIGHT_GRAVEL.get());
 
@@ -251,10 +254,12 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_GNEISS, RankineTags.Items.STONES_GNEISS);
         copy(RankineTags.Blocks.STONES_LIMESTONE, RankineTags.Items.STONES_LIMESTONE);
         copy(RankineTags.Blocks.STONES_SKARN, RankineTags.Items.STONES_SKARN);
+        copy(RankineTags.Blocks.STONES_MARIPOSITE, RankineTags.Items.STONES_MARIPOSITE);
         copy(RankineTags.Blocks.STONES_CHALK, RankineTags.Items.STONES_CHALK);
         copy(RankineTags.Blocks.STONES_SHALE, RankineTags.Items.STONES_SHALE);
         copy(RankineTags.Blocks.STONES_SILTSTONE, RankineTags.Items.STONES_SILTSTONE);
         copy(RankineTags.Blocks.STONES_SERPENTINITE, RankineTags.Items.STONES_SERPENTINITE);
+        copy(RankineTags.Blocks.STONES_ECLOGITE, RankineTags.Items.STONES_ECLOGITE);
         copy(RankineTags.Blocks.STONES_SLATE, RankineTags.Items.STONES_SLATE);
         copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
 

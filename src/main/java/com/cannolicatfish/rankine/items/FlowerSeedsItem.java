@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.*;
@@ -30,8 +31,8 @@ public class FlowerSeedsItem extends Item {
         World worldIn = context.getWorld();
         BlockPos pos = context.getPos();
         Block b = worldIn.getBlockState(pos).getBlock();
-        ITag<Block> tag =  BlockTags.getCollection().get(new ResourceLocation("rankine:flowers"));
-        if (tag != null && b.getTags().contains(new ResourceLocation("forge:dirt")) && worldIn.getBlockState(pos.up()).isAir()) {
+        ITag<Block> tag =  RankineTags.Blocks.FLOWER_SEEDS;
+        if (b.getTags().contains(new ResourceLocation("forge:dirt")) && worldIn.getBlockState(pos.up()).isAir()) {
             Block flower = tag.getRandomElement(worldIn.getRandom());
             if (!worldIn.isRemote) {
                 worldIn.setBlockState(pos.up(), flower.getDefaultState());

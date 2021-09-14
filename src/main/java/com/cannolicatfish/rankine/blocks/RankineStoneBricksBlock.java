@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.blocks.states.StoneBricksStates;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -23,14 +24,8 @@ public class RankineStoneBricksBlock extends Block {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Item heldItem = context.getPlayer().getHeldItemOffhand().getItem();
-        if (heldItem == Items.STONE_AXE) {
-            return this.getDefaultState().with(BRICK_TYPE, StoneBricksStates.VERTICAL_SMALL);
-        } else if (heldItem == Items.STONE_HOE) {
+        if (heldItem == RankineItems.BUILDING_TOOL.get()) {
             return this.getDefaultState().with(BRICK_TYPE, StoneBricksStates.VERTICAL_LARGE);
-        } else if (heldItem == Items.STONE_SWORD) {
-            return this.getDefaultState().with(BRICK_TYPE, StoneBricksStates.SMALL);
-        } else if (heldItem == Items.STONE_PICKAXE) {
-            return this.getDefaultState().with(BRICK_TYPE, StoneBricksStates.SMALL);
         } else {
             return this.getDefaultState().with(BRICK_TYPE, StoneBricksStates.LARGE);
         }

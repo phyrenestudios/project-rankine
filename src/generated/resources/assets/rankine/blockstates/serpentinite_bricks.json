@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "brick_type=large": {
       "model": "rankine:block/serpentinite_bricks"
+    },
+    "brick_type=vertical_large": {
+      "model": "rankine:block/serpentinite_bricks_vertical"
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:iron_block_from_goethite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_goethite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:goethite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:iron_block_from_goethite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goethite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -18,12 +18,18 @@ import java.util.*;
 @Mod.EventBusSubscriber
 public class DecorationGen {
 
+    private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getTopLayerFeatures() {
+        List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> TopLayer = new ArrayList<>();
+        new AbstractMap.SimpleEntry<>(RankineFeatures.SNOW_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), false));
+
+        return TopLayer;
+    }
+
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getLocalModificationFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> LocalModifications = new ArrayList<>();
         if (WGConfig.MISC.METEORITE_GEN.get()) {
             LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
-        //LocalModifications.add(new AbstractMap.SimpleEntry<>(ModFeatures.VOLCANO, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(),false)));
         return LocalModifications;
     }
 
@@ -66,29 +72,28 @@ public class DecorationGen {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void addBiomeFeatures(BiomeLoadingEvent event)
-    {
-        if (event.getName() != null)
-        {
+    public static void addBiomeFeatures(BiomeLoadingEvent event) {
+        if (event.getName() != null) {
+            List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> topLayerFeatures = getTopLayerFeatures();
+            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : topLayerFeatures) {
+                if (entry.getValue().contains(event.getName())) {
+                    event.getGeneration().withFeature(GenerationStage.Decoration.TOP_LAYER_MODIFICATION.ordinal(),entry::getKey);
+                }
+            }
+
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> localModificationFeatures = getLocalModificationFeatures();
-            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : localModificationFeatures)
-            {
-                if (entry.getValue().contains(event.getName()))
-                {
+            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : localModificationFeatures) {
+                if (entry.getValue().contains(event.getName())) {
                     event.getGeneration().withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS.ordinal(),entry::getKey);
                 }
             }
 
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> vegetalDecorationFeatures = getVegetalDecorationFeatures();
-            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : vegetalDecorationFeatures)
-            {
-                if (entry.getValue().contains(event.getName()))
-                {
+            for (AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>> entry : vegetalDecorationFeatures) {
+                if (entry.getValue().contains(event.getName())) {
                     event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION.ordinal(), entry::getKey);
                 }
             }
-            //System.out.println("Console log deltas");
-            //System.out.println(Features.ORE_GOLD_DELTAS);
         }
     }
 

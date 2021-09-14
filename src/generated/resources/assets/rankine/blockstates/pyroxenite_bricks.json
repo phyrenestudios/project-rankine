@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "brick_type=large": {
       "model": "rankine:block/pyroxenite_bricks"
+    },
+    "brick_type=vertical_large": {
+      "model": "rankine:block/pyroxenite_bricks_vertical"
     }
   }
 }

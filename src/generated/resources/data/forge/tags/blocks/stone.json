@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
+    "#forge:polished_stone",
     "#forge:igneous_stones",
     "#forge:metamorphic_stones",
-    "#forge:sedimentary_stones",
-    "#forge:polished_stone"
+    "#forge:sedimentary_stones"
   ]
 }

@@ -1,4 +1,5 @@
 package com.cannolicatfish.rankine.data;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -25,6 +26,7 @@ public final class DataGenerators {
             gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));
             //gen.addProvider(new LangGen(gen));
             gen.addProvider(new RankineItemModelProvider(gen, event.getExistingFileHelper()));
+            gen.addProvider(new RankineLangProvider(gen, "en_us"));
         }
     }
 }

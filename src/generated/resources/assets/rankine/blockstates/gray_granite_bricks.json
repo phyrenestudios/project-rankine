@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "brick_type=large": {
       "model": "rankine:block/gray_granite_bricks"
+    },
+    "brick_type=vertical_large": {
+      "model": "rankine:block/gray_granite_bricks_vertical"
     }
   }
 }

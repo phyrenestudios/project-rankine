@@ -29,15 +29,7 @@ import java.util.List;
 import java.util.Random;
 
 public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
-    /*
-    private static List<String> GEN_BIOMES = new ArrayList<>();//Arrays.asList("jungle","forest","plains");
-    private static List<Block> GEN_SOILS = new ArrayList<>();//Arrays.asList(RankineBlocks.HUMUS.get(),RankineBlocks.LOAMY_SAND.get(), RankineBlocks.SANDY_LOAM.get());
-    private static List<Block> GEN_SOILS2 = new ArrayList<>();//Arrays.asList(RankineBlocks.HUMUS.get(),RankineBlocks.LOAMY_SAND.get(), RankineBlocks.SANDY_LOAM.get());
-    private static List<Block> GEN_GRASSES = new ArrayList<>(); //Arrays.asList(RankineBlocks.GRASSY_HUMUS.get(),RankineBlocks.GRASSY_LOAMY_SAND.get(), RankineBlocks.GRASSY_SANDY_LOAM.get());
-    private static List<Block> GEN_GRASSES2 = new ArrayList<>(); //Arrays.asList(RankineBlocks.GRASSY_HUMUS.get(),RankineBlocks.GRASSY_LOAMY_SAND.get(), RankineBlocks.GRASSY_SANDY_LOAM.get());
 
-
-     */
     public SoilReplacerFeature(Codec<NoFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
@@ -58,26 +50,34 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
                     Block TARGET = reader.getBlockState(TARGET_POS).getBlock();
                     Biome.Category TARGET_BIOME_CAT = reader.getBiome(TARGET_POS).getCategory();
+
+                    Block GRASS = WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT));
+                    Block GRASS2 = WorldgenUtils.GEN_GRASSES2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT));
+
                     if (TARGET.matchesBlock(Blocks.DIRT)) {
                         if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME_CAT)) {
                             soilPlacer(reader, TARGET_POS, WorldgenUtils.GEN_SOILS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState(), WorldgenUtils.GEN_SOILS2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState());
                         }
                     } else if (TARGET.matchesBlock(Blocks.GRASS_BLOCK)) {
                         if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME_CAT)) {
-                            if (TARGET instanceof GrassBlock) {
+                            
+                            if (GRASS instanceof GrassBlock && GRASS2 instanceof GrassBlock) {
                                 boolean SNOWY = reader.getBlockState(TARGET_POS).get(BlockStateProperties.SNOWY);
-                                soilPlacer(reader, TARGET_POS, WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), WorldgenUtils.GEN_GRASSES2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState().with(BlockStateProperties.SNOWY, SNOWY));
+                                soilPlacer(reader, TARGET_POS, GRASS.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), GRASS2.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY));
                             } else {
-                                soilPlacer(reader, TARGET_POS, WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState(), WorldgenUtils.GEN_GRASSES2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState());
+                                soilPlacer(reader, TARGET_POS, GRASS.getDefaultState(), GRASS2.getDefaultState());
                             }
                         }
                     } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
                         if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME_CAT)) {
-                            Block GRASS = WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT));
+                            
                             if (GRASS instanceof GrassySoilBlock) {
                                 soilPlacer(reader, TARGET_POS, ((GrassySoilBlock) GRASS).PATH.getDefaultState(), ((GrassySoilBlock) GRASS).PATH.getDefaultState());
                             }
                         }
+                    }
+                    if (reader.getBlockState(TARGET_POS.up()).matchesBlock(Blocks.SNOW)) {
+                        reader.setBlockState(TARGET_POS,Blocks.SNOW_BLOCK.getDefaultState(),19);
                     }
 
                 }

@@ -1,60 +1,79 @@
 {
   "variants": {
-    "facing=north,type=top": {
-      "model": "rankine:block/cinnamon_vertical_slab_top",
-      "uvlock": true
-    },
-    "facing=south,type=top": {
-      "model": "rankine:block/cinnamon_vertical_slab_top",
+    "facing=north,type=straight": {
+      "model": "rankine:block/cinnamon_vertical_slab_straight",
       "y": 180,
       "uvlock": true
     },
-    "facing=west,type=top": {
-      "model": "rankine:block/cinnamon_vertical_slab_top",
-      "y": 270,
+    "facing=south,type=straight": {
+      "model": "rankine:block/cinnamon_vertical_slab_straight",
       "uvlock": true
     },
-    "facing=east,type=top": {
-      "model": "rankine:block/cinnamon_vertical_slab_top",
+    "facing=west,type=straight": {
+      "model": "rankine:block/cinnamon_vertical_slab_straight",
       "y": 90,
       "uvlock": true
     },
-    "facing=north,type=bottom": {
-      "model": "rankine:block/cinnamon_vertical_slab",
-      "uvlock": true
-    },
-    "facing=south,type=bottom": {
-      "model": "rankine:block/cinnamon_vertical_slab",
-      "y": 180,
-      "uvlock": true
-    },
-    "facing=west,type=bottom": {
-      "model": "rankine:block/cinnamon_vertical_slab",
+    "facing=east,type=straight": {
+      "model": "rankine:block/cinnamon_vertical_slab_straight",
       "y": 270,
-      "uvlock": true
-    },
-    "facing=east,type=bottom": {
-      "model": "rankine:block/cinnamon_vertical_slab",
-      "y": 90,
       "uvlock": true
     },
     "facing=north,type=double": {
-      "model": "rankine:block/cinnamon_vertical_slab",
-      "uvlock": true
-    },
-    "facing=south,type=double": {
-      "model": "rankine:block/cinnamon_vertical_slab",
+      "model": "rankine:block/cinnamon_vertical_slab_double",
       "y": 180,
       "uvlock": true
     },
+    "facing=south,type=double": {
+      "model": "rankine:block/cinnamon_vertical_slab_double",
+      "uvlock": true
+    },
     "facing=west,type=double": {
-      "model": "rankine:block/cinnamon_vertical_slab",
-      "y": 270,
+      "model": "rankine:block/cinnamon_vertical_slab_double",
+      "y": 90,
       "uvlock": true
     },
     "facing=east,type=double": {
-      "model": "rankine:block/cinnamon_vertical_slab",
+      "model": "rankine:block/cinnamon_vertical_slab_double",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,type=inner": {
+      "model": "rankine:block/cinnamon_vertical_slab_inner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,type=inner": {
+      "model": "rankine:block/cinnamon_vertical_slab_inner",
+      "uvlock": true
+    },
+    "facing=west,type=inner": {
+      "model": "rankine:block/cinnamon_vertical_slab_inner",
       "y": 90,
+      "uvlock": true
+    },
+    "facing=east,type=inner": {
+      "model": "rankine:block/cinnamon_vertical_slab_inner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,type=outer": {
+      "model": "rankine:block/cinnamon_vertical_slab_outer",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,type=outer": {
+      "model": "rankine:block/cinnamon_vertical_slab_outer",
+      "uvlock": true
+    },
+    "facing=west,type=outer": {
+      "model": "rankine:block/cinnamon_vertical_slab_outer",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,type=outer": {
+      "model": "rankine:block/cinnamon_vertical_slab_outer",
+      "y": 270,
       "uvlock": true
     }
   }

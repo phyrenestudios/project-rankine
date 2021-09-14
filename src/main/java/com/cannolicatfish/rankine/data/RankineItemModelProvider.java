@@ -165,7 +165,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SPARK_LIGHTER.get());
         basicItem(RankineItems.THERMOMETER.get());
         basicItem(RankineItems.HARDNESS_TESTER.get());
-        basicItem(RankineItems.ORE_CYCLER.get());
+        //basicItem(RankineItems.ORE_CYCLER.get());
         basicItem(RankineItems.TOTEM_OF_COBBLING.get());
         basicItem(RankineItems.ELEMENT_INDEXER.get());
         basicItem(RankineItems.PIA.get());
@@ -279,9 +279,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block BLOCK : RankineLists.BRICKS_SLAB) {
             slabParent(BLOCK);
         }
-        for (Block BLOCK : RankineLists.BRICKS_VERTICAL_SLAB) {
-            vertical_slabParent(BLOCK);
-        }
         for (Block BLOCK : RankineLists.BRICKS_STAIRS) {
             stairsParent(BLOCK);
         }
@@ -337,7 +334,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         vertical_slabParent(RankineBlocks.FIBER_BLOCK_VERTICAL_SLAB.get());
         stairsParent(RankineBlocks.FIBER_BLOCK_STAIRS.get());
         wallParent(RankineBlocks.FIBER_BLOCK_WALL.get());
-
+        slabParent(RankineBlocks.SOD_BLOCK_SLAB.get());
+        vertical_slabParent(RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
+        stairsParent(RankineBlocks.SOD_BLOCK_STAIRS.get());
+        wallParent(RankineBlocks.SOD_BLOCK_WALL.get());
         
         
         
@@ -362,7 +362,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
 
         //EARTHY BLOCKS
-        for (Block blk : Stream.of(RankineLists.ROTATION_BLOCKS,RankineLists.STANDARD_BLOCKS,RankineLists.SHEETMETALS,RankineLists.SHEETMETAL_VERTICAL_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.ROTATION_BLOCKS,RankineLists.STANDARD_BLOCKS,RankineLists.SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
             withExistingParent(blk);
         }
         //ALLOYS
@@ -398,7 +398,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
         withExistingParent(RankineBlocks.MYCELIUM_PATH.get());
         withExistingParent(RankineBlocks.END_GRASS_PATH.get());
-        withExistingParent(RankineBlocks.END_GRASS_BLOCK.get());
+        withExistingParent(RankineBlocks.ENDER_SHIRO.get());
         withExistingParent(RankineBlocks.END_SOIL.get());
         withExistingParent(RankineBlocks.STICK_BLOCK.get());
 
@@ -432,7 +432,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(name, modLoc("block/"+name));
         }
 
-        for (Block blk : Stream.of(RankineLists.LEAVES, RankineLists.PLANKS, RankineLists.LOGS, RankineLists.STRIPPED_LOGS, RankineLists.WOODS, RankineLists.STRIPPED_WOODS, RankineLists.WOODEN_FENCE_GATES, RankineLists.WOODEN_SLABS, RankineLists.WOODEN_STAIRS, RankineLists.WOODEN_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.LEAVES, RankineLists.PLANKS, RankineLists.LOGS, RankineLists.STRIPPED_LOGS, RankineLists.WOODS, RankineLists.STRIPPED_WOODS, RankineLists.WOODEN_FENCE_GATES, RankineLists.WOODEN_SLABS, RankineLists.WOODEN_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/" + name));
         }
@@ -474,9 +474,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/" + name + "_inventory"));
         }
-        for (Block blk : Stream.of(RankineLists.STONE_VERTICAL_SLAB, RankineLists.POLISHED_STONE_VERTICAL_SLAB, RankineLists.STONE_BRICKS_VERTICAL_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            withExistingParent(name, modLoc("block/" + name));
+        for (Block blk : Stream.of(RankineLists.BRICKS_VERTICAL_SLAB, RankineLists.SHEETMETAL_VERTICAL_SLAB, RankineLists.WOODEN_VERTICAL_SLABS, RankineLists.STONE_VERTICAL_SLAB, RankineLists.POLISHED_STONE_VERTICAL_SLAB, RankineLists.STONE_BRICKS_VERTICAL_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
+            vertical_slabParent(blk);
         }
         for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATE, RankineLists.STONE_BRICKS_PRESSURE_PLATE).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
@@ -535,7 +534,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()));
     }    
     private ItemModelBuilder vertical_slabParent(Block BLK) {
-        return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()));
+        return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()+"_straight"));
     }    
     private ItemModelBuilder stairsParent(Block BLK) {
         return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()));

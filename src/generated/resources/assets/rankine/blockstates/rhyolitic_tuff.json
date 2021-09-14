@@ -1,21 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "rankine:block/rhyolitic_tuff"
-      },
-      {
-        "model": "rankine:block/rhyolitic_tuff",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/rhyolitic_tuff",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/rhyolitic_tuff",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "rankine:block/rhyolitic_tuff"
+    }
   }
 }

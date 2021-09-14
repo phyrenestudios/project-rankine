@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:apatite_block"
+  },
+  "result": "rankine:phosphorus",
+  "experience": 5.0,
+  "cookingtime": 800
+}

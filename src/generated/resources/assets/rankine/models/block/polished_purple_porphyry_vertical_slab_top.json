@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab_top",
-  "textures": {
-    "side": "rankine:block/polished_purple_porphyry",
-    "bottom": "rankine:block/polished_purple_porphyry",
-    "top": "rankine:block/polished_purple_porphyry"
-  }
-}
