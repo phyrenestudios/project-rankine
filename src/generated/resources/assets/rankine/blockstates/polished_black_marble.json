@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_black_marble"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_black_marble_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_black_marble_vertical_offset"
     }
   }
 }

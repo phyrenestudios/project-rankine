@@ -1,0 +1,6 @@
+{
+  "parent": "rankine:block/template_rotation",
+  "textures": {
+    "all": "rankine:block/komatiite_bricks"
+  }
+}

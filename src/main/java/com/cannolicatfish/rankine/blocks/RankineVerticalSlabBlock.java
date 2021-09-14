@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.blocks.states.VerticalSlabStates;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -10,7 +11,6 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -20,74 +20,86 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class RankineVerticalSlabBlock extends Block {
-    public static final EnumProperty<SlabType> TYPE = BlockStateProperties.SLAB_TYPE;
+public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final EnumProperty<VerticalSlabStates> TYPE = EnumProperty.create("type", VerticalSlabStates .class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    protected static final VoxelShape NORTH_B = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape SOUTH_B = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-    protected static final VoxelShape EAST_B = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-    protected static final VoxelShape WEST_B = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape SOUTH_T = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
-    protected static final VoxelShape NORTH_T = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
-    protected static final VoxelShape WEST_T = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-    protected static final VoxelShape EAST_T = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape STRAIGHT_S = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
+    protected static final VoxelShape STRAIGHT_N = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape STRAIGHT_E = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape STRAIGHT_W = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape INNER_S = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 8.0D, 16.0D, 8.0D);
+    protected static final VoxelShape INNER_N = Block.makeCuboidShape(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
+    protected static final VoxelShape INNER_E = Block.makeCuboidShape(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape INNER_W = Block.makeCuboidShape(8.0D, 0.0D, 0.0D, 16.0D, 16.0D, 8.0D);
 
 
     public RankineVerticalSlabBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE, SlabType.BOTTOM).with(HORIZONTAL_FACING, Direction.NORTH).with(WATERLOGGED, Boolean.FALSE));
+        this.setDefaultState(this.stateContainer.getBaseState().with(TYPE, VerticalSlabStates.STRAIGHT).with(HORIZONTAL_FACING, Direction.SOUTH).with(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
     public boolean isTransparent(BlockState state) {
-        return state.get(TYPE) != SlabType.DOUBLE;
+        return state.get(TYPE) != VerticalSlabStates.DOUBLE;
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        SlabType slabtype = state.get(TYPE);
         Direction facing = state.get(HORIZONTAL_FACING);
-        switch(slabtype) {
+        switch(state.get(TYPE)) {
             case DOUBLE:
                 return VoxelShapes.fullCube();
-            case TOP:
+            case STRAIGHT:
                 switch(facing) {
                     case NORTH:
-                        return NORTH_T;
+                        return STRAIGHT_N;
                     case SOUTH:
-                        return SOUTH_T;
+                        return STRAIGHT_S;
                     case WEST:
-                        return WEST_T;
+                        return STRAIGHT_W;
                     case EAST:
-                        return EAST_T;
+                        return STRAIGHT_E;
                 }
-            default:
+            case INNER:
                 switch(facing) {
                     case SOUTH:
-                        return SOUTH_B;
+                        return INNER_S;
                     case WEST:
-                        return WEST_B;
+                        return INNER_W;
                     case EAST:
-                        return EAST_B;
-                    default:
-                        return NORTH_B;
+                        return INNER_E;
+                    case NORTH:
+                        return INNER_N;
+                }
+            case OUTER:
+                switch(facing) {
+                    case SOUTH:
+                        return VoxelShapes.or(STRAIGHT_S,INNER_S);
+                    case WEST:
+                        return VoxelShapes.or(STRAIGHT_W,INNER_W);
+                    case EAST:
+                        return VoxelShapes.or(STRAIGHT_E,INNER_E);
+                    case NORTH:
+                        return VoxelShapes.or(STRAIGHT_N,INNER_N);
                 }
         }
+        return VoxelShapes.fullCube();
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockPos blockpos = context.getPos();
         BlockState blockstate = context.getWorld().getBlockState(blockpos);
-        BlockState blockstate1 = this.getDefaultState();
+        BlockState blockstate1;
         FluidState fluidstate = context.getWorld().getFluidState(blockpos);
         if (blockstate.matchesBlock(this)) {
-            return blockstate.with(TYPE, SlabType.DOUBLE).with(HORIZONTAL_FACING, Direction.NORTH);
+            return blockstate.with(TYPE, VerticalSlabStates.DOUBLE).with(HORIZONTAL_FACING, blockstate.get(HORIZONTAL_FACING));
         } else {
-            blockstate1 = blockstate1.with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite()).with(TYPE, SlabType.BOTTOM);
+            blockstate1 = getType(context.getWorld(),context.getPos(),context.getPlacementHorizontalFacing().getOpposite());
             return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
         }
     }
@@ -95,8 +107,8 @@ public class RankineVerticalSlabBlock extends Block {
     @Override
     public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
         ItemStack itemstack = useContext.getItem();
-        SlabType slabtype = state.get(TYPE);
-        if (slabtype != SlabType.DOUBLE && itemstack.getItem() == this.asItem()) {
+        VerticalSlabStates slabtype = state.get(TYPE);
+        if (slabtype != VerticalSlabStates.DOUBLE && itemstack.getItem() == this.asItem()) {
             if (useContext.replacingClickedOnBlock()) {
                 return useContext.getFace() == state.get(HORIZONTAL_FACING);
             } else {
@@ -111,7 +123,11 @@ public class RankineVerticalSlabBlock extends Block {
         if (stateIn.get(WATERLOGGED)) {
             worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         }
-        return facing.getOpposite() == stateIn.get(HORIZONTAL_FACING) && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : stateIn;
+        if (facing != Direction.DOWN && facing != Direction.UP && facing != stateIn.get(HORIZONTAL_FACING).getOpposite()) {
+            return stateIn;
+        } else {
+            return stateIn;
+        }
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
@@ -129,5 +145,45 @@ public class RankineVerticalSlabBlock extends Block {
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE, HORIZONTAL_FACING, WATERLOGGED);
     }
+
+
+    public BlockState getType(World worldIn, BlockPos pos, Direction facing) {
+
+        Direction FDir = facing;
+        Direction BDir = facing.getOpposite();
+        Direction LDir = facing.rotateYCCW().rotateYCCW().rotateYCCW();
+        Direction RDir = facing.rotateYCCW();
+
+        BlockState forwardBS = worldIn.getBlockState(pos.offset(FDir));
+        BlockState backwardBS = worldIn.getBlockState(pos.offset(BDir));
+        BlockState leftBS = worldIn.getBlockState(pos.offset(LDir));
+        BlockState rightBS = worldIn.getBlockState(pos.offset(RDir));
+
+        boolean forward = forwardBS.matchesBlock(this);
+        boolean backward = backwardBS.matchesBlock(this);
+        boolean left = leftBS.matchesBlock(this);
+        boolean right = rightBS.matchesBlock(this);
+
+
+        if (forward) {
+            if (forwardBS.get(HORIZONTAL_FACING).equals(RDir)) {
+                return this.getDefaultState().with(TYPE, VerticalSlabStates.OUTER).with(HORIZONTAL_FACING, facing);
+            } else if (forwardBS.get(HORIZONTAL_FACING).equals(LDir)) {
+                return this.getDefaultState().with(TYPE, VerticalSlabStates.OUTER).with(HORIZONTAL_FACING, facing.rotateY());
+            }
+        } else if (backward) {
+            if (backwardBS.get(HORIZONTAL_FACING).equals(RDir)) {
+                return this.getDefaultState().with(TYPE, VerticalSlabStates.INNER).with(HORIZONTAL_FACING, facing);
+            } else if (backwardBS.get(HORIZONTAL_FACING).equals(LDir)) {
+                return this.getDefaultState().with(TYPE, VerticalSlabStates.INNER).with(HORIZONTAL_FACING, facing.rotateY());
+            }
+        } else {
+            return this.getDefaultState().with(TYPE, VerticalSlabStates.STRAIGHT).with(HORIZONTAL_FACING, facing);
+
+        }
+        return this.getDefaultState().with(TYPE, VerticalSlabStates.STRAIGHT).with(HORIZONTAL_FACING, facing);
+
+    }
+
 
 }

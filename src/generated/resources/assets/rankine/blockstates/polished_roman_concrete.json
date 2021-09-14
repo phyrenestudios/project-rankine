@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_roman_concrete"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_roman_concrete_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_roman_concrete_vertical_offset"
     }
   }
 }

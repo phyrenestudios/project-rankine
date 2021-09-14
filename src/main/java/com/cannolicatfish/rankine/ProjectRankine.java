@@ -89,6 +89,7 @@ public class ProjectRankine {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "rankine-common.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "rankine-worldgen.toml");
 
+
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
         Bus.addListener(this::ClientSetup);
@@ -100,18 +101,15 @@ public class ProjectRankine {
 
         Bus.addListener(this::LoadComplete);
 
+        WorldgenUtils.initOreTextures();
+
+
     }
 
-    private void construct(final FMLConstructModEvent event) {
-        //RankineItems.itemInit();
-    }
-
-    private void CommonSetup(final FMLCommonSetupEvent event)
-    {
+    private void CommonSetup(final FMLCommonSetupEvent event) {
         LOGGER.debug("Rankine: \"CommonSetup\" Starting...");
+
         WorldgenUtils.initConfigs();
-        LOGGER.debug(WorldgenUtils.GEN_BIOMES);
-        LOGGER.debug(WorldgenUtils.INTRUSION_COLLECTIONS);
 
         POIFixer.fixPOITypeBlockStates(RankinePOIs.TEMPLATE_TABLE_POI);
         POIFixer.fixPOITypeBlockStates(RankinePOIs.PISTON_CRUSHER_POI);
@@ -155,6 +153,11 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASSY_SOILS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
+            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK.get());
+            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_SLAB.get());
+            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_VERTICAL_SLAB.get());
+            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_STAIRS.get());
+            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_WALL.get());
 
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
@@ -186,6 +189,11 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASSY_SOILS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
+            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK.get());
+            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_SLAB.get());
+            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
+            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_WALL.get());
+            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_STAIRS.get());
         }
 
         @SubscribeEvent
@@ -226,15 +234,11 @@ public class ProjectRankine {
             event.getRegistry().register(RankineFeatures.PHOSPHORITE_SILL.setRegistryName(ProjectRankine.MODID,"phosphorite_sill"));
             event.getRegistry().register(RankineFeatures.IRONSTONE_SILL.setRegistryName(ProjectRankine.MODID,"ironstone_sill"));
             event.getRegistry().register(RankineFeatures.NETHER_INTRUSION.setRegistryName(ProjectRankine.MODID,"nether_intrusion"));
-            event.getRegistry().register(RankineFeatures.ANDESITIC_TUFF_FEATURE.setRegistryName(ProjectRankine.MODID,"andesitic_tuff_feature"));
-            event.getRegistry().register(RankineFeatures.RHYOLITIC_TUFF_FEATURE.setRegistryName(ProjectRankine.MODID,"rhyolitic_tuff_feature"));
-            event.getRegistry().register(RankineFeatures.BASALTIC_TUFF_FEATURE.setRegistryName(ProjectRankine.MODID,"basaltic_tuff_feature"));
-            event.getRegistry().register(RankineFeatures.ORE_NODULE_FEATURE.setRegistryName(ProjectRankine.MODID,"ore_nodule_feature"));
             event.getRegistry().register(RankineFeatures.END_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"end_stone_replacer"));
             event.getRegistry().register(RankineFeatures.NETHER_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"nether_stone_replacer"));
             event.getRegistry().register(RankineFeatures.STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"stone_replacer"));
             event.getRegistry().register(RankineFeatures.SOIL_REPLACER.setRegistryName(ProjectRankine.MODID,"soil_replacer"));
-            //event.getRegistry().register(RankineFeatures.MUD_REPLACER.setRegistryName(ProjectRankine.MODID,"mud_replacer"));
+            event.getRegistry().register(RankineFeatures.SNOW_REPLACER.setRegistryName(ProjectRankine.MODID,"snow_replacer"));
 
         }
 

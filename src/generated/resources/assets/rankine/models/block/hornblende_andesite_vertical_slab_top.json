@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab_top",
-  "textures": {
-    "side": "rankine:block/hornblende_andesite",
-    "bottom": "rankine:block/hornblende_andesite",
-    "top": "rankine:block/hornblende_andesite"
-  }
-}

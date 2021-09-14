@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_chalk"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_chalk_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_chalk_vertical_offset"
     }
   }
 }

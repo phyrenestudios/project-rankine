@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
@@ -19,7 +20,6 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
-import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
@@ -90,7 +90,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static net.minecraft.block.Block.spawnAsEntity;
 
@@ -413,7 +412,7 @@ public class RankineEventHandler {
             ITag<Block> fulgurite = RankineTags.Blocks.LIGHTNING_VITRIFIED;
             ITag<Block> lightningGlass = BlockTags.SAND;
             BlockPos startPos = entity.getPosition().down();
-            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
+            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock()) || lightningGlass.contains(worldIn.getBlockState(startPos).getBlock())) {
                 Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
                 for (BlockPos pos : positions) {
                     double rand;
@@ -425,20 +424,7 @@ public class RankineEventHandler {
 
                     if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
                         worldIn.setBlockState(pos,RankineBlocks.FULGURITE.get().getDefaultState(),3);
-                    }
-                }
-            }
-            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock())) {
-                Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
-                for (BlockPos pos : positions) {
-                    double rand;
-                    if (startPos.getX() == pos.getX() && startPos.getZ() == pos.getZ()) {
-                        rand = 1/(1f + Math.abs(startPos.getY() - pos.getY()));
-                    } else {
-                        rand = pos.distanceSq(startPos.getX(),startPos.getY(),startPos.getZ(),true);
-                    }
-
-                    if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
+                    } else if (worldIn.getRandom().nextFloat() < 1/rand && lightningGlass.contains(worldIn.getBlockState(pos).getBlock())) {
                         worldIn.setBlockState(pos,RankineBlocks.LIGHTNING_GLASS.get().getDefaultState(),3);
                     }
                 }
@@ -1801,9 +1787,13 @@ public class RankineEventHandler {
 
         if (RankineTags.Items.KNIVES.contains(stack.getItem()) && direction != null) {
             Block target = state.getBlock();
-            if (target == Blocks.GRASS_BLOCK && direction.equals(Direction.UP)) {
+            if ((target instanceof GrassySoilBlock || target.matchesBlock(Blocks.GRASS_BLOCK)) && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-                world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 3);
+                if (target instanceof GrassySoilBlock) {
+                    world.setBlockState(pos, ((GrassySoilBlock) target).SOIL.getDefaultState(), 3);
+                } else {
+                    world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 3);
+                }
                 if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                     double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                     double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
@@ -2090,7 +2080,7 @@ public class RankineEventHandler {
                     TYPE = TilledSoilTypes.SOUL_SOIL;
                 } else if (b == RankineBlocks.END_SOIL.get()) {
                     TYPE = TilledSoilTypes.END_SOIL;
-                } else if (b == RankineBlocks.END_GRASS_BLOCK.get()) {
+                } else if (b == RankineBlocks.ENDER_SHIRO.get()) {
                     TYPE = TilledSoilTypes.END_SOIL;
                 } else if (b == RankineBlocks.HUMUS.get()) {
                     TYPE = TilledSoilTypes.HUMUS;
@@ -2220,7 +2210,7 @@ public class RankineEventHandler {
 
         // Luck Pendant
         if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == RankineItems.LUCK_PENDANT.get()) {
-            if (event.getState().getBlock().getTags().contains(new ResourceLocation("rankine:luck_pendant"))) {
+            if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
                 if (new Random().nextFloat() < 0.2f) {
                     for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
                         spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));

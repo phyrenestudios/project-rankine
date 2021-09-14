@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:juniper_log",
-    "rankine:juniper_wood",
-    "rankine:stripped_juniper_log",
-    "rankine:stripped_juniper_wood"
-  ]
-}

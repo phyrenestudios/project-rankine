@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_mica_schist"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_mica_schist_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_mica_schist_vertical_offset"
     }
   }
 }

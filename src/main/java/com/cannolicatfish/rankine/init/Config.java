@@ -213,15 +213,15 @@ public class Config {
                     MOVEMENT_BRICKS = b.comment("Movement speed modifier for walking on Brick / Stone Bricks and variants.")
                             .defineInRange("movementBricks", 0.05D, -1.0D, 1.0D);
                     MOVEMENT_GRASS_PATH = b.comment("Movement speed modifier for walking on Grass Paths.")
-                            .defineInRange("movementGrassPath", 0.02D, -1.0D, 1.0D);
+                            .defineInRange("movementGrassPath", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_ROMAN_CONCRETE = b.comment("Movement speed modifier for walking on Roman Cooncrete.")
                             .defineInRange("movementRomanConcrete", 0.1D, -1.0D, 1.0D);
                     MOVEMENT_DIRT = b.comment("Movement speed modifier for walking on Dirt / Grass blocks.")
-                            .defineInRange("movementDirt", 0.0D, -1.0D, 1.0D);
+                            .defineInRange("movementDirt", -0.01D, -1.0D, 1.0D);
                     MOVEMENT_POLISHED_STONE = b.comment("Movement speed modifier for walking on #forge:polished_stone blocks.")
-                            .defineInRange("movementPolishedStone", 0.02D, -1.0D, 1.0D);
+                            .defineInRange("movementPolishedStone", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_WOODEN = b.comment("Movement speed modifier for walking on Planks and wooden variants.")
-                            .defineInRange("movementWooden", 0.02D, -1.0D, 1.0D);
+                            .defineInRange("movementWooden", 0.00D, -1.0D, 1.0D);
                     MOVEMENT_CONCRETE = b.comment("Movement speed modifier for walking on Concrete / Gravel Concrete.")
                             .defineInRange("movementConcrete", 0.05D, -1.0D, 1.0D);
                     MOVEMENT_SNOW = b.comment("Movement speed modifier for walking on Snow.")
@@ -919,7 +919,7 @@ public class Config {
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")
                         .defineInRange("charcoalPitRadius", 7, 3, 15);
                 CHARCOAL_PIT_SPEED = b.comment("The number of random ticks it takes the Charcoal Pit to process")
-                        .defineInRange("charcoalPitSpeed", 5, 1, 200);
+                        .defineInRange("charcoalPitSpeed", 1, 1, 200);
                 CHARCOAL_PIT_HEIGHT = b.comment("Maximum height a charcoal pile can be")
                         .defineInRange("charcoalPitHeight", 5, 1, 10);
                 EVAPORATION_TOWER_RANGE = b.comment("Maximum height of the evaporation tower. Height affects yields. Set to 0 to disable functionality.")

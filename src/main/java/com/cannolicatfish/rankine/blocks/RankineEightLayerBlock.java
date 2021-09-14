@@ -29,21 +29,13 @@ public class RankineEightLayerBlock extends FallingBlock {
 
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 8);
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{VoxelShapes.empty(),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 13.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
-            //Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
     public RankineEightLayerBlock(AbstractBlock.Properties properties) {
@@ -109,8 +101,8 @@ public class RankineEightLayerBlock extends FallingBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         int i = state.get(LAYERS);
-        if (player.getHeldItem(handIn).getItem() == this.asItem() && i < 8) {
-            worldIn.setBlockState(pos, state.with(LAYERS, i));
+        if (player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8) {
+            worldIn.setBlockState(pos, state.with(LAYERS, i+1));
             return ActionResultType.CONSUME;
         }
         return ActionResultType.PASS;
@@ -118,14 +110,14 @@ public class RankineEightLayerBlock extends FallingBlock {
 
     public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
         int i = state.get(LAYERS);
-        if (useContext.getItem().getItem() == this.asItem() && i < 8) {
+        if (useContext.getItem().getItem() == state.getBlock().asItem() && i < 8) {
             if (useContext.replacingClickedOnBlock()) {
                 return useContext.getFace() == Direction.UP;
             } else {
-                return true;
+                return false;
             }
         } else {
-            return i == 1;
+            return false;
         }
     }
 
@@ -150,7 +142,17 @@ public class RankineEightLayerBlock extends FallingBlock {
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
+        if (worldIn.getBlockState(pos.down()) == state) {
+            int i = worldIn.getBlockState(pos.down()).get(LAYERS);
+            int j = state.get(LAYERS);
+            if (i+j<=8) {
+                worldIn.setBlockState(pos.down(), state.with(LAYERS,i+j));
+                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+            } else {
+                worldIn.setBlockState(pos.down(), state.with(LAYERS,8));
+                worldIn.setBlockState(pos, state.with(LAYERS, (i+j)-8 ));
+            }
+        } else if (worldIn.isAirBlock(pos.down()) || canFallThrough(worldIn.getBlockState(pos.down())) && pos.getY() >= 0) {
             FallingBlockEntity fallingblockentity = new FallingBlockEntity(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, worldIn.getBlockState(pos));
             this.onStartFalling(fallingblockentity);
             worldIn.addEntity(fallingblockentity);
@@ -160,20 +162,30 @@ public class RankineEightLayerBlock extends FallingBlock {
     @Override
     public void onEndFalling(World worldIn, BlockPos pos, BlockState fallingState, BlockState hitState, FallingBlockEntity fallingBlock) {
         if (hitState.getBlock().equals(fallingState.getBlock())) {
-            int i = fallingState.get(LAYERS);
-            int j = hitState.get(LAYERS);
+            int i = hitState.get(LAYERS);
+            int j = fallingState.get(LAYERS);
 
             if (i+j<=8) {
-                worldIn.setBlockState(pos, hitState.with(LAYERS,i+j));
+                worldIn.setBlockState(pos.down(), fallingState.with(LAYERS,i+j));
+                worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
             } else {
-                worldIn.setBlockState(pos, hitState.with(LAYERS,8));
-                worldIn.setBlockState(pos.up(), hitState.with(LAYERS, (i+j)-8 ));
+                worldIn.setBlockState(pos.down(), fallingState.with(LAYERS,8));
+                worldIn.setBlockState(pos, fallingState.with(LAYERS, (i+j)-8 ));
             }
-
-        }// else {
-           // super.onEndFalling(worldIn, pos, fallingState, hitState, fallingBlock);
-        //}
+        }
     }
 
+    public void addLayers(World worldIn, BlockPos botPos, BlockPos topPos, BlockState bottom, BlockState top) {
+        int i = top.get(LAYERS);
+        int j = bottom.get(LAYERS);
+
+        if (i+j<=8) {
+            worldIn.setBlockState(botPos, bottom.with(LAYERS,i+j));
+            worldIn.setBlockState(topPos, Blocks.AIR.getDefaultState());
+        } else {
+            worldIn.setBlockState(botPos, bottom.with(LAYERS,8));
+            worldIn.setBlockState(botPos.up(), bottom.with(LAYERS, (i+j)-8 ));
+        }
+    }
 
 }

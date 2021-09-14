@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.AlloyData;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
@@ -41,7 +42,7 @@ public class GlassCutterItem extends ToolItem {
     @Override
     public boolean canHarvestBlock(BlockState blockIn) {
         int i = this.getTier().getHarvestLevel();
-        if (blockIn.getBlock().getTags().contains(new ResourceLocation("rankine:glass_cutter"))) {
+        if (blockIn.isIn(RankineTags.Blocks.GLASS_CUTTER)) {
             return i >= blockIn.getHarvestLevel();
         }
         Material material = blockIn.getMaterial();
@@ -51,7 +52,7 @@ public class GlassCutterItem extends ToolItem {
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
-        return state.getBlock().getTags().contains(new ResourceLocation("rankine:glass_cutter")) ? this.efficiency : 0.1F;
+        return state.isIn(RankineTags.Blocks.GLASS_CUTTER) ? this.efficiency : 0.1F;
     }
 
     @Nonnull

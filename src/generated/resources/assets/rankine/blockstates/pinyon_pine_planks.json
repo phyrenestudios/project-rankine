@@ -1,9 +1,9 @@
 {
   "variants": {
-    "type=normal": {
+    "planks_type=normal": {
       "model": "rankine:block/pinyon_pine_planks"
     },
-    "type=vertical": {
+    "planks_type=vertical": {
       "model": "rankine:block/pinyon_pine_planks_vertical"
     }
   }

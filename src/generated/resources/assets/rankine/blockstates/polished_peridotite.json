@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_peridotite"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_peridotite_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_peridotite_vertical_offset"
     }
   }
 }

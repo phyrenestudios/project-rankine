@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab",
-  "textures": {
-    "side": "rankine:block/peridotite_bricks",
-    "bottom": "rankine:block/peridotite_bricks",
-    "top": "rankine:block/peridotite_bricks"
-  }
-}

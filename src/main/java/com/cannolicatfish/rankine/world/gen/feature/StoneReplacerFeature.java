@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeRegistry;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -45,41 +46,21 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
                 Biome BIOME = reader.getBiome(new BlockPos(x, 0, z));
                 Biome.Category CAT = BIOME.getCategory();
-                if (WorldgenUtils.GEN_BIOMES.contains(CAT)) {
-                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)), 70, reader, x, z, endY);
-                }
-                /*
-                if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.OCEAN && !WGConfig.LAYERS.OCEAN_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.OCEAN_STONE_LIST.get(), WGConfig.LAYERS.OCEAN_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.MUSHROOM && !WGConfig.LAYERS.MUSHROOM_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.MUSHROOM_STONE_LIST.get(), WGConfig.LAYERS.MUSHROOM_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.DESERT && !WGConfig.LAYERS.DESERT_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.DESERT_STONE_LIST.get(), WGConfig.LAYERS.DESERT_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.MESA && !WGConfig.LAYERS.MESA_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.MESA_STONE_LIST.get(), WGConfig.LAYERS.MESA_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.SAVANNA && !WGConfig.LAYERS.SAVANNA_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.SAVANNA_STONE_LIST.get(), WGConfig.LAYERS.SAVANNA_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.EXTREME_HILLS && !WGConfig.LAYERS.MOUNTAIN_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.MOUNTAIN_STONE_LIST.get(), WGConfig.LAYERS.MOUNTAIN_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.JUNGLE && !WGConfig.LAYERS.JUNGLE_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.JUNGLE_STONE_LIST.get(), WGConfig.LAYERS.JUNGLE_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.PLAINS && !WGConfig.LAYERS.PLAINS_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.PLAINS_STONE_LIST.get(), WGConfig.LAYERS.PLAINS_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.ICY && !WGConfig.LAYERS.ICY_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.ICY_STONE_LIST.get(), WGConfig.LAYERS.ICY_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.SWAMP && !WGConfig.LAYERS.SWAMP_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.SWAMP_STONE_LIST.get(), WGConfig.LAYERS.SWAMP_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.BEACH && !WGConfig.LAYERS.BEACH_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.BEACH_STONE_LIST.get(), WGConfig.LAYERS.BEACH_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.RIVER && !WGConfig.LAYERS.RIVER_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.RIVER_STONE_LIST.get(), WGConfig.LAYERS.RIVER_HEIGHT.get(), reader, x, z, endY);
-                } else if (reader.getBiome(new BlockPos(x,0,z)).getCategory() == Biome.Category.FOREST && !WGConfig.LAYERS.FOREST_STONE_LIST.get().isEmpty()) {
-                    layering(WGConfig.LAYERS.FOREST_STONE_LIST.get(), WGConfig.LAYERS.FOREST_HEIGHT.get(), reader, x, z, endY);
+                int height = 75;
+                float biomeHeight = BIOME.getDepth();
+                if (biomeHeight < -0.5) {
+                    height = 50;
+                } else if (biomeHeight <= 0.0) {
+                    height = 60;
+                } else if (biomeHeight < 0.20) {
+                    height = 70;
                 } else {
-                    layering(WGConfig.LAYERS.OVERWORLD_STONE_LIST.get(), WGConfig.LAYERS.OVERWORLD_HEIGHT.get(), reader, x, z, endY);
+                    height = 85;
+                }
+                if (WorldgenUtils.GEN_BIOMES.contains(CAT)) {
+                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)), height, reader, x, z, endY);
                 }
 
-                 */
             }
         }
         return true;

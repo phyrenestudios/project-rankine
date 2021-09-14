@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab",
-  "textures": {
-    "side": "rankine:block/greenschist_bricks",
-    "bottom": "rankine:block/greenschist_bricks",
-    "top": "rankine:block/greenschist_bricks"
-  }
-}

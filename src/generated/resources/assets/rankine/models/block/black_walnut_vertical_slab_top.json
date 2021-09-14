@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_vertical_slab_top",
-  "textures": {
-    "side": "rankine:block/black_walnut_planks",
-    "bottom": "rankine:block/black_walnut_planks",
-    "top": "rankine:block/black_walnut_planks"
-  }
-}

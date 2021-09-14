@@ -1,21 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "rankine:block/basaltic_tuff"
-      },
-      {
-        "model": "rankine:block/basaltic_tuff",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/basaltic_tuff",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/basaltic_tuff",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "rankine:block/basaltic_tuff"
+    }
   }
 }
