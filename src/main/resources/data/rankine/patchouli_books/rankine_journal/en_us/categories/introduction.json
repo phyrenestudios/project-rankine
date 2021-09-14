@@ -1,6 +1,6 @@
 {
-  "name": "Introduction",
-  "description": "Welcome to the world of Project Rankine. Now let's get into why you are really here, to figure out what the heck is going on...",
+  "name": "The Beginning",
+  "description": "Every journey leads to a story, but it has to start somewhere. This one shall start at spawn.",
   "icon": "rankine:element_indexer",
-  "sortnum": 0
+  "sortnum": 1
 }

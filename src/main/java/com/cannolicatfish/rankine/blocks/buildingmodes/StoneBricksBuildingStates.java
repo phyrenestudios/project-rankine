@@ -1,14 +1,14 @@
-package com.cannolicatfish.rankine.blocks.states;
+package com.cannolicatfish.rankine.blocks.buildingmodes;
 
 import net.minecraft.util.IStringSerializable;
 
-public enum PlanksBuildingStates implements IStringSerializable {
-    NORMAL("normal"),
-    VERTICAL("vertical");
+public enum StoneBricksBuildingStates implements IStringSerializable {
+    LARGE("large"),
+    VERTICAL_LARGE("vertical_large");
 
     private final String name;
 
-    PlanksBuildingStates(String name) {
+    StoneBricksBuildingStates(String name) {
         this.name = name;
     }
 

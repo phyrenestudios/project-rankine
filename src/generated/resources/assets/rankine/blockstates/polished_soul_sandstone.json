@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_soul_sandstone"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_soul_sandstone_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_soul_sandstone_vertical_offset"
     }
   }
 }

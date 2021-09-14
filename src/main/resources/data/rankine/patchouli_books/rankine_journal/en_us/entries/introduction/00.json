@@ -1,0 +1,16 @@
+{
+  "name": "The Beginning",
+  "icon": "rankine:fire_clay_ball",
+  "category": "introduction",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": "W"
+    },
+    {
+      "type": "text",
+      "text": ""
+    }
+  ]
+}

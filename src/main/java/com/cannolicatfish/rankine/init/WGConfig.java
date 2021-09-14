@@ -152,7 +152,7 @@ public class WGConfig {
             oreSettings.add(Arrays.asList("rankine:molybdenite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 20, 10, 1, 1.0));
 
             oreSettings.add(Arrays.asList("rankine:bog_iron", Arrays.asList("swamp"),Arrays.asList("all"), 40, 60, 10, 2, 1.0));
-            oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna"),Arrays.asList("all"), 40, 60, 10, 2, 1.0));
+            oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"),Arrays.asList("all"), 40, 60, 10, 2, 1.0));
             oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("all"),Arrays.asList("all"), 40, 60, 12, 1, 1.0));
 
 
@@ -214,9 +214,9 @@ public class WGConfig {
                 METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                         .defineInRange("meteoriteSize", 1, 0, 10);
                 METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                        .defineInRange("meteoriteChance", 30, 0, 1000);
+                        .defineInRange("meteoriteChance", 50, 0, 1000);
                 BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
-                        .defineInRange("meteoriteBigChance", 0.15, 0.00, 1.00);
+                        .defineInRange("meteoriteBigChance", 0.2, 0.00, 1.00);
                 SILL_CHANCE = b.comment("Chance per chunk to generate a sill of ironstone or phosphorite.")
                         .defineInRange("sillChance", 0.2D, 0.0D, 1.0D);
                 SILL_IRONSTONE_GEN = b.comment("Enables the generation of ironstone sills.")

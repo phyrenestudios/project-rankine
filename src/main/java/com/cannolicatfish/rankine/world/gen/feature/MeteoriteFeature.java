@@ -55,7 +55,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
             }
 
             for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-5, -5, -5), pos.add(5, 0, 5))) {
-                if (blockpos.distanceSq(pos.up(4)) <= 25.0) {
+                if (blockpos.distanceSq(pos.up(2)) <= 25.0) {
                     reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
                 }
             }
@@ -73,7 +73,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
                     } else {
                         reader.setBlockState(blockpos.down(1), RankineBlocks.METEORITE.get().getDefaultState(), 4);
                     }
-                } else if (blockpos.distanceSq(pos) <= (16.0D)) {
+                } else if (blockpos.distanceSq(pos.up(2)) <= (16.0D)) {
                     reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 4);
                 }
             }

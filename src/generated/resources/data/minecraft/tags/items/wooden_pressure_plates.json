@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:sharinga_pressure_plate",
+    "rankine:erythrina_pressure_plate",
+    "rankine:charred_pressure_plate",
+    "rankine:petrified_chorus_pressure_plate",
+    "rankine:balsam_fir_pressure_plate",
+    "rankine:black_birch_pressure_plate",
+    "rankine:black_walnut_pressure_plate",
+    "rankine:cedar_pressure_plate",
+    "rankine:cinnamon_pressure_plate",
+    "rankine:coconut_palm_pressure_plate",
+    "rankine:cork_oak_pressure_plate",
+    "rankine:eastern_hemlock_pressure_plate",
+    "rankine:juniper_pressure_plate",
+    "rankine:magnolia_pressure_plate",
+    "rankine:pinyon_pine_pressure_plate",
+    "rankine:yellow_birch_pressure_plate",
+    "rankine:maple_pressure_plate",
+    "rankine:bamboo_pressure_plate",
+    "rankine:bamboo_culms_pressure_plate"
+  ]
+}

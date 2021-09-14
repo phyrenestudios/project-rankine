@@ -95,7 +95,7 @@ public class TreeChoppingEvents {
                                 }
                             } else {
                                 for (BlockPos log : logs) {
-                                    if (log.distanceSq(b) <= 16) {
+                                    if (log.distanceSq(b) <= 10) {
                                         toCheck.add(b.toImmutable());
                                         leaves.add(b.toImmutable());
                                         alive = true;
@@ -118,9 +118,6 @@ public class TreeChoppingEvents {
                         worldIn.destroyBlock(b, true);
                     }
 
-                }
-                if (Tags.Blocks.DIRT.contains(worldIn.getBlockState(pos.down()).getBlock())) {
-                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState());
                 }
                 for (BlockPos b : leaves) {
                     worldIn.destroyBlock(b, true);

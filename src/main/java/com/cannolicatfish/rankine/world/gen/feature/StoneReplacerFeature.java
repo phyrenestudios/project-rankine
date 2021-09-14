@@ -51,7 +51,7 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
                 if (biomeHeight < -0.5) {
                     height = 50;
                 } else if (biomeHeight <= 0.0) {
-                    height = 64;
+                    height = 60;
                 } else if (biomeHeight < 0.20) {
                     height = 70;
                 } else {

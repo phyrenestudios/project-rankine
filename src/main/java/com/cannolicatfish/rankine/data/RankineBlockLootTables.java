@@ -129,10 +129,10 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.DIAMOND_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.DIAMOND_ORE.get(), Items.DIAMOND));
         lootTables.put(RankineBlocks.EMERALD_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.EMERALD_ORE.get(), Items.EMERALD));
 
-        lootTables.put(RankineBlocks.TAENITE_ORE.get(), dropping(RankineBlocks.TAENITE_ORE.get()));
-        lootTables.put(RankineBlocks.TETRATAENITE_ORE.get(), dropping(RankineBlocks.TAENITE_ORE.get()));
-        lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), dropping(RankineBlocks.TAENITE_ORE.get()));
-        lootTables.put(RankineBlocks.KAMACITE_ORE.get(), dropping(RankineBlocks.TAENITE_ORE.get()));
+        lootTables.put(RankineBlocks.TAENITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.TAENITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
+        lootTables.put(RankineBlocks.TETRATAENITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.TETRATAENITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
+        lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.ANTITAENITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
+        lootTables.put(RankineBlocks.KAMACITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.KAMACITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
 
         for (Block ORE : RankineLists.CRUSHING_ORES) {
             lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));

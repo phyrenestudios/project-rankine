@@ -496,7 +496,7 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
 
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.REFRACTORY_BRICK.get()), RankineItems.FIRE_CLAY_BALL.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.FIRE_CLAY_BALL.get())).build(consumer, "cooked_beef_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.FIRE_CLAY_BALL.get())).build(consumer, "cooked_beef_from_" + "campfire_cooking");
 
 
     }

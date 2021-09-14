@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_pegmatite"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_pegmatite_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_pegmatite_vertical_offset"
     }
   }
 }

@@ -130,9 +130,7 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 if (config.state.getBlock() instanceof RankineOreBlock) {
                                                     if (WorldgenUtils.ORE_TEXTURES.contains(rs.toString())) {
-                                                        if (rs.toString().equals("minecraft:stone")) {
-                                                            worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(b)), 19);
-                                                        }
+                                                        worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(b)), 19);
                                                     } else {
                                                         worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 19);
                                                     }

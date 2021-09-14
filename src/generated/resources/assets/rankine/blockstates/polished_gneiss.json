@@ -1,7 +1,13 @@
 {
   "variants": {
-    "": {
+    "polish_type=normal": {
       "model": "rankine:block/polished_gneiss"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_gneiss_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_gneiss_vertical_offset"
     }
   }
 }

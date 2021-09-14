@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
@@ -137,7 +138,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         verticalSlabBlock(RankineBlocks.ROMAN_CONCRETE_VERTICAL_SLAB.get());
         stairsBlock(RankineBlocks.ROMAN_CONCRETE_STAIRS.get());
         wallBlock(RankineBlocks.ROMAN_CONCRETE_WALL.get());
-        simpleBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE.get());
+        fancyPolishedBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE.get());
         slabBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get());
         verticalSlabBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB.get());
         stairsBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get());
@@ -338,8 +339,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
         //STONES
-        for (Block blk : Stream.of(RankineLists.STONE, RankineLists.POLISHED_STONE).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE).flatMap(Collection::stream).collect(Collectors.toList())) {
             simpleBlock(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.POLISHED_STONE).flatMap(Collection::stream).collect(Collectors.toList())) {
+            fancyPolishedBlock(blk);
         }
         for (Block blk : Stream.of(RankineLists.STONE_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             fancyBricksBlock(blk);
@@ -670,7 +674,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public ModelBuilder<BlockModelBuilder> rankineOre(String name, String mod, String background, String overlay) {
-        if (RankineLists.STONESSS.contains(background)) {
+        if (WorldgenUtils.ORE_TEXTURES.contains(background)) {
             return models().withExistingParent(name, modLoc("block/template_rankine_ore")).texture("background", mod+":block/"+background).texture("overlay", "block/"+overlay);
         } else {
             return models().withExistingParent(name, modLoc("block/template_rankine_ore")).texture("background", mod+":block/"+background).texture("overlay", "block/"+overlay);
@@ -888,13 +892,53 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         });
     }
 
+
+    public void fancyPolishedBlock(Block block) {
+        String name = block.getRegistryName().getPath();
+        ResourceLocation polished = modLoc("block/"+name);
+        getVariantBuilder(block)
+                .partialState().with(RankinePolishedStoneBlock.POLISH_TYPE, PolishedStonesBuildingStates.NORMAL)
+                .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_all")).texture("all", polished)).addModel()
+                .partialState().with(RankinePolishedStoneBlock.POLISH_TYPE, PolishedStonesBuildingStates.OFFSET)
+                .modelForState().modelFile(models().withExistingParent(name+"_offset", mcLoc("block/block"))
+                    .texture("particle", polished)
+                    .texture("all", polished)
+                    .element().from(0.0f,0.0f,0.0f).to(16.0f,8.0f,16.0f)
+                    .face(Direction.NORTH).uvs(0,0,16,8).texture("#all").cullface(Direction.NORTH).end()
+                    .face(Direction.EAST).uvs(0,0,16,8).texture("#all").cullface(Direction.EAST).end()
+                    .face(Direction.SOUTH).uvs(0,0,16,8).texture("#all").cullface(Direction.SOUTH).end()
+                    .face(Direction.WEST).uvs(0,0,16,8).texture("#all").cullface(Direction.WEST).end()
+                    .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
+                    .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
+                    .end()
+                    .element().from(0.0f,8.0f,0.0f).to(16.0f,16.0f,16.0f)
+                    .face(Direction.NORTH).uvs(0,8,16,16).texture("#all").cullface(Direction.NORTH).end()
+                    .face(Direction.EAST).uvs(0,8,16,16).texture("#all").cullface(Direction.EAST).end()
+                    .face(Direction.SOUTH).uvs(0,8,16,16).texture("#all").cullface(Direction.SOUTH).end()
+                    .face(Direction.WEST).uvs(0,8,16,16).texture("#all").cullface(Direction.WEST).end()
+                    .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
+                    .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
+                    .end()).addModel()
+                .partialState().with(RankinePolishedStoneBlock.POLISH_TYPE, PolishedStonesBuildingStates.VERTICAL_OFFSET)
+                .modelForState().modelFile(models().withExistingParent(name+"_vertical_offset", mcLoc("block/block"))
+                        .texture("particle", polished)
+                        .texture("all", polished)
+                        .element().from(0.0f,0.0f,0.0f).to(16.0f,16.0f,16.0f)
+                        .face(Direction.NORTH).uvs(0,8,16,16).texture("#all").cullface(Direction.NORTH).end()
+                        .face(Direction.EAST).uvs(0,8,16,16).texture("#all").cullface(Direction.EAST).end()
+                        .face(Direction.SOUTH).uvs(0,8,16,16).texture("#all").cullface(Direction.SOUTH).end()
+                        .face(Direction.WEST).uvs(0,8,16,16).texture("#all").cullface(Direction.WEST).end()
+                        .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
+                        .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
+                        .end()).addModel();
+    }
     public void fancyBricksBlock(Block block) {
         String name = block.getRegistryName().getPath();
         ResourceLocation large = modLoc("block/"+name);
         getVariantBuilder(block)
-                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.LARGE)
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksBuildingStates.LARGE)
                 .modelForState().modelFile(models().withExistingParent(name, mcLoc("block/cube_all")).texture("all", large)).addModel()
-                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksStates.VERTICAL_LARGE)
+                .partialState().with(RankineStoneBricksBlock.BRICK_TYPE, StoneBricksBuildingStates.VERTICAL_LARGE)
                 .modelForState().modelFile(models().withExistingParent(name+"_vertical", modLoc("block/template_rotation")).texture("all", large)).addModel();
     }
     public void fancyPlanksBlock(Block block) {

@@ -1,6 +1,6 @@
 {
   "name": "Rankine Journal",
-  "landing_text": "A collection of the discoveries to be made, mechanics to utilize, and blocks to build with. For additional information see JEI, the advancements tab, our $(https://www.curseforge.com/minecraft/mc-mods/project-rankine)CurseForge$() page or our $(https://discord.gg/ABTUgUR6)Discord$().",
+  "landing_text": "Welcome to the world of Project Rankine. We understand the new environment may be a bit confusing. Please enjoy the literature present in this Journal for further explanation of topics.",
   "version": 10,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",

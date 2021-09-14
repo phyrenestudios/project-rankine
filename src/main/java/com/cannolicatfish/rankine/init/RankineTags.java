@@ -42,6 +42,8 @@ public final class RankineTags {
 
         //FORGE
         public static final ITag.INamedTag<Block> CLAY = forge("clay");
+        public static final ITag.INamedTag<Block> GRASS = forge("grass");
+        public static final ITag.INamedTag<Block> PATHS = forge("paths");
         public static final ITag.INamedTag<Block> HARDENED_GLASS = forge("hardened_glass");
         public static final ITag.INamedTag<Block> TUFF = forge("tuff");
         public static final ITag.INamedTag<Block> TERRACOTTA = forge("terracotta");
@@ -100,6 +102,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> STONES_SLATE = forge("stones/slate");
         public static final ITag.INamedTag<Block> STONES_SKARN = forge("stones/skarn");
         public static final ITag.INamedTag<Block> STONES_MARIPOSITE = forge("stones/mariposite");
+        public static final ITag.INamedTag<Block> STONES_QUARTZITE = forge("stones/quartzite");
         public static final ITag.INamedTag<Block> STONES_LIMESTONE = forge("stones/limestone");
         public static final ITag.INamedTag<Block> STONES_DOLOMITE = forge("stones/dolomite");
         public static final ITag.INamedTag<Block> STONES_CHALK = forge("stones/chalk");
@@ -311,7 +314,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> CLAY = forgeItem("clay");
         public static final ITag.INamedTag<Item> DIRT = forgeItem("dirt");
         public static final ITag.INamedTag<Item> GRASS = forgeItem("grass");
-        public static final ITag.INamedTag<Item> GRAVEL = forgeItem("gravel");
+        public static final ITag.INamedTag<Item> PATHS = forgeItem("paths");
         public static final ITag.INamedTag<Item> HARDENED_GLASS = forgeItem("hardened_glass");
         public static final ITag.INamedTag<Item> TUFF = forgeItem("tuff");
         public static final ITag.INamedTag<Item> TERRACOTTA = forgeItem("terracotta");
@@ -321,6 +324,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> MINERAL_WOOL = forgeItem("mineral_wool");
         public static final ITag.INamedTag<Item> SHEETMETAL = forgeItem("sheetmetal");
         public static final ITag.INamedTag<Item> SHEETMETAL_VERTICAL_SALBS = forgeItem("sheetmetal_vertical_slabs");
+        public static final ITag.INamedTag<Item> FENCE_GATES = forgeItem("fence_gates");
 
         public static final ITag.INamedTag<Item> BRICKS = forgeItem("bricks");
         public static final ITag.INamedTag<Item> BRICKS_SLABS = forgeItem("bricks_slabs");
@@ -368,6 +372,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> STONES_SLATE = forgeItem("stones/slate");
         public static final ITag.INamedTag<Item> STONES_SKARN = forgeItem("stones/skarn");
         public static final ITag.INamedTag<Item> STONES_MARIPOSITE = forgeItem("stones/mariposite");
+        public static final ITag.INamedTag<Item> STONES_QUARTZITE = forgeItem("stones/quartzite");
         public static final ITag.INamedTag<Item> STONES_LIMESTONE = forgeItem("stones/limestone");
         public static final ITag.INamedTag<Item> STONES_DOLOMITE = forgeItem("stones/dolomite");
         public static final ITag.INamedTag<Item> STONES_CHALK = forgeItem("stones/chalk");

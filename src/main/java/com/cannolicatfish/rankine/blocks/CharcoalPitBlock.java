@@ -132,7 +132,7 @@ public class CharcoalPitBlock extends Block {
                     List<BlockPos> Sides = Arrays.asList(blockpos.down(), blockpos.north(), blockpos.east(), blockpos.west(), blockpos.south(), blockpos.up());
                     boolean valid = true;
                     for (BlockPos Side : Sides) {
-                        if (!worldIn.getBlockState(Side).isOpaqueCube(worldIn, Side)) {
+                        if (!worldIn.getBlockState(Side).isOpaqueCube(worldIn, Side) && !worldIn.getBlockState(Side).matchesBlock(RankineBlocks.CHARCOAL_BLOCK.get())) {
                             valid = false;
                             break;
                         }
@@ -276,6 +276,7 @@ public class CharcoalPitBlock extends Block {
             Random random = worldIn.getRandom();
             BasicParticleType basicparticletype = ParticleTypes.CAMPFIRE_COSY_SMOKE;
             worldIn.addOptionalParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+            worldIn.addOptionalParticle(basicparticletype, true, (double)pos.getX() + 0.5D + (random.nextInt(3)-1) * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + (random.nextInt(3)-1) * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
         }
     }
 
