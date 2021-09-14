@@ -1,6 +1,22 @@
 {
   "replace": false,
   "values": [
-    "rankine:bronze_crowbar"
+    "rankine:pewter_crowbar",
+    "rankine:alloy_crowbar",
+    "rankine:bronze_crowbar",
+    "rankine:invar_crowbar",
+    "rankine:steel_crowbar",
+    "rankine:stainless_steel_crowbar",
+    "rankine:nickel_superalloy_crowbar",
+    "rankine:cobalt_superalloy_crowbar",
+    "rankine:tungsten_heavy_alloy_crowbar",
+    "rankine:rose_gold_crowbar",
+    "rankine:blue_gold_crowbar",
+    "rankine:green_gold_crowbar",
+    "rankine:white_gold_crowbar",
+    "rankine:purple_gold_crowbar",
+    "rankine:black_gold_crowbar",
+    "rankine:amalgam_crowbar",
+    "rankine:ender_amalgam_crowbar"
   ]
 }

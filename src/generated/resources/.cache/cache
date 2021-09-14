@@ -498,8 +498,8 @@ e53fa8e4801b2fd3c9c26c3bae3bd1a8f9720632 assets/rankine/blockstates/elderberry_b
 e28cbc85dc59ebaa33e85a9520401b68cf4b11b7 assets/rankine/blockstates/emerald_ore.json
 3ada5a59a6c2da3c07c0a111a86371be6572a136 assets/rankine/blockstates/end_grass_path.json
 29df534e256df7cabc0e166c3f9a5bea311b7e26 assets/rankine/blockstates/end_soil.json
-c10896f49505e0498544d6951397999239b677ef assets/rankine/blockstates/endositum_block.json
 50676d16d4f2111b9f3e29dd5dbdaf01dce24a7b assets/rankine/blockstates/ender_shiro.json
+c10896f49505e0498544d6951397999239b677ef assets/rankine/blockstates/endositum_block.json
 64b113aa5961141e279c001a293d381eb8d2ecd5 assets/rankine/blockstates/enstatite.json
 018c411d34a343242eb680c66af1fc9e4eb69722 assets/rankine/blockstates/enstatite_bricks.json
 db48bdc318ec136134119020261da437ab75bc9b assets/rankine/blockstates/erbium_block.json
@@ -1854,7 +1854,7 @@ fda0a885e4f1ef87dc5649b2f419aa5551afcf9d assets/rankine/blockstates/yttrium_mona
 a5289e21131e551e3442425af6e62f320ea60cec assets/rankine/blockstates/zinc_block.json
 a9d375cc05d25082ea223736e13d931a5d9628c5 assets/rankine/blockstates/zircon_block.json
 dd26ec10c63213b2e8ea7b0af933d8af136fe741 assets/rankine/blockstates/zirconium_block.json
-39a131b72f186267c89b41514641a09fdbaab0ef assets/rankine/lang/en_us.json
+cb1dc4984ff683ab1a4245c7b851d4370d712c26 assets/rankine/lang/en_us.json
 273e81a70156479b75f6c0952957e37d40bffdf1 assets/rankine/models/block/acanthite_block.json
 8a5ecbb401c0bb4be65e592445f9ddb2ef4f813c assets/rankine/models/block/acanthite_ore0.json
 36074ae444d6ad9753f38a3e9d1ffff254f8977d assets/rankine/models/block/acanthite_ore1.json
@@ -4118,8 +4118,8 @@ ba794f73b60c0f84a225bc69fa738e541c92342e assets/rankine/models/block/emerald_ore
 98030740ca08f71a172a2b5ce8d5c4c198a366fc assets/rankine/models/block/emerald_ore9.json
 b6c4dd73bb5adc8ad5589f73342a19d19db1dd63 assets/rankine/models/block/end_grass_path.json
 4f0a0156788534dece0519ae284a26228a99c083 assets/rankine/models/block/end_soil.json
-ece115142aa30c7513a72e904725d542d6d9cad7 assets/rankine/models/block/endositum_block.json
 8df5f6078d0d5de28e2dfc33df70c8e2645ab85c assets/rankine/models/block/ender_shiro.json
+ece115142aa30c7513a72e904725d542d6d9cad7 assets/rankine/models/block/endositum_block.json
 50b5ba444d37ffe907d79eb2cc652121323ee75e assets/rankine/models/block/enstatite.json
 02b0177d56bfedfd89d923fb8dce565c202b8a5c assets/rankine/models/block/enstatite_bricks.json
 5a7d0db800a877878e1c7ab163cee26e96688596 assets/rankine/models/block/erbium_block.json
@@ -10436,10 +10436,10 @@ ed82a4c74fc2418eb6069c211ca99fbc82a81b07 assets/rankine/models/item/ender_amalga
 9d202094d7d39fd3b98d9c76fa14476fe56ffa71 assets/rankine/models/item/ender_amalgam_shovel.json
 314c4475ba40edd40044c0dbb2a985f7c87560cc assets/rankine/models/item/ender_amalgam_spear.json
 922e66dd33b7905fbcd56c7d1c449ff508f44942 assets/rankine/models/item/ender_amalgam_sword.json
+705ded74823aa9d8cf4ea138d8f35d625834771c assets/rankine/models/item/ender_shiro.json
 45c40d6d1537d370c9aa0f3e1585c12841a328f3 assets/rankine/models/item/endositum_block.json
 9bd671104bdc2b06430121d13dde647927c1f467 assets/rankine/models/item/endositum_ingot.json
 01996fe52296fd8f58f976ed2d7c9dc7825dcf5c assets/rankine/models/item/endositum_nugget.json
-705ded74823aa9d8cf4ea138d8f35d625834771c assets/rankine/models/item/ender_shiro.json
 13ba981c96368c535247b17e0463abe4d951598f assets/rankine/models/item/enstatite.json
 b8b588af4d70669492ce11ea887e62ec4e2d05a8 assets/rankine/models/item/enstatite_bricks.json
 a2cf86e9f3c8cd3e924ea4249f91e6c90bced6cd assets/rankine/models/item/erbium_block.json
@@ -12372,7 +12372,7 @@ e4fe9777562bc71e8176cc4ff19aee81071df82d data/forge/tags/blocks/vertical_slabs.j
 47e253acdcb9548f1371ff8f188b92b7d7e4aac5 data/forge/tags/items/amalgam_tools.json
 8d7c6f315cb534ef056de0566f4c780648f12883 data/forge/tags/items/ash.json
 5645cbd85e0a8288e30d38e882a592bc0afafcf2 data/forge/tags/items/astatine.json
-2b7aeb05c377ecb24b99d7643598541e7db7518c data/forge/tags/items/axes.json
+3271551d3ed128d9055945999422f8c0fab1f7df data/forge/tags/items/axes.json
 fe11b19d01bcd9db1feb13ac07f97c29492f73bb data/forge/tags/items/berries.json
 41f5cd20ad29c3628299a76c8392285b097d11c9 data/forge/tags/items/berries/blackberry.json
 ac66dad167f8afdd114cb1ffbe7f38af65391889 data/forge/tags/items/berries/blueberry.json
@@ -12401,7 +12401,7 @@ deef461c802f98957a7ca3567ff6c5912fa90ac2 data/forge/tags/items/clay_balls.json
 8fda5d4cdf8e21f817aed61ea1803dc3157e92dc data/forge/tags/items/coke.json
 4cee49f1aece955ea1b12c01bbcb3a4ad5e4b9ba data/forge/tags/items/concrete.json
 b6a0cff6fa61de02cbd1c53b88fb0881ec92253e data/forge/tags/items/concrete_powder.json
-589018d2208e1413caed9809b40905c2e03bdbdb data/forge/tags/items/crowbars.json
+3edcb8a933b73fd492e86a44a9a5034f06e01af6 data/forge/tags/items/crowbars.json
 dc3a75e66a4ba0f9ffb484b32c7991762859994c data/forge/tags/items/diamond_tools.json
 4a8d1b068a3649f988688ace5f49041d58f0bc92 data/forge/tags/items/dirt.json
 c652cc00b5d241af9d0e4881d46e6c0248f101e6 data/forge/tags/items/dough.json
@@ -12417,13 +12417,13 @@ faed5640dd9263fc1c788d91b1d6d9cea42339b6 data/forge/tags/items/graphite.json
 d249306c26291351d35be49ea9541c334131aa54 data/forge/tags/items/grass.json
 a4c86ac88602764f1a00b84da2b071ff63af64c0 data/forge/tags/items/gravel.json
 abaa806d1d7b0aa25da69bc44908b23c09ad917b data/forge/tags/items/green_gold_tools.json
-628b7c20ecd6c15e3560462e4b89e34668877834 data/forge/tags/items/hammers.json
+f0cf6e594ae7165af23dec8aecd3fdacc10e2e21 data/forge/tags/items/hammers.json
 b5428c6f2b04ceaa2a72d91682ecb89853b6fadd data/forge/tags/items/hardened_glass.json
-c4913337674079df26cd3520ef9af8420e569002 data/forge/tags/items/hoes.json
+2acdb931e2f3a2022122ac2f8e99ff9b3a0ca902 data/forge/tags/items/hoes.json
 caef3790487692a0eb1fc37bc61b6fad10297fee data/forge/tags/items/igneous_stones.json
 a8f4d2b862ede8524a9f6a785bbd356b729643a8 data/forge/tags/items/invar_tools.json
 ffb64b19c26face6b17741179f6b6e9d9e789ce1 data/forge/tags/items/iron_tools.json
-25135bc0ad5a32769c7de5dfc00601e6c6ccc622 data/forge/tags/items/knives.json
+8626d351bccad95817c3a9048b64da7694e0a7b6 data/forge/tags/items/knives.json
 be457b315770d5b765b674f89953d2dd61df74d6 data/forge/tags/items/metamorphic_stones.json
 47418e8beafc98fbd5e0e30e8a76d05d50dc5993 data/forge/tags/items/mineral_wool.json
 634e69a87eb1aa8e2f8aa48f7f8829e7eb2b3c8c data/forge/tags/items/netherite_tools.json
@@ -12431,7 +12431,7 @@ be457b315770d5b765b674f89953d2dd61df74d6 data/forge/tags/items/metamorphic_stone
 20c26d23a48c858afaec3f188342f80e95978a07 data/forge/tags/items/paths.json
 b39f814aacbdd665221f8ac95996be4140d1a88c data/forge/tags/items/pewter_tools.json
 8de7d0078cfe5b8d948d90366790032b1e2fada8 data/forge/tags/items/phosphorus.json
-123c30729dd9a0c5fe900833af3176081be76601 data/forge/tags/items/pickaxes.json
+350d5673f9d48097191990067a64a5952275b89d data/forge/tags/items/pickaxes.json
 99f26add2d0184de8fe02218e5ac2a2c039ae343 data/forge/tags/items/pineapple.json
 a11077e624ea14a605399662975f874d86deebf4 data/forge/tags/items/polished_stone.json
 87d957fa4e386b42daab73dbb5c5990a94f88bb1 data/forge/tags/items/polished_stone_slabs.json
@@ -12477,10 +12477,10 @@ bff41fe2a907a5da44ebab24f399231c83476d0a data/forge/tags/items/sheetmetals/tin.j
 a130af26a09469db4620e89088b122485a4af5d8 data/forge/tags/items/sheetmetals/titanium.json
 2b391d79fe9ff745d96434b256f01333f5b0609e data/forge/tags/items/sheetmetals/tungsten.json
 843b3c60c51aba0ca718bce687a74dd523934d47 data/forge/tags/items/shields.json
-7731e3065e9bffc2cfc26036c1e61af0712e9e20 data/forge/tags/items/shovels.json
+99cdebf0a7024bd90b0827a9423a0a38f4b5da35 data/forge/tags/items/shovels.json
 f4c9953878b33a3b83d1c93becb055c795d1a781 data/forge/tags/items/silicon.json
 f6d4677990038051a929eaad322b640e3a00f97d data/forge/tags/items/slag.json
-6c52d662ceda1a9bcf5b34cfe01c8c536be99fb3 data/forge/tags/items/spears.json
+bb399b8faf78c0b87eb495514e4a8ecc636c970e data/forge/tags/items/spears.json
 f359142797f17d407356cfe65d77f1a56b100836 data/forge/tags/items/stainless_steel_tools.json
 05f3e0291f33d8aa5e0cd2b3df85abe3ab9fe6e7 data/forge/tags/items/steel_tools.json
 fbc96d90254a5364bca3af39595a40c38970ad15 data/forge/tags/items/stone_bricks_slabs.json
@@ -12529,7 +12529,7 @@ b2b697f64f9705110504cc25bb5ffd2a756d83d8 data/forge/tags/items/stones/serpetinit
 f1343a30aafe719a3a305db28044899408458c6b data/forge/tags/items/stones/slate.json
 51bb0f9c36d74035f9d8e4d1a9c2f7380460f1bc data/forge/tags/items/string.json
 cfea7895422ff2ec35a85f17ec4e8ac71b6b499f data/forge/tags/items/sulfur.json
-9ffe1b3481250e39ade7265849cfd6fc43e045ab data/forge/tags/items/swords.json
+13e034645b2d5bcdab126ddd8684b9a074f38c72 data/forge/tags/items/swords.json
 ee2a552cc82c93b88fdb774a760e67ce58cc4de2 data/forge/tags/items/terracotta.json
 ba45a3c65a66ee5aa39f0e511496b86f9e3a0c01 data/forge/tags/items/trona.json
 d318a0406f99815d6cf8463ecf63c5c11ca3290c data/forge/tags/items/tuff.json
@@ -16493,8 +16493,8 @@ fe7d6466a97d9dc3e48d510a26c96b37d3d10bfc data/rankine/loot_tables/blocks/einstei
 b4fd74ad0e97426495f4e9b2142b6034e6c237a7 data/rankine/loot_tables/blocks/emerald_geode.json
 92232254346db91f016ecb3eefff219e9e73766d data/rankine/loot_tables/blocks/emerald_ore.json
 49726dd9ecbbe89dac89816e8f6cd2c3244f8741 data/rankine/loot_tables/blocks/end_soil.json
-8eb67e465e42ccd746dc41f153d23b015411d12f data/rankine/loot_tables/blocks/endositum_block.json
 6373ac66f97e72c24231a9d77ee7cd702b8f332d data/rankine/loot_tables/blocks/ender_shiro.json
+8eb67e465e42ccd746dc41f153d23b015411d12f data/rankine/loot_tables/blocks/endositum_block.json
 0e9d2545e97b163f8c48b8040e1eda1ef25f9e01 data/rankine/loot_tables/blocks/enstatite.json
 cfc1c1a5312d0f7858b575dbf65bf413a5d4aa24 data/rankine/loot_tables/blocks/enstatite_bricks.json
 f953a1d0afdd55e0d7e7b568b095b2675c83de65 data/rankine/loot_tables/blocks/erbium_block.json

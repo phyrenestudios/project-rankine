@@ -3,6 +3,21 @@
   "values": [
     "rankine:flint_knife",
     "rankine:pewter_knife",
-    "rankine:bronze_knife"
+    "rankine:alloy_knife",
+    "rankine:bronze_knife",
+    "rankine:invar_knife",
+    "rankine:steel_knife",
+    "rankine:stainless_steel_knife",
+    "rankine:nickel_superalloy_knife",
+    "rankine:cobalt_superalloy_knife",
+    "rankine:tungsten_heavy_alloy_knife",
+    "rankine:rose_gold_knife",
+    "rankine:blue_gold_knife",
+    "rankine:green_gold_knife",
+    "rankine:white_gold_knife",
+    "rankine:purple_gold_knife",
+    "rankine:black_gold_knife",
+    "rankine:amalgam_knife",
+    "rankine:ender_amalgam_knife"
   ]
 }
