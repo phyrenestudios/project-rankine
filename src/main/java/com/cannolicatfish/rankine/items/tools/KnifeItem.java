@@ -59,7 +59,7 @@ public class KnifeItem extends SwordItem {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-        if (entityLiving instanceof PlayerEntity) {
+        if (entityLiving instanceof PlayerEntity && ((PlayerEntity)entityLiving).getHeldItemOffhand().getItem() == this) {
             int i = this.getUseDuration(stack) - timeLeft;
             if (i < 0) return;
             ((PlayerEntity) entityLiving).getCooldownTracker().setCooldown(this, 10);
@@ -69,8 +69,12 @@ public class KnifeItem extends SwordItem {
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        playerIn.setActiveHand(handIn);
-        return ActionResult.resultConsume(itemstack);
+        if (handIn == Hand.OFF_HAND) {
+            playerIn.setActiveHand(handIn);
+            return ActionResult.resultConsume(itemstack);
+        } else {
+            return ActionResult.resultPass(playerIn.getHeldItem(handIn));
+        }
     }
 
     @Override
@@ -91,6 +95,28 @@ public class KnifeItem extends SwordItem {
             }
 
         }
+    }
+
+    @Override
+    public net.minecraft.util.ActionResultType itemInteractionForEntity(ItemStack stack, net.minecraft.entity.player.PlayerEntity playerIn, LivingEntity entity, net.minecraft.util.Hand hand) {
+        if (entity.world.isRemote) return net.minecraft.util.ActionResultType.PASS;
+        if (entity instanceof net.minecraftforge.common.IForgeShearable) {
+            net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable)entity;
+            BlockPos pos = new BlockPos(entity.getPosX(), entity.getPosY(), entity.getPosZ());
+            if (target.isShearable(stack, entity.world, pos)) {
+                java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.world, pos,
+                        net.minecraft.enchantment.EnchantmentHelper.getEnchantmentLevel(net.minecraft.enchantment.Enchantments.FORTUNE, stack));
+                java.util.Random rand = new java.util.Random();
+                drops.forEach(d -> {
+                    net.minecraft.entity.item.ItemEntity ent = entity.entityDropItem(d, 1.0F);
+                    ent.setMotion(ent.getMotion().add((double)((rand.nextFloat() - rand.nextFloat()) * 0.1F), (double)(rand.nextFloat() * 0.05F), (double)((rand.nextFloat() - rand.nextFloat()) * 0.1F)));
+                });
+                entity.attackEntityFrom(DamageSource.GENERIC,2);
+                stack.damageItem(1, entity, e -> e.sendBreakAnimation(hand));
+            }
+            return net.minecraft.util.ActionResultType.SUCCESS;
+        }
+        return net.minecraft.util.ActionResultType.PASS;
     }
 
     @Override

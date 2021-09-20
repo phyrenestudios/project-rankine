@@ -1,0 +1,39 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:pyrite_ore"
+  },
+  "output1": {
+    "item": "rankine:sulfur",
+    "chance": 0.5,
+    "additional": 0.5
+  },
+  "output2": {
+    "item": "rankine:nickel_nugget",
+    "count": 6,
+    "chance": 0.3,
+    "additional": 0.2
+  },
+  "output3": {
+    "item": "minecraft:iron_nugget",
+    "count": 6,
+    "chance": 1
+  },
+  "output4": {
+    "item": "rankine:arsenic_nugget",
+    "count": 3,
+    "chance": 0.2,
+    "additional": 0.1
+  },
+  "output5": {
+    "item": "minecraft:gold_nugget",
+    "count": 3,
+    "chance": 0.1,
+    "additional": 0.1
+  },
+  "output6": {
+    "item": "rankine:cobalt_nugget",
+    "count": 3,
+    "chance": 0.1
+  }
+}

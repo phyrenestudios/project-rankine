@@ -51,13 +51,13 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     private final int minEnchantability;
     private final int enchantInterval;
     private final int maxEnchantLevelIn;
-    private final String localName;
+    private final boolean localName;
 
     public static final AlloyingRecipe.Serializer SERIALIZER = new AlloyingRecipe.Serializer();
 
     public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
                           ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
-                          String nameIn, int colorIn) {
+                          boolean nameIn, int colorIn) {
         this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
@@ -302,8 +302,14 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     }
 
     public String getLocalName() {
-        return localName;
+        if (!this.localName) {
+            return "";
+        } else {
+            String[] s = this.id.getPath().split("/");
+            return "item." + this.id.getNamespace() + "." + s[s.length-1];
+        }
     }
+
 
     public int getColor() {
         return color;
@@ -436,12 +442,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             } else {
                 c = 16777215;
             }
-            String n;
-            if (json.has("name")) {
-                n = json.get("name").getAsString();
-            } else {
-                n = "";
-            }
+            boolean n = json.has("genName") && json.get("genName").getAsBoolean();
 
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
@@ -544,7 +545,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 bonusStats.add(buffer.readFloat());
             }
 
-            String n = buffer.readString();
+            boolean n = buffer.readBoolean();
             int c = buffer.readInt();
 
             int size = buffer.readInt();
@@ -611,7 +612,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 buffer.writeFloat(recipe.getBonusValues().get(k));
             }
 
-            buffer.writeString(recipe.getLocalName());
+            buffer.writeBoolean(recipe.localName);
             buffer.writeInt(recipe.getColor());
 
             int size = recipe.getEnchantments().size();

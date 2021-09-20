@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "genName": true,
   "pattern": [
     "   ",
     "# #",

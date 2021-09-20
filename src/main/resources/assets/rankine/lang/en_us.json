@@ -650,6 +650,8 @@
   "element.rankine:elements/copper.desc1": "Commonly used in electrical components and early alloys.",
   "element.rankine:elements/copper.desc2": "Commonly used in electrical components and early alloys.",
 
+  "item.rankine.alloy_gear_bronze": "Bronze Gear",
+
   "block.rankine.template_table": "Alloy Template Table",
   "block.rankine.alloy_furnace": "Alloy Furnace",
   "block.rankine.induction_furnace": "Induction Furnace",

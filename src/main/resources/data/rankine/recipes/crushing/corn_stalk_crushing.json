@@ -1,0 +1,11 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:corn_stalk"
+  },
+  "output1": {
+    "item": "rankine:biomass",
+    "count": 1,
+    "chance": 1.0
+  }
+}

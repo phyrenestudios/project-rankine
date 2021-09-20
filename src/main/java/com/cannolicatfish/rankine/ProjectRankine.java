@@ -121,6 +121,7 @@ public class ProjectRankine {
         DeferredWorkQueue.runLater(() -> {
             RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
+            RankineRecipes.registerDispenserBehaviors();
             RankineFeatures.registerConfiguredFeatures();
             //WoodType.register(RankineBlocks.CEDAR);
         });

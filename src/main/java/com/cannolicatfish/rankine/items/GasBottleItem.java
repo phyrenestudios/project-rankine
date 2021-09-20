@@ -30,7 +30,7 @@ public class GasBottleItem extends Item {
         BlockPos pos = context.getPos();
         Direction opp = context.getFace();
         if (context.getPlayer() != null) {
-            worldIn.setBlockState(pos.offset(opp), this.getGas().getDefaultState());
+            worldIn.setBlockState(pos.offset(opp), this.getGas().getDefaultState(),3);
             context.getItem().shrink(1);
             if (!context.getPlayer().abilities.isCreativeMode) {
                 context.getPlayer().inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));

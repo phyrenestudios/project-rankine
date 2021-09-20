@@ -13,13 +13,13 @@ import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import org.apache.commons.lang3.ArrayUtils;
 
+
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingTableContainer> {
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/mtb.png");
@@ -85,8 +85,9 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
         ElementEquation eq = recipe.getStatEquation(stat.ordinal());
         ElementEquation.FormulaType[] eqTypes = eq.getFormulaTypes();
 
-        int[] bounds = eq.getBreaks();
-        bounds = ArrayUtils.insert(0,bounds,0);
+        int[] breaks = eq.getBreaks();
+        int[] bounds = Arrays.copyOf(new int[]{0},breaks.length+1);
+        System.arraycopy(breaks,0,bounds,1,breaks.length);
         List<Float> dur = new ArrayList<>();
         for (int x : bounds) {
             dur.add(recipe.getStat(stat.ordinal(),x));
