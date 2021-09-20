@@ -52,7 +52,7 @@ public class AlloyItem extends Item implements IAlloyItem {
     @Override
     public ITextComponent getDisplayName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new StringTextComponent(IAlloyItem.getNameOverride(stack));
+            return new TranslationTextComponent(IAlloyItem.getNameOverride(stack));
         }
         return super.getDisplayName(stack);
     }

@@ -79,7 +79,7 @@ public class RankineClientEventHandler {
     public static void renderOverlay(RenderGameOverlayEvent event) {
         if (Minecraft.getInstance().player != null && event.getType() == RenderGameOverlayEvent.ElementType.HELMET) {
             PlayerEntity player = Minecraft.getInstance().player;
-            ItemStack stack = player.getHeldItemMainhand().getItem() instanceof KnifeItem ? player.getHeldItemMainhand() : player.getHeldItemOffhand().getItem() instanceof KnifeItem ? player.getHeldItemOffhand() : ItemStack.EMPTY;
+            ItemStack stack = player.getHeldItemOffhand().getItem() instanceof KnifeItem ? player.getHeldItemOffhand() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
                 int i = stack.getItem().getUseDuration(stack) - player.getItemInUseCount();
                 if (i < (10 + EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.PREPARATION,stack))) {

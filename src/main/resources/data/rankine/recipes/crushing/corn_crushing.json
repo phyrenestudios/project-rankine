@@ -1,0 +1,11 @@
+{
+  "type": "rankine:crushing",
+  "input": {
+    "item": "rankine:corn_ear"
+  },
+  "output1": {
+    "item": "rankine:corn_grain",
+    "count": 1,
+    "chance": 1.0
+  }
+}

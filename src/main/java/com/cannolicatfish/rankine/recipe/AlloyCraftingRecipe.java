@@ -50,10 +50,10 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     private final String inheritRecipe;
     public static final AlloyCraftingRecipe.Serializer SERIALIZER = new AlloyCraftingRecipe.Serializer();
     private final int color;
-    private final String localName;
+    private final boolean localName;
 
     public AlloyCraftingRecipe(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit,
-                               String inheritRecipeIn, String nameIn, int colorIn) {
+                               String inheritRecipeIn, boolean nameIn, int colorIn) {
         this.id = idIn;
         this.group = groupIn;
         this.recipeWidth = recipeWidthIn;
@@ -86,7 +86,13 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
     }
 
     public String getLocalName() {
-        return this.localName;
+        if (!this.localName) {
+            return "";
+        } else {
+            String[] s = this.id.getPath().split("/");
+            return "item." + this.id.getNamespace() + "." + s[s.length-1];
+        }
+
     }
 
     /**
@@ -199,19 +205,19 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
 
                     ItemStack stackInSlot = inv.getStackInSlot(i + j * inv.getWidth());
                     ResourceLocation rs = IAlloyItem.getAlloyRecipe(stackInSlot);
-                    System.out.println(stackInSlot + " has alloy recipe of " + rs);
+                    //System.out.println(stackInSlot + " has alloy recipe of " + rs);
                     if (!this.inheritRecipe.isEmpty()) {
                         if (rs != null && rs.toString().equals(this.inheritRecipe))
                         {
                             String comp = IAlloyItem.getAlloyComposition(stackInSlot);
                             if (workingComposition.isEmpty())
                             {
-                                System.out.println("Composition updated to " + comp);
+                                //System.out.println("Composition updated to " + comp);
                                 workingComposition = comp;
                             }
                             else if (!comp.equals(workingComposition))
                             {
-                                System.out.println("Not all compositions match!");
+                                //System.out.println("Not all compositions match!");
                                 return ItemStack.EMPTY;
                             }
                         }
@@ -221,20 +227,20 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                         String recipe = rs.toString();
                         if (workingComposition.isEmpty())
                         {
-                            System.out.println("Composition updated to " + comp);
+                            //System.out.println("Composition updated to " + comp);
                             workingComposition = comp;
                         }
                         else if (!comp.equals(workingComposition))
                         {
-                            System.out.println("Not all compositions match!");
+                            //System.out.println("Not all compositions match!");
                             return ItemStack.EMPTY;
                         }
 
                         if (workingRecipe.isEmpty()) {
-                            System.out.println("Recipe updated to " + recipe);
+                            //System.out.println("Recipe updated to " + recipe);
                             workingRecipe = recipe;
                         } else if (!recipe.equals(workingRecipe)) {
-                            System.out.println("Not all recipes match!");
+                            //System.out.println("Not all recipes match!");
                             return ItemStack.EMPTY;
                         }
                     }
@@ -242,7 +248,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 }
             }
             if (workingComposition.isEmpty()) {
-                System.out.println("No matching compositions for inheritRecipe " + workingRecipe);
+                //System.out.println("No matching compositions for inheritRecipe " + workingRecipe);
                 return ItemStack.EMPTY;
             } else {
                 IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null);
@@ -255,7 +261,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
         if (!this.getLocalName().isEmpty()) {
             res.getOrCreateTag().putString("nameOverride",this.getLocalName());
         }
-        System.out.println("RECIPE OUTPUT: " + res);
+        //System.out.println("RECIPE OUTPUT: " + res);
         return res;
     }
 
@@ -445,12 +451,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             } else {
                 c = 16777215;
             }
-            String n;
-            if (json.has("name")) {
-                n = json.get("name").getAsString();
-            } else {
-                n = "";
-            }
+            boolean n = json.has("genName") && json.get("genName").getAsBoolean();
             Map<String, Ingredient> map = AlloyCraftingRecipe.deserializeKey(JSONUtils.getJsonObject(json, "key"));
             String[] astring = AlloyCraftingRecipe.shrink(AlloyCraftingRecipe.patternFromJson(JSONUtils.getJsonArray(json, "pattern")));
             int i = astring[0].length();
@@ -475,7 +476,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             ItemStack itemstack = buffer.readItemStack();
             boolean in = buffer.readBoolean();
             String inR = buffer.readString();
-            String n = buffer.readString();
+            boolean n = buffer.readBoolean();
             int c = buffer.readInt();
             return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
@@ -492,7 +493,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
             buffer.writeItemStack(recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
             buffer.writeString(recipe.inheritRecipe);
-            buffer.writeString(recipe.localName);
+            buffer.writeBoolean(recipe.localName);
             buffer.writeInt(recipe.color);
         }
     }

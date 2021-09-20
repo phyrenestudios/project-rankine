@@ -4,31 +4,94 @@ import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
+import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.dispenser.IDispenseItemBehavior;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.World;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 
 import java.util.*;
 
 public class RankineRecipes {
 
+    private static final IDispenseItemBehavior gasDispenseBehavior = new DefaultDispenseItemBehavior() {
+        private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
+
+        /**
+         * Dispense the specified stack, play the dispense sound and spawn particles.
+         */
+        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+            Block dispensing = Blocks.AIR;
+            if (stack.getItem() instanceof GasBottleItem) {
+                GasBottleItem bucketitem = (GasBottleItem) stack.getItem();
+                dispensing = bucketitem.getGas();
+            }
+
+            BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+            World world = source.getWorld();
+            if (world.getBlockState(blockpos).isAir()) {
+                world.setBlockState(blockpos, dispensing.getDefaultState(),3);
+                return new ItemStack(Items.GLASS_BOTTLE);
+            } else {
+                return this.defaultBehaviour.dispense(source, stack);
+            }
+        }
+    };
+
+    private static final IDispenseItemBehavior bucketItemBehavior = new DefaultDispenseItemBehavior() {
+        private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
+
+        /**
+         * Dispense the specified stack, play the dispense sound and spawn particles.
+         */
+        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+            BucketItem bucketitem = (BucketItem)stack.getItem();
+            BlockPos blockpos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+            World world = source.getWorld();
+            if (bucketitem.tryPlaceContainedLiquid((PlayerEntity)null, world, blockpos, (BlockRayTraceResult)null)) {
+                bucketitem.onLiquidPlaced(world, stack, blockpos);
+                return new ItemStack(Items.BUCKET);
+            } else {
+                return this.defaultBehaviour.dispense(source, stack);
+            }
+        }
+    };
+
     public static void registerPotionRecipes() {
         BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(RankineItems.MERCURY_INGOT::get), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
         BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
 
+    }
+
+    public static void registerDispenserBehaviors() {
+        for (Item i : RankineLists.GAS_BOTTLES) {
+            DispenserBlock.registerDispenseBehavior(i,gasDispenseBehavior);
+        }
+        DispenserBlock.registerDispenseBehavior(RankineItems.JUGLONE_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.LIQUID_MERCURY_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.LATEX_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.RESIN_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.SAP_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.MAPLE_SAP_BUCKET.get(),bucketItemBehavior);
     }
 
     public static void registerPredicates() {

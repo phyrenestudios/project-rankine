@@ -988,7 +988,7 @@ public class RankineEventHandler {
 
             if (!persistent.contains(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
-                event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.instance.getBookStack(new ResourceLocation("rankine:rankine_journal")));
+                event.getPlayer().inventory.addItemStackToInventory(PatchouliAPI.get().getBookStack(new ResourceLocation("rankine:rankine_journal")));
             }
         }
     }
@@ -997,7 +997,7 @@ public class RankineEventHandler {
     public static void onParryEvent(LivingDamageEvent event) {
         if (event.getEntityLiving() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
-            ItemStack stack = player.getHeldItemMainhand().getItem() instanceof KnifeItem ? player.getHeldItemMainhand() : player.getHeldItemOffhand().getItem() instanceof KnifeItem ? player.getHeldItemOffhand() : ItemStack.EMPTY;
+            ItemStack stack = player.getHeldItemOffhand().getItem() instanceof KnifeItem ? player.getHeldItemOffhand() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
                 int i = stack.getItem().getUseDuration(stack) - player.getItemInUseCount();
                 if (i < (10 + EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.PREPARATION,stack))) {
@@ -1774,7 +1774,6 @@ public class RankineEventHandler {
         }
     }
 
-
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
@@ -1785,7 +1784,7 @@ public class RankineEventHandler {
         BlockState state = world.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
 
-        if (RankineTags.Items.KNIVES.contains(stack.getItem()) && direction != null) {
+        if (RankineTags.Items.KNIVES.contains(stack.getItem()) && direction != null && hand == Hand.MAIN_HAND) {
             Block target = state.getBlock();
             if ((target instanceof GrassySoilBlock || target.matchesBlock(Blocks.GRASS_BLOCK)) && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
@@ -1794,11 +1793,12 @@ public class RankineEventHandler {
                 } else {
                     world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 3);
                 }
+                player.swingArm(hand);
                 if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                     double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                     double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
                     double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                    ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(Items.GRASS, 1));
+                    ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1 + 0.5f, (double) pos.getZ() + d2, new ItemStack(Items.GRASS, 1));
                     itementity.setDefaultPickupDelay();
                     world.addEntity(itementity);
                 }
@@ -1808,6 +1808,7 @@ public class RankineEventHandler {
                     });
                 }
             } else if (target == RankineBlocks.AGED_CHEESE.get()) {
+                player.swingArm(hand);
                 if (state.get(CakeBlock.BITES) < 6) {
                     world.setBlockState(pos, state.with(CakeBlock.BITES, state.get(CakeBlock.BITES) + 1));
                     player.addItemStackToInventory(new ItemStack(RankineItems.CHEESE.get(), 1));
@@ -1821,6 +1822,7 @@ public class RankineEventHandler {
                 world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.7F, world.getRandom().nextFloat() * 0.4F + 0.5F);
 
             } else if (state.getBlock() == Blocks.CAKE) {
+                player.swingArm(hand);
                 if (state.get(CakeBlock.BITES) < 6) {
                     world.setBlockState(pos, state.with(CakeBlock.BITES, state.get(CakeBlock.BITES) + 1));
                     player.addItemStackToInventory(new ItemStack(RankineItems.CAKE_SLICE.get(), 1));
