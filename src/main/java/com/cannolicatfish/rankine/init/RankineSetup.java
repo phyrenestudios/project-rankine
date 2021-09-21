@@ -29,4 +29,8 @@ public class RankineSetup {
         @Override
         public ItemStack createIcon() { return new ItemStack(RankineItems.NIOBIUM_INGOT.get()); }
     };
+    public ItemGroup rankineComponents = new ItemGroup("rankine_components") {
+        @Override
+        public ItemStack createIcon() { return new ItemStack(RankineItems.ALLOY_GEAR.get()); }
+    };
 }

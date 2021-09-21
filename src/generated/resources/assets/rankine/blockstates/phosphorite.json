@@ -1,21 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "rankine:block/phosphorite"
-      },
-      {
-        "model": "rankine:block/phosphorite",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/phosphorite",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/phosphorite",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "rankine:block/phosphorite"
+    }
   }
 }

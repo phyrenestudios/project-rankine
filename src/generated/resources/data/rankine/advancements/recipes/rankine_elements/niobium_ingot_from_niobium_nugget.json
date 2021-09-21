@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:niobium_ingot_from_niobium_nugget"
+    ]
+  },
+  "criteria": {
+    "has_element": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:niobium_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:niobium_ingot_from_niobium_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_element",
+      "has_the_recipe"
+    ]
+  ]
+}

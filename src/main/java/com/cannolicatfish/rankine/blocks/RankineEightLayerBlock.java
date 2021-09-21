@@ -108,6 +108,7 @@ public class RankineEightLayerBlock extends FallingBlock {
         return ActionResultType.PASS;
     }
 
+    /*
     public boolean isReplaceable(BlockState state, BlockItemUseContext useContext) {
         int i = state.get(LAYERS);
         if (useContext.getItem().getItem() == state.getBlock().asItem() && i < 8) {
@@ -121,6 +122,7 @@ public class RankineEightLayerBlock extends FallingBlock {
         }
     }
 
+     */
 
 /*
     @Nullable
@@ -142,7 +144,7 @@ public class RankineEightLayerBlock extends FallingBlock {
 
     @Override
     public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (worldIn.getBlockState(pos.down()) == state) {
+        if (worldIn.getBlockState(pos.down()).matchesBlock(state.getBlock())) {
             int i = worldIn.getBlockState(pos.down()).get(LAYERS);
             int j = state.get(LAYERS);
             if (i+j<=8) {

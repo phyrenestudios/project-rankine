@@ -10,16 +10,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.CampfireCookingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -262,23 +259,18 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         for (Item MINERAL_ITEM : RankineLists.MINERAL_ITEMS) {
             Item MINERAL_BLOCK = RankineLists.MINERAL_BLOCKS.get(RankineLists.MINERAL_ITEMS.indexOf(MINERAL_ITEM)).asItem();
-            //threeXthree(consumer, MINERAL_BLOCK, MINERAL_ITEM, 1, "has_ingredient", MINERAL_ITEM);
+            threeXthree(consumer, MINERAL_BLOCK, MINERAL_ITEM, 1, "has_ingredient", MINERAL_ITEM);
             OneToX(consumer, MINERAL_ITEM, MINERAL_BLOCK, 9, "has_ingredient", MINERAL_ITEM, MINERAL_ITEM.getRegistryName().getPath()+"_from_block");
         }
 
         //ELEMENTS
-        for (String s : RankineLists.ELEMENTS) {
-            Item block = ForgeRegistries.ITEMS.getValue(new ResourceLocation("rankine",s+"_block"));
-            Item ingot = ForgeRegistries.ITEMS.getValue(new ResourceLocation("rankine",s+"_ingot"));
-            Item nugget = ForgeRegistries.ITEMS.getValue(new ResourceLocation("rankine",s+"_nugget"));
-            if (s.equals("silicon") || s.equals("phosphorus") || s.equals("astatine") || s.equals("sulfur")) {
-                ingot = ForgeRegistries.ITEMS.getValue(new ResourceLocation("rankine",s));
-            }
-            threeXthree(consumer, block, ingot, 1, "flint", Items.FLINT);
-            threeXthree(consumer, ingot, nugget, 1, "flint", Items.FLINT, s+"_ingot_from_"+s+"_nuggets");
-            OneToX(consumer, ingot, block, 9, "flint", Items.FLINT, s+"_ingot_from_"+s+"_block");
-            OneToX(consumer, nugget, ingot, 9, "flint", Items.FLINT);
-
+        for (Item NUGGET : RankineLists.ELEMENT_NUGGETS) {
+            Block BLOCK = RankineLists.ELEMENT_BLOCKS.get(RankineLists.ELEMENT_NUGGETS.indexOf(NUGGET));
+            Item INGOT = RankineLists.ELEMENT_INGOTS.get(RankineLists.ELEMENT_NUGGETS.indexOf(NUGGET));
+            threeXthree(consumer, BLOCK.asItem(), INGOT, 1, "has_element", INGOT);
+            threeXthree(consumer, INGOT, NUGGET, 1, "has_element", NUGGET, INGOT.getRegistryName().getPath()+"_from_"+NUGGET.getRegistryName().getPath());
+            OneToX(consumer, INGOT, BLOCK.asItem(), 9, "has_element", BLOCK.asItem(), INGOT.getRegistryName().getPath()+"_from_"+BLOCK.getRegistryName().getPath());
+            OneToX(consumer, NUGGET, INGOT, 9, "has_element", INGOT);
         }
 
         //WOODS
@@ -494,8 +486,18 @@ public class RankineRecipesProvider extends RecipeProvider {
         verticalSlab(consumer,RankineItems.STAINLESS_STEEL_SHEETMETAL_VERTICAL_SLAB.get(),RankineItems.STAINLESS_STEEL_SHEETMETAL.get(), "sheetmetal_vertical_slab","has_stainless_steel_alloy",RankineItems.STAINLESS_STEEL_ALLOY.get());
 
 
+        
+        hLine(consumer,RankineItems.TAP_LINE.get(),3,RankineItems.VULCANIZED_RUBBER.get(),"has_ingredient",RankineItems.VULCANIZED_RUBBER.get());
+        hLine(consumer,RankineItems.METAL_PIPE.get(),3,RankineItems.CUPRONICKEL_ALLOY.get(),"has_ingredient",RankineItems.CUPRONICKEL_ALLOY.get());
+        
+        
+        ladder(consumer,RankineItems.BRASS_LADDER.get(),8,RankineItems.BRASS_ALLOY.get(),"has_ingredient",RankineItems.BRASS_ALLOY.get());
+        ladder(consumer,RankineItems.CAST_IRON_LADDER.get(),8,RankineItems.CAST_IRON_ALLOY.get(),"has_ingredient",RankineItems.CAST_IRON_ALLOY.get());
+        ladder(consumer,RankineItems.CUPRONICKEL_LADDER.get(),8,RankineItems.CUPRONICKEL_ALLOY.get(),"has_ingredient",RankineItems.CUPRONICKEL_ALLOY.get());
+        ladder(consumer,RankineItems.DURALUMIN_LADDER.get(),8,RankineItems.DURALUMIN_ALLOY.get(),"has_ingredient",RankineItems.DURALUMIN_ALLOY.get());
 
-
+        
+        //Campfire
         CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.FIRE_CLAY_BALL.get())).build(consumer, "cooked_beef_from_" + "campfire_cooking");
 
 
@@ -792,6 +794,32 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(output, count)
                 .addIngredient(input)
                 .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+    
+    private void hLine(Consumer<IFinishedRecipe> consumer, Item output, int count, Item input, String group, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output, count)
+                .patternLine("###")
+                .key('#', input)
+                .setGroup(group)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }    
+    private void hLine(Consumer<IFinishedRecipe> consumer, Item output, int count, Item input, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output, count)
+                .patternLine("###")
+                .key('#', input)
+                .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
+                .build(consumer);
+    }
+
+    private void ladder(Consumer<IFinishedRecipe> consumer, Item output, int count, Item input, String triggerName, Item trigger) {
+        ShapedRecipeBuilder.shapedRecipe(output, count)
+                .patternLine("# #")
+                .patternLine("###")
+                .patternLine("# #")
+                .key('#', input)
                 .addCriterion(triggerName, InventoryChangeTrigger.Instance.forItems(trigger))
                 .build(consumer);
     }

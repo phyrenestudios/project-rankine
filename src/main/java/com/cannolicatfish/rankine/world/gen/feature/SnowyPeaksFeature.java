@@ -38,12 +38,10 @@ public class SnowyPeaksFeature extends Feature<NoFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
-                for (int y = 0; y <= endY; ++y) {
+                for (int y = 110; y <= endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
-                    if (reader.getBlockState(TARGET_POS).getBlock().getTags().contains(Tags.Blocks.STONE.getName()) || reader.getBlockState(TARGET_POS).getBlock().getTags().contains(Tags.Blocks.DIRT.getName())) {
-                        if (y > 110 && reader.getBlockState(TARGET_POS.up(1)).matchesBlock(Blocks.SNOW) || reader.getBlockState(TARGET_POS.up(2)).matchesBlock(Blocks.SNOW)) {
-                            reader.setBlockState(TARGET_POS, Blocks.SNOW_BLOCK.getDefaultState(), 19);
-                        } else if (y > 90 && reader.getBlockState(TARGET_POS.up(1)).matchesBlock(Blocks.SNOW)) {
+                    if (reader.getBlockState(TARGET_POS).isIn(Tags.Blocks.STONE) || reader.getBlockState(TARGET_POS).isIn(Tags.Blocks.DIRT)) {
+                        if (reader.getBiome(pos).getTemperature()<0.15) {
                             reader.setBlockState(TARGET_POS, Blocks.SNOW_BLOCK.getDefaultState(), 19);
                         }
                     }

@@ -1,21 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "rankine:block/bog_iron"
-      },
-      {
-        "model": "rankine:block/bog_iron",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/bog_iron",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/bog_iron",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "rankine:block/bog_iron"
+    }
   }
 }

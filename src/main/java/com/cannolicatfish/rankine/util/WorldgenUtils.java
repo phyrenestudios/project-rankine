@@ -1,22 +1,34 @@
 package com.cannolicatfish.rankine.util;
 
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.WGConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeRegistry;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class WorldgenUtils {
 
-    public static List<Biome.Category> GEN_BIOMES = new ArrayList<>();
+    public static List<ResourceLocation> GEN_BIOMES = new ArrayList<>();
     public static List<Block> GEN_SOILS = new ArrayList<>();
     public static List<Block> GEN_SOILS2 = new ArrayList<>();
     public static List<Block> GEN_GRASSES = new ArrayList<>();
@@ -53,15 +65,15 @@ public class WorldgenUtils {
         }
 
         for (List<Object> L : WGConfig.BIOME_GEN.BIOME_SETTINGS.get()) {
-            GEN_BIOMES.add(Biome.Category.byName((String) L.get(0)));
-
-            GEN_SOILS.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(0))));
-            GEN_SOILS2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(2))));
-            GEN_GRASSES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(1))));
-            GEN_GRASSES2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(((List<String>) L.get(1)).get(3))));
-            INTRUSION_LISTS.add((List<String>) L.get(2));
-            LAYER_LISTS.add((List<String>) L.get(3));
-
+            String biomeToAdd = (String) L.get(0);
+            List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
+            if (biomeName.size() > 1) {
+                populateLists(ResourceLocation.tryCreate(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3));
+            } else {
+                for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(biomeToAdd)), true)) {
+                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3));
+                }
+            }
 
         }
 
@@ -88,7 +100,23 @@ public class WorldgenUtils {
         }
     }
 
+    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES) {
+        GEN_BIOMES.add(BIOME);
+        if (SOILS.isEmpty()) {
+            GEN_SOILS.add(Blocks.AIR);
+            GEN_SOILS2.add(Blocks.AIR);
+            GEN_GRASSES.add(Blocks.AIR);
+            GEN_GRASSES2.add(Blocks.AIR);
+        } else {
+            GEN_SOILS.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(0))));
+            GEN_SOILS2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(2))));
+            GEN_GRASSES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(1))));
+            GEN_GRASSES2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(3))));
+        }
+        INTRUSION_LISTS.add(INTRUSIONS);
+        LAYER_LISTS.add(STONES);
 
+    }
 
 
     public static List<ResourceLocation> getBiomeNamesFromCategory(List<Biome.Category> biomeCats, boolean include) {
@@ -119,6 +147,10 @@ public class WorldgenUtils {
             }
         }
         return false;
+    }
+
+    public static int waterTableHeight(World worldIn, BlockPos pos) {
+        return (int) Math.max(worldIn.getSeaLevel(), (worldIn.getSeaLevel() + worldIn.getBiome(pos).getDepth()*30));
     }
 
 }

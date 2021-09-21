@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:rubidium_ingot_from_rubidium_nugget"
+    ]
+  },
+  "criteria": {
+    "has_element": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rubidium_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:rubidium_ingot_from_rubidium_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_element",
+      "has_the_recipe"
+    ]
+  ]
+}

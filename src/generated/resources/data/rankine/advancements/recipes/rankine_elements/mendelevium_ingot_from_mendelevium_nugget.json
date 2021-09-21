@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:mendelevium_ingot_from_mendelevium_nugget"
+    ]
+  },
+  "criteria": {
+    "has_element": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:mendelevium_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:mendelevium_ingot_from_mendelevium_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_element",
+      "has_the_recipe"
+    ]
+  ]
+}

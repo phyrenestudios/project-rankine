@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:palladium_block_from_cooperite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_cooperite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:cooperite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:palladium_block_from_cooperite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cooperite",
+      "has_the_recipe"
+    ]
+  ]
+}

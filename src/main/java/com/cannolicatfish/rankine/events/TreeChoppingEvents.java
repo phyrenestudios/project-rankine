@@ -2,11 +2,13 @@ package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -79,7 +81,7 @@ public class TreeChoppingEvents {
                     checkedBlocks.add(cp);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                         BlockState target = worldIn.getBlockState(b.toImmutable());
-                        if (worldIn.getBlockState(cp).getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_logs")) && target.getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_logs"))) {
+                        if (worldIn.getBlockState(cp).isIn(BlockTags.LOGS) && target.isIn(BlockTags.LOGS)) {
                             toCheck.add(b.toImmutable());
                             logs.add(b.toImmutable());
                         } else if (target.getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_leaves"))) {
@@ -112,7 +114,7 @@ public class TreeChoppingEvents {
 
             if (alive) {
                 for (BlockPos b : logs) {
-                    if (Tags.Blocks.DIRT.contains(worldIn.getBlockState(b.down()).getBlock())) {
+                    if (worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
                         worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState());
                     } else {
                         worldIn.destroyBlock(b, true);

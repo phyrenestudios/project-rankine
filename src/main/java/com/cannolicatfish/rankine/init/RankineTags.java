@@ -142,8 +142,8 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> BLACK_WALNUT_LOGS = modItem("black_walnut_logs");
         public static final ITag.INamedTag<Item> MAGNOLIA_LOGS = modItem("magnolia_logs");
         public static final ITag.INamedTag<Item> PETRIFIED_CHORUS_LOGS = modItem("petrified_chorus_logs");
-        public static final ITag.INamedTag<Item> CHARRED_LOGS = modItem("petrified_chorus_logs");
-        public static final ITag.INamedTag<Item> ERYTHRINA_LOGS = modItem("petrified_chorus_logs");
+        public static final ITag.INamedTag<Item> CHARRED_LOGS = modItem("charred_logs");
+        public static final ITag.INamedTag<Item> ERYTHRINA_LOGS = modItem("erythrina_logs");
 
         public static final ITag.INamedTag<Item> MAGNETIC_NUGGETS = modItem("magnetic_nuggets");
         public static final ITag.INamedTag<Item> MAGNETIC_INGOTS = modItem("magnetic_ingots");
@@ -154,7 +154,7 @@ public final class RankineTags {
 
         public static final ITag.INamedTag<Item> FORAGING_ITEMS = modItem("foraging_items");
         public static final ITag.INamedTag<Item> COLORED_GOLD_TOOLS = modItem("colored_gold_tools");
-        public static final ITag.INamedTag<Item> FORAGING_TOOLS = modItem("foraging_tools");
+        public static final ITag.INamedTag<Item> CRUDE_TOOLS = modItem("crude_tools");
         public static final ITag.INamedTag<Item> GOLD_PANS = modItem("gold_pans");
         public static final ITag.INamedTag<Item> SLUICING_TOOLS = modItem("sluicing_tools");
 

@@ -1,21 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "rankine:block/light_gravel"
-      },
-      {
-        "model": "rankine:block/light_gravel",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/light_gravel",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/light_gravel",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "rankine:block/light_gravel"
+    }
   }
 }

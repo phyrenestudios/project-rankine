@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:nitrogen_ingot_from_nitrogen_nugget"
+    ]
+  },
+  "criteria": {
+    "has_element": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:nitrogen_nugget"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:nitrogen_ingot_from_nitrogen_nugget"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_element",
+      "has_the_recipe"
+    ]
+  ]
+}

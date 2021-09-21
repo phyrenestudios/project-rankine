@@ -1,19 +1,25 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -38,7 +44,12 @@ public class NetherStoneReplacerFeature extends Feature<NoFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
-                layering(WGConfig.LAYERS.NETHER_STONE_LIST.get(), WGConfig.LAYERS.NETHER_HEIGHT.get(), reader, x, z, 127);
+                int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
+                Biome BIOME = reader.getBiome(new BlockPos(x, 0, z));
+                int height= 127;
+                if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
+                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())), height, reader, x, z, endY);
+                }
             }
         }
         return true;
@@ -64,16 +75,19 @@ public class NetherStoneReplacerFeature extends Feature<NoFeatureConfig> {
     }
 
     private static void replaceStone(ISeedReader reader, int x, int z, int StartY, int EndY, BlockState Block) {
+        List<net.minecraft.block.Block> TOPS = Arrays.asList(Blocks.CRIMSON_NYLIUM,Blocks.WARPED_NYLIUM,Blocks.AIR);
         for (int y = StartY; y <= EndY; ++y) {
-            switch (WGConfig.LAYERS.NETHER_STONE_LAYERS.get()) {
-                case 1:
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock().getDefaultState() == Blocks.NETHERRACK.getDefaultState()) {
-                        reader.setBlockState(new BlockPos(x, y, z), Block, 2);
-                    }
-                case 2:
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock().getTags().contains(new ResourceLocation("forge:base_stone_nether"))) {
-                        reader.setBlockState(new BlockPos(x, y, z), Block, 2);
-                    }
+            BlockPos targetPos = new BlockPos(x, y, z);
+            BlockState target = reader.getBlockState(targetPos);
+            if (WGConfig.MISC.DARK_GRAVEL.get() && target == Blocks.GRAVEL.getDefaultState()) {
+                reader.setBlockState(targetPos, RankineBlocks.DARK_GRAVEL.get().getDefaultState(), 19);
+            }
+            if (target == Blocks.NETHERRACK.getDefaultState()) {
+                if (reader.getBlockState(targetPos.up(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.up(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.up(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.up(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
+                    reader.setBlockState(targetPos, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 2);
+                } else if (!TOPS.contains(reader.getBlockState(targetPos.up(1)).getBlock()) && !TOPS.contains(reader.getBlockState(targetPos.up(2)).getBlock()) && !TOPS.contains(reader.getBlockState(targetPos.up(3)).getBlock())) {
+                    reader.setBlockState(targetPos, Block, 2);
+                }
             }
         }
     }

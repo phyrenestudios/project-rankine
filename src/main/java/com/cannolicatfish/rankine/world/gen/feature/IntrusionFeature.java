@@ -30,15 +30,15 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, ReplacerFeatureConfig config) {
-        Biome.Category CAT = reader.getBiome(pos).getCategory();
+        Biome BIOME = reader.getBiome(pos);
 
-        if (WorldgenUtils.GEN_BIOMES.contains(CAT)) {
+        if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
             BlockState INTRUSION;
             int radius = WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_RADIUS.get() - rand.nextInt(3);
             int startY = 0;
             int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
 
-            INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)).getRandomElement();
+            INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
             if (!INTRUSION.matchesBlock(Blocks.AIR)) {
                 int x1 = rand.nextInt(radius) - radius / 2;
                 int x2 = rand.nextInt(radius) - radius / 2;
@@ -54,8 +54,8 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                     for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-3 * radius, y, -3 * radius), pos.add(3 * radius, y, 3 * radius))) {
                         if (b.distanceSq(new BlockPos(pos.getX() + x1, y, pos.getZ() + z1)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX() + x2, y, pos.getZ() + z2)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX() + x3, y, pos.getZ() + z3)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX() + x4, y, pos.getZ() + z4)) <= Math.pow(radius + 0.5, 2)) {
                             if (RankineTags.Blocks.INTRUSION_PASSABLE.contains(reader.getBlockState(b).getBlock())) {
-                                if (rand.nextFloat() < WorldgenUtils.INTRUSION_ORE_CHANCES.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)).indexOf(INTRUSION.getBlock()))) {
-                                    BlockState ORE = WorldgenUtils.INTRUSION_ORES.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)).indexOf(INTRUSION.getBlock())).getDefaultState();
+                                if (rand.nextFloat() < WorldgenUtils.INTRUSION_ORE_CHANCES.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).indexOf(INTRUSION.getBlock()))) {
+                                    BlockState ORE = WorldgenUtils.INTRUSION_ORES.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).indexOf(INTRUSION.getBlock())).getDefaultState();
                                     if (ORE.getBlock() instanceof  RankineOreBlock) {
                                         ORE = ORE.with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock()));
                                     }

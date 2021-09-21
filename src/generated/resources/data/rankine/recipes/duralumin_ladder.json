@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:duralumin_alloy"
+    }
+  },
+  "result": {
+    "item": "rankine:duralumin_ladder",
+    "count": 8
+  }
+}

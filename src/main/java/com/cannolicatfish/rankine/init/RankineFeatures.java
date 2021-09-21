@@ -59,8 +59,6 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_alluvium",ORE_ALLUVIUM);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_evaporite",ORE_EVAPORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_intrusion",ORE_INTRUSION);
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sill_phosphorite",SILL_PHOSPHORITE);
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:sill_ironstone",SILL_IRONSTONE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:nether_ore_intrusion",NETHER_ORE_INTRUSION);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:end_stone_gen",END_STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:nether_stone_gen",NETHER_STONE_GEN);
@@ -266,8 +264,6 @@ public class RankineFeatures {
     public static final Feature<NoFeatureConfig> FIRE_CLAY_DISK = new FireClayDiskFeature(NoFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> FLAT_BEDROCK_FEATURE = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC);
-    public static final Feature<NoFeatureConfig> PHOSPHORITE_SILL = new SillFeature(NoFeatureConfig.CODEC, RankineBlocks.PHOSPHORITE.get().getDefaultState());
-    public static final Feature<NoFeatureConfig> IRONSTONE_SILL = new SillFeature(NoFeatureConfig.CODEC, RankineBlocks.IRONSTONE.get().getDefaultState());
     public static final Feature<ReplacerFeatureConfig> NETHER_INTRUSION = new NetherIntrusionFeature(ReplacerFeatureConfig.CODEC);
     public static final Feature<OreFeatureConfig> ANDESITIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.HORNBLENDE_ANDESITE.get().getDefaultState());
     public static final Feature<OreFeatureConfig> RHYOLITIC_TUFF_FEATURE =  new ModularOreFeature(OreFeatureConfig.CODEC, RankineBlocks.RHYOLITE.get().getDefaultState());
@@ -362,10 +358,6 @@ public class RankineFeatures {
 
     public static final ConfiguredFeature<?, ?> ORE_INTRUSION = INTRUSION.withConfiguration(
             new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
-    public static final ConfiguredFeature<?, ?> SILL_PHOSPHORITE = PHOSPHORITE_SILL.withConfiguration(new NoFeatureConfig())
-            .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(2)));
-    public static final ConfiguredFeature<?, ?> SILL_IRONSTONE = IRONSTONE_SILL.withConfiguration(new NoFeatureConfig())
-            .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> NETHER_ORE_INTRUSION = NETHER_INTRUSION.withConfiguration(
             new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(2)));
 

@@ -88,9 +88,18 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.CHARRED_LOGS, RankineTags.Items.CHARRED_LOGS);
         copy(RankineTags.Blocks.ERYTHRINA_LOGS, RankineTags.Items.ERYTHRINA_LOGS);
 
+        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+        copy(BlockTags.LOGS, ItemTags.LOGS);
+
+
         getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
         getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
         getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.MAGNETIC_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.MAGNETIC_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.MAGNETIC_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
+
+
 
         //FORGE
         getOrCreateBuilder(RankineTags.Items.WOODEN_TOOLS).add(Items.WOODEN_AXE).add(Items.WOODEN_PICKAXE).add(Items.WOODEN_HOE).add(Items.WOODEN_SHOVEL).add(Items.WOODEN_SWORD);
@@ -104,6 +113,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.PEWTER_TOOLS).add(RankineItems.PEWTER_AXE.get(),RankineItems.PEWTER_PICKAXE.get(),RankineItems.PEWTER_HOE.get(),RankineItems.PEWTER_SHOVEL.get(),RankineItems.PEWTER_SWORD.get(),RankineItems.PEWTER_HAMMER.get(),RankineItems.PEWTER_SPEAR.get(),RankineItems.PEWTER_KNIFE.get());
         getOrCreateBuilder(RankineTags.Items.BRONZE_TOOLS).add(RankineItems.BRONZE_AXE.get(),RankineItems.BRONZE_PICKAXE.get(),RankineItems.BRONZE_HOE.get(),RankineItems.BRONZE_SHOVEL.get(),RankineItems.BRONZE_SWORD.get(),RankineItems.BRONZE_HAMMER.get(),RankineItems.BRONZE_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.INVAR_TOOLS).add(RankineItems.INVAR_AXE.get(),RankineItems.INVAR_PICKAXE.get(),RankineItems.INVAR_HOE.get(),RankineItems.INVAR_SHOVEL.get(),RankineItems.INVAR_SWORD.get(),RankineItems.INVAR_HAMMER.get(),RankineItems.INVAR_SPEAR.get());
+        getOrCreateBuilder(RankineTags.Items.TITANIUM_ALLOY_TOOLS).add(RankineItems.TITANIUM_ALLOY_AXE.get(),RankineItems.TITANIUM_ALLOY_PICKAXE.get(),RankineItems.TITANIUM_ALLOY_HOE.get(),RankineItems.TITANIUM_ALLOY_SHOVEL.get(),RankineItems.TITANIUM_ALLOY_SWORD.get(),RankineItems.TITANIUM_ALLOY_HAMMER.get(),RankineItems.TITANIUM_ALLOY_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.STEEL_TOOLS).add(RankineItems.STEEL_AXE.get(),RankineItems.STEEL_PICKAXE.get(),RankineItems.STEEL_HOE.get(),RankineItems.STEEL_SHOVEL.get(),RankineItems.STEEL_SWORD.get(),RankineItems.STEEL_HAMMER.get(),RankineItems.STEEL_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.STAINLESS_STEEL_TOOLS).add(RankineItems.STAINLESS_STEEL_AXE.get(),RankineItems.STAINLESS_STEEL_PICKAXE.get(),RankineItems.STAINLESS_STEEL_HOE.get(),RankineItems.STAINLESS_STEEL_SHOVEL.get(),RankineItems.STAINLESS_STEEL_SWORD.get(),RankineItems.STAINLESS_STEEL_HAMMER.get(),RankineItems.STAINLESS_STEEL_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.NICKEL_SUPERALLOY_TOOLS).add(RankineItems.NICKEL_SUPERALLOY_AXE.get(),RankineItems.NICKEL_SUPERALLOY_PICKAXE.get(),RankineItems.NICKEL_SUPERALLOY_HOE.get(),RankineItems.NICKEL_SUPERALLOY_SHOVEL.get(),RankineItems.NICKEL_SUPERALLOY_SWORD.get(),RankineItems.NICKEL_SUPERALLOY_HAMMER.get(),RankineItems.NICKEL_SUPERALLOY_SPEAR.get());
@@ -128,7 +138,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.KNIVES).add(RankineItems.FLINT_KNIFE.get(),RankineItems.PEWTER_KNIFE.get(),RankineItems.ALLOY_KNIFE.get(),RankineItems.BRONZE_KNIFE.get(),RankineItems.INVAR_KNIFE.get(),RankineItems.STEEL_KNIFE.get(),RankineItems.STAINLESS_STEEL_KNIFE.get(),RankineItems.NICKEL_SUPERALLOY_KNIFE.get(),RankineItems.COBALT_SUPERALLOY_KNIFE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_KNIFE.get(),RankineItems.ROSE_GOLD_KNIFE.get(),RankineItems.BLUE_GOLD_KNIFE.get(),RankineItems.GREEN_GOLD_KNIFE.get(),RankineItems.WHITE_GOLD_KNIFE.get(),RankineItems.PURPLE_GOLD_KNIFE.get(),RankineItems.BLACK_GOLD_KNIFE.get(),RankineItems.AMALGAM_KNIFE.get(),RankineItems.ENDER_AMALGAM_KNIFE.get());
 
         getOrCreateBuilder(RankineTags.Items.COLORED_GOLD_TOOLS).addTags(RankineTags.Items.ROSE_GOLD_TOOLS,RankineTags.Items.GREEN_GOLD_TOOLS,RankineTags.Items.WHITE_GOLD_TOOLS,RankineTags.Items.BLUE_GOLD_TOOLS,RankineTags.Items.PURPLE_GOLD_TOOLS,RankineTags.Items.BLACK_GOLD_TOOLS);
-        getOrCreateBuilder(RankineTags.Items.FORAGING_TOOLS).addTags(RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.BRONZE_TOOLS,RankineTags.Items.INVAR_TOOLS,RankineTags.Items.AMALGAM_TOOLS,RankineTags.Items.ALLOY_TOOLS);
+        getOrCreateBuilder(RankineTags.Items.CRUDE_TOOLS).addTags(RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.BRONZE_TOOLS,RankineTags.Items.INVAR_TOOLS,RankineTags.Items.AMALGAM_TOOLS,RankineTags.Items.ALLOY_TOOLS);
 
 
         getOrCreateBuilder(RankineTags.Items.GOLD_PANS).add(RankineItems.WOODEN_GOLD_PAN.get(), RankineItems.PEWTER_GOLD_PAN.get(), RankineItems.STEEL_GOLD_PAN.get());
@@ -272,6 +282,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.WALLS, ItemTags.WALLS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
+        copy(Tags.Blocks.STONE, Tags.Items.STONE);
 
 
 

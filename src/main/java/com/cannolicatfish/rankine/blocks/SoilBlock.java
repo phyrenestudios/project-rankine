@@ -47,7 +47,7 @@ public class SoilBlock extends Block {
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         if (worldIn.getBlockState(pos).get(WET)) {
-            entityIn.setMotionMultiplier(worldIn.getBlockState(pos), new Vector3d((double)0.9F, 0.8D, (double)0.9F));
+            entityIn.setMotionMultiplier(worldIn.getBlockState(pos), new Vector3d((double)0.98F, 0.8D, (double)0.98F));
         } else {
             super.onEntityWalk(worldIn, pos, entityIn);
         }
