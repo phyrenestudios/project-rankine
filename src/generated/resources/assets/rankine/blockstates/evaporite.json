@@ -1,21 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "rankine:block/evaporite"
-      },
-      {
-        "model": "rankine:block/evaporite",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/evaporite",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/evaporite",
-        "y": 270
-      }
-    ]
+    "": {
+      "model": "rankine:block/evaporite"
+    }
   }
 }

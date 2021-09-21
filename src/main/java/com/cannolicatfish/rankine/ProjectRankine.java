@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
+import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceContainer;
@@ -231,8 +232,6 @@ public class ProjectRankine {
             event.getRegistry().register(RankineFeatures.FIRE_CLAY_DISK.setRegistryName(ProjectRankine.MODID,"fire_clay_disk"));
             event.getRegistry().register(RankineFeatures.FLAT_BEDROCK_FEATURE.setRegistryName(ProjectRankine.MODID,"flat_bedrock_feature"));
             event.getRegistry().register(RankineFeatures.INTRUSION.setRegistryName(ProjectRankine.MODID,"intrusion"));
-            event.getRegistry().register(RankineFeatures.PHOSPHORITE_SILL.setRegistryName(ProjectRankine.MODID,"phosphorite_sill"));
-            event.getRegistry().register(RankineFeatures.IRONSTONE_SILL.setRegistryName(ProjectRankine.MODID,"ironstone_sill"));
             event.getRegistry().register(RankineFeatures.NETHER_INTRUSION.setRegistryName(ProjectRankine.MODID,"nether_intrusion"));
             event.getRegistry().register(RankineFeatures.END_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"end_stone_replacer"));
             event.getRegistry().register(RankineFeatures.NETHER_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"nether_stone_replacer"));
@@ -278,6 +277,7 @@ public class ProjectRankine {
             //event.getRegistry().register(TileEntityType.Builder.create(SodiumVaporLampTile::new, RankineBlocks.SODIUM_VAPOR_LAMP.get()).build(null).setRegistryName(ProjectRankine.MODID,"sodium_vapor_lamp"));
             //event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.FLUID_DRAIN.get()).build(null).setRegistryName(ProjectRankine.MODID,"fluid_drain"));
             event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
+            event.getRegistry().register(TileEntityType.Builder.create(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
         }
 
         @SubscribeEvent

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:charred_log",
+    "rankine:charred_wood",
+    "rankine:stripped_charred_log",
+    "rankine:stripped_charred_wood"
+  ]
+}

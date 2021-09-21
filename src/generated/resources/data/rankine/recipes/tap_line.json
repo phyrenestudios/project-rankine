@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:vulcanized_rubber"
+    }
+  },
+  "result": {
+    "item": "rankine:tap_line",
+    "count": 3
+  }
+}

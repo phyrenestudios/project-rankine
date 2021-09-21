@@ -45,8 +45,7 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
                 Biome BIOME = reader.getBiome(new BlockPos(x, 0, z));
-                Biome.Category CAT = BIOME.getCategory();
-                int height = 75;
+                int height;
                 float biomeHeight = BIOME.getDepth();
                 if (biomeHeight < -0.5) {
                     height = 50;
@@ -57,8 +56,8 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
                 } else {
                     height = 85;
                 }
-                if (WorldgenUtils.GEN_BIOMES.contains(CAT)) {
-                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(CAT)), height, reader, x, z, endY);
+                if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
+                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())), height, reader, x, z, endY);
                 }
 
             }

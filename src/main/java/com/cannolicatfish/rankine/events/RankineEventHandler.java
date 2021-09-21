@@ -26,6 +26,7 @@ import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
 import com.cannolicatfish.rankine.util.RankineMathHelper;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -73,6 +74,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -2021,7 +2023,7 @@ public class RankineEventHandler {
                 strip = new ItemStack(RankineItems.CORK.get(), 1);
             } else if (Config.GENERAL.STRIPPABLES_CINNAMON.get() && b == RankineBlocks.CINNAMON_LOG.get()) {
                 strip = new ItemStack(RankineItems.CINNAMON.get(), 1);
-            } else if (Config.GENERAL.STRIPPABLES_STICKS.get() && b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
+            } else if (Config.GENERAL.STRIPPABLES_STICKS.get() && b.isIn(BlockTags.LOGS) && !b.getRegistryName().toString().contains("stripped")) {
                 if (world.getRandom().nextFloat() < 0.3) {
                     strip = new ItemStack(Items.STICK, 1);
                 }
@@ -2123,8 +2125,8 @@ public class RankineEventHandler {
         PlayerEntity player = event.getPlayer();
         float CHANCE = new Random().nextFloat();
         if (!player.abilities.isCreativeMode) {
-            if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:stone"))) {
-                if (player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:bronze_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:flint_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:pewter_tools")) || player.getHeldItem(Hand.MAIN_HAND).getItem().getTags().contains(new ResourceLocation("rankine:colored_gold_tools"))) {
+            if (event.getState().isIn(Tags.Blocks.STONE)) {
+                if (player.getHeldItem(Hand.MAIN_HAND).getItem().isIn(RankineTags.Items.CRUDE_TOOLS)) {
                     if (CHANCE < Config.GENERAL.FLINT_DROP_CHANCE.get()) {
                         double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
                         double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
@@ -2139,13 +2141,37 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
+    public static void noWater(BlockEvent.CreateFluidSourceEvent event) {
+        /*
+        List<ResourceLocation> waterBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), true);
+
+        for (String b : Config.GENERAL.INFI_WATER_BIOMES.get()) {
+            List<String> biomeName = Arrays.asList(b.split(":"));
+            if (biomeName.size() > 1) {
+                waterBiomes.add(ResourceLocation.tryCreate(b));
+            } else {
+                waterBiomes.addAll(WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(b)), true));
+            }
+        }
+        if (Config.GENERAL.DISABLE_WATER.get() && !waterBiomes.contains(event.getWorld().getBiome(event.getPos()).toString())) {
+            event.setResult(Event.Result.DENY);
+        }
+
+         */
+        if (event.getPos().getY() > WorldgenUtils.waterTableHeight((World) event.getWorld(), event.getPos())) {
+            event.setResult(Event.Result.DENY);
+        }
+
+    }
+
+    @SubscribeEvent
     public static void forage(BlockEvent.BreakEvent event) {
         PlayerEntity player = event.getPlayer();
         float CHANCE = new Random().nextFloat();
 
         // Foraging
         if (!player.abilities.isCreativeMode) {
-            if (event.getState().getBlock().getTags().contains(new ResourceLocation("forge:dirt"))) {
+            if (event.getState().getBlock().isIn(Tags.Blocks.DIRT)) {
                 ItemStack heldItemStack = player.getHeldItem(Hand.MAIN_HAND);
                 Item heldItem = player.getHeldItem(Hand.MAIN_HAND).getItem();
 
@@ -2237,5 +2263,20 @@ public class RankineEventHandler {
             }
         }
     }
+
+    /*
+    @SubscribeEvent
+    public static void onLivingUpdate(LivingSpawnEvent.CheckSpawn event) {
+        BlockPos pos = new BlockPos(event.getX(),event.getY(),event.getZ()).down();
+        if (event.getWorld().getBlockState(pos).getBlock() instanceof GrassySoilBlock) {
+            EntityType<?> EntType = event.getEntityLiving().getType();
+            System.out.println(EntType + "   " + pos);
+            if (event.getSpawnReason() == SpawnReason.NATURAL && (EntType == EntityType.SHEEP || EntType == EntityType.PIG || EntType == EntityType.COW || EntType == EntityType.CHICKEN || EntType == EntityType.RABBIT || EntType == EntityType.DONKEY || EntType == EntityType.HORSE || EntType == EntityType.LLAMA || EntType == EntityType.PANDA || EntType == EntityType.OCELOT || EntType == EntityType.POLAR_BEAR || EntType == EntityType.FOX || EntType == EntityType.WOLF)) {
+                event.setResult(Event.Result.ALLOW);
+            }
+        }
+    }
+
+     */
 
 }

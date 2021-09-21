@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.events.RankineEventHandler;
 import net.minecraft.block.*;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.util.IItemProvider;
 
 public class VanillaIntegration {
@@ -233,17 +234,7 @@ public class VanillaIntegration {
 
 */
 
-
-
-
-
     }
-
-
-
-
-
-
 
 
 
@@ -255,8 +246,5 @@ public class VanillaIntegration {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getRegistryName(), () -> plantPot);
     }
 
-    public static void registerFlamables(Block block, int encouragement, int flammability) {
-        //((FireBlock)Blocks.FIRE).setFireInfo(block, encouragement, flammability);
-    }
 
 }

@@ -13,6 +13,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -32,7 +33,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //food items
-        for (Item item : Stream.of(RankineLists.JAMS,RankineLists.GRAINS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.JAMS,RankineLists.GRAINS,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
 
@@ -85,27 +86,16 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItemAltTexture(RankineItems.AGED_CHEESE.get(), modLoc("item/aged_cheese_wheel"));
         basicItemAltTexture(RankineItems.UNAGED_CHEESE.get(), modLoc("item/unaged_cheese_wheel"));
 
-
-
-
         basicItem(RankineItems.VULCANIZED_RUBBER.get());
-        basicItem(RankineItems.POZZOLANA.get());
         basicItem(RankineItems.BITUMEN.get());
         basicItem(RankineItems.FIRE_CLAY_BALL.get());
         basicItem(RankineItems.KAOLINITE_BALL.get());
         basicItem(RankineItems.BONE_CHAR.get());
-        basicItem(RankineItems.LEPIDOLITE.get());
         basicItem(RankineItems.NETHERITE_NUGGET.get());
-        basicItem(RankineItems.ALUMINA.get());
-        basicItem(RankineItems.ASH.get());
-        basicItem(RankineItems.BONE_ASH.get());
-        basicItem(RankineItems.SAWDUST.get());
         basicItem(RankineItems.SLAG.get());
         basicItem(RankineItems.TRONA.get());
         basicItem(RankineItems.POTASH.get());
-        //basicItem(RankineItems.STISHOVITE.get());
         basicItem(RankineItems.ASBESTOS.get());
-        basicItem(RankineItems.CALCIUM_CHLORIDE.get());
         basicItem(RankineItems.THENARDITE.get());
         basicItem(RankineItems.BORAX.get());
         basicItem(RankineItems.SODIUM_SULFIDE.get());
@@ -114,6 +104,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SALTPETER.get());
         basicItem(RankineItems.CEMENT_MIX.get());
         basicItem(RankineItems.MORTAR.get());
+        basicItem(RankineItems.SAWDUST.get());
+        basicItem(RankineItems.ASH.get());
+        basicItem(RankineItems.BONE_ASH.get());
+        basicItem(RankineItems.POZZOLANA.get());
         basicItem(RankineItems.METEORIC_IRON.get());
         basicItem(RankineItems.COMPOST.get());
         basicItem(RankineItems.BIOMASS.get());
@@ -138,6 +132,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.HIGH_REFRACTORY_BRICK.get());
         basicItem(RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get());
         basicItem(RankineItems.TAP_LINE.get());
+        basicItem(RankineItems.GROUND_TAP.get());
+        basicItem(RankineItems.METAL_PIPE.get());
         basicItem(RankineItems.TREE_TAP.get());
         basicItem(RankineItems.LODESTONE.get());
         basicItem(RankineItems.ELEMENT.get());
@@ -149,6 +145,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BUILDING_TOOL.get());
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
+        basicItem(RankineItems.DOWSING_ROD.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
         basicItem(RankineItems.ALNICO_MAGNET.get());
         basicItem(RankineItems.RARE_EARTH_MAGNET.get());
@@ -165,7 +162,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SPARK_LIGHTER.get());
         basicItem(RankineItems.THERMOMETER.get());
         basicItem(RankineItems.HARDNESS_TESTER.get());
-        //basicItem(RankineItems.ORE_CYCLER.get());
         basicItem(RankineItems.TOTEM_OF_COBBLING.get());
         basicItem(RankineItems.ELEMENT_INDEXER.get());
         basicItem(RankineItems.PIA.get());
@@ -206,6 +202,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.POWER_CELL_4.get());
         basicItem(RankineItems.POWER_CELL_5.get());
         basicItem(RankineItems.POWER_CELL_6.get());
+
+
+
         basicItem("rankine_journal");
 
         withExistingParent(RankineItems.BEAVER.get().getRegistryName().getPath(), mcLoc("item/template_spawn_egg"));
@@ -340,15 +339,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         stairsParent(RankineBlocks.SOD_BLOCK_STAIRS.get());
         wallParent(RankineBlocks.SOD_BLOCK_WALL.get());
         
-        
-        
-        for (Item item : Stream.of(RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            basicItem(item);
-        }
-        for (Block blk : Stream.of(RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            withExistingParent(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.MINERAL_STONES).flatMap(Collection::stream).collect(Collectors.toList())) {
+
+        for (Block blk : Stream.of(RankineLists.MINERAL_STONES,RankineLists.MINERAL_BLOCKS,RankineLists.ELEMENT_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             withExistingParent(blk);
         }
         for (Item TOOL : Stream.of(RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -364,6 +356,16 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         //EARTHY BLOCKS
         for (Block blk : Stream.of(RankineLists.ROTATION_BLOCKS,RankineLists.STANDARD_BLOCKS,RankineLists.SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            withExistingParent(blk);
+        }
+        // Misc Blocks
+        for (Block blk : Arrays.asList(
+                RankineBlocks.LIGHT_GRAVEL.get(),
+                RankineBlocks.DARK_GRAVEL.get(),
+                RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.KAOLINITE_BLOCK.get(),
+                RankineBlocks.PORPHYRY_COPPER.get()
+        )) {
             withExistingParent(blk);
         }
         //ALLOYS
@@ -412,19 +414,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(regName, modLoc("block/"+regName+"0"));
         }
 
-        //ELEMENTS
-        for (String s : RankineLists.ELEMENTS) {
-            basicItem(s+"_nugget");
-            if (s.equals("silicon") || s.equals("phosphorus") || s.equals("astatine") || s.equals("sulfur")) {
-                basicItem(s);
-            } else {
-                basicItem(s+"_ingot");
-            }
-            withExistingParent(s+"_block", modLoc("block/"+s+"_block"));
-        }
-        for (Item BOTTLE : RankineLists.GAS_BOTTLES) {
-            basicItem(BOTTLE);
-        }
+
 
         //GEODES
         basicItem(RankineItems.UNCUT_GEODE.get().getRegistryName().getPath());
@@ -437,7 +427,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/" + name));
         }
-        for (Item item : Stream.of(RankineLists.WOODEN_BOATS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.WOODEN_BOATS,RankineLists.ELEMENT_INGOTS,RankineLists.ELEMENT_NUGGETS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
         for (Block blk : Stream.of(RankineLists.WOODEN_FENCES, RankineLists.WOODEN_BUTTONS).flatMap(Collection::stream).collect(Collectors.toList())) {

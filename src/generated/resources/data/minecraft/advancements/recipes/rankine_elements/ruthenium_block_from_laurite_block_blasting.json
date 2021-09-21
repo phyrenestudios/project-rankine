@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:ruthenium_block_from_laurite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_laurite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:laurite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ruthenium_block_from_laurite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_laurite",
+      "has_the_recipe"
+    ]
+  ]
+}

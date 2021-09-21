@@ -1,7 +1,7 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "item": "rankine:goethite"
+    "item": "rankine:goethite_block"
   },
   "result": "minecraft:iron_block",
   "experience": 5.0,

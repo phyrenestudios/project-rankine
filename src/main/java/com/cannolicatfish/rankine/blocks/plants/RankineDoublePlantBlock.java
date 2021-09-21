@@ -124,7 +124,7 @@ public class RankineDoublePlantBlock extends BushBlock implements IGrowable {
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && entityIn.getType() != EntityType.FOX && entityIn.getType() != EntityType.BEE) {
-            entityIn.setMotionMultiplier(state, new Vector3d((double)0.8F, 0.75D, (double)0.8F));
+            entityIn.setMotionMultiplier(state, new Vector3d((double)0.95F, 0.95D, (double)0.95F));
         }
     }
 

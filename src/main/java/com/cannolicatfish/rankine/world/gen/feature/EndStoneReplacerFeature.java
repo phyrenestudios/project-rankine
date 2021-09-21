@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -10,6 +11,7 @@ import net.minecraft.world.ISeedReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,7 +37,12 @@ public class EndStoneReplacerFeature extends Feature<NoFeatureConfig> {
 
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
-                layering(WGConfig.LAYERS.END_STONE_LIST.get(), WGConfig.LAYERS.END_HEIGHT.get(), reader, x, z, 127);
+                int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
+                Biome BIOME = reader.getBiome(new BlockPos(x, 0, z));
+                int height= 65;
+                if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
+                    layering(WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())), height, reader, x, z, endY);
+                }
             }
         }
         return true;

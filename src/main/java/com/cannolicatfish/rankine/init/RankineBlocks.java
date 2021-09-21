@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePlanksBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePolishedStoneBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
+import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.plants.*;
@@ -1879,6 +1880,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_GOLD_PEDESTAL = REGISTRY.register("black_gold_pedestal", () -> new PedestalBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,10.0F).harvestLevel(0)));
  
     public static final RegistryObject<Block> ROPE = REGISTRY.register("rope", () -> new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()));
+    public static final RegistryObject<Block> GROUND_TAP = REGISTRY.register("ground_tap", () -> new MetalPipeBlock(0.25f, Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> METAL_PIPE = REGISTRY.register("metal_pipe", () -> new MetalPipeBlock(0.25f, Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> BOTANIST_STATION = REGISTRY.register("botanist_station", () -> new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
 
     public static final RegistryObject<Block> SEDIMENT_FAN = REGISTRY.register("sediment_fan", () -> new SedimentFanBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,6.0F)));
@@ -2075,6 +2078,9 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:material_testing_table")
     public static ContainerType<MaterialTestingTableContainer> MATERIAL_TESTING_TABLE_CONTAINER;
+
+    @ObjectHolder("rankine:ground_tap")
+    public static TileEntityType<GroundTapTile> GROUND_TAP_TILE;
 
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;

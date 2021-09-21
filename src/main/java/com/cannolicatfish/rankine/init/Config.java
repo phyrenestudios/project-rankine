@@ -96,6 +96,8 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
+        public final ForgeConfigSpec.BooleanValue DISABLE_WATER;
+        public final ForgeConfigSpec.ConfigValue<List<? extends String>> INFI_WATER_BIOMES;
         public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
         public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
@@ -133,6 +135,10 @@ public class Config {
                             .defineInRange("herbicideRange", 7, 0, 32);
                     ROCK_DRILL = b.comment("Enable the use of the rock drill.")
                             .define("rockDrill",true);
+                    DISABLE_WATER = b.comment("No more infinite water")
+                            .define("disableWater",true);
+                    INFI_WATER_BIOMES = b.comment("Biomes that have infinite water")
+                            .defineList("infiWaterBiomes", Arrays.asList("ocean","river"), o -> o instanceof String);
                     FIRE_EXTINGUISHER_RANGE = b.comment("The range of the fire extinguisher.")
                             .defineInRange("fireExtinguisherRange", 16, 0, 64);
                     TRAMPOLINE_SIZE = b.comment("The maximum size of a trampoline. Jump factor depends on size. Set to 0 to have a fixed jump factor of 1.3 which is just enough to have the player gain height over time.")
@@ -238,9 +244,9 @@ public class Config {
                     ORE_DETECTOR_MSG = b.comment("Set to false to disable the ore detector from outputting the block found.")
                             .define("oreDetectorMessage",true);
                     NUGGET_CHANCE = b.comment("Chance for a block in #rankine:nugget_stones to drop a nugget of a nearby ore.")
-                            .defineInRange("nuggetChance", 0.15D, 0.00D, 1.00D);
+                            .defineInRange("nuggetChance", 0.04D, 0.00D, 1.00D);
                     NUGGET_DISTANCE = b.comment("Distance from an ore block in which nuggets have a chance to drop from blocks.")
-                            .defineInRange("nuggetRange", 7, 1, 64);
+                            .defineInRange("nuggetRange", 9, 1, 64);
                 b.pop();
 
                 b.comment("Enchantments").push("enchantments");

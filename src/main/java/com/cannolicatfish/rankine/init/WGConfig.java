@@ -88,6 +88,22 @@ public class WGConfig {
                     Arrays.asList("rankine:loam","rankine:grassy_loam","rankine:clay_loam","rankine:grassy_clay_loam"),
                     Arrays.asList("minecraft:air|10|minecraft:air|1.0","rankine:kimberlite|2|rankine:diamond_ore|0.02","rankine:shonkinite|2|rankine:magnetite_ore|0.02","minecraft:stone|2|minecraft:coal_ore|0.01"),
                     Arrays.asList("rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone")));
+            biomeSettings.add(Arrays.asList("minecraft:soul_sand_valley",
+                    Arrays.asList(),
+                    Arrays.asList(),
+                    Arrays.asList("rankine:eclogite","rankine:blueschist")));
+            biomeSettings.add(Arrays.asList("minecraft:basalt_deltas",
+                    Arrays.asList(),
+                    Arrays.asList(),
+                    Arrays.asList("rankine:serpentinite","rankine:gray_marble")));
+            biomeSettings.add(Arrays.asList("minecraft:crimson_forest",
+                    Arrays.asList(),
+                    Arrays.asList(),
+                    Arrays.asList("rankine:purple_porphyry","rankine:rose_marble")));
+            biomeSettings.add(Arrays.asList("minecraft:warped_forest",
+                    Arrays.asList(),
+                    Arrays.asList(),
+                    Arrays.asList("rankine:greenschist","rankine:peridotite")));
 
 
             b.comment("Biome Feature Settings").push("biomeGen");
@@ -147,13 +163,31 @@ public class WGConfig {
             oreSettings.add(Arrays.asList("rankine:cryolite_ore", Arrays.asList("extreme_hills","taiga"),Arrays.asList("all"), 20, 50, 30, 1, 0.2));
             oreSettings.add(Arrays.asList("rankine:halite_ore", Arrays.asList("river","ocean"),Arrays.asList("all"), 20, 50, 15, 1, 1.0));
             oreSettings.add(Arrays.asList("rankine:cinnabar_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 20, 20, 1, 1.0));
-            oreSettings.add(Arrays.asList("rankine:cobaltite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 20, 10, 1, 1.0));
-            oreSettings.add(Arrays.asList("rankine:wolframite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 20, 10, 1, 1.0));
-            oreSettings.add(Arrays.asList("rankine:molybdenite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 20, 10, 1, 1.0));
+
+
+            oreSettings.add(Arrays.asList("rankine:native_sulfur_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 127, 4, 20, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_arsenic_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 127, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:anthracite_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 127, 15, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:cobaltite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:wolframite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:ilmenite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:coltan_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 40, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:monazite_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 40, 20, 1, 1.0));
+
+
+            oreSettings.add(Arrays.asList("rankine:native_gallium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_indium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_selenium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_tellurium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:molybdenite_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:uraninite_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:xenotime_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:greenockite_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
 
             oreSettings.add(Arrays.asList("rankine:bog_iron", Arrays.asList("swamp"),Arrays.asList("all"), 40, 60, 10, 2, 1.0));
             oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"),Arrays.asList("all"), 40, 60, 10, 2, 1.0));
-            oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("all"),Arrays.asList("all"), 40, 60, 12, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("all"),Arrays.asList("all"), 40, 70, 12, 1, 1.0));
 
 
             ORE_SETTINGS = b.comment("Ore Settings",
@@ -178,13 +212,11 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue TUFF_GEN;
+        public final ForgeConfigSpec.BooleanValue DARK_GRAVEL;
         public final ForgeConfigSpec.BooleanValue METEORITE_GEN;
         public final ForgeConfigSpec.DoubleValue BIG_METEORITE_CHANCE;
         public final ForgeConfigSpec.IntValue METEORITE_SIZE;
         public final ForgeConfigSpec.IntValue METEORITE_CHANCE;
-        public final ForgeConfigSpec.DoubleValue SILL_CHANCE;
-        public final ForgeConfigSpec.BooleanValue SILL_IRONSTONE_GEN;
-        public final ForgeConfigSpec.BooleanValue SILL_PHOSPHORITE_GEN;
         public final ForgeConfigSpec.ConfigValue<List<? extends String>> ORE_STONES;
 
 
@@ -209,31 +241,21 @@ public class WGConfig {
                         .define("generateAlluvium",true);
                 TUFF_GEN = b.comment("Enables the generation of tuff in their respective stone.")
                         .define("generateTuff",true);
+                DARK_GRAVEL = b.comment("Replace gravel in the nether with dark gravel")
+                        .define("darkGravel",true);
                 METEORITE_GEN = b.comment("Enable to generate meteorites in the overworld.")
                         .define("meteoriteGen",true);
                 METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
                         .defineInRange("meteoriteSize", 1, 0, 10);
                 METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
-                        .defineInRange("meteoriteChance", 50, 0, 1000);
+                        .defineInRange("meteoriteChance", 70, 0, 1000);
                 BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
-                        .defineInRange("meteoriteBigChance", 0.2, 0.00, 1.00);
-                SILL_CHANCE = b.comment("Chance per chunk to generate a sill of ironstone or phosphorite.")
-                        .defineInRange("sillChance", 0.2D, 0.0D, 1.0D);
-                SILL_IRONSTONE_GEN = b.comment("Enables the generation of ironstone sills.")
-                        .define("generateIronstone",false);
-                SILL_PHOSPHORITE_GEN = b.comment("Enables the generation of phosphorite sills.")
-                        .define("generatePhosphorite",false);
+                        .defineInRange("meteoriteBigChance", 0.25, 0.00, 1.00);
             b.pop();
         }
     }
 
     public static class Layers {
-        public final ForgeConfigSpec.ConfigValue<List<String>> NETHER_STONE_LIST;
-        public final ForgeConfigSpec.ConfigValue<List<String>> END_STONE_LIST;
-
-        public final ForgeConfigSpec.IntValue NETHER_HEIGHT;
-        public final ForgeConfigSpec.IntValue END_HEIGHT;
-
         public final ForgeConfigSpec.DoubleValue LAYER_WIDTH;
         public final ForgeConfigSpec.IntValue NOISE_SCALE;
         public final ForgeConfigSpec.IntValue NOISE_OFFSET;
@@ -249,15 +271,6 @@ public class WGConfig {
                         .defineInRange("netherdLayerGen", 1, 0, 2);
                 END_STONE_LAYERS = b.comment("Determines the type of stone layer generation in the End. 0 is disabled (end stone and other features). 1 will only replace end stone with Rankine stones. 2 will replace any block in the tag #forge:base_stone_end.")
                         .defineInRange("endLayerGen", 1, 0, 2);
-
-                NETHER_STONE_LIST = b.comment("Blocks to generate in Nether layering. Layers generate from bottom to top. Leave empty to leave it as default gen.")
-                        .define("netherStoneList", new ArrayList<>(Arrays.asList("rankine:black_sand","minecraft:blackstone","rankine:purple_porphyry","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","minecraft:netherrack","rankine:red_porphyry")));
-                NETHER_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
-                        .defineInRange("netherHeight", 127, 0, 256);
-                END_STONE_LIST = b.comment("Blocks to generate in End layering. Layers generate from bottom to top. Leave empty to leave it as default gen.")
-                            .define("endStoneList", new ArrayList<>(Arrays.asList("rankine:purple_porphyry","rankine:purple_porphyry","rankine:green_schist","rankine:enstatite","minecraft:end_stone")));
-                END_HEIGHT = b.comment("Sets the average height of a biome type. The thickness of a layer is biome height / number of layers. Anything above this height will generally generate as the last layer.")
-                        .defineInRange("endHeight", 60, 0, 256);
 
                 LAYER_WIDTH = b.comment("Determines the vertical spread of stone layers. 1.0 is flat, closer to 0.0 is more extreme, 0.0 will crash.")
                         .defineInRange("layerWidth", 0.2D, 0.0D, 1.0D);

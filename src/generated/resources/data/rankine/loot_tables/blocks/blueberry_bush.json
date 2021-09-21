@@ -6,6 +6,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "rankine:blueberry_bush",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ],
           "name": "rankine:blueberries"
         }
       ],

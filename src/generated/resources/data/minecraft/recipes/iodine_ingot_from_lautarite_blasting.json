@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:lautarite"
+  },
+  "result": "rankine:iodine_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

@@ -5,7 +5,11 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
+import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -71,12 +75,10 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.CROPS_SINGLE,
                 RankineLists.CROPS_DOUBLE,
                 RankineLists.CROPS_TRIPLE,
-                RankineLists.BUSH_PLANTS,
-                RankineLists.DOUBLE_BUSH_PLANTS
+                RankineLists.BUSH_PLANTS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
-
 
         for (Block SOIL : Stream.of(RankineLists.SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
             Block GRASS = RankineLists.GRASSY_SOILS.get(RankineLists.SOILS.indexOf(SOIL));
@@ -86,6 +88,11 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(GRASS, droppingWithSilkTouch(GRASS,SOIL));
         }
         lootTables.put(RankineBlocks.ENDER_SHIRO.get(), droppingWithSilkTouch(RankineBlocks.ENDER_SHIRO.get(),Blocks.END_STONE));
+
+        lootTables.put(RankineBlocks.FIRE_CLAY.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.FIRE_CLAY.get(), RankineItems.FIRE_CLAY_BALL.get(), ConstantRange.of(4)));
+        lootTables.put(RankineBlocks.KAOLINITE_BLOCK.get(), droppingWithSilkTouchOrRandomly(RankineBlocks.KAOLINITE_BLOCK.get(), RankineItems.KAOLINITE_BALL.get(), ConstantRange.of(4)));
+        lootTables.put(RankineBlocks.DARK_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.DARK_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.DARK_GRAVEL.get(), ItemLootEntry.builder(Items.FLINT).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.2F, 0.5F, 1.0F, 1.0F)).alternatively(ItemLootEntry.builder(RankineBlocks.DARK_GRAVEL.get())))));
+        lootTables.put(RankineBlocks.LIGHT_GRAVEL.get(), droppingWithSilkTouch(RankineBlocks.LIGHT_GRAVEL.get(), withSurvivesExplosion(RankineBlocks.LIGHT_GRAVEL.get(), ItemLootEntry.builder(Items.FLINT).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.05F, 0.1F, 0.2F, 0.5F)).alternatively(ItemLootEntry.builder(RankineBlocks.LIGHT_GRAVEL.get())))));
 
 
         for (Block blk : Stream.of(
@@ -117,6 +124,8 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.NATIVE_GOLD_ORE.get(), nativeOreBlockLootTable(RankineBlocks.NATIVE_GOLD_ORE.get(), Items.GOLD_NUGGET));
         lootTables.put(RankineBlocks.NATIVE_SILVER_ORE.get(), nativeOreBlockLootTable(RankineBlocks.NATIVE_SILVER_ORE.get(), RankineItems.SILVER_NUGGET.get()));
         lootTables.put(RankineBlocks.NATIVE_SULFUR_ORE.get(), nativeOreBlockLootTable(RankineBlocks.NATIVE_SULFUR_ORE.get(), RankineItems.SULFUR_NUGGET.get()));
+        lootTables.put(RankineBlocks.STIBNITE_ORE.get(), nativeOreBlockLootTable(RankineBlocks.STIBNITE_ORE.get(), RankineItems.ANTIMONY_NUGGET.get()));
+        lootTables.put(RankineBlocks.PORPHYRY_COPPER.get(), nativeOreBlockLootTable(RankineBlocks.PORPHYRY_COPPER.get(), RankineItems.COPPER_NUGGET.get()));
 
         lootTables.put(RankineBlocks.LIGNITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.LIGNITE_ORE.get(), RankineItems.LIGNITE.get()));
         lootTables.put(RankineBlocks.SUBBITUMINOUS_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.SUBBITUMINOUS_ORE.get(), RankineItems.SUBBITUMINOUS_COAL.get()));
@@ -129,10 +138,10 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.DIAMOND_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.DIAMOND_ORE.get(), Items.DIAMOND));
         lootTables.put(RankineBlocks.EMERALD_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.EMERALD_ORE.get(), Items.EMERALD));
 
-        lootTables.put(RankineBlocks.TAENITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.TAENITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
-        lootTables.put(RankineBlocks.TETRATAENITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.TETRATAENITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
-        lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.ANTITAENITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
-        lootTables.put(RankineBlocks.KAMACITE_ORE.get(), fortunableOreOreBlockLootTable(RankineBlocks.KAMACITE_ORE.get(), RankineItems.METEORIC_IRON.get()));
+        lootTables.put(RankineBlocks.TAENITE_ORE.get(), createBlockLootTable(RankineBlocks.TAENITE_ORE.get()));
+        lootTables.put(RankineBlocks.TETRATAENITE_ORE.get(), createBlockLootTable(RankineBlocks.TETRATAENITE_ORE.get()));
+        lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), createBlockLootTable(RankineBlocks.ANTITAENITE_ORE.get()));
+        lootTables.put(RankineBlocks.KAMACITE_ORE.get(), createBlockLootTable(RankineBlocks.KAMACITE_ORE.get()));
 
         for (Block ORE : RankineLists.CRUSHING_ORES) {
             lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));
@@ -152,6 +161,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.METAL_DOORS,
                 RankineLists.WOODEN_DOORS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
+            lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+        }
+        for (Block BLK : Stream.of(RankineLists.DOUBLE_BUSH_PLANTS).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }
 

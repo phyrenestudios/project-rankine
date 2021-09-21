@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:gadolinium_monazite"
+  },
+  "result": "rankine:gadolinium_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

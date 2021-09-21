@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:lithium_block_from_spodumene_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_spodumene": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:spodumene"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:lithium_block_from_spodumene_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_spodumene",
+      "has_the_recipe"
+    ]
+  ]
+}

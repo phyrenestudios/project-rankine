@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:laurite"
+  },
+  "result": "rankine:ruthenium_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

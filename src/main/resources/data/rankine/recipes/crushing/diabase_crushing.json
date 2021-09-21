@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:gabbro"
+    "item": "rankine:diabase"
   },
   "output1": {
     "item": "minecraft:blackstone",
@@ -24,7 +24,7 @@
   },
   "output5": {
     "item": "rankine:magnetite",
-    "chance": 0.2,
+    "chance": 0.02,
     "additional": 0.02
   },
   "output6": {

@@ -21,7 +21,7 @@ public class SillFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if (rand.nextFloat() < WGConfig.MISC.SILL_CHANCE.get()) {
+        if (rand.nextFloat() <0) {
             //int height = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
             int height = rand.nextInt(30) + 30;
             int radius = 5 + rand.nextInt(5);

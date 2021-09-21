@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:copper_block_from_azurmalachite_block_blasting"
+    ]
+  },
+  "criteria": {
+    "has_azurmalachite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:azurmalachite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:copper_block_from_azurmalachite_block_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_azurmalachite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -49,17 +49,17 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
                 for (int y = 0; y <= endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
                     Block TARGET = reader.getBlockState(TARGET_POS).getBlock();
-                    Biome.Category TARGET_BIOME_CAT = reader.getBiome(TARGET_POS).getCategory();
+                    ResourceLocation TARGET_BIOME = reader.getBiome(TARGET_POS).getRegistryName();
 
-                    Block GRASS = WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT));
-                    Block GRASS2 = WorldgenUtils.GEN_GRASSES2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT));
+                    Block GRASS = WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block GRASS2 = WorldgenUtils.GEN_GRASSES2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
 
                     if (TARGET.matchesBlock(Blocks.DIRT)) {
-                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME_CAT)) {
-                            soilPlacer(reader, TARGET_POS, WorldgenUtils.GEN_SOILS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState(), WorldgenUtils.GEN_SOILS2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME_CAT)).getDefaultState());
+                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
+                            soilPlacer(reader, TARGET_POS, WorldgenUtils.GEN_SOILS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), WorldgenUtils.GEN_SOILS2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState());
                         }
                     } else if (TARGET.matchesBlock(Blocks.GRASS_BLOCK)) {
-                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME_CAT)) {
+                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
                             
                             if (GRASS instanceof GrassBlock && GRASS2 instanceof GrassBlock) {
                                 boolean SNOWY = reader.getBlockState(TARGET_POS).get(BlockStateProperties.SNOWY);
@@ -69,7 +69,7 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
                             }
                         }
                     } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
-                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME_CAT)) {
+                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
                             
                             if (GRASS instanceof GrassySoilBlock) {
                                 soilPlacer(reader, TARGET_POS, ((GrassySoilBlock) GRASS).PATH.getDefaultState(), ((GrassySoilBlock) GRASS).PATH.getDefaultState());

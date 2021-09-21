@@ -101,6 +101,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.STANDARD_BLOCKS, RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             simpleBlock(blk);
         }
+        // Misc Blocks
+        for (Block blk : Arrays.asList(
+                RankineBlocks.LIGHT_GRAVEL.get(),
+                RankineBlocks.DARK_GRAVEL.get(),
+                RankineBlocks.KAOLINITE_BLOCK.get(),
+                RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.PORPHYRY_COPPER.get()
+        )) {
+            simpleBlock(blk);
+        }
+
         //Rotation blocks
         for (Block blk : Stream.of(RankineLists.ROTATION_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             rotationBlock(blk);
@@ -427,23 +438,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         paneBlock((PaneBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","cast_iron"+"_bars")), new ResourceLocation("rankine","block/"+"cast_iron"+"_bars"), new ResourceLocation("rankine","block/"+"cast_iron"+"_bars"));
 
 
-        for (String s : RankineLists.ELEMENTS) {
-            simpleBlock(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine",s+"_block")));
-        }
         for (Block blk : RankineLists.GEODES) {
             geodeBlock(blk);
         }
-        for (Block blk : RankineLists.GAS_BLOCKS) {
-            simpleBlock(blk);
-        }
-        for (Block blk : RankineLists.MINERAL_STONES) {
+        for (Block blk : Stream.of(RankineLists.ELEMENT_BLOCKS,RankineLists.GAS_BLOCKS,RankineLists.MINERAL_STONES,RankineLists.MINERAL_WOOL).flatMap(Collection::stream).collect(Collectors.toList())) {
             simpleBlock(blk);
         }
         for (Block blk : RankineLists.LEDS) {
             onOffBlock(blk);
-        }
-        for (Block blk : RankineLists.MINERAL_WOOL) {
-            simpleBlock(blk);
         }
         for (Block blk : RankineLists.METAL_LADDERS) {
             ladderBlock(blk);
@@ -475,6 +477,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
         //MACHINES
+        getVariantBuilder(RankineBlocks.GROUND_TAP.get())
+                .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/ground_tap"))).addModel();
+
         simpleBlock(RankineBlocks.LASER_QUARRY.get());
         simpleBlock(RankineBlocks.RANKINE_BOX.get());
         simpleBlock(RankineBlocks.DIAMOND_ANVIL_CELL.get());

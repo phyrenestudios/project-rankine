@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "rankine:yttrium_monazite_block"
+  },
+  "result": "rankine:yttrium_block",
+  "experience": 5.0,
+  "cookingtime": 800
+}
