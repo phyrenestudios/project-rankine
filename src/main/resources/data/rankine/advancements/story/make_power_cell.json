@@ -2,7 +2,7 @@
   "parent": "rankine:story/make_steel_alloy",
   "display": {
     "icon": {
-      "item": "rankine:power_cell"
+      "item": "rankine:power_cell_1"
     },
     "title": {
       "translate": "rankine.advancements.story.make_power_cell.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:power_cell"
+            "item": "rankine:power_cell_1"
           }
         ]
       }

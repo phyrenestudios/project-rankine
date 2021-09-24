@@ -1,0 +1,68 @@
+{
+  "parent": "rankine:story/make_alloy_furnace",
+  "display": {
+    "icon": {
+      "item": "rankine:bronze_crowbar"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.get_crowbar.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.get_crowbar.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bronze_crowbar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bronze_crowbar"
+          }
+        ]
+      }
+    },
+    "pewter_crowbar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pewter_crowbar"
+          }
+        ]
+      }
+    },
+    "rose_gold_crowbar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rose_gold_crowbar"
+          }
+        ]
+      }
+    },
+    "green_gold_crowbar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:green_gold_crowbar"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bronze_crowbar",
+      "pewter_crowbar",
+      "rose_gold_crowbar",
+      "green_gold_crowbar"
+    ]
+  ]
+}

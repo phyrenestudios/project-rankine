@@ -1074,7 +1074,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ALLUVIUM = REGISTRY.register("alluvium", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> BLACK_SAND = REGISTRY.register("black_sand", () -> new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> WHITE_SAND = REGISTRY.register("white_sand", () -> new SandBlock(16777215, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
-    public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
+    public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F,15.0F).sound(SoundType.GLASS).notSolid().harvestLevel(1)));
+    public static final RegistryObject<Block> BOROSILICATE_GLASS = REGISTRY.register("borosilicate_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
     public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(2)));
     public static final RegistryObject<Block> BOG_IRON = REGISTRY.register("bog_iron", () -> new Block(DEF_STONE.harvestLevel(2)));
@@ -1761,6 +1762,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> REACTION_CHAMBER_CORE = REGISTRY.register("reaction_chamber_core", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> REACTION_CHAMBER_CELL = REGISTRY.register("reaction_chamber_cell", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
+
     public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TREE_TAP = REGISTRY.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
     public static final RegistryObject<Block> TAP_BARREL = REGISTRY.register("tap_barrel", () -> new TapBarrelBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));

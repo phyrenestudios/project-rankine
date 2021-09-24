@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:chalk"
+    "item": "rankine:honeystone"
   },
   "output1": {
     "item": "rankine:breccia",

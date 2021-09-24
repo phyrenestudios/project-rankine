@@ -13,8 +13,9 @@
     "additional": 0.15
   },
   "output3": {
-    "item": "rankine:asbestos",
-    "chance": 0.5,
+    "item": "rankine:nickel_nugget",
+    "count": 3,
+    "chance": 0.1,
     "additional": 0.2
   },
   "output4": {
@@ -23,7 +24,7 @@
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:talc",
+    "item": "rankine:asbestos",
     "chance": 0.1,
     "additional": 0.05
   },

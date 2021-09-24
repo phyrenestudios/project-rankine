@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.items.tools;
 
+import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
+import com.google.common.collect.ImmutableMultimap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -11,6 +13,8 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -26,16 +30,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 public class KnifeItem extends SwordItem {
     private final float attackDamage;
     private final float attackSpeed;
 
-    public KnifeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
-        super(tier, attackDamageIn, attackSpeedIn, builder);
+    public KnifeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties properties) {
+        super(tier, attackDamageIn, attackSpeedIn, properties);
         this.attackSpeed = attackSpeedIn;
         this.attackDamage = (float)attackDamageIn + tier.getAttackDamage();
     }

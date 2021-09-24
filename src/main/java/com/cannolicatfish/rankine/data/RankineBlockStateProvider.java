@@ -482,6 +482,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(RankineBlocks.LASER_QUARRY.get());
         simpleBlock(RankineBlocks.RANKINE_BOX.get());
+        simpleBlock(RankineBlocks.REACTION_CHAMBER_CORE.get());
         simpleBlock(RankineBlocks.DIAMOND_ANVIL_CELL.get());
         simpleBlock(RankineBlocks.SEDIMENT_FAN.get());
         simpleBlock(RankineBlocks.GAS_VENT.get());

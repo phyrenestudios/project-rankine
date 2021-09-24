@@ -19,6 +19,7 @@ import com.cannolicatfish.rankine.items.alloys.*;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
+import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
@@ -1078,6 +1079,12 @@ public class RankineEventHandler {
             event.addModifier(Attributes.LUCK, new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fd1"), "Rankine Antiquated modifier",
                     EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ANTIQUATED,stack),
                     AttributeModifier.Operation.ADDITION));
+        }
+        if (stack.getItem() instanceof SpearItem && event.getSlotType() == EquipmentSlotType.MAINHAND) {
+            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.SPEAR_REACH_MODIFIER,"Weapon modifier", 1, AttributeModifier.Operation.ADDITION));
+        }
+        if (stack.getItem() instanceof KnifeItem && event.getSlotType() == EquipmentSlotType.MAINHAND) {
+            event.addModifier(RankineAttributes.REACH_DISTANCE, new AttributeModifier(RankineAttributes.KNIFE_REACH_MODIFIER,"Weapon modifier", -2, AttributeModifier.Operation.ADDITION));
         }
     }
     

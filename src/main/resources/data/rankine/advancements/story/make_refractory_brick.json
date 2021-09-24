@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/get_flint_tools",
+  "parent": "rankine:story/rankine",
   "display": {
     "icon": {
       "item": "rankine:refractory_brick"

@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:pyrite_ore"
+    "item": "rankine:pyrite"
   },
   "output1": {
     "item": "rankine:sulfur",
