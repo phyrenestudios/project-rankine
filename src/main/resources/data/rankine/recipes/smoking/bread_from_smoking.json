@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "tag": "forge:dough"
-  },
-  "result": "minecraft:bread",
-  "experience": 0.35,
-  "cookingtime": 100
-}

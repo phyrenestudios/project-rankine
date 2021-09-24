@@ -93,6 +93,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.DOUBLE_BUSH_PLANTS,
                 RankineLists.EIGHT_LAYER_BLOCKS,
                 RankineLists.FLUID_BLOCKS,
+                RankineLists.GAS_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.SOILS,
@@ -107,6 +108,8 @@ public class RankineLangProvider extends LanguageProvider {
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.UNAMED_EXPLOSIVE.get(),
+                RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),

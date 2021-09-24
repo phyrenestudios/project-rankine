@@ -32,7 +32,7 @@ public class TreeChoppingEvents {
         World worldIn = player.world;
         BlockState state = event.getState();
 
-        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Stack<BlockPos> toCheck = new Stack<>();
             boolean alive = false;
@@ -44,10 +44,14 @@ public class TreeChoppingEvents {
                     checkedBlocks.add(cp);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                         BlockState target = worldIn.getBlockState(b.toImmutable());
-                        if (worldIn.getBlockState(cp).getBlock().getTags().contains(new ResourceLocation("minecraft:logs")) && target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                        if (worldIn.getBlockState(cp).isIn(RankineTags.Blocks.TREE_LOGS) && target.isIn(RankineTags.Blocks.TREE_LOGS)) {
                             toCheck.add(b.toImmutable());
-                        } else if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:leaves"))) {
-                            if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
+                        } else if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
+                            if (target.getBlock() instanceof LeavesBlock) {
+                                if (!target.get(LeavesBlock.PERSISTENT)) { /*&& target.get(LeavesBlock.DISTANCE) <= 5*/
+                                    alive = true;
+                                }
+                            } else {
                                 alive = true;
                             }
                         }
@@ -67,7 +71,7 @@ public class TreeChoppingEvents {
         BlockState state = worldIn.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
 
-        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Set<BlockPos> logs = new HashSet<>();
             List<BlockPos> leaves = new ArrayList<>();
@@ -81,14 +85,14 @@ public class TreeChoppingEvents {
                     checkedBlocks.add(cp);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                         BlockState target = worldIn.getBlockState(b.toImmutable());
-                        if (worldIn.getBlockState(cp).isIn(BlockTags.LOGS) && target.isIn(BlockTags.LOGS)) {
+                        if (worldIn.getBlockState(cp).isIn(RankineTags.Blocks.TREE_LOGS) && target.isIn(RankineTags.Blocks.TREE_LOGS)) {
                             toCheck.add(b.toImmutable());
                             logs.add(b.toImmutable());
-                        } else if (target.getBlock().getTags().contains(new ResourceLocation("rankine:tree_chopping_leaves"))) {
+                        } else if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
                             if (target.getBlock() instanceof LeavesBlock) {
                                 if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
                                     for (BlockPos log : logs) {
-                                        if (log.distanceSq(b) <= 16) {
+                                        if (log.distanceSq(b) <= 10) {
                                             toCheck.add(b.toImmutable());
                                             leaves.add(b.toImmutable());
                                             alive = true;
@@ -115,7 +119,7 @@ public class TreeChoppingEvents {
             if (alive) {
                 for (BlockPos b : logs) {
                     if (worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState());
+                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),3);
                     } else {
                         worldIn.destroyBlock(b, true);
                     }
@@ -127,6 +131,9 @@ public class TreeChoppingEvents {
                     //worldIn.getPendingBlockTicks().scheduleTick(b,worldIn.getBlockState(b).getBlock(),1);
                 }
                 //worldIn.playSound(player, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                if (worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
+                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
+                }
             }
 
             if (state.getBlockHardness(worldIn, pos) != 0.0F) {

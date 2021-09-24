@@ -7,8 +7,7 @@ import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
-import net.minecraft.loot.ConstantRange;
-import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
@@ -74,8 +73,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
 
                 RankineLists.CROPS_SINGLE,
                 RankineLists.CROPS_DOUBLE,
-                RankineLists.CROPS_TRIPLE,
-                RankineLists.BUSH_PLANTS
+                RankineLists.CROPS_TRIPLE
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
@@ -166,6 +164,14 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         for (Block BLK : Stream.of(RankineLists.DOUBLE_BUSH_PLANTS).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }
+
+        lootTables.put(RankineBlocks.BLACKBERRY_BUSH.get(), bushOneDrop(RankineBlocks.BLACKBERRY_BUSH.get(), RankineItems.BLACKBERRIES.get()));
+        lootTables.put(RankineBlocks.RASPBERRY_BUSH.get(), bushOneDrop(RankineBlocks.RASPBERRY_BUSH.get(), RankineItems.RASPBERRIES.get()));
+        lootTables.put(RankineBlocks.BANANA_YUCCA_BUSH.get(), bushOneDrop(RankineBlocks.BANANA_YUCCA_BUSH.get(), RankineItems.BANANA_YUCCA.get()));
+        lootTables.put(RankineBlocks.SNOWBERRY_BUSH.get(), bushOneDrop(RankineBlocks.SNOWBERRY_BUSH.get(), RankineItems.SNOWBERRIES.get()));
+        lootTables.put(RankineBlocks.STRAWBERRY_BUSH.get(), bushOneDrop(RankineBlocks.STRAWBERRY_BUSH.get(), RankineItems.STRAWBERRIES.get()));
+
+
 
     }
 

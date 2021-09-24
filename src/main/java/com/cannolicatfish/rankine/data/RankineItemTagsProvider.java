@@ -9,6 +9,7 @@ import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -32,6 +33,41 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void registerTags() {
+
+        copy(RankineTags.Blocks.ORES_COPPER, RankineTags.Items.ORES_COPPER);
+        copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
+        copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
+        copy(RankineTags.Blocks.ORES_BISMUTH, RankineTags.Items.ORES_BISMUTH);
+        copy(RankineTags.Blocks.ORES_TUNGSTEN, RankineTags.Items.ORES_TUNGSTEN);
+        copy(RankineTags.Blocks.ORES_ALUMINUM, RankineTags.Items.ORES_ALUMINUM);
+        copy(RankineTags.Blocks.ORES_TIN, RankineTags.Items.ORES_TIN);
+        copy(RankineTags.Blocks.ORES_TITANIUM, RankineTags.Items.ORES_TITANIUM);
+        copy(RankineTags.Blocks.ORES_MAGNESIUM, RankineTags.Items.ORES_MAGNESIUM);
+        copy(RankineTags.Blocks.ORES_MANGANESE, RankineTags.Items.ORES_MANGANESE);
+        copy(RankineTags.Blocks.ORES_ZINC, RankineTags.Items.ORES_ZINC);
+        copy(RankineTags.Blocks.ORES_STRONTIUM, RankineTags.Items.ORES_STRONTIUM);
+        copy(RankineTags.Blocks.ORES_LITHIUM, RankineTags.Items.ORES_LITHIUM);
+        copy(RankineTags.Blocks.ORES_SODIUM, RankineTags.Items.ORES_SODIUM);
+        copy(RankineTags.Blocks.ORES_ARSENIC, RankineTags.Items.ORES_ARSENIC);
+        copy(RankineTags.Blocks.ORES_GALLIUM, RankineTags.Items.ORES_GALLIUM);
+        copy(RankineTags.Blocks.ORES_INDIUM, RankineTags.Items.ORES_INDIUM);
+        copy(RankineTags.Blocks.ORES_SELENIUM, RankineTags.Items.ORES_SELENIUM);
+        copy(RankineTags.Blocks.ORES_TELLURIUM, RankineTags.Items.ORES_TELLURIUM);
+        copy(RankineTags.Blocks.ORES_SULFUR, RankineTags.Items.ORES_SULFUR);
+        copy(RankineTags.Blocks.ORES_MERCURY, RankineTags.Items.ORES_MERCURY);
+        copy(RankineTags.Blocks.ORES_CHROMIUM, RankineTags.Items.ORES_CHROMIUM);
+        copy(RankineTags.Blocks.ORES_COBALT, RankineTags.Items.ORES_COBALT);
+        copy(RankineTags.Blocks.ORES_NICKEL, RankineTags.Items.ORES_NICKEL);
+        copy(RankineTags.Blocks.ORES_YTTRIUM, RankineTags.Items.ORES_YTTRIUM);
+        copy(RankineTags.Blocks.ORES_MOLYBDENUM, RankineTags.Items.ORES_MOLYBDENUM);
+        copy(RankineTags.Blocks.ORES_CADMIUM, RankineTags.Items.ORES_CADMIUM);
+        copy(RankineTags.Blocks.ORES_URANIUM, RankineTags.Items.ORES_URANIUM);
+        copy(RankineTags.Blocks.ORES_ANTIMONY, RankineTags.Items.ORES_ANTIMONY);
+        copy(RankineTags.Blocks.ORES_RHENIUM, RankineTags.Items.ORES_RHENIUM);
+        copy(RankineTags.Blocks.ORES_PHOSPHORUS, RankineTags.Items.ORES_PHOSPHORUS);
+        copy(RankineTags.Blocks.ORES_GRAPHITE, RankineTags.Items.ORES_GRAPHITE);
+        copy(RankineTags.Blocks.ORES_SALT, RankineTags.Items.ORES_SALT);
+        copy(Tags.Blocks.ORES, Tags.Items.ORES);
 
         copy(RankineTags.Blocks.STONES_DACITE, RankineTags.Items.STONES_DACITE);
         copy(RankineTags.Blocks.STONES_ANDESITE, RankineTags.Items.STONES_ANDESITE);
@@ -120,6 +156,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.COBALT_SUPERALLOY_TOOLS).add(RankineItems.COBALT_SUPERALLOY_AXE.get(),RankineItems.COBALT_SUPERALLOY_PICKAXE.get(),RankineItems.COBALT_SUPERALLOY_HOE.get(),RankineItems.COBALT_SUPERALLOY_SHOVEL.get(),RankineItems.COBALT_SUPERALLOY_SWORD.get(),RankineItems.COBALT_SUPERALLOY_HAMMER.get(),RankineItems.COBALT_SUPERALLOY_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.TUNGSTEN_HEAVY_ALLOY_TOOLS).add(RankineItems.TUNGSTEN_HEAVY_ALLOY_AXE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_PICKAXE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_HOE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_SHOVEL.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_SWORD.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_HAMMER.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.AMALGAM_TOOLS).add(RankineItems.AMALGAM_AXE.get(),RankineItems.AMALGAM_PICKAXE.get(),RankineItems.AMALGAM_HOE.get(),RankineItems.AMALGAM_SHOVEL.get(),RankineItems.AMALGAM_SWORD.get(),RankineItems.AMALGAM_HAMMER.get(),RankineItems.AMALGAM_SPEAR.get());
+        getOrCreateBuilder(RankineTags.Items.ENDER_AMALGAM_TOOLS).add(RankineItems.ENDER_AMALGAM_AXE.get(),RankineItems.ENDER_AMALGAM_PICKAXE.get(),RankineItems.ENDER_AMALGAM_HOE.get(),RankineItems.ENDER_AMALGAM_SHOVEL.get(),RankineItems.ENDER_AMALGAM_SWORD.get(),RankineItems.ENDER_AMALGAM_HAMMER.get(),RankineItems.ENDER_AMALGAM_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.ROSE_GOLD_TOOLS).add(RankineItems.ROSE_GOLD_AXE.get(),RankineItems.ROSE_GOLD_PICKAXE.get(),RankineItems.ROSE_GOLD_HOE.get(),RankineItems.ROSE_GOLD_SHOVEL.get(),RankineItems.ROSE_GOLD_SWORD.get(),RankineItems.ROSE_GOLD_HAMMER.get(),RankineItems.ROSE_GOLD_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.GREEN_GOLD_TOOLS).add(RankineItems.GREEN_GOLD_AXE.get(),RankineItems.GREEN_GOLD_PICKAXE.get(),RankineItems.GREEN_GOLD_HOE.get(),RankineItems.GREEN_GOLD_SHOVEL.get(),RankineItems.GREEN_GOLD_SWORD.get(),RankineItems.GREEN_GOLD_HAMMER.get(),RankineItems.GREEN_GOLD_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.BLUE_GOLD_TOOLS).add(RankineItems.BLUE_GOLD_AXE.get(),RankineItems.BLUE_GOLD_PICKAXE.get(),RankineItems.BLUE_GOLD_HOE.get(),RankineItems.BLUE_GOLD_SHOVEL.get(),RankineItems.BLUE_GOLD_SWORD.get(),RankineItems.BLUE_GOLD_HAMMER.get(),RankineItems.BLUE_GOLD_SPEAR.get());
@@ -283,6 +320,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
+        copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
 
 
 

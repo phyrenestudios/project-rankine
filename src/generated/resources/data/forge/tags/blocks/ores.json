@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:coltan_ore",
+    "rankine:sperrylite_ore",
+    "rankine:monazite_ore"
+  ]
+}

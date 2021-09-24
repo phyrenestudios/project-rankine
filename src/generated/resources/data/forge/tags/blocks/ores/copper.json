@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:malachite_ore",
+    "rankine:chalcocite_ore",
+    "rankine:porphyry_copper"
+  ]
+}

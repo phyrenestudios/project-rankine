@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "tag": "forge:crops/walnut"
-  },
-  "result": "rankine:roasted_walnut",
-  "experience": 0.35,
-  "cookingtime": 600
-}

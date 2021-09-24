@@ -34,7 +34,7 @@ public class RankineRecipesProvider extends RecipeProvider {
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
         //MINECRAFT OVERRIDE
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ItemTags.LOGS_THAT_BURN), RankineItems.ASH.get(), 0.1F, 200).addCriterion("has_logs", hasItem(ItemTags.LOGS_THAT_BURN)).build(consumer, "ash_from_smelting");
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ItemTags.LOGS_THAT_BURN), RankineItems.ASH.get(), 0.1F, 200).addCriterion("has_logs", hasItem(ItemTags.LOGS_THAT_BURN)).build(consumer, "charcoal_smelting");
         ShapedRecipeBuilder.shapedRecipe(Blocks.BRICKS).key('#', Items.BRICK).key('M', RankineItems.MORTAR.get()).patternLine("#M").patternLine("M#").addCriterion("has_brick", hasItem(Items.BRICK)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(Blocks.END_STONE_BRICKS, 2).key('#', Blocks.END_STONE).key('M', RankineItems.MORTAR.get()).patternLine("#M").patternLine("M#").addCriterion("has_end_stone", hasItem(Blocks.END_STONE)).build(consumer);
         ShapedRecipeBuilder.shapedRecipe(Blocks.QUARTZ_BRICKS, 2).key('#', Blocks.QUARTZ_BLOCK).key('M', RankineItems.MORTAR.get()).patternLine("#M").patternLine("M#").addCriterion("has_quartz_block", hasItem(Blocks.QUARTZ_BLOCK)).build(consumer);
@@ -52,6 +52,10 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(Blocks.TORCH, 6).patternLine("C").patternLine("S").key('C', RankineItems.BITUMINOUS_COAL.get()).key('S', Tags.Items.RODS_WOODEN).addCriterion("has_coal", hasItem(RankineItems.BITUMINOUS_COAL.get())).build(consumer, "torch_from_bituminous_coal");
         ShapedRecipeBuilder.shapedRecipe(Blocks.TORCH, 8).patternLine("C").patternLine("S").key('C', RankineItems.ANTHRACITE_COAL.get()).key('S', Tags.Items.RODS_WOODEN).addCriterion("has_coal", hasItem(RankineItems.ANTHRACITE_COAL.get())).build(consumer, "torch_from_anthracite_coal");
         ShapedRecipeBuilder.shapedRecipe(Blocks.TORCH, 8).patternLine("C").patternLine("S").key('C', RankineItems.COKE.get()).key('S', Tags.Items.RODS_WOODEN).addCriterion("has_coal", hasItem(RankineItems.COKE.get())).build(consumer, "torch_from_coke");
+
+        ShapedRecipeBuilder.shapedRecipe(Items.BUCKET, 2).patternLine("I I").patternLine(" I ").key('I', RankineItems.STEEL_ALLOY.get()).addCriterion("has_ingredient", hasItem(RankineItems.STEEL_ALLOY.get())).build(consumer, "bucket_from_steel");
+        ShapedRecipeBuilder.shapedRecipe(Items.BUCKET, 1).patternLine("I I").patternLine(" I ").key('I', RankineItems.BRASS_ALLOY.get()).addCriterion("has_ingredient", hasItem(RankineItems.BRASS_ALLOY.get())).build(consumer, "bucket_from_brass");
+        ShapedRecipeBuilder.shapedRecipe(Items.BUCKET, 1).patternLine("I I").patternLine(" I ").key('I', RankineTags.Items.CRAFTING_METAL_INGOTS).addCriterion("has_ingredient", hasItem(RankineTags.Items.CRAFTING_METAL_INGOTS)).build(consumer, "bucket_from_crafting_metals");
 
 
 
@@ -97,8 +101,9 @@ public class RankineRecipesProvider extends RecipeProvider {
             CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(MINERAL_BLOCK), INGOT_BLOCK, 5.0F, 800).addCriterion("has_"+baseName, hasItem(MINERAL)).build(consumer, INGOT_BLOCK.getRegistryName().getPath()+"_from_"+baseName+"_block_blasting");
             //beehive oven
         }
-        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.APATITE.get()), RankineItems.PHOSPHORUS_NUGGET.get(), 0.5F, 100).addCriterion("has_ingredient", hasItem(RankineItems.APATITE.get())).build(consumer, RankineItems.APATITE.get().getRegistryName().getPath()+"_from_apatite_blasting");
-        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.APATITE_BLOCK.get()), RankineItems.PHOSPHORUS.get(), 5.0F, 800).addCriterion("has_ingredient", hasItem(RankineItems.APATITE.get())).build(consumer, RankineItems.APATITE_BLOCK.get().getRegistryName().getPath()+"_from_apatite_block_blasting");
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.APATITE.get()), RankineItems.PHOSPHORUS_NUGGET.get(), 0.5F, 100).addCriterion("has_ingredient", hasItem(RankineItems.APATITE.get())).build(consumer, RankineItems.PHOSPHORUS_NUGGET.get().getRegistryName().getPath()+"_from_apatite_blasting");
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.APATITE_BLOCK.get()), RankineItems.PHOSPHORUS.get(), 5.0F, 800).addCriterion("has_ingredient", hasItem(RankineItems.APATITE.get())).build(consumer, RankineItems.PHOSPHORUS.get().getRegistryName().getPath()+"_from_apatite_block_blasting");
+        CookingRecipeBuilder.blastingRecipe(Ingredient.fromItems(RankineItems.METEORIC_IRON.get()), Items.IRON_INGOT, 0.5F, 100).addCriterion("has_ingredient", hasItem(RankineItems.METEORIC_IRON.get())).build(consumer, Items.IRON_INGOT.getRegistryName().getPath()+"_from_meteoric_iron_blasting");
 
 
         for (Block MAT : RankineLists.FIBER_MAT) {
@@ -498,7 +503,20 @@ public class RankineRecipesProvider extends RecipeProvider {
 
         
         //Campfire
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.FIRE_CLAY_BALL.get())).build(consumer, "cooked_beef_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.FIRE_CLAY_BALL.get())).build(consumer, "refractory_brick_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.PANCAKE_BATTER.get())).build(consumer, "pancake_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.CORN_EAR.get())).build(consumer, "popcorn_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.ROASTED_ASPARAGUS.get())).build(consumer, "roasted_asparagus_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.BLACK_WALNUT.get())).build(consumer, "roasted_walnut_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineItems.COCONUT.get())).build(consumer, "toasted_coconut_from_" + "campfire_cooking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 600, IRecipeSerializer.CAMPFIRE_COOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.BREAD)).build(consumer, "toast_from_" + "campfire_cooking");
+        //Smoking
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.PANCAKE_BATTER.get()), RankineItems.PANCAKE.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.PANCAKE_BATTER.get())).build(consumer, "pancake_from_" + "smoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.CORN_EAR.get()), RankineItems.POPCORN.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.CORN_EAR.get())).build(consumer, "popcorn_from_" + "smoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.ASPARAGUS.get()), RankineItems.ROASTED_ASPARAGUS.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.ROASTED_ASPARAGUS.get())).build(consumer, "roasted_asparagus_from_" + "smoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.BLACK_WALNUT.get()), RankineItems.ROASTED_WALNUT.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.BLACK_WALNUT.get())).build(consumer, "roasted_walnut_from_" + "smoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(RankineItems.COCONUT.get()), RankineItems.TOASTED_COCONUT.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineItems.COCONUT.get())).build(consumer, "toasted_coconut_from_" + "smoking");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.BREAD), RankineItems.TOAST.get(), 0.35F, 100, IRecipeSerializer.SMOKING).addCriterion("has_ingredient", hasItem(RankineTags.Items.BREAD)).build(consumer, "toast_from_" + "smoking");
 
 
     }

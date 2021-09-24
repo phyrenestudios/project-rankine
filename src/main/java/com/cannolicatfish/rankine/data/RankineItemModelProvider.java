@@ -361,6 +361,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.ANTIMATTER.get(),
+                RankineBlocks.UNAMED_EXPLOSIVE.get(),
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),

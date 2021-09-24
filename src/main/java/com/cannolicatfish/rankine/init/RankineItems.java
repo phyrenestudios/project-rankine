@@ -870,6 +870,8 @@ public class RankineItems {
     public static final RegistryObject<Item> GRAY_TEKITE = REGISTRY.register("gray_tektite", () -> new BlockItem(RankineBlocks.GRAY_TEKTITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BLACK_TEKITE = REGISTRY.register("black_tektite", () -> new BlockItem(RankineBlocks.BLACK_TEKTITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
     public static final RegistryObject<Item> BROWN_TEKITE = REGISTRY.register("brown_tektite", () -> new BlockItem(RankineBlocks.BROWN_TEKTITE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    public static final RegistryObject<Item> ANTIMATTER = REGISTRY.register("antimatter", () -> new BlockItem(RankineBlocks.ANTIMATTER.get(),new Item.Properties().maxStackSize(64)));
+    public static final RegistryObject<Item> UNAMED_EXPLOSIVE = REGISTRY.register("unamed_explosive", () -> new BlockItem(RankineBlocks.UNAMED_EXPLOSIVE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
 
 
     //REFINED STONES

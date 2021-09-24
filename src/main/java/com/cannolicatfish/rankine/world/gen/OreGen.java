@@ -71,9 +71,10 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getEndOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
-        //if (WGConfig.LAYERS.END_STONE_LAYERS.get() != 0) {
-        //    EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-        //}
+        if (WGConfig.MISC.END_METEORITE_GEN.get()) {
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANTIMATTER_BLOB, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+        }
 
         return EndFeatures;
     }

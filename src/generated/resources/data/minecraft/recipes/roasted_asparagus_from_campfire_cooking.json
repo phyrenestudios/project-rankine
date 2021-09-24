@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "rankine:asparagus"
+  },
+  "result": "rankine:roasted_asparagus",
+  "experience": 0.35,
+  "cookingtime": 600
+}

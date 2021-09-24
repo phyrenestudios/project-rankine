@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "tag": "forge:crops/asparagus"
-  },
-  "result": "rankine:roasted_asparagus",
-  "experience": 0.35,
-  "cookingtime": 100
-}

@@ -38,6 +38,9 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> FLOWER_SEEDS = mod("flower_seeds");
         public static final ITag.INamedTag<Block> LUCK_PENDANT = mod("luck_pendant");
         public static final ITag.INamedTag<Block> GLASS_CUTTER = mod("glass_cutter");
+        public static final ITag.INamedTag<Block> TREE_LOGS = mod("tree_logs");
+        public static final ITag.INamedTag<Block> TREE_LEAVES = mod("tree_leaves");
+        public static final ITag.INamedTag<Block> WORLD_STRIP = mod("world_strip");
 
 
         //FORGE
@@ -77,8 +80,44 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> POLISHED_STONE_VERTICAL_SLAB = forge("polished_stone_vertical_slabs");
         public static final ITag.INamedTag<Block> STONE_BRICKS_VERTICAL_SLAB = forge("stone_bricks_vertical_slabs");
 
-        public static final ITag.INamedTag<Block> BASE_STONE_END = forge("base_stone_end");
-        public static final ITag.INamedTag<Block> WG_STONE = forge("wg_stone");
+
+        //forge:ores/*
+        public static final ITag.INamedTag<Block> ORES_COPPER = forge("ores/copper");
+        public static final ITag.INamedTag<Block> ORES_LEAD = forge("ores/lead");
+        public static final ITag.INamedTag<Block> ORES_SILVER = forge("ores/silver");
+        public static final ITag.INamedTag<Block> ORES_BISMUTH = forge("ores/bismuth");
+        public static final ITag.INamedTag<Block> ORES_TUNGSTEN = forge("ores/tungsten");
+        public static final ITag.INamedTag<Block> ORES_ALUMINUM = forge("ores/aluminum");
+        public static final ITag.INamedTag<Block> ORES_TIN = forge("ores/tin");
+        public static final ITag.INamedTag<Block> ORES_TITANIUM = forge("ores/titanium");
+        public static final ITag.INamedTag<Block> ORES_MAGNESIUM = forge("ores/magnesium");
+        public static final ITag.INamedTag<Block> ORES_MANGANESE = forge("ores/manganese");
+        public static final ITag.INamedTag<Block> ORES_ZINC = forge("ores/zinc");
+        public static final ITag.INamedTag<Block> ORES_STRONTIUM = forge("ores/strontium");
+        public static final ITag.INamedTag<Block> ORES_LITHIUM = forge("ores/lithium");
+        public static final ITag.INamedTag<Block> ORES_SODIUM = forge("ores/sodium");
+        public static final ITag.INamedTag<Block> ORES_ARSENIC = forge("ores/arsenic");
+        public static final ITag.INamedTag<Block> ORES_GALLIUM = forge("ores/gallium");
+        public static final ITag.INamedTag<Block> ORES_INDIUM = forge("ores/indium");
+        public static final ITag.INamedTag<Block> ORES_SELENIUM = forge("ores/selenium");
+        public static final ITag.INamedTag<Block> ORES_TELLURIUM = forge("ores/tellurium");
+        public static final ITag.INamedTag<Block> ORES_SULFUR = forge("ores/sulfur");
+        public static final ITag.INamedTag<Block> ORES_MERCURY = forge("ores/mercury");
+        public static final ITag.INamedTag<Block> ORES_CHROMIUM = forge("ores/chromium");
+        public static final ITag.INamedTag<Block> ORES_COBALT = forge("ores/cobalt");
+        public static final ITag.INamedTag<Block> ORES_NICKEL = forge("ores/nickel");
+        public static final ITag.INamedTag<Block> ORES_YTTRIUM = forge("ores/yttrium");
+        public static final ITag.INamedTag<Block> ORES_MOLYBDENUM = forge("ores/molybdenum");
+        public static final ITag.INamedTag<Block> ORES_CADMIUM = forge("ores/cadmium");
+        public static final ITag.INamedTag<Block> ORES_URANIUM = forge("ores/uranium");
+        public static final ITag.INamedTag<Block> ORES_ANTIMONY = forge("ores/antimony");
+        public static final ITag.INamedTag<Block> ORES_RHENIUM = forge("ores/rhenium");
+        public static final ITag.INamedTag<Block> ORES_PHOSPHORUS = forge("ores/phosphorus");
+        public static final ITag.INamedTag<Block> ORES_GRAPHITE = forge("ores/graphite");
+        public static final ITag.INamedTag<Block> ORES_SALT = forge("ores/salt");
+
+
+
 
         public static final ITag.INamedTag<Block> STONES_PEGMATITE = forge("stones/pegmatite");
         public static final ITag.INamedTag<Block> STONES_GRANITE = forge("stones/granite");
@@ -118,6 +157,9 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> IGNEOUS_STONES = forge("igneous_stones");
         public static final ITag.INamedTag<Block> METAMORPHIC_STONES = forge("metamorphic_stones");
         public static final ITag.INamedTag<Block> SEDIMENTARY_STONES = forge("sedimentary_stones");
+        public static final ITag.INamedTag<Block> BASE_STONE_END = forge("base_stone_end");
+        public static final ITag.INamedTag<Block> WG_STONE = forge("wg_stone");
+
 
 
     }
@@ -230,6 +272,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> PEWTER_TOOLS = forgeItem("pewter_tools");
         public static final ITag.INamedTag<Item> BRONZE_TOOLS = forgeItem("bronze_tools");
         public static final ITag.INamedTag<Item> AMALGAM_TOOLS = forgeItem("amalgam_tools");
+        public static final ITag.INamedTag<Item> ENDER_AMALGAM_TOOLS = forgeItem("ender_amalgam_tools");
         public static final ITag.INamedTag<Item> ALLOY_TOOLS = forgeItem("alloy_tools");
         public static final ITag.INamedTag<Item> INVAR_TOOLS = forgeItem("invar_tools");
         public static final ITag.INamedTag<Item> STEEL_TOOLS = forgeItem("steel_tools");
@@ -350,6 +393,42 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> STONE_BRICKS_VERTICAL_SLAB = forgeItem("stone_bricks_vertical_slabs");
         public static final ITag.INamedTag<Item> STONE_PRESSURE_PLATES = forgeItem("stone_pressure_plates");
 
+
+        //forge:ores/*
+        public static final ITag.INamedTag<Item> ORES_COPPER = forgeItem("ores/copper");
+        public static final ITag.INamedTag<Item> ORES_LEAD = forgeItem("ores/lead");
+        public static final ITag.INamedTag<Item> ORES_SILVER = forgeItem("ores/silver");
+        public static final ITag.INamedTag<Item> ORES_BISMUTH = forgeItem("ores/bismuth");
+        public static final ITag.INamedTag<Item> ORES_TUNGSTEN = forgeItem("ores/tungsten");
+        public static final ITag.INamedTag<Item> ORES_ALUMINUM = forgeItem("ores/aluminum");
+        public static final ITag.INamedTag<Item> ORES_TIN = forgeItem("ores/tin");
+        public static final ITag.INamedTag<Item> ORES_TITANIUM = forgeItem("ores/titanium");
+        public static final ITag.INamedTag<Item> ORES_MAGNESIUM = forgeItem("ores/magnesium");
+        public static final ITag.INamedTag<Item> ORES_MANGANESE = forgeItem("ores/manganese");
+        public static final ITag.INamedTag<Item> ORES_ZINC = forgeItem("ores/zinc");
+        public static final ITag.INamedTag<Item> ORES_STRONTIUM = forgeItem("ores/strontium");
+        public static final ITag.INamedTag<Item> ORES_LITHIUM = forgeItem("ores/lithium");
+        public static final ITag.INamedTag<Item> ORES_SODIUM = forgeItem("ores/sodium");
+        public static final ITag.INamedTag<Item> ORES_ARSENIC = forgeItem("ores/arsenic");
+        public static final ITag.INamedTag<Item> ORES_GALLIUM = forgeItem("ores/gallium");
+        public static final ITag.INamedTag<Item> ORES_INDIUM = forgeItem("ores/indium");
+        public static final ITag.INamedTag<Item> ORES_SELENIUM = forgeItem("ores/selenium");
+        public static final ITag.INamedTag<Item> ORES_TELLURIUM = forgeItem("ores/tellurium");
+        public static final ITag.INamedTag<Item> ORES_SULFUR = forgeItem("ores/sulfur");
+        public static final ITag.INamedTag<Item> ORES_MERCURY = forgeItem("ores/mercury");
+        public static final ITag.INamedTag<Item> ORES_CHROMIUM = forgeItem("ores/chromium");
+        public static final ITag.INamedTag<Item> ORES_COBALT = forgeItem("ores/cobalt");
+        public static final ITag.INamedTag<Item> ORES_NICKEL = forgeItem("ores/nickel");
+        public static final ITag.INamedTag<Item> ORES_YTTRIUM = forgeItem("ores/yttrium");
+        public static final ITag.INamedTag<Item> ORES_MOLYBDENUM = forgeItem("ores/molybdenum");
+        public static final ITag.INamedTag<Item> ORES_CADMIUM = forgeItem("ores/cadmium");
+        public static final ITag.INamedTag<Item> ORES_URANIUM = forgeItem("ores/uranium");
+        public static final ITag.INamedTag<Item> ORES_ANTIMONY = forgeItem("ores/antimony");
+        public static final ITag.INamedTag<Item> ORES_RHENIUM = forgeItem("ores/rhenium");
+        public static final ITag.INamedTag<Item> ORES_PHOSPHORUS = forgeItem("ores/phosphorus");
+        public static final ITag.INamedTag<Item> ORES_GRAPHITE = forgeItem("ores/graphite");
+        public static final ITag.INamedTag<Item> ORES_SALT = forgeItem("ores/salt");
+        
         public static final ITag.INamedTag<Item> STONES_PEGMATITE = forgeItem("stones/pegmatite");
         public static final ITag.INamedTag<Item> STONES_GRANITE = forgeItem("stones/granite");
         public static final ITag.INamedTag<Item> STONES_RHYOLITE = forgeItem("stones/rhyolite");

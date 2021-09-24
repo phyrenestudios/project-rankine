@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "tag": "forge:crops/corn"
-  },
-  "result": "rankine:popcorn",
-  "experience": 0.35,
-  "cookingtime": 600
-}
