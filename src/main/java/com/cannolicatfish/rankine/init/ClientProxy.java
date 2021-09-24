@@ -76,7 +76,8 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.SPECIAL_ORES);
         addCutout(Arrays.asList(
                 RankineBlocks.LEAD_GLASS.get(),
-
+                RankineBlocks.BOROSILICATE_GLASS.get(),
+                RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.ASPHALT_0.get(),
                 RankineBlocks.ASPHALT_1.get(),
                 RankineBlocks.ASPHALT_2.get(),

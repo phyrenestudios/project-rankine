@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloying",
   "tier": 2,
-  "total": 8,
+  "total": 9,
   "color": 7634311,
   "input1": {
     "element": "rankine:elements/iron",
@@ -44,6 +44,11 @@
   },
   "input8": {
     "element": "rankine:elements/niobium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input9": {
+    "element": "rankine:elements/tellurium",
     "min": 0.0,
     "max": 0.05
   },

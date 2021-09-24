@@ -31,11 +31,6 @@ public class OreDetectorItem extends Item {
         BlockPos blockpos = context.getPos();
         BlockState blockstate = iworld.getBlockState(blockpos);
         BlockState ORE = null;
-        if (playerentity != null) {
-            context.getItem().damageItem(1, playerentity, (p_219998_1_) -> {
-                p_219998_1_.sendBreakAnimation(context.getHand());
-            });
-        }
         boolean found = false;
         for (int x = 0; x <= range; x++) {
             if (e.getOpposite() == Direction.DOWN) {
@@ -82,17 +77,19 @@ public class OreDetectorItem extends Item {
             }
 
         }
-        if (found && context.getPlayer() != null) {
-            if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == RankineItems.PROSPECTING_STICK.get()) {
-                context.getPlayer().sendStatusMessage(new StringTextComponent("An ore of harvest level "+ ORE.getBlock().getHarvestLevel(ORE) +" is nearby"), true);
-                if (new Random().nextFloat() < 0.25 && !context.getPlayer().isCreative()) {
-                    context.getPlayer().getHeldItem(Hand.MAIN_HAND).shrink(1);
-                }
-            } else if (context.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() == RankineItems.ORE_DETECTOR.get()) {
+        if (found && playerentity != null) {
+            if (playerentity.getHeldItem(Hand.MAIN_HAND).getItem() == RankineItems.PROSPECTING_STICK.get()) {
+                playerentity.sendStatusMessage(new StringTextComponent("An ore of harvest level "+ ORE.getBlock().getHarvestLevel(ORE) +" is nearby"), true);
+            } else if (playerentity.getHeldItem(Hand.MAIN_HAND).getItem() == RankineItems.ORE_DETECTOR.get()) {
                 if (Config.GENERAL.ORE_DETECTOR_MSG.get()) {
-                    context.getPlayer().sendStatusMessage(new TranslationTextComponent(ORE.getBlock().getTranslationKey()), true);
+                    playerentity.sendStatusMessage(new TranslationTextComponent(ORE.getBlock().getTranslationKey()), true);
                 }
-                iworld.playSound(context.getPlayer(),blockpos, SoundEvents.BLOCK_NOTE_BLOCK_BELL,SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);
+                iworld.playSound(playerentity,blockpos, SoundEvents.BLOCK_NOTE_BLOCK_BELL,SoundCategory.PLAYERS,1.0F, random.nextFloat() * 0.4F + 0.8F);
+            }
+            if (this.isDamageable() && !iworld.isRemote()) {
+                context.getItem().damageItem(1, playerentity, (p_219998_1_) -> {
+                    p_219998_1_.sendBreakAnimation(context.getHand());
+                });
             }
         }
         return ActionResultType.SUCCESS;

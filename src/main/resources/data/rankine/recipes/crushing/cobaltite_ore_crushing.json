@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:cinnabar_ore"
+    "item": "rankine:cobaltite_ore"
   },
   "output1": {
     "item": "rankine:cobaltite",

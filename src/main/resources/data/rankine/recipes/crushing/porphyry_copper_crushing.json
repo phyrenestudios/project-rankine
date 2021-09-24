@@ -9,28 +9,28 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:copper_nugget",
+    "item": "rankine:tellurium_nugget",
     "count": 6,
-    "chance": 0.75,
+    "chance": 0.3,
     "additional": 0.15
   },
   "output3": {
     "item": "rankine:copper_nugget",
     "count": 6,
-    "chance": 0.5,
-    "additional": 0.2
-  },
-  "output4": {
-    "item": "rankine:silver_nugget",
-    "count": 3,
-    "chance": 0.3,
+    "chance": 0.75,
     "additional": 0.15
   },
-  "output5": {
-    "item": "minecraft:gold_nugget",
-    "count": 3,
+  "output4": {
+    "item": "minecraft:selenium_nugget",
+    "count": 6,
     "chance": 0.15,
     "additional": 0.1
+  },
+  "output5": {
+    "item": "rankine:copper_nugget",
+    "count": 6,
+    "chance": 0.5,
+    "additional": 0.2
   },
   "output6": {
     "item": "rankine:molybdenum_nugget",

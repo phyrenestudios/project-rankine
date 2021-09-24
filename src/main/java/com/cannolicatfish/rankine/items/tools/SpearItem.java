@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.entities.SpearEntity;
+import com.cannolicatfish.rankine.init.RankineAttributes;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.block.BlockState;
@@ -23,6 +24,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeMod;
+
+import java.util.UUID;
 
 public class SpearItem extends Item {
     private final float attackDamage;
@@ -30,6 +34,7 @@ public class SpearItem extends Item {
     public ResourceLocation type;
     public EntityType<SpearEntity> entity;
     private IItemTier tier;
+
     private ImmutableMultimap<Attribute, AttributeModifier> attributeModifiers;
     public SpearItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, EntityType<SpearEntity> entity, ResourceLocation type, Properties properties) {
         super(properties.defaultMaxDamage(tier.getMaxUses()));

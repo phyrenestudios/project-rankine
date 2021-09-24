@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.recipe.helper;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -45,6 +46,37 @@ public class AlloyRecipeHelper {
         for (int i = 0; i < inputs.size(); i++)
         {
             map.put(inputs.get(i),percents.get(i));
+        }
+        List<Integer> sPercents = new ArrayList<>();
+        List<String> sInputs = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : mapStringsSort(map).entrySet())
+        {
+            if (entry.getValue() > 0) {
+                sPercents.add(entry.getValue());
+                sInputs.add(entry.getKey());
+            }
+
+        }
+        Collections.reverse(sPercents);
+        Collections.reverse(sInputs);
+        for (int i = 0; i < sPercents.size(); i++)
+        {
+            ret.append(sPercents.get(i)).append(sInputs.get(i));
+            if (i != sPercents.size() - 1) {
+                ret.append("-");
+            }
+        }
+        //System.out.println("Result: " + ret.toString());
+        return ret.toString();
+    }
+
+    public static String getDirectComposition(Map<ElementRecipe,Integer> elementMap) {
+        StringBuilder ret = new StringBuilder();
+        Map<String,Integer> map = new HashMap<>();
+
+        for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet())
+        {
+            map.put(entry.getKey().getSymbol(),entry.getValue());
         }
         List<Integer> sPercents = new ArrayList<>();
         List<String> sInputs = new ArrayList<>();

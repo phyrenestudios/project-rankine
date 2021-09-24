@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "rankine:lead_glass"
+    "rankine:lead_glass",
+    "rankine:borosilicate_glass",
+    "rankine:reaction_chamber_cell"
   ]
 }

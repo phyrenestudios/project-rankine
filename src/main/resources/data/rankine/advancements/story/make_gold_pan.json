@@ -1,14 +1,14 @@
 {
-  "parent": "rankine:story/gather_rope",
+  "parent": "rankine:story/rankine",
   "display": {
     "icon": {
-      "item": "rankine:stone_hammer"
+      "item": "rankine:wooden_gold_pan"
     },
     "title": {
-      "translate": "rankine.advancements.story.get_stone_hammer.title"
+      "translate": "rankine.advancements.story.make_gold_pan.title"
     },
     "description": {
-      "translate": "rankine.advancements.story.get_stone_hammer.description"
+      "translate": "rankine.advancements.story.make_gold_pan.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,12 +16,12 @@
     "hidden": false
   },
   "criteria": {
-    "stone_hammer": {
+    "wooden_gold_pan": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "rankine:stone_hammer"
+            "item": "rankine:wooden_gold_pan"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "stone_hammer"
+      "wooden_gold_pan"
     ]
   ]
 }

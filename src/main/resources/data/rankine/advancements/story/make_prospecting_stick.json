@@ -1,0 +1,35 @@
+{
+  "parent": "rankine:story/rankine",
+  "display": {
+    "icon": {
+      "item": "rankine:prospecting_stick"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_prospecting_stick.title"
+    },
+    "description": {
+      "translate": "rankine.advancements.story.make_prospecting_stick.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "prospecting_stick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:prospecting_stick"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "prospecting_stick"
+    ]
+  ]
+}

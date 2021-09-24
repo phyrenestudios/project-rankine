@@ -3,12 +3,15 @@ package com.cannolicatfish.rankine.items.alloys;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -16,6 +19,35 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public interface IAlloyItem {
+
+    default void createAlloyNBT(ItemStack stack, World worldIn, Map<ElementRecipe,Integer> elementMap, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
+        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
+            stack.getTag().remove("RegenerateAlloy");
+        }
+        ListNBT alloyData = getAlloyNBT(stack);
+
+        CompoundNBT listnbt = new CompoundNBT();
+        ListNBT elements = new ListNBT();
+        for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
+            int perc = entry.getValue();
+            CompoundNBT compoundnbt = new CompoundNBT();
+            compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
+            compoundnbt.putShort("percent", (short)perc);
+            elements.add(compoundnbt);
+        }
+        alloyData.add(elements);
+        listnbt.putString("comp", AlloyRecipeHelper.getDirectComposition(elementMap));
+        if (alloyRecipe != null) {
+            listnbt.putString("recipe",alloyRecipe.toString());
+        }
+        alloyData.add(listnbt);
+        stack.getOrCreateTag().put("StoredAlloy", listnbt);
+        stack.getOrCreateTag().put("Elements",elements);
+
+        if (nameOverride != null && stack.getTag() != null) {
+            stack.getTag().putString("nameOverride",nameOverride);
+        }
+    }
 
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
@@ -25,12 +57,30 @@ public interface IAlloyItem {
 
         CompoundNBT listnbt = new CompoundNBT();
 
+        ListNBT elements = new ListNBT();
+        List<ElementRecipe> elementRecipes = getElementRecipes(composition,worldIn);
+        List<Integer> percents = getPercents(composition);
+        Map<ElementRecipe,Integer> elementMap = new HashMap<>();
+        for (int i = 0; i < elementRecipes.size(); i++) {
+            if (i < percents.size()) {
+                elementMap.put(elementRecipes.get(i),percents.get(i));
+            }
+        }
+        for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
+            int perc = entry.getValue();
+            CompoundNBT compoundnbt = new CompoundNBT();
+            compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
+            compoundnbt.putShort("percent", (short)perc);
+            elements.add(compoundnbt);
+        }
+
         listnbt.putString("comp",composition);
         if (alloyRecipe != null) {
             listnbt.putString("recipe",alloyRecipe.toString());
         }
         alloyData.add(listnbt);
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
+        stack.getOrCreateTag().put("Elements",elements);
 
         if (nameOverride != null && stack.getTag() != null) {
             stack.getTag().putString("nameOverride",nameOverride);

@@ -2,7 +2,7 @@
   "parent": "rankine:story/make_alloy_furnace",
   "display": {
     "icon": {
-      "item": "rankine:bronze_hammer"
+      "item": "rankine:pewter_hammer"
     },
     "title": {
       "translate": "rankine.advancements.story.get_bronze_tools.title"
@@ -45,13 +45,24 @@
           }
         ]
       }
+    },
+    "green_gold_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:green_gold_hammer"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "bronze_hammer",
       "pewter_hammer",
-      "rose_gold_hammer"
+      "rose_gold_hammer",
+      "green_gold_hammer"
     ]
   ]
 }

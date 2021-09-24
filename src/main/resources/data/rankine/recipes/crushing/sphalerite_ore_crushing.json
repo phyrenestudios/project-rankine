@@ -8,8 +8,9 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:dolomite",
-    "chance": 0.75,
+    "item": "rankine:germanium_nugget",
+    "count": 3,
+    "chance": 0.25,
     "additional": 0.15
   },
   "output3": {

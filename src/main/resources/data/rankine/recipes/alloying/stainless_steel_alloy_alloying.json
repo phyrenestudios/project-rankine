@@ -107,22 +107,22 @@
     "max": 0.12
   },
   "input21": {
-    "element": "rankine:elements/netherite",
+    "element": "rankine:elements/tellurium",
     "min": 0.0,
     "max": 0.12
   },
   "input22": {
-    "element": "rankine:elements/silicon",
+    "element": "rankine:elements/netherite",
     "min": 0.0,
     "max": 0.12
   },
   "input23": {
-    "element": "rankine:elements/phosphorus",
+    "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.12
   },
   "input24": {
-    "element": "rankine:elements/nitrogen",
+    "element": "rankine:elements/phosphorus",
     "min": 0.0,
     "max": 0.02
   },

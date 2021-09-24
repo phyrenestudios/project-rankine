@@ -237,6 +237,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.EVAPORATION_TOWER.get());
         withExistingParent(RankineBlocks.LASER_PYLON_TOP.get());
         withExistingParent(RankineBlocks.LASER_PYLON_BASE.get());
+        withExistingParent(RankineBlocks.REACTION_CHAMBER_CORE.get());
         withExistingParent(RankineBlocks.BEEHIVE_OVEN_PIT.get());
         withExistingParent(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get());
         withExistingParent(RankineBlocks.ALLOY_FURNACE.get());
