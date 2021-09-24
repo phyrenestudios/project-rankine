@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -45,8 +46,8 @@ public class RankineOreFeatureConfig implements IFeatureConfig {
 
     public static enum RankineFillerBlockType implements IStringSerializable, net.minecraftforge.common.IExtensibleEnum {
 
-        ORE_FILLER("native_tin", (blockstate) -> {
-            return BlockTags.BASE_STONE_OVERWORLD.contains(blockstate.getBlock());
+        ORE_FILLER("ore_filler", (blockstate) -> {
+            return BlockTags.BASE_STONE_OVERWORLD.contains(blockstate.getBlock()) || BlockTags.BASE_STONE_NETHER.contains(blockstate.getBlock()) || RankineTags.Blocks.BASE_STONE_END.contains(blockstate.getBlock());
         });
 
         public static final Codec<RankineOreFeatureConfig.RankineFillerBlockType> field_236571_d_ = IStringSerializable.createEnumCodec(RankineOreFeatureConfig.RankineFillerBlockType::values, RankineOreFeatureConfig.RankineFillerBlockType::byName);

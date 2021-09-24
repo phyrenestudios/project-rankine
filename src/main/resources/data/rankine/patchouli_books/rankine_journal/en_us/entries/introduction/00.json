@@ -6,11 +6,15 @@
   "pages": [
     {
       "type": "text",
-      "text": "An excitable player have entered a new world. with terrain to traverse, structures to build, and creatures to slaughter, they view the new landscape  begin the adventure the same as all before, by punching trees."
+      "text": "An excitable player have entered a new world. With terrain to traverse, structures to build, and creatures to slaughter, they view the new landscape and begin. The adventure starts the same as all before, by punching trees."
     },
     {
       "type": "text",
-      "text": "After a few sore punches they have collected enough wood to craft a basic set of tools. Upon mining "
+      "text": "After a few sore punches they have collected enough wood to craft a basic set of tools. Upon delving beneath the colorful soil layer, the new stones remind the player that the new beauty extends downwards as well. But alas! The new stones do not yield cobblestone, how may they ever make new tools? Well, any harvest level 1 tool will suffice"
+    },
+    {
+      "type": "text",
+      "text": ""
     }
   ]
 }

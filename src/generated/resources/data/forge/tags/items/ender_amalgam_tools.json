@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:ender_amalgam_axe",
+    "rankine:ender_amalgam_pickaxe",
+    "rankine:ender_amalgam_hoe",
+    "rankine:ender_amalgam_shovel",
+    "rankine:ender_amalgam_sword",
+    "rankine:ender_amalgam_hammer",
+    "rankine:ender_amalgam_spear"
+  ]
+}

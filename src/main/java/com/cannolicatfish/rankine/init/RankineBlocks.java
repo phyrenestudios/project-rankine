@@ -1470,7 +1470,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_WALNUT_SAPLING = REGISTRY.register("black_walnut_sapling", () -> new RankineSaplingBlock(new BlackWalnutTree(), DEF_SAPLING, 3));
     public static final RegistryObject<Block> CORK_OAK_SAPLING = REGISTRY.register("cork_oak_sapling", () -> new RankineSaplingBlock(new CorkOakTree(), DEF_SAPLING, 3));
     public static final RegistryObject<Block> CINNAMON_SAPLING = REGISTRY.register("cinnamon_sapling", () -> new RankineSaplingBlock(new CinnamonTree(), DEF_SAPLING, 3));
-    public static final RegistryObject<Block> ERYTHRINA_SAPLING = REGISTRY.register("erythrina_sapling", () -> new RankineSaplingBlock(new CinnamonTree(), DEF_SAPLING, 3));
+    public static final RegistryObject<Block> ERYTHRINA_SAPLING = REGISTRY.register("erythrina_sapling", () -> new RankineSaplingBlock(new ErythrinaTree(), DEF_SAPLING, 3));
 
     public static final RegistryObject<Block> POTTED_CEDAR_SAPLING = REGISTRY.register("potted_cedar_sapling", () -> new FlowerPotBlock(null, CEDAR_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
     public static final RegistryObject<Block> POTTED_PINYON_PINE_SAPLING = REGISTRY.register("potted_pinyon_pine_sapling", () -> new FlowerPotBlock(null, PINYON_PINE_SAPLING, Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0.0f).notSolid()));
@@ -1693,6 +1693,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRAY_TEKTITE = REGISTRY.register("gray_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
     public static final RegistryObject<Block> BLACK_TEKTITE = REGISTRY.register("black_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
     public static final RegistryObject<Block> BROWN_TEKTITE = REGISTRY.register("brown_tektite", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(5.0F,30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(0)));
+    public static final RegistryObject<Block> ANTIMATTER = REGISTRY.register("antimatter", () -> new AntimatterBlock(Block.Properties.create(Material.BARRIER).hardnessAndResistance(-1.0F, 3600000.8F)));
+    public static final RegistryObject<Block> UNAMED_EXPLOSIVE = REGISTRY.register("unamed_explosive", () -> new UnamedExplosiveBlock(Block.Properties.create(Material.BARRIER).hardnessAndResistance(20.0F, 50.0F)));
 
 
 
@@ -1785,7 +1787,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WHITE_LED = REGISTRY.register("white_led", () -> new LEDBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(1.0F,6.0F).sound(SoundType.METAL))));
 
 
-    //MISC CREATIVE TAB
     public static final RegistryObject<Block> UNAGED_CHEESE = REGISTRY.register("unaged_cheese", () -> new UnagedCheeseBlock(AbstractBlock.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> AGED_CHEESE = REGISTRY.register("aged_cheese", () -> new CakeBlock(AbstractBlock.Properties.create(Material.CAKE).hardnessAndResistance(0.5F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> ELDERBERRY_BUSH = REGISTRY.register("elderberry_bush", () -> new RankineDoublePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),0));

@@ -47,7 +47,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.GRAY_GRANITE_PILLAR.get());
-        getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().toString(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
+        getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
 
         getVariantBuilder(RankineBlocks.TILLED_SOIL.get()).forAllStates(state -> {
             int MOISTURE = state.get(TilledSoilBlock.MOISTURE);
@@ -103,6 +103,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.ANTIMATTER.get(),
+                RankineBlocks.UNAMED_EXPLOSIVE.get(),
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.KAOLINITE_BLOCK.get(),
@@ -496,7 +498,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven")), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven_on")));
         onOffBlock(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/high_refractory_bricks"), new ResourceLocation("rankine", "block/high_beehive_oven")), models().cubeTop(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/high_refractory_bricks"), new ResourceLocation("rankine", "block/high_beehive_oven_on")));
         onOffBlock(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/ultra_high_refractory_bricks"), new ResourceLocation("rankine", "block/ultra_high_beehive_oven")), models().cubeTop(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/ultra_high_refractory_bricks"), new ResourceLocation("rankine", "block/ultra_high_beehive_oven_on")));
-        onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath(), getRSL("alloy_furnace_front"), getRSL("refractory_bricks"), getRSL("alloy_furnace_top")), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath()+"_on", getRSL("refractory_bricks"), getRSL("alloy_furnace_top"), getRSL("alloy_furnace_front_on")));
+        onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath(), getRSL("alloy_furnace_front"), getRSL("refractory_bricks"), getRSL("alloy_furnace_top")), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath()+"_on", getRSL("alloy_furnace_front_on"), getRSL("refractory_bricks"), getRSL("alloy_furnace_top")));
         rotateableMachineBlock(RankineBlocks.INDUCTION_FURNACE.get(), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath(), getRSL("induction_furnace_side"), getRSL("induction_furnace_front"), getRSL("induction_furnace_top")), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath()+"_on", getRSL("induction_furnace_side"), getRSL("induction_furnace_front"), getRSL("induction_furnace_top_on")));
         rotateableMachineBlock(RankineBlocks.PISTON_CRUSHER.get(), models().orientable(RankineBlocks.PISTON_CRUSHER.get().getRegistryName().getPath(), getRSL("piston_crusher_side"), getRSL("piston_crusher_front"), getRSL("piston_crusher_top")), models().orientable(RankineBlocks.PISTON_CRUSHER.get().getRegistryName().getPath()+"_on", getRSL("piston_crusher_side"), getRSL("piston_crusher_front_on"), getRSL("piston_crusher_top")));
         rotateableMachineBlock(RankineBlocks.GYRATORY_CRUSHER.get(), models().orientable(RankineBlocks.GYRATORY_CRUSHER.get().getRegistryName().getPath(), getRSL("gyratory_crusher_side"), getRSL("gyratory_crusher_front"), getRSL("gyratory_crusher_top")), models().orientable(RankineBlocks.GYRATORY_CRUSHER.get().getRegistryName().getPath()+"_on", getRSL("gyratory_crusher_side"), getRSL("gyratory_crusher_front"), getRSL("gyratory_crusher_top_on")));

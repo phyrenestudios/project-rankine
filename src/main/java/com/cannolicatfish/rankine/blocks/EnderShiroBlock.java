@@ -32,14 +32,14 @@ public class EnderShiroBlock extends Block {
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (enderShiroGrowth(worldIn, pos)) {
-            worldIn.setBlockState(pos, Blocks.END_STONE.getDefaultState());
-        } else {
             for(int i = 0; i < 4; ++i) {
                 BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(3) - 1, random.nextInt(3) - 1);
-                if (worldIn.getBlockState(blockpos).getBlock().matchesBlock(Blocks.END_STONE) && enderShiroGrowth(worldIn, pos)) {
+                if (worldIn.getBlockState(blockpos).getBlock().matchesBlock(Blocks.END_STONE) && enderShiroGrowth(worldIn, blockpos)) {
                     worldIn.setBlockState(blockpos, RankineBlocks.ENDER_SHIRO.get().getDefaultState());
                 }
             }
+        } else {
+            worldIn.setBlockState(pos, Blocks.END_STONE.getDefaultState());
         }
 
     }

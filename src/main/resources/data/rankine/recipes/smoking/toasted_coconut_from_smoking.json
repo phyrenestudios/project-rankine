@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smoking",
-  "ingredient": {
-    "tag": "forge:crops/coconut"
-  },
-  "result": "rankine:toasted_coconut",
-  "experience": 0.35,
-  "cookingtime": 100
-}

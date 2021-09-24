@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:tuff",
+    "#minecraft:leaves",
+    "#minecraft:logs",
+    "#minecraft:sand",
+    "#forge:dirt",
+    "#forge:gravel",
+    "#forge:stone",
+    "#minecraft:base_stone_overworld",
+    "#minecraft:base_stone_nether",
+    "#forge:base_stone_end",
+    "#forge:terracotta",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:lava",
+    "minecraft:water",
+    "minecraft:obsidian"
+  ]
+}

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
+import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
@@ -239,6 +240,24 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
 
     //BASE LOOTTABLES
 
+    protected LootTable.Builder bushOneDrop(Block BUSH, Item DROP) {
+        LootPool.Builder builder = LootPool.builder()
+                .rolls(ConstantRange.of(1))
+                .addEntry(AlternativesLootEntry.builder(
+                    AlternativesLootEntry.builder(
+                        ItemLootEntry.builder(DROP)
+                            .acceptCondition(BlockStateProperty.builder(BUSH).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankinePlantBlock.AGE, 3)))
+                            .acceptFunction(SetCount.builder(RandomValueRange.of(2.0F, 3.0F)))
+                            .acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)),
+                        ItemLootEntry.builder(DROP)
+                            .acceptCondition(BlockStateProperty.builder(BUSH).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankinePlantBlock.AGE, 2)))
+                            .acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F)))
+                            .acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))))
+        .acceptCondition(SurvivesExplosion.builder());
+
+        return LootTable.builder().addLootPool(builder);
+    }
+
     protected LootTable.Builder eightLayerBlock(Block BLK) {
         Item ITEM = BLK.asItem();
         if (BLK.matchesBlock(RankineBlocks.CHARCOAL_BLOCK.get())) {
@@ -247,7 +266,8 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
         return LootTable.builder().addLootPool(LootPool.builder()
                 .acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS))
                 .addEntry(AlternativesLootEntry.builder(
-                        AlternativesLootEntry.builder(ItemLootEntry.builder(ITEM).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 1))),
+                        AlternativesLootEntry.builder(
+                                ItemLootEntry.builder(ITEM).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 1))),
                                 ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(2))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 2))),
                                 ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(3))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 3))),
                                 ItemLootEntry.builder(ITEM).acceptFunction(SetCount.builder(ConstantRange.of(4))).acceptCondition(BlockStateProperty.builder(BLK).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(RankineEightLayerBlock.LAYERS, 4))),
@@ -283,12 +303,12 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
         LootPool.Builder builder = LootPool.builder()
                 .rolls(ConstantRange.of(1))
                 .addEntry(ItemLootEntry.builder(ORE)
-                        .acceptCondition(SILK_TOUCH)
-                .acceptCondition(SurvivesExplosion.builder()))
+                    .acceptCondition(SILK_TOUCH)
+                    .acceptCondition(SurvivesExplosion.builder()))
                 .addEntry(ItemLootEntry.builder(NUGGET)
-                        .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 8.0F)))
-                        .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))
-                        .acceptCondition(SurvivesExplosion.builder());
+                    .acceptFunction(SetCount.builder(RandomValueRange.of(3.0F, 8.0F)))
+                    .acceptFunction(ApplyBonus.oreDrops(Enchantments.FORTUNE)))
+                    .acceptCondition(SurvivesExplosion.builder());
         return LootTable.builder().addLootPool(builder);
     }
 

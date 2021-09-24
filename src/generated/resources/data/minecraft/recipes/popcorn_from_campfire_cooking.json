@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "rankine:corn_ear"
+  },
+  "result": "rankine:popcorn",
+  "experience": 0.35,
+  "cookingtime": 600
+}
