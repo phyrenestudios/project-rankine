@@ -114,12 +114,12 @@ public class MetalPipeBlock extends Block {
         Block block4 = blockReader.getBlockState(pos.south()).getBlock();
         Block block5 = blockReader.getBlockState(pos.west()).getBlock();
         return this.getDefaultState().with(DOWN, block == this)
-                .with(DOWN, block == this)
+                .with(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
                 .with(NORTH, block2 == this)
                 .with(EAST, block3 == this)
                 .with(SOUTH, block4 == this)
                 .with(WEST, block5 == this)
-                .with(UP, block1 == this || (block1 == RankineBlocks.GROUND_TAP.get()));
+                .with(UP, block1 == this || block1 == RankineBlocks.GROUND_TAP.get());
     }
 
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {

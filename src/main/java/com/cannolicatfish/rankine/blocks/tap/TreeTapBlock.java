@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
+import com.cannolicatfish.rankine.blocks.FloodGateBlock;
 import com.cannolicatfish.rankine.blocks.states.TapBarrelFluids;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.init.Config;
@@ -134,7 +135,6 @@ public class TreeTapBlock extends Block {
             BlockPos barrel = null;
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Stack<BlockPos> toCheck = new Stack<>();
-
             toCheck.add(pos.down());
             while (!toCheck.isEmpty()) {
                 BlockPos cp = toCheck.pop();
@@ -142,11 +142,9 @@ public class TreeTapBlock extends Block {
                     checkedBlocks.add(cp);
                     if (worldIn.isBlockLoaded(cp)) {
                         BlockState s = worldIn.getBlockState(cp);
-                        if (s.getBlock().matchesBlock(RankineBlocks.TAP_BARREL.get())) {
-                            if (s.get(TapBarrelBlock.LEVEL) < 6) {
+                        if (s.getBlock().matchesBlock(RankineBlocks.FLOOD_GATE.get())) {
                                 barrel = cp;
                                 break;
-                            }
                         } else if (s.getBlock().matchesBlock(RankineBlocks.TAP_LINE.get())) {
                             toCheck.add(cp.north());
                             toCheck.add(cp.east());
@@ -162,14 +160,7 @@ public class TreeTapBlock extends Block {
             }
 
             if (barrel != null) {
-                worldIn.setBlockState(pos, state.with(FLUID, TreeTapFluids.EMPTY), 3);
-                BlockState bb = worldIn.getBlockState(barrel);
-                int level = bb.get(TapBarrelBlock.LEVEL);
-                if (level == 0) {
-                    worldIn.setBlockState(barrel, bb.with(TapBarrelBlock.FLUID, TapBarrelFluids.valueOf(state.get(FLUID).getString().toUpperCase())).with(TapBarrelBlock.LEVEL, 1),3);
-                } else if (level >= 1 && level < 6 && bb.get(TapBarrelBlock.FLUID).getString().equals(state.get(FLUID).getString())) {
-                    worldIn.setBlockState(barrel, bb.with(TapBarrelBlock.FLUID, TapBarrelFluids.valueOf(state.get(FLUID).getString().toUpperCase())).with(TapBarrelBlock.LEVEL, bb.get(TapBarrelBlock.LEVEL)+1), 3);
-                }
+                FloodGateBlock.placeFluid(worldIn,barrel,Blocks.WATER.getDefaultState());
             }
         }
     }
@@ -251,7 +242,7 @@ public class TreeTapBlock extends Block {
 
 
 
-        private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
+    private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
         BlockState blockstate = blockReader.getBlockState(pos);
         return blockstate.isSolidSide(blockReader, pos, direction);
     }

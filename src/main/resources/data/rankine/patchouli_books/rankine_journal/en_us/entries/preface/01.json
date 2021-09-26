@@ -20,6 +20,11 @@
     },
     {
       "type": "text",
+      "title": "Infinite Water",
+      "text": "Limitations on the infinite generation of water can be put in place."
+    },
+    {
+      "type": "text",
       "title": "Movement Modifiers",
       "text": "Movement speed of entities can be affected by the blocks they are walking on. Categories of blocks are be set by a tag and assigned a speed modifier in the config. Negative values mean slower walking (like on sand and snow) while positive values increase speed (roman concrete is the fastest currently). The movementModifiersEnabled setting globaly enables or disables all speed factors."
     }

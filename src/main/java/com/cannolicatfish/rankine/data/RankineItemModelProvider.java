@@ -251,7 +251,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.TRAMPOLINE.get());
         withExistingParent(RankineBlocks.CEMENT_POLE.get());
         withExistingParent(RankineBlocks.SODIUM_VAPOR_LAMP.get());
-        withExistingParent(RankineBlocks.TAP_BARREL.get().getRegistryName().getPath(), modLoc("block/tap_barrel/" + RankineBlocks.TAP_BARREL.get().getRegistryName().getPath()));
+        //withExistingParent(RankineBlocks.TAP_BARREL.get().getRegistryName().getPath(), modLoc("block/tap_barrel/" + RankineBlocks.TAP_BARREL.get().getRegistryName().getPath()));
         withExistingParent(RankineBlocks.GAS_VENT.get());
         basicItem(RankineItems.CRUCIBLE.get());
 
@@ -363,6 +363,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block blk : Arrays.asList(
                 RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
+                RankineBlocks.ENDER_SHIRO.get(),
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
@@ -403,9 +404,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(name, modLoc("block/"+name));
         }
         withExistingParent(RankineBlocks.MYCELIUM_PATH.get());
-        withExistingParent(RankineBlocks.END_GRASS_PATH.get());
-        withExistingParent(RankineBlocks.ENDER_SHIRO.get());
-        withExistingParent(RankineBlocks.END_SOIL.get());
         withExistingParent(RankineBlocks.STICK_BLOCK.get());
 
 

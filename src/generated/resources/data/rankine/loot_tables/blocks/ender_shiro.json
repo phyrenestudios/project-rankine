@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "rankine:end_grass_block"
+              "name": "minecraft:air"
             },
             {
               "type": "minecraft:item",

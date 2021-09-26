@@ -20,7 +20,7 @@ public class DecorationGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getTopLayerFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> TopLayer = new ArrayList<>();
-        new AbstractMap.SimpleEntry<>(RankineFeatures.SNOW_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), false));
+        new AbstractMap.SimpleEntry<>(RankineFeatures.SNOW_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
 
         return TopLayer;
     }

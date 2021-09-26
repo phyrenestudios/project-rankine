@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_path_block",
-  "textures": {
-    "top": "rankine:block/mycelium_path_top",
-    "side": "rankine:block/mycelium_path_side",
-    "bottom": "minecraft:block/dirt"
-  }
-}

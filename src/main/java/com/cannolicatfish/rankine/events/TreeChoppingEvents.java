@@ -117,6 +117,9 @@ public class TreeChoppingEvents {
             }
 
             if (alive) {
+                if (worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
+                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
+                }
                 for (BlockPos b : logs) {
                     if (worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
                         worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),3);
@@ -131,9 +134,7 @@ public class TreeChoppingEvents {
                     //worldIn.getPendingBlockTicks().scheduleTick(b,worldIn.getBlockState(b).getBlock(),1);
                 }
                 //worldIn.playSound(player, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                if (worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
-                }
+
             }
 
             if (state.getBlockHardness(worldIn, pos) != 0.0F) {

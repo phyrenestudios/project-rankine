@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePlanksBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePolishedStoneBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
+import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
@@ -1062,8 +1063,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MYCELIUM_PATH = REGISTRY.register("mycelium_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     
     //gravel path?
-    public static final RegistryObject<Block> END_SOIL = REGISTRY.register("end_soil", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
-    public static final RegistryObject<Block> END_GRASS_PATH = REGISTRY.register("end_grass_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> ENDER_SHIRO = REGISTRY.register("ender_shiro", () -> new EnderShiroBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(0.8F).sound(SoundType.ROOT).tickRandomly()));
     public static final RegistryObject<Block> TILLED_SOIL = REGISTRY.register("tilled_soil", () -> new TilledSoilBlock(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
     public static final RegistryObject<Block> LIGHTNING_GLASS = REGISTRY.register("lightning_glass", () -> new Block(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS)));
@@ -1701,6 +1700,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> CORK = REGISTRY.register("cork", () -> new Block(Block.Properties.create(Material.WOOL).sound(SoundType.CLOTH).hardnessAndResistance(1.0F, 2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> VULCANIZED_RUBBER_BLOCK = REGISTRY.register("vulcanized_rubber_block", () -> new RubberBlock(AbstractBlock.Properties.create(Material.CLAY, MaterialColor.BLACK).slipperiness(0.8F).hardnessAndResistance(1.0F, 2.0F).sound(SoundType.SLIME)));
+    public static final RegistryObject<Block> FLOOD_GATE = REGISTRY.register("flood_gate", () -> new FloodGateBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
 
 
 
@@ -1885,7 +1885,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_GOLD_PEDESTAL = REGISTRY.register("black_gold_pedestal", () -> new PedestalBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F,10.0F).harvestLevel(0)));
  
     public static final RegistryObject<Block> ROPE = REGISTRY.register("rope", () -> new RopeBlock(Block.Properties.create(Material.CARPET).doesNotBlockMovement()));
-    public static final RegistryObject<Block> GROUND_TAP = REGISTRY.register("ground_tap", () -> new MetalPipeBlock(0.25f, Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> GROUND_TAP = REGISTRY.register("ground_tap", () -> new GroundTapBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> METAL_PIPE = REGISTRY.register("metal_pipe", () -> new MetalPipeBlock(0.25f, Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> BOTANIST_STATION = REGISTRY.register("botanist_station", () -> new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
 

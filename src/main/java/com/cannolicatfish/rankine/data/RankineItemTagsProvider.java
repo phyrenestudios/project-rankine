@@ -326,6 +326,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
         //MINECRAFT
+        getOrCreateBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
+
         getOrCreateBuilder(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.THORIUM_ARROW.get(),RankineItems.MAGNESIUM_ARROW.get(),RankineItems.ALLOY_ARROW.get());
         //getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.ALLOY_ARROW);
         getOrCreateBuilder(ItemTags.COALS).add(RankineItems.LIGNITE.get(),RankineItems.SUBBITUMINOUS_COAL.get(),RankineItems.BITUMINOUS_COAL.get(),RankineItems.ANTHRACITE_COAL.get());

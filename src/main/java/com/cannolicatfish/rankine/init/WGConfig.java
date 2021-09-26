@@ -219,6 +219,7 @@ public class WGConfig {
         public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
         public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
         public final ForgeConfigSpec.BooleanValue TUFF_GEN;
+        public final ForgeConfigSpec.BooleanValue SECRET_GEN;
         public final ForgeConfigSpec.BooleanValue DARK_GRAVEL;
         public final ForgeConfigSpec.BooleanValue END_METEORITE_GEN;
         public final ForgeConfigSpec.BooleanValue METEORITE_GEN;
@@ -235,6 +236,8 @@ public class WGConfig {
 
                 FLAT_BEDROCK = b.comment("Generates with a flat bedrock layer (includes the Nether)")
                         .define("flatBedrock",false);
+                SECRET_GEN = b.comment("Figure it out")
+                        .define("secretGen",true);
                 BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
                         .defineInRange("bedrockLayers", 1, 0, 5);
                 VANILLA_ORES = b.comment("Disable vanilla ores in the overworld")

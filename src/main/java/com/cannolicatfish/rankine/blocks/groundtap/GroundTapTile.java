@@ -24,7 +24,7 @@ public class GroundTapTile extends TileEntity implements ITickableTileEntity {
     public void tick() {
         World worldIn = this.getWorld();
         BlockState state = worldIn.getBlockState(pos.up());
-        if (worldIn.getDayTime() % 200 == 0 && state.matchesBlock(Blocks.AIR) && worldIn.getBlockState(new BlockPos(pos.getX(), WorldgenUtils.waterTableHeight(worldIn, pos), pos.getZ())).matchesBlock(RankineBlocks.METAL_PIPE.get())) {
+        if (worldIn.getDayTime() % 200 == 0 && state.matchesBlock(Blocks.AIR) && worldIn.getBlockState(new BlockPos(pos.getX(), WorldgenUtils.waterTableHeight(worldIn, pos), pos.getZ())).matchesBlock(RankineBlocks.FLOOD_GATE.get())) {
             worldIn.setBlockState(pos.up(),Blocks.WATER.getDefaultState(),3);
         }
     }

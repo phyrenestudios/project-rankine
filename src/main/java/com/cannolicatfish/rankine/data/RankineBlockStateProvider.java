@@ -47,14 +47,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.GRAY_GRANITE_PILLAR.get());
-        getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
+        //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
 
         getVariantBuilder(RankineBlocks.TILLED_SOIL.get()).forAllStates(state -> {
             int MOISTURE = state.get(TilledSoilBlock.MOISTURE);
             TilledSoilTypes TYPE = state.get(TilledSoilBlock.SOIL_TYPE);
             String namespace;
             switch (TYPE) {
-                case END_SOIL:
                 case LOAM:
                 case HUMUS:
                 case LOAMY_SAND:
@@ -103,6 +102,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.ENDER_SHIRO.get(),
                 RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
                 RankineBlocks.LIGHT_GRAVEL.get(),
@@ -411,7 +411,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             ResourceLocation BOTTOM = new ResourceLocation("rankine","block/"+SOIL.getRegistryName().getPath());
             pathBlock(PATH, new ResourceLocation("minecraft","block/grass_path_top"), SIDE, BOTTOM);
         }
-        pathBlock(RankineBlocks.END_GRASS_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
         pathBlock(RankineBlocks.MYCELIUM_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
 
 

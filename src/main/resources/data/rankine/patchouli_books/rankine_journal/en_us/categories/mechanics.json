@@ -1,6 +1,0 @@
-{
-  "name": "Mechanics",
-  "description": "There are a few miscellaneous mechanics in Project Rankine that can be used to add realism, ease, or simply spice to the game. Not all mechanics are enabled by default and it can be left to the player to create their own environment.",
-  "icon": "rankine:flint_axe",
-  "sortnum": 1
-}

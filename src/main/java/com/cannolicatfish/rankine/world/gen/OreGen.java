@@ -72,8 +72,10 @@ public class OreGen {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
         if (WGConfig.MISC.END_METEORITE_GEN.get()) {
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANTIMATTER_BLOB, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.THEEND), true)));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
+        }
+        if (WGConfig.MISC.SECRET_GEN.get()) {
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
         }
 
         return EndFeatures;
