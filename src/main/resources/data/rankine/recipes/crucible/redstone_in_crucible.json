@@ -37,15 +37,15 @@
     "countMod": 1
   },
   "input8": {
-    "tag": "forge:ingots/selenium",
+    "tag": "forge:selenium",
     "countMod": 1
   },
   "input9": {
-    "tag": "forge:ingots/tellurium",
+    "tag": "forge:tellurium",
     "countMod": 1
   },
   "input10": {
-    "tag": "forge:ingots/germanium",
+    "tag": "forge:germanium",
     "countMod": 2
   }
 }

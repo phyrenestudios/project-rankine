@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/manganese",
-            "#forge:ingots/manganese",
-            "#forge:storage_blocks/manganese"
-          ]
-        }

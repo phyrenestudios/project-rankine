@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:refractory_brick"
+    },
+    {
+      "item": "rankine:silicon_carbide"
+    },
+    {
+      "item": "rankine:silicon_carbide"
+    }
+  ],
+  "result": {
+    "item": "rankine:high_refractory_brick",
+    "count": 1
+  }
+}

@@ -18,17 +18,17 @@
     "additional": 0.2
   },
   "output4": {
-    "item": "rankine:magnetite",
+    "item": "rankine:zircon",
     "chance": 0.15,
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:rutile",
+    "item": "rankine:magnetite",
     "chance": 0.1,
     "additional": 0.05
   },
   "output6": {
-    "item": "rankine:diopside",
+    "item": "rankine:rutile",
     "chance": 0.05
   }
 }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/thorium",
-            "#forge:ingots/thorium",
-            "#forge:storage_blocks/thorium"
-          ]
-        }

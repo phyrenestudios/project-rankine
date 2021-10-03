@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "rankine:native_arsenic_ore"
   },
-  "result": "rankine:arsenic_ingot",
+  "result": "rankine:arsenic",
   "experience": 0.5,
   "cookingtime": 100
 }

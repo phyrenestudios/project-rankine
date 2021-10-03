@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/uranium",
-            "#forge:ingots/uranium",
-            "#forge:storage_blocks/uranium"
-          ]
-        }

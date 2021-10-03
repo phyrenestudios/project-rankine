@@ -1,7 +1,7 @@
 {
   "type": "rankine:crucible",
   "result": {
-    "item": "rankine:steel_alloy"
+    "item": "rankine:steel_ingot"
   },
   "secondary": {
     "item": "rankine:slag"

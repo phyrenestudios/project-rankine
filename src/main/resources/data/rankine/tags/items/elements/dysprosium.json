@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/dysprosium",
-            "#forge:ingots/dysprosium",
-            "#forge:storage_blocks/dysprosium"
-          ]
-        }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/californium",
-            "#forge:ingots/californium",
-            "#forge:storage_blocks/californium"
-          ]
-        }

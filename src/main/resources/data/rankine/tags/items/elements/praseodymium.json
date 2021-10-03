@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/praseodymium",
-            "#forge:ingots/praseodymium",
-            "#forge:storage_blocks/praseodymium"
-          ]
-        }

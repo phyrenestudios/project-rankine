@@ -116,6 +116,6 @@
     "min": 0.0,
     "max": 0.15
   },
-  "result": "rankine:nickel_superalloy",
+  "result": "rankine:nickel_superalloy_ingot",
   "durability": 600
 }

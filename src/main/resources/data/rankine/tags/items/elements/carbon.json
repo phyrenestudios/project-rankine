@@ -1,8 +1,0 @@
-{
-    "replace": false,
-    "values": [
-      "#forge:nuggets/carbon",
-      "#forge:ingots/carbon",
-      "#forge:storage_blocks/carbon"
-    ]
-  }

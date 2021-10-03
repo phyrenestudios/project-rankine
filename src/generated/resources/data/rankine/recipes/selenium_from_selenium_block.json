@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:selenium_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:selenium",
+    "count": 9
+  }
+}

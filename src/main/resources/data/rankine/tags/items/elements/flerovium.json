@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/flerovium",
-            "#forge:ingots/flerovium",
-            "#forge:storage_blocks/flerovium"
-          ]
-        }

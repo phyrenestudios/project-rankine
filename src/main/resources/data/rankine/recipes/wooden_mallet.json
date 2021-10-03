@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#t#",
+    " t "
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "t": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:wooden_mallet",
+    "count": 1        }
+}

@@ -2,7 +2,7 @@
   "parent": "rankine:story/make_coke",
   "display": {
     "icon": {
-      "item": "rankine:cast_iron_alloy"
+      "item": "rankine:cast_iron_ingot"
     },
     "title": {
       "translate": "rankine.advancements.story.make_cast_iron_alloy.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:cast_iron_alloy"
+            "item": "rankine:cast_iron_ingot"
           }
         ]
       }

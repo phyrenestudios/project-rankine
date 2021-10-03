@@ -15,7 +15,7 @@
       "alloyRecipe": "rankine:alloying/cupronickel_alloy_alloying"
     },
     "S": {
-      "tag": "forge:ingots/solder"
+      "tag": "forge:solder"
     }
   },
   "result": {

@@ -7,10 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:ender_amalgam_alloy"
+      "item": "rankine:ender_amalgam_ingot"
     },
     "t": {
-      "tag": "forge:rods/wooden"
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/steel_alloy_alloying",
+      "name": "Steel Alloy Rod",
+      "color": 3291714
     }
   },
   "result": {

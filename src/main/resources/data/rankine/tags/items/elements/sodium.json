@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/sodium",
-            "#forge:ingots/sodium",
-            "#forge:storage_blocks/sodium"
-          ]
-        }

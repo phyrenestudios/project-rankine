@@ -3,7 +3,7 @@
   "group": "rankine",
   "ingredients": [
     {
-      "item": "rankine:germanium_ingot"
+      "item": "rankine:germanium"
     }
   ],
   "result": {

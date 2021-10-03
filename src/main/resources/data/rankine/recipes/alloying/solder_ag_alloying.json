@@ -1,0 +1,58 @@
+{
+  "type": "rankine:alloying",
+  "total": 10,
+  "color": 12564673,
+  "input1": {
+    "element": "rankine:elements/tin",
+    "min": 0.36,
+    "max": 0.64,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/silver",
+    "min": 0.36,
+    "max": 0.64,
+    "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/indium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input4": {
+    "element": "rankine:elements/copper",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input5": {
+    "element": "rankine:elements/bismuth",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input6": {
+    "element": "rankine:elements/nickel",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input7": {
+    "element": "rankine:elements/antimony",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input8": {
+    "element": "rankine:elements/zinc",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input9": {
+    "element": "rankine:elements/magnesium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input10": {
+    "element": "rankine:elements/cadmium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "result": "rankine:solder"
+}

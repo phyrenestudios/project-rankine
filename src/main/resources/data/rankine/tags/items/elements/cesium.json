@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/cesium",
-            "#forge:ingots/cesium",
-            "#forge:storage_blocks/cesium"
-          ]
-        }

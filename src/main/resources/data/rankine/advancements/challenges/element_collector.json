@@ -81,7 +81,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:boron_ingot"
+            "item": "rankine:boron"
           }
         ]
       }
@@ -91,7 +91,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:carbon_ingot"
+            "item": "rankine:carbon"
           }
         ]
       }
@@ -341,7 +341,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:germanium_ingot"
+            "item": "rankine:germanium"
           }
         ]
       }
@@ -351,7 +351,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:arsenic_ingot"
+            "item": "rankine:arsenic"
           }
         ]
       }
@@ -361,7 +361,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:selenium_ingot"
+            "item": "rankine:selenium"
           }
         ]
       }
@@ -371,7 +371,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:bromine_ingot"
+            "item": "rankine:bromine"
           }
         ]
       }
@@ -531,7 +531,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:antimony_ingot"
+            "item": "rankine:antimony"
           }
         ]
       }
@@ -541,7 +541,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:tellurium_ingot"
+            "item": "rankine:tellurium"
           }
         ]
       }
@@ -551,7 +551,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:iodine_ingot"
+            "item": "rankine:iodine"
           }
         ]
       }
@@ -811,7 +811,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:mercury_ingot"
+            "item": "rankine:mercury"
           }
         ]
       }

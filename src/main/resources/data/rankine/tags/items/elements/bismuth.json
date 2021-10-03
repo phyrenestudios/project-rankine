@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/bismuth",
-            "#forge:ingots/bismuth",
-            "#forge:storage_blocks/bismuth"
-          ]
-        }

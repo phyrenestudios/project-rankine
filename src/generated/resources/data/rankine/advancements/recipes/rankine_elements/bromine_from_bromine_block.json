@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:bromine_from_bromine_block"
+    ]
+  },
+  "criteria": {
+    "has_element": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bromine_block"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:bromine_from_bromine_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_element",
+      "has_the_recipe"
+    ]
+  ]
+}

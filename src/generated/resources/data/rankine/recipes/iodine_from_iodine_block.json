@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:iodine_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:iodine",
+    "count": 9
+  }
+}

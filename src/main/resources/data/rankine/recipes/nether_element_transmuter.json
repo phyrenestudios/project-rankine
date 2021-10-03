@@ -10,7 +10,7 @@
       "item": "minecraft:nether_wart"
     },
     "m": {
-      "item": "rankine:mercury_ingot"
+      "tag": "forge:mercury"
     }
   },
   "result": {

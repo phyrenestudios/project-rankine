@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/lanthanum",
-            "#forge:ingots/lanthanum",
-            "#forge:storage_blocks/lanthanum"
-          ]
-        }

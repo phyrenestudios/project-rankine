@@ -5,7 +5,7 @@
       "item": "minecraft:ghast_tear"
     },
     {
-      "item": "rankine:mercury_ingot"
+      "tag": "forge:mercury"
     }
   ],
   "result": {

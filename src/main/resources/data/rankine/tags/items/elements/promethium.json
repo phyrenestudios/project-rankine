@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/promethium",
-            "#forge:ingots/promethium",
-            "#forge:storage_blocks/promethium"
-          ]
-        }

@@ -5,7 +5,7 @@
   "color": 15721704,
   "atomic": 80,
   "potential": 0.85,
-  "items": ["T#forge:nuggets/mercury","T#forge:ingots/mercury","T#forge:storage_blocks/mercury"],
+  "items": ["T#forge:nuggets/mercury","T#forge:mercury","T#forge:storage_blocks/mercury"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

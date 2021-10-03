@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/chromium",
-            "#forge:ingots/chromium",
-            "#forge:storage_blocks/chromium"
-          ]
-        }

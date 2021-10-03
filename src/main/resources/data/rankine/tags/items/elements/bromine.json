@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/bromine",
-            "#forge:ingots/bromine",
-            "#forge:storage_blocks/bromine"
-          ]
-        }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:carbon_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:carbon",
+    "count": 9
+  }
+}

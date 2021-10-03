@@ -344,7 +344,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block blk : Stream.of(RankineLists.MINERAL_STONES,RankineLists.MINERAL_BLOCKS,RankineLists.ELEMENT_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             withExistingParent(blk);
         }
-        for (Item TOOL : Stream.of(RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(TOOL);
         }
         for (Item ARROW : RankineLists.ARROWS) {
@@ -372,7 +372,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
             withExistingParent(blk);
         }
         //ALLOYS
-        for (Item ALLOY : RankineLists.ALLOYS) {
+        for (Item ALLOY : RankineLists.ALLOY_NUGGETS) {
+            String name = ALLOY.getRegistryName().getPath();
+            basicItem(name);
+        }
+        for (Item ALLOY : RankineLists.ALLOY_INGOTS) {
             String name = ALLOY.getRegistryName().getPath();
             basicItem(name);
         }

@@ -22,10 +22,10 @@
       "item": "rankine:right_transmuter"
     },
     "a": {
-      "item": "rankine:amalgam_alloy"
+      "item": "rankine:amalgam_ingot"
     },
     "s": {
-      "item": "rankine:sodium_potassium_alloy"
+      "item": "rankine:sodium_potassium_alloy_ingot"
     }
   },
   "result": {

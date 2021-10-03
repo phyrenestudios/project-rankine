@@ -1,10 +1,11 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.util.WeightedCollection;
 import net.minecraft.block.*;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.tags.FluidTags;
@@ -14,12 +15,16 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.eventbus.api.Event;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class GrassySoilBlock extends GrassBlock {
     public Block SOIL;
@@ -47,20 +52,20 @@ public class GrassySoilBlock extends GrassBlock {
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!isSnowyConditions(state, worldIn, pos)) {
-            if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            if (!worldIn.isAreaLoaded(pos, 3))
+                return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             worldIn.setBlockState(pos, SOIL.getDefaultState());
         } else {
             if (worldIn.getLight(pos.up()) >= 9) {
                 BlockState blockstate = this.getDefaultState();
 
-                for(int i = 0; i < 4; ++i) {
+                for (int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (worldIn.getBlockState(blockpos).getBlock() instanceof SoilBlock && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
                         worldIn.setBlockState(blockpos, blockstate.with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
                     }
                 }
             }
-
         }
     }
 

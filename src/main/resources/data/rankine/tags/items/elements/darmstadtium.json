@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/darmstadtium",
-            "#forge:ingots/darmstadtium",
-            "#forge:storage_blocks/darmstadtium"
-          ]
-        }

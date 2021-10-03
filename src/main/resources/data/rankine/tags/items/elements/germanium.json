@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/germanium",
-            "#forge:ingots/germanium",
-            "#forge:storage_blocks/germanium"
-          ]
-        }

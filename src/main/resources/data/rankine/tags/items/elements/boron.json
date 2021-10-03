@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/boron",
-            "#forge:ingots/boron",
-            "#forge:storage_blocks/boron"
-          ]
-        }

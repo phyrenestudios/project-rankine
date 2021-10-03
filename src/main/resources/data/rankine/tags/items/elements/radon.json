@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/radon",
-            "#forge:ingots/radon",
-            "#forge:storage_blocks/radon"
-          ]
-        }

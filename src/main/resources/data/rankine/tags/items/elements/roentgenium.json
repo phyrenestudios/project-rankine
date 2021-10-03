@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/roentgenium",
-            "#forge:ingots/roentgenium",
-            "#forge:storage_blocks/roentgenium"
-          ]
-        }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/ruthenium",
-            "#forge:ingots/ruthenium",
-            "#forge:storage_blocks/ruthenium"
-          ]
-        }

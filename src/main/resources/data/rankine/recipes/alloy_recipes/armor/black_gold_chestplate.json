@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "genName": true,
+  "color": 12622179,
   "pattern": [
     "# #",
     "###",
@@ -8,7 +10,7 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:black_gold_alloy"
+      "item": "rankine:black_gold_ingot"
     }
   },
   "result": {

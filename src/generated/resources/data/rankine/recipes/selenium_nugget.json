@@ -3,7 +3,7 @@
   "group": "rankine",
   "ingredients": [
     {
-      "item": "rankine:selenium_ingot"
+      "item": "rankine:selenium"
     }
   ],
   "result": {

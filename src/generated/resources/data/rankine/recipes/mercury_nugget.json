@@ -3,7 +3,7 @@
   "group": "rankine",
   "ingredients": [
     {
-      "item": "rankine:mercury_ingot"
+      "item": "rankine:mercury"
     }
   ],
   "result": {

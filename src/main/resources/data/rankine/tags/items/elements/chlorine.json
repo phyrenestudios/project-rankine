@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/chlorine",
-            "#forge:ingots/chlorine",
-            "#forge:storage_blocks/chlorine"
-          ]
-        }

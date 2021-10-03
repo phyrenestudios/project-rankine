@@ -14,5 +14,5 @@
     "max": 0.60,
     "required": true
   },
-  "result": "rankine:sodium_potassium_alloy"
+  "result": "rankine:sodium_potassium_alloy_ingot"
 }

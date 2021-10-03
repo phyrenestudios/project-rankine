@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/molybdenum",
-            "#forge:ingots/molybdenum",
-            "#forge:storage_blocks/molybdenum"
-          ]
-        }
