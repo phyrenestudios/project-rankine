@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#rankine:mtt_durability_tools",
+    "#rankine:mtt_mining_speed_tools",
+    "#rankine:mtt_harvest_level_tools",
+    "#rankine:mtt_durability_tools",
+    "#rankine:mtt_enchantability_tools",
+    "#rankine:mtt_attack_damage_tools",
+    "#rankine:mtt_attack_speed_tools",
+    "#rankine:mtt_corrosion_resistance_tools",
+    "#rankine:mtt_heat_resistance_tools",
+    "#rankine:mtt_knockback_resistance_tools",
+    "#rankine:mtt_toughness_tools",
+    "#rankine:mtt_enchantment_tools",
+    "#rankine:mtt_exam_tools"
+  ]
+}
