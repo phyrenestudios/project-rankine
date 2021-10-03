@@ -407,8 +407,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("jei.description.crushing_basic", "Can be obtained by crushing ores using a machine or a Bronze Hammer.");
         add("rankine.jei.crushing", "Crushing");
         add("rankine.jei.crucible", "Crucible");
-        add("rankine.jei.alloy", "Alloying");
-        add("rankine.jei.triple_alloy", "Advanced Alloying");
+        add("rankine.jei.alloying", "Alloying");
+        add("rankine.jei.induction_alloying", "Advanced Alloying");
         add("rankine.jei.sluicing", "Gold Panning");
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
@@ -450,6 +450,12 @@ public class RankineLangProvider extends LanguageProvider {
         add("block.rankine.material_testing_bench.toughness.test", "Toughness tests show the following,");
         add("block.rankine.material_testing_bench.toughness", "Toughness");
         add("block.rankine.material_testing_bench.toughness.error", "Toughness test inconclusive.");
+        add("block.rankine.material_testing_bench.enchantments.test", "Enchanting tests show the following,");
+        add("block.rankine.material_testing_bench.enchantments", "Enchantments");
+        add("block.rankine.material_testing_bench.enchantments.error", "Enchanting test inconclusive.");
+        add("block.rankine.material_testing_bench.exam.test", "Examination tests show the following,");
+        add("block.rankine.material_testing_bench.exam", "Examination");
+        add("block.rankine.material_testing_bench.exam.error", "Examination test inconclusive.");
         add("element.rankine,elements/copper.preview", "Commonly used in early alloys.");
         add("element.rankine,elements/copper.desc0", "Copper is a transition metal with an atomic number of 29.");
         add("element.rankine,elements/copper.desc1", "Commonly used in electrical components and early alloys.");

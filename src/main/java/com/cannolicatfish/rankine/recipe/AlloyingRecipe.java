@@ -176,6 +176,12 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 }
             }
         }
+        List<ElementRecipe> req = getElementList(worldIn, true);
+        for (ElementRecipe element : req) {
+            if (!currentElements.contains(element)) {
+                return ItemStack.EMPTY;
+            }
+        }
 
         int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
 
@@ -226,7 +232,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             List<ElementRecipe> available = nonreq.stream().filter(o -> !req.contains(o)).collect(Collectors.toList());
             req.add(available.get(rand.nextInt(available.size())));
         }
-        System.out.println("Selected elements: " + req);
+       // System.out.println("Selected elements: " + req);
         List<Integer> maxes = new ArrayList<>();
         List<Integer> mins = new ArrayList<>();
         for (ElementRecipe element : req) {
@@ -235,8 +241,8 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             maxes.add(Math.round(getMaxes().get(windex) * 100));
             mins.add(Math.round(getMins().get(windex) * 100));
         }
-        System.out.println("Potential maxes: " + maxes);
-        System.out.println("Potential mins: " + mins);
+        //System.out.println("Potential maxes: " + maxes);
+        //System.out.println("Potential mins: " + mins);
         List<String> options = new ArrayList<>();
         for (int b = 0; b < Math.pow(2,limit); b++) {
             List<Integer> sum = new ArrayList<>();
@@ -255,7 +261,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             }
         }
 
-        System.out.println("OPTIONS: " + options);
+        //System.out.println("OPTIONS: " + options);
         if (options.size() != 0) {
             String selectedOption = options.get(rand.nextInt(options.size()));
             for (int i = 0; i < selectedOption.length(); i++) {

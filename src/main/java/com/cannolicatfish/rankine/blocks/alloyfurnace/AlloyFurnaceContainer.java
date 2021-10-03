@@ -76,7 +76,6 @@ public class AlloyFurnaceContainer extends Container {
 
     @OnlyIn(Dist.CLIENT)
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
-        /*
         if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
             ItemStack template = furnaceInventory.getStackInSlot(7);
             boolean correctInputs = (AlloyTemplateItem.getTier(template) & 1) == 1;
@@ -93,20 +92,8 @@ public class AlloyFurnaceContainer extends Container {
             return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItem.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItem.getOutputAlloyData(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
-        ItemStack stack =
-        if (!stack.isEmpty()) {
-            INBT nbt = AlloyItem.getComposition(stack).getCompound(0).get("comp");
-            if (nbt != null){
-                return new AbstractMap.SimpleEntry<>(new String[]{new TranslationTextComponent(stack.getItem().getTranslationKey()).getString(),nbt.getString()},0x55FF55);
-            } else {
-                return new AbstractMap.SimpleEntry<>(new String[]{},0xffffff);
-            }
-        } else {
-            String ret = RankineRecipes.generateAlloyString(furnaceInventory);
-            return new AbstractMap.SimpleEntry<>(new String[]{"None", ret},0xFF5555);
-        }*/
         String ret = RankineRecipes.generateAlloyString(furnaceInventory);
-        return new AbstractMap.SimpleEntry<>(new String[]{"None", ret},0xFF5555);
+        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{"",ret},0xFFFFFF);
     }
 
     @OnlyIn(Dist.CLIENT)

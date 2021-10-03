@@ -651,6 +651,20 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.FISHING_RODS).add(Items.FISHING_ROD);
         getOrCreateBuilder(RankineTags.Items.SHIELDS).add(Items.SHIELD);
 
+        getOrCreateBuilder(RankineTags.Items.MTT_DURABILITY_TOOLS).add(RankineItems.HARDNESS_TESTER.get());
+        getOrCreateBuilder(RankineTags.Items.MTT_MINING_SPEED_TOOLS).add(RankineItems.SPEEDOMETER.get());
+        getOrCreateBuilder(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS).add(RankineItems.HARDNESS_TESTER.get());
+        getOrCreateBuilder(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS).add(Items.LAPIS_LAZULI);
+        getOrCreateBuilder(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS).add(Items.GRINDSTONE);
+        getOrCreateBuilder(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS).add(Items.TARGET);
+        getOrCreateBuilder(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS).add(Items.WATER_BUCKET);
+        getOrCreateBuilder(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS).add(Items.FLINT_AND_STEEL,Items.LAVA_BUCKET);
+        getOrCreateBuilder(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS).add(Items.SHIELD);
+        getOrCreateBuilder(RankineTags.Items.MTT_TOUGHNESS_TOOLS).add(Items.ARMOR_STAND);
+        getOrCreateBuilder(RankineTags.Items.MTT_ENCHANTMENT_TOOLS).add(RankineItems.MERCURY.get());
+        getOrCreateBuilder(RankineTags.Items.MTT_EXAM_TOOLS).add(Items.BOOK,Items.WRITABLE_BOOK);
+        getOrCreateBuilder(RankineTags.Items.MTT_TOOLS).addTags(RankineTags.Items.MTT_DURABILITY_TOOLS,RankineTags.Items.MTT_MINING_SPEED_TOOLS,RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS,RankineTags.Items.MTT_DURABILITY_TOOLS,RankineTags.Items.MTT_ENCHANTABILITY_TOOLS,RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS,RankineTags.Items.MTT_ATTACK_SPEED_TOOLS,RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS,RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS,RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS,RankineTags.Items.MTT_TOUGHNESS_TOOLS,RankineTags.Items.MTT_ENCHANTMENT_TOOLS,RankineTags.Items.MTT_EXAM_TOOLS);
+
         copy(RankineTags.Blocks.BRICKS, RankineTags.Items.BRICKS);
         copy(RankineTags.Blocks.BRICKS_SLAB, RankineTags.Items.BRICKS_SLABS);
         copy(RankineTags.Blocks.BRICKS_STAIRS, RankineTags.Items.BRICKS_STAIRS);
