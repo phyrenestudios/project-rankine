@@ -1,0 +1,50 @@
+{
+  "type": "rankine:alloying",
+  "total": 8,
+  "color": 16730178,
+  "input1": {
+    "element": "rankine:elements/iron",
+    "min": 0.30,
+    "max": 0.50,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/nickel",
+    "min": 0.13,
+    "max": 0.26,
+    "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/cobalt",
+    "min": 0.05,
+    "max": 0.35,
+    "required": true
+  },
+  "input4": {
+    "element": "rankine:elements/aluminum",
+    "min": 0.08,
+    "max": 0.12,
+    "required": true
+  },
+  "input5": {
+    "element": "rankine:elements/copper",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input6": {
+    "element": "rankine:elements/titanium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input7": {
+    "element": "rankine:elements/niobium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input8": {
+    "element": "rankine:elements/hafnium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "result": "rankine:alnico_ingot"
+}

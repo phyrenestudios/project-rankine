@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rankine:nickel_silver_alloy"
+      "item": "rankine:nickel_silver_ingot"
     }
   ],
   "result": {

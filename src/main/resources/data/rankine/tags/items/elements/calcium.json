@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/calcium",
-            "#forge:ingots/calcium",
-            "#forge:storage_blocks/calcium"
-          ]
-        }

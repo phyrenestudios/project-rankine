@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rankine:ferrocerium_alloy"
+      "item": "rankine:ferrocerium_ingot"
     },
     {
-      "item": "rankine:steel_alloy"
+      "item": "rankine:steel_ingot"
     }
   ],
   "result": {

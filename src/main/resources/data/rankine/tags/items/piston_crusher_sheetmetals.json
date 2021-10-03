@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:sheetmetals/bronze",
-    "#forge:sheetmetals/brass",
-    "#forge:sheetmetals/steel",
-    "#forge:sheetmetals/stainless_steel"
-  ]
-}

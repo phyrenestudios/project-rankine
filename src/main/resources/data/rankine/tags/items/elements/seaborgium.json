@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/seaborgium",
-            "#forge:ingots/seaborgium",
-            "#forge:storage_blocks/seaborgium"
-          ]
-        }

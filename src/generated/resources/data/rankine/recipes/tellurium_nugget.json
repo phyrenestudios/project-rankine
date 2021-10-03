@@ -3,7 +3,7 @@
   "group": "rankine",
   "ingredients": [
     {
-      "item": "rankine:tellurium_ingot"
+      "item": "rankine:tellurium"
     }
   ],
   "result": {

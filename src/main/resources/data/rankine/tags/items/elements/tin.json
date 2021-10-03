@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/tin",
-            "#forge:ingots/tin",
-            "#forge:storage_blocks/tin"
-          ]
-        }

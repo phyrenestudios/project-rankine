@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/titanium",
-            "#forge:ingots/titanium",
-            "#forge:storage_blocks/titanium"
-          ]
-        }

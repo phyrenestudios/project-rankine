@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/indium",
-            "#forge:ingots/indium",
-            "#forge:storage_blocks/indium"
-          ]
-        }

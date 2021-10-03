@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 public enum RankineArmorMaterials implements IArmorMaterial {
     BRIGANDINE("rankine:brigandine", 20, new int[]{3, 6, 8, 3}, 12, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> {
-        return Ingredient.fromItems(Items.LEATHER, RankineItems.STEEL_ALLOY.get());
+        return Ingredient.fromItems(Items.LEATHER, RankineItems.STEEL_INGOT.get());
     }),
     ALLOY("rankine:alloy", 10, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.fromItems(RankineItems.ALLOY_INGOT.get());
@@ -24,7 +24,7 @@ public enum RankineArmorMaterials implements IArmorMaterial {
         return Ingredient.fromItems(RankineItems.VULCANIZED_RUBBER.get());
     }),
     DIVING("rankine:diving", 10, new int[]{2, 4, 5, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-        return Ingredient.fromItems(RankineItems.BRASS_ALLOY.get());
+        return Ingredient.fromItems(RankineItems.BRASS_INGOT.get());
     }),
     CONDUIT_DIVING("rankine:conduit_diving", 24, new int[]{3, 5, 6, 3}, 16, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0.0F, 0.1F, () -> {
         return Ingredient.fromItems(Items.PRISMARINE,Items.PRISMARINE_CRYSTALS,Items.CONDUIT);

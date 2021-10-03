@@ -3,7 +3,7 @@
   "group": "rankine",
   "ingredients": [
     {
-      "item": "rankine:antimony_ingot"
+      "item": "rankine:antimony"
     }
   ],
   "result": {

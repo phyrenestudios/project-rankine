@@ -5,7 +5,7 @@
   "color": 16777215,
   "atomic": 51,
   "potential": 0.2,
-  "items": ["T#forge:nuggets/antimony","T#forge:ingots/antimony","T#forge:storage_blocks/antimony"],
+  "items": ["T#forge:nuggets/antimony","T#forge:antimony","T#forge:storage_blocks/antimony"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

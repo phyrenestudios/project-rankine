@@ -7,10 +7,10 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/selenium"
+      "tag": "forge:ingots/nickel_silver"
     },
     "G": {
-      "tag": "forge:dusts/glowstone"
+      "item": "minecraft:daylight_detector"
     }
   },
   "result": {

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:tellurium_ingot"
+            "item": "rankine:tellurium"
           }
         ]
       }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/moscovium",
-            "#forge:ingots/moscovium",
-            "#forge:storage_blocks/moscovium"
-          ]
-        }

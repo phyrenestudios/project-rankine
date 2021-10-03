@@ -1,0 +1,39 @@
+{
+  "type": "rankine:alloying",
+  "total": 6,
+  "color": 13028546,
+  "input1": {
+    "element": "rankine:elements/iron",
+    "min": 0.50,
+    "max": 0.90,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/nickel",
+    "min": 0.10,
+    "max": 0.50,
+    "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/cobalt",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input4": {
+    "element": "rankine:elements/chromium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input5": {
+    "element": "rankine:elements/manganese",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input6": {
+    "element": "rankine:elements/palladium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "result": "rankine:invar_ingot",
+  "durability": 150
+}

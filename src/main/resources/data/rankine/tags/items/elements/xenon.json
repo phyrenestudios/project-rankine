@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/xenon",
-            "#forge:ingots/xenon",
-            "#forge:storage_blocks/xenon"
-          ]
-        }

@@ -207,7 +207,7 @@ public class CrucibleRecipe implements IRecipe<IInventory> {
             return this.recipeOutput.copy();
         } else {
             ItemStack stack = this.recipeOutput.copy();
-            if (stack.getItem() == RankineItems.STEEL_ALLOY.get()) {
+            if (stack.getItem() == RankineItems.STEEL_INGOT.get()) {
                 IAlloyItem.createDirectAlloyNBT(stack,alloyComp,"rankine:alloying/crucible_steel_alloy_alloying","Crucible Steel Ingot");
             } else {
                 AlloyItem.addAlloy(stack,new AlloyData(alloyComp));

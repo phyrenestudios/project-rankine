@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloying",
+  "total": 4,
+  "tier": 2,
+  "color": 16756647,
+  "input1": {
+    "element": "rankine:elements/netherite",
+    "min": 0.74,
+    "max": 0.76,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/copper",
+    "min": 0.20,
+    "max": 0.25,
+    "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/silver",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "input4": {
+    "element": "rankine:elements/zinc",
+    "min": 0.0,
+    "max": 0.06
+  },
+  "result": "rankine:rose_gold_ingot",
+  "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing","minecraft:protection"],
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
+}

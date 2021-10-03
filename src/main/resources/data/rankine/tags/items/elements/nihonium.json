@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/nihonium",
-            "#forge:ingots/nihonium",
-            "#forge:storage_blocks/nihonium"
-          ]
-        }

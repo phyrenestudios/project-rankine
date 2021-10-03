@@ -10,7 +10,7 @@
       "tag": "minecraft:planks"
     },
     "#": {
-      "tag": "rankine:alloy_ingots"
+      "item": "minecraft:paper"
     }
   },
   "result": {

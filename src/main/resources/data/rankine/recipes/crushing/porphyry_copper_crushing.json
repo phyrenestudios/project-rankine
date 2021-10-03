@@ -21,7 +21,7 @@
     "additional": 0.15
   },
   "output4": {
-    "item": "minecraft:selenium_nugget",
+    "item": "rankine:selenium_nugget",
     "count": 6,
     "chance": 0.15,
     "additional": 0.1

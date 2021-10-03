@@ -8,7 +8,7 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:cast_iron_alloy"
+      "item": "rankine:cast_iron_ingot"
     },
     "P": {
       "tag": "forge:stone_pressure_plates"

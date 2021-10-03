@@ -3,7 +3,7 @@
   "group": "rankine",
   "ingredients": [
     {
-      "item": "rankine:bromine_ingot"
+      "item": "rankine:bromine"
     }
   ],
   "result": {

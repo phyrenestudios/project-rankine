@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:antimony_from_stibnite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_stibnite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:stibnite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:antimony_from_stibnite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stibnite",
+      "has_the_recipe"
+    ]
+  ]
+}

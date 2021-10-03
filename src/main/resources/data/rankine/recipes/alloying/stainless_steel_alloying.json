@@ -1,0 +1,133 @@
+{
+  "type": "rankine:alloying",
+  "tier": 2,
+  "total": 24,
+  "color": 13292499,
+  "input1": {
+    "element": "rankine:elements/iron",
+    "min": 0.65,
+    "max": 0.82,
+    "required": true
+  },
+  "input2": {
+    "element": "rankine:elements/chromium",
+    "min": 0.10,
+    "max": 0.21,
+    "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/carbon",
+    "min": 0.01,
+    "max": 0.02,
+    "required": true
+  },
+  "input4": {
+    "element": "rankine:elements/molybdenum",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input5": {
+    "element": "rankine:elements/aluminum",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input6": {
+    "element": "rankine:elements/manganese",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input7": {
+    "element": "rankine:elements/nickel",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input8": {
+    "element": "rankine:elements/copper",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input9": {
+    "element": "rankine:elements/boron",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input10": {
+    "element": "rankine:elements/cobalt",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input11": {
+    "element": "rankine:elements/strontium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input12": {
+    "element": "rankine:elements/niobium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input13": {
+    "element": "rankine:elements/tantalum",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input14": {
+    "element": "rankine:elements/titanium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input15": {
+    "element": "rankine:elements/tungsten",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input16": {
+    "element": "rankine:elements/selenium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input17": {
+    "element": "rankine:elements/yttrium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input18": {
+    "element": "rankine:elements/vanadium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input19": {
+    "element": "rankine:elements/calcium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input20": {
+    "element": "rankine:elements/zirconium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input21": {
+    "element": "rankine:elements/tellurium",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input22": {
+    "element": "rankine:elements/netherite",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input23": {
+    "element": "rankine:elements/silicon",
+    "min": 0.0,
+    "max": 0.12
+  },
+  "input24": {
+    "element": "rankine:elements/phosphorus",
+    "min": 0.0,
+    "max": 0.02
+  },
+  "result": "rankine:stainless_steel_ingot",
+  "durability": 560,
+  "enchantments": ["rankine:cleanse","minecraft:projectile_protection"],
+  "enchantmentTypes": ["SWORD","ARMOR"]
+}

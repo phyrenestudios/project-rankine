@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/fluorine",
-            "#forge:ingots/fluorine",
-            "#forge:storage_blocks/fluorine"
-          ]
-        }

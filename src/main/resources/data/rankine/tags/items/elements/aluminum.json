@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/aluminum",
-            "#forge:ingots/aluminum",
-            "#forge:storage_blocks/aluminum"
-          ]
-        }

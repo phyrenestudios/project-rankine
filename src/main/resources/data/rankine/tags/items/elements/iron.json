@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:nuggets/iron",
-    "#forge:ingots/iron",
-    "#forge:storage_blocks/iron"
-  ]
-}

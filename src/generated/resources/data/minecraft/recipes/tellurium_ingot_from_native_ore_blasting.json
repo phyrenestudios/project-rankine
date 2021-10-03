@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "rankine:native_tellurium_ore"
   },
-  "result": "rankine:tellurium_ingot",
+  "result": "rankine:tellurium",
   "experience": 0.5,
   "cookingtime": 100
 }

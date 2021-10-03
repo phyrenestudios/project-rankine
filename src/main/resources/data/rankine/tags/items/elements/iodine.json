@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/iodine",
-            "#forge:ingots/iodine",
-            "#forge:storage_blocks/iodine"
-          ]
-        }

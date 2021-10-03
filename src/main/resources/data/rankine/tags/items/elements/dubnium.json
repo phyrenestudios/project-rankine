@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/dubnium",
-            "#forge:ingots/dubnium",
-            "#forge:storage_blocks/dubnium"
-          ]
-        }

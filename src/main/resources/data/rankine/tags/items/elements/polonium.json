@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/polonium",
-            "#forge:ingots/polonium",
-            "#forge:storage_blocks/polonium"
-          ]
-        }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/barium",
-            "#forge:ingots/barium",
-            "#forge:storage_blocks/barium"
-          ]
-        }

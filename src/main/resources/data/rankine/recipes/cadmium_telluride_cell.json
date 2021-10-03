@@ -13,7 +13,7 @@
       "item": "rankine:greenockite"
     },
     "a": {
-      "tag": "forge:ingots/antimony"
+      "tag": "forge:antimony"
     },
     "g": {
       "tag": "forge:glass"
@@ -22,7 +22,7 @@
       "tag": "forge:ingots/cadmium"
     },
     "t": {
-      "tag": "forge:ingots/tellurium"
+      "tag": "forge:tellurium"
     },
     "l": {
       "tag": "forge:ingots/aluminum"

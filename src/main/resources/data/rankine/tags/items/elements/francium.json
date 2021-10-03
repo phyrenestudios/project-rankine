@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/francium",
-            "#forge:ingots/francium",
-            "#forge:storage_blocks/francium"
-          ]
-        }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/actinium",
-            "#forge:ingots/actinium",
-            "#forge:storage_blocks/actinium"
-          ]
-        }

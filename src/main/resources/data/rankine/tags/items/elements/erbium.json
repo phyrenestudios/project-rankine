@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/erbium",
-            "#forge:ingots/erbium",
-            "#forge:storage_blocks/erbium"
-          ]
-        }

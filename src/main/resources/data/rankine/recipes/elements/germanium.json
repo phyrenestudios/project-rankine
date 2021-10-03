@@ -5,7 +5,7 @@
   "color": 14803922,
   "atomic": 32,
   "potential": 0.12,
-  "items": ["T#forge:nuggets/germanium","T#forge:ingots/germanium","T#forge:storage_blocks/germanium"],
+  "items": ["T#forge:nuggets/germanium","T#forge:germanium","T#forge:storage_blocks/germanium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

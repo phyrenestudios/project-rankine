@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/hydrogen",
-            "#forge:ingots/hydrogen",
-            "#forge:storage_blocks/hydrogen"
-          ]
-        }

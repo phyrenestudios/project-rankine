@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "genName": true,
+  "color": 13292499,
   "pattern": [
     "# #",
     "###",
@@ -8,7 +10,7 @@
   ],
   "key": {
     "#": {
-      "item": "rankine:stainless_steel_alloy"
+      "item": "rankine:stainless_steel_ingot"
     }
   },
   "result": {

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/thulium",
-            "#forge:ingots/thulium",
-            "#forge:storage_blocks/thulium"
-          ]
-        }

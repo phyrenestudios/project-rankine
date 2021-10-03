@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/selenium",
-            "#forge:ingots/selenium",
-            "#forge:storage_blocks/selenium"
-          ]
-        }

@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/americium",
-            "#forge:ingots/americium",
-            "#forge:storage_blocks/americium"
-          ]
-        }

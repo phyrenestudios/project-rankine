@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/lutetium",
-            "#forge:ingots/lutetium",
-            "#forge:storage_blocks/lutetium"
-          ]
-        }

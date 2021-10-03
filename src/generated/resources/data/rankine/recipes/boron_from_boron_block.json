@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:boron_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:boron",
+    "count": 9
+  }
+}

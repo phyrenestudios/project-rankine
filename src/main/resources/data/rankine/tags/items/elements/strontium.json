@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/strontium",
-            "#forge:ingots/strontium",
-            "#forge:storage_blocks/strontium"
-          ]
-        }

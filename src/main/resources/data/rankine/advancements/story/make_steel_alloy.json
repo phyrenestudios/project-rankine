@@ -2,7 +2,7 @@
   "parent": "rankine:story/make_crucible",
   "display": {
     "icon": {
-      "item": "rankine:steel_alloy"
+      "item": "rankine:steel_ingot"
     },
     "title": {
       "translate": "rankine.advancements.story.make_steel_alloy.title"
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:steel_alloy"
+            "item": "rankine:steel_ingot"
           }
         ]
       }

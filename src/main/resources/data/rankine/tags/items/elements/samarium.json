@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/samarium",
-            "#forge:ingots/samarium",
-            "#forge:storage_blocks/samarium"
-          ]
-        }

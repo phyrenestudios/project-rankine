@@ -218,6 +218,7 @@ public class RankineLangProvider extends LanguageProvider {
         for (Item item : Stream.of(
                 RankineLists.WOODEN_BOATS,
                 RankineLists.ARROWS,
+                RankineLists.WOODEN_TOOLS,
                 RankineLists.ALLOY_TOOLS,
                 RankineLists.FLINT_TOOLS,
                 RankineLists.BRONZE_TOOLS,
@@ -239,7 +240,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.TITANIUM_ALLOY_TOOLS,
                 RankineLists.ELEMENT_INGOTS,
                 RankineLists.ELEMENT_NUGGETS,
-                RankineLists.ALLOYS,
+                RankineLists.ALLOY_NUGGETS,
+                RankineLists.ALLOY_INGOTS,
                 RankineLists.GAS_BOTTLES,
                 RankineLists.MINERAL_ITEMS,
                 RankineLists.JAMS,
@@ -511,6 +513,42 @@ public class RankineLangProvider extends LanguageProvider {
         add("itemGroup.rankine_components", "Project Rankine Components");
         add("itemGroup.rankine_misc", "Project Rankine Miscellaneous");
         add("itemGroup.rankine_plants", "Project Rankine Plants & Food");
+
+        add("block.rankine.material_testing_bench", "Material Testing Table");
+        add("block.rankine.material_testing_bench.durability.test", "Durability tests show the following,");
+        add("block.rankine.material_testing_bench.durability", "Durability");
+        add("block.rankine.material_testing_bench.durability.error", "Durability test inconclusive.");
+        add("block.rankine.material_testing_bench.mining_speed.test", "Mining Speed tests show the following,");
+        add("block.rankine.material_testing_bench.mining_speed", "Mining Speed");
+        add("block.rankine.material_testing_bench.mining_speed.error", "Mining Speed test inconclusive.");
+        add("block.rankine.material_testing_bench.harvest_level.test", "Harvest level tests show the following,");
+        add("block.rankine.material_testing_bench.harvest_level", "Harvest Level");
+        add("block.rankine.material_testing_bench.harvest_level.error", "Harvest level test inconclusive.");
+        add("block.rankine.material_testing_bench.enchantability.test", "Enchantability tests show the following,");
+        add("block.rankine.material_testing_bench.enchantability", "Enchantability");
+        add("block.rankine.material_testing_bench.enchantability.error", "Enchantability test inconclusive.");
+        add("block.rankine.material_testing_bench.attack_damage.test", "Attack damage tests show the following,");
+        add("block.rankine.material_testing_bench.attack_damage", "Attack Damage");
+        add("block.rankine.material_testing_bench.attack_damage.error", "Attack damage test inconclusive.");
+        add("block.rankine.material_testing_bench.attack_speed.test", "Attack speed tests show the following,");
+        add("block.rankine.material_testing_bench.attack_speed", "Attack Speed");
+        add("block.rankine.material_testing_bench.attack_speed.error", "Attack speed test inconclusive.");
+        add("block.rankine.material_testing_bench.corrosion_resistance.test", "Corrosion tests show the following,");
+        add("block.rankine.material_testing_bench.corrosion_resistance", "Corrosion Resistance");
+        add("block.rankine.material_testing_bench.corrosion_resistance.error", "Corrosion test inconclusive.");
+        add("block.rankine.material_testing_bench.heat_resistance.test", "Heat tests show the following,");
+        add("block.rankine.material_testing_bench.heat_resistance", "Heat Resistance");
+        add("block.rankine.material_testing_bench.heat_resistance.error", "Heat test inconclusive.");
+        add("block.rankine.material_testing_bench.knockback_resistance.test", "Knockback tests show the following,");
+        add("block.rankine.material_testing_bench.knockback_resistance", "Knockback Resistance");
+        add("block.rankine.material_testing_bench.knockback_resistance.error", "Knockback test inconclusive.");
+        add("block.rankine.material_testing_bench.toughness.test", "Toughness tests show the following,");
+        add("block.rankine.material_testing_bench.toughness", "Toughness");
+        add("block.rankine.material_testing_bench.toughness.error", "Toughness test inconclusive.");
+        add("element.rankine,elements/copper.preview", "Commonly used in early alloys.");
+        add("element.rankine,elements/copper.desc0", "Copper is a transition metal with an atomic number of 29.");
+        add("element.rankine,elements/copper.desc1", "Commonly used in electrical components and early alloys.");
+        add("element.rankine,elements/copper.desc2", "Commonly used in electrical components and early alloys.");
 
         add("rankine.advancements.story.root.title", "Project Rankine");
         add("rankine.advancements.story.root.description", "Begin delving into the changed world");

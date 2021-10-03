@@ -1,8 +1,0 @@
-{
-          "replace": false,
-          "values": [
-            "#forge:nuggets/scandium",
-            "#forge:ingots/scandium",
-            "#forge:storage_blocks/scandium"
-          ]
-        }
