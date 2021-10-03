@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "name": "Silver Plate",
+  "pattern": [
+    " I ",
+    "I I",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/silver"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_plate",
+    "alloyData": "100Ag",
+    "count": 4
+  }
+}

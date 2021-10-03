@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:magnesite_block"
-  },
-  "result": "rankine:magnesium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

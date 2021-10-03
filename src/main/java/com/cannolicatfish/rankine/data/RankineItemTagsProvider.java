@@ -175,7 +175,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.KNIVES).add(RankineItems.FLINT_KNIFE.get(),RankineItems.PEWTER_KNIFE.get(),RankineItems.ALLOY_KNIFE.get(),RankineItems.BRONZE_KNIFE.get(),RankineItems.INVAR_KNIFE.get(),RankineItems.STEEL_KNIFE.get(),RankineItems.STAINLESS_STEEL_KNIFE.get(),RankineItems.NICKEL_SUPERALLOY_KNIFE.get(),RankineItems.COBALT_SUPERALLOY_KNIFE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_KNIFE.get(),RankineItems.ROSE_GOLD_KNIFE.get(),RankineItems.BLUE_GOLD_KNIFE.get(),RankineItems.GREEN_GOLD_KNIFE.get(),RankineItems.WHITE_GOLD_KNIFE.get(),RankineItems.PURPLE_GOLD_KNIFE.get(),RankineItems.BLACK_GOLD_KNIFE.get(),RankineItems.AMALGAM_KNIFE.get(),RankineItems.ENDER_AMALGAM_KNIFE.get());
 
         getOrCreateBuilder(RankineTags.Items.COLORED_GOLD_TOOLS).addTags(RankineTags.Items.ROSE_GOLD_TOOLS,RankineTags.Items.GREEN_GOLD_TOOLS,RankineTags.Items.WHITE_GOLD_TOOLS,RankineTags.Items.BLUE_GOLD_TOOLS,RankineTags.Items.PURPLE_GOLD_TOOLS,RankineTags.Items.BLACK_GOLD_TOOLS);
-        getOrCreateBuilder(RankineTags.Items.CRUDE_TOOLS).addTags(RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.BRONZE_TOOLS,RankineTags.Items.INVAR_TOOLS,RankineTags.Items.AMALGAM_TOOLS,RankineTags.Items.ALLOY_TOOLS);
+        getOrCreateBuilder(RankineTags.Items.CRUDE_TOOLS).addTags(RankineTags.Items.WOODEN_TOOLS,RankineTags.Items.STONE_TOOLS,RankineTags.Items.IRON_TOOLS,RankineTags.Items.GOLDEN_TOOLS,RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.BRONZE_TOOLS,RankineTags.Items.INVAR_TOOLS,RankineTags.Items.AMALGAM_TOOLS,RankineTags.Items.ALLOY_TOOLS);
+        getOrCreateBuilder(RankineTags.Items.TREE_CHOPPERS).add(RankineItems.PEWTER_AXE.get(),RankineItems.ALLOY_AXE.get(),RankineItems.BRONZE_AXE.get(),RankineItems.INVAR_AXE.get(),RankineItems.STEEL_AXE.get(),RankineItems.STAINLESS_STEEL_AXE.get(),RankineItems.NICKEL_SUPERALLOY_AXE.get(),RankineItems.COBALT_SUPERALLOY_AXE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_AXE.get(),RankineItems.ROSE_GOLD_AXE.get(),RankineItems.BLUE_GOLD_AXE.get(),RankineItems.GREEN_GOLD_AXE.get(),RankineItems.WHITE_GOLD_AXE.get(),RankineItems.PURPLE_GOLD_AXE.get(),RankineItems.BLACK_GOLD_AXE.get(),RankineItems.AMALGAM_AXE.get(),RankineItems.ENDER_AMALGAM_AXE.get());
 
 
         getOrCreateBuilder(RankineTags.Items.GOLD_PANS).add(RankineItems.WOODEN_GOLD_PAN.get(), RankineItems.PEWTER_GOLD_PAN.get(), RankineItems.STEEL_GOLD_PAN.get());
@@ -226,6 +227,15 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.SEEDS_JUTE).add(RankineItems.JUTE_SEEDS.get());
         getOrCreateBuilder(RankineTags.Items.SEEDS_CAMPHOR_BASIL).add(RankineItems.CAMPHOR_BASIL_SEEDS.get());
         getOrCreateBuilder(Tags.Items.SEEDS).addTags(RankineTags.Items.SEEDS_FLOWER,RankineTags.Items.SEEDS_ASPARAGUS,RankineTags.Items.SEEDS_CORN,RankineTags.Items.SEEDS_COTTON,RankineTags.Items.SEEDS_RICE,RankineTags.Items.SEEDS_JUTE,RankineTags.Items.SEEDS_CAMPHOR_BASIL);
+
+        getOrCreateBuilder(RankineTags.Items.CROPS_ASPARAGUS).add(RankineItems.ASPARAGUS.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_CORN).add(RankineItems.CORN_EAR.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_COTTON).add(RankineItems.COTTON.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_RICE).add(RankineItems.RICE.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_JUTE).add(RankineItems.JUTE.get());
+        getOrCreateBuilder(RankineTags.Items.CROPS_CAMPHOR_BASIL).add(RankineItems.CAMPHOR_BASIL_LEAF.get());
+        getOrCreateBuilder(Tags.Items.CROPS).addTags(RankineTags.Items.CROPS_ASPARAGUS,RankineTags.Items.CROPS_CORN,RankineTags.Items.CROPS_COTTON,RankineTags.Items.CROPS_RICE,RankineTags.Items.CROPS_JUTE,RankineTags.Items.CROPS_CAMPHOR_BASIL);
+
 
         getOrCreateBuilder(RankineTags.Items.PINEAPPLE).add(RankineItems.PINEAPPLE.get(),RankineItems.PINEAPPLE_SLEEVES.get());
 

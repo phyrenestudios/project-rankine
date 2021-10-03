@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:galena_block"
-  },
-  "result": "rankine:lead_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

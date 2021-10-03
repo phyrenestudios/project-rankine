@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:molybdenite_block"
-  },
-  "result": "rankine:molybdenum_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

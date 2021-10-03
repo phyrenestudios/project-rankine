@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:laurite_block"
-  },
-  "result": "rankine:ruthenium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

@@ -21,6 +21,11 @@ public class FloodGateBlock extends Block {
         super(properties);
     }
 
+    @Override
+    public boolean isTransparent(BlockState state) {
+        return true;
+    }
+
     public static void placeFluid(World worldIn, BlockPos pos, BlockState bs) {
         if (worldIn.getBlockState(pos.down()).matchesBlock(Blocks.AIR)) {
             worldIn.setBlockState(pos.down(),bs,3);

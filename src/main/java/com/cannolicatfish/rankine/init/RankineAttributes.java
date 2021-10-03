@@ -19,12 +19,13 @@ public class RankineAttributes {
     public static final AttributeModifier WOODEN_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa6"), "rankine:wooden_ms", Config.GENERAL.MOVEMENT_WOODEN.get(), AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier CONCRETE_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa7"), "rankine:concrete_ms", Config.GENERAL.MOVEMENT_CONCRETE.get(), AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier SNOW_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa8"), "rankine:snow_ms", Config.GENERAL.MOVEMENT_SNOW.get(), AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier DUNE_WALKER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa9"), "rankine:dune_walker", 0.1, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier SNOW_DRIFTER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb0"), "rankine:snowshoes", 0.1, AttributeModifier.Operation.ADDITION);
-    public static final AttributeModifier SPEED_SKATER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb1"), "rankine:speed_skater", 0.1, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier DUNE_WALKER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fa9"), "rankine:dune_walker", 0.05, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier SNOW_DRIFTER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb0"), "rankine:snowshoes", 0.05, AttributeModifier.Operation.ADDITION);
+    public static final AttributeModifier SPEED_SKATER = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb1"), "rankine:speed_skater", 0.05, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier SPEED_PENDANT_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb2"), "rankine:speed_pendant_ms", 0.075, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier HEALTH_PENDANT = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb3"), "rankine:health_pendant_ms", 10.0, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier MUD_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb4"), "rankine:mud_ms", Config.GENERAL.MOVEMENT_MUD.get(), AttributeModifier.Operation.ADDITION);
+    //public static final AttributeModifier BLOCK_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:block_ms", Config.GENERAL.MOVEMENT_MUD.get(), AttributeModifier.Operation.ADDITION);
 
     public static final AttributeModifier MERCURY_MS = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1aa0"), "rankine:mercury_mod", -0.04D, AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier MERCURY_HEALTH = new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe1aa1"), "rankine:mercury_mod", -2D, AttributeModifier.Operation.ADDITION);

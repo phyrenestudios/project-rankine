@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:realgar_block"
-  },
-  "result": "rankine:arsenic_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

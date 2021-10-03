@@ -28,7 +28,7 @@ public class FireExtinguisherItem extends Item {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         BlockPos pos = playerIn.getPosition();
         int range = Config.GENERAL.FIRE_EXTINGUISHER_RANGE.get();
-        if (!worldIn.isRemote) {
+        //if (!worldIn.isRemote) {
             for (BlockPos b : BlockPos.getAllInBoxMutable(pos.offset(playerIn.getHorizontalFacing(), range/2).add(-range/2, -2, -range/2), pos.offset(playerIn.getHorizontalFacing(), range/2).add(range/2, range/2, range/2))) {
                 if (b.distanceSq(pos)<=Math.pow(range,2) && worldIn.getBlockState(b).getBlock() instanceof AbstractFireBlock) {
                     worldIn.setBlockState(b, Blocks.AIR.getDefaultState());
@@ -39,8 +39,7 @@ public class FireExtinguisherItem extends Item {
                 p_220040_1_.sendBreakAnimation(handIn);
             });
             return ActionResult.resultSuccess(playerIn.getHeldItem(handIn));
-        }
+        //}
 
-        return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 }

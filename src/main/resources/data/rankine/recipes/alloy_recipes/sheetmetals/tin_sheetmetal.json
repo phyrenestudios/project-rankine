@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "rankine:alloy_plate",
+      "alloyRecipe": "rankine:alloy_recipes/tin_plate",
+      "name": "Tin Plate"
+    }
+  },
+  "result": {
+    "item": "rankine:tin_sheetmetal",
+    "count": 8
+  }
+}

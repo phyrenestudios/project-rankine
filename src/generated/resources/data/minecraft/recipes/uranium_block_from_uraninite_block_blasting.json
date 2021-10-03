@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:uraninite_block"
-  },
-  "result": "rankine:uranium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:thortveitite_block"
-  },
-  "result": "rankine:scandium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

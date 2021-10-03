@@ -47,7 +47,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.STONE_PRESSURE_PLATE,
                 RankineLists.STONE_BRICKS_PRESSURE_PLATE,
                 RankineLists.STONE_BUTTON,
-                RankineLists.STONE_PILLARS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_SLAB,
                 RankineLists.BRICKS_STAIRS,
@@ -103,11 +102,21 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES,
                 RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            add(blk, parseLangName(blk.getRegistryName().getPath()));
+
+            if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
+                add(blk, "Salt Block (NaCl)");
+            } else if (blk.matchesBlock(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
+                add(blk, "Salt Block (CaCl2)");
+            } else {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
         }
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.SODIUM_VAPOR_LAMP.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
                 RankineBlocks.INDUCTION_FURNACE.get(),
                 RankineBlocks.CRUCIBLE_BLOCK.get(),
@@ -130,11 +139,21 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
+                
+                
+                RankineBlocks.CAST_IRON_BARS.get(),
+                RankineBlocks.SHORT_GRASS.get(),
+                RankineBlocks.STINGING_NETTLE.get(),
+                RankineBlocks.RED_CLOVER.get(),
+                RankineBlocks.CRIMSON_CLOVER.get(),
+                RankineBlocks.WHITE_CLOVER.get(),
+                RankineBlocks.YELLOW_CLOVER.get(),
 
-
-
-
-
+                RankineBlocks.SOD_BLOCK.get(),
+                RankineBlocks.SOD_BLOCK_WALL.get(),
+                RankineBlocks.SOD_BLOCK_STAIRS.get(),
+                RankineBlocks.SOD_BLOCK_SLAB.get(),
+                RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get(),
                 RankineBlocks.ROMAN_CONCRETE_BRICKS.get(),
                 RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get(),
                 RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get(),
@@ -173,6 +192,17 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
+                RankineBlocks.CEMENT.get(),
+                RankineBlocks.CEMENT_WALL.get(),
+                RankineBlocks.CEMENT_STAIRS.get(),
+                RankineBlocks.CEMENT_SLAB.get(),
+                RankineBlocks.CEMENT_VERTICAL_SLAB.get(),
+                RankineBlocks.CONCRETE.get(),
+                RankineBlocks.CONCRETE_WALL.get(),
+                RankineBlocks.CONCRETE_STAIRS.get(),
+                RankineBlocks.CONCRETE_SLAB.get(),
+                RankineBlocks.CONCRETE_VERTICAL_SLAB.get(),
+                
                 
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
                 RankineBlocks.ANTIMATTER.get(),

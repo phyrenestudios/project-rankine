@@ -40,6 +40,8 @@ public class WorldgenUtils {
     public static List<List<Float>> INTRUSION_ORE_CHANCES = new ArrayList<>();
     public static List<WeightedCollection<BlockState>> INTRUSION_COLLECTIONS = new ArrayList<>();
     public static List<List<String>> LAYER_LISTS = new ArrayList<>();
+    public static List<List<String>> VEGETATION_LISTS = new ArrayList<>();
+    public static List<WeightedCollection<BlockState>> VEGETATION_COLLECTIONS = new ArrayList<>();
     public static List<Block> ORE_STONES = new ArrayList<>();
     public static List<String> ORE_TEXTURES = new ArrayList<>();
 
@@ -68,10 +70,10 @@ public class WorldgenUtils {
             String biomeToAdd = (String) L.get(0);
             List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
             if (biomeName.size() > 1) {
-                populateLists(ResourceLocation.tryCreate(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3));
+                populateLists(ResourceLocation.tryCreate(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4));
             } else {
                 for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(biomeToAdd)), true)) {
-                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3));
+                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4));
                 }
             }
 
@@ -98,9 +100,24 @@ public class WorldgenUtils {
             INTRUSION_ORE_CHANCES.add(tempIC);
             INTRUSION_COLLECTIONS.add(col);
         }
+
+        for (List<String> V : VEGETATION_LISTS) {
+            int ind = 0;
+            WeightedCollection<BlockState> col = new WeightedCollection<>();
+            List<Block> tempVB = new ArrayList<>();
+            List<Float> tempVW = new ArrayList<>();
+            for (String entry : V) {
+                tempVB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(entry.split("\\|")[0])));
+                tempVW.add(Float.parseFloat(entry.split("\\|")[1]));
+                col.add(tempVW.get(ind),tempVB.get(ind).getDefaultState());
+                ind += 1;
+            }
+            VEGETATION_COLLECTIONS.add(col);
+        }
+
     }
 
-    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES) {
+    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES, List<String> VEGETATION) {
         GEN_BIOMES.add(BIOME);
         if (SOILS.isEmpty()) {
             GEN_SOILS.add(Blocks.AIR);
@@ -115,6 +132,7 @@ public class WorldgenUtils {
         }
         INTRUSION_LISTS.add(INTRUSIONS);
         LAYER_LISTS.add(STONES);
+        VEGETATION_LISTS.add(VEGETATION);
 
     }
 
@@ -151,6 +169,15 @@ public class WorldgenUtils {
 
     public static int waterTableHeight(World worldIn, BlockPos pos) {
         return (int) Math.max(worldIn.getSeaLevel(), (worldIn.getSeaLevel() + worldIn.getBiome(pos).getDepth()*30));
+    }
+
+    public static Block getCeillingBlock(World worldIn, BlockPos pos, int height) {
+        for (int i = 1; i<= height; ++i) {
+            if (!worldIn.getBlockState(pos.up(height)).matchesBlock(Blocks.AIR)) {
+                return worldIn.getBlockState(pos.up(height)).getBlock();
+            }
+        }
+        return Blocks.AIR;
     }
 
 }

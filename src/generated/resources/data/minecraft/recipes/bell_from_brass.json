@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "SBS",
+    "S S"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:stone"
+    },
+    "R": {
+      "tag": "forge:rods/wooden"
+    },
+    "B": {
+      "item": "rankine:brass_alloy"
+    }
+  },
+  "result": {
+    "item": "minecraft:bell"
+  }
+}

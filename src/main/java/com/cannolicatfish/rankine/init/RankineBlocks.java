@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
+import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePlanksBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePolishedStoneBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
@@ -46,6 +47,7 @@ import com.cannolicatfish.rankine.blocks.tap.TapBarrelBlock;
 import com.cannolicatfish.rankine.blocks.tap.TapLineBlock;
 import com.cannolicatfish.rankine.blocks.tap.TreeTapBlock;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
+import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilTile;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.trees.*;
 import net.minecraft.block.*;
@@ -76,7 +78,7 @@ public class RankineBlocks {
     public static Block.Properties DEF_LEAVES = Block.Properties.create(Material.LEAVES).tickRandomly().hardnessAndResistance(0.2F).sound(SoundType.PLANT).notSolid();
 
 
-    public static final RegistryObject<Block> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+    //public static final RegistryObject<Block> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new RotatedPillarBlock(Block.Properties.create(Material.ROCK).sound(SoundType.BONE).hardnessAndResistance(2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
 
 
     public static final RegistryObject<Block> PEGMATITE = REGISTRY.register("pegmatite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(Config.STONE_PROPERTIES.PEGMATITE_HARD.get().floatValue(), Config.STONE_PROPERTIES.PEGMATITE_RESIST.get().floatValue()).harvestLevel(Config.STONE_PROPERTIES.PEGMATITE_HL.get())));
@@ -1034,7 +1036,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LOAM = REGISTRY.register("loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> SILTY_LOAM = REGISTRY.register("silty_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> LOAMY_SAND = REGISTRY.register("loamy_sand", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_LOAM = REGISTRY.register("sandy_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> SANDY_LOAM = REGISTRY.register("sandy_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> CLAY_LOAM = REGISTRY.register("clay_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> SANDY_CLAY_LOAM = REGISTRY.register("sandy_clay_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> SILTY_CLAY_LOAM = REGISTRY.register("silty_clay_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
@@ -1050,16 +1052,16 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SILTY_CLAY_LOAM_PATH = REGISTRY.register("silty_clay_loam_path", () -> new GrassySoilPathBlock(SILTY_CLAY_LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> SANDY_CLAY_PATH = REGISTRY.register("sandy_clay_path", () -> new GrassySoilPathBlock(SANDY_CLAY.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> SILTY_CLAY_PATH = REGISTRY.register("silty_clay_path", () -> new GrassySoilPathBlock(SILTY_CLAY.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> GRASSY_HUMUS = REGISTRY.register("grassy_humus", () -> new GrassySoilBlock(HUMUS.get(), HUMUS_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_LOAM = REGISTRY.register("grassy_loam", () -> new GrassySoilBlock(LOAM.get(), LOAM_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SILTY_LOAM = REGISTRY.register("grassy_silty_loam", () -> new GrassySoilBlock(SILTY_LOAM.get(), SILTY_LOAM_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_LOAMY_SAND = REGISTRY.register("grassy_loamy_sand", () -> new GrassySoilBlock(LOAMY_SAND.get(), LOAMY_SAND_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SANDY_LOAM = REGISTRY.register("grassy_sandy_loam", () -> new GrassySoilBlock(SANDY_LOAM.get(), SANDY_LOAM_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_CLAY_LOAM = REGISTRY.register("grassy_clay_loam", () -> new GrassySoilBlock(CLAY_LOAM.get(), CLAY_LOAM_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SANDY_CLAY_LOAM = REGISTRY.register("grassy_sandy_clay_loam", () -> new GrassySoilBlock(SANDY_CLAY_LOAM.get(), SANDY_CLAY_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SILTY_CLAY_LOAM = REGISTRY.register("grassy_silty_clay_loam", () -> new GrassySoilBlock(SILTY_CLAY_LOAM.get(), SILTY_CLAY_LOAM_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SANDY_CLAY = REGISTRY.register("grassy_sandy_clay", () -> new GrassySoilBlock(SANDY_CLAY.get(), SANDY_CLAY_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SILTY_CLAY = REGISTRY.register("grassy_silty_clay", () -> new GrassySoilBlock(SILTY_CLAY.get(), SILTY_CLAY_PATH.get(), AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_HUMUS = REGISTRY.register("grassy_humus", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_LOAM = REGISTRY.register("grassy_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_SILTY_LOAM = REGISTRY.register("grassy_silty_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_LOAMY_SAND = REGISTRY.register("grassy_loamy_sand", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_SANDY_LOAM = REGISTRY.register("grassy_sandy_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_CLAY_LOAM = REGISTRY.register("grassy_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_SANDY_CLAY_LOAM = REGISTRY.register("grassy_sandy_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_SILTY_CLAY_LOAM = REGISTRY.register("grassy_silty_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_SANDY_CLAY = REGISTRY.register("grassy_sandy_clay", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+    public static final RegistryObject<Block> GRASSY_SILTY_CLAY = REGISTRY.register("grassy_silty_clay", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
     public static final RegistryObject<Block> MYCELIUM_PATH = REGISTRY.register("mycelium_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
     
     //gravel path?
@@ -1438,6 +1440,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLUE_MORNING_GLORY = REGISTRY.register("blue_morning_glory", () -> new TallFlowerBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> BLACK_MORNING_GLORY = REGISTRY.register("black_morning_glory", () -> new TallFlowerBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> GOLDENROD = REGISTRY.register("goldenrod", () -> new TallFlowerBlock(AbstractBlock.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> SHORT_GRASS = REGISTRY.register("short_grass", () -> new ShortGrassBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> STINGING_NETTLE = REGISTRY.register("stinging_nettle", () -> new StingingNettleBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> YELLOW_CLOVER = REGISTRY.register("yellow_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> WHITE_CLOVER = REGISTRY.register("white_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> RED_CLOVER = REGISTRY.register("red_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> CRIMSON_CLOVER = REGISTRY.register("crimson_clover", () -> new CloverBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 
     public static final RegistryObject<Block> CEDAR_LEAVES = REGISTRY.register("cedar_leaves", () -> new LeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> COCONUT_PALM_LEAVES = REGISTRY.register("coconut_palm_leaves", () -> new LeavesBlock(DEF_LEAVES));
@@ -2087,11 +2095,14 @@ public class RankineBlocks {
     @ObjectHolder("rankine:ground_tap")
     public static TileEntityType<GroundTapTile> GROUND_TAP_TILE;
 
+    @ObjectHolder("rankine:beehive_oven")
+    public static TileEntityType<BeehiveOvenTile> BEEHIVE_OVEN_TILE;
+
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;
 
     @ObjectHolder("rankine:tilled_soil")
-    public static TileEntityType<FluidDrainTile> TILLED_SOIL_TILE;
+    public static TileEntityType<TilledSoilTile> TILLED_SOIL_TILE;
 
 
     public static Block getBlock(String name) {

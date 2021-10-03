@@ -71,7 +71,7 @@ public class TreeChoppingEvents {
         BlockState state = worldIn.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
 
-        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().isIn(RankineTags.Items.TREE_CHOPPERS) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Set<BlockPos> logs = new HashSet<>();
             List<BlockPos> leaves = new ArrayList<>();

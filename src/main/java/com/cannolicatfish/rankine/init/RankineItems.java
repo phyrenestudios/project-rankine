@@ -25,7 +25,7 @@ public class RankineItems {
 
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
 
-    public static final RegistryObject<Item> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_PILLAR.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
+    //public static final RegistryObject<Item> GRAY_GRANITE_PILLAR = REGISTRY.register("gray_granite_pillar", () -> new BlockItem(RankineBlocks.GRAY_GRANITE_PILLAR.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineWorld)));
 
 
     //Stone Blocks
@@ -1519,6 +1519,12 @@ public class RankineItems {
     public static final RegistryObject<Item> PURPLE_MORNING_GLORY = REGISTRY.register("purple_morning_glory", () -> new BlockItem(RankineBlocks.PURPLE_MORNING_GLORY.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> BLACK_MORNING_GLORY = REGISTRY.register("black_morning_glory", () -> new BlockItem(RankineBlocks.BLACK_MORNING_GLORY.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> GOLDENROD = REGISTRY.register("goldenrod", () -> new BlockItem(RankineBlocks.GOLDENROD.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> SHORT_GRASS = REGISTRY.register("short_grass", () -> new BlockItem(RankineBlocks.SHORT_GRASS.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> YELLOW_CLOVER = REGISTRY.register("yellow_clover", () -> new BlockItem(RankineBlocks.YELLOW_CLOVER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> WHITE_CLOVER = REGISTRY.register("white_clover", () -> new BlockItem(RankineBlocks.WHITE_CLOVER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> RED_CLOVER = REGISTRY.register("red_clover", () -> new BlockItem(RankineBlocks.RED_CLOVER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> CRIMSON_CLOVER = REGISTRY.register("crimson_clover", () -> new BlockItem(RankineBlocks.CRIMSON_CLOVER.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
+    public static final RegistryObject<Item> STINGING_NETTLE = REGISTRY.register("stinging_nettle", () -> new BlockItem(RankineBlocks.STINGING_NETTLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
 
 
     public static final RegistryObject<Item> ELDERBERRIES = REGISTRY.register("elderberries", () -> new BlockNamedItem(RankineBlocks.ELDERBERRY_BUSH.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.ELDERBERRIES)));

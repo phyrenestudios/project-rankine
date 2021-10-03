@@ -1,6 +1,8 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
+  "genName": true,
+  "color": 12622179,
   "pattern": [
     " I ",
     "I I",
@@ -13,6 +15,6 @@
   },
   "result": {
     "item": "rankine:alloy_plate",
-    "count": 4
+    "count": 1
   }
 }

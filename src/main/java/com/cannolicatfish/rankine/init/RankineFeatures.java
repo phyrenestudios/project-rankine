@@ -294,6 +294,10 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> END_METEORITE = new EndMeteoriteFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = new AntimatterFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
 
+    public static final ConfiguredFeature<?, ?> PASSIVE_MOBS = new EndMeteoriteFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
+
+
+
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = FIRE_CLAY_DISK.withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(6)));
     public static final Feature<NoFeatureConfig> SNOW_REPLACER = new SnowyPeaksFeature(NoFeatureConfig.CODEC);

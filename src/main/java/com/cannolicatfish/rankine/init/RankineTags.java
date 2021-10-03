@@ -197,6 +197,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> FORAGING_ITEMS = modItem("foraging_items");
         public static final ITag.INamedTag<Item> COLORED_GOLD_TOOLS = modItem("colored_gold_tools");
         public static final ITag.INamedTag<Item> CRUDE_TOOLS = modItem("crude_tools");
+        public static final ITag.INamedTag<Item> TREE_CHOPPERS = modItem("tree_choppers");
         public static final ITag.INamedTag<Item> GOLD_PANS = modItem("gold_pans");
         public static final ITag.INamedTag<Item> SLUICING_TOOLS = modItem("sluicing_tools");
 
@@ -308,6 +309,13 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> SEEDS_RICE = forgeItem("seeds/rice");
         public static final ITag.INamedTag<Item> SEEDS_CAMPHOR_BASIL = forgeItem("seeds/camphor_basil");
         public static final ITag.INamedTag<Item> SEEDS_COTTON = forgeItem("seeds/cotton");
+
+        public static final ITag.INamedTag<Item> CROPS_CORN = forgeItem("crops/corn");
+        public static final ITag.INamedTag<Item> CROPS_ASPARAGUS = forgeItem("crops/asparagus");
+        public static final ITag.INamedTag<Item> CROPS_JUTE = forgeItem("crops/jute");
+        public static final ITag.INamedTag<Item> CROPS_RICE = forgeItem("crops/rice");
+        public static final ITag.INamedTag<Item> CROPS_CAMPHOR_BASIL = forgeItem("crops/camphor_basil");
+        public static final ITag.INamedTag<Item> CROPS_COTTON = forgeItem("crops/cotton");
 
         public static final ITag.INamedTag<Item> PINEAPPLE = forgeItem("pineapple");
 

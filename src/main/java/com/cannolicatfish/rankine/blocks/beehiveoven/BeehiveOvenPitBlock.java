@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.beehiveoven;
 
+import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
 import net.minecraft.block.Block;
@@ -12,6 +13,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -65,10 +67,10 @@ public class BeehiveOvenPitBlock extends Block {
             itemstack.damageItem(1, player, (p_220287_1_) -> {
                 p_220287_1_.sendBreakAnimation(handIn);
             });
-            getBeehiveOven(worldIn,pos);
+            worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
         } else if (item == Items.FIRE_CHARGE) {
             itemstack.shrink(1);
-            getBeehiveOven(worldIn,pos);
+            worldIn.setBlockState(pos, worldIn.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
         } else if (player.getHeldItemMainhand().getItem() == Items.BLAZE_POWDER && state.get((LIT))) {
             boolean flag = true;
             for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,2,1))) {
@@ -94,138 +96,6 @@ public class BeehiveOvenPitBlock extends Block {
         }
 
         return ActionResultType.SUCCESS;
-    }
-
-
-    int height;
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        super.tick(state, worldIn, pos, rand);
-        World world = worldIn.getWorld();
-        if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        getBeehiveOven(world,pos);
-        if (state.get((LIT))) {
-            height = 2;
-            float chance = structureCheck(worldIn, pos);
-            if (rand.nextFloat() <= chance) {
-                boolean flag = true;
-                for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,height,1))) {
-
-                    BeehiveOvenRecipe recipe = worldIn.getRecipeManager().getRecipe(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(world.getBlockState(p).getBlock())), worldIn).orElse(null);
-                    if (recipe != null) {
-                        ItemStack output = recipe.getRecipeOutput();
-                        if (!output.isEmpty()) {
-                            if (output.getItem() instanceof BlockItem) {
-                                world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
-                                flag = false;
-                                if (chance > 1.0) {
-                                    chance -= 1.0;
-                                    if (rand.nextFloat() < chance) {
-                                        break;
-                                    }
-                                } else {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                }
-                if (flag) {
-                    world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 3);
-                }
-            }
-        }
-    }
-
-    private float structureCheck(World world, BlockPos pos) {
-        List<BlockPos> oven = Arrays.asList(
-            pos.add(-1,0,-1),
-            pos.add(-1,0,0),
-            pos.add(-1,0,1),
-            pos.add(1,0,-1),
-            pos.add(1,0,0),
-            pos.add(1,0,1),
-            pos.add(0,0,-1),
-            pos.add(0,0,1),
-
-            pos.add(-2,0,-1),
-            pos.add(-2,0,0),
-            pos.add(-2,0,1),
-            pos.add(2,0,-1),
-            pos.add(2,0,0),
-            pos.add(2,0,1),
-            pos.add(-1,0,-2),
-            pos.add(0,0,-2),
-            pos.add(1,0,-2),
-            pos.add(-1,0,2),
-            pos.add(0,0,2),
-            pos.add(1,0,2),
-
-            pos.add(-2,1,-1),
-            pos.add(-2,1,1),
-            pos.add(2,1,-1),
-            pos.add(2,1,1),
-            pos.add(-1,1,-2),
-            pos.add(1,1,-2),
-            pos.add(-1,1,2),
-            pos.add(1,1,2),
-
-            pos.add(-2,2,-1),
-            pos.add(-2,2,1),
-            pos.add(2,2,-1),
-            pos.add(2,2,1),
-            pos.add(-1,2,-2),
-            pos.add(1,2,-2),
-            pos.add(-1,2,2),
-            pos.add(1,2,2),
-
-            pos.add(-1,3,-1),
-            pos.add(-2,3,0),
-            pos.add(-1,3,1),
-            pos.add(1,3,-1),
-            pos.add(2,3,0),
-            pos.add(1,3,1),
-            pos.add(0,3,-2),
-            pos.add(0,3,2),
-            pos.add(0,3,-1),
-            pos.add(0,3,1),
-            pos.add(-1,3,0),
-            pos.add(1,3,0)
-        );
-
-        int count = 1;
-        for (BlockPos b : oven) {
-            if (world.getBlockState(b) == RankineBlocks.REFRACTORY_BRICKS.get().getDefaultState()) {
-                count += 1;
-            } else if (this.blockType != RankineBlocks.REFRACTORY_BRICKS.get() && world.getBlockState(b) == RankineBlocks.HIGH_REFRACTORY_BRICKS.get().getDefaultState()) {
-                count += 2;
-            } else if (this.blockType == RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get() && world.getBlockState(b) == RankineBlocks.ULTRA_HIGH_REFRACTORY_BRICKS.get().getDefaultState()) {
-                count += 4;
-            }
-        }
-        return (float) count/97;
-    }
-
-    private void getBeehiveOven(World world, BlockPos pos) {
-        boolean canSeeSky = true;
-        if (Config.MACHINES.BEEHIVE_OVEN_SKYLIGHT.get()) {
-            for (int i = 1; i <= 8; i++) {
-                if (!world.isAirBlock(pos.up(i))) {
-                    canSeeSky = false;
-                }
-            }
-        }
-        if (canSeeSky && world.getBlockState(pos.north()).getBlock() == blockType && world.getBlockState(pos.south()).getBlock() == blockType
-                && world.getBlockState(pos.east()).getBlock() == blockType && world.getBlockState(pos.west()).getBlock() == blockType
-                && world.getBlockState(pos.north().west()).getBlock() == blockType && world.getBlockState(pos.north().east()).getBlock() == blockType
-                && world.getBlockState(pos.south().west()).getBlock() == blockType && world.getBlockState(pos.south().east()).getBlock() == blockType)
-        {
-            world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
-        } else {
-            world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 2);
-        }
     }
 
     public static void spawnSmokeParticles(World worldIn, BlockPos pos, boolean spawnExtraSmoke) {
@@ -254,5 +124,17 @@ public class BeehiveOvenPitBlock extends Block {
 
         }
     }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new BeehiveOvenTile();
+    }
+
 
 }

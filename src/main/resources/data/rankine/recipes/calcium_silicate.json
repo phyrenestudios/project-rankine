@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:calcium_silicate_block" } ], "result": { "item": "rankine:calcium_silicate", "count": 4 } }

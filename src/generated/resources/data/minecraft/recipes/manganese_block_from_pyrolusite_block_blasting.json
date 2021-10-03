@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:pyrolusite_block"
-  },
-  "result": "rankine:manganese_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}
