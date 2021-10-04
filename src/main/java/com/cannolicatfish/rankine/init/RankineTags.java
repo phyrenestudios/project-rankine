@@ -364,7 +364,19 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> GOLD_PANS = modItem("gold_pans");
         public static final ITag.INamedTag<Item> SLUICING_TOOLS = modItem("sluicing_tools");
 
-
+        public static final ITag.INamedTag<Item> MTT_TOOLS = modItem("mtt_tools");
+        public static final ITag.INamedTag<Item> MTT_DURABILITY_TOOLS = modItem("mtt_durability_tools");
+        public static final ITag.INamedTag<Item> MTT_MINING_SPEED_TOOLS = modItem("mtt_mining_speed_tools");
+        public static final ITag.INamedTag<Item> MTT_HARVEST_LEVEL_TOOLS = modItem("mtt_harvest_level_tools");
+        public static final ITag.INamedTag<Item> MTT_ENCHANTABILITY_TOOLS = modItem("mtt_enchantability_tools");
+        public static final ITag.INamedTag<Item> MTT_ATTACK_DAMAGE_TOOLS = modItem("mtt_attack_damage_tools");
+        public static final ITag.INamedTag<Item> MTT_ATTACK_SPEED_TOOLS = modItem("mtt_attack_speed_tools");
+        public static final ITag.INamedTag<Item> MTT_CORROSION_RESISTANCE_TOOLS = modItem("mtt_corrosion_resistance_tools");
+        public static final ITag.INamedTag<Item> MTT_HEAT_RESISTANCE_TOOLS = modItem("mtt_heat_resistance_tools");
+        public static final ITag.INamedTag<Item> MTT_KNOCKBACK_RESISTANCE_TOOLS = modItem("mtt_knockback_resistance_tools");
+        public static final ITag.INamedTag<Item> MTT_TOUGHNESS_TOOLS = modItem("mtt_toughness_tools");
+        public static final ITag.INamedTag<Item> MTT_ENCHANTMENT_TOOLS = modItem("mtt_enchantment_tools");
+        public static final ITag.INamedTag<Item> MTT_EXAM_TOOLS = modItem("mtt_exam_tools");
 
 
         //FORGE
@@ -935,8 +947,6 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> CLAY_BALLS = forgeItem("clay_balls");
         public static final ITag.INamedTag<Item> RODS_GRAPHITE = forgeItem("rods/graphite");
         public static final ITag.INamedTag<Item> RODS_CARBON = forgeItem("rods/carbon");
-
-
 
         public static final ITag.INamedTag<Item> CLAY = forgeItem("clay");
         public static final ITag.INamedTag<Item> DIRT = forgeItem("dirt");

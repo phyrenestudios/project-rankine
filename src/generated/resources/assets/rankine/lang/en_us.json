@@ -915,6 +915,12 @@
   "block.rankine.material_testing_bench.enchantability": "Enchantability",
   "block.rankine.material_testing_bench.enchantability.error": "Enchantability test inconclusive.",
   "block.rankine.material_testing_bench.enchantability.test": "Enchantability tests show the following,",
+  "block.rankine.material_testing_bench.enchantments": "Enchantments",
+  "block.rankine.material_testing_bench.enchantments.error": "Enchanting test inconclusive.",
+  "block.rankine.material_testing_bench.enchantments.test": "Enchanting tests show the following,",
+  "block.rankine.material_testing_bench.exam": "Examination",
+  "block.rankine.material_testing_bench.exam.error": "Examination test inconclusive.",
+  "block.rankine.material_testing_bench.exam.test": "Examination tests show the following,",
   "block.rankine.material_testing_bench.harvest_level": "Harvest Level",
   "block.rankine.material_testing_bench.harvest_level.error": "Harvest level test inconclusive.",
   "block.rankine.material_testing_bench.harvest_level.test": "Harvest level tests show the following,",
@@ -2931,11 +2937,11 @@
   "rankine.advancements.story.root.title": "Project Rankine",
   "rankine.advancements.story.support.description": "Be sure to download these mods if you want more information!",
   "rankine.advancements.story.support.title": "We support Patchouli and JEI!",
-  "rankine.jei.alloy": "Alloying",
+  "rankine.jei.alloying": "Alloying",
   "rankine.jei.beeoven": "Beehive Oven",
   "rankine.jei.crucible": "Crucible",
   "rankine.jei.crushing": "Crushing",
   "rankine.jei.evaporation": "Evaporation",
-  "rankine.jei.sluicing": "Gold Panning",
-  "rankine.jei.triple_alloy": "Advanced Alloying"
+  "rankine.jei.induction_alloying": "Advanced Alloying",
+  "rankine.jei.sluicing": "Gold Panning"
 }

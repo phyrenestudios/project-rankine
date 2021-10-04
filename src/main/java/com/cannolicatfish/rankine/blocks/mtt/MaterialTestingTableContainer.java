@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.mtt;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -47,25 +48,7 @@ public class MaterialTestingTableContainer extends Container {
         this.world = player.world;
         this.addSlot(new Slot(inputInventory,0,8,10));
 
-        this.addSlot(new Slot(inputInventory,1,202,74));
-        this.addSlot(new Slot(inputInventory,2,202,92));
-        this.addSlot(new Slot(outputInventory,0,202,144) {
-            public boolean isItemValid(ItemStack stack) {
-                return false;
-            }
-
-            public ItemStack onTake(PlayerEntity player, ItemStack stack) {
-                MaterialTestingTableContainer.this.inputInventory.decrStackSize(1,1);
-                MaterialTestingTableContainer.this.inputInventory.decrStackSize(2,1);
-                MaterialTestingTableContainer.this.updateRecipeResultSlot();
-
-                stack.getItem().onCreated(stack, player.world, player);
-                worldPosCallable.consume((p_216954_1_, p_216954_2_) -> {
-
-                });
-                return super.onTake(player, stack);
-            }
-        });
+        this.addSlot(new Slot(inputInventory,1,202,144));
         this.playerInventory = new InvWrapper(playerInventory);
         layoutPlayerInventorySlots(36, 174);
     }
@@ -81,17 +64,12 @@ public class MaterialTestingTableContainer extends Container {
         {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index == 9) {
-                if (!this.mergeItemStack(stack, 9, 45, true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onSlotChange(stack, itemstack);
-            } else if (!(index < 8)) {
+            if (!(index < 2)) {
                 if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemstack.getItem() == Items.PAPER) {
+                } else if (itemstack.getItem().isIn(RankineTags.Items.MTT_TOOLS)) {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -99,14 +77,14 @@ public class MaterialTestingTableContainer extends Container {
                     if (!this.mergeItemStack(stack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 31) {
-                    if (!this.mergeItemStack(stack, 31, 40, false)) {
+                } else if (index < 29) {
+                    if (!this.mergeItemStack(stack, 29, 38, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 40 && !this.mergeItemStack(stack, 5, 31, false)) {
+                } else if (index < 38 && !this.mergeItemStack(stack, 2, 29, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 4, 40, false)) {
+            } else if (!this.mergeItemStack(stack, 2, 38, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -164,44 +142,38 @@ public class MaterialTestingTableContainer extends Container {
     }
 
     public int getToolItem(World worldIn) {
-        ItemStack stack = this.inputInventory.getStackInSlot(2);
-        if (stack.getItem() instanceof DyeItem)
-        {
-            return Math.min(9,((DyeItem) stack.getItem()).getDyeColor().ordinal());
-        }
-        return 0;
-    }
-
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
-
-        if (this.inputInventory.getStackInSlot(1).getItem() == Items.PAPER &&
-                (this.inputInventory.getStackInSlot(2).getItem() instanceof DyeItem))
-        {
-            ElementRecipe recipeIn = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, this.inputInventory, this.world).orElse(null);
-            //calcPercentages();
-            if (recipeIn != null) {
-                /*ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
-                if (!recipeOutput.isEmpty()) {
-                    ItemStack st = new ItemStack(RankineItems.ALLOY_TEMPLATE.get());
-                    AlloyTemplateItem.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getStackInSlot(7).getItem());
-
-                    this.outputInventory.setInventorySlotContents(0, st);
-                    return;
-
-                }*/
+        ItemStack stack = this.inputInventory.getStackInSlot(1);
+        if (stack.getItem().isIn(RankineTags.Items.MTT_TOOLS)) {
+            if (stack.getItem().isIn(RankineTags.Items.MTT_DURABILITY_TOOLS)) {
+                return 0;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_MINING_SPEED_TOOLS)) {
+                return 1;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS)) {
+                return 2;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS)) {
+                return 3;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ATTACK_DAMAGE_TOOLS)) {
+                return 4;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ATTACK_SPEED_TOOLS)) {
+                return 5;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_CORROSION_RESISTANCE_TOOLS)) {
+                return 6;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_HEAT_RESISTANCE_TOOLS)) {
+                return 7;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_KNOCKBACK_RESISTANCE_TOOLS)) {
+                return 8;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_TOUGHNESS_TOOLS)) {
+                return 9;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_ENCHANTMENT_TOOLS)) {
+                return 10;
+            } else if (stack.getItem().isIn(RankineTags.Items.MTT_EXAM_TOOLS)) {
+                return 11;
             }
-
         }
-        if (!this.outputInventory.getStackInSlot(0).isEmpty()) {
-            this.outputInventory.setInventorySlotContents(0,ItemStack.EMPTY);
-        }
+        return -1;
     }
 
 
-    private void updateRecipeResultSlot() {
-        this.onCraftMatrixChanged(inputInventory);
-        this.detectAndSendChanges();
-    }
 
 
     @Override

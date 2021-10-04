@@ -65,15 +65,40 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
         if (element != null)
         {
             int stat = this.container.getToolItem(Minecraft.getInstance().world);
-            String statStr = StatType.values()[stat].toString();
-            drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
-            int ymod = 0;
+            if (stat >= 0 && stat < 9) {
+                String statStr = StatType.values()[stat].toString();
+                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
+                int ymod = 0;
 
-            List<StringTextComponent> strings = checkStatRange(element,StatType.values()[stat]);
-            for (StringTextComponent s : strings) {
-                int textX = s.getText().contains("->") ? 24 : 12;
-                drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
-                ymod += 12;
+                List<StringTextComponent> strings = checkStatRange(element,StatType.values()[stat]);
+                for (StringTextComponent s : strings) {
+                    int textX = s.getText().contains("->") ? 24 : 12;
+                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    ymod += 12;
+                }
+
+                drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
+            } else if (stat == 10) {
+                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench.enchantments.test"),12,32,0xffffff);
+                int ymod = 0;
+                List<StringTextComponent> strings = listEnchantments(element);
+                for (StringTextComponent s : strings) {
+                    int textX = s.getText().contains("->") ? 24 : 12;
+                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    ymod += 12;
+                }
+            } else if (stat == 11) {
+                drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench.exam.test"),12,32,0xffffff);
+                int ymod = 0;
+                List<StringTextComponent> strings = listFacts(element);
+                for (StringTextComponent s : strings) {
+                    int textX = s.getText().contains("->") ? 24 : 12;
+                    drawString(matrixStack,Minecraft.getInstance().fontRenderer,s,textX,44 + ymod,0xffffff);
+                    ymod += 12;
+                }
+            } else {
+                drawString(matrixStack,Minecraft.getInstance().fontRenderer,"Insert a tool to test for properties.",12,44,0xffffff);
             }
 
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
@@ -110,6 +135,32 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
         }
 
         // Durability: {eqType}, {i0}% - {i1}%,
+        return outDur;
+    }
+
+    private List<StringTextComponent> listEnchantments(ElementRecipe recipe) {
+        List<String> enchantments = recipe.getEnchantments();
+        List<String> enchantmentTypes = recipe.getEnchantmentTypes();
+        List<Float> enchantmentFactors = recipe.getEnchantmentFactors();
+
+        List<StringTextComponent> outDur = new ArrayList<>();
+        if (enchantments.size() >= 1) {
+            for (int d = 0; d < enchantments.size(); d++) {
+                outDur.add(new StringTextComponent(enchantmentTypes.get(d) + ": " + enchantments.get(d) + " (Reqs: "+Math.round(100*enchantmentFactors.get(d))+"%)"));
+            }
+        } else {
+            outDur.add(new StringTextComponent(new TranslationTextComponent("block.rankine.material_testing_bench.enchantments.error").getString()));
+        }
+        return outDur;
+    }
+
+    private List<StringTextComponent> listFacts(ElementRecipe recipe) {
+        ResourceLocation s = element.getId();
+
+        List<StringTextComponent> outDur = new ArrayList<>();
+        outDur.add(new StringTextComponent(new TranslationTextComponent("element."+ s +".desc0").getString()));
+        outDur.add(new StringTextComponent(new TranslationTextComponent("element."+ s +".desc1").getString()));
+        outDur.add(new StringTextComponent(new TranslationTextComponent("element."+ s+".desc2").getString()));
         return outDur;
     }
 
