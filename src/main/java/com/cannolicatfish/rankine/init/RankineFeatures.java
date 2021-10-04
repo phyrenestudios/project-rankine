@@ -23,6 +23,7 @@ import java.util.OptionalInt;
 public class RankineFeatures {
 
     public static void registerConfiguredFeatures() {
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:animal_spawner", ANIMAL_SPAWNER);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:meteorite",METEORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:end_meteorite",END_METEORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:antimatter_blob",ANTIMATTER_BLOB);
@@ -273,8 +274,6 @@ public class RankineFeatures {
     // BASE FEATURE/S
     public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.CODEC);
     public static final Feature<MeteoriteFeatureConfig> METEORITE_FEATURE = new MeteoriteFeature(MeteoriteFeatureConfig.CODEC);
-    //public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
-
     public static final Feature<NoFeatureConfig> FIRE_CLAY_DISK = new FireClayDiskFeature(NoFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> FLAT_BEDROCK_FEATURE = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC);
@@ -294,8 +293,8 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> END_METEORITE = new EndMeteoriteFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = new AntimatterFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
 
-    public static final ConfiguredFeature<?, ?> PASSIVE_MOBS = new EndMeteoriteFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
-
+    public static final ConfiguredFeature<?, ?> ANIMAL_SPAWNER = new AnimalSpawnerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
 
 
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = FIRE_CLAY_DISK.withConfiguration(new NoFeatureConfig())
@@ -339,7 +338,7 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> JUNIPER_TREE = Feature.TREE.withConfiguration(JUNIPER_TREE_CONFIG)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
     public static final ConfiguredFeature<?, ?> ERYTHRINA_TREE = Feature.TREE.withConfiguration(ERYTHRINA_TREE_CONFIG)
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(1)));
     public static final ConfiguredFeature<?, ?> MAPLE_TREE = Feature.TREE.withConfiguration(MAPLE_TREE_CONFIG)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(11)));
     public static final ConfiguredFeature<?, ?> BLACK_WALNUT_TREE = Feature.TREE.withConfiguration(BLACK_WALNUT_TREE_CONFIG)

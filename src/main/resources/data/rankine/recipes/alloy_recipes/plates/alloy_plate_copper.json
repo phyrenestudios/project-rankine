@@ -15,7 +15,7 @@
   },
   "result": {
     "item": "rankine:alloy_plate",
-    "alloyData": "100Cu",
-    "count": 1
+    "alloyComp": "100Cu",
+    "count": 4
   }
 }

@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "name": "Invar Plate",
+  "genName": true,
   "pattern": [
     " I ",
     "I I",

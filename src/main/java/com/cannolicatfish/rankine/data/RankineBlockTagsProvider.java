@@ -194,6 +194,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : Stream.of(RankineLists.GRASSY_SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(RankineTags.Blocks.GRASS).add(blk);
         }
+        getOrCreateBuilder(RankineTags.Blocks.GRASS).add(Blocks.GRASS);
         for (Block blk : Stream.of(RankineLists.PATH_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(RankineTags.Blocks.PATHS).add(blk);
         }

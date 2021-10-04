@@ -8,7 +8,7 @@
   "key": {
     "G": {
       "item": "rankine:alloy_gear",
-      "alloyRecipe": "rankine:alloying/cupronickel_alloy_alloying",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
       "name": "Cupronickel Alloy Gear",
       "color": 12622179
     },

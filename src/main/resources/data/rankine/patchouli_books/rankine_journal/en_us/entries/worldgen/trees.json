@@ -1,0 +1,11 @@
+{
+  "name": "Trees",
+  "icon": "rankine:cedar_sapling",
+  "category": "worldgen",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The definition of tree is not quite an exact one. However, the trees in Project Rankine resemble the standard type of a large woody stem with photoreceptive material on the ends."
+    }
+  ]
+}

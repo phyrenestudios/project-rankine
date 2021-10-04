@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_ingredient": {
+    "has_element": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:coke"
+            "item": "rankine:carbon"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_ingredient",
+      "has_element",
       "has_the_recipe"
     ]
   ]

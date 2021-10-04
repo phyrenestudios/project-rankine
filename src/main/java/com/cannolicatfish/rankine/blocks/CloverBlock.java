@@ -18,8 +18,4 @@ public class CloverBlock extends BushBlock {
         return Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     }
 
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
-
 }

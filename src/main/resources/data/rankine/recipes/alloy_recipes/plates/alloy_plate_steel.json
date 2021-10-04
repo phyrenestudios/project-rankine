@@ -1,8 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": true,
-  "name": "Steel Alloy Plate",
-  "color": 3291714,
+  "genName": true,
   "pattern": [
     " I ",
     "I I",

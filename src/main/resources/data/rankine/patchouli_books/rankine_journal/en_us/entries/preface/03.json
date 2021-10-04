@@ -1,0 +1,16 @@
+{
+  "name": "Worldgen Changes",
+  "icon": "rankine:limestone",
+  "category": "preface",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "text",
+      "text": "For those who have been reading this journal since spawning, get your nose out of the book for once and look around. The world looks a little bit different doesn't it?"
+    },
+    {
+      "type": "text",
+      "text": "Upon gazing into the expanse before you, many new features will stand out. Literally, new species of trees are everywhere! But don't look up for too long otherwise you might step on some thorny berry bushes."
+    }
+  ]
+}

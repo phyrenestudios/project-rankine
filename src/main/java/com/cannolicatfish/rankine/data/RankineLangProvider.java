@@ -246,7 +246,14 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MINERAL_ITEMS,
                 RankineLists.JAMS,
                 RankineLists.GRAINS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            add(item, parseLangName(item.getRegistryName().getPath()));
+
+            if (item == RankineItems.SODIUM_CHLORIDE.get()) {
+                add(item, "Salt (NaCl)");
+            } else if (item == RankineItems.CALCIUM_CHLORIDE.get()) {
+                add(item, "Salt (CaCl2)");
+            } else {
+                add(item, parseLangName(item.getRegistryName().getPath()));
+            }
         }
 
         for (Item item : Arrays.asList(
@@ -410,6 +417,26 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.POWER_CELL_6.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
+
+        //Alloy Plates
+        add("item.rankine.alloy_plate.bronze", "Bronze Plate");
+        add("item.rankine.alloy_plate.brass", "Brass Plate");
+        add("item.rankine.alloy_plate.invar", "Invar Plate");
+        add("item.rankine.alloy_plate.steel", "Steel Plate");
+        add("item.rankine.alloy_plate.stainless_steel", "Stainless Steel Plate");
+        add("item.rankine.alloy_plate.cupronickel", "Cupronickel Plate");
+        add("item.rankine.alloy_plate.aluminum", "Aluminum Plate");
+        add("item.rankine.alloy_plate.copper", "Copper Plate");
+        add("item.rankine.alloy_plate.bismuth", "Bismuth Plate");
+        add("item.rankine.alloy_plate.lead", "Lead Plate");
+        add("item.rankine.alloy_plate.silver", "Silver Plate");
+        add("item.rankine.alloy_plate.gold", "Gold Plate");
+        add("item.rankine.alloy_plate.platinum", "Platinum Plate");
+        add("item.rankine.alloy_plate.nickel", "Nickel Plate");
+        add("item.rankine.alloy_plate.titanium", "Titanium Plate");
+        add("item.rankine.alloy_plate.tin", "Tin Plate");
+        add("item.rankine.alloy_plate.tungsten", "Tungsten Plate");
+
 
         add("death.attack.suffocating", "%1$s suffocated in a gas cloud");
         add("death.attack.suffocating.player", "%1$s suffocated in a gas cloud whilst trying to escape %2$s");

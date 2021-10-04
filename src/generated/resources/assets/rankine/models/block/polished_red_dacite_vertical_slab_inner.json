@@ -24,7 +24,8 @@
             0.0,
             16.0,
             16.0
-          ]
+          ],
+          "cullface": "down"
         },
         "up": {
           "texture": "#all",
@@ -33,11 +34,11 @@
             0.0,
             16.0,
             16.0
-          ]
+          ],
+          "cullface": "up"
         },
         "north": {
-          "texture": "#all",
-          "cullface": "north"
+          "texture": "#all"
         },
         "south": {
           "texture": "#all",
@@ -55,8 +56,7 @@
             0.0,
             8.0,
             16.0
-          ],
-          "cullface": "west"
+          ]
         },
         "east": {
           "texture": "#all"

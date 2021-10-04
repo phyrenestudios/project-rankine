@@ -7,8 +7,9 @@
   "key": {
     "P": {
       "item": "rankine:alloy_plate",
-      "alloyRecipe": "rankine:alloy_recipes/tin_plate",
-      "name": "Tin Plate"
+      "alloyComp": "100Sn",
+      "name": "Tin Plate",
+      "color": 13621734
     }
   },
   "result": {

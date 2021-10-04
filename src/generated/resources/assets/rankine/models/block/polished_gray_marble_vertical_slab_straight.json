@@ -26,19 +26,16 @@
           "cullface": "up"
         },
         "north": {
-          "texture": "#all",
-          "cullface": "north"
+          "texture": "#all"
         },
         "south": {
           "texture": "#all"
         },
         "west": {
-          "texture": "#all",
-          "cullface": "west"
+          "texture": "#all"
         },
         "east": {
-          "texture": "#all",
-          "cullface": "east"
+          "texture": "#all"
         }
       }
     }

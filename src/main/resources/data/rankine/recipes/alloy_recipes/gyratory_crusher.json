@@ -20,7 +20,7 @@
     },
     "G": {
       "item": "rankine:alloy_gear",
-      "alloyRecipe": "rankine:alloying/steel_alloy_alloying",
+      "alloyRecipe": "rankine:alloying/steel_alloying",
       "name": "Steel Alloy Gear",
       "color": 12622179
     },

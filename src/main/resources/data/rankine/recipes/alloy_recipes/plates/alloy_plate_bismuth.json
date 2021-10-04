@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
-  "inherit": true,
-  "name": "Bismuth Plate",
+  "inherit": false,
+  "genName": true,
   "pattern": [
     " I ",
     "I I",
@@ -9,12 +9,12 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:ingots/bismuth"
+      "tag": "forge:ingots/aluminum"
     }
   },
   "result": {
     "item": "rankine:alloy_plate",
-    "alloyData": "100Bi",
+    "alloyComp": "100Bi",
     "count": 4
   }
 }

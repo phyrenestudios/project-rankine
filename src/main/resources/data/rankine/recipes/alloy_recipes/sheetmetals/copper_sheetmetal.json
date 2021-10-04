@@ -7,8 +7,9 @@
   "key": {
     "P": {
       "item": "rankine:alloy_plate",
-      "alloyRecipe": "rankine:alloy_recipes/copper_plate",
-      "name": "Copper Plate"
+      "alloyComp": "100Cu",
+      "name": "Copper Plate",
+      "color": 15448463
     }
   },
   "result": {

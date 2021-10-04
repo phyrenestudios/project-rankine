@@ -1,7 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": false,
-  "name": "Aluminum Plate",
+  "genName": true,
   "pattern": [
     " I ",
     "I I",
@@ -14,7 +14,7 @@
   },
   "result": {
     "item": "rankine:alloy_plate",
-    "alloyData": "100Al",
+    "alloyComp": "100Al",
     "count": 4
   }
 }

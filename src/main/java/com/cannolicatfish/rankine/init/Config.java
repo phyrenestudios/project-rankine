@@ -170,7 +170,7 @@ public class Config {
                     FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
-                            .defineInRange("grassGrowChance", 0.07D, 0.00D, 1.00D);
+                            .defineInRange("grassGrowChance", 0.03D, 0.00D, 1.00D);
                     SAPLING_GROW_CHANCE = b.comment("Chance for a grass block to grow a sapling on a random tick")
                             .defineInRange("saplingGrowChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")

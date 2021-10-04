@@ -1,11 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "rankine",
   "ingredients": [
     {
-      "tag": "forge:coke"
+      "item": "rankine:carbon"
     }
   ],
   "result": {
-    "item": "rankine:carbon_nugget"
+    "item": "rankine:carbon_nugget",
+    "count": 9
   }
 }

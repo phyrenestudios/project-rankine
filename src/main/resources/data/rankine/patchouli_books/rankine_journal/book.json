@@ -1,10 +1,12 @@
 {
   "name": "Rankine Journal",
-  "landing_text": "Welcome to the world of Project Rankine. We understand the new environment may be a bit confusing. Please enjoy the literature present in this Journal for further explanation of topics.",
+  "landing_text": "A collection of the discoveries to be made, mechanics to utilize, and blocks to build with. This Journal is based of the default construction and config options of the game; deviations are not fully documented.",
   "version": 10,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",
   "filler_texture": "rankine:textures/gui/filler.png",
   "creative_tab": "rankine_misc",
+  "i18n": true,
+  "advancements_tab": "rankine:story/rankine",
   "advancement_namespaces": [ "rankine" ]
 }
