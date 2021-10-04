@@ -120,7 +120,7 @@ public class VanillaIntegration {
         pathBlocks_map.put(RankineBlocks.SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM_PATH.get());
         pathBlocks_map.put(RankineBlocks.CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM_PATH.get());
         pathBlocks_map.put(RankineBlocks.LOAM.get(), RankineBlocks.LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND.get());
+        pathBlocks_map.put(RankineBlocks.LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND_PATH.get());
         pathBlocks_map.put(RankineBlocks.GRASSY_HUMUS.get(), RankineBlocks.HUMUS_PATH.get());
         pathBlocks_map.put(RankineBlocks.GRASSY_SILTY_CLAY.get(), RankineBlocks.SILTY_CLAY_PATH.get());
         pathBlocks_map.put(RankineBlocks.GRASSY_SANDY_CLAY.get(), RankineBlocks.SANDY_CLAY_PATH.get());
@@ -130,7 +130,7 @@ public class VanillaIntegration {
         pathBlocks_map.put(RankineBlocks.GRASSY_SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM_PATH.get());
         pathBlocks_map.put(RankineBlocks.GRASSY_CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM_PATH.get());
         pathBlocks_map.put(RankineBlocks.GRASSY_LOAM.get(), RankineBlocks.LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND.get());
+        pathBlocks_map.put(RankineBlocks.GRASSY_LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND_PATH.get());
 
         grass_dirt_map.put(RankineBlocks.GRASSY_LOAM.get(), RankineBlocks.LOAM.get());
         grass_dirt_map.put(RankineBlocks.GRASSY_HUMUS.get(), RankineBlocks.HUMUS.get());

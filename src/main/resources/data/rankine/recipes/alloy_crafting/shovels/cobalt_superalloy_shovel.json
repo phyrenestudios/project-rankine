@@ -1,0 +1,24 @@
+{
+      "type": "rankine:alloy_crafting",
+      "inherit": "true",
+      "pattern": [
+      " # ",
+      " t ",
+      " t "
+      ],
+      "key": {
+        "#": {
+            "item": "rankine:cobalt_superalloy_ingot"
+            },
+        "t": {
+          "item": "rankine:alloy_rod",
+          "alloyRecipe": "rankine:alloying/steel_alloying",
+          "name": "Steel Rod",
+          "color": 3291714
+        }
+      },
+      "result": {
+          "item": "rankine:cobalt_superalloy_shovel",       
+          "count": 1
+      }
+    }

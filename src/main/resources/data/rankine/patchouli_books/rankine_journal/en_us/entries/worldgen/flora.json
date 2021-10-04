@@ -1,0 +1,36 @@
+{
+  "name": "Flora",
+  "icon": "rankine:crimson_clover",
+  "category": "worldgen",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Flora is a general term We use to describe all non-tree and non-crop plant matter, meaning primarily flowers. Uses for such specimens are constantly being developed."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:crimson_clover",
+      "text": "Grows from grass blocks in certain biomes. Requires a tool to be harvested."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:red_clover",
+      "text": "Grows from grass blocks in certain biomes. Requires a tool to be harvested."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_clover",
+      "text": "Grows from grass blocks in certain biomes. Requires a tool to be harvested."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:yellow_clover",
+      "text": "Grows from grass blocks in certain biomes. Requires a tool to be harvested."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stinging_nettle",
+      "text": "Grows from grass blocks in certain biomes. Requires a tool to be harvested."
+    }
+  ]
+}

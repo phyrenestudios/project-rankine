@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "tag": "forge:clay_balls"
+    "item": "rankine:fire_clay_ball"
   },
   "result": "rankine:refractory_brick",
   "experience": 0.2,

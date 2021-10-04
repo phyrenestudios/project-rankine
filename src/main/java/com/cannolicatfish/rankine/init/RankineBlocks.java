@@ -953,6 +953,8 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_VERTICAL_SLAB = REGISTRY.register("ultra_high_refractory_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(1)));
 
 
+    //public static final RegistryObject<Block> FIBER_BED = REGISTRY.register("fiber_bed", () -> new FiberBedBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
+
     public static final RegistryObject<Block> FIBER_BLOCK = REGISTRY.register("fiber_block", () -> new FiberBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> FIBER_BLOCK_SLAB = REGISTRY.register("fiber_block_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> FIBER_BLOCK_STAIRS = REGISTRY.register("fiber_block_stairs", () -> new RankineStairsBlock(Block.getStateById(0),AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
@@ -1812,7 +1814,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRAWBERRY_BUSH = REGISTRY.register("strawberry_bush", () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),6));
     public static final RegistryObject<Block> PINEAPPLE_BUSH = REGISTRY.register("pineapple_bush",   () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),7));
     public static final RegistryObject<Block> BANANA_YUCCA_BUSH = REGISTRY.register("banana_yucca_bush",  () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),8));
-    public static final RegistryObject<Block> CAMPHOR_BASIL_PLANT = REGISTRY.register("camphor_basil_plant",  () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),9));
     public static final RegistryObject<Block> ALOE_PLANT = REGISTRY.register("aloe_plant",  () -> new RankinePlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.SWEET_BERRY_BUSH),10));
     public static final RegistryObject<Block> ASPARAGUS_PLANT = REGISTRY.register("asparagus_plant",  () -> new AsparagusPlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.STEM)));
     public static final RegistryObject<Block> CORN_PLANT = REGISTRY.register("corn_plant",  () -> new CornPlantBlock(Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().sound(SoundType.STEM)));
@@ -1821,6 +1822,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RICE_PLANT = REGISTRY.register("rice_plant",  () -> new RicePlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> COTTON_PLANT = REGISTRY.register("cotton_plant",  () -> new CottonPlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> JUTE_PLANT = REGISTRY.register("jute_plant",  () -> new JutePlantBlock(AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> CAMPHOR_BASIL_PLANT = REGISTRY.register("camphor_basil_plant",  () -> new CamphorBasilPlantBlock(Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.CROP)));
 
 
 

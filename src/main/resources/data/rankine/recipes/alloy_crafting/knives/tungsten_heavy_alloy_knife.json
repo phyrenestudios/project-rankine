@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " #",
+    "t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "t": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "name": "Steel Rod",
+      "color": 3291714
+    }
+  },
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_knife",
+    "count": 1        }
+}

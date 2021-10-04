@@ -45,6 +45,7 @@ public final class RankineTags {
 
         //FORGE
         public static final ITag.INamedTag<Block> CLAY = forge("clay");
+        public static final ITag.INamedTag<Block> FARMLANDS = forge("farmlands");
         public static final ITag.INamedTag<Block> GRASS = forge("grass");
         public static final ITag.INamedTag<Block> PATHS = forge("paths");
         public static final ITag.INamedTag<Block> HARDENED_GLASS = forge("hardened_glass");
@@ -80,7 +81,6 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> POLISHED_STONE_VERTICAL_SLAB = forge("polished_stone_vertical_slabs");
         public static final ITag.INamedTag<Block> STONE_BRICKS_VERTICAL_SLAB = forge("stone_bricks_vertical_slabs");
 
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS = forge("storage_blocks");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HYDROGEN = forge("storage_blocks/hydrogen");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HELIUM = forge("storage_blocks/helium");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_LITHIUM = forge("storage_blocks/lithium");
@@ -356,7 +356,6 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> CRAFTING_METAL_INGOTS = modItem("crafting_metal_ingots");
         public static final ITag.INamedTag<Item> CRAFTING_METAL_BLOCKS = modItem("crafting_metal_blocks");
 
-        public static final ITag.INamedTag<Item> FORAGING_ITEMS = modItem("foraging_items");
         public static final ITag.INamedTag<Item> COLORED_GOLD_INGOTS = modItem("colored_gold_ingots");
         public static final ITag.INamedTag<Item> COLORED_GOLD_TOOLS = modItem("colored_gold_tools");
         public static final ITag.INamedTag<Item> CRUDE_TOOLS = modItem("crude_tools");
@@ -380,7 +379,6 @@ public final class RankineTags {
 
 
         //FORGE
-        public static final ITag.INamedTag<Item> NUGGETS = forgeItem("nuggets");
         public static final ITag.INamedTag<Item> NUGGETS_HYDROGEN = forgeItem("nuggets/hydrogen");
         public static final ITag.INamedTag<Item> NUGGETS_HELIUM = forgeItem("nuggets/helium");
         public static final ITag.INamedTag<Item> NUGGETS_LITHIUM = forgeItem("nuggets/lithium");
@@ -531,7 +529,8 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> NUGGETS_COBALT_SUPERALLOY = forgeItem("nuggets/cobalt_superalloy");
         public static final ITag.INamedTag<Item> NUGGETS_TUNGSTEN_HEAVY_ALLOY = forgeItem("nuggets/tungsten_heavy_alloy");
         public static final ITag.INamedTag<Item> NUGGETS_TITANIUM_ALLOY = forgeItem("nuggets/titanium_alloy");
-        public static final ITag.INamedTag<Item> INGOTS = forgeItem("ingots");
+
+
         public static final ITag.INamedTag<Item> INGOTS_HYDROGEN = forgeItem("ingots/hydrogen");
         public static final ITag.INamedTag<Item> INGOTS_HELIUM = forgeItem("ingots/helium");
         public static final ITag.INamedTag<Item> INGOTS_LITHIUM = forgeItem("ingots/lithium");
@@ -693,7 +692,6 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> SAPPHIRE = forgeItem("sapphire");
         public static final ITag.INamedTag<Item> TOPAZ = forgeItem("topaz");
 
-        public static final ITag.INamedTag<Item> STORAGE_BLOCKS = forgeItem("storage_blocks");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_HYDROGEN = forgeItem("storage_blocks/hydrogen");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_HELIUM = forgeItem("storage_blocks/helium");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_LITHIUM = forgeItem("storage_blocks/lithium");

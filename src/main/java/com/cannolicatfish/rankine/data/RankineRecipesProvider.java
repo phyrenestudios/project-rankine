@@ -92,6 +92,7 @@ public class RankineRecipesProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.GRASS).addCriterion("has_flint", hasItem(Items.FLINT)).setGroup("plant_fiber").build(consumer, "plant_fiber_from_grass");
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.SEAGRASS).addCriterion("has_flint", hasItem(Items.FLINT)).setGroup("plant_fiber").build(consumer, "plant_fiber_from_seagrass");
         ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(Items.FERN).addCriterion("has_flint", hasItem(Items.FLINT)).setGroup("plant_fiber").build(consumer, "plant_fiber_from_fern");
+        ShapelessRecipeBuilder.shapelessRecipe(RankineItems.PLANT_FIBER.get(),1).addIngredient(RankineItems.SHORT_GRASS.get()).addIngredient(RankineItems.SHORT_GRASS.get()).addCriterion("has_flint", hasItem(Items.FLINT)).setGroup("plant_fiber").build(consumer, "plant_fiber_from_short_grass");
 
         //pumice soap recipes
         ShapelessRecipeBuilder.shapelessRecipe(Items.COBBLESTONE,1).addIngredient(Items.MOSSY_COBBLESTONE).addIngredient(RankineItems.PUMICE_SOAP.get()).addCriterion("has_ingredient", hasItem(RankineItems.PUMICE_SOAP.get())).build(consumer, "cobblestone_from_pumice_soap");
@@ -138,7 +139,7 @@ public class RankineRecipesProvider extends RecipeProvider {
 
 
         //furnace recipes
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(RankineTags.Items.CLAY_BALLS), RankineItems.REFRACTORY_BRICK.get(), 0.2F, 200).addCriterion("has_ingredient", hasItem(RankineTags.Items.CLAY_BALLS)).build(consumer, RankineItems.REFRACTORY_BRICK.get().getRegistryName().getPath()+"_from_smelting");
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(RankineItems.FIRE_CLAY_BALL.get()), RankineItems.REFRACTORY_BRICK.get(), 0.2F, 200).addCriterion("has_ingredient", hasItem(RankineTags.Items.CLAY_BALLS)).build(consumer, RankineItems.REFRACTORY_BRICK.get().getRegistryName().getPath()+"_from_smelting");
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(Items.BAMBOO), RankineItems.DRIED_BAMBOO.get(), 0.1F, 25).addCriterion("has_ingredient", hasItem(Items.BAMBOO)).build(consumer, RankineItems.DRIED_BAMBOO.get().getRegistryName().getPath()+"_from_smelting");
 
 

@@ -11,6 +11,6 @@
     "rankine:grassy_loamy_sand",
     "rankine:grassy_sandy_clay_loam",
     "rankine:grassy_silty_clay_loam",
-    "minecraft:grass"
+    "minecraft:grass_block"
   ]
 }

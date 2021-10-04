@@ -34,6 +34,100 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void registerTags() {
 
+        copy(RankineTags.Blocks.ORES_COPPER, RankineTags.Items.ORES_COPPER);
+        copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
+        copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
+        copy(RankineTags.Blocks.ORES_BISMUTH, RankineTags.Items.ORES_BISMUTH);
+        copy(RankineTags.Blocks.ORES_TUNGSTEN, RankineTags.Items.ORES_TUNGSTEN);
+        copy(RankineTags.Blocks.ORES_ALUMINUM, RankineTags.Items.ORES_ALUMINUM);
+        copy(RankineTags.Blocks.ORES_TIN, RankineTags.Items.ORES_TIN);
+        copy(RankineTags.Blocks.ORES_TITANIUM, RankineTags.Items.ORES_TITANIUM);
+        copy(RankineTags.Blocks.ORES_MAGNESIUM, RankineTags.Items.ORES_MAGNESIUM);
+        copy(RankineTags.Blocks.ORES_MANGANESE, RankineTags.Items.ORES_MANGANESE);
+        copy(RankineTags.Blocks.ORES_ZINC, RankineTags.Items.ORES_ZINC);
+        copy(RankineTags.Blocks.ORES_STRONTIUM, RankineTags.Items.ORES_STRONTIUM);
+        copy(RankineTags.Blocks.ORES_LITHIUM, RankineTags.Items.ORES_LITHIUM);
+        copy(RankineTags.Blocks.ORES_SODIUM, RankineTags.Items.ORES_SODIUM);
+        copy(RankineTags.Blocks.ORES_ARSENIC, RankineTags.Items.ORES_ARSENIC);
+        copy(RankineTags.Blocks.ORES_GALLIUM, RankineTags.Items.ORES_GALLIUM);
+        copy(RankineTags.Blocks.ORES_INDIUM, RankineTags.Items.ORES_INDIUM);
+        copy(RankineTags.Blocks.ORES_SELENIUM, RankineTags.Items.ORES_SELENIUM);
+        copy(RankineTags.Blocks.ORES_TELLURIUM, RankineTags.Items.ORES_TELLURIUM);
+        copy(RankineTags.Blocks.ORES_SULFUR, RankineTags.Items.ORES_SULFUR);
+        copy(RankineTags.Blocks.ORES_MERCURY, RankineTags.Items.ORES_MERCURY);
+        copy(RankineTags.Blocks.ORES_CHROMIUM, RankineTags.Items.ORES_CHROMIUM);
+        copy(RankineTags.Blocks.ORES_COBALT, RankineTags.Items.ORES_COBALT);
+        copy(RankineTags.Blocks.ORES_NICKEL, RankineTags.Items.ORES_NICKEL);
+        copy(RankineTags.Blocks.ORES_YTTRIUM, RankineTags.Items.ORES_YTTRIUM);
+        copy(RankineTags.Blocks.ORES_MOLYBDENUM, RankineTags.Items.ORES_MOLYBDENUM);
+        copy(RankineTags.Blocks.ORES_CADMIUM, RankineTags.Items.ORES_CADMIUM);
+        copy(RankineTags.Blocks.ORES_URANIUM, RankineTags.Items.ORES_URANIUM);
+        copy(RankineTags.Blocks.ORES_ANTIMONY, RankineTags.Items.ORES_ANTIMONY);
+        copy(RankineTags.Blocks.ORES_RHENIUM, RankineTags.Items.ORES_RHENIUM);
+        copy(RankineTags.Blocks.ORES_PHOSPHORUS, RankineTags.Items.ORES_PHOSPHORUS);
+        copy(RankineTags.Blocks.ORES_GRAPHITE, RankineTags.Items.ORES_GRAPHITE);
+        copy(RankineTags.Blocks.ORES_SALT, RankineTags.Items.ORES_SALT);
+        copy(Tags.Blocks.ORES, Tags.Items.ORES);
+
+        copy(RankineTags.Blocks.STONES_DACITE, RankineTags.Items.STONES_DACITE);
+        copy(RankineTags.Blocks.STONES_ANDESITE, RankineTags.Items.STONES_ANDESITE);
+        copy(RankineTags.Blocks.STONES_BASALT, RankineTags.Items.STONES_BASALT);
+        copy(RankineTags.Blocks.STONES_GRANITE, RankineTags.Items.STONES_GRANITE);
+        copy(RankineTags.Blocks.STONES_SANDSTONE, RankineTags.Items.STONES_SANDSTONE);
+        copy(RankineTags.Blocks.STONES_PEGMATITE, RankineTags.Items.STONES_PEGMATITE);
+        copy(RankineTags.Blocks.STONES_BRECCIA, RankineTags.Items.STONES_BRECCIA);
+        copy(RankineTags.Blocks.STONES_PERIDOTITE, RankineTags.Items.STONES_PERIDOTITE);
+        copy(RankineTags.Blocks.STONES_PHYLITE, RankineTags.Items.STONES_PHYLITE);
+        copy(RankineTags.Blocks.STONES_PORPHYRY, RankineTags.Items.STONES_PORPHYRY);
+        copy(RankineTags.Blocks.STONES_PUMICE, RankineTags.Items.STONES_PUMICE);
+        copy(RankineTags.Blocks.STONES_SCORIA, RankineTags.Items.STONES_SCORIA);
+        copy(RankineTags.Blocks.STONES_SCHIST, RankineTags.Items.STONES_SCHIST);
+        copy(RankineTags.Blocks.STONES_DOLOMITE, RankineTags.Items.STONES_DOLOMITE);
+        copy(RankineTags.Blocks.STONES_MARBLE, RankineTags.Items.STONES_MARBLE);
+        copy(RankineTags.Blocks.STONES_GABBRO, RankineTags.Items.STONES_GABBRO);
+        copy(RankineTags.Blocks.STONES_MARLSTONE, RankineTags.Items.STONES_MARLSTONE);
+        copy(RankineTags.Blocks.STONES_MUDSTONE, RankineTags.Items.STONES_MUDSTONE);
+        copy(RankineTags.Blocks.STONES_RHYOLITE, RankineTags.Items.STONES_RHYOLITE);
+        copy(RankineTags.Blocks.STONES_GRANODIORITE, RankineTags.Items.STONES_GRANODIORITE);
+        copy(RankineTags.Blocks.STONES_KIMBERLITE, RankineTags.Items.STONES_KIMBERLITE);
+        copy(RankineTags.Blocks.STONES_KOMATIITE, RankineTags.Items.STONES_KOMATIITE);
+        copy(RankineTags.Blocks.STONES_GNEISS, RankineTags.Items.STONES_GNEISS);
+        copy(RankineTags.Blocks.STONES_LIMESTONE, RankineTags.Items.STONES_LIMESTONE);
+        copy(RankineTags.Blocks.STONES_SKARN, RankineTags.Items.STONES_SKARN);
+        copy(RankineTags.Blocks.STONES_MARIPOSITE, RankineTags.Items.STONES_MARIPOSITE);
+        copy(RankineTags.Blocks.STONES_QUARTZITE, RankineTags.Items.STONES_QUARTZITE);
+        copy(RankineTags.Blocks.STONES_CHALK, RankineTags.Items.STONES_CHALK);
+        copy(RankineTags.Blocks.STONES_SHALE, RankineTags.Items.STONES_SHALE);
+        copy(RankineTags.Blocks.STONES_SILTSTONE, RankineTags.Items.STONES_SILTSTONE);
+        copy(RankineTags.Blocks.STONES_SERPENTINITE, RankineTags.Items.STONES_SERPENTINITE);
+        copy(RankineTags.Blocks.STONES_ECLOGITE, RankineTags.Items.STONES_ECLOGITE);
+        copy(RankineTags.Blocks.STONES_SLATE, RankineTags.Items.STONES_SLATE);
+        copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
+
+        copy(RankineTags.Blocks.CEDAR_LOGS, RankineTags.Items.CEDAR_LOGS);
+        copy(RankineTags.Blocks.PINYON_PINE_LOGS, RankineTags.Items.PINYON_PINE_LOGS);
+        copy(RankineTags.Blocks.JUNIPER_LOGS, RankineTags.Items.JUNIPER_LOGS);
+        copy(RankineTags.Blocks.COCONUT_PALM_LOGS, RankineTags.Items.COCONUT_PALM_LOGS);
+        copy(RankineTags.Blocks.BALSAM_FIR_LOGS, RankineTags.Items.BALSAM_FIR_LOGS);
+        copy(RankineTags.Blocks.EASTERN_HEMLOCK_LOGS, RankineTags.Items.EASTERN_HEMLOCK_LOGS);
+        copy(RankineTags.Blocks.MAGNOLIA_LOGS, RankineTags.Items.MAGNOLIA_LOGS);
+        copy(RankineTags.Blocks.MAPLE_LOGS, RankineTags.Items.MAPLE_LOGS);
+        copy(RankineTags.Blocks.BLACK_BIRCH_LOGS, RankineTags.Items.BLACK_BIRCH_LOGS);
+        copy(RankineTags.Blocks.YELLOW_BIRCH_LOGS, RankineTags.Items.YELLOW_BIRCH_LOGS);
+        copy(RankineTags.Blocks.SHARINGA_LOGS, RankineTags.Items.SHARINGA_LOGS);
+        copy(RankineTags.Blocks.CORK_OAK_LOGS, RankineTags.Items.CORK_OAK_LOGS);
+        copy(RankineTags.Blocks.BLACK_WALNUT_LOGS, RankineTags.Items.BLACK_WALNUT_LOGS);
+        copy(RankineTags.Blocks.CINNAMON_LOGS, RankineTags.Items.CINNAMON_LOGS);
+        copy(RankineTags.Blocks.PETRIFIED_CHORUS_LOGS, RankineTags.Items.PETRIFIED_CHORUS_LOGS);
+        copy(RankineTags.Blocks.CHARRED_LOGS, RankineTags.Items.CHARRED_LOGS);
+        copy(RankineTags.Blocks.ERYTHRINA_LOGS, RankineTags.Items.ERYTHRINA_LOGS);
+        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+        copy(BlockTags.LOGS, ItemTags.LOGS);
+
+
+        copy(Tags.Blocks.STORAGE_BLOCKS_COAL, Tags.Items.STORAGE_BLOCKS_COAL);
+        copy(Tags.Blocks.STORAGE_BLOCKS_DIAMOND, Tags.Items.STORAGE_BLOCKS_DIAMOND);
+
         copy(RankineTags.Blocks.STORAGE_BLOCKS_HYDROGEN, RankineTags.Items.STORAGE_BLOCKS_HYDROGEN);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_HELIUM, RankineTags.Items.STORAGE_BLOCKS_HELIUM);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_LITHIUM, RankineTags.Items.STORAGE_BLOCKS_LITHIUM);
@@ -194,108 +288,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STORAGE_BLOCKS_RUBY, RankineTags.Items.STORAGE_BLOCKS_RUBY);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_SAPPHIRE, RankineTags.Items.STORAGE_BLOCKS_SAPPHIRE);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_TOPAZ, RankineTags.Items.STORAGE_BLOCKS_TOPAZ);
-
-
-        copy(RankineTags.Blocks.ORES_COPPER, RankineTags.Items.ORES_COPPER);
-        copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
-        copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
-        copy(RankineTags.Blocks.ORES_BISMUTH, RankineTags.Items.ORES_BISMUTH);
-        copy(RankineTags.Blocks.ORES_TUNGSTEN, RankineTags.Items.ORES_TUNGSTEN);
-        copy(RankineTags.Blocks.ORES_ALUMINUM, RankineTags.Items.ORES_ALUMINUM);
-        copy(RankineTags.Blocks.ORES_TIN, RankineTags.Items.ORES_TIN);
-        copy(RankineTags.Blocks.ORES_TITANIUM, RankineTags.Items.ORES_TITANIUM);
-        copy(RankineTags.Blocks.ORES_MAGNESIUM, RankineTags.Items.ORES_MAGNESIUM);
-        copy(RankineTags.Blocks.ORES_MANGANESE, RankineTags.Items.ORES_MANGANESE);
-        copy(RankineTags.Blocks.ORES_ZINC, RankineTags.Items.ORES_ZINC);
-        copy(RankineTags.Blocks.ORES_STRONTIUM, RankineTags.Items.ORES_STRONTIUM);
-        copy(RankineTags.Blocks.ORES_LITHIUM, RankineTags.Items.ORES_LITHIUM);
-        copy(RankineTags.Blocks.ORES_SODIUM, RankineTags.Items.ORES_SODIUM);
-        copy(RankineTags.Blocks.ORES_ARSENIC, RankineTags.Items.ORES_ARSENIC);
-        copy(RankineTags.Blocks.ORES_GALLIUM, RankineTags.Items.ORES_GALLIUM);
-        copy(RankineTags.Blocks.ORES_INDIUM, RankineTags.Items.ORES_INDIUM);
-        copy(RankineTags.Blocks.ORES_SELENIUM, RankineTags.Items.ORES_SELENIUM);
-        copy(RankineTags.Blocks.ORES_TELLURIUM, RankineTags.Items.ORES_TELLURIUM);
-        copy(RankineTags.Blocks.ORES_SULFUR, RankineTags.Items.ORES_SULFUR);
-        copy(RankineTags.Blocks.ORES_MERCURY, RankineTags.Items.ORES_MERCURY);
-        copy(RankineTags.Blocks.ORES_CHROMIUM, RankineTags.Items.ORES_CHROMIUM);
-        copy(RankineTags.Blocks.ORES_COBALT, RankineTags.Items.ORES_COBALT);
-        copy(RankineTags.Blocks.ORES_NICKEL, RankineTags.Items.ORES_NICKEL);
-        copy(RankineTags.Blocks.ORES_YTTRIUM, RankineTags.Items.ORES_YTTRIUM);
-        copy(RankineTags.Blocks.ORES_MOLYBDENUM, RankineTags.Items.ORES_MOLYBDENUM);
-        copy(RankineTags.Blocks.ORES_CADMIUM, RankineTags.Items.ORES_CADMIUM);
-        copy(RankineTags.Blocks.ORES_URANIUM, RankineTags.Items.ORES_URANIUM);
-        copy(RankineTags.Blocks.ORES_ANTIMONY, RankineTags.Items.ORES_ANTIMONY);
-        copy(RankineTags.Blocks.ORES_RHENIUM, RankineTags.Items.ORES_RHENIUM);
-        copy(RankineTags.Blocks.ORES_PHOSPHORUS, RankineTags.Items.ORES_PHOSPHORUS);
-        copy(RankineTags.Blocks.ORES_GRAPHITE, RankineTags.Items.ORES_GRAPHITE);
-        copy(RankineTags.Blocks.ORES_SALT, RankineTags.Items.ORES_SALT);
-        copy(Tags.Blocks.ORES, Tags.Items.ORES);
-
-        copy(RankineTags.Blocks.STONES_DACITE, RankineTags.Items.STONES_DACITE);
-        copy(RankineTags.Blocks.STONES_ANDESITE, RankineTags.Items.STONES_ANDESITE);
-        copy(RankineTags.Blocks.STONES_BASALT, RankineTags.Items.STONES_BASALT);
-        copy(RankineTags.Blocks.STONES_GRANITE, RankineTags.Items.STONES_GRANITE);
-        copy(RankineTags.Blocks.STONES_SANDSTONE, RankineTags.Items.STONES_SANDSTONE);
-        copy(RankineTags.Blocks.STONES_PEGMATITE, RankineTags.Items.STONES_PEGMATITE);
-        copy(RankineTags.Blocks.STONES_BRECCIA, RankineTags.Items.STONES_BRECCIA);
-        copy(RankineTags.Blocks.STONES_PERIDOTITE, RankineTags.Items.STONES_PERIDOTITE);
-        copy(RankineTags.Blocks.STONES_PHYLITE, RankineTags.Items.STONES_PHYLITE);
-        copy(RankineTags.Blocks.STONES_PORPHYRY, RankineTags.Items.STONES_PORPHYRY);
-        copy(RankineTags.Blocks.STONES_PUMICE, RankineTags.Items.STONES_PUMICE);
-        copy(RankineTags.Blocks.STONES_SCORIA, RankineTags.Items.STONES_SCORIA);
-        copy(RankineTags.Blocks.STONES_SCHIST, RankineTags.Items.STONES_SCHIST);
-        copy(RankineTags.Blocks.STONES_DOLOMITE, RankineTags.Items.STONES_DOLOMITE);
-        copy(RankineTags.Blocks.STONES_MARBLE, RankineTags.Items.STONES_MARBLE);
-        copy(RankineTags.Blocks.STONES_GABBRO, RankineTags.Items.STONES_GABBRO);
-        copy(RankineTags.Blocks.STONES_MARLSTONE, RankineTags.Items.STONES_MARLSTONE);
-        copy(RankineTags.Blocks.STONES_MUDSTONE, RankineTags.Items.STONES_MUDSTONE);
-        copy(RankineTags.Blocks.STONES_RHYOLITE, RankineTags.Items.STONES_RHYOLITE);
-        copy(RankineTags.Blocks.STONES_GRANODIORITE, RankineTags.Items.STONES_GRANODIORITE);
-        copy(RankineTags.Blocks.STONES_KIMBERLITE, RankineTags.Items.STONES_KIMBERLITE);
-        copy(RankineTags.Blocks.STONES_KOMATIITE, RankineTags.Items.STONES_KOMATIITE);
-        copy(RankineTags.Blocks.STONES_GNEISS, RankineTags.Items.STONES_GNEISS);
-        copy(RankineTags.Blocks.STONES_LIMESTONE, RankineTags.Items.STONES_LIMESTONE);
-        copy(RankineTags.Blocks.STONES_SKARN, RankineTags.Items.STONES_SKARN);
-        copy(RankineTags.Blocks.STONES_MARIPOSITE, RankineTags.Items.STONES_MARIPOSITE);
-        copy(RankineTags.Blocks.STONES_QUARTZITE, RankineTags.Items.STONES_QUARTZITE);
-        copy(RankineTags.Blocks.STONES_CHALK, RankineTags.Items.STONES_CHALK);
-        copy(RankineTags.Blocks.STONES_SHALE, RankineTags.Items.STONES_SHALE);
-        copy(RankineTags.Blocks.STONES_SILTSTONE, RankineTags.Items.STONES_SILTSTONE);
-        copy(RankineTags.Blocks.STONES_SERPENTINITE, RankineTags.Items.STONES_SERPENTINITE);
-        copy(RankineTags.Blocks.STONES_ECLOGITE, RankineTags.Items.STONES_ECLOGITE);
-        copy(RankineTags.Blocks.STONES_SLATE, RankineTags.Items.STONES_SLATE);
-        copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
-
-
-
-        copy(RankineTags.Blocks.CEDAR_LOGS, RankineTags.Items.CEDAR_LOGS);
-        copy(RankineTags.Blocks.PINYON_PINE_LOGS, RankineTags.Items.PINYON_PINE_LOGS);
-        copy(RankineTags.Blocks.JUNIPER_LOGS, RankineTags.Items.JUNIPER_LOGS);
-        copy(RankineTags.Blocks.COCONUT_PALM_LOGS, RankineTags.Items.COCONUT_PALM_LOGS);
-        copy(RankineTags.Blocks.BALSAM_FIR_LOGS, RankineTags.Items.BALSAM_FIR_LOGS);
-        copy(RankineTags.Blocks.EASTERN_HEMLOCK_LOGS, RankineTags.Items.EASTERN_HEMLOCK_LOGS);
-        copy(RankineTags.Blocks.MAGNOLIA_LOGS, RankineTags.Items.MAGNOLIA_LOGS);
-        copy(RankineTags.Blocks.MAPLE_LOGS, RankineTags.Items.MAPLE_LOGS);
-        copy(RankineTags.Blocks.BLACK_BIRCH_LOGS, RankineTags.Items.BLACK_BIRCH_LOGS);
-        copy(RankineTags.Blocks.YELLOW_BIRCH_LOGS, RankineTags.Items.YELLOW_BIRCH_LOGS);
-        copy(RankineTags.Blocks.SHARINGA_LOGS, RankineTags.Items.SHARINGA_LOGS);
-        copy(RankineTags.Blocks.CORK_OAK_LOGS, RankineTags.Items.CORK_OAK_LOGS);
-        copy(RankineTags.Blocks.BLACK_WALNUT_LOGS, RankineTags.Items.BLACK_WALNUT_LOGS);
-        copy(RankineTags.Blocks.CINNAMON_LOGS, RankineTags.Items.CINNAMON_LOGS);
-        copy(RankineTags.Blocks.PETRIFIED_CHORUS_LOGS, RankineTags.Items.PETRIFIED_CHORUS_LOGS);
-        copy(RankineTags.Blocks.CHARRED_LOGS, RankineTags.Items.CHARRED_LOGS);
-        copy(RankineTags.Blocks.ERYTHRINA_LOGS, RankineTags.Items.ERYTHRINA_LOGS);
-
-        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
-        copy(BlockTags.LOGS, ItemTags.LOGS);
-
-
-        getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
-        getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
-        getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
-        getOrCreateBuilder(RankineTags.Items.MAGNETIC_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
-        getOrCreateBuilder(RankineTags.Items.MAGNETIC_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
-        getOrCreateBuilder(RankineTags.Items.MAGNETIC_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
 
         getOrCreateBuilder(RankineTags.Items.NUGGETS_HYDROGEN).add(RankineItems.HYDROGEN_NUGGET.get());
         getOrCreateBuilder(RankineTags.Items.NUGGETS_HELIUM).add(RankineItems.HELIUM_NUGGET.get());
@@ -600,9 +592,9 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.INGOTS_TITANIUM_ALLOY).add(RankineItems.TITANIUM_ALLOY_INGOT.get());
         getOrCreateBuilder(RankineTags.Items.SOLDER).add(RankineItems.SOLDER.get());
         //FORGE
-        getOrCreateBuilder(RankineTags.Items.NUGGETS).addTags(RankineTags.Items.NUGGETS_HYDROGEN, RankineTags.Items.NUGGETS_HELIUM, RankineTags.Items.NUGGETS_LITHIUM, RankineTags.Items.NUGGETS_BERYLLIUM, RankineTags.Items.NUGGETS_BORON, RankineTags.Items.NUGGETS_CARBON, RankineTags.Items.NUGGETS_NITROGEN, RankineTags.Items.NUGGETS_OXYGEN, RankineTags.Items.NUGGETS_FLUORINE, RankineTags.Items.NUGGETS_NEON, RankineTags.Items.NUGGETS_SODIUM, RankineTags.Items.NUGGETS_MAGNESIUM, RankineTags.Items.NUGGETS_ALUMINUM, RankineTags.Items.NUGGETS_SILICON, RankineTags.Items.NUGGETS_PHOSPHORUS, RankineTags.Items.NUGGETS_SULFUR, RankineTags.Items.NUGGETS_CHLORINE, RankineTags.Items.NUGGETS_ARGON, RankineTags.Items.NUGGETS_POTASSIUM, RankineTags.Items.NUGGETS_CALCIUM, RankineTags.Items.NUGGETS_SCANDIUM, RankineTags.Items.NUGGETS_TITANIUM, RankineTags.Items.NUGGETS_VANADIUM, RankineTags.Items.NUGGETS_CHROMIUM, RankineTags.Items.NUGGETS_MANGANESE, RankineTags.Items.NUGGETS_COBALT, RankineTags.Items.NUGGETS_NICKEL, RankineTags.Items.NUGGETS_COPPER, RankineTags.Items.NUGGETS_ZINC, RankineTags.Items.NUGGETS_GALLIUM, RankineTags.Items.NUGGETS_GERMANIUM, RankineTags.Items.NUGGETS_ARSENIC, RankineTags.Items.NUGGETS_SELENIUM, RankineTags.Items.NUGGETS_BROMINE, RankineTags.Items.NUGGETS_KRYPTON, RankineTags.Items.NUGGETS_RUBIDIUM, RankineTags.Items.NUGGETS_STRONTIUM, RankineTags.Items.NUGGETS_YTTRIUM, RankineTags.Items.NUGGETS_ZIRCONIUM, RankineTags.Items.NUGGETS_NIOBIUM, RankineTags.Items.NUGGETS_MOLYBDENUM, RankineTags.Items.NUGGETS_TECHNETIUM, RankineTags.Items.NUGGETS_RUTHENIUM, RankineTags.Items.NUGGETS_RHODIUM, RankineTags.Items.NUGGETS_PALLADIUM, RankineTags.Items.NUGGETS_SILVER, RankineTags.Items.NUGGETS_CADMIUM, RankineTags.Items.NUGGETS_INDIUM, RankineTags.Items.NUGGETS_TIN, RankineTags.Items.NUGGETS_ANTIMONY, RankineTags.Items.NUGGETS_TELLURIUM, RankineTags.Items.NUGGETS_IODINE, RankineTags.Items.NUGGETS_XENON, RankineTags.Items.NUGGETS_CESIUM, RankineTags.Items.NUGGETS_BARIUM, RankineTags.Items.NUGGETS_LANTHANUM, RankineTags.Items.NUGGETS_CERIUM, RankineTags.Items.NUGGETS_PRASEODYMIUM, RankineTags.Items.NUGGETS_NEODYMIUM, RankineTags.Items.NUGGETS_PROMETHIUM, RankineTags.Items.NUGGETS_SAMARIUM, RankineTags.Items.NUGGETS_EUROPIUM, RankineTags.Items.NUGGETS_GADOLINIUM, RankineTags.Items.NUGGETS_TERBIUM, RankineTags.Items.NUGGETS_DYSPROSIUM, RankineTags.Items.NUGGETS_HOLMIUM, RankineTags.Items.NUGGETS_ERBIUM, RankineTags.Items.NUGGETS_THULIUM, RankineTags.Items.NUGGETS_YTTERBIUM, RankineTags.Items.NUGGETS_LUTETIUM, RankineTags.Items.NUGGETS_HAFNIUM, RankineTags.Items.NUGGETS_TANTALUM, RankineTags.Items.NUGGETS_TUNGSTEN, RankineTags.Items.NUGGETS_RHENIUM, RankineTags.Items.NUGGETS_OSMIUM, RankineTags.Items.NUGGETS_IRIDIUM, RankineTags.Items.NUGGETS_PLATINUM, RankineTags.Items.NUGGETS_MERCURY, RankineTags.Items.NUGGETS_THALLIUM, RankineTags.Items.NUGGETS_LEAD, RankineTags.Items.NUGGETS_BISMUTH, RankineTags.Items.NUGGETS_POLONIUM, RankineTags.Items.NUGGETS_ASTATINE, RankineTags.Items.NUGGETS_RADON, RankineTags.Items.NUGGETS_FRANCIUM, RankineTags.Items.NUGGETS_RADIUM, RankineTags.Items.NUGGETS_ACTINIUM, RankineTags.Items.NUGGETS_THORIUM, RankineTags.Items.NUGGETS_PROTACTINIUM, RankineTags.Items.NUGGETS_URANIUM, RankineTags.Items.NUGGETS_NEPTUNIUM, RankineTags.Items.NUGGETS_PLUTONIUM, RankineTags.Items.NUGGETS_AMERICIUM, RankineTags.Items.NUGGETS_CURIUM, RankineTags.Items.NUGGETS_BERKELIUM, RankineTags.Items.NUGGETS_CALIFORNIUM, RankineTags.Items.NUGGETS_EINSTEINIUM, RankineTags.Items.NUGGETS_FERMIUM, RankineTags.Items.NUGGETS_MENDELEVIUM, RankineTags.Items.NUGGETS_NOBELIUM, RankineTags.Items.NUGGETS_LAWRENCIUM, RankineTags.Items.NUGGETS_RUTHERFORDIUM, RankineTags.Items.NUGGETS_DUBNIUM, RankineTags.Items.NUGGETS_SEABORGIUM, RankineTags.Items.NUGGETS_BOHRIUM, RankineTags.Items.NUGGETS_HASSIUM, RankineTags.Items.NUGGETS_MEITNERIUM, RankineTags.Items.NUGGETS_DARMSTADTIUM, RankineTags.Items.NUGGETS_ROENTGENIUM, RankineTags.Items.NUGGETS_COPERNICIUM, RankineTags.Items.NUGGETS_NIHONIUM, RankineTags.Items.NUGGETS_FLEROVIUM, RankineTags.Items.NUGGETS_MOSCOVIUM, RankineTags.Items.NUGGETS_LIVERMORIUM, RankineTags.Items.NUGGETS_TENNESSINE, RankineTags.Items.NUGGETS_OGANESSON,RankineTags.Items.NUGGETS_ENDOSITUM,RankineTags.Items.NUGGETS_PEWTER,RankineTags.Items.NUGGETS_BRONZE,RankineTags.Items.NUGGETS_BRASS,RankineTags.Items.NUGGETS_CAST_IRON,RankineTags.Items.NUGGETS_INVAR,RankineTags.Items.NUGGETS_CUPRONICKEL,RankineTags.Items.NUGGETS_DURALUMIN,RankineTags.Items.NUGGETS_MAGNESIUM_ALLOY,RankineTags.Items.NUGGETS_STERLING_SILVER,RankineTags.Items.NUGGETS_NICKEL_SILVER,RankineTags.Items.NUGGETS_ALNICO,RankineTags.Items.NUGGETS_STEEL,RankineTags.Items.NUGGETS_STAINLESS_STEEL,RankineTags.Items.NUGGETS_NITINOL,RankineTags.Items.NUGGETS_ROSE_METAL,RankineTags.Items.NUGGETS_MISCHMETAL,RankineTags.Items.NUGGETS_FERROCERIUM,RankineTags.Items.NUGGETS_GALINSTAN,RankineTags.Items.NUGGETS_OSMIRIDIUM,RankineTags.Items.NUGGETS_SODIUM_POTASSIUM_ALLOY,RankineTags.Items.NUGGETS_AMALGAM,RankineTags.Items.NUGGETS_ENDER_AMALGAM,RankineTags.Items.NUGGETS_ROSE_GOLD,RankineTags.Items.NUGGETS_GREEN_GOLD,RankineTags.Items.NUGGETS_PURPLE_GOLD,RankineTags.Items.NUGGETS_WHITE_GOLD,RankineTags.Items.NUGGETS_BLUE_GOLD,RankineTags.Items.NUGGETS_BLACK_GOLD,RankineTags.Items.NUGGETS_NICKEL_SUPERALLOY,RankineTags.Items.NUGGETS_COBALT_SUPERALLOY,RankineTags.Items.NUGGETS_TUNGSTEN_HEAVY_ALLOY,RankineTags.Items.NUGGETS_TITANIUM_ALLOY);
-        getOrCreateBuilder(RankineTags.Items.INGOTS).addTags(RankineTags.Items.INGOTS_HYDROGEN, RankineTags.Items.INGOTS_HELIUM, RankineTags.Items.INGOTS_LITHIUM, RankineTags.Items.INGOTS_BERYLLIUM, RankineTags.Items.BORON, RankineTags.Items.CARBON, RankineTags.Items.INGOTS_NITROGEN, RankineTags.Items.INGOTS_OXYGEN, RankineTags.Items.INGOTS_FLUORINE, RankineTags.Items.INGOTS_NEON, RankineTags.Items.INGOTS_SODIUM, RankineTags.Items.INGOTS_MAGNESIUM, RankineTags.Items.INGOTS_ALUMINUM, RankineTags.Items.SILICON, RankineTags.Items.PHOSPHORUS, RankineTags.Items.SULFUR, RankineTags.Items.INGOTS_CHLORINE, RankineTags.Items.INGOTS_ARGON, RankineTags.Items.INGOTS_POTASSIUM, RankineTags.Items.INGOTS_CALCIUM, RankineTags.Items.INGOTS_SCANDIUM, RankineTags.Items.INGOTS_TITANIUM, RankineTags.Items.INGOTS_VANADIUM, RankineTags.Items.INGOTS_CHROMIUM, RankineTags.Items.INGOTS_MANGANESE, RankineTags.Items.INGOTS_COBALT, RankineTags.Items.INGOTS_NICKEL, RankineTags.Items.INGOTS_COPPER, RankineTags.Items.INGOTS_ZINC, RankineTags.Items.INGOTS_GALLIUM, RankineTags.Items.GERMANIUM, RankineTags.Items.ARSENIC, RankineTags.Items.SELENIUM, RankineTags.Items.BROMINE, RankineTags.Items.INGOTS_KRYPTON, RankineTags.Items.INGOTS_RUBIDIUM, RankineTags.Items.INGOTS_STRONTIUM, RankineTags.Items.INGOTS_YTTRIUM, RankineTags.Items.INGOTS_ZIRCONIUM, RankineTags.Items.INGOTS_NIOBIUM, RankineTags.Items.INGOTS_MOLYBDENUM, RankineTags.Items.INGOTS_TECHNETIUM, RankineTags.Items.INGOTS_RUTHENIUM, RankineTags.Items.INGOTS_RHODIUM, RankineTags.Items.INGOTS_PALLADIUM, RankineTags.Items.INGOTS_SILVER, RankineTags.Items.INGOTS_CADMIUM, RankineTags.Items.INGOTS_INDIUM, RankineTags.Items.INGOTS_TIN, RankineTags.Items.ANTIMONY, RankineTags.Items.TELLURIUM, RankineTags.Items.IODINE, RankineTags.Items.INGOTS_XENON, RankineTags.Items.INGOTS_CESIUM, RankineTags.Items.INGOTS_BARIUM, RankineTags.Items.INGOTS_LANTHANUM, RankineTags.Items.INGOTS_CERIUM, RankineTags.Items.INGOTS_PRASEODYMIUM, RankineTags.Items.INGOTS_NEODYMIUM, RankineTags.Items.INGOTS_PROMETHIUM, RankineTags.Items.INGOTS_SAMARIUM, RankineTags.Items.INGOTS_EUROPIUM, RankineTags.Items.INGOTS_GADOLINIUM, RankineTags.Items.INGOTS_TERBIUM, RankineTags.Items.INGOTS_DYSPROSIUM, RankineTags.Items.INGOTS_HOLMIUM, RankineTags.Items.INGOTS_ERBIUM, RankineTags.Items.INGOTS_THULIUM, RankineTags.Items.INGOTS_YTTERBIUM, RankineTags.Items.INGOTS_LUTETIUM, RankineTags.Items.INGOTS_HAFNIUM, RankineTags.Items.INGOTS_TANTALUM, RankineTags.Items.INGOTS_TUNGSTEN, RankineTags.Items.INGOTS_RHENIUM, RankineTags.Items.INGOTS_OSMIUM, RankineTags.Items.INGOTS_IRIDIUM, RankineTags.Items.INGOTS_PLATINUM, RankineTags.Items.MERCURY, RankineTags.Items.INGOTS_THALLIUM, RankineTags.Items.INGOTS_LEAD, RankineTags.Items.INGOTS_BISMUTH, RankineTags.Items.INGOTS_POLONIUM, RankineTags.Items.ASTATINE, RankineTags.Items.INGOTS_RADON, RankineTags.Items.INGOTS_FRANCIUM, RankineTags.Items.INGOTS_RADIUM, RankineTags.Items.INGOTS_ACTINIUM, RankineTags.Items.INGOTS_THORIUM, RankineTags.Items.INGOTS_PROTACTINIUM, RankineTags.Items.INGOTS_URANIUM, RankineTags.Items.INGOTS_NEPTUNIUM, RankineTags.Items.INGOTS_PLUTONIUM, RankineTags.Items.INGOTS_AMERICIUM, RankineTags.Items.INGOTS_CURIUM, RankineTags.Items.INGOTS_BERKELIUM, RankineTags.Items.INGOTS_CALIFORNIUM, RankineTags.Items.INGOTS_EINSTEINIUM, RankineTags.Items.INGOTS_FERMIUM, RankineTags.Items.INGOTS_MENDELEVIUM, RankineTags.Items.INGOTS_NOBELIUM, RankineTags.Items.INGOTS_LAWRENCIUM, RankineTags.Items.INGOTS_RUTHERFORDIUM, RankineTags.Items.INGOTS_DUBNIUM, RankineTags.Items.INGOTS_SEABORGIUM, RankineTags.Items.INGOTS_BOHRIUM, RankineTags.Items.INGOTS_HASSIUM, RankineTags.Items.INGOTS_MEITNERIUM, RankineTags.Items.INGOTS_DARMSTADTIUM, RankineTags.Items.INGOTS_ROENTGENIUM, RankineTags.Items.INGOTS_COPERNICIUM, RankineTags.Items.INGOTS_NIHONIUM, RankineTags.Items.INGOTS_FLEROVIUM, RankineTags.Items.INGOTS_MOSCOVIUM, RankineTags.Items.INGOTS_LIVERMORIUM, RankineTags.Items.INGOTS_TENNESSINE, RankineTags.Items.INGOTS_OGANESSON,RankineTags.Items.INGOTS_ENDOSITUM,RankineTags.Items.INGOTS_PEWTER,RankineTags.Items.INGOTS_BRONZE,RankineTags.Items.INGOTS_BRASS,RankineTags.Items.INGOTS_CAST_IRON,RankineTags.Items.INGOTS_INVAR,RankineTags.Items.INGOTS_CUPRONICKEL,RankineTags.Items.INGOTS_DURALUMIN,RankineTags.Items.INGOTS_MAGNESIUM_ALLOY,RankineTags.Items.INGOTS_STERLING_SILVER,RankineTags.Items.INGOTS_NICKEL_SILVER,RankineTags.Items.INGOTS_ALNICO,RankineTags.Items.INGOTS_STEEL,RankineTags.Items.INGOTS_STAINLESS_STEEL,RankineTags.Items.INGOTS_NITINOL,RankineTags.Items.INGOTS_ROSE_METAL,RankineTags.Items.INGOTS_MISCHMETAL,RankineTags.Items.INGOTS_FERROCERIUM,RankineTags.Items.INGOTS_GALINSTAN,RankineTags.Items.INGOTS_OSMIRIDIUM,RankineTags.Items.INGOTS_SODIUM_POTASSIUM_ALLOY,RankineTags.Items.INGOTS_AMALGAM,RankineTags.Items.INGOTS_ENDER_AMALGAM,RankineTags.Items.INGOTS_ROSE_GOLD,RankineTags.Items.INGOTS_GREEN_GOLD,RankineTags.Items.INGOTS_PURPLE_GOLD,RankineTags.Items.INGOTS_WHITE_GOLD,RankineTags.Items.INGOTS_BLUE_GOLD,RankineTags.Items.INGOTS_BLACK_GOLD,RankineTags.Items.INGOTS_NICKEL_SUPERALLOY,RankineTags.Items.INGOTS_COBALT_SUPERALLOY,RankineTags.Items.INGOTS_TUNGSTEN_HEAVY_ALLOY,RankineTags.Items.INGOTS_TITANIUM_ALLOY);
-        copy(RankineTags.Blocks.STORAGE_BLOCKS,RankineTags.Items.STORAGE_BLOCKS);
+        getOrCreateBuilder(Tags.Items.NUGGETS).addTags(RankineTags.Items.NUGGETS_HYDROGEN, RankineTags.Items.NUGGETS_HELIUM, RankineTags.Items.NUGGETS_LITHIUM, RankineTags.Items.NUGGETS_BERYLLIUM, RankineTags.Items.NUGGETS_BORON, RankineTags.Items.NUGGETS_CARBON, RankineTags.Items.NUGGETS_NITROGEN, RankineTags.Items.NUGGETS_OXYGEN, RankineTags.Items.NUGGETS_FLUORINE, RankineTags.Items.NUGGETS_NEON, RankineTags.Items.NUGGETS_SODIUM, RankineTags.Items.NUGGETS_MAGNESIUM, RankineTags.Items.NUGGETS_ALUMINUM, RankineTags.Items.NUGGETS_SILICON, RankineTags.Items.NUGGETS_PHOSPHORUS, RankineTags.Items.NUGGETS_SULFUR, RankineTags.Items.NUGGETS_CHLORINE, RankineTags.Items.NUGGETS_ARGON, RankineTags.Items.NUGGETS_POTASSIUM, RankineTags.Items.NUGGETS_CALCIUM, RankineTags.Items.NUGGETS_SCANDIUM, RankineTags.Items.NUGGETS_TITANIUM, RankineTags.Items.NUGGETS_VANADIUM, RankineTags.Items.NUGGETS_CHROMIUM, RankineTags.Items.NUGGETS_MANGANESE, RankineTags.Items.NUGGETS_COBALT, RankineTags.Items.NUGGETS_NICKEL, RankineTags.Items.NUGGETS_COPPER, RankineTags.Items.NUGGETS_ZINC, RankineTags.Items.NUGGETS_GALLIUM, RankineTags.Items.NUGGETS_GERMANIUM, RankineTags.Items.NUGGETS_ARSENIC, RankineTags.Items.NUGGETS_SELENIUM, RankineTags.Items.NUGGETS_BROMINE, RankineTags.Items.NUGGETS_KRYPTON, RankineTags.Items.NUGGETS_RUBIDIUM, RankineTags.Items.NUGGETS_STRONTIUM, RankineTags.Items.NUGGETS_YTTRIUM, RankineTags.Items.NUGGETS_ZIRCONIUM, RankineTags.Items.NUGGETS_NIOBIUM, RankineTags.Items.NUGGETS_MOLYBDENUM, RankineTags.Items.NUGGETS_TECHNETIUM, RankineTags.Items.NUGGETS_RUTHENIUM, RankineTags.Items.NUGGETS_RHODIUM, RankineTags.Items.NUGGETS_PALLADIUM, RankineTags.Items.NUGGETS_SILVER, RankineTags.Items.NUGGETS_CADMIUM, RankineTags.Items.NUGGETS_INDIUM, RankineTags.Items.NUGGETS_TIN, RankineTags.Items.NUGGETS_ANTIMONY, RankineTags.Items.NUGGETS_TELLURIUM, RankineTags.Items.NUGGETS_IODINE, RankineTags.Items.NUGGETS_XENON, RankineTags.Items.NUGGETS_CESIUM, RankineTags.Items.NUGGETS_BARIUM, RankineTags.Items.NUGGETS_LANTHANUM, RankineTags.Items.NUGGETS_CERIUM, RankineTags.Items.NUGGETS_PRASEODYMIUM, RankineTags.Items.NUGGETS_NEODYMIUM, RankineTags.Items.NUGGETS_PROMETHIUM, RankineTags.Items.NUGGETS_SAMARIUM, RankineTags.Items.NUGGETS_EUROPIUM, RankineTags.Items.NUGGETS_GADOLINIUM, RankineTags.Items.NUGGETS_TERBIUM, RankineTags.Items.NUGGETS_DYSPROSIUM, RankineTags.Items.NUGGETS_HOLMIUM, RankineTags.Items.NUGGETS_ERBIUM, RankineTags.Items.NUGGETS_THULIUM, RankineTags.Items.NUGGETS_YTTERBIUM, RankineTags.Items.NUGGETS_LUTETIUM, RankineTags.Items.NUGGETS_HAFNIUM, RankineTags.Items.NUGGETS_TANTALUM, RankineTags.Items.NUGGETS_TUNGSTEN, RankineTags.Items.NUGGETS_RHENIUM, RankineTags.Items.NUGGETS_OSMIUM, RankineTags.Items.NUGGETS_IRIDIUM, RankineTags.Items.NUGGETS_PLATINUM, RankineTags.Items.NUGGETS_MERCURY, RankineTags.Items.NUGGETS_THALLIUM, RankineTags.Items.NUGGETS_LEAD, RankineTags.Items.NUGGETS_BISMUTH, RankineTags.Items.NUGGETS_POLONIUM, RankineTags.Items.NUGGETS_ASTATINE, RankineTags.Items.NUGGETS_RADON, RankineTags.Items.NUGGETS_FRANCIUM, RankineTags.Items.NUGGETS_RADIUM, RankineTags.Items.NUGGETS_ACTINIUM, RankineTags.Items.NUGGETS_THORIUM, RankineTags.Items.NUGGETS_PROTACTINIUM, RankineTags.Items.NUGGETS_URANIUM, RankineTags.Items.NUGGETS_NEPTUNIUM, RankineTags.Items.NUGGETS_PLUTONIUM, RankineTags.Items.NUGGETS_AMERICIUM, RankineTags.Items.NUGGETS_CURIUM, RankineTags.Items.NUGGETS_BERKELIUM, RankineTags.Items.NUGGETS_CALIFORNIUM, RankineTags.Items.NUGGETS_EINSTEINIUM, RankineTags.Items.NUGGETS_FERMIUM, RankineTags.Items.NUGGETS_MENDELEVIUM, RankineTags.Items.NUGGETS_NOBELIUM, RankineTags.Items.NUGGETS_LAWRENCIUM, RankineTags.Items.NUGGETS_RUTHERFORDIUM, RankineTags.Items.NUGGETS_DUBNIUM, RankineTags.Items.NUGGETS_SEABORGIUM, RankineTags.Items.NUGGETS_BOHRIUM, RankineTags.Items.NUGGETS_HASSIUM, RankineTags.Items.NUGGETS_MEITNERIUM, RankineTags.Items.NUGGETS_DARMSTADTIUM, RankineTags.Items.NUGGETS_ROENTGENIUM, RankineTags.Items.NUGGETS_COPERNICIUM, RankineTags.Items.NUGGETS_NIHONIUM, RankineTags.Items.NUGGETS_FLEROVIUM, RankineTags.Items.NUGGETS_MOSCOVIUM, RankineTags.Items.NUGGETS_LIVERMORIUM, RankineTags.Items.NUGGETS_TENNESSINE, RankineTags.Items.NUGGETS_OGANESSON,RankineTags.Items.NUGGETS_ENDOSITUM,RankineTags.Items.NUGGETS_PEWTER,RankineTags.Items.NUGGETS_BRONZE,RankineTags.Items.NUGGETS_BRASS,RankineTags.Items.NUGGETS_CAST_IRON,RankineTags.Items.NUGGETS_INVAR,RankineTags.Items.NUGGETS_CUPRONICKEL,RankineTags.Items.NUGGETS_DURALUMIN,RankineTags.Items.NUGGETS_MAGNESIUM_ALLOY,RankineTags.Items.NUGGETS_STERLING_SILVER,RankineTags.Items.NUGGETS_NICKEL_SILVER,RankineTags.Items.NUGGETS_ALNICO,RankineTags.Items.NUGGETS_STEEL,RankineTags.Items.NUGGETS_STAINLESS_STEEL,RankineTags.Items.NUGGETS_NITINOL,RankineTags.Items.NUGGETS_ROSE_METAL,RankineTags.Items.NUGGETS_MISCHMETAL,RankineTags.Items.NUGGETS_FERROCERIUM,RankineTags.Items.NUGGETS_GALINSTAN,RankineTags.Items.NUGGETS_OSMIRIDIUM,RankineTags.Items.NUGGETS_SODIUM_POTASSIUM_ALLOY,RankineTags.Items.NUGGETS_AMALGAM,RankineTags.Items.NUGGETS_ENDER_AMALGAM,RankineTags.Items.NUGGETS_ROSE_GOLD,RankineTags.Items.NUGGETS_GREEN_GOLD,RankineTags.Items.NUGGETS_PURPLE_GOLD,RankineTags.Items.NUGGETS_WHITE_GOLD,RankineTags.Items.NUGGETS_BLUE_GOLD,RankineTags.Items.NUGGETS_BLACK_GOLD,RankineTags.Items.NUGGETS_NICKEL_SUPERALLOY,RankineTags.Items.NUGGETS_COBALT_SUPERALLOY,RankineTags.Items.NUGGETS_TUNGSTEN_HEAVY_ALLOY,RankineTags.Items.NUGGETS_TITANIUM_ALLOY);
+        getOrCreateBuilder(Tags.Items.INGOTS).addTags(RankineTags.Items.INGOTS_HYDROGEN, RankineTags.Items.INGOTS_HELIUM, RankineTags.Items.INGOTS_LITHIUM, RankineTags.Items.INGOTS_BERYLLIUM, RankineTags.Items.BORON, RankineTags.Items.CARBON, RankineTags.Items.INGOTS_NITROGEN, RankineTags.Items.INGOTS_OXYGEN, RankineTags.Items.INGOTS_FLUORINE, RankineTags.Items.INGOTS_NEON, RankineTags.Items.INGOTS_SODIUM, RankineTags.Items.INGOTS_MAGNESIUM, RankineTags.Items.INGOTS_ALUMINUM, RankineTags.Items.SILICON, RankineTags.Items.PHOSPHORUS, RankineTags.Items.SULFUR, RankineTags.Items.INGOTS_CHLORINE, RankineTags.Items.INGOTS_ARGON, RankineTags.Items.INGOTS_POTASSIUM, RankineTags.Items.INGOTS_CALCIUM, RankineTags.Items.INGOTS_SCANDIUM, RankineTags.Items.INGOTS_TITANIUM, RankineTags.Items.INGOTS_VANADIUM, RankineTags.Items.INGOTS_CHROMIUM, RankineTags.Items.INGOTS_MANGANESE, RankineTags.Items.INGOTS_COBALT, RankineTags.Items.INGOTS_NICKEL, RankineTags.Items.INGOTS_COPPER, RankineTags.Items.INGOTS_ZINC, RankineTags.Items.INGOTS_GALLIUM, RankineTags.Items.GERMANIUM, RankineTags.Items.ARSENIC, RankineTags.Items.SELENIUM, RankineTags.Items.BROMINE, RankineTags.Items.INGOTS_KRYPTON, RankineTags.Items.INGOTS_RUBIDIUM, RankineTags.Items.INGOTS_STRONTIUM, RankineTags.Items.INGOTS_YTTRIUM, RankineTags.Items.INGOTS_ZIRCONIUM, RankineTags.Items.INGOTS_NIOBIUM, RankineTags.Items.INGOTS_MOLYBDENUM, RankineTags.Items.INGOTS_TECHNETIUM, RankineTags.Items.INGOTS_RUTHENIUM, RankineTags.Items.INGOTS_RHODIUM, RankineTags.Items.INGOTS_PALLADIUM, RankineTags.Items.INGOTS_SILVER, RankineTags.Items.INGOTS_CADMIUM, RankineTags.Items.INGOTS_INDIUM, RankineTags.Items.INGOTS_TIN, RankineTags.Items.ANTIMONY, RankineTags.Items.TELLURIUM, RankineTags.Items.IODINE, RankineTags.Items.INGOTS_XENON, RankineTags.Items.INGOTS_CESIUM, RankineTags.Items.INGOTS_BARIUM, RankineTags.Items.INGOTS_LANTHANUM, RankineTags.Items.INGOTS_CERIUM, RankineTags.Items.INGOTS_PRASEODYMIUM, RankineTags.Items.INGOTS_NEODYMIUM, RankineTags.Items.INGOTS_PROMETHIUM, RankineTags.Items.INGOTS_SAMARIUM, RankineTags.Items.INGOTS_EUROPIUM, RankineTags.Items.INGOTS_GADOLINIUM, RankineTags.Items.INGOTS_TERBIUM, RankineTags.Items.INGOTS_DYSPROSIUM, RankineTags.Items.INGOTS_HOLMIUM, RankineTags.Items.INGOTS_ERBIUM, RankineTags.Items.INGOTS_THULIUM, RankineTags.Items.INGOTS_YTTERBIUM, RankineTags.Items.INGOTS_LUTETIUM, RankineTags.Items.INGOTS_HAFNIUM, RankineTags.Items.INGOTS_TANTALUM, RankineTags.Items.INGOTS_TUNGSTEN, RankineTags.Items.INGOTS_RHENIUM, RankineTags.Items.INGOTS_OSMIUM, RankineTags.Items.INGOTS_IRIDIUM, RankineTags.Items.INGOTS_PLATINUM, RankineTags.Items.MERCURY, RankineTags.Items.INGOTS_THALLIUM, RankineTags.Items.INGOTS_LEAD, RankineTags.Items.INGOTS_BISMUTH, RankineTags.Items.INGOTS_POLONIUM, RankineTags.Items.ASTATINE, RankineTags.Items.INGOTS_RADON, RankineTags.Items.INGOTS_FRANCIUM, RankineTags.Items.INGOTS_RADIUM, RankineTags.Items.INGOTS_ACTINIUM, RankineTags.Items.INGOTS_THORIUM, RankineTags.Items.INGOTS_PROTACTINIUM, RankineTags.Items.INGOTS_URANIUM, RankineTags.Items.INGOTS_NEPTUNIUM, RankineTags.Items.INGOTS_PLUTONIUM, RankineTags.Items.INGOTS_AMERICIUM, RankineTags.Items.INGOTS_CURIUM, RankineTags.Items.INGOTS_BERKELIUM, RankineTags.Items.INGOTS_CALIFORNIUM, RankineTags.Items.INGOTS_EINSTEINIUM, RankineTags.Items.INGOTS_FERMIUM, RankineTags.Items.INGOTS_MENDELEVIUM, RankineTags.Items.INGOTS_NOBELIUM, RankineTags.Items.INGOTS_LAWRENCIUM, RankineTags.Items.INGOTS_RUTHERFORDIUM, RankineTags.Items.INGOTS_DUBNIUM, RankineTags.Items.INGOTS_SEABORGIUM, RankineTags.Items.INGOTS_BOHRIUM, RankineTags.Items.INGOTS_HASSIUM, RankineTags.Items.INGOTS_MEITNERIUM, RankineTags.Items.INGOTS_DARMSTADTIUM, RankineTags.Items.INGOTS_ROENTGENIUM, RankineTags.Items.INGOTS_COPERNICIUM, RankineTags.Items.INGOTS_NIHONIUM, RankineTags.Items.INGOTS_FLEROVIUM, RankineTags.Items.INGOTS_MOSCOVIUM, RankineTags.Items.INGOTS_LIVERMORIUM, RankineTags.Items.INGOTS_TENNESSINE, RankineTags.Items.INGOTS_OGANESSON,RankineTags.Items.INGOTS_ENDOSITUM,RankineTags.Items.INGOTS_PEWTER,RankineTags.Items.INGOTS_BRONZE,RankineTags.Items.INGOTS_BRASS,RankineTags.Items.INGOTS_CAST_IRON,RankineTags.Items.INGOTS_INVAR,RankineTags.Items.INGOTS_CUPRONICKEL,RankineTags.Items.INGOTS_DURALUMIN,RankineTags.Items.INGOTS_MAGNESIUM_ALLOY,RankineTags.Items.INGOTS_STERLING_SILVER,RankineTags.Items.INGOTS_NICKEL_SILVER,RankineTags.Items.INGOTS_ALNICO,RankineTags.Items.INGOTS_STEEL,RankineTags.Items.INGOTS_STAINLESS_STEEL,RankineTags.Items.INGOTS_NITINOL,RankineTags.Items.INGOTS_ROSE_METAL,RankineTags.Items.INGOTS_MISCHMETAL,RankineTags.Items.INGOTS_FERROCERIUM,RankineTags.Items.INGOTS_GALINSTAN,RankineTags.Items.INGOTS_OSMIRIDIUM,RankineTags.Items.INGOTS_SODIUM_POTASSIUM_ALLOY,RankineTags.Items.INGOTS_AMALGAM,RankineTags.Items.INGOTS_ENDER_AMALGAM,RankineTags.Items.INGOTS_ROSE_GOLD,RankineTags.Items.INGOTS_GREEN_GOLD,RankineTags.Items.INGOTS_PURPLE_GOLD,RankineTags.Items.INGOTS_WHITE_GOLD,RankineTags.Items.INGOTS_BLUE_GOLD,RankineTags.Items.INGOTS_BLACK_GOLD,RankineTags.Items.INGOTS_NICKEL_SUPERALLOY,RankineTags.Items.INGOTS_COBALT_SUPERALLOY,RankineTags.Items.INGOTS_TUNGSTEN_HEAVY_ALLOY,RankineTags.Items.INGOTS_TITANIUM_ALLOY);
+        copy(Tags.Blocks.STORAGE_BLOCKS,Tags.Items.STORAGE_BLOCKS);
 
         getOrCreateBuilder(RankineTags.Items.WOODEN_TOOLS).add(Items.WOODEN_AXE).add(Items.WOODEN_PICKAXE).add(Items.WOODEN_HOE).add(Items.WOODEN_SHOVEL).add(Items.WOODEN_SWORD);
         getOrCreateBuilder(RankineTags.Items.STONE_TOOLS).add(Items.STONE_AXE).add(Items.STONE_PICKAXE).add(Items.STONE_HOE).add(Items.STONE_SHOVEL).add(Items.STONE_SWORD);
@@ -639,12 +631,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.SPEARS).add(RankineItems.FLINT_SPEAR.get(),RankineItems.PEWTER_SPEAR.get(),RankineItems.ALLOY_SPEAR.get(),RankineItems.BRONZE_SPEAR.get(),RankineItems.INVAR_SPEAR.get(),RankineItems.STEEL_SPEAR.get(),RankineItems.STAINLESS_STEEL_SPEAR.get(),RankineItems.NICKEL_SUPERALLOY_SPEAR.get(),RankineItems.COBALT_SUPERALLOY_SPEAR.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_SPEAR.get(),RankineItems.ROSE_GOLD_SPEAR.get(),RankineItems.BLUE_GOLD_SPEAR.get(),RankineItems.GREEN_GOLD_SPEAR.get(),RankineItems.WHITE_GOLD_SPEAR.get(),RankineItems.PURPLE_GOLD_SPEAR.get(),RankineItems.BLACK_GOLD_SPEAR.get(),RankineItems.AMALGAM_SPEAR.get(),RankineItems.ENDER_AMALGAM_SPEAR.get());
         getOrCreateBuilder(RankineTags.Items.CROWBARS).add(RankineItems.PEWTER_CROWBAR.get(),RankineItems.ALLOY_CROWBAR.get(),RankineItems.BRONZE_CROWBAR.get(),RankineItems.INVAR_CROWBAR.get(),RankineItems.STEEL_CROWBAR.get(),RankineItems.STAINLESS_STEEL_CROWBAR.get(),RankineItems.NICKEL_SUPERALLOY_CROWBAR.get(),RankineItems.COBALT_SUPERALLOY_CROWBAR.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_CROWBAR.get(),RankineItems.ROSE_GOLD_CROWBAR.get(),RankineItems.BLUE_GOLD_CROWBAR.get(),RankineItems.GREEN_GOLD_CROWBAR.get(),RankineItems.WHITE_GOLD_CROWBAR.get(),RankineItems.PURPLE_GOLD_CROWBAR.get(),RankineItems.BLACK_GOLD_CROWBAR.get(),RankineItems.AMALGAM_CROWBAR.get(),RankineItems.ENDER_AMALGAM_CROWBAR.get());
         getOrCreateBuilder(RankineTags.Items.KNIVES).add(RankineItems.FLINT_KNIFE.get(),RankineItems.PEWTER_KNIFE.get(),RankineItems.ALLOY_KNIFE.get(),RankineItems.BRONZE_KNIFE.get(),RankineItems.INVAR_KNIFE.get(),RankineItems.STEEL_KNIFE.get(),RankineItems.STAINLESS_STEEL_KNIFE.get(),RankineItems.NICKEL_SUPERALLOY_KNIFE.get(),RankineItems.COBALT_SUPERALLOY_KNIFE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_KNIFE.get(),RankineItems.ROSE_GOLD_KNIFE.get(),RankineItems.BLUE_GOLD_KNIFE.get(),RankineItems.GREEN_GOLD_KNIFE.get(),RankineItems.WHITE_GOLD_KNIFE.get(),RankineItems.PURPLE_GOLD_KNIFE.get(),RankineItems.BLACK_GOLD_KNIFE.get(),RankineItems.AMALGAM_KNIFE.get(),RankineItems.ENDER_AMALGAM_KNIFE.get());
-
-        getOrCreateBuilder(RankineTags.Items.COLORED_GOLD_INGOTS).add(RankineItems.ROSE_GOLD_INGOT.get(),RankineItems.GREEN_GOLD_INGOT.get(),RankineItems.WHITE_GOLD_INGOT.get(),RankineItems.BLUE_GOLD_INGOT.get(),RankineItems.PURPLE_GOLD_INGOT.get(),RankineItems.BLACK_GOLD_INGOT.get());
-        getOrCreateBuilder(RankineTags.Items.COLORED_GOLD_TOOLS).addTags(RankineTags.Items.ROSE_GOLD_TOOLS,RankineTags.Items.GREEN_GOLD_TOOLS,RankineTags.Items.WHITE_GOLD_TOOLS,RankineTags.Items.BLUE_GOLD_TOOLS,RankineTags.Items.PURPLE_GOLD_TOOLS,RankineTags.Items.BLACK_GOLD_TOOLS);
-        getOrCreateBuilder(RankineTags.Items.CRUDE_TOOLS).addTags(RankineTags.Items.WOODEN_TOOLS,RankineTags.Items.STONE_TOOLS,RankineTags.Items.IRON_TOOLS,RankineTags.Items.GOLDEN_TOOLS,RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.BRONZE_TOOLS,RankineTags.Items.INVAR_TOOLS,RankineTags.Items.AMALGAM_TOOLS,RankineTags.Items.ALLOY_TOOLS);
-        getOrCreateBuilder(RankineTags.Items.TREE_CHOPPERS).add(RankineItems.PEWTER_AXE.get(),RankineItems.ALLOY_AXE.get(),RankineItems.BRONZE_AXE.get(),RankineItems.INVAR_AXE.get(),RankineItems.STEEL_AXE.get(),RankineItems.STAINLESS_STEEL_AXE.get(),RankineItems.NICKEL_SUPERALLOY_AXE.get(),RankineItems.COBALT_SUPERALLOY_AXE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_AXE.get(),RankineItems.ROSE_GOLD_AXE.get(),RankineItems.BLUE_GOLD_AXE.get(),RankineItems.GREEN_GOLD_AXE.get(),RankineItems.WHITE_GOLD_AXE.get(),RankineItems.PURPLE_GOLD_AXE.get(),RankineItems.BLACK_GOLD_AXE.get(),RankineItems.AMALGAM_AXE.get(),RankineItems.ENDER_AMALGAM_AXE.get());
-
 
         getOrCreateBuilder(RankineTags.Items.GOLD_PANS).add(RankineItems.WOODEN_GOLD_PAN.get(), RankineItems.PEWTER_GOLD_PAN.get(), RankineItems.STEEL_GOLD_PAN.get());
         getOrCreateBuilder(RankineTags.Items.SLUICING_TOOLS).addTag(RankineTags.Items.GOLD_PANS);
@@ -731,8 +717,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.BERRIES_POKEBERRY).add(RankineItems.POKEBERRIES.get());
         getOrCreateBuilder(RankineTags.Items.BERRIES_SWEET_BERRY).add(Items.SWEET_BERRIES);
         getOrCreateBuilder(RankineTags.Items.BERRIES).addTags(RankineTags.Items.BERRIES_BLACKBERRY,RankineTags.Items.BERRIES_BLUEBERRY,RankineTags.Items.BERRIES_CRANBERRY,RankineTags.Items.BERRIES_ELDERBERRY,RankineTags.Items.BERRIES_JUNIPER,RankineTags.Items.BERRIES_RASPBERRY,RankineTags.Items.BERRIES_SNOWBERRY,RankineTags.Items.BERRIES_SWEET_BERRY,RankineTags.Items.BERRIES_POKEBERRY,RankineTags.Items.BERRIES_STRAWBERRY);
-
-        getOrCreateBuilder(RankineTags.Items.FORAGING_ITEMS).add(Items.POTATO,Items.CARROT).addTag(Tags.Items.SEEDS);
 
 
         for (Item ITEM : RankineLists.GRAINS) {
@@ -822,10 +806,22 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
 
 
+        getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.MAGNETIC_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.MAGNETIC_INGOTS).addTag(Tags.Items.INGOTS_IRON).addTag(RankineTags.Items.INGOTS_ALUMINUM).addTag(RankineTags.Items.INGOTS_COBALT).addTag(RankineTags.Items.INGOTS_MANGANESE).addTag(RankineTags.Items.INGOTS_TITANIUM).addTag(RankineTags.Items.INGOTS_BISMUTH).addTag(RankineTags.Items.INGOTS_LEAD).addTag(RankineTags.Items.INGOTS_NICKEL).addTag(RankineTags.Items.INGOTS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.MAGNETIC_BLOCKS).addTag(Tags.Items.STORAGE_BLOCKS_IRON).addTag(RankineTags.Items.STORAGE_BLOCKS_ALUMINUM).addTag(RankineTags.Items.STORAGE_BLOCKS_COBALT).addTag(RankineTags.Items.STORAGE_BLOCKS_MANGANESE).addTag(RankineTags.Items.STORAGE_BLOCKS_TITANIUM).addTag(RankineTags.Items.STORAGE_BLOCKS_BISMUTH).addTag(RankineTags.Items.STORAGE_BLOCKS_LEAD).addTag(RankineTags.Items.STORAGE_BLOCKS_NICKEL).addTag(RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN);
+        getOrCreateBuilder(RankineTags.Items.COLORED_GOLD_INGOTS).add(RankineItems.ROSE_GOLD_INGOT.get(),RankineItems.GREEN_GOLD_INGOT.get(),RankineItems.WHITE_GOLD_INGOT.get(),RankineItems.BLUE_GOLD_INGOT.get(),RankineItems.PURPLE_GOLD_INGOT.get(),RankineItems.BLACK_GOLD_INGOT.get());
+        getOrCreateBuilder(RankineTags.Items.COLORED_GOLD_TOOLS).addTags(RankineTags.Items.ROSE_GOLD_TOOLS,RankineTags.Items.GREEN_GOLD_TOOLS,RankineTags.Items.WHITE_GOLD_TOOLS,RankineTags.Items.BLUE_GOLD_TOOLS,RankineTags.Items.PURPLE_GOLD_TOOLS,RankineTags.Items.BLACK_GOLD_TOOLS);
+        getOrCreateBuilder(RankineTags.Items.CRUDE_TOOLS).addTags(RankineTags.Items.WOODEN_TOOLS,RankineTags.Items.STONE_TOOLS,RankineTags.Items.IRON_TOOLS,RankineTags.Items.GOLDEN_TOOLS,RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.BRONZE_TOOLS,RankineTags.Items.INVAR_TOOLS,RankineTags.Items.AMALGAM_TOOLS,RankineTags.Items.ALLOY_TOOLS);
+        getOrCreateBuilder(RankineTags.Items.TREE_CHOPPERS).add(RankineItems.PEWTER_AXE.get(),RankineItems.ALLOY_AXE.get(),RankineItems.BRONZE_AXE.get(),RankineItems.INVAR_AXE.get(),RankineItems.STEEL_AXE.get(),RankineItems.STAINLESS_STEEL_AXE.get(),RankineItems.NICKEL_SUPERALLOY_AXE.get(),RankineItems.COBALT_SUPERALLOY_AXE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_AXE.get(),RankineItems.ROSE_GOLD_AXE.get(),RankineItems.BLUE_GOLD_AXE.get(),RankineItems.GREEN_GOLD_AXE.get(),RankineItems.WHITE_GOLD_AXE.get(),RankineItems.PURPLE_GOLD_AXE.get(),RankineItems.BLACK_GOLD_AXE.get(),RankineItems.AMALGAM_AXE.get(),RankineItems.ENDER_AMALGAM_AXE.get());
+
 
 
         //MINECRAFT
         getOrCreateBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
+        getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
 
         getOrCreateBuilder(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.THORIUM_ARROW.get(),RankineItems.MAGNESIUM_ARROW.get(),RankineItems.ALLOY_ARROW.get());
         //getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.ALLOY_ARROW);

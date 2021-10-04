@@ -72,13 +72,10 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
                     } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
                         if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
                             
-                            if (GRASS instanceof GrassySoilBlock) {
+                            if (VanillaIntegration.pathBlocks_map.get(GRASS) != null && VanillaIntegration.pathBlocks_map.get(GRASS2) != null) {
                                 soilPlacer(reader, TARGET_POS, VanillaIntegration.pathBlocks_map.get(GRASS).getDefaultState(), VanillaIntegration.pathBlocks_map.get(GRASS2).getDefaultState());
                             }
                         }
-                    }
-                    if (reader.getBlockState(TARGET_POS.up()).matchesBlock(Blocks.SNOW)) {
-                        reader.setBlockState(TARGET_POS,Blocks.SNOW_BLOCK.getDefaultState(),19);
                     }
 
                 }

@@ -5,7 +5,9 @@ import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -38,7 +41,7 @@ public class StingingNettleBlock extends BushBlock {
                 double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
                 if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
                     //entityIn.attackEntityFrom(DamageSource.CACTUS, 2.0F);
-                    ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.POISON,20*3,0));
+                    ((LivingEntity) entityIn).addPotionEffect(new EffectInstance(Effects.POISON,20*2,0));
                 }
             }
         }
@@ -46,6 +49,12 @@ public class StingingNettleBlock extends BushBlock {
 
     public OffsetType getOffsetType() {
         return OffsetType.XYZ;
+    }
+
+    // @Nullable
+    @Override
+    public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity) {
+        return PathNodeType.DANGER_OTHER;
     }
 
 }

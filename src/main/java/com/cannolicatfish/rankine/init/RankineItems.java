@@ -1547,16 +1547,16 @@ public class RankineItems {
     public static final RegistryObject<Item> CAMPHOR_BASIL_LEAF = REGISTRY.register("camphor_basil_leaf", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankinePlants)));
     public static final RegistryObject<Item> JUNIPER_BERRIES = REGISTRY.register("juniper_berries", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JUNIPER_BERRIES)));
 
-    public static final RegistryObject<Item> BLACKBERRY_JAM = REGISTRY.register("blackberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> BLUEBERRY_JAM = REGISTRY.register("blueberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> CRANBERRY_JAM = REGISTRY.register("cranberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> ELDERBERRY_JAM = REGISTRY.register("elderberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> PINEAPPLE_JAM = REGISTRY.register("pineapple_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> POKEBERRY_JAM = REGISTRY.register("pokeberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> RASPBERRY_JAM = REGISTRY.register("raspberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> SNOWBERRY_JAM = REGISTRY.register("snowberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> SWEET_BERRY_JAM = REGISTRY.register("sweet_berry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
-    public static final RegistryObject<Item> STRAWBERRY_JAM = REGISTRY.register("strawberry_jam", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> BLACKBERRY_JAM = REGISTRY.register("blackberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> BLUEBERRY_JAM = REGISTRY.register("blueberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> CRANBERRY_JAM = REGISTRY.register("cranberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> ELDERBERRY_JAM = REGISTRY.register("elderberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> PINEAPPLE_JAM = REGISTRY.register("pineapple_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> POKEBERRY_JAM = REGISTRY.register("pokeberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> RASPBERRY_JAM = REGISTRY.register("raspberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> SNOWBERRY_JAM = REGISTRY.register("snowberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> SWEET_BERRY_JAM = REGISTRY.register("sweet_berry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
+    public static final RegistryObject<Item> STRAWBERRY_JAM = REGISTRY.register("strawberry_jam", () -> new Item(new Item.Properties().containerItem(Items.GLASS_BOTTLE).group(ProjectRankine.setup.rankinePlants).food(RankineFoods.JAM)));
 
     public static final RegistryObject<Item> ROASTED_ASPARAGUS = REGISTRY.register("roasted_asparagus", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.ROASTED_ASPARAGUS)));
     public static final RegistryObject<Item> POPCORN = REGISTRY.register("popcorn", () -> new Item(new Item.Properties().group(ProjectRankine.setup.rankinePlants).food(RankineFoods.POPCORN)));

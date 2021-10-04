@@ -20,6 +20,7 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
 
 public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
     private int ticks;
+    private int nextRecipe = world.getRandom().nextInt(structureCheck(world, pos)) + 100;
     public BeehiveOvenTile() {
         super(BEEHIVE_OVEN_TILE);
     }
@@ -29,7 +30,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
         if (canSeeSky(world, pos) ) {
             if (this.getBlockState().get(BeehiveOvenPitBlock.LIT)) {
                 ticks += 1;
-                if (ticks >= structureCheck(world, pos)) {
+                if (ticks >= nextRecipe) {
                     for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,2,1))) {
                         BeehiveOvenRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(world.getBlockState(p).getBlock())), world).orElse(null);
                         if (recipe != null) {
@@ -43,6 +44,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
                             }
                         }
                     }
+                    nextRecipe = world.getRandom().nextInt(structureCheck(world, pos)) + 100;
                 }
             }
         } else {

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
@@ -18,8 +19,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class FiberMatBlock extends HorizontalBlock implements IWaterLoggable{
     protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);

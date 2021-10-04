@@ -419,27 +419,39 @@ public class RankineLangProvider extends LanguageProvider {
         }
 
         //Alloy Plates
-        add("item.rankine.alloy_plate.bronze", "Bronze Plate");
-        add("item.rankine.alloy_plate.brass", "Brass Plate");
-        add("item.rankine.alloy_plate.invar", "Invar Plate");
-        add("item.rankine.alloy_plate.steel", "Steel Plate");
-        add("item.rankine.alloy_plate.stainless_steel", "Stainless Steel Plate");
-        add("item.rankine.alloy_plate.cupronickel", "Cupronickel Plate");
-        add("item.rankine.alloy_plate.aluminum", "Aluminum Plate");
-        add("item.rankine.alloy_plate.copper", "Copper Plate");
-        add("item.rankine.alloy_plate.bismuth", "Bismuth Plate");
-        add("item.rankine.alloy_plate.lead", "Lead Plate");
-        add("item.rankine.alloy_plate.silver", "Silver Plate");
-        add("item.rankine.alloy_plate.gold", "Gold Plate");
-        add("item.rankine.alloy_plate.platinum", "Platinum Plate");
-        add("item.rankine.alloy_plate.nickel", "Nickel Plate");
-        add("item.rankine.alloy_plate.titanium", "Titanium Plate");
-        add("item.rankine.alloy_plate.tin", "Tin Plate");
-        add("item.rankine.alloy_plate.tungsten", "Tungsten Plate");
+        add("item.rankine.alloy_plate_bronze", "Bronze Plate");
+        add("item.rankine.alloy_plate_brass", "Brass Plate");
+        add("item.rankine.alloy_plate_invar", "Invar Plate");
+        add("item.rankine.alloy_plate_steel", "Steel Plate");
+        add("item.rankine.alloy_plate_stainless_steel", "Stainless Steel Plate");
+        add("item.rankine.alloy_plate_cupronickel", "Cupronickel Plate");
+        add("item.rankine.alloy_plate_aluminum", "Aluminum Plate");
+        add("item.rankine.alloy_plate_copper", "Copper Plate");
+        add("item.rankine.alloy_plate_bismuth", "Bismuth Plate");
+        add("item.rankine.alloy_plate_lead", "Lead Plate");
+        add("item.rankine.alloy_plate_iron", "Iron Plate");
+        add("item.rankine.alloy_plate_silver", "Silver Plate");
+        add("item.rankine.alloy_plate_gold", "Gold Plate");
+        add("item.rankine.alloy_plate_platinum", "Platinum Plate");
+        add("item.rankine.alloy_plate_nickel", "Nickel Plate");
+        add("item.rankine.alloy_plate_titanium", "Titanium Plate");
+        add("item.rankine.alloy_plate_tin", "Tin Plate");
+        add("item.rankine.alloy_plate_tungsten", "Tungsten Plate");
+        //Alloy Rods
+        add("item.rankine.alloy_rod_steel", "Steel Rpd");
+        add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rpd");
+        //Alloy Wires
+        add("item.rankine.alloy_wire_cupronickel", "Cupronickel Wire");
+        add("item.rankine.alloy_wire_steel", "Steel Wire");
 
-
+        //Death Messages
         add("death.attack.suffocating", "%1$s suffocated in a gas cloud");
         add("death.attack.suffocating.player", "%1$s suffocated in a gas cloud whilst trying to escape %2$s");
+
+
+
+
+
 
         add("item.rankine.mantle_golem_egg", "Garnet Mantle Golem Spawn Egg");
         add("entity.rankine.mantle_golem", "Garnet Mantle Golem");
@@ -689,8 +701,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.make_laser_quarry.description", "Construct a Laser Quarry to mine out large chunks of the world");
         add("rankine.advancements.story.make_thorium_arrow.title", "Sounds of Thunder");
         add("rankine.advancements.story.make_thorium_arrow.description", "Make Thorium Arrows to control the power of lightning with your bow");
-        add("rankine.advancements.story.get_pendant_template.title", "Secret Plan");
-        add("rankine.advancements.story.get_pendant_template.description", "Obtain a pendant template");
+        add("rankine.advancements.story.get_pendant_template_title", "Secret Plan");
+        add("rankine.advancements.story.get_pendant_template_description", "Obtain a pendant template");
         add("rankine.advancements.story.make_pendants.title", "Hidden Power");
         add("rankine.advancements.story.make_pendants.description", "Make all of the 6 pendants");
         add("rankine.advancements.story.support.title", "We support Patchouli and JEI!");

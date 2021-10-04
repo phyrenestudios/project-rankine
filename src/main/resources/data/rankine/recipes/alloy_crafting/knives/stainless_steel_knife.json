@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": "true",
+  "pattern": [
+    " #",
+    "t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "t": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "name": "Steel Rod",
+      "color": 3291714
+    }
+  },
+  "result": {
+    "item": "rankine:stainless_steel_knife",
+    "count": 1        }
+}

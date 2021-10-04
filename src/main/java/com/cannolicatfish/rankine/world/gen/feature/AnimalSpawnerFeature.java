@@ -27,7 +27,7 @@ public class AnimalSpawnerFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if ((reader.getBlockState(pos.down()).isIn(RankineTags.Blocks.GRASS) && reader.isAirBlock(pos) && reader.getLightSubtracted(pos,0) >= 7)) {
+        if ((reader.getBlockState(pos.down()).isIn(RankineTags.Blocks.GRASS) && reader.isAirBlock(pos) && reader.getLightSubtracted(pos,0) > 8)) {
             LivingEntity ent;
             if (rand.nextFloat() < 0.5) {
                 ent = new SheepEntity(EntityType.SHEEP, reader.getWorld());
@@ -35,7 +35,7 @@ public class AnimalSpawnerFeature extends Feature<NoFeatureConfig> {
                 ent = new CowEntity(EntityType.COW, reader.getWorld());
             }
 
-            ent.setPosition(pos.down().getX(),pos.down().getY(),pos.down().getZ());
+            ent.setPosition(pos.getX(),pos.getY(),pos.getZ());
             reader.addEntity(ent);
             return true;
         }

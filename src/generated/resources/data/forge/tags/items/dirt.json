@@ -20,16 +20,6 @@
     "rankine:grassy_sandy_loam",
     "rankine:grassy_loamy_sand",
     "rankine:grassy_sandy_clay_loam",
-    "rankine:grassy_silty_clay_loam",
-    "rankine:humus_path",
-    "rankine:loam_path",
-    "rankine:silty_clay_path",
-    "rankine:sandy_clay_path",
-    "rankine:silty_loam_path",
-    "rankine:clay_loam_path",
-    "rankine:sandy_loam_path",
-    "rankine:loamy_sand_path",
-    "rankine:sandy_clay_loam_path",
-    "rankine:silty_clay_loam_path"
+    "rankine:grassy_silty_clay_loam"
   ]
 }

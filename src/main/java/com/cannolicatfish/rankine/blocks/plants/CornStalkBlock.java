@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -22,6 +23,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class CornStalkBlock extends BushBlock {
@@ -52,7 +54,7 @@ public class CornStalkBlock extends BushBlock {
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         switch (state.get(SECTION)) {
             case BOTTOM:
-                return super.isValidPosition(state, worldIn, pos);
+                return worldIn.getBlockState(pos.down()).isIn(Tags.Blocks.DIRT) || worldIn.getBlockState(pos.down()).isIn(RankineTags.Blocks.FARMLANDS);
             case MIDDLE:
                 BlockState blockstate1 = worldIn.getBlockState(pos.down());
                 if (state.getBlock() != this) return super.isValidPosition(state, worldIn, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
@@ -130,7 +132,7 @@ public class CornStalkBlock extends BushBlock {
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
-            entityIn.setMotionMultiplier(state, new Vector3d((double)0.9F, 1.0D, (double)0.9F));
+            entityIn.setMotionMultiplier(state, new Vector3d((double)0.98F, 1.0D, (double)0.98F));
         }
     }
 

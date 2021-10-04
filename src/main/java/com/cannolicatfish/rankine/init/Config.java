@@ -120,7 +120,7 @@ public class Config {
 
                 b.comment("Miscellaneous").push("misc");
                     PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
-                            .defineInRange("pathCreationTime", 60, 0, 600);
+                            .defineInRange("pathCreationTime", 90, 0, 600);
                     PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
                             .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
