@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.items.PowerCellItem;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -87,7 +86,7 @@ public class LaserQuarryContainer extends Container {
                 }
                 slot.onSlotChange(stack, itemstack);
             } else {
-                if (stack.getItem() instanceof PowerCellItem) {
+                if (stack.getItem() instanceof BatteryItem) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "rankine:item/power_cell_5"
+    "layer0": "rankine:item/sulfuric_acid_bucket"
   }
 }

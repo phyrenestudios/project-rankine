@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "dzd",
+    "rsr",
+    "dbd"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "d":
+    {
+      "tag": "forge:ingots/steel"
+    },
+    "z":
+    {
+      "tag": "forge:ingots/sodium"
+    },
+    "b":
+    {
+      "tag": "forge:sulfur"
+    },
+    "s":
+    {
+      "item": "rankine:bauxite"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:sodium_sulfur_battery",
+    "count": 1
+  }
+}

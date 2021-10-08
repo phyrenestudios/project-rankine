@@ -1,17 +1,11 @@
 package com.cannolicatfish.rankine.blocks.rankinebox;
 
-import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
-import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxTile;
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.TransmuterItem;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.cannolicatfish.rankine.util.WeightedCollection;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -21,23 +15,17 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
-
-import java.util.Random;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.RANKINE_BOX_TILE;
 
@@ -132,7 +120,7 @@ public class RankineBoxTile extends TileEntity implements ISidedInventory, ITick
             boolean ready = this.powered == 1 && outputElement != PeriodicTableUtils.Element.NONE && canSmelt(outputElement) && !utils.getElementIngot(outputElement).equals(Items.AIR);
             if (ready)
             {
-                this.cookTime += PowerCellItem.getTier(fuel);
+                this.cookTime += BatteryItem.getTier(fuel);
                 if (this.cookTime >= this.cookTimeTotal) {
                     ItemStack smelting = new ItemStack(utils.getElementIngot(outputElement));
                     if (this.items.get(3).getCount() > 0) {
@@ -153,7 +141,7 @@ public class RankineBoxTile extends TileEntity implements ISidedInventory, ITick
     }
 
     private boolean isPowered(ItemStack fuel) {
-        return PowerCellItem.getTier(fuel) > 0;
+        return BatteryItem.getTier(fuel) > 0;
     }
 
     private boolean canSmelt(PeriodicTableUtils.Element element) {
@@ -301,7 +289,7 @@ public class RankineBoxTile extends TileEntity implements ISidedInventory, ITick
             case 1:
                 return stack.getItem() instanceof TransmuterItem;
             case 2:
-                return stack.getItem() instanceof PowerCellItem;
+                return stack.getItem() instanceof BatteryItem;
             case 3:
                 return true;
             default:

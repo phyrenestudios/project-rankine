@@ -54,5 +54,13 @@
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
+  },
+  "knockbackresist": {
+    "breaks": [100],
+    "formulas": ["CONSTANT"],
+    "a": [0.05],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
   }
 }

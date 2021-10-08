@@ -15,6 +15,14 @@
     "modifiers": ["NONE"],
     "limit": [0]
   },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.03],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [1.2]
+  },
   "miningspeed": {
     "breaks": [100],
     "formulas": ["LINEAR"],
@@ -24,12 +32,12 @@
     "limit": [0]
   },
   "mininglevel": {
-    "breaks": [17,100],
-    "formulas": ["CONSTANT","CONSTANT"],
-    "a": [0,1],
-    "b": [0,0],
-    "modifiers": ["NONE","NONE"],
-    "limit": [0,0]
+    "breaks": [9,19,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
   },
   "enchantability": {
     "breaks": [100],

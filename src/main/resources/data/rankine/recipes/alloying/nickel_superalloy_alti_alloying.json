@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 22,
+  "total": 23,
   "tier": 2,
   "color": 12769246,
   "input1": {
@@ -107,11 +107,16 @@
     "max": 0.15
   },
   "input21": {
-    "element": "rankine:elements/phosphorus",
+    "element": "rankine:elements/barium",
     "min": 0.0,
     "max": 0.15
   },
   "input22": {
+    "element": "rankine:elements/phosphorus",
+    "min": 0.0,
+    "max": 0.15
+  },
+  "input23": {
     "element": "rankine:elements/silicon",
     "min": 0.0,
     "max": 0.15

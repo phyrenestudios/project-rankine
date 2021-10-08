@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.block.AbstractFurnaceBlock;
@@ -106,7 +106,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
-        this.currentBurnTime =  6400 * PowerCellItem.getTier(this.items.get(6));
+        this.currentBurnTime =  6400 * BatteryItem.getTier(this.items.get(6));
     }
 
     @Override
@@ -123,7 +123,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (PowerCellItem.getTier(this.items.get(6)) != this.tickAdd || PowerCellItem.getTier(this.items.get(6)) == 0)) {
+        if (this.isBurning() && (BatteryItem.getTier(this.items.get(6)) != this.tickAdd || BatteryItem.getTier(this.items.get(6)) == 0)) {
             burnTime--;
         }
         if (!this.world.isRemote) {
@@ -132,9 +132,9 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             if ((this.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.burnTime = PowerCellItem.getTier(fuel) != 0 ? 50 : 0;
+                    this.burnTime = BatteryItem.getTier(fuel) != 0 ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
-                    this.tickAdd = PowerCellItem.getTier(fuel);
+                    this.tickAdd = BatteryItem.getTier(fuel);
                     if (this.isBurning()) {
                         flag1 = true;
                     }
@@ -149,9 +149,9 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                         ItemStack smelting;
                         if (recipeMode) {
                             ItemStack template = this.getStackInSlot(7);
-                            output = AlloyTemplateItem.getResult(template).copy();
+                            output = AlloyTemplateItemOld.getResult(template).copy();
 
-                            for (ItemStack input : AlloyTemplateItem.getInputStacks(template)) {
+                            for (ItemStack input : AlloyTemplateItemOld.getInputStacks(template)) {
                                 List<ItemStack> addIt = new ArrayList<>();
                                 Item tempItem = input.getItem();
                                 int count = input.getCount();
@@ -231,14 +231,14 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
 
 
     private boolean canSmelt(@Nullable AlloyingRecipe recipeIn, IInventory inv) {
-        if (recipeIn != null || inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
-            recipeMode = inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItem;
+        if (recipeIn != null || inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItemOld) {
+            recipeMode = inv.getStackInSlot(7).getItem() instanceof AlloyTemplateItemOld;
             ItemStack template = inv.getStackInSlot(7);
             if (recipeMode) {
-                if ((AlloyTemplateItem.getTier(template) & 2) != 2) {
+                if ((AlloyTemplateItemOld.getTier(template) & 2) != 2) {
                     return false;
                 }
-                for (ItemStack input : AlloyTemplateItem.getInputStacks(template)) {
+                for (ItemStack input : AlloyTemplateItemOld.getInputStacks(template)) {
                     Item tempItem = input.getItem();
                     int count = input.getCount();
                     if (inv.count(tempItem) < count) {
@@ -246,7 +246,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                     }
                 }
             }
-            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(template) : recipeIn.generateResult(world,inv, 2);
+            ItemStack stack = recipeMode ? AlloyTemplateItemOld.getResult(template) : recipeIn.generateResult(world,inv, 2);
             if (stack.isEmpty()) {
                 return false;
             } else {
@@ -403,9 +403,9 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
             case 5:
                 return PeriodicTableUtils.getInstance().hasElement(stack.getItem());
             case 6:
-                return stack.getItem() instanceof PowerCellItem;
+                return stack.getItem() instanceof BatteryItem;
             case 7:
-                return stack.getItem() instanceof AlloyTemplateItem;
+                return stack.getItem() instanceof AlloyTemplateItemOld;
             case 8:
                 return true;
             default:

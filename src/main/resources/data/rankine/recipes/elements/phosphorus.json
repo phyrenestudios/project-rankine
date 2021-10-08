@@ -1,10 +1,74 @@
 {
-          "type": "rankine:element",
-          "name": "phosphorus",
-          "symbol": "P",
-          "color": 16777215,
-          "atomic": 15,
-          "potential": 0,
-          "items": ["T#forge:nuggets/phosphorus","T#forge:phosphorus","T#forge:storage_blocks/phosphorus"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "phosphorus",
+  "symbol": "P",
+  "color": 14202036,
+  "atomic": 15,
+  "potential": -1.82,
+  "items": ["T#forge:nuggets/phosphorus","T#forge:phosphorus","T#forge:storage_blocks/phosphorus"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [12],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [120]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.125],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.75]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.1],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-0.6]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.05],
+    "b": [0],
+    "modifiers": ["MAX"],
+    "limit": [-0.5]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.025],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.005],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.08]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.008],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "knockbackresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.02],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.1]
+  }
+}

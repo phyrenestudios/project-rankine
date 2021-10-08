@@ -2,8 +2,7 @@ package com.cannolicatfish.rankine.blocks.laserquarry;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -106,7 +105,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
         World worldIn = this.getWorld();
         int maxRadius = checkStructure(pos,worldIn);
         if (!worldIn.isRemote && i <= maxRadius){
-            if (worldIn.isBlockPowered(pos) && maxRadius > 0 && this.items.get(0).getItem() instanceof PowerCellItem) {
+            if (worldIn.isBlockPowered(pos) && maxRadius > 0 && this.items.get(0).getItem() instanceof BatteryItem) {
                 ++this.cookTime;
                 if (this.cookTime == this.cookTimeTotal) {
                     for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
@@ -291,7 +290,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 0) {
-            return stack.getItem() instanceof PowerCellItem;
+            return stack.getItem() instanceof BatteryItem;
         }
         return true;
     }

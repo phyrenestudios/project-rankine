@@ -1,10 +1,53 @@
 {
-          "type": "rankine:element",
-          "name": "zirconium",
-          "symbol": "Zr",
-          "color": 16777215,
-          "atomic": 40,
-          "potential": 0,
-          "items": ["T#forge:nuggets/zirconium","T#forge:ingots/zirconium","T#forge:storage_blocks/zirconium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "zirconium",
+  "symbol": "Zr",
+  "color": 9018824,
+  "atomic": 40,
+  "potential": -1.45,
+  "items": ["T#forge:nuggets/zirconium","T#forge:ingots/zirconium","T#forge:storage_blocks/zirconium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.6],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.02],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.025],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.006],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.004],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantments": ["rankine:gas_protection"],
+  "enchantmentTypes": ["HELMET"],
+  "enchantmentFactors": [0.01]
+}

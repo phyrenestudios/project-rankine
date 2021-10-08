@@ -16,7 +16,7 @@
     "limit": [0]
   },
   "miningspeed": {
-    "breaks": [100],
+    "breaks": [67,100],
     "formulas": ["EXPONENTIAL","LOGARITHMIC"],
     "a": [1.04,9],
     "b": [-1,-25],
@@ -24,12 +24,12 @@
     "limit": [0,0]
   },
   "mininglevel": {
-    "breaks": [3,7,100],
-    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
-    "a": [0,1,2],
-    "b": [0,0,0],
-    "modifiers": ["NONE","NONE","NONE"],
-    "limit": [0,0,0]
+    "breaks": [3,7,41,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2,3],
+    "b": [0,0,0,3],
+    "modifiers": ["NONE","NONE","NONE","NONE"],
+    "limit": [0,0,0,0]
   },
   "enchantability": {
     "breaks": [100],
