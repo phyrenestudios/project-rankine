@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    "#forge:wooden_tools",
+    "#forge:stone_tools",
+    "#forge:iron_tools",
+    "#forge:golden_tools",
     "#rankine:colored_gold_tools",
     "#forge:flint_tools",
     "#forge:pewter_tools",

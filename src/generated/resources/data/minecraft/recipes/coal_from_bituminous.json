@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "coal",
+  "ingredients": [
+    {
+      "item": "rankine:bituminous_coal"
+    },
+    {
+      "item": "rankine:bituminous_coal"
+    }
+  ],
+  "result": {
+    "item": "minecraft:coal",
+    "count": 3
+  }
+}

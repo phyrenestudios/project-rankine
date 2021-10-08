@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:pentlandite_block"
-  },
-  "result": "rankine:nickel_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

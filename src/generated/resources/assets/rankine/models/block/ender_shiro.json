@@ -1,8 +1,6 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/cube_all",
   "textures": {
-    "side": "rankine:block/ender_shiro_side",
-    "bottom": "minecraft:block/end_stone",
-    "top": "rankine:block/ender_shiro_top"
+    "all": "rankine:block/ender_shiro"
   }
 }

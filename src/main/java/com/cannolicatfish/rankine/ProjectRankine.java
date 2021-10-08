@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
+import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
@@ -161,6 +162,8 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASSY_SOILS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
+            event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SHORT_GRASS.get());
+
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK.get());
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_SLAB.get());
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SOD_BLOCK_VERTICAL_SLAB.get());
@@ -197,6 +200,8 @@ public class ProjectRankine {
             for (Block b : RankineLists.GRASSY_SOILS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
+            event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SHORT_GRASS.get());
+
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_SLAB.get());
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
@@ -285,6 +290,7 @@ public class ProjectRankine {
             //event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.FLUID_DRAIN.get()).build(null).setRegistryName(ProjectRankine.MODID,"fluid_drain"));
             event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
             event.getRegistry().register(TileEntityType.Builder.create(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
+            event.getRegistry().register(TileEntityType.Builder.create(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
         }
 
         @SubscribeEvent

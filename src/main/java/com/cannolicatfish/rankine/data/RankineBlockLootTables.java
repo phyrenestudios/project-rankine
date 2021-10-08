@@ -13,6 +13,7 @@ import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,7 +40,6 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.STONE_PRESSURE_PLATE,
                 RankineLists.STONE_BRICKS_PRESSURE_PLATE,
                 RankineLists.STONE_BUTTON,
-                RankineLists.STONE_PILLARS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -66,15 +66,16 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
+                RankineLists.MINERAL_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
-                RankineLists.SAPLINGS,
-
-                RankineLists.CROPS_SINGLE,
-                RankineLists.CROPS_DOUBLE,
-                RankineLists.CROPS_TRIPLE
+                RankineLists.SAPLINGS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
+            lootTables.put(blk, createBlockLootTable(blk));
+        }
+
+        for (Block blk : Arrays.asList(RankineBlocks.SOD_BLOCK.get())) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
 
@@ -161,16 +162,31 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
             lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
         }
-        for (Block BLK : Stream.of(RankineLists.DOUBLE_BUSH_PLANTS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            lootTables.put(BLK, droppingWhen(BLK, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
-        }
+
+        lootTables.put(RankineBlocks.RICE_PLANT.get(), singleCrop(RankineBlocks.RICE_PLANT.get(), RankineItems.RICE.get(), RankineItems.RICE_SEEDS.get()));
+        lootTables.put(RankineBlocks.CAMPHOR_BASIL_PLANT.get(), singleCrop(RankineBlocks.CAMPHOR_BASIL_PLANT.get(), RankineItems.CAMPHOR_BASIL_LEAF.get(), RankineItems.CAMPHOR_BASIL_SEEDS.get()));
+        lootTables.put(RankineBlocks.COTTON_PLANT.get(), doubleCrop(RankineBlocks.COTTON_PLANT.get(), RankineItems.COTTON.get(), RankineItems.COTTON_SEEDS.get(), 2));
+        lootTables.put(RankineBlocks.ASPARAGUS_PLANT.get(), doubleCrop(RankineBlocks.ASPARAGUS_PLANT.get(), RankineItems.ASPARAGUS.get(), RankineItems.ASPARAGUS_SEEDS.get(), 1));
+        lootTables.put(RankineBlocks.CORN_PLANT.get(), tripleCrop(RankineBlocks.CORN_PLANT.get(), RankineItems.CORN_EAR.get(), RankineItems.CORN_SEEDS.get(), 2));
+        lootTables.put(RankineBlocks.JUTE_PLANT.get(), tripleCrop(RankineBlocks.JUTE_PLANT.get(), RankineItems.JUTE.get(), RankineItems.JUTE_SEEDS.get(), 3));
+
 
         lootTables.put(RankineBlocks.BLACKBERRY_BUSH.get(), bushOneDrop(RankineBlocks.BLACKBERRY_BUSH.get(), RankineItems.BLACKBERRIES.get()));
         lootTables.put(RankineBlocks.RASPBERRY_BUSH.get(), bushOneDrop(RankineBlocks.RASPBERRY_BUSH.get(), RankineItems.RASPBERRIES.get()));
         lootTables.put(RankineBlocks.BANANA_YUCCA_BUSH.get(), bushOneDrop(RankineBlocks.BANANA_YUCCA_BUSH.get(), RankineItems.BANANA_YUCCA.get()));
         lootTables.put(RankineBlocks.SNOWBERRY_BUSH.get(), bushOneDrop(RankineBlocks.SNOWBERRY_BUSH.get(), RankineItems.SNOWBERRIES.get()));
         lootTables.put(RankineBlocks.STRAWBERRY_BUSH.get(), bushOneDrop(RankineBlocks.STRAWBERRY_BUSH.get(), RankineItems.STRAWBERRIES.get()));
+        lootTables.put(RankineBlocks.POKEBERRY_BUSH.get(), doubleBushOneDrop(RankineBlocks.POKEBERRY_BUSH.get(), RankineItems.POKEBERRIES.get()));
+        lootTables.put(RankineBlocks.BLUEBERRY_BUSH.get(), doubleBushOneDrop(RankineBlocks.BLUEBERRY_BUSH.get(), RankineItems.BLUEBERRIES.get()));
+        lootTables.put(RankineBlocks.ELDERBERRY_BUSH.get(), doubleBushOneDrop(RankineBlocks.ELDERBERRY_BUSH.get(), RankineItems.ELDERBERRIES.get()));
+        lootTables.put(RankineBlocks.CRANBERRY_BUSH.get(), doubleBushOneDrop(RankineBlocks.CRANBERRY_BUSH.get(), RankineItems.CRANBERRIES.get()));
 
+        lootTables.put(RankineBlocks.SHORT_GRASS.get(), droppingSeeds(RankineBlocks.SHORT_GRASS.get()));
+        lootTables.put(RankineBlocks.STINGING_NETTLE.get(), withShears(RankineBlocks.STINGING_NETTLE.get()));
+        lootTables.put(RankineBlocks.YELLOW_CLOVER.get(), withShears(RankineBlocks.YELLOW_CLOVER.get()));
+        lootTables.put(RankineBlocks.RED_CLOVER.get(), withShears(RankineBlocks.RED_CLOVER.get()));
+        lootTables.put(RankineBlocks.WHITE_CLOVER.get(), withShears(RankineBlocks.WHITE_CLOVER.get()));
+        lootTables.put(RankineBlocks.CRIMSON_CLOVER.get(), withShears(RankineBlocks.CRIMSON_CLOVER.get()));
 
 
     }

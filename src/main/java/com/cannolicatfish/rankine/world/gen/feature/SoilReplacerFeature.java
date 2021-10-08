@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.blocks.SoilBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
@@ -71,13 +72,10 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
                     } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
                         if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
                             
-                            if (GRASS instanceof GrassySoilBlock) {
-                                soilPlacer(reader, TARGET_POS, ((GrassySoilBlock) GRASS).PATH.getDefaultState(), ((GrassySoilBlock) GRASS).PATH.getDefaultState());
+                            if (VanillaIntegration.pathBlocks_map.get(GRASS) != null && VanillaIntegration.pathBlocks_map.get(GRASS2) != null) {
+                                soilPlacer(reader, TARGET_POS, VanillaIntegration.pathBlocks_map.get(GRASS).getDefaultState(), VanillaIntegration.pathBlocks_map.get(GRASS2).getDefaultState());
                             }
                         }
-                    }
-                    if (reader.getBlockState(TARGET_POS.up()).matchesBlock(Blocks.SNOW)) {
-                        reader.setBlockState(TARGET_POS,Blocks.SNOW_BLOCK.getDefaultState(),19);
                     }
 
                 }

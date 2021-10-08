@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.events;
 
 import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
+import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
+import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
+import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
@@ -24,10 +27,7 @@ import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
-import com.cannolicatfish.rankine.util.RankineVillagerTrades;
-import com.cannolicatfish.rankine.util.RankineMathHelper;
-import com.cannolicatfish.rankine.util.RockGeneratorUtils;
-import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.util.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -48,7 +48,9 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -712,14 +714,9 @@ public class RankineEventHandler {
 
 
         // Path Creation
-        if (Config.GENERAL.PATH_CREATION.get() && !player.isCreative() && world.getDayTime()%(Config.GENERAL.PATH_CREATION_TIME.get()*20)==0 && !world.isRemote) {
-
-            if (ground.matchesBlock(Blocks.GRASS_BLOCK)) {
-                world.setBlockState(pos,Blocks.GRASS_PATH.getDefaultState(),2);
-            } else if (ground.matchesBlock(Blocks.MYCELIUM)) {
-                world.setBlockState(pos,RankineBlocks.END_GRASS_PATH.get().getDefaultState(),2);
-            } else if (ground.matchesBlock(Blocks.PODZOL)) {
-                world.setBlockState(pos,Blocks.GRASS_PATH.getDefaultState(),2);
+        if (Config.GENERAL.PATH_CREATION.get() && !player.isCreative() && player.ticksExisted%(Config.GENERAL.PATH_CREATION_TIME.get()*20)==0 && !world.isRemote) {
+            if (VanillaIntegration.pathBlocks_map.get(ground.getBlock()) != null) {
+                world.setBlockState(pos, VanillaIntegration.pathBlocks_map.get(ground).getDefaultState(),2);
             }
 
         }
@@ -727,7 +724,10 @@ public class RankineEventHandler {
 
         ModifiableAttributeInstance movementSpeed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
-        // Movement Modifiers
+        //movementSpeed.applyNonPersistentModifier(new AttributeModifier(UUID.fromString("3c4a1c57-ed5a-482e-946e-eb0b00fe5fb5"), "rankine:block_ms", 0.0D, AttributeModifier.Operation.ADDITION));
+
+
+        // Movement Modifiersa
         if (Config.GENERAL.MOVEMENT_MODIFIERS.get()) {
             List<AttributeModifier> mods = Arrays.asList(RankineAttributes.BRICKS_MS, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
             if (player.isCreative() || player.isElytraFlying()) {
@@ -1801,19 +1801,14 @@ public class RankineEventHandler {
             Block target = state.getBlock();
             if ((target instanceof GrassySoilBlock || target.matchesBlock(Blocks.GRASS_BLOCK)) && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
-                if (target instanceof GrassySoilBlock) {
-                    world.setBlockState(pos, ((GrassySoilBlock) target).SOIL.getDefaultState(), 3);
+                if (VanillaIntegration.grass_dirt_map.get(target) != null) {
+                    world.setBlockState(pos, VanillaIntegration.grass_dirt_map.get(target).getDefaultState(), 3);
                 } else {
                     world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 3);
                 }
                 player.swingArm(hand);
                 if (!world.isRemote && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !world.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                    double d0 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                    double d1 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                    double d2 = (double) (world.rand.nextFloat() * 0.5F) + 0.25D;
-                    ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1 + 0.5f, (double) pos.getZ() + d2, new ItemStack(Items.GRASS, 1));
-                    itementity.setDefaultPickupDelay();
-                    world.addEntity(itementity);
+                    spawnAsEntity(world, pos.up(), new ItemStack(Items.GRASS, 1));
                 }
                 if (!world.isRemote) {
                     player.getHeldItem(hand).damageItem(1, player, (p_220038_0_) -> {
@@ -1878,143 +1873,6 @@ public class RankineEventHandler {
 
     }
 
-
-    @SubscribeEvent
-    public static void knifeBreak(BlockEvent.BreakEvent event) {
-        ServerWorld worldIn = (ServerWorld) event.getWorld();
-        PlayerEntity player = event.getPlayer();
-        BlockPos pos = event.getPos();
-        Block target = worldIn.getBlockState(pos).getBlock();
-
-        if (Tags.Blocks.STONE.contains(target) && player.getHeldItemMainhand().getItem() instanceof PickaxeItem) {
-            if (worldIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get()) {
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(RankineItems.UNCUT_GEODE.get(),1));
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-            }
-        } else if (player.getHeldItemMainhand().getTag() != null && RankineTags.Items.KNIVES.contains(player.getHeldItemMainhand().getItem())) {
-            ItemStack drops = null;
-
-            if (target == Blocks.GRASS) {
-                drops = new ItemStack(Items.GRASS, 1);
-            } else if (target == Blocks.TALL_GRASS) {
-                drops = new ItemStack(Items.GRASS, 2);
-            } else if (target == Blocks.FERN) {
-                drops = new ItemStack(Items.FERN, 1);
-            } else if (target == Blocks.LARGE_FERN) {
-                drops = new ItemStack(Items.LARGE_FERN, 1);
-            } else if (target == Blocks.VINE) {
-                drops = new ItemStack(Items.VINE, 1);
-            } else if (target == Blocks.TWISTING_VINES) {
-                drops = new ItemStack(Items.TWISTING_VINES, 1);
-            } else if (target == Blocks.WEEPING_VINES_PLANT) {
-                drops = new ItemStack(Items.WEEPING_VINES, 1);
-            } else if (target == Blocks.DEAD_BUSH || target instanceof RankinePlantBlock || target instanceof SweetBerryBushBlock) {
-                drops = new ItemStack(Items.STICK, 2 + worldIn.getRandom().nextInt(4));
-            }
-            if (drops != null && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, drops);
-                itementity.setDefaultPickupDelay();
-                worldIn.addEntity(itementity);
-                //worldIn.destroyBlock(pos, false);
-            }
-            if (drops != null && !worldIn.isRemote) {
-                player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
-                    p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
-                });
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void nuggetDrop(BlockEvent.BreakEvent event) {
-        ServerWorld worldIn = (ServerWorld) event.getWorld();
-        PlayerEntity player = event.getPlayer();
-        BlockPos pos = event.getPos();
-        Block target = worldIn.getBlockState(pos).getBlock();
-        if (target.getTags().contains(new ResourceLocation("rankine:nugget_stones"))) {
-            BlockPos foundPos = null;
-            for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
-                if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOreBlock) {
-                    foundPos = pos.down(x);
-                } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOreBlock) {
-                    foundPos = pos.up(x);
-                } else if (worldIn.getBlockState(pos.south(x)).getBlock() instanceof RankineOreBlock) {
-                    foundPos = pos.south(x);
-                } else if (worldIn.getBlockState(pos.north(x)).getBlock() instanceof RankineOreBlock) {
-                    foundPos = pos.north(x);
-                } else if (worldIn.getBlockState(pos.east(x)).getBlock() instanceof RankineOreBlock) {
-                    foundPos = pos.east(x);
-                } else if (worldIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOreBlock) {
-                    foundPos = pos.west(x);
-                }
-                if (foundPos != null && new Random().nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots && !player.abilities.isCreativeMode) {
-                    Block b = worldIn.getBlockState(foundPos).getBlock();
-                    ItemStack nug = ItemStack.EMPTY;
-                    if (b == RankineBlocks.MAGNETITE_ORE.get()) {
-                        nug = new ItemStack(Items.IRON_NUGGET);
-                    } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
-                    } else if (b == RankineBlocks.BAUXITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.ALUMINUM_NUGGET.get());
-                    } else if (b == RankineBlocks.CASSITERITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.TIN_NUGGET.get());
-                    } else if (b == RankineBlocks.SPHALERITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.ZINC_NUGGET.get());
-                    } else if (b == RankineBlocks.PENTLANDITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
-                    } else if (b == RankineBlocks.INTERSPINIFEX_ORE.get()) {
-                        nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
-                    } else if (b == RankineBlocks.MAGNESITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.MAGNESIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.ILMENITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.TITANIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.GALENA_ORE.get()) {
-                        nug = new ItemStack(RankineItems.LEAD_NUGGET.get());
-                    } else if (b == RankineBlocks.BISMUTHINITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.BISMUTH_NUGGET.get());
-                    } else if (b == RankineBlocks.ACANTHITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.SILVER_NUGGET.get());
-                    } else if (b == RankineBlocks.MOLYBDENITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.MOLYBDENUM_NUGGET.get());
-                    } else if (b == RankineBlocks.PYROLUSITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.MANGANESE_NUGGET.get());
-                    } else if (b == RankineBlocks.CHROMITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.CHROMIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.COLTAN_ORE.get()) {
-                        nug = new ItemStack(RankineItems.NIOBIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.WOLFRAMITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.TUNGSTEN_NUGGET.get());
-                    } else if (b == RankineBlocks.GREENOCKITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.CADMIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.XENOTIME_ORE.get()) {
-                        nug = new ItemStack(RankineItems.CERIUM_NUGGET.get());
-                    } else if (b == RankineBlocks.URANINITE_ORE.get()) {
-                        nug = new ItemStack(RankineItems.URANIUM_NUGGET.get());
-                    }
-
-                    if (!nug.isEmpty()) {
-                        double d0 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        double d1 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        double d2 = (double) (worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-                        ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, nug);
-                        itementity.setDefaultPickupDelay();
-                        worldIn.addEntity(itementity);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-
-    public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     @SubscribeEvent
     public static void axeStrip(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
@@ -2023,8 +1881,9 @@ public class RankineEventHandler {
         Direction direction = event.getFace();
         BlockPos pos = event.getPos();
         PlayerEntity player = event.getPlayer();
-        BlockState activatedBlock = world.getBlockState(pos);
-        Block b = activatedBlock.getBlock();
+        BlockState targetBS = world.getBlockState(pos);
+        Block b = targetBS.getBlock();
+        boolean Creative = player.isCreative();
 
         if(item instanceof AxeItem) {
             ItemStack strip = null;
@@ -2045,12 +1904,11 @@ public class RankineEventHandler {
                 spawnAsEntity(event.getWorld(), event.getPos(), strip);
             }
 
-            if(stripping_map.get(activatedBlock.getBlock()) != null) {
-                Block block = activatedBlock.getBlock();
-                if(block instanceof RotatedPillarBlock) {
-                    Direction.Axis axis = activatedBlock.get(RotatedPillarBlock.AXIS);
+            if(VanillaIntegration.stripping_map.get(b) != null) {
+                if(b instanceof RotatedPillarBlock) {
+                    Direction.Axis axis = targetBS.get(RotatedPillarBlock.AXIS);
                     world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, stripping_map.get(activatedBlock.getBlock()).getDefaultState().with(RotatedPillarBlock.AXIS, axis), 2);
+                    world.setBlockState(pos, VanillaIntegration.stripping_map.get(b).getDefaultState().with(RotatedPillarBlock.AXIS, axis), 2);
                     stack.damageItem(1, player, (entity) -> {
                         entity.sendBreakAnimation(event.getHand());
                     });
@@ -2059,95 +1917,51 @@ public class RankineEventHandler {
                 }
             }
         } else if (item instanceof ShovelItem) {
-            if (!world.isRemote) {
-                if (activatedBlock == Blocks.MYCELIUM.getDefaultState()) {
-                    world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, RankineBlocks.END_GRASS_PATH.get().getDefaultState(), 2);
-                    stack.damageItem(1, player, (entity) -> {
-                        entity.sendBreakAnimation(event.getHand());
-                    });
-                    player.swingArm(event.getHand());
-                    event.setResult(Event.Result.ALLOW);
-                } else if (activatedBlock == Blocks.PODZOL.getDefaultState()) {
-                    world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, Blocks.GRASS_PATH.getDefaultState(), 2);
-                    stack.damageItem(1, player, (entity) -> {
-                        entity.sendBreakAnimation(event.getHand());
-                    });
-                    player.swingArm(event.getHand());
-                    event.setResult(Event.Result.ALLOW);
-                }
+            if (VanillaIntegration.pathBlocks_map.get(b) != null) {
+                world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, VanillaIntegration.pathBlocks_map.get(b).getDefaultState(), 2);
+                stack.damageItem(1, player, (entity) -> {
+                    entity.sendBreakAnimation(event.getHand());
+                });
+                player.swingArm(event.getHand());
+                event.setResult(Event.Result.ALLOW);
             }
         } else if (item instanceof HoeItem) {
-            if (!world.isRemote) {
-                TilledSoilTypes TYPE = null;
-                if (b == Blocks.DIRT) {
-                    TYPE = TilledSoilTypes.DIRT;
-                } else if (b == Blocks.GRASS_BLOCK) {
-                    TYPE = TilledSoilTypes.DIRT;
-                } else if (b == Blocks.PODZOL) {
-                    TYPE = TilledSoilTypes.DIRT;
-                } else if (b == Blocks.MYCELIUM) {
-                    TYPE = TilledSoilTypes.DIRT;
-                } else if (b == Blocks.COARSE_DIRT) {
-                    TYPE = TilledSoilTypes.COARSE_DIRT;
-                } else if (b == Blocks.SOUL_SOIL) {
-                    TYPE = TilledSoilTypes.SOUL_SOIL;
-                } else if (b == RankineBlocks.END_SOIL.get()) {
-                    TYPE = TilledSoilTypes.END_SOIL;
-                } else if (b == RankineBlocks.ENDER_SHIRO.get()) {
-                    TYPE = TilledSoilTypes.END_SOIL;
-                } else if (b == RankineBlocks.HUMUS.get()) {
-                    TYPE = TilledSoilTypes.HUMUS;
-                } else if (b == RankineBlocks.LOAM.get()) {
-                    TYPE = TilledSoilTypes.LOAM;
-                } else if (b == RankineBlocks.LOAMY_SAND.get()) {
-                    TYPE = TilledSoilTypes.LOAMY_SAND;
-                } else if (b == RankineBlocks.CLAY_LOAM.get()) {
-                    TYPE = TilledSoilTypes.CLAY_LOAM;
-                } else if (b == RankineBlocks.SILTY_CLAY.get()) {
-                    TYPE = TilledSoilTypes.SILTY_CLAY;
-                } else if (b == RankineBlocks.SILTY_CLAY_LOAM.get()) {
-                    TYPE = TilledSoilTypes.SILTY_CLAY_LOAM;
-                } else if (b == RankineBlocks.SILTY_LOAM.get()) {
-                    TYPE = TilledSoilTypes.SILTY_LOAM;
-                } else if (b == RankineBlocks.SANDY_CLAY.get()) {
-                    TYPE = TilledSoilTypes.SANDY_CLAY;
-                } else if (b == RankineBlocks.SANDY_CLAY_LOAM.get()) {
-                    TYPE = TilledSoilTypes.SANDY_CLAY_LOAM;
-                } else if (b == RankineBlocks.SANDY_LOAM.get()) {
-                    TYPE = TilledSoilTypes.SANDY_LOAM;
-                }
-                if (TYPE != null) {
-                    world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.setBlockState(pos, RankineBlocks.TILLED_SOIL.get().getDefaultState().with(TilledSoilBlock.MOISTURE, 0).with(TilledSoilBlock.SOIL_TYPE, TYPE), 2);
-                    stack.damageItem(1, player, (entity) -> {
-                        entity.sendBreakAnimation(event.getHand());
-                    });
-                    //player.swingArm(event.getHand());
-                    event.setResult(Event.Result.ALLOW);
-                }
-            }
-        }
-    }
-
-
-
-    @SubscribeEvent
-    public static void flintDrop(BlockEvent.BreakEvent event) {
-        PlayerEntity player = event.getPlayer();
-        float CHANCE = new Random().nextFloat();
-        if (!player.abilities.isCreativeMode) {
-            if (event.getState().isIn(Tags.Blocks.STONE)) {
-                if (player.getHeldItem(Hand.MAIN_HAND).getItem().isIn(RankineTags.Items.CRUDE_TOOLS)) {
-                    if (CHANCE < Config.GENERAL.FLINT_DROP_CHANCE.get()) {
-                        double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                        double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                        double d2 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                        ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, new ItemStack(Items.FLINT, 1));
-                        itementity.setDefaultPickupDelay();
-                        event.getWorld().addEntity(itementity);
+            if (VanillaIntegration.hoeables_map.get(b) != null) {
+                world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.setBlockState(pos, RankineBlocks.TILLED_SOIL.get().getDefaultState().with(TilledSoilBlock.MOISTURE, 0).with(TilledSoilBlock.SOIL_TYPE, VanillaIntegration.hoeables_map.get(b)), 2);
+                stack.damageItem(1, player, (entity) -> {
+                    entity.sendBreakAnimation(event.getHand());
+                });
+                player.swingArm(event.getHand());
+                event.setResult(Event.Result.ALLOW);
+            } else if (b instanceof DoubleCropsBlock && !Creative) {
+                if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
+                    if (targetBS.get(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
+                        world.destroyBlock(pos,true);
+                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                    } else if (targetBS.get(DoubleCropsBlock.SECTION) == DoubleBlockHalf.UPPER) {
+                        world.destroyBlock(pos.down(),true);
+                        world.setBlockState(pos.down(),b.getDefaultState().with(CropsBlock.AGE, 0));
                     }
+                }
+            } else if (b instanceof TripleCropsBlock && !Creative) {
+                if (targetBS.get(DoubleCropsBlock.AGE) == 7) {
+                    if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.BOTTOM) {
+                        world.destroyBlock(pos,true);
+                        world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
+                    } else if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.MIDDLE) {
+                        world.destroyBlock(pos.down(),true);
+                        world.setBlockState(pos.down(),b.getDefaultState().with(CropsBlock.AGE, 0));
+                    } else if (targetBS.get(TripleCropsBlock.SECTION) == TripleBlockSection.TOP) {
+                        world.destroyBlock(pos.down(2),true);
+                        world.setBlockState(pos.down(2),b.getDefaultState().with(CropsBlock.AGE, 0));
+                    }
+                }
+            } else if (b instanceof CropsBlock && !Creative) {
+                if (targetBS.get(CropsBlock.AGE) == 7) {
+                    world.destroyBlock(pos,true);
+                    world.setBlockState(pos,b.getDefaultState().with(CropsBlock.AGE, 0));
                 }
             }
         }
@@ -2178,19 +1992,173 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
-    public static void forage(BlockEvent.BreakEvent event) {
+    public static void blockBreakingEvents(BlockEvent.BreakEvent event) {
+        ServerWorld worldIn = (ServerWorld) event.getWorld();
         PlayerEntity player = event.getPlayer();
-        float CHANCE = new Random().nextFloat();
+        BlockPos pos = event.getPos();
+        Block target = worldIn.getBlockState(pos).getBlock();
+        Item mainHandItem = player.getHeldItemMainhand().getItem();
+        Item offHandItem = player.getHeldItemOffhand().getItem();
+        float CHANCE = worldIn.getRandom().nextFloat();
 
-        // Foraging
+
         if (!player.abilities.isCreativeMode) {
-            if (event.getState().getBlock().isIn(Tags.Blocks.DIRT)) {
+            //Luck Pendant
+            if (offHandItem == RankineItems.LUCK_PENDANT.get()) {
+                if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
+                    if (new Random().nextFloat() < 0.2f) {
+                        for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
+                            spawnAsEntity(worldIn, pos, new ItemStack(i.getItem(), 1));
+                        }
+                    }
+                }
+            }
+
+            //Alloy shovel perk
+            if (target instanceof FallingBlock && mainHandItem instanceof AlloyShovelItem) {
+                for (int i = 1; i <=5; ++i) {
+                    if (mainHandItem.canHarvestBlock(worldIn.getBlockState(pos.up(i)))) {
+                        worldIn.destroyBlock(pos.up(i), true);
+                    }
+                }
+            }
+
+
+            //Nugget Drops
+            if (Tags.Blocks.STONE.contains(target)) {
+                if (mainHandItem instanceof PickaxeItem) {
+                    BlockPos foundPos = null;
+                    for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
+                        if (worldIn.getBlockState(pos.down(x)).getBlock() instanceof RankineOreBlock) {
+                            foundPos = pos.down(x);
+                        } else if (worldIn.getBlockState(pos.up(x)).getBlock() instanceof RankineOreBlock) {
+                            foundPos = pos.up(x);
+                        } else if (worldIn.getBlockState(pos.south(x)).getBlock() instanceof RankineOreBlock) {
+                            foundPos = pos.south(x);
+                        } else if (worldIn.getBlockState(pos.north(x)).getBlock() instanceof RankineOreBlock) {
+                            foundPos = pos.north(x);
+                        } else if (worldIn.getBlockState(pos.east(x)).getBlock() instanceof RankineOreBlock) {
+                            foundPos = pos.east(x);
+                        } else if (worldIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOreBlock) {
+                            foundPos = pos.west(x);
+                        }
+                        if (foundPos != null && new Random().nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
+                            Block b = worldIn.getBlockState(foundPos).getBlock();
+                            ItemStack nug = ItemStack.EMPTY;
+                            if (b == RankineBlocks.MAGNETITE_ORE.get()) {
+                                nug = new ItemStack(Items.IRON_NUGGET);
+                            } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
+                            } else if (b == RankineBlocks.BAUXITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.ALUMINUM_NUGGET.get());
+                            } else if (b == RankineBlocks.CASSITERITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.TIN_NUGGET.get());
+                            } else if (b == RankineBlocks.SPHALERITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.ZINC_NUGGET.get());
+                            } else if (b == RankineBlocks.PENTLANDITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
+                            } else if (b == RankineBlocks.INTERSPINIFEX_ORE.get()) {
+                                nug = new ItemStack(RankineItems.NICKEL_NUGGET.get());
+                            } else if (b == RankineBlocks.MAGNESITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.MAGNESIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.ILMENITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.TITANIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.GALENA_ORE.get()) {
+                                nug = new ItemStack(RankineItems.LEAD_NUGGET.get());
+                            } else if (b == RankineBlocks.BISMUTHINITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.BISMUTH_NUGGET.get());
+                            } else if (b == RankineBlocks.ACANTHITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.SILVER_NUGGET.get());
+                            } else if (b == RankineBlocks.MOLYBDENITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.MOLYBDENUM_NUGGET.get());
+                            } else if (b == RankineBlocks.PYROLUSITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.MANGANESE_NUGGET.get());
+                            } else if (b == RankineBlocks.CHROMITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.CHROMIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.COLTAN_ORE.get()) {
+                                nug = new ItemStack(RankineItems.NIOBIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.WOLFRAMITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.TUNGSTEN_NUGGET.get());
+                            } else if (b == RankineBlocks.GREENOCKITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.CADMIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.XENOTIME_ORE.get()) {
+                                nug = new ItemStack(RankineItems.CERIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.URANINITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.URANIUM_NUGGET.get());
+                            }
+
+                            if (!nug.isEmpty()) {
+                                spawnAsEntity(worldIn, pos, nug);
+                                break;
+                            }
+                        }
+                    }
+
+                    //Geodes
+                    if (worldIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
+                        spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.UNCUT_GEODE.get(), 1));
+                    }
+
+                }//end pick check
+
+                //Flint drop
+                if (player.getHeldItem(Hand.MAIN_HAND).getItem().isIn(RankineTags.Items.CRUDE_TOOLS)) {
+                    if (CHANCE < Config.GENERAL.FLINT_DROP_CHANCE.get()) {
+                        spawnAsEntity(worldIn,pos,new ItemStack(Items.FLINT,1));
+                    }
+                }
+
+            } //end stone check
+
+            //knife stuff
+            if (mainHandItem.isIn(RankineTags.Items.KNIVES)) {
+                ItemStack drops = null;
+
+                if (target == Blocks.GRASS) {
+                    drops = new ItemStack(Items.GRASS, 1);
+                } else if (target == Blocks.TALL_GRASS) {
+                    drops = new ItemStack(Items.GRASS, 2);
+                } else if (target == Blocks.FERN) {
+                    drops = new ItemStack(Items.FERN, 1);
+                } else if (target == Blocks.LARGE_FERN) {
+                    drops = new ItemStack(Items.LARGE_FERN, 1);
+                } else if (target == Blocks.VINE) {
+                    drops = new ItemStack(Items.VINE, 1);
+                } else if (target == Blocks.TWISTING_VINES) {
+                    drops = new ItemStack(Items.TWISTING_VINES, 1);
+                } else if (target == Blocks.WEEPING_VINES_PLANT) {
+                    drops = new ItemStack(Items.WEEPING_VINES, 1);
+                } else if (target == RankineBlocks.SHORT_GRASS.get()) {
+                    drops = new ItemStack(RankineItems.SHORT_GRASS.get(), 1);
+                } else if (target == RankineBlocks.STINGING_NETTLE.get()) {
+                    drops = new ItemStack(RankineItems.STINGING_NETTLE.get(), 1);
+                } else if (target == RankineBlocks.YELLOW_CLOVER.get()) {
+                    drops = new ItemStack(RankineItems.YELLOW_CLOVER.get(), 1);
+                } else if (target == RankineBlocks.WHITE_CLOVER.get()) {
+                    drops = new ItemStack(RankineItems.WHITE_CLOVER.get(), 1);
+                } else if (target == RankineBlocks.CRIMSON_CLOVER.get()) {
+                    drops = new ItemStack(RankineItems.CRIMSON_CLOVER.get(), 1);
+                } else if (target == RankineBlocks.RED_CLOVER.get()) {
+                    drops = new ItemStack(RankineItems.RED_CLOVER.get(), 1);
+                } else if (target == Blocks.DEAD_BUSH || target instanceof RankinePlantBlock || target instanceof SweetBerryBushBlock) {
+                    drops = new ItemStack(Items.STICK, 2 + worldIn.getRandom().nextInt(4));
+                }
+                if (drops != null && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
+                    spawnAsEntity(worldIn, pos, drops);
+                }
+                if (drops != null && !worldIn.isRemote) {
+                    player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
+                        p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);
+                    });
+                }
+            }
+
+            //Foraging Enchantment
+            if (target.isIn(Tags.Blocks.DIRT)) {
                 ItemStack heldItemStack = player.getHeldItem(Hand.MAIN_HAND);
-                Item heldItem = player.getHeldItem(Hand.MAIN_HAND).getItem();
 
                 if (EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.FORAGING, heldItemStack) > 0) {
                     ItemStack FOOD;
-                    World worldIn = (World) event.getWorld();
                     Biome.Category cat = worldIn.getBiome(event.getPos()).getCategory();
                     List<Item> possibleItems;
                     switch (cat) {
@@ -2223,40 +2191,14 @@ public class RankineEventHandler {
                     } else {
                         return;
                     }
-                    double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                    double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                    double d2 = (double) (new Random().nextFloat()  * 0.5F) + 0.25D;
-                    ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, FOOD);
-                    itementity.setDefaultPickupDelay();
-                    event.getWorld().addEntity(itementity);
-                } else if (heldItemStack.isEmpty() || heldItem.getTags().contains(new ResourceLocation("rankine:foraging_tools"))) {
-                    ItemStack FOOD;
-                    ITag<Item> tag = ItemTags.getCollection().get(new ResourceLocation("rankine:foraging"));
-                    if (CHANCE < Config.GENERAL.FORAGING_CHANCE.get() && !tag.getAllElements().isEmpty()) {
-                        FOOD = new ItemStack(tag.getRandomElement(player.world.getRandom()),1);
-                    } else {
-                        return;
-                    }
-                    double d0 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                    double d1 = (double) (new Random().nextFloat() * 0.5F) + 0.25D;
-                    double d2 = (double) (new Random().nextFloat()  * 0.5F) + 0.25D;
-                    ItemEntity itementity = new ItemEntity((ServerWorld) event.getWorld(), (double) event.getPos().getX() + d0, (double) event.getPos().getY() + d1, (double) event.getPos().getZ() + d2, FOOD);
-                    itementity.setDefaultPickupDelay();
-                    event.getWorld().addEntity(itementity);
+                    spawnAsEntity(worldIn,pos,FOOD);
                 }
             }
-        }
 
-        // Luck Pendant
-        if (!player.abilities.isCreativeMode && player.getHeldItemOffhand().getItem() == RankineItems.LUCK_PENDANT.get()) {
-            if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
-                if (new Random().nextFloat() < 0.2f) {
-                    for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
-                        spawnAsEntity((World) event.getWorld(), event.getPos(), new ItemStack(i.getItem(), 1));
-                    }
-                }
-            }
-        }
+
+        } //end creative check
+
+
     }
 
     @SubscribeEvent
@@ -2277,19 +2219,5 @@ public class RankineEventHandler {
         }
     }
 
-    /*
-    @SubscribeEvent
-    public static void onLivingUpdate(LivingSpawnEvent.CheckSpawn event) {
-        BlockPos pos = new BlockPos(event.getX(),event.getY(),event.getZ()).down();
-        if (event.getWorld().getBlockState(pos).getBlock() instanceof GrassySoilBlock) {
-            EntityType<?> EntType = event.getEntityLiving().getType();
-            System.out.println(EntType + "   " + pos);
-            if (event.getSpawnReason() == SpawnReason.NATURAL && (EntType == EntityType.SHEEP || EntType == EntityType.PIG || EntType == EntityType.COW || EntType == EntityType.CHICKEN || EntType == EntityType.RABBIT || EntType == EntityType.DONKEY || EntType == EntityType.HORSE || EntType == EntityType.LLAMA || EntType == EntityType.PANDA || EntType == EntityType.OCELOT || EntType == EntityType.POLAR_BEAR || EntType == EntityType.FOX || EntType == EntityType.WOLF)) {
-                event.setResult(Event.Result.ALLOW);
-            }
-        }
-    }
-
-     */
 
 }

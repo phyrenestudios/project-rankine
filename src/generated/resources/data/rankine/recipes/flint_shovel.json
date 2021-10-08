@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "F",
+    "R",
+    "S"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "R": {
+      "item": "rankine:rope"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:flint_shovel"
+  }
+}

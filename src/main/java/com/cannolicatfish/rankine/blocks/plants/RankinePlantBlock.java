@@ -70,16 +70,16 @@ public class RankinePlantBlock extends BushBlock implements IGrowable {
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && entityIn.getType() != EntityType.FOX && entityIn.getType() != EntityType.BEE) {
-            entityIn.setMotionMultiplier(state, new Vector3d((double)0.95F, 0.95D, (double)0.95F));
+            entityIn.setMotionMultiplier(state, new Vector3d((double)0.98F, 0.98D, (double)0.98F));
             if (!worldIn.isRemote && state.get(AGE) > 0 && (entityIn.lastTickPosX != entityIn.getPosX() || entityIn.lastTickPosZ != entityIn.getPosZ())) {
                 double d0 = Math.abs(entityIn.getPosX() - entityIn.lastTickPosX);
                 double d1 = Math.abs(entityIn.getPosZ() - entityIn.lastTickPosZ);
-                if (d0 >= (double)0.003F || d1 >= (double)0.003F) {
+                if (d0 >= (double)0.01F || d1 >= (double)0.01F) {
                     if (state.getBlock() == RankineBlocks.RASPBERRY_BUSH.get() || state.getBlock() == RankineBlocks.BLACKBERRY_BUSH.get()) {
-                        entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 2.0F);
+                        entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 1.0F);
                     }
                     if (state.getBlock() == RankineBlocks.SNOWBERRY_BUSH.get() || state.getBlock() == RankineBlocks.CRANBERRY_BUSH.get() || state.getBlock() == RankineBlocks.PINEAPPLE_BUSH.get()) {
-                        entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 1.0F);
+                        entityIn.attackEntityFrom(DamageSource.SWEET_BERRY_BUSH, 0.5F);
                     }
                 }
             }
@@ -124,12 +124,6 @@ public class RankinePlantBlock extends BushBlock implements IGrowable {
                     break;
                 case 8:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.BANANA_YUCCA.get(), 1 + worldIn.rand.nextInt(2)));
-                    break;
-                case 9:
-                    spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CAMPHOR_BASIL_LEAF.get(), 1 + worldIn.rand.nextInt(2)));
-                    if (worldIn.getRandom().nextFloat() < 0.1) {
-                        spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.CAMPHOR_BASIL_SEEDS.get(), 1));
-                    }
                     break;
                 case 10:
                     spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.ALOE.get(), 1 + worldIn.rand.nextInt(2)));

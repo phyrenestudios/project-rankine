@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:crops/asparagus",
+    "#forge:crops/corn",
+    "#forge:crops/cotton",
+    "#forge:crops/rice",
+    "#forge:crops/jute",
+    "#forge:crops/camphor_basil"
+  ]
+}

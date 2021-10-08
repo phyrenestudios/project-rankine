@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cast_iron_support"
+    }
+  },
+  "result": {
+    "item": "rankine:cast_iron_support_slab",
+    "count": 6
+  }
+}

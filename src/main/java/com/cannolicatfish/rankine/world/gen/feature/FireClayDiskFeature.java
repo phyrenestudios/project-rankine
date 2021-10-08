@@ -22,7 +22,7 @@ public class FireClayDiskFeature extends Feature<NoFeatureConfig> {
         int height = reader.getHeight(Heightmap.Type.OCEAN_FLOOR,pos.getX(),pos.getZ());
 
         for (BlockPos blockpos : BlockPos.getAllInBoxMutable(new BlockPos(pos.getX()-4,height-4,pos.getZ()-4), new BlockPos(pos.getX()+4,height+1,pos.getZ()+4))) {
-            if (reader.getBlockState(blockpos) == Blocks.DIRT.getDefaultState() && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(4 + 0.5, 2)) {
+            if (reader.getBlockState(blockpos) == Blocks.DIRT.getDefaultState() && blockpos.distanceSq(new BlockPos(pos.getX(), height, pos.getZ())) <= Math.pow(3 + 0.5, 2)) {
                 reader.setBlockState(blockpos, RankineBlocks.FIRE_CLAY.get().getDefaultState(),2);
             }
         }

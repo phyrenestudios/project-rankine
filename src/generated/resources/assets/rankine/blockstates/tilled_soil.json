@@ -72,30 +72,6 @@
     "moisture=7,soil_type=soul_soil": {
       "model": "rankine:block/tilled_soil_soul_soil_moist"
     },
-    "moisture=0,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=1,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=2,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=3,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=4,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=5,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=6,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil"
-    },
-    "moisture=7,soil_type=end_soil": {
-      "model": "rankine:block/tilled_soil_end_soil_moist"
-    },
     "moisture=0,soil_type=loam": {
       "model": "rankine:block/tilled_soil_loam"
     },

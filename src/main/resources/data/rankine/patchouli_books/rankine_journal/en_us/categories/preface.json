@@ -1,6 +1,6 @@
 {
-  "name": "Preface",
-  "description": "A collection of the discoveries to be made, mechanics to utilize, and blocks to build with.",
+  "name": "Cheat Sheet",
+  "description": "Quick notes for all of the important things. $(br2)Project Rankine is about adding realistic content to the game but in a Minecrafty way. By extending many directions of the game, the goal is for every player to find a unique feature to enjoy.",
   "icon": "rankine:element_indexer",
   "sortnum": 0
 }

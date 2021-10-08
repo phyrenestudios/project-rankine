@@ -11,7 +11,6 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
@@ -20,7 +19,7 @@ public class DecorationGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getTopLayerFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> TopLayer = new ArrayList<>();
-        new AbstractMap.SimpleEntry<>(RankineFeatures.SNOW_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), false));
+        new AbstractMap.SimpleEntry<>(RankineFeatures.SNOW_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.EXTREME_HILLS), true));
 
         return TopLayer;
     }
@@ -30,6 +29,7 @@ public class DecorationGen {
         if (WGConfig.MISC.METEORITE_GEN.get()) {
             LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
+
         return LocalModifications;
     }
 
@@ -39,7 +39,6 @@ public class DecorationGen {
                 new AbstractMap.SimpleEntry<>(RankineFeatures.ELDERBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.SNOWBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLUEBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.CAMPHOR_BASIL_PLANT,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.JUNGLE),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.RASPBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLACKBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CRANBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP),true)),
@@ -47,6 +46,14 @@ public class DecorationGen {
                 new AbstractMap.SimpleEntry<>(RankineFeatures.PINEAPPLE_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BANANA_YUCCA_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.ALOE_PLANT,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
+
+                new AbstractMap.SimpleEntry<>(RankineFeatures.GOLDENROD_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.RED_LILY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.WHITE_LILY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.ORANGE_LILY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.JUNGLE),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.BLUE_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.JUNGLE),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.PURPLE_MORNING_GLORY_PATCH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.TAIGA),true)),
 
                 new AbstractMap.SimpleEntry<>(RankineFeatures.YELLOW_BIRCH_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_BIRCH_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST), true)),
@@ -58,13 +65,14 @@ public class DecorationGen {
                 new AbstractMap.SimpleEntry<>(RankineFeatures.DEAD_BALSAM_FIR_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SWAMP), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.MAGNOLIA_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.JUNIPER_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.SAVANNA), true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.ERYTHRINA_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.ERYTHRINA_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MESA), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.MAPLE_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.PLAINS), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLACK_WALNUT_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.RIVER), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MUSHROOM), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CINNAMON_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.SOIL_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))
+                new AbstractMap.SimpleEntry<>(RankineFeatures.SOIL_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.ANIMAL_SPAWNER, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))
 
             );
         } else {

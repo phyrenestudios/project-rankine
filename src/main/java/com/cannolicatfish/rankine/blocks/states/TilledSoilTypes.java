@@ -6,7 +6,6 @@ public enum TilledSoilTypes implements IStringSerializable {
     DIRT("dirt"),
     COARSE_DIRT("coarse_dirt"),
     SOUL_SOIL("soul_soil"),
-    END_SOIL("end_soil"),
     LOAM("loam"),
     HUMUS("humus"),
     CLAY_LOAM("clay_loam"),

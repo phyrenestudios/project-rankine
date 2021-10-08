@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shaped", "pattern": [ "xx", "xx" ], "key": { "x": { "item": "rankine:synthetic_leather" } }, "result": { "item": "minecraft:leather", "count": 1 } }

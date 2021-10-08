@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:lanthanum_monazite_block"
-  },
-  "result": "rankine:lanthanum_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

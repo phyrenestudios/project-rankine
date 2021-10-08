@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:ilmenite_block"
-  },
-  "result": "rankine:titanium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

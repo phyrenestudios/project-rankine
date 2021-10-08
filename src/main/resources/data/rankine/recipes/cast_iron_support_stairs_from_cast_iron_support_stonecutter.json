@@ -1,8 +1,0 @@
-{
-      "type": "minecraft:stonecutting",
-      "ingredient": {
-          "item": "rankine:cast_iron_support"
-      },
-      "result": "rankine:cast_iron_support_stairs",
-      "count": 1
-    }

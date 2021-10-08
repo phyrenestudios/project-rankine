@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:celestine_block"
-  },
-  "result": "rankine:strontium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

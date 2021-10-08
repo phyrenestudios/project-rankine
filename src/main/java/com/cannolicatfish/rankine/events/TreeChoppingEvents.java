@@ -71,7 +71,7 @@ public class TreeChoppingEvents {
         BlockState state = worldIn.getBlockState(pos);
         PlayerEntity player = event.getPlayer();
 
-        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().isIn(RankineTags.Items.TREE_CHOPPERS) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Set<BlockPos> logs = new HashSet<>();
             List<BlockPos> leaves = new ArrayList<>();
@@ -85,15 +85,15 @@ public class TreeChoppingEvents {
                     checkedBlocks.add(cp);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                         BlockState target = worldIn.getBlockState(b.toImmutable());
-                        if (worldIn.getBlockState(cp).isIn(RankineTags.Blocks.TREE_LOGS) && target.isIn(RankineTags.Blocks.TREE_LOGS)) {
+                        if (target.isIn(RankineTags.Blocks.TREE_LOGS)) {
                             toCheck.add(b.toImmutable());
                             logs.add(b.toImmutable());
                         } else if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
                             if (target.getBlock() instanceof LeavesBlock) {
                                 if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
                                     for (BlockPos log : logs) {
-                                        if (log.distanceSq(b) <= 10) {
-                                            toCheck.add(b.toImmutable());
+                                        if (log.distanceSq(b) <= 8) {
+                                            //toCheck.add(b.toImmutable());
                                             leaves.add(b.toImmutable());
                                             alive = true;
                                         }
@@ -102,7 +102,7 @@ public class TreeChoppingEvents {
                             } else {
                                 for (BlockPos log : logs) {
                                     if (log.distanceSq(b) <= 10) {
-                                        toCheck.add(b.toImmutable());
+                                        //toCheck.add(b.toImmutable());
                                         leaves.add(b.toImmutable());
                                         alive = true;
                                     }
@@ -125,15 +125,16 @@ public class TreeChoppingEvents {
                     }
 
                 }
+                if (worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
+                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
+                }
                 for (BlockPos b : leaves) {
                     worldIn.destroyBlock(b, true);
                     //worldIn.getBlockState(b).randomTick(worldIn, b, worldIn.getRandom());
                     //worldIn.getPendingBlockTicks().scheduleTick(b,worldIn.getBlockState(b).getBlock(),1);
                 }
                 //worldIn.playSound(player, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                if (worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
-                }
+
             }
 
             if (state.getBlockHardness(worldIn, pos) != 0.0F) {

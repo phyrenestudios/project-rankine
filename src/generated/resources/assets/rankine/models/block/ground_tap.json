@@ -1,3 +1,6 @@
 {
-  "parent": "rankine:block/ground_tap"
+  "parent": "rankine:block/template_ground_tap",
+  "textures": {
+    "side": "rankine:block/metal_pipe"
+  }
 }

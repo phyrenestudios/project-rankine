@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "rankine:alloy_plate",
+      "alloyComp": "100Ti",
+      "name": "Titanium Plate"
+    }
+  },
+  "result": {
+    "item": "rankine:titanium_sheetmetal",
+    "count": 8
+  }
+}

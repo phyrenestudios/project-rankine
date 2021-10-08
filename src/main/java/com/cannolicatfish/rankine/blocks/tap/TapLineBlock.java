@@ -111,11 +111,11 @@ public class TapLineBlock extends Block {
         Block block3 = blockReader.getBlockState(pos.east()).getBlock();
         Block block4 = blockReader.getBlockState(pos.south()).getBlock();
         Block block5 = blockReader.getBlockState(pos.west()).getBlock();
-        return this.getDefaultState().with(DOWN, block == this)
-                .with(NORTH, block2 == this || block2 == RankineBlocks.TAP_BARREL.get())
-                .with(EAST, block3 == this || block3 == RankineBlocks.TAP_BARREL.get())
-                .with(SOUTH, block4 == this || block4 == RankineBlocks.TAP_BARREL.get())
-                .with(WEST, block5 == this || block5 == RankineBlocks.TAP_BARREL.get())
+        return this.getDefaultState().with(DOWN, block == this || block == RankineBlocks.FLOOD_GATE.get())
+                .with(NORTH, block2 == this || block2 == RankineBlocks.FLOOD_GATE.get())
+                .with(EAST, block3 == this || block3 == RankineBlocks.FLOOD_GATE.get())
+                .with(SOUTH, block4 == this || block4 == RankineBlocks.FLOOD_GATE.get())
+                .with(WEST, block5 == this || block5 == RankineBlocks.FLOOD_GATE.get())
                 .with(UP, block1 == this || (block1 == RankineBlocks.TREE_TAP.get() && bs1 != RankineBlocks.TREE_TAP.get().getDefaultState().with(TreeTapBlock.FLUID, TreeTapFluids.NONE)));
     }
 
@@ -127,12 +127,10 @@ public class TapLineBlock extends Block {
             boolean flag = false;
             Block fsb = facingState.getBlock();
             switch (facing) {
-                case DOWN:
-                    flag = fsb == this;
-                    break;
                 case UP:
                     flag = fsb == this || (fsb == RankineBlocks.TREE_TAP.get() && facingState != RankineBlocks.TREE_TAP.get().getDefaultState().with(TreeTapBlock.FLUID, TreeTapFluids.NONE));
                     break;
+                case DOWN:
                 case NORTH:
                 case SOUTH:
                 case EAST:

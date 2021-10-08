@@ -18,7 +18,9 @@ public class FluidDrainTile extends TileEntity implements ITickableTileEntity {
         super(FLUID_DRAIN_TILE);
     }
 
+
     public void tick() {
+        /*
         World worldIn = this.getWorld();
         BlockState state = worldIn.getBlockState(pos.up());
         if (worldIn.isAirBlock(pos.down()) && state.getBlock().matchesBlock(RankineBlocks.TAP_BARREL.get())) {
@@ -37,6 +39,8 @@ public class FluidDrainTile extends TileEntity implements ITickableTileEntity {
                 worldIn.setBlockState(pos.up(), RankineBlocks.TAP_BARREL.get().getDefaultState().with(TapBarrelBlock.FLUID, fluid).with(TapBarrelBlock.LEVEL, i-1), 2);
             }
         }
+
+         */
     }
 
 }

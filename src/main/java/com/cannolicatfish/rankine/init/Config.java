@@ -93,6 +93,8 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
         public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
+        public final ForgeConfigSpec.DoubleValue SAPLING_GROW_CHANCE;
+        public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
@@ -118,9 +120,9 @@ public class Config {
 
                 b.comment("Miscellaneous").push("misc");
                     PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
-                            .defineInRange("pathCreationTime", 40, 0, 600);
+                            .defineInRange("pathCreationTime", 90, 0, 600);
                     PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
-                            .define("pathCreation",false);
+                            .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
                             .define("colorWorld",true);
                     STRIPPABLES_CINNAMON = b.comment("If enabled, cinnamon will drop from cinnamon trees when stripped.")
@@ -167,6 +169,10 @@ public class Config {
                             .defineInRange("flintDropChance", 0.15D, 0.00D, 1.00D);
                     FORAGING_CHANCE = b.comment("Chance for a dirt block to drop a vegetable/seed")
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
+                    GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
+                            .defineInRange("grassGrowChance", 0.03D, 0.00D, 1.00D);
+                    SAPLING_GROW_CHANCE = b.comment("Chance for a grass block to grow a sapling on a random tick")
+                            .defineInRange("saplingGrowChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
                             .define("igneousGen",true);
                     METAMORPHIC_STONE_GEN = b.comment("Change the output of a stone generator from stone to metamorphic rocks.")
@@ -900,7 +906,7 @@ public class Config {
         public final ForgeConfigSpec.IntValue ALNICO_MAGNET_RANGE;
         public final ForgeConfigSpec.IntValue RARE_MAGNET_RANGE;
         public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
-        public final ForgeConfigSpec.BooleanValue BEEHIVE_OVEN_SKYLIGHT;
+        public final ForgeConfigSpec.IntValue BEEHIVE_OVEN_SKYLIGHT;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
 
@@ -947,7 +953,7 @@ public class Config {
                 ELECTROMAGNET_MATERIAL_REQ = b.comment("Require the material of the block to be Material.IRON in order for the electromagnet to pull the block. If disabled, it will pick up any block as long as it is not a FluidBlock, Tile Entity, or in the rankine:magnet_banned tag (these blocks are also banned if this value is true).")
                         .define("electromagnetMaterialReq",true);
                 BEEHIVE_OVEN_SKYLIGHT = b.comment("If disabled, the beehive ovens will not require sky access.")
-                        .define("beehiveOvenSkylight",true);
+                        .defineInRange("beehiveOvenAirHeight", 16, 0, 400);
                 LASER_QUARRY_RANGE = b.comment("Max range of the laser quarry. Larger numbers may cause lag. Set to 0 to disable functionality.")
                         .defineInRange("laserQuarryRange", 31, 0, 63);
                 LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")

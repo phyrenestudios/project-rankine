@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:mossy_cobblestone"
+    },
+    {
+      "item": "rankine:pumice_soap"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cobblestone"
+  }
+}

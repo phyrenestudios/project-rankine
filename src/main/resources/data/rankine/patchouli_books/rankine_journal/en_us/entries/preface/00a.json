@@ -1,0 +1,16 @@
+{
+  "name": "External Resources",
+  "icon": "minecraft:flint",
+  "category": "preface",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": "The advancements tab and JEI are important places to look for information on progression path and details respectively. For more resources, check out the links on the following page."
+    },
+    {
+      "type": "text",
+      "text": "$(l:https://www.curseforge.com/minecraft/mc-mods/project-rankine)CurseForge Page$() $(br)General information with more links.  $(br2)$(l:https://discord.gg/Aj2DKEa9yB)Discord$() $(br)Our Discord where we and other members are active in answering questions.   $(br2)$(l:https://github.com/CannoliCatfish/project-rankine/wiki)GitHub Wiki$() $(br)Technical documentation for config changes and datapacks."
+    }
+  ]
+}

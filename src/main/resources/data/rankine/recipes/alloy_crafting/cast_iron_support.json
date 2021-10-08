@@ -1,0 +1,19 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "RR",
+    "RR"
+  ],
+  "key": {
+    "R": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/cast_iron_alloying",
+      "name": "Cast Iron Alloy Rod",
+      "color": 986895
+    }
+  },
+  "result": {
+    "item": "rankine:cast_iron_support",
+    "count": 8
+  }
+}

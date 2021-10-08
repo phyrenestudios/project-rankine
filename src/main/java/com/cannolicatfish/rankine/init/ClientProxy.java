@@ -75,6 +75,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.CRUSHING_ORES);
         addCutout(RankineLists.SPECIAL_ORES);
         addCutout(Arrays.asList(
+                RankineBlocks.FLOOD_GATE.get(),
                 RankineBlocks.LEAD_GLASS.get(),
                 RankineBlocks.BOROSILICATE_GLASS.get(),
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
@@ -137,6 +138,12 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.PURPLE_MORNING_GLORY.get(),
                 RankineBlocks.BLACK_MORNING_GLORY.get(),
                 RankineBlocks.GOLDENROD.get(),
+                RankineBlocks.SHORT_GRASS.get(),
+                RankineBlocks.STINGING_NETTLE.get(),
+                RankineBlocks.RED_CLOVER.get(),
+                RankineBlocks.CRIMSON_CLOVER.get(),
+                RankineBlocks.WHITE_CLOVER.get(),
+                RankineBlocks.YELLOW_CLOVER.get(),
 
 
 

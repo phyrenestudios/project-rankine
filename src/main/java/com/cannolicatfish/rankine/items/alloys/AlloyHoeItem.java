@@ -45,7 +45,7 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
 
-
+/*
     @Override
     public ActionResultType onItemUse(ItemUseContext context) {
         World world = context.getWorld();
@@ -72,6 +72,8 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
 
         return ActionResultType.PASS;
     }
+
+ */
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {

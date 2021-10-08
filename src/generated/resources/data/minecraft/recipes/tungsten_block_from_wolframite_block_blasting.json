@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:wolframite_block"
-  },
-  "result": "rankine:tungsten_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

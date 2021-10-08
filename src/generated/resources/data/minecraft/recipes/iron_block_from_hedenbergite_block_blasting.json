@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:hedenbergite_block"
-  },
-  "result": "minecraft:iron_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

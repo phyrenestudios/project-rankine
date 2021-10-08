@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "rankine:alloy_plate",
+      "alloyComp": "100Pb",
+      "name": "Lead Plate"
+    }
+  },
+  "result": {
+    "item": "rankine:lead_sheetmetal",
+    "count": 8
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": false,
+  "genName": true,
+  "pattern": [
+    " I ",
+    "I I",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/lead"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_plate",
+    "alloyComp": "100Pb",
+    "count": 4
+  }
+}

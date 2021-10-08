@@ -1,0 +1,25 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "genName": true,
+  "inheritRecipe": "rankine:alloying/steel_alloying",
+  "color": 3291714,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/steel",
+      "alloyRecipe": "rankine:alloying/steel_alloying"
+    },
+    "S": {
+      "tag": "forge:solder"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_wire",
+    "count": 8
+  }
+}

@@ -41,8 +41,8 @@ public class SnowyPeaksFeature extends Feature<NoFeatureConfig> {
                 for (int y = 110; y <= endY; ++y) {
                     BlockPos TARGET_POS = new BlockPos(x,y,z);
                     if (reader.getBlockState(TARGET_POS).isIn(Tags.Blocks.STONE) || reader.getBlockState(TARGET_POS).isIn(Tags.Blocks.DIRT)) {
-                        if (reader.getBiome(pos).getTemperature()<0.15) {
-                            reader.setBlockState(TARGET_POS, Blocks.SNOW_BLOCK.getDefaultState(), 19);
+                        if (reader.getBiome(pos).getTemperature(pos) < 0.15) {
+                            reader.setBlockState(TARGET_POS, Blocks.SNOW_BLOCK.getDefaultState(), 2);
                         }
                     }
 

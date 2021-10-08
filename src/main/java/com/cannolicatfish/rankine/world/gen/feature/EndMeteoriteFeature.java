@@ -10,6 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
+import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -23,6 +24,41 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+
+
+        if (rand.nextFloat() < 0.1) {
+            IChunk chunk = reader.getChunk(pos);
+            int randX = chunk.getPos().getXStart() + rand.nextInt(16);
+            int randY = rand.nextInt(70) + 20;
+            int randZ = chunk.getPos().getZEnd() + rand.nextInt(16);
+            BlockPos POS = new BlockPos(randX, randY, randZ);
+
+            int I1 = rand.nextInt(5)+4;
+            int I2 = rand.nextInt(5)+4;
+            int I3 = rand.nextInt(5)+4;
+
+            for (BlockPos blockpos1 : BlockPos.getProximitySortedBoxPositionsIterator(POS,I1+1,I2+1,I3+1)) {
+                if (Math.pow(blockpos1.getX()/I1,2) + Math.pow(blockpos1.getY()/I2,2) + Math.pow(blockpos1.getZ()/I3,2) <= 5) {
+                    break;
+                }
+
+                BlockState bs = reader.getBlockState(blockpos1);
+                //if (bs.matchesBlock(block)) {
+                this.setBlockState(reader, blockpos1, RankineBlocks.METEORITE.get().getDefaultState());
+                //lag = true;
+                //}
+
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+
+/*
 
         BlockState ORE;
         float CHANCE1 = rand.nextFloat();
@@ -73,9 +109,11 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
                 }
             }
         }
-        return true;
-    }
 
+ */
+
+
+    /*
     private void buildMeteor(ISeedReader reader, Random rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
         int j = WGConfig.MISC.METEORITE_SIZE.get() + rand.nextInt(2);
         int k = WGConfig.MISC.METEORITE_SIZE.get() + rand.nextInt(2);
@@ -93,5 +131,10 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
             }
         }
     }
+
+     */
+
+
+
 
 }

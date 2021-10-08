@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "VVV",
+    "R R"
+  ],
+  "key": {
+    "V": {
+      "item": "rankine:vulcanized_rubber"
+    },
+    "R": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/cast_iron_alloying",
+      "name": "Cast Iron Alloy Rod",
+      "color": 986895
+    }
+  },
+  "result": {
+    "item": "rankine:trampoline",
+    "count": 3
+  }
+}

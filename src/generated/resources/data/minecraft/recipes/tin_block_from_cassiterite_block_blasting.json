@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:cassiterite_block"
-  },
-  "result": "rankine:tin_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

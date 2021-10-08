@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "rankine:alloy_plate",
+      "alloyRecipe": "rankine:alloying/invar_alloying",
+      "name": "Invar Plate"
+    }
+  },
+  "result": {
+    "item": "rankine:invar_sheetmetal",
+    "count": 8
+  }
+}

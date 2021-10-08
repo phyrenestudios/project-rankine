@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "genName": true,
+  "inheritRecipe": "rankine:alloying/cast_iron_alloying",
+  "color": 986895,
+  "pattern": [
+    "  I",
+    " I ",
+    "I  "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/cast_iron"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_rod",
+    "count": 4
+  }
+}

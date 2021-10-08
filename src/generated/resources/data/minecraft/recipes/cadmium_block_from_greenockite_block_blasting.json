@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:greenockite_block"
-  },
-  "result": "rankine:cadmium_block",
-  "experience": 5.0,
-  "cookingtime": 800
-}

@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "rankine:alloy_plate",
+      "alloyRecipe": "rankine:alloying/bronze_alloying",
+      "name": "Bronze Plate"
+    }
+  },
+  "result": {
+    "item": "rankine:bronze_sheetmetal",
+    "count": 8
+  }
+}

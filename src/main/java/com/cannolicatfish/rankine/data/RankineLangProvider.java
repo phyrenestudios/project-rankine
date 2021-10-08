@@ -47,7 +47,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.STONE_PRESSURE_PLATE,
                 RankineLists.STONE_BRICKS_PRESSURE_PLATE,
                 RankineLists.STONE_BUTTON,
-                RankineLists.STONE_PILLARS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_SLAB,
                 RankineLists.BRICKS_STAIRS,
@@ -103,11 +102,108 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.CRUSHING_ORES,
                 RankineLists.SPECIAL_ORES,
                 RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            add(blk, parseLangName(blk.getRegistryName().getPath()));
+
+            if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
+                add(blk, "Salt Block (NaCl)");
+            } else if (blk.matchesBlock(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
+                add(blk, "Salt Block (CaCl2)");
+            } else {
+                add(blk, parseLangName(blk.getRegistryName().getPath()));
+            }
         }
 
         // Misc Blocks
         for (Block blk : Arrays.asList(
+                RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.SODIUM_VAPOR_LAMP.get(),
+                RankineBlocks.ALLOY_FURNACE.get(),
+                RankineBlocks.INDUCTION_FURNACE.get(),
+                RankineBlocks.CRUCIBLE_BLOCK.get(),
+                RankineBlocks.BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.MATERIAL_TESTING_TABLE.get(),
+                RankineBlocks.TEMPLATE_TABLE.get(),
+                RankineBlocks.PISTON_CRUSHER.get(),
+                RankineBlocks.BOTANIST_STATION.get(),
+                RankineBlocks.DIAMOND_ANVIL_CELL.get(),
+                RankineBlocks.GYRATORY_CRUSHER.get(),
+                RankineBlocks.EVAPORATION_TOWER.get(),
+                RankineBlocks.LASER_PYLON_BASE.get(),
+                RankineBlocks.LASER_PYLON_TOP.get(),
+                RankineBlocks.LASER_QUARRY.get(),
+                RankineBlocks.REACTION_CHAMBER_CORE.get(),
+                RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
+                RankineBlocks.ALNICO_ELECTROMAGNET.get(),
+                RankineBlocks.TRAMPOLINE.get(),
+                RankineBlocks.RANKINE_BOX.get(),
+                RankineBlocks.CHARCOAL_PIT.get(),
+                
+                
+                RankineBlocks.CAST_IRON_BARS.get(),
+                RankineBlocks.SHORT_GRASS.get(),
+                RankineBlocks.STINGING_NETTLE.get(),
+                RankineBlocks.RED_CLOVER.get(),
+                RankineBlocks.CRIMSON_CLOVER.get(),
+                RankineBlocks.WHITE_CLOVER.get(),
+                RankineBlocks.YELLOW_CLOVER.get(),
+
+                RankineBlocks.SOD_BLOCK.get(),
+                RankineBlocks.SOD_BLOCK_WALL.get(),
+                RankineBlocks.SOD_BLOCK_STAIRS.get(),
+                RankineBlocks.SOD_BLOCK_SLAB.get(),
+                RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get(),
+                RankineBlocks.ROMAN_CONCRETE_BRICKS.get(),
+                RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get(),
+                RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get(),
+                RankineBlocks.ROMAN_CONCRETE_BRICKS_WALL.get(),
+                RankineBlocks.ROMAN_CONCRETE_BRICKS_VERTICAL_SLAB.get(),
+                RankineBlocks.POLISHED_ROMAN_CONCRETE.get(),
+                RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get(),
+                RankineBlocks.POLISHED_ROMAN_CONCRETE_WALL.get(),
+                RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get(),
+                RankineBlocks.POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB.get(),
+                RankineBlocks.ROMAN_CONCRETE.get(),
+                RankineBlocks.ROMAN_CONCRETE_WALL.get(),
+                RankineBlocks.ROMAN_CONCRETE_STAIRS.get(),
+                RankineBlocks.ROMAN_CONCRETE_SLAB.get(),
+                RankineBlocks.ROMAN_CONCRETE_VERTICAL_SLAB.get(),
+                RankineBlocks.CHECKERED_MARBLE.get(),
+                RankineBlocks.CHECKERED_MARBLE_WALL.get(),
+                RankineBlocks.CHECKERED_MARBLE_STAIRS.get(),
+                RankineBlocks.CHECKERED_MARBLE_SLAB.get(),
+                RankineBlocks.CHECKERED_MARBLE_VERTICAL_SLAB.get(),
+                RankineBlocks.SKARN.get(),
+                RankineBlocks.SKARN_WALL.get(),
+                RankineBlocks.SKARN_STAIRS.get(),
+                RankineBlocks.SKARN_SLAB.get(),
+                RankineBlocks.SKARN_VERTICAL_SLAB.get(),
+                RankineBlocks.BRECCIA.get(),
+                RankineBlocks.BRECCIA_WALL.get(),
+                RankineBlocks.BRECCIA_STAIRS.get(),
+                RankineBlocks.BRECCIA_SLAB.get(),
+                RankineBlocks.BRECCIA_VERTICAL_SLAB.get(),
+                RankineBlocks.FIBER_BLOCK_WALL.get(),
+                RankineBlocks.FIBER_BLOCK_STAIRS.get(),
+                RankineBlocks.FIBER_BLOCK_SLAB.get(),
+                RankineBlocks.FIBER_BLOCK_VERTICAL_SLAB.get(),
+                RankineBlocks.CAST_IRON_SUPPORT.get(),
+                RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
+                RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
+                RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
+                RankineBlocks.CEMENT.get(),
+                RankineBlocks.CEMENT_WALL.get(),
+                RankineBlocks.CEMENT_STAIRS.get(),
+                RankineBlocks.CEMENT_SLAB.get(),
+                RankineBlocks.CEMENT_VERTICAL_SLAB.get(),
+                RankineBlocks.CONCRETE.get(),
+                RankineBlocks.CONCRETE_WALL.get(),
+                RankineBlocks.CONCRETE_STAIRS.get(),
+                RankineBlocks.CONCRETE_SLAB.get(),
+                RankineBlocks.CONCRETE_VERTICAL_SLAB.get(),
+                
+                
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
                 RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.LIGHT_GRAVEL.get(),
@@ -140,6 +236,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.BLACK_GOLD_TOOLS,
                 RankineLists.PURPLE_GOLD_TOOLS,
                 RankineLists.AMALGAM_TOOLS,
+                RankineLists.ENDER_AMALGAM_TOOLS,
                 RankineLists.TITANIUM_ALLOY_TOOLS,
                 RankineLists.ELEMENT_INGOTS,
                 RankineLists.ELEMENT_NUGGETS,
@@ -149,7 +246,14 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.MINERAL_ITEMS,
                 RankineLists.JAMS,
                 RankineLists.GRAINS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            add(item, parseLangName(item.getRegistryName().getPath()));
+
+            if (item == RankineItems.SODIUM_CHLORIDE.get()) {
+                add(item, "Salt (NaCl)");
+            } else if (item == RankineItems.CALCIUM_CHLORIDE.get()) {
+                add(item, "Salt (CaCl2)");
+            } else {
+                add(item, parseLangName(item.getRegistryName().getPath()));
+            }
         }
 
         for (Item item : Arrays.asList(
@@ -243,8 +347,6 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.HIGH_REFRACTORY_BRICK.get(),
             RankineItems.ULTRA_HIGH_REFRACTORY_BRICK.get(),
             RankineItems.TAP_LINE.get(),
-            RankineItems.GROUND_TAP.get(),
-            RankineItems.METAL_PIPE.get(),
             RankineItems.TREE_TAP.get(),
             RankineItems.LODESTONE.get(),
             RankineItems.ELEMENT.get(),
@@ -317,8 +419,40 @@ public class RankineLangProvider extends LanguageProvider {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
 
+        //Alloy Plates
+        add("item.rankine.alloy_plate_bronze", "Bronze Plate");
+        add("item.rankine.alloy_plate_brass", "Brass Plate");
+        add("item.rankine.alloy_plate_invar", "Invar Plate");
+        add("item.rankine.alloy_plate_steel", "Steel Plate");
+        add("item.rankine.alloy_plate_stainless_steel", "Stainless Steel Plate");
+        add("item.rankine.alloy_plate_cupronickel", "Cupronickel Plate");
+        add("item.rankine.alloy_plate_aluminum", "Aluminum Plate");
+        add("item.rankine.alloy_plate_copper", "Copper Plate");
+        add("item.rankine.alloy_plate_bismuth", "Bismuth Plate");
+        add("item.rankine.alloy_plate_lead", "Lead Plate");
+        add("item.rankine.alloy_plate_iron", "Iron Plate");
+        add("item.rankine.alloy_plate_silver", "Silver Plate");
+        add("item.rankine.alloy_plate_gold", "Gold Plate");
+        add("item.rankine.alloy_plate_platinum", "Platinum Plate");
+        add("item.rankine.alloy_plate_nickel", "Nickel Plate");
+        add("item.rankine.alloy_plate_titanium", "Titanium Plate");
+        add("item.rankine.alloy_plate_tin", "Tin Plate");
+        add("item.rankine.alloy_plate_tungsten", "Tungsten Plate");
+        //Alloy Rods
+        add("item.rankine.alloy_rod_steel", "Steel Rpd");
+        add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rpd");
+        //Alloy Wires
+        add("item.rankine.alloy_wire_cupronickel", "Cupronickel Wire");
+        add("item.rankine.alloy_wire_steel", "Steel Wire");
+
+        //Death Messages
         add("death.attack.suffocating", "%1$s suffocated in a gas cloud");
         add("death.attack.suffocating.player", "%1$s suffocated in a gas cloud whilst trying to escape %2$s");
+
+
+
+
+
 
         add("item.rankine.mantle_golem_egg", "Garnet Mantle Golem Spawn Egg");
         add("entity.rankine.mantle_golem", "Garnet Mantle Golem");
@@ -568,8 +702,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.make_laser_quarry.description", "Construct a Laser Quarry to mine out large chunks of the world");
         add("rankine.advancements.story.make_thorium_arrow.title", "Sounds of Thunder");
         add("rankine.advancements.story.make_thorium_arrow.description", "Make Thorium Arrows to control the power of lightning with your bow");
-        add("rankine.advancements.story.get_pendant_template.title", "Secret Plan");
-        add("rankine.advancements.story.get_pendant_template.description", "Obtain a pendant template");
+        add("rankine.advancements.story.get_pendant_template_title", "Secret Plan");
+        add("rankine.advancements.story.get_pendant_template_description", "Obtain a pendant template");
         add("rankine.advancements.story.make_pendants.title", "Hidden Power");
         add("rankine.advancements.story.make_pendants.description", "Make all of the 6 pendants");
         add("rankine.advancements.story.support.title", "We support Patchouli and JEI!");

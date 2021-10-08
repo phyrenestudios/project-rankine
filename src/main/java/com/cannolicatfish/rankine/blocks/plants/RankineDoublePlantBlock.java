@@ -69,8 +69,8 @@ public class RankineDoublePlantBlock extends BushBlock implements IGrowable {
     }
 
     public void placeAt(IWorld worldIn, BlockPos pos, int flags) {
-        worldIn.setBlockState(pos, this.getDefaultState().with(SECTION, DoubleBlockHalf.LOWER), flags);
-        worldIn.setBlockState(pos.up(), this.getDefaultState().with(SECTION, DoubleBlockHalf.UPPER), flags);
+        worldIn.setBlockState(pos, this.getDefaultState().with(AGE, 3).with(SECTION, DoubleBlockHalf.LOWER), flags);
+        worldIn.setBlockState(pos.up(), this.getDefaultState().with(AGE, 3).with(SECTION, DoubleBlockHalf.UPPER), flags);
     }
 
     @Override
