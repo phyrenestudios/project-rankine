@@ -58,9 +58,6 @@ public class GasVentBlock extends Block {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
-            worldIn.setBlockState(pos.up(), RankineBlocks.FLUORINE_GAS_BLOCK.get().getDefaultState());
-        }
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
     }
 

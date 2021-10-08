@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.blocks.rankinebox;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.TransmuterItem;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -111,7 +110,7 @@ public class RankineBoxContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (stack.getItem() instanceof PowerCellItem) {
+                } else if (stack.getItem() instanceof BatteryItem) {
                     if (!this.mergeItemStack(stack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }

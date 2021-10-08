@@ -2,11 +2,8 @@ package com.cannolicatfish.rankine.blocks.alloyfurnace;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
-import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,7 +13,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
@@ -76,11 +72,11 @@ public class AlloyFurnaceContainer extends Container {
 
     @OnlyIn(Dist.CLIENT)
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
-        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
+        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItemOld) {
             ItemStack template = furnaceInventory.getStackInSlot(7);
-            boolean correctInputs = (AlloyTemplateItem.getTier(template) & 1) == 1;
+            boolean correctInputs = (AlloyTemplateItemOld.getTier(template) & 1) == 1;
             if (correctInputs) {
-                for (ItemStack input : AlloyTemplateItem.getInputStacks(template))
+                for (ItemStack input : AlloyTemplateItemOld.getInputStacks(template))
                 {
                     Item tempItem = input.getItem();
                     int count = input.getCount();
@@ -89,7 +85,7 @@ public class AlloyFurnaceContainer extends Container {
                     }
                 }
             }
-            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItem.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItem.getOutputAlloyData(template)},
+            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItemOld.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItemOld.getOutputAlloyData(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
         String ret = RankineRecipes.generateAlloyString(furnaceInventory);

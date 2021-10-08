@@ -103,9 +103,9 @@ public interface IAlloyTool extends IAlloyItem {
             }
         }
 
-        int hl = Math.max(hlmax - hlmin,0);
-        float dmg = dmgmax - dmgmin;
-        float as = asmax - asmin;
+        int hl = Math.max(hlmax + hlmin,0);
+        float dmg = dmgmax + dmgmin;
+        float as = asmax + asmin;
         dur = Math.max(1,dur);
         ench = Math.max(0,ench);
         cr = Math.min(Math.max(0,cr),1);

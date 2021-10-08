@@ -306,13 +306,14 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.MAPLE_SAP_BUCKET.get(),
             RankineItems.JUGLONE_BUCKET.get(),
             RankineItems.LIQUID_MERCURY_BUCKET.get(),
+            RankineItems.SULFURIC_ACID_BUCKET.get(),
             RankineItems.COIN.get(),
-            RankineItems.POWER_CELL_1.get(),
-            RankineItems.POWER_CELL_2.get(),
-            RankineItems.POWER_CELL_3.get(),
-            RankineItems.POWER_CELL_4.get(),
-            RankineItems.POWER_CELL_5.get(),
-            RankineItems.POWER_CELL_6.get())) {
+            RankineItems.MAGNESIUM_BATTERY.get(),
+            RankineItems.LEAD_ACID_BATTERY.get(),
+            RankineItems.VANADIUM_REDOX_BATTERY.get(),
+            RankineItems.ZINC_BROMINE_BATTERY.get(),
+            RankineItems.SODIUM_SULFUR_BATTERY.get(),
+            RankineItems.LITHIUM_ION_BATTERY.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
 

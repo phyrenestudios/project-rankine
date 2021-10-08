@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "rankine:item/power_cell_3"
+    "layer0": "rankine:item/sodium_sulfur_battery"
   }
 }

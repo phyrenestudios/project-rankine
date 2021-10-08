@@ -195,13 +195,14 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.MAPLE_SAP_BUCKET.get());
         basicItem(RankineItems.JUGLONE_BUCKET.get());
         basicItem(RankineItems.LIQUID_MERCURY_BUCKET.get());
+        basicItem(RankineItems.SULFURIC_ACID_BUCKET.get());
         basicItem(RankineItems.COIN.get());
-        basicItem(RankineItems.POWER_CELL_1.get());
-        basicItem(RankineItems.POWER_CELL_2.get());
-        basicItem(RankineItems.POWER_CELL_3.get());
-        basicItem(RankineItems.POWER_CELL_4.get());
-        basicItem(RankineItems.POWER_CELL_5.get());
-        basicItem(RankineItems.POWER_CELL_6.get());
+        basicItem(RankineItems.MAGNESIUM_BATTERY.get());
+        basicItem(RankineItems.LEAD_ACID_BATTERY.get());
+        basicItem(RankineItems.VANADIUM_REDOX_BATTERY.get());
+        basicItem(RankineItems.ZINC_BROMINE_BATTERY.get());
+        basicItem(RankineItems.SODIUM_SULFUR_BATTERY.get());
+        basicItem(RankineItems.LITHIUM_ION_BATTERY.get());
 
 
 

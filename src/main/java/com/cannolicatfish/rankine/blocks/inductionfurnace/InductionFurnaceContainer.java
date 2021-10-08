@@ -4,8 +4,8 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
-import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
@@ -76,14 +76,14 @@ public class InductionFurnaceContainer extends Container {
     @OnlyIn(Dist.CLIENT)
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
 
-        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItem) {
+        if (furnaceInventory.getStackInSlot(7).getItem() instanceof AlloyTemplateItemOld) {
             ItemStack template = furnaceInventory.getStackInSlot(7);
             boolean correctInputs = true;
-            if ((AlloyTemplateItem.getTier(template) & 2) != 2) {
+            if ((AlloyTemplateItemOld.getTier(template) & 2) != 2) {
                 correctInputs = false;
             }
             if (correctInputs) {
-                for (ItemStack input : AlloyTemplateItem.getInputStacks(template))
+                for (ItemStack input : AlloyTemplateItemOld.getInputStacks(template))
                 {
                     Item tempItem = input.getItem();
                     int count = input.getCount();
@@ -92,7 +92,7 @@ public class InductionFurnaceContainer extends Container {
                     }
                 }
             }
-            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItem.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItem.getOutputAlloyData(template)},
+            return new AbstractMap.SimpleEntry<>(new String[]{"Template: " + new TranslationTextComponent(AlloyTemplateItemOld.getResult(template).getItem().getTranslationKey()).getString(), AlloyTemplateItemOld.getOutputAlloyData(template)},
                     correctInputs ? 0x55FF55 : 0xFF5555);
         }
         AlloyingRecipe recipe = playerEntity.getEntityWorld().getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, furnaceInventory, playerEntity.getEntityWorld()).orElse(null);
@@ -155,7 +155,7 @@ public class InductionFurnaceContainer extends Container {
                     if (!this.mergeItemStack(stack, 0, 6, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (stack.getItem() instanceof PowerCellItem) {
+                } else if (stack.getItem() instanceof BatteryItem) {
                     if (!this.mergeItemStack(stack, 6, 7, false)) {
                         return ItemStack.EMPTY;
                     }

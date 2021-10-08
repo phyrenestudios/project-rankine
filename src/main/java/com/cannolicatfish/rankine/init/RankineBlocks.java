@@ -1902,6 +1902,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LATEX = REGISTRY.register("latex", () -> new FlowingFluidBlock(()-> RankineFluids.LATEX,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> RESIN = REGISTRY.register("resin", () -> new FlowingFluidBlock(()-> RankineFluids.RESIN,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> JUGLONE = REGISTRY.register("juglone", () -> new FlowingFluidBlock(()-> RankineFluids.JUGLONE,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> SULFURIC_ACID = REGISTRY.register("sulfuric_acid", () -> new FlowingFluidBlock(()-> RankineFluids.SULFURIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
     //ELEMENT BLOCKS
     public static final RegistryObject<Block> HYDROGEN_BLOCK = REGISTRY.register("hydrogen_block", () -> new Block(DEF_METAL_BLOCK));

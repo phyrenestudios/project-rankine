@@ -1,10 +1,50 @@
 {
-          "type": "rankine:element",
-          "name": "vanadium",
-          "symbol": "V",
-          "color": 16777215,
-          "atomic": 23,
-          "potential": 0,
-          "items": ["T#forge:nuggets/vanadium","T#forge:ingots/vanadium","T#forge:storage_blocks/vanadium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "vanadium",
+  "symbol": "V",
+  "color": 13416389,
+  "atomic": 23,
+  "potential": -1.13,
+  "items": ["T#forge:nuggets/vanadium","T#forge:ingots/vanadium","T#forge:storage_blocks/vanadium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [1.6],
+    "b": [16],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.2],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [1]
+  },
+  "mininglevel": {
+    "breaks": [19,89,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0125],
+    "b": [-0.25],
+    "modifiers": ["NONE"],
+    "limit": [0.1]
+  },
+  "toughness": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.005],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.05]
+  }
+}

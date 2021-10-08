@@ -43,4 +43,10 @@ public class RankineFluids {
     @ObjectHolder("rankine:flowing_juglone")
     public static FlowingFluid FLOWING_JUGLONE;
 
+    @ObjectHolder("rankine:sulfuric_acid")
+    public static FlowingFluid SULFURIC_ACID;
+
+    @ObjectHolder("rankine:flowing_sulfuric_acid")
+    public static FlowingFluid FLOWING_SULFURIC_ACID;
+
 }

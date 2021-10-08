@@ -651,7 +651,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.FISHING_RODS).add(Items.FISHING_ROD);
         getOrCreateBuilder(RankineTags.Items.SHIELDS).add(Items.SHIELD);
 
-        getOrCreateBuilder(RankineTags.Items.MTT_DURABILITY_TOOLS).add(RankineItems.HARDNESS_TESTER.get());
+        getOrCreateBuilder(RankineTags.Items.MTT_DURABILITY_TOOLS).add(Items.PISTON);
         getOrCreateBuilder(RankineTags.Items.MTT_MINING_SPEED_TOOLS).add(RankineItems.SPEEDOMETER.get());
         getOrCreateBuilder(RankineTags.Items.MTT_HARVEST_LEVEL_TOOLS).add(RankineItems.HARDNESS_TESTER.get());
         getOrCreateBuilder(RankineTags.Items.MTT_ENCHANTABILITY_TOOLS).add(Items.LAPIS_LAZULI);
