@@ -14,6 +14,8 @@
     "rankine:eastern_hemlock_vertical_slab",
     "rankine:bamboo_vertical_slab",
     "rankine:bamboo_culms_vertical_slab",
-    "rankine:maple_vertical_slab"
+    "rankine:maple_vertical_slab",
+    "rankine:black_birch_vertical_slab",
+    "rankine:yellow_birch_vertical_slab"
   ]
 }

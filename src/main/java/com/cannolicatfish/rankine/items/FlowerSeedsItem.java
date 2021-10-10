@@ -36,6 +36,8 @@ public class FlowerSeedsItem extends Item {
             if (!worldIn.isRemote) {
                 worldIn.setBlockState(pos.up(), flower.getDefaultState());
                 worldIn.playSound(context.getPlayer(), pos, SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 0.7F, worldIn.getRandom().nextFloat() * 0.4F + 0.5F);
+                context.getItem().shrink(1);
+                return ActionResultType.SUCCESS;
             }
         }
 

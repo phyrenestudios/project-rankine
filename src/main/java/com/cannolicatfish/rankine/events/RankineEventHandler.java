@@ -1987,7 +1987,7 @@ public class RankineEventHandler {
                 strip = new ItemStack(RankineItems.CORK.get(), 1);
             } else if (Config.GENERAL.STRIPPABLES_CINNAMON.get() && b == RankineBlocks.CINNAMON_LOG.get()) {
                 strip = new ItemStack(RankineItems.CINNAMON.get(), 1);
-            } else if (Config.GENERAL.STRIPPABLES_STICKS.get() && b.getTags().contains(new ResourceLocation("minecraft:logs"))) {
+            } else if (Config.GENERAL.STRIPPABLES_STICKS.get() && b.isIn(BlockTags.LOGS) && !b.getRegistryName().toString().contains("stripped")) {
                 if (world.getRandom().nextFloat() < 0.3) {
                     strip = new ItemStack(Items.STICK, 1);
                 }

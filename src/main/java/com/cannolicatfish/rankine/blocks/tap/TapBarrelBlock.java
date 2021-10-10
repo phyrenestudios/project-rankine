@@ -53,7 +53,7 @@ public class TapBarrelBlock extends Block {
                     bucket = RankineItems.SAP_BUCKET.get();
                     break;
                 case MAPLE_SAP:
-                    bucket = RankineItems.SAP_BUCKET.get();
+                    bucket = RankineItems.MAPLE_SAP_BUCKET.get();
                     break;
                 case RESIN:
                     bucket = RankineItems.RESIN_BUCKET.get();
@@ -82,10 +82,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.WATER).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.WATER)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
@@ -94,10 +98,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.LAVA).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.LAVA)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
@@ -106,10 +114,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.SAP).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.SAP)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
@@ -118,10 +130,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.MAPLE_SAP).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.MAPLE_SAP)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
@@ -130,10 +146,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.RESIN).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.RESIN)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
@@ -142,10 +162,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.LATEX).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.LATEX)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
@@ -154,10 +178,14 @@ public class TapBarrelBlock extends Block {
             if (state.get(LEVEL) == 0) {
                 worldIn.setBlockState(pos, state.with(TapBarrelBlock.FLUID, TapBarrelFluids.JUGLONE).with(LEVEL, 1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else if (state.get(LEVEL) < 6 && state.get(FLUID).equals(TapBarrelFluids.JUGLONE)) {
                 worldIn.setBlockState(pos, state.with(LEVEL, state.get(LEVEL)+1),3);
                 worldIn.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 0.5F + worldIn.rand.nextFloat() * 0.4F);
+                player.getHeldItemMainhand().shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.BUCKET, 1));
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.FAIL;
