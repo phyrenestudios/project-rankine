@@ -253,7 +253,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.CEMENT_POLE.get());
         withExistingParent(RankineBlocks.SODIUM_VAPOR_LAMP.get());
         //withExistingParent(RankineBlocks.TAP_BARREL.get().getRegistryName().getPath(), modLoc("block/tap_barrel/" + RankineBlocks.TAP_BARREL.get().getRegistryName().getPath()));
-        withExistingParent(RankineBlocks.GAS_VENT.get());
+        withExistingParent(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get());
+        withExistingParent(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get());
+        withExistingParent(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
+        withExistingParent(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
         basicItem(RankineItems.CRUCIBLE.get());
 
 
