@@ -115,7 +115,10 @@ public class RankineLangProvider extends LanguageProvider {
         // Misc Blocks
         for (Block blk : Arrays.asList(
                 RankineBlocks.SEDIMENT_FAN.get(),
-                RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
+                RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),
+                RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),
+                RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get(),
                 RankineBlocks.SODIUM_VAPOR_LAMP.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
                 RankineBlocks.INDUCTION_FURNACE.get(),

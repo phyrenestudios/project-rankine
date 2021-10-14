@@ -25,13 +25,20 @@ import javax.annotation.Nullable;
 public class FusionFurnaceRecipe implements IRecipe<IInventory> {
 
     //public static final FusionFurnaceRecipe.Serializer SERIALIZER = new FusionFurnaceRecipe.Serializer();
-    protected Ingredient ingredient;
+    protected FluidStack fluidIn;
+    protected ItemStack gasIn;
+    protected Ingredient ingredient1;
+    protected Ingredient ingredient2;
+    protected FluidStack fluidOut;
+    protected ItemStack gasOut;
     protected ItemStack result;
+
     protected final ResourceLocation id;
 
     public FusionFurnaceRecipe(ResourceLocation id, FluidStack fluidIn, ItemStack gasIn, Ingredient input1, Ingredient input2, FluidStack fluidOut, ItemStack gasOut, ItemStack output) {
         this.id = id;
-        this.ingredient = input1;
+        this.ingredient1 = input1;
+        this.ingredient2 = input2;
         this.result = output;
     }
 
@@ -46,8 +53,8 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        return (this.ingredient.test(inv.getStackInSlot(0)) || this.ingredient.test(inv.getStackInSlot(1)))
-                && (this.ingredient.test(inv.getStackInSlot(1)) || this.ingredient.test(inv.getStackInSlot(0)));
+        return (this.ingredient1.test(inv.getStackInSlot(0)) || this.ingredient1.test(inv.getStackInSlot(1)))
+                && (this.ingredient2.test(inv.getStackInSlot(1)) || this.ingredient2.test(inv.getStackInSlot(0)));
     }
 
     @Override
@@ -62,12 +69,9 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return NonNullList.withSize(1,ingredient);
+        return NonNullList.from(Ingredient.EMPTY,this.ingredient1,this.ingredient2);
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
-    }
 
     @Override
     public ItemStack getRecipeOutput() {
@@ -86,21 +90,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeType<?> getType() {
-        return RankineRecipeTypes.BEEHIVE;
-    }
-
-    public static ItemStack deserializeBlock(JsonObject object) {
-        String s = JSONUtils.getString(object, "block");
-
-        Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
-            return new JsonParseException("Unknown block '" + s + "'");
-        });
-
-        if (object.has("data")) {
-            throw new JsonParseException("Disallowed data tag found");
-        } else {
-            return BlockRecipeHelper.getBlockItemStack(object);
-        }
+        return RankineRecipeTypes.FUSION;
     }
 
 

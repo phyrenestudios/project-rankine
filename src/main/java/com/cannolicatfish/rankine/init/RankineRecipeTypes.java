@@ -64,4 +64,11 @@ public class RankineRecipeTypes {
             return recipe.matches(inv, worldIn) ? Optional.of((RockGeneratorRecipe) recipe) : Optional.empty();
         }
     };
+
+    public static final IRecipeType<FusionFurnaceRecipe> FUSION = new IRecipeType<FusionFurnaceRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<FusionFurnaceRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((FusionFurnaceRecipe) recipe) : Optional.empty();
+        }
+    };
 }

@@ -2270,7 +2270,10 @@ public class RankineItems {
     public static final RegistryObject<Item> SEDIMENT_FAN = REGISTRY.register("sediment_fan", () -> new BlockItem(RankineBlocks.SEDIMENT_FAN.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     //public static final RegistryObject<Item> FLUID_DRAIN = REGISTRY.register("fluid_drain", () -> new BlockItem(RankineBlocks.FLUID_DRAIN.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> SODIUM_VAPOR_LAMP = REGISTRY.register("sodium_vapor_lamp", () -> new BlockItem(RankineBlocks.SODIUM_VAPOR_LAMP.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
-    public static final RegistryObject<Item> GAS_VENT = REGISTRY.register("gas_vent", () -> new BlockItem(RankineBlocks.GAS_VENT.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CARBON_DIOXIDE_FUMAROLE = REGISTRY.register("carbon_dioxide_fumarole", () -> new BlockItem(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> HYDROGEN_CHLORIDE_FUMAROLE = REGISTRY.register("hydrogen_chloride_fumarole", () -> new BlockItem(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> HYDROGEN_SULFIDE_FUMAROLE = REGISTRY.register("hydrogen_sulfide_fumarole", () -> new BlockItem(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> SULFUR_DIOXIDE_FUMAROLE = REGISTRY.register("sulfur_dioxide_fumarole", () -> new BlockItem(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> METAL_PIPE = REGISTRY.register("metal_pipe", () -> new BlockItem(RankineBlocks.METAL_PIPE.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> GROUND_TAP = REGISTRY.register("ground_tap", () -> new BlockItem(RankineBlocks.GROUND_TAP.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineTools)));
 
@@ -2424,6 +2427,10 @@ public class RankineItems {
     public static final RegistryObject<Item> XENON_GAS_BOTTLE = REGISTRY.register("xenon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.XENON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> RADON_GAS_BOTTLE = REGISTRY.register("radon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.RADON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> OGANESSON_GAS_BOTTLE = REGISTRY.register("oganesson_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.OGANESSON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> CARBON_DIOXIDE_GAS_BOTTLE = REGISTRY.register("carbon_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.CARBON_DIOXIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HYDROGEN_CHLORIDE_GAS_BOTTLE = REGISTRY.register("hydrogen_chloride_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_CHLORIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BOTTLE = REGISTRY.register("hydrogen_sulfide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_SULFIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BOTTLE = REGISTRY.register("sulfur_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.SULFUR_DIOXIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
 
 
     public static final RegistryObject<Item> HYDROGEN_NUGGET = REGISTRY.register("hydrogen_nugget", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));
@@ -2794,6 +2801,10 @@ public class RankineItems {
     public static final RegistryObject<Item> XENON_GAS_BLOCK = REGISTRY.register("xenon_gas_block", () -> new BlockItem(RankineBlocks.XENON_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> RADON_GAS_BLOCK = REGISTRY.register("radon_gas_block", () -> new BlockItem(RankineBlocks.RADON_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
     public static final RegistryObject<Item> OGANESSON_GAS_BLOCK = REGISTRY.register("oganesson_gas_block", () -> new BlockItem(RankineBlocks.OGANESSON_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> CARBON_DIOXIDE_GAS_BLOCK = REGISTRY.register("carbon_dioxide_gas_block", () -> new BlockItem(RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HYDROGEN_CHLORIDE_GAS_BLOCK = REGISTRY.register("hydrogen_chloride_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BLOCK = REGISTRY.register("hydrogen_sulfide_gas_block", () -> new BlockItem(RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BLOCK = REGISTRY.register("sulfur_dioxide_gas_block", () -> new BlockItem(RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineElements)));
 
     
 

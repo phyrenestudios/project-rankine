@@ -1009,7 +1009,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TOURMALINE_GEODE = REGISTRY.register("tourmaline_geode", () -> new GeodeBlock(DEF_STONE.harvestLevel(0)));
 
     public static final RegistryObject<Block> TRAMPOLINE = REGISTRY.register("trampoline", () -> new TrampolineBlock(AbstractBlock.Properties.create(Material.CLAY, MaterialColor.BLACK).slipperiness(0.8F).hardnessAndResistance(1.0F, 2.0F).notSolid().sound(SoundType.SLIME)));
-    public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(GasUtilsEnum.SET,DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> CARBON_DIOXIDE_FUMAROLE = REGISTRY.register("carbon_dioxide_fumarole", () -> new GasVentBlock(GasUtilsEnum.CARBON_DIOXIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_FUMAROLE = REGISTRY.register("hydrogen_chloride_fumarole", () -> new GasVentBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> HYDROGEN_SULFIDE_FUMAROLE = REGISTRY.register("hydrogen_sulfide_fumarole", () -> new GasVentBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> SULFUR_DIOXIDE_FUMAROLE = REGISTRY.register("sulfur_dioxide_fumarole", () -> new GasVentBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
     public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = REGISTRY.register("hydrogen_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> HELIUM_GAS_BLOCK = REGISTRY.register("helium_gas_block", () -> new GasBlock(GasUtilsEnum.HELIUM,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = REGISTRY.register("nitrogen_gas_block", () -> new GasBlock(GasUtilsEnum.NITROGEN,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
@@ -1022,7 +1025,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> XENON_GAS_BLOCK = REGISTRY.register("xenon_gas_block", () -> new GasBlock(GasUtilsEnum.XENON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> RADON_GAS_BLOCK = REGISTRY.register("radon_gas_block", () -> new GasBlock(GasUtilsEnum.RADON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = REGISTRY.register("oganesson_gas_block", () -> new GasBlock(GasUtilsEnum.OGANESSON,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
-
+    public static final RegistryObject<Block> CARBON_DIOXIDE_GAS_BLOCK = REGISTRY.register("carbon_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.CARBON_DIOXIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_GAS_BLOCK = REGISTRY.register("hydrogen_chloride_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = REGISTRY.register("hydrogen_sulfide_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = REGISTRY.register("sulfur_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
 
 
