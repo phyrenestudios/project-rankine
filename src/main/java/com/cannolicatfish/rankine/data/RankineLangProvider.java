@@ -120,7 +120,10 @@ public class RankineLangProvider extends LanguageProvider {
         // Misc Blocks
         for (Block blk : Arrays.asList(
                 RankineBlocks.SEDIMENT_FAN.get(),
-                RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
+                RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),
+                RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),
+                RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get(),
                 RankineBlocks.SODIUM_VAPOR_LAMP.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
                 RankineBlocks.INDUCTION_FURNACE.get(),
@@ -361,13 +364,14 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.MAPLE_SAP_BUCKET.get(),
             RankineItems.JUGLONE_BUCKET.get(),
             RankineItems.LIQUID_MERCURY_BUCKET.get(),
+            RankineItems.SULFURIC_ACID_BUCKET.get(),
             RankineItems.COIN.get(),
-            RankineItems.POWER_CELL_1.get(),
-            RankineItems.POWER_CELL_2.get(),
-            RankineItems.POWER_CELL_3.get(),
-            RankineItems.POWER_CELL_4.get(),
-            RankineItems.POWER_CELL_5.get(),
-            RankineItems.POWER_CELL_6.get())) {
+            RankineItems.MAGNESIUM_BATTERY.get(),
+            RankineItems.LEAD_ACID_BATTERY.get(),
+            RankineItems.VANADIUM_REDOX_BATTERY.get(),
+            RankineItems.ZINC_BROMINE_BATTERY.get(),
+            RankineItems.SODIUM_SULFUR_BATTERY.get(),
+            RankineItems.LITHIUM_ION_BATTERY.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
 

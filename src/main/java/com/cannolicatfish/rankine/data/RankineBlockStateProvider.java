@@ -452,7 +452,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.REACTION_CHAMBER_CORE.get());
         simpleBlock(RankineBlocks.DIAMOND_ANVIL_CELL.get());
         simpleBlock(RankineBlocks.SEDIMENT_FAN.get());
-        simpleBlock(RankineBlocks.GAS_VENT.get());
+        simpleBlock(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get());
+        simpleBlock(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get());
+        simpleBlock(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
+        simpleBlock(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.PCF.get(), models().orientable(RankineBlocks.PCF.get().getRegistryName().getPath(), getRSL("pcf_side"), getRSL("pcf_front"), getRSL("pcf_top")));
         simpleBlock(RankineBlocks.BOTANIST_STATION.get(), models().orientable(RankineBlocks.BOTANIST_STATION.get().getRegistryName().getPath(), getRSL("botanist_station_side"), getRSL("botanist_station_front"), getRSL("botanist_station_top")));
         simpleBlock(RankineBlocks.TEMPLATE_TABLE.get(), models().orientable(RankineBlocks.TEMPLATE_TABLE.get().getRegistryName().getPath(), getRSL("template_table_side"), getRSL("template_table_front"), getRSL("template_table_top")));

@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "dld",
+    "rsr",
+    "dld"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "d":
+    {
+      "tag": "forge:ingots/duralumin"
+    },
+    "l":
+    {
+      "tag": "forge:ingots/vanadium"
+    },
+    "s":
+    {
+      "item": "rankine:sulfuric_acid_bucket"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:vanadium_redox_battery",
+    "count": 1
+  }
+}

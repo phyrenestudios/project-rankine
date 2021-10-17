@@ -1,8 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
-import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -12,10 +11,8 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -30,7 +27,6 @@ import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.GYRATORY_CRUSHER_TILE;
@@ -115,7 +111,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (PowerCellItem.getTier(this.items.get(1)) != this.currentLevel || PowerCellItem.getTier(this.items.get(1)) == 0)) {
+        if (this.isBurning() && (BatteryItem.getTier(this.items.get(1)) != this.currentLevel || BatteryItem.getTier(this.items.get(1)) == 0)) {
             burnTime--;
         }
         if (!this.world.isRemote) {
@@ -131,9 +127,9 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     this.currentBurnTime = this.burnTime;
                 }
                 if (!this.isBurning() && canSmelt) {
-                    this.burnTime = PowerCellItem.getTier(fuel) != 0 ? 50 : 0;
+                    this.burnTime = BatteryItem.getTier(fuel) != 0 ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
-                    this.currentLevel = PowerCellItem.getTier(fuel);
+                    this.currentLevel = BatteryItem.getTier(fuel);
                     if (this.isBurning()) {
                         flag1 = true;
                     }
@@ -328,7 +324,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
             case 0:
                 return true;
             case 1:
-                return stack.getItem() instanceof PowerCellItem;
+                return stack.getItem() instanceof BatteryItem;
             case 2:
             case 3:
             case 4:

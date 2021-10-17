@@ -36,6 +36,7 @@ import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherContainer;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherTile;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.util.POIFixer;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
 import net.minecraft.enchantment.Enchantment;
@@ -44,6 +45,7 @@ import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
@@ -74,6 +76,10 @@ import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @Mod("rankine")
 public class ProjectRankine {
@@ -474,6 +480,31 @@ public class ProjectRankine {
                     .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"resin"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY))
                     .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"flowing_resin"));
+
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY))
+                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"sulfuric_acid"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY))
+                    .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_sulfuric_acid"));
+        }
+
+        public static void registerItemRemappings(final RegistryEvent.MissingMappings<Item> event) {
+            Map<ResourceLocation, Item> itemRemappings = RankineRemappings.getItemRemappings();
+            ImmutableList<RegistryEvent.MissingMappings.Mapping<Item>> mappings = event.getAllMappings();
+            for (RegistryEvent.MissingMappings.Mapping<Item> map : mappings) {
+                if (itemRemappings.containsKey(map.key)) {
+                    map.remap(itemRemappings.get(map.key));
+                }
+            }
+        }
+
+        public static void registerBlockRemappings(final RegistryEvent.MissingMappings<Block> event) {
+            Map<ResourceLocation, Block> blockRemappings = RankineRemappings.getBlockRemappings();
+            ImmutableList<RegistryEvent.MissingMappings.Mapping<Block>> mappings = event.getAllMappings();
+            for (RegistryEvent.MissingMappings.Mapping<Block> map : mappings) {
+                if (blockRemappings.containsKey(map.key)) {
+                    map.remap(blockRemappings.get(map.key));
+                }
+            }
         }
 
         @SubscribeEvent

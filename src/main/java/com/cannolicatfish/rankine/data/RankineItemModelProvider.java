@@ -258,13 +258,14 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.MAPLE_SAP_BUCKET.get());
         basicItem(RankineItems.JUGLONE_BUCKET.get());
         basicItem(RankineItems.LIQUID_MERCURY_BUCKET.get());
+        basicItem(RankineItems.SULFURIC_ACID_BUCKET.get());
         basicItem(RankineItems.COIN.get());
-        basicItem(RankineItems.POWER_CELL_1.get());
-        basicItem(RankineItems.POWER_CELL_2.get());
-        basicItem(RankineItems.POWER_CELL_3.get());
-        basicItem(RankineItems.POWER_CELL_4.get());
-        basicItem(RankineItems.POWER_CELL_5.get());
-        basicItem(RankineItems.POWER_CELL_6.get());
+        basicItem(RankineItems.MAGNESIUM_BATTERY.get());
+        basicItem(RankineItems.LEAD_ACID_BATTERY.get());
+        basicItem(RankineItems.VANADIUM_REDOX_BATTERY.get());
+        basicItem(RankineItems.ZINC_BROMINE_BATTERY.get());
+        basicItem(RankineItems.SODIUM_SULFUR_BATTERY.get());
+        basicItem(RankineItems.LITHIUM_ION_BATTERY.get());
 
 
 
@@ -315,7 +316,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.CEMENT_POLE.get());
         withExistingParent(RankineBlocks.SODIUM_VAPOR_LAMP.get());
         //withExistingParent(RankineBlocks.TAP_BARREL.get().getRegistryName().getPath(), modLoc("block/tap_barrel/" + RankineBlocks.TAP_BARREL.get().getRegistryName().getPath()));
-        withExistingParent(RankineBlocks.GAS_VENT.get());
+        withExistingParent(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get());
+        withExistingParent(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get());
+        withExistingParent(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
+        withExistingParent(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
         basicItem(RankineItems.CRUCIBLE.get());
 
 

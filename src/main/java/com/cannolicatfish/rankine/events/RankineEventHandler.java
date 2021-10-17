@@ -8,6 +8,7 @@ import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import com.cannolicatfish.rankine.compatibility.Patchouli;
+import com.cannolicatfish.rankine.entities.goals.EatGrassGoalModified;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
@@ -35,11 +36,13 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.ai.goal.EatGrassGoal;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -2198,6 +2201,16 @@ public class RankineEventHandler {
         } //end creative check
 
 
+    }
+
+    @SubscribeEvent
+    public static void onSheepJoinWorld(EntityJoinWorldEvent event) {
+        Entity entity = event.getEntity();
+        if (entity instanceof SheepEntity) {
+            SheepEntity sheepEntity = (SheepEntity) entity;
+            sheepEntity.goalSelector.removeGoal(new EatGrassGoal(sheepEntity));
+            sheepEntity.goalSelector.addGoal(5,new EatGrassGoalModified(sheepEntity));
+        }
     }
 
     @SubscribeEvent

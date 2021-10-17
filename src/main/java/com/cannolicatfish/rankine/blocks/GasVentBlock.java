@@ -58,9 +58,6 @@ public class GasVentBlock extends Block {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
-            worldIn.setBlockState(pos.up(), RankineBlocks.FLUORINE_GAS_BLOCK.get().getDefaultState());
-        }
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
     }
 
@@ -78,9 +75,6 @@ public class GasVentBlock extends Block {
     }
 
     public Block getGas() {
-        if (gas.equals(GasUtilsEnum.SET)) {
-            gas = Config.GASES.GAS_VENT_TYPE.get();
-        }
         switch (gas) {
             case HYDROGEN:
                 return RankineBlocks.HYDROGEN_GAS_BLOCK.get();
@@ -106,6 +100,14 @@ public class GasVentBlock extends Block {
                 return RankineBlocks.RADON_GAS_BLOCK.get();
             case OGANESSON:
                 return RankineBlocks.OGANESSON_GAS_BLOCK.get();
+            case CARBON_DIOXIDE:
+                return RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get();
+            case HYDROGEN_CHLORIDE:
+                return RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get();
+            case HYDROGEN_SULFIDE:
+                return RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get();
+            case SULFUR_DIOXIDE:
+                return RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get();
             default:
                 return RankineBlocks.FLUORINE_GAS_BLOCK.get();
         }

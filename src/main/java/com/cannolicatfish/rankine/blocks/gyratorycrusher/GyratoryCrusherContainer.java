@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.items.PowerCellItem;
+import com.cannolicatfish.rankine.items.BatteryItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -88,7 +88,7 @@ public class GyratoryCrusherContainer extends Container {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (stack.getItem() instanceof PowerCellItem) {
+                } else if (stack.getItem() instanceof BatteryItem) {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }

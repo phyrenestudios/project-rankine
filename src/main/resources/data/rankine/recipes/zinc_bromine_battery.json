@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    "zrz",
-    "mgm",
-    "zrz"
+    "dzd",
+    "rsr",
+    "dbd"
   ],
   "key":
   {
@@ -12,22 +12,26 @@
     {
       "item": "minecraft:redstone"
     },
-    "m":
+    "d":
     {
-      "tag": "forge:ingots/magnesium"
+      "tag": "forge:ingots/steel"
     },
     "z":
     {
       "tag": "forge:ingots/zinc"
     },
-    "g":
+    "b":
     {
-      "item": "rankine:graphite_electrode"
+      "tag": "forge:bromine"
+    },
+    "s":
+    {
+      "item": "rankine:bauxite"
     }
   },
   "result":
   {
-    "item": "rankine:power_cell_2",
+    "item": "rankine:zinc_bromine_battery",
     "count": 1
   }
 }

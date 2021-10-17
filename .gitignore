@@ -6,4 +6,5 @@
 /py_scripts/
 *.py
 *.zip
+src/generated/resources/.cache/cache
 /src/generated/resources/.cache/
