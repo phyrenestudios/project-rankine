@@ -90,6 +90,11 @@ public interface IAlloyItem {
         return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListNBT();
     }
 
+    static ListNBT getElementNBT(ItemStack stack) {
+        CompoundNBT compoundnbt = stack.getTag();
+        return compoundnbt != null ? compoundnbt.getList("Elements", 10) : new ListNBT();
+    }
+
     default boolean isAlloyInit(ItemStack stack) {
 
         return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty();

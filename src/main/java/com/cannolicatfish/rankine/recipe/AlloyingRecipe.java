@@ -353,6 +353,32 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         return maxEnchantLevelIn;
     }
 
+    public float getBonusStat(int stat) {
+        switch (stat) {
+            case 0:
+                return this.getBonusDurability();
+            case 1:
+                return this.getBonusMiningSpeed();
+            case 2:
+                return this.getBonusMiningLevel();
+            case 3:
+                return this.getBonusEnchantability();
+            case 4:
+                return this.getBonusDamage();
+            case 5:
+                return this.getBonusAttackSpeed();
+            case 6:
+                return this.getBonusCorrosionResistance();
+            case 7:
+                return this.getBonusHeatResistance();
+            case 8:
+                return this.getBonusKnockbackResistance();
+            case 9:
+                return this.getBonusToughness();
+        }
+        return -1;
+    }
+
     @Override
     public boolean matches(IInventory inv, World worldIn) {
         if (inv instanceof AlloyFurnaceTile) {

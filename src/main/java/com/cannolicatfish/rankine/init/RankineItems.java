@@ -2621,6 +2621,12 @@ public class RankineItems {
     public static final RegistryObject<Item> SODIUM_SULFUR_BATTERY = REGISTRY.register("sodium_sulfur_battery", () -> new BatteryItem(new Item.Properties().maxDamage(896).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> LITHIUM_ION_BATTERY = REGISTRY.register("lithium_ion_battery", () -> new BatteryItem(new Item.Properties().maxDamage(1024).group(ProjectRankine.setup.rankineTools)));
 
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL0 = REGISTRY.register("crushing_head_hl0", () -> new CrushingHeadItem(0,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL1 = REGISTRY.register("crushing_head_hl1", () -> new CrushingHeadItem(1,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL2 = REGISTRY.register("crushing_head_hl2", () -> new CrushingHeadItem(2,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL3 = REGISTRY.register("crushing_head_hl3", () -> new CrushingHeadItem(3,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL4 = REGISTRY.register("crushing_head_hl4", () -> new CrushingHeadItem(4,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL5 = REGISTRY.register("crushing_head_hl5", () -> new CrushingHeadItem(5,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> PACKAGED_TOOL = REGISTRY.register("packaged_tool", () -> new PackagedToolItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MANTLE_GOLEM = REGISTRY.register("mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.rankineTools)));

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.elements.*;
@@ -101,6 +102,16 @@ public final class PeriodicTableUtils {
         return world.getRecipeManager().getRecipe(RankineRecipeTypes.ELEMENT, temp, world).orElse(null);
     }
 
+    public AlloyingRecipe getAlloyRecipe(ItemStack stack, World world) {
+        ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
+        if (rs != null) {
+            IRecipe<?> recipe = world.getRecipeManager().getRecipe(rs).orElse(null);
+            if (recipe instanceof AlloyingRecipe) {
+                return (AlloyingRecipe) recipe;
+            }
+        }
+        return null;
+    }
     public List<String> getElementSymbols() {
         return symbols;
     }
