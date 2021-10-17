@@ -4,41 +4,28 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
+import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
-public interface IAlloyArmor extends IAlloyItem {
-
-    PeriodicTableUtils utils = PeriodicTableUtils.getInstance();
-
+public interface IAlloyShield extends IAlloyItem {
     @Override
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
             stack.getTag().remove("RegenerateAlloy");
         }
-        EquipmentSlotType slotType;
-        if (stack.getItem() instanceof ArmorItem) {
-            ArmorItem armor = (ArmorItem) stack.getItem();
-            slotType = armor.getEquipmentSlot();
-        } else {
-            slotType = EquipmentSlotType.CHEST;
-        }
-
         ListNBT alloyData = IAlloyItem.getAlloyNBT(stack);
         List<ElementRecipe> elements = this.getElementRecipes(composition,worldIn);
         List<Integer> percents = this.getPercents(composition);
@@ -49,10 +36,7 @@ public interface IAlloyArmor extends IAlloyItem {
         float cr = 0;
         float hr = 0;
         float tough = 0;
-        float kr = 0;
 
-        int hlmin = 0;
-        int hlmax = 0;
         for (int i = 0; i < elements.size(); i++) {
             ElementRecipe element = elements.get(i);
             int percentage = percents.get(i);
@@ -62,11 +46,6 @@ public interface IAlloyArmor extends IAlloyItem {
             cr += element.getCorrosionResistance(percentage);
             hr += element.getHeatResistance(percentage);
             tough += element.getToughness(percentage);
-            kr += element.getKnockbackResistance(percentage);
-            int hl = element.getMiningLevel(percentage);
-
-            hlmin = Math.min(hl,hlmin);
-            hlmax = Math.max(hl,hlmax);
         }
 
 
@@ -80,28 +59,23 @@ public interface IAlloyArmor extends IAlloyItem {
                 cr += recipe.getBonusCorrosionResistance();
                 hr += recipe.getBonusHeatResistance();
                 tough += recipe.getBonusToughness();
-                kr += recipe.getBonusKnockbackResistance();
-
-                int hl = recipe.getBonusMiningLevel();
-
-                hlmin = Math.min(hl,hlmin);
-                hlmax = Math.max(hl,hlmax);
             }
         }
 
-        int hl = hlmax - hlmin;
-
+        dur = Math.max(1,dur);
+        ench = Math.max(0,ench);
+        cr = Math.min(Math.max(0,cr),1);
+        hr = Math.min(Math.max(0,hr),1);
+        tough = Math.min(Math.max(-1,tough),1);
         listnbt.putString("comp",composition);
         if (alloyRecipe != null) {
             listnbt.putString("recipe",alloyRecipe.toString());
         }
-        listnbt.putInt("durability",calcArmorDurability(slotType,dur));
-        listnbt.putInt("damageResist",calcDamageReduceAmount(slotType,hl));
+        listnbt.putInt("durability",dur);
         listnbt.putInt("enchantability",ench);
         listnbt.putFloat("corrResist",Math.round(cr*100)/100f);
         listnbt.putFloat("heatResist",Math.round(hr*100)/100f);
-        listnbt.putFloat("knockbackResist",Math.round(kr*100)/100f);
-        listnbt.putFloat("toughness",calcArmorToughness(Math.round(tough*100)/100f));
+        listnbt.putFloat("toughness",Math.round(tough*100)/100f);
         alloyData.add(listnbt);
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
 
@@ -110,89 +84,49 @@ public interface IAlloyArmor extends IAlloyItem {
         }
     }
 
-    default int calcArmorDurability(EquipmentSlotType slotType, int durability)
-    {
-        final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
-        if (durability <= 100) {
-            return Math.round(MAX_DAMAGE_ARRAY[slotType.getIndex()] * durability/10f);
-        } else {
-            return Math.round(MAX_DAMAGE_ARRAY[slotType.getIndex()] * (10 + (durability-100)/50f));
-        }
-    }
-
-    default int calcArmorToughness(float tough)
-    {
-        if (tough >= 0.4) {
-            return 4;
-        } else if (tough >= 0.3) {
-            return 3;
-        } else if (tough >= 0.2){
-            return 2;
-        } else if (tough >= 0.1){
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    default int calcDamageReduceAmount(EquipmentSlotType slotType, int hl)
-    {
-        int base = slotType == EquipmentSlotType.CHEST ? 3 : slotType == EquipmentSlotType.LEGS ? 2 : 1;
-        if (slotType == EquipmentSlotType.CHEST || slotType == EquipmentSlotType.LEGS) {
-            return Math.min(base + hl,10);
-        } else if (slotType == EquipmentSlotType.FEET) {
-            if (hl >= 5) {
-                return base + 2;
-            } else if (hl >= 3) {
-                return base + 1;
-            } else {
-                return base;
-            }
-        } else {
-            if (hl >= 5) {
-                return base + 3;
-            } else if (hl >= 3) {
-                return base + 2;
-            } else if (hl >= 1) {
-                return base + 1;
-            } else {
-                return base;
+    default void applyAlloyEnchantments(ItemStack stack, World worldIn) {
+        int start = 10;
+        int interval = 5;
+        int maxLvl = 5;
+        ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
+        if (rs != null && worldIn.getRecipeManager().getRecipe(rs).isPresent()) {
+            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().getRecipe(rs).get();
+            start = recipe.getMinEnchantability();
+            interval = recipe.getEnchantInterval();
+            maxLvl = recipe.getMaxEnchantLevelIn();
+            for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack))
+            {
+                int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
+                if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
+                    stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+                }
             }
         }
+        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack))
+        {
+            int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
+            if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
+                stack.addEnchantment(e,Math.min(e.getMaxLevel(),enchLvl));
+            }
+        }
+
     }
 
-    default int getAlloyArmorDurability(ItemStack stack)
+    default int getAlloyDurability(ItemStack stack)
     {
         if (stack.getTag() != null) {
             return stack.getTag().getCompound("StoredAlloy").getInt("durability");
         } else {
             return 1;
         }
+
     }
 
     default int getAlloyEnchantability(ItemStack stack) {
         if (stack.getTag() != null) {
             return stack.getTag().getCompound("StoredAlloy").getInt("enchantability");
         } else {
-            return 0;
-        }
-    }
-
-    default int getAlloyDamageReduceAmount(ItemStack stack)
-    {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloy").getInt("damageResist");
-        } else {
-            return 0;
-        }
-    }
-
-    default int getAlloyArmorToughness(ItemStack stack)
-    {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloy").getInt("toughness");
-        } else {
-            return 0;
+            return 1;
         }
     }
 
@@ -219,6 +153,19 @@ public interface IAlloyArmor extends IAlloyItem {
         }
         if (stack.getTag() != null) {
             return stack.getTag().getCompound("StoredAlloy").getFloat("heatResist");
+        } else {
+            return 0;
+        }
+    }
+
+    default float getToughness(ItemStack stack)
+    {
+        if (!Config.ALLOYS.ALLOY_TOUGHNESS.get())
+        {
+            return 0;
+        }
+        if (stack.getTag() != null) {
+            return stack.getTag().getCompound("StoredAlloy").getFloat("toughness");
         } else {
             return 0;
         }

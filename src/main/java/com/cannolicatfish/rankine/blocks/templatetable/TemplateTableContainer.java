@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -192,7 +193,7 @@ public class TemplateTableContainer extends Container {
                 ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
                 if (!recipeOutput.isEmpty()) {
                     ItemStack st = new ItemStack(RankineItems.ALLOY_TEMPLATE.get());
-                    AlloyTemplateItemOld.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getStackInSlot(7).getItem());
+                    AlloyTemplateItem.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getStackInSlot(7).getItem());
 
                     this.outputInventory.setInventorySlotContents(0, st);
                     return;

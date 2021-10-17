@@ -24,7 +24,6 @@ public interface IAlloyItem {
         if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
             stack.getTag().remove("RegenerateAlloy");
         }
-        ListNBT alloyData = getAlloyNBT(stack);
 
         CompoundNBT listnbt = new CompoundNBT();
         ListNBT elements = new ListNBT();
@@ -35,12 +34,10 @@ public interface IAlloyItem {
             compoundnbt.putShort("percent", (short)perc);
             elements.add(compoundnbt);
         }
-        alloyData.add(elements);
         listnbt.putString("comp", AlloyRecipeHelper.getDirectComposition(elementMap));
         if (alloyRecipe != null) {
             listnbt.putString("recipe",alloyRecipe.toString());
         }
-        alloyData.add(listnbt);
         stack.getOrCreateTag().put("StoredAlloy", listnbt);
         stack.getOrCreateTag().put("Elements",elements);
 
@@ -50,14 +47,6 @@ public interface IAlloyItem {
     }
 
     default void createAlloyNBT(ItemStack stack, World worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
-        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
-            stack.getTag().remove("RegenerateAlloy");
-        }
-        ListNBT alloyData = getAlloyNBT(stack);
-
-        CompoundNBT listnbt = new CompoundNBT();
-
-        ListNBT elements = new ListNBT();
         List<ElementRecipe> elementRecipes = getElementRecipes(composition,worldIn);
         List<Integer> percents = getPercents(composition);
         Map<ElementRecipe,Integer> elementMap = new HashMap<>();
@@ -71,20 +60,8 @@ public interface IAlloyItem {
             CompoundNBT compoundnbt = new CompoundNBT();
             compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
             compoundnbt.putShort("percent", (short)perc);
-            elements.add(compoundnbt);
         }
-
-        listnbt.putString("comp",composition);
-        if (alloyRecipe != null) {
-            listnbt.putString("recipe",alloyRecipe.toString());
-        }
-        alloyData.add(listnbt);
-        stack.getOrCreateTag().put("StoredAlloy", listnbt);
-        stack.getOrCreateTag().put("Elements",elements);
-
-        if (nameOverride != null && stack.getTag() != null) {
-            stack.getTag().putString("nameOverride",nameOverride);
-        }
+        createAlloyNBT(stack,worldIn,elementMap,alloyRecipe,nameOverride);
     }
 
     static void createDirectAlloyNBT(ItemStack stack, @Nullable String composition, @Nullable String alloyRecipe, @Nullable String nameOverride) {

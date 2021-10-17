@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.cannolicatfish.rankine.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "rankine.refmap.json",
+  "mixins": [
+    "minecraft.AnimalEntityMixin"
+  ],
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

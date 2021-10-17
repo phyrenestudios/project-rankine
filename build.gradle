@@ -1,14 +1,17 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
@@ -54,9 +57,12 @@ minecraft {
     // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
-            properties 'mixin.env.disableRefMap': 'true'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            //properties 'mixin.env.disableRefMap': 'true'
             workingDirectory project.file('run')
 
+            arg "-mixin.config=rankine.mixins.json"
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
@@ -71,8 +77,12 @@ minecraft {
         }
 
         server {
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+
             workingDirectory project.file('run')
 
+            arg "-mixin.config=rankine.mixins.json"
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
@@ -87,8 +97,10 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
 
+            workingDirectory project.file('run')
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
 
@@ -116,6 +128,7 @@ sourceSets.main.resources {
 dependencies {
     implementation 'org.jetbrains:annotations:19.0.0'
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
@@ -135,7 +148,8 @@ jar {
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
             "Implementation-Vendor" :"cannolicatfish",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+            "MixinConfigs": "rankine.mixins.json"
         ])
     }
 }
@@ -179,4 +193,8 @@ publishing {
 artifacts {
     archives sourcesJar
     archives deobfJar
+}
+
+mixin {
+    add sourceSets.main, "rankine.refmap.json"
 }

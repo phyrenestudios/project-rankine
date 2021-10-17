@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "rankine:block/carbon_dioxide_gas_block"
+    }
+  }
+}

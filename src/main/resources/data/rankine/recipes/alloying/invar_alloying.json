@@ -35,5 +35,6 @@
     "max": 0.12
   },
   "result": "rankine:invar_ingot",
-  "durability": 150
+  "durability": 150,
+  "heatresist": 0.25
 }

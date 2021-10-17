@@ -71,8 +71,8 @@ public class DecorationGen {
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CORK_OAK_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.MUSHROOM), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.SHARINGA_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.CINNAMON_TREE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.JUNGLE), true)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.SOIL_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)),
-                new AbstractMap.SimpleEntry<>(RankineFeatures.ANIMAL_SPAWNER, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))
+                new AbstractMap.SimpleEntry<>(RankineFeatures.SOIL_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))
+                //new AbstractMap.SimpleEntry<>(RankineFeatures.ANIMAL_SPAWNER, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))
 
             );
         } else {

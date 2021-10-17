@@ -358,6 +358,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.RIGHT_TRANSMUTER.get(),
             RankineItems.DOWN_TRANSMUTER.get(),
             RankineItems.UP_TRANSMUTER.get(),
+            RankineItems.ALLOY_TEMPLATE.get(),
             RankineItems.BUILDING_TOOL.get(),
             RankineItems.ORE_DETECTOR.get(),
             RankineItems.PROSPECTING_STICK.get(),

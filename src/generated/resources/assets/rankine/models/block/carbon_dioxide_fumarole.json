@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "rankine:block/gas_vent"
+    "all": "rankine:block/carbon_dioxide_fumarole"
   }
 }

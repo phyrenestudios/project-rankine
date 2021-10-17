@@ -25,7 +25,7 @@ import java.util.Set;
 public class RankineFeatures {
 
     public static void registerConfiguredFeatures() {
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:animal_spawner", ANIMAL_SPAWNER);
+        //WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:animal_spawner", ANIMAL_SPAWNER);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:meteorite",METEORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:end_meteorite",END_METEORITE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:antimatter_blob",ANTIMATTER_BLOB);
@@ -307,8 +307,8 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> END_METEORITE = new EndMeteoriteFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = new AntimatterFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
 
-    public static final ConfiguredFeature<?, ?> ANIMAL_SPAWNER = new AnimalSpawnerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
+    //public static final ConfiguredFeature<?, ?> ANIMAL_SPAWNER = new AnimalSpawnerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
+      //      .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
 
 
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = FIRE_CLAY_DISK.withConfiguration(new NoFeatureConfig())
