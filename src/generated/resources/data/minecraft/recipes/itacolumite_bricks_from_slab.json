@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:itacolumite_bricks_slab"
+    },
+    {
+      "item": "rankine:itacolumite_bricks_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:itacolumite_bricks"
+  }
+}

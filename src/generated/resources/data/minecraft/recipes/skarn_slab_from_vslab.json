@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:skarn_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:skarn_slab"
+  }
+}

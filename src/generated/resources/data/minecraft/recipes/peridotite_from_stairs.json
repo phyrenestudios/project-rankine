@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:peridotite_stairs"
+    },
+    {
+      "item": "rankine:peridotite_stairs"
+    },
+    {
+      "item": "rankine:peridotite_stairs"
+    },
+    {
+      "item": "rankine:peridotite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:peridotite",
+    "count": 6
+  }
+}

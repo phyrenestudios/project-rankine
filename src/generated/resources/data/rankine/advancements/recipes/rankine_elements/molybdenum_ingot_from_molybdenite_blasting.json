@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:molybdenum_ingot_from_molybdenite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_molybdenite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:molybdenite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:molybdenum_ingot_from_molybdenite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_molybdenite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -6,6 +6,18 @@
     "#forge:sheetmetal_vertical_slabs",
     "#forge:stone_vertical_slabs",
     "#forge:polished_stone_vertical_slabs",
-    "#forge:stone_bricks_vertical_slabs"
+    "#forge:stone_bricks_vertical_slabs",
+    "rankine:skarn_vertical_slab",
+    "rankine:breccia_vertical_slab",
+    "rankine:packed_snow_vertical_slab",
+    "rankine:ice_bricks_vertical_slab",
+    "rankine:cement_vertical_slab",
+    "rankine:concrete_vertical_slab",
+    "rankine:roman_concrete_bricks_vertical_slab",
+    "rankine:polished_roman_concrete_vertical_slab",
+    "rankine:roman_concrete_vertical_slab",
+    "rankine:cast_iron_support_vertical_slab",
+    "rankine:fiber_block_vertical_slab",
+    "rankine:checkered_marble_vertical_slab"
   ]
 }

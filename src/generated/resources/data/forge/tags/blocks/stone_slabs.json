@@ -45,6 +45,12 @@
     "rankine:arkose_slab",
     "rankine:soul_sandstone_slab",
     "rankine:diabase_slab",
-    "rankine:itacolumite_slab"
+    "rankine:itacolumite_slab",
+    "rankine:honeystone_slab",
+    "rankine:sommanite_slab",
+    "rankine:ringwoodine_slab",
+    "rankine:wadsleyone_slab",
+    "rankine:bridgmanham_slab",
+    "rankine:post_perovskite_slab"
   ]
 }

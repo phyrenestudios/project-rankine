@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:vanadium_ingot_from_vanadinite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_vanadinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:vanadinite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:vanadium_ingot_from_vanadinite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vanadinite",
+      "has_the_recipe"
+    ]
+  ]
+}

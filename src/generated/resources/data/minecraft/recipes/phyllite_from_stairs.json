@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:phyllite_stairs"
+    },
+    {
+      "item": "rankine:phyllite_stairs"
+    },
+    {
+      "item": "rankine:phyllite_stairs"
+    },
+    {
+      "item": "rankine:phyllite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:phyllite",
+    "count": 6
+  }
+}

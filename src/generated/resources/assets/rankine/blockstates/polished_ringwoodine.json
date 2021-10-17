@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "polish_type=normal": {
+      "model": "rankine:block/polished_ringwoodine"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_ringwoodine_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_ringwoodine_vertical_offset"
+    }
+  }
+}

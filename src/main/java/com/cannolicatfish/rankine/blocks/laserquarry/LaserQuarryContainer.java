@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
+/*
 import static com.cannolicatfish.rankine.init.RankineBlocks.LASER_QUARRY_CONTAINER;
 
 public class LaserQuarryContainer extends Container {
@@ -147,3 +147,6 @@ public class LaserQuarryContainer extends Container {
 
 
 }
+
+
+ */

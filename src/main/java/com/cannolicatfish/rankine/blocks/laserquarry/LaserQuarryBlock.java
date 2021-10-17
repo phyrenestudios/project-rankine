@@ -1,5 +1,5 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
-
+/*
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +29,7 @@ public class LaserQuarryBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new LaserQuarryTile();
+        //return new LaserQuarryTile();
     }
 
     @Override
@@ -49,3 +49,6 @@ public class LaserQuarryBlock extends Block {
     }
 
 }
+
+
+ */

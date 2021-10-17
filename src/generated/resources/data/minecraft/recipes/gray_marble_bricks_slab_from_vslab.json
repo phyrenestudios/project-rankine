@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_slab_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:gray_marble_bricks_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:gray_marble_bricks_slab"
+  }
+}

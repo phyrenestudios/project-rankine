@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "III",
+    "ITI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:gems/diamond"
+    },
+    "T": {
+      "item": "rankine:saddle_tree"
+    }
+  },
+  "result": {
+    "item": "minecraft:diamond_horse_armor"
+  }
+}

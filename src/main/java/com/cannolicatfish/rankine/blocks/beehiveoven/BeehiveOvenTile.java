@@ -20,13 +20,16 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
 
 public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
     private int ticks;
-    private int nextRecipe = world.getRandom().nextInt(structureCheck(world, pos)) + 100;
+    private int nextRecipe;
     public BeehiveOvenTile() {
         super(BEEHIVE_OVEN_TILE);
     }
 
     public void tick() {
         if (!world.isAreaLoaded(pos, 1)) return;
+        if (nextRecipe == 0) {
+            nextRecipe = world.getRandom().nextInt(structureCheck(world, pos)) + 100;
+        }
         if (canSeeSky(world, pos) ) {
             if (this.getBlockState().get(BeehiveOvenPitBlock.LIT)) {
                 ticks += 1;
@@ -42,6 +45,8 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
                                     break;
                                 }
                             }
+                        } else {
+                            world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.FALSE), 3);
                         }
                     }
                     nextRecipe = world.getRandom().nextInt(structureCheck(world, pos)) + 100;

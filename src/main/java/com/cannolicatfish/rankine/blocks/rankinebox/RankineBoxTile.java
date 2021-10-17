@@ -164,13 +164,13 @@ public class RankineBoxTile extends TileEntity implements ISidedInventory, ITick
 
     private int getDirection(ItemStack transmuter) {
         if (transmuter.getItem() instanceof TransmuterItem) {
-            if (transmuter.getItem() == RankineItems.UP_TRANSMUTER.get()) {
+            if (transmuter.getItem() == RankineItems.ANTIMATTER.get()) {
                 return 3;
-            } else if (transmuter.getItem() == RankineItems.RIGHT_TRANSMUTER.get()) {
+            } else if (transmuter.getItem() == RankineItems.ANTIMATTER.get()) {
                 return 4;
-            } else if (transmuter.getItem() == RankineItems.DOWN_TRANSMUTER.get()) {
+            } else if (transmuter.getItem() == RankineItems.ANTIMATTER.get()) {
                 return 5;
-            } else if (transmuter.getItem() == RankineItems.LEFT_TRANSMUTER.get()) {
+            } else if (transmuter.getItem() == RankineItems.ANTIMATTER.get()) {
                 return 6;
             } else {
                 return 0;

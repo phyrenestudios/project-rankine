@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:post_perovskite"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_post_perovskite",
+    "count": 4
+  }
+}

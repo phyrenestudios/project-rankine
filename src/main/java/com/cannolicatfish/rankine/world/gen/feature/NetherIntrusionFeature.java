@@ -60,15 +60,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                 for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-3*radius, y, -3*radius), pos.add(3*radius, y, 3*radius))) {
                     if (b.distanceSq(new BlockPos(pos.getX()+x1, y, pos.getZ()+z1)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX()+x2, y, pos.getZ()+z2)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX()+x3, y, pos.getZ()+z3)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX()+x4, y, pos.getZ()+z4)) <= Math.pow(radius + 0.5, 2)) {
                         if (reader.getBlockState(b).getBlock().getTags().contains(new ResourceLocation("rankine:intrusion_passable")) || reader.isAirBlock(b)) {
-                            if (INTRUSION == RankineBlocks.KOMATIITE.get().getDefaultState()) {
-                                if (rand.nextFloat() < WGConfig.INTRUSIONS.INTERSPINIFEX_CHANCE.get().floatValue()) {
-                                 //   reader.setBlockState(b, RankineBlocks.INTERSPINIFEX_ORE.get().getDefaultState().with(RankineOreBlock.TYPE, 27), 4);
-                                } else {
-                                    reader.setBlockState(b, INTRUSION, 4);
-                                }
-                            } else {
                                 reader.setBlockState(b, INTRUSION, 4);
-                            }
                         }
                     }
                 }

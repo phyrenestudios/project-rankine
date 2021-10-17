@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:copper_sheetmetal_vertical_slab"
+    },
+    {
+      "item": "rankine:copper_sheetmetal_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:copper_sheetmetal"
+  }
+}

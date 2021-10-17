@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:yttrium_ingot_from_xenotime_blasting"
+    ]
+  },
+  "criteria": {
+    "has_xenotime": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:xenotime"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:yttrium_ingot_from_xenotime_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_xenotime",
+      "has_the_recipe"
+    ]
+  ]
+}

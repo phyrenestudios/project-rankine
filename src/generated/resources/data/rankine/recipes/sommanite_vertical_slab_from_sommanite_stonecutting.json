@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:sommanite"
+  },
+  "result": "rankine:sommanite_vertical_slab",
+  "count": 2
+}

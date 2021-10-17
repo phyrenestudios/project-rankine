@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:siltstone_bricks_stairs"
+    },
+    {
+      "item": "rankine:siltstone_bricks_stairs"
+    },
+    {
+      "item": "rankine:siltstone_bricks_stairs"
+    },
+    {
+      "item": "rankine:siltstone_bricks_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:siltstone_bricks",
+    "count": 6
+  }
+}

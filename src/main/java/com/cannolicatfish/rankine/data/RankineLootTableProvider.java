@@ -1,10 +1,12 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
+import com.cannolicatfish.rankine.blocks.RankineVerticalSlabBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.states.VerticalSlabStates;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
@@ -399,6 +401,16 @@ public abstract class RankineLootTableProvider extends LootTableProvider {
                 .addEntry(ItemLootEntry.builder(SLAB)
                         .acceptFunction(SetCount.builder(ConstantRange.of(2))
                                 .acceptCondition(BlockStateProperty.builder(SLAB).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(SlabBlock.TYPE, SlabType.DOUBLE)))))
+                .acceptCondition(SurvivesExplosion.builder());
+        return LootTable.builder().addLootPool(builder);
+    }
+
+    protected LootTable.Builder verticalSlabBlockLootTable(Block SLAB) {
+        LootPool.Builder builder = LootPool.builder()
+                .rolls(ConstantRange.of(1))
+                .addEntry(ItemLootEntry.builder(SLAB)
+                        .acceptFunction(SetCount.builder(ConstantRange.of(2))
+                                .acceptCondition(BlockStateProperty.builder(SLAB).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(RankineVerticalSlabBlock.TYPE, VerticalSlabStates.DOUBLE)))))
                 .acceptCondition(SurvivesExplosion.builder());
         return LootTable.builder().addLootPool(builder);
     }

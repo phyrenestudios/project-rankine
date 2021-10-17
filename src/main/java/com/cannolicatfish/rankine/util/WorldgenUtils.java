@@ -29,10 +29,12 @@ import java.util.List;
 public class WorldgenUtils {
 
     public static List<ResourceLocation> GEN_BIOMES = new ArrayList<>();
-    public static List<Block> GEN_SOILS = new ArrayList<>();
-    public static List<Block> GEN_SOILS2 = new ArrayList<>();
-    public static List<Block> GEN_GRASSES = new ArrayList<>();
-    public static List<Block> GEN_GRASSES2 = new ArrayList<>();
+    public static List<Block> O1 = new ArrayList<>();
+    public static List<Block> A1 = new ArrayList<>();
+    public static List<Block> B1 = new ArrayList<>();
+    public static List<Block> O2 = new ArrayList<>();
+    public static List<Block> A2 = new ArrayList<>();
+    public static List<Block> B2 = new ArrayList<>();
     public static List<List<String>> INTRUSION_LISTS = new ArrayList<>();
     public static List<List<Block>> INTRUSION_BLOCKS = new ArrayList<>();
     public static List<List<Float>> INTRUSION_WEIGHTS = new ArrayList<>();
@@ -42,6 +44,7 @@ public class WorldgenUtils {
     public static List<List<String>> LAYER_LISTS = new ArrayList<>();
     public static List<List<String>> VEGETATION_LISTS = new ArrayList<>();
     public static List<WeightedCollection<BlockState>> VEGETATION_COLLECTIONS = new ArrayList<>();
+    public static List<Block> GRAVELS = new ArrayList<>();
     public static List<Block> ORE_STONES = new ArrayList<>();
     public static List<String> ORE_TEXTURES = new ArrayList<>();
 
@@ -70,10 +73,12 @@ public class WorldgenUtils {
             String biomeToAdd = (String) L.get(0);
             List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
             if (biomeName.size() > 1) {
-                populateLists(ResourceLocation.tryCreate(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4));
+                Block gravel = ResourceLocation.tryCreate((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(5)));
+                populateLists(ResourceLocation.tryCreate(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel);
             } else {
                 for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.byName(biomeToAdd)), true)) {
-                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4));
+                    Block gravel = ResourceLocation.tryCreate((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(5)));
+                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel);
                 }
             }
 
@@ -117,22 +122,27 @@ public class WorldgenUtils {
 
     }
 
-    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES, List<String> VEGETATION) {
+    private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES, List<String> VEGETATION, Block GRAVEL) {
         GEN_BIOMES.add(BIOME);
         if (SOILS.isEmpty()) {
-            GEN_SOILS.add(Blocks.AIR);
-            GEN_SOILS2.add(Blocks.AIR);
-            GEN_GRASSES.add(Blocks.AIR);
-            GEN_GRASSES2.add(Blocks.AIR);
+            O1.add(Blocks.AIR);
+            A1.add(Blocks.AIR);
+            B1.add(Blocks.AIR);
+            O2.add(Blocks.AIR);
+            A2.add(Blocks.AIR);
+            B2.add(Blocks.AIR);
         } else {
-            GEN_SOILS.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(0))));
-            GEN_SOILS2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(2))));
-            GEN_GRASSES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(1))));
-            GEN_GRASSES2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(3))));
+            O1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(0))));
+            A1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(1))));
+            B1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(2))));
+            O2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(3))));
+            A2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(4))));
+            B2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(SOILS.get(5))));
         }
         INTRUSION_LISTS.add(INTRUSIONS);
         LAYER_LISTS.add(STONES);
         VEGETATION_LISTS.add(VEGETATION);
+        GRAVELS.add(GRAVEL);
 
     }
 

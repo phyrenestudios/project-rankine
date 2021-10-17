@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cement_mix",
+  "ingredients": [
+    {
+      "tag": "forge:slag"
+    },
+    {
+      "tag": "forge:ash"
+    },
+    {
+      "tag": "minecraft:sand"
+    }
+  ],
+  "result": {
+    "item": "rankine:cement_mix",
+    "count": 6
+  }
+}

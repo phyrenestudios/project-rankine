@@ -1,1 +1,0 @@
-{ "type": "minecraft:crafting_shapeless","ingredients": [ { "item": "rankine:quicklime_block" } ], "result": { "item": "rankine:quicklime", "count": 4 } }

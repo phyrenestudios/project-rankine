@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:post_perovskite_vertical_slab"
+    },
+    {
+      "item": "rankine:post_perovskite_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:post_perovskite"
+  }
+}

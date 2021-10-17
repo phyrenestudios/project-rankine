@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_honeystone"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_honeystone_wall",
+    "count": 6
+  }
+}

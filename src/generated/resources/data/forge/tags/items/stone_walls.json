@@ -45,6 +45,12 @@
     "rankine:arkose_wall",
     "rankine:soul_sandstone_wall",
     "rankine:diabase_wall",
-    "rankine:itacolumite_wall"
+    "rankine:itacolumite_wall",
+    "rankine:honeystone_wall",
+    "rankine:sommanite_wall",
+    "rankine:ringwoodine_wall",
+    "rankine:wadsleyone_wall",
+    "rankine:bridgmanham_wall",
+    "rankine:post_perovskite_wall"
   ]
 }

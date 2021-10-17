@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "III",
+    "ITI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "T": {
+      "item": "rankine:saddle_tree"
+    }
+  },
+  "result": {
+    "item": "minecraft:iron_horse_armor"
+  }
+}

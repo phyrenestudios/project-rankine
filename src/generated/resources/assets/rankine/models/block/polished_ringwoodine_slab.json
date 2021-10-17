@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "rankine:block/polished_ringwoodine",
+    "bottom": "rankine:block/polished_ringwoodine",
+    "top": "rankine:block/polished_ringwoodine"
+  }
+}

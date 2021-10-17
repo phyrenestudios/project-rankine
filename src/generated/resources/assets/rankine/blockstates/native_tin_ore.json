@@ -179,6 +179,24 @@
     },
     "type=59": {
       "model": "rankine:block/native_tin_ore59"
+    },
+    "type=60": {
+      "model": "rankine:block/native_tin_ore60"
+    },
+    "type=61": {
+      "model": "rankine:block/native_tin_ore61"
+    },
+    "type=62": {
+      "model": "rankine:block/native_tin_ore62"
+    },
+    "type=63": {
+      "model": "rankine:block/native_tin_ore63"
+    },
+    "type=64": {
+      "model": "rankine:block/native_tin_ore64"
+    },
+    "type=65": {
+      "model": "rankine:block/native_tin_ore65"
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:concrete_stairs"
+    },
+    {
+      "item": "rankine:concrete_stairs"
+    },
+    {
+      "item": "rankine:concrete_stairs"
+    },
+    {
+      "item": "rankine:concrete_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:concrete",
+    "count": 6
+  }
+}

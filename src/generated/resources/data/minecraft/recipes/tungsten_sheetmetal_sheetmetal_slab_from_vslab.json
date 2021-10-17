@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sheetmetal_slab_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:tungsten_sheetmetal_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:tungsten_sheetmetal_slab"
+  }
+}

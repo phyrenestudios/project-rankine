@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:rhyolite_stairs"
+    },
+    {
+      "item": "rankine:rhyolite_stairs"
+    },
+    {
+      "item": "rankine:rhyolite_stairs"
+    },
+    {
+      "item": "rankine:rhyolite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:rhyolite",
+    "count": 6
+  }
+}

@@ -31,6 +31,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:antimatter_blob",ANTIMATTER_BLOB);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:fire_clay",FIRE_CLAY);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:elderberry_bush",ELDERBERRY_BUSH);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:elderberry_bush",POKEBERRY_BUSH);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:snowberry_bush",SNOWBERRY_BUSH);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:blueberry_bush",BLUEBERRY_BUSH);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:raspberry_bush",RASPBERRY_BUSH);
@@ -268,6 +269,7 @@ public class RankineFeatures {
             .build();
 
     public static final BlockClusterFeatureConfig ELDERBERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.ELDERBERRY_BUSH.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), new RankineDoublePlantPlacer())).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
+    public static final BlockClusterFeatureConfig POKEBERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.POKEBERRY_BUSH.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), new RankineDoublePlantPlacer())).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
     public static final BlockClusterFeatureConfig SNOWBERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.SNOWBERRY_BUSH.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), SimpleBlockPlacer.PLACER)).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
     public static final BlockClusterFeatureConfig BLUEBERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLUEBERRY_BUSH.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), new RankineDoublePlantPlacer())).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
     public static final BlockClusterFeatureConfig RASPBERRY_BUSH_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.RASPBERRY_BUSH.get().getDefaultState().with(RankinePlantBlock.AGE, 3)), SimpleBlockPlacer.PLACER)).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
@@ -296,6 +298,7 @@ public class RankineFeatures {
     public static final Feature<NoFeatureConfig> NETHER_STONE_REPLACER = new NetherStoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> SOIL_REPLACER = new SoilReplacerFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> SNOW_REPLACER = new SnowyPeaksFeature(NoFeatureConfig.CODEC);
 
     // BASE PLACEMENTS
     public static final Placement<NoPlacementConfig> REPLACER_PLACEMENT = new ReplacerPlacement(NoPlacementConfig.CODEC);
@@ -313,12 +316,12 @@ public class RankineFeatures {
 
     public static final ConfiguredFeature<?, ?> FIRE_CLAY = FIRE_CLAY_DISK.withConfiguration(new NoFeatureConfig())
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(6)));
-    public static final Feature<NoFeatureConfig> SNOW_REPLACER = new SnowyPeaksFeature(NoFeatureConfig.CODEC);
 
 
 
     // VEGETAL_DECORATION
     public static final ConfiguredFeature<?, ?> ELDERBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(ELDERBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
+    public static final ConfiguredFeature<?, ?> POKEBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(POKEBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
     public static final ConfiguredFeature<?, ?> SNOWBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(SNOWBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
     public static final ConfiguredFeature<?, ?> BLUEBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(BLUEBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
     public static final ConfiguredFeature<?, ?> RASPBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(RASPBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);

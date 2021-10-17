@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:polished_ringwoodine"
+    }
+  },
+  "result": {
+    "item": "rankine:polished_ringwoodine_wall",
+    "count": 6
+  }
+}

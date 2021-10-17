@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "polish_type=normal": {
+      "model": "rankine:block/polished_honeystone"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_honeystone_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_honeystone_vertical_offset"
+    }
+  }
+}

@@ -6,7 +6,7 @@
     ]
   },
   "criteria": {
-    "has_tholeiitic_basalt": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_tholeiitic_basalt",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

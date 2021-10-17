@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "brick_type=large": {
+      "model": "rankine:block/wadsleyone_bricks"
+    },
+    "brick_type=vertical_large": {
+      "model": "rankine:block/wadsleyone_bricks_vertical"
+    }
+  }
+}

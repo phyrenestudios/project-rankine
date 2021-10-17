@@ -26,7 +26,7 @@
           {
             "type": "rankine:harvest_level_check",
             "item": "rankine:bronze_pickaxe",
-            "level": 2
+            "level": 3
           }
         ]
       }

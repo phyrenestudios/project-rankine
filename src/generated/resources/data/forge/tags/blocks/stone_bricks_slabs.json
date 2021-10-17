@@ -45,6 +45,16 @@
     "rankine:arkose_bricks_slab",
     "rankine:soul_sandstone_bricks_slab",
     "rankine:diabase_bricks_slab",
-    "rankine:itacolumite_bricks_slab"
+    "rankine:itacolumite_bricks_slab",
+    "rankine:honeystone_bricks_slab",
+    "rankine:sommanite_bricks_slab",
+    "rankine:ringwoodine_bricks_slab",
+    "rankine:wadsleyone_bricks_slab",
+    "rankine:bridgmanham_bricks_slab",
+    "rankine:post_perovskite_bricks_slab",
+    "rankine:granite_bricks_slab",
+    "rankine:diorite_bricks_slab",
+    "rankine:andesite_bricks_slab",
+    "rankine:basalt_bricks_slab"
   ]
 }

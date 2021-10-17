@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:red_dacite_bricks_stairs"
+    },
+    {
+      "item": "rankine:red_dacite_bricks_stairs"
+    },
+    {
+      "item": "rankine:red_dacite_bricks_stairs"
+    },
+    {
+      "item": "rankine:red_dacite_bricks_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:red_dacite_bricks",
+    "count": 6
+  }
+}

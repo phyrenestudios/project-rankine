@@ -45,6 +45,12 @@
     "rankine:polished_arkose_vertical_slab",
     "rankine:polished_soul_sandstone_vertical_slab",
     "rankine:polished_diabase_vertical_slab",
-    "rankine:polished_itacolumite_vertical_slab"
+    "rankine:polished_itacolumite_vertical_slab",
+    "rankine:polished_honeystone_vertical_slab",
+    "rankine:polished_sommanite_vertical_slab",
+    "rankine:polished_ringwoodine_vertical_slab",
+    "rankine:polished_wadsleyone_vertical_slab",
+    "rankine:polished_bridgmanham_vertical_slab",
+    "rankine:polished_post_perovskite_vertical_slab"
   ]
 }

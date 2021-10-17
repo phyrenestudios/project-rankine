@@ -4,6 +4,18 @@
     "#forge:bricks_walls",
     "#forge:stone_walls",
     "#forge:polished_stone_walls",
-    "#forge:stone_bricks_walls"
+    "#forge:stone_bricks_walls",
+    "rankine:skarn_wall",
+    "rankine:breccia_wall",
+    "rankine:packed_snow_wall",
+    "rankine:ice_bricks_wall",
+    "rankine:cement_wall",
+    "rankine:concrete_wall",
+    "rankine:roman_concrete_bricks_wall",
+    "rankine:polished_roman_concrete_wall",
+    "rankine:roman_concrete_wall",
+    "rankine:cast_iron_support_wall",
+    "rankine:fiber_block_wall",
+    "rankine:checkered_marble_wall"
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T",
+    "S",
+    "F"
+  ],
+  "key": {
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "T": {
+      "tag": "forge:ingots/thorium"
+    },
+    "S": {
+      "tag": "forge:rods/graphite"
+    }
+  },
+  "result": {
+    "item": "rankine:thorium_arrow",
+    "count": 4
+  }
+}

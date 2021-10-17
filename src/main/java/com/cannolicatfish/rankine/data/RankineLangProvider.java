@@ -29,31 +29,37 @@ public class RankineLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         for (Block blk : Stream.of(
-                RankineLists.STONE,
-                RankineLists.POLISHED_STONE,
+                RankineLists.MISC_SLABS,
+                RankineLists.MISC_VERTICAL_SLABS,
+                RankineLists.MISC_STAIRS,
+                RankineLists.MISC_WALLS,
+                RankineLists.SHEETMETAL_SLABS,
+                RankineLists.INFESTED_STONES,
+                RankineLists.STONES,
+                RankineLists.POLISHED_STONES,
                 RankineLists.STONE_BRICKS,
-                RankineLists.STONE_SLAB,
-                RankineLists.POLISHED_STONE_SLAB,
-                RankineLists.STONE_BRICKS_SLAB,
-                RankineLists.STONE_VERTICAL_SLAB,
-                RankineLists.POLISHED_STONE_VERTICAL_SLAB,
-                RankineLists.STONE_BRICKS_VERTICAL_SLAB,
+                RankineLists.STONE_SLABS,
+                RankineLists.POLISHED_STONE_SLABS,
+                RankineLists.STONE_BRICKS_SLABS,
+                RankineLists.STONE_VERTICAL_SLABS,
+                RankineLists.POLISHED_STONE_VERTICAL_SLABS,
+                RankineLists.STONE_BRICKS_VERTICAL_SLABS,
                 RankineLists.STONE_STAIRS,
                 RankineLists.POLISHED_STONE_STAIRS,
                 RankineLists.STONE_BRICKS_STAIRS,
-                RankineLists.STONE_WALL,
-                RankineLists.POLISHED_STONE_WALL,
-                RankineLists.STONE_BRICKS_WALL,
-                RankineLists.STONE_PRESSURE_PLATE,
-                RankineLists.STONE_BRICKS_PRESSURE_PLATE,
-                RankineLists.STONE_BUTTON,
+                RankineLists.STONE_WALLS,
+                RankineLists.POLISHED_STONE_WALLS,
+                RankineLists.STONE_BRICKS_WALLS,
+                RankineLists.STONE_PRESSURE_PLATES,
+                RankineLists.STONE_BRICKS_PRESSURE_PLATES,
+                RankineLists.STONE_BUTTONS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_SLAB,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_VERTICAL_SLAB,
                 RankineLists.BRICKS_WALL,
                 RankineLists.SHEETMETALS,
-                RankineLists.SHEETMETAL_VERTICAL_SLAB,
+                RankineLists.SHEETMETAL_VERTICAL_SLABS,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
                 RankineLists.MINERAL_WOOL,
@@ -77,7 +83,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.WOODEN_FENCE_GATES,
                 RankineLists.WOODEN_BUTTONS,
                 RankineLists.WOODEN_PRESSURE_PLATES,
-                RankineLists.MINERAL_STONES,
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,
                 RankineLists.METAL_LADDERS,
@@ -133,9 +138,9 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),
                 RankineBlocks.GYRATORY_CRUSHER.get(),
                 RankineBlocks.EVAPORATION_TOWER.get(),
-                RankineBlocks.LASER_PYLON_BASE.get(),
-                RankineBlocks.LASER_PYLON_TOP.get(),
-                RankineBlocks.LASER_QUARRY.get(),
+                //RankineBlocks.LASER_PYLON_BASE.get(),
+                //RankineBlocks.LASER_PYLON_TOP.get(),
+                //RankineBlocks.LASER_QUARRY.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
                 RankineBlocks.ALNICO_ELECTROMAGNET.get(),
@@ -157,54 +162,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.SOD_BLOCK_STAIRS.get(),
                 RankineBlocks.SOD_BLOCK_SLAB.get(),
                 RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get(),
-                RankineBlocks.ROMAN_CONCRETE_BRICKS.get(),
-                RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get(),
-                RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get(),
-                RankineBlocks.ROMAN_CONCRETE_BRICKS_WALL.get(),
-                RankineBlocks.ROMAN_CONCRETE_BRICKS_VERTICAL_SLAB.get(),
-                RankineBlocks.POLISHED_ROMAN_CONCRETE.get(),
-                RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get(),
-                RankineBlocks.POLISHED_ROMAN_CONCRETE_WALL.get(),
-                RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get(),
-                RankineBlocks.POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB.get(),
-                RankineBlocks.ROMAN_CONCRETE.get(),
-                RankineBlocks.ROMAN_CONCRETE_WALL.get(),
-                RankineBlocks.ROMAN_CONCRETE_STAIRS.get(),
-                RankineBlocks.ROMAN_CONCRETE_SLAB.get(),
-                RankineBlocks.ROMAN_CONCRETE_VERTICAL_SLAB.get(),
-                RankineBlocks.CHECKERED_MARBLE.get(),
-                RankineBlocks.CHECKERED_MARBLE_WALL.get(),
-                RankineBlocks.CHECKERED_MARBLE_STAIRS.get(),
-                RankineBlocks.CHECKERED_MARBLE_SLAB.get(),
-                RankineBlocks.CHECKERED_MARBLE_VERTICAL_SLAB.get(),
-                RankineBlocks.SKARN.get(),
-                RankineBlocks.SKARN_WALL.get(),
-                RankineBlocks.SKARN_STAIRS.get(),
-                RankineBlocks.SKARN_SLAB.get(),
-                RankineBlocks.SKARN_VERTICAL_SLAB.get(),
-                RankineBlocks.BRECCIA.get(),
-                RankineBlocks.BRECCIA_WALL.get(),
-                RankineBlocks.BRECCIA_STAIRS.get(),
-                RankineBlocks.BRECCIA_SLAB.get(),
-                RankineBlocks.BRECCIA_VERTICAL_SLAB.get(),
-                RankineBlocks.FIBER_BLOCK_WALL.get(),
-                RankineBlocks.FIBER_BLOCK_STAIRS.get(),
-                RankineBlocks.FIBER_BLOCK_SLAB.get(),
-                RankineBlocks.FIBER_BLOCK_VERTICAL_SLAB.get(),
-                RankineBlocks.CAST_IRON_SUPPORT.get(),
-                RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
-                RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
-                RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
-                RankineBlocks.CEMENT.get(),
-                RankineBlocks.CEMENT_WALL.get(),
-                RankineBlocks.CEMENT_STAIRS.get(),
-                RankineBlocks.CEMENT_SLAB.get(),
-                RankineBlocks.CEMENT_VERTICAL_SLAB.get(),
-                RankineBlocks.CONCRETE.get(),
-                RankineBlocks.CONCRETE_WALL.get(),
-                RankineBlocks.CONCRETE_STAIRS.get(),
-                RankineBlocks.CONCRETE_SLAB.get(),
-                RankineBlocks.CONCRETE_VERTICAL_SLAB.get(),
                 
                 
                 RankineBlocks.UNAMED_EXPLOSIVE.get(),
@@ -212,7 +169,8 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.LIGHT_GRAVEL.get(),
                 RankineBlocks.DARK_GRAVEL.get(),
                 RankineBlocks.FIRE_CLAY.get(),
-                RankineBlocks.KAOLINITE_BLOCK.get(),
+                RankineBlocks.KAOLIN.get(),
+                RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
                 RankineBlocks.PORPHYRY_COPPER.get()
                 )) {
             add(blk, parseLangName(blk.getRegistryName().getPath()));
@@ -311,7 +269,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.VULCANIZED_RUBBER.get(),
             RankineItems.BITUMEN.get(),
             RankineItems.FIRE_CLAY_BALL.get(),
-            RankineItems.KAOLINITE_BALL.get(),
+            RankineItems.KAOLINITE.get(),
             RankineItems.BONE_CHAR.get(),
             RankineItems.NETHERITE_NUGGET.get(),
             RankineItems.SLAG.get(),
@@ -339,7 +297,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.DRY_RUBBER.get(),
             RankineItems.INDIUM_TIN_OXIDE.get(),
             RankineItems.CADMIUM_TELLURIDE_CELL.get(),
-            RankineItems.YAG_ROD.get(),
+            //RankineItems.YAG_ROD.get(),
             RankineItems.UNCUT_GEODE.get(),
             RankineItems.SODIUM_ARC_TUBE.get(),
             RankineItems.GRAPHITE_ELECTRODE.get(),
@@ -353,11 +311,6 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.TREE_TAP.get(),
             RankineItems.LODESTONE.get(),
             RankineItems.ELEMENT.get(),
-            RankineItems.ELEMENT_TRANSMUTER.get(),
-            RankineItems.LEFT_TRANSMUTER.get(),
-            RankineItems.RIGHT_TRANSMUTER.get(),
-            RankineItems.DOWN_TRANSMUTER.get(),
-            RankineItems.UP_TRANSMUTER.get(),
             RankineItems.ALLOY_TEMPLATE.get(),
             RankineItems.BUILDING_TOOL.get(),
             RankineItems.ORE_DETECTOR.get(),
@@ -443,11 +396,18 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.alloy_plate_tin", "Tin Plate");
         add("item.rankine.alloy_plate_tungsten", "Tungsten Plate");
         //Alloy Rods
-        add("item.rankine.alloy_rod_steel", "Steel Rpd");
-        add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rpd");
+        add("item.rankine.alloy_rod_steel", "Steel Rod");
+        add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rod");
         //Alloy Wires
         add("item.rankine.alloy_wire_cupronickel", "Cupronickel Wire");
         add("item.rankine.alloy_wire_steel", "Steel Wire");
+        //Alloy Arrows
+        add("item.rankine.alloy_arrow_steel", "Steel Arrow");
+        add("item.rankine.alloy_arrow_stainless_steel", "Stainless Steel Arrow");
+
+
+
+
 
         //Death Messages
         add("death.attack.suffocating", "%1$s suffocated in a gas cloud");
@@ -611,7 +571,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.story.gather_rope.title", "Knot Likely");
         add("rankine.advancements.story.gather_rope.description", "Gather rope by obtaining a flint knife and harvesting grass");
         add("rankine.advancements.story.get_flint_axe.title", "Hard Wood");
-        add("rankine.advancements.story.get_flint_axe.description", "Make a Flint Handaxe to harvest wood early and more easily");
+        add("rankine.advancements.story.get_flint_axe.description", "Make a Flint Axe to harvest wood without punching trees");
         add("rankine.advancements.story.make_charcoal_pit.title", "Buried Logs");
         add("rankine.advancements.story.make_charcoal_pit.description", "Make a Charcoal Pit to help alleviate early fuel requirements and make large batches of charcoal");
         add("rankine.advancements.story.get_flint_tools.title", "Sharp Beginnings");

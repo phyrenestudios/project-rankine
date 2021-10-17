@@ -1,23 +1,25 @@
 {
-      "type": "rankine:alloy_crafting",
-      "inherit": "true",
-      "pattern": [
-      "###",
-      " t ",
-      " t "
-      ],
-      "key": {
-        "#": {
-            "item": "rankine:stainless_steel_ingot"
-            },
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
+  "pattern": [
+    "###",
+    " t ",
+    " t "
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:stainless_steel_ingot"
+    },
     "t": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/steel_alloying",
       "name": "Steel Rod",
       "color": 3291714
     }
-      },
-      "result": {
-          "item": "rankine:stainless_steel_pickaxe",
-          "count": 1        }
-    }
+  },
+  "result": {
+    "item": "rankine:stainless_steel_pickaxe",
+    "count": 1
+  }
+}

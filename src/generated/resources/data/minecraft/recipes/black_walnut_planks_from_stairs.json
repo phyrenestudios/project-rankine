@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:black_walnut_stairs"
+    },
+    {
+      "item": "rankine:black_walnut_stairs"
+    },
+    {
+      "item": "rankine:black_walnut_stairs"
+    },
+    {
+      "item": "rankine:black_walnut_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:black_walnut_planks",
+    "count": 6
+  }
+}

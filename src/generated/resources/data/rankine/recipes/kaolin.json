@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:kaolinite"
+    }
+  },
+  "result": {
+    "item": "rankine:kaolin",
+    "count": 4
+  }
+}

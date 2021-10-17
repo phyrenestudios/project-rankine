@@ -45,6 +45,12 @@
     "rankine:arkose_button",
     "rankine:soul_sandstone_button",
     "rankine:diabase_button",
-    "rankine:itacolumite_button"
+    "rankine:itacolumite_button",
+    "rankine:honeystone_button",
+    "rankine:sommanite_button",
+    "rankine:ringwoodine_button",
+    "rankine:wadsleyone_button",
+    "rankine:bridgmanham_button",
+    "rankine:post_perovskite_button"
   ]
 }

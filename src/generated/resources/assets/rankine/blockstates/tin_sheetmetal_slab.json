@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/tin_sheetmetal_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/tin_sheetmetal_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/tin_sheetmetal"
+    }
+  }
+}

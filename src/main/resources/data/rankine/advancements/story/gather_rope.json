@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/rankine",
+  "parent": "rankine:story/get_flint",
   "display": {
     "icon": {
       "item": "rankine:rope"

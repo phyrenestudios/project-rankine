@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:roman_concrete_bricks_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:roman_concrete_bricks_vertical_slab"
+  }
+}

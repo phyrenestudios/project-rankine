@@ -179,6 +179,24 @@
     },
     "type=59": {
       "model": "rankine:block/xenotime_ore59"
+    },
+    "type=60": {
+      "model": "rankine:block/xenotime_ore60"
+    },
+    "type=61": {
+      "model": "rankine:block/xenotime_ore61"
+    },
+    "type=62": {
+      "model": "rankine:block/xenotime_ore62"
+    },
+    "type=63": {
+      "model": "rankine:block/xenotime_ore63"
+    },
+    "type=64": {
+      "model": "rankine:block/xenotime_ore64"
+    },
+    "type=65": {
+      "model": "rankine:block/xenotime_ore65"
     }
   }
 }

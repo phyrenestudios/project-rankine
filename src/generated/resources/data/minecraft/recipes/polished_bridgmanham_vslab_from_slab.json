@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_vslab_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:polished_bridgmanham_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:polished_bridgmanham_vertical_slab"
+  }
+}

@@ -28,7 +28,7 @@
     "additional": 0.05
   },
   "output6": {
-    "item": "rankine:kaolinite_ball",
+    "item": "rankine:kaolinite",
     "chance": 0.05
   }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "rankine:block/wadsleyone",
+    "bottom": "rankine:block/wadsleyone",
+    "top": "rankine:block/wadsleyone"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_honeystone"
+  },
+  "result": "rankine:polished_honeystone_slab",
+  "count": 2
+}

@@ -4,6 +4,18 @@
     "#forge:bricks_stairs",
     "#forge:stone_stairs",
     "#forge:polished_stone_stairs",
-    "#forge:stone_bricks_stairs"
+    "#forge:stone_bricks_stairs",
+    "rankine:skarn_stairs",
+    "rankine:breccia_stairs",
+    "rankine:packed_snow_stairs",
+    "rankine:ice_bricks_stairs",
+    "rankine:cement_stairs",
+    "rankine:concrete_stairs",
+    "rankine:roman_concrete_bricks_stairs",
+    "rankine:polished_roman_concrete_stairs",
+    "rankine:roman_concrete_stairs",
+    "rankine:cast_iron_support_stairs",
+    "rankine:fiber_block_stairs",
+    "rankine:checkered_marble_stairs"
   ]
 }

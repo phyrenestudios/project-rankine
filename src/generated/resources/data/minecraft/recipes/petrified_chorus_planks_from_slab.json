@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:petrified_chorus_slab"
+    },
+    {
+      "item": "rankine:petrified_chorus_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:petrified_chorus_planks"
+  }
+}

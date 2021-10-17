@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:fiber_block_stairs"
+    },
+    {
+      "item": "rankine:fiber_block_stairs"
+    },
+    {
+      "item": "rankine:fiber_block_stairs"
+    },
+    {
+      "item": "rankine:fiber_block_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:fiber_block",
+    "count": 6
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "rankine:stibnite_ore"
+  },
+  "result": "rankine:antimony",
+  "experience": 0.5,
+  "cookingtime": 200
+}

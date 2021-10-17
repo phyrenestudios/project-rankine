@@ -1,0 +1,27 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "genName": true,
+  "inheritRecipe": "rankine:alloying/steel_alloying",
+  "color": 3291714,
+  "pattern": [
+    "T",
+    "S",
+    "F"
+  ],
+  "key": {
+    "T": {
+      "tag": "forge:ingots/steel"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+      "item": "rankine:alloy_arrow",
+      "count": 4
+  }
+}

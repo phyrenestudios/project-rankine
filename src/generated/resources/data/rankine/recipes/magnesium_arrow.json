@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T",
+    "S",
+    "F"
+  ],
+  "key": {
+    "F": {
+      "tag": "forge:feathers"
+    },
+    "T": {
+      "tag": "forge:ingots/magnesium"
+    },
+    "S": {
+      "tag": "forge:rods/graphite"
+    }
+  },
+  "result": {
+    "item": "rankine:magnesium_arrow",
+    "count": 4
+  }
+}

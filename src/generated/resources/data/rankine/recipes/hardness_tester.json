@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  R",
+    " S ",
+    "G  "
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "R": {
+      "tag": "forge:stone"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:hardness_tester"
+  }
+}
