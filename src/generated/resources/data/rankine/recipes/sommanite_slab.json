@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:sommanite"
+    }
+  },
+  "result": {
+    "item": "rankine:sommanite_slab",
+    "count": 6
+  }
+}

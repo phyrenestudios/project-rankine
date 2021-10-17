@@ -5,7 +5,7 @@
     "item": "rankine:loam"
   },
   "input2": {
-    "item": "rankine:kaolinite_block"
+    "item": "rankine:kaolin"
   },
   "result": {
     "block": "rankine:mudstone"

@@ -9,9 +9,11 @@ import net.minecraft.block.*;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,25 @@ public class RankineOreBlock extends Block {
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
+    }
+
+    @Override
+    public boolean ticksRandomly(BlockState state) {
+        return state.get(TYPE) == 0;
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+        for (Direction d : Direction.values()) {
+            BlockState BS = worldIn.getBlockState(pos.offset(d));
+            if (BS.getBlock() instanceof RankineOreBlock && BS.get(TYPE) != 0) {
+                worldIn.setBlockState(pos,state.with(TYPE, BS.get(TYPE)));
+                break;
+            } else if (BS.getBlock() != Blocks.STONE && WorldgenUtils.ORE_STONES.contains(BS.getBlock())) {
+                worldIn.setBlockState(pos,state.with(TYPE, WorldgenUtils.ORE_STONES.indexOf(BS.getBlock())));
+                break;
+            }
+        }
     }
 
     @Override
@@ -83,13 +104,13 @@ public class RankineOreBlock extends Block {
     }
 
     protected int getExperience(Random rand) {
-        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get()|| this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.HALITE_ORE.get()) {
+        if (this == RankineBlocks.LIGNITE_ORE.get()  || this == RankineBlocks.SUBBITUMINOUS_ORE.get() || this == RankineBlocks.NATIVE_TIN_ORE.get() || this == RankineBlocks.NATIVE_SILVER_ORE.get() || this == RankineBlocks.NATIVE_LEAD_ORE.get()|| this == RankineBlocks.NATIVE_GOLD_ORE.get() || this == RankineBlocks.HALITE_ORE.get() || this == RankineBlocks.STIBNITE_ORE.get()) {
             return MathHelper.nextInt(rand, 0, 2);
-        } else if (this == RankineBlocks.NATIVE_SULFUR_ORE.get() || this == RankineBlocks.NATIVE_BISMUTH_ORE.get() || this == RankineBlocks.NATIVE_ARSENIC_ORE.get()) {
+        } else if (this == RankineBlocks.PORPHYRY_COPPER.get() || this == RankineBlocks.NATIVE_SULFUR_ORE.get() || this == RankineBlocks.NATIVE_BISMUTH_ORE.get() || this == RankineBlocks.NATIVE_ARSENIC_ORE.get()) {
             return MathHelper.nextInt(rand, 1, 4);
-        } else if (this == RankineBlocks.ANTHRACITE_ORE.get() || this == RankineBlocks.BITUMINOUS_ORE.get() || this == RankineBlocks.QUARTZ_ORE.get() || this == RankineBlocks.LAZURITE_ORE.get() || this == RankineBlocks.NATIVE_INDIUM_ORE.get() || this == RankineBlocks.NATIVE_GALLIUM_ORE.get() || this == RankineBlocks.NATIVE_SELENIUM_ORE.get() || this == RankineBlocks.NATIVE_TELLURIUM_ORE.get()) {
+        } else if (this == RankineBlocks.ANTHRACITE_ORE.get() || this == RankineBlocks.BITUMINOUS_ORE.get() || this == RankineBlocks.LAZURITE_ORE.get() || this == RankineBlocks.NATIVE_INDIUM_ORE.get() || this == RankineBlocks.NATIVE_GALLIUM_ORE.get() || this == RankineBlocks.NATIVE_SELENIUM_ORE.get() || this == RankineBlocks.NATIVE_TELLURIUM_ORE.get()) {
             return MathHelper.nextInt(rand, 2, 5);
-        } else if (this == RankineBlocks.EMERALD_ORE.get()|| this == RankineBlocks.DIAMOND_ORE.get() || this == RankineBlocks.PLUMBAGO_ORE.get()) {
+        } else if (this == RankineBlocks.BERYL_ORE.get()|| this == RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get() || this == RankineBlocks.PLUMBAGO_ORE.get()) {
             return MathHelper.nextInt(rand, 3, 7);
         } else {
             return this == Blocks.NETHER_GOLD_ORE ? MathHelper.nextInt(rand, 0, 1) : 0;

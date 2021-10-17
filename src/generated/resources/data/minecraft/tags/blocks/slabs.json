@@ -4,6 +4,18 @@
     "#forge:bricks_slabs",
     "#forge:stone_slabs",
     "#forge:polished_stone_slabs",
-    "#forge:stone_bricks_slabs"
+    "#forge:stone_bricks_slabs",
+    "rankine:skarn_slab",
+    "rankine:breccia_slab",
+    "rankine:packed_snow_slab",
+    "rankine:ice_bricks_slab",
+    "rankine:cement_slab",
+    "rankine:concrete_slab",
+    "rankine:roman_concrete_bricks_slab",
+    "rankine:polished_roman_concrete_slab",
+    "rankine:roman_concrete_slab",
+    "rankine:cast_iron_support_slab",
+    "rankine:fiber_block_slab",
+    "rankine:checkered_marble_slab"
   ]
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "WPW",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/alnico"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    },
+    "P": {
+      "item": "rankine:power_cell_2"
+    }
+  },
+  "result": {
+    "item": "rankine:alnico_electromagnet"
+  }
+}

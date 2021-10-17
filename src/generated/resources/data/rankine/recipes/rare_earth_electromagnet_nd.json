@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#I#",
+    "WPW",
+    "IBI"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "I": {
+      "tag": "forge:ingots/neodymium"
+    },
+    "B": {
+      "tag": "forge:boron"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    },
+    "P": {
+      "item": "rankine:power_cell_4"
+    }
+  },
+  "result": {
+    "item": "rankine:rare_earth_electromagnet"
+  }
+}

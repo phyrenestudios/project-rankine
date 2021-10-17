@@ -1,12 +1,14 @@
 package com.cannolicatfish.rankine.world.gen;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineFeatures;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.WGConfig;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.world.gen.feature.RankineOreFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -42,14 +44,14 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getUndergroundOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> OverworldFeatures = new ArrayList<>();
 
-        if (WGConfig.MISC.VANILLA_ORES.get()) {
-            OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.GRAVEL_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
-            OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SAND_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
-            OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CLAY_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
-        }
-        if (WGConfig.MISC.ALLUVIUM_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
-        if (WGConfig.MISC.EVAPORITE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false)));}
-        if (WGConfig.MISC.FIRE_CLAY_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
+        //if (WGConfig.MISC.DISABLE_VANILLA_FEATURES.get()) {
+            //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.GRAVEL_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
+            //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SAND_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
+            //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CLAY_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
+        //}
+        //if (WGConfig.MISC.ALLUVIUM_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
+        //if (WGConfig.MISC.EVAPORITE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false)));}
+        //if (WGConfig.MISC.FIRE_CLAY_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
 
         if (WGConfig.LAYERS.OVERWORLD_STONE_LAYERS.get() != 0) {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.OVERWORLD_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
@@ -72,7 +74,7 @@ public class OreGen {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
         if (WGConfig.MISC.END_METEORITE_GEN.get()) {
-            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
+            EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"),ResourceLocation.tryCreate("minecraft:small_end_islands"))));
         }
         if (WGConfig.MISC.SECRET_GEN.get()) {
             EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
@@ -81,19 +83,21 @@ public class OreGen {
         return EndFeatures;
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void addOreGenFeatures(final BiomeLoadingEvent event) {
         if (event.getName() != null) {
-            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
+            final List<Supplier<ConfiguredFeature<?, ?>>> ORES = event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES);
+            disableGenerators(ORES, event.getName(), Arrays.asList(Blocks.DIRT.getDefaultState(),Blocks.ANDESITE.getDefaultState(),Blocks.DIORITE.getDefaultState(),Blocks.GRANITE.getDefaultState(),Blocks.IRON_ORE.getDefaultState(),Blocks.COAL_ORE.getDefaultState(),Blocks.GOLD_ORE.getDefaultState(),Blocks.DIAMOND_ORE.getDefaultState(),Blocks.EMERALD_ORE.getDefaultState(),Blocks.LAPIS_ORE.getDefaultState(),Blocks.REDSTONE_ORE.getDefaultState()));
+            //event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).removeIf(featureSupplier -> featureSupplier.toString().contains("net.minecraft.util.registry.WorldSettingsImport"));
 
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> OVERWORLD_FEATURES = new ArrayList<>();
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NETHER_FEATURES = new ArrayList<>();
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> END_FEATURES = new ArrayList<>();
 
             for (List<Object> L : WGConfig.BIOME_GEN.ORE_SETTINGS.get()) {
-                Boolean inEnd = false;
-                Boolean inNether = false;
-                Boolean inOverworld = false;
+                boolean inEnd = false;
+                boolean inNether = false;
+                boolean inOverworld = false;
                 Block oreBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate((String) L.get(0)));
                 List<String> biomeList = (List<String>) L.get(1);
                 List<ResourceLocation> genBiomes = WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), true);
@@ -148,16 +152,6 @@ public class OreGen {
             }
 
 
-
-
-
-
-
-
-
-
-
-
             // TO-DO: Re-add vanilla features to proper biomes?
             if (event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
                 List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> bedrock = flatBedrock();
@@ -208,6 +202,34 @@ public class OreGen {
 
 
         }
+    }
+
+    private static void disableGenerators(List<Supplier<ConfiguredFeature<?, ?>>> features, ResourceLocation name, List<BlockState> DISABLE) {
+        final List<Supplier<ConfiguredFeature<?, ?>>> drain = new ArrayList<>();
+        features.forEach(feature ->
+                findOreConfig(feature.get()).ifPresent(ore -> {
+                    if (DISABLE.contains(ore)) {
+                        ProjectRankine.LOGGER.debug("Removing {} from generation in {}.", ore, name);
+                        drain.add(feature);
+                    }
+                })
+        );
+        features.removeAll(drain);
+    }
+
+    private static Optional<BlockState> findOreConfig(ConfiguredFeature<?, ?> feature) {
+        final Iterator<ConfiguredFeature<?, ?>> features = feature.config.getConfiguredFeatures().iterator();
+        while (features.hasNext()) {
+            final IFeatureConfig config = features.next().config;
+            if (config instanceof OreFeatureConfig) {
+                return Optional.of(((OreFeatureConfig) config).state);
+            } else if (config instanceof BlockWithContextConfig) {
+                return Optional.of((((BlockWithContextConfig) config).toPlace));
+            } else if (config instanceof ReplaceBlockConfig) {
+                return Optional.of(((ReplaceBlockConfig) config).state);
+            }
+        }
+        return Optional.empty();
     }
 }
 

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:maple_slab"
+    },
+    {
+      "item": "rankine:maple_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:maple_planks"
+  }
+}

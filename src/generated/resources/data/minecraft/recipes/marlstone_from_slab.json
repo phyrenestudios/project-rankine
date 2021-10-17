@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:marlstone_slab"
+    },
+    {
+      "item": "rankine:marlstone_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:marlstone"
+  }
+}

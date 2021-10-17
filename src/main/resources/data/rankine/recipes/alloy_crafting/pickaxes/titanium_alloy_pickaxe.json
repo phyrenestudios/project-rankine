@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "inheritRecipe": "rankine:alloying/titanium_alloy_alloying",
   "pattern": [
     "###",
     " t ",
@@ -19,5 +20,6 @@
   },
   "result": {
     "item": "rankine:titanium_alloy_pickaxe",
-    "count": 1        }
+    "count": 1
+  }
 }

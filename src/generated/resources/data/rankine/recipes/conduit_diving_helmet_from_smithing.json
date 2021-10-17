@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "rankine:diving_helmet"
+  },
+  "addition": {
+    "item": "minecraft:sponge"
+  },
+  "result": {
+    "item": "rankine:conduit_diving_helmet"
+  }
+}

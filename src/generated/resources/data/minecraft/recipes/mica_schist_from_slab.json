@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:mica_schist_slab"
+    },
+    {
+      "item": "rankine:mica_schist_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:mica_schist"
+  }
+}

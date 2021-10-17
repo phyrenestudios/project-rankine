@@ -45,6 +45,67 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
+        for (Block blk : Stream.of(
+                RankineLists.STONES,
+                RankineLists.ALLOY_BLOCKS,
+                RankineLists.ELEMENT_BLOCKS,
+                RankineLists.SHEETMETALS,
+                RankineLists.GAS_BLOCKS,
+                RankineLists.MINERAL_WOOL,
+                RankineLists.STANDARD_BLOCKS,
+                RankineLists.MINERAL_BLOCKS,
+                RankineLists.BRICKS
+            ).flatMap(Collection::stream).collect(Collectors.toList())) {
+            simpleBlock(blk);
+        }
+        
+        for (Block blk : Arrays.asList(
+                RankineBlocks.ENDER_SHIRO.get(),
+                RankineBlocks.ANTIMATTER.get(),
+                RankineBlocks.UNAMED_EXPLOSIVE.get(),
+                RankineBlocks.LIGHT_GRAVEL.get(),
+                RankineBlocks.DARK_GRAVEL.get(),
+                RankineBlocks.KAOLIN.get(),
+                RankineBlocks.FIRE_CLAY.get(),
+                RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),
+                RankineBlocks.PORPHYRY_COPPER.get()
+        )) {
+            simpleBlock(blk);
+        }
+
+        for (Block INFESTED_STONE : RankineLists.INFESTED_STONES) {
+            simpleBlock(INFESTED_STONE,models().withExistingParent(INFESTED_STONE.getRegistryName().getPath(),getRSL(INFESTED_STONE.getRegistryName().getPath().replace("infested_",""))));
+        }
+
+        for (Block blk : Stream.of(RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            slabBlock(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            verticalSlabBlock(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            wallBlock(blk);
+        }
+        for (Block blk : Stream.of(RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            stairsBlock(blk);
+        }
+
+
+
+        for (Block blk : RankineLists.POLISHED_STONES) {
+            fancyPolishedBlock(blk);
+        }
+        for (Block blk : RankineLists.STONE_BRICKS) {
+            fancyBricksBlock(blk);
+        }
+        for (Block blk : RankineLists.PLANKS) {
+            fancyPlanksBlock(blk);
+        }
+        for (Block blk : RankineLists.LEAVES) {
+            leavesBlock(blk);
+        }
+        
+        
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
         //axisBlock((RotatedPillarBlock) RankineBlocks.GRAY_GRANITE_PILLAR.get());
         //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
@@ -97,22 +158,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                             .end()).build(); });
 
          */
-        for (Block blk : Stream.of(RankineLists.STANDARD_BLOCKS, RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            simpleBlock(blk);
-        }
-        // Misc Blocks
-        for (Block blk : Arrays.asList(
-                RankineBlocks.ENDER_SHIRO.get(),
-                RankineBlocks.ANTIMATTER.get(),
-                RankineBlocks.UNAMED_EXPLOSIVE.get(),
-                RankineBlocks.LIGHT_GRAVEL.get(),
-                RankineBlocks.DARK_GRAVEL.get(),
-                RankineBlocks.KAOLINITE_BLOCK.get(),
-                RankineBlocks.FIRE_CLAY.get(),
-                RankineBlocks.PORPHYRY_COPPER.get()
-        )) {
-            simpleBlock(blk);
-        }
+
 
         //Rotation blocks
         for (Block blk : Stream.of(RankineLists.ROTATION_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -123,70 +169,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         verticalSlabBlock(RankineBlocks.SOD_BLOCK_VERTICAL_SLAB.get());
         stairsBlock(RankineBlocks.SOD_BLOCK_STAIRS.get());
         wallBlock(RankineBlocks.SOD_BLOCK_WALL.get());
-        slabBlock(RankineBlocks.FIBER_BLOCK_SLAB.get());
-        verticalSlabBlock(RankineBlocks.FIBER_BLOCK_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.FIBER_BLOCK_STAIRS.get());
-        wallBlock(RankineBlocks.FIBER_BLOCK_WALL.get());
-        simpleBlock(RankineBlocks.CAST_IRON_SUPPORT.get());
-        slabBlock(RankineBlocks.CAST_IRON_SUPPORT_SLAB.get());
-        verticalSlabBlock(RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get());
-        simpleBlock(RankineBlocks.CEMENT.get());
-        slabBlock(RankineBlocks.CEMENT_SLAB.get());
-        verticalSlabBlock(RankineBlocks.CEMENT_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.CEMENT_STAIRS.get());
-        wallBlock(RankineBlocks.CEMENT_WALL.get());
-        simpleBlock(RankineBlocks.CONCRETE.get());
-        slabBlock(RankineBlocks.CONCRETE_SLAB.get());
-        verticalSlabBlock(RankineBlocks.CONCRETE_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.CONCRETE_STAIRS.get());
-        wallBlock(RankineBlocks.CONCRETE_WALL.get());
-        simpleBlock(RankineBlocks.CHECKERED_MARBLE.get());
-        slabBlock(RankineBlocks.CHECKERED_MARBLE_SLAB.get());
-        verticalSlabBlock(RankineBlocks.CHECKERED_MARBLE_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.CHECKERED_MARBLE_STAIRS.get());
-        wallBlock(RankineBlocks.CHECKERED_MARBLE_WALL.get());
-        simpleBlock(RankineBlocks.ROMAN_CONCRETE.get());
-        slabBlock(RankineBlocks.ROMAN_CONCRETE_SLAB.get());
-        verticalSlabBlock(RankineBlocks.ROMAN_CONCRETE_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.ROMAN_CONCRETE_STAIRS.get());
-        wallBlock(RankineBlocks.ROMAN_CONCRETE_WALL.get());
-        fancyPolishedBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE.get());
-        slabBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_SLAB.get());
-        verticalSlabBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_STAIRS.get());
-        wallBlock(RankineBlocks.POLISHED_ROMAN_CONCRETE_WALL.get());
-        simpleBlock(RankineBlocks.ROMAN_CONCRETE_BRICKS.get());
-        slabBlock(RankineBlocks.ROMAN_CONCRETE_BRICKS_SLAB.get());
-        verticalSlabBlock(RankineBlocks.ROMAN_CONCRETE_BRICKS_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.ROMAN_CONCRETE_BRICKS_STAIRS.get());
-        wallBlock(RankineBlocks.ROMAN_CONCRETE_BRICKS_WALL.get());
-        simpleBlock(RankineBlocks.SKARN.get());
-        slabBlock(RankineBlocks.SKARN_SLAB.get());
-        verticalSlabBlock(RankineBlocks.SKARN_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.SKARN_STAIRS.get());
-        wallBlock(RankineBlocks.SKARN_WALL.get());
-        simpleBlock(RankineBlocks.BRECCIA.get());
-        slabBlock(RankineBlocks.BRECCIA_SLAB.get());
-        verticalSlabBlock(RankineBlocks.BRECCIA_VERTICAL_SLAB.get());
-        stairsBlock(RankineBlocks.BRECCIA_STAIRS.get());
-        wallBlock(RankineBlocks.BRECCIA_WALL.get());
-
-        for (Block BLOCK : RankineLists.BRICKS) {
-            simpleBlock(BLOCK);
-        }
-        for (Block BLOCK : RankineLists.BRICKS_SLAB) {
-            slabBlock(BLOCK);
-        }
-        for (Block BLOCK : RankineLists.BRICKS_VERTICAL_SLAB) {
-            verticalSlabBlock(BLOCK);
-        }
-        for (Block BLOCK : RankineLists.BRICKS_STAIRS) {
-            stairsBlock(BLOCK);
-        }
-        for (Block BLOCK : RankineLists.BRICKS_WALL) {
-            wallBlock(BLOCK);
-        }
+        
 
         for (Block BLOCK : RankineLists.EIGHT_LAYER_BLOCKS) {
             String NAME = BLOCK.getRegistryName().getPath();
@@ -268,12 +251,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             trapdoorBlock((RankineMetalTrapdoor) blk, new ResourceLocation("rankine","block/"+name), true);
         }
 
-        for (Block blk : RankineLists.PLANKS) {
-            fancyPlanksBlock(blk);
-        }
-        for (Block blk : RankineLists.LEAVES) {
-            leavesBlock(blk);
-        }
+
         for (Block blk : RankineLists.SAPLINGS) {
             String name = blk.getRegistryName().getPath();
             simpleBlock(blk, models().cross(name, modLoc("block/"+name)));
@@ -352,16 +330,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
         //STONES
-        for (Block blk : Stream.of(RankineLists.STONE).flatMap(Collection::stream).collect(Collectors.toList())) {
-            simpleBlock(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.POLISHED_STONE).flatMap(Collection::stream).collect(Collectors.toList())) {
-            fancyPolishedBlock(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            fancyBricksBlock(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.STONE_SLAB, RankineLists.POLISHED_STONE_SLAB, RankineLists.STONE_BRICKS_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE_SLABS, RankineLists.POLISHED_STONE_SLABS, RankineLists.STONE_BRICKS_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_slab")).get(0);
             slabBlock((RankineSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseStone), new ResourceLocation("rankine", "block/" + baseStone));
@@ -371,22 +340,22 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String baseStone = Arrays.asList(name.split("_stairs")).get(0);
             stairsBlock((RankineStairsBlock) blk, baseStone, new ResourceLocation("rankine", "block/" + baseStone));
         }
-        for (Block blk : Stream.of(RankineLists.STONE_WALL, RankineLists.POLISHED_STONE_WALL, RankineLists.STONE_BRICKS_WALL).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE_WALLS, RankineLists.POLISHED_STONE_WALLS, RankineLists.STONE_BRICKS_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_wall")).get(0);
             wallBlock((RankineWallBlock) blk, new ResourceLocation("rankine", "block/" + baseStone));
         }
-        for (Block blk : Stream.of(RankineLists.STONE_VERTICAL_SLAB, RankineLists.POLISHED_STONE_VERTICAL_SLAB, RankineLists.STONE_BRICKS_VERTICAL_SLAB).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE_VERTICAL_SLABS, RankineLists.POLISHED_STONE_VERTICAL_SLABS, RankineLists.STONE_BRICKS_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_vertical_slab")).get(0);
             verticalSlabBlock((RankineVerticalSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseStone));
         }
-        for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATE, RankineLists.STONE_BRICKS_PRESSURE_PLATE).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE_PRESSURE_PLATES, RankineLists.STONE_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_pressure_plate")).get(0);
             pressurePlateBlock((RankineStonePressurePlate) blk, new ResourceLocation("rankine", "block/" + baseStone));
         }
-        for (Block blk : Stream.of(RankineLists.STONE_BUTTON).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.STONE_BUTTONS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_button")).get(0);
             buttonBlock((RankineStoneButton) blk, new ResourceLocation("rankine", "block/" + baseStone));
@@ -414,20 +383,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         pathBlock(RankineBlocks.MYCELIUM_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
 
 
-        //Sheetmetals
-        for (Block blk : RankineLists.SHEETMETALS) {
-            simpleBlock(blk);
-        }
-        for (Block blk : RankineLists.SHEETMETAL_VERTICAL_SLAB) {
-            String regName = blk.getRegistryName().getPath();
-            String baseMetal = Arrays.asList(regName.split("_vertical_slab")).get(0);
-            verticalSlabBlock((RankineVerticalSlabBlock) blk, new ResourceLocation("rankine", "block/" + baseMetal));
-        }
-
-        //Alloy Blocks
-        for (Block blk : RankineLists.ALLOY_BLOCKS) {
-            simpleBlock(blk);
-        }
         for (Block blk : RankineLists.ALLOY_PEDESTALS) {
             pedestalBlock(blk);
         }
@@ -441,9 +396,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         for (Block blk : RankineLists.GEODES) {
             geodeBlock(blk);
-        }
-        for (Block blk : Stream.of(RankineLists.ELEMENT_BLOCKS,RankineLists.GAS_BLOCKS,RankineLists.MINERAL_STONES,RankineLists.MINERAL_WOOL).flatMap(Collection::stream).collect(Collectors.toList())) {
-            simpleBlock(blk);
         }
         for (Block blk : RankineLists.LEDS) {
             onOffBlock(blk);
@@ -495,7 +447,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(RankineBlocks.GROUND_TAP.get())
                 .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe")).addModel();
 
-        simpleBlock(RankineBlocks.LASER_QUARRY.get());
+        //simpleBlock(RankineBlocks.LASER_QUARRY.get());
         simpleBlock(RankineBlocks.RANKINE_BOX.get());
         simpleBlock(RankineBlocks.REACTION_CHAMBER_CORE.get());
         simpleBlock(RankineBlocks.DIAMOND_ANVIL_CELL.get());
@@ -506,8 +458,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.TEMPLATE_TABLE.get(), models().orientable(RankineBlocks.TEMPLATE_TABLE.get().getRegistryName().getPath(), getRSL("template_table_side"), getRSL("template_table_front"), getRSL("template_table_top")));
         simpleBlock(RankineBlocks.MATERIAL_TESTING_TABLE.get(), models().orientable(RankineBlocks.MATERIAL_TESTING_TABLE.get().getRegistryName().getPath(), getRSL("material_testing_table_side"), getRSL("material_testing_table_front"), getRSL("material_testing_table_top")));
         simpleBlock(RankineBlocks.EVAPORATION_TOWER.get(), models().cubeBottomTop(RankineBlocks.EVAPORATION_TOWER.get().getRegistryName().getPath(), getRSL("evaporation_tower_side"), getRSL("evaporation_tower_bottom"), getRSL("evaporation_tower_top")));
-        simpleBlock(RankineBlocks.LASER_PYLON_BASE.get(), models().cubeBottomTop(RankineBlocks.LASER_PYLON_BASE.get().getRegistryName().getPath(), getRSL("laser_pylon_base"), getRSL("laser_pylon_bottom"), getRSL("laser_pylon_bottom")));
-        simpleBlock(RankineBlocks.LASER_PYLON_TOP.get(), models().cubeBottomTop(RankineBlocks.LASER_PYLON_TOP.get().getRegistryName().getPath(), getRSL("laser_pylon_top"), getRSL("laser_pylon_bottom"), getRSL("stainless_steel_block")));
+        //simpleBlock(RankineBlocks.LASER_PYLON_BASE.get(), models().cubeBottomTop(RankineBlocks.LASER_PYLON_BASE.get().getRegistryName().getPath(), getRSL("laser_pylon_base"), getRSL("laser_pylon_bottom"), getRSL("laser_pylon_bottom")));
+        //simpleBlock(RankineBlocks.LASER_PYLON_TOP.get(), models().cubeBottomTop(RankineBlocks.LASER_PYLON_TOP.get().getRegistryName().getPath(), getRSL("laser_pylon_top"), getRSL("laser_pylon_bottom"), getRSL("stainless_steel_block")));
         onOffBlock(RankineBlocks.CHARCOAL_PIT.get(), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath(), getRSL("charcoal_pit_side"), getRSL("charcoal_pit_top"), getRSL("charcoal_pit_top")), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath()+"_on", getRSL("charcoal_pit_side"), getRSL("charcoal_pit_top_on"), getRSL("charcoal_pit_top_on")));
         onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven")), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven_on")));
         onOffBlock(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/high_refractory_bricks"), new ResourceLocation("rankine", "block/high_beehive_oven")), models().cubeTop(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/high_refractory_bricks"), new ResourceLocation("rankine", "block/high_beehive_oven_on")));
@@ -715,8 +667,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", new ResourceLocation("rankine", "block/" + soilName)).texture("grassy_soil_top", new ResourceLocation("rankine", "block/" + grassyName + "_top")).texture("grassy_soil_side", new ResourceLocation("rankine", "block/" + grassyName + "_side")).texture("grassy_soil_side_overlay", new ResourceLocation("rankine", "block/" + grassyName + "_side_overlay"));
         ModelFile snowy = models().withExistingParent(grassyName+"_snow", mcLoc("block/cube_bottom_top")).texture("top", new ResourceLocation("rankine", "block/" + grassyName + "_top")).texture("bottom", new ResourceLocation("rankine", "block/" + soilName)).texture("side", new ResourceLocation("rankine", "block/"+grassyName+"_snow"));
         getVariantBuilder(grass)
-                .partialState().with(GrassBlock.SNOWY, false).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
-                .partialState().with(GrassBlock.SNOWY, true).modelForState().modelFile(snowy).addModel();
+                .partialState().with(GrassBlock.SNOWY, false).with(GrassySoilBlock.DEAD,true).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
+                .partialState().with(GrassBlock.SNOWY, false).with(GrassySoilBlock.DEAD,false).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
+                .partialState().with(GrassBlock.SNOWY, true).with(GrassySoilBlock.DEAD,false).modelForState().modelFile(snowy).addModel()
+                .partialState().with(GrassBlock.SNOWY, true).with(GrassySoilBlock.DEAD,true).modelForState().modelFile(snowy).addModel();
     }
 
     public void rotationBlock(Block blk) {
@@ -819,12 +773,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .texture("particle", all)
                 .texture("all", all)
                 .element().from(8.0f,0.0f,8.0f).to(16.0f,16.0f,16.0f)
-                .face(Direction.NORTH).uvs(0.0f,0.0f,8.0f,16.0f).texture("#all").end()
-                .face(Direction.EAST).uvs(0.0f,0.0f,8.0f,16.0f).texture("#all").end()
-                .face(Direction.SOUTH).uvs(0.0f,0.0f,8.0f,16.0f).texture("#all").end()
-                .face(Direction.WEST).uvs(0.0f,0.0f,8.0f,16.0f).texture("#all").end()
-                .face(Direction.UP).uvs(0.0f,0.0f,16.0f,16.0f).texture("#all").cullface(Direction.UP).end()
-                .face(Direction.DOWN).uvs(0.0f,0.0f,16.0f,16.0f).texture("#all").cullface(Direction.DOWN).end()
+                .face(Direction.NORTH).texture("#all").end()
+                .face(Direction.EAST).texture("#all").end()
+                .face(Direction.SOUTH).texture("#all").end()
+                .face(Direction.WEST).texture("#all").end()
+                .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
+                .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
                 .end();
         ModelFile outerSlab = models().withExistingParent(BLK.getRegistryName().getPath()+"_outer", mcLoc("block/block"))
                 .texture("particle", all)

@@ -8,7 +8,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -127,40 +126,41 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.WOODEN_TRAPDOORS) {
             getOrCreateBuilder(BlockTags.WOODEN_TRAPDOORS).add(blk);
         }
-        for (Block blk : RankineLists.STONE_BUTTON) {
+        for (Block blk : RankineLists.STONE_BUTTONS) {
             getOrCreateBuilder(BlockTags.BUTTONS).add(blk);
         }
-        for (Block blk : RankineLists.STONE_PRESSURE_PLATE) {
+        for (Block blk : RankineLists.STONE_PRESSURE_PLATES) {
             getOrCreateBuilder(BlockTags.STONE_PRESSURE_PLATES).add(blk);
         }
-        for (Block blk : RankineLists.STONE_BRICKS_PRESSURE_PLATE) {
+        for (Block blk : RankineLists.STONE_BRICKS_PRESSURE_PLATES) {
             getOrCreateBuilder(BlockTags.STONE_PRESSURE_PLATES).add(blk);
         }
-        getOrCreateBuilder(BlockTags.STAIRS).addTag(RankineTags.Blocks.BRICKS_STAIRS).addTag(RankineTags.Blocks.STONE_STAIRS).addTag(RankineTags.Blocks.POLISHED_STONE_STAIRS).addTag(RankineTags.Blocks.STONE_BRICKS_STAIRS);
-        getOrCreateBuilder(BlockTags.WALLS).addTag(RankineTags.Blocks.BRICKS_WALL).addTag(RankineTags.Blocks.STONE_WALL).addTag(RankineTags.Blocks.POLISHED_STONE_WALL).addTag(RankineTags.Blocks.STONE_BRICKS_WALL);
-        getOrCreateBuilder(BlockTags.SLABS).addTag(RankineTags.Blocks.BRICKS_SLAB).addTag(RankineTags.Blocks.STONE_SLAB).addTag(RankineTags.Blocks.POLISHED_STONE_SLAB).addTag(RankineTags.Blocks.STONE_BRICKS_SLAB);
+
         for (Block blk : RankineLists.STONE_BRICKS) {
             getOrCreateBuilder(BlockTags.STONE_BRICKS).add(blk);
         }
 
-        for (Block blk : RankineLists.STONE) {
+        for (Block blk : RankineLists.STONES) {
             getOrCreateBuilder(RankineTags.Blocks.BASE_STONE_END).add(blk);
             getOrCreateBuilder(BlockTags.BASE_STONE_OVERWORLD).add(blk);
             getOrCreateBuilder(BlockTags.BASE_STONE_NETHER).add(blk);
             getOrCreateBuilder(RankineTags.Blocks.WG_STONE).add(blk);
         }
         getOrCreateBuilder(RankineTags.Blocks.BASE_STONE_END).add(Blocks.END_STONE);
-        for (Block blk : RankineLists.POLISHED_STONE) {
+        for (Block blk : RankineLists.POLISHED_STONES) {
             getOrCreateBuilder(RankineTags.Blocks.POLISHED_STONE).add(blk);
         }
+        for (Block blk : RankineLists.INFESTED_STONES) {
+            getOrCreateBuilder(Tags.Blocks.STONE).add(blk);
+        }
         getOrCreateBuilder(Tags.Blocks.STONE).addTag(RankineTags.Blocks.POLISHED_STONE);
-        for (Block blk : RankineLists.STONE_SLAB) {
+        for (Block blk : RankineLists.STONE_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_SLAB).add(blk);
         }
-        for (Block blk : RankineLists.POLISHED_STONE_SLAB) {
+        for (Block blk : RankineLists.POLISHED_STONE_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.POLISHED_STONE_SLAB).add(blk);
         }
-        for (Block blk : RankineLists.STONE_BRICKS_SLAB) {
+        for (Block blk : RankineLists.STONE_BRICKS_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_BRICKS_SLAB).add(blk);
         }
         for (Block blk : RankineLists.STONE_STAIRS) {
@@ -172,25 +172,26 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.STONE_BRICKS_STAIRS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_BRICKS_STAIRS).add(blk);
         }
-        for (Block blk : RankineLists.STONE_WALL) {
+        for (Block blk : RankineLists.STONE_WALLS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_WALL).add(blk);
         }
-        for (Block blk : RankineLists.POLISHED_STONE_WALL) {
+        for (Block blk : RankineLists.POLISHED_STONE_WALLS) {
             getOrCreateBuilder(RankineTags.Blocks.POLISHED_STONE_WALL).add(blk);
         }
-        for (Block blk : RankineLists.STONE_BRICKS_WALL) {
+        for (Block blk : RankineLists.STONE_BRICKS_WALLS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_BRICKS_WALL).add(blk);
         }
-        for (Block blk : RankineLists.STONE_VERTICAL_SLAB) {
+        for (Block blk : RankineLists.STONE_VERTICAL_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_VERTICAL_SLAB).add(blk);
         }
-        for (Block blk : RankineLists.POLISHED_STONE_VERTICAL_SLAB) {
+        for (Block blk : RankineLists.POLISHED_STONE_VERTICAL_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.POLISHED_STONE_VERTICAL_SLAB).add(blk);
         }
-        for (Block blk : RankineLists.STONE_BRICKS_VERTICAL_SLAB) {
+        for (Block blk : RankineLists.STONE_BRICKS_VERTICAL_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.STONE_BRICKS_VERTICAL_SLAB).add(blk);
         }
-        getOrCreateBuilder(RankineTags.Blocks.VERTICAL_SLABS).addTag(RankineTags.Blocks.BRICKS_VERTICAL_SLAB).addTag(RankineTags.Blocks.WOODEN_VERTICAL_SLABS).addTag(RankineTags.Blocks.SHEETMETAL_VERTICAL_SALBS).addTag(RankineTags.Blocks.STONE_VERTICAL_SLAB).addTag(RankineTags.Blocks.POLISHED_STONE_VERTICAL_SLAB).addTag(RankineTags.Blocks.STONE_BRICKS_VERTICAL_SLAB);
+
+
         for (Block blk : Stream.of(RankineLists.GRASSY_SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
             getOrCreateBuilder(RankineTags.Blocks.GRASS).add(blk);
         }
@@ -254,8 +255,11 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.MINERAL_WOOL) {
             getOrCreateBuilder(RankineTags.Blocks.MINERAL_WOOL).add(blk);
         }
-        for (Block blk : RankineLists.SHEETMETAL_VERTICAL_SLAB) {
+        for (Block blk : RankineLists.SHEETMETAL_VERTICAL_SLABS) {
             getOrCreateBuilder(RankineTags.Blocks.SHEETMETAL_VERTICAL_SALBS).add(blk);
+        }
+        for (Block blk : RankineLists.SHEETMETAL_SLABS) {
+            getOrCreateBuilder(RankineTags.Blocks.SHEETMETAL_SALBS).add(blk);
         }
         for (Block blk : RankineLists.SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
@@ -418,6 +422,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY).add(RankineBlocks.TUNGSTEN_HEAVY_ALLOY_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM_ALLOY).add(RankineBlocks.TITANIUM_ALLOY_BLOCK.get());
 
+        getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_AMBER).add(RankineBlocks.AMBER_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_AQUAMARINE).add(RankineBlocks.AQUAMARINE_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_CINNABAR).add(RankineBlocks.CINNABAR_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_FLUORITE).add(RankineBlocks.FLUORITE_BLOCK.get());
@@ -427,17 +432,20 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_RUBY).add(RankineBlocks.RUBY_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_SAPPHIRE).add(RankineBlocks.SAPPHIRE_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_TOPAZ).add(RankineBlocks.TOPAZ_BLOCK.get());
+        getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_TOURMALINE).add(RankineBlocks.TOURMALINE_BLOCK.get());
+        getOrCreateBuilder(RankineTags.Blocks.STORAGE_BLOCKS_PEARL).add(RankineBlocks.PEARL_BLOCK.get());
 
-        getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTags(RankineTags.Blocks.STORAGE_BLOCKS_HYDROGEN, RankineTags.Blocks.STORAGE_BLOCKS_HELIUM, RankineTags.Blocks.STORAGE_BLOCKS_LITHIUM, RankineTags.Blocks.STORAGE_BLOCKS_BERYLLIUM, RankineTags.Blocks.STORAGE_BLOCKS_BORON, RankineTags.Blocks.STORAGE_BLOCKS_CARBON, RankineTags.Blocks.STORAGE_BLOCKS_NITROGEN, RankineTags.Blocks.STORAGE_BLOCKS_OXYGEN, RankineTags.Blocks.STORAGE_BLOCKS_FLUORINE, RankineTags.Blocks.STORAGE_BLOCKS_NEON, RankineTags.Blocks.STORAGE_BLOCKS_SODIUM, RankineTags.Blocks.STORAGE_BLOCKS_MAGNESIUM, RankineTags.Blocks.STORAGE_BLOCKS_ALUMINUM, RankineTags.Blocks.STORAGE_BLOCKS_SILICON, RankineTags.Blocks.STORAGE_BLOCKS_PHOSPHORUS, RankineTags.Blocks.STORAGE_BLOCKS_SULFUR, RankineTags.Blocks.STORAGE_BLOCKS_CHLORINE, RankineTags.Blocks.STORAGE_BLOCKS_ARGON, RankineTags.Blocks.STORAGE_BLOCKS_POTASSIUM, RankineTags.Blocks.STORAGE_BLOCKS_CALCIUM, RankineTags.Blocks.STORAGE_BLOCKS_SCANDIUM, RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM, RankineTags.Blocks.STORAGE_BLOCKS_VANADIUM, RankineTags.Blocks.STORAGE_BLOCKS_CHROMIUM, RankineTags.Blocks.STORAGE_BLOCKS_MANGANESE, RankineTags.Blocks.STORAGE_BLOCKS_COBALT, RankineTags.Blocks.STORAGE_BLOCKS_NICKEL, RankineTags.Blocks.STORAGE_BLOCKS_COPPER, RankineTags.Blocks.STORAGE_BLOCKS_ZINC, RankineTags.Blocks.STORAGE_BLOCKS_GALLIUM, RankineTags.Blocks.STORAGE_BLOCKS_GERMANIUM, RankineTags.Blocks.STORAGE_BLOCKS_ARSENIC, RankineTags.Blocks.STORAGE_BLOCKS_SELENIUM, RankineTags.Blocks.STORAGE_BLOCKS_BROMINE, RankineTags.Blocks.STORAGE_BLOCKS_KRYPTON, RankineTags.Blocks.STORAGE_BLOCKS_RUBIDIUM, RankineTags.Blocks.STORAGE_BLOCKS_STRONTIUM, RankineTags.Blocks.STORAGE_BLOCKS_YTTRIUM, RankineTags.Blocks.STORAGE_BLOCKS_ZIRCONIUM, RankineTags.Blocks.STORAGE_BLOCKS_NIOBIUM, RankineTags.Blocks.STORAGE_BLOCKS_MOLYBDENUM, RankineTags.Blocks.STORAGE_BLOCKS_TECHNETIUM, RankineTags.Blocks.STORAGE_BLOCKS_RUTHENIUM, RankineTags.Blocks.STORAGE_BLOCKS_RHODIUM, RankineTags.Blocks.STORAGE_BLOCKS_PALLADIUM, RankineTags.Blocks.STORAGE_BLOCKS_SILVER, RankineTags.Blocks.STORAGE_BLOCKS_CADMIUM, RankineTags.Blocks.STORAGE_BLOCKS_INDIUM, RankineTags.Blocks.STORAGE_BLOCKS_TIN, RankineTags.Blocks.STORAGE_BLOCKS_ANTIMONY, RankineTags.Blocks.STORAGE_BLOCKS_TELLURIUM, RankineTags.Blocks.STORAGE_BLOCKS_IODINE, RankineTags.Blocks.STORAGE_BLOCKS_XENON, RankineTags.Blocks.STORAGE_BLOCKS_CESIUM, RankineTags.Blocks.STORAGE_BLOCKS_BARIUM, RankineTags.Blocks.STORAGE_BLOCKS_LANTHANUM, RankineTags.Blocks.STORAGE_BLOCKS_CERIUM, RankineTags.Blocks.STORAGE_BLOCKS_PRASEODYMIUM, RankineTags.Blocks.STORAGE_BLOCKS_NEODYMIUM, RankineTags.Blocks.STORAGE_BLOCKS_PROMETHIUM, RankineTags.Blocks.STORAGE_BLOCKS_SAMARIUM, RankineTags.Blocks.STORAGE_BLOCKS_EUROPIUM, RankineTags.Blocks.STORAGE_BLOCKS_GADOLINIUM, RankineTags.Blocks.STORAGE_BLOCKS_TERBIUM, RankineTags.Blocks.STORAGE_BLOCKS_DYSPROSIUM, RankineTags.Blocks.STORAGE_BLOCKS_HOLMIUM, RankineTags.Blocks.STORAGE_BLOCKS_ERBIUM, RankineTags.Blocks.STORAGE_BLOCKS_THULIUM, RankineTags.Blocks.STORAGE_BLOCKS_YTTERBIUM, RankineTags.Blocks.STORAGE_BLOCKS_LUTETIUM, RankineTags.Blocks.STORAGE_BLOCKS_HAFNIUM, RankineTags.Blocks.STORAGE_BLOCKS_TANTALUM, RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN, RankineTags.Blocks.STORAGE_BLOCKS_RHENIUM, RankineTags.Blocks.STORAGE_BLOCKS_OSMIUM, RankineTags.Blocks.STORAGE_BLOCKS_IRIDIUM, RankineTags.Blocks.STORAGE_BLOCKS_PLATINUM, RankineTags.Blocks.STORAGE_BLOCKS_MERCURY, RankineTags.Blocks.STORAGE_BLOCKS_THALLIUM, RankineTags.Blocks.STORAGE_BLOCKS_LEAD, RankineTags.Blocks.STORAGE_BLOCKS_BISMUTH, RankineTags.Blocks.STORAGE_BLOCKS_POLONIUM, RankineTags.Blocks.STORAGE_BLOCKS_ASTATINE, RankineTags.Blocks.STORAGE_BLOCKS_RADON, RankineTags.Blocks.STORAGE_BLOCKS_FRANCIUM, RankineTags.Blocks.STORAGE_BLOCKS_RADIUM, RankineTags.Blocks.STORAGE_BLOCKS_ACTINIUM, RankineTags.Blocks.STORAGE_BLOCKS_THORIUM, RankineTags.Blocks.STORAGE_BLOCKS_PROTACTINIUM, RankineTags.Blocks.STORAGE_BLOCKS_URANIUM, RankineTags.Blocks.STORAGE_BLOCKS_NEPTUNIUM, RankineTags.Blocks.STORAGE_BLOCKS_PLUTONIUM, RankineTags.Blocks.STORAGE_BLOCKS_AMERICIUM, RankineTags.Blocks.STORAGE_BLOCKS_CURIUM, RankineTags.Blocks.STORAGE_BLOCKS_BERKELIUM, RankineTags.Blocks.STORAGE_BLOCKS_CALIFORNIUM, RankineTags.Blocks.STORAGE_BLOCKS_EINSTEINIUM, RankineTags.Blocks.STORAGE_BLOCKS_FERMIUM, RankineTags.Blocks.STORAGE_BLOCKS_MENDELEVIUM, RankineTags.Blocks.STORAGE_BLOCKS_NOBELIUM, RankineTags.Blocks.STORAGE_BLOCKS_LAWRENCIUM, RankineTags.Blocks.STORAGE_BLOCKS_RUTHERFORDIUM, RankineTags.Blocks.STORAGE_BLOCKS_DUBNIUM, RankineTags.Blocks.STORAGE_BLOCKS_SEABORGIUM, RankineTags.Blocks.STORAGE_BLOCKS_BOHRIUM, RankineTags.Blocks.STORAGE_BLOCKS_HASSIUM, RankineTags.Blocks.STORAGE_BLOCKS_MEITNERIUM, RankineTags.Blocks.STORAGE_BLOCKS_DARMSTADTIUM, RankineTags.Blocks.STORAGE_BLOCKS_ROENTGENIUM, RankineTags.Blocks.STORAGE_BLOCKS_COPERNICIUM, RankineTags.Blocks.STORAGE_BLOCKS_NIHONIUM, RankineTags.Blocks.STORAGE_BLOCKS_FLEROVIUM, RankineTags.Blocks.STORAGE_BLOCKS_MOSCOVIUM, RankineTags.Blocks.STORAGE_BLOCKS_LIVERMORIUM, RankineTags.Blocks.STORAGE_BLOCKS_TENNESSINE, RankineTags.Blocks.STORAGE_BLOCKS_OGANESSON,RankineTags.Blocks.STORAGE_BLOCKS_ENDOSITUM, RankineTags.Blocks.STORAGE_BLOCKS_PEWTER,RankineTags.Blocks.STORAGE_BLOCKS_BRONZE,RankineTags.Blocks.STORAGE_BLOCKS_BRASS,RankineTags.Blocks.STORAGE_BLOCKS_CAST_IRON,RankineTags.Blocks.STORAGE_BLOCKS_INVAR,RankineTags.Blocks.STORAGE_BLOCKS_CUPRONICKEL,RankineTags.Blocks.STORAGE_BLOCKS_DURALUMIN,RankineTags.Blocks.STORAGE_BLOCKS_MAGNESIUM_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_STERLING_SILVER,RankineTags.Blocks.STORAGE_BLOCKS_NICKEL_SILVER,RankineTags.Blocks.STORAGE_BLOCKS_ALNICO,RankineTags.Blocks.STORAGE_BLOCKS_STEEL,RankineTags.Blocks.STORAGE_BLOCKS_STAINLESS_STEEL,RankineTags.Blocks.STORAGE_BLOCKS_NITINOL,RankineTags.Blocks.STORAGE_BLOCKS_ROSE_METAL,RankineTags.Blocks.STORAGE_BLOCKS_MISCHMETAL,RankineTags.Blocks.STORAGE_BLOCKS_FERROCERIUM,RankineTags.Blocks.STORAGE_BLOCKS_GALINSTAN,RankineTags.Blocks.STORAGE_BLOCKS_OSMIRIDIUM,RankineTags.Blocks.STORAGE_BLOCKS_SODIUM_POTASSIUM_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_AMALGAM,RankineTags.Blocks.STORAGE_BLOCKS_ENDER_AMALGAM,RankineTags.Blocks.STORAGE_BLOCKS_ROSE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_GREEN_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_PURPLE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_WHITE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_BLUE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_BLACK_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_NICKEL_SUPERALLOY,RankineTags.Blocks.STORAGE_BLOCKS_COBALT_SUPERALLOY,RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_AQUAMARINE,RankineTags.Blocks.STORAGE_BLOCKS_CINNABAR,RankineTags.Blocks.STORAGE_BLOCKS_FLUORITE,RankineTags.Blocks.STORAGE_BLOCKS_GARNET,RankineTags.Blocks.STORAGE_BLOCKS_OPAL,RankineTags.Blocks.STORAGE_BLOCKS_PERIDOT,RankineTags.Blocks.STORAGE_BLOCKS_RUBY,RankineTags.Blocks.STORAGE_BLOCKS_SAPPHIRE,RankineTags.Blocks.STORAGE_BLOCKS_TOPAZ);
+        getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTags(RankineTags.Blocks.STORAGE_BLOCKS_HYDROGEN, RankineTags.Blocks.STORAGE_BLOCKS_HELIUM, RankineTags.Blocks.STORAGE_BLOCKS_LITHIUM, RankineTags.Blocks.STORAGE_BLOCKS_BERYLLIUM, RankineTags.Blocks.STORAGE_BLOCKS_BORON, RankineTags.Blocks.STORAGE_BLOCKS_CARBON, RankineTags.Blocks.STORAGE_BLOCKS_NITROGEN, RankineTags.Blocks.STORAGE_BLOCKS_OXYGEN, RankineTags.Blocks.STORAGE_BLOCKS_FLUORINE, RankineTags.Blocks.STORAGE_BLOCKS_NEON, RankineTags.Blocks.STORAGE_BLOCKS_SODIUM, RankineTags.Blocks.STORAGE_BLOCKS_MAGNESIUM, RankineTags.Blocks.STORAGE_BLOCKS_ALUMINUM, RankineTags.Blocks.STORAGE_BLOCKS_SILICON, RankineTags.Blocks.STORAGE_BLOCKS_PHOSPHORUS, RankineTags.Blocks.STORAGE_BLOCKS_SULFUR, RankineTags.Blocks.STORAGE_BLOCKS_CHLORINE, RankineTags.Blocks.STORAGE_BLOCKS_ARGON, RankineTags.Blocks.STORAGE_BLOCKS_POTASSIUM, RankineTags.Blocks.STORAGE_BLOCKS_CALCIUM, RankineTags.Blocks.STORAGE_BLOCKS_SCANDIUM, RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM, RankineTags.Blocks.STORAGE_BLOCKS_VANADIUM, RankineTags.Blocks.STORAGE_BLOCKS_CHROMIUM, RankineTags.Blocks.STORAGE_BLOCKS_MANGANESE, RankineTags.Blocks.STORAGE_BLOCKS_COBALT, RankineTags.Blocks.STORAGE_BLOCKS_NICKEL, RankineTags.Blocks.STORAGE_BLOCKS_COPPER, RankineTags.Blocks.STORAGE_BLOCKS_ZINC, RankineTags.Blocks.STORAGE_BLOCKS_GALLIUM, RankineTags.Blocks.STORAGE_BLOCKS_GERMANIUM, RankineTags.Blocks.STORAGE_BLOCKS_ARSENIC, RankineTags.Blocks.STORAGE_BLOCKS_SELENIUM, RankineTags.Blocks.STORAGE_BLOCKS_BROMINE, RankineTags.Blocks.STORAGE_BLOCKS_KRYPTON, RankineTags.Blocks.STORAGE_BLOCKS_RUBIDIUM, RankineTags.Blocks.STORAGE_BLOCKS_STRONTIUM, RankineTags.Blocks.STORAGE_BLOCKS_YTTRIUM, RankineTags.Blocks.STORAGE_BLOCKS_ZIRCONIUM, RankineTags.Blocks.STORAGE_BLOCKS_NIOBIUM, RankineTags.Blocks.STORAGE_BLOCKS_MOLYBDENUM, RankineTags.Blocks.STORAGE_BLOCKS_TECHNETIUM, RankineTags.Blocks.STORAGE_BLOCKS_RUTHENIUM, RankineTags.Blocks.STORAGE_BLOCKS_RHODIUM, RankineTags.Blocks.STORAGE_BLOCKS_PALLADIUM, RankineTags.Blocks.STORAGE_BLOCKS_SILVER, RankineTags.Blocks.STORAGE_BLOCKS_CADMIUM, RankineTags.Blocks.STORAGE_BLOCKS_INDIUM, RankineTags.Blocks.STORAGE_BLOCKS_TIN, RankineTags.Blocks.STORAGE_BLOCKS_ANTIMONY, RankineTags.Blocks.STORAGE_BLOCKS_TELLURIUM, RankineTags.Blocks.STORAGE_BLOCKS_IODINE, RankineTags.Blocks.STORAGE_BLOCKS_XENON, RankineTags.Blocks.STORAGE_BLOCKS_CESIUM, RankineTags.Blocks.STORAGE_BLOCKS_BARIUM, RankineTags.Blocks.STORAGE_BLOCKS_LANTHANUM, RankineTags.Blocks.STORAGE_BLOCKS_CERIUM, RankineTags.Blocks.STORAGE_BLOCKS_PRASEODYMIUM, RankineTags.Blocks.STORAGE_BLOCKS_NEODYMIUM, RankineTags.Blocks.STORAGE_BLOCKS_PROMETHIUM, RankineTags.Blocks.STORAGE_BLOCKS_SAMARIUM, RankineTags.Blocks.STORAGE_BLOCKS_EUROPIUM, RankineTags.Blocks.STORAGE_BLOCKS_GADOLINIUM, RankineTags.Blocks.STORAGE_BLOCKS_TERBIUM, RankineTags.Blocks.STORAGE_BLOCKS_DYSPROSIUM, RankineTags.Blocks.STORAGE_BLOCKS_HOLMIUM, RankineTags.Blocks.STORAGE_BLOCKS_ERBIUM, RankineTags.Blocks.STORAGE_BLOCKS_THULIUM, RankineTags.Blocks.STORAGE_BLOCKS_YTTERBIUM, RankineTags.Blocks.STORAGE_BLOCKS_LUTETIUM, RankineTags.Blocks.STORAGE_BLOCKS_HAFNIUM, RankineTags.Blocks.STORAGE_BLOCKS_TANTALUM, RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN, RankineTags.Blocks.STORAGE_BLOCKS_RHENIUM, RankineTags.Blocks.STORAGE_BLOCKS_OSMIUM, RankineTags.Blocks.STORAGE_BLOCKS_IRIDIUM, RankineTags.Blocks.STORAGE_BLOCKS_PLATINUM, RankineTags.Blocks.STORAGE_BLOCKS_MERCURY, RankineTags.Blocks.STORAGE_BLOCKS_THALLIUM, RankineTags.Blocks.STORAGE_BLOCKS_LEAD, RankineTags.Blocks.STORAGE_BLOCKS_BISMUTH, RankineTags.Blocks.STORAGE_BLOCKS_POLONIUM, RankineTags.Blocks.STORAGE_BLOCKS_ASTATINE, RankineTags.Blocks.STORAGE_BLOCKS_RADON, RankineTags.Blocks.STORAGE_BLOCKS_FRANCIUM, RankineTags.Blocks.STORAGE_BLOCKS_RADIUM, RankineTags.Blocks.STORAGE_BLOCKS_ACTINIUM, RankineTags.Blocks.STORAGE_BLOCKS_THORIUM, RankineTags.Blocks.STORAGE_BLOCKS_PROTACTINIUM, RankineTags.Blocks.STORAGE_BLOCKS_URANIUM, RankineTags.Blocks.STORAGE_BLOCKS_NEPTUNIUM, RankineTags.Blocks.STORAGE_BLOCKS_PLUTONIUM, RankineTags.Blocks.STORAGE_BLOCKS_AMERICIUM, RankineTags.Blocks.STORAGE_BLOCKS_CURIUM, RankineTags.Blocks.STORAGE_BLOCKS_BERKELIUM, RankineTags.Blocks.STORAGE_BLOCKS_CALIFORNIUM, RankineTags.Blocks.STORAGE_BLOCKS_EINSTEINIUM, RankineTags.Blocks.STORAGE_BLOCKS_FERMIUM, RankineTags.Blocks.STORAGE_BLOCKS_MENDELEVIUM, RankineTags.Blocks.STORAGE_BLOCKS_NOBELIUM, RankineTags.Blocks.STORAGE_BLOCKS_LAWRENCIUM, RankineTags.Blocks.STORAGE_BLOCKS_RUTHERFORDIUM, RankineTags.Blocks.STORAGE_BLOCKS_DUBNIUM, RankineTags.Blocks.STORAGE_BLOCKS_SEABORGIUM, RankineTags.Blocks.STORAGE_BLOCKS_BOHRIUM, RankineTags.Blocks.STORAGE_BLOCKS_HASSIUM, RankineTags.Blocks.STORAGE_BLOCKS_MEITNERIUM, RankineTags.Blocks.STORAGE_BLOCKS_DARMSTADTIUM, RankineTags.Blocks.STORAGE_BLOCKS_ROENTGENIUM, RankineTags.Blocks.STORAGE_BLOCKS_COPERNICIUM, RankineTags.Blocks.STORAGE_BLOCKS_NIHONIUM, RankineTags.Blocks.STORAGE_BLOCKS_FLEROVIUM, RankineTags.Blocks.STORAGE_BLOCKS_MOSCOVIUM, RankineTags.Blocks.STORAGE_BLOCKS_LIVERMORIUM, RankineTags.Blocks.STORAGE_BLOCKS_TENNESSINE, RankineTags.Blocks.STORAGE_BLOCKS_OGANESSON,RankineTags.Blocks.STORAGE_BLOCKS_ENDOSITUM, RankineTags.Blocks.STORAGE_BLOCKS_PEWTER,RankineTags.Blocks.STORAGE_BLOCKS_BRONZE,RankineTags.Blocks.STORAGE_BLOCKS_BRASS,RankineTags.Blocks.STORAGE_BLOCKS_CAST_IRON,RankineTags.Blocks.STORAGE_BLOCKS_INVAR,RankineTags.Blocks.STORAGE_BLOCKS_CUPRONICKEL,RankineTags.Blocks.STORAGE_BLOCKS_DURALUMIN,RankineTags.Blocks.STORAGE_BLOCKS_MAGNESIUM_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_STERLING_SILVER,RankineTags.Blocks.STORAGE_BLOCKS_NICKEL_SILVER,RankineTags.Blocks.STORAGE_BLOCKS_ALNICO,RankineTags.Blocks.STORAGE_BLOCKS_STEEL,RankineTags.Blocks.STORAGE_BLOCKS_STAINLESS_STEEL,RankineTags.Blocks.STORAGE_BLOCKS_NITINOL,RankineTags.Blocks.STORAGE_BLOCKS_ROSE_METAL,RankineTags.Blocks.STORAGE_BLOCKS_MISCHMETAL,RankineTags.Blocks.STORAGE_BLOCKS_FERROCERIUM,RankineTags.Blocks.STORAGE_BLOCKS_GALINSTAN,RankineTags.Blocks.STORAGE_BLOCKS_OSMIRIDIUM,RankineTags.Blocks.STORAGE_BLOCKS_SODIUM_POTASSIUM_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_AMALGAM,RankineTags.Blocks.STORAGE_BLOCKS_ENDER_AMALGAM,RankineTags.Blocks.STORAGE_BLOCKS_ROSE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_GREEN_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_PURPLE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_WHITE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_BLUE_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_BLACK_GOLD,RankineTags.Blocks.STORAGE_BLOCKS_NICKEL_SUPERALLOY,RankineTags.Blocks.STORAGE_BLOCKS_COBALT_SUPERALLOY,RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM_ALLOY,RankineTags.Blocks.STORAGE_BLOCKS_AMBER,RankineTags.Blocks.STORAGE_BLOCKS_AQUAMARINE,RankineTags.Blocks.STORAGE_BLOCKS_CINNABAR,RankineTags.Blocks.STORAGE_BLOCKS_FLUORITE,RankineTags.Blocks.STORAGE_BLOCKS_GARNET,RankineTags.Blocks.STORAGE_BLOCKS_OPAL,RankineTags.Blocks.STORAGE_BLOCKS_PERIDOT,RankineTags.Blocks.STORAGE_BLOCKS_RUBY,RankineTags.Blocks.STORAGE_BLOCKS_SAPPHIRE,RankineTags.Blocks.STORAGE_BLOCKS_TOPAZ,RankineTags.Blocks.STORAGE_BLOCKS_TOURMALINE,RankineTags.Blocks.STORAGE_BLOCKS_PEARL);
 
 
-        getOrCreateBuilder(Tags.Blocks.ORES_COAL).add(RankineBlocks.LIGNITE_ORE.get(),RankineBlocks.SUBBITUMINOUS_ORE.get(),RankineBlocks.BITUMINOUS_ORE.get(),RankineBlocks.ANTHRACITE_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_DIAMOND).add(RankineBlocks.DIAMOND_ORE.get(),RankineBlocks.LONSDALEITE_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_EMERALD).add(RankineBlocks.EMERALD_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_LAPIS).add(RankineBlocks.LAZURITE_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_QUARTZ).add(RankineBlocks.QUARTZ_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_GOLD).add(RankineBlocks.NATIVE_GOLD_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_IRON).add(RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.PYRITE_ORE.get(),RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.TAENITE_ORE.get(),RankineBlocks.TETRATAENITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_COAL).add(RankineBlocks.COAL_ORE.get(),RankineBlocks.LIGNITE_ORE.get(),RankineBlocks.SUBBITUMINOUS_ORE.get(),RankineBlocks.BITUMINOUS_ORE.get(),RankineBlocks.ANTHRACITE_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_DIAMOND).add(RankineBlocks.DIAMOND_ORE.get(),RankineBlocks.KIMBERLITIC_DIAMOND_ORE.get(),RankineBlocks.LONSDALEITE_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_EMERALD).add(RankineBlocks.EMERALD_ORE.get(),RankineBlocks.BERYL_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_LAPIS).add(RankineBlocks.LAPIS_ORE.get(),RankineBlocks.LAZURITE_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_REDSTONE).add(RankineBlocks.REDSTONE_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_QUARTZ).add(RankineBlocks.NETHER_QUARTZ_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_GOLD).add(RankineBlocks.NETHER_GOLD_ORE.get(),RankineBlocks.GOLD_ORE.get(),RankineBlocks.NATIVE_GOLD_ORE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_IRON).add(RankineBlocks.IRON_ORE.get(),RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.PYRITE_ORE.get(),RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.TAENITE_ORE.get(),RankineBlocks.TETRATAENITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get());
         getOrCreateBuilder(RankineTags.Blocks.ORES_COPPER).add(RankineBlocks.MALACHITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),RankineBlocks.PORPHYRY_COPPER.get());
         getOrCreateBuilder(RankineTags.Blocks.ORES_LEAD).add(RankineBlocks.GALENA_ORE.get(),RankineBlocks.NATIVE_LEAD_ORE.get());
         getOrCreateBuilder(RankineTags.Blocks.ORES_SILVER).add(RankineBlocks.ACANTHITE_ORE.get(),RankineBlocks.NATIVE_SILVER_ORE.get());
@@ -493,6 +501,26 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(RankineTags.Blocks.CHARRED_LOGS).add(RankineBlocks.CHARRED_LOG.get(),RankineBlocks.CHARRED_WOOD.get(),RankineBlocks.STRIPPED_CHARRED_LOG.get(),RankineBlocks.STRIPPED_CHARRED_WOOD.get());
         getOrCreateBuilder(RankineTags.Blocks.ERYTHRINA_LOGS).add(RankineBlocks.ERYTHRINA_LOG.get(),RankineBlocks.ERYTHRINA_WOOD.get(),RankineBlocks.STRIPPED_ERYTHRINA_LOG.get(),RankineBlocks.STRIPPED_ERYTHRINA_WOOD.get());
 
+
+        getOrCreateBuilder(BlockTags.STAIRS).addTag(RankineTags.Blocks.BRICKS_STAIRS).addTag(RankineTags.Blocks.STONE_STAIRS).addTag(RankineTags.Blocks.POLISHED_STONE_STAIRS).addTag(RankineTags.Blocks.STONE_BRICKS_STAIRS);
+        getOrCreateBuilder(BlockTags.WALLS).addTag(RankineTags.Blocks.BRICKS_WALL).addTag(RankineTags.Blocks.STONE_WALL).addTag(RankineTags.Blocks.POLISHED_STONE_WALL).addTag(RankineTags.Blocks.STONE_BRICKS_WALL);
+        getOrCreateBuilder(BlockTags.SLABS).addTag(RankineTags.Blocks.BRICKS_SLAB).addTag(RankineTags.Blocks.STONE_SLAB).addTag(RankineTags.Blocks.POLISHED_STONE_SLAB).addTag(RankineTags.Blocks.STONE_BRICKS_SLAB);
+        getOrCreateBuilder(RankineTags.Blocks.VERTICAL_SLABS).addTag(RankineTags.Blocks.BRICKS_VERTICAL_SLAB).addTag(RankineTags.Blocks.WOODEN_VERTICAL_SLABS).addTag(RankineTags.Blocks.SHEETMETAL_VERTICAL_SALBS).addTag(RankineTags.Blocks.STONE_VERTICAL_SLAB).addTag(RankineTags.Blocks.POLISHED_STONE_VERTICAL_SLAB).addTag(RankineTags.Blocks.STONE_BRICKS_VERTICAL_SLAB);
+        for (Block blk : RankineLists.MISC_VERTICAL_SLABS) {
+            getOrCreateBuilder(RankineTags.Blocks.VERTICAL_SLABS).add(blk);
+        }
+        for (Block blk : RankineLists.MISC_SLABS) {
+            getOrCreateBuilder(BlockTags.SLABS).add(blk);
+        }
+        for (Block blk : RankineLists.MISC_STAIRS) {
+            getOrCreateBuilder(BlockTags.STAIRS).add(blk);
+        }
+        for (Block blk : RankineLists.MISC_WALLS) {
+            getOrCreateBuilder(BlockTags.WALLS).add(blk);
+        }
+
+
+
         getOrCreateBuilder(BlockTags.BAMBOO_PLANTABLE_ON).addTags(Tags.Blocks.DIRT,Tags.Blocks.GRAVEL).add(RankineBlocks.SILT.get());
         getOrCreateBuilder(BlockTags.DRAGON_IMMUNE).addTags(RankineTags.Blocks.PETRIFIED_CHORUS_LOGS,RankineTags.Blocks.CHARRED_LOGS,RankineTags.Blocks.ERYTHRINA_LOGS);
         getOrCreateBuilder(BlockTags.LOGS_THAT_BURN).addTags(RankineTags.Blocks.CEDAR_LOGS,RankineTags.Blocks.PINYON_PINE_LOGS,RankineTags.Blocks.JUNIPER_LOGS,RankineTags.Blocks.COCONUT_PALM_LOGS,RankineTags.Blocks.BALSAM_FIR_LOGS,RankineTags.Blocks.EASTERN_HEMLOCK_LOGS,RankineTags.Blocks.MAPLE_LOGS,RankineTags.Blocks.MAGNOLIA_LOGS,RankineTags.Blocks.SHARINGA_LOGS,RankineTags.Blocks.CORK_OAK_LOGS,RankineTags.Blocks.CINNAMON_LOGS,RankineTags.Blocks.BLACK_BIRCH_LOGS,RankineTags.Blocks.YELLOW_BIRCH_LOGS,RankineTags.Blocks.BLACK_WALNUT_LOGS,RankineTags.Blocks.CHARRED_LOGS,RankineTags.Blocks.ERYTHRINA_LOGS);
@@ -507,10 +535,13 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(BlockTags.GUARDED_BY_PIGLINS).add(RankineBlocks.NATIVE_GOLD_ORE.get()).add(RankineBlocks.GOLD_SHEETMETAL.get()).add(RankineBlocks.GOLD_SHEETMETAL_VERTICAL_SLAB.get()).add(RankineBlocks.BLACK_GOLD_PEDESTAL.get()).add(RankineBlocks.PURPLE_GOLD_PEDESTAL.get()).add(RankineBlocks.ROSE_GOLD_PEDESTAL.get()).add(RankineBlocks.WHITE_GOLD_PEDESTAL.get()).add(RankineBlocks.GREEN_GOLD_PEDESTAL.get()).add(RankineBlocks.BLUE_GOLD_PEDESTAL.get()).add(RankineBlocks.BLACK_GOLD_BLOCK.get()).add(RankineBlocks.PURPLE_GOLD_BLOCK.get()).add(RankineBlocks.ROSE_GOLD_BLOCK.get()).add(RankineBlocks.WHITE_GOLD_BLOCK.get()).add(RankineBlocks.GREEN_GOLD_BLOCK.get()).add(RankineBlocks.BLUE_GOLD_BLOCK.get());
         getOrCreateBuilder(RankineTags.Blocks.TREE_LOGS).addTags(BlockTags.LOGS);
         getOrCreateBuilder(Tags.Blocks.COBBLESTONE).add(RankineBlocks.BRECCIA.get(),RankineBlocks.SKARN.get());
+        getOrCreateBuilder(BlockTags.CROPS).add(RankineBlocks.JUTE_PLANT.get(),RankineBlocks.CORN_PLANT.get(),RankineBlocks.RICE_PLANT.get(),RankineBlocks.COTTON_PLANT.get(),RankineBlocks.ASPARAGUS_PLANT.get(),RankineBlocks.CAMPHOR_BASIL_PLANT.get(),RankineBlocks.ALOE_PLANT.get(),RankineBlocks.PINEAPPLE_BUSH.get(),RankineBlocks.CRANBERRY_BUSH.get(),RankineBlocks.POKEBERRY_BUSH.get(),RankineBlocks.BLUEBERRY_BUSH.get(),RankineBlocks.ELDERBERRY_BUSH.get(),RankineBlocks.STRAWBERRY_BUSH.get(),RankineBlocks.SNOWBERRY_BUSH.get(),RankineBlocks.RASPBERRY_BUSH.get(),RankineBlocks.BLACKBERRY_BUSH.get(),RankineBlocks.BANANA_YUCCA_BUSH.get());
         getOrCreateBuilder(RankineTags.Blocks.TREE_LEAVES).addTags(BlockTags.LEAVES).add(Blocks.WARPED_WART_BLOCK,Blocks.NETHER_WART_BLOCK);
+        getOrCreateBuilder(RankineTags.Blocks.HERBICIDAL).addTags(BlockTags.SMALL_FLOWERS,BlockTags.TALL_FLOWERS,BlockTags.CROPS,BlockTags.CORAL_PLANTS,BlockTags.WALL_CORALS,BlockTags.SAPLINGS).add(Blocks.GRASS,Blocks.TALL_GRASS,Blocks.FERN,Blocks.LARGE_FERN,Blocks.SEAGRASS,Blocks.TALL_SEAGRASS,Blocks.VINE,Blocks.TWISTING_VINES,Blocks.TWISTING_VINES_PLANT,Blocks.WEEPING_VINES_PLANT,Blocks.WEEPING_VINES,Blocks.LILY_PAD,Blocks.FIRE_CORAL_FAN,Blocks.BRAIN_CORAL_FAN,Blocks.BUBBLE_CORAL_FAN,Blocks.HORN_CORAL_FAN,Blocks.TUBE_CORAL_FAN,RankineBlocks.SHORT_GRASS.get(),RankineBlocks.STINGING_NETTLE.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get(),RankineBlocks.YELLOW_CLOVER.get());
 
 
         getOrCreateBuilder(RankineTags.Blocks.WORLD_STRIP).addTags(RankineTags.Blocks.TUFF,BlockTags.LEAVES,BlockTags.LOGS,BlockTags.SAND,Tags.Blocks.DIRT,Tags.Blocks.GRAVEL,Tags.Blocks.STONE,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,RankineTags.Blocks.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL,Blocks.LAVA,Blocks.WATER,Blocks.OBSIDIAN);
+        getOrCreateBuilder(RankineTags.Blocks.VANILLA_OVERRIDE).add(Blocks.EMERALD_ORE,Blocks.DIAMOND_ORE,Blocks.IRON_ORE,Blocks.COAL_ORE,Blocks.LAPIS_ORE,Blocks.REDSTONE_ORE,Blocks.NETHER_GOLD_ORE,Blocks.NETHER_QUARTZ_ORE,Blocks.GOLD_ORE,Blocks.ANDESITE,Blocks.DIORITE,Blocks.GRANITE);
 
 
     }

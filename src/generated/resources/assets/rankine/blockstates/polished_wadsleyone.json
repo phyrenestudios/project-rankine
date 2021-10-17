@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "polish_type=normal": {
+      "model": "rankine:block/polished_wadsleyone"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_wadsleyone_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_wadsleyone_vertical_offset"
+    }
+  }
+}

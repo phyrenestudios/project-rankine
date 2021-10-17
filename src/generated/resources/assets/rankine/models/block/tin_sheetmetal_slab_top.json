@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "rankine:block/tin_sheetmetal",
+    "bottom": "rankine:block/tin_sheetmetal",
+    "top": "rankine:block/tin_sheetmetal"
+  }
+}

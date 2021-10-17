@@ -1,8 +1,10 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.blocks.RankineVerticalSlabBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -14,9 +16,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -39,28 +39,23 @@ public class HerbicideItem extends Item {
     public ActionResultType onItemUse(ItemUseContext context) {
         World worldIn = context.getWorld();
         BlockPos pos = context.getPos();
-        if (!worldIn.isRemote) {
-            int radius = Config.GENERAL.HERBICIDE_RANGE.get();
 
-            if (!context.getPlayer().isCrouching()) {
-                for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {
-                    Block blk = worldIn.getBlockState(b).getBlock();
-                    if (blk.getTags().contains(new ResourceLocation("rankine:herbicidal")) && b.distanceSq(pos) <= radius*radius) {
-                        worldIn.destroyBlock(b,false);
-                    }
-                }
-            } else {
-                for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-2, -2, -2), pos.add(2, 2, 2))) {
-                    Block blk = worldIn.getBlockState(b).getBlock();
-                    if (blk.getTags().contains(new ResourceLocation("forge:dirt")) && b.distanceSq(pos) <= 2*2) {
-                        worldIn.setBlockState(b, Blocks.COARSE_DIRT.getDefaultState(), 2);
-                    }
+        int radius = Config.GENERAL.HERBICIDE_RANGE.get();
+
+        if (!worldIn.isRemote) {
+            for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-radius, -radius, -radius), pos.add(radius, radius, radius))) {
+                Block blk = worldIn.getBlockState(b).getBlock();
+                if (blk.isIn(RankineTags.Blocks.HERBICIDAL) && b.distanceSq(pos) <= radius*radius) {
+                    worldIn.destroyBlock(b,false);
+                } else if (blk instanceof GrassySoilBlock) {
+                    worldIn.setBlockState(b, blk.getDefaultState().with(GrassySoilBlock.DEAD, true), 2);
                 }
             }
-            context.getItem().shrink(1);
-            return ActionResultType.SUCCESS;
         }
-        return super.onItemUse(context);
+        worldIn.playSound(null,pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS,0.5f,0.8f);
+        context.getItem().shrink(1);
+        return ActionResultType.SUCCESS;
+
     }
 
     public static void spawnParticles(World worldIn, BlockPos pos) {

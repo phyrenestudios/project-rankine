@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:komatiite_stairs"
+    },
+    {
+      "item": "rankine:komatiite_stairs"
+    },
+    {
+      "item": "rankine:komatiite_stairs"
+    },
+    {
+      "item": "rankine:komatiite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:komatiite",
+    "count": 6
+  }
+}

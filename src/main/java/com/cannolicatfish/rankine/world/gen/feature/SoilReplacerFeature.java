@@ -22,6 +22,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -47,52 +48,80 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
         for (int x = startX; x <= endX; ++x) {
             for (int z = startZ; z <= endZ; ++z) {
                 int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, x, z);
-                for (int y = 0; y <= endY; ++y) {
-                    BlockPos TARGET_POS = new BlockPos(x,y,z);
+                for (int y = endY; y > 0; --y) {
+                    BlockPos TARGET_POS = new BlockPos(x, y, z);
                     Block TARGET = reader.getBlockState(TARGET_POS).getBlock();
                     ResourceLocation TARGET_BIOME = reader.getBiome(TARGET_POS).getRegistryName();
 
-                    Block GRASS = WorldgenUtils.GEN_GRASSES.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
-                    Block GRASS2 = WorldgenUtils.GEN_GRASSES2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block O1 = WorldgenUtils.O1.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block A1 = WorldgenUtils.A1.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block B1 = WorldgenUtils.B1.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block O2 = WorldgenUtils.O2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block A2 = WorldgenUtils.A2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    Block B2 = WorldgenUtils.B2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME));
+                    double noise = Biome.INFO_NOISE.noiseAt((double) x / 70, (double) z / 70, false);
 
-                    if (TARGET.matchesBlock(Blocks.DIRT)) {
-                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
-                            soilPlacer(reader, TARGET_POS, WorldgenUtils.GEN_SOILS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), WorldgenUtils.GEN_SOILS2.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState());
-                        }
-                    } else if (TARGET.matchesBlock(Blocks.GRASS_BLOCK)) {
-                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
-                            
-                            if (GRASS instanceof GrassBlock && GRASS2 instanceof GrassBlock) {
+                    if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
+                        if (TARGET.matchesBlock(Blocks.GRASS_BLOCK)) {
+                            if (O1 instanceof GrassBlock && O2 instanceof GrassBlock) {
                                 boolean SNOWY = reader.getBlockState(TARGET_POS).get(BlockStateProperties.SNOWY);
-                                soilPlacer(reader, TARGET_POS, GRASS.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), GRASS2.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY));
+                                if (noise > 0.3) {
+                                    reader.setBlockState(TARGET_POS, O2.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), 19);
+                                } else {
+                                    reader.setBlockState(TARGET_POS, O1.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), 19);
+                                }
                             } else {
-                                soilPlacer(reader, TARGET_POS, GRASS.getDefaultState(), GRASS2.getDefaultState());
+                                if (noise > 0.3) {
+                                    reader.setBlockState(TARGET_POS, O2.getDefaultState(), 19);
+                                } else {
+                                    reader.setBlockState(TARGET_POS, O1.getDefaultState(), 19);
+                                }
+                            }
+                        } else if (TARGET.matchesBlock(Blocks.DIRT)) {
+                            if (reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE)) {
+                                if (noise > 0.3) {
+                                    reader.setBlockState(TARGET_POS.down(), B2.getDefaultState(), 19);
+                                } else {
+                                    reader.setBlockState(TARGET_POS.down(), B1.getDefaultState(), 19);
+                                }
+                            }
+                            if (reader.getBlockState(TARGET_POS.down(2)).isIn(Tags.Blocks.STONE)) {
+                                if (noise > 0.3) {
+                                    reader.setBlockState(TARGET_POS.down(2), B2.getDefaultState(), 19);
+                                } else {
+                                    reader.setBlockState(TARGET_POS.down(2), B1.getDefaultState(), 19);
+                                }
+                            }
+                            if (noise > 0.3) {
+                                reader.setBlockState(TARGET_POS, A2.getDefaultState(), 19);
+                            } else {
+                                reader.setBlockState(TARGET_POS, A1.getDefaultState(), 19);
+                            }
+                        } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
+                            if (noise > 0.3) {
+                                if (VanillaIntegration.pathBlocks_map.get(O2) != null) {
+                                    reader.setBlockState(TARGET_POS, O2.getDefaultState(), 19);
+                                }
+                            } else {
+                                if (VanillaIntegration.pathBlocks_map.get(O1) != null) {
+                                    reader.setBlockState(TARGET_POS, O1.getDefaultState(), 19);
+                                }
+                            }
+                        } else if (TARGET.matchesBlock(Blocks.GRAVEL)) {
+                            if (WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)) != Blocks.AIR) {
+                                reader.setBlockState(TARGET_POS, WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 19);
                             }
                         }
-                    } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
-                        if (WorldgenUtils.GEN_BIOMES.contains(TARGET_BIOME)) {
-                            
-                            if (VanillaIntegration.pathBlocks_map.get(GRASS) != null && VanillaIntegration.pathBlocks_map.get(GRASS2) != null) {
-                                soilPlacer(reader, TARGET_POS, VanillaIntegration.pathBlocks_map.get(GRASS).getDefaultState(), VanillaIntegration.pathBlocks_map.get(GRASS2).getDefaultState());
-                            }
+                        if (TARGET.isIn(Tags.Blocks.STONE) && reader.getBlockState(TARGET_POS.up()).isIn(Tags.Blocks.ORES_COAL)) {
+                            reader.setBlockState(TARGET_POS, RankineBlocks.FIRE_CLAY.get().getDefaultState(), 19);
                         }
                     }
+
 
                 }
             }
         }
         return true;
-    }
-
-
-    private void soilPlacer(ISeedReader reader, BlockPos pos, BlockState soil, BlockState soil2) {
-        double noise = Biome.INFO_NOISE.noiseAt((double)pos.getX() / 80, (double)pos.getZ() / 80, false);
-        if (noise > 0.4) {
-            reader.setBlockState(pos, soil2,19);
-        } else {
-            reader.setBlockState(pos, soil,19);
-        }
-
     }
 
 }

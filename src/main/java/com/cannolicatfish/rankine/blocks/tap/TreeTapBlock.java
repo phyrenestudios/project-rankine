@@ -3,9 +3,7 @@ package com.cannolicatfish.rankine.blocks.tap;
 import com.cannolicatfish.rankine.blocks.FloodGateBlock;
 import com.cannolicatfish.rankine.blocks.states.TapBarrelFluids;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
-import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -25,6 +23,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -159,8 +158,9 @@ public class TreeTapBlock extends Block {
                 }
             }
 
-            if (barrel != null) {
-                FloodGateBlock.placeFluid(worldIn,barrel,Blocks.WATER.getDefaultState());
+            if (barrel != null && VanillaIntegration.tapFluids_map.get(state.get(FLUID)) != null) {
+                FloodGateBlock.placeFluid(worldIn, barrel, VanillaIntegration.tapFluids_map.get(state.get(FLUID)));
+                worldIn.setBlockState(pos,state.with(FLUID,TreeTapFluids.EMPTY));
             }
         }
     }
@@ -176,11 +176,11 @@ public class TreeTapBlock extends Block {
                 checkedBlocks.add(cp);
                 for (BlockPos b : BlockPos.getAllInBoxMutable(cp.add(-1,-1,-1), cp.add(1,1,1))) {
                     BlockState target = worldIn.getBlockState(b.toImmutable());
-                    if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:leaves"))) {
+                   if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
                         if (!target.get(LeavesBlock.PERSISTENT)) {
                             return true;
                         }
-                    } else if (target.getBlock().getTags().contains(new ResourceLocation("minecraft:logs"))) {
+                    } else if (target.isIn(RankineTags.Blocks.TREE_LOGS)) {
                         toCheck.add(b.toImmutable());
                     }
                 }

@@ -1,6 +1,6 @@
 {
   "name": "Rankine Journal",
-  "landing_text": "A collection of the discoveries to be made, mechanics to utilize, and blocks to build with. This Journal is based of the default construction and config options of the game; deviations are not fully documented.",
+  "landing_text": "A collection of the discoveries to be made, mechanics to utilize, blocks to build with, and guidlines to follow. This Journal is based of the default construction and config options of the game; deviations are not fully documented.",
   "version": 10,
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",

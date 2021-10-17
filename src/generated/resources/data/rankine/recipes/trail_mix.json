@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:berries"
+    },
+    {
+      "item": "rankine:roasted_walnut"
+    },
+    {
+      "item": "rankine:toasted_coconut"
+    }
+  ],
+  "result": {
+    "item": "rankine:trail_mix"
+  }
+}

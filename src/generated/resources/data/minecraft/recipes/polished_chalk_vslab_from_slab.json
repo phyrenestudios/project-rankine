@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_vslab_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:polished_chalk_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:polished_chalk_vertical_slab"
+  }
+}

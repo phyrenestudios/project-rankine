@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "polish_type=normal": {
+      "model": "rankine:block/polished_sommanite"
+    },
+    "polish_type=offset": {
+      "model": "rankine:block/polished_sommanite_offset"
+    },
+    "polish_type=vertical_offset": {
+      "model": "rankine:block/polished_sommanite_vertical_offset"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:chromium_ingot_from_chromite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_chromite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:chromite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:chromium_ingot_from_chromite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chromite",
+      "has_the_recipe"
+    ]
+  ]
+}

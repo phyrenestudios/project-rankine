@@ -37,6 +37,7 @@ public class DecorationGen {
         if (WGConfig.MISC.RANKINE_FAUNA.get()) {
             return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(RankineFeatures.ELDERBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
+                new AbstractMap.SimpleEntry<>(RankineFeatures.POKEBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.TAIGA),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.SNOWBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.EXTREME_HILLS, Biome.Category.ICY),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.BLUEBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.RIVER, Biome.Category.PLAINS),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.RASPBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.FOREST),true)),

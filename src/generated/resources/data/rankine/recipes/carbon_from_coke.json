@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "carbon_nugget",
+  "ingredients": [
+    {
+      "tag": "forge:coke"
+    }
+  ],
+  "result": {
+    "item": "rankine:carbon_nugget"
+  }
+}

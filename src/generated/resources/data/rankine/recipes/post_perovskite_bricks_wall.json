@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:post_perovskite_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:post_perovskite_bricks_wall",
+    "count": 6
+  }
+}

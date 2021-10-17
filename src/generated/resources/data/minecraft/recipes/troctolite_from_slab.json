@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:troctolite_slab"
+    },
+    {
+      "item": "rankine:troctolite_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:troctolite"
+  }
+}

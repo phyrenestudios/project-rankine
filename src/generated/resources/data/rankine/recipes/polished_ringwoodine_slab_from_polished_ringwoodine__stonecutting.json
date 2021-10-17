@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_ringwoodine"
+  },
+  "result": "rankine:polished_ringwoodine_slab",
+  "count": 2
+}

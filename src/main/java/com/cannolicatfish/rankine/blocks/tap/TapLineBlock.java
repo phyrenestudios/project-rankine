@@ -135,7 +135,7 @@ public class TapLineBlock extends Block {
                 case SOUTH:
                 case EAST:
                 case WEST:
-                    flag = fsb == this || fsb.matchesBlock(RankineBlocks.TAP_BARREL.get());
+                    flag = fsb == this || fsb.matchesBlock(RankineBlocks.FLOOD_GATE.get());
                     break;
             }
             return stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), flag);

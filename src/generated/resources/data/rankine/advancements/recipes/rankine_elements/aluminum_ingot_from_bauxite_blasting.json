@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:aluminum_ingot_from_bauxite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_bauxite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bauxite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:aluminum_ingot_from_bauxite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bauxite",
+      "has_the_recipe"
+    ]
+  ]
+}

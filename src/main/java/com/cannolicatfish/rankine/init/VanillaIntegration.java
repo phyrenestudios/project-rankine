@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
+import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.events.RankineEventHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.SheepEntity;
@@ -16,40 +17,26 @@ public class VanillaIntegration {
     public static Map<Block, Block> grass_dirt_map = new HashMap<Block, Block>();
     public static Map<Block, Block> dirt_grass_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
-    
+    public static Map<TreeTapFluids, BlockState> tapFluids_map = new HashMap<TreeTapFluids, BlockState>();
+
     public static void init() {
-        registerCompostable(0.3F, RankineBlocks.CEDAR_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.PINYON_PINE_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.COCONUT_PALM_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.JUNIPER_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.BALSAM_FIR_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.MAGNOLIA_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.EASTERN_HEMLOCK_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.BLACK_BIRCH_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.MAPLE_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.YELLOW_BIRCH_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.SHARINGA_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.BLACK_WALNUT_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.CORK_OAK_LEAVES.get());
-        registerCompostable(0.3F, RankineBlocks.CINNAMON_LEAVES.get());
-
-        registerCompostable(0.3F, RankineBlocks.CEDAR_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.PINYON_PINE_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.COCONUT_PALM_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.JUNIPER_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.BALSAM_FIR_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.MAGNOLIA_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.EASTERN_HEMLOCK_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.BLACK_BIRCH_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.MAPLE_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.YELLOW_BIRCH_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.SHARINGA_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.BLACK_WALNUT_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.CORK_OAK_SAPLING.get());
-        registerCompostable(0.3F, RankineBlocks.CINNAMON_SAPLING.get());
-
+        for (Block blk : RankineLists.TALL_FLOWERS) {
+            registerCompostable(0.65F, blk);
+        }
+        for (Block blk : RankineLists.LEAVES) {
+            registerCompostable(0.3F, blk);
+        }
+        for (Block blk : RankineLists.SAPLINGS) {
+            registerCompostable(0.3F, blk);
+        }
         registerCompostable(0.5F, RankineItems.COMPOST.get());
         registerCompostable(1.0F, RankineItems.PINEAPPLE_SLEEVES.get());
+        registerCompostable(0.25F, RankineItems.SHORT_GRASS.get());
+        registerCompostable(0.5F, RankineItems.STINGING_NETTLE.get());
+        registerCompostable(0.5F, RankineItems.YELLOW_CLOVER.get());
+        registerCompostable(0.5F, RankineItems.CRIMSON_CLOVER.get());
+        registerCompostable(0.5F, RankineItems.RED_CLOVER.get());
+        registerCompostable(0.5F, RankineItems.WHITE_CLOVER.get());
 
         registerCompostable(0.3F, RankineItems.ELDERBERRIES.get());
         registerCompostable(0.3F, RankineItems.BLUEBERRIES.get());
@@ -198,6 +185,16 @@ public class VanillaIntegration {
         addFlowerPot(RankineBlocks.BLACK_WALNUT_SAPLING.get(), RankineBlocks.POTTED_BLACK_WALNUT_SAPLING.get());
         addFlowerPot(RankineBlocks.CORK_OAK_SAPLING.get(), RankineBlocks.POTTED_CORK_OAK_SAPLING.get());
         addFlowerPot(RankineBlocks.CINNAMON_SAPLING.get(), RankineBlocks.POTTED_CINNAMON_SAPLING.get());
+
+        tapFluids_map.put(TreeTapFluids.LAVA, Blocks.LAVA.getDefaultState());
+        tapFluids_map.put(TreeTapFluids.WATER, Blocks.WATER.getDefaultState());
+        tapFluids_map.put(TreeTapFluids.JUGLONE, RankineBlocks.JUGLONE.get().getDefaultState());
+        tapFluids_map.put(TreeTapFluids.SAP, RankineBlocks.SAP.get().getDefaultState());
+        tapFluids_map.put(TreeTapFluids.MAPLE_SAP, RankineBlocks.MAPLE_SAP.get().getDefaultState());
+        tapFluids_map.put(TreeTapFluids.RESIN, RankineBlocks.RESIN.get().getDefaultState());
+        tapFluids_map.put(TreeTapFluids.LATEX, RankineBlocks.LATEX.get().getDefaultState());
+
+
 
 /*
         registerFlamables(ModBlocks.CEDAR_LEAVES,30,60);

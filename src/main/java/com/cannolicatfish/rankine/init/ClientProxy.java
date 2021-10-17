@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
-import com.cannolicatfish.rankine.blocks.laserquarry.LaserQuarryScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
 import com.cannolicatfish.rankine.blocks.pistoncrusher.PistonCrusherScreen;
 import com.cannolicatfish.rankine.blocks.rankinebox.RankineBoxScreen;
@@ -62,7 +61,6 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(RankineBlocks.INDUCTION_FURNACE_CONTAINER, InductionFurnaceScreen::new);
         ScreenManager.registerFactory(RankineBlocks.GYRATORY_CRUSHER_CONTAINER, GyratoryCrusherScreen::new);
         ScreenManager.registerFactory(RankineBlocks.RANKINE_BOX_CONTAINER, RankineBoxScreen::new);
-        ScreenManager.registerFactory(RankineBlocks.LASER_QUARRY_CONTAINER, LaserQuarryScreen::new);
 
         addCutout(RankineLists.WOODEN_DOORS);
         addCutout(RankineLists.METAL_DOORS);
@@ -169,6 +167,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.XENON_GAS_BLOCK.get(),
                 RankineBlocks.RADON_GAS_BLOCK.get(),
                 RankineBlocks.OGANESSON_GAS_BLOCK.get(),
+                RankineBlocks.ANTIMATTER.get(),
                 RankineBlocks.LIGHTNING_GLASS.get(),
                 RankineBlocks.BLACK_TEKTITE.get(),
                 RankineBlocks.GREEN_TEKTITE.get(),

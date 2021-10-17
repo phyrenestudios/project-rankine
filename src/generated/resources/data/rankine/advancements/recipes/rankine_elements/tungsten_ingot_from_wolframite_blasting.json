@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:tungsten_ingot_from_wolframite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_wolframite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:wolframite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:tungsten_ingot_from_wolframite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wolframite",
+      "has_the_recipe"
+    ]
+  ]
+}

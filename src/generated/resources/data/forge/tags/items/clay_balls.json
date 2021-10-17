@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "rankine:fire_clay_ball",
-    "minecraft:clay_ball"
+    "minecraft:clay_ball",
+    "rankine:kaolinite"
   ]
 }

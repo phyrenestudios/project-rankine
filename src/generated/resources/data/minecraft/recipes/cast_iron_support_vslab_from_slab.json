@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:cast_iron_support_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:cast_iron_support_vertical_slab"
+  }
+}

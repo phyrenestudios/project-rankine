@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:red_dacite_bricks_slab"
+    },
+    {
+      "item": "rankine:red_dacite_bricks_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:red_dacite_bricks"
+  }
+}

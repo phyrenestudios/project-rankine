@@ -179,6 +179,24 @@
     },
     "type=59": {
       "model": "rankine:block/native_selenium_ore59"
+    },
+    "type=60": {
+      "model": "rankine:block/native_selenium_ore60"
+    },
+    "type=61": {
+      "model": "rankine:block/native_selenium_ore61"
+    },
+    "type=62": {
+      "model": "rankine:block/native_selenium_ore62"
+    },
+    "type=63": {
+      "model": "rankine:block/native_selenium_ore63"
+    },
+    "type=64": {
+      "model": "rankine:block/native_selenium_ore64"
+    },
+    "type=65": {
+      "model": "rankine:block/native_selenium_ore65"
     }
   }
 }

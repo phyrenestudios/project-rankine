@@ -67,6 +67,13 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.ORES_PHOSPHORUS, RankineTags.Items.ORES_PHOSPHORUS);
         copy(RankineTags.Blocks.ORES_GRAPHITE, RankineTags.Items.ORES_GRAPHITE);
         copy(RankineTags.Blocks.ORES_SALT, RankineTags.Items.ORES_SALT);
+        copy(Tags.Blocks.ORES_COAL, Tags.Items.ORES_COAL);
+        copy(Tags.Blocks.ORES_LAPIS, Tags.Items.ORES_LAPIS);
+        copy(Tags.Blocks.ORES_DIAMOND, Tags.Items.ORES_DIAMOND);
+        copy(Tags.Blocks.ORES_GOLD, Tags.Items.ORES_GOLD);
+        copy(Tags.Blocks.ORES_EMERALD, Tags.Items.ORES_EMERALD);
+        copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
+        copy(Tags.Blocks.ORES_REDSTONE, Tags.Items.ORES_REDSTONE);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
 
         copy(RankineTags.Blocks.STONES_DACITE, RankineTags.Items.STONES_DACITE);
@@ -279,6 +286,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY, RankineTags.Items.STORAGE_BLOCKS_TUNGSTEN_HEAVY_ALLOY);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_TITANIUM_ALLOY, RankineTags.Items.STORAGE_BLOCKS_TITANIUM_ALLOY);
 
+        copy(RankineTags.Blocks.STORAGE_BLOCKS_AMBER, RankineTags.Items.STORAGE_BLOCKS_AMBER);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_AQUAMARINE, RankineTags.Items.STORAGE_BLOCKS_AQUAMARINE);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_CINNABAR, RankineTags.Items.STORAGE_BLOCKS_CINNABAR);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_FLUORITE, RankineTags.Items.STORAGE_BLOCKS_FLUORITE);
@@ -288,6 +296,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STORAGE_BLOCKS_RUBY, RankineTags.Items.STORAGE_BLOCKS_RUBY);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_SAPPHIRE, RankineTags.Items.STORAGE_BLOCKS_SAPPHIRE);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_TOPAZ, RankineTags.Items.STORAGE_BLOCKS_TOPAZ);
+        copy(RankineTags.Blocks.STORAGE_BLOCKS_TOURMALINE, RankineTags.Items.STORAGE_BLOCKS_TOURMALINE);
+        copy(RankineTags.Blocks.STORAGE_BLOCKS_PEARL, RankineTags.Items.STORAGE_BLOCKS_PEARL);
 
         getOrCreateBuilder(RankineTags.Items.NUGGETS_HYDROGEN).add(RankineItems.HYDROGEN_NUGGET.get());
         getOrCreateBuilder(RankineTags.Items.NUGGETS_HELIUM).add(RankineItems.HELIUM_NUGGET.get());
@@ -662,6 +672,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.VERTICAL_SLABS, RankineTags.Items.VERTICAL_SLABS);
         copy(RankineTags.Blocks.SHEETMETAL, RankineTags.Items.SHEETMETAL);
         copy(RankineTags.Blocks.SHEETMETAL_VERTICAL_SALBS, RankineTags.Items.SHEETMETAL_VERTICAL_SALBS);
+        copy(RankineTags.Blocks.SHEETMETAL_SALBS, RankineTags.Items.SHEETMETAL_SALBS);
         for (Block blk : RankineLists.SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
@@ -704,7 +715,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(Tags.Items.CROPS).addTags(RankineTags.Items.CROPS_ASPARAGUS,RankineTags.Items.CROPS_CORN,RankineTags.Items.CROPS_COTTON,RankineTags.Items.CROPS_RICE,RankineTags.Items.CROPS_JUTE,RankineTags.Items.CROPS_CAMPHOR_BASIL);
 
 
-        getOrCreateBuilder(RankineTags.Items.PINEAPPLE).add(RankineItems.PINEAPPLE.get(),RankineItems.PINEAPPLE_SLEEVES.get());
+        getOrCreateBuilder(RankineTags.Items.PINEAPPLE).add(RankineItems.PINEAPPLE.get());
 
         getOrCreateBuilder(RankineTags.Items.BERRIES_BLACKBERRY).add(RankineItems.BLACKBERRIES.get());
         getOrCreateBuilder(RankineTags.Items.BERRIES_BLUEBERRY).add(RankineItems.BLUEBERRIES.get());
@@ -741,18 +752,23 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         getOrCreateBuilder(RankineTags.Items.ASTATINE).add(RankineItems.ASTATINE.get());
         getOrCreateBuilder(RankineTags.Items.SULFUR).add(RankineItems.SULFUR.get());
         getOrCreateBuilder(RankineTags.Items.PHOSPHORUS).add(RankineItems.PHOSPHORUS.get());
-        getOrCreateBuilder(RankineTags.Items.AQUAMARINE).add(RankineItems.AQUAMARINE.get());
-        getOrCreateBuilder(RankineTags.Items.CINNABAR).add(RankineItems.CINNABAR.get());
-        getOrCreateBuilder(RankineTags.Items.FLUORITE).add(RankineItems.FLUORITE.get());
-        getOrCreateBuilder(RankineTags.Items.GARNET).add(RankineItems.GARNET.get());
-        getOrCreateBuilder(RankineTags.Items.OPAL).add(RankineItems.OPAL.get());
-        getOrCreateBuilder(RankineTags.Items.PERIDOT).add(RankineItems.PERIDOT.get());
-        getOrCreateBuilder(RankineTags.Items.RUBY).add(RankineItems.RUBY.get());
-        getOrCreateBuilder(RankineTags.Items.SAPPHIRE).add(RankineItems.SAPPHIRE.get());
-        getOrCreateBuilder(RankineTags.Items.TOPAZ).add(RankineItems.TOPAZ.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_AMBER).add(RankineItems.AMBER.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_AQUAMARINE).add(RankineItems.AQUAMARINE.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_CINNABAR).add(RankineItems.CINNABAR.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_FLUORITE).add(RankineItems.FLUORITE.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_GARNET).add(RankineItems.GARNET.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_OPAL).add(RankineItems.OPAL.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_PERIDOT).add(RankineItems.PERIDOT.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_RUBY).add(RankineItems.RUBY.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_SAPPHIRE).add(RankineItems.SAPPHIRE.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_TOPAZ).add(RankineItems.TOPAZ.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_TOURMALINE).add(RankineItems.TOURMALINE.get());
+        getOrCreateBuilder(RankineTags.Items.GEMS_PEARL).add(RankineItems.PEARL.get());
+        getOrCreateBuilder(Tags.Items.GEMS).addTags(RankineTags.Items.GEMS_AMBER,RankineTags.Items.GEMS_AQUAMARINE,RankineTags.Items.GEMS_CINNABAR,RankineTags.Items.GEMS_FLUORITE,RankineTags.Items.GEMS_GARNET,RankineTags.Items.GEMS_OPAL,RankineTags.Items.GEMS_PERIDOT,RankineTags.Items.GEMS_RUBY,RankineTags.Items.GEMS_SAPPHIRE,RankineTags.Items.GEMS_TOPAZ,RankineTags.Items.GEMS_TOURMALINE,RankineTags.Items.GEMS_PEARL);
+
         getOrCreateBuilder(RankineTags.Items.ROPE).add(RankineItems.ROPE.get());
         getOrCreateBuilder(Tags.Items.STRING).add(RankineItems.ROPE.get());
-        getOrCreateBuilder(RankineTags.Items.CLAY_BALLS).add(RankineItems.FIRE_CLAY_BALL.get(), Items.CLAY_BALL);
+        getOrCreateBuilder(RankineTags.Items.CLAY_BALLS).add(RankineItems.FIRE_CLAY_BALL.get(), Items.CLAY_BALL, RankineItems.KAOLINITE.get());
 
         getOrCreateBuilder(RankineTags.Items.RODS_GRAPHITE).add(RankineItems.GRAPHITE_ELECTRODE.get());
         getOrCreateBuilder(RankineTags.Items.RODS_CARBON).add(RankineItems.HARD_CARBON_ELECTRODE.get());
@@ -804,6 +820,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
         copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
+        copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
 
 
         getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);

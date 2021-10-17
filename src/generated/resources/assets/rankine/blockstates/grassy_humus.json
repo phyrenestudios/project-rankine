@@ -1,6 +1,6 @@
 {
   "variants": {
-    "snowy=false": [
+    "dead=false,snowy=false": [
       {
         "model": "rankine:block/grassy_humus"
       },
@@ -17,7 +17,27 @@
         "y": 270
       }
     ],
-    "snowy=true": {
+    "dead=true,snowy=false": [
+      {
+        "model": "rankine:block/grassy_humus"
+      },
+      {
+        "model": "rankine:block/grassy_humus",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/grassy_humus",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/grassy_humus",
+        "y": 270
+      }
+    ],
+    "dead=false,snowy=true": {
+      "model": "rankine:block/grassy_humus_snow"
+    },
+    "dead=true,snowy=true": {
       "model": "rankine:block/grassy_humus_snow"
     }
   }

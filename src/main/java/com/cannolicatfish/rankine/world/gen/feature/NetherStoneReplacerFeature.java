@@ -79,9 +79,9 @@ public class NetherStoneReplacerFeature extends Feature<NoFeatureConfig> {
         for (int y = StartY; y <= EndY; ++y) {
             BlockPos targetPos = new BlockPos(x, y, z);
             BlockState target = reader.getBlockState(targetPos);
-            if (WGConfig.MISC.DARK_GRAVEL.get() && target == Blocks.GRAVEL.getDefaultState()) {
-                reader.setBlockState(targetPos, RankineBlocks.DARK_GRAVEL.get().getDefaultState(), 19);
-            }
+     //       if (WGConfig.MISC.DARK_GRAVEL.get() && target == Blocks.GRAVEL.getDefaultState()) {
+       //         reader.setBlockState(targetPos, RankineBlocks.DARK_GRAVEL.get().getDefaultState(), 19);
+       //     }
             if (target == Blocks.NETHERRACK.getDefaultState()) {
                 if (reader.getBlockState(targetPos.up(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.up(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.up(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.up(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(1)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(2)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(3)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS) || reader.getBlockState(targetPos.down(4)).isIn(BlockTags.SOUL_FIRE_BASE_BLOCKS)) {
                     reader.setBlockState(targetPos, RankineBlocks.SOUL_SANDSTONE.get().getDefaultState(), 2);

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "rankine:block/gold_sheetmetal_slab_top"
+    },
+    "type=bottom": {
+      "model": "rankine:block/gold_sheetmetal_slab"
+    },
+    "type=double": {
+      "model": "rankine:block/gold_sheetmetal"
+    }
+  }
+}

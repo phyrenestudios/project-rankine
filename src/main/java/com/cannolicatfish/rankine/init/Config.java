@@ -107,6 +107,8 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
         public final ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
         public final ForgeConfigSpec.DoubleValue CHEESE_AGE_CHANCE;
+        public final ForgeConfigSpec.DoubleValue POLISHED_HARDNESS_MULT;
+        public final ForgeConfigSpec.DoubleValue POLISHED_RESISTANCE_MULT;
         public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
         public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
         public final ForgeConfigSpec.DoubleValue ICE_BREAK;
@@ -134,7 +136,7 @@ public class Config {
                     STRIPPABLES_STICKS = b.comment("If enabled, sticks will drop from all other trees when stripped (30% chance).")
                             .define("strippablesSticks",true);
                     HERBICIDE_RANGE = b.comment("The radius at which herbicide will kill plants.")
-                            .defineInRange("herbicideRange", 7, 0, 32);
+                            .defineInRange("herbicideRange", 8, 0, 32);
                     ROCK_DRILL = b.comment("Enable the use of the rock drill.")
                             .define("rockDrill",true);
                     DISABLE_WATER = b.comment("No more infinite water")
@@ -152,7 +154,11 @@ public class Config {
                     BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
                             .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
                     BRICKS_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the bricks variant resistance is than the stone.")
-                            .defineInRange("bricksResistanceMultiplier", 1.5D, 0.0D, 20.0D);
+                            .defineInRange("bricksResistanceMultiplier", 2.0D, 0.0D, 20.0D);
+                    POLISHED_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the polished variant hardness is than the stone.")
+                            .defineInRange("polishedHardnessMultiplier", 1.1D, 0.0D, 20.0D);
+                    POLISHED_RESISTANCE_MULT = b.comment("A multiplier to determine how much higher the polished variant resistance is than the stone.")
+                            .defineInRange("polishedResistanceMultiplier", 1.5D, 0.0D, 20.0D);
                     STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod, requires Patchouli)")
                             .define("startingBook",true);
                     REFRESH_ALLOYS = b.comment("If enabled, alloy-related content in the player's inventory will always refresh on world join.")

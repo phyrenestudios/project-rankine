@@ -1,5 +1,5 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
-
+/*
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+
 
 public class LaserQuarryScreen extends ContainerScreen<LaserQuarryContainer> {
     private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/laser_quarry.png");
@@ -39,3 +40,5 @@ public class LaserQuarryScreen extends ContainerScreen<LaserQuarryContainer> {
         drawCenteredString(p_230451_1_, Minecraft.getInstance().fontRenderer, "Laser Quarry", 92, 10, 0xffffff);
     }
 }
+
+ */

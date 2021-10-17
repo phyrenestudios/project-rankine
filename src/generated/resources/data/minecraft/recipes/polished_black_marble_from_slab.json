@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:polished_black_marble_slab"
+    },
+    {
+      "item": "rankine:polished_black_marble_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:polished_black_marble"
+  }
+}

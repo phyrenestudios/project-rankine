@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:roman_concrete_bricks"
+  },
+  "result": "rankine:roman_concrete_bricks_wall",
+  "count": 1
+}

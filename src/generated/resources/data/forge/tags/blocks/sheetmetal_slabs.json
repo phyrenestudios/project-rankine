@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:aluminum_sheetmetal_slab",
+    "rankine:bismuth_sheetmetal_slab",
+    "rankine:brass_sheetmetal_slab",
+    "rankine:bronze_sheetmetal_slab",
+    "rankine:copper_sheetmetal_slab",
+    "rankine:cupronickel_sheetmetal_slab",
+    "rankine:gold_sheetmetal_slab",
+    "rankine:invar_sheetmetal_slab",
+    "rankine:lead_sheetmetal_slab",
+    "rankine:nickel_sheetmetal_slab",
+    "rankine:platinum_sheetmetal_slab",
+    "rankine:silver_sheetmetal_slab",
+    "rankine:stainless_steel_sheetmetal_slab",
+    "rankine:steel_sheetmetal_slab",
+    "rankine:tin_sheetmetal_slab",
+    "rankine:titanium_sheetmetal_slab",
+    "rankine:tungsten_sheetmetal_slab"
+  ]
+}

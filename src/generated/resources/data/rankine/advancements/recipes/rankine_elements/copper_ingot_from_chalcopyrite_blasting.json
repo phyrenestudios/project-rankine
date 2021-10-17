@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:copper_ingot_from_chalcopyrite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_chalcopyrite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:chalcopyrite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:copper_ingot_from_chalcopyrite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_chalcopyrite",
+      "has_the_recipe"
+    ]
+  ]
+}

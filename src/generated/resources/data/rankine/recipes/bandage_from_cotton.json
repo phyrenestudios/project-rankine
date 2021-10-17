@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bandage",
+  "ingredients": [
+    {
+      "item": "rankine:resin_bucket"
+    },
+    {
+      "item": "rankine:aloe"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    },
+    {
+      "tag": "forge:crops/cotton"
+    }
+  ],
+  "result": {
+    "item": "rankine:bandage",
+    "count": 6
+  }
+}

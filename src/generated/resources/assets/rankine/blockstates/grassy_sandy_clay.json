@@ -1,6 +1,6 @@
 {
   "variants": {
-    "snowy=false": [
+    "dead=false,snowy=false": [
       {
         "model": "rankine:block/grassy_sandy_clay"
       },
@@ -17,7 +17,27 @@
         "y": 270
       }
     ],
-    "snowy=true": {
+    "dead=true,snowy=false": [
+      {
+        "model": "rankine:block/grassy_sandy_clay"
+      },
+      {
+        "model": "rankine:block/grassy_sandy_clay",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/grassy_sandy_clay",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/grassy_sandy_clay",
+        "y": 270
+      }
+    ],
+    "dead=false,snowy=true": {
+      "model": "rankine:block/grassy_sandy_clay_snow"
+    },
+    "dead=true,snowy=true": {
       "model": "rankine:block/grassy_sandy_clay_snow"
     }
   }

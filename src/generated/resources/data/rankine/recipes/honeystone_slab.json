@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:honeystone"
+    }
+  },
+  "result": {
+    "item": "rankine:honeystone_slab",
+    "count": 6
+  }
+}

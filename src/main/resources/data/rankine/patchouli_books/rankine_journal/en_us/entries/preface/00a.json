@@ -1,8 +1,8 @@
 {
-  "name": "External Resources",
+  "name": "Resources (the literature type)",
   "icon": "minecraft:flint",
   "category": "preface",
-  "sortnum": 0,
+  "sortnum": 1,
   "pages": [
     {
       "type": "text",

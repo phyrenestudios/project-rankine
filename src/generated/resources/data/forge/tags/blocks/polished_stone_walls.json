@@ -45,6 +45,12 @@
     "rankine:polished_arkose_wall",
     "rankine:polished_soul_sandstone_wall",
     "rankine:polished_diabase_wall",
-    "rankine:polished_itacolumite_wall"
+    "rankine:polished_itacolumite_wall",
+    "rankine:polished_honeystone_wall",
+    "rankine:polished_sommanite_wall",
+    "rankine:polished_ringwoodine_wall",
+    "rankine:polished_wadsleyone_wall",
+    "rankine:polished_bridgmanham_wall",
+    "rankine:polished_post_perovskite_wall"
   ]
 }

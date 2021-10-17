@@ -18,11 +18,11 @@
                   }
                 }
               ],
-              "name": "rankine:camphor_basil_leaf"
+              "name": "rankine:camphor_basil_seeds"
             },
             {
               "type": "minecraft:item",
-              "name": "rankine:camphor_basil_seeds"
+              "name": "rankine:camphor_basil_leaf"
             }
           ]
         }
@@ -49,7 +49,7 @@
               }
             }
           ],
-          "name": "rankine:camphor_basil_seeds"
+          "name": "rankine:camphor_basil_leaf"
         }
       ],
       "conditions": [

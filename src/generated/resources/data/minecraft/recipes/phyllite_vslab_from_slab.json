@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "stone_vslab_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:phyllite_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:phyllite_vertical_slab"
+  }
+}

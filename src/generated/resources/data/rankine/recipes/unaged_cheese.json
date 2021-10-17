@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "tag": "forge:salt"
+    },
+    {
+      "tag": "forge:salt"
+    }
+  ],
+  "result": {
+    "item": "rankine:unaged_cheese"
+  }
+}

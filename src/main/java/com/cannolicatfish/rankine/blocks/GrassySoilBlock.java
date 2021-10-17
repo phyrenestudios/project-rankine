@@ -5,6 +5,9 @@ import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -17,10 +20,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Random;
 
 public class GrassySoilBlock extends GrassBlock {
+    public static final BooleanProperty DEAD = BooleanProperty.create("dead");
 
     public GrassySoilBlock(Properties properties) {
         super(properties);
+        this.setDefaultState(this.stateContainer.getBaseState().with(SNOWY, false).with(DEAD, false));
     }
+
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(SNOWY,DEAD);
+    }
+
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
@@ -44,7 +54,7 @@ public class GrassySoilBlock extends GrassBlock {
                // if (random.nextFloat() < Config.GENERAL.SAPLING_GROW_CHANCE.get() && (worldIn.getBlockState(pos.up()).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR)) && ceillingBlock instanceof LeavesBlock) {
                    // worldIn.setBlockState(pos.up(), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(ceillingBlock.getRegistryName().toString().replace("leaves","sapling"))).getDefaultState(),2);
                 //}
-                if (worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) && random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
+                if (!state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) && random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
                     Biome BIOME = worldIn.getBiome(pos);
                     BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
                     worldIn.setBlockState(pos.up(),BLOCK,2);

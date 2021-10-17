@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:zirconium_ingot_from_zircon_blasting"
+    ]
+  },
+  "criteria": {
+    "has_zircon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:zircon"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:zirconium_ingot_from_zircon_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_zircon",
+      "has_the_recipe"
+    ]
+  ]
+}

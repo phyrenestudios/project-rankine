@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:story/make_steel_alloy",
+  "parent": "rankine:story/make_wooden_gold_pan",
   "display": {
     "icon": {
       "item": "rankine:steel_gold_pan"

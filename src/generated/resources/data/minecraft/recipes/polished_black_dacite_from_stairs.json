@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:polished_black_dacite_stairs"
+    },
+    {
+      "item": "rankine:polished_black_dacite_stairs"
+    },
+    {
+      "item": "rankine:polished_black_dacite_stairs"
+    },
+    {
+      "item": "rankine:polished_black_dacite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:polished_black_dacite",
+    "count": 6
+  }
+}

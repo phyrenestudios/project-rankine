@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bricks_vslab_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:fire_clay_bricks_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:fire_clay_bricks_vertical_slab"
+  }
+}

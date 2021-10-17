@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:bismuth_ingot_from_bismuthinite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_bismuthinite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:bismuthinite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:bismuth_ingot_from_bismuthinite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bismuthinite",
+      "has_the_recipe"
+    ]
+  ]
+}

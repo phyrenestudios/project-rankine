@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:greenschist_stairs"
+    },
+    {
+      "item": "rankine:greenschist_stairs"
+    },
+    {
+      "item": "rankine:greenschist_stairs"
+    },
+    {
+      "item": "rankine:greenschist_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:greenschist",
+    "count": 6
+  }
+}

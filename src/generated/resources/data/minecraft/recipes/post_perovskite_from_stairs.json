@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:post_perovskite_stairs"
+    },
+    {
+      "item": "rankine:post_perovskite_stairs"
+    },
+    {
+      "item": "rankine:post_perovskite_stairs"
+    },
+    {
+      "item": "rankine:post_perovskite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:post_perovskite",
+    "count": 6
+  }
+}

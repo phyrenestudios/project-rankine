@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:lithium_ingot_from_petalite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_petalite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:petalite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:lithium_ingot_from_petalite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_petalite",
+      "has_the_recipe"
+    ]
+  ]
+}

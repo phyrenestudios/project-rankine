@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "MRM",
+    "CMC"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:rubber"
+    },
+    "C": {
+      "tag": "forge:carbon"
+    },
+    "M": {
+      "item": "rankine:mica"
+    }
+  },
+  "result": {
+    "item": "rankine:gas_mask"
+  }
+}

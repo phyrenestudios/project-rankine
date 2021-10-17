@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "brick_type=large": {
+      "model": "rankine:block/ringwoodine_bricks"
+    },
+    "brick_type=vertical_large": {
+      "model": "rankine:block/ringwoodine_bricks_vertical"
+    }
+  }
+}

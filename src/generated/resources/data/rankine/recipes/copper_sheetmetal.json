@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal",
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/copper"
+    },
+    "#": {
+      "tag": "forge:nuggets/copper"
+    }
+  },
+  "result": {
+    "item": "rankine:copper_sheetmetal",
+    "count": 8
+  }
+}

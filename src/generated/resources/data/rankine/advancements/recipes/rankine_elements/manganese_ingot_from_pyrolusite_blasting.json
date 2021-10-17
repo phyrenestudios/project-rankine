@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:manganese_ingot_from_pyrolusite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_pyrolusite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pyrolusite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:manganese_ingot_from_pyrolusite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pyrolusite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:rose_marble_stairs"
+    },
+    {
+      "item": "rankine:rose_marble_stairs"
+    },
+    {
+      "item": "rankine:rose_marble_stairs"
+    },
+    {
+      "item": "rankine:rose_marble_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:rose_marble",
+    "count": 6
+  }
+}

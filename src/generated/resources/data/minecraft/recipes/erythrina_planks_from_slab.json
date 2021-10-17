@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:erythrina_slab"
+    },
+    {
+      "item": "rankine:erythrina_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:erythrina_planks"
+  }
+}

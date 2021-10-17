@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sheetmetal_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:bronze_sheetmetal"
+    }
+  },
+  "result": {
+    "item": "rankine:bronze_sheetmetal_slab",
+    "count": 6
+  }
+}

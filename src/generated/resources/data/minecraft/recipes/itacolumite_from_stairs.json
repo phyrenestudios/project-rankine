@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_stairs",
+  "ingredients": [
+    {
+      "item": "rankine:itacolumite_stairs"
+    },
+    {
+      "item": "rankine:itacolumite_stairs"
+    },
+    {
+      "item": "rankine:itacolumite_stairs"
+    },
+    {
+      "item": "rankine:itacolumite_stairs"
+    }
+  ],
+  "result": {
+    "item": "rankine:itacolumite",
+    "count": 6
+  }
+}

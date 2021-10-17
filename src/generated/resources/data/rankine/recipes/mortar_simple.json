@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mortar",
+  "ingredients": [
+    {
+      "tag": "forge:clay_balls"
+    },
+    {
+      "tag": "forge:dirt"
+    },
+    {
+      "tag": "minecraft:sand"
+    }
+  ],
+  "result": {
+    "item": "rankine:mortar",
+    "count": 2
+  }
+}

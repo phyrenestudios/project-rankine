@@ -45,6 +45,12 @@
     "rankine:arkose_stairs",
     "rankine:soul_sandstone_stairs",
     "rankine:diabase_stairs",
-    "rankine:itacolumite_stairs"
+    "rankine:itacolumite_stairs",
+    "rankine:honeystone_stairs",
+    "rankine:sommanite_stairs",
+    "rankine:ringwoodine_stairs",
+    "rankine:wadsleyone_stairs",
+    "rankine:bridgmanham_stairs",
+    "rankine:post_perovskite_stairs"
   ]
 }

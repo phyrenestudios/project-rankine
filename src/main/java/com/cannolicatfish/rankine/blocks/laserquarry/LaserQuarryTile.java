@@ -1,5 +1,5 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
-
+/*
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
@@ -155,6 +155,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                     } else {
                         ++x;
                     } */
+/*
                 }
             } else if (cookTime > 0) {
                 this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
@@ -303,3 +304,6 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
 
 
 }
+
+
+ */

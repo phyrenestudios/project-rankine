@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:checkered_marble_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:checkered_marble_vertical_slab"
+  }
+}

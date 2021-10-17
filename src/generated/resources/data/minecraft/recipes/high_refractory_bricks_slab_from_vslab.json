@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bricks_slab_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:high_refractory_bricks_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:high_refractory_bricks_slab"
+  }
+}

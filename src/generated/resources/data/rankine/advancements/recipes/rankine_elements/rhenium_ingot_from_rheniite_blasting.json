@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:rhenium_ingot_from_rheniite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_rheniite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:rheniite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:rhenium_ingot_from_rheniite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rheniite",
+      "has_the_recipe"
+    ]
+  ]
+}

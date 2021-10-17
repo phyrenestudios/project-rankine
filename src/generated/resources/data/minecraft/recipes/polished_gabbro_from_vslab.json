@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:polished_gabbro_vertical_slab"
+    },
+    {
+      "item": "rankine:polished_gabbro_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:polished_gabbro"
+  }
+}

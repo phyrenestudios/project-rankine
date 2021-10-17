@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "rankine:block/sommanite_pressure_plate_up"
+    },
+    "powered=true": {
+      "model": "rankine:block/sommanite_pressure_plate_down"
+    }
+  }
+}

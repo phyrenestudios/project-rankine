@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stone_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:post_perovskite_bricks"
+    }
+  },
+  "result": {
+    "item": "rankine:post_perovskite_bricks_stairs",
+    "count": 4
+  }
+}
