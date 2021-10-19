@@ -76,7 +76,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block INFESTED_STONE : RankineLists.INFESTED_STONES) {
             simpleBlock(INFESTED_STONE,models().withExistingParent(INFESTED_STONE.getRegistryName().getPath(),getRSL(INFESTED_STONE.getRegistryName().getPath().replace("infested_",""))));
         }
-
         for (Block blk : Stream.of(RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk);
         }
@@ -89,9 +88,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk);
         }
-
-
-
         for (Block blk : RankineLists.POLISHED_STONES) {
             fancyPolishedBlock(blk);
         }
@@ -104,8 +100,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.LEAVES) {
             leavesBlock(blk);
         }
-        
-        
+
+        sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
+        crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
         //axisBlock((RotatedPillarBlock) RankineBlocks.GRAY_GRANITE_PILLAR.get());
         //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
@@ -414,11 +411,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             fluidBlock(blk);
         }
 
-
-        getVariantBuilder(RankineBlocks.STINGING_NETTLE.get())
-                .partialState().modelForState()
-                .modelFile(models().withExistingParent(RankineBlocks.STINGING_NETTLE.get().getRegistryName().getPath()+"2", mcLoc("block/cross")).texture("cross", "block/"+RankineBlocks.STINGING_NETTLE.get().getRegistryName().getPath())).addModel();
-
         layerBlock(RankineBlocks.CRIMSON_CLOVER.get());
         layerBlock(RankineBlocks.RED_CLOVER.get());
         layerBlock(RankineBlocks.WHITE_CLOVER.get());
@@ -590,6 +582,19 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         });
     }
 
+    public void sixSideCrossBlock(Block BLK) {
+        ModelFile CROSS = models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/cross")).texture("cross", "block/"+BLK.getRegistryName().getPath());
+        getVariantBuilder(BLK)
+                .partialState().with(GwihabaiteBlock.FACING, Direction.UP).modelForState().modelFile(CROSS).addModel()
+                .partialState().with(GwihabaiteBlock.FACING, Direction.DOWN).modelForState().modelFile(CROSS).rotationX(180).addModel()
+                .partialState().with(GwihabaiteBlock.FACING, Direction.NORTH).modelForState().modelFile(CROSS).rotationY(0).rotationX(90).addModel()
+                .partialState().with(GwihabaiteBlock.FACING, Direction.EAST).modelForState().modelFile(CROSS).rotationY(90).rotationX(90).addModel()
+                .partialState().with(GwihabaiteBlock.FACING, Direction.SOUTH).modelForState().modelFile(CROSS).rotationY(180).rotationX(90).addModel()
+                .partialState().with(GwihabaiteBlock.FACING, Direction.WEST).modelForState().modelFile(CROSS).rotationY(270).rotationX(90).addModel();
+    }
+    public void crossBlock(Block BLK) {
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/cross")).texture("cross", "block/"+BLK.getRegistryName().getPath())).addModel();
+    }
     public void tintedCrossBlock(Block BLK, ResourceLocation base, ResourceLocation overlay) {
         getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), getRSL("template_tinted_cross_overlay")).texture("cross",base).texture("overlay", overlay)).addModel();
     }

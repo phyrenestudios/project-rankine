@@ -28,7 +28,7 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
 
-        if (rand.nextFloat() < 0.05) {
+        if (rand.nextFloat() < WGConfig.MISC.END_METEORITE_CHANCE.get()) {
             IChunk chunk = reader.getChunk(pos);
             int randX = chunk.getPos().getXStart() + rand.nextInt(16);
             int randY = rand.nextInt(70) + 20;

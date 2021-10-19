@@ -66,54 +66,57 @@ public class SoilReplacerFeature extends Feature<NoFeatureConfig> {
                             if (O1 instanceof GrassBlock && O2 instanceof GrassBlock) {
                                 boolean SNOWY = reader.getBlockState(TARGET_POS).get(BlockStateProperties.SNOWY);
                                 if (noise > 0.3) {
-                                    reader.setBlockState(TARGET_POS, O2.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), 19);
+                                    reader.setBlockState(TARGET_POS, O2.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), 2);
                                 } else {
-                                    reader.setBlockState(TARGET_POS, O1.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), 19);
+                                    reader.setBlockState(TARGET_POS, O1.getDefaultState().with(BlockStateProperties.SNOWY, SNOWY), 2);
                                 }
                             } else {
                                 if (noise > 0.3) {
-                                    reader.setBlockState(TARGET_POS, O2.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS, O2.getDefaultState(), 2);
                                 } else {
-                                    reader.setBlockState(TARGET_POS, O1.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS, O1.getDefaultState(), 2);
                                 }
                             }
                         } else if (TARGET.matchesBlock(Blocks.DIRT)) {
                             if (reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE)) {
                                 if (noise > 0.3) {
-                                    reader.setBlockState(TARGET_POS.down(), B2.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS.down(), B2.getDefaultState(), 2);
                                 } else {
-                                    reader.setBlockState(TARGET_POS.down(), B1.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS.down(), B1.getDefaultState(), 2);
                                 }
                             }
                             if (reader.getBlockState(TARGET_POS.down(2)).isIn(Tags.Blocks.STONE)) {
                                 if (noise > 0.3) {
-                                    reader.setBlockState(TARGET_POS.down(2), B2.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS.down(2), B2.getDefaultState(), 2);
                                 } else {
-                                    reader.setBlockState(TARGET_POS.down(2), B1.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS.down(2), B1.getDefaultState(), 2);
                                 }
                             }
                             if (noise > 0.3) {
-                                reader.setBlockState(TARGET_POS, A2.getDefaultState(), 19);
+                                reader.setBlockState(TARGET_POS, A2.getDefaultState(), 2);
                             } else {
-                                reader.setBlockState(TARGET_POS, A1.getDefaultState(), 19);
+                                reader.setBlockState(TARGET_POS, A1.getDefaultState(), 2);
                             }
                         } else if (TARGET.matchesBlock(Blocks.GRASS_PATH)) {
                             if (noise > 0.3) {
                                 if (VanillaIntegration.pathBlocks_map.get(O2) != null) {
-                                    reader.setBlockState(TARGET_POS, O2.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS, O2.getDefaultState(), 2);
                                 }
                             } else {
                                 if (VanillaIntegration.pathBlocks_map.get(O1) != null) {
-                                    reader.setBlockState(TARGET_POS, O1.getDefaultState(), 19);
+                                    reader.setBlockState(TARGET_POS, O1.getDefaultState(), 2);
                                 }
                             }
                         } else if (TARGET.matchesBlock(Blocks.GRAVEL)) {
                             if (WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)) != Blocks.AIR) {
-                                reader.setBlockState(TARGET_POS, WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 19);
+                                reader.setBlockState(TARGET_POS, WorldgenUtils.GRAVELS.get(WorldgenUtils.GEN_BIOMES.indexOf(TARGET_BIOME)).getDefaultState(), 2);
                             }
                         }
                         if (TARGET.isIn(Tags.Blocks.STONE) && reader.getBlockState(TARGET_POS.up()).isIn(Tags.Blocks.ORES_COAL)) {
-                            reader.setBlockState(TARGET_POS, RankineBlocks.FIRE_CLAY.get().getDefaultState(), 19);
+                            reader.setBlockState(TARGET_POS, RankineBlocks.FIRE_CLAY.get().getDefaultState(), 2);
+                            if (rand.nextFloat()<0.5 && reader.getBlockState(TARGET_POS.down()).isIn(Tags.Blocks.STONE)) {
+                                reader.setBlockState(TARGET_POS.down(), RankineBlocks.FIRE_CLAY.get().getDefaultState(), 2);
+                            }
                         }
                     }
 

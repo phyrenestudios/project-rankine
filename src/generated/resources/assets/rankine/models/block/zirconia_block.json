@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+<<<<<<< HEAD:src/generated/resources/assets/rankine/models/block/carbon_dioxide_fumarole.json
+    "all": "rankine:block/carbon_dioxide_fumarole"
+=======
+    "all": "rankine:block/zirconia_block"
+>>>>>>> trite:src/generated/resources/assets/rankine/models/block/zirconia_block.json
+  }
+}

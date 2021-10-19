@@ -1,0 +1,16 @@
+{
+  "name": "Cobblestone",
+  "icon": "minecraft:cobblestone",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:cobblestone",
+      "text": "Obtained the natural way from stone"
+    }
+  ]
+}

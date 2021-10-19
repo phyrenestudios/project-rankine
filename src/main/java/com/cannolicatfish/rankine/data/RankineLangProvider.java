@@ -147,11 +147,12 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.TRAMPOLINE.get(),
                 RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
-                
+                RankineBlocks.GWIHABAITE_CRYSTAL.get(),
                 
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.SHORT_GRASS.get(),
                 RankineBlocks.STINGING_NETTLE.get(),
+
                 RankineBlocks.RED_CLOVER.get(),
                 RankineBlocks.CRIMSON_CLOVER.get(),
                 RankineBlocks.WHITE_CLOVER.get(),
@@ -268,6 +269,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CORN_STALK.get(),
             RankineItems.VULCANIZED_RUBBER.get(),
             RankineItems.BITUMEN.get(),
+            RankineItems.GWIHABAITE.get(),
             RankineItems.FIRE_CLAY_BALL.get(),
             RankineItems.KAOLINITE.get(),
             RankineItems.BONE_CHAR.get(),
@@ -275,6 +277,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.SLAG.get(),
             RankineItems.TRONA.get(),
             RankineItems.POTASH.get(),
+            RankineItems.VANADIUM_PENTOXIDE.get(),
             RankineItems.ASBESTOS.get(),
             RankineItems.THENARDITE.get(),
             RankineItems.BORAX.get(),

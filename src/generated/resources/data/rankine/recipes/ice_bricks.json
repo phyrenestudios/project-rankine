@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B#",
+    "#B"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ice"
+    },
+    "B": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "item": "rankine:ice_bricks",
+    "count": 2
+  }
+}

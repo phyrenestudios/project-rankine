@@ -7,7 +7,6 @@
     "minecraft:barrier",
     "minecraft:water",
     "minecraft:lava",
-    "rankine:quarry_barrier",
     "minecraft:redstone_wire",
     "#forge:chests",
     "#minecraft:shulker_boxes"

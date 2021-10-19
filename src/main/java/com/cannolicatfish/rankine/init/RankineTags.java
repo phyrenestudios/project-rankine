@@ -1,13 +1,24 @@
 package com.cannolicatfish.rankine.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
 public final class RankineTags {
+
+    public static final class EntityTypes {
+        //public static final ITag.INamedTag<EntityType<?>> NUGGET_STONES = EntityTypeTags.getTagById("nugget_stones");
+
+    }
+
+
+
+
     public static final class Blocks {
         //MOD
         public static final ITag.INamedTag<Block> NUGGET_STONES = mod("nugget_stones");
@@ -35,6 +46,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> LIGHTNING_VITRIFIED = mod("lightning_vitrified");
         public static final ITag.INamedTag<Block> METEORITE_REPLACEABLE = mod("meteorite_replaceable");
         public static final ITag.INamedTag<Block> INTRUSION_PASSABLE = mod("intrusion_passable");
+        public static final ITag.INamedTag<Block> FUMAROLE_DEPOSIT = mod("fumarole_deposit");
         public static final ITag.INamedTag<Block> FLOWER_SEEDS = mod("flower_seeds");
         public static final ITag.INamedTag<Block> HERBICIDAL = mod("herbicidal");
         public static final ITag.INamedTag<Block> LUCK_PENDANT = mod("luck_pendant");
@@ -48,6 +60,7 @@ public final class RankineTags {
 
 
         //FORGE
+        public static final ITag.INamedTag<Block> ICE = forge("ice");
         public static final ITag.INamedTag<Block> CLAY = forge("clay");
         public static final ITag.INamedTag<Block> FARMLANDS = forge("farmlands");
         public static final ITag.INamedTag<Block> GRASS = forge("grass");
@@ -279,6 +292,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> ORES_COBALT = forge("ores/cobalt");
         public static final ITag.INamedTag<Block> ORES_NICKEL = forge("ores/nickel");
         public static final ITag.INamedTag<Block> ORES_YTTRIUM = forge("ores/yttrium");
+        public static final ITag.INamedTag<Block> ORES_ZIRCONIUM = forge("ores/zirconium");
         public static final ITag.INamedTag<Block> ORES_MOLYBDENUM = forge("ores/molybdenum");
         public static final ITag.INamedTag<Block> ORES_CADMIUM = forge("ores/cadmium");
         public static final ITag.INamedTag<Block> ORES_URANIUM = forge("ores/uranium");
@@ -968,6 +982,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> RODS_CARBON = forgeItem("rods/carbon");
 
         public static final ITag.INamedTag<Item> CLAY = forgeItem("clay");
+        public static final ITag.INamedTag<Item> ICE = forgeItem("ice");
         public static final ITag.INamedTag<Item> DIRT = forgeItem("dirt");
         public static final ITag.INamedTag<Item> CAMPFIRES = forgeItem("campfires");
         public static final ITag.INamedTag<Item> GRASS = forgeItem("grass");
@@ -1035,6 +1050,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> ORES_COBALT = forgeItem("ores/cobalt");
         public static final ITag.INamedTag<Item> ORES_NICKEL = forgeItem("ores/nickel");
         public static final ITag.INamedTag<Item> ORES_YTTRIUM = forgeItem("ores/yttrium");
+        public static final ITag.INamedTag<Item> ORES_ZIRCONIUM = forgeItem("ores/zirconium");
         public static final ITag.INamedTag<Item> ORES_MOLYBDENUM = forgeItem("ores/molybdenum");
         public static final ITag.INamedTag<Item> ORES_CADMIUM = forgeItem("ores/cadmium");
         public static final ITag.INamedTag<Item> ORES_URANIUM = forgeItem("ores/uranium");

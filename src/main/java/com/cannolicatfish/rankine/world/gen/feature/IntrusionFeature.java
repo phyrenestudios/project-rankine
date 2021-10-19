@@ -33,8 +33,8 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         Biome BIOME = reader.getBiome(pos);
 
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
-            int radius = WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_RADIUS.get() - rand.nextInt(3);
-            int startY = 0;
+            int radius = WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(5) - 2;
+            int startY = 1;
             int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
 
             BlockState INTRUSION = WorldgenUtils.INTRUSION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
@@ -50,32 +50,38 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
 
 
                 for (int y = startY; y <= endY; ++y) {
+                    BlockPos pos1 = pos.add(x1,y,z1);
+                    BlockPos pos2 = pos.add(x2,y,z2);
+                    BlockPos pos3 = pos.add(x3,y,z3);
+                    BlockPos pos4 = pos.add(x4,y,z4);
                     for (BlockPos b : BlockPos.getAllInBoxMutable(pos.add(-3 * radius, y, -3 * radius), pos.add(3 * radius, y, 3 * radius))) {
-                        if (b.distanceSq(new BlockPos(pos.getX() + x1, y, pos.getZ() + z1)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX() + x2, y, pos.getZ() + z2)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX() + x3, y, pos.getZ() + z3)) <= Math.pow(radius + 0.5, 2) || b.distanceSq(new BlockPos(pos.getX() + x4, y, pos.getZ() + z4)) <= Math.pow(radius + 0.5, 2)) {
-                            if (RankineTags.Blocks.INTRUSION_PASSABLE.contains(reader.getBlockState(b).getBlock())) {
+                        if (WorldgenUtils.inArea(b,radius,pos1,pos2,pos3,pos4)) {
+                            if (reader.getBlockState(b).isIn(RankineTags.Blocks.INTRUSION_PASSABLE)) {
                                 if (rand.nextFloat() < WorldgenUtils.INTRUSION_ORE_CHANCES.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).indexOf(INTRUSION.getBlock()))) {
                                     BlockState ORE = WorldgenUtils.INTRUSION_ORES.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).get(WorldgenUtils.INTRUSION_BLOCKS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).indexOf(INTRUSION.getBlock())).getDefaultState();
                                     if (ORE.getBlock() instanceof  RankineOreBlock) {
                                         ORE = ORE.with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(INTRUSION.getBlock()));
                                     }
-                                    reader.setBlockState(b, ORE, 19);
+                                    reader.setBlockState(b, ORE, 2);
                                 } else {
-                                    reader.setBlockState(b, INTRUSION, 19);
+                                    reader.setBlockState(b, INTRUSION, 2);
                                 }
                             }
                         }
                     }
-                    if (rand.nextFloat() < WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_SHRINK.get()) {
-                        x1 += rand.nextInt(3) - 1;
-                        x2 += rand.nextInt(3) - 1;
-                        x3 += rand.nextInt(3) - 1;
-                        x4 += rand.nextInt(3) - 1;
-                        z1 += rand.nextInt(3) - 1;
-                        z2 += rand.nextInt(3) - 1;
-                        z3 += rand.nextInt(3) - 1;
-                        z4 += rand.nextInt(3) - 1;
+                    if (rand.nextFloat() < WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_SHIFT.get()) {
+                        int randX = rand.nextInt(3) - 1;
+                        int randZ = rand.nextInt(3) - 1;
+                        x1 += randX;
+                        x2 += randX;
+                        x3 += randX;
+                        x4 += randX;
+                        z1 += randZ;
+                        z2 += randZ;
+                        z3 += randZ;
+                        z4 += randZ;
                     }
-                    if (rand.nextFloat() < 0.08) {
+                    if (rand.nextFloat() < WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_SHRINK.get()) {
                         radius -= 1;
                         if (radius <= 0) {
                             return true;

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "rankine:block/gwihabaite_crystal",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "rankine:block/gwihabaite_crystal"
+    },
+    "facing=north": {
+      "model": "rankine:block/gwihabaite_crystal",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "rankine:block/gwihabaite_crystal",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rankine:block/gwihabaite_crystal",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "rankine:block/gwihabaite_crystal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

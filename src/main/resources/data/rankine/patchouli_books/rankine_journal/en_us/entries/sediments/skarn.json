@@ -1,0 +1,16 @@
+{
+  "name": "Skarn",
+  "icon": "minecraft:skarn",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:skarn",
+      "text": "Obtained the natural way from stone"
+    }
+  ]
+}

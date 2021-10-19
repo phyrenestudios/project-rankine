@@ -156,6 +156,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         basicItem(RankineItems.VULCANIZED_RUBBER.get());
         basicItem(RankineItems.BITUMEN.get());
+        basicItem(RankineItems.GWIHABAITE.get());
         basicItem(RankineItems.FIRE_CLAY_BALL.get());
         basicItem(RankineItems.KAOLINITE.get());
         basicItem(RankineItems.BONE_CHAR.get());
@@ -163,6 +164,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SLAG.get());
         basicItem(RankineItems.TRONA.get());
         basicItem(RankineItems.POTASH.get());
+        basicItem(RankineItems.VANADIUM_PENTOXIDE.get());
         basicItem(RankineItems.ASBESTOS.get());
         basicItem(RankineItems.THENARDITE.get());
         basicItem(RankineItems.BORAX.get());
