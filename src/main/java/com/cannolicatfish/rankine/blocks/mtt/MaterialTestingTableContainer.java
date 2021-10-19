@@ -3,6 +3,8 @@ package com.cannolicatfish.rankine.blocks.mtt;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -65,7 +67,7 @@ public class MaterialTestingTableContainer extends Container {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
             if (!(index < 2)) {
-                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem())) {
+                if (PeriodicTableUtils.getInstance().hasElement(stack.getItem()) || stack.getItem() instanceof IAlloyItem) {
                     if (!this.mergeItemStack(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
@@ -130,7 +132,7 @@ public class MaterialTestingTableContainer extends Container {
         addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
     }
 
-    public ElementRecipe getSlotItem(World worldIn) {
+    public ElementRecipe getElementRecipeForSlotItem(World worldIn) {
         ItemStack stack = this.inputInventory.getStackInSlot(0);
 
         if (utils.hasElementRecipe(stack, worldIn))
@@ -139,6 +141,15 @@ public class MaterialTestingTableContainer extends Container {
         } else {
             return null;
         }
+    }
+
+    public AlloyingRecipe getAlloyRecipeForSlotItem(World worldIn) {
+        ItemStack stack = this.inputInventory.getStackInSlot(0);
+        return utils.getAlloyRecipe(stack,worldIn);
+    }
+
+    public ItemStack getSlotItem(World worldIn) {
+        return this.inputInventory.getStackInSlot(0);
     }
 
     public int getToolItem(World worldIn) {

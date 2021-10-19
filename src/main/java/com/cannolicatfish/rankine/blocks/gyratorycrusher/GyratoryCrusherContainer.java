@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
+import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -33,14 +34,14 @@ public class GyratoryCrusherContainer extends Container {
     protected final World world;
 
     public GyratoryCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player, new Inventory(8),new IntArray(4));
+        this(windowId,world,pos,playerInventory,player, new Inventory(9),new IntArray(5));
     }
 
     public GyratoryCrusherContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn,  IIntArray furnaceData) {
         super(GYRATORY_CRUSHER_CONTAINER, windowId);
         tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 5);
-        assertIntArraySize(furnaceData, 4);
+        assertInventorySize(furnaceInventoryIn, 9);
+        assertIntArraySize(furnaceData, 5);
         this.data = furnaceData;
         this.playerEntity = player;
         this.furnaceInventory = furnaceInventoryIn;
@@ -49,12 +50,13 @@ public class GyratoryCrusherContainer extends Container {
 
         this.addSlot(new Slot(furnaceInventory, 0, 56, 31));
         this.addSlot(new Slot(furnaceInventory, 1, 10,37));
-        this.addSlot(new Slot(furnaceInventory, 2, 98,34));
-        this.addSlot(new Slot(furnaceInventory, 3, 124,34));
-        this.addSlot(new Slot(furnaceInventory, 4, 150,34));
-        this.addSlot(new Slot(furnaceInventory, 5, 98,60));
-        this.addSlot(new Slot(furnaceInventory, 6, 124,60));
-        this.addSlot(new Slot(furnaceInventory, 7, 150,60));
+        this.addSlot(new Slot(furnaceInventory, 2, 10,57));
+        this.addSlot(new Slot(furnaceInventory, 3, 98,34));
+        this.addSlot(new Slot(furnaceInventory, 4, 124,34));
+        this.addSlot(new Slot(furnaceInventory, 5, 150,34));
+        this.addSlot(new Slot(furnaceInventory, 6, 98,60));
+        this.addSlot(new Slot(furnaceInventory, 7, 124,60));
+        this.addSlot(new Slot(furnaceInventory, 8, 150,60));
 
         layoutPlayerInventorySlots(10, 86);
 
@@ -78,8 +80,8 @@ public class GyratoryCrusherContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
             itemstack = stack.copy();
-            if (index >= 2 && index <= 7) {
-                if (!this.mergeItemStack(stack, 8, 44, true)) {
+            if (index >= 3 && index <= 8) {
+                if (!this.mergeItemStack(stack, 9, 45, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot.onSlotChange(stack, itemstack);
@@ -92,14 +94,18 @@ public class GyratoryCrusherContainer extends Container {
                     if (!this.mergeItemStack(stack, 1, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 35) {
-                    if (!this.mergeItemStack(stack, 35, 44, false)) {
+                } else if (stack.getItem() instanceof CrushingHeadItem) {
+                    if (!this.mergeItemStack(stack, 2, 3, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 44 && !this.mergeItemStack(stack, 8, 35, false)) {
+                } else if (index < 36) {
+                    if (!this.mergeItemStack(stack, 36, 45, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (index < 45 && !this.mergeItemStack(stack, 8, 36, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(stack, 8, 44, false)) {
+            } else if (!this.mergeItemStack(stack, 9, 45, false)) {
                 return ItemStack.EMPTY;
             }
 

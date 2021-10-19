@@ -2129,6 +2129,7 @@ public class RankineItems {
     public static final RegistryObject<Item> SODIUM_CARBONATE = REGISTRY.register("sodium_carbonate", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_SULFIDE = REGISTRY.register("sodium_sulfide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_HYDROXIDE = REGISTRY.register("sodium_hydroxide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
+    public static final RegistryObject<Item> LITHIUM_COBALT_OXIDE = REGISTRY.register("lithium_cobalt_oxide", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> BONE_CHAR = REGISTRY.register("bone_char", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SLAG = REGISTRY.register("slag", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> FIRE_CLAY_BALL = REGISTRY.register("fire_clay_ball", () -> new SimpleTooltipItem("Derived from fire clay or from crafting. Used for refractory bricks.", new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
@@ -2621,6 +2622,12 @@ public class RankineItems {
     public static final RegistryObject<Item> SODIUM_SULFUR_BATTERY = REGISTRY.register("sodium_sulfur_battery", () -> new BatteryItem(new Item.Properties().maxDamage(896).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> LITHIUM_ION_BATTERY = REGISTRY.register("lithium_ion_battery", () -> new BatteryItem(new Item.Properties().maxDamage(1024).group(ProjectRankine.setup.rankineTools)));
 
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL0 = REGISTRY.register("crushing_head_hl0", () -> new CrushingHeadItem(0,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL1 = REGISTRY.register("crushing_head_hl1", () -> new CrushingHeadItem(1,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL2 = REGISTRY.register("crushing_head_hl2", () -> new CrushingHeadItem(2,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL3 = REGISTRY.register("crushing_head_hl3", () -> new CrushingHeadItem(3,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL4 = REGISTRY.register("crushing_head_hl4", () -> new CrushingHeadItem(4,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
+    public static final RegistryObject<Item> CRUSHING_HEAD_HL5 = REGISTRY.register("crushing_head_hl5", () -> new CrushingHeadItem(5,new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
 
     public static final RegistryObject<Item> PACKAGED_TOOL = REGISTRY.register("packaged_tool", () -> new PackagedToolItem(new Item.Properties().maxStackSize(1).group(ProjectRankine.setup.rankineTools)));
     public static final RegistryObject<Item> MANTLE_GOLEM = REGISTRY.register("mantle_golem_egg", () -> new SpawnEggItem(RankineEntityTypes.MANTLE_GOLEM,0xB2B16A, 0x7A592E,new Item.Properties().group(ProjectRankine.setup.rankineTools)));
@@ -2641,22 +2648,22 @@ public class RankineItems {
 
     //ELEMENTS CREATIVE TAB
     //==============================================================================================================
-    public static final RegistryObject<Item> HYDROGEN_GAS_BOTTLE = REGISTRY.register("hydrogen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> HELIUM_GAS_BOTTLE = REGISTRY.register("helium_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HELIUM,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> NITROGEN_GAS_BOTTLE = REGISTRY.register("nitrogen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.NITROGEN,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> OXYGEN_GAS_BOTTLE = REGISTRY.register("oxygen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.OXYGEN,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> FLUORINE_GAS_BOTTLE = REGISTRY.register("fluorine_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.FLUORINE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> NEON_GAS_BOTTLE = REGISTRY.register("neon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.NEON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> CHLORINE_GAS_BOTTLE = REGISTRY.register("chlorine_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.CHLORINE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> ARGON_GAS_BOTTLE = REGISTRY.register("argon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.ARGON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> KRYPTON_GAS_BOTTLE = REGISTRY.register("krypton_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.KRYPTON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> XENON_GAS_BOTTLE = REGISTRY.register("xenon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.XENON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> RADON_GAS_BOTTLE = REGISTRY.register("radon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.RADON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> OGANESSON_GAS_BOTTLE = REGISTRY.register("oganesson_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.OGANESSON,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> CARBON_DIOXIDE_GAS_BOTTLE = REGISTRY.register("carbon_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.CARBON_DIOXIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> HYDROGEN_CHLORIDE_GAS_BOTTLE = REGISTRY.register("hydrogen_chloride_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_CHLORIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BOTTLE = REGISTRY.register("hydrogen_sulfide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_SULFIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
-    public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BOTTLE = REGISTRY.register("sulfur_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.SULFUR_DIOXIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements)));
+    public static final RegistryObject<Item> HYDROGEN_GAS_BOTTLE = REGISTRY.register("hydrogen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> HELIUM_GAS_BOTTLE = REGISTRY.register("helium_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HELIUM,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> NITROGEN_GAS_BOTTLE = REGISTRY.register("nitrogen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.NITROGEN,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> OXYGEN_GAS_BOTTLE = REGISTRY.register("oxygen_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.OXYGEN,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> FLUORINE_GAS_BOTTLE = REGISTRY.register("fluorine_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.FLUORINE,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> NEON_GAS_BOTTLE = REGISTRY.register("neon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.NEON,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> CHLORINE_GAS_BOTTLE = REGISTRY.register("chlorine_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.CHLORINE,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> ARGON_GAS_BOTTLE = REGISTRY.register("argon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.ARGON,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> KRYPTON_GAS_BOTTLE = REGISTRY.register("krypton_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.KRYPTON,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> XENON_GAS_BOTTLE = REGISTRY.register("xenon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.XENON,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> RADON_GAS_BOTTLE = REGISTRY.register("radon_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.RADON,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> OGANESSON_GAS_BOTTLE = REGISTRY.register("oganesson_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.OGANESSON,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> CARBON_DIOXIDE_GAS_BOTTLE = REGISTRY.register("carbon_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.CARBON_DIOXIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> HYDROGEN_CHLORIDE_GAS_BOTTLE = REGISTRY.register("hydrogen_chloride_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_CHLORIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> HYDROGEN_SULFIDE_GAS_BOTTLE = REGISTRY.register("hydrogen_sulfide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.HYDROGEN_SULFIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> SULFUR_DIOXIDE_GAS_BOTTLE = REGISTRY.register("sulfur_dioxide_gas_bottle", () -> new GasBottleItem(GasUtilsEnum.SULFUR_DIOXIDE,new Item.Properties().group(ProjectRankine.setup.rankineElements).containerItem(Items.GLASS_BOTTLE)));
 
 
     public static final RegistryObject<Item> HYDROGEN_NUGGET = REGISTRY.register("hydrogen_nugget", () -> new ElementItem(0.0f, false, 0, new Item.Properties().group(ProjectRankine.setup.rankineElements)));

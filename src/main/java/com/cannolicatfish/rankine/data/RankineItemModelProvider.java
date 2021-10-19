@@ -168,6 +168,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BORAX.get());
         basicItem(RankineItems.SODIUM_SULFIDE.get());
         basicItem(RankineItems.SODIUM_HYDROXIDE.get());
+        basicItem(RankineItems.LITHIUM_COBALT_OXIDE.get());
         basicItem(RankineItems.SODIUM_CARBONATE.get());
         basicItem(RankineItems.SALTPETER.get());
         basicItem(RankineItems.CEMENT_MIX.get());
@@ -266,8 +267,12 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.ZINC_BROMINE_BATTERY.get());
         basicItem(RankineItems.SODIUM_SULFUR_BATTERY.get());
         basicItem(RankineItems.LITHIUM_ION_BATTERY.get());
-
-
+        basicItem(RankineItems.CRUSHING_HEAD_HL0.get());
+        basicItem(RankineItems.CRUSHING_HEAD_HL1.get());
+        basicItem(RankineItems.CRUSHING_HEAD_HL2.get());
+        basicItem(RankineItems.CRUSHING_HEAD_HL3.get());
+        basicItem(RankineItems.CRUSHING_HEAD_HL4.get());
+        basicItem(RankineItems.CRUSHING_HEAD_HL5.get());
 
         basicItem("rankine_journal");
 

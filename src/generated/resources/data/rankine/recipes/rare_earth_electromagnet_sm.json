@@ -16,7 +16,7 @@
       "item": "rankine:alloy_wire"
     },
     "P": {
-      "item": "rankine:power_cell_4"
+      "item": "rankine:lithium_ion_battery"
     }
   },
   "result": {

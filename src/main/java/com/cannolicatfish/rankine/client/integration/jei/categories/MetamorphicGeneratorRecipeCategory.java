@@ -86,15 +86,18 @@ public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockG
     public void setRecipe(IRecipeLayout recipeLayout, RockGeneratorRecipe recipe, IIngredients ingredients) {
         int index = 0, posY = 0;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, 76, 20 + posY);
+            if (index == 0) {
+                recipeLayout.getItemStacks().init(index, true, 38, 40);
+            } else {
+                recipeLayout.getItemStacks().init(index, true, 38, 58);
+            }
             recipeLayout.getItemStacks().set(index, o);
             index++;
-            posY += 52;
         }
 
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 76, 46);
+            recipeLayout.getItemStacks().init(index + i, false, 95, 40);
             recipeLayout.getItemStacks().set(index + i, stacks);
         }
     }

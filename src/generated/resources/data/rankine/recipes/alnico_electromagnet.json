@@ -13,7 +13,7 @@
       "item": "rankine:alloy_wire"
     },
     "P": {
-      "item": "rankine:power_cell_2"
+      "item": "rankine:lead_acid_battery"
     }
   },
   "result": {

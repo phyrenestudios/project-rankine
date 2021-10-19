@@ -161,8 +161,8 @@ public class Config {
                             .defineInRange("polishedResistanceMultiplier", 1.5D, 0.0D, 20.0D);
                     STARTING_BOOK = b.comment("Enables the Rankine Journal (a guide to the mod, requires Patchouli)")
                             .define("startingBook",true);
-                    REFRESH_ALLOYS = b.comment("If enabled, alloy-related content in the player's inventory will always refresh on world join.")
-                            .define("refreshAlloys",true);
+                    REFRESH_ALLOYS = b.comment("If enabled, alloy-related content in the player's inventory will always refresh on world join. Useful for modifying element recipes and quickly determining changes.")
+                            .define("refreshAlloys",false);
                     PENDANT_CURSE = b.comment("Causes Pendants to spawn in with Curse of Vanishing.")
                             .define("pendantCurse",true);
                     MANDATORY_AXE = b.comment("Makes axes required to harvest logs.")
@@ -915,6 +915,8 @@ public class Config {
         public final ForgeConfigSpec.IntValue BEEHIVE_OVEN_SKYLIGHT;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_RANGE;
         public final ForgeConfigSpec.IntValue LASER_QUARRY_SPEED;
+        public final ForgeConfigSpec.IntValue GYRATORY_CRUSHER_POWER;
+        public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
 
         public Machines(ForgeConfigSpec.Builder b) {
             b.comment("Settings for machines").push("machines");
@@ -964,6 +966,10 @@ public class Config {
                         .defineInRange("laserQuarryRange", 31, 0, 63);
                 LASER_QUARRY_SPEED = b.comment("Max speed of the laser quarry in ticks.")
                         .defineInRange("laserQuarrySpeed", 20, 1, 300);
+                GYRATORY_CRUSHER_POWER = b.comment("Defines the power requirement for one process in the gyratory crusher (multiplied by the tier of the current crushing head).")
+                        .defineInRange("gyratoryCrusherPower", 1, 0, 10000);
+                INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")
+                        .defineInRange("inductionFurnacePower", 16, 0, 10000);
             b.pop();
         }
     }
