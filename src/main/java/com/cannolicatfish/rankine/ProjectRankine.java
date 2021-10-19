@@ -239,6 +239,9 @@ public class ProjectRankine {
         public static void onFeatureRegistry(final RegistryEvent.Register<Feature<?>> event) {
             event.getRegistry().register(RankineFeatures.RANKINE_ORE.setRegistryName(ProjectRankine.MODID,"rankine_ore"));
             event.getRegistry().register(RankineFeatures.METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"meteorite_feature"));
+            event.getRegistry().register(RankineFeatures.END_METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"end_meteorite_feature"));
+            event.getRegistry().register(RankineFeatures.ANTIMATTER_BLOB_FEATURE.setRegistryName(ProjectRankine.MODID,"antimatter_blob_feature"));
+            event.getRegistry().register(RankineFeatures.FUMAROLE_FEATURE.setRegistryName(ProjectRankine.MODID,"fumarole_feature"));
             event.getRegistry().register(RankineFeatures.FLAT_BEDROCK_FEATURE.setRegistryName(ProjectRankine.MODID,"flat_bedrock_feature"));
             event.getRegistry().register(RankineFeatures.INTRUSION.setRegistryName(ProjectRankine.MODID,"intrusion"));
             event.getRegistry().register(RankineFeatures.NETHER_INTRUSION.setRegistryName(ProjectRankine.MODID,"nether_intrusion"));

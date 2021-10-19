@@ -287,6 +287,9 @@ public class RankineFeatures {
     // BASE FEATURE/S
     public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.CODEC);
     public static final Feature<MeteoriteFeatureConfig> METEORITE_FEATURE = new MeteoriteFeature(MeteoriteFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> END_METEORITE_FEATURE = new EndMeteoriteFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> ANTIMATTER_BLOB_FEATURE = new AntimatterFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> FUMAROLE_FEATURE = new FumaroleFeature(NoFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> FLAT_BEDROCK_FEATURE = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> NETHER_INTRUSION = new NetherIntrusionFeature(ReplacerFeatureConfig.CODEC);
@@ -303,9 +306,9 @@ public class RankineFeatures {
     // LOCAL_MODIFICATIONS
     public static final ConfiguredFeature<?, ?> METEORITE = METEORITE_FEATURE.withConfiguration(new MeteoriteFeatureConfig(RankineBlocks.METEORITE.get().getDefaultState(), 1))
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(WGConfig.MISC.METEORITE_CHANCE.get())));
-    public static final ConfiguredFeature<?, ?> END_METEORITE = new EndMeteoriteFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
-    public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = new AntimatterFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig());
-    public static final ConfiguredFeature<?, ?> FUMAROLE = new FumaroleFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
+    public static final ConfiguredFeature<?, ?> END_METEORITE = END_METEORITE_FEATURE.withConfiguration(new NoFeatureConfig());
+    public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = ANTIMATTER_BLOB_FEATURE.withConfiguration(new NoFeatureConfig());
+    public static final ConfiguredFeature<?, ?> FUMAROLE = FUMAROLE_FEATURE.withConfiguration(new NoFeatureConfig())
             .withPlacement(Placement.CHANCE.configure(new ChanceConfig(40)));
 
     //public static final ConfiguredFeature<?, ?> ANIMAL_SPAWNER = new AnimalSpawnerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
