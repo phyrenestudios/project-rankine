@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "rankine:alloy_arrow",
+    "rankine:magnesium_arrow",
+    "rankine:thorium_arrow",
+    "rankine:rope_coil_arrow"
+  ]
+}

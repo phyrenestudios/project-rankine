@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#forge:sheetmetal",
+    "#forge:sheetmetal_slabs",
     "#forge:sheetmetal_vertical_slabs",
     "#minecraft:planks",
     "#minecraft:fences",

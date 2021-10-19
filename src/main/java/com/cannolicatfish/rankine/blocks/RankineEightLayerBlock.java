@@ -101,7 +101,7 @@ public class RankineEightLayerBlock extends FallingBlock {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         int i = state.get(LAYERS);
-        if (player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8) {
+        if (player.getHeldItem(handIn).getItem() == state.getBlock().asItem() && i < 8 && !player.isSneaking()) {
             worldIn.setBlockState(pos, state.with(LAYERS, i+1));
             return ActionResultType.CONSUME;
         }
@@ -175,6 +175,7 @@ public class RankineEightLayerBlock extends FallingBlock {
                 worldIn.setBlockState(pos, fallingState.with(LAYERS, (i+j)-8 ));
             }
         }
+        super.onEndFalling(worldIn, pos, fallingState, hitState, fallingBlock);
     }
 
     public void addLayers(World worldIn, BlockPos botPos, BlockPos topPos, BlockState bottom, BlockState top) {

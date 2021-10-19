@@ -181,6 +181,16 @@ public class WorldgenUtils {
         return (int) Math.max(worldIn.getSeaLevel(), (worldIn.getSeaLevel() + worldIn.getBiome(pos).getDepth()*30));
     }
 
+    public static boolean inArea(BlockPos b, double radius, BlockPos... targets) {
+        for (BlockPos target : targets) {
+            if (b.distanceSq(target) < Math.pow(radius,2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public static Block getCeillingBlock(World worldIn, BlockPos pos, int height) {
         for (int i = 1; i<= height; ++i) {
             if (!worldIn.getBlockState(pos.up(height)).matchesBlock(Blocks.AIR)) {

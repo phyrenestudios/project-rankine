@@ -2051,6 +2051,8 @@ public class RankineEventHandler {
                                 nug = new ItemStack(Items.IRON_NUGGET);
                             } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
                                 nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
+                            } else if (b == RankineBlocks.CHALCOCITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.COPPER_NUGGET.get());
                             } else if (b == RankineBlocks.BAUXITE_ORE.get()) {
                                 nug = new ItemStack(RankineItems.ALUMINUM_NUGGET.get());
                             } else if (b == RankineBlocks.CASSITERITE_ORE.get()) {
@@ -2085,6 +2087,8 @@ public class RankineEventHandler {
                                 nug = new ItemStack(RankineItems.CADMIUM_NUGGET.get());
                             } else if (b == RankineBlocks.XENOTIME_ORE.get()) {
                                 nug = new ItemStack(RankineItems.CERIUM_NUGGET.get());
+                            } else if (b == RankineBlocks.BADDELEYITE_ORE.get()) {
+                                nug = new ItemStack(RankineItems.ZIRCONIUM_NUGGET.get());
                             } else if (b == RankineBlocks.URANINITE_ORE.get()) {
                                 nug = new ItemStack(RankineItems.URANIUM_NUGGET.get());
                             }

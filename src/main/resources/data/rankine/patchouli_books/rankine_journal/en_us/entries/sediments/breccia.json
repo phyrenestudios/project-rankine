@@ -1,0 +1,16 @@
+{
+  "name": "Breccia",
+  "icon": "minecraft:breccia",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:breccia",
+      "text": "Obtained the natural way from stone"
+    }
+  ]
+}

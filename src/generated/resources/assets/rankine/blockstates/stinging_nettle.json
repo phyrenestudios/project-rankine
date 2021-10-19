@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "rankine:block/stinging_nettle2"
+      "model": "rankine:block/stinging_nettle"
     }
   }
 }

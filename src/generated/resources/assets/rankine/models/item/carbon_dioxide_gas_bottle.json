@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rankine:item/carbon_dioxide_gas_bottle"
+  }
+}

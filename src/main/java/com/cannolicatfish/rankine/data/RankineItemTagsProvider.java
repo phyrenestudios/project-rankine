@@ -59,6 +59,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.ORES_COBALT, RankineTags.Items.ORES_COBALT);
         copy(RankineTags.Blocks.ORES_NICKEL, RankineTags.Items.ORES_NICKEL);
         copy(RankineTags.Blocks.ORES_YTTRIUM, RankineTags.Items.ORES_YTTRIUM);
+        copy(RankineTags.Blocks.ORES_ZIRCONIUM, RankineTags.Items.ORES_ZIRCONIUM);
         copy(RankineTags.Blocks.ORES_MOLYBDENUM, RankineTags.Items.ORES_MOLYBDENUM);
         copy(RankineTags.Blocks.ORES_CADMIUM, RankineTags.Items.ORES_CADMIUM);
         copy(RankineTags.Blocks.ORES_URANIUM, RankineTags.Items.ORES_URANIUM);
@@ -776,6 +777,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);
+        copy(RankineTags.Blocks.ICE, RankineTags.Items.ICE);
         copy(RankineTags.Blocks.GRASS, RankineTags.Items.GRASS);
         copy(RankineTags.Blocks.PATHS, RankineTags.Items.PATHS);
         copy(Tags.Blocks.GRAVEL, Tags.Items.GRAVEL);
@@ -820,7 +822,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
         copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
-        copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
+        //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
+        getOrCreateBuilder(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
 
 
         getOrCreateBuilder(RankineTags.Items.CRAFTING_METAL_NUGGETS).addTag(Tags.Items.NUGGETS_IRON).addTag(RankineTags.Items.NUGGETS_ALUMINUM).addTag(RankineTags.Items.NUGGETS_COBALT).addTag(RankineTags.Items.NUGGETS_MANGANESE).addTag(RankineTags.Items.NUGGETS_TITANIUM).addTag(RankineTags.Items.NUGGETS_BISMUTH).addTag(RankineTags.Items.NUGGETS_LEAD).addTag(RankineTags.Items.NUGGETS_NICKEL).addTag(RankineTags.Items.NUGGETS_TUNGSTEN);

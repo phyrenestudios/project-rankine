@@ -6,6 +6,7 @@ import com.mojang.datafixers.TypeRewriteRule;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
 public class RankineEntityTypes {

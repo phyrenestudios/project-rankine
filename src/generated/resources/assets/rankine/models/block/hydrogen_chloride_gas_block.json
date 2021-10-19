@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rankine:block/hydrogen_chloride_gas_block"
+  }
+}

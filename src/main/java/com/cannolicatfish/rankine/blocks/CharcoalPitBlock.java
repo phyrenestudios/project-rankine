@@ -12,6 +12,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -82,7 +83,7 @@ public class CharcoalPitBlock extends Block {
     private boolean connected(World worldIn, BlockPos pos, List<BlockPos> logs) {
         List<BlockPos> Sides = Arrays.asList(pos.down(), pos.north(), pos.east(), pos.west(), pos.south(), pos.up());
         for (BlockPos Side : Sides) {
-            if (logs.contains(Side) && !logs.contains(pos) && worldIn.getBlockState(pos).getBlock().getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
+            if (logs.contains(Side) && !logs.contains(pos) && worldIn.getBlockState(pos).isIn(BlockTags.LOGS_THAT_BURN)) {
                 return true;
             }
         }
@@ -103,16 +104,16 @@ public class CharcoalPitBlock extends Block {
             if (TICKS % Config.MACHINES.CHARCOAL_PIT_SPEED.get() == 0) {
                 for (int y = 0; y <= HEIGHT; ++y) {
                     Connected.add(pos.up(y));
-                    if (worldIn.getBlockState(pos.up(y).north()).getBlock().getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
+                    if (worldIn.getBlockState(pos.up(y).north()).isIn(BlockTags.LOGS_THAT_BURN)) {
                         Connected.add(pos.up(y).north());
                     }
-                    if (worldIn.getBlockState(pos.up(y).east()).getBlock().getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
+                    if (worldIn.getBlockState(pos.up(y).east()).isIn(BlockTags.LOGS_THAT_BURN)) {
                         Connected.add(pos.up(y).east());
                     }
-                    if (worldIn.getBlockState(pos.up(y).south()).getBlock().getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
+                    if (worldIn.getBlockState(pos.up(y).south()).isIn(BlockTags.LOGS_THAT_BURN)) {
                         Connected.add(pos.up(y).south());
                     }
-                    if (worldIn.getBlockState(pos.up(y).west()).getBlock().getTags().contains(new ResourceLocation("minecraft:logs_that_burn"))) {
+                    if (worldIn.getBlockState(pos.up(y).west()).isIn(BlockTags.LOGS_THAT_BURN)) {
                         Connected.add(pos.up(y).west());
                     }
                 }

@@ -57,6 +57,7 @@ public class OreGen {
             OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.OVERWORLD_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
 
         return OverworldFeatures;
     }
@@ -67,6 +68,7 @@ public class OreGen {
             NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
         }
         NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_ORE_INTRUSION, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+        NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
         return NetherFeatures;
     }
 
@@ -197,6 +199,10 @@ public class OreGen {
                     }
                 }
             }
+
+        //    if (new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))) {
+       //         event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION.ordinal(),new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens")))::getKey);
+        //    }
 
 
 

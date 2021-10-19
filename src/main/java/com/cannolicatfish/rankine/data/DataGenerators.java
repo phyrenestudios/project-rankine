@@ -17,6 +17,7 @@ public final class DataGenerators {
             RankineBlockTagsProvider blockTagsGeneration = new RankineBlockTagsProvider(gen, event.getExistingFileHelper());
             gen.addProvider(blockTagsGeneration);
             gen.addProvider(new RankineItemTagsProvider(gen, blockTagsGeneration, event.getExistingFileHelper()));
+            gen.addProvider(new RankineEntityTypeTagsProvider(gen, event.getExistingFileHelper()));
 
             gen.addProvider(new RankineBlockLootTables(gen));
             gen.addProvider(new RankineRecipesProvider(gen));
