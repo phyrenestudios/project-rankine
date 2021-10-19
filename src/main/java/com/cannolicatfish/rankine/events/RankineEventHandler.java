@@ -1846,7 +1846,7 @@ public class RankineEventHandler {
                 world.playSound(player, pos, SoundEvents.BLOCK_WOOL_PLACE, SoundCategory.BLOCKS, 0.7F, world.getRandom().nextFloat() * 0.4F + 0.5F);
 
             }
-        } else if (RankineTags.Items.SLUICING_TOOLS.contains(stack.getItem()) && direction != null) {
+        } else if (RankineTags.Items.SLUICING_TOOLS.contains(stack.getItem()) && direction != null && !player.getCooldownTracker().hasCooldown(stack.getItem())) {
             SluicingRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.SLUICING, new Inventory(new ItemStack(world.getBlockState(pos).getBlock()), stack), world).orElse(null);
             if (recipe != null) {
                 float r = world.getRandom().nextFloat();

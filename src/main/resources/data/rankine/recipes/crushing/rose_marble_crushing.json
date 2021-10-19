@@ -14,8 +14,8 @@
   },
   "output3": {
     "item": "rankine:goethite",
-    "chance": 0.5,
-    "additional": 0.2
+    "chance": 0.01,
+    "additional": 0.02
   },
   "output4": {
     "item": "rankine:kaolinite",

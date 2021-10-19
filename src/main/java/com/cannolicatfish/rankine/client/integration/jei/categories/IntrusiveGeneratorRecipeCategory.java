@@ -86,7 +86,11 @@ public class IntrusiveGeneratorRecipeCategory implements IRecipeCategory<RockGen
     public void setRecipe(IRecipeLayout recipeLayout, RockGeneratorRecipe recipe, IIngredients ingredients) {
         int index = 0, posY = 0;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, 76, 20 + posY);
+            if (index == 0) {
+                recipeLayout.getItemStacks().init(index, true, 54, 6);
+            } else {
+                recipeLayout.getItemStacks().init(index, true, 72, 6);
+            }
             recipeLayout.getItemStacks().set(index, o);
             index++;
             posY += 52;
@@ -94,7 +98,7 @@ public class IntrusiveGeneratorRecipeCategory implements IRecipeCategory<RockGen
 
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 76, 46);
+            recipeLayout.getItemStacks().init(index + i, false, 63, 63);
             recipeLayout.getItemStacks().set(index + i, stacks);
         }
     }

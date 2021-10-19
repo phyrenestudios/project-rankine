@@ -1,7 +1,9 @@
 package com.cannolicatfish.rankine.blocks.gyratorycrusher;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
+import com.cannolicatfish.rankine.items.CrushingHeadItem;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -33,17 +35,18 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.GYRATORY_CRUSHER_TIL
 
 public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
     private static final int[] SLOTS_UP = new int[]{0};
-    private static final int[] SLOTS_DOWN = new int[]{2,3,4,5,6,7};
-    private static final int[] SLOTS_HORIZONTAL = new int[]{1};
+    private static final int[] SLOTS_DOWN = new int[]{3,4,5,6,7,8};
+    private static final int[] SLOTS_HORIZONTAL = new int[]{1,2};
+    private final int powerCost = Config.MACHINES.GYRATORY_CRUSHER_POWER.get();
     public GyratoryCrusherTile() {
         super(GYRATORY_CRUSHER_TILE);
     }
-    protected NonNullList<ItemStack> items = NonNullList.withSize(8, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
     private int cookTimeTotal = 200;
-    private int currentLevel = 1;
+    private int currentLevel = -1;
     private final IIntArray furnaceData = new IIntArray(){
         public int get(int index)
         {
@@ -57,6 +60,8 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     return GyratoryCrusherTile.this.cookTime;
                 case 3:
                     return GyratoryCrusherTile.this.cookTimeTotal;
+                case 4:
+                    return GyratoryCrusherTile.this.currentLevel;
                 default:
                     return 0;
             }
@@ -78,11 +83,14 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                 case 3:
                     GyratoryCrusherTile.this.cookTimeTotal = value;
                     break;
+                case 4:
+                    GyratoryCrusherTile.this.currentLevel = value;
+                    break;
             }
         }
 
         public int size() {
-            return 4;
+            return 5;
         }
     };
 
@@ -95,6 +103,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
         this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1));
+        this.currentLevel = nbt.getInt("CurrentLevel");
     }
 
     @Override
@@ -103,6 +112,7 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
+        compound.putInt("CurrentLevel", this.currentLevel);
         ItemStackHelper.saveAllItems(compound, this.items);
 
         return compound;
@@ -111,15 +121,18 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (BatteryItem.getTier(this.items.get(1)) != this.currentLevel || BatteryItem.getTier(this.items.get(1)) == 0)) {
+        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(1),powerCost*currentLevel))) {
             burnTime--;
+        }
+        if (this.currentLevel != CrushingHeadItem.getTier(this.items.get(2))) {
+            this.currentLevel = CrushingHeadItem.getTier(this.items.get(2));
         }
         if (!this.world.isRemote) {
 
             ItemStack input = this.items.get(0);
-            ItemStack fuel = this.items.get(1);
-
-            if ((this.isBurning() || !fuel.isEmpty() && !this.items.get(0).isEmpty())) {
+            ItemStack battery = this.items.get(1);
+            ItemStack crusher = this.items.get(2);
+            if ((this.isBurning() || !battery.isEmpty() && !input.isEmpty() && !crusher.isEmpty())) {
                 CrushingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.CRUSHING, this, this.world).orElse(null);
                 boolean canSmelt = this.canSmelt(irecipe);
                 if (input.isEmpty() || !canSmelt) {
@@ -127,9 +140,9 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                     this.currentBurnTime = this.burnTime;
                 }
                 if (!this.isBurning() && canSmelt) {
-                    this.burnTime = BatteryItem.getTier(fuel) != 0 ? 50 : 0;
+                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost*(currentLevel+1)) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
-                    this.currentLevel = BatteryItem.getTier(fuel);
+                    this.currentLevel = CrushingHeadItem.getTier(crusher);
                     if (this.isBurning()) {
                         flag1 = true;
                     }
@@ -138,18 +151,19 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
                 if (this.isBurning() && canSmelt) {
                     cookTime++;
                     if (cookTime >= cookTimeTotal) {
-                        List<ItemStack> results = irecipe.getResults(this.currentLevel - 1,this.world);
+                        List<ItemStack> results = irecipe.getResults(this.currentLevel,this.world);
 
                         for (int i = 0; i < results.size(); i++) {
-                            if (this.items.get(2 + i).getCount() > 0) {
-                                this.items.get(2 + i).grow(results.get(i).getCount());
-                            } if (this.items.get(2 + i).getCount() <= 0) {
-                                this.items.set(2 + i, results.get(i).copy());
+                            if (this.items.get(3 + i).getCount() > 0) {
+                                this.items.get(3 + i).grow(results.get(i).getCount());
+                            } if (this.items.get(3 + i).getCount() <= 0) {
+                                this.items.set(3 + i, results.get(i).copy());
                             }
                         }
 
                         input.shrink(1);
                         cookTime = 0;
+                        battery.setDamage(battery.getDamage() + powerCost*(currentLevel+1));
                         return;
                     }
                 } else {
@@ -184,13 +198,13 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
 
     private boolean canSmelt(@Nullable CrushingRecipe recipeIn)
     {
-        if (!this.items.get(0).isEmpty() && recipeIn != null) {
-            List<ItemStack> itemstacks = recipeIn.getPossibleResults(this.currentLevel - 1,this.world);
+        if (!this.items.get(0).isEmpty() && this.currentLevel >= 0 && recipeIn != null && BatteryItem.hasPowerRequired(this.items.get(1),powerCost*(currentLevel+1))) {
+            List<ItemStack> itemstacks = recipeIn.getPossibleResults(this.currentLevel,this.world);
             if (itemstacks.isEmpty()) {
                 return false;
             } else {
                 for (int i = 0; i < this.currentLevel; i++) {
-                    ItemStack itemstack = this.items.get(2 + i);
+                    ItemStack itemstack = this.items.get(3 + i);
                     if ((!itemstack.isItemEqual(itemstacks.get(i)) && !itemstack.isEmpty())) {
                         return false;
                     } else if (itemstack.getCount() + itemstacks.get(i).getCount() > this.getInventoryStackLimit() && itemstack.getCount() + itemstacks.get(i).getCount() > itemstack.getMaxStackSize()) {
@@ -326,11 +340,13 @@ public class GyratoryCrusherTile  extends TileEntity implements ISidedInventory,
             case 1:
                 return stack.getItem() instanceof BatteryItem;
             case 2:
+                return stack.getItem() instanceof CrushingHeadItem;
             case 3:
             case 4:
             case 5:
             case 6:
             case 7:
+            case 8:
             default:
                 return false;
         }

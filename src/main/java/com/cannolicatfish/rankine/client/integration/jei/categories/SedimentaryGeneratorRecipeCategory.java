@@ -86,7 +86,13 @@ public class SedimentaryGeneratorRecipeCategory implements IRecipeCategory<RockG
     public void setRecipe(IRecipeLayout recipeLayout, RockGeneratorRecipe recipe, IIngredients ingredients) {
         int index = 0, posY = 0;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, 76, 20 + posY);
+            if (index == 0) {
+                recipeLayout.getItemStacks().init(index, true, 53, 54);
+            } else if (index == 1) {
+                recipeLayout.getItemStacks().init(index, true, 71, 54);
+            } else {
+                recipeLayout.getItemStacks().init(index, true, 34, 28);
+            }
             recipeLayout.getItemStacks().set(index, o);
             index++;
             posY += 52;
@@ -94,7 +100,7 @@ public class SedimentaryGeneratorRecipeCategory implements IRecipeCategory<RockG
 
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 76, 46);
+            recipeLayout.getItemStacks().init(index + i, false, 94, 28);
             recipeLayout.getItemStacks().set(index + i, stacks);
         }
     }

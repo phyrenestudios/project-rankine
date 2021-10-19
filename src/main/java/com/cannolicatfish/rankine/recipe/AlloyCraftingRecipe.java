@@ -167,18 +167,18 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 {
                     if (!IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0]).isEmpty() &&
                             !IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0]).equals(IAlloyItem.getAlloyComposition(stackInSlot))) {
-                        System.out.println("Item " + stackInSlot + " does not match composition of " + ingredient.getMatchingStacks()[0]);
-                        System.out.println("ingredient comp: " + (IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0])));
-                        System.out.println("stackInSlot comp: " + (IAlloyItem.getAlloyComposition(stackInSlot)));
+                        //System.out.println("Item " + stackInSlot + " does not match composition of " + ingredient.getMatchingStacks()[0]);
+                        //System.out.println("ingredient comp: " + (IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0])));
+                        //System.out.println("stackInSlot comp: " + (IAlloyItem.getAlloyComposition(stackInSlot)));
                         return false;
                     }
                     ResourceLocation rs = IAlloyItem.getAlloyRecipe(ingredient.getMatchingStacks()[0]);
                     ResourceLocation inSlot = IAlloyItem.getAlloyRecipe(stackInSlot);
                     if (rs != null &&
                             (inSlot == null || !rs.toString().equals(inSlot.toString()))) {
-                        System.out.println("Item " + stackInSlot + " does not match alloy recipe of " + ingredient.getMatchingStacks()[0]);
-                        System.out.println("ingredient recipe: " + (IAlloyItem.getAlloyRecipe(ingredient.getMatchingStacks()[0])));
-                        System.out.println("stackInSlot recipe: " + (IAlloyItem.getAlloyRecipe(stackInSlot)));
+                        //System.out.println("Item " + stackInSlot + " does not match alloy recipe of " + ingredient.getMatchingStacks()[0]);
+                        //System.out.println("ingredient recipe: " + (IAlloyItem.getAlloyRecipe(ingredient.getMatchingStacks()[0])));
+                        //System.out.println("stackInSlot recipe: " + (IAlloyItem.getAlloyRecipe(stackInSlot)));
                         return false;
                     }
                 }

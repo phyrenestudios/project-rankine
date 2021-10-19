@@ -24,4 +24,12 @@ public class BatteryItem extends Item {
             return 0;
         }
     }
+
+    public static boolean hasPowerRequired(ItemStack stack, int powerRequired) {
+        if (stack.getItem() instanceof BatteryItem) {
+            return stack.getDamage() + powerRequired < stack.getMaxDamage();
+        } else {
+            return false;
+        }
+    }
 }

@@ -168,6 +168,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BORAX.get());
         basicItem(RankineItems.SODIUM_SULFIDE.get());
         basicItem(RankineItems.SODIUM_HYDROXIDE.get());
+        basicItem(RankineItems.LITHIUM_COBALT_OXIDE.get());
         basicItem(RankineItems.SODIUM_CARBONATE.get());
         basicItem(RankineItems.SALTPETER.get());
         basicItem(RankineItems.CEMENT_MIX.get());

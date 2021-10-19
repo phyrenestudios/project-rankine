@@ -3,6 +3,8 @@ package com.cannolicatfish.rankine.items;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
+import com.cannolicatfish.rankine.items.alloys.AlloyData;
+import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
@@ -43,12 +45,12 @@ public class AlloyTemplateItem extends Item {
     @Override
     public ITextComponent getDisplayName(ItemStack stack) {
         if (isTemplateInit(stack)) {
-            String nameAdd = getNameAdd(stack);
+            int stackSize = getStackSize(stack);
             Item output = ForgeRegistries.ITEMS.getValue(getOutputAsResourceLocation(stack));
-            if (!nameAdd.isEmpty() && output != null && output != Items.AIR) {
+            if (stackSize != 0 && output != null && output != Items.AIR) {
                 String translate = new TranslationTextComponent(output.getTranslationKey()).getString();
                 String template = new TranslationTextComponent(this.getTranslationKey(stack)).getString();
-                return new StringTextComponent( nameAdd + " " + translate + " " + template);
+                return new StringTextComponent( stackSize + "x " + translate + " " + template);
             } else {
                 return super.getDisplayName(stack);
             }
@@ -128,10 +130,13 @@ public class AlloyTemplateItem extends Item {
         ItemStack output = recipe.generateResult(worldIn,inv,3);
 
         assembleTemplateData(stack,worldIn,inv,0,6);
-        listnbt.putString("nameAdd",output.getCount() + "x");
+        listnbt.putShort("stackSize", (short) output.getCount());
         listnbt.putString("output",output.getItem().getRegistryName().toString());
         String nbt = IAlloyItem.getAlloyComposition(output);
         listnbt.putString("alloyComp",!nbt.isEmpty() ? nbt : RankineRecipes.generateAlloyString(inv));
+        listnbt.putString("alloyName",IAlloyItem.getNameOverride(output));
+        ResourceLocation alloyRecipe = IAlloyItem.getAlloyRecipe(output);
+        listnbt.putString("alloyRecipe",alloyRecipe != null ? alloyRecipe.toString() : "");
         listnbt.putShort("alloyTier", (short) recipe.getTier());
         stack.getOrCreateTag().put("StoredInfo", listnbt);
 
@@ -179,6 +184,39 @@ public class AlloyTemplateItem extends Item {
         stack.getOrCreateTag().put("StoredTemplate",elements);
     }
 
+    public static ItemStack getResult(World worldIn, ItemStack stack)
+    {
+        if (isTemplateInit(stack)) {
+            String rs = getOutput(stack);
+            int amt = getStackSize(stack);
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(rs));
+            if (item != null && item != Items.AIR) {
+                ItemStack out = new ItemStack(item,amt);
+                if (item instanceof IAlloyItem)
+                {
+                    Map<ElementRecipe,Integer> elementMap = new HashMap<>();
+                    ListNBT storedTemp = getStoredTemplate(stack);
+                    for (int i = 0; i < storedTemp.size(); i++) {
+                        CompoundNBT nbt = storedTemp.getCompound(i);
+                        ResourceLocation elem = new ResourceLocation(nbt.getString("id"));
+                        int amount = nbt.getShort("amount");
+                        IRecipe<?> recipe = worldIn.getRecipeManager().getRecipe(elem).orElse(null);
+                        if (recipe instanceof ElementRecipe) {
+                            elementMap.put((ElementRecipe) recipe,amount);
+                        }
+                    }
+                    String recipe = getAlloyRecipe(stack);
+                    String alloyName = !getAlloyName(stack).isEmpty() ? getAlloyName(stack) : null;
+                    ResourceLocation alloyingRecipe = !recipe.isEmpty() ? new ResourceLocation(recipe) : null;
+                    ((IAlloyItem) item).createAlloyNBT(out,worldIn,elementMap,alloyingRecipe,alloyName);
+                }
+                return out;
+            }
+
+        }
+        return ItemStack.EMPTY;
+    }
+
     public static CompoundNBT getTemplate(ItemStack stack) {
         CompoundNBT compoundnbt = stack.getTag();
         return compoundnbt != null ? compoundnbt : new CompoundNBT();
@@ -194,12 +232,12 @@ public class AlloyTemplateItem extends Item {
         return compoundnbt != null ? compoundnbt.getCompound("StoredInfo") : new CompoundNBT();
     }
 
-    static String getNameAdd(ItemStack stack)
+    static int getStackSize(ItemStack stack)
     {
         if (!getStoredInfo(stack).isEmpty()) {
-            return getStoredInfo(stack).getString("nameAdd");
+            return getStoredInfo(stack).getInt("stackSize");
         } else {
-            return "";
+            return 0;
         }
     }
 
@@ -212,7 +250,7 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    static String getOutput(ItemStack stack)
+    public static String getOutput(ItemStack stack)
     {
         if (!getStoredInfo(stack).isEmpty()) {
             return getStoredInfo(stack).getString("output");
@@ -221,7 +259,7 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    static String getAlloyComp(ItemStack stack)
+    public static String getAlloyComp(ItemStack stack)
     {
         if (!getStoredInfo(stack).isEmpty()) {
             return getStoredInfo(stack).getString("alloyComp");
@@ -230,7 +268,25 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    static short getAlloyTier(ItemStack stack)
+    public static String getAlloyName(ItemStack stack)
+    {
+        if (!getStoredInfo(stack).isEmpty()) {
+            return getStoredInfo(stack).getString("alloyName");
+        } else {
+            return "";
+        }
+    }
+
+    public static String getAlloyRecipe(ItemStack stack)
+    {
+        if (!getStoredInfo(stack).isEmpty()) {
+            return getStoredInfo(stack).getString("alloyRecipe");
+        } else {
+            return "";
+        }
+    }
+
+    public static short getAlloyTier(ItemStack stack)
     {
         if (!getStoredInfo(stack).isEmpty()) {
             return getStoredInfo(stack).getShort("alloyTier");
@@ -239,7 +295,7 @@ public class AlloyTemplateItem extends Item {
         }
     }
 
-    private boolean isTemplateInit(ItemStack stack) {
+    private static boolean isTemplateInit(ItemStack stack) {
         return stack.getTag() != null && !getStoredTemplate(stack).isEmpty() && !getStoredInfo(stack).isEmpty();
     }
 

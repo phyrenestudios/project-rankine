@@ -280,6 +280,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.BORAX.get(),
             RankineItems.SODIUM_SULFIDE.get(),
             RankineItems.SODIUM_HYDROXIDE.get(),
+            RankineItems.LITHIUM_COBALT_OXIDE.get(),
             RankineItems.SODIUM_CARBONATE.get(),
             RankineItems.SALTPETER.get(),
             RankineItems.CEMENT_MIX.get(),
@@ -517,6 +518,11 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.sluicing", "Gold Panning");
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
+        add("rankine.jei.intrusive_igneous", "Intrusive Igneous Rock Generator");
+        add("rankine.jei.extrusive_igneous", "Extrusive Igneous Rock Generator");
+        add("rankine.jei.sedimentary", "Sedimentary Rock Generator");
+        add("rankine.jei.metamorphic", "Metamorphic Rock Generator");
+        add("rankine.jei.volcanic", "Volcanic Rock Generator");
         add("itemGroup.rankine_world", "Project Rankine Building");
         add("itemGroup.rankine_metallurgy", "Project Rankine Metallurgy");
         add("itemGroup.rankine_elements", "Project Rankine Elements");

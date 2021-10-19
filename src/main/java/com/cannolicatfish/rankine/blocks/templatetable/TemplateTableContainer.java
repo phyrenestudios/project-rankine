@@ -5,7 +5,6 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
 import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
 import com.cannolicatfish.rankine.items.BatteryItem;
@@ -50,11 +51,11 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
 
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
     private boolean recipeMode = false;
+    private final int powerCost = Config.MACHINES.INDUCTION_FURNACE_POWER.get();
     private int burnTime;
     private int currentBurnTime;
     private int cookTime;
-    private int cookTimeTotal = 1600;
-    private int tickAdd = 1;
+    private int cookTimeTotal = 800;
     private final IIntArray furnaceData = new IIntArray() {
         public int get(int index) {
             switch (index) {
@@ -106,7 +107,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
-        this.currentBurnTime =  6400 * BatteryItem.getTier(this.items.get(6));
+        this.currentBurnTime =  800;
     }
 
     @Override
@@ -123,25 +124,24 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
     public void tick() {
         boolean flag = this.isBurning();
         boolean flag1 = false;
-        if (this.isBurning() && (BatteryItem.getTier(this.items.get(6)) != this.tickAdd || BatteryItem.getTier(this.items.get(6)) == 0)) {
+        if (this.isBurning() && (!BatteryItem.hasPowerRequired(this.items.get(6),powerCost))) {
             burnTime--;
         }
         if (!this.world.isRemote) {
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3), this.items.get(4), this.items.get(5)};
-            ItemStack fuel = this.items.get(6);
-            if ((this.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
+            ItemStack battery = this.items.get(6);
+            if ((this.isBurning() || !battery.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
                 AlloyingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.ALLOYING, this, this.world).orElse(null);
                 if (!this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.burnTime = BatteryItem.getTier(fuel) != 0 ? 50 : 0;
+                    this.burnTime = BatteryItem.hasPowerRequired(battery,powerCost) ? 50 : 0;
                     this.currentBurnTime = this.burnTime;
-                    this.tickAdd = BatteryItem.getTier(fuel);
                     if (this.isBurning()) {
                         flag1 = true;
                     }
                 }
 
                 if (this.isBurning() && this.canSmelt(irecipe, this)) {
-                    this.cookTime += this.tickAdd;
+                    this.cookTime += 1;
                     if (this.cookTime >= this.cookTimeTotal) {
                         int[] x;
                         ItemStack output;
@@ -196,7 +196,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
                             inputs[5].shrink(x[5]);
                         }
 
-
+                        battery.setDamage(battery.getDamage() + powerCost);
                         this.cookTime = 0;
                         return;
                     }
@@ -377,7 +377,7 @@ public class InductionFurnaceTile extends TileEntity implements ISidedInventory,
         }
 
         if (index >= 0 && index <= 5  && !flag) {
-            this.cookTimeTotal = 1600;
+            this.cookTimeTotal = 800;
             this.cookTime = 0;
             this.markDirty();
         }

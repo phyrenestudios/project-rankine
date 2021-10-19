@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/lithium"
+    },
+    {
+      "tag": "forge:ingots/lithium"
+    },
+    {
+      "tag": "forge:ingots/cobalt"
+    },
+    {
+      "tag": "forge:ingots/cobalt"
+    },
+    {
+      "tag": "forge:ingots/cobalt"
+    },
+    {
+      "item": "rankine:carbon_dioxide_gas_bottle"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "rankine:lithium_cobalt_oxide"
+  }
+}

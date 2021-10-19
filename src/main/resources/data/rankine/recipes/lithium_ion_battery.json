@@ -18,11 +18,7 @@
     },
     "l":
     {
-      "tag": "forge:ingots/lithium"
-    },
-    "b":
-    {
-      "tag": "forge:bromine"
+      "item": "rankine:lithium_cobalt_oxide"
     },
     "s":
     {
