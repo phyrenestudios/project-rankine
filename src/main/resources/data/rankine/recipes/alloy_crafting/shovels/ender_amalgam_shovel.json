@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "inheritRecipe": "rankine:alloying/ender_amalgam_alloying",
   "pattern": [
     " # ",
     " t ",

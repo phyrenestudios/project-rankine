@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
+import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -39,7 +40,6 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
     private final int total;
     private final int time;
     private final FluidStack fluid;
-    private final Ingredient bucket;
     private final List<String> biomes;
     private final NonNullList<ItemStack> recipeOutputs;
     private final ResourceLocation id;
@@ -50,13 +50,12 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
 
     public static final EvaporationRecipe.Serializer SERIALIZER = new EvaporationRecipe.Serializer();
 
-    public EvaporationRecipe(ResourceLocation idIn, boolean largeIn, int totalIn, int timeIn, FluidStack fluidIn, Ingredient bucketIn, List<String> biomesIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
+    public EvaporationRecipe(ResourceLocation idIn, boolean largeIn, int totalIn, int timeIn, FluidStack fluidIn, List<String> biomesIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
         this.large = largeIn;
         this.total = totalIn;
         this.time = timeIn;
         this.id = idIn;
         this.fluid = fluidIn;
-        this.bucket = bucketIn;
         this.biomes = biomesIn;
         this.recipeOutputs = recipeOutputsIn;
         this.weights = weightsIn;
@@ -78,7 +77,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return NonNullList.withSize(1,this.bucket);
+        return NonNullList.withSize(1,Ingredient.EMPTY);
     }
 
     public FluidStack getFluid() {
@@ -93,9 +92,6 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         return recipeOutputs;
     }
 
-    public NonNullList<Ingredient> getJEIIngredient() {
-        return NonNullList.withSize(1,this.bucket);
-    }
 
     public List<Biome> getBiomeList() {
         List<Biome> biomeList = new ArrayList<>();
@@ -228,20 +224,6 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
         }
     }
 
-    public static FluidStack deserializeFluid(JsonObject object) {
-        String s = JSONUtils.getString(object, "block");
-
-        Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
-            return new JsonParseException("Unknown block '" + s + "'");
-        });
-
-        if (object.has("data")) {
-            throw new JsonParseException("Disallowed data tag found");
-        } else {
-            return BlockRecipeHelper.getBlockFluidStack(object);
-        }
-    }
-
     @Override
     public IRecipeType<?> getType() {
         return RankineRecipeTypes.EVAPORATION;
@@ -253,8 +235,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             int t = json.get("total").getAsInt();
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 6400;
             boolean l = !json.has("large") || json.get("large").getAsBoolean();
-            FluidStack fluid = deserializeFluid(JSONUtils.getJsonObject(json, "input"));
-            Ingredient bucket = Ingredient.deserialize(JSONUtils.getJsonObject(json, "bucket"));
+            FluidStack fluid = FluidHelper.getFluidStack(JSONUtils.getJsonObject(json, "input"));
 
             JsonArray b = json.has("biomes") ? JSONUtils.getJsonArray(json, "biomes") : new JsonArray();
             List<String> biomes = new ArrayList<>();
@@ -292,7 +273,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
                 }
             }
 
-            return new EvaporationRecipe(recipeId,l, t, w, fluid, bucket, biomes, stacks, weights, mins,maxes);
+            return new EvaporationRecipe(recipeId,l, t, w, fluid, biomes, stacks, weights, mins,maxes);
         }
 
         public EvaporationRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
@@ -301,7 +282,6 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             int t = buffer.readInt();
             int w = buffer.readInt();
             FluidStack input = buffer.readFluidStack();
-            Ingredient b = Ingredient.read(buffer);
 
             int biomesSize = buffer.readInt();
             String[] biomeArray = new String[biomesSize];
@@ -331,7 +311,7 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readInt());
             }
 
-            return new EvaporationRecipe(recipeId, l, t, w,input,b, biomes, stacks, weights, mins, maxes);
+            return new EvaporationRecipe(recipeId, l, t, w,input,biomes, stacks, weights, mins, maxes);
         }
 
         public void write(PacketBuffer buffer, EvaporationRecipe recipe) {
@@ -339,7 +319,6 @@ public class EvaporationRecipe implements IRecipe<IInventory> {
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.time);
             buffer.writeFluidStack(recipe.fluid);
-            recipe.bucket.write(buffer);
 
             buffer.writeInt(recipe.getBiomes().size());
             for (int i = 0; i < recipe.getBiomes().size(); i++) {

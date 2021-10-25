@@ -25,11 +25,6 @@ public class GhastRegenerationEnchantment extends Enchantment {
     }
 
     @Override
-    public boolean canApply(ItemStack stack) {
-        return EnchantmentType.BREAKABLE.canEnchantItem(stack.getItem());
-    }
-
-    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         return false;
     }

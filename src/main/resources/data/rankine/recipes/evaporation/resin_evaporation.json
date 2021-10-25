@@ -4,7 +4,7 @@
   "total": 1,
   "cookTime": 1200,
   "input": {
-    "block": "rankine:resin"
+    "fluid": "rankine:resin"
   },
   "bucket": {
     "item": "rankine:resin_bucket"

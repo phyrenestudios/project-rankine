@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class EndpointEnchantment extends Enchantment {
     public EndpointEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {
-        super(p_i46721_1_, RankineEnchantmentTypes.SPEAR, p_i46721_2_);
+        super(p_i46721_1_, RankineEnchantmentTypes.ENDER_AMALGAM_SPEAR, p_i46721_2_);
     }
 
     public int getMinEnchantability(int p_77321_1_) {
@@ -27,7 +27,7 @@ public class EndpointEnchantment extends Enchantment {
 
     @Override
     public boolean canApply(ItemStack stack) {
-        return RankineEnchantmentTypes.SPEAR.canEnchantItem(stack.getItem());
+        return RankineEnchantmentTypes.ENDER_AMALGAM_SPEAR.canEnchantItem(stack.getItem());
     }
 
     @Override

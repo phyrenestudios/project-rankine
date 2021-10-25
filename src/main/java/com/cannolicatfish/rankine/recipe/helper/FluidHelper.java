@@ -1,5 +1,11 @@
 package com.cannolicatfish.rankine.recipe.helper;
 
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sun.javafx.geom.Vec3d;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,6 +20,10 @@ import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -21,12 +31,16 @@ import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.JSONUtils;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.UUID;
 
@@ -160,5 +174,20 @@ public class FluidHelper {
         int i = EnchantmentHelper.getRespirationModifier(ent);
         return i > 0 && world.getRandom().nextInt(i + 1) > 0 ? air : air - amount;
     }
+
+
+    public static FluidStack getFluidStack(JsonObject json)
+    {
+        String fluidName = JSONUtils.getString(json, "fluid");
+
+        Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidName));
+
+        if (fluid == null) {
+            throw new JsonSyntaxException("Unknown fluid '" + fluidName + "'");
+        }
+
+        return new FluidStack(fluid, JSONUtils.getInt(json, "amount", 1000));
+    }
+
 }
 

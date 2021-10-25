@@ -100,6 +100,8 @@ public class GasVentBlock extends Block {
                 return RankineBlocks.RADON_GAS_BLOCK.get();
             case OGANESSON:
                 return RankineBlocks.OGANESSON_GAS_BLOCK.get();
+            case AMMONIA:
+                return RankineBlocks.AMMONIA_GAS_BLOCK.get();
             case CARBON_DIOXIDE:
                 return RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get();
             case HYDROGEN_CHLORIDE:

@@ -1,6 +1,7 @@
 {
       "type": "rankine:alloy_crafting",
       "inherit": "true",
+      "inheritRecipe": "rankine:alloying/tungsten_heavy_alloy_alloying",
       "pattern": [
       "###",
       "#t#",

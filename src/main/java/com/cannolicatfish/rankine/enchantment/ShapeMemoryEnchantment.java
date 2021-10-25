@@ -23,10 +23,6 @@ public class ShapeMemoryEnchantment extends Enchantment {
         return 1;
     }
 
-    @Override
-    public boolean canApply(ItemStack stack) {
-        return EnchantmentType.BREAKABLE.canEnchantItem(stack.getItem());
-    }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {

@@ -1,6 +1,7 @@
 {
       "type": "rankine:alloy_crafting",
       "inherit": "true",
+      "inheritRecipe": "rankine:alloying/cobalt_superalloy_alloying",
       "pattern": [
       " # ",
       " # ",

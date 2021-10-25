@@ -11,10 +11,7 @@
       "item": "rankine:titanium_ingot"
     },
     "t": {
-      "item": "rankine:alloy_rod",
-      "alloyRecipe": "rankine:alloying/steel_alloying",
-      "name": "Steel Rod",
-      "color": 3291714
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

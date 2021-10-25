@@ -43,6 +43,24 @@ public class RankineFluids {
     @ObjectHolder("rankine:flowing_juglone")
     public static FlowingFluid FLOWING_JUGLONE;
 
+    @ObjectHolder("rankine:aqua_regia")
+    public static FlowingFluid AQUA_REGIA;
+
+    @ObjectHolder("rankine:flowing_aqua_regia")
+    public static FlowingFluid FLOWING_AQUA_REGIA;
+
+    @ObjectHolder("rankine:hydrobromic_acid")
+    public static FlowingFluid HYDROBROMIC_ACID;
+
+    @ObjectHolder("rankine:flowing_hydrobromic_acid")
+    public static FlowingFluid FLOWING_HYDROBROMIC_ACID;
+
+    @ObjectHolder("rankine:red_mud")
+    public static FlowingFluid RED_MUD;
+
+    @ObjectHolder("rankine:flowing_red_mud")
+    public static FlowingFluid FLOWING_RED_MUD;
+
     @ObjectHolder("rankine:sulfuric_acid")
     public static FlowingFluid SULFURIC_ACID;
 

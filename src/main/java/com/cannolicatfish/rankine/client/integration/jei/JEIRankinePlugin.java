@@ -78,6 +78,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getCrushingRecipes()), CrushingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getFusionFurnaceRecipes()), FusionFurnaceRecipeCategory.UID);
         registry.addRecipes(getSortedElementRecipes(), ElementRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getCrucibleRecipes()), CrucibleRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);
@@ -136,6 +137,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new CrushingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new InductionAlloyingRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new FusionFurnaceRecipeCategory(guiHelper));
         registry.addRecipeCategories(new SluicingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new ElementRecipeCategory(guiHelper));
         registry.addRecipeCategories(new EvaporationRecipeCategory(guiHelper));
@@ -152,6 +154,7 @@ public class JEIRankinePlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), AlloyingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), InductionAlloyingRecipeCategory.UID);
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FusionFurnaceRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get()), BeehiveOvenRecipeCategory.UID);

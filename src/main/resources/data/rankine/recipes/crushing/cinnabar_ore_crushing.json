@@ -24,12 +24,12 @@
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:barite",
-    "chance": 0.1,
-    "additional": 0.05
+    "item": "rankine:opal",
+    "chance": 0.03,
+    "additional": 0.02
   },
   "output6": {
-    "item": "rankine:opal",
-    "chance": 0.05
+    "item": "rankine:lorandite",
+    "chance": 0.02
   }
 }

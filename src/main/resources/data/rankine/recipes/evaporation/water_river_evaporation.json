@@ -3,7 +3,7 @@
   "total": 12,
   "biomes": ["C#river"],
   "input": {
-    "block": "minecraft:water"
+    "fluid": "minecraft:water"
   },
   "bucket": {
     "item": "minecraft:water_bucket"

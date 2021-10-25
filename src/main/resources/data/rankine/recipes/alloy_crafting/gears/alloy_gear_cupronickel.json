@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "genName": true,
+  "color": 11946807,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/cupronickel"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_gear",
+    "count": 1
+  }
+}

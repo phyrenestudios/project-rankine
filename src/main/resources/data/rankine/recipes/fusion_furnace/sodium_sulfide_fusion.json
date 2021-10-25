@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "input2": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "result1": {
+    "item":"rankine:sodium_sulfide",
+    "count": 1
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_sulfide_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

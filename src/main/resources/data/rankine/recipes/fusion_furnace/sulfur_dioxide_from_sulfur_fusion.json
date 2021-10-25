@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:sulfur"
+  },
+  "input2": {
+    "tag": "forge:sulfur"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:sulfur_dioxide_gas_bottle"
+  }
+}

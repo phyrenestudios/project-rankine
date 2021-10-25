@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:pollucite"
+  },
+  "input2": {
+    "item": "rankine:gypsum"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "result1": {
+    "item": "rankine:cesium_ingot"
+  },
+  "result2": {
+    "item": "rankine:rubidium_ingot"
+  }
+}

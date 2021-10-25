@@ -164,7 +164,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.SLAG.get());
         basicItem(RankineItems.TRONA.get());
         basicItem(RankineItems.POTASH.get());
+        basicItem(RankineItems.BORON_TRIOXIDE.get());
         basicItem(RankineItems.VANADIUM_PENTOXIDE.get());
+        basicItem(RankineItems.SODIUM_FLUOROSILICATE.get());
         basicItem(RankineItems.ASBESTOS.get());
         basicItem(RankineItems.THENARDITE.get());
         basicItem(RankineItems.BORAX.get());
@@ -180,12 +182,14 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BONE_ASH.get());
         basicItem(RankineItems.POZZOLANA.get());
         basicItem(RankineItems.METEORIC_IRON.get());
+        basicItem(RankineItems.OSMIRIDIUM.get());
         basicItem(RankineItems.COMPOST.get());
         basicItem(RankineItems.BIOMASS.get());
         basicItem(RankineItems.COMPRESSED_BIOMASS.get());
         basicItem(RankineItems.DRIED_BAMBOO.get());
         basicItem(RankineItems.BEAVER_PELT.get());
         basicItem(RankineItems.ROPE.get());
+        basicItem(RankineItems.BLEACH.get());
         basicItem(RankineItems.HERBICIDE.get());
         basicItem(RankineItems.SYNTHETIC_LEATHER.get());
         basicItem(RankineItems.PULP.get());
@@ -261,6 +265,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.MAPLE_SAP_BUCKET.get());
         basicItem(RankineItems.JUGLONE_BUCKET.get());
         basicItem(RankineItems.LIQUID_MERCURY_BUCKET.get());
+        basicItem(RankineItems.AQUA_REGIA_BUCKET.get());
+        basicItem(RankineItems.HYDROBROMIC_ACID_BUCKET.get());
+        basicItem(RankineItems.RED_MUD_BUCKET.get());
         basicItem(RankineItems.SULFURIC_ACID_BUCKET.get());
         basicItem(RankineItems.COIN.get());
         basicItem(RankineItems.MAGNESIUM_BATTERY.get());
@@ -317,6 +324,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         withExistingParent(RankineBlocks.GYRATORY_CRUSHER.get());
         withExistingParent(RankineBlocks.PISTON_CRUSHER.get());
         withExistingParent(RankineBlocks.INDUCTION_FURNACE.get());
+        withExistingParent(RankineBlocks.FUSION_FURNACE.get());
         withExistingParent(RankineBlocks.ALNICO_ELECTROMAGNET.get());
         withExistingParent(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get());
         withExistingParent(RankineBlocks.TRAMPOLINE.get());

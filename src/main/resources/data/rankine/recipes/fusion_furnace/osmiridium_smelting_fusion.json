@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:osmiridium"
+  },
+  "fluidInput": {
+    "fluid": "rankine:aqua_regia"
+  },
+  "result1": {
+    "item": "rankine:osmium_ingot"
+  },
+  "result2": {
+    "item": "rankine:iridium_ingot"
+  }
+}

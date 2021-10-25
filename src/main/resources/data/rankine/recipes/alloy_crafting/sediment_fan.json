@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "pattern": [
     "cac",
     "aGa",
@@ -9,8 +9,8 @@
     "G": {
       "item": "rankine:alloy_gear",
       "alloyRecipe": "rankine:alloying/cupronickel_alloying",
-      "name": "Cupronickel Alloy Gear",
-      "color": 12622179
+      "name": "item.rankine.alloy_gear_cupronickel",
+      "color": 11946807
     },
     "a": {
       "tag": "forge:ingots/aluminum"

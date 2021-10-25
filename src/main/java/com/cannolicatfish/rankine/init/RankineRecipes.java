@@ -88,6 +88,9 @@ public class RankineRecipes {
         }
         DispenserBlock.registerDispenseBehavior(RankineItems.JUGLONE_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.LIQUID_MERCURY_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.AQUA_REGIA_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.HYDROBROMIC_ACID_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.RED_MUD_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.SULFURIC_ACID_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.LATEX_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.RESIN_BUCKET.get(),bucketItemBehavior);

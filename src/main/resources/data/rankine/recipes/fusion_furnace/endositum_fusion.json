@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:mercury"
+  },
+  "input2": {
+    "item": "minecraft:ender_pearl"
+  },
+  "fluidInput": {
+    "fluid": "rankine:hydrobromic_acid"
+  },
+  "result1": {
+    "item": "rankine:endositum_ingot"
+  },
+  "result2": {
+    "item": "rankine:astatine_nugget"
+  }
+}

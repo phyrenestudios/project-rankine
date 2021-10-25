@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "aaa",
+    "ggg",
+    "bbb"
+  ],
+  "key": {
+    "a": {
+      "item": "rankine:alumina"
+    },
+    "b": {
+      "item": "rankine:boron_trioxide"
+    },
+    "g": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "rankine:borosilicate_glass",
+    "count": 3
+  }
+}

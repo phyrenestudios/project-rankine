@@ -1,0 +1,13 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:forsterite"
+  },
+  "input2": {
+    "item": "minecraft:quartz"
+  },
+  "result1": {
+    "item": "rankine:enstatite"
+  }
+}

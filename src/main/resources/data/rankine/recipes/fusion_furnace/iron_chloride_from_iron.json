@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "minecraft:iron_ingot"
+  },
+  "input2": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result1": {
+    "item": "rankine:iron_chloride"
+  },
+  "gasInput": {
+    "item": "rankine:chlorine_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

@@ -36,6 +36,10 @@ public class RankineJEIRecipes {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 1) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }
 
+    public List<FusionFurnaceRecipe> getFusionFurnaceRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.FUSION_FURNACE);
+    }
+
     public List<AlloyingRecipe> getInductionFurnaceRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ALLOYING).stream().filter(recipe -> (recipe.getTier() & 2) != 0 && recipe.getTier() != -1).collect(Collectors.toList());
     }

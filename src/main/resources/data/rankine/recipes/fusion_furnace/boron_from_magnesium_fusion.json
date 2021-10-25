@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:boron_trioxide"
+  },
+  "input2": {
+    "tag": "forge:ingots/magnesium"
+  },
+  "result1": {
+    "item": "rankine:boron"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

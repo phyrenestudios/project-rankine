@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:cinnabar"
+  },
+  "input2": {
+    "item": "rankine:cinnabar"
+  },
+  "result1": {
+    "item":"rankine:mercury",
+    "count": 2
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:sulfur_dioxide_gas_bottle"
+  }
+}

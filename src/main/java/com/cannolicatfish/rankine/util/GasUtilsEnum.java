@@ -21,6 +21,7 @@ public enum GasUtilsEnum {
     XENON(4.5f,0,Collections.singletonList(new EffectInstance(Effects.RESISTANCE,25)),true,8299263),
     RADON(7.5f,0, Arrays.asList(new EffectInstance(RankineEffects.RADIATION_POISONING,25),new EffectInstance(Effects.POISON,25)),true,16743053),
     OGANESSON(10f,0,Collections.singletonList(new EffectInstance(Effects.SLOW_FALLING,25)),true,10328228),
+    AMMONIA(0.73f,0,Collections.singletonList(new EffectInstance(Effects.NAUSEA,25)),true,14459799),
     CARBON_DIOXIDE(2f,0, Collections.singletonList(new EffectInstance(Effects.MINING_FATIGUE,25)),true,3684408),
     HYDROGEN_CHLORIDE(1.5f,0, Collections.emptyList(),true,10345635),
     HYDROGEN_SULFIDE(1.35f,0, Collections.emptyList(),true,13676874),
