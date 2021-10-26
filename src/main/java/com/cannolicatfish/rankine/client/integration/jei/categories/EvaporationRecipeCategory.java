@@ -21,6 +21,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -110,11 +111,7 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
 
     @Override
     public void setIngredients(EvaporationRecipe recipe, IIngredients iIngredients) {
-        ImmutableList.Builder<List<ItemStack>> builder = ImmutableList.builder();
-        for (Ingredient i : recipe.getJEIIngredient()) {
-            builder.add(Arrays.asList(i.getMatchingStacks()));
-        }
-        iIngredients.setInputLists(VanillaTypes.ITEM, builder.build());
+        iIngredients.setInput(VanillaTypes.FLUID,recipe.getFluid());
         iIngredients.setOutputs(VanillaTypes.ITEM, recipe.getOutputs());
     }
 
@@ -123,9 +120,9 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
         //System.out.println(ingredients);
         //System.out.println(recipe.getOutputs());
         int index = 0, posX = 23;
-        for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
-            recipeLayout.getItemStacks().init(index, true, 4, 54);
-            recipeLayout.getItemStacks().set(index, o);
+        for (List<FluidStack> o : ingredients.getInputs(VanillaTypes.FLUID)) {
+            recipeLayout.getFluidStacks().init(index, true, 5, 55);
+            recipeLayout.getFluidStacks().set(index, o);
             index++;
         }
 

@@ -23,12 +23,12 @@
     "additional": 0.15
   },
   "output5": {
-    "item": "rankine:serpentine",
-    "chance": 0.1,
-    "additional": 0.05
+    "item": "rankine:spodumene",
+    "chance": 0.02,
+    "additional": 0.02
   },
   "output6": {
-    "item": "rankine:spodumene",
-    "chance": 0.05
+    "item": "rankine:pollucite",
+    "chance": 0.02
   }
 }

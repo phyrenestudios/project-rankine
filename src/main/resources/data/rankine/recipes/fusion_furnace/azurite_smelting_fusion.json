@@ -1,0 +1,26 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:azurite"
+  },
+  "input2": {
+    "item": "rankine:azurite"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "result1": {
+    "item": "rankine:copper_ingot",
+    "count": 2
+  },
+  "fluidOutput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

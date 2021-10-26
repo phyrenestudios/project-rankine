@@ -1,0 +1,48 @@
+{
+  "type": "rankine:evaporation",
+  "large": false,
+  "total": 9,
+  "cookTime": 1200,
+  "input": {
+    "fluid": "rankine:red_mud"
+  },
+  "bucket": {
+    "item": "rankine:red_mud_bucket"
+  },
+  "output1": {
+    "item": "rankine:rutile",
+    "weight": 5
+  },
+  "output2": {
+    "item": "rankine:post_perovskite",
+    "weight": 5
+  },
+  "output3": {
+    "item": "rankine:kaolinite",
+    "weight": 5
+  },
+  "output4": {
+    "item": "rankine:calcite",
+    "weight": 10
+  },
+  "output5": {
+    "item": "rankine:bauxite",
+    "weight": 10
+  },
+  "output6": {
+    "item": "minecraft:lapis_lazuli",
+    "weight": 15
+  },
+  "output7": {
+    "item": "rankine:goethite",
+    "weight": 15
+  },
+  "output8": {
+    "item": "rankine:mica",
+    "weight": 15
+  },
+  "output9": {
+    "item": "minecraft:quartz",
+    "weight": 20
+  }
+}

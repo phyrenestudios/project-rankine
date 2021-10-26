@@ -1,0 +1,13 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:zircon"
+  },
+  "result1": {
+    "item": "rankine:zirconia"
+  },
+  "result2": {
+    "item": "rankine:hafnia"
+  }
+}

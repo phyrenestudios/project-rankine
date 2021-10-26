@@ -28,6 +28,7 @@ import java.util.Random;
 public class SluicingRecipe implements IRecipe<IInventory> {
 
     private final int total;
+    private final int cooldownTicks;
     private final Ingredient ingredient;
     private final Ingredient tool;
     private final NonNullList<Ingredient> recipeOutputs;
@@ -38,7 +39,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
     public static final SluicingRecipe.Serializer SERIALIZER = new SluicingRecipe.Serializer();
 
-    public SluicingRecipe(ResourceLocation idIn, int totalIn, Ingredient ingredientIn, Ingredient itemIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
+    public SluicingRecipe(ResourceLocation idIn, int totalIn, Ingredient ingredientIn, Ingredient itemIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn, int cooldownTicksIn) {
         this.total = totalIn;
         this.id = idIn;
         this.ingredient = ingredientIn;
@@ -47,6 +48,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
         this.weights = weightsIn;
         this.mins = minsIn;
         this.maxes = maxesIn;
+        this.cooldownTicks = cooldownTicksIn;
     }
 
 
@@ -73,7 +75,7 @@ public class SluicingRecipe implements IRecipe<IInventory> {
     }
 
     public NonNullList<Float> getWeights() {
-        return weights;
+        return this.weights;
     }
 
     public NonNullList<Ingredient> getOutputs() {
@@ -103,6 +105,10 @@ public class SluicingRecipe implements IRecipe<IInventory> {
             col.add(this.weights.get(i),new ItemStack(curOut[rand.nextInt(curOut.length)].getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
         }
         return col.getRandomElement().copy();
+    }
+
+    public int getCooldownTicks() {
+        return this.cooldownTicks;
     }
 
     @Override
@@ -180,12 +186,13 @@ public class SluicingRecipe implements IRecipe<IInventory> {
 
                 }
             }
-
-            return new SluicingRecipe(recipeId, t, ingredient, it, stacks, weights, mins,maxes);
+            int ticks = json.has("cooldown") ? json.get("cooldown").getAsInt() : 60;
+            return new SluicingRecipe(recipeId, t, ingredient, it, stacks, weights, mins,maxes,ticks);
         }
 
         public SluicingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
             int t = buffer.readInt();
+            int ticks = buffer.readInt();
             Ingredient input = Ingredient.read(buffer);
             Ingredient it = Ingredient.read(buffer);
             NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
@@ -209,11 +216,12 @@ public class SluicingRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readInt());
             }
 
-            return new SluicingRecipe(recipeId, t, input, it, stacks, weights, mins, maxes);
+            return new SluicingRecipe(recipeId, t, input, it, stacks, weights, mins, maxes,ticks);
         }
 
         public void write(PacketBuffer buffer, SluicingRecipe recipe) {
             buffer.writeInt(recipe.total);
+            buffer.writeInt(recipe.cooldownTicks);
             recipe.getIngredient().write(buffer);
             recipe.getTool().write(buffer);
             int count = 0;

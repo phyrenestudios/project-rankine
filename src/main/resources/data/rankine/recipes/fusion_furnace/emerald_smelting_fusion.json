@@ -1,0 +1,18 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "minecraft:emerald"
+  },
+  "input2": {
+    "item": "rankine:sodium_fluorosilicate"
+  },
+  "result1": {
+    "item":"rankine:beryllium_ingot",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:alumina",
+    "count": 1
+  }
+}

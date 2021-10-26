@@ -1,0 +1,24 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:zirconia"
+  },
+  "input2": {
+    "tag": "forge:ingots/magnesium"
+  },
+  "result1": {
+    "item":"rankine:zirconium_ingot",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:magnesium_chloride",
+    "count": 1
+  },
+  "gasInput": {
+    "item": "rankine:chlorine_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

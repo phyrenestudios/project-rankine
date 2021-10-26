@@ -32,4 +32,14 @@ public class BatteryItem extends Item {
             return false;
         }
     }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public boolean isRepairable(ItemStack stack) {
+        return false;
+    }
 }

@@ -3,7 +3,7 @@
   "total": 11,
   "biomes": ["C#taiga","C#extreme_hills","C#jungle","C#plains","C#savanna","C#beach","C#forest","C#swamp","C#mushroom"],
   "input": {
-    "block": "minecraft:water"
+    "fluid": "minecraft:water"
   },
   "bucket": {
     "item": "minecraft:water_bucket"

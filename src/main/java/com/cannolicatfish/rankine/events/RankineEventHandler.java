@@ -42,6 +42,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -450,20 +451,55 @@ public class RankineEventHandler {
             World worldIn = player.getEntityWorld();
             for (int i = 0; i < player.inventory.armorInventory.size(); ++i) {
                 ItemStack s = player.inventory.armorInventory.get(i);
-                if (s.getItem() instanceof IAlloyArmor) {
-                    IAlloyArmor armor = (IAlloyArmor) s.getItem();
-                    if (worldIn.getRandom().nextFloat() > armor.getHeatResist(s) && (player.isInLava() || player.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
-                        int finalI = i;
-                        s.damageItem(1,player,(entity) -> {
-                            entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI));
-                        });
-                    } else if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isWet())) {
-                        int finalI1 = i;
-                        s.damageItem(1,player,(entity) -> {
-                            entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI1));
-                        });
+                if (!event.getSource().isProjectile() || EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s) == 0) {
+                    if (s.getItem() instanceof IAlloyArmor) {
+                        IAlloyArmor armor = (IAlloyArmor) s.getItem();
+                        if (worldIn.getRandom().nextFloat() > armor.getHeatResist(s) && (player.isInLava() || player.getFireTimer() > 0 || worldIn.getDimensionKey() == World.THE_NETHER)) {
+                            int finalI = i;
+                            s.damageItem(1,player,(entity) -> {
+                                entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI));
+                            });
+                        } else if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isWet())) {
+                            int finalI1 = i;
+                            s.damageItem(1 + EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s)*3,player,(entity) -> {
+                                entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI1));
+                            });
+                        }
+                    }
+                } else if (event.getSource().isProjectile() && EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s) > 0) {
+                    if (!worldIn.isRemote) {
+                        double d0 = player.getPosX();
+                        double d1 = player.getPosY();
+                        double d2 = player.getPosZ();
+                        if (s.getItem() instanceof IAlloyArmor) {
+                            IAlloyArmor armor = (IAlloyArmor) s.getItem();
+                            if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isWet())) {
+                                int finalI1 = i;
+                                s.damageItem(1 + EnchantmentHelper.getEnchantmentLevel(RankineEnchantments.ENDOBIOTIC,s)*3,player,(entity) -> {
+                                    entity.sendBreakAnimation(EquipmentSlotType.fromSlotTypeAndIndex(EquipmentSlotType.Group.ARMOR, finalI1));
+                                });
+                            }
+                        }
+
+                        for(int j = 0; j < 16; ++j) {
+                            double d3 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                            double d4 = MathHelper.clamp(player.getPosY() + (double)(player.getRNG().nextInt(16) - 8), 0.0D, (double)(worldIn.func_234938_ad_() - 1));
+                            double d5 = player.getPosZ() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                            if (player.isPassenger()) {
+                                player.stopRiding();
+                            }
+
+                            if (player.attemptTeleport(d3, d4, d5, true)) {
+                                SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                                worldIn.playSound((PlayerEntity)null, d0, d1, d2, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                                player.playSound(soundevent, 1.0F, 1.0F);
+                                break;
+                            }
+                        }
+                        event.setAmount(0);
                     }
                 }
+
             }
             if (!(event.getSource() == DamageSource.WITHER && event.getSource() == DamageSource.MAGIC)) {
                 boolean wither = false;
@@ -1864,7 +1900,7 @@ public class RankineEventHandler {
                     ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, out);
                     itementity.setDefaultPickupDelay();
                     world.addEntity(itementity);
-                    player.getCooldownTracker().setCooldown(stack.getItem(), 60);
+                    player.getCooldownTracker().setCooldown(stack.getItem(), recipe.getCooldownTicks());
                     if (stack.getItem().isDamageable()) {
                         player.getHeldItemMainhand().damageItem(1, player, (p_220038_0_) -> {
                             p_220038_0_.sendBreakAnimation(EquipmentSlotType.MAINHAND);

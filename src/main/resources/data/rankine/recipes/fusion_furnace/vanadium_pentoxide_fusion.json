@@ -1,0 +1,26 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:ingots/vanadium"
+  },
+  "input2": {
+    "item": "rankine:gwihabaite"
+  },
+  "result1": {
+    "item":"rankine:vanadium_pentoxide",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "fluidOutput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:ammonia_gas_bottle"
+  }
+}

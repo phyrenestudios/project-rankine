@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:bauxite"
+  },
+  "input2": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "result1": {
+    "item": "rankine:alumina"
+  },
+  "result2": {
+    "item": "rankine:aluminum_ingot"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:red_mud"
+  }
+}

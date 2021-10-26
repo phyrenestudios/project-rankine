@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:stones/limestone"
+  },
+  "input2": {
+    "tag": "forge:stones/limestone"
+  },
+  "result1": {
+    "item": "rankine:quicklime"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

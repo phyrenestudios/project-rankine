@@ -522,6 +522,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> NUGGETS_LIVERMORIUM = forgeItem("nuggets/livermorium");
         public static final ITag.INamedTag<Item> NUGGETS_TENNESSINE = forgeItem("nuggets/tennessine");
         public static final ITag.INamedTag<Item> NUGGETS_OGANESSON = forgeItem("nuggets/oganesson");
+        public static final ITag.INamedTag<Item> NUGGETS_NETHERITE = forgeItem("nuggets/netherite");
         public static final ITag.INamedTag<Item> NUGGETS_ENDOSITUM = forgeItem("nuggets/endositum");
 
         public static final ITag.INamedTag<Item> NUGGETS_PEWTER = forgeItem("nuggets/pewter");

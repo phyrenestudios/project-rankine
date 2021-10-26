@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
   "pattern": [
     " #",
     "t "

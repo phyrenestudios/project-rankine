@@ -1,0 +1,21 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:borax"
+  },
+  "input2": {
+    "item": "rankine:borax"
+  },
+  "result1": {
+    "item":"rankine:boron_trioxide",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:thenardite",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  }
+}

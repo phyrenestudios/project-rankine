@@ -8,6 +8,9 @@ import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePlanksBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePolishedStoneBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceBlock;
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
@@ -1232,6 +1235,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> XENON_GAS_BLOCK = REGISTRY.register("xenon_gas_block", () -> new GasBlock(GasUtilsEnum.XENON, AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> RADON_GAS_BLOCK = REGISTRY.register("radon_gas_block", () -> new GasBlock(GasUtilsEnum.RADON, AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> OGANESSON_GAS_BLOCK = REGISTRY.register("oganesson_gas_block", () -> new GasBlock(GasUtilsEnum.OGANESSON, AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
+    public static final RegistryObject<Block> AMMONIA_GAS_BLOCK = REGISTRY.register("ammonia_gas_block", () -> new GasBlock(GasUtilsEnum.AMMONIA,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> CARBON_DIOXIDE_GAS_BLOCK = REGISTRY.register("carbon_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.CARBON_DIOXIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> HYDROGEN_CHLORIDE_GAS_BLOCK = REGISTRY.register("hydrogen_chloride_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> HYDROGEN_SULFIDE_GAS_BLOCK = REGISTRY.register("hydrogen_sulfide_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
@@ -1781,9 +1785,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TOURMALINE_BLOCK = REGISTRY.register("tourmaline_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PEARL_BLOCK = REGISTRY.register("pearl_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> LONSDALEITE_DIAMOND_BLOCK = REGISTRY.register("lonsdaleite_diamond_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> LORANDITE_BLOCK = REGISTRY.register("lorandite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> POLLUCITE_BLOCK = REGISTRY.register("pollucite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CELESTINE_BLOCK = REGISTRY.register("celestine_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CINNABAR_BLOCK = REGISTRY.register("cinnabar_block", () -> new CinnabarBlock((AbstractBlock.Properties.create(Material.REDSTONE_LIGHT).setLightLevel(getLightValueLit(15)).hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL))));
     public static final RegistryObject<Block> PERLITE_BLOCK = REGISTRY.register("perlite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> IRON_CHLORIDE_BLOCK = REGISTRY.register("iron_chloride_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> RHODONITE_BLOCK = REGISTRY.register("rhodonite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> RHODOCHROSITE_BLOCK = REGISTRY.register("rhodochrosite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> GRAPHITE_BLOCK = REGISTRY.register("graphite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
@@ -1797,6 +1804,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> FULGURITE = REGISTRY.register("fulgurite", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> DOLOMITE_BLOCK = REGISTRY.register("dolomite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> CALCITE_BLOCK = REGISTRY.register("calcite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
+    public static final RegistryObject<Block> MAGNESIUM_CHLORIDE_BLOCK = REGISTRY.register("magnesium_chloride_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> SODIUM_CHLORIDE_BLOCK = REGISTRY.register("sodium_chloride_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> CALCIUM_CHLORIDE_BLOCK = REGISTRY.register("calcium_chloride_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
     public static final RegistryObject<Block> PINK_SALT_BLOCK = REGISTRY.register("pink_salt_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(0.5F, 0.5F).harvestLevel(0)));
@@ -1840,6 +1848,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> NEODYMIUM_MONAZITE_BLOCK = REGISTRY.register("neodymium_monazite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> SAMARIUM_MONAZITE_BLOCK = REGISTRY.register("samarium_monazite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ZIRCON_BLOCK = REGISTRY.register("zircon_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HAFNIA_BLOCK = REGISTRY.register("hafnia_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ZIRCONIA_BLOCK = REGISTRY.register("zirconia_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PLATINUM_ARSENIDE_BLOCK = REGISTRY.register("platinum_arsenide_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> COKE_BLOCK = REGISTRY.register("coke_block", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)));
@@ -2012,6 +2021,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> EVAPORATION_TOWER = REGISTRY.register("evaporation_tower", () -> new EvaporationTowerBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> DIAMOND_ANVIL_CELL = REGISTRY.register("diamond_anvil_cell", () -> new DiamondAnvilCellBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> RANKINE_BOX = REGISTRY.register("rankine_box", () -> new RankineBoxBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> FUSION_FURNACE = REGISTRY.register("fusion_furnace", () -> new FusionFurnaceBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     //public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));
     //public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
     //public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));
@@ -2151,6 +2161,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LATEX = REGISTRY.register("latex", () -> new FlowingFluidBlock(() -> RankineFluids.LATEX, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> RESIN = REGISTRY.register("resin", () -> new FlowingFluidBlock(() -> RankineFluids.RESIN, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> JUGLONE = REGISTRY.register("juglone", () -> new FlowingFluidBlock(() -> RankineFluids.JUGLONE, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> AQUA_REGIA = REGISTRY.register("aqua_regia", () -> new FlowingFluidBlock(()-> RankineFluids.AQUA_REGIA,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> HYDROBROMIC_ACID = REGISTRY.register("hydrobromic_acid", () -> new FlowingFluidBlock(()-> RankineFluids.HYDROBROMIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> RED_MUD = REGISTRY.register("red_mud", () -> new FlowingFluidBlock(()-> RankineFluids.RED_MUD,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> SULFURIC_ACID = REGISTRY.register("sulfuric_acid", () -> new FlowingFluidBlock(()-> RankineFluids.SULFURIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
     //ELEMENT BLOCKS
@@ -2301,6 +2314,12 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:rankine_box")
     public static TileEntityType<RankineBoxTile> RANKINE_BOX_TILE;
+
+    @ObjectHolder("rankine:fusion_furnace")
+    public static ContainerType<FusionFurnaceContainer> FUSION_FURNACE_CONTAINER;
+
+    @ObjectHolder("rankine:fusion_furnace")
+    public static TileEntityType<FusionFurnaceTile> FUSION_FURNACE_TILE;
 
     @ObjectHolder("rankine:bronze_alloy_block")
     public static TileEntityType<AlloyBlockTile> ALLOY_BLOCK_TILE;

@@ -251,7 +251,7 @@ public class AlloyCraftingRecipe implements ICraftingRecipe, net.minecraftforge.
                 //System.out.println("No matching compositions for inheritRecipe " + workingRecipe);
                 return ItemStack.EMPTY;
             } else {
-                IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null);
+                IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null,res.getItem() instanceof IAlloyTool);
             }
         }
         if (this.getColor() != 16777215) {

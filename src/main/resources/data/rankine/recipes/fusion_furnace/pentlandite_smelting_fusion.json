@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:pentlandite"
+  },
+  "input2": {
+    "item": "rankine:pentlandite"
+  },
+  "result1": {
+    "item":"rankine:nickel_ingot",
+    "count": 2
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:sulfur_dioxide_gas_bottle"
+  }
+}

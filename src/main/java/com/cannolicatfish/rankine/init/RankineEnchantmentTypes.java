@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyArmor;
+import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
@@ -9,6 +11,7 @@ import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
@@ -43,4 +46,10 @@ public class RankineEnchantmentTypes {
 
     public static EnchantmentType ALLOYTOOL = EnchantmentType.create("alloytool", (itemIn) -> {
         return itemIn instanceof IAlloyTool && itemIn.isDamageable(); });
+
+    public static EnchantmentType ENDER_AMALGAM_SPEAR = EnchantmentType.create("ender_spear", (itemIn) -> {
+        return itemIn == RankineItems.ENDER_AMALGAM_SPEAR.get(); });
+
+    public static EnchantmentType ENDER_AMALGAM_ARMOR = EnchantmentType.create("ender_armor", (itemIn) -> {
+        return itemIn instanceof IAlloyArmor; });
 }

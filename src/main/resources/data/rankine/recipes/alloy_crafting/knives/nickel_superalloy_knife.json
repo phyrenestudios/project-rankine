@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloy_crafting",
   "inherit": "true",
+  "inheritRecipe": "rankine:alloying/nickel_superalloy_alloying",
   "pattern": [
     " #",
     "t "

@@ -7,6 +7,8 @@ import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContainer;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
+import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
@@ -272,6 +274,7 @@ public class ProjectRankine {
             event.getRegistry().register(ElementRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"element"));
             event.getRegistry().register(CrucibleRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"crucible"));
             event.getRegistry().register(EvaporationRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"evaporation"));
+            event.getRegistry().register(FusionFurnaceRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
             event.getRegistry().register(RockGeneratorRecipe.SERIALIZER.setRegistryName(ProjectRankine.MODID,"rock_generator"));
         }
 
@@ -281,6 +284,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(PistonCrusherTile::new, RankineBlocks.PISTON_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"piston_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(CrucibleTile::new, RankineBlocks.CRUCIBLE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"crucible"));
             event.getRegistry().register(TileEntityType.Builder.create(InductionFurnaceTile::new, RankineBlocks.INDUCTION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"induction_furnace"));
+            event.getRegistry().register(TileEntityType.Builder.create(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
@@ -393,6 +397,11 @@ public class ProjectRankine {
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
+                return new FusionFurnaceContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
                 return new GyratoryCrusherContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
 
@@ -483,6 +492,21 @@ public class ProjectRankine {
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RESIN, () -> RankineFluids.FLOWING_RESIN, FluidAttributes.builder(ResinFluid.FLUID_STILL,ResinFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(ResinFluid.OVERLAY))
                     .bucket(RankineItems.RESIN_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RESIN.get())).setRegistryName(ProjectRankine.MODID,"flowing_resin"));
 
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.AQUA_REGIA, () -> RankineFluids.FLOWING_AQUA_REGIA, FluidAttributes.builder(AquaRegiaFluid.FLUID_STILL,AquaRegiaFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(AquaRegiaFluid.OVERLAY))
+                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"aqua_regia"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.AQUA_REGIA, () -> RankineFluids.FLOWING_AQUA_REGIA, FluidAttributes.builder(AquaRegiaFluid.FLUID_STILL,AquaRegiaFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(AquaRegiaFluid.OVERLAY))
+                    .bucket(RankineItems.AQUA_REGIA_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.AQUA_REGIA.get())).setRegistryName(ProjectRankine.MODID,"flowing_aqua_regia"));
+
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.HYDROBROMIC_ACID, () -> RankineFluids.FLOWING_HYDROBROMIC_ACID, FluidAttributes.builder(HydrobromicAcidFluid.FLUID_STILL,HydrobromicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HydrobromicAcidFluid.OVERLAY))
+                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"hydrobromic_acid"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.HYDROBROMIC_ACID, () -> RankineFluids.FLOWING_HYDROBROMIC_ACID, FluidAttributes.builder(HydrobromicAcidFluid.FLUID_STILL,HydrobromicAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(HydrobromicAcidFluid.OVERLAY))
+                    .bucket(RankineItems.HYDROBROMIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.HYDROBROMIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"flowing_hydrobromic_acid"));
+
+            event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.RED_MUD, () -> RankineFluids.FLOWING_RED_MUD, FluidAttributes.builder(RedMudFluid.FLUID_STILL,RedMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(RedMudFluid.OVERLAY))
+                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"red_mud"));
+            event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.RED_MUD, () -> RankineFluids.FLOWING_RED_MUD, FluidAttributes.builder(RedMudFluid.FLUID_STILL,RedMudFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(RedMudFluid.OVERLAY))
+                    .bucket(RankineItems.RED_MUD_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.RED_MUD.get())).setRegistryName(ProjectRankine.MODID,"flowing_red_mud"));
+
             event.getRegistry().register(new ForgeFlowingFluid.Source(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY))
                     .bucket(RankineItems.SULFURIC_ACID_BUCKET).block(() -> (FlowingFluidBlock) RankineBlocks.SULFURIC_ACID.get())).setRegistryName(ProjectRankine.MODID,"sulfuric_acid"));
             event.getRegistry().register(new ForgeFlowingFluid.Flowing(new ForgeFlowingFluid.Properties(() -> RankineFluids.SULFURIC_ACID, () -> RankineFluids.FLOWING_SULFURIC_ACID, FluidAttributes.builder(SulfuricAcidFluid.FLUID_STILL,SulfuricAcidFluid.FLUID_FLOWING).color(0xFFFFFFFF).overlay(SulfuricAcidFluid.OVERLAY))
@@ -530,7 +554,11 @@ public class ProjectRankine {
             event.getRegistry().register(new GasProtectionEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.FEET).setRegistryName(ProjectRankine.MODID,"gas_protection"));
             event.getRegistry().register(new AntiquatedEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"antiquated"));
             event.getRegistry().register(new CleanseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"cleanse"));
+
             event.getRegistry().register(new EndpointEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"endpoint"));
+            event.getRegistry().register(new EndobioticEnchantment(Enchantment.Rarity.VERY_RARE, ARMOR_SLOTS).setRegistryName(ProjectRankine.MODID,"endobiotic"));
+
+
             event.getRegistry().register(new GhastRegenerationEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"ghast_regeneration"));
             event.getRegistry().register(new WitheringCurseEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"withering_curse"));
             event.getRegistry().register(new ShapeMemoryEnchantment(Enchantment.Rarity.VERY_RARE, EquipmentSlotType.MAINHAND).setRegistryName(ProjectRankine.MODID,"shape_memory"));

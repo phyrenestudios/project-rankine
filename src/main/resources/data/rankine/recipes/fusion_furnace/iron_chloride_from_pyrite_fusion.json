@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:pyrite"
+  },
+  "input2": {
+    "item": "rankine:pyrite"
+  },
+  "result1": {
+    "item": "rankine:iron_chloride"
+  },
+  "fluidInput": {
+    "fluid": "rankine:aqua_regia"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:sulfuric_acid"
+  }
+}

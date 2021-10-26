@@ -65,7 +65,13 @@ public interface IAlloyItem {
     }
 
     static void createDirectAlloyNBT(ItemStack stack, @Nullable String composition, @Nullable String alloyRecipe, @Nullable String nameOverride) {
-        stack.getOrCreateTag().putBoolean("RegenerateAlloy",true);
+        createDirectAlloyNBT(stack, composition, alloyRecipe, nameOverride,true);
+    }
+
+    static void createDirectAlloyNBT(ItemStack stack, @Nullable String composition, @Nullable String alloyRecipe, @Nullable String nameOverride,boolean regenerate) {
+        if (regenerate) {
+            stack.getOrCreateTag().putBoolean("RegenerateAlloy",true);
+        }
         CompoundNBT listnbt = new CompoundNBT();
         if (composition != null) {
             listnbt.putString("comp",composition);

@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "minecraft:dried_kelp_block"
+  },
+  "result1": {
+    "item": "rankine:bromine"
+  },
+  "result2": {
+    "item": "rankine:iodine_nugget"
+  },
+  "gasInput": {
+    "item": "rankine:chlorine_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}
