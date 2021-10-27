@@ -1,0 +1,19 @@
+{
+  "name": "Knives",
+  "icon": "rankine:flint_knife",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A knife is very useful for cutting the weeds back and harvesting them too. Effective at mining through leaves. $(br)Use by right clicking a grass block to remove the grass layer. Can also shear grass, ferns, and vines. Dead bushes will yield more sticks. This functionality applies to items in #rankine:knives."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_knife"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:alloy_recipes/knives/metal_knife"
+    }
+  ]
+}

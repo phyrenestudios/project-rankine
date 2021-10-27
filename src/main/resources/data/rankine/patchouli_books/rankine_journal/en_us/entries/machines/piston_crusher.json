@@ -1,0 +1,22 @@
+{
+  "name": "Piston Crusher",
+  "icon": "rankine:piston_crusher",
+  "category": "machines",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "text",
+      "anchor": "piston_crusher",
+      "text": "Crushing materials is the best method of obtaining resources for refinement. Simply place materials into the input slot and fuel the machine. The Piston Crusher acts as an automated Iron Hammer and is considered to have a crushing level of 3 (Invar)."
+    },
+    {
+      "type": "text",
+      "text": "This means that the Piston Crusher can only obtain up to three drops from the block. The Piston Crusher can crush blocks with a crushing level greater than 3, but only the outputs requiring a crushing level equal to or less than 3 can be obtained."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:piston_crusher",
+      "text": "Crushing outputs can be seen via JEI."
+    }
+  ]
+}

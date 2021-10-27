@@ -23,7 +23,7 @@ public class DowsingRodItem extends Item {
         World world = context.getWorld();
         PlayerEntity player = context.getPlayer();
         if (!world.isRemote && player != null) {
-            player.sendStatusMessage(new StringTextComponent("Water height is about y=" + WorldgenUtils.waterTableHeight(world, context.getPos())).mergeStyle(TextFormatting.BLUE), true);
+            player.sendStatusMessage(new StringTextComponent("Water height is about y=" + WorldgenUtils.waterTableHeight(world, context.getPos())).mergeStyle(TextFormatting.WHITE), true);
         }
         return ActionResultType.SUCCESS;
     }

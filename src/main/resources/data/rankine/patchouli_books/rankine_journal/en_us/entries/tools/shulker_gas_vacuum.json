@@ -1,0 +1,23 @@
+{
+  "name": "Shulker Gas Vacuum",
+  "icon": "rankine:shulker_gas_vacuum",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Gases, while useful, can be hard to gather. They cannot be obtained by normal methods and require specific processes to acquire them. Therefore, a device which can transport these gases long distances and allow for precise placement would be useful."
+    },
+    {
+      "type": "text",
+      "text": "The Shulker Gas Vacuum Device allows you to absorb the gas either at eye level or by your feet as long as you are in the gas block (depending on if you are standing up or crouching respectively). Right-clicking after absorbing a gas will then place that block either at eye level or by your feet in a similar manner."
+    },
+    {
+      "type": "text",
+      "text": "Gases will still move according to their properties after being placed, so make sure to trap the gas wherever you want to place it if it is lighter than air. If you want to go further and solidify a gas you find in the world, you need to bring the gas within the vicinity of a Gas Condenser."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:shulker_gas_vacuum"
+    }
+  ]
+}

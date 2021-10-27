@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "rankine:block/loam_mycelium"
+    },
+    "snowy=true": {
+      "model": "rankine:block/loam_grass_block_snow"
+    }
+  }
+}

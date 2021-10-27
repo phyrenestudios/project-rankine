@@ -9,18 +9,16 @@ import net.minecraft.util.IItemProvider;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class VanillaIntegration {
 
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
-    public static Map<Block, Block> grass_dirt_map = new HashMap<Block, Block>();
-    public static Map<Block, Block> dirt_grass_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
     public static Map<TreeTapFluids, BlockState> tapFluids_map = new HashMap<TreeTapFluids, BlockState>();
 
     public static void init() {
-        final FireBlock fire = (FireBlock) Blocks.FIRE;
         for (Block blk : RankineLists.TALL_FLOWERS) {
             registerCompostable(0.65F, blk);
         }
@@ -57,6 +55,20 @@ public class VanillaIntegration {
         registerCompostable(0.3F, RankineItems.COCONUT.get());
         registerCompostable(0.3F, RankineItems.FLOWER_SEEDS.get());
 
+        for (Block GRASS : RankineLists.GRASS_BLOCKS)  {
+            pathBlocks_map.put(GRASS, RankineLists.PATH_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(GRASS)));
+        }
+        for (Block GRASS : RankineLists.PODZOL_BLOCKS)  {
+            pathBlocks_map.put(GRASS, RankineLists.PATH_BLOCKS.get(RankineLists.PODZOL_BLOCKS.indexOf(GRASS)));
+        }
+        for (Block GRASS : RankineLists.SOIL_BLOCKS)  {
+            pathBlocks_map.put(GRASS, RankineLists.PATH_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(GRASS)));
+        }
+        for (Block GRASS : RankineLists.MYCELIUM_BLOCKS)  {
+            pathBlocks_map.put(GRASS, RankineBlocks.MYCELIUM_PATH.get());
+        }
+
+
         hoeables_map.put(Blocks.DIRT, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.GRASS_BLOCK, TilledSoilTypes.DIRT);
         hoeables_map.put(Blocks.MYCELIUM, TilledSoilTypes.DIRT);
@@ -64,87 +76,44 @@ public class VanillaIntegration {
         hoeables_map.put(Blocks.COARSE_DIRT, TilledSoilTypes.COARSE_DIRT);
         hoeables_map.put(Blocks.SOUL_SOIL, TilledSoilTypes.SOUL_SOIL);
         hoeables_map.put(RankineBlocks.LOAM.get(), TilledSoilTypes.LOAM);
-        hoeables_map.put(RankineBlocks.LOAM_PATH.get(), TilledSoilTypes.LOAM);
-        hoeables_map.put(RankineBlocks.GRASSY_LOAM.get(), TilledSoilTypes.LOAM);
+        hoeables_map.put(RankineBlocks.LOAM_GRASS_PATH.get(), TilledSoilTypes.LOAM);
+        hoeables_map.put(RankineBlocks.LOAM_GRASS_BLOCK.get(), TilledSoilTypes.LOAM);
         hoeables_map.put(RankineBlocks.HUMUS.get(), TilledSoilTypes.HUMUS);
-        hoeables_map.put(RankineBlocks.HUMUS_PATH.get(), TilledSoilTypes.HUMUS);
-        hoeables_map.put(RankineBlocks.GRASSY_HUMUS.get(), TilledSoilTypes.HUMUS);
+        hoeables_map.put(RankineBlocks.HUMUS_GRASS_PATH.get(), TilledSoilTypes.HUMUS);
+        hoeables_map.put(RankineBlocks.HUMUS_GRASS_BLOCK.get(), TilledSoilTypes.HUMUS);
         hoeables_map.put(RankineBlocks.CLAY_LOAM.get(), TilledSoilTypes.CLAY_LOAM);
-        hoeables_map.put(RankineBlocks.CLAY_LOAM_PATH.get(), TilledSoilTypes.CLAY_LOAM);
-        hoeables_map.put(RankineBlocks.GRASSY_CLAY_LOAM.get(), TilledSoilTypes.CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.CLAY_LOAM_GRASS_PATH.get(), TilledSoilTypes.CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.CLAY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
-        hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_PATH.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
-        hoeables_map.put(RankineBlocks.GRASSY_SANDY_CLAY_LOAM.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
-        hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_PATH.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
-        hoeables_map.put(RankineBlocks.GRASSY_SILTY_CLAY_LOAM.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_LOAM.get(), TilledSoilTypes.SILTY_LOAM);
-        hoeables_map.put(RankineBlocks.SILTY_LOAM_PATH.get(), TilledSoilTypes.SILTY_LOAM);
-        hoeables_map.put(RankineBlocks.GRASSY_SILTY_LOAM.get(), TilledSoilTypes.SILTY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SILTY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SILTY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_LOAM.get(), TilledSoilTypes.SANDY_LOAM);
-        hoeables_map.put(RankineBlocks.SANDY_LOAM_PATH.get(), TilledSoilTypes.SANDY_LOAM);
-        hoeables_map.put(RankineBlocks.GRASSY_SANDY_LOAM.get(), TilledSoilTypes.SANDY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SANDY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SANDY_LOAM);
         hoeables_map.put(RankineBlocks.LOAMY_SAND.get(), TilledSoilTypes.LOAMY_SAND);
-        hoeables_map.put(RankineBlocks.LOAMY_SAND_PATH.get(), TilledSoilTypes.LOAMY_SAND);
-        hoeables_map.put(RankineBlocks.GRASSY_LOAMY_SAND.get(), TilledSoilTypes.LOAMY_SAND);
+        hoeables_map.put(RankineBlocks.LOAMY_SAND_GRASS_PATH.get(), TilledSoilTypes.LOAMY_SAND);
+        hoeables_map.put(RankineBlocks.LOAMY_SAND_GRASS_BLOCK.get(), TilledSoilTypes.LOAMY_SAND);
         hoeables_map.put(RankineBlocks.SANDY_CLAY.get(), TilledSoilTypes.SANDY_CLAY);
-        hoeables_map.put(RankineBlocks.SANDY_CLAY_PATH.get(), TilledSoilTypes.SANDY_CLAY);
-        hoeables_map.put(RankineBlocks.GRASSY_SANDY_CLAY.get(), TilledSoilTypes.SANDY_CLAY);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_GRASS_PATH.get(), TilledSoilTypes.SANDY_CLAY);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_GRASS_BLOCK.get(), TilledSoilTypes.SANDY_CLAY);
         hoeables_map.put(RankineBlocks.SILTY_CLAY.get(), TilledSoilTypes.SILTY_CLAY);
-        hoeables_map.put(RankineBlocks.SILTY_CLAY_PATH.get(), TilledSoilTypes.SILTY_CLAY);
-        hoeables_map.put(RankineBlocks.GRASSY_SILTY_CLAY.get(), TilledSoilTypes.SILTY_CLAY);
-
-        pathBlocks_map.put(Blocks.DIRT, Blocks.GRASS_PATH);
-        pathBlocks_map.put(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH);
-        pathBlocks_map.put(Blocks.PODZOL, Blocks.GRASS_PATH);
-        pathBlocks_map.put(Blocks.COARSE_DIRT, Blocks.GRASS_PATH);
-        pathBlocks_map.put(Blocks.MYCELIUM, RankineBlocks.MYCELIUM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.HUMUS.get(), RankineBlocks.HUMUS_PATH.get());
-        pathBlocks_map.put(RankineBlocks.SILTY_CLAY.get(), RankineBlocks.SILTY_CLAY_PATH.get());
-        pathBlocks_map.put(RankineBlocks.SANDY_CLAY.get(), RankineBlocks.SANDY_CLAY_PATH.get());
-        pathBlocks_map.put(RankineBlocks.SANDY_LOAM.get(), RankineBlocks.SANDY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.SILTY_LOAM.get(), RankineBlocks.SILTY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.SILTY_CLAY_LOAM.get(), RankineBlocks.SILTY_CLAY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.LOAM.get(), RankineBlocks.LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_HUMUS.get(), RankineBlocks.HUMUS_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_SILTY_CLAY.get(), RankineBlocks.SILTY_CLAY_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_SANDY_CLAY.get(), RankineBlocks.SANDY_CLAY_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_SANDY_LOAM.get(), RankineBlocks.SANDY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_SILTY_LOAM.get(), RankineBlocks.SILTY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_SILTY_CLAY_LOAM.get(), RankineBlocks.SILTY_CLAY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_LOAM.get(), RankineBlocks.LOAM_PATH.get());
-        pathBlocks_map.put(RankineBlocks.GRASSY_LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND_PATH.get());
-
-        grass_dirt_map.put(RankineBlocks.GRASSY_LOAM.get(), RankineBlocks.LOAM.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_HUMUS.get(), RankineBlocks.HUMUS.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_CLAY_LOAM.get(), RankineBlocks.CLAY_LOAM.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_SANDY_CLAY_LOAM.get(), RankineBlocks.SANDY_CLAY_LOAM.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_SILTY_CLAY_LOAM.get(), RankineBlocks.SILTY_CLAY_LOAM.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_SILTY_LOAM.get(), RankineBlocks.SILTY_LOAM.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_SANDY_LOAM.get(), RankineBlocks.SANDY_LOAM.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_LOAMY_SAND.get(), RankineBlocks.LOAMY_SAND.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_SANDY_CLAY.get(), RankineBlocks.SANDY_CLAY.get());
-        grass_dirt_map.put(RankineBlocks.GRASSY_SILTY_CLAY.get(), RankineBlocks.SILTY_CLAY.get());
-
-        dirt_grass_map.put(Blocks.DIRT, Blocks.GRASS_BLOCK);
-        dirt_grass_map.put(RankineBlocks.LOAM.get(), RankineBlocks.GRASSY_LOAM.get());
-        dirt_grass_map.put(RankineBlocks.HUMUS.get(), RankineBlocks.GRASSY_HUMUS.get());
-        dirt_grass_map.put(RankineBlocks.CLAY_LOAM.get(), RankineBlocks.GRASSY_CLAY_LOAM.get());
-        dirt_grass_map.put(RankineBlocks.SANDY_CLAY_LOAM.get(), RankineBlocks.GRASSY_SANDY_CLAY_LOAM.get());
-        dirt_grass_map.put(RankineBlocks.SILTY_CLAY_LOAM.get(), RankineBlocks.GRASSY_SILTY_CLAY_LOAM.get());
-        dirt_grass_map.put(RankineBlocks.SILTY_LOAM.get(), RankineBlocks.GRASSY_SILTY_LOAM.get());
-        dirt_grass_map.put(RankineBlocks.SANDY_LOAM.get(), RankineBlocks.GRASSY_SANDY_LOAM.get());
-        dirt_grass_map.put(RankineBlocks.LOAMY_SAND.get(), RankineBlocks.GRASSY_LOAMY_SAND.get());
-        dirt_grass_map.put(RankineBlocks.SANDY_CLAY.get(), RankineBlocks.GRASSY_SANDY_CLAY.get());
-        dirt_grass_map.put(RankineBlocks.SILTY_CLAY.get(), RankineBlocks.GRASSY_SILTY_CLAY.get());
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_GRASS_PATH.get(), TilledSoilTypes.SILTY_CLAY);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_GRASS_BLOCK.get(), TilledSoilTypes.SILTY_CLAY);
 
         stripping_map.put(RankineBlocks.CEDAR_LOG.get(), RankineBlocks.STRIPPED_CEDAR_LOG.get());
         stripping_map.put(RankineBlocks.CEDAR_WOOD.get(), RankineBlocks.STRIPPED_CEDAR_WOOD.get());
+        stripping_map.put(RankineBlocks.PETRIFIED_CHORUS_LOG.get(), RankineBlocks.STRIPPED_PETRIFIED_CHORUS_LOG.get());
+        stripping_map.put(RankineBlocks.PETRIFIED_CHORUS_WOOD.get(), RankineBlocks.STRIPPED_PETRIFIED_CHORUS_WOOD.get());
+        stripping_map.put(RankineBlocks.ERYTHRINA_LOG.get(), RankineBlocks.STRIPPED_ERYTHRINA_LOG.get());
+        stripping_map.put(RankineBlocks.ERYTHRINA_WOOD.get(), RankineBlocks.STRIPPED_ERYTHRINA_WOOD.get());
+        stripping_map.put(RankineBlocks.CHARRED_LOG.get(), RankineBlocks.STRIPPED_CHARRED_LOG.get());
+        stripping_map.put(RankineBlocks.CHARRED_WOOD.get(), RankineBlocks.STRIPPED_CHARRED_WOOD.get());
         stripping_map.put(RankineBlocks.PINYON_PINE_LOG.get(), RankineBlocks.STRIPPED_PINYON_PINE_LOG.get());
         stripping_map.put(RankineBlocks.PINYON_PINE_WOOD.get(), RankineBlocks.STRIPPED_PINYON_PINE_WOOD.get());
         stripping_map.put(RankineBlocks.BALSAM_FIR_LOG.get(), RankineBlocks.STRIPPED_BALSAM_FIR_LOG.get());

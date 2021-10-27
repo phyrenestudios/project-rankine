@@ -1,8 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.WGConfig;
 import com.cannolicatfish.rankine.recipe.helper.ConfigHelper;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;

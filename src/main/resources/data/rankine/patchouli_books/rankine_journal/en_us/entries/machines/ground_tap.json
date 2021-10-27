@@ -1,0 +1,28 @@
+{
+  "name": "Ground Tap",
+  "icon": "rankine:ground_tap",
+  "category": "machines",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Used to pull water from below the water table. The tap must be connected to a Flood Gate block through a pipe network. The Flood Gate must be located below the local water table height (right click the ground with a dowsing rod)."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:ground_tap"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:metal_pipe"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flood_gate"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:dowsing_rod"
+    }
+  ]
+}

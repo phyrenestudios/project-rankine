@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -29,8 +29,8 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
         super(configFactoryIn);
     }
 
-    public static final int NOISE_SCALE = WGConfig.LAYERS.NOISE_SCALE.get();
-    public static final int NOISE_OFFSET = WGConfig.LAYERS.NOISE_OFFSET.get();
+    public static final int NOISE_SCALE = Config.LAYERS.NOISE_SCALE.get();
+    public static final int NOISE_OFFSET = Config.LAYERS.NOISE_OFFSET.get();
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
@@ -68,7 +68,7 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
 
     private static int getLayerHeights(int x, int z, int index, int height) {
         double noise = Biome.INFO_NOISE.noiseAt((double)x / NOISE_SCALE + index * NOISE_OFFSET, (double)z / NOISE_SCALE + index * NOISE_OFFSET, false);
-        return height + (int) Math.round((noise/WGConfig.LAYERS.LAYER_WIDTH.get()));
+        return height + (int) Math.round((noise/Config.LAYERS.LAYER_WIDTH.get()));
     }
 
 
@@ -88,25 +88,10 @@ public class StoneReplacerFeature extends Feature<NoFeatureConfig> {
     private static void replaceStone(ISeedReader reader, int x, int z, int StartY, int EndY, BlockState Block) {
         for (int y = StartY; y <= EndY; ++y) {
             BlockPos TARGET_POS = new BlockPos(x,y,z);
-            switch (WGConfig.LAYERS.OVERWORLD_STONE_LAYERS.get()) {
-                case 1:
-                    if (reader.getBlockState(TARGET_POS).getBlock().getDefaultState() == Blocks.STONE.getDefaultState()) {
-                        reader.setBlockState(TARGET_POS, Block, 2);
-                    }
-                    break;
-                case 2:
-                    if (reader.getBlockState(TARGET_POS).isIn(BlockTags.BASE_STONE_OVERWORLD)) {
-                        reader.setBlockState(TARGET_POS, Block, 2);
-                    }
-                    break;
-                case 3:
-                    if (reader.getBlockState(TARGET_POS).isIn(Tags.Blocks.STONE)) {
-                        reader.setBlockState(TARGET_POS, Block, 2);
-                    }
-                    break;
-                default :
+            if (reader.getBlockState(TARGET_POS).isIn(BlockTags.BASE_STONE_OVERWORLD)) {
+                reader.setBlockState(TARGET_POS, Block, 2);
             }
         }
     }
 }
-// || (WGConfig.MISC.DISABLE_VANILLA_FEATURES.get() && reader.getBlockState(TARGET_POS).isIn(RankineTags.Blocks.VANILLA_OVERRIDE))
+// || (Config.MISC.DISABLE_VANILLA_FEATURES.get() && reader.getBlockState(TARGET_POS).isIn(RankineTags.Blocks.VANILLA_OVERRIDE))

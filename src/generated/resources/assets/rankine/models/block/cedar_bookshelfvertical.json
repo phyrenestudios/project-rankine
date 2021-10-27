@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rankine:block/sharinga_planks",
+    "side": "rankine:block/cedar_bookshelf"
+  }
+}

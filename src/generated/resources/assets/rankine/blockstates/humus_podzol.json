@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "rankine:block/humus_podzol"
+    },
+    "snowy=true": {
+      "model": "rankine:block/humus_grass_block_snow"
+    }
+  }
+}

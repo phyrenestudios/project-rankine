@@ -1,0 +1,35 @@
+{
+  "name": "Sands",
+  "icon": "minecraft:sand",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Sand is the middle sized particle and affected by gravity. $(l:mechanics/sluicing)Sluicing$() with a gold pan will yield various products depending on the type."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:sand",
+      "link_recipe": true,
+      "text": "Found in the normal locations."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:red_sand",
+      "link_recipe": true,
+      "text": "Found in the normal locations."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_sand",
+      "link_recipe": true,
+      "text": "Not found yet."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_sand",
+      "link_recipe": true,
+      "text": "Not found yet."
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "type": "rankine:sluicing",
+  "total": 8,
+  "input": {
+    "item": "rankine:silty_loam_grass_block"
+  },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
+  "output1": {
+    "item": "minecraft:dirt",
+    "weight": 60
+  },
+  "output2": {
+    "item": "minecraft:sand",
+    "weight": 3
+  },
+  "output3": {
+    "item": "minecraft:clay_ball",
+    "weight": 1.5
+  },
+  "output4": {
+    "item": "rankine:silt",
+    "weight": 10.5
+  },
+  "output5": {
+    "item": "minecraft:beetroot_seeds",
+    "weight": 7.5
+  },
+  "output6": {
+    "item": "rankine:flower_seeds",
+    "weight": 7.5
+  },
+  "output7": {
+    "item": "rankine:banana_yucca",
+    "weight": 5
+  },
+  "output8": {
+    "item": "rankine:aloe",
+    "weight": 5
+  }
+}

@@ -4,9 +4,11 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
+import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -19,10 +21,23 @@ import java.util.List;
 import static com.cannolicatfish.rankine.init.RankineBlocks.BEEHIVE_OVEN_TILE;
 
 public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
-    private int ticks;
+    private int proccessTime;
     private int nextRecipe;
     public BeehiveOvenTile() {
         super(BEEHIVE_OVEN_TILE);
+    }
+
+    @Override
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
+        this.proccessTime = nbt.getInt("ProcessTime");
+    }
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        super.write(compound);
+        compound.putInt("ProcessTime", this.proccessTime);
+        return compound;
     }
 
     public void tick() {
@@ -32,8 +47,8 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
         }
         if (canSeeSky(world, pos) ) {
             if (this.getBlockState().get(BeehiveOvenPitBlock.LIT)) {
-                ticks += 1;
-                if (ticks >= nextRecipe) {
+                proccessTime += 1;
+                if (proccessTime >= nextRecipe) {
                     for (BlockPos p: BlockPos.getAllInBoxMutable(pos.add(-1,1,-1),pos.add(1,2,1))) {
                         BeehiveOvenRecipe recipe = world.getRecipeManager().getRecipe(RankineRecipeTypes.BEEHIVE, new Inventory(new ItemStack(world.getBlockState(p).getBlock())), world).orElse(null);
                         if (recipe != null) {
@@ -41,7 +56,7 @@ public class BeehiveOvenTile extends TileEntity implements ITickableTileEntity {
                             if (!output.isEmpty()) {
                                 if (output.getItem() instanceof BlockItem) {
                                     world.setBlockState(p, ((BlockItem) output.getItem()).getBlock().getDefaultState(), 2);
-                                    ticks = 0;
+                                    proccessTime = 0;
                                     break;
                                 }
                             }

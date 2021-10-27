@@ -53,8 +53,8 @@ public class MetalPipeBlock extends Block {
     }
 
     private VoxelShape[] makeShapes(float apothem) {
-        float f = 0.5F - apothem;
-        float f1 = 0.5F + apothem;
+        float f = apothem;
+        float f1 = 1 - apothem;
         VoxelShape voxelshape = Block.makeCuboidShape((double)(f * 16.0F), (double)(f * 16.0F), (double)(f * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F), (double)(f1 * 16.0F));
         VoxelShape[] avoxelshape = new VoxelShape[FACING_VALUES.length];
 

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "brick_type=normal": {
       "model": "rankine:block/high_refractory_bricks"
+    },
+    "brick_type=vertical_normal": {
+      "model": "rankine:block/high_refractory_bricks_vertical"
     }
   }
 }

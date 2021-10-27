@@ -1,11 +1,17 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tags.FluidTags;
@@ -15,33 +21,24 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ToolType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class SoilBlock extends Block {
-    public static final BooleanProperty WET = BooleanProperty.create("wet");
 
-    public SoilBlock(Properties properties) {
-        super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(WET, false));
+    public SoilBlock() {
+        super(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(WET);
-    }
-
+    @Nullable
     @Override
-    public boolean ticksRandomly(BlockState state) {
-        return true;
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        World worldIn = context.getWorld();
+        //if (WorldgenUtils.isWet((ISeedReader) worldIn, context.getPos())) {
+        //    worldIn.setBlockState(context.getPos(), VanillaIntegration.soil_mud_map.get(((BlockItem) context.getItem().getItem()).getBlock()).getDefaultState(), 2);
+       // }
+        return super.getStateForPlacement(context);
     }
-
-    @Override
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (state.get(WET) && !WorldgenUtils.isWet((ISeedReader) worldIn, pos)) {
-            worldIn.setBlockState(pos,state.with(WET, false), 2);
-        } else if (!state.get(WET) && WorldgenUtils.isWet((ISeedReader) worldIn, pos)) {
-            worldIn.setBlockState(pos,state.with(WET, true), 2);
-        }
-    }
-
 }

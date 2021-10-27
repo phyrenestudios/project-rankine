@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#R#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "R": {
+      "tag": "forge:rope"
+    }
+  },
+  "result": {
+    "item": "rankine:dowsing_rod"
+  }
+}

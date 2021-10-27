@@ -1,6 +1,6 @@
 {
   "variants": {
-    "wet=false": [
+    "": [
       {
         "model": "rankine:block/sandy_clay_loam"
       },
@@ -14,23 +14,6 @@
       },
       {
         "model": "rankine:block/sandy_clay_loam",
-        "y": 270
-      }
-    ],
-    "wet=true": [
-      {
-        "model": "rankine:block/sandy_clay_loam_wet"
-      },
-      {
-        "model": "rankine:block/sandy_clay_loam_wet",
-        "y": 90
-      },
-      {
-        "model": "rankine:block/sandy_clay_loam_wet",
-        "y": 180
-      },
-      {
-        "model": "rankine:block/sandy_clay_loam_wet",
         "y": 270
       }
     ]

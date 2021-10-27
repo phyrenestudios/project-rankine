@@ -4,9 +4,8 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePlanksBlock;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePolishedStoneBlock;
-import com.cannolicatfish.rankine.blocks.buildingmodes.RankineStoneBricksBlock;
+import com.cannolicatfish.rankine.blocks.buildingmodes.*;
+import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerBlock;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
@@ -1073,12 +1072,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PEROVSKITE_BLOCK = REGISTRY.register("perovskite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
 
 
-    public static final RegistryObject<Block> CLAY_BRICKS = REGISTRY.register("clay_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> FIRE_CLAY_BRICKS = REGISTRY.register("fire_clay_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> KAOLIN_BRICKS = REGISTRY.register("kaolin_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> REFRACTORY_BRICKS = REGISTRY.register("refractory_bricks", () -> new Block(DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS = REGISTRY.register("high_refractory_bricks", () -> new Block(DEF_STONE.harvestLevel(1)));
-    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS = REGISTRY.register("ultra_high_refractory_bricks", () -> new Block(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> CLAY_BRICKS = REGISTRY.register("clay_bricks", () -> new RankineBricksBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> FIRE_CLAY_BRICKS = REGISTRY.register("fire_clay_bricks", () -> new RankineBricksBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> KAOLIN_BRICKS = REGISTRY.register("kaolin_bricks", () -> new RankineBricksBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> REFRACTORY_BRICKS = REGISTRY.register("refractory_bricks", () -> new RankineBricksBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS = REGISTRY.register("high_refractory_bricks", () -> new RankineBricksBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS = REGISTRY.register("ultra_high_refractory_bricks", () -> new RankineBricksBlock(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> CLAY_BRICKS_WALL = REGISTRY.register("clay_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FIRE_CLAY_BRICKS_WALL = REGISTRY.register("fire_clay_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> KAOLIN_BRICKS_WALL = REGISTRY.register("kaolin_bricks_wall", () -> new RankineWallBlock(DEF_STONE.harvestLevel(1)));
@@ -1160,7 +1159,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> INFESTED_BRECCIA = REGISTRY.register("infested_breccia", () -> new SilverfishBlock(BRECCIA.get(),Block.Properties.from(BRECCIA.get())));
     public static final RegistryObject<Block> INFESTED_PUMICE = REGISTRY.register("infested_pumice", () -> new SilverfishBlock(PUMICE.get(),Block.Properties.from(PUMICE.get())));
     public static final RegistryObject<Block> INFESTED_SCORIA = REGISTRY.register("infested_scoria", () -> new SilverfishBlock(SCORIA.get(),Block.Properties.from(SCORIA.get())));
-
 
 
 
@@ -1248,36 +1246,69 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SOD_BLOCK = REGISTRY.register("sod_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
 
     public static final RegistryObject<Block> SILT = REGISTRY.register("silt", () -> new SandBlock(00000000, Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> HUMUS = REGISTRY.register("humus", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> LOAM = REGISTRY.register("loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SILTY_LOAM = REGISTRY.register("silty_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> LOAMY_SAND = REGISTRY.register("loamy_sand", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.SAND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_LOAM = REGISTRY.register("sandy_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> CLAY_LOAM = REGISTRY.register("clay_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM = REGISTRY.register("sandy_clay_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM = REGISTRY.register("silty_clay_loam", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_CLAY = REGISTRY.register("sandy_clay", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SILTY_CLAY = REGISTRY.register("silty_clay", () -> new SoilBlock(Block.Properties.create(Material.EARTH, MaterialColor.DIRT).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> HUMUS_PATH = REGISTRY.register("humus_path", () -> new GrassySoilPathBlock(HUMUS.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> LOAM_PATH = REGISTRY.register("loam_path", () -> new GrassySoilPathBlock(LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SILTY_LOAM_PATH = REGISTRY.register("silty_loam_path", () -> new GrassySoilPathBlock(SILTY_LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> LOAMY_SAND_PATH = REGISTRY.register("loamy_sand_path", () -> new GrassySoilPathBlock(LOAMY_SAND.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_LOAM_PATH = REGISTRY.register("sandy_loam_path", () -> new GrassySoilPathBlock(SANDY_LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> CLAY_LOAM_PATH = REGISTRY.register("clay_loam_path", () -> new GrassySoilPathBlock(CLAY_LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_CLAY_LOAM_PATH = REGISTRY.register("sandy_clay_loam_path", () -> new GrassySoilPathBlock(SANDY_CLAY_LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SILTY_CLAY_LOAM_PATH = REGISTRY.register("silty_clay_loam_path", () -> new GrassySoilPathBlock(SILTY_CLAY_LOAM.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SANDY_CLAY_PATH = REGISTRY.register("sandy_clay_path", () -> new GrassySoilPathBlock(SANDY_CLAY.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> SILTY_CLAY_PATH = REGISTRY.register("silty_clay_path", () -> new GrassySoilPathBlock(SILTY_CLAY.get(), Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
-    public static final RegistryObject<Block> GRASSY_HUMUS = REGISTRY.register("grassy_humus", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_LOAM = REGISTRY.register("grassy_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SILTY_LOAM = REGISTRY.register("grassy_silty_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_LOAMY_SAND = REGISTRY.register("grassy_loamy_sand", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SANDY_LOAM = REGISTRY.register("grassy_sandy_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_CLAY_LOAM = REGISTRY.register("grassy_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SANDY_CLAY_LOAM = REGISTRY.register("grassy_sandy_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SILTY_CLAY_LOAM = REGISTRY.register("grassy_silty_clay_loam", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SANDY_CLAY = REGISTRY.register("grassy_sandy_clay", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
-    public static final RegistryObject<Block> GRASSY_SILTY_CLAY = REGISTRY.register("grassy_silty_clay", () -> new GrassySoilBlock(AbstractBlock.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
+
+    public static final RegistryObject<Block> HUMUS = REGISTRY.register("humus", SoilBlock::new);
+    public static final RegistryObject<Block> LOAM = REGISTRY.register("loam", SoilBlock::new);
+    public static final RegistryObject<Block> SILTY_LOAM = REGISTRY.register("silty_loam", SoilBlock::new);
+    public static final RegistryObject<Block> LOAMY_SAND = REGISTRY.register("loamy_sand", SoilBlock::new);
+    public static final RegistryObject<Block> SANDY_LOAM = REGISTRY.register("sandy_loam", SoilBlock::new);
+    public static final RegistryObject<Block> CLAY_LOAM = REGISTRY.register("clay_loam", SoilBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_LOAM = REGISTRY.register("sandy_clay_loam", SoilBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_LOAM = REGISTRY.register("silty_clay_loam", SoilBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY = REGISTRY.register("sandy_clay", SoilBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY = REGISTRY.register("silty_clay", SoilBlock::new);
+    public static final RegistryObject<Block> HUMUS_MUD = REGISTRY.register("humus_mud", MudBlock::new);
+    public static final RegistryObject<Block> LOAM_MUD = REGISTRY.register("loam_mud", MudBlock::new);
+    public static final RegistryObject<Block> SILTY_LOAM_MUD = REGISTRY.register("silty_loam_mud", MudBlock::new);
+    public static final RegistryObject<Block> LOAMY_SAND_MUD = REGISTRY.register("loamy_sand_mud", MudBlock::new);
+    public static final RegistryObject<Block> SANDY_LOAM_MUD = REGISTRY.register("sandy_loam_mud", MudBlock::new);
+    public static final RegistryObject<Block> CLAY_LOAM_MUD = REGISTRY.register("clay_loam_mud", MudBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_LOAM_MUD = REGISTRY.register("sandy_clay_loam_mud", MudBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_LOAM_MUD = REGISTRY.register("silty_clay_loam_mud", MudBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_MUD = REGISTRY.register("sandy_clay_mud", MudBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_MUD = REGISTRY.register("silty_clay_mud", MudBlock::new);
+    public static final RegistryObject<Block> HUMUS_GRASS_PATH = REGISTRY.register("humus_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> LOAM_GRASS_PATH = REGISTRY.register("loam_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> SILTY_LOAM_GRASS_PATH = REGISTRY.register("silty_loam_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> LOAMY_SAND_GRASS_PATH = REGISTRY.register("loamy_sand_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> SANDY_LOAM_GRASS_PATH = REGISTRY.register("sandy_loam_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> CLAY_LOAM_GRASS_PATH = REGISTRY.register("clay_loam_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_LOAM_GRASS_PATH = REGISTRY.register("sandy_clay_loam_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_LOAM_GRASS_PATH = REGISTRY.register("silty_clay_loam_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_GRASS_PATH = REGISTRY.register("sandy_clay_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_GRASS_PATH = REGISTRY.register("silty_clay_grass_path", GrassySoilPathBlock::new);
+    public static final RegistryObject<Block> HUMUS_GRASS_BLOCK = REGISTRY.register("humus_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> LOAM_GRASS_BLOCK = REGISTRY.register("loam_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> SILTY_LOAM_GRASS_BLOCK = REGISTRY.register("silty_loam_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> LOAMY_SAND_GRASS_BLOCK = REGISTRY.register("loamy_sand_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> SANDY_LOAM_GRASS_BLOCK = REGISTRY.register("sandy_loam_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> CLAY_LOAM_GRASS_BLOCK = REGISTRY.register("clay_loam_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_LOAM_GRASS_BLOCK = REGISTRY.register("sandy_clay_loam_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_LOAM_GRASS_BLOCK = REGISTRY.register("silty_clay_loam_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_GRASS_BLOCK = REGISTRY.register("sandy_clay_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_GRASS_BLOCK = REGISTRY.register("silty_clay_grass_block", GrassySoilBlock::new);
+    public static final RegistryObject<Block> HUMUS_PODZOL = REGISTRY.register("humus_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> LOAM_PODZOL = REGISTRY.register("loam_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> SILTY_LOAM_PODZOL = REGISTRY.register("silty_loam_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> LOAMY_SAND_PODZOL = REGISTRY.register("loamy_sand_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> SANDY_LOAM_PODZOL = REGISTRY.register("sandy_loam_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> CLAY_LOAM_PODZOL = REGISTRY.register("clay_loam_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_LOAM_PODZOL = REGISTRY.register("sandy_clay_loam_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_LOAM_PODZOL = REGISTRY.register("silty_clay_loam_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_PODZOL = REGISTRY.register("sandy_clay_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_PODZOL = REGISTRY.register("silty_clay_podzol", RankinePodzolBlock::new);
+    public static final RegistryObject<Block> HUMUS_MYCELIUM = REGISTRY.register("humus_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> LOAM_MYCELIUM = REGISTRY.register("loam_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> SILTY_LOAM_MYCELIUM = REGISTRY.register("silty_loam_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> LOAMY_SAND_MYCELIUM = REGISTRY.register("loamy_sand_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> SANDY_LOAM_MYCELIUM = REGISTRY.register("sandy_loam_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> CLAY_LOAM_MYCELIUM = REGISTRY.register("clay_loam_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_LOAM_MYCELIUM = REGISTRY.register("sandy_clay_loam_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_LOAM_MYCELIUM = REGISTRY.register("silty_clay_loam_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> SANDY_CLAY_MYCELIUM = REGISTRY.register("sandy_clay_mycelium", RankineMyceliumBlock::new);
+    public static final RegistryObject<Block> SILTY_CLAY_MYCELIUM = REGISTRY.register("silty_clay_mycelium", RankineMyceliumBlock::new);
+
+
     public static final RegistryObject<Block> MYCELIUM_PATH = REGISTRY.register("mycelium_path", () -> new GrassPathBlock(Block.Properties.create(Material.EARTH).sound(SoundType.GROUND).harvestTool(ToolType.SHOVEL).hardnessAndResistance(0.5F).harvestLevel(0)));
 
     //gravel path?
@@ -1303,11 +1334,11 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MAGNESITE_BLOCK = REGISTRY.register("magnesite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> MAGNESIA_BLOCK = REGISTRY.register("magnesia_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> ALUMINA_BLOCK = REGISTRY.register("alumina_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> ANDESITIC_TUFF = REGISTRY.register("andesitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.STONE_PROPERTIES.HORNBLENDE_ANDESITE_HL.get()).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> BASALTIC_TUFF = REGISTRY.register("basaltic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.STONE_PROPERTIES.THOLEIITIC_BASALT_HL.get()).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> RHYOLITIC_TUFF = REGISTRY.register("rhyolitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.STONE_PROPERTIES.RHYOLITE_HL.get()).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> KIMBERLITIC_TUFF = REGISTRY.register("kimberlitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.STONE_PROPERTIES.RHYOLITE_HL.get()).harvestTool(ToolType.PICKAXE)));
-    public static final RegistryObject<Block> KOMATIITIC_TUFF = REGISTRY.register("komatiitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(Config.STONE_PROPERTIES.RHYOLITE_HL.get()).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> ANDESITIC_TUFF = REGISTRY.register("andesitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> BASALTIC_TUFF = REGISTRY.register("basaltic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> RHYOLITIC_TUFF = REGISTRY.register("rhyolitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> KIMBERLITIC_TUFF = REGISTRY.register("kimberlitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
+    public static final RegistryObject<Block> KOMATIITIC_TUFF = REGISTRY.register("komatiitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> CONCRETE = REGISTRY.register("concrete", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
     public static final RegistryObject<Block> CONCRETE_SLAB = REGISTRY.register("concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CONCRETE_STAIRS = REGISTRY.register("concrete_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
@@ -1639,6 +1670,33 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHARRED_DOOR = REGISTRY.register("charred_door", RankineWoodenDoor::new);
     public static final RegistryObject<Block> CHARRED_TRAPDOOR = REGISTRY.register("charred_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CHARRED_BUTTON = REGISTRY.register("charred_button", RankineWoodenButton::new);
+    public static final RegistryObject<Block> CEDAR_BOOKSHELF = REGISTRY.register("cedar_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+
+    /*
+    public static final RegistryObject<Block> BAMBOO_BOOKSHELF = REGISTRY.register("bamboo_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BAMBOO_CULMS_BOOKSHELF = REGISTRY.register("bamboo_culms_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> PINYON_PINE_BOOKSHELF = REGISTRY.register("pinyon_pine_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> JUNIPER_BOOKSHELF = REGISTRY.register("juniper_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> COCONUT_PALM_BOOKSHELF = REGISTRY.register("coconut_palm_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BALSAM_FIR_BOOKSHELF = REGISTRY.register("balsam_fir_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> MAGNOLIA_BOOKSHELF = REGISTRY.register("magnolia_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_BOOKSHELF = REGISTRY.register("eastern_hemlock_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> YELLOW_BIRCH_BOOKSHELF = REGISTRY.register("yellow_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BLACK_BIRCH_BOOKSHELF = REGISTRY.register("black_birch_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> MAPLE_BOOKSHELF = REGISTRY.register("maple_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> SHARINGA_BOOKSHELF = REGISTRY.register("sharinga_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BLACK_WALNUT_BOOKSHELF = REGISTRY.register("black_walnut_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CORK_OAK_BOOKSHELF = REGISTRY.register("cork_oak_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CINNAMON_BOOKSHELF = REGISTRY.register("cinnamon_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> PETRIFIED_CHORUS_BOOKSHELF = REGISTRY.register("petrified_chorus_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> ERYTHRINA_BOOKSHELF = REGISTRY.register("erythrina_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> CHARRED_BOOKSHELF = REGISTRY.register("charred_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+
+
+     */
+
+
+
     public static final RegistryObject<Block> STUMP = REGISTRY.register("stump", () -> new StumpBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(16.0F, 9.0F).harvestLevel(3)));
 
 
@@ -1859,62 +1917,62 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ANDESINE_BLOCK = REGISTRY.register("andesine_block", () -> new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).harvestLevel(0)));
 
     //ORES
-    public static final RegistryObject<Block> CHALCOCITE_ORE = REGISTRY.register("chalcocite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.CHALCOCITE_ORE_HL.get())));
-    public static final RegistryObject<Block> PETALITE_ORE = REGISTRY.register("petalite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PETALITE_ORE_HL.get())));
-    public static final RegistryObject<Block> LIGNITE_ORE = REGISTRY.register("lignite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.LIGNITE_ORE_HL.get())));
-    public static final RegistryObject<Block> SUBBITUMINOUS_ORE = REGISTRY.register("subbituminous_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.SUBBITUMINOUS_ORE_HL.get())));
-    public static final RegistryObject<Block> BITUMINOUS_ORE = REGISTRY.register("bituminous_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.BITUMINOUS_ORE_HL.get())));
-    public static final RegistryObject<Block> ANTHRACITE_ORE = REGISTRY.register("anthracite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.ANTHRACITE_ORE_HL.get())));
-    public static final RegistryObject<Block> MAGNESITE_ORE = REGISTRY.register("magnesite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MAGNESITE_ORE_HL.get())));
-    public static final RegistryObject<Block> BAUXITE_ORE = REGISTRY.register("bauxite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.BAUXITE_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_SULFUR_ORE = REGISTRY.register("native_sulfur_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_SULFUR_ORE_HL.get())));
-    public static final RegistryObject<Block> ILMENITE_ORE = REGISTRY.register("ilmenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.ILMENITE_ORE_HL.get())));
-    public static final RegistryObject<Block> CHROMITE_ORE = REGISTRY.register("chromite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.CHROMITE_ORE_HL.get())));
-    public static final RegistryObject<Block> PYROLUSITE_ORE = REGISTRY.register("pyrolusite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PYROLUSITE_ORE_HL.get())));
-    public static final RegistryObject<Block> MAGNETITE_ORE = REGISTRY.register("magnetite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MAGNETITE_ORE_HL.get())));
-    public static final RegistryObject<Block> COBALTITE_ORE = REGISTRY.register("cobaltite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.COBALTITE_ORE_HL.get())));
-    public static final RegistryObject<Block> PENTLANDITE_ORE = REGISTRY.register("pentlandite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PENTLANDITE_ORE_HL.get())));
-    public static final RegistryObject<Block> INTERSPINIFEX_ORE = REGISTRY.register("interspinifex_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.INTERSPINIFEX_ORE_HL.get())));
-    public static final RegistryObject<Block> MALACHITE_ORE = REGISTRY.register("malachite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MALACHITE_ORE_HL.get())));
-    public static final RegistryObject<Block> SPHALERITE_ORE = REGISTRY.register("sphalerite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.SPHALERITE_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_GALLIUM_ORE = REGISTRY.register("native_gallium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_GALLIUM_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_ARSENIC_ORE = REGISTRY.register("native_arsenic_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_ARSENIC_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_SELENIUM_ORE = REGISTRY.register("native_selenium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_SELENIUM_ORE_HL.get())));
-    public static final RegistryObject<Block> CELESTINE_ORE = REGISTRY.register("celestine_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.CELESTINE_ORE_HL.get())));
-    public static final RegistryObject<Block> XENOTIME_ORE = REGISTRY.register("xenotime_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.XENOTIME_ORE_HL.get())));
-    public static final RegistryObject<Block> BADDELEYITE_ORE = REGISTRY.register("baddeleyite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.XENOTIME_ORE_HL.get())));
-    public static final RegistryObject<Block> COLTAN_ORE = REGISTRY.register("coltan_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.COLTAN_ORE_HL.get())));
-    public static final RegistryObject<Block> MOLYBDENITE_ORE = REGISTRY.register("molybdenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MOLYBDENITE_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_SILVER_ORE = REGISTRY.register("native_silver_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_SILVER_ORE_HL.get())));
-    public static final RegistryObject<Block> ACANTHITE_ORE = REGISTRY.register("acanthite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.ACANTHITE_ORE_HL.get())));
-    public static final RegistryObject<Block> GREENOCKITE_ORE = REGISTRY.register("greenockite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.GREENOCKITE_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_INDIUM_ORE = REGISTRY.register("native_indium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_INDIUM_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_TIN_ORE = REGISTRY.register("native_tin_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_TIN_ORE_HL.get())));
-    public static final RegistryObject<Block> CASSITERITE_ORE = REGISTRY.register("cassiterite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.CASSITERITE_ORE_HL.get())));
-    public static final RegistryObject<Block> STIBNITE_ORE = REGISTRY.register("stibnite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.STIBNITE_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_TELLURIUM_ORE = REGISTRY.register("native_tellurium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_TELLURIUM_ORE_HL.get())));
-    public static final RegistryObject<Block> WOLFRAMITE_ORE = REGISTRY.register("wolframite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.WOLFRAMITE_ORE_HL.get())));
-    public static final RegistryObject<Block> RHENIITE_ORE = REGISTRY.register("rheniite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.RHENIITE_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_GOLD_ORE = REGISTRY.register("native_gold_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_GOLD_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_LEAD_ORE = REGISTRY.register("native_lead_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_LEAD_ORE_HL.get())));
-    public static final RegistryObject<Block> GALENA_ORE = REGISTRY.register("galena_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.GALENA_ORE_HL.get())));
-    public static final RegistryObject<Block> NATIVE_BISMUTH_ORE = REGISTRY.register("native_bismuth_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.NATIVE_BISMUTH_ORE_HL.get())));
-    public static final RegistryObject<Block> BISMUTHINITE_ORE = REGISTRY.register("bismuthinite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.BISMUTHINITE_ORE_HL.get())));
-    public static final RegistryObject<Block> URANINITE_ORE = REGISTRY.register("uraninite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.URANINITE_ORE_HL.get())));
-    public static final RegistryObject<Block> PLUMBAGO_ORE = REGISTRY.register("plumbago_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PLUMBAGO_ORE_HL.get())));
-    public static final RegistryObject<Block> SPERRYLITE_ORE = REGISTRY.register("sperrylite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.SPERRYLITE_ORE_HL.get())));
-    public static final RegistryObject<Block> CINNABAR_ORE = REGISTRY.register("cinnabar_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.CINNABAR_ORE_HL.get())));
-    public static final RegistryObject<Block> HALITE_ORE = REGISTRY.register("halite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.HALITE_ORE_HL.get())));
-    public static final RegistryObject<Block> CRYOLITE_ORE = REGISTRY.register("cryolite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.CRYOLITE_ORE_HL.get())));
-    public static final RegistryObject<Block> PYRITE_ORE = REGISTRY.register("pyrite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.PYRITE_ORE_HL.get())));
-    public static final RegistryObject<Block> KAMACITE_ORE = REGISTRY.register("kamacite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.KAMACITE_ORE_HL.get())));
-    public static final RegistryObject<Block> ANTITAENITE_ORE = REGISTRY.register("antitaenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.ANTITAENITE_ORE_HL.get())));
-    public static final RegistryObject<Block> TAENITE_ORE = REGISTRY.register("taenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.TAENITE_ORE_HL.get())));
-    public static final RegistryObject<Block> TETRATAENITE_ORE = REGISTRY.register("tetrataenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.TETRATAENITE_ORE_HL.get())));
-    public static final RegistryObject<Block> LONSDALEITE_ORE = REGISTRY.register("lonsdaleite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.LONSDALEITE_ORE_HL.get())));
-    public static final RegistryObject<Block> MONAZITE_ORE = REGISTRY.register("monazite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.MONAZITE_ORE_HL.get())));
-    public static final RegistryObject<Block> LAZURITE_ORE = REGISTRY.register("lazurite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.LAZURITE_ORE_HL.get())));
-    public static final RegistryObject<Block> BERYL_ORE = REGISTRY.register("beryl_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(WGConfig.ORES.EMERALD_ORE_HL.get())));
+    public static final RegistryObject<Block> CHALCOCITE_ORE = REGISTRY.register("chalcocite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CHALCOCITE_ORE_HL.get())));
+    public static final RegistryObject<Block> PETALITE_ORE = REGISTRY.register("petalite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PETALITE_ORE_HL.get())));
+    public static final RegistryObject<Block> LIGNITE_ORE = REGISTRY.register("lignite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.LIGNITE_ORE_HL.get())));
+    public static final RegistryObject<Block> SUBBITUMINOUS_ORE = REGISTRY.register("subbituminous_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.SUBBITUMINOUS_ORE_HL.get())));
+    public static final RegistryObject<Block> BITUMINOUS_ORE = REGISTRY.register("bituminous_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.BITUMINOUS_ORE_HL.get())));
+    public static final RegistryObject<Block> ANTHRACITE_ORE = REGISTRY.register("anthracite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.ANTHRACITE_ORE_HL.get())));
+    public static final RegistryObject<Block> MAGNESITE_ORE = REGISTRY.register("magnesite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.MAGNESITE_ORE_HL.get())));
+    public static final RegistryObject<Block> BAUXITE_ORE = REGISTRY.register("bauxite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.BAUXITE_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_SULFUR_ORE = REGISTRY.register("native_sulfur_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_SULFUR_ORE_HL.get())));
+    public static final RegistryObject<Block> ILMENITE_ORE = REGISTRY.register("ilmenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.ILMENITE_ORE_HL.get())));
+    public static final RegistryObject<Block> CHROMITE_ORE = REGISTRY.register("chromite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CHROMITE_ORE_HL.get())));
+    public static final RegistryObject<Block> PYROLUSITE_ORE = REGISTRY.register("pyrolusite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PYROLUSITE_ORE_HL.get())));
+    public static final RegistryObject<Block> MAGNETITE_ORE = REGISTRY.register("magnetite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.MAGNETITE_ORE_HL.get())));
+    public static final RegistryObject<Block> COBALTITE_ORE = REGISTRY.register("cobaltite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.COBALTITE_ORE_HL.get())));
+    public static final RegistryObject<Block> PENTLANDITE_ORE = REGISTRY.register("pentlandite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PENTLANDITE_ORE_HL.get())));
+    public static final RegistryObject<Block> INTERSPINIFEX_ORE = REGISTRY.register("interspinifex_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.INTERSPINIFEX_ORE_HL.get())));
+    public static final RegistryObject<Block> MALACHITE_ORE = REGISTRY.register("malachite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.MALACHITE_ORE_HL.get())));
+    public static final RegistryObject<Block> SPHALERITE_ORE = REGISTRY.register("sphalerite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.SPHALERITE_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_GALLIUM_ORE = REGISTRY.register("native_gallium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_GALLIUM_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_ARSENIC_ORE = REGISTRY.register("native_arsenic_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_ARSENIC_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_SELENIUM_ORE = REGISTRY.register("native_selenium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_SELENIUM_ORE_HL.get())));
+    public static final RegistryObject<Block> CELESTINE_ORE = REGISTRY.register("celestine_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CELESTINE_ORE_HL.get())));
+    public static final RegistryObject<Block> XENOTIME_ORE = REGISTRY.register("xenotime_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.XENOTIME_ORE_HL.get())));
+    public static final RegistryObject<Block> BADDELEYITE_ORE = REGISTRY.register("baddeleyite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.XENOTIME_ORE_HL.get())));
+    public static final RegistryObject<Block> COLTAN_ORE = REGISTRY.register("coltan_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.COLTAN_ORE_HL.get())));
+    public static final RegistryObject<Block> MOLYBDENITE_ORE = REGISTRY.register("molybdenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.MOLYBDENITE_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_SILVER_ORE = REGISTRY.register("native_silver_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_SILVER_ORE_HL.get())));
+    public static final RegistryObject<Block> ACANTHITE_ORE = REGISTRY.register("acanthite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.ACANTHITE_ORE_HL.get())));
+    public static final RegistryObject<Block> GREENOCKITE_ORE = REGISTRY.register("greenockite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.GREENOCKITE_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_INDIUM_ORE = REGISTRY.register("native_indium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_INDIUM_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_TIN_ORE = REGISTRY.register("native_tin_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_TIN_ORE_HL.get())));
+    public static final RegistryObject<Block> CASSITERITE_ORE = REGISTRY.register("cassiterite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CASSITERITE_ORE_HL.get())));
+    public static final RegistryObject<Block> STIBNITE_ORE = REGISTRY.register("stibnite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.STIBNITE_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_TELLURIUM_ORE = REGISTRY.register("native_tellurium_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_TELLURIUM_ORE_HL.get())));
+    public static final RegistryObject<Block> WOLFRAMITE_ORE = REGISTRY.register("wolframite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.WOLFRAMITE_ORE_HL.get())));
+    public static final RegistryObject<Block> RHENIITE_ORE = REGISTRY.register("rheniite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.RHENIITE_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_GOLD_ORE = REGISTRY.register("native_gold_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_GOLD_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_LEAD_ORE = REGISTRY.register("native_lead_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_LEAD_ORE_HL.get())));
+    public static final RegistryObject<Block> GALENA_ORE = REGISTRY.register("galena_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.GALENA_ORE_HL.get())));
+    public static final RegistryObject<Block> NATIVE_BISMUTH_ORE = REGISTRY.register("native_bismuth_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.NATIVE_BISMUTH_ORE_HL.get())));
+    public static final RegistryObject<Block> BISMUTHINITE_ORE = REGISTRY.register("bismuthinite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.BISMUTHINITE_ORE_HL.get())));
+    public static final RegistryObject<Block> URANINITE_ORE = REGISTRY.register("uraninite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.URANINITE_ORE_HL.get())));
+    public static final RegistryObject<Block> PLUMBAGO_ORE = REGISTRY.register("plumbago_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PLUMBAGO_ORE_HL.get())));
+    public static final RegistryObject<Block> SPERRYLITE_ORE = REGISTRY.register("sperrylite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.SPERRYLITE_ORE_HL.get())));
+    public static final RegistryObject<Block> CINNABAR_ORE = REGISTRY.register("cinnabar_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CINNABAR_ORE_HL.get())));
+    public static final RegistryObject<Block> HALITE_ORE = REGISTRY.register("halite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.HALITE_ORE_HL.get())));
+    public static final RegistryObject<Block> CRYOLITE_ORE = REGISTRY.register("cryolite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CRYOLITE_ORE_HL.get())));
+    public static final RegistryObject<Block> PYRITE_ORE = REGISTRY.register("pyrite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PYRITE_ORE_HL.get())));
+    public static final RegistryObject<Block> KAMACITE_ORE = REGISTRY.register("kamacite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.KAMACITE_ORE_HL.get())));
+    public static final RegistryObject<Block> ANTITAENITE_ORE = REGISTRY.register("antitaenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.ANTITAENITE_ORE_HL.get())));
+    public static final RegistryObject<Block> TAENITE_ORE = REGISTRY.register("taenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.TAENITE_ORE_HL.get())));
+    public static final RegistryObject<Block> TETRATAENITE_ORE = REGISTRY.register("tetrataenite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.TETRATAENITE_ORE_HL.get())));
+    public static final RegistryObject<Block> LONSDALEITE_ORE = REGISTRY.register("lonsdaleite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.LONSDALEITE_ORE_HL.get())));
+    public static final RegistryObject<Block> MONAZITE_ORE = REGISTRY.register("monazite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.MONAZITE_ORE_HL.get())));
+    public static final RegistryObject<Block> LAZURITE_ORE = REGISTRY.register("lazurite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.LAZURITE_ORE_HL.get())));
+    public static final RegistryObject<Block> BERYL_ORE = REGISTRY.register("beryl_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.EMERALD_ORE_HL.get())));
 
     public static final RegistryObject<Block> COAL_ORE = REGISTRY.register("coal_ore", () -> new RankineOreBlock(AbstractBlock.Properties.from(Blocks.COAL_ORE)));
     public static final RegistryObject<Block> IRON_ORE = REGISTRY.register("iron_ore", () -> new RankineOreBlock(AbstractBlock.Properties.from(Blocks.IRON_ORE)));
@@ -2025,6 +2083,8 @@ public class RankineBlocks {
     //public static final RegistryObject<Block> LASER_QUARRY = REGISTRY.register("laser_quarry", () -> new LaserQuarryBlock(DEF_METAL_BLOCK));
     //public static final RegistryObject<Block> LASER_PYLON_TOP = REGISTRY.register("laser_pylon_top", () -> new Block(DEF_METAL_BLOCK));
     //public static final RegistryObject<Block> LASER_PYLON_BASE = REGISTRY.register("laser_pylon_base", () -> new Block(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> DISTILLATION_TOWER = REGISTRY.register("distillation_tower", () -> new DistillationTowerBlock(DEF_METAL_BLOCK));
+    public static final RegistryObject<Block> AIR_DISTILLATION_PACKING = REGISTRY.register("air_distillation_packing", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> REACTION_CHAMBER_CORE = REGISTRY.register("reaction_chamber_core", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> REACTION_CHAMBER_CELL = REGISTRY.register("reaction_chamber_cell", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
 
@@ -2077,6 +2137,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> DURALUMIN_LADDER = REGISTRY.register("duralumin_ladder", () -> new MetalLadderBlock(true, false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_LADDER = REGISTRY.register("cast_iron_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
+    public static final RegistryObject<Block> INVAR_LADDER = REGISTRY.register("invar_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
     public static final RegistryObject<Block> BRASS_LADDER = REGISTRY.register("brass_ladder", () -> new MetalLadderBlock(false, false, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
     public static final RegistryObject<Block> CUPRONICKEL_LADDER = REGISTRY.register("cupronickel_ladder", () -> new MetalLadderBlock(false, true, Block.Properties.create(Material.IRON).sound(SoundType.METAL).hardnessAndResistance(1.0F).notSolid()));
 

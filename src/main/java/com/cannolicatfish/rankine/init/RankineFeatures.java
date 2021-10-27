@@ -305,7 +305,7 @@ public class RankineFeatures {
 
     // LOCAL_MODIFICATIONS
     public static final ConfiguredFeature<?, ?> METEORITE = METEORITE_FEATURE.withConfiguration(new MeteoriteFeatureConfig(RankineBlocks.METEORITE.get().getDefaultState(), 1))
-            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(WGConfig.MISC.METEORITE_CHANCE.get())));
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(Config.MISC.METEORITE_CHANCE.get())));
     public static final ConfiguredFeature<?, ?> END_METEORITE = END_METEORITE_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = ANTIMATTER_BLOB_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> FUMAROLE = FUMAROLE_FEATURE.withConfiguration(new NoFeatureConfig())
@@ -374,13 +374,13 @@ public class RankineFeatures {
 
 
     public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = FLAT_BEDROCK_FEATURE.withConfiguration(
-            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, Config.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> FLAT_BEDROCK_NETHER = FLAT_BEDROCK_FEATURE.withConfiguration(
-            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, WGConfig.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+            new ReplacerFeatureConfig(Blocks.NETHERRACK.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, Config.MISC.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> ORE_ALLUVIUM = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.ALLUVIUM.get().getDefaultState(), FeatureSpread.create(1, 2), 1,
             Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
     public static final ConfiguredFeature<?, ?> ORE_EVAPORITE = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.EVAPORITE.get().getDefaultState(), FeatureSpread.create(1, 1), 1,
-            Lists.newArrayList(Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
+            Lists.newArrayList(Blocks.STONE.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
 
     public static final ConfiguredFeature<?, ?> ORE_INTRUSION = INTRUSION.withConfiguration(
             new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));

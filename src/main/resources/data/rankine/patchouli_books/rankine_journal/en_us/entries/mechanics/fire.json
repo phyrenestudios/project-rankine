@@ -1,0 +1,26 @@
+{
+  "name": "Starting a Fire",
+  "icon": "minecraft:flint_and_steel",
+  "category": "mechanics",
+  "pages": [
+    {
+      "type": "text",
+      "text": "If you are going to be stuck without iron for a while, you may want to know how to light fire. There are a few options available to you. One is to stand outside during a thunderstorm and hope the lightning strikes perfectly on your spot. If you aren't so ~lucky~, see the following pages."
+    },
+    {
+      "type": "text",
+      "title": "Flint Fires",
+      "text": "Smashing rocks, but more specifically striking flint. If you hold a piece of flint in both of your hands and right click, you can create a fire. This can be used to light the $(machines/beehive_oven)Beehive Oven Pit$() or the $(machines/charcoal_pit)Charcoal Pit$() or just a forest fire. By default it is a 30% (config option) chance to lose the flint used."
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:flint_and_steel",
+      "text": "The standard way, nothing has changed"
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:spark_lighter",
+      "text": "Identical to a flint and steel except much more durability."
+    }
+  ]
+}

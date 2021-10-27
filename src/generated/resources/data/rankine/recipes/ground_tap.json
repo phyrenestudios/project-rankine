@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:metal_pipe"
+    }
+  ],
+  "result": {
+    "item": "rankine:ground_tap"
+  }
+}

@@ -3,6 +3,7 @@
   "values": [
     "rankine:rope",
     "rankine:cast_iron_support",
+    "rankine:invar_ladder",
     "rankine:cast_iron_ladder",
     "rankine:duralumin_ladder",
     "rankine:brass_ladder",

@@ -1,0 +1,29 @@
+{
+  "name": "Clays",
+  "icon": "minecraft:clay",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Clay is the smallest particle size classification of sediments."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:clay",
+      "link_recipe": true,
+      "text": "I have found Clay in river beds as usual."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:fire_clay",
+      "link_recipe": true,
+      "text": "Fire Clay is derived from mineral leaching of coal veins. Perhaps I should look around those."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:kaolin",
+      "link_recipe": true,
+      "text": "This new clay occurs in biomes that are high in organic content, often tropical or wet in nature."
+    }
+  ]
+}

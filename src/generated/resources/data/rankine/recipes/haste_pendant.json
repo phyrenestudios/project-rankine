@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IRI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/rose_gold"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/ruby"
+    }
+  },
+  "result": {
+    "item": "rankine:haste_pendant"
+  }
+}

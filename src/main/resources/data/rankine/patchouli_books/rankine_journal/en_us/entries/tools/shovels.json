@@ -1,0 +1,115 @@
+{
+  "name": "Shovels",
+  "icon": "rankine:steel_shovel",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A listing of the variety of shovels that are able to be made. $(br2)Vanilla tools can be enabled/disabled in the config and are disabled by default for progression."
+    },
+    {
+      "type": "text",
+      "text": "Shovels function as normal."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_shovel",
+      "text": "Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_shovel",
+      "text": "Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_shovel",
+      "text": "Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:invar_shovel",
+      "text": "Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:iron_shovel",
+      "text": "Stats:$(li)Harvest wLevel: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_shovel",
+      "text": "Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:diamond_shovel",
+      "text": "Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_shovel",
+      "text": "Stats:$(li)Harvest Level: 4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_superalloy_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_shovel",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_shovel",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_shovel",
+      "text": "Stats:$(li)Harvest Level: ???"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_shovel",
+      "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
+    }
+  ]
+}

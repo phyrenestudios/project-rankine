@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rankine:block/invar_ladder"
+    },
+    "facing=south": {
+      "model": "rankine:block/invar_ladder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rankine:block/invar_ladder",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "rankine:block/invar_ladder",
+      "y": 90
+    }
+  }
+}

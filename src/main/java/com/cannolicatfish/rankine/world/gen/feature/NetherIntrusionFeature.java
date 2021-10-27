@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
@@ -30,7 +30,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
         Biome BIOME = reader.getBiome(pos);
 
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
-            int radius = WGConfig.INTRUSIONS.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(5) - 2;
+            int radius = Config.INTRUSIONS.NETHER_INTRUSION_RADIUS.get() + rand.nextInt(5) - 2;
             int startY = 126;
             int endY = 1;
 
@@ -70,7 +70,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                             }
                         }
                     }
-                    if (rand.nextFloat() < WGConfig.INTRUSIONS.NETHER_INTRUSION_SHRIFT.get()) {
+                    if (rand.nextFloat() < Config.INTRUSIONS.NETHER_INTRUSION_SHRIFT.get()) {
                         int randX = rand.nextInt(3) - 1;
                         int randZ = rand.nextInt(3) - 1;
                         x1 += randX;
@@ -82,7 +82,7 @@ public class NetherIntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         z3 += randZ;
                         z4 += randZ;
                     }
-                    if (rand.nextFloat() < WGConfig.INTRUSIONS.NETHER_INTRUSION_SHRINK.get()) {
+                    if (rand.nextFloat() < Config.INTRUSIONS.NETHER_INTRUSION_SHRINK.get()) {
                         radius -= 1;
                         if (radius <= 0) {
                             return true;

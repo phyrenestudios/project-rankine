@@ -96,8 +96,6 @@ public class ProjectRankine {
 
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "rankine-common.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, WGConfig.COMMON_WGCONFIG, "rankine-worldgen.toml");
-
 
         MinecraftForge.EVENT_BUS.register(this);
         Bus.addListener(this::CommonSetup);
@@ -160,7 +158,7 @@ public class ProjectRankine {
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void onItemColorRegistry(final ColorHandlerEvent.Item event) {
-            for (Block b : RankineLists.GRASSY_SOILS) {
+            for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getItemColors().register(new GrassItemBaseColor(), b.asItem());
             }
             event.getItemColors().register(new GrassItemBaseColor(), RankineItems.SHORT_GRASS.get());
@@ -198,7 +196,7 @@ public class ProjectRankine {
         @OnlyIn(Dist.CLIENT)
         public static void onBlockColorRegistry(final ColorHandlerEvent.Block event) {
             event.getBlockColors().register(new CrucibleColor(), RankineBlocks.CRUCIBLE_BLOCK.get());
-            for (Block b : RankineLists.GRASSY_SOILS) {
+            for (Block b : RankineLists.GRASS_BLOCKS) {
                 event.getBlockColors().register(new GrassBlockBaseColor(), b);
             }
             event.getBlockColors().register(new GrassBlockBaseColor(), RankineBlocks.SHORT_GRASS.get());

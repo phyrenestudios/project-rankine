@@ -9,7 +9,6 @@ import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -17,9 +16,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RankineItemTagsProvider extends ItemTagsProvider {
 
@@ -786,8 +782,10 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.HARDENED_GLASS, RankineTags.Items.HARDENED_GLASS);
         copy(RankineTags.Blocks.CLAY, RankineTags.Items.CLAY);
         copy(RankineTags.Blocks.ICE, RankineTags.Items.ICE);
-        copy(RankineTags.Blocks.GRASS, RankineTags.Items.GRASS);
-        copy(RankineTags.Blocks.PATHS, RankineTags.Items.PATHS);
+        copy(RankineTags.Blocks.BOOKSHELVES, RankineTags.Items.BOOKSHELVES);
+        copy(RankineTags.Blocks.GRASS_BLOCKS, RankineTags.Items.GRASS_BLOCKS);
+        copy(RankineTags.Blocks.PATH_BLOCKS, RankineTags.Items.PATH_BLOCKS);
+        copy(RankineTags.Blocks.MUD, RankineTags.Items.MUD);
         copy(Tags.Blocks.GRAVEL, Tags.Items.GRAVEL);
         copy(Tags.Blocks.DIRT, RankineTags.Items.DIRT);
         copy(RankineTags.Blocks.TUFF, RankineTags.Items.TUFF);

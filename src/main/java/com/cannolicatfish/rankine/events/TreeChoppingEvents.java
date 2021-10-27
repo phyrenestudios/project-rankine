@@ -5,14 +5,18 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -32,7 +36,7 @@ public class TreeChoppingEvents {
         World worldIn = player.world;
         BlockState state = event.getState();
 
-        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && player.getHeldItemMainhand().getItem().getTags().contains(new ResourceLocation("rankine:tree_choppers")) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
+        if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && player.getHeldItemMainhand().getItem().isIn(RankineTags.Items.TREE_CHOPPERS) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Stack<BlockPos> toCheck = new Stack<>();
             boolean alive = false;
@@ -92,7 +96,7 @@ public class TreeChoppingEvents {
                             if (target.getBlock() instanceof LeavesBlock) {
                                 if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
                                     for (BlockPos log : logs) {
-                                        if (log.distanceSq(b) <= 8) {
+                                        if (log.distanceSq(b) <= 16) {
                                             //toCheck.add(b.toImmutable());
                                             leaves.add(b.toImmutable());
                                             alive = true;
@@ -101,7 +105,7 @@ public class TreeChoppingEvents {
                                 }
                             } else {
                                 for (BlockPos log : logs) {
-                                    if (log.distanceSq(b) <= 10) {
+                                    if (log.distanceSq(b) <= 16) {
                                         //toCheck.add(b.toImmutable());
                                         leaves.add(b.toImmutable());
                                         alive = true;
@@ -118,23 +122,21 @@ public class TreeChoppingEvents {
 
             if (alive) {
                 for (BlockPos b : logs) {
-                    if (worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
+                    if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
                         worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),3);
                     } else {
                         worldIn.destroyBlock(b, true);
                     }
 
                 }
-                if (worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
+                if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
                     worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
                 }
                 for (BlockPos b : leaves) {
-                    worldIn.destroyBlock(b, true);
-                    //worldIn.getBlockState(b).randomTick(worldIn, b, worldIn.getRandom());
-                    //worldIn.getPendingBlockTicks().scheduleTick(b,worldIn.getBlockState(b).getBlock(),1);
+                    LeavesBlock.spawnDrops(worldIn.getBlockState(b),worldIn,pos);
+                    worldIn.removeBlock(b,false);
                 }
-                //worldIn.playSound(player, pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
+                worldIn.playSound(null,pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS,1.0f,0.8f);
             }
 
             if (state.getBlockHardness(worldIn, pos) != 0.0F) {

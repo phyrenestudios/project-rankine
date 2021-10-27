@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IRI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/blue_gold"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/sapphire"
+    }
+  },
+  "result": {
+    "item": "rankine:speed_pendant"
+  }
+}

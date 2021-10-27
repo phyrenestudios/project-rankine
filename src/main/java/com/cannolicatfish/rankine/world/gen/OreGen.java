@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.world.gen;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.cannolicatfish.rankine.world.gen.feature.RankineOreFeatureConfig;
 import net.minecraft.block.Block;
@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 public class OreGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> flatBedrock() {
-        if (WGConfig.MISC.FLAT_BEDROCK.get()) {
+        if (Config.MISC.FLAT_BEDROCK.get()) {
             return Arrays.asList(
                     new AbstractMap.SimpleEntry<>(RankineFeatures.FLAT_BEDROCK,
                             WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(),false)),
@@ -44,41 +44,31 @@ public class OreGen {
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getUndergroundOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> OverworldFeatures = new ArrayList<>();
 
-        //if (WGConfig.MISC.DISABLE_VANILLA_FEATURES.get()) {
-            //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.GRAVEL_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
-            //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SAND_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
-            //OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.CLAY_DISKS, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.OCEAN), false)));
-        //}
-        //if (WGConfig.MISC.ALLUVIUM_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
-        //if (WGConfig.MISC.EVAPORITE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false)));}
-        //if (WGConfig.MISC.FIRE_CLAY_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FIRE_CLAY, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
-
-        if (WGConfig.LAYERS.OVERWORLD_STONE_LAYERS.get() != 0) {
-            OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.OVERWORLD_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        }
+        if (Config.MISC.ALLUVIUM_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
+        if (Config.MISC.EVAPORITE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false))); }
+        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.OVERWORLD_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        if (Config.MISC.FUMAROLE_GEN.get()) { OverworldFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false))); }
 
         return OverworldFeatures;
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getNetherOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NetherFeatures = new ArrayList<>();
-        if (WGConfig.LAYERS.NETHER_STONE_LAYERS.get() != 0) {
-            NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-        }
+
+        NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
         NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.NETHER_ORE_INTRUSION, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
-        NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true)));
+        if (Config.MISC.EVAPORITE_GEN.get()) { NetherFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.FUMAROLE, WorldgenUtils.getBiomeNamesFromCategory(Collections.singletonList(Biome.Category.NETHER), true))); }
         return NetherFeatures;
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getEndOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> EndFeatures = new ArrayList<>();
 
-        if (WGConfig.MISC.END_METEORITE_GEN.get()) {
+        if (Config.MISC.END_METEORITE_GEN.get()) {
             EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.END_METEORITE, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"),ResourceLocation.tryCreate("minecraft:small_end_islands"))));
         }
-        if (WGConfig.MISC.SECRET_GEN.get()) {
+        if (Config.MISC.SECRET_GEN.get()) {
             EndFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ANTIMATTER_BLOB, Arrays.asList(ResourceLocation.tryCreate("minecraft:end_barrens"))));
         }
 
@@ -96,7 +86,7 @@ public class OreGen {
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> NETHER_FEATURES = new ArrayList<>();
             List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> END_FEATURES = new ArrayList<>();
 
-            for (List<Object> L : WGConfig.BIOME_GEN.ORE_SETTINGS.get()) {
+            for (List<Object> L : Config.BIOME_GEN.ORE_SETTINGS.get()) {
                 boolean inEnd = false;
                 boolean inNether = false;
                 boolean inOverworld = false;

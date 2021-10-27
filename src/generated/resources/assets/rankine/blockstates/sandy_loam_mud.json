@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/sandy_loam_mud"
+      },
+      {
+        "model": "rankine:block/sandy_loam_mud",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/sandy_loam_mud",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/sandy_loam_mud",
+        "y": 270
+      }
+    ]
+  }
+}

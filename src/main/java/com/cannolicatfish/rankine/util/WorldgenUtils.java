@@ -1,16 +1,18 @@
 package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.BushBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -52,7 +54,7 @@ public class WorldgenUtils {
 
 
     public static void initOreTextures() {
-        for (String ORE : WGConfig.MISC.ORE_STONES.get()) {
+        for (String ORE : Config.MISC.ORE_STONES.get()) {
             String[] ores = ORE.split("\\|");
             if (ores.length > 1) {
                 ORE_TEXTURES.add(ores[1]);
@@ -65,11 +67,11 @@ public class WorldgenUtils {
     }
     public static void initConfigs() {
 
-        for (String ORE : WGConfig.MISC.ORE_STONES.get()) {
+        for (String ORE : Config.MISC.ORE_STONES.get()) {
             ORE_STONES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(ORE.split("\\|")[0])));
         }
 
-        for (List<Object> L : WGConfig.BIOME_GEN.BIOME_SETTINGS.get()) {
+        for (List<Object> L : Config.BIOME_GEN.BIOME_SETTINGS.get()) {
             String biomeToAdd = (String) L.get(0);
             List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
             if (biomeName.size() > 1) {
@@ -178,7 +180,10 @@ public class WorldgenUtils {
     }
 
     public static int waterTableHeight(World worldIn, BlockPos pos) {
-        return (int) Math.max(worldIn.getSeaLevel(), (worldIn.getSeaLevel() + worldIn.getBiome(pos).getDepth()*30));
+        Biome biome = worldIn.getBiome(pos);
+        int surface = worldIn.getHeight(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ());
+
+        return (int) (worldIn.getSeaLevel()- surface*0.3 + biome.getDepth()*30 + biome.getDownfall()*10);
     }
 
     public static boolean inArea(BlockPos b, double radius, BlockPos... targets) {
@@ -193,7 +198,7 @@ public class WorldgenUtils {
 
     public static Block getCeillingBlock(World worldIn, BlockPos pos, int height) {
         for (int i = 1; i<= height; ++i) {
-            if (!worldIn.getBlockState(pos.up(height)).matchesBlock(Blocks.AIR)) {
+            if (!worldIn.isAirBlock(pos.up(i)) && !(worldIn.getBlockState(pos.up(i)).getBlock() instanceof BushBlock)) {
                 return worldIn.getBlockState(pos.up(height)).getBlock();
             }
         }

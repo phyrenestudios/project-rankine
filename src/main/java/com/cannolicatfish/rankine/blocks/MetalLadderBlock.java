@@ -26,12 +26,12 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class MetalLadderBlock extends LadderBlock {
-    //public static final BooleanProperty FACE = BlockStateProperties.FACE;
 
     private boolean teleport;
     private boolean autoPlace;
@@ -42,7 +42,14 @@ public class MetalLadderBlock extends LadderBlock {
     }
 
     @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        Direction direction = state.get(FACING);
+        return canAttachTo(worldIn, pos.offset(direction.getOpposite()), direction) || worldIn.getBlockState(pos.down()).matchesBlock(this);
+    }
+
+    private boolean canAttachTo(IBlockReader blockReader, BlockPos pos, Direction direction) {
+        BlockState blockstate = blockReader.getBlockState(pos);
+        return blockstate.isSolidSide(blockReader, pos, direction);
     }
 
     @Override

@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "brick_type=normal": {
       "model": "rankine:block/clay_bricks"
+    },
+    "brick_type=vertical_normal": {
+      "model": "rankine:block/clay_bricks_vertical"
     }
   }
 }

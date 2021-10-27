@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/humus_mud"
+      },
+      {
+        "model": "rankine:block/humus_mud",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/humus_mud",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/humus_mud",
+        "y": 270
+      }
+    ]
+  }
+}
