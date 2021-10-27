@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:dolostone"
+  },
+  "input2": {
+    "item": "rankine:dolostone"
+  },
+  "result1": {
+    "item": "rankine:quicklime"
+  },
+  "result2": {
+    "item": "rankine:magnesia"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

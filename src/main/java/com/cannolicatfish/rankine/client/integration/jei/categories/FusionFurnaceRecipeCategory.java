@@ -19,10 +19,15 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnaceRecipe> {
 
@@ -136,5 +141,13 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
             }
             index++;
         }
+
+        recipeLayout.getFluidStacks().addTooltipCallback((i, b, stack, list) -> {
+            if (i == 0) {
+                list.add(new StringTextComponent(recipe.getFluidIn().getAmount() + "mb"));
+            } else {
+                list.add(new StringTextComponent(recipe.getFluidOut().getAmount() + "mb"));
+            }
+        });
     }
 }

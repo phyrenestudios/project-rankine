@@ -270,6 +270,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.RED_MUD_BUCKET.get());
         basicItem(RankineItems.SULFURIC_ACID_BUCKET.get());
         basicItem(RankineItems.COIN.get());
+        basicItem(RankineItems.SILVER_ZINC_BATTERY.get());
         basicItem(RankineItems.MAGNESIUM_BATTERY.get());
         basicItem(RankineItems.LEAD_ACID_BATTERY.get());
         basicItem(RankineItems.VANADIUM_REDOX_BATTERY.get());

@@ -8,7 +8,7 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:gypsum",
+    "item": "rankine:magnesium_chloride",
     "chance": 0.75,
     "additional": 0.15
   },

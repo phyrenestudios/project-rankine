@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:stones/limestone"
+  },
+  "input2": {
+    "item": "rankine:sodium_chloride"
+  },
+  "result1": {
+    "item":"rankine:sodium_carbonate",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:gypsum",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  }
+}

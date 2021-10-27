@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "input2": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result1": {
+    "item":"rankine:sodium_ingot",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:magnetite",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "minecraft:lava"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_gas_bottle"
+  }
+}

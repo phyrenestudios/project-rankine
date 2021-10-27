@@ -83,6 +83,14 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
                 && inv.getStackInSlot(3).isItemEqual(this.gasIn) && fluidInCheck && fluidOutCheck;
     }
 
+    public Ingredient getIngredient1() {
+        return ingredient1;
+    }
+
+    public Ingredient getIngredient2() {
+        return ingredient2;
+    }
+
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
         return null;
@@ -122,6 +130,10 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
     @Override
     public ItemStack getRecipeOutput() {
         return null;
+    }
+
+    public ItemStack getGasIn() {
+        return gasIn;
     }
 
     public ItemStack getGasOut() {

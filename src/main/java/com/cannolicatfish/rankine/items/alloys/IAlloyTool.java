@@ -94,12 +94,12 @@ public interface IAlloyTool extends IAlloyItem {
                 float dmg = recipe.getBonusDamage();
                 float as = recipe.getBonusAttackSpeed();
 
-                hlmin = Math.min(hl,hlmin);
-                hlmax = Math.max(hl,hlmax);
-                dmgmin = Math.min(dmg,dmgmin);
-                dmgmax = Math.max(dmg,dmgmax);
-                asmin = Math.min(as,asmin);
-                asmax = Math.max(as,asmax);
+                hlmin = Math.min(hlmin,hlmin+hl);
+                hlmax = Math.max(hlmax,hlmax+hl);
+                dmgmin = Math.min(dmgmin,dmgmin+dmg);
+                dmgmax = Math.max(dmgmax,dmgmax+dmg);
+                asmin = Math.min(asmin,asmin+as);
+                asmax = Math.max(asmax,asmax+as);
             }
         }
 

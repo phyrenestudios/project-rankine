@@ -83,7 +83,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
         if (element != null)
         {
             int stat = this.container.getToolItem(worldIn);
-            if (stat >= 0 && stat < 9) {
+            if (stat >= 0 && stat <= 9) {
                 String statStr = StatType.values()[stat].toString();
                 drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
                 int ymod = 0;
@@ -123,7 +123,7 @@ public class MaterialTestingTableScreen extends ContainerScreen<MaterialTestingT
             drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
         } else if (alloy != null) {
             int stat = this.container.getToolItem(worldIn);
-            if (stat >= 0 && stat < 9) {
+            if (stat >= 0 && stat <= 9) {
                 String statStr = StatType.values()[stat].toString();
                 drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
                 int ymod = 0;

@@ -1,0 +1,23 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:salt"
+  },
+  "input2": {
+    "tag": "forge:salt"
+  },
+  "result1": {
+    "item":"rankine:thenardite",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  }
+}

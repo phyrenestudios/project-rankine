@@ -134,6 +134,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
 
         copy(Tags.Blocks.STORAGE_BLOCKS_COAL, Tags.Items.STORAGE_BLOCKS_COAL);
+        copy(RankineTags.Blocks.STORAGE_BLOCKS_COKE, RankineTags.Items.STORAGE_BLOCKS_COKE);
         copy(Tags.Blocks.STORAGE_BLOCKS_DIAMOND, Tags.Items.STORAGE_BLOCKS_DIAMOND);
 
         copy(RankineTags.Blocks.STORAGE_BLOCKS_GRAPHITE, RankineTags.Items.STORAGE_BLOCKS_GRAPHITE);

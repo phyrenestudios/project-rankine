@@ -1,0 +1,18 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:magnesia"
+  },
+  "input2": {
+    "tag": "forge:silicon"
+  },
+  "result1": {
+    "item":"rankine:magnesium_ingot",
+    "count": 1
+  },
+  "result2": {
+    "item": "minecraft:quartz",
+    "count": 1
+  }
+}

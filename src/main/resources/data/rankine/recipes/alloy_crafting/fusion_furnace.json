@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "sWs",
+    "BfB",
+    "scs"
+  ],
+  "key": {
+    "c": {
+      "tag": "forge:storage_blocks/coke"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "f": {
+      "item": "minecraft:blast_furnace"
+    },
+    "s": {
+      "item": "rankine:steel_sheetmetal"
+    },
+    "W": {
+      "item": "rankine:alloy_wire",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "name": "item.rankine.alloy_wire_cupronickel",
+      "color": 11946807
+    }
+  },
+  "result": {
+    "item": "rankine:fusion_furnace",
+    "count": 1
+  }
+}
