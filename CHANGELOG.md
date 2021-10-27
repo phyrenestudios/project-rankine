@@ -2,8 +2,97 @@
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
 
-## Project Rankine Version 1.3 Alpha Changelog [2021-10-18]
-### Alpha 1
+## Project Rankine Version 1.3 Alpha Changelog [2021-10-26]
+### Alpha 2 [2021-10-26]
+
+### BLOCKS
+#### --- Additions ---
+- Added the Fusion Furnace, a new tile entity that uses battery power for chemical reactions involving fluids, gases, and items
+- Added Ammonia Gas Block
+- Added Invar Ladder
+- Added Mud, Podzol and Mycellium variants for new soil types
+- Added Distillation Tower and Air Distillation Packing
+- Implemented Borosilicate Glass
+- Implemented Ground Tap
+- Texture updates
+#### --- Changes ---
+- Ground Tap: Model exists, Requires a pipe network to a flood gate
+- Removed "Wet" blockstate from soils. Soil blocks no longer tick
+- Renamed Grassy Soils to Soil Grass Blocks
+- Added missing lootables
+
+### ENCHANTMENTS
+#### ---Additions---
+- Added Enderbiotic, an Ender Amalgam Armor enchantment which teleports the user out of danger when they are about to be hit by a projectile and negates damage, but causes extra damage to durability if corrosion resistance fails
+#### --- Changes ---
+- Changed Endpoint to an enchantment that can only be applied to Ender Amalgam Spears
+- Fixed Ghastly Regeneration and Shape Memory enchantment restrictions
+
+### FLUIDS
+- Added Aqua Regia
+- Added Hydrobromic Acid
+- Added Red Mud
+
+### ITEMS
+- Added Lorandite (Thallium ore mineral), Pollucite (Caesium/Rubidium ore mineral), Boron Trioxide, Sodium Fluorosilicate, Iron Chloride, Magnesium Chloride, Hafnia
+- Added Buckets for all added fluids
+- Added Ammonia Gas Bottle
+- Added Bleach
+- Added a Meteoric Iron-type item for natural Osmiridium
+- Added Silver-Zinc Battery
+- Implemented Vanadium Pentoxide, Gwihabaite, Stishovite, and Zirconia 
+
+### RECIPES
+#### --- Fusion Furnace Recipes ---
+- Added Fusion Furnace JSON recipe type, which takes two item inputs, a gas bottle input, and a fluid input to produce up to two item outputs, a gas bottle output, and a fluid output (all inputs and outputs are optional)
+#### ---Additions---
+- Added Fusion Furnace recipes for Boron Trioxide, Calcium Chloride, Calcium Silicate, Enstatite, Iron Chloride, Quicklime, Silicon Carbide, Sodium Carbonate, Sodium Hydroxide, Sodium Sulfide, Vanadium Pentoxide
+- Added Fusion Furnace "smelting" recipes for Acanthite, Barite, Bauxite, Borax, Boron Trioxide, Calcite, Chalcocite, Cinnabar, Emerald, Galena, Hafnia, Malachite, Molybdenite, Lepidolite, Pentlandite, Potash, Pyrite, Quicklime, Realgar, Sphalerite, Stibnite, Zirconia
+- Added Fusion Furnace recipe to produce Aqua Regia, Hydrogen Chloride, Hydrobromic Acid, Sulfuric Acid, and Sulfur Dioxide
+- Added Fusion Furnace recipe for Endositum
+- Added bone ash to the campfire
+- Added recipes for dowsing rod, ground tap, flood gate
+#### ---Changes---
+- Evaporation recipe no longer requires a "bucket" parameter, changed input to Fluid parameter
+- Changed HL2 of Evaporite crushing from Gypsum to Magnesium Chloride
+- Moved Spodumene to HL4 and added Pollucite to HL5 for Pegmatite crushing
+- Moved Opal to HL4 and added Lorandite to HL5 for Cinnabar Ore crushing
+- Added "cooldown" variable to Sluicing JSON, which determines the cooldown given to the item after sluicing
+- Sodium Sulfur Battery and Zinc Bromine Battery now use Alumina instead of Bauxite
+- Ultra High Refractory Bricks now require Zirconia or Hafnia
+- Fixed Sediment Fan recipe
+#### ---Removals---
+- Removed Indium Tin Oxide crafting recipe
+- Removed blasting and beehive oven recipes for Azurite, Barite, Cinnabar, Magnesite, Malachite, and Zircon
+### MISC
+#### --- Changes ---
+- Added more blocks/items to the remapping event
+- Increased energy capacity for Magnesium Battery from 64 to 96
+- Mud, Podzols and Myceliums added to worldgen
+- Added sounds to all fluids
+- Changed the formula for calculating the water table height
+- Batteries are no longer enchantable or repairable
+- Some additions to the journal
+#### --- Alloying ---
+- Condensed Nickel Superalloy into a single alloy recipe
+- Added Enderbiotic to Ender Amalgam as an Enchantment
+#### --- Config ---
+- Merged configs into one file
+- Removed unused config settings (alloy bonus stats, duplicate worldgen parameters)
+- Added config for fumarole generation
+### FIXES
+- Fixed incorrect tagging for Endositum items
+- Fixed Armor Stand not working in the Material Testing Table
+- Fixed bug where crushing alloy item outputs had mismatched nbt data with alloy items in inventory
+- Fixed recipes for tools that used Steel Rods (Nickel/Cobalt Superalloy, Tungsten Heavy Alloy, Stainless Steel, Ender Amalgam)
+- Fixed custom alloy components for JEI
+- Fixed recipe type for Tree Tap and Glass Cutter
+- Fixed alloy tools pointing to the wrong alloy recipes
+- Fixed incorrect formula for max-type variables in alloys (harvest level, attack damage, attack speed)
+- Added tags for Netherite Nugget and fixed missing crafting
+
+
+### Alpha 1 [2021-10-18]
 ### REGISTRY CHANGES
 - All *_alloy to *_ingot
 - feldspar to orthoclase_feldspar
