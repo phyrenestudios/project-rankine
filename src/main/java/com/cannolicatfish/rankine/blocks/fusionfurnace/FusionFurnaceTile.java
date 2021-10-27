@@ -152,9 +152,16 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
                 if (this.isBurning() && canSmelt) {
                     cookTime++;
                     if (cookTime >= cookTimeTotal) {
-                        // TODO ADD SHRINKING INPUT STACKS
+                        if (!this.items.get(0).isEmpty() && irecipe.getIngredient1().test(this.items.get(0)) || irecipe.getIngredient2().test(this.items.get(0))) {
+                            this.items.get(0).shrink(1);
+                        }
+                        if (!this.items.get(1).isEmpty() && irecipe.getIngredient1().test(this.items.get(1)) || irecipe.getIngredient2().test(this.items.get(1))) {
+                            this.items.get(1).shrink(1);
+                        }
+                        if (!irecipe.getGasIn().isEmpty()) {
+                            this.items.get(3).shrink(irecipe.getGasIn().getCount());
+                        }
                         List<ItemStack> results = irecipe.getResults();
-                        System.out.println("Results: " + results);
                         if (!results.get(0).isEmpty()) {
                             if (this.items.get(4).getCount() > 0) {
                                 this.items.get(4).grow(results.get(0).getCount());
@@ -217,6 +224,14 @@ public class FusionFurnaceTile extends TileEntity implements ISidedInventory, IT
             }
         }
         return null;
+    }
+
+    public FluidTank getInputTank() {
+        return inputTank;
+    }
+
+    public FluidTank getOutputTank() {
+        return outputTank;
     }
 
     public boolean isBurning()

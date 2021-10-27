@@ -1,0 +1,23 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:barite"
+  },
+  "input2": {
+    "item": "rankine:alumina"
+  },
+  "result1": {
+    "item":"rankine:barium_ingot",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "rankine:aqua_regia"
+  },
+  "gasInput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:oxygen_gas_bottle"
+  }
+}

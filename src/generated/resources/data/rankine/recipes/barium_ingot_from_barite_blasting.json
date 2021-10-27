@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:barite"
-  },
-  "result": "rankine:barium_ingot",
-  "experience": 0.5,
-  "cookingtime": 100
-}

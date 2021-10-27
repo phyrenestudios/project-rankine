@@ -127,6 +127,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineBlocks.SODIUM_VAPOR_LAMP.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
                 RankineBlocks.INDUCTION_FURNACE.get(),
+                RankineBlocks.FUSION_FURNACE.get(),
                 RankineBlocks.CRUCIBLE_BLOCK.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(),
@@ -378,6 +379,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.RED_MUD_BUCKET.get(),
             RankineItems.SULFURIC_ACID_BUCKET.get(),
             RankineItems.COIN.get(),
+            RankineItems.SILVER_ZINC_BATTERY.get(),
             RankineItems.MAGNESIUM_BATTERY.get(),
             RankineItems.LEAD_ACID_BATTERY.get(),
             RankineItems.VANADIUM_REDOX_BATTERY.get(),
@@ -528,6 +530,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.sluicing", "Gold Panning");
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
+        add("rankine.jei.fusion_furnace", "Fusion Furnace");
         add("rankine.jei.intrusive_igneous", "Intrusive Igneous Rock Generator");
         add("rankine.jei.extrusive_igneous", "Extrusive Igneous Rock Generator");
         add("rankine.jei.sedimentary", "Sedimentary Rock Generator");
@@ -581,6 +584,17 @@ public class RankineLangProvider extends LanguageProvider {
         add("element.rankine,elements/copper.desc0", "Copper is a transition metal with an atomic number of 29.");
         add("element.rankine,elements/copper.desc1", "Commonly used in electrical components and early alloys.");
         add("element.rankine,elements/copper.desc2", "Commonly used in electrical components and early alloys.");
+
+        add("fluid.rankine.aqua_regia", "Aqua Regia");
+        add("fluid.rankine.hydrobromic_acid", "Hydrobromic Acid");
+        add("fluid.rankine.juglone", "Juglone");
+        add("fluid.rankine.latex", "Latex");
+        add("fluid.rankine.liquid_mercury_block", "Liquid Mercury");
+        add("fluid.rankine.maple_sap", "Maple Sap");
+        add("fluid.rankine.red_mud", "Red Mud");
+        add("fluid.rankine.resin", "Resin");
+        add("fluid.rankine.sap", "Sap");
+        add("fluid.rankine.sulfuric_acid", "Sulfuric Acid");
 
         add("rankine.advancements.story.root.title", "Project Rankine");
         add("rankine.advancements.story.root.description", "Begin delving into the changed world");

@@ -12,13 +12,13 @@
     "R": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/cast_alloy_alloying",
-      "name": "Cast Iron Alloy Rod",
+      "name": "item.rankine.alloy_rod_cast_iron",
       "color": 986895
     },
     "G": {
       "item": "rankine:alloy_gear",
       "alloyRecipe": "rankine:alloying/bronze_alloying",
-      "name": "Bronze Alloy Gear",
+      "name": "item.rankine.alloy_gear_bronze",
       "color": 12622179
     }
   },

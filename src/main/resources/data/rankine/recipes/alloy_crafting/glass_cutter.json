@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "rankine:alloy_crafting",
   "pattern": [
     " XX",
     " CX",
@@ -12,7 +12,7 @@
     "C": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/cast_iron_alloying",
-      "name": "Cast Iron Alloy Rod",
+      "name": "item.rankine.alloy_rod_cast_iron",
       "color": 986895
     }
   },

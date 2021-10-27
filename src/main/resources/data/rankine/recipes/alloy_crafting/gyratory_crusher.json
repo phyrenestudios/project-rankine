@@ -2,7 +2,7 @@
   "type": "rankine:alloy_crafting",
   "pattern": [
     "sps",
-    "g g",
+    "gWg",
     "sas"
   ],
   "key": {
@@ -17,6 +17,12 @@
     },
     "a": {
       "item": "minecraft:anvil"
+    },
+    "W": {
+      "item": "rankine:alloy_wire",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "name": "item.rankine.alloy_wire_cupronickel",
+      "color": 11946807
     }
   },
   "result": {

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#forge:storage_blocks/coke",
     "#forge:storage_blocks/graphite",
     "#forge:storage_blocks/hydrogen",
     "#forge:storage_blocks/helium",
@@ -151,7 +152,6 @@
     "#forge:storage_blocks/cobalt_superalloy",
     "#forge:storage_blocks/tungsten_heavy_alloy",
     "#forge:storage_blocks/titanium_alloy",
-    "#forge:storage_blocks/amber",
     "#forge:storage_blocks/aquamarine",
     "#forge:storage_blocks/cinnabar",
     "#forge:storage_blocks/fluorite",

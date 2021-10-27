@@ -99,6 +99,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> POLISHED_STONE_VERTICAL_SLAB = forge("polished_stone_vertical_slabs");
         public static final ITag.INamedTag<Block> STONE_BRICKS_VERTICAL_SLAB = forge("stone_bricks_vertical_slabs");
 
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_COKE = forge("storage_blocks/coke");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GRAPHITE = forge("storage_blocks/graphite");
 
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HYDROGEN = forge("storage_blocks/hydrogen");
@@ -723,6 +724,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> GEMS_TOURMALINE = forgeItem("gems/tourmaline");
         public static final ITag.INamedTag<Item> GEMS_PEARL = forgeItem("gems/pearl");
 
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_COKE = forgeItem("storage_blocks/coke");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GRAPHITE = forgeItem("storage_blocks/graphite");
 
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_HYDROGEN = forgeItem("storage_blocks/hydrogen");

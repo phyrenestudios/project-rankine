@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "dmd",
+    "rgr",
+    "dzd"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "d":
+    {
+      "tag": "forge:ingots/duralumin"
+    },
+    "m":
+    {
+      "tag": "forge:ingots/silver"
+    },
+    "z":
+    {
+      "tag": "forge:ingots/zinc"
+    },
+    "g":
+    {
+      "item": "rankine:graphite_electrode"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:silver_zinc_battery",
+    "count": 1
+  }
+}

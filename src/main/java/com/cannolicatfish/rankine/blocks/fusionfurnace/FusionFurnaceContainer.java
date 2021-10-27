@@ -1,42 +1,32 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
-import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.init.RankineRecipes;
-import com.cannolicatfish.rankine.items.AlloyTemplateItemOld;
+import com.cannolicatfish.rankine.init.*;
+import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
+import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.GlassBottleItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.INBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.IntArray;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-
-import java.util.AbstractMap;
 
 import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_CONTAINER;
 
@@ -107,14 +97,27 @@ public class FusionFurnaceContainer extends Container {
         return fusionFurnaceTile.inputTank.getFluid().getFluid().getRegistryName() + " : " + fusionFurnaceTile.inputTank.getFluid().getAmount();
     }
 
-    public FluidStack getInputTank() {
+    public FluidTank getInputTank() {
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        return fusionFurnaceTile.inputTank.getFluid();
+        return fusionFurnaceTile.inputTank;
     }
 
     public String getOutputTankInfo() {
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
         return fusionFurnaceTile.outputTank.getFluid().getFluid().getRegistryName() + " : " + fusionFurnaceTile.outputTank.getFluid().getAmount();
+    }
+
+    public FluidTank getOutputTank() {
+        FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
+        return fusionFurnaceTile.outputTank;
+    }
+
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
+        FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
+        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.inputTank.getFluid(),tileEntity.getPos(),true));
+        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.outputTank.getFluid(),tileEntity.getPos(), playerEntity.func_241845_aY()));
     }
 
     //TODO Rewrite this

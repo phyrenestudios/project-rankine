@@ -8,7 +8,7 @@
     "R": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/cast_iron_alloying",
-      "name": "Cast Iron Alloy Rod",
+      "name": "item.rankine.alloy_rod_cast_iron",
       "color": 986895
     }
   },

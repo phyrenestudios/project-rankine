@@ -10,6 +10,9 @@
   "result1": {
     "item": "rankine:quicklime"
   },
+  "result2": {
+    "item": "rankine:quicklime"
+  },
   "gasInput": {
     "item": "minecraft:glass_bottle"
   },
