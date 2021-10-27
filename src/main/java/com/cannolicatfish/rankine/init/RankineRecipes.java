@@ -177,7 +177,7 @@ public class RankineRecipes {
         }
         return list;
     }
-
+/*
     public static List<Enchantment> getEnchantments(String c, AlloyUtils alloy, Item item)
     {
         PeriodicTableUtils utils = new PeriodicTableUtils();
@@ -200,4 +200,6 @@ public class RankineRecipes {
         }
         return enchantments;
     }
+
+ */
 }

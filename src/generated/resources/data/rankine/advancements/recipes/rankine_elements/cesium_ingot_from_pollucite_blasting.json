@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "rankine:cesium_ingot_from_pollucite_blasting"
+    ]
+  },
+  "criteria": {
+    "has_pollucite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "rankine:pollucite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "rankine:cesium_ingot_from_pollucite_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pollucite",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:lorandite_block"
+    }
+  ],
+  "result": {
+    "item": "rankine:lorandite",
+    "count": 9
+  }
+}

@@ -2324,12 +2324,12 @@ public class RankineItems {
     public static final RegistryObject<Item> CADMIUM_TELLURIDE_CELL = REGISTRY.register("cadmium_telluride_cell", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     public static final RegistryObject<Item> SODIUM_ARC_TUBE = REGISTRY.register("sodium_arc_tube", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
     //public static final RegistryObject<Item> YAG_ROD = REGISTRY.register("yag_rod", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
-    public static final RegistryObject<Item> ALLOY_DUST = REGISTRY.register("alloy_dust", () -> new AlloyItem(AlloyUtilsEnum.ALLOY.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
-    public static final RegistryObject<Item> ALLOY_GEAR = REGISTRY.register("alloy_gear", () -> new AlloyItem(AlloyUtilsEnum.ALLOY.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
-    public static final RegistryObject<Item> ALLOY_INGOT = REGISTRY.register("alloy_ingot", () -> new AlloyItem(AlloyUtilsEnum.ALLOY.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
-    public static final RegistryObject<Item> ALLOY_PLATE = REGISTRY.register("alloy_plate", () -> new AlloyItem(AlloyUtilsEnum.ALLOY.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
-    public static final RegistryObject<Item> ALLOY_ROD = REGISTRY.register("alloy_rod", () -> new AlloyItem(AlloyUtilsEnum.ALLOY.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
-    public static final RegistryObject<Item> ALLOY_WIRE = REGISTRY.register("alloy_wire", () -> new AlloyItem(AlloyUtilsEnum.ALLOY.getDefComposition(),new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
+    public static final RegistryObject<Item> ALLOY_DUST = REGISTRY.register("alloy_dust", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
+    public static final RegistryObject<Item> ALLOY_GEAR = REGISTRY.register("alloy_gear", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
+    public static final RegistryObject<Item> ALLOY_INGOT = REGISTRY.register("alloy_ingot", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
+    public static final RegistryObject<Item> ALLOY_PLATE = REGISTRY.register("alloy_plate", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
+    public static final RegistryObject<Item> ALLOY_ROD = REGISTRY.register("alloy_rod", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
+    public static final RegistryObject<Item> ALLOY_WIRE = REGISTRY.register("alloy_wire", () -> new AlloyItem("80Hg-20Au",new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineComponents)));
     public static final RegistryObject<Item> COIN = REGISTRY.register("coin", () -> new Item(new Item.Properties().maxStackSize(64).group(ProjectRankine.setup.rankineMetals)));
 
 

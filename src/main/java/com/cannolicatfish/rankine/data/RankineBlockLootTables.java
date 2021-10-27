@@ -182,6 +182,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), createBlockLootTable(RankineBlocks.ANTITAENITE_ORE.get()));
         lootTables.put(RankineBlocks.KAMACITE_ORE.get(), createBlockLootTable(RankineBlocks.KAMACITE_ORE.get()));
 
+        lootTables.put(RankineBlocks.FUSION_FURNACE.get(), droppingWithName(RankineBlocks.FUSION_FURNACE.get()));
         lootTables.put(RankineBlocks.ALLOY_FURNACE.get(), droppingWithName(RankineBlocks.ALLOY_FURNACE.get()));
         lootTables.put(RankineBlocks.PISTON_CRUSHER.get(), droppingWithName(RankineBlocks.PISTON_CRUSHER.get()));
         lootTables.put(RankineBlocks.GYRATORY_CRUSHER.get(), droppingWithName(RankineBlocks.GYRATORY_CRUSHER.get()));

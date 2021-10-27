@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:charcoal_smelting"
+      "rankine:lorandite_from_block"
     ]
   },
   "criteria": {
-    "has_logs": {
+    "has_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:logs_that_burn"
+            "item": "rankine:lorandite"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:charcoal_smelting"
+        "recipe": "rankine:lorandite_from_block"
       }
     }
   },
   "requirements": [
     [
-      "has_logs",
+      "has_ingredient",
       "has_the_recipe"
     ]
   ]

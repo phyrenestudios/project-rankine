@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "rankine",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:lorandite"
+    }
+  },
+  "result": {
+    "item": "rankine:lorandite_block"
+  }
+}
