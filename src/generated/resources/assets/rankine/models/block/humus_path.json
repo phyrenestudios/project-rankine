@@ -1,8 +1,0 @@
-{
-  "parent": "rankine:block/template_path_block",
-  "textures": {
-    "top": "minecraft:block/grass_path_top",
-    "side": "rankine:block/humus_path_side",
-    "bottom": "rankine:block/humus"
-  }
-}

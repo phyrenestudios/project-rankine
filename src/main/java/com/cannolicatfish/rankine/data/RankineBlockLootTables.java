@@ -48,6 +48,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.SHEETMETALS,
                 RankineLists.GEODES,
                 RankineLists.LEDS,
+                RankineLists.MUD_BLOCKS,
                 RankineLists.MINERAL_WOOL,
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
@@ -76,19 +77,36 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(blk, createBlockLootTable(blk));
         }
 
-        for (Block blk : Arrays.asList(RankineBlocks.SOD_BLOCK.get())) {
+        for (Block blk : Arrays.asList(
+                RankineBlocks.SOD_BLOCK.get(),
+                RankineBlocks.REACTION_CHAMBER_CELL.get(),
+                RankineBlocks.REACTION_CHAMBER_CORE.get(),
+                RankineBlocks.CHARCOAL_PIT.get(),
+                RankineBlocks.TREE_TAP.get(),
+                RankineBlocks.BOTANIST_STATION.get(),
+                RankineBlocks.DIAMOND_ANVIL_CELL.get(),
+                RankineBlocks.BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.ALNICO_ELECTROMAGNET.get(),
+                RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
+                RankineBlocks.AIR_DISTILLATION_PACKING.get()
+        )) {
             lootTables.put(blk, createBlockLootTable(blk));
         }
         for (Block blk : RankineLists.INFESTED_STONES) {
             lootTables.put(blk, droppingWithSilkTouch(blk, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(blk.getRegistryName().getPath().replace("infested_","")))));
         }
 
-        for (Block SOIL : Stream.of(RankineLists.SOILS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            Block GRASS = RankineLists.GRASSY_SOILS.get(RankineLists.SOILS.indexOf(SOIL));
-            Block PATH = RankineLists.PATH_BLOCKS.get(RankineLists.SOILS.indexOf(SOIL));
+        for (Block SOIL : Stream.of(RankineLists.SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            Block GRASS = RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
+            Block PODZOL = RankineLists.PODZOL_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
+            Block MYCELIUM = RankineLists.MYCELIUM_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
+            Block PATH = RankineLists.PATH_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(SOIL));
             lootTables.put(SOIL, createBlockLootTable(SOIL));
             lootTables.put(PATH, createBlockLootTable(SOIL));
             lootTables.put(GRASS, droppingWithSilkTouch(GRASS,SOIL));
+            lootTables.put(PODZOL, droppingWithSilkTouch(PODZOL,SOIL));
+            lootTables.put(MYCELIUM, droppingWithSilkTouch(MYCELIUM,SOIL));
         }
         lootTables.put(RankineBlocks.ENDER_SHIRO.get(), droppingWithSilkTouch(RankineBlocks.ENDER_SHIRO.get(),Blocks.END_STONE));
 
@@ -164,6 +182,15 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), createBlockLootTable(RankineBlocks.ANTITAENITE_ORE.get()));
         lootTables.put(RankineBlocks.KAMACITE_ORE.get(), createBlockLootTable(RankineBlocks.KAMACITE_ORE.get()));
 
+        lootTables.put(RankineBlocks.ALLOY_FURNACE.get(), droppingWithName(RankineBlocks.ALLOY_FURNACE.get()));
+        lootTables.put(RankineBlocks.PISTON_CRUSHER.get(), droppingWithName(RankineBlocks.PISTON_CRUSHER.get()));
+        lootTables.put(RankineBlocks.GYRATORY_CRUSHER.get(), droppingWithName(RankineBlocks.GYRATORY_CRUSHER.get()));
+        lootTables.put(RankineBlocks.CRUCIBLE_BLOCK.get(), droppingWithName(RankineBlocks.CRUCIBLE_BLOCK.get()));
+        lootTables.put(RankineBlocks.EVAPORATION_TOWER.get(), droppingWithName(RankineBlocks.EVAPORATION_TOWER.get()));
+        lootTables.put(RankineBlocks.RANKINE_BOX.get(), droppingWithName(RankineBlocks.RANKINE_BOX.get()));
+        lootTables.put(RankineBlocks.TEMPLATE_TABLE.get(), droppingWithName(RankineBlocks.TEMPLATE_TABLE.get()));
+        lootTables.put(RankineBlocks.INDUCTION_FURNACE.get(), droppingWithName(RankineBlocks.INDUCTION_FURNACE.get()));
+
         for (Block ORE : RankineLists.CRUSHING_ORES) {
             lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));
         }
@@ -172,6 +199,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block BLK : RankineLists.EIGHT_LAYER_BLOCKS) {
             lootTables.put(BLK, eightLayerBlock(BLK));
+        }
+        for (Block BLK : RankineLists.WOODEN_BOOKSHELVES) {
+            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.BOOK, ConstantRange.of(3)));
         }
         for (Block LEAF : RankineLists.LEAVES) {
             Block SAPLING = RankineLists.SAPLINGS.get(RankineLists.LEAVES.indexOf(LEAF));

@@ -4,7 +4,6 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.pattern.BlockStateMatcher;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +13,7 @@ import java.util.EnumSet;
 import java.util.function.Predicate;
 
 public class EatGrassGoalModified extends Goal {
-    private static final Predicate<BlockState> IS_GRASS = (blockState -> blockState.getBlock().isIn(RankineTags.Blocks.GRASS));
+    private static final Predicate<BlockState> IS_GRASS = (blockState -> blockState.getBlock().isIn(RankineTags.Blocks.GRASS_BLOCKS));
     /** The entity owner of this AITask */
     private final MobEntity grassEaterEntity;
     /** The world the grass eater entity is eating from */

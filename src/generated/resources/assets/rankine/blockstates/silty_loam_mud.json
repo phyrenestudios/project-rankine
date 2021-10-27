@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "rankine:block/silty_loam_mud"
+      },
+      {
+        "model": "rankine:block/silty_loam_mud",
+        "y": 90
+      },
+      {
+        "model": "rankine:block/silty_loam_mud",
+        "y": 180
+      },
+      {
+        "model": "rankine:block/silty_loam_mud",
+        "y": 270
+      }
+    ]
+  }
+}

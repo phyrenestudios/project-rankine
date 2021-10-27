@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
@@ -29,8 +29,8 @@ public class NetherStoneReplacerFeature extends Feature<NoFeatureConfig> {
     public NetherStoneReplacerFeature(Codec<NoFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
-    public static final int NOISE_SCALE = WGConfig.LAYERS.NOISE_SCALE.get();
-    public static final int NOISE_OFFSET = WGConfig.LAYERS.NOISE_OFFSET.get();
+    public static final int NOISE_SCALE = Config.LAYERS.NOISE_SCALE.get();
+    public static final int NOISE_OFFSET = Config.LAYERS.NOISE_OFFSET.get();
 
 
     @Override
@@ -79,7 +79,7 @@ public class NetherStoneReplacerFeature extends Feature<NoFeatureConfig> {
         for (int y = StartY; y <= EndY; ++y) {
             BlockPos targetPos = new BlockPos(x, y, z);
             BlockState target = reader.getBlockState(targetPos);
-     //       if (WGConfig.MISC.DARK_GRAVEL.get() && target == Blocks.GRAVEL.getDefaultState()) {
+     //       if (Config.MISC.DARK_GRAVEL.get() && target == Blocks.GRAVEL.getDefaultState()) {
        //         reader.setBlockState(targetPos, RankineBlocks.DARK_GRAVEL.get().getDefaultState(), 19);
        //     }
             if (target == Blocks.NETHERRACK.getDefaultState()) {

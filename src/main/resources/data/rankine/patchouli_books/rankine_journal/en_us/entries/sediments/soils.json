@@ -1,0 +1,23 @@
+{
+  "name": "Soils",
+  "icon": "minecraft:dirt",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A broader term for the material we call dirt is soil. Soils are comprised of a few base sediments (clay, silt, and sand) and organic material. New Soils replace dirt across much of the world."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:dirt",
+      "link_recipe": true,
+      "text": "Rarely found in world. Can be obtained by $(l:mechanics/sluicing)sluicing$() other soils."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:humus",
+      "link_recipe": true,
+      "text": ""
+    }
+  ]
+}

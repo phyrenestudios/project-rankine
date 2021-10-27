@@ -88,7 +88,7 @@ public class ClientProxy implements IProxy {
 
         ));
 
-        addCutoutMipped(RankineLists.GRASSY_SOILS);
+        addCutoutMipped(RankineLists.GRASS_BLOCKS);
         addCutoutMipped(Arrays.asList(
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),

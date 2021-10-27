@@ -97,7 +97,7 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
         BlockState blockstate1;
         FluidState fluidstate = context.getWorld().getFluidState(blockpos);
         if (blockstate.matchesBlock(this)) {
-            return blockstate.with(TYPE, VerticalSlabStates.DOUBLE).with(HORIZONTAL_FACING, blockstate.get(HORIZONTAL_FACING)).with(WATERLOGGED, Boolean.FALSE);
+            return blockstate.with(TYPE, VerticalSlabStates.DOUBLE).with(WATERLOGGED, Boolean.FALSE);
         } else {
             blockstate1 = getType(context.getWorld(),context.getPos(),context.getPlacementHorizontalFacing());
             return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);

@@ -1,0 +1,25 @@
+{
+  "name": "Material Testing Table",
+  "icon": "rankine:material_testing_table",
+  "category": "machines",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The Material Testing Table allows you to view the properties of both alloys and elements through the use of various tools (subject to change)."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:material_testing_table"
+    },
+    {
+      "type": "text",
+      "title": "Stat Viewing (1)",
+      "text": "$(li)Durability -> Piston $(li)Mining Speed -> Speedometer $(li)Harvest Level -> Hardness Tester $(li)Enchantability -> Lapis Lazuli $(li)Attack Damage -> Grindstone $(li)Attack Speed -> Grindstone"
+    },
+	{
+      "type": "text",
+      "title": "Stat Viewing (2)",
+      "text": "$(li)Corrosion Resistance -> Water Bucket $(li)Heat Resistance -> Flint and Steel/Lava Bucket $(li)Knockback Resistance -> Shield $(li)Enchantments -> Mercury"
+    }
+  ]
+}

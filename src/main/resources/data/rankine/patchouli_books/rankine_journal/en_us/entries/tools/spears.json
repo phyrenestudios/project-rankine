@@ -1,0 +1,84 @@
+{
+  "name": "Spears",
+  "icon": "rankine:steel_spear",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A listing of the variety of spears that are able to be made."
+    },
+    {
+      "type": "text",
+      "text": "Spears are a new type of tool that function like tridents."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:flint_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:invar_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_superalloy_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_spear"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_spear",
+      "text": "An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
+    }
+  ]
+}

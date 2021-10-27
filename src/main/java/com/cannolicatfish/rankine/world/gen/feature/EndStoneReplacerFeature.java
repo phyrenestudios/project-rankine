@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.feature;
 
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
@@ -23,8 +24,8 @@ public class EndStoneReplacerFeature extends Feature<NoFeatureConfig> {
     public EndStoneReplacerFeature(Codec<NoFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
-    public static final int NOISE_SCALE = WGConfig.LAYERS.NOISE_SCALE.get();
-    public static final int NOISE_OFFSET = WGConfig.LAYERS.NOISE_OFFSET.get();
+    public static final int NOISE_SCALE = Config.LAYERS.NOISE_SCALE.get();
+    public static final int NOISE_OFFSET = Config.LAYERS.NOISE_OFFSET.get();
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
@@ -69,15 +70,8 @@ public class EndStoneReplacerFeature extends Feature<NoFeatureConfig> {
 
     private static void replaceStone(ISeedReader reader, int x, int z, int StartY, int EndY, BlockState Block) {
         for (int y = StartY; y <= EndY; ++y) {
-            switch (WGConfig.LAYERS.END_STONE_LAYERS.get()) {
-                case 1:
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock().getDefaultState() == Blocks.END_STONE.getDefaultState()) {
-                        reader.setBlockState(new BlockPos(x, y, z), Block, 2);
-                    }
-                case 2:
-                    if (reader.getBlockState(new BlockPos(x, y, z)).getBlock().getTags().contains(new ResourceLocation("forge:base_stone_end"))) {
-                        reader.setBlockState(new BlockPos(x, y, z), Block, 2);
-                    }
+            if (reader.getBlockState(new BlockPos(x, y, z)).isIn(RankineTags.Blocks.BASE_STONE_END)) {
+                reader.setBlockState(new BlockPos(x, y, z), Block, 2);
             }
         }
     }

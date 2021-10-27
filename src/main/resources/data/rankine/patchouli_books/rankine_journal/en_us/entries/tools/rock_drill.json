@@ -1,0 +1,15 @@
+{
+  "name": "Rock Drill",
+  "icon": "rankine:rock_drill",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Don't dig straight down. A rock drill will discover the layers of rock beneath you without having to dig. $(br2)Use by right clicking a block, and the layers will be output in the chat panel."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:alloy_recipes/rock_drill"
+    }
+  ]
+}

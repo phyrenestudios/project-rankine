@@ -1,0 +1,16 @@
+{
+  "name": "Acceptance Letter",
+  "icon": "minecraft:writable_book",
+  "category": "orientation",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(o)We are honored to present to you this letter of acceptance into the Project. Whichever way your path brought you to this momentous occasion, we are glad you took it. No progress comes without challenge...$()"
+    },
+    {
+      "type": "text",
+      "text": ""
+    }
+  ]
+}

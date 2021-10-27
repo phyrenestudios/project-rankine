@@ -1,0 +1,17 @@
+{
+  "name": "Silt",
+  "icon": "rankine:silt",
+  "category": "sediments",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Silt is a small particle, affected by gravity"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:silt",
+      "link_recipe": true,
+      "text": "Not found yet."
+    }
+  ]
+}

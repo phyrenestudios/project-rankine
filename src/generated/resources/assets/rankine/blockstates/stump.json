@@ -1,10 +1,13 @@
 {
   "variants": {
-    "rot=false": {
-      "model": "rankine:block/stump"
+    "age=0": {
+      "model": "rankine:block/stump0"
     },
-    "rot=true": {
-      "model": "rankine:block/rotten_stump"
+    "age=1": {
+      "model": "rankine:block/stump1"
+    },
+    "age=2": {
+      "model": "rankine:block/stump2"
     }
   }
 }

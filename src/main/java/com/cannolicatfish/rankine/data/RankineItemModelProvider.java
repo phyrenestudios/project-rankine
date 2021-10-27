@@ -72,8 +72,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.WOODEN_FENCE_GATES,
                 RankineLists.FIBER_BLOCK,
                 RankineLists.FIBER_MAT,
-                RankineLists.SOILS,
-                RankineLists.GRASSY_SOILS,
+                RankineLists.SOIL_BLOCKS,
+                RankineLists.MUD_BLOCKS,
+                RankineLists.GRASS_BLOCKS,
+                RankineLists.PODZOL_BLOCKS,
+                RankineLists.MYCELIUM_BLOCKS,
                 RankineLists.PATH_BLOCKS,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
@@ -82,6 +85,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
+                RankineLists.WOODEN_BOOKSHELVES,
                 RankineLists.SHEETMETALS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
             withExistingParent(BLOCK);
@@ -153,6 +157,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.CORN_STALK.get());
         basicItemAltTexture(RankineItems.AGED_CHEESE.get(), modLoc("item/aged_cheese_wheel"));
         basicItemAltTexture(RankineItems.UNAGED_CHEESE.get(), modLoc("item/unaged_cheese_wheel"));
+        basicItemHandheld(RankineItems.DOWSING_ROD.get());
 
         basicItem(RankineItems.VULCANIZED_RUBBER.get());
         basicItem(RankineItems.BITUMEN.get());
@@ -211,7 +216,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BUILDING_TOOL.get());
         basicItem(RankineItems.ORE_DETECTOR.get());
         basicItem(RankineItems.PROSPECTING_STICK.get());
-        basicItem(RankineItems.DOWSING_ROD.get());
         basicItem(RankineItems.PACKAGED_TOOL.get());
         basicItem(RankineItems.ALNICO_MAGNET.get());
         basicItem(RankineItems.RARE_EARTH_MAGNET.get());
@@ -290,47 +294,48 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BIOME_INDICATOR_OCEAN.get());
         basicItem(RankineItems.BIOME_INDICATOR_RIVER.get());
 
-
-
-
-
-        //basicItem(RankineBlocks.FLUID_DRAIN.get());
-        withExistingParent(RankineBlocks.STUMP.get());
-        withExistingParent(RankineBlocks.BONE_CHAR_BLOCK.get());
-        withExistingParent(RankineBlocks.SEDIMENT_FAN.get());
-        withExistingParent(RankineBlocks.PCF.get());
-        withExistingParent(RankineBlocks.RANKINE_BOX.get());
-        withExistingParent(RankineBlocks.DIAMOND_ANVIL_CELL.get());
-        //withExistingParent(RankineBlocks.LASER_QUARRY.get());
-        withExistingParent(RankineBlocks.TEMPLATE_TABLE.get());
-        withExistingParent(RankineBlocks.MATERIAL_TESTING_TABLE.get());
-        withExistingParent(RankineBlocks.BOTANIST_STATION.get());
-        withExistingParent(RankineBlocks.EVAPORATION_TOWER.get());
-        //withExistingParent(RankineBlocks.LASER_PYLON_TOP.get());
-        //withExistingParent(RankineBlocks.LASER_PYLON_BASE.get());
-        withExistingParent(RankineBlocks.REACTION_CHAMBER_CORE.get());
-        withExistingParent(RankineBlocks.BEEHIVE_OVEN_PIT.get());
-        withExistingParent(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get());
-        withExistingParent(RankineBlocks.ALLOY_FURNACE.get());
-        withExistingParent(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get());
-        withExistingParent(RankineBlocks.CHARCOAL_PIT.get());
-        withExistingParent(RankineBlocks.GYRATORY_CRUSHER.get());
-        withExistingParent(RankineBlocks.PISTON_CRUSHER.get());
-        withExistingParent(RankineBlocks.INDUCTION_FURNACE.get());
-        withExistingParent(RankineBlocks.ALNICO_ELECTROMAGNET.get());
-        withExistingParent(RankineBlocks.RARE_EARTH_ELECTROMAGNET.get());
-        withExistingParent(RankineBlocks.TRAMPOLINE.get());
-        withExistingParent(RankineBlocks.CEMENT_POLE.get());
-        withExistingParent(RankineBlocks.SODIUM_VAPOR_LAMP.get());
-        //withExistingParent(RankineBlocks.TAP_BARREL.get().getRegistryName().getPath(), modLoc("block/tap_barrel/" + RankineBlocks.TAP_BARREL.get().getRegistryName().getPath()));
-        withExistingParent(RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get());
-        withExistingParent(RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get());
-        withExistingParent(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
-        withExistingParent(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
+        for (Block BLK : Arrays.asList(
+                RankineBlocks.BONE_CHAR_BLOCK.get(),
+                RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.PCF.get(),
+                RankineBlocks.RANKINE_BOX.get(),
+                RankineBlocks.DIAMOND_ANVIL_CELL.get(),
+                RankineBlocks.TEMPLATE_TABLE.get(),
+                RankineBlocks.MATERIAL_TESTING_TABLE.get(),
+                RankineBlocks.BOTANIST_STATION.get(),
+                RankineBlocks.EVAPORATION_TOWER.get(),
+                RankineBlocks.DISTILLATION_TOWER.get(),
+                RankineBlocks.AIR_DISTILLATION_PACKING.get(),
+                RankineBlocks.REACTION_CHAMBER_CELL.get(),
+                RankineBlocks.REACTION_CHAMBER_CORE.get(),
+                RankineBlocks.BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.ALLOY_FURNACE.get(),
+                RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get(),
+                RankineBlocks.CHARCOAL_PIT.get(),
+                RankineBlocks.GYRATORY_CRUSHER.get(),
+                RankineBlocks.PISTON_CRUSHER.get(),
+                RankineBlocks.INDUCTION_FURNACE.get(),
+                RankineBlocks.ALNICO_ELECTROMAGNET.get(),
+                RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
+                RankineBlocks.TRAMPOLINE.get(),
+                RankineBlocks.CEMENT_POLE.get(),
+                RankineBlocks.SODIUM_VAPOR_LAMP.get(),
+                RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get(),
+                RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get(),
+                RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get(),
+                RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get()
+                )) {
+            withExistingParent(BLK);
+        }
+        
+        
+        
         basicItem(RankineItems.CRUCIBLE.get());
 
 
         withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/tilled_soil_loam"));
+        withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/stump0"));
 
         withExistingParent(RankineBlocks.ASPHALT_0.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt/asphalt0_age0_none"));
         withExistingParent(RankineBlocks.ASPHALT_1.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt/asphalt1_age0_none"));

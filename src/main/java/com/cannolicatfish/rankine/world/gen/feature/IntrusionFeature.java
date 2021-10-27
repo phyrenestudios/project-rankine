@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.world.gen.feature;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.init.WGConfig;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
@@ -33,7 +33,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
         Biome BIOME = reader.getBiome(pos);
 
         if (WorldgenUtils.GEN_BIOMES.contains(BIOME.getRegistryName())) {
-            int radius = WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(5) - 2;
+            int radius = Config.INTRUSIONS.OVERWORLD_INTRUSION_RADIUS.get() + rand.nextInt(5) - 2;
             int startY = 1;
             int endY = reader.getHeight(Heightmap.Type.OCEAN_FLOOR, pos.getX(), pos.getZ());
 
@@ -69,7 +69,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                             }
                         }
                     }
-                    if (rand.nextFloat() < WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_SHIFT.get()) {
+                    if (rand.nextFloat() < Config.INTRUSIONS.OVERWORLD_INTRUSION_SHIFT.get()) {
                         int randX = rand.nextInt(3) - 1;
                         int randZ = rand.nextInt(3) - 1;
                         x1 += randX;
@@ -81,7 +81,7 @@ public class IntrusionFeature extends Feature<ReplacerFeatureConfig> {
                         z3 += randZ;
                         z4 += randZ;
                     }
-                    if (rand.nextFloat() < WGConfig.INTRUSIONS.OVERWORLD_INTRUSION_SHRINK.get()) {
+                    if (rand.nextFloat() < Config.INTRUSIONS.OVERWORLD_INTRUSION_SHRINK.get()) {
                         radius -= 1;
                         if (radius <= 0) {
                             return true;

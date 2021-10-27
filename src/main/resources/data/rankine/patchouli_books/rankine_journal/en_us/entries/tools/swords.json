@@ -1,0 +1,96 @@
+{
+  "name": "Swords",
+  "icon": "rankine:steel_sword",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A listing of the variety of swords that are able to be made. $(br2)Vanilla tools can be enabled/disabled in the config and are disabled by default for progression."
+    },
+    {
+      "type": "text",
+      "text": "Swords function as normal."
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:wooden_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:invar_sword"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:iron_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_sword"
+    },
+    {
+      "type": "crafting",
+      "recipe": "minecraft:diamond_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:netherite_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_superalloy_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_sword"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_sword",
+      "text": "An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
+    }
+  ]
+}

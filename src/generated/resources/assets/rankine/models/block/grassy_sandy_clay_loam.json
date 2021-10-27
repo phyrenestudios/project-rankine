@@ -1,9 +1,0 @@
-{
-  "parent": "rankine:block/template_grassy_soil",
-  "textures": {
-    "soil": "rankine:block/sandy_clay_loam",
-    "grassy_soil_top": "rankine:block/grassy_sandy_clay_loam_top",
-    "grassy_soil_side": "rankine:block/grassy_sandy_clay_loam_side",
-    "grassy_soil_side_overlay": "rankine:block/grassy_sandy_clay_loam_side_overlay"
-  }
-}

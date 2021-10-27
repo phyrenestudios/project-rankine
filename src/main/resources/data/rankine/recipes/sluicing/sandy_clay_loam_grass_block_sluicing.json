@@ -1,0 +1,50 @@
+{
+  "type": "rankine:sluicing",
+  "total": 10,
+  "input": {
+    "item": "rankine:sandy_clay_loam_grass_block"
+  },
+  "tool": {
+    "tag": "rankine:gold_pans"
+  },
+  "output1": {
+    "item": "minecraft:dirt",
+    "weight": 60
+  },
+  "output2": {
+    "item": "minecraft:sand",
+    "weight": 9.75
+  },
+  "output3": {
+    "item": "minecraft:clay_ball",
+    "weight": 3.75
+  },
+  "output4": {
+    "item": "rankine:silt",
+    "weight": 1.5
+  },
+  "output5": {
+    "item": "rankine:jute_seeds",
+    "weight": 5
+  },
+  "output6": {
+    "item": "rankine:camphor_basil_seeds",
+    "weight": 5
+  },
+  "output7": {
+    "item": "rankine:flower_seeds",
+    "weight": 5
+  },
+  "output8": {
+    "item": "rankine:asparagus_seeds",
+    "weight": 5
+  },
+  "output9": {
+    "item": "rankine:blackberries",
+    "weight": 2.5
+  },
+  "output10": {
+    "item": "rankine:snowberries",
+    "weight": 2.5
+  }
+}

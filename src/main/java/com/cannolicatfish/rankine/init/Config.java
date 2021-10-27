@@ -1,11 +1,13 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -13,8 +15,699 @@ import java.util.function.Predicate;
 @Mod.EventBusSubscriber
 public class Config {
 
-    public static class General {
+    static Predicate<Object> ELEMENT_VALIDATOR = o -> o instanceof String;
+    public static Predicate<Object> DoubleValidator = o -> o instanceof Double;
 
+
+    public static class BiomeGen {
+        public final ForgeConfigSpec.ConfigValue<List<? extends List<Object>>> BIOME_SETTINGS;
+        private static final List<List<Object>> biomeSettings = new ArrayList<>();
+
+        public final ForgeConfigSpec.ConfigValue<List<? extends List<Object>>> ORE_SETTINGS;
+        private static final List<List<Object>> oreSettings = new ArrayList<>();
+
+        public BiomeGen(ForgeConfigSpec.Builder b) {
+            biomeSettings.add(Arrays.asList("minecraft:soul_sand_valley",
+                    Arrays.asList(),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    Arrays.asList("rankine:eclogite","rankine:blueschist","rankine:honeystone"),
+                    Arrays.asList(),
+                    "rankine:dark_gravel"));
+            biomeSettings.add(Arrays.asList("minecraft:basalt_deltas",
+                    Arrays.asList(),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    Arrays.asList("rankine:pyroxenite","minecraft:basalt","rankine:gray_marble"),
+                    Arrays.asList(),
+                    "rankine:dark_gravel"));
+            biomeSettings.add(Arrays.asList("minecraft:crimson_forest",
+                    Arrays.asList(),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    Arrays.asList("rankine:purple_porphyry","rankine:komatiite","rankine:rose_marble"),
+                    Arrays.asList(),
+                    "rankine:dark_gravel"));
+            biomeSettings.add(Arrays.asList("minecraft:warped_forest",
+                    Arrays.asList(),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    Arrays.asList("rankine:serpentinite","rankine:greenschist","rankine:peridotite"),
+                    Arrays.asList(),
+                    "rankine:dark_gravel"));
+            biomeSettings.add(Arrays.asList("minecraft:nether_wastes",
+                    Arrays.asList(),
+                    Arrays.asList("minecraft:air|10|minecraft:air|0.0","rankine:scoria|1|rankine:scoria|0.0","rankine:pumice|1|rankine:pumice|0.0"),
+                    Arrays.asList("minecraft:netherrack"),
+                    Arrays.asList(),
+                    "rankine:dark_gravel"));
+            biomeSettings.add(Arrays.asList(Biome.Category.NONE.getName(),
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:diabase|3|rankine:baddeleyite_ore|0.005","minecraft:stone|1|minecraft:gold_ore|0.01"),
+                    Arrays.asList("rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.MUSHROOM.getName(),
+                    Arrays.asList("rankine:humus_grass_block","rankine:humus","rankine:clay_loam","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:pegmatite|3|rankine:petalite_ore|0.02","minecraft:stone|1|minecraft:coal_ore|0.01"),
+                    Arrays.asList("rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt","rankine:marlstone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","minecraft:red_mushroom|10","minecraft:brown_mushroom|10","rankine:crimson_clover|10"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.OCEAN.getName(),
+                    Arrays.asList("rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:diabase|3|rankine:baddeleyite_ore|0.005","minecraft:stone|1|minecraft:gold_ore|0.01"),
+                    Arrays.asList("rankine:troctolite","rankine:gabbro","rankine:tholeiitic_basalt"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.BEACH.getName(),
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:sandy_clay"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","minecraft:granite|3|rankine:malachite_ore|0.02","minecraft:stone|1|minecraft:redstone_ore|0.01"),
+                    Arrays.asList("rankine:troctolite","rankine:gabbro","rankine:chalk","rankine:marlstone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel"));
+            biomeSettings.add(Arrays.asList(Biome.Category.RIVER.getName(),
+                    Arrays.asList("rankine:clay_loam_grass_block","rankine:clay_loam","rankine:silty_clay","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015"),
+                    Arrays.asList("rankine:black_dacite","rankine:phyllite","rankine:shale"),
+                    Arrays.asList("rankine:short_grass|20","minecraft:grass|50","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.SAVANNA.getName(),
+                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:norite|3|rankine:norite|0.00","minecraft:stone|1|minecraft:redstone_ore|0.01"),
+                    Arrays.asList("rankine:rhyolite","rankine:red_dacite","minecraft:andesite","rankine:siltstone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel"));
+            biomeSettings.add(Arrays.asList(Biome.Category.MESA.getName(),
+                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:red_porphyry|3|rankine:porphyry_copper|0.02","minecraft:stone|1|minecraft:gold_ore|0.01"),
+                    Arrays.asList("rankine:rhyolite","rankine:red_dacite","rankine:quartzite","rankine:arkose"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel"));
+            biomeSettings.add(Arrays.asList(Biome.Category.DESERT.getName(),
+                    Arrays.asList("rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:red_porphyry|3|rankine:porphyry_copper|0.02","minecraft:stone|1|minecraft:lapis_ore|0.01"),
+                    Arrays.asList("rankine:rhyolite","rankine:red_dacite","rankine:quartzite","rankine:itacolumite"),
+                    Arrays.asList("rankine:short_grass|30","minecraft:dead_bush|10","rankine:stinging_nettle|1"),
+                    "rankine:light_gravel"));
+            biomeSettings.add(Arrays.asList(Biome.Category.EXTREME_HILLS.getName(),
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:loamy_sand"),
+                    Arrays.asList("minecraft:air|6|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","minecraft:stone|1|minecraft:coal_ore|0.01","rankine:shonkinite|1|rankine:beryl_ore|0.01","minecraft:diorite|2|rankine:ilmenite_ore|0.01"),
+                    Arrays.asList("rankine:black_dacite","rankine:mariposite","rankine:gneiss","rankine:anorthosite","rankine:hornblende_andesite"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.FOREST.getName(),
+                    Arrays.asList("rankine:loam_grass_block","rankine:loam","rankine:clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","minecraft:stone|1|minecraft:iron_ore|0.01","rankine:gray_granite|2|rankine:cassiterite_ore|0.02","rankine:granodiorite|1|rankine:magnetite_ore|0.02"),
+                    Arrays.asList("rankine:black_marble","rankine:black_dacite","rankine:anorthosite","rankine:limestone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:yellow_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.TAIGA.getName(),
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:loamy_sand_grass_block","rankine:loamy_sand","rankine:sandy_clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","minecraft:stone|1|minecraft:iron_ore|0.01","minecraft:diorite|1|rankine:ilmenite_ore|0.01","minecraft:granite|2|rankine:malachite_ore|0.02"),
+                    Arrays.asList("rankine:white_marble","rankine:black_dacite","rankine:anorthosite","rankine:dolostone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.ICY.getName(),
+                    Arrays.asList("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:silty_clay_loam_grass_block","rankine:silty_clay_loam","rankine:silty_clay"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:pegmatite|1|rankine:petalite_ore|0.02","rankine:granodiorite|2|rankine:magnetite_ore|0.02","minecraft:stone|1|minecraft:redstone_ore|0.01"),
+                    Arrays.asList("rankine:pyroxenite","rankine:comendite","minecraft:andesite","rankine:chalk"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:fern|10","rankine:red_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.JUNGLE.getName(),
+                    Arrays.asList("rankine:humus_grass_block","rankine:humus","rankine:clay_loam","rankine:clay_loam_grass_block","rankine:clay_loam","rankine:clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:pegmatite|3|rankine:petalite_ore|0.02","minecraft:stone|1|minecraft:coal_ore|0.01"),
+                    Arrays.asList("rankine:comendite","rankine:mica_schist","rankine:slate","rankine:mudstone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:yellow_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.PLAINS.getName(),
+                    Arrays.asList("rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam","rankine:sandy_clay_loam_grass_block","rankine:sandy_clay_loam","rankine:clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","minecraft:stone|1|minecraft:iron_ore|0.01","rankine:gray_granite|2|rankine:cassiterite_ore|0.02","minecraft:diorite|1|rankine:ilmenite_ore|0.01"),
+                    Arrays.asList("rankine:rhyolite","rankine:anorthosite","rankine:limestone","rankine:siltstone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:crimson_clover|10","rankine:white_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+            biomeSettings.add(Arrays.asList(Biome.Category.SWAMP.getName(),
+                    Arrays.asList("rankine:loam_grass_block","rankine:loam","rankine:clay_loam","rankine:humus_grass_block","rankine:humus","rankine:clay_loam"),
+                    Arrays.asList("minecraft:air|8|minecraft:air|1.0","rankine:kimberlite|1|rankine:kimberlitic_diamond_ore|0.015","rankine:shonkinite|2|rankine:magnetite_ore|0.02","minecraft:stone|2|minecraft:coal_ore|0.01"),
+                    Arrays.asList("rankine:mica_schist","rankine:phyllite","rankine:slate","rankine:mudstone"),
+                    Arrays.asList("rankine:short_grass|70","minecraft:grass|10","rankine:red_clover|10","rankine:stinging_nettle|1"),
+                    "minecraft:air"));
+
+
+
+            b.comment("Biome Feature Settings").push("biomeGen");
+            BIOME_SETTINGS = b.comment("Custom generations per biome or biome category. The defaults are created with biome categories for the overworld. Specific biomes can be used and should be put first in the list.",
+                    "Syntax: [[List1], [List2], [List3], ...]",
+                    "   [ListX]: [Biome, [Soils], [Intrusions], [Layers], [Vegetation], Gravel]",
+                    "   Biome: biome resource location or category (ex: \"minecraft:nether_wastes\" or \"jungle\")",
+                    "   [Soils]: O1, A1, B1, O2, A2, B2",
+                    "       O1: resource location of the primary block to replace grass (ex: \"rankine:loam_grass_block\")",
+                    "       A1: resource location of the primary block to replace dirt (ex: \"rankine:loam\")",
+                    "       B1: resource location of the primary block to generate under dirt (ex: \"rankine:loam\")",
+                    "       O2: resource location of the secondary block to replace grass (ex: \"rankine:loam_grass_block\")",
+                    "       A2: resource location of the secondary block to replace dirt (ex: \"rankine:loam\")",
+                    "       B2: resource location of the secondary block to generate under dirt (ex: \"rankine:loam\")",
+                    "   [Intrusions]: [Block|Weight|Ore|Chance]",
+                    "       Block: resource location of block to generate as an intrusion (ex: \"rankine:pegmatite\". Use \"minecraft:air\" to not generate an intrusion)",
+                    "       Weight: weight of the intrusion to generate (ex: \"5\")",
+                    "       Ore: resource location of an block to generate in an intrusion (ex: \"rankine:magnetite_ore\")",
+                    "       Chance: chance for an ore block to replace an intrusion block (ex: \"0.03\")",
+                    "   [Layers]: Rock1, Rock2, Rock3, ...",
+                    "       RockX: resource locations of the blocks to use in stone layers. From bottom to top.",
+                    "   [Vegetation]: [Block|Weight]",
+                    "       Block: resource location of block to grow above grassy soils (ex: \"rankine:stinging_nettle\")",
+                    "       Weight: weight of the block to generate (ex: \"2\")"
+            ).defineList("biomeSettings", biomeSettings, (p) -> p instanceof List);
+            b.pop();
+
+
+            oreSettings.add(Arrays.asList("rankine:stibnite_ore", Arrays.asList("all"),Arrays.asList("all"), 50, 75, 4, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_tin_ore", Arrays.asList("all"),Arrays.asList("all"), 50, 75, 5, 14, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_lead_ore", Arrays.asList("all"),Arrays.asList("all"), 50, 75, 4, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_silver_ore", Arrays.asList("all"),Arrays.asList("all"), 50, 75, 4, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_bismuth_ore", Arrays.asList("all"),Arrays.asList("all"), 50, 75, 4, 8, 1.0));
+            oreSettings.add(Arrays.asList("rankine:lignite_ore", Arrays.asList("all"),Arrays.asList("all"), 50, 75, 15, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:stibnite_ore", Arrays.asList("all"),Arrays.asList("all"), 75, 90, 4, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_tin_ore", Arrays.asList("all"),Arrays.asList("all"), 75, 90, 5 , 14, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_lead_ore", Arrays.asList("all"),Arrays.asList("all"), 75, 90, 4, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_silver_ore", Arrays.asList("all"),Arrays.asList("all"), 75, 90, 4, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_bismuth_ore", Arrays.asList("all"),Arrays.asList("all"), 75, 90, 4, 8, 1.0));
+            oreSettings.add(Arrays.asList("rankine:lignite_ore", Arrays.asList("all"),Arrays.asList("all"), 75, 128, 15, 4, 1.0));
+
+            oreSettings.add(Arrays.asList("rankine:native_gold_ore", Arrays.asList("all"),Arrays.asList("all"), 30, 75, 5, 10, 1.0));
+            oreSettings.add(Arrays.asList("rankine:pyrite_ore", Arrays.asList("all"),Arrays.asList("all"), 30, 75, 5, 6, 1.0));
+            oreSettings.add(Arrays.asList("rankine:subbituminous_ore", Arrays.asList("all"),Arrays.asList("all"), 20, 60, 15, 4, 1.0));
+            oreSettings.add(Arrays.asList("rankine:bituminous_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 25, 15, 2, 1.0));
+
+
+            oreSettings.add(Arrays.asList("rankine:bauxite_ore", Arrays.asList("jungle","swamp","plains","forest","taiga"),Arrays.asList("all"), 30, 70, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:celestine_ore", Arrays.asList("jungle","swamp","plains","forest","taiga"),Arrays.asList("all"), 30, 70, 20, 1, 0.2));
+            oreSettings.add(Arrays.asList("rankine:sphalerite_ore", Arrays.asList("desert","mesa","savanna","plains"),Arrays.asList("all"), 30, 70, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:pentlandite_ore", Arrays.asList("ocean","beach","mushroom","desert"),Arrays.asList("all"), 5, 40, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:chalcocite_ore", Arrays.asList("all"),Arrays.asList("all"), 30, 70, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:galena_ore", Arrays.asList("all"),Arrays.asList("all"), 20, 50, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:pyrolusite_ore", Arrays.asList("swamp","desert"),Arrays.asList("all"), 20, 50, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:magnesite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 30, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:chromite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 30, 30, 1, 0.3));
+            oreSettings.add(Arrays.asList("rankine:plumbago_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 30, 15, 1, 0.3));
+            oreSettings.add(Arrays.asList("rankine:lazurite_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 30, 20, 1, 0.3));
+            oreSettings.add(Arrays.asList("rankine:acanthite_ore", Arrays.asList("all"),Arrays.asList("all"), 20, 50, 30, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:cryolite_ore", Arrays.asList("extreme_hills","taiga"),Arrays.asList("all"), 20, 50, 30, 1, 0.2));
+            oreSettings.add(Arrays.asList("rankine:halite_ore", Arrays.asList("river","ocean","desert","mesa"),Arrays.asList("all"), 20, 50, 15, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:cinnabar_ore", Arrays.asList("all"),Arrays.asList("all"), 5, 20, 20, 1, 1.0));
+
+
+            oreSettings.add(Arrays.asList("rankine:native_sulfur_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 127, 4, 20, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_arsenic_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 127, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:anthracite_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 127, 15, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:cobaltite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:wolframite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:ilmenite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:sperrylite_ore", Arrays.asList("nether"),Arrays.asList("all"), 30, 90, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:coltan_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 40, 20, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:monazite_ore", Arrays.asList("nether"),Arrays.asList("all"), 0, 40, 20, 1, 1.0));
+
+
+            oreSettings.add(Arrays.asList("rankine:native_gallium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_indium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_selenium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:native_tellurium_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 4, 15, 1.0));
+            oreSettings.add(Arrays.asList("rankine:molybdenite_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:uraninite_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:xenotime_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:greenockite_ore", Arrays.asList("the_end"),Arrays.asList("all"), 10, 60, 10, 3, 1.0));
+
+            oreSettings.add(Arrays.asList("rankine:bog_iron", Arrays.asList("swamp","jungle"),Arrays.asList("all"), 40, 60, 12, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:kaolin", Arrays.asList("swamp","jungle","mushroom"),Arrays.asList("all"), 40, 70, 15, 1, 0.8));
+            oreSettings.add(Arrays.asList("rankine:ironstone", Arrays.asList("desert","savanna","mesa"),Arrays.asList("all"), 40, 60, 12, 3, 1.0));
+            oreSettings.add(Arrays.asList("rankine:phosphorite", Arrays.asList("all"),Arrays.asList("all"), 40, 70, 12, 1, 1.0));
+
+            oreSettings.add(Arrays.asList("rankine:basaltic_tuff", Arrays.asList("ocean","beach","mushroom","none"),Arrays.asList("all"), 20, 50, 60, 1, 1.0));
+            oreSettings.add(Arrays.asList("rankine:andesitic_tuff", Arrays.asList("extreme_hills"),Arrays.asList("all"), 70, 100, 60, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:rhyolitic_tuff", Arrays.asList("savanna","mesa","desert","plains"),Arrays.asList("all"), 10, 30, 60, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:komatiitic_tuff", Arrays.asList("minecraft:nether_wastes"),Arrays.asList("all"), 10, 30, 60, 1, 0.5));
+            oreSettings.add(Arrays.asList("rankine:kimberlitic_tuff", Arrays.asList("all"),Arrays.asList("all"), 0, 15, 40, 1, 0.2));
+
+            b.comment("Ore Feature Settings").push("oreGen");
+            ORE_SETTINGS = b.comment("Ore Settings",
+                    "[OreGen]: [Ore, [Biomes], [Stones], Min Height, Max Height, Size, Count, Chance]",
+                    "   Ore: resource loacation of the block to generate",
+                    "   [Biomes]: String list of biome resource loacations to generate in. Use \"all\" to generate in all biomes. Can use biome categories by using the category name: ex \"ocean\".",
+                    "   Min Height: Int to generate",
+                    "   Ore: resource loacation of the block to generate"
+            ).defineList("oreSettings", oreSettings, (p) -> p instanceof List);
+            b.pop();
+
+        }
+    }
+
+    public static class Intrusions {
+        public final ForgeConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
+        public final ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHRINK;
+        public final ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHIFT;
+        public final ForgeConfigSpec.IntValue NETHER_INTRUSION_RADIUS;
+        public final ForgeConfigSpec.DoubleValue NETHER_INTRUSION_SHRINK;
+        public final ForgeConfigSpec.DoubleValue NETHER_INTRUSION_SHRIFT;
+
+        public Intrusions(ForgeConfigSpec.Builder b) {
+            b.comment("Settings for intrusions").push("intrusions");
+            OVERWORLD_INTRUSION_RADIUS = b.comment("Size of an intrusion")
+                    .defineInRange("overworldIntrusionRadius", 4, 0, 15);
+            OVERWORLD_INTRUSION_SHRINK = b.comment("Chance for an overworld intrusion to shrink as it goes up. Values closer to 0 result in longer intrusions")
+                    .defineInRange("overworldIntrusionShrink", 0.08D, 0.0D, 1.0D);
+            OVERWORLD_INTRUSION_SHIFT = b.comment("Chance for an overworld intrusion to shift as it goes up. Values closer to 0 result in straighter intrusions")
+                    .defineInRange("overworldIntrusionShift", 0.2D, 0.0D, 1.0D);
+
+            NETHER_INTRUSION_RADIUS = b.comment("Maximum radius of an intrusion")
+                    .defineInRange("netherIntrusionRadius", 6, 0, 15);
+            NETHER_INTRUSION_SHRINK = b.comment("Chance for an nether intrusion to shift as it goes up. Values closer to 0 result in straighter intrusions")
+                    .defineInRange("netherIntrusionShift", 0.05D, 0.0D, 1.0D);
+            NETHER_INTRUSION_SHRIFT = b.comment("Chance for an overworld intrusion to shift as it goes up. Values closer to 0 result in straighter intrusions")
+                    .defineInRange("netherIntrusionShift", 0.15D, 0.0D, 1.0D);
+            b.pop();
+        }
+    }
+
+    public static class Layers {
+        public final ForgeConfigSpec.DoubleValue LAYER_WIDTH;
+        public final ForgeConfigSpec.IntValue NOISE_SCALE;
+        public final ForgeConfigSpec.IntValue NOISE_OFFSET;
+
+        public Layers(ForgeConfigSpec.Builder b) {
+            b.comment("Settings for stone layering").push("layers");
+            LAYER_WIDTH = b.comment("Determines the vertical spread of stone layers. 1.0 is flat, closer to 0.0 is more extreme, 0.0 will crash.")
+                    .defineInRange("layerWidth", 0.2D, 0.0D, 1.0D);
+            NOISE_SCALE = b.comment("This determines how wide stone layers generate. Smaller values means it will look more like bedrock. Default value is 125.")
+                    .defineInRange("noiseScale", 125, 1, 1000);
+            NOISE_OFFSET = b.comment("This determines how close the overlap of noise layers is. A value of 0 means all layers are shaped identically.")
+                    .defineInRange("noiseOffset", 256, 0, 16*64);
+            b.pop();
+        }
+    }
+
+    public static class BlockProperties {
+        /*
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> PEGMATITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> GRAY_GRANITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> RHYOLITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> COMENDITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> GRANODIORITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> RED_PORPHYRY_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> PURPLE_PORPHYRY_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> BLACK_DACITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> RED_DACITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> HORNBLENDE_ANDESITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SHONKINITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ANORTHOSITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> NORITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> TROCTOLITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> GABBRO_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> DIABASE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> THOLEIITIC_BASALT_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> PYROXENITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> PERIDOTITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> KOMATIITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> KIMBERLITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SOMMANITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> RINGWOODINE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> WADSLEYONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> BRIDGMANHAM_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> POST_PEROVSKITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> BLACK_MARBLE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> GRAY_MARBLE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> WHITE_MARBLE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ROSE_MARBLE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SLATE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> PHYLLITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> MICA_SCHIST_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> BLUESCHIST_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> GREENSCHIST_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> GNEISS_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> QUARTZITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SERPENTINITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> MARIPOSITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ECLOGITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> LIMESTONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> DOLOSTONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> CHALK_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> MARLSTONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SHALE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> MUDSTONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SILTSTONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ITACOLUMITE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ARKOSE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> SOUL_SANDSTONE_STATS;
+        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> HONEYSTONE_STATS;
+
+
+         */
+        public final ForgeConfigSpec.IntValue NATIVE_TIN_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_GOLD_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_LEAD_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_SILVER_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_ARSENIC_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_BISMUTH_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_SULFUR_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_GALLIUM_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_INDIUM_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_TELLURIUM_ORE_HL;
+        public final ForgeConfigSpec.IntValue NATIVE_SELENIUM_ORE_HL;
+        public final ForgeConfigSpec.IntValue MALACHITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue CHALCOCITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue CASSITERITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue BAUXITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue SPHALERITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue CINNABAR_ORE_HL;
+        public final ForgeConfigSpec.IntValue MAGNETITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue PENTLANDITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue MAGNESITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue GALENA_ORE_HL;
+        public final ForgeConfigSpec.IntValue BISMUTHINITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue ACANTHITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue PYROLUSITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue CHROMITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue MOLYBDENITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue ILMENITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue WOLFRAMITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue RHENIITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue PLUMBAGO_ORE_HL;
+        public final ForgeConfigSpec.IntValue SPERRYLITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue LIGNITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue SUBBITUMINOUS_ORE_HL;
+        public final ForgeConfigSpec.IntValue BITUMINOUS_ORE_HL;
+        public final ForgeConfigSpec.IntValue ANTHRACITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue LAZURITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue DIAMOND_ORE_HL;
+        public final ForgeConfigSpec.IntValue GREENOCKITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue EMERALD_ORE_HL;
+        public final ForgeConfigSpec.IntValue QUARTZ_ORE_HL;
+        public final ForgeConfigSpec.IntValue URANINITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue STIBNITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue XENOTIME_ORE_HL;
+        public final ForgeConfigSpec.IntValue BADDELEYITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue COLTAN_ORE_HL;
+        public final ForgeConfigSpec.IntValue HALITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue INTERSPINIFEX_ORE_HL;
+        public final ForgeConfigSpec.IntValue PETALITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue COBALTITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue CRYOLITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue PYRITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue CELESTINE_ORE_HL;
+        public final ForgeConfigSpec.IntValue MONAZITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue KAMACITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue ANTITAENITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue TAENITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue TETRATAENITE_ORE_HL;
+        public final ForgeConfigSpec.IntValue LONSDALEITE_ORE_HL;
+
+        public BlockProperties(ForgeConfigSpec.Builder b) {
+            /*
+            b.comment("Stone Properties").push("stoneProperties");
+                PEGMATITE_STATS = b.comment("Harvest level, Hardness, and Resistance of Pegmatite. ")
+                        .defineList("pegmatiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                GRAY_GRANITE_STATS = b.comment("Harvest level, Hardness, and Resistance of Gray Granite. ")
+                        .defineList("grayGraniteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                RHYOLITE_STATS = b.comment("Harvest level, Hardness, and Resistance of rhyolite. ")
+                        .defineList("rhyoliteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                COMENDITE_STATS = b.comment("Harvest level, Hardness, and Resistance of comendite. ")
+                        .defineList("comenditeStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                GRANODIORITE_STATS = b.comment("Harvest level, Hardness, and Resistance of granodiorite. ")
+                        .defineList("granodioriteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                RED_PORPHYRY_STATS = b.comment("Harvest level, Hardness, and Resistance of red_porphyry. ")
+                        .defineList("red_porphyryStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                PURPLE_PORPHYRY_STATS = b.comment("Harvest level, Hardness, and Resistance of purple_porphyry. ")
+                        .defineList("purple_porphyryStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                BLACK_DACITE_STATS = b.comment("Harvest level, Hardness, and Resistance of black_dacite. ")
+                        .defineList("black_daciteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                RED_DACITE_STATS = b.comment("Harvest level, Hardness, and Resistance of red_dacite. ")
+                        .defineList("red_daciteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                HORNBLENDE_ANDESITE_STATS = b.comment("Harvest level, Hardness, and Resistance of hornblende_andesite. ")
+                        .defineList("hornblende_andesiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SHONKINITE_STATS = b.comment("Harvest level, Hardness, and Resistance of shonkinite. ")
+                        .defineList("shonkiniteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                ANORTHOSITE_STATS = b.comment("Harvest level, Hardness, and Resistance of anorthosite. ")
+                        .defineList("anorthositeStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                NORITE_STATS = b.comment("Harvest level, Hardness, and Resistance of norite. ")
+                        .defineList("noriteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                TROCTOLITE_STATS = b.comment("Harvest level, Hardness, and Resistance of troctolite. ")
+                        .defineList("troctoliteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                GABBRO_STATS = b.comment("Harvest level, Hardness, and Resistance of gabbro. ")
+                        .defineList("gabbroStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                DIABASE_STATS = b.comment("Harvest level, Hardness, and Resistance of diabase. ")
+                        .defineList("diabaseStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                THOLEIITIC_BASALT_STATS = b.comment("Harvest level, Hardness, and Resistance of tholeiitic_basalt. ")
+                        .defineList("tholeiitic_basaltStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                PYROXENITE_STATS = b.comment("Harvest level, Hardness, and Resistance of pyroxenite. ")
+                        .defineList("pyroxeniteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                PERIDOTITE_STATS = b.comment("Harvest level, Hardness, and Resistance of peridotite. ")
+                        .defineList("peridotiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                KOMATIITE_STATS = b.comment("Harvest level, Hardness, and Resistance of komatiite. ")
+                        .defineList("komatiiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                KIMBERLITE_STATS = b.comment("Harvest level, Hardness, and Resistance of kimberlite. ")
+                        .defineList("kimberliteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SOMMANITE_STATS = b.comment("Harvest level, Hardness, and Resistance of sommanite. ")
+                        .defineList("sommaniteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                RINGWOODINE_STATS = b.comment("Harvest level, Hardness, and Resistance of ringwoodine. ")
+                        .defineList("ringwoodineStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                WADSLEYONE_STATS = b.comment("Harvest level, Hardness, and Resistance of wadsleyone. ")
+                        .defineList("wadsleyoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                BRIDGMANHAM_STATS = b.comment("Harvest level, Hardness, and Resistance of bridgmanham. ")
+                        .defineList("bridgmanhamStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                POST_PEROVSKITE_STATS = b.comment("Harvest level, Hardness, and Resistance of post_perovskite. ")
+                        .defineList("post_perovskiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                BLACK_MARBLE_STATS = b.comment("Harvest level, Hardness, and Resistance of black_marble. ")
+                        .defineList("black_marbleStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                GRAY_MARBLE_STATS = b.comment("Harvest level, Hardness, and Resistance of gray_marble. ")
+                        .defineList("gray_marbleStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                WHITE_MARBLE_STATS = b.comment("Harvest level, Hardness, and Resistance of white_marble. ")
+                        .defineList("white_marbleStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                ROSE_MARBLE_STATS = b.comment("Harvest level, Hardness, and Resistance of rose_marble. ")
+                        .defineList("rose_marbleStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SLATE_STATS = b.comment("Harvest level, Hardness, and Resistance of slate. ")
+                        .defineList("slateStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                PHYLLITE_STATS = b.comment("Harvest level, Hardness, and Resistance of phyllite. ")
+                        .defineList("phylliteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                MICA_SCHIST_STATS = b.comment("Harvest level, Hardness, and Resistance of mica_schist. ")
+                        .defineList("mica_schistStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                BLUESCHIST_STATS = b.comment("Harvest level, Hardness, and Resistance of blueschist. ")
+                        .defineList("blueschistStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                GREENSCHIST_STATS = b.comment("Harvest level, Hardness, and Resistance of greenschist. ")
+                        .defineList("greenschistStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                GNEISS_STATS = b.comment("Harvest level, Hardness, and Resistance of gneiss. ")
+                        .defineList("gneissStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                QUARTZITE_STATS = b.comment("Harvest level, Hardness, and Resistance of quartzite. ")
+                        .defineList("quartziteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SERPENTINITE_STATS = b.comment("Harvest level, Hardness, and Resistance of serpentinite. ")
+                        .defineList("serpentiniteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                MARIPOSITE_STATS = b.comment("Harvest level, Hardness, and Resistance of mariposite. ")
+                        .defineList("maripositeStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                ECLOGITE_STATS = b.comment("Harvest level, Hardness, and Resistance of eclogite. ")
+                        .defineList("eclogiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                LIMESTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of limestone. ")
+                        .defineList("limestoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                DOLOSTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of dolostone. ")
+                        .defineList("dolostoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                CHALK_STATS = b.comment("Harvest level, Hardness, and Resistance of chalk. ")
+                        .defineList("chalkStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                MARLSTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of marlstone. ")
+                        .defineList("marlstoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SHALE_STATS = b.comment("Harvest level, Hardness, and Resistance of shale. ")
+                        .defineList("shaleStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                MUDSTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of mudstone. ")
+                        .defineList("mudstoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SILTSTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of siltstone. ")
+                        .defineList("siltstoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                ITACOLUMITE_STATS = b.comment("Harvest level, Hardness, and Resistance of itacolumite. ")
+                        .defineList("itacolumiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                ARKOSE_STATS = b.comment("Harvest level, Hardness, and Resistance of arkose. ")
+                        .defineList("arkoseStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                SOUL_SANDSTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of soul_sandstone. ")
+                        .defineList("soul_sandstoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+                HONEYSTONE_STATS = b.comment("Harvest level, Hardness, and Resistance of honeystone. ")
+                        .defineList("honeystoneStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
+            b.pop();
+
+
+             */
+
+
+            b.comment("Oregen Settings").push("oregen");
+            NATIVE_TIN_ORE_HL = b.comment("Harvest Level of Native Tin Ore.")
+                    .defineInRange("nativeTinOreHL", 0, 0, 4);
+            NATIVE_GOLD_ORE_HL = b.comment("Harvest Level of Native Gold Ore.")
+                    .defineInRange("nativeGoldOreHL", 0, 0, 4);
+            NATIVE_LEAD_ORE_HL = b.comment("Harvest Level of Native Lead Ore.")
+                    .defineInRange("nativeLeadOreHL", 1, 0, 4);
+            NATIVE_SILVER_ORE_HL = b.comment("Harvest Level of Native Silver Ore.")
+                    .defineInRange("nativeSilverOreHL", 0, 0, 4);
+            NATIVE_ARSENIC_ORE_HL = b.comment("Harvest Level of Native Arsenic Ore.")
+                    .defineInRange("nativeArsenicOreHL", 1, 0, 4);
+            NATIVE_BISMUTH_ORE_HL = b.comment("Harvest Level of Native Bismuth Ore.")
+                    .defineInRange("nativeBismuthOreHL", 1, 0, 4);
+            NATIVE_SULFUR_ORE_HL = b.comment("Harvest Level of Native Sulfur Ore.")
+                    .defineInRange("nativeSulfurOreHL", 1, 0, 4);
+            NATIVE_GALLIUM_ORE_HL = b.comment("Harvest Level of Native Gallium Ore.")
+                    .defineInRange("nativeGalliumOreHL", 1, 0, 4);
+            NATIVE_INDIUM_ORE_HL = b.comment("Harvest Level of Native Indium Ore.")
+                    .defineInRange("nativeIndiumOreHL", 1, 0, 4);
+            NATIVE_TELLURIUM_ORE_HL = b.comment("Harvest Level of Native Tellurium Ore.")
+                    .defineInRange("nativeTelluriumOreHL", 1, 0, 4);
+            NATIVE_SELENIUM_ORE_HL = b.comment("Harvest Level of Native Selenium Ore.")
+                    .defineInRange("nativeSeleniumOreHL", 1, 0, 4);
+            MALACHITE_ORE_HL = b.comment("Harvest Level of Malachite Ore.")
+                    .defineInRange("malachiteOreHL", 3, 0, 4);
+            CHALCOCITE_ORE_HL = b.comment("Harvest Level of Chalcocite Ore.")
+                    .defineInRange("chalcociteOreHL", 2, 0, 4);
+            CASSITERITE_ORE_HL = b.comment("Harvest Level of Cassiterite Ore.")
+                    .defineInRange("cassiteriteOreHL", 2, 0, 4);
+            BAUXITE_ORE_HL = b.comment("Harvest Level of Bauxite Ore.")
+                    .defineInRange("bauxiteOreHL", 2, 0, 4);
+            SPHALERITE_ORE_HL = b.comment("Harvest Level of Sphalerite Ore.")
+                    .defineInRange("sphaleriteOreHL", 2, 0, 4);
+            CINNABAR_ORE_HL = b.comment("Harvest Level of Cinnabar Ore.")
+                    .defineInRange("cinnabarOreHL", 2, 0, 4);
+            MAGNETITE_ORE_HL = b.comment("Harvest Level of Magnetite Ore.")
+                    .defineInRange("magnetiteOreHL", 4, 0, 4);
+            PENTLANDITE_ORE_HL = b.comment("Harvest Level of Pentlandite Ore.")
+                    .defineInRange("pentlanditeOreHL", 3, 0, 4);
+            MAGNESITE_ORE_HL = b.comment("Harvest Level of Magnesite Ore.")
+                    .defineInRange("magnesiteOreHL", 2, 0, 4);
+            GALENA_ORE_HL = b.comment("Harvest Level of Galena Ore.")
+                    .defineInRange("galenaOreHL", 2, 0, 4);
+            BISMUTHINITE_ORE_HL = b.comment("Harvest Level of Bismuthinite Ore.")
+                    .defineInRange("bismuthiniteOreHL", 3, 0, 4);
+            ACANTHITE_ORE_HL = b.comment("Harvest Level of Acanthite Ore.")
+                    .defineInRange("acanthiteOreHL", 3, 0, 4);
+            PYROLUSITE_ORE_HL = b.comment("Harvest Level of Pyrolusite Ore.")
+                    .defineInRange("pyrolusiteOreHL", 3, 0, 4);
+            CHROMITE_ORE_HL = b.comment("Harvest Level of Chromite Ore.")
+                    .defineInRange("chromiteOreHL", 3, 0, 4);
+            MOLYBDENITE_ORE_HL = b.comment("Harvest Level of Molybdenite Ore.")
+                    .defineInRange("molybdeniteOreHL", 4, 0, 4);
+            ILMENITE_ORE_HL = b.comment("Harvest Level of Ilmenite Ore.")
+                    .defineInRange("ilmeniteOreHL", 3, 0, 4);
+            WOLFRAMITE_ORE_HL = b.comment("Harvest Level of Wolframite Ore.")
+                    .defineInRange("wolframiteOreHL", 4, 0, 4);
+            RHENIITE_ORE_HL = b.comment("Harvest Level of Rheniite Ore.")
+                    .defineInRange("rheniiteOreHL", 4, 0, 4);
+            PLUMBAGO_ORE_HL = b.comment("Harvest Level of Plumbago Ore.")
+                    .defineInRange("plumbagoOreHL", 2, 0, 4);
+            SPERRYLITE_ORE_HL = b.comment("Harvest Level of Sperrylite Ore.")
+                    .defineInRange("sperryliteOreHL", 4, 0, 4);
+            LIGNITE_ORE_HL = b.comment("Harvest Level of Lignite Ore.")
+                    .defineInRange("ligniteOreHL", 1, 0, 4);
+            SUBBITUMINOUS_ORE_HL = b.comment("Harvest Level of Subbituminous Ore.")
+                    .defineInRange("subbituminousOreHL", 2, 0, 4);
+            BITUMINOUS_ORE_HL = b.comment("Harvest Level of Bituminous Ore.")
+                    .defineInRange("bituminousOreHL", 3, 0, 4);
+            ANTHRACITE_ORE_HL = b.comment("Harvest Level of Anthracite Ore.")
+                    .defineInRange("anthraciteOreHL", 4, 0, 4);
+            LAZURITE_ORE_HL = b.comment("Harvest Level of Lazurite Ore.")
+                    .defineInRange("lazuriteOreHL", 2, 0, 4);
+            DIAMOND_ORE_HL = b.comment("Harvest Level of Diamond Ore.")
+                    .defineInRange("diamondOreHL", 3, 0, 4);
+            GREENOCKITE_ORE_HL = b.comment("Harvest Level of Greenockite Ore.")
+                    .defineInRange("greenockiteOreHL", 4, 0, 4);
+            EMERALD_ORE_HL = b.comment("Harvest Level of Emerald Ore.")
+                    .defineInRange("emeraldOreHL", 3, 0, 4);
+            QUARTZ_ORE_HL = b.comment("Harvest Level of Quartz Ore.")
+                    .defineInRange("quartzOreHL", 2, 0, 4);
+            URANINITE_ORE_HL = b.comment("Harvest Level of Uraninite Ore.")
+                    .defineInRange("uraniniteOreHL", 4, 0, 4);
+            STIBNITE_ORE_HL = b.comment("Harvest Level of Stibnite Ore.")
+                    .defineInRange("stibniteOreHL", 0, 0, 4);
+            XENOTIME_ORE_HL = b.comment("Harvest Level of Xenotime Ore.")
+                    .defineInRange("xenotimeOreHL", 4, 0, 4);
+            BADDELEYITE_ORE_HL = b.comment("Harvest Level of Baddeleyite Ore.")
+                    .defineInRange("baddeleyiteOreHL", 4, 0, 4);
+            HALITE_ORE_HL = b.comment("Harvest Level of Halite Ore.")
+                    .defineInRange("haliteOreHL", 0, 0, 4);
+            INTERSPINIFEX_ORE_HL = b.comment("Harvest Level of Interspinifex Ore.")
+                    .defineInRange("interspinifexOreHL", 3, 0, 4);
+            PETALITE_ORE_HL = b.comment("Harvest Level of Petalite Ore.")
+                    .defineInRange("petaliteOreHL", 3, 0, 4);
+            COBALTITE_ORE_HL = b.comment("Harvest Level of Cobaltite Ore.")
+                    .defineInRange("cobaltiteOreHL", 4, 0, 4);
+            CRYOLITE_ORE_HL = b.comment("Harvest Level of Cryolite Ore.")
+                    .defineInRange("cryoliteOreHL", 4, 0, 4);
+            COLTAN_ORE_HL = b.comment("Harvest Level of Coltan Ore.")
+                    .defineInRange("coltanOreHL", 4, 0, 4);
+            PYRITE_ORE_HL = b.comment("Harvest Level of Pyrite Ore.")
+                    .defineInRange("pyriteOreHL", 2, 0, 4);
+            CELESTINE_ORE_HL = b.comment("Harvest Level of Celestine Ore.")
+                    .defineInRange("celestineOreHL", 3, 0, 4);
+            MONAZITE_ORE_HL = b.comment("Harvest Level of Monazite Ore.")
+                    .defineInRange("monaziteOreHL", 4, 0, 4);
+            KAMACITE_ORE_HL = b.comment("Harvest Level of Kamacite Ore.")
+                    .defineInRange("kamaciteOreHL", 2, 0, 4);
+            ANTITAENITE_ORE_HL = b.comment("Harvest Level of Antitaenite Ore.")
+                    .defineInRange("antitaeniteOreHL", 2, 0, 4);
+            TAENITE_ORE_HL = b.comment("Harvest Level of Taenite Ore.")
+                    .defineInRange("taeniteOreHL", 2, 0, 4);
+            TETRATAENITE_ORE_HL = b.comment("Harvest Level of Tetrataenite Ore.")
+                    .defineInRange("tetrataeniteOreHL", 2, 0, 4);
+            LONSDALEITE_ORE_HL = b.comment("Harvest Level of Lonsdaleite Ore.")
+                    .defineInRange("lonsdaleiteOreHL", 5, 0, 5);
+            b.pop();
+        }
+    }
+
+
+    public static class Misc {
+        public final ForgeConfigSpec.IntValue BEDROCK_LAYERS;
+        public final ForgeConfigSpec.BooleanValue FLAT_BEDROCK;
+        public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
+        public final ForgeConfigSpec.BooleanValue RANKINE_FAUNA;
+        public final ForgeConfigSpec.BooleanValue FIRE_CLAY_GEN;
+        public final ForgeConfigSpec.BooleanValue EVAPORITE_GEN;
+        public final ForgeConfigSpec.BooleanValue FUMAROLE_GEN;
+        public final ForgeConfigSpec.BooleanValue ALLUVIUM_GEN;
+        public final ForgeConfigSpec.BooleanValue SECRET_GEN;
+        public final ForgeConfigSpec.BooleanValue END_METEORITE_GEN;
+        public final ForgeConfigSpec.BooleanValue METEORITE_GEN;
+        public final ForgeConfigSpec.DoubleValue END_METEORITE_CHANCE;
+        public final ForgeConfigSpec.DoubleValue BIG_METEORITE_CHANCE;
+        public final ForgeConfigSpec.IntValue METEORITE_SIZE;
+        public final ForgeConfigSpec.IntValue METEORITE_CHANCE;
+        public final ForgeConfigSpec.ConfigValue<List<? extends String>> ORE_STONES;
+
+
+        public Misc(ForgeConfigSpec.Builder b) {
+            b.comment("Here are miscellaneous worldgen features").push("misc");
+            ORE_STONES = b.comment("Textures of blocks for ores.")
+                    .defineList("oreTextures", Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:peridotite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:eclogite", "rankine:marlstone", "rankine:soul_sandstone", "rankine:blueschist", "rankine:greenschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite"), Config.ELEMENT_VALIDATOR);
+
+            FLAT_BEDROCK = b.comment("Generates with a flat bedrock layer (includes the Nether)")
+                    .define("flatBedrock",false);
+            SECRET_GEN = b.comment("Figure it out")
+                    .define("secretGen",true);
+            BEDROCK_LAYERS = b.comment("Layers of bedrock to generate if flatBedrock is true")
+                    .defineInRange("bedrockLayers", 1, 0, 5);
+            DISABLE_VANILLA_FEATURES = b.comment("Disable vanilla features in the overworld. Works by replacing the listed blocks in #rankine:vanilla_override with stones")
+                    .define("disableVanillaOres",true);
+            RANKINE_FAUNA = b.comment("Enable/Disable Project Rankine trees and berry bushes in world.")
+                    .define("generateFauna",true);
+            FIRE_CLAY_GEN = b.comment("Enables the generation of fire clay disks in dirt.")
+                    .define("generateFireClay",true);
+            EVAPORITE_GEN = b.comment("Enables the generation of evaporite disks.")
+                    .define("generateEvaporite",true);
+            FUMAROLE_GEN = b.comment("Enables the generation of fumaroles. More options to come.")
+                    .define("generateFumaroles",true);
+            ALLUVIUM_GEN = b.comment("Enables the generation of alluvium disks.")
+                    .define("generateAlluvium",true);
+            END_METEORITE_GEN = b.comment("Enable to generate meteorites in the end.")
+                    .define("endMeteoriteGen",true);
+            END_METEORITE_CHANCE = b.comment("The chance for an end meteroite.")
+                    .defineInRange("endMeteoriteChance", 0.03, 0.00, 1.00);
+            METEORITE_GEN = b.comment("Enable to generate meteorites in the overworld.")
+                    .define("meteoriteGen",true);
+            METEORITE_SIZE = b.comment("Size parameter for meteorites. Higher number is bigger.")
+                    .defineInRange("meteoriteSize", 1, 0, 10);
+            METEORITE_CHANCE = b.comment("The chance a meteroite will spawn in the Overworld. Higher numbers increase rarity.")
+                    .defineInRange("meteoriteChance", 100, 0, 1000);
+            BIG_METEORITE_CHANCE = b.comment("The chance a meteroite will be big.")
+                    .defineInRange("meteoriteBigChance", 0.25, 0.00, 1.00);
+            b.pop();
+        }
+    }
+
+    public static class Tools {
+        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_MALLET;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
         public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
@@ -46,6 +739,116 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_PICKAXE;
         public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_HOE;
 
+        public final ForgeConfigSpec.BooleanValue DISABLE_COMPASS;
+        public final ForgeConfigSpec.BooleanValue DISABLE_CLOCK;
+        public final ForgeConfigSpec.BooleanValue DISABLE_ALTIMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_THERMOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_PHOTOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_SPEEDOMETER;
+        public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
+
+        public Tools(ForgeConfigSpec.Builder b) {
+            b.comment("Settings for tools").push("tools");
+
+            b.comment("Rankine Tools").push("rankineTools");
+            DISABLE_WOODEN_MALLET = b.comment("Disable the use of the wooden mallet (still allows crafting for other recipes). This is enabled by default for progression.")
+                    .define("disableWoodenMallet", true);
+            DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
+                    .define("disableCompass",false);
+            DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
+                    .define("disableClock",false);
+            DISABLE_ALTIMETER = b.comment("Disable status bar message from altimeter.")
+                    .define("disableAltimeter",false);
+            DISABLE_PHOTOMETER = b.comment("Disable status bar message from photometer.")
+                    .define("disablePhotmeter",false);
+            DISABLE_SPEEDOMETER = b.comment("Disable status bar message from speedometer.")
+                    .define("disableSpeedometer",false);
+            DISABLE_THERMOMETER = b.comment("Disable status bar message from thermometer.")
+                    .define("disableThermometer",false);
+            DISABLE_BIOMETER = b.comment("Disable status bar message from biometer.")
+                    .define("disableBiometer",false);
+            b.pop();
+
+            b.comment("Vanilla Tools").push("vanillaTools");
+            b.comment("Wooden Tools").push("woodenTools");
+            DISABLE_WOODEN_SWORD = b.comment("Disable the use of the wooden sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableWoodenSword", false);
+            DISABLE_WOODEN_AXE = b.comment("Disable the use of the wooden axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableWoodenAxe", false);
+            DISABLE_WOODEN_SHOVEL = b.comment("Disable the use of the wooden shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableWoodenShovel", false);
+            DISABLE_WOODEN_PICKAXE = b.comment("Disable the use of the wooden pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableWoodenPickaxe", false);
+            DISABLE_WOODEN_HOE = b.comment("Disable the use of the wooden hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableWoodenHoe", false);
+            b.pop();
+            b.comment("Stone Tools").push("stoneTools");
+            DISABLE_STONE_SWORD = b.comment("Disable the use of the stone sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableStoneSword", false);
+            DISABLE_STONE_AXE = b.comment("Disable the use of the stone axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableStoneAxe", false);
+            DISABLE_STONE_SHOVEL = b.comment("Disable the use of the stone shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableStoneShovel", false);
+            DISABLE_STONE_PICKAXE = b.comment("Disable the use of the stone pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableStonePickaxe", false);
+            DISABLE_STONE_HOE = b.comment("Disable the use of the stone hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableStoneHoe", false);
+            b.pop();
+            b.comment("Iron Tools").push("ironTools");
+            DISABLE_IRON_SWORD = b.comment("Disable the use of the iron sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableIronSword", false);
+            DISABLE_IRON_AXE = b.comment("Disable the use of the iron axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableIronAxe", false);
+            DISABLE_IRON_SHOVEL = b.comment("Disable the use of the iron shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableIronShovel", false);
+            DISABLE_IRON_PICKAXE = b.comment("Disable the use of the iron pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableIronPickaxe", false);
+            DISABLE_IRON_HOE = b.comment("Disable the use of the iron hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableIronHoe", false);
+            b.pop();
+            b.comment("Gold Tools").push("goldTools");
+            DISABLE_GOLDEN_SWORD = b.comment("Disable the use of the gold sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableGoldSword", false);
+            DISABLE_GOLDEN_AXE = b.comment("Disable the use of the gold axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableGoldAxe", false);
+            DISABLE_GOLDEN_SHOVEL = b.comment("Disable the use of the gold shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableGoldShovel", false);
+            DISABLE_GOLDEN_PICKAXE = b.comment("Disable the use of the gold pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableGoldPickaxe", false);
+            DISABLE_GOLDEN_HOE = b.comment("Disable the use of the gold hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableGoldHoe", false);
+            b.pop();
+            b.comment("Diamond Tools").push("diamondTools");
+            DISABLE_DIAMOND_SWORD = b.comment("Disable the use of the diamond sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableDiamondSword", false);
+            DISABLE_DIAMOND_AXE = b.comment("Disable the use of the diamond axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableDiamondAxe", false);
+            DISABLE_DIAMOND_SHOVEL = b.comment("Disable the use of the diamond shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableDiamondShovel", false);
+            DISABLE_DIAMOND_PICKAXE = b.comment("Disable the use of the diamond pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableDiamondPickaxe", false);
+            DISABLE_DIAMOND_HOE = b.comment("Disable the use of the diamond hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableDiamondHoe", false);
+            b.pop();
+            b.comment("Netherite Tools").push("netheriteTools");
+            DISABLE_NETHERITE_SWORD = b.comment("Disable the use of the netherite sword (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableNetheriteSword", false);
+            DISABLE_NETHERITE_AXE = b.comment("Disable the use of the netherite axe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableNetheriteAxe", false);
+            DISABLE_NETHERITE_SHOVEL = b.comment("Disable the use of the netherite shovel (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableNetheriteShovel", false);
+            DISABLE_NETHERITE_PICKAXE = b.comment("Disable the use of the netherite pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableNetheritePickaxe", false);
+            DISABLE_NETHERITE_HOE = b.comment("Disable the use of the netherite hoe (still allows crafting for other recipes). This is disabled by default for progression.")
+                    .define("disableNetheriteHoe", false);
+            b.pop();
+            b.pop();
+            b.pop();
+        }
+    }
+
+
+    public static class General {
         public final ForgeConfigSpec.BooleanValue MOVEMENT_MODIFIERS;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_SAND;
         public final ForgeConfigSpec.DoubleValue MOVEMENT_GRASS_PATH;
@@ -68,13 +871,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue ORE_DETECTOR_MSG;
         public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
 
-        public final ForgeConfigSpec.BooleanValue DISABLE_COMPASS;
-        public final ForgeConfigSpec.BooleanValue DISABLE_CLOCK;
-        public final ForgeConfigSpec.BooleanValue DISABLE_ALTIMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_THERMOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_PHOTOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_SPEEDOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
+
 
 
         public final ForgeConfigSpec.IntValue MAX_TREE;
@@ -86,6 +883,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue COLOR_WORLD;
         public final ForgeConfigSpec.BooleanValue FUEL_VALUES;
         public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
+        public final ForgeConfigSpec.BooleanValue STUMP_CREATION;
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_CORK;
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_PAPER;
         public final ForgeConfigSpec.BooleanValue STRIPPABLES_CINNAMON;
@@ -95,6 +893,7 @@ public class Config {
         public final ForgeConfigSpec.DoubleValue FORAGING_CHANCE;
         public final ForgeConfigSpec.DoubleValue SAPLING_GROW_CHANCE;
         public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
+        public final ForgeConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
         public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
         public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
         public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
@@ -122,7 +921,7 @@ public class Config {
 
                 b.comment("Miscellaneous").push("misc");
                     PATH_CREATION_TIME = b.comment("Roughly the time in seconds between chance for blocks to be changed to a path block when stepped on.")
-                            .defineInRange("pathCreationTime", 90, 0, 600);
+                            .defineInRange("pathCreationTime", 10, 0, 600);
                     PATH_CREATION = b.comment("If enabled, walking on grass blocks, mycelium and podzol has a chance to create a path block underfoot.")
                             .define("pathCreation",true);
                     COLOR_WORLD = b.comment("If enabled, dyes can be used on blocks in-world to dye them (includes concrete, concrete powder, terracotta, glazed terracotta, stained glass, stained glass panes, leds, wool)")
@@ -177,6 +976,8 @@ public class Config {
                             .defineInRange("foragingChance", 0.10D, 0.00D, 1.00D);
                     GRASS_GROW_CHANCE = b.comment("Chance for a grass block to grow something on a random tick")
                             .defineInRange("grassGrowChance", 0.03D, 0.00D, 1.00D);
+                    PODZOL_GROW_CHANCE = b.comment("Chance for a podzol block to grow on grass")
+                            .defineInRange("podzolGrowChance", 0.5D, 0.00D, 1.00D);
                     SAPLING_GROW_CHANCE = b.comment("Chance for a grass block to grow a sapling on a random tick")
                             .defineInRange("saplingGrowChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
@@ -204,23 +1005,8 @@ public class Config {
                         .defineInRange("maxTree", 256, 0, 1024);
                     TREE_CHOP_SPEED = b.comment("Speed factor for chopping trees after size is accounted for.")
                             .defineInRange("treeChopSpeedFactor", 0.75D, 0.0D, 2.0D);
-                b.pop();
-
-                b.comment("Tree Chopping").push("treeChopping");
-                    DISABLE_COMPASS = b.comment("Disable status bar message from compass.")
-                            .define("disableCompass",false);
-                    DISABLE_CLOCK = b.comment("Disable status bar message from clock.")
-                            .define("disableClock",false);
-                    DISABLE_ALTIMETER = b.comment("Disable status bar message from altimeter.")
-                            .define("disableAltimeter",false);
-                    DISABLE_PHOTOMETER = b.comment("Disable status bar message from photometer.")
-                            .define("disablePhotmeter",false);
-                    DISABLE_SPEEDOMETER = b.comment("Disable status bar message from speedometer.")
-                            .define("disableSpeedometer",false);
-                    DISABLE_THERMOMETER = b.comment("Disable status bar message from thermometer.")
-                            .define("disableThermometer",false);
-                    DISABLE_BIOMETER = b.comment("Disable status bar message from biometer.")
-                            .define("disableBiometer",false);
+                    STUMP_CREATION = b.comment("Creates stumps when tree chopping.")
+                            .define("createStumps",true);
                 b.pop();
 
                 b.comment("Movement speed modifiers").push("movementModifiers");
@@ -266,85 +1052,7 @@ public class Config {
                             .define("playerPryingEnchantment",true);
                 b.pop();
 
-                b.comment("Vanilla Tools").push("vanillaTools");
-                    b.comment("Wooden Tools").push("woodenTools");
-                    DISABLE_WOODEN_SWORD = b.comment("Disable the use of the wooden sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableWoodenSword",false);
-                    DISABLE_WOODEN_AXE = b.comment("Disable the use of the wooden axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableWoodenAxe",false);
-                    DISABLE_WOODEN_SHOVEL = b.comment("Disable the use of the wooden shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableWoodenShovel",false);
-                    DISABLE_WOODEN_PICKAXE = b.comment("Disable the use of the wooden pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableWoodenPickaxe",false);
-                    DISABLE_WOODEN_HOE = b.comment("Disable the use of the wooden hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableWoodenHoe",false);
-                    b.pop();
 
-                    b.comment("Stone Tools").push("stoneTools");
-                    DISABLE_STONE_SWORD = b.comment("Disable the use of the stone sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableStoneSword",false);
-                    DISABLE_STONE_AXE = b.comment("Disable the use of the stone axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableStoneAxe",false);
-                    DISABLE_STONE_SHOVEL = b.comment("Disable the use of the stone shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableStoneShovel",false);
-                    DISABLE_STONE_PICKAXE = b.comment("Disable the use of the stone pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableStonePickaxe",false);
-                    DISABLE_STONE_HOE = b.comment("Disable the use of the stone hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableStoneHoe",false);
-                    b.pop();
-
-                    b.comment("Iron Tools").push("ironTools");
-                    DISABLE_IRON_SWORD = b.comment("Disable the use of the iron sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableIronSword",false);
-                    DISABLE_IRON_AXE = b.comment("Disable the use of the iron axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableIronAxe",false);
-                    DISABLE_IRON_SHOVEL = b.comment("Disable the use of the iron shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableIronShovel",false);
-                    DISABLE_IRON_PICKAXE = b.comment("Disable the use of the iron pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableIronPickaxe",false);
-                    DISABLE_IRON_HOE = b.comment("Disable the use of the iron hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableIronHoe",false);
-                    b.pop();
-
-                    b.comment("Gold Tools").push("goldTools");
-                    DISABLE_GOLDEN_SWORD = b.comment("Disable the use of the gold sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableGoldSword",false);
-                    DISABLE_GOLDEN_AXE = b.comment("Disable the use of the gold axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableGoldAxe",false);
-                    DISABLE_GOLDEN_SHOVEL = b.comment("Disable the use of the gold shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableGoldShovel",false);
-                    DISABLE_GOLDEN_PICKAXE = b.comment("Disable the use of the gold pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableGoldPickaxe",false);
-                    DISABLE_GOLDEN_HOE = b.comment("Disable the use of the gold hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableGoldHoe",false);
-                    b.pop();
-
-                    b.comment("Diamond Tools").push("diamondTools");
-                    DISABLE_DIAMOND_SWORD = b.comment("Disable the use of the diamond sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondSword",false);
-                    DISABLE_DIAMOND_AXE = b.comment("Disable the use of the diamond axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondAxe",false);
-                    DISABLE_DIAMOND_SHOVEL = b.comment("Disable the use of the diamond shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondShovel",false);
-                    DISABLE_DIAMOND_PICKAXE = b.comment("Disable the use of the diamond pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondPickaxe",false);
-                    DISABLE_DIAMOND_HOE = b.comment("Disable the use of the diamond hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableDiamondHoe",false);
-                    b.pop();
-
-                    b.comment("Netherite Tools").push("netheriteTools");
-                    DISABLE_NETHERITE_SWORD = b.comment("Disable the use of the netherite sword (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteSword",false);
-                    DISABLE_NETHERITE_AXE = b.comment("Disable the use of the netherite axe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteAxe",false);
-                    DISABLE_NETHERITE_SHOVEL = b.comment("Disable the use of the netherite shovel (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteShovel",false);
-                    DISABLE_NETHERITE_PICKAXE = b.comment("Disable the use of the netherite pickaxe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheritePickaxe",false);
-                    DISABLE_NETHERITE_HOE = b.comment("Disable the use of the netherite hoe (still allows crafting for other recipes). This is disabled by default for progression.")
-                            .define("disableNetheriteHoe",false);
-                    b.pop();
-                b.pop();
             b.pop();
         }
     }
@@ -899,6 +1607,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue TREE_TAP_RESIN;
         public final ForgeConfigSpec.BooleanValue TREE_TAP_JUGLONE;
         public final ForgeConfigSpec.IntValue TREE_TAP_SPEED;
+        public final ForgeConfigSpec.IntValue GROUND_TAP_SPEED;
 
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
         public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
@@ -936,6 +1645,8 @@ public class Config {
                         .define("tapJuglone", true);
                 TREE_TAP_SPEED = b.comment("The number of random ticks it takes the Tree Tap to process")
                         .defineInRange("treeTapSpeed", 3, 1, 1000);
+                GROUND_TAP_SPEED = b.comment("The number of ticks it takes the Ground Tap to process")
+                        .defineInRange("groundTapSpeed", 600, 0, 100000);
                 CHARCOAL_PIT_RADIUS = b.comment("Maximum radius the charcoal pit can convert logs.")
                         .defineInRange("charcoalPitRadius", 7, 3, 15);
                 CHARCOAL_PIT_SPEED = b.comment("The number of random ticks it takes the Charcoal Pit to process")
@@ -970,600 +1681,6 @@ public class Config {
                         .defineInRange("gyratoryCrusherPower", 1, 0, 10000);
                 INDUCTION_FURNACE_POWER = b.comment("Defines the power requirement for one process in the induction furnace.")
                         .defineInRange("inductionFurnacePower", 16, 0, 10000);
-            b.pop();
-        }
-    }
-
-    public static Predicate<Object> DoubleValidator = o -> o instanceof Double;
-    public static class StoneProperties {
-
-        public final ForgeConfigSpec.IntValue GRAY_GRANITE_HL;
-        public final ForgeConfigSpec.DoubleValue GRAY_GRANITE_HARD;
-        public final ForgeConfigSpec.DoubleValue GRAY_GRANITE_RESIST;
-        public final ForgeConfigSpec.IntValue GRANODIORITE_HL;
-        public final ForgeConfigSpec.DoubleValue GRANODIORITE_HARD;
-        public final ForgeConfigSpec.DoubleValue GRANODIORITE_RESIST;
-        public final ForgeConfigSpec.IntValue HORNBLENDE_ANDESITE_HL;
-        public final ForgeConfigSpec.DoubleValue HORNBLENDE_ANDESITE_HARD;
-        public final ForgeConfigSpec.DoubleValue HORNBLENDE_ANDESITE_RESIST;
-        public final ForgeConfigSpec.IntValue THOLEIITIC_BASALT_HL;
-        public final ForgeConfigSpec.DoubleValue THOLEIITIC_BASALT_HARD;
-        public final ForgeConfigSpec.DoubleValue THOLEIITIC_BASALT_RESIST;
-        public final ForgeConfigSpec.IntValue GABBRO_HL;
-        public final ForgeConfigSpec.DoubleValue GABBRO_HARD;
-        public final ForgeConfigSpec.DoubleValue GABBRO_RESIST;
-        public final ForgeConfigSpec.IntValue ANORTHOSITE_HL;
-        public final ForgeConfigSpec.DoubleValue ANORTHOSITE_HARD;
-        public final ForgeConfigSpec.DoubleValue ANORTHOSITE_RESIST;
-        public final ForgeConfigSpec.IntValue SHONKINITE_HL;
-        public final ForgeConfigSpec.DoubleValue SHONKINITE_HARD;
-        public final ForgeConfigSpec.DoubleValue SHONKINITE_RESIST;
-        public final ForgeConfigSpec.IntValue PYROXENITE_HL;
-        public final ForgeConfigSpec.DoubleValue PYROXENITE_HARD;
-        public final ForgeConfigSpec.DoubleValue PYROXENITE_RESIST;
-        public final ForgeConfigSpec.IntValue NORITE_HL;
-        public final ForgeConfigSpec.DoubleValue NORITE_HARD;
-        public final ForgeConfigSpec.DoubleValue NORITE_RESIST;
-        public final ForgeConfigSpec.IntValue RHYOLITE_HL;
-        public final ForgeConfigSpec.DoubleValue RHYOLITE_HARD;
-        public final ForgeConfigSpec.DoubleValue RHYOLITE_RESIST;
-        public final ForgeConfigSpec.IntValue COMENDITE_HL;
-        public final ForgeConfigSpec.DoubleValue COMENDITE_HARD;
-        public final ForgeConfigSpec.DoubleValue COMENDITE_RESIST;
-        public final ForgeConfigSpec.IntValue BLACK_DACITE_HL;
-        public final ForgeConfigSpec.DoubleValue BLACK_DACITE_HARD;
-        public final ForgeConfigSpec.DoubleValue BLACK_DACITE_RESIST;
-        public final ForgeConfigSpec.IntValue RED_DACITE_HL;
-        public final ForgeConfigSpec.DoubleValue RED_DACITE_HARD;
-        public final ForgeConfigSpec.DoubleValue RED_DACITE_RESIST;
-        public final ForgeConfigSpec.IntValue RED_PORPHYRY_HL;
-        public final ForgeConfigSpec.DoubleValue RED_PORPHYRY_HARD;
-        public final ForgeConfigSpec.DoubleValue RED_PORPHYRY_RESIST;
-        public final ForgeConfigSpec.IntValue PURPLE_PORPHYRY_HL;
-        public final ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_HARD;
-        public final ForgeConfigSpec.DoubleValue PURPLE_PORPHYRY_RESIST;
-        public final ForgeConfigSpec.IntValue PEGMATITE_HL;
-        public final ForgeConfigSpec.DoubleValue PEGMATITE_HARD;
-        public final ForgeConfigSpec.DoubleValue PEGMATITE_RESIST;
-        public final ForgeConfigSpec.IntValue PERIDOTITE_HL;
-        public final ForgeConfigSpec.DoubleValue PERIDOTITE_HARD;
-        public final ForgeConfigSpec.DoubleValue PERIDOTITE_RESIST;
-        public final ForgeConfigSpec.IntValue TROCTOLITE_HL;
-        public final ForgeConfigSpec.DoubleValue TROCTOLITE_HARD;
-        public final ForgeConfigSpec.DoubleValue TROCTOLITE_RESIST;
-        public final ForgeConfigSpec.IntValue KIMBERLITE_HL;
-        public final ForgeConfigSpec.DoubleValue KIMBERLITE_HARD;
-        public final ForgeConfigSpec.DoubleValue KIMBERLITE_RESIST;
-        public final ForgeConfigSpec.IntValue KOMATIITE_HL;
-        public final ForgeConfigSpec.DoubleValue KOMATIITE_HARD;
-        public final ForgeConfigSpec.DoubleValue KOMATIITE_RESIST;
-        public final ForgeConfigSpec.IntValue PUMICE_HL;
-        public final ForgeConfigSpec.DoubleValue PUMICE_HARD;
-        public final ForgeConfigSpec.DoubleValue PUMICE_RESIST;
-        public final ForgeConfigSpec.IntValue SCORIA_HL;
-        public final ForgeConfigSpec.DoubleValue SCORIA_HARD;
-        public final ForgeConfigSpec.DoubleValue SCORIA_RESIST;
-        public final ForgeConfigSpec.IntValue ROSE_MARBLE_HL;
-        public final ForgeConfigSpec.DoubleValue ROSE_MARBLE_HARD;
-        public final ForgeConfigSpec.DoubleValue ROSE_MARBLE_RESIST;
-        public final ForgeConfigSpec.IntValue WHITE_MARBLE_HL;
-        public final ForgeConfigSpec.DoubleValue WHITE_MARBLE_HARD;
-        public final ForgeConfigSpec.DoubleValue WHITE_MARBLE_RESIST;
-        public final ForgeConfigSpec.IntValue GRAY_MARBLE_HL;
-        public final ForgeConfigSpec.DoubleValue GRAY_MARBLE_HARD;
-        public final ForgeConfigSpec.DoubleValue GRAY_MARBLE_RESIST;
-        public final ForgeConfigSpec.IntValue BLACK_MARBLE_HL;
-        public final ForgeConfigSpec.DoubleValue BLACK_MARBLE_HARD;
-        public final ForgeConfigSpec.DoubleValue BLACK_MARBLE_RESIST;
-        public final ForgeConfigSpec.IntValue GNEISS_HL;
-        public final ForgeConfigSpec.DoubleValue GNEISS_HARD;
-        public final ForgeConfigSpec.DoubleValue GNEISS_RESIST;
-        public final ForgeConfigSpec.IntValue MICA_SCHIST_HL;
-        public final ForgeConfigSpec.DoubleValue MICA_SCHIST_HARD;
-        public final ForgeConfigSpec.DoubleValue MICA_SCHIST_RESIST;
-        public final ForgeConfigSpec.IntValue BLUESCHIST_HL;
-        public final ForgeConfigSpec.DoubleValue BLUESCHIST_HARD;
-        public final ForgeConfigSpec.DoubleValue BLUESCHIST_RESIST;
-        public final ForgeConfigSpec.IntValue GREENSCHIST_HL;
-        public final ForgeConfigSpec.DoubleValue GREENSCHIST_HARD;
-        public final ForgeConfigSpec.DoubleValue GREENSCHIST_RESIST;
-        public final ForgeConfigSpec.IntValue PHYLLITE_HL;
-        public final ForgeConfigSpec.DoubleValue PHYLLITE_HARD;
-        public final ForgeConfigSpec.DoubleValue PHYLLITE_RESIST;
-        public final ForgeConfigSpec.IntValue SLATE_HL;
-        public final ForgeConfigSpec.DoubleValue SLATE_HARD;
-        public final ForgeConfigSpec.DoubleValue SLATE_RESIST;
-        public final ForgeConfigSpec.IntValue QUARTZITE_HL;
-        public final ForgeConfigSpec.DoubleValue QUARTZITE_HARD;
-        public final ForgeConfigSpec.DoubleValue QUARTZITE_RESIST;
-        public final ForgeConfigSpec.IntValue MARIPOSITE_HL;
-        public final ForgeConfigSpec.DoubleValue MARIPOSITE_HARD;
-        public final ForgeConfigSpec.DoubleValue MARIPOSITE_RESIST;
-        public final ForgeConfigSpec.IntValue SKARN_HL;
-        public final ForgeConfigSpec.DoubleValue SKARN_HARD;
-        public final ForgeConfigSpec.DoubleValue SKARN_RESIST;
-        public final ForgeConfigSpec.IntValue RINGWOODITE_HL;
-        public final ForgeConfigSpec.DoubleValue RINGWOODITE_HARD;
-        public final ForgeConfigSpec.DoubleValue RINGWOODITE_RESIST;
-        public final ForgeConfigSpec.IntValue WADSLEYITE_HL;
-        public final ForgeConfigSpec.DoubleValue WADSLEYITE_HARD;
-        public final ForgeConfigSpec.DoubleValue WADSLEYITE_RESIST;
-        public final ForgeConfigSpec.IntValue BRIDGMANITE_HL;
-        public final ForgeConfigSpec.DoubleValue BRIDGMANITE_HARD;
-        public final ForgeConfigSpec.DoubleValue BRIDGMANITE_RESIST;
-        public final ForgeConfigSpec.IntValue FERROPERICLASE_HL;
-        public final ForgeConfigSpec.DoubleValue FERROPERICLASE_HARD;
-        public final ForgeConfigSpec.DoubleValue FERROPERICLASE_RESIST;
-        public final ForgeConfigSpec.IntValue PEROVSKITE_HL;
-        public final ForgeConfigSpec.DoubleValue PEROVSKITE_HARD;
-        public final ForgeConfigSpec.DoubleValue PEROVSKITE_RESIST;
-        public final ForgeConfigSpec.IntValue LIMESTONE_HL;
-        public final ForgeConfigSpec.DoubleValue LIMESTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue LIMESTONE_RESIST;
-        public final ForgeConfigSpec.IntValue DOLOSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue DOLOSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue DOLOSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue CHALK_HL;
-        public final ForgeConfigSpec.DoubleValue CHALK_HARD;
-        public final ForgeConfigSpec.DoubleValue CHALK_RESIST;
-        public final ForgeConfigSpec.IntValue SHALE_HL;
-        public final ForgeConfigSpec.DoubleValue SHALE_HARD;
-        public final ForgeConfigSpec.DoubleValue SHALE_RESIST;
-        public final ForgeConfigSpec.IntValue SILTSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue SILTSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue SILTSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue ITACOLUMITE_HL;
-        public final ForgeConfigSpec.DoubleValue ITACOLUMITE_HARD;
-        public final ForgeConfigSpec.DoubleValue ITACOLUMITE_RESIST;
-        public final ForgeConfigSpec.IntValue ARKOSE_HL;
-        public final ForgeConfigSpec.DoubleValue ARKOSE_HARD;
-        public final ForgeConfigSpec.DoubleValue ARKOSE_RESIST;
-        public final ForgeConfigSpec.IntValue MUDSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue MUDSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue MUDSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue BRECCIA_HL;
-        public final ForgeConfigSpec.DoubleValue BRECCIA_HARD;
-        public final ForgeConfigSpec.DoubleValue BRECCIA_RESIST;
-        public final ForgeConfigSpec.IntValue MARLSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue MARLSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue MARLSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue SOUL_SANDSTONE_HL;
-        public final ForgeConfigSpec.DoubleValue SOUL_SANDSTONE_HARD;
-        public final ForgeConfigSpec.DoubleValue SOUL_SANDSTONE_RESIST;
-        public final ForgeConfigSpec.IntValue SERPENTINITE_HL;
-        public final ForgeConfigSpec.DoubleValue SERPENTINITE_HARD;
-        public final ForgeConfigSpec.DoubleValue SERPENTINITE_RESIST;
-
-
-        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> ECLOGITE_STATS;
-        public final ForgeConfigSpec.ConfigValue<List<? extends Double>> DIABASE_STATS;
-
-
-        
-        public StoneProperties(ForgeConfigSpec.Builder b) {
-            b.comment("Properties of Stones").push("stoneProperties");
-
-                ECLOGITE_STATS = b.comment("Harvest level, Hardness, and Resistance of Eclogite. ")
-                        .defineList("eclogiteStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
-                DIABASE_STATS = b.comment("Harvest level, Hardness, and Resistance of Diabase. ")
-                        .defineList("diabaseeStats", Arrays.asList(0.0D, 2.5D, 6.0D), DoubleValidator);
-
-                b.comment("Gray Granite Properties").push("GrayGranite");
-                GRAY_GRANITE_HL = b.comment("Harvest Level of Gray Granite.")
-                        .defineInRange("GrayGraniteHL", 0, 0, 10);
-                GRAY_GRANITE_HARD = b.comment("Hardness of Gray Granite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("GrayGraniteHardness", 2.5D, 0.0D, 100.0D);
-                GRAY_GRANITE_RESIST = b.comment("Resistance of Gray Granite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("GrayGraniteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Granodiorite Properties").push("granodiorite");
-                GRANODIORITE_HL = b.comment("Harvest Level of Granodiorite.")
-                        .defineInRange("granodioriteHL", 0, 0, 10);
-                GRANODIORITE_HARD = b.comment("Hardness of Granodiorite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("granodioriteHardness", 2.5D, 0.0D, 100.0D);
-                GRANODIORITE_RESIST = b.comment("Resistance of Granodiorite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("granodioriteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Hornblende Andesite Properties").push("HornblendeAndesite");
-                HORNBLENDE_ANDESITE_HL = b.comment("Harvest Level of Hornblende Andesite.")
-                        .defineInRange("HornblendeAndesiteHL", 0, 0, 10);
-                HORNBLENDE_ANDESITE_HARD = b.comment("Hardness of Hornblende Andesite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("HornblendeAndesiteHardness", 2.5D, 0.0D, 100.0D);
-                HORNBLENDE_ANDESITE_RESIST = b.comment("Resistance of Hornblende Andesite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("HornblendeAndesiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Tholeiitic Basalt Properties").push("TholeiiticBasalt");
-                THOLEIITIC_BASALT_HL = b.comment("Harvest Level of Tholeiitic Basalt.")
-                        .defineInRange("TholeiiticBasaltHL", 0, 0, 10);
-                THOLEIITIC_BASALT_HARD = b.comment("Hardness of Tholeiitic Basalt (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("TholeiiticBasaltHardness", 2.5D, 0.0D, 100.0D);
-                THOLEIITIC_BASALT_RESIST = b.comment("Resistance of Tholeiitic Basalt (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("TholeiiticBasaltResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Pyroxene Gabbro Properties").push("PyroxeneGabbro");
-                GABBRO_HL = b.comment("Harvest Level of Pyroxene Gabbro.")
-                        .defineInRange("PyroxeneGabbroHL", 0, 0, 10);
-                GABBRO_HARD = b.comment("Hardness of Pyroxene Gabbro (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("PyroxeneGabbroHardness", 2.5D, 0.0D, 100.0D);
-                GABBRO_RESIST = b.comment("Resistance of Pyroxene Gabbro (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("PyroxeneGabbroResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Anorthosite Properties").push("anorthosite");
-                ANORTHOSITE_HL = b.comment("Harvest Level of Anorthosite.")
-                        .defineInRange("anorthositeHL", 0, 0, 10);
-                ANORTHOSITE_HARD = b.comment("Hardness of Anorthosite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("anorthositeHardness", 2.5D, 0.0D, 100.0D);
-                ANORTHOSITE_RESIST = b.comment("Resistance of Anorthosite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("anorthositeResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Shonkinite Properties").push("shonkinite");
-                SHONKINITE_HL = b.comment("Harvest Level of Shonkinite.")
-                        .defineInRange("shonkiniteHL", 0, 0, 10);
-                SHONKINITE_HARD = b.comment("Hardness of Shonkinite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("shonkiniteHardness", 2.5D, 0.0D, 100.0D);
-                SHONKINITE_RESIST = b.comment("Resistance of Shonkinite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("shonkiniteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Pyroxenite Properties").push("pyroxenite");
-                PYROXENITE_HL = b.comment("Harvest Level of Pyroxenite.")
-                        .defineInRange("pyroxeniteHL", 0, 0, 10);
-                PYROXENITE_HARD = b.comment("Hardness of Pyroxenite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("pyroxeniteHardness", 2.5D, 0.0D, 100.0D);
-                PYROXENITE_RESIST = b.comment("Resistance of Pyroxenite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("pyroxeniteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Norite Properties").push("norite");
-                NORITE_HL = b.comment("Harvest Level of Norite.")
-                        .defineInRange("noriteHL", 0, 0, 10);
-                NORITE_HARD = b.comment("Hardness of Norite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("noriteHardness", 2.5D, 0.0D, 100.0D);
-                NORITE_RESIST = b.comment("Resistance of Norite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("noriteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Rhyolite Properties").push("rhyolite");
-                RHYOLITE_HL = b.comment("Harvest Level of Rhyolite.")
-                        .defineInRange("rhyoliteHL", 0, 0, 10);
-                RHYOLITE_HARD = b.comment("Hardness of Rhyolite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("rhyoliteHardness", 2.5D, 0.0D, 100.0D);
-                RHYOLITE_RESIST = b.comment("Resistance of Rhyolite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("rhyoliteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Comendite Properties").push("comendite");
-                COMENDITE_HL = b.comment("Harvest Level of Comendite.")
-                        .defineInRange("comenditeHL", 0, 0, 10);
-                COMENDITE_HARD = b.comment("Hardness of Rhyolite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("comenditeHardness", 2.5D, 0.0D, 100.0D);
-                COMENDITE_RESIST = b.comment("Resistance of Rhyolite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("comenditeResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Black Dacite Properties").push("BlackDacite");
-                BLACK_DACITE_HL = b.comment("Harvest Level of Black Dacite.")
-                        .defineInRange("BlackDaciteHL", 0, 0, 10);
-                BLACK_DACITE_HARD = b.comment("Hardness of Black Dacite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("BlackDaciteHardness", 2.5D, 0.0D, 100.0D);
-                BLACK_DACITE_RESIST = b.comment("Resistance of Black Dacite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("BlackDaciteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Red Dacite Properties").push("RedDacite");
-                RED_DACITE_HL = b.comment("Harvest Level of Red Dacite.")
-                        .defineInRange("RedDaciteHL", 0, 0, 10);
-                RED_DACITE_HARD = b.comment("Hardness of Red Dacite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("RedDaciteHardness", 2.5D, 0.0D, 100.0D);
-                RED_DACITE_RESIST = b.comment("Resistance of Red Dacite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("RedDaciteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Red Porphyry Properties").push("RedPorphyry");
-                RED_PORPHYRY_HL = b.comment("Harvest Level of Red Porphyry.")
-                        .defineInRange("RedPorphyryHL", 0, 0, 10);
-                RED_PORPHYRY_HARD = b.comment("Hardness of Red Porphyry (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("RedPorphyryHardness", 2.5D, 0.0D, 100.0D);
-                RED_PORPHYRY_RESIST = b.comment("Resistance of Red Porphyry (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("RedPorphyryResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Purple Porphyry Properties").push("PurplePorphyry");
-                PURPLE_PORPHYRY_HL = b.comment("Harvest Level of Purple Porphyry.")
-                        .defineInRange("PurplePorphyryHL", 0, 0, 10);
-                PURPLE_PORPHYRY_HARD = b.comment("Hardness of Purple Porphyry (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("PurplePorphyryHardness", 2.5D, 0.0D, 100.0D);
-                PURPLE_PORPHYRY_RESIST = b.comment("Resistance of Purple Porphyry (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("PurplePorphyryResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Pegmatite Properties").push("pegmatite");
-                PEGMATITE_HL = b.comment("Harvest Level of Pegmatite.")
-                        .defineInRange("pegmatiteHL", 0, 0, 10);
-                PEGMATITE_HARD = b.comment("Hardness of Pegmatite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("pegmatiteHardness", 2.5D, 0.0D, 100.0D);
-                PEGMATITE_RESIST = b.comment("Resistance of Pegmatite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("pegmatiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Peridotite Properties").push("peridotite");
-                PERIDOTITE_HL = b.comment("Harvest Level of Peridotite.")
-                        .defineInRange("peridotiteHL", 0, 0, 10);
-                PERIDOTITE_HARD = b.comment("Hardness of Peridotite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("peridotiteHardness", 2.5D, 0.0D, 100.0D);
-                PERIDOTITE_RESIST = b.comment("Resistance of Peridotite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("peridotiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Troctolite Properties").push("troctolite");
-                TROCTOLITE_HL = b.comment("Harvest Level of Troctolite.")
-                        .defineInRange("troctoliteHL", 0, 0, 10);
-                TROCTOLITE_HARD = b.comment("Hardness of Troctolite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("troctoliteHardness", 2.5D, 0.0D, 100.0D);
-                TROCTOLITE_RESIST = b.comment("Resistance of Troctolite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("troctoliteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Kimberlite Properties").push("kimberlite");
-                KIMBERLITE_HL = b.comment("Harvest Level of Kimberlite.")
-                        .defineInRange("kimberliteHL", 0, 0, 10);
-                KIMBERLITE_HARD = b.comment("Hardness of Kimberlite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("kimberliteHardness", 2.5D, 0.0D, 100.0D);
-                KIMBERLITE_RESIST = b.comment("Resistance of Kimberlite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("kimberliteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Komatiite Properties").push("komatiite");
-                KOMATIITE_HL = b.comment("Harvest Level of Komatiite.")
-                        .defineInRange("komatiiteHL", 0, 0, 10);
-                KOMATIITE_HARD = b.comment("Hardness of Komatiite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("komatiiteHardness", 2.5D, 0.0D, 100.0D);
-                KOMATIITE_RESIST = b.comment("Resistance of Komatiite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("komatiiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Pumice Properties").push("pumice");
-                PUMICE_HL = b.comment("Harvest Level of Pumice.")
-                        .defineInRange("pumiceHL", 0, 0, 10);
-                PUMICE_HARD = b.comment("Hardness of Pumice (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("pumiceHardness", 2.5D, 0.0D, 100.0D);
-                PUMICE_RESIST = b.comment("Resistance of Pumice (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("pumiceResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Scoria Properties").push("scoria");
-                SCORIA_HL = b.comment("Harvest Level of Scoria.")
-                        .defineInRange("scoriaHL", 0, 0, 10);
-                SCORIA_HARD = b.comment("Hardness of Scoria (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("scoriaHardness", 2.5D, 0.0D, 100.0D);
-                SCORIA_RESIST = b.comment("Resistance of Scoria (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("scoriaResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Rose Marble Properties").push("RoseMarble");
-                ROSE_MARBLE_HL = b.comment("Harvest Level of Rose Marble.")
-                        .defineInRange("RoseMarbleHL", 0, 0, 10);
-                ROSE_MARBLE_HARD = b.comment("Hardness of Rose Marble (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("RoseMarbleHardness", 2.5D, 0.0D, 100.0D);
-                ROSE_MARBLE_RESIST = b.comment("Resistance of Rose Marble (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("RoseMarbleResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("White Marble Properties").push("WhiteMarble");
-                WHITE_MARBLE_HL = b.comment("Harvest Level of White Marble.")
-                        .defineInRange("WhiteMarbleHL", 0, 0, 10);
-                WHITE_MARBLE_HARD = b.comment("Hardness of White Marble (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("WhiteMarbleHardness", 2.5D, 0.0D, 100.0D);
-                WHITE_MARBLE_RESIST = b.comment("Resistance of White Marble (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("WhiteMarbleResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Gray Marble Properties").push("GrayMarble");
-                GRAY_MARBLE_HL = b.comment("Harvest Level of Gray Marble.")
-                        .defineInRange("GrayMarbleHL", 0, 0, 10);
-                GRAY_MARBLE_HARD = b.comment("Hardness of Gray Marble (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("GrayMarbleHardness", 2.5D, 0.0D, 100.0D);
-                GRAY_MARBLE_RESIST = b.comment("Resistance of Gray Marble (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("GrayMarbleResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Black Marble Properties").push("BlackMarble");
-                BLACK_MARBLE_HL = b.comment("Harvest Level of Black Marble.")
-                        .defineInRange("BlackMarbleHL", 0, 0, 10);
-                BLACK_MARBLE_HARD = b.comment("Hardness of Black Marble (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("BlackMarbleHardness", 2.5D, 0.0D, 100.0D);
-                BLACK_MARBLE_RESIST = b.comment("Resistance of Black Marble (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("BlackMarbleResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Gneiss Properties").push("gneiss");
-                GNEISS_HL = b.comment("Harvest Level of Gneiss.")
-                        .defineInRange("gneissHL", 0, 0, 10);
-                GNEISS_HARD = b.comment("Hardness of Gneiss (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("gneissHardness", 2.5D, 0.0D, 100.0D);
-                GNEISS_RESIST = b.comment("Resistance of Gneiss (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("gneissResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Mica Schist Properties").push("MicaSchist");
-                MICA_SCHIST_HL = b.comment("Harvest Level of Mica Schist.")
-                        .defineInRange("MicaSchistHL", 0, 0, 10);
-                MICA_SCHIST_HARD = b.comment("Hardness of Mica Schist (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("MicaSchistHardness", 2.5D, 0.0D, 100.0D);
-                MICA_SCHIST_RESIST = b.comment("Resistance of Mica Schist (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("MicaSchistResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Blue Schist Properties").push("BlueSchist");
-                BLUESCHIST_HL = b.comment("Harvest Level of Blue Schist.")
-                        .defineInRange("BlueSchistHL", 0, 0, 10);
-                BLUESCHIST_HARD = b.comment("Hardness of Blue Schist (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("BlueSchistHardness", 2.5D, 0.0D, 100.0D);
-                BLUESCHIST_RESIST = b.comment("Resistance of Blue Schist (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("BlueSchistResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Green Schist Properties").push("GreenSchist");
-                GREENSCHIST_HL = b.comment("Harvest Level of Green Schist.")
-                        .defineInRange("GreenSchistHL", 0, 0, 10);
-                GREENSCHIST_HARD = b.comment("Hardness of Green Schist (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("GreenSchistHardness", 2.5D, 0.0D, 100.0D);
-                GREENSCHIST_RESIST = b.comment("Resistance of Green Schist (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("GreenSchistResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Phyllite Properties").push("phyllite");
-                PHYLLITE_HL = b.comment("Harvest Level of Phyllite.")
-                        .defineInRange("phylliteHL", 0, 0, 10);
-                PHYLLITE_HARD = b.comment("Hardness of Phyllite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("phylliteHardness", 2.5D, 0.0D, 100.0D);
-                PHYLLITE_RESIST = b.comment("Resistance of Phyllite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("phylliteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Slate Properties").push("slate");
-                SLATE_HL = b.comment("Harvest Level of Slate.")
-                        .defineInRange("slateHL", 0, 0, 10);
-                SLATE_HARD = b.comment("Hardness of Slate (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("slateHardness", 2.5D, 0.0D, 100.0D);
-                SLATE_RESIST = b.comment("Resistance of Slate (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("slateResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Quartzite Properties").push("quartzite");
-                QUARTZITE_HL = b.comment("Harvest Level of Quartzite.")
-                        .defineInRange("quartziteHL", 0, 0, 10);
-                QUARTZITE_HARD = b.comment("Hardness of Quartzite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("quartziteHardness", 2.5D, 0.0D, 100.0D);
-                QUARTZITE_RESIST = b.comment("Resistance of Quartzite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("quartziteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Mariposite Properties").push("mariposite");
-                MARIPOSITE_HL = b.comment("Harvest Level of Mariposite.")
-                        .defineInRange("maripositeHL", 0, 0, 10);
-                MARIPOSITE_HARD = b.comment("Hardness of Mariposite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("maripositeHardness", 2.5D, 0.0D, 100.0D);
-                MARIPOSITE_RESIST = b.comment("Resistance of Mariposite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("maripositeResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Skarn Properties").push("skarn");
-                SKARN_HL = b.comment("Harvest Level of Skarn.")
-                        .defineInRange("skarnHL", 0, 0, 10);
-                SKARN_HARD = b.comment("Hardness of Skarn (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("skarnHardness", 2.5D, 0.0D, 100.0D);
-                SKARN_RESIST = b.comment("Resistance of Skarn (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("skarnResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Ringwoodite Properties").push("ringwoodite");
-                RINGWOODITE_HL = b.comment("Harvest Level of Ringwoodite.")
-                        .defineInRange("ringwooditeHL", 0, 0, 10);
-                RINGWOODITE_HARD = b.comment("Hardness of Ringwoodite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("ringwooditeHardness", 2.5D, 0.0D, 100.0D);
-                RINGWOODITE_RESIST = b.comment("Resistance of Ringwoodite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("ringwooditeResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Wadsleyite Properties").push("wadsleyite");
-                WADSLEYITE_HL = b.comment("Harvest Level of Wadsleyite.")
-                        .defineInRange("wadsleyiteHL", 0, 0, 10);
-                WADSLEYITE_HARD = b.comment("Hardness of Wadsleyite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("wadsleyiteHardness", 2.5D, 0.0D, 100.0D);
-                WADSLEYITE_RESIST = b.comment("Resistance of Wadsleyite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("wadsleyiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Bridgmanite Properties").push("bridgmanite");
-                BRIDGMANITE_HL = b.comment("Harvest Level of Bridgmanite.")
-                        .defineInRange("bridgmaniteHL", 0, 0, 10);
-                BRIDGMANITE_HARD = b.comment("Hardness of Bridgmanite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("bridgmaniteHardness", 2.5D, 0.0D, 100.0D);
-                BRIDGMANITE_RESIST = b.comment("Resistance of Bridgmanite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("bridgmaniteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Ferropericlase Properties").push("ferropericlase");
-                FERROPERICLASE_HL = b.comment("Harvest Level of Ferropericlase.")
-                        .defineInRange("ferropericlaseHL", 0, 0, 10);
-                FERROPERICLASE_HARD = b.comment("Hardness of Ferropericlase (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("ferropericlaseHardness", 2.5D, 0.0D, 100.0D);
-                FERROPERICLASE_RESIST = b.comment("Resistance of Ferropericlase (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("ferropericlaseResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Perovskite Properties").push("perovskite");
-                PEROVSKITE_HL = b.comment("Harvest Level of Perovskite.")
-                        .defineInRange("perovskiteHL", 0, 0, 10);
-                PEROVSKITE_HARD = b.comment("Hardness of Perovskite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("perovskiteHardness", 2.5D, 0.0D, 100.0D);
-                PEROVSKITE_RESIST = b.comment("Resistance of Perovskite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("perovskiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Limestone Properties").push("Limestone");
-                LIMESTONE_HL = b.comment("Harvest Level of Limestone.")
-                        .defineInRange("LimestoneHL", 0, 0, 10);
-                LIMESTONE_HARD = b.comment("Hardness of Limestone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("LimestoneHardness", 1.5D, 0.0D, 100.0D);
-                LIMESTONE_RESIST = b.comment("Resistance of Limestone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("LimestoneResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Dolostone Properties").push("dolostone");
-                DOLOSTONE_HL = b.comment("Harvest Level of Dolostone.")
-                        .defineInRange("dolostoneHL", 0, 0, 10);
-                DOLOSTONE_HARD = b.comment("Hardness of Dolostone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("dolostoneHardness", 1.5D, 0.0D, 100.0D);
-                DOLOSTONE_RESIST = b.comment("Resistance of Dolostone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("dolostoneResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Chalk Properties").push("chalk");
-                CHALK_HL = b.comment("Harvest Level of Chalk.")
-                        .defineInRange("chalkHL", 0, 0, 10);
-                CHALK_HARD = b.comment("Hardness of Chalk (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("chalkHardness", 1.5D, 0.0D, 100.0D);
-                CHALK_RESIST = b.comment("Resistance of Chalk (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("chalkResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Shale Properties").push("Shale");
-                SHALE_HL = b.comment("Harvest Level of Shale.")
-                        .defineInRange("ShaleHL", 0, 0, 10);
-                SHALE_HARD = b.comment("Hardness of Shale (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("ShaleHardness", 1.5D, 0.0D, 100.0D);
-                SHALE_RESIST = b.comment("Resistance of Shale (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("ShaleResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Siltstone Properties").push("siltstone");
-                SILTSTONE_HL = b.comment("Harvest Level of Siltstone.")
-                        .defineInRange("siltstoneHL", 0, 0, 10);
-                SILTSTONE_HARD = b.comment("Hardness of Siltstone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("siltstoneHardness", 1.5D, 0.0D, 100.0D);
-                SILTSTONE_RESIST = b.comment("Resistance of Siltstone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("siltstoneResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Itacolumite Properties").push("Itacolumite");
-                ITACOLUMITE_HL = b.comment("Harvest Level of Itacolumite.")
-                        .defineInRange("ItacolumiteHL", 0, 0, 10);
-                ITACOLUMITE_HARD = b.comment("Hardness of Itacolumite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("ItacolumiteHardness", 1.5D, 0.0D, 100.0D);
-                ITACOLUMITE_RESIST = b.comment("Resistance of Itacolumite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("ItacolumiteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Arkose Properties").push("Arkose");
-                ARKOSE_HL = b.comment("Harvest Level of Arkose.")
-                        .defineInRange("ArkoseHL", 0, 0, 10);
-                ARKOSE_HARD = b.comment("Hardness of Arkose (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("ArkoseHardness", 1.5D, 0.0D, 100.0D);
-                ARKOSE_RESIST = b.comment("Resistance of Arkose (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("ArkoseResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Mudstone Properties").push("mudstone");
-                MUDSTONE_HL = b.comment("Harvest Level of Mudstone.")
-                        .defineInRange("mudstoneHL", 0, 0, 10);
-                MUDSTONE_HARD = b.comment("Hardness of Mudstone (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("mudstoneHardness", 1.5D, 0.0D, 100.0D);
-                MUDSTONE_RESIST = b.comment("Resistance of Mudstone (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("mudstoneResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-                b.comment("Breccia Properties").push("breccia");
-                BRECCIA_HL = b.comment("Harvest Level of Breccia.")
-                        .defineInRange("brecciaHL", 0, 0, 10);
-                BRECCIA_HARD = b.comment("Hardness of Breccia (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("brecciaHardness", 1.5D, 0.0D, 100.0D);
-                BRECCIA_RESIST = b.comment("Resistance of Breccia (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("brecciaResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
-            b.comment("Soul Sandstone Properties").push("soul_sandstone");
-            SOUL_SANDSTONE_HL = b.comment("Harvest Level of Soul Sandstone.")
-                    .defineInRange("soul_sandstoneHL", 0, 0, 10);
-            SOUL_SANDSTONE_HARD = b.comment("Hardness of Soul Sandstone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("soul_sandstoneHardness", 1.5D, 0.0D, 100.0D);
-            SOUL_SANDSTONE_RESIST = b.comment("Resistance of Soul Sandstone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("soul_sandstoneResistance", 6.0D, 0.00D, 2000.0D);
-            b.pop();
-            b.comment("Marlstone Properties").push("marlstone");
-            MARLSTONE_HL = b.comment("Harvest Level of Marlstone.")
-                    .defineInRange("marlstoneHL", 0, 0, 10);
-            MARLSTONE_HARD = b.comment("Hardness of Marlstone (Obsidian is 50 and vanilla stone is 2).")
-                    .defineInRange("marlstoneHardness", 1.5D, 0.0D, 100.0D);
-            MARLSTONE_RESIST = b.comment("Resistance of Marlstone (Obsidian is 1200 and vanilla stone is 6).")
-                    .defineInRange("marlstoneResistance", 6.0D, 0.00D, 2000.0D);
-            b.pop();
-                b.comment("Serpentinite Properties").push("serpentinite");
-                SERPENTINITE_HL = b.comment("Harvest Level of Serpentinite.")
-                        .defineInRange("serpentiniteHL", 0, 0, 10);
-                SERPENTINITE_HARD = b.comment("Hardness of Serpentinite (Obsidian is 50 and vanilla stone is 2).")
-                        .defineInRange("serpentiniteHardness", 1.5D, 0.0D, 100.0D);
-                SERPENTINITE_RESIST = b.comment("Resistance of Serpentinite (Obsidian is 1200 and vanilla stone is 6).")
-                        .defineInRange("serpentiniteResistance", 6.0D, 0.00D, 2000.0D);
-                b.pop();
             b.pop();
         }
     }
@@ -1612,21 +1729,30 @@ public class Config {
 
     public static final ForgeConfigSpec COMMON_CONFIG;
     public static final General GENERAL;
+    public static final Tools TOOLS;
     public static final Machines MACHINES;
     public static final Alloys ALLOYS;
-    public static final StoneProperties STONE_PROPERTIES;
     public static final HardMode HARD_MODE;
     public static final Gases GASES;
+    public static final Misc MISC;
+    public static final BiomeGen BIOME_GEN;
+    public static final Layers LAYERS;
+    public static final Intrusions INTRUSIONS;
+    public static final BlockProperties BLOCK_PROPERTIES;
 
     static {
         ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
         GENERAL = new General(BUILDER);
+        TOOLS = new Tools(BUILDER);
         MACHINES = new Machines(BUILDER);
         ALLOYS = new Alloys(BUILDER);
-        STONE_PROPERTIES = new StoneProperties(BUILDER);
         GASES = new Gases(BUILDER);
         HARD_MODE = new HardMode(BUILDER);
-
+        MISC = new Misc(BUILDER);
+        BIOME_GEN = new BiomeGen(BUILDER);
+        LAYERS = new Layers(BUILDER);
+        INTRUSIONS = new Intrusions(BUILDER);
+        BLOCK_PROPERTIES = new BlockProperties(BUILDER);
 
         COMMON_CONFIG = BUILDER.build();
     }

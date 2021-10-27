@@ -1,0 +1,100 @@
+{
+  "name": "Hammers",
+  "icon": "rankine:steel_hammer",
+  "category": "tools",
+  "pages": [
+    {
+      "type": "text",
+      "text": "A listing of the variety of hammers that are able to be made."
+    },
+    {
+      "type": "text",
+      "text": "Hammers are a new type of tool that function like in-world crushers. Use by left clicking a block to swing the hammer and crush it. The swing speed is dependant on the tool similar to swords but it doesn't always follow the attack indicator. The products from crushing are identical to those in the $(l:machines/piston_crusher)Piston Crusher$(). Higher tier hammers will yield more products."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:stone_hammer",
+      "text": "Stats:$(li)Harvest Level: 0"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:pewter_hammer",
+      "text": "Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:bronze_hammer",
+      "text": "Stats:$(li)Harvest Level: 1"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:invar_hammer",
+      "text": "Stats:$(li)Harvest Level: 2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:steel_hammer",
+      "text": "Stats:$(li)Harvest Level: 3"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:stainless_steel_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:nickel_superalloy_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:cobalt_superalloy_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:tungsten_heavy_alloy_hammer",
+      "text": "Stats:$(li)Harvest Level: 3-4"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:rose_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:green_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:blue_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:purple_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:white_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:black_gold_hammer",
+      "text": "Stats:$(li)Harvest Level: 0-2"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:amalgam_hammer",
+      "text": "Stats:$(li)Harvest Level: ???"
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:alloy_hammer",
+      "text": "Stats:$(li)Harvest Level: ???$() $(br2)An experimental tool that can be made from miscellaneous alloys. Can be disabled in the config."
+    }
+  ]
+}

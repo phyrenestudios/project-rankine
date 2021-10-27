@@ -60,11 +60,15 @@ public final class RankineTags {
 
 
         //FORGE
+        public static final ITag.INamedTag<Block> BOOKSHELVES = forge("bookshelves");
         public static final ITag.INamedTag<Block> ICE = forge("ice");
         public static final ITag.INamedTag<Block> CLAY = forge("clay");
         public static final ITag.INamedTag<Block> FARMLANDS = forge("farmlands");
-        public static final ITag.INamedTag<Block> GRASS = forge("grass");
-        public static final ITag.INamedTag<Block> PATHS = forge("paths");
+        public static final ITag.INamedTag<Block> GRASS_BLOCKS = forge("grass_blocks");
+        public static final ITag.INamedTag<Block> PATH_BLOCKS = forge("path_blocks");
+        public static final ITag.INamedTag<Block> MUD = forge("mud");
+        public static final ITag.INamedTag<Block> PODZOL = forge("podzol");
+        public static final ITag.INamedTag<Block> MYCELIUM = forge("mycelium");
         public static final ITag.INamedTag<Block> HARDENED_GLASS = forge("hardened_glass");
         public static final ITag.INamedTag<Block> TUFF = forge("tuff");
         public static final ITag.INamedTag<Block> TERRACOTTA = forge("terracotta");
@@ -983,10 +987,12 @@ public final class RankineTags {
 
         public static final ITag.INamedTag<Item> CLAY = forgeItem("clay");
         public static final ITag.INamedTag<Item> ICE = forgeItem("ice");
+        public static final ITag.INamedTag<Item> BOOKSHELVES = forgeItem("bookshelves");
         public static final ITag.INamedTag<Item> DIRT = forgeItem("dirt");
         public static final ITag.INamedTag<Item> CAMPFIRES = forgeItem("campfires");
-        public static final ITag.INamedTag<Item> GRASS = forgeItem("grass");
-        public static final ITag.INamedTag<Item> PATHS = forgeItem("paths");
+        public static final ITag.INamedTag<Item> GRASS_BLOCKS = forgeItem("grass_blocks");
+        public static final ITag.INamedTag<Item> PATH_BLOCKS = forgeItem("path_blocks");
+        public static final ITag.INamedTag<Item> MUD = forgeItem("mud");
         public static final ITag.INamedTag<Item> HARDENED_GLASS = forgeItem("hardened_glass");
         public static final ITag.INamedTag<Item> TUFF = forgeItem("tuff");
         public static final ITag.INamedTag<Item> TERRACOTTA = forgeItem("terracotta");
