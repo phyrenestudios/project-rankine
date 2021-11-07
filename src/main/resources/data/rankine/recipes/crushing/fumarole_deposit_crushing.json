@@ -8,8 +8,8 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:apatite",
-    "chance": 0.75,
+    "item": "rankine:sodium_fluorosilicate",
+    "chance": 0.25,
     "additional": 0.15
   },
   "output3": {

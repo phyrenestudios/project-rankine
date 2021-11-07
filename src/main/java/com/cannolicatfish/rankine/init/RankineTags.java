@@ -103,7 +103,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Block> POLISHED_STONE_VERTICAL_SLAB = forge("polished_stone_vertical_slabs");
         public static final ITag.INamedTag<Block> STONE_BRICKS_VERTICAL_SLAB = forge("stone_bricks_vertical_slabs");
 
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_COKE = forge("storage_blocks/coke");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_COKE = forge("storage_blocks/coal_coke");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_GRAPHITE = forge("storage_blocks/graphite");
 
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HYDROGEN = forge("storage_blocks/hydrogen");
@@ -646,7 +646,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> INGOTS_LEAD = forgeItem("ingots/lead");
         public static final ITag.INamedTag<Item> INGOTS_BISMUTH = forgeItem("ingots/bismuth");
         public static final ITag.INamedTag<Item> INGOTS_POLONIUM = forgeItem("ingots/polonium");
-        public static final ITag.INamedTag<Item> ASTATINE = forgeItem("ingots/astatine");
+        public static final ITag.INamedTag<Item> ASTATINE = forgeItem("astatine");
         public static final ITag.INamedTag<Item> INGOTS_RADON = forgeItem("ingots/radon");
         public static final ITag.INamedTag<Item> INGOTS_FRANCIUM = forgeItem("ingots/francium");
         public static final ITag.INamedTag<Item> INGOTS_RADIUM = forgeItem("ingots/radium");
@@ -728,7 +728,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> GEMS_TOURMALINE = forgeItem("gems/tourmaline");
         public static final ITag.INamedTag<Item> GEMS_PEARL = forgeItem("gems/pearl");
 
-        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_COKE = forgeItem("storage_blocks/coke");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_COKE = forgeItem("storage_blocks/coal_coke");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_GRAPHITE = forgeItem("storage_blocks/graphite");
 
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_HYDROGEN = forgeItem("storage_blocks/hydrogen");
@@ -971,7 +971,7 @@ public final class RankineTags {
         public static final ITag.INamedTag<Item> SOLDER = forgeItem("solder");
         public static final ITag.INamedTag<Item> FELDSPAR = forgeItem("feldspar");
         public static final ITag.INamedTag<Item> SALT = forgeItem("salt");
-        public static final ITag.INamedTag<Item> COKE = forgeItem("coke");
+        public static final ITag.INamedTag<Item> COKE = forgeItem("coal_coke");
         public static final ITag.INamedTag<Item> DOUGH = forgeItem("dough");
         public static final ITag.INamedTag<Item> GRAPHITE = forgeItem("graphite");
         public static final ITag.INamedTag<Item> ASH = forgeItem("ash");

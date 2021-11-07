@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:sodium_chloride"
+  },
+  "input2": {
+    "item": "rankine:sodium_chloride"
+  },
+  "fluidInput": {
+    "fluid": "rankine:hexafluorosilicic_acid"
+  },
+  "result1": {
+    "item": "rankine:sodium_fluorosilicate"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  }
+}

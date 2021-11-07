@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class PackagedToolItem extends Item {
     public PackagedToolItem(Properties properties) {
@@ -41,8 +42,10 @@ public class PackagedToolItem extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        playerIn.getHeldItem(handIn).shrink(1);
-        playerIn.addItemStackToInventory(genRandomTool(worldIn));
+        if (!playerIn.world.isRemote) {
+            playerIn.getHeldItem(handIn).shrink(1);
+            playerIn.addItemStackToInventory(genRandomTool(worldIn));
+        }
         return super.onItemRightClick(worldIn, playerIn, handIn);
 
     }
@@ -76,9 +79,9 @@ public class PackagedToolItem extends Item {
                 break;
         }
         List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING);
-        AlloyingRecipe alloy = recipes.get(worldIn.getRandom().nextInt(recipes.size()));
-        System.out.println(alloy.getId());
-        System.out.println(alloy.generateRandomResult(worldIn));
+        AlloyingRecipe alloy = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList()).get(worldIn.getRandom().nextInt(recipes.size()));
+        //System.out.println(alloy.getId());
+        //System.out.println(alloy.generateRandomResult(worldIn));
 
         ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, alloy.generateRandomResult(worldIn), alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
         if (alloy.getColor() != 16777215) {

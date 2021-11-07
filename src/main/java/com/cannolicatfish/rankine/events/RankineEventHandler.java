@@ -22,6 +22,7 @@ import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
+import com.cannolicatfish.rankine.items.totems.SofteningTotemItem;
 import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
@@ -247,7 +248,7 @@ public class RankineEventHandler {
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.PHOSPHORITE.get(), 2),12,10,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.IRONSTONE.get(), 2),12,10,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.METEORITE.get(), 2),12,10,0.05f));
-            level4.add(new BasicTrade(1, new ItemStack(RankineItems.ENSTATITE.get(), 2),12,10,0.05f));
+            level4.add(new BasicTrade(1, new ItemStack(RankineItems.ENSTATITE_CHONDRITE.get(), 2),12,10,0.05f));
             level5.add(new BasicTrade(1, new ItemStack(RankineItems.ROMAN_CONCRETE.get(), 1),24,10,0.05f));
             level5.add(new BasicTrade(64, new ItemStack(RankineItems.UNCUT_GEODE.get(), 1),1,10,0.05f));
         }
@@ -262,7 +263,15 @@ public class RankineEventHandler {
         }
 
     }
-
+    @SubscribeEvent
+    public static void onCropTrample(BlockEvent.FarmlandTrampleEvent event) {
+        if (event.getEntity() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntity();
+            if (player.getHeldItem(Hand.MAIN_HAND).getItem() instanceof SofteningTotemItem || player.getHeldItem(Hand.OFF_HAND).getItem() instanceof SofteningTotemItem) {
+                event.setCanceled(true);
+            }
+        }
+    }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
@@ -396,12 +405,12 @@ public class RankineEventHandler {
         }
 
         ModifiableAttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (player.getHeldItemOffhand().getItem() == RankineItems.SPEED_PENDANT.get() && att != null && !att.hasModifier(RankineAttributes.SPEED_PENDANT_MS)) {
+        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_TIMESAVING.get() && att != null && !att.hasModifier(RankineAttributes.SPEED_PENDANT_MS)) {
             att.applyNonPersistentModifier(RankineAttributes.SPEED_PENDANT_MS);
         }
 
         ModifiableAttributeInstance att2 = player.getAttribute(Attributes.MAX_HEALTH);
-        if (player.getHeldItemOffhand().getItem() == RankineItems.HEALTH_PENDANT.get() && att2 != null && !att2.hasModifier(RankineAttributes.HEALTH_PENDANT)) {
+        if (player.getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_ENDURING.get() && att2 != null && !att2.hasModifier(RankineAttributes.HEALTH_PENDANT)) {
             att2.applyNonPersistentModifier(RankineAttributes.HEALTH_PENDANT);
         }
     }
@@ -1194,7 +1203,7 @@ public class RankineEventHandler {
         if (Config.TOOLS.DISABLE_NETHERITE_PICKAXE.get() && heldItem == Items.NETHERITE_PICKAXE) { event.setNewSpeed(0f); }
         if (Config.TOOLS.DISABLE_NETHERITE_HOE.get() && heldItem == Items.NETHERITE_HOE) { event.setNewSpeed(0f); }
 
-        if (event.getPlayer().getHeldItemOffhand().getItem() == RankineItems.HASTE_PENDANT.get()) {
+        if (event.getPlayer().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_HASTENING.get()) {
             event.setNewSpeed(event.getNewSpeed() + 3);
         }
 
@@ -2047,7 +2056,7 @@ public class RankineEventHandler {
 
         if (!player.abilities.isCreativeMode) {
             //Luck Pendant
-            if (offHandItem == RankineItems.LUCK_PENDANT.get()) {
+            if (offHandItem == RankineItems.TOTEM_OF_PROMISING.get()) {
                 if (event.getState().isIn(RankineTags.Blocks.LUCK_PENDANT)) {
                     if (new Random().nextFloat() < 0.2f) {
                         for (ItemStack i : Block.getDrops(event.getState(), (ServerWorld) event.getWorld(), event.getPos(), null)) {
@@ -2261,7 +2270,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onLivingSetAttackTarget(LivingSetAttackTargetEvent event) {
         if (event.getEntityLiving() instanceof MonsterEntity && event.getTarget() != null) {
-            if (event.getTarget().getHeldItemOffhand().getItem() == RankineItems.REPULSION_PENDANT.get() || event.getEntityLiving().getActivePotionEffect(RankineEffects.MERCURY_POISONING) != null) {
+            if (event.getTarget().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntityLiving().getActivePotionEffect(RankineEffects.MERCURY_POISONING) != null) {
                 ((MobEntity) event.getEntityLiving()).setAttackTarget(null);
             }
         }
@@ -2270,7 +2279,7 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (event.getEntityLiving() instanceof MonsterEntity && event.getEntityLiving().getRevengeTarget() != null) {
-            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == RankineItems.REPULSION_PENDANT.get() || event.getEntityLiving().getActivePotionEffect(RankineEffects.MERCURY_POISONING) != null) {
+            if (event.getEntityLiving().getRevengeTarget().getHeldItemOffhand().getItem() == RankineItems.TOTEM_OF_REPULSING.get() || event.getEntityLiving().getActivePotionEffect(RankineEffects.MERCURY_POISONING) != null) {
                 event.getEntityLiving().setRevengeTarget(null);
             }
         }

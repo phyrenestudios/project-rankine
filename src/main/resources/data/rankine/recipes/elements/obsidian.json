@@ -1,0 +1,33 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values":
+          [
+            {
+              "item": "tconstruct:hepatzion_ingot",
+              "type": "forge:item_exists"
+            },
+            {
+              "item": "mekanism:ingot_refined_obsidian",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:or"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:element",
+        "name": "obsidian",
+        "symbol": "Ob",
+        "color": 16777215,
+        "atomic": -1,
+        "potential": 0,
+        "items": ["T#forge:obsidian"],
+        "values": [3]
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "immersiveengineering:ore_nickel",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "immersiveengineering:ore_nickel"
+        },
+        "output1": {
+          "item": "immersiveengineering:dust_nickel",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:olivine",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:sulfur",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "rankine:pyrite",
+          "chance": 0.15,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "rankine:spinel",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:cobaltite",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

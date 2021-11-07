@@ -119,6 +119,8 @@ public class ShulkerGasVacuumItem extends Item {
                 return RankineItems.CARBON_DIOXIDE_GAS_BOTTLE.get();
             case HYDROGEN_CHLORIDE:
                 return RankineItems.HYDROGEN_CHLORIDE_GAS_BOTTLE.get();
+            case HYDROGEN_FLUORIDE:
+                return RankineItems.HYDROGEN_FLUORIDE_GAS_BOTTLE.get();
             case HYDROGEN_SULFIDE:
                 return RankineItems.HYDROGEN_SULFIDE_GAS_BOTTLE.get();
             case SULFUR_DIOXIDE:

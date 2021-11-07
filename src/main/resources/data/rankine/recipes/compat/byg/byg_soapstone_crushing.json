@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:soapstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:soapstone"
+        },
+        "output1": {
+          "item": "rankine:skarn",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:talc",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:mica",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "rankine:chlorite",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "minecraft:quartz",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:graphite",
+          "chance": 0.08
+        }
+      }
+    }
+  ]
+}

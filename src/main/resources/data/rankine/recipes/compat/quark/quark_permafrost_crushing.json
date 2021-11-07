@@ -1,0 +1,53 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "quark:permafrost",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "quark:permafrost"
+        },
+        "output1": {
+          "item": "minecraft:dirt",
+          "chance": 1
+        },
+        "output2": {
+          "item": "minecraft:ice",
+          "chance": 0.5,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "minecraft:cobblestone",
+          "chance": 0.2,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "minecraft:snowball",
+          "count": 2,
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "minecraft:gravel",
+          "chance": 0.05,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "minecraft:blue_ice",
+          "chance": 0.04
+        }
+      }
+    }
+  ]
+}

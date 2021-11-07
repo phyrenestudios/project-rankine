@@ -15,7 +15,7 @@
     "group": 0
   },
   "input2": {
-    "tag": "forge:coke",
+    "tag": "forge:coal_coke",
     "group": 1,
     "shiftMod": ["-1Fe","1C"],
     "cookMod": -400

@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:ilmenite"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "result1": {
+    "item":"rankine:rutile"
+  },
+  "result2": {
+    "item":"minecraft:iron_ingot"
+  },
+  "gasInput": {
+    "item": "rankine:ammonia_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}

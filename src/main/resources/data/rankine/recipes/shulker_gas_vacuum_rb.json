@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "R#E",
+    "Pl#"
+  ],
+  "key": {
+    "R": {
+      "item": "rankine:vulcanized_rubber"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "P": {
+      "item": "minecraft:pufferfish"
+    },
+    "E": {
+      "item": "minecraft:piston"
+    },
+    "l": {
+      "tag": "forge:ingots/rubidium"
+    },
+    "#": {
+      "item": "minecraft:shulker_shell"
+    }
+  },
+  "result": {
+    "item": "rankine:shulker_gas_vacuum",
+    "count": 1
+  }
+}

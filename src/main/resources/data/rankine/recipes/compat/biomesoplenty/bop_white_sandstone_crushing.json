@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "biomesoplenty:white_sandstone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "biomesoplenty:white_sandstone"
+        },
+        "output1": {
+          "item": "rankine:breccia",
+          "chance": 1
+        },
+        "output2": {
+          "item": "biomesoplenty:white_sand",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:plagioclase_feldspar",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "minecraft:quartz",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "rankine:calcite",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:tourmaline",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

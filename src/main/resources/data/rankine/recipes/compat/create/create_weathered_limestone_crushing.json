@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:weathered_limestone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "create:weathered_limestone"
+        },
+        "output1": {
+          "item": "create:weathered_limestone_cobblestone",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:calcite",
+          "chance": 0.55,
+          "additional": 0.35
+        },
+        "output3": {
+          "item": "rankine:dolomite",
+          "chance": 0.3,
+          "additional": 0.4
+        },
+        "output4": {
+          "item": "rankine:barite",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "minecraft:bone",
+          "chance": 0.15,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "minecraft:dead_brain_coral",
+          "chance": 0.1
+        }
+      }
+    }
+  ]
+}

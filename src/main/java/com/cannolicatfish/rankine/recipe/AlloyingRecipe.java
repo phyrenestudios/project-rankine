@@ -226,6 +226,9 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         Random rand = worldIn.getRandom();
         List<ElementRecipe> req = getElementList(worldIn, true);
         List<ElementRecipe> nonreq = getElementList(worldIn, false);
+        if (req.isEmpty() && nonreq.isEmpty()) {
+            return "80Hg-20Au";
+        }
         int limit = Math.min(5,req.size() + nonreq.size());
         int size = req.size();
         for (int i = 0; i < limit - size; i++) {
@@ -275,7 +278,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             return AlloyRecipeHelper.getDirectComposition(percents,symbols);
         } else
         {
-            return "None";
+            return "80Hg-20Au";
         }
 
 

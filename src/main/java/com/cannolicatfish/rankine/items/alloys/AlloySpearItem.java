@@ -37,7 +37,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-public class AlloySpearItem extends SpearItem implements IAlloyTool {
+public class AlloySpearItem extends SpearItem implements IAlloyTool, IAlloyNeedsRegenerate {
 
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;

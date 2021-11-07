@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "immersiveengineering:ore_uranium",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "immersiveengineering:ore_uranium"
+        },
+        "output1": {
+          "item": "immersiveengineering:dust_uranium",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:mica",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:calcite",
+          "chance": 0.25,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "rankine:zircon",
+          "chance": 0.1,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "minecraft:quartz",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:thorite",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:potash"
+  },
+  "input2": {
+    "item": "rankine:sodium_chloride"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "fluidOutput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_fluoride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:fluorine_gas_bottle"
+  }
+}

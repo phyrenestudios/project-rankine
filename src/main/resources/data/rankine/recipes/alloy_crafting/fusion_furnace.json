@@ -7,7 +7,7 @@
   ],
   "key": {
     "c": {
-      "tag": "forge:storage_blocks/coke"
+      "tag": "forge:storage_blocks/coal_coke"
     },
     "B": {
       "item": "minecraft:bucket"

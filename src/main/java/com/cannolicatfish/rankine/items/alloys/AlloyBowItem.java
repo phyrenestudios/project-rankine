@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.items.alloys;
 import net.minecraft.item.BowItem;
 import net.minecraft.util.ResourceLocation;
 
-public class AlloyBowItem extends BowItem implements IAlloyTool {
+public class AlloyBowItem extends BowItem implements IAlloyTool, IAlloyNeedsRegenerate {
     public AlloyBowItem(Properties builder) {
         super(builder);
     }

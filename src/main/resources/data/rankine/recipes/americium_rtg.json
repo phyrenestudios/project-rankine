@@ -1,0 +1,45 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "cgc",
+    "bzp",
+    "drd"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "rankine:mineral_wool"
+    },
+    "c":
+    {
+      "item": "rankine:cadmium_telluride_cell"
+    },
+    "d":
+    {
+      "tag": "forge:storage_blocks/duralumin"
+    },
+    "z":
+    {
+      "tag": "forge:storage_blocks/americium"
+    },
+    "b":
+    {
+      "tag": "forge:storage_blocks/boron"
+    },
+    "p":
+    {
+      "tag": "forge:storage_blocks/phosphorus"
+    },
+    "g":
+    {
+      "item": "rankine:silicon_germanium_thermocouple"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:americium_rtg",
+    "count": 1
+  }
+}

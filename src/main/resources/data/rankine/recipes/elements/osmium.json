@@ -26,9 +26,9 @@
   "enchantability": {
     "breaks": [12,100],
     "formulas": ["LINEAR","LINEAR"],
-    "a": [0.1,-1],
-    "b": [5,6],
-    "modifiers": ["NONE","ABSOLUTE_VALUE"],
+    "a": [-1,0.1],
+    "b": [6,5],
+    "modifiers": ["ABSOLUTE_VALUE","NONE"],
     "limit": [0,0]
   },
   "corrosionresist": {

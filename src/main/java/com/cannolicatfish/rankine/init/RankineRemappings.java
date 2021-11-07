@@ -21,6 +21,16 @@ public class RankineRemappings {
         itemRemappings.put(new ResourceLocation("rankine:power_cell_5"),RankineItems.SODIUM_SULFUR_BATTERY.get());
         itemRemappings.put(new ResourceLocation("rankine:power_cell_6"),RankineItems.LITHIUM_ION_BATTERY.get());
 
+        itemRemappings.put(new ResourceLocation("rankine:haste_pendant"),RankineItems.TOTEM_OF_HASTENING.get());
+        itemRemappings.put(new ResourceLocation("rankine:luck_pendant"),RankineItems.TOTEM_OF_PROMISING.get());
+        itemRemappings.put(new ResourceLocation("rankine:health_pendant"),RankineItems.TOTEM_OF_ENDURING.get());
+        itemRemappings.put(new ResourceLocation("rankine:speed_pendant"),RankineItems.TOTEM_OF_TIMESAVING.get());
+        itemRemappings.put(new ResourceLocation("rankine:levitation_pendant"),RankineItems.TOTEM_OF_LEVITATING.get());
+        itemRemappings.put(new ResourceLocation("rankine:repulsion_pendant"),RankineItems.TOTEM_OF_REPULSING.get());
+
+        itemRemappings.put(new ResourceLocation("rankine:feldspar"),RankineItems.ORTHOCLASE_FELDSPAR.get());
+        itemRemappings.put(new ResourceLocation("rankine:salt"),RankineItems.SODIUM_CHLORIDE.get());
+
         itemRemappings.put(new ResourceLocation("rankine:bronze_alloy"),RankineItems.BRONZE_INGOT.get());
         itemRemappings.put(new ResourceLocation("rankine:titanium_alloy"),RankineItems.TITANIUM_ALLOY_INGOT.get());
 
@@ -69,6 +79,25 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:carbonaceous_shale_bricks_pressure_plate"),RankineBlocks.SHALE_BRICKS_PRESSURE_PLATE.get());
         blockRemappings.put(new ResourceLocation("rankine:carbonaceous_shale_button"),RankineBlocks.SHALE_BUTTON.get());
 
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro"),RankineBlocks.GABBRO.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_pyroxene_gabbro"),RankineBlocks.POLISHED_GABBRO.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_bricks"),RankineBlocks.GABBRO_BRICKS.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_slab"),RankineBlocks.GABBRO_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_pyroxene_gabbro_slab"),RankineBlocks.POLISHED_GABBRO_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_bricks_slab"),RankineBlocks.GABBRO_BRICKS_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_stairs"),RankineBlocks.GABBRO_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_pyroxene_gabbro_stairs"),RankineBlocks.POLISHED_GABBRO_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_bricks_stairs"),RankineBlocks.GABBRO_BRICKS_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_wall"),RankineBlocks.GABBRO_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_pyroxene_gabbro_wall"),RankineBlocks.POLISHED_GABBRO_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_bricks_wall"),RankineBlocks.GABBRO_BRICKS_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_vertical_slab"),RankineBlocks.GABBRO_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_pyroxene_gabbro_vertical_slab"),RankineBlocks.POLISHED_GABBRO_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_bricks_vertical_slab"),RankineBlocks.GABBRO_BRICKS_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_pressure_plate"),RankineBlocks.GABBRO_PRESSURE_PLATE.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_bricks_pressure_plate"),RankineBlocks.GABBRO_BRICKS_PRESSURE_PLATE.get());
+        blockRemappings.put(new ResourceLocation("rankine:pyroxene_gabbro_button"),RankineBlocks.GABBRO_BUTTON.get());
+
         blockRemappings.put(new ResourceLocation("rankine:quartz_sandstone"),RankineBlocks.ITACOLUMITE.get());
         blockRemappings.put(new ResourceLocation("rankine:polished_quartz_sandstone"),RankineBlocks.POLISHED_ITACOLUMITE.get());
         blockRemappings.put(new ResourceLocation("rankine:quartz_sandstone_bricks"),RankineBlocks.ITACOLUMITE_BRICKS.get());
@@ -108,7 +137,7 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:arkose_sandstone_button"),RankineBlocks.ARKOSE_BUTTON.get());
 
         blockRemappings.put(new ResourceLocation("rankine:bridgmanite"),RankineBlocks.BRIDGMANHAM.get());
-        /*blockRemappings.put(new ResourceLocation("rankine:polished_bridgmanite"),RankineBlocks.POLISHED_BRIDGMANHAM.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_bridgmanite"),RankineBlocks.POLISHED_BRIDGMANHAM.get());
         blockRemappings.put(new ResourceLocation("rankine:bridgmanite_bricks"),RankineBlocks.BRIDGMANHAM_BRICKS.get());
         blockRemappings.put(new ResourceLocation("rankine:bridgmanite_slab"),RankineBlocks.BRIDGMANHAM_SLAB.get());
         blockRemappings.put(new ResourceLocation("rankine:polished_bridgmanite_slab"),RankineBlocks.POLISHED_BRIDGMANHAM_SLAB.get());
@@ -124,8 +153,26 @@ public class RankineRemappings {
         blockRemappings.put(new ResourceLocation("rankine:bridgmanite_bricks_vertical_slab"),RankineBlocks.BRIDGMANHAM_BRICKS_VERTICAL_SLAB.get());
         blockRemappings.put(new ResourceLocation("rankine:bridgmanite_pressure_plate"),RankineBlocks.BRIDGMANHAM_PRESSURE_PLATE.get());
         blockRemappings.put(new ResourceLocation("rankine:bridgmanite_bricks_pressure_plate"),RankineBlocks.BRIDGMANHAM_BRICKS_PRESSURE_PLATE.get());
-        blockRemappings.put(new ResourceLocation("rankine:bridgmanite_button"),RankineBlocks.BRIDGMANHAM_BUTTON.get());*/
+        blockRemappings.put(new ResourceLocation("rankine:bridgmanite_button"),RankineBlocks.BRIDGMANHAM_BUTTON.get());
 
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite"),RankineBlocks.RINGWOODINE.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_ringwoodite"),RankineBlocks.POLISHED_RINGWOODINE.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_bricks"),RankineBlocks.RINGWOODINE_BRICKS.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_slab"),RankineBlocks.RINGWOODINE_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_ringwoodite_slab"),RankineBlocks.POLISHED_RINGWOODINE_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_bricks_slab"),RankineBlocks.RINGWOODINE_BRICKS_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_stairs"),RankineBlocks.RINGWOODINE_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_ringwoodite_stairs"),RankineBlocks.POLISHED_RINGWOODINE_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_bricks_stairs"),RankineBlocks.RINGWOODINE_BRICKS_STAIRS.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_wall"),RankineBlocks.RINGWOODINE_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_ringwoodite_wall"),RankineBlocks.POLISHED_RINGWOODINE_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_bricks_wall"),RankineBlocks.RINGWOODINE_BRICKS_WALL.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_vertical_slab"),RankineBlocks.RINGWOODINE_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:polished_ringwoodite_vertical_slab"),RankineBlocks.POLISHED_RINGWOODINE_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_bricks_vertical_slab"),RankineBlocks.RINGWOODINE_BRICKS_VERTICAL_SLAB.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_pressure_plate"),RankineBlocks.RINGWOODINE_PRESSURE_PLATE.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_bricks_pressure_plate"),RankineBlocks.RINGWOODINE_BRICKS_PRESSURE_PLATE.get());
+        blockRemappings.put(new ResourceLocation("rankine:ringwoodite_button"),RankineBlocks.RINGWOODINE_BUTTON.get());
 
         return blockRemappings;
     }

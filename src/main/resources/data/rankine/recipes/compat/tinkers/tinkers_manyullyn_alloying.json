@@ -1,0 +1,77 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "tconstruct:manyullyn_ingot",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:alloying",
+        "total": 10,
+        "tier": 2,
+        "color": 9461962,
+        "input1": {
+          "element": "rankine:elements/cobalt",
+          "min": 0.70,
+          "max": 0.80,
+          "required": true
+        },
+        "input2": {
+          "element": "rankine:elements/netherite",
+          "min": 0.20,
+          "max": 0.30,
+          "required": true
+        },
+        "input3": {
+          "element": "rankine:elements/rhenium",
+          "min": 0.0,
+          "max": 0.1
+        },
+        "input4": {
+          "element": "rankine:elements/iridium",
+          "min": 0.0,
+          "max": 0.1
+        },
+        "input5": {
+          "element": "rankine:elements/chromium",
+          "min": 0.0,
+          "max": 0.1
+        },
+        "input6": {
+          "element": "rankine:elements/potassium",
+          "min": 0.0,
+          "max": 0.05
+        },
+        "input7": {
+          "element": "rankine:elements/sodium",
+          "min": 0.0,
+          "max": 0.05
+        },
+        "input8": {
+          "element": "rankine:elements/tellurium",
+          "min": 0.0,
+          "max": 0.05
+        },
+        "input9": {
+          "element": "rankine:elements/silicon",
+          "min": 0.0,
+          "max": 0.05
+        },
+        "input10": {
+          "element": "rankine:elements/arsenic",
+          "min": 0.0,
+          "max": 0.05
+        },
+        "result": "tconstruct:manyullyn_ingot"
+      }
+    }
+  ]
+}

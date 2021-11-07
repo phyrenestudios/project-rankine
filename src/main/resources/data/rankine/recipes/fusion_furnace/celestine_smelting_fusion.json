@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:celestine"
+  },
+  "input2": {
+    "item": "rankine:alumina"
+  },
+  "result1": {
+    "item":"rankine:strontium_ingot",
+    "count": 1
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  }
+}
