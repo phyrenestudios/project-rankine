@@ -173,6 +173,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.AMMONIA_GAS_BLOCK.get(),
                 RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get(),
                 RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get(),
+                RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get(),
                 RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get(),
                 RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get(),
                 RankineBlocks.ANTIMATTER.get(),

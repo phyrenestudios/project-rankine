@@ -314,6 +314,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.DRY_RUBBER.get(),
             RankineItems.INDIUM_TIN_OXIDE.get(),
             RankineItems.CADMIUM_TELLURIDE_CELL.get(),
+            RankineItems.SILICON_GERMANIUM_THERMOCOUPLE.get(),
             //RankineItems.YAG_ROD.get(),
             RankineItems.UNCUT_GEODE.get(),
             RankineItems.SODIUM_ARC_TUBE.get(),
@@ -349,17 +350,19 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.SPARK_LIGHTER.get(),
             RankineItems.THERMOMETER.get(),
             RankineItems.HARDNESS_TESTER.get(),
+            RankineItems.TOTEM_OF_BLAZING.get(),
             RankineItems.TOTEM_OF_COBBLING.get(),
+            RankineItems.TOTEM_OF_ENDURING.get(),
+            RankineItems.TOTEM_OF_HASTENING.get(),
+            RankineItems.TOTEM_OF_LEVITATING.get(),
+            RankineItems.TOTEM_OF_PROMISING.get(),
+            RankineItems.TOTEM_OF_REPULSING.get(),
+            RankineItems.TOTEM_OF_SOFTENING.get(),
+            RankineItems.TOTEM_OF_TIMESAVING.get(),
             RankineItems.ELEMENT_INDEXER.get(),
             RankineItems.PIA.get(),
             RankineItems.SHULKER_GAS_VACUUM.get(),
             RankineItems.BANDAGE.get(),
-            RankineItems.HASTE_PENDANT.get(),
-            RankineItems.REPULSION_PENDANT.get(),
-            RankineItems.LEVITATION_PENDANT.get(),
-            RankineItems.SPEED_PENDANT.get(),
-            RankineItems.HEALTH_PENDANT.get(),
-            RankineItems.LUCK_PENDANT.get(),
             RankineItems.GAS_MASK.get(),
             RankineItems.SANDALS.get(),
             RankineItems.ICE_SKATES.get(),
@@ -383,6 +386,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.JUGLONE_BUCKET.get(),
             RankineItems.LIQUID_MERCURY_BUCKET.get(),
             RankineItems.AQUA_REGIA_BUCKET.get(),
+            RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET.get(),
             RankineItems.HYDROBROMIC_ACID_BUCKET.get(),
             RankineItems.RED_MUD_BUCKET.get(),
             RankineItems.SULFURIC_ACID_BUCKET.get(),
@@ -394,6 +398,11 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.ZINC_BROMINE_BATTERY.get(),
             RankineItems.SODIUM_SULFUR_BATTERY.get(),
             RankineItems.LITHIUM_ION_BATTERY.get(),
+            RankineItems.AMERICIUM_RTG.get(),
+            RankineItems.CURIUM_RTG.get(),
+            RankineItems.PLUTONIUM_RTG.get(),
+            RankineItems.POLONIUM_RTG.get(),
+            RankineItems.STRONTIUM_RTG.get(),
             RankineItems.CRUSHING_HEAD_HL0.get(),
             RankineItems.CRUSHING_HEAD_HL1.get(),
             RankineItems.CRUSHING_HEAD_HL2.get(),
@@ -539,11 +548,13 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.jei.evaporation", "Evaporation");
         add("rankine.jei.beeoven", "Beehive Oven");
         add("rankine.jei.fusion_furnace", "Fusion Furnace");
+        add("rankine.jei.element", "Elements");
         add("rankine.jei.intrusive_igneous", "Intrusive Igneous Rock Generator");
         add("rankine.jei.extrusive_igneous", "Extrusive Igneous Rock Generator");
         add("rankine.jei.sedimentary", "Sedimentary Rock Generator");
         add("rankine.jei.metamorphic", "Metamorphic Rock Generator");
         add("rankine.jei.volcanic", "Volcanic Rock Generator");
+        add("rankine.jei.treetapping", "Treetap");
         add("itemGroup.rankine_world", "Project Rankine Building");
         add("itemGroup.rankine_metallurgy", "Project Rankine Metallurgy");
         add("itemGroup.rankine_elements", "Project Rankine Elements");
@@ -592,6 +603,20 @@ public class RankineLangProvider extends LanguageProvider {
         add("element.rankine,elements/copper.desc0", "Copper is a transition metal with an atomic number of 29.");
         add("element.rankine,elements/copper.desc1", "Commonly used in electrical components and early alloys.");
         add("element.rankine,elements/copper.desc2", "Commonly used in electrical components and early alloys.");
+
+        add("item.rankine.totem_of_adhering.tooltip", "Stuck to the plan");
+        add("item.rankine.totem_of_blazing.tooltip", "Burning up inside");
+        add("item.rankine.totem_of_cobbling.tooltip", "Long term stone storage");
+        add("item.rankine.totem_of_enduring.tooltip", "Built in body shield");
+        add("item.rankine.totem_of_hastening.tooltip", "Efficiency, but in your hands");
+        add("item.rankine.totem_of_imitating.tooltip", "False promises");
+        add("item.rankine.totem_of_levitating.tooltip", "For keeping your feet clean");
+        add("item.rankine.totem_of_mending.tooltip", "Regenerate your losses");
+        add("item.rankine.totem_of_promising.tooltip", "Fortune is on your side");
+        add("item.rankine.totem_of_repulsing.tooltip", "Invisibility while visible");
+        add("item.rankine.totem_of_softening.tooltip", "Soft fingers and toes");
+        add("item.rankine.totem_of_timesaving.tooltip", "Handheld speed beacon");
+
 
         add("fluid.rankine.aqua_regia", "Aqua Regia");
         add("fluid.rankine.hydrobromic_acid", "Hydrobromic Acid");

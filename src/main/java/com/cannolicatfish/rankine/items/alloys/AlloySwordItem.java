@@ -32,7 +32,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 
-public class AlloySwordItem extends SwordItem implements IAlloyTool {
+public class AlloySwordItem extends SwordItem implements IAlloyTool, IAlloyNeedsRegenerate {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
 

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "dmd",
+    "rgr",
+    "dzd"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "d":
+    {
+      "tag": "forge:rubber"
+    },
+    "m":
+    {
+      "tag": "forge:ingots/magnesium"
+    },
+    "z":
+    {
+      "tag": "forge:ingots/zinc"
+    },
+    "g":
+    {
+      "item": "rankine:graphite_electrode"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:magnesium_battery",
+    "count": 1
+  }
+}

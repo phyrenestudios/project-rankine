@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+      {
+        "values":
+      [
+        {
+          "item": "thermal:signalum_ingot",
+          "type": "forge:item_exists"
+        }
+      ],
+        "type": "forge:and"
+      }
+    ],
+      "recipe": {
+        "type": "rankine:element",
+        "name": "redstone",
+        "symbol": "Rs",
+        "color": 16777215,
+        "atomic": -1,
+        "potential": 0,
+        "items": ["I#minecraft:redstone","I#minecraft:redstone_block"],
+        "values": [1,9]
+      }
+    }
+  ]
+}

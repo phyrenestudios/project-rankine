@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:rocky_stone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:rocky_stone"
+        },
+        "output1": {
+          "item": "minecraft:cobblestone",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:orthoclase_feldspar",
+          "chance": 0.65,
+          "additional": 0.2
+        },
+        "output3": {
+          "item": "rankine:plagioclase_feldspar",
+          "chance": 0.45,
+          "additional": 0.25
+        },
+        "output4": {
+          "item": "minecraft:quartz",
+          "chance": 0.35,
+          "additional": 0.10
+        },
+        "output5": {
+          "item": "rankine:amphibole",
+          "chance": 0.15,
+          "additional": 0.03
+        },
+        "output6": {
+          "item": "rankine:mica",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:scoria",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "create:scoria"
+        },
+        "output1": {
+          "item": "create:scoria_cobblestone",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:basaltic_tuff",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:potash",
+          "chance": 0.55,
+          "additional": 0.15
+        },
+        "output4": {
+          "item": "rankine:quicklime",
+          "chance": 0.15,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "rankine:olivine",
+          "chance": 0.05,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:apatite",
+          "chance": 0.02
+        }
+      }
+    }
+  ]
+}

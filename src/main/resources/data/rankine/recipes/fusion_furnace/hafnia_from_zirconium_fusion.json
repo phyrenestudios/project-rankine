@@ -1,0 +1,18 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:storage_blocks/zirconium"
+  },
+  "input2": {
+    "item": "rankine:quicklime"
+  },
+  "result1": {
+    "item": "rankine:zirconia",
+    "count": 8
+  },
+  "result2": {
+    "item": "rankine:hafnia",
+    "count": 1
+  }
+}

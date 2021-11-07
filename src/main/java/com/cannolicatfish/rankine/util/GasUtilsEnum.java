@@ -11,7 +11,7 @@ import java.util.List;
 public enum GasUtilsEnum {
     HYDROGEN(0.1f,0, Collections.singletonList(new EffectInstance(Effects.MINING_FATIGUE,25)),true,16767483),
     HELIUM(0.15f,0,Collections.singletonList(new EffectInstance(Effects.JUMP_BOOST,25)),true,16750204),
-    NITROGEN(0.97f,0,Collections.singletonList(new EffectInstance(Effects.NAUSEA,25)),true,14459799),
+    NITROGEN(0.97f,79,Collections.singletonList(new EffectInstance(Effects.NAUSEA,25)),true,14459799),
     OXYGEN(1.1f,0,Collections.emptyList(),false,8585197),
     FLUORINE(1.6f,0,Collections.singletonList(new EffectInstance(Effects.POISON,25)),true,15983239),
     NEON(0.9f,0,Collections.singletonList(new EffectInstance(Effects.NIGHT_VISION,25)),true,16763457),
@@ -22,8 +22,9 @@ public enum GasUtilsEnum {
     RADON(7.5f,0, Arrays.asList(new EffectInstance(RankineEffects.RADIATION_POISONING,25),new EffectInstance(Effects.POISON,25)),true,16743053),
     OGANESSON(10f,0,Collections.singletonList(new EffectInstance(Effects.SLOW_FALLING,25)),true,10328228),
     AMMONIA(0.73f,0,Collections.singletonList(new EffectInstance(Effects.NAUSEA,25)),true,14459799),
-    CARBON_DIOXIDE(2f,0, Collections.singletonList(new EffectInstance(Effects.MINING_FATIGUE,25)),true,3684408),
-    HYDROGEN_CHLORIDE(1.5f,0, Collections.emptyList(),true,10345635),
+    CARBON_DIOXIDE(2f,1, Collections.singletonList(new EffectInstance(Effects.MINING_FATIGUE,25)),true,3684408),
+    HYDROGEN_CHLORIDE(1.5f,1, Collections.emptyList(),true,10345635),
+    HYDROGEN_FLUORIDE(1.15f,1, Collections.emptyList(),true,10345635),
     HYDROGEN_SULFIDE(1.35f,0, Collections.emptyList(),true,13676874),
     SULFUR_DIOXIDE(2.9f,0, Collections.emptyList(),true,6118148);
 

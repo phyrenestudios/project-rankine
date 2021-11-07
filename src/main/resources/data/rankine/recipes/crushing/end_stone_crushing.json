@@ -1,7 +1,7 @@
 {
   "type": "rankine:crushing",
   "input": {
-    "item": "rankine:breccia"
+    "item": "minecraft:end_stone"
   },
   "output1": {
     "item": "rankine:light_gravel",

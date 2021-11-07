@@ -1,0 +1,29 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values":
+          [
+            {
+              "item": "tconstruct:queens_slime_ingot",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:element",
+        "name": "phlogiston",
+        "symbol": "Ph",
+        "color": 16777215,
+        "atomic": -1,
+        "potential": 0,
+        "items": ["I#minecraft:magma_cream","I#minecraft:magma_block"],
+        "values": [2,8]
+      }
+    }
+  ]
+}

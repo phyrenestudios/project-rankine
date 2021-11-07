@@ -35,7 +35,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-public class AlloyKnifeItem extends KnifeItem implements IAlloyTool{
+public class AlloyKnifeItem extends KnifeItem implements IAlloyTool, IAlloyNeedsRegenerate{
 
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IRI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/osmiridium"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/opal"
+    }
+  },
+  "result": {
+    "item": "rankine:totem_of_levitating"
+  }
+}

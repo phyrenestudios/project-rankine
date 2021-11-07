@@ -71,4 +71,11 @@ public class RankineRecipeTypes {
             return recipe.matches(inv, worldIn) ? Optional.of((FusionFurnaceRecipe) recipe) : Optional.empty();
         }
     };
+
+    public static final IRecipeType<TreetappingRecipe> TREETAPPING = new IRecipeType<TreetappingRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<TreetappingRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((TreetappingRecipe) recipe) : Optional.empty();
+        }
+    };
 }

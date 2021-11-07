@@ -34,7 +34,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool{
+public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool, IAlloyNeedsRegenerate{
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
     public AlloyCrowbarItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Item.Properties builderIn) {

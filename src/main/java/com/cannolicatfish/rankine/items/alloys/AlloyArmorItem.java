@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDyeableArmorItem {
+public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDyeableArmorItem, IAlloyNeedsRegenerate {
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
     public AlloyArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn, Properties builderIn) {

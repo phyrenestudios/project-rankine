@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:limestone_cobblestone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "create:limestone_cobblestone"
+        },
+        "output1": {
+          "item": "rankine:light_gravel",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:calcite",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output3": {
+          "item": "create:limesand",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output4": {
+          "item": "rankine:dolomite",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "minecraft:bone",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:saltpeter",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

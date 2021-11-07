@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "dld",
+    "rsr",
+    "dld"
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:redstone"
+    },
+    "d":
+    {
+      "tag": "forge:rubber"
+    },
+    "l":
+    {
+      "tag": "forge:ingots/lead"
+    },
+    "s":
+    {
+      "item": "rankine:sulfuric_acid_bucket"
+    }
+  },
+  "result":
+  {
+    "item": "rankine:lead_acid_battery",
+    "count": 1
+  }
+}

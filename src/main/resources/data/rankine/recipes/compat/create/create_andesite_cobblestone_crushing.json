@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:andesite_cobblestone",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "create:andesite_cobblestone"
+        },
+        "output1": {
+          "item": "minecraft:gravel",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:andesine",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output3": {
+          "item": "minecraft:sand",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output4": {
+          "item": "rankine:pyroxene",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "rankine:apatite",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:zircon",
+          "chance": 0.04
+        }
+      }
+    }
+  ]
+}

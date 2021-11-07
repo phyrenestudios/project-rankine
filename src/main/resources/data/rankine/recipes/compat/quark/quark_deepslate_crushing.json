@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "quark:deepslate",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "quark:deepslate"
+        },
+        "output1": {
+          "item": "quark:cobbled_deepslate",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:ash",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:chlorite",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "rankine:mica",
+          "chance": 0.45,
+          "additional": 0.25
+        },
+        "output5": {
+          "item": "minecraft:quartz",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:kaolinite",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

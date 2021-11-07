@@ -1,0 +1,13 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:bone_char"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "result1": {
+    "item":"rankine:apatite"
+  }
+}

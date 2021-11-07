@@ -42,7 +42,7 @@ public class EndMeteoriteFeature extends Feature<NoFeatureConfig> {
             double radius = Math.max(I1,Math.max(I2,I3));
             double size = rand.nextDouble();
             boolean frozen = rand.nextBoolean();
-            BlockState BLOCK = Arrays.asList(RankineBlocks.METEORITE.get().getDefaultState(),RankineBlocks.ENSTATITE.get().getDefaultState()).get(rand.nextInt(2));
+            BlockState BLOCK = Arrays.asList(RankineBlocks.METEORITE.get().getDefaultState(),RankineBlocks.ENSTATITE_CHONDRITE.get().getDefaultState()).get(rand.nextInt(2));
             BlockState TEKTITE = Arrays.asList(RankineBlocks.BLACK_TEKTITE.get().getDefaultState(),RankineBlocks.GRAY_TEKTITE.get().getDefaultState(),RankineBlocks.GREEN_TEKTITE.get().getDefaultState(),RankineBlocks.BROWN_TEKTITE.get().getDefaultState()).get(rand.nextInt(4));
             BlockState ORE = Arrays.asList(RankineBlocks.KAMACITE_ORE.get().getDefaultState(),RankineBlocks.ANTITAENITE_ORE.get().getDefaultState(),RankineBlocks.TAENITE_ORE.get().getDefaultState(),RankineBlocks.TETRATAENITE_ORE.get().getDefaultState()).get(rand.nextInt(4));
 

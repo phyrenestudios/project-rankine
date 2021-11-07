@@ -1,0 +1,70 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:andesite_alloy",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:alloying",
+        "total": 9,
+        "color": 16777215,
+        "input1": {
+          "element": "rankine:elements/andesite",
+          "min": 0.75,
+          "max": 0.85,
+          "required": true
+        },
+        "input2": {
+          "element": "rankine:elements/iron",
+          "min": 0,
+          "max": 0.25
+        },
+        "input3": {
+          "element": "rankine:elements/aluminum",
+          "min": 0,
+          "max": 0.25
+        },
+        "input4": {
+          "element": "rankine:elements/lead",
+          "min": 0,
+          "max": 0.25
+        },
+        "input5": {
+          "element": "rankine:elements/bismuth",
+          "min": 0,
+          "max": 0.25
+        },
+        "input6": {
+          "element": "rankine:elements/nickel",
+          "min": 0,
+          "max": 0.25
+        },
+        "input7": {
+          "element": "rankine:elements/magnesium",
+          "min": 0,
+          "max": 0.25
+        },
+        "input8": {
+          "element": "rankine:elements/antimony",
+          "min": 0,
+          "max": 0.25
+        },
+        "input9": {
+          "element": "rankine:elements/tellurium",
+          "min": 0,
+          "max": 0.25
+        },
+        "result": "create:andesite_alloy"
+      }
+    }
+  ]
+}

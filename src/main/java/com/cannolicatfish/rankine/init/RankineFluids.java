@@ -49,6 +49,12 @@ public class RankineFluids {
     @ObjectHolder("rankine:flowing_aqua_regia")
     public static FlowingFluid FLOWING_AQUA_REGIA;
 
+    @ObjectHolder("rankine:hexafluorosilicic_acid")
+    public static FlowingFluid HEXAFLUOROSILICIC_ACID;
+
+    @ObjectHolder("rankine:flowing_hexafluorosilicic_acid")
+    public static FlowingFluid FLOWING_HEXAFLUOROSILICIC_ACID;
+
     @ObjectHolder("rankine:hydrobromic_acid")
     public static FlowingFluid HYDROBROMIC_ACID;
 

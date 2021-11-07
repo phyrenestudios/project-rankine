@@ -43,7 +43,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
 
-public class AlloyHammerItem extends HammerItem implements IAlloyTool{
+public class AlloyHammerItem extends HammerItem implements IAlloyTool, IAlloyNeedsRegenerate{
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
     public AlloyHammerItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  Properties properties) {

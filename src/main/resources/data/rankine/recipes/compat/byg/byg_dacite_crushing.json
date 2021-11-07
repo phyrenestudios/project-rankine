@@ -1,0 +1,52 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "byg:dacite",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "byg:dacite"
+        },
+        "output1": {
+          "item": "minecraft:cobblestone",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:amphibole",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "rankine:labradorite",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "minecraft:quartz",
+          "chance": 0.25,
+          "additional": 0.15
+        },
+        "output5": {
+          "item": "rankine:talc",
+          "chance": 0.1,
+          "additional": 0.05
+        },
+        "output6": {
+          "item": "rankine:serpentine",
+          "chance": 0.05
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "values": [
+            {
+              "item": "create:copper_ore",
+              "type": "forge:item_exists"
+            }
+          ],
+          "type": "forge:and"
+        }
+      ],
+      "recipe": {
+        "type": "rankine:crushing",
+        "input": {
+          "item": "create:copper_ore"
+        },
+        "output1": {
+          "item": "create:crushed_copper_ore",
+          "chance": 1
+        },
+        "output2": {
+          "item": "rankine:calcite",
+          "chance": 0.75,
+          "additional": 0.15
+        },
+        "output3": {
+          "item": "minecraft:quartz",
+          "chance": 0.5,
+          "additional": 0.2
+        },
+        "output4": {
+          "item": "minecraft:gold_nugget",
+          "count": 3,
+          "chance": 0.15,
+          "additional": 0.05
+        },
+        "output5": {
+          "item": "rankine:silver_nugget",
+          "count": 3,
+          "chance": 0.05,
+          "additional": 0.03
+        },
+        "output6": {
+          "item": "rankine:pyrite",
+          "chance": 0.02
+        }
+      }
+    }
+  ]
+}

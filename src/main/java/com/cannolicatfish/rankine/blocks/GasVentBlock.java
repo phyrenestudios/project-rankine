@@ -106,6 +106,8 @@ public class GasVentBlock extends Block {
                 return RankineBlocks.CARBON_DIOXIDE_GAS_BLOCK.get();
             case HYDROGEN_CHLORIDE:
                 return RankineBlocks.HYDROGEN_CHLORIDE_GAS_BLOCK.get();
+            case HYDROGEN_FLUORIDE:
+                return RankineBlocks.HYDROGEN_FLUORIDE_GAS_BLOCK.get();
             case HYDROGEN_SULFIDE:
                 return RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get();
             case SULFUR_DIOXIDE:
