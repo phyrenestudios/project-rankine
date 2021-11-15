@@ -827,6 +827,8 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
         copy(Tags.Blocks.STONE, Tags.Items.STONE);
+        copy(Tags.Blocks.SAND, Tags.Items.SAND);
+        copy(Tags.Blocks.GLASS, Tags.Items.GLASS);
         copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
         //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
         getOrCreateBuilder(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
@@ -847,7 +849,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         //MINECRAFT
         getOrCreateBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(RankineItems.SKARN.get(),RankineItems.BRECCIA.get());
-        getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
+        //getOrCreateBuilder(ItemTags.BEACON_PAYMENT_ITEMS).addTags();
 
         getOrCreateBuilder(ItemTags.ARROWS).add(RankineItems.ROPE_COIL_ARROW.get(),RankineItems.THORIUM_ARROW.get(),RankineItems.MAGNESIUM_ARROW.get(),RankineItems.ALLOY_ARROW.get());
         //getOrCreateBuilder(EntityTypeTags.ARROWS).add(RankineEntityTypes.THORIUM_ARROW,RankineEntityTypes.MAGNESIUM_ARROW,RankineEntityTypes.ALLOY_ARROW);

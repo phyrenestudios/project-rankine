@@ -1,0 +1,27 @@
+{
+  "name": "Volcanic Stones",
+  "icon": "rankine:pumice",
+  "category": "stones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Volcanic stones are those that come straight from lava almost immediately. "
+    },
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:obsidian",
+      "link_recipe": true,
+      "text": "Found in the traditional locations."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:crying_obsidian",
+      "link_recipe": true,
+      "text": "Not found yet."
+    }
+  ]
+}

@@ -81,6 +81,7 @@ public class TreeChoppingEvents {
             List<BlockPos> leaves = new ArrayList<>();
             Stack<BlockPos> toCheck = new Stack<>();
             boolean alive = false;
+            int forceBreak = Config.GENERAL.FORCE_BREAK.get();
 
             toCheck.add(pos);
             while (!toCheck.isEmpty()) {
@@ -92,25 +93,20 @@ public class TreeChoppingEvents {
                         if (target.isIn(RankineTags.Blocks.TREE_LOGS)) {
                             toCheck.add(b.toImmutable());
                             logs.add(b.toImmutable());
-                        } else if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
-                            if (target.getBlock() instanceof LeavesBlock) {
-                                if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
-                                    for (BlockPos log : logs) {
-                                        if (log.distanceSq(b) <= 16) {
-                                            //toCheck.add(b.toImmutable());
-                                            leaves.add(b.toImmutable());
-                                            alive = true;
-                                        }
+                        }
+                    }
+                    for (BlockPos leaf : BlockPos.getAllInBoxMutable(cp.add(-forceBreak,-forceBreak,-forceBreak), cp.add(forceBreak,forceBreak,forceBreak))) {
+                        if (!leaves.contains(leaf)) {
+                            BlockState target = worldIn.getBlockState(leaf.toImmutable());
+                            if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
+                                if (target.getBlock() instanceof LeavesBlock) {
+                                    if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
+                                        leaves.add(leaf);
                                     }
+                                } else {
+                                    leaves.add(leaf);
                                 }
-                            } else {
-                                for (BlockPos log : logs) {
-                                    if (log.distanceSq(b) <= 16) {
-                                        //toCheck.add(b.toImmutable());
-                                        leaves.add(b.toImmutable());
-                                        alive = true;
-                                    }
-                                }
+                                alive = true;
                             }
                         }
                     }
@@ -123,20 +119,22 @@ public class TreeChoppingEvents {
             if (alive) {
                 for (BlockPos b : logs) {
                     if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(b.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),3);
+                        worldIn.setBlockState(b, RankineBlocks.STUMP.get().getDefaultState(),2);
                     } else {
                         worldIn.destroyBlock(b, true);
                     }
 
-                }
-                if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
-                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),3);
                 }
                 for (BlockPos b : leaves) {
                     LeavesBlock.spawnDrops(worldIn.getBlockState(b),worldIn,pos);
                     worldIn.removeBlock(b,false);
                 }
                 worldIn.playSound(null,pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS,1.0f,0.8f);
+
+
+                if (Config.GENERAL.STUMP_CREATION.get() && worldIn.getBlockState(pos.down()).getBlock().isIn(Tags.Blocks.DIRT)) {
+                    worldIn.setBlockState(pos, RankineBlocks.STUMP.get().getDefaultState(),2);
+                }
             }
 
             if (state.getBlockHardness(worldIn, pos) != 0.0F) {

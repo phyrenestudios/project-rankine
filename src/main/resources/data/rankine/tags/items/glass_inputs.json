@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "#forge:sand",
-    "#forge:gems/quartz",
-    "rankine:black_sand"
+    "#forge:gems/quartz"
   ]
 }

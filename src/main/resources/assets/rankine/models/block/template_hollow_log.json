@@ -1,0 +1,59 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"stripped": "rankine:block/stripped_cedar_log",
+		"log": "rankine:block/cedar_log",
+		"log_top": "rankine:block/cedar_log_top",
+		"particle": "#log"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 0],
+			"to": [14, 16, 2],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 16], "texture": "#log"},
+				"east": {"uv": [15, 0, 16, 16], "texture": "#log"},
+				"south": {"uv": [2, 0, 14, 16], "texture": "#stripped_log"},
+				"west": {"uv": [0, 0, 1, 16], "texture": "#log"},
+				"up": {"uv": [2, 0, 14, 2], "texture": "#log_top"},
+				"down": {"uv": [2, 14, 14, 16], "texture": "#log_top"}
+			}
+		},
+		{
+			"from": [2, 0, 14],
+			"to": [14, 16, 16],
+			"faces": {
+				"north": {"uv": [2, 0, 14, 16], "texture": "#stripped_log"},
+				"east": {"uv": [0, 0, 1, 16], "texture": "#log"},
+				"south": {"uv": [2, 0, 14, 16], "texture": "#log"},
+				"west": {"uv": [15, 0, 16, 16], "texture": "#log"},
+				"up": {"uv": [2, 14, 14, 16], "texture": "#log_top"},
+				"down": {"uv": [2, 0, 14, 2], "texture": "#log_top"}
+			}
+		},
+		{
+			"from": [14, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 16], "texture": "#log"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#log"},
+				"south": {"uv": [14, 0, 16, 16], "texture": "#log"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#stripped_log"},
+				"up": {"uv": [14, 0, 16, 16], "texture": "#log_top"},
+				"down": {"uv": [14, 0, 16, 16], "texture": "#log_top"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [2, 16, 16],
+			"faces": {
+				"north": {"uv": [14, 0, 16, 16], "texture": "#log"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#stripped_log"},
+				"south": {"uv": [0, 0, 2, 16], "texture": "#log"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#log"},
+				"up": {"uv": [0, 0, 2, 16], "texture": "#log_top"},
+				"down": {"uv": [0, 0, 2, 16], "texture": "#log_top"}
+			}
+		}
+	]
+}

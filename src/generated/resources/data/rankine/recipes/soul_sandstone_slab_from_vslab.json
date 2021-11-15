@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "stone_slab_from_vslab",
+  "group": "sandstone_slab_from_vslab",
   "ingredients": [
     {
       "item": "rankine:soul_sandstone_vertical_slab"

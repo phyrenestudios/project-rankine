@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cut_sandstone_slab_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:cut_desert_sandstone_vertical_slab"
+    }
+  ],
+  "result": {
+    "item": "rankine:cut_desert_sandstone_slab"
+  }
+}
