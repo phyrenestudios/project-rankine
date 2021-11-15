@@ -26,7 +26,7 @@ public class DecorationGen {
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getLocalModificationFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> LocalModifications = new ArrayList<>();
-        if (Config.MISC.METEORITE_GEN.get()) {
+        if (Config.MISC_WORLDGEN.METEORITE_GEN.get()) {
             LocalModifications.add(new AbstractMap.SimpleEntry<>(RankineFeatures.METEORITE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
         }
 
@@ -34,7 +34,7 @@ public class DecorationGen {
     }
 
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getVegetalDecorationFeatures() {
-        if (Config.MISC.RANKINE_FAUNA.get()) {
+        if (Config.MISC_WORLDGEN.RANKINE_FAUNA.get()) {
             return Arrays.asList(
                 new AbstractMap.SimpleEntry<>(RankineFeatures.ELDERBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.PLAINS),true)),
                 new AbstractMap.SimpleEntry<>(RankineFeatures.POKEBERRY_BUSH,WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.FOREST, Biome.Category.TAIGA),true)),

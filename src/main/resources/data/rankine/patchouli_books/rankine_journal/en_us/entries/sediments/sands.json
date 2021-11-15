@@ -5,31 +5,43 @@
   "pages": [
     {
       "type": "text",
-      "text": "Sand is the middle sized particle and affected by gravity. $(l:mechanics/sluicing)Sluicing$() with a gold pan will yield various products depending on the type."
+      "text": "Sand is a class of middle sized particle and affected by gravity. $(l:mechanics/sluicing)Sluicing$() with a gold pan will yield various products depending on the type."
     },
     {
       "type": "spotlight",
       "item": "minecraft:sand",
       "link_recipe": true,
-      "text": "Found in the normal locations."
+      "text": "Normally found along beaches and rivers. Used as a construction material in default and new recipes."
     },
     {
       "type": "spotlight",
       "item": "minecraft:red_sand",
       "link_recipe": true,
-      "text": "Found in the normal locations."
+      "text": "Normally found at surface level in Mesa biomes. Used as a construction material in default and new recipes."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:soul_sand",
+      "link_recipe": true,
+      "text": "Main sediment component of the Soul Sand Valley biome."
     },
     {
       "type": "spotlight",
       "item": "rankine:black_sand",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "Normally found scattered along beaches. Used as a construction material in default and new recipes."
     },
     {
       "type": "spotlight",
       "item": "rankine:white_sand",
       "link_recipe": true,
-      "text": "Not found yet."
+      "text": "Normally found scattered along beaches. Used as a construction material in default and new recipes."
+    },
+    {
+      "type": "spotlight",
+      "item": "rankine:desert_sand",
+      "link_recipe": true,
+      "text": "Normally found in Desert biomes. Unlike other sands, this type has limited uses."
     }
   ]
 }

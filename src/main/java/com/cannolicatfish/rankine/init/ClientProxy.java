@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleScreen;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerScreen;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceScreen;
+import com.cannolicatfish.rankine.blocks.gascondenser.GasCondensorScreen;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherScreen;
 import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceScreen;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableScreen;
@@ -55,6 +56,7 @@ public class ClientProxy implements IProxy {
         ScreenManager.registerFactory(RankineBlocks.ALLOY_FURNACE_CONTAINER, AlloyFurnaceScreen::new);
         ScreenManager.registerFactory(RankineBlocks.PISTON_CRUSHER_CONTAINER, PistonCrusherScreen::new);
         ScreenManager.registerFactory(RankineBlocks.EVAPORATION_TOWER_CONTAINER, EvaporationTowerScreen::new);
+        ScreenManager.registerFactory(RankineBlocks.GAS_CONDENSER_CONTAINER, GasCondensorScreen::new);
         ScreenManager.registerFactory(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new);
         ScreenManager.registerFactory(RankineBlocks.TEMPLATE_TABLE_CONTAINER, TemplateTableScreen::new);
         ScreenManager.registerFactory(RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER, MaterialTestingTableScreen::new);
@@ -70,6 +72,7 @@ public class ClientProxy implements IProxy {
         addCutout(RankineLists.METAL_TRAPDOORS);
         addCutout(RankineLists.METAL_LADDERS);
         addCutout(RankineLists.LEAVES);
+        addCutout(RankineLists.LEAF_LITTERS);
         addCutout(RankineLists.SAPLINGS);
         addCutout(RankineLists.NATIVE_ORES);
         addCutout(RankineLists.CRUSHING_ORES);
@@ -91,26 +94,13 @@ public class ClientProxy implements IProxy {
         ));
 
         addCutoutMipped(RankineLists.GRASS_BLOCKS);
+        addCutoutMipped(RankineLists.FLOWER_POTS);
         addCutoutMipped(Arrays.asList(
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
-
-                RankineBlocks.POTTED_CEDAR_SAPLING.get(),
-                RankineBlocks.POTTED_JUNIPER_SAPLING.get(),
-                RankineBlocks.POTTED_COCONUT_PALM_SAPLING.get(),
-                RankineBlocks.POTTED_PINYON_PINE_SAPLING.get(),
-                RankineBlocks.POTTED_BALSAM_FIR_SAPLING.get(),
-                RankineBlocks.POTTED_MAGNOLIA_SAPLING.get(),
-                RankineBlocks.POTTED_EASTERN_HEMLOCK_SAPLING.get(),
-                RankineBlocks.POTTED_MAPLE_SAPLING.get(),
-                RankineBlocks.POTTED_YELLOW_BIRCH_SAPLING.get(),
-                RankineBlocks.POTTED_BLACK_BIRCH_SAPLING.get(),
-                RankineBlocks.POTTED_BLACK_WALNUT_SAPLING.get(),
-                RankineBlocks.POTTED_SHARINGA_SAPLING.get(),
-                RankineBlocks.POTTED_CORK_OAK_SAPLING.get(),
 
                 RankineBlocks.BANANA_YUCCA_BUSH.get(),
                 RankineBlocks.ELDERBERRY_BUSH.get(),
@@ -157,6 +147,8 @@ public class ClientProxy implements IProxy {
 
         ));
 
+        addTranslucent(RankineLists.GAS_BLOCKS);
+        addTranslucent(RankineLists.LIGHTNING_GLASSES);
         addTranslucent(Arrays.asList(
                 RankineBlocks.HYDROGEN_GAS_BLOCK.get(),
                 RankineBlocks.HELIUM_GAS_BLOCK.get(),
@@ -176,7 +168,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.HYDROGEN_SULFIDE_GAS_BLOCK.get(),
                 RankineBlocks.SULFUR_DIOXIDE_GAS_BLOCK.get(),
                 RankineBlocks.ANTIMATTER.get(),
-                RankineBlocks.LIGHTNING_GLASS.get(),
                 RankineBlocks.BLACK_TEKTITE.get(),
                 RankineBlocks.GREEN_TEKTITE.get(),
                 RankineBlocks.GRAY_TEKTITE.get(),

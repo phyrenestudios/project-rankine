@@ -411,10 +411,8 @@ public class RankineEventHandler {
         if (event.getEntity() instanceof LightningBoltEntity) {
             LightningBoltEntity entity = (LightningBoltEntity) event.getEntity();
             World worldIn = event.getWorld();
-            ITag<Block> fulgurite = RankineTags.Blocks.LIGHTNING_VITRIFIED;
-            ITag<Block> lightningGlass = BlockTags.SAND;
             BlockPos startPos = entity.getPosition().down();
-            if (fulgurite.contains(worldIn.getBlockState(startPos).getBlock()) || lightningGlass.contains(worldIn.getBlockState(startPos).getBlock())) {
+            if (!worldIn.isRemote) {
                 Iterable<BlockPos> positions = BlockPos.getProximitySortedBoxPositionsIterator(startPos,2,2,2);
                 for (BlockPos pos : positions) {
                     double rand;
@@ -424,10 +422,19 @@ public class RankineEventHandler {
                         rand = pos.distanceSq(startPos.getX(),startPos.getY(),startPos.getZ(),true);
                     }
 
-                    if (worldIn.getRandom().nextFloat() < 1/rand && fulgurite.contains(worldIn.getBlockState(pos).getBlock())) {
+                    Block BLK = worldIn.getBlockState(pos).getBlock();
+                    if (worldIn.getRandom().nextFloat() < 1/rand && BLK.isIn(RankineTags.Blocks.LIGHTNING_VITRIFIED)) {
                         worldIn.setBlockState(pos,RankineBlocks.FULGURITE.get().getDefaultState(),3);
-                    } else if (worldIn.getRandom().nextFloat() < 1/rand && lightningGlass.contains(worldIn.getBlockState(pos).getBlock())) {
+                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.matchesBlock(Blocks.SAND) || BLK.matchesBlock(RankineBlocks.SILT.get()) || BLK.matchesBlock(RankineBlocks.DESERT_SAND.get())) {
                         worldIn.setBlockState(pos,RankineBlocks.LIGHTNING_GLASS.get().getDefaultState(),3);
+                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.matchesBlock(Blocks.RED_SAND)) {
+                        worldIn.setBlockState(pos,RankineBlocks.RED_LIGHTNING_GLASS.get().getDefaultState(),3);
+                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.matchesBlock(Blocks.SOUL_SAND)) {
+                        worldIn.setBlockState(pos,RankineBlocks.SOUL_LIGHTNING_GLASS.get().getDefaultState(),3);
+                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.matchesBlock(RankineBlocks.BLACK_SAND.get())) {
+                        worldIn.setBlockState(pos,RankineBlocks.BLACK_LIGHTNING_GLASS.get().getDefaultState(),3);
+                    } else if (worldIn.getRandom().nextFloat() < 1/rand && BLK.matchesBlock(RankineBlocks.WHITE_SAND.get())) {
+                        worldIn.setBlockState(pos,RankineBlocks.WHITE_LIGHTNING_GLASS.get().getDefaultState(),3);
                     }
                 }
             }
@@ -2088,7 +2095,7 @@ public class RankineEventHandler {
                         if (foundPos != null && new Random().nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
                             Block b = worldIn.getBlockState(foundPos).getBlock();
                             ItemStack nug = ItemStack.EMPTY;
-                            if (b == RankineBlocks.MAGNETITE_ORE.get()) {
+                            if (b == RankineBlocks.MAGNETITE_ORE.get() || b == RankineBlocks.HEMATITE_ORE.get()) {
                                 nug = new ItemStack(Items.IRON_NUGGET);
                             } else if (b == RankineBlocks.MALACHITE_ORE.get()) {
                                 nug = new ItemStack(RankineItems.COPPER_NUGGET.get());

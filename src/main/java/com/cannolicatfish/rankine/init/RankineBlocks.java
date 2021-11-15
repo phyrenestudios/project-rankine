@@ -6,10 +6,16 @@ import com.cannolicatfish.rankine.blocks.asphalt.*;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
 import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerBlock;
+import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceBlock;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
+import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserBlock;
+import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserContainer;
+import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserTile;
+import com.cannolicatfish.rankine.blocks.gasvent.GasVentBlock;
+import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
@@ -97,9 +103,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PEGMATITE_SLAB = REGISTRY.register("pegmatite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PEGMATITE.get())));
     public static final RegistryObject<Block> POLISHED_PEGMATITE_SLAB = REGISTRY.register("polished_pegmatite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_PEGMATITE.get())));
     public static final RegistryObject<Block> PEGMATITE_BRICKS_SLAB = REGISTRY.register("pegmatite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PEGMATITE_BRICKS.get())));
-    public static final RegistryObject<Block> PEGMATITE_STAIRS = REGISTRY.register("pegmatite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PEGMATITE.get())));
-    public static final RegistryObject<Block> POLISHED_PEGMATITE_STAIRS = REGISTRY.register("polished_pegmatite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_PEGMATITE.get())));
-    public static final RegistryObject<Block> PEGMATITE_BRICKS_STAIRS = REGISTRY.register("pegmatite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PEGMATITE_BRICKS.get())));
+    public static final RegistryObject<Block> PEGMATITE_STAIRS = REGISTRY.register("pegmatite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PEGMATITE.get())));
+    public static final RegistryObject<Block> POLISHED_PEGMATITE_STAIRS = REGISTRY.register("polished_pegmatite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_PEGMATITE.get())));
+    public static final RegistryObject<Block> PEGMATITE_BRICKS_STAIRS = REGISTRY.register("pegmatite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PEGMATITE_BRICKS.get())));
     public static final RegistryObject<Block> PEGMATITE_WALL = REGISTRY.register("pegmatite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PEGMATITE.get())));
     public static final RegistryObject<Block> POLISHED_PEGMATITE_WALL = REGISTRY.register("polished_pegmatite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_PEGMATITE.get())));
     public static final RegistryObject<Block> PEGMATITE_BRICKS_WALL = REGISTRY.register("pegmatite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PEGMATITE_BRICKS.get())));
@@ -115,9 +121,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRAY_GRANITE_SLAB = REGISTRY.register("gray_granite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRAY_GRANITE.get())));
     public static final RegistryObject<Block> POLISHED_GRAY_GRANITE_SLAB = REGISTRY.register("polished_gray_granite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_GRAY_GRANITE.get())));
     public static final RegistryObject<Block> GRAY_GRANITE_BRICKS_SLAB = REGISTRY.register("gray_granite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRAY_GRANITE_BRICKS.get())));
-    public static final RegistryObject<Block> GRAY_GRANITE_STAIRS = REGISTRY.register("gray_granite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRAY_GRANITE.get())));
-    public static final RegistryObject<Block> POLISHED_GRAY_GRANITE_STAIRS = REGISTRY.register("polished_gray_granite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_GRAY_GRANITE.get())));
-    public static final RegistryObject<Block> GRAY_GRANITE_BRICKS_STAIRS = REGISTRY.register("gray_granite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRAY_GRANITE_BRICKS.get())));
+    public static final RegistryObject<Block> GRAY_GRANITE_STAIRS = REGISTRY.register("gray_granite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRAY_GRANITE.get())));
+    public static final RegistryObject<Block> POLISHED_GRAY_GRANITE_STAIRS = REGISTRY.register("polished_gray_granite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_GRAY_GRANITE.get())));
+    public static final RegistryObject<Block> GRAY_GRANITE_BRICKS_STAIRS = REGISTRY.register("gray_granite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRAY_GRANITE_BRICKS.get())));
     public static final RegistryObject<Block> GRAY_GRANITE_WALL = REGISTRY.register("gray_granite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRAY_GRANITE.get())));
     public static final RegistryObject<Block> POLISHED_GRAY_GRANITE_WALL = REGISTRY.register("polished_gray_granite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_GRAY_GRANITE.get())));
     public static final RegistryObject<Block> GRAY_GRANITE_BRICKS_WALL = REGISTRY.register("gray_granite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRAY_GRANITE_BRICKS.get())));
@@ -133,9 +139,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RHYOLITE_SLAB = REGISTRY.register("rhyolite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RHYOLITE.get())));
     public static final RegistryObject<Block> POLISHED_RHYOLITE_SLAB = REGISTRY.register("polished_rhyolite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_RHYOLITE.get())));
     public static final RegistryObject<Block> RHYOLITE_BRICKS_SLAB = REGISTRY.register("rhyolite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RHYOLITE_BRICKS.get())));
-    public static final RegistryObject<Block> RHYOLITE_STAIRS = REGISTRY.register("rhyolite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RHYOLITE.get())));
-    public static final RegistryObject<Block> POLISHED_RHYOLITE_STAIRS = REGISTRY.register("polished_rhyolite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_RHYOLITE.get())));
-    public static final RegistryObject<Block> RHYOLITE_BRICKS_STAIRS = REGISTRY.register("rhyolite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RHYOLITE_BRICKS.get())));
+    public static final RegistryObject<Block> RHYOLITE_STAIRS = REGISTRY.register("rhyolite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RHYOLITE.get())));
+    public static final RegistryObject<Block> POLISHED_RHYOLITE_STAIRS = REGISTRY.register("polished_rhyolite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_RHYOLITE.get())));
+    public static final RegistryObject<Block> RHYOLITE_BRICKS_STAIRS = REGISTRY.register("rhyolite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RHYOLITE_BRICKS.get())));
     public static final RegistryObject<Block> RHYOLITE_WALL = REGISTRY.register("rhyolite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RHYOLITE.get())));
     public static final RegistryObject<Block> POLISHED_RHYOLITE_WALL = REGISTRY.register("polished_rhyolite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_RHYOLITE.get())));
     public static final RegistryObject<Block> RHYOLITE_BRICKS_WALL = REGISTRY.register("rhyolite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RHYOLITE_BRICKS.get())));
@@ -151,9 +157,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> COMENDITE_SLAB = REGISTRY.register("comendite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(COMENDITE.get())));
     public static final RegistryObject<Block> POLISHED_COMENDITE_SLAB = REGISTRY.register("polished_comendite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_COMENDITE.get())));
     public static final RegistryObject<Block> COMENDITE_BRICKS_SLAB = REGISTRY.register("comendite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(COMENDITE_BRICKS.get())));
-    public static final RegistryObject<Block> COMENDITE_STAIRS = REGISTRY.register("comendite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(COMENDITE.get())));
-    public static final RegistryObject<Block> POLISHED_COMENDITE_STAIRS = REGISTRY.register("polished_comendite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_COMENDITE.get())));
-    public static final RegistryObject<Block> COMENDITE_BRICKS_STAIRS = REGISTRY.register("comendite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(COMENDITE_BRICKS.get())));
+    public static final RegistryObject<Block> COMENDITE_STAIRS = REGISTRY.register("comendite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(COMENDITE.get())));
+    public static final RegistryObject<Block> POLISHED_COMENDITE_STAIRS = REGISTRY.register("polished_comendite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_COMENDITE.get())));
+    public static final RegistryObject<Block> COMENDITE_BRICKS_STAIRS = REGISTRY.register("comendite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(COMENDITE_BRICKS.get())));
     public static final RegistryObject<Block> COMENDITE_WALL = REGISTRY.register("comendite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(COMENDITE.get())));
     public static final RegistryObject<Block> POLISHED_COMENDITE_WALL = REGISTRY.register("polished_comendite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_COMENDITE.get())));
     public static final RegistryObject<Block> COMENDITE_BRICKS_WALL = REGISTRY.register("comendite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(COMENDITE_BRICKS.get())));
@@ -169,9 +175,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRANODIORITE_SLAB = REGISTRY.register("granodiorite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRANODIORITE.get())));
     public static final RegistryObject<Block> POLISHED_GRANODIORITE_SLAB = REGISTRY.register("polished_granodiorite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_GRANODIORITE.get())));
     public static final RegistryObject<Block> GRANODIORITE_BRICKS_SLAB = REGISTRY.register("granodiorite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRANODIORITE_BRICKS.get())));
-    public static final RegistryObject<Block> GRANODIORITE_STAIRS = REGISTRY.register("granodiorite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRANODIORITE.get())));
-    public static final RegistryObject<Block> POLISHED_GRANODIORITE_STAIRS = REGISTRY.register("polished_granodiorite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_GRANODIORITE.get())));
-    public static final RegistryObject<Block> GRANODIORITE_BRICKS_STAIRS = REGISTRY.register("granodiorite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRANODIORITE_BRICKS.get())));
+    public static final RegistryObject<Block> GRANODIORITE_STAIRS = REGISTRY.register("granodiorite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRANODIORITE.get())));
+    public static final RegistryObject<Block> POLISHED_GRANODIORITE_STAIRS = REGISTRY.register("polished_granodiorite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_GRANODIORITE.get())));
+    public static final RegistryObject<Block> GRANODIORITE_BRICKS_STAIRS = REGISTRY.register("granodiorite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRANODIORITE_BRICKS.get())));
     public static final RegistryObject<Block> GRANODIORITE_WALL = REGISTRY.register("granodiorite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRANODIORITE.get())));
     public static final RegistryObject<Block> POLISHED_GRANODIORITE_WALL = REGISTRY.register("polished_granodiorite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_GRANODIORITE.get())));
     public static final RegistryObject<Block> GRANODIORITE_BRICKS_WALL = REGISTRY.register("granodiorite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRANODIORITE_BRICKS.get())));
@@ -187,9 +193,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_PORPHYRY_SLAB = REGISTRY.register("red_porphyry_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RED_PORPHYRY.get())));
     public static final RegistryObject<Block> POLISHED_RED_PORPHYRY_SLAB = REGISTRY.register("polished_red_porphyry_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_RED_PORPHYRY.get())));
     public static final RegistryObject<Block> RED_PORPHYRY_BRICKS_SLAB = REGISTRY.register("red_porphyry_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RED_PORPHYRY_BRICKS.get())));
-    public static final RegistryObject<Block> RED_PORPHYRY_STAIRS = REGISTRY.register("red_porphyry_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RED_PORPHYRY.get())));
-    public static final RegistryObject<Block> POLISHED_RED_PORPHYRY_STAIRS = REGISTRY.register("polished_red_porphyry_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_RED_PORPHYRY.get())));
-    public static final RegistryObject<Block> RED_PORPHYRY_BRICKS_STAIRS = REGISTRY.register("red_porphyry_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RED_PORPHYRY_BRICKS.get())));
+    public static final RegistryObject<Block> RED_PORPHYRY_STAIRS = REGISTRY.register("red_porphyry_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RED_PORPHYRY.get())));
+    public static final RegistryObject<Block> POLISHED_RED_PORPHYRY_STAIRS = REGISTRY.register("polished_red_porphyry_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_RED_PORPHYRY.get())));
+    public static final RegistryObject<Block> RED_PORPHYRY_BRICKS_STAIRS = REGISTRY.register("red_porphyry_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RED_PORPHYRY_BRICKS.get())));
     public static final RegistryObject<Block> RED_PORPHYRY_WALL = REGISTRY.register("red_porphyry_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RED_PORPHYRY.get())));
     public static final RegistryObject<Block> POLISHED_RED_PORPHYRY_WALL = REGISTRY.register("polished_red_porphyry_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_RED_PORPHYRY.get())));
     public static final RegistryObject<Block> RED_PORPHYRY_BRICKS_WALL = REGISTRY.register("red_porphyry_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RED_PORPHYRY_BRICKS.get())));
@@ -205,9 +211,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PURPLE_PORPHYRY_SLAB = REGISTRY.register("purple_porphyry_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY.get())));
     public static final RegistryObject<Block> POLISHED_PURPLE_PORPHYRY_SLAB = REGISTRY.register("polished_purple_porphyry_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_PURPLE_PORPHYRY.get())));
     public static final RegistryObject<Block> PURPLE_PORPHYRY_BRICKS_SLAB = REGISTRY.register("purple_porphyry_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY_BRICKS.get())));
-    public static final RegistryObject<Block> PURPLE_PORPHYRY_STAIRS = REGISTRY.register("purple_porphyry_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PURPLE_PORPHYRY.get())));
-    public static final RegistryObject<Block> POLISHED_PURPLE_PORPHYRY_STAIRS = REGISTRY.register("polished_purple_porphyry_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_PURPLE_PORPHYRY.get())));
-    public static final RegistryObject<Block> PURPLE_PORPHYRY_BRICKS_STAIRS = REGISTRY.register("purple_porphyry_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PURPLE_PORPHYRY_BRICKS.get())));
+    public static final RegistryObject<Block> PURPLE_PORPHYRY_STAIRS = REGISTRY.register("purple_porphyry_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY.get())));
+    public static final RegistryObject<Block> POLISHED_PURPLE_PORPHYRY_STAIRS = REGISTRY.register("polished_purple_porphyry_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_PURPLE_PORPHYRY.get())));
+    public static final RegistryObject<Block> PURPLE_PORPHYRY_BRICKS_STAIRS = REGISTRY.register("purple_porphyry_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY_BRICKS.get())));
     public static final RegistryObject<Block> PURPLE_PORPHYRY_WALL = REGISTRY.register("purple_porphyry_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY.get())));
     public static final RegistryObject<Block> POLISHED_PURPLE_PORPHYRY_WALL = REGISTRY.register("polished_purple_porphyry_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_PURPLE_PORPHYRY.get())));
     public static final RegistryObject<Block> PURPLE_PORPHYRY_BRICKS_WALL = REGISTRY.register("purple_porphyry_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PURPLE_PORPHYRY_BRICKS.get())));
@@ -223,9 +229,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_DACITE_SLAB = REGISTRY.register("black_dacite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLACK_DACITE.get())));
     public static final RegistryObject<Block> POLISHED_BLACK_DACITE_SLAB = REGISTRY.register("polished_black_dacite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_BLACK_DACITE.get())));
     public static final RegistryObject<Block> BLACK_DACITE_BRICKS_SLAB = REGISTRY.register("black_dacite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLACK_DACITE_BRICKS.get())));
-    public static final RegistryObject<Block> BLACK_DACITE_STAIRS = REGISTRY.register("black_dacite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BLACK_DACITE.get())));
-    public static final RegistryObject<Block> POLISHED_BLACK_DACITE_STAIRS = REGISTRY.register("polished_black_dacite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_BLACK_DACITE.get())));
-    public static final RegistryObject<Block> BLACK_DACITE_BRICKS_STAIRS = REGISTRY.register("black_dacite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BLACK_DACITE_BRICKS.get())));
+    public static final RegistryObject<Block> BLACK_DACITE_STAIRS = REGISTRY.register("black_dacite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLACK_DACITE.get())));
+    public static final RegistryObject<Block> POLISHED_BLACK_DACITE_STAIRS = REGISTRY.register("polished_black_dacite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_BLACK_DACITE.get())));
+    public static final RegistryObject<Block> BLACK_DACITE_BRICKS_STAIRS = REGISTRY.register("black_dacite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLACK_DACITE_BRICKS.get())));
     public static final RegistryObject<Block> BLACK_DACITE_WALL = REGISTRY.register("black_dacite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLACK_DACITE.get())));
     public static final RegistryObject<Block> POLISHED_BLACK_DACITE_WALL = REGISTRY.register("polished_black_dacite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_BLACK_DACITE.get())));
     public static final RegistryObject<Block> BLACK_DACITE_BRICKS_WALL = REGISTRY.register("black_dacite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLACK_DACITE_BRICKS.get())));
@@ -241,9 +247,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RED_DACITE_SLAB = REGISTRY.register("red_dacite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RED_DACITE.get())));
     public static final RegistryObject<Block> POLISHED_RED_DACITE_SLAB = REGISTRY.register("polished_red_dacite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_RED_DACITE.get())));
     public static final RegistryObject<Block> RED_DACITE_BRICKS_SLAB = REGISTRY.register("red_dacite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RED_DACITE_BRICKS.get())));
-    public static final RegistryObject<Block> RED_DACITE_STAIRS = REGISTRY.register("red_dacite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RED_DACITE.get())));
-    public static final RegistryObject<Block> POLISHED_RED_DACITE_STAIRS = REGISTRY.register("polished_red_dacite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_RED_DACITE.get())));
-    public static final RegistryObject<Block> RED_DACITE_BRICKS_STAIRS = REGISTRY.register("red_dacite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RED_DACITE_BRICKS.get())));
+    public static final RegistryObject<Block> RED_DACITE_STAIRS = REGISTRY.register("red_dacite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RED_DACITE.get())));
+    public static final RegistryObject<Block> POLISHED_RED_DACITE_STAIRS = REGISTRY.register("polished_red_dacite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_RED_DACITE.get())));
+    public static final RegistryObject<Block> RED_DACITE_BRICKS_STAIRS = REGISTRY.register("red_dacite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RED_DACITE_BRICKS.get())));
     public static final RegistryObject<Block> RED_DACITE_WALL = REGISTRY.register("red_dacite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RED_DACITE.get())));
     public static final RegistryObject<Block> POLISHED_RED_DACITE_WALL = REGISTRY.register("polished_red_dacite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_RED_DACITE.get())));
     public static final RegistryObject<Block> RED_DACITE_BRICKS_WALL = REGISTRY.register("red_dacite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RED_DACITE_BRICKS.get())));
@@ -259,9 +265,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_SLAB = REGISTRY.register("hornblende_andesite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE.get())));
     public static final RegistryObject<Block> POLISHED_HORNBLENDE_ANDESITE_SLAB = REGISTRY.register("polished_hornblende_andesite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_HORNBLENDE_ANDESITE.get())));
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BRICKS_SLAB = REGISTRY.register("hornblende_andesite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE_BRICKS.get())));
-    public static final RegistryObject<Block> HORNBLENDE_ANDESITE_STAIRS = REGISTRY.register("hornblende_andesite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(HORNBLENDE_ANDESITE.get())));
-    public static final RegistryObject<Block> POLISHED_HORNBLENDE_ANDESITE_STAIRS = REGISTRY.register("polished_hornblende_andesite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_HORNBLENDE_ANDESITE.get())));
-    public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BRICKS_STAIRS = REGISTRY.register("hornblende_andesite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(HORNBLENDE_ANDESITE_BRICKS.get())));
+    public static final RegistryObject<Block> HORNBLENDE_ANDESITE_STAIRS = REGISTRY.register("hornblende_andesite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE.get())));
+    public static final RegistryObject<Block> POLISHED_HORNBLENDE_ANDESITE_STAIRS = REGISTRY.register("polished_hornblende_andesite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_HORNBLENDE_ANDESITE.get())));
+    public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BRICKS_STAIRS = REGISTRY.register("hornblende_andesite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE_BRICKS.get())));
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_WALL = REGISTRY.register("hornblende_andesite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE.get())));
     public static final RegistryObject<Block> POLISHED_HORNBLENDE_ANDESITE_WALL = REGISTRY.register("polished_hornblende_andesite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_HORNBLENDE_ANDESITE.get())));
     public static final RegistryObject<Block> HORNBLENDE_ANDESITE_BRICKS_WALL = REGISTRY.register("hornblende_andesite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(HORNBLENDE_ANDESITE_BRICKS.get())));
@@ -277,9 +283,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SHONKINITE_SLAB = REGISTRY.register("shonkinite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SHONKINITE.get())));
     public static final RegistryObject<Block> POLISHED_SHONKINITE_SLAB = REGISTRY.register("polished_shonkinite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SHONKINITE.get())));
     public static final RegistryObject<Block> SHONKINITE_BRICKS_SLAB = REGISTRY.register("shonkinite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SHONKINITE_BRICKS.get())));
-    public static final RegistryObject<Block> SHONKINITE_STAIRS = REGISTRY.register("shonkinite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SHONKINITE.get())));
-    public static final RegistryObject<Block> POLISHED_SHONKINITE_STAIRS = REGISTRY.register("polished_shonkinite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SHONKINITE.get())));
-    public static final RegistryObject<Block> SHONKINITE_BRICKS_STAIRS = REGISTRY.register("shonkinite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SHONKINITE_BRICKS.get())));
+    public static final RegistryObject<Block> SHONKINITE_STAIRS = REGISTRY.register("shonkinite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SHONKINITE.get())));
+    public static final RegistryObject<Block> POLISHED_SHONKINITE_STAIRS = REGISTRY.register("polished_shonkinite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_SHONKINITE.get())));
+    public static final RegistryObject<Block> SHONKINITE_BRICKS_STAIRS = REGISTRY.register("shonkinite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SHONKINITE_BRICKS.get())));
     public static final RegistryObject<Block> SHONKINITE_WALL = REGISTRY.register("shonkinite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SHONKINITE.get())));
     public static final RegistryObject<Block> POLISHED_SHONKINITE_WALL = REGISTRY.register("polished_shonkinite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SHONKINITE.get())));
     public static final RegistryObject<Block> SHONKINITE_BRICKS_WALL = REGISTRY.register("shonkinite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SHONKINITE_BRICKS.get())));
@@ -295,9 +301,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ANORTHOSITE_SLAB = REGISTRY.register("anorthosite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ANORTHOSITE.get())));
     public static final RegistryObject<Block> POLISHED_ANORTHOSITE_SLAB = REGISTRY.register("polished_anorthosite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_ANORTHOSITE.get())));
     public static final RegistryObject<Block> ANORTHOSITE_BRICKS_SLAB = REGISTRY.register("anorthosite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ANORTHOSITE_BRICKS.get())));
-    public static final RegistryObject<Block> ANORTHOSITE_STAIRS = REGISTRY.register("anorthosite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ANORTHOSITE.get())));
-    public static final RegistryObject<Block> POLISHED_ANORTHOSITE_STAIRS = REGISTRY.register("polished_anorthosite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_ANORTHOSITE.get())));
-    public static final RegistryObject<Block> ANORTHOSITE_BRICKS_STAIRS = REGISTRY.register("anorthosite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ANORTHOSITE_BRICKS.get())));
+    public static final RegistryObject<Block> ANORTHOSITE_STAIRS = REGISTRY.register("anorthosite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ANORTHOSITE.get())));
+    public static final RegistryObject<Block> POLISHED_ANORTHOSITE_STAIRS = REGISTRY.register("polished_anorthosite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_ANORTHOSITE.get())));
+    public static final RegistryObject<Block> ANORTHOSITE_BRICKS_STAIRS = REGISTRY.register("anorthosite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ANORTHOSITE_BRICKS.get())));
     public static final RegistryObject<Block> ANORTHOSITE_WALL = REGISTRY.register("anorthosite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ANORTHOSITE.get())));
     public static final RegistryObject<Block> POLISHED_ANORTHOSITE_WALL = REGISTRY.register("polished_anorthosite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_ANORTHOSITE.get())));
     public static final RegistryObject<Block> ANORTHOSITE_BRICKS_WALL = REGISTRY.register("anorthosite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ANORTHOSITE_BRICKS.get())));
@@ -313,9 +319,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> NORITE_SLAB = REGISTRY.register("norite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(NORITE.get())));
     public static final RegistryObject<Block> POLISHED_NORITE_SLAB = REGISTRY.register("polished_norite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_NORITE.get())));
     public static final RegistryObject<Block> NORITE_BRICKS_SLAB = REGISTRY.register("norite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(NORITE_BRICKS.get())));
-    public static final RegistryObject<Block> NORITE_STAIRS = REGISTRY.register("norite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(NORITE.get())));
-    public static final RegistryObject<Block> POLISHED_NORITE_STAIRS = REGISTRY.register("polished_norite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_NORITE.get())));
-    public static final RegistryObject<Block> NORITE_BRICKS_STAIRS = REGISTRY.register("norite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(NORITE_BRICKS.get())));
+    public static final RegistryObject<Block> NORITE_STAIRS = REGISTRY.register("norite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(NORITE.get())));
+    public static final RegistryObject<Block> POLISHED_NORITE_STAIRS = REGISTRY.register("polished_norite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_NORITE.get())));
+    public static final RegistryObject<Block> NORITE_BRICKS_STAIRS = REGISTRY.register("norite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(NORITE_BRICKS.get())));
     public static final RegistryObject<Block> NORITE_WALL = REGISTRY.register("norite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(NORITE.get())));
     public static final RegistryObject<Block> POLISHED_NORITE_WALL = REGISTRY.register("polished_norite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_NORITE.get())));
     public static final RegistryObject<Block> NORITE_BRICKS_WALL = REGISTRY.register("norite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(NORITE_BRICKS.get())));
@@ -331,9 +337,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TROCTOLITE_SLAB = REGISTRY.register("troctolite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(TROCTOLITE.get())));
     public static final RegistryObject<Block> POLISHED_TROCTOLITE_SLAB = REGISTRY.register("polished_troctolite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_TROCTOLITE.get())));
     public static final RegistryObject<Block> TROCTOLITE_BRICKS_SLAB = REGISTRY.register("troctolite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(TROCTOLITE_BRICKS.get())));
-    public static final RegistryObject<Block> TROCTOLITE_STAIRS = REGISTRY.register("troctolite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(TROCTOLITE.get())));
-    public static final RegistryObject<Block> POLISHED_TROCTOLITE_STAIRS = REGISTRY.register("polished_troctolite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_TROCTOLITE.get())));
-    public static final RegistryObject<Block> TROCTOLITE_BRICKS_STAIRS = REGISTRY.register("troctolite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(TROCTOLITE_BRICKS.get())));
+    public static final RegistryObject<Block> TROCTOLITE_STAIRS = REGISTRY.register("troctolite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(TROCTOLITE.get())));
+    public static final RegistryObject<Block> POLISHED_TROCTOLITE_STAIRS = REGISTRY.register("polished_troctolite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_TROCTOLITE.get())));
+    public static final RegistryObject<Block> TROCTOLITE_BRICKS_STAIRS = REGISTRY.register("troctolite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(TROCTOLITE_BRICKS.get())));
     public static final RegistryObject<Block> TROCTOLITE_WALL = REGISTRY.register("troctolite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(TROCTOLITE.get())));
     public static final RegistryObject<Block> POLISHED_TROCTOLITE_WALL = REGISTRY.register("polished_troctolite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_TROCTOLITE.get())));
     public static final RegistryObject<Block> TROCTOLITE_BRICKS_WALL = REGISTRY.register("troctolite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(TROCTOLITE_BRICKS.get())));
@@ -349,9 +355,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GABBRO_SLAB = REGISTRY.register("gabbro_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GABBRO.get())));
     public static final RegistryObject<Block> POLISHED_GABBRO_SLAB = REGISTRY.register("polished_gabbro_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_GABBRO.get())));
     public static final RegistryObject<Block> GABBRO_BRICKS_SLAB = REGISTRY.register("gabbro_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GABBRO_BRICKS.get())));
-    public static final RegistryObject<Block> GABBRO_STAIRS = REGISTRY.register("gabbro_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GABBRO.get())));
-    public static final RegistryObject<Block> POLISHED_GABBRO_STAIRS = REGISTRY.register("polished_gabbro_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_GABBRO.get())));
-    public static final RegistryObject<Block> GABBRO_BRICKS_STAIRS = REGISTRY.register("gabbro_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GABBRO_BRICKS.get())));
+    public static final RegistryObject<Block> GABBRO_STAIRS = REGISTRY.register("gabbro_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GABBRO.get())));
+    public static final RegistryObject<Block> POLISHED_GABBRO_STAIRS = REGISTRY.register("polished_gabbro_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_GABBRO.get())));
+    public static final RegistryObject<Block> GABBRO_BRICKS_STAIRS = REGISTRY.register("gabbro_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GABBRO_BRICKS.get())));
     public static final RegistryObject<Block> GABBRO_WALL = REGISTRY.register("gabbro_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GABBRO.get())));
     public static final RegistryObject<Block> POLISHED_GABBRO_WALL = REGISTRY.register("polished_gabbro_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_GABBRO.get())));
     public static final RegistryObject<Block> GABBRO_BRICKS_WALL = REGISTRY.register("gabbro_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GABBRO_BRICKS.get())));
@@ -367,9 +373,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> DIABASE_SLAB = REGISTRY.register("diabase_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(DIABASE.get())));
     public static final RegistryObject<Block> POLISHED_DIABASE_SLAB = REGISTRY.register("polished_diabase_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_DIABASE.get())));
     public static final RegistryObject<Block> DIABASE_BRICKS_SLAB = REGISTRY.register("diabase_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(DIABASE_BRICKS.get())));
-    public static final RegistryObject<Block> DIABASE_STAIRS = REGISTRY.register("diabase_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(DIABASE.get())));
-    public static final RegistryObject<Block> POLISHED_DIABASE_STAIRS = REGISTRY.register("polished_diabase_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_DIABASE.get())));
-    public static final RegistryObject<Block> DIABASE_BRICKS_STAIRS = REGISTRY.register("diabase_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(DIABASE_BRICKS.get())));
+    public static final RegistryObject<Block> DIABASE_STAIRS = REGISTRY.register("diabase_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(DIABASE.get())));
+    public static final RegistryObject<Block> POLISHED_DIABASE_STAIRS = REGISTRY.register("polished_diabase_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_DIABASE.get())));
+    public static final RegistryObject<Block> DIABASE_BRICKS_STAIRS = REGISTRY.register("diabase_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(DIABASE_BRICKS.get())));
     public static final RegistryObject<Block> DIABASE_WALL = REGISTRY.register("diabase_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(DIABASE.get())));
     public static final RegistryObject<Block> POLISHED_DIABASE_WALL = REGISTRY.register("polished_diabase_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_DIABASE.get())));
     public static final RegistryObject<Block> DIABASE_BRICKS_WALL = REGISTRY.register("diabase_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(DIABASE_BRICKS.get())));
@@ -385,9 +391,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> THOLEIITIC_BASALT_SLAB = REGISTRY.register("tholeiitic_basalt_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT.get())));
     public static final RegistryObject<Block> POLISHED_THOLEIITIC_BASALT_SLAB = REGISTRY.register("polished_tholeiitic_basalt_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_THOLEIITIC_BASALT.get())));
     public static final RegistryObject<Block> THOLEIITIC_BASALT_BRICKS_SLAB = REGISTRY.register("tholeiitic_basalt_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT_BRICKS.get())));
-    public static final RegistryObject<Block> THOLEIITIC_BASALT_STAIRS = REGISTRY.register("tholeiitic_basalt_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(THOLEIITIC_BASALT.get())));
-    public static final RegistryObject<Block> POLISHED_THOLEIITIC_BASALT_STAIRS = REGISTRY.register("polished_tholeiitic_basalt_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_THOLEIITIC_BASALT.get())));
-    public static final RegistryObject<Block> THOLEIITIC_BASALT_BRICKS_STAIRS = REGISTRY.register("tholeiitic_basalt_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(THOLEIITIC_BASALT_BRICKS.get())));
+    public static final RegistryObject<Block> THOLEIITIC_BASALT_STAIRS = REGISTRY.register("tholeiitic_basalt_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT.get())));
+    public static final RegistryObject<Block> POLISHED_THOLEIITIC_BASALT_STAIRS = REGISTRY.register("polished_tholeiitic_basalt_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_THOLEIITIC_BASALT.get())));
+    public static final RegistryObject<Block> THOLEIITIC_BASALT_BRICKS_STAIRS = REGISTRY.register("tholeiitic_basalt_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT_BRICKS.get())));
     public static final RegistryObject<Block> THOLEIITIC_BASALT_WALL = REGISTRY.register("tholeiitic_basalt_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT.get())));
     public static final RegistryObject<Block> POLISHED_THOLEIITIC_BASALT_WALL = REGISTRY.register("polished_tholeiitic_basalt_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_THOLEIITIC_BASALT.get())));
     public static final RegistryObject<Block> THOLEIITIC_BASALT_BRICKS_WALL = REGISTRY.register("tholeiitic_basalt_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(THOLEIITIC_BASALT_BRICKS.get())));
@@ -403,9 +409,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PYROXENITE_SLAB = REGISTRY.register("pyroxenite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PYROXENITE.get())));
     public static final RegistryObject<Block> POLISHED_PYROXENITE_SLAB = REGISTRY.register("polished_pyroxenite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_PYROXENITE.get())));
     public static final RegistryObject<Block> PYROXENITE_BRICKS_SLAB = REGISTRY.register("pyroxenite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PYROXENITE_BRICKS.get())));
-    public static final RegistryObject<Block> PYROXENITE_STAIRS = REGISTRY.register("pyroxenite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PYROXENITE.get())));
-    public static final RegistryObject<Block> POLISHED_PYROXENITE_STAIRS = REGISTRY.register("polished_pyroxenite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_PYROXENITE.get())));
-    public static final RegistryObject<Block> PYROXENITE_BRICKS_STAIRS = REGISTRY.register("pyroxenite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PYROXENITE_BRICKS.get())));
+    public static final RegistryObject<Block> PYROXENITE_STAIRS = REGISTRY.register("pyroxenite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PYROXENITE.get())));
+    public static final RegistryObject<Block> POLISHED_PYROXENITE_STAIRS = REGISTRY.register("polished_pyroxenite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_PYROXENITE.get())));
+    public static final RegistryObject<Block> PYROXENITE_BRICKS_STAIRS = REGISTRY.register("pyroxenite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PYROXENITE_BRICKS.get())));
     public static final RegistryObject<Block> PYROXENITE_WALL = REGISTRY.register("pyroxenite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PYROXENITE.get())));
     public static final RegistryObject<Block> POLISHED_PYROXENITE_WALL = REGISTRY.register("polished_pyroxenite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_PYROXENITE.get())));
     public static final RegistryObject<Block> PYROXENITE_BRICKS_WALL = REGISTRY.register("pyroxenite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PYROXENITE_BRICKS.get())));
@@ -421,9 +427,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PERIDOTITE_SLAB = REGISTRY.register("peridotite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PERIDOTITE.get())));
     public static final RegistryObject<Block> POLISHED_PERIDOTITE_SLAB = REGISTRY.register("polished_peridotite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_PERIDOTITE.get())));
     public static final RegistryObject<Block> PERIDOTITE_BRICKS_SLAB = REGISTRY.register("peridotite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PERIDOTITE_BRICKS.get())));
-    public static final RegistryObject<Block> PERIDOTITE_STAIRS = REGISTRY.register("peridotite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PERIDOTITE.get())));
-    public static final RegistryObject<Block> POLISHED_PERIDOTITE_STAIRS = REGISTRY.register("polished_peridotite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_PERIDOTITE.get())));
-    public static final RegistryObject<Block> PERIDOTITE_BRICKS_STAIRS = REGISTRY.register("peridotite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PERIDOTITE_BRICKS.get())));
+    public static final RegistryObject<Block> PERIDOTITE_STAIRS = REGISTRY.register("peridotite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PERIDOTITE.get())));
+    public static final RegistryObject<Block> POLISHED_PERIDOTITE_STAIRS = REGISTRY.register("polished_peridotite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_PERIDOTITE.get())));
+    public static final RegistryObject<Block> PERIDOTITE_BRICKS_STAIRS = REGISTRY.register("peridotite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PERIDOTITE_BRICKS.get())));
     public static final RegistryObject<Block> PERIDOTITE_WALL = REGISTRY.register("peridotite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PERIDOTITE.get())));
     public static final RegistryObject<Block> POLISHED_PERIDOTITE_WALL = REGISTRY.register("polished_peridotite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_PERIDOTITE.get())));
     public static final RegistryObject<Block> PERIDOTITE_BRICKS_WALL = REGISTRY.register("peridotite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PERIDOTITE_BRICKS.get())));
@@ -439,9 +445,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> KOMATIITE_SLAB = REGISTRY.register("komatiite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(KOMATIITE.get())));
     public static final RegistryObject<Block> POLISHED_KOMATIITE_SLAB = REGISTRY.register("polished_komatiite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_KOMATIITE.get())));
     public static final RegistryObject<Block> KOMATIITE_BRICKS_SLAB = REGISTRY.register("komatiite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(KOMATIITE_BRICKS.get())));
-    public static final RegistryObject<Block> KOMATIITE_STAIRS = REGISTRY.register("komatiite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(KOMATIITE.get())));
-    public static final RegistryObject<Block> POLISHED_KOMATIITE_STAIRS = REGISTRY.register("polished_komatiite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_KOMATIITE.get())));
-    public static final RegistryObject<Block> KOMATIITE_BRICKS_STAIRS = REGISTRY.register("komatiite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(KOMATIITE_BRICKS.get())));
+    public static final RegistryObject<Block> KOMATIITE_STAIRS = REGISTRY.register("komatiite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(KOMATIITE.get())));
+    public static final RegistryObject<Block> POLISHED_KOMATIITE_STAIRS = REGISTRY.register("polished_komatiite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_KOMATIITE.get())));
+    public static final RegistryObject<Block> KOMATIITE_BRICKS_STAIRS = REGISTRY.register("komatiite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(KOMATIITE_BRICKS.get())));
     public static final RegistryObject<Block> KOMATIITE_WALL = REGISTRY.register("komatiite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(KOMATIITE.get())));
     public static final RegistryObject<Block> POLISHED_KOMATIITE_WALL = REGISTRY.register("polished_komatiite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_KOMATIITE.get())));
     public static final RegistryObject<Block> KOMATIITE_BRICKS_WALL = REGISTRY.register("komatiite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(KOMATIITE_BRICKS.get())));
@@ -457,9 +463,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> KIMBERLITE_SLAB = REGISTRY.register("kimberlite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(KIMBERLITE.get())));
     public static final RegistryObject<Block> POLISHED_KIMBERLITE_SLAB = REGISTRY.register("polished_kimberlite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_KIMBERLITE.get())));
     public static final RegistryObject<Block> KIMBERLITE_BRICKS_SLAB = REGISTRY.register("kimberlite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(KIMBERLITE_BRICKS.get())));
-    public static final RegistryObject<Block> KIMBERLITE_STAIRS = REGISTRY.register("kimberlite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(KIMBERLITE.get())));
-    public static final RegistryObject<Block> POLISHED_KIMBERLITE_STAIRS = REGISTRY.register("polished_kimberlite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_KIMBERLITE.get())));
-    public static final RegistryObject<Block> KIMBERLITE_BRICKS_STAIRS = REGISTRY.register("kimberlite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(KIMBERLITE_BRICKS.get())));
+    public static final RegistryObject<Block> KIMBERLITE_STAIRS = REGISTRY.register("kimberlite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(KIMBERLITE.get())));
+    public static final RegistryObject<Block> POLISHED_KIMBERLITE_STAIRS = REGISTRY.register("polished_kimberlite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_KIMBERLITE.get())));
+    public static final RegistryObject<Block> KIMBERLITE_BRICKS_STAIRS = REGISTRY.register("kimberlite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(KIMBERLITE_BRICKS.get())));
     public static final RegistryObject<Block> KIMBERLITE_WALL = REGISTRY.register("kimberlite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(KIMBERLITE.get())));
     public static final RegistryObject<Block> POLISHED_KIMBERLITE_WALL = REGISTRY.register("polished_kimberlite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_KIMBERLITE.get())));
     public static final RegistryObject<Block> KIMBERLITE_BRICKS_WALL = REGISTRY.register("kimberlite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(KIMBERLITE_BRICKS.get())));
@@ -475,9 +481,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SOMMANITE_SLAB = REGISTRY.register("sommanite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SOMMANITE.get())));
     public static final RegistryObject<Block> POLISHED_SOMMANITE_SLAB = REGISTRY.register("polished_sommanite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SOMMANITE.get())));
     public static final RegistryObject<Block> SOMMANITE_BRICKS_SLAB = REGISTRY.register("sommanite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SOMMANITE_BRICKS.get())));
-    public static final RegistryObject<Block> SOMMANITE_STAIRS = REGISTRY.register("sommanite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SOMMANITE.get())));
-    public static final RegistryObject<Block> POLISHED_SOMMANITE_STAIRS = REGISTRY.register("polished_sommanite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SOMMANITE.get())));
-    public static final RegistryObject<Block> SOMMANITE_BRICKS_STAIRS = REGISTRY.register("sommanite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SOMMANITE_BRICKS.get())));
+    public static final RegistryObject<Block> SOMMANITE_STAIRS = REGISTRY.register("sommanite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SOMMANITE.get())));
+    public static final RegistryObject<Block> POLISHED_SOMMANITE_STAIRS = REGISTRY.register("polished_sommanite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_SOMMANITE.get())));
+    public static final RegistryObject<Block> SOMMANITE_BRICKS_STAIRS = REGISTRY.register("sommanite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SOMMANITE_BRICKS.get())));
     public static final RegistryObject<Block> SOMMANITE_WALL = REGISTRY.register("sommanite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SOMMANITE.get())));
     public static final RegistryObject<Block> POLISHED_SOMMANITE_WALL = REGISTRY.register("polished_sommanite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SOMMANITE.get())));
     public static final RegistryObject<Block> SOMMANITE_BRICKS_WALL = REGISTRY.register("sommanite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SOMMANITE_BRICKS.get())));
@@ -493,9 +499,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RINGWOODINE_SLAB = REGISTRY.register("ringwoodine_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RINGWOODINE.get())));
     public static final RegistryObject<Block> POLISHED_RINGWOODINE_SLAB = REGISTRY.register("polished_ringwoodine_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_RINGWOODINE.get())));
     public static final RegistryObject<Block> RINGWOODINE_BRICKS_SLAB = REGISTRY.register("ringwoodine_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(RINGWOODINE_BRICKS.get())));
-    public static final RegistryObject<Block> RINGWOODINE_STAIRS = REGISTRY.register("ringwoodine_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RINGWOODINE.get())));
-    public static final RegistryObject<Block> POLISHED_RINGWOODINE_STAIRS = REGISTRY.register("polished_ringwoodine_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_RINGWOODINE.get())));
-    public static final RegistryObject<Block> RINGWOODINE_BRICKS_STAIRS = REGISTRY.register("ringwoodine_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(RINGWOODINE_BRICKS.get())));
+    public static final RegistryObject<Block> RINGWOODINE_STAIRS = REGISTRY.register("ringwoodine_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RINGWOODINE.get())));
+    public static final RegistryObject<Block> POLISHED_RINGWOODINE_STAIRS = REGISTRY.register("polished_ringwoodine_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_RINGWOODINE.get())));
+    public static final RegistryObject<Block> RINGWOODINE_BRICKS_STAIRS = REGISTRY.register("ringwoodine_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(RINGWOODINE_BRICKS.get())));
     public static final RegistryObject<Block> RINGWOODINE_WALL = REGISTRY.register("ringwoodine_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RINGWOODINE.get())));
     public static final RegistryObject<Block> POLISHED_RINGWOODINE_WALL = REGISTRY.register("polished_ringwoodine_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_RINGWOODINE.get())));
     public static final RegistryObject<Block> RINGWOODINE_BRICKS_WALL = REGISTRY.register("ringwoodine_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(RINGWOODINE_BRICKS.get())));
@@ -511,9 +517,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WADSLEYONE_SLAB = REGISTRY.register("wadsleyone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(WADSLEYONE.get())));
     public static final RegistryObject<Block> POLISHED_WADSLEYONE_SLAB = REGISTRY.register("polished_wadsleyone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_WADSLEYONE.get())));
     public static final RegistryObject<Block> WADSLEYONE_BRICKS_SLAB = REGISTRY.register("wadsleyone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(WADSLEYONE_BRICKS.get())));
-    public static final RegistryObject<Block> WADSLEYONE_STAIRS = REGISTRY.register("wadsleyone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(WADSLEYONE.get())));
-    public static final RegistryObject<Block> POLISHED_WADSLEYONE_STAIRS = REGISTRY.register("polished_wadsleyone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_WADSLEYONE.get())));
-    public static final RegistryObject<Block> WADSLEYONE_BRICKS_STAIRS = REGISTRY.register("wadsleyone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(WADSLEYONE_BRICKS.get())));
+    public static final RegistryObject<Block> WADSLEYONE_STAIRS = REGISTRY.register("wadsleyone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(WADSLEYONE.get())));
+    public static final RegistryObject<Block> POLISHED_WADSLEYONE_STAIRS = REGISTRY.register("polished_wadsleyone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_WADSLEYONE.get())));
+    public static final RegistryObject<Block> WADSLEYONE_BRICKS_STAIRS = REGISTRY.register("wadsleyone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(WADSLEYONE_BRICKS.get())));
     public static final RegistryObject<Block> WADSLEYONE_WALL = REGISTRY.register("wadsleyone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(WADSLEYONE.get())));
     public static final RegistryObject<Block> POLISHED_WADSLEYONE_WALL = REGISTRY.register("polished_wadsleyone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_WADSLEYONE.get())));
     public static final RegistryObject<Block> WADSLEYONE_BRICKS_WALL = REGISTRY.register("wadsleyone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(WADSLEYONE_BRICKS.get())));
@@ -529,9 +535,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BRIDGMANHAM_SLAB = REGISTRY.register("bridgmanham_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BRIDGMANHAM.get())));
     public static final RegistryObject<Block> POLISHED_BRIDGMANHAM_SLAB = REGISTRY.register("polished_bridgmanham_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_BRIDGMANHAM.get())));
     public static final RegistryObject<Block> BRIDGMANHAM_BRICKS_SLAB = REGISTRY.register("bridgmanham_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BRIDGMANHAM_BRICKS.get())));
-    public static final RegistryObject<Block> BRIDGMANHAM_STAIRS = REGISTRY.register("bridgmanham_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BRIDGMANHAM.get())));
-    public static final RegistryObject<Block> POLISHED_BRIDGMANHAM_STAIRS = REGISTRY.register("polished_bridgmanham_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_BRIDGMANHAM.get())));
-    public static final RegistryObject<Block> BRIDGMANHAM_BRICKS_STAIRS = REGISTRY.register("bridgmanham_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BRIDGMANHAM_BRICKS.get())));
+    public static final RegistryObject<Block> BRIDGMANHAM_STAIRS = REGISTRY.register("bridgmanham_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BRIDGMANHAM.get())));
+    public static final RegistryObject<Block> POLISHED_BRIDGMANHAM_STAIRS = REGISTRY.register("polished_bridgmanham_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_BRIDGMANHAM.get())));
+    public static final RegistryObject<Block> BRIDGMANHAM_BRICKS_STAIRS = REGISTRY.register("bridgmanham_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BRIDGMANHAM_BRICKS.get())));
     public static final RegistryObject<Block> BRIDGMANHAM_WALL = REGISTRY.register("bridgmanham_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BRIDGMANHAM.get())));
     public static final RegistryObject<Block> POLISHED_BRIDGMANHAM_WALL = REGISTRY.register("polished_bridgmanham_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_BRIDGMANHAM.get())));
     public static final RegistryObject<Block> BRIDGMANHAM_BRICKS_WALL = REGISTRY.register("bridgmanham_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BRIDGMANHAM_BRICKS.get())));
@@ -547,9 +553,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> POST_PEROVSKITE_SLAB = REGISTRY.register("post_perovskite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POST_PEROVSKITE.get())));
     public static final RegistryObject<Block> POLISHED_POST_PEROVSKITE_SLAB = REGISTRY.register("polished_post_perovskite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_POST_PEROVSKITE.get())));
     public static final RegistryObject<Block> POST_PEROVSKITE_BRICKS_SLAB = REGISTRY.register("post_perovskite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POST_PEROVSKITE_BRICKS.get())));
-    public static final RegistryObject<Block> POST_PEROVSKITE_STAIRS = REGISTRY.register("post_perovskite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POST_PEROVSKITE.get())));
-    public static final RegistryObject<Block> POLISHED_POST_PEROVSKITE_STAIRS = REGISTRY.register("polished_post_perovskite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_POST_PEROVSKITE.get())));
-    public static final RegistryObject<Block> POST_PEROVSKITE_BRICKS_STAIRS = REGISTRY.register("post_perovskite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POST_PEROVSKITE_BRICKS.get())));
+    public static final RegistryObject<Block> POST_PEROVSKITE_STAIRS = REGISTRY.register("post_perovskite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POST_PEROVSKITE.get())));
+    public static final RegistryObject<Block> POLISHED_POST_PEROVSKITE_STAIRS = REGISTRY.register("polished_post_perovskite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_POST_PEROVSKITE.get())));
+    public static final RegistryObject<Block> POST_PEROVSKITE_BRICKS_STAIRS = REGISTRY.register("post_perovskite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POST_PEROVSKITE_BRICKS.get())));
     public static final RegistryObject<Block> POST_PEROVSKITE_WALL = REGISTRY.register("post_perovskite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POST_PEROVSKITE.get())));
     public static final RegistryObject<Block> POLISHED_POST_PEROVSKITE_WALL = REGISTRY.register("polished_post_perovskite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_POST_PEROVSKITE.get())));
     public static final RegistryObject<Block> POST_PEROVSKITE_BRICKS_WALL = REGISTRY.register("post_perovskite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POST_PEROVSKITE_BRICKS.get())));
@@ -565,9 +571,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLACK_MARBLE_SLAB = REGISTRY.register("black_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLACK_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_BLACK_MARBLE_SLAB = REGISTRY.register("polished_black_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_BLACK_MARBLE.get())));
     public static final RegistryObject<Block> BLACK_MARBLE_BRICKS_SLAB = REGISTRY.register("black_marble_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLACK_MARBLE_BRICKS.get())));
-    public static final RegistryObject<Block> BLACK_MARBLE_STAIRS = REGISTRY.register("black_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BLACK_MARBLE.get())));
-    public static final RegistryObject<Block> POLISHED_BLACK_MARBLE_STAIRS = REGISTRY.register("polished_black_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_BLACK_MARBLE.get())));
-    public static final RegistryObject<Block> BLACK_MARBLE_BRICKS_STAIRS = REGISTRY.register("black_marble_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BLACK_MARBLE_BRICKS.get())));
+    public static final RegistryObject<Block> BLACK_MARBLE_STAIRS = REGISTRY.register("black_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLACK_MARBLE.get())));
+    public static final RegistryObject<Block> POLISHED_BLACK_MARBLE_STAIRS = REGISTRY.register("polished_black_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_BLACK_MARBLE.get())));
+    public static final RegistryObject<Block> BLACK_MARBLE_BRICKS_STAIRS = REGISTRY.register("black_marble_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLACK_MARBLE_BRICKS.get())));
     public static final RegistryObject<Block> BLACK_MARBLE_WALL = REGISTRY.register("black_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLACK_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_BLACK_MARBLE_WALL = REGISTRY.register("polished_black_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_BLACK_MARBLE.get())));
     public static final RegistryObject<Block> BLACK_MARBLE_BRICKS_WALL = REGISTRY.register("black_marble_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLACK_MARBLE_BRICKS.get())));
@@ -583,9 +589,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GRAY_MARBLE_SLAB = REGISTRY.register("gray_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRAY_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_GRAY_MARBLE_SLAB = REGISTRY.register("polished_gray_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_GRAY_MARBLE.get())));
     public static final RegistryObject<Block> GRAY_MARBLE_BRICKS_SLAB = REGISTRY.register("gray_marble_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRAY_MARBLE_BRICKS.get())));
-    public static final RegistryObject<Block> GRAY_MARBLE_STAIRS = REGISTRY.register("gray_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRAY_MARBLE.get())));
-    public static final RegistryObject<Block> POLISHED_GRAY_MARBLE_STAIRS = REGISTRY.register("polished_gray_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_GRAY_MARBLE.get())));
-    public static final RegistryObject<Block> GRAY_MARBLE_BRICKS_STAIRS = REGISTRY.register("gray_marble_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRAY_MARBLE_BRICKS.get())));
+    public static final RegistryObject<Block> GRAY_MARBLE_STAIRS = REGISTRY.register("gray_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRAY_MARBLE.get())));
+    public static final RegistryObject<Block> POLISHED_GRAY_MARBLE_STAIRS = REGISTRY.register("polished_gray_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_GRAY_MARBLE.get())));
+    public static final RegistryObject<Block> GRAY_MARBLE_BRICKS_STAIRS = REGISTRY.register("gray_marble_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRAY_MARBLE_BRICKS.get())));
     public static final RegistryObject<Block> GRAY_MARBLE_WALL = REGISTRY.register("gray_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRAY_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_GRAY_MARBLE_WALL = REGISTRY.register("polished_gray_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_GRAY_MARBLE.get())));
     public static final RegistryObject<Block> GRAY_MARBLE_BRICKS_WALL = REGISTRY.register("gray_marble_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRAY_MARBLE_BRICKS.get())));
@@ -601,9 +607,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> WHITE_MARBLE_SLAB = REGISTRY.register("white_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(WHITE_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_WHITE_MARBLE_SLAB = REGISTRY.register("polished_white_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_WHITE_MARBLE.get())));
     public static final RegistryObject<Block> WHITE_MARBLE_BRICKS_SLAB = REGISTRY.register("white_marble_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(WHITE_MARBLE_BRICKS.get())));
-    public static final RegistryObject<Block> WHITE_MARBLE_STAIRS = REGISTRY.register("white_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(WHITE_MARBLE.get())));
-    public static final RegistryObject<Block> POLISHED_WHITE_MARBLE_STAIRS = REGISTRY.register("polished_white_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_WHITE_MARBLE.get())));
-    public static final RegistryObject<Block> WHITE_MARBLE_BRICKS_STAIRS = REGISTRY.register("white_marble_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(WHITE_MARBLE_BRICKS.get())));
+    public static final RegistryObject<Block> WHITE_MARBLE_STAIRS = REGISTRY.register("white_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(WHITE_MARBLE.get())));
+    public static final RegistryObject<Block> POLISHED_WHITE_MARBLE_STAIRS = REGISTRY.register("polished_white_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_WHITE_MARBLE.get())));
+    public static final RegistryObject<Block> WHITE_MARBLE_BRICKS_STAIRS = REGISTRY.register("white_marble_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(WHITE_MARBLE_BRICKS.get())));
     public static final RegistryObject<Block> WHITE_MARBLE_WALL = REGISTRY.register("white_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(WHITE_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_WHITE_MARBLE_WALL = REGISTRY.register("polished_white_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_WHITE_MARBLE.get())));
     public static final RegistryObject<Block> WHITE_MARBLE_BRICKS_WALL = REGISTRY.register("white_marble_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(WHITE_MARBLE_BRICKS.get())));
@@ -619,9 +625,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ROSE_MARBLE_SLAB = REGISTRY.register("rose_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ROSE_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_ROSE_MARBLE_SLAB = REGISTRY.register("polished_rose_marble_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_ROSE_MARBLE.get())));
     public static final RegistryObject<Block> ROSE_MARBLE_BRICKS_SLAB = REGISTRY.register("rose_marble_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ROSE_MARBLE_BRICKS.get())));
-    public static final RegistryObject<Block> ROSE_MARBLE_STAIRS = REGISTRY.register("rose_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ROSE_MARBLE.get())));
-    public static final RegistryObject<Block> POLISHED_ROSE_MARBLE_STAIRS = REGISTRY.register("polished_rose_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_ROSE_MARBLE.get())));
-    public static final RegistryObject<Block> ROSE_MARBLE_BRICKS_STAIRS = REGISTRY.register("rose_marble_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ROSE_MARBLE_BRICKS.get())));
+    public static final RegistryObject<Block> ROSE_MARBLE_STAIRS = REGISTRY.register("rose_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ROSE_MARBLE.get())));
+    public static final RegistryObject<Block> POLISHED_ROSE_MARBLE_STAIRS = REGISTRY.register("polished_rose_marble_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_ROSE_MARBLE.get())));
+    public static final RegistryObject<Block> ROSE_MARBLE_BRICKS_STAIRS = REGISTRY.register("rose_marble_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ROSE_MARBLE_BRICKS.get())));
     public static final RegistryObject<Block> ROSE_MARBLE_WALL = REGISTRY.register("rose_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ROSE_MARBLE.get())));
     public static final RegistryObject<Block> POLISHED_ROSE_MARBLE_WALL = REGISTRY.register("polished_rose_marble_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_ROSE_MARBLE.get())));
     public static final RegistryObject<Block> ROSE_MARBLE_BRICKS_WALL = REGISTRY.register("rose_marble_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ROSE_MARBLE_BRICKS.get())));
@@ -637,9 +643,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SLATE_SLAB = REGISTRY.register("slate_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SLATE.get())));
     public static final RegistryObject<Block> POLISHED_SLATE_SLAB = REGISTRY.register("polished_slate_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SLATE.get())));
     public static final RegistryObject<Block> SLATE_BRICKS_SLAB = REGISTRY.register("slate_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SLATE_BRICKS.get())));
-    public static final RegistryObject<Block> SLATE_STAIRS = REGISTRY.register("slate_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SLATE.get())));
-    public static final RegistryObject<Block> POLISHED_SLATE_STAIRS = REGISTRY.register("polished_slate_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SLATE.get())));
-    public static final RegistryObject<Block> SLATE_BRICKS_STAIRS = REGISTRY.register("slate_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SLATE_BRICKS.get())));
+    public static final RegistryObject<Block> SLATE_STAIRS = REGISTRY.register("slate_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SLATE.get())));
+    public static final RegistryObject<Block> POLISHED_SLATE_STAIRS = REGISTRY.register("polished_slate_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_SLATE.get())));
+    public static final RegistryObject<Block> SLATE_BRICKS_STAIRS = REGISTRY.register("slate_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SLATE_BRICKS.get())));
     public static final RegistryObject<Block> SLATE_WALL = REGISTRY.register("slate_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SLATE.get())));
     public static final RegistryObject<Block> POLISHED_SLATE_WALL = REGISTRY.register("polished_slate_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SLATE.get())));
     public static final RegistryObject<Block> SLATE_BRICKS_WALL = REGISTRY.register("slate_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SLATE_BRICKS.get())));
@@ -655,9 +661,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PHYLLITE_SLAB = REGISTRY.register("phyllite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PHYLLITE.get())));
     public static final RegistryObject<Block> POLISHED_PHYLLITE_SLAB = REGISTRY.register("polished_phyllite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_PHYLLITE.get())));
     public static final RegistryObject<Block> PHYLLITE_BRICKS_SLAB = REGISTRY.register("phyllite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PHYLLITE_BRICKS.get())));
-    public static final RegistryObject<Block> PHYLLITE_STAIRS = REGISTRY.register("phyllite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PHYLLITE.get())));
-    public static final RegistryObject<Block> POLISHED_PHYLLITE_STAIRS = REGISTRY.register("polished_phyllite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_PHYLLITE.get())));
-    public static final RegistryObject<Block> PHYLLITE_BRICKS_STAIRS = REGISTRY.register("phyllite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PHYLLITE_BRICKS.get())));
+    public static final RegistryObject<Block> PHYLLITE_STAIRS = REGISTRY.register("phyllite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PHYLLITE.get())));
+    public static final RegistryObject<Block> POLISHED_PHYLLITE_STAIRS = REGISTRY.register("polished_phyllite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_PHYLLITE.get())));
+    public static final RegistryObject<Block> PHYLLITE_BRICKS_STAIRS = REGISTRY.register("phyllite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PHYLLITE_BRICKS.get())));
     public static final RegistryObject<Block> PHYLLITE_WALL = REGISTRY.register("phyllite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PHYLLITE.get())));
     public static final RegistryObject<Block> POLISHED_PHYLLITE_WALL = REGISTRY.register("polished_phyllite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_PHYLLITE.get())));
     public static final RegistryObject<Block> PHYLLITE_BRICKS_WALL = REGISTRY.register("phyllite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PHYLLITE_BRICKS.get())));
@@ -673,9 +679,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MICA_SCHIST_SLAB = REGISTRY.register("mica_schist_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MICA_SCHIST.get())));
     public static final RegistryObject<Block> POLISHED_MICA_SCHIST_SLAB = REGISTRY.register("polished_mica_schist_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_MICA_SCHIST.get())));
     public static final RegistryObject<Block> MICA_SCHIST_BRICKS_SLAB = REGISTRY.register("mica_schist_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MICA_SCHIST_BRICKS.get())));
-    public static final RegistryObject<Block> MICA_SCHIST_STAIRS = REGISTRY.register("mica_schist_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MICA_SCHIST.get())));
-    public static final RegistryObject<Block> POLISHED_MICA_SCHIST_STAIRS = REGISTRY.register("polished_mica_schist_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_MICA_SCHIST.get())));
-    public static final RegistryObject<Block> MICA_SCHIST_BRICKS_STAIRS = REGISTRY.register("mica_schist_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MICA_SCHIST_BRICKS.get())));
+    public static final RegistryObject<Block> MICA_SCHIST_STAIRS = REGISTRY.register("mica_schist_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MICA_SCHIST.get())));
+    public static final RegistryObject<Block> POLISHED_MICA_SCHIST_STAIRS = REGISTRY.register("polished_mica_schist_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_MICA_SCHIST.get())));
+    public static final RegistryObject<Block> MICA_SCHIST_BRICKS_STAIRS = REGISTRY.register("mica_schist_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MICA_SCHIST_BRICKS.get())));
     public static final RegistryObject<Block> MICA_SCHIST_WALL = REGISTRY.register("mica_schist_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MICA_SCHIST.get())));
     public static final RegistryObject<Block> POLISHED_MICA_SCHIST_WALL = REGISTRY.register("polished_mica_schist_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_MICA_SCHIST.get())));
     public static final RegistryObject<Block> MICA_SCHIST_BRICKS_WALL = REGISTRY.register("mica_schist_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MICA_SCHIST_BRICKS.get())));
@@ -691,9 +697,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BLUESCHIST_SLAB = REGISTRY.register("blueschist_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLUESCHIST.get())));
     public static final RegistryObject<Block> POLISHED_BLUESCHIST_SLAB = REGISTRY.register("polished_blueschist_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_BLUESCHIST.get())));
     public static final RegistryObject<Block> BLUESCHIST_BRICKS_SLAB = REGISTRY.register("blueschist_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLUESCHIST_BRICKS.get())));
-    public static final RegistryObject<Block> BLUESCHIST_STAIRS = REGISTRY.register("blueschist_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BLUESCHIST.get())));
-    public static final RegistryObject<Block> POLISHED_BLUESCHIST_STAIRS = REGISTRY.register("polished_blueschist_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_BLUESCHIST.get())));
-    public static final RegistryObject<Block> BLUESCHIST_BRICKS_STAIRS = REGISTRY.register("blueschist_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BLUESCHIST_BRICKS.get())));
+    public static final RegistryObject<Block> BLUESCHIST_STAIRS = REGISTRY.register("blueschist_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLUESCHIST.get())));
+    public static final RegistryObject<Block> POLISHED_BLUESCHIST_STAIRS = REGISTRY.register("polished_blueschist_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_BLUESCHIST.get())));
+    public static final RegistryObject<Block> BLUESCHIST_BRICKS_STAIRS = REGISTRY.register("blueschist_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLUESCHIST_BRICKS.get())));
     public static final RegistryObject<Block> BLUESCHIST_WALL = REGISTRY.register("blueschist_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLUESCHIST.get())));
     public static final RegistryObject<Block> POLISHED_BLUESCHIST_WALL = REGISTRY.register("polished_blueschist_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_BLUESCHIST.get())));
     public static final RegistryObject<Block> BLUESCHIST_BRICKS_WALL = REGISTRY.register("blueschist_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLUESCHIST_BRICKS.get())));
@@ -709,9 +715,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GREENSCHIST_SLAB = REGISTRY.register("greenschist_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GREENSCHIST.get())));
     public static final RegistryObject<Block> POLISHED_GREENSCHIST_SLAB = REGISTRY.register("polished_greenschist_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_GREENSCHIST.get())));
     public static final RegistryObject<Block> GREENSCHIST_BRICKS_SLAB = REGISTRY.register("greenschist_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GREENSCHIST_BRICKS.get())));
-    public static final RegistryObject<Block> GREENSCHIST_STAIRS = REGISTRY.register("greenschist_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GREENSCHIST.get())));
-    public static final RegistryObject<Block> POLISHED_GREENSCHIST_STAIRS = REGISTRY.register("polished_greenschist_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_GREENSCHIST.get())));
-    public static final RegistryObject<Block> GREENSCHIST_BRICKS_STAIRS = REGISTRY.register("greenschist_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GREENSCHIST_BRICKS.get())));
+    public static final RegistryObject<Block> GREENSCHIST_STAIRS = REGISTRY.register("greenschist_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GREENSCHIST.get())));
+    public static final RegistryObject<Block> POLISHED_GREENSCHIST_STAIRS = REGISTRY.register("polished_greenschist_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_GREENSCHIST.get())));
+    public static final RegistryObject<Block> GREENSCHIST_BRICKS_STAIRS = REGISTRY.register("greenschist_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GREENSCHIST_BRICKS.get())));
     public static final RegistryObject<Block> GREENSCHIST_WALL = REGISTRY.register("greenschist_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GREENSCHIST.get())));
     public static final RegistryObject<Block> POLISHED_GREENSCHIST_WALL = REGISTRY.register("polished_greenschist_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_GREENSCHIST.get())));
     public static final RegistryObject<Block> GREENSCHIST_BRICKS_WALL = REGISTRY.register("greenschist_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GREENSCHIST_BRICKS.get())));
@@ -727,9 +733,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> GNEISS_SLAB = REGISTRY.register("gneiss_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GNEISS.get())));
     public static final RegistryObject<Block> POLISHED_GNEISS_SLAB = REGISTRY.register("polished_gneiss_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_GNEISS.get())));
     public static final RegistryObject<Block> GNEISS_BRICKS_SLAB = REGISTRY.register("gneiss_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GNEISS_BRICKS.get())));
-    public static final RegistryObject<Block> GNEISS_STAIRS = REGISTRY.register("gneiss_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GNEISS.get())));
-    public static final RegistryObject<Block> POLISHED_GNEISS_STAIRS = REGISTRY.register("polished_gneiss_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_GNEISS.get())));
-    public static final RegistryObject<Block> GNEISS_BRICKS_STAIRS = REGISTRY.register("gneiss_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GNEISS_BRICKS.get())));
+    public static final RegistryObject<Block> GNEISS_STAIRS = REGISTRY.register("gneiss_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GNEISS.get())));
+    public static final RegistryObject<Block> POLISHED_GNEISS_STAIRS = REGISTRY.register("polished_gneiss_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_GNEISS.get())));
+    public static final RegistryObject<Block> GNEISS_BRICKS_STAIRS = REGISTRY.register("gneiss_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GNEISS_BRICKS.get())));
     public static final RegistryObject<Block> GNEISS_WALL = REGISTRY.register("gneiss_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GNEISS.get())));
     public static final RegistryObject<Block> POLISHED_GNEISS_WALL = REGISTRY.register("polished_gneiss_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_GNEISS.get())));
     public static final RegistryObject<Block> GNEISS_BRICKS_WALL = REGISTRY.register("gneiss_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GNEISS_BRICKS.get())));
@@ -745,9 +751,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> QUARTZITE_SLAB = REGISTRY.register("quartzite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(QUARTZITE.get())));
     public static final RegistryObject<Block> POLISHED_QUARTZITE_SLAB = REGISTRY.register("polished_quartzite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_QUARTZITE.get())));
     public static final RegistryObject<Block> QUARTZITE_BRICKS_SLAB = REGISTRY.register("quartzite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(QUARTZITE_BRICKS.get())));
-    public static final RegistryObject<Block> QUARTZITE_STAIRS = REGISTRY.register("quartzite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(QUARTZITE.get())));
-    public static final RegistryObject<Block> POLISHED_QUARTZITE_STAIRS = REGISTRY.register("polished_quartzite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_QUARTZITE.get())));
-    public static final RegistryObject<Block> QUARTZITE_BRICKS_STAIRS = REGISTRY.register("quartzite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(QUARTZITE_BRICKS.get())));
+    public static final RegistryObject<Block> QUARTZITE_STAIRS = REGISTRY.register("quartzite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(QUARTZITE.get())));
+    public static final RegistryObject<Block> POLISHED_QUARTZITE_STAIRS = REGISTRY.register("polished_quartzite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_QUARTZITE.get())));
+    public static final RegistryObject<Block> QUARTZITE_BRICKS_STAIRS = REGISTRY.register("quartzite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(QUARTZITE_BRICKS.get())));
     public static final RegistryObject<Block> QUARTZITE_WALL = REGISTRY.register("quartzite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(QUARTZITE.get())));
     public static final RegistryObject<Block> POLISHED_QUARTZITE_WALL = REGISTRY.register("polished_quartzite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_QUARTZITE.get())));
     public static final RegistryObject<Block> QUARTZITE_BRICKS_WALL = REGISTRY.register("quartzite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(QUARTZITE_BRICKS.get())));
@@ -763,9 +769,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SERPENTINITE_SLAB = REGISTRY.register("serpentinite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SERPENTINITE.get())));
     public static final RegistryObject<Block> POLISHED_SERPENTINITE_SLAB = REGISTRY.register("polished_serpentinite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SERPENTINITE.get())));
     public static final RegistryObject<Block> SERPENTINITE_BRICKS_SLAB = REGISTRY.register("serpentinite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SERPENTINITE_BRICKS.get())));
-    public static final RegistryObject<Block> SERPENTINITE_STAIRS = REGISTRY.register("serpentinite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SERPENTINITE.get())));
-    public static final RegistryObject<Block> POLISHED_SERPENTINITE_STAIRS = REGISTRY.register("polished_serpentinite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SERPENTINITE.get())));
-    public static final RegistryObject<Block> SERPENTINITE_BRICKS_STAIRS = REGISTRY.register("serpentinite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SERPENTINITE_BRICKS.get())));
+    public static final RegistryObject<Block> SERPENTINITE_STAIRS = REGISTRY.register("serpentinite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SERPENTINITE.get())));
+    public static final RegistryObject<Block> POLISHED_SERPENTINITE_STAIRS = REGISTRY.register("polished_serpentinite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_SERPENTINITE.get())));
+    public static final RegistryObject<Block> SERPENTINITE_BRICKS_STAIRS = REGISTRY.register("serpentinite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SERPENTINITE_BRICKS.get())));
     public static final RegistryObject<Block> SERPENTINITE_WALL = REGISTRY.register("serpentinite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SERPENTINITE.get())));
     public static final RegistryObject<Block> POLISHED_SERPENTINITE_WALL = REGISTRY.register("polished_serpentinite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SERPENTINITE.get())));
     public static final RegistryObject<Block> SERPENTINITE_BRICKS_WALL = REGISTRY.register("serpentinite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SERPENTINITE_BRICKS.get())));
@@ -781,9 +787,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MARIPOSITE_SLAB = REGISTRY.register("mariposite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MARIPOSITE.get())));
     public static final RegistryObject<Block> POLISHED_MARIPOSITE_SLAB = REGISTRY.register("polished_mariposite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_MARIPOSITE.get())));
     public static final RegistryObject<Block> MARIPOSITE_BRICKS_SLAB = REGISTRY.register("mariposite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MARIPOSITE_BRICKS.get())));
-    public static final RegistryObject<Block> MARIPOSITE_STAIRS = REGISTRY.register("mariposite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MARIPOSITE.get())));
-    public static final RegistryObject<Block> POLISHED_MARIPOSITE_STAIRS = REGISTRY.register("polished_mariposite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_MARIPOSITE.get())));
-    public static final RegistryObject<Block> MARIPOSITE_BRICKS_STAIRS = REGISTRY.register("mariposite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MARIPOSITE_BRICKS.get())));
+    public static final RegistryObject<Block> MARIPOSITE_STAIRS = REGISTRY.register("mariposite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MARIPOSITE.get())));
+    public static final RegistryObject<Block> POLISHED_MARIPOSITE_STAIRS = REGISTRY.register("polished_mariposite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_MARIPOSITE.get())));
+    public static final RegistryObject<Block> MARIPOSITE_BRICKS_STAIRS = REGISTRY.register("mariposite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MARIPOSITE_BRICKS.get())));
     public static final RegistryObject<Block> MARIPOSITE_WALL = REGISTRY.register("mariposite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MARIPOSITE.get())));
     public static final RegistryObject<Block> POLISHED_MARIPOSITE_WALL = REGISTRY.register("polished_mariposite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_MARIPOSITE.get())));
     public static final RegistryObject<Block> MARIPOSITE_BRICKS_WALL = REGISTRY.register("mariposite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MARIPOSITE_BRICKS.get())));
@@ -799,9 +805,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ECLOGITE_SLAB = REGISTRY.register("eclogite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ECLOGITE.get())));
     public static final RegistryObject<Block> POLISHED_ECLOGITE_SLAB = REGISTRY.register("polished_eclogite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_ECLOGITE.get())));
     public static final RegistryObject<Block> ECLOGITE_BRICKS_SLAB = REGISTRY.register("eclogite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ECLOGITE_BRICKS.get())));
-    public static final RegistryObject<Block> ECLOGITE_STAIRS = REGISTRY.register("eclogite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ECLOGITE.get())));
-    public static final RegistryObject<Block> POLISHED_ECLOGITE_STAIRS = REGISTRY.register("polished_eclogite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_ECLOGITE.get())));
-    public static final RegistryObject<Block> ECLOGITE_BRICKS_STAIRS = REGISTRY.register("eclogite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ECLOGITE_BRICKS.get())));
+    public static final RegistryObject<Block> ECLOGITE_STAIRS = REGISTRY.register("eclogite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ECLOGITE.get())));
+    public static final RegistryObject<Block> POLISHED_ECLOGITE_STAIRS = REGISTRY.register("polished_eclogite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_ECLOGITE.get())));
+    public static final RegistryObject<Block> ECLOGITE_BRICKS_STAIRS = REGISTRY.register("eclogite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ECLOGITE_BRICKS.get())));
     public static final RegistryObject<Block> ECLOGITE_WALL = REGISTRY.register("eclogite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ECLOGITE.get())));
     public static final RegistryObject<Block> POLISHED_ECLOGITE_WALL = REGISTRY.register("polished_eclogite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_ECLOGITE.get())));
     public static final RegistryObject<Block> ECLOGITE_BRICKS_WALL = REGISTRY.register("eclogite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ECLOGITE_BRICKS.get())));
@@ -817,9 +823,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> LIMESTONE_SLAB = REGISTRY.register("limestone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(LIMESTONE.get())));
     public static final RegistryObject<Block> POLISHED_LIMESTONE_SLAB = REGISTRY.register("polished_limestone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_LIMESTONE.get())));
     public static final RegistryObject<Block> LIMESTONE_BRICKS_SLAB = REGISTRY.register("limestone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(LIMESTONE_BRICKS.get())));
-    public static final RegistryObject<Block> LIMESTONE_STAIRS = REGISTRY.register("limestone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(LIMESTONE.get())));
-    public static final RegistryObject<Block> POLISHED_LIMESTONE_STAIRS = REGISTRY.register("polished_limestone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_LIMESTONE.get())));
-    public static final RegistryObject<Block> LIMESTONE_BRICKS_STAIRS = REGISTRY.register("limestone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(LIMESTONE_BRICKS.get())));
+    public static final RegistryObject<Block> LIMESTONE_STAIRS = REGISTRY.register("limestone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(LIMESTONE.get())));
+    public static final RegistryObject<Block> POLISHED_LIMESTONE_STAIRS = REGISTRY.register("polished_limestone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_LIMESTONE.get())));
+    public static final RegistryObject<Block> LIMESTONE_BRICKS_STAIRS = REGISTRY.register("limestone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(LIMESTONE_BRICKS.get())));
     public static final RegistryObject<Block> LIMESTONE_WALL = REGISTRY.register("limestone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(LIMESTONE.get())));
     public static final RegistryObject<Block> POLISHED_LIMESTONE_WALL = REGISTRY.register("polished_limestone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_LIMESTONE.get())));
     public static final RegistryObject<Block> LIMESTONE_BRICKS_WALL = REGISTRY.register("limestone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(LIMESTONE_BRICKS.get())));
@@ -835,9 +841,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> DOLOSTONE_SLAB = REGISTRY.register("dolostone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(DOLOSTONE.get())));
     public static final RegistryObject<Block> POLISHED_DOLOSTONE_SLAB = REGISTRY.register("polished_dolostone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_DOLOSTONE.get())));
     public static final RegistryObject<Block> DOLOSTONE_BRICKS_SLAB = REGISTRY.register("dolostone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(DOLOSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> DOLOSTONE_STAIRS = REGISTRY.register("dolostone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(DOLOSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_DOLOSTONE_STAIRS = REGISTRY.register("polished_dolostone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_DOLOSTONE.get())));
-    public static final RegistryObject<Block> DOLOSTONE_BRICKS_STAIRS = REGISTRY.register("dolostone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(DOLOSTONE_BRICKS.get())));
+    public static final RegistryObject<Block> DOLOSTONE_STAIRS = REGISTRY.register("dolostone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(DOLOSTONE.get())));
+    public static final RegistryObject<Block> POLISHED_DOLOSTONE_STAIRS = REGISTRY.register("polished_dolostone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_DOLOSTONE.get())));
+    public static final RegistryObject<Block> DOLOSTONE_BRICKS_STAIRS = REGISTRY.register("dolostone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(DOLOSTONE_BRICKS.get())));
     public static final RegistryObject<Block> DOLOSTONE_WALL = REGISTRY.register("dolostone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(DOLOSTONE.get())));
     public static final RegistryObject<Block> POLISHED_DOLOSTONE_WALL = REGISTRY.register("polished_dolostone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_DOLOSTONE.get())));
     public static final RegistryObject<Block> DOLOSTONE_BRICKS_WALL = REGISTRY.register("dolostone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(DOLOSTONE_BRICKS.get())));
@@ -853,9 +859,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHALK_SLAB = REGISTRY.register("chalk_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(CHALK.get())));
     public static final RegistryObject<Block> POLISHED_CHALK_SLAB = REGISTRY.register("polished_chalk_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_CHALK.get())));
     public static final RegistryObject<Block> CHALK_BRICKS_SLAB = REGISTRY.register("chalk_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(CHALK_BRICKS.get())));
-    public static final RegistryObject<Block> CHALK_STAIRS = REGISTRY.register("chalk_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(CHALK.get())));
-    public static final RegistryObject<Block> POLISHED_CHALK_STAIRS = REGISTRY.register("polished_chalk_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_CHALK.get())));
-    public static final RegistryObject<Block> CHALK_BRICKS_STAIRS = REGISTRY.register("chalk_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(CHALK_BRICKS.get())));
+    public static final RegistryObject<Block> CHALK_STAIRS = REGISTRY.register("chalk_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(CHALK.get())));
+    public static final RegistryObject<Block> POLISHED_CHALK_STAIRS = REGISTRY.register("polished_chalk_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_CHALK.get())));
+    public static final RegistryObject<Block> CHALK_BRICKS_STAIRS = REGISTRY.register("chalk_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(CHALK_BRICKS.get())));
     public static final RegistryObject<Block> CHALK_WALL = REGISTRY.register("chalk_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(CHALK.get())));
     public static final RegistryObject<Block> POLISHED_CHALK_WALL = REGISTRY.register("polished_chalk_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_CHALK.get())));
     public static final RegistryObject<Block> CHALK_BRICKS_WALL = REGISTRY.register("chalk_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(CHALK_BRICKS.get())));
@@ -871,9 +877,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MARLSTONE_SLAB = REGISTRY.register("marlstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MARLSTONE.get())));
     public static final RegistryObject<Block> POLISHED_MARLSTONE_SLAB = REGISTRY.register("polished_marlstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_MARLSTONE.get())));
     public static final RegistryObject<Block> MARLSTONE_BRICKS_SLAB = REGISTRY.register("marlstone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MARLSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> MARLSTONE_STAIRS = REGISTRY.register("marlstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MARLSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_MARLSTONE_STAIRS = REGISTRY.register("polished_marlstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_MARLSTONE.get())));
-    public static final RegistryObject<Block> MARLSTONE_BRICKS_STAIRS = REGISTRY.register("marlstone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MARLSTONE_BRICKS.get())));
+    public static final RegistryObject<Block> MARLSTONE_STAIRS = REGISTRY.register("marlstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MARLSTONE.get())));
+    public static final RegistryObject<Block> POLISHED_MARLSTONE_STAIRS = REGISTRY.register("polished_marlstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_MARLSTONE.get())));
+    public static final RegistryObject<Block> MARLSTONE_BRICKS_STAIRS = REGISTRY.register("marlstone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MARLSTONE_BRICKS.get())));
     public static final RegistryObject<Block> MARLSTONE_WALL = REGISTRY.register("marlstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MARLSTONE.get())));
     public static final RegistryObject<Block> POLISHED_MARLSTONE_WALL = REGISTRY.register("polished_marlstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_MARLSTONE.get())));
     public static final RegistryObject<Block> MARLSTONE_BRICKS_WALL = REGISTRY.register("marlstone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MARLSTONE_BRICKS.get())));
@@ -889,9 +895,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SHALE_SLAB = REGISTRY.register("shale_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SHALE.get())));
     public static final RegistryObject<Block> POLISHED_SHALE_SLAB = REGISTRY.register("polished_shale_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SHALE.get())));
     public static final RegistryObject<Block> SHALE_BRICKS_SLAB = REGISTRY.register("shale_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SHALE_BRICKS.get())));
-    public static final RegistryObject<Block> SHALE_STAIRS = REGISTRY.register("shale_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SHALE.get())));
-    public static final RegistryObject<Block> POLISHED_SHALE_STAIRS = REGISTRY.register("polished_shale_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SHALE.get())));
-    public static final RegistryObject<Block> SHALE_BRICKS_STAIRS = REGISTRY.register("shale_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SHALE_BRICKS.get())));
+    public static final RegistryObject<Block> SHALE_STAIRS = REGISTRY.register("shale_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SHALE.get())));
+    public static final RegistryObject<Block> POLISHED_SHALE_STAIRS = REGISTRY.register("polished_shale_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_SHALE.get())));
+    public static final RegistryObject<Block> SHALE_BRICKS_STAIRS = REGISTRY.register("shale_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SHALE_BRICKS.get())));
     public static final RegistryObject<Block> SHALE_WALL = REGISTRY.register("shale_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SHALE.get())));
     public static final RegistryObject<Block> POLISHED_SHALE_WALL = REGISTRY.register("polished_shale_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SHALE.get())));
     public static final RegistryObject<Block> SHALE_BRICKS_WALL = REGISTRY.register("shale_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SHALE_BRICKS.get())));
@@ -907,9 +913,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> MUDSTONE_SLAB = REGISTRY.register("mudstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MUDSTONE.get())));
     public static final RegistryObject<Block> POLISHED_MUDSTONE_SLAB = REGISTRY.register("polished_mudstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_MUDSTONE.get())));
     public static final RegistryObject<Block> MUDSTONE_BRICKS_SLAB = REGISTRY.register("mudstone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(MUDSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> MUDSTONE_STAIRS = REGISTRY.register("mudstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MUDSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_MUDSTONE_STAIRS = REGISTRY.register("polished_mudstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_MUDSTONE.get())));
-    public static final RegistryObject<Block> MUDSTONE_BRICKS_STAIRS = REGISTRY.register("mudstone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(MUDSTONE_BRICKS.get())));
+    public static final RegistryObject<Block> MUDSTONE_STAIRS = REGISTRY.register("mudstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MUDSTONE.get())));
+    public static final RegistryObject<Block> POLISHED_MUDSTONE_STAIRS = REGISTRY.register("polished_mudstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_MUDSTONE.get())));
+    public static final RegistryObject<Block> MUDSTONE_BRICKS_STAIRS = REGISTRY.register("mudstone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(MUDSTONE_BRICKS.get())));
     public static final RegistryObject<Block> MUDSTONE_WALL = REGISTRY.register("mudstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MUDSTONE.get())));
     public static final RegistryObject<Block> POLISHED_MUDSTONE_WALL = REGISTRY.register("polished_mudstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_MUDSTONE.get())));
     public static final RegistryObject<Block> MUDSTONE_BRICKS_WALL = REGISTRY.register("mudstone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(MUDSTONE_BRICKS.get())));
@@ -925,9 +931,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SILTSTONE_SLAB = REGISTRY.register("siltstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SILTSTONE.get())));
     public static final RegistryObject<Block> POLISHED_SILTSTONE_SLAB = REGISTRY.register("polished_siltstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SILTSTONE.get())));
     public static final RegistryObject<Block> SILTSTONE_BRICKS_SLAB = REGISTRY.register("siltstone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SILTSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> SILTSTONE_STAIRS = REGISTRY.register("siltstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SILTSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_SILTSTONE_STAIRS = REGISTRY.register("polished_siltstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SILTSTONE.get())));
-    public static final RegistryObject<Block> SILTSTONE_BRICKS_STAIRS = REGISTRY.register("siltstone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SILTSTONE_BRICKS.get())));
+    public static final RegistryObject<Block> SILTSTONE_STAIRS = REGISTRY.register("siltstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SILTSTONE.get())));
+    public static final RegistryObject<Block> POLISHED_SILTSTONE_STAIRS = REGISTRY.register("polished_siltstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_SILTSTONE.get())));
+    public static final RegistryObject<Block> SILTSTONE_BRICKS_STAIRS = REGISTRY.register("siltstone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SILTSTONE_BRICKS.get())));
     public static final RegistryObject<Block> SILTSTONE_WALL = REGISTRY.register("siltstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SILTSTONE.get())));
     public static final RegistryObject<Block> POLISHED_SILTSTONE_WALL = REGISTRY.register("polished_siltstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SILTSTONE.get())));
     public static final RegistryObject<Block> SILTSTONE_BRICKS_WALL = REGISTRY.register("siltstone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SILTSTONE_BRICKS.get())));
@@ -943,9 +949,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ITACOLUMITE_SLAB = REGISTRY.register("itacolumite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ITACOLUMITE.get())));
     public static final RegistryObject<Block> POLISHED_ITACOLUMITE_SLAB = REGISTRY.register("polished_itacolumite_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_ITACOLUMITE.get())));
     public static final RegistryObject<Block> ITACOLUMITE_BRICKS_SLAB = REGISTRY.register("itacolumite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ITACOLUMITE_BRICKS.get())));
-    public static final RegistryObject<Block> ITACOLUMITE_STAIRS = REGISTRY.register("itacolumite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ITACOLUMITE.get())));
-    public static final RegistryObject<Block> POLISHED_ITACOLUMITE_STAIRS = REGISTRY.register("polished_itacolumite_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_ITACOLUMITE.get())));
-    public static final RegistryObject<Block> ITACOLUMITE_BRICKS_STAIRS = REGISTRY.register("itacolumite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ITACOLUMITE_BRICKS.get())));
+    public static final RegistryObject<Block> ITACOLUMITE_STAIRS = REGISTRY.register("itacolumite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ITACOLUMITE.get())));
+    public static final RegistryObject<Block> POLISHED_ITACOLUMITE_STAIRS = REGISTRY.register("polished_itacolumite_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_ITACOLUMITE.get())));
+    public static final RegistryObject<Block> ITACOLUMITE_BRICKS_STAIRS = REGISTRY.register("itacolumite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ITACOLUMITE_BRICKS.get())));
     public static final RegistryObject<Block> ITACOLUMITE_WALL = REGISTRY.register("itacolumite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ITACOLUMITE.get())));
     public static final RegistryObject<Block> POLISHED_ITACOLUMITE_WALL = REGISTRY.register("polished_itacolumite_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_ITACOLUMITE.get())));
     public static final RegistryObject<Block> ITACOLUMITE_BRICKS_WALL = REGISTRY.register("itacolumite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ITACOLUMITE_BRICKS.get())));
@@ -961,9 +967,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ARKOSE_SLAB = REGISTRY.register("arkose_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ARKOSE.get())));
     public static final RegistryObject<Block> POLISHED_ARKOSE_SLAB = REGISTRY.register("polished_arkose_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_ARKOSE.get())));
     public static final RegistryObject<Block> ARKOSE_BRICKS_SLAB = REGISTRY.register("arkose_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ARKOSE_BRICKS.get())));
-    public static final RegistryObject<Block> ARKOSE_STAIRS = REGISTRY.register("arkose_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ARKOSE.get())));
-    public static final RegistryObject<Block> POLISHED_ARKOSE_STAIRS = REGISTRY.register("polished_arkose_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_ARKOSE.get())));
-    public static final RegistryObject<Block> ARKOSE_BRICKS_STAIRS = REGISTRY.register("arkose_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ARKOSE_BRICKS.get())));
+    public static final RegistryObject<Block> ARKOSE_STAIRS = REGISTRY.register("arkose_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ARKOSE.get())));
+    public static final RegistryObject<Block> POLISHED_ARKOSE_STAIRS = REGISTRY.register("polished_arkose_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_ARKOSE.get())));
+    public static final RegistryObject<Block> ARKOSE_BRICKS_STAIRS = REGISTRY.register("arkose_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ARKOSE_BRICKS.get())));
     public static final RegistryObject<Block> ARKOSE_WALL = REGISTRY.register("arkose_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ARKOSE.get())));
     public static final RegistryObject<Block> POLISHED_ARKOSE_WALL = REGISTRY.register("polished_arkose_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_ARKOSE.get())));
     public static final RegistryObject<Block> ARKOSE_BRICKS_WALL = REGISTRY.register("arkose_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ARKOSE_BRICKS.get())));
@@ -973,33 +979,15 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ARKOSE_PRESSURE_PLATE = REGISTRY.register("arkose_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ARKOSE_BRICKS_PRESSURE_PLATE = REGISTRY.register("arkose_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ARKOSE_BUTTON = REGISTRY.register("arkose_button", RankineStoneButton::new);
-    public static final RegistryObject<Block> SOUL_SANDSTONE = REGISTRY.register("soul_sandstone", () -> new RankineStoneBlock(IGNEOUS_STONE));
-    public static final RegistryObject<Block> POLISHED_SOUL_SANDSTONE = REGISTRY.register("polished_soul_sandstone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BRICKS = REGISTRY.register("soul_sandstone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_SLAB = REGISTRY.register("soul_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_SOUL_SANDSTONE_SLAB = REGISTRY.register("polished_soul_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BRICKS_SLAB = REGISTRY.register("soul_sandstone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_STAIRS = REGISTRY.register("soul_sandstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_SOUL_SANDSTONE_STAIRS = REGISTRY.register("polished_soul_sandstone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BRICKS_STAIRS = REGISTRY.register("soul_sandstone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(SOUL_SANDSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_WALL = REGISTRY.register("soul_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_SOUL_SANDSTONE_WALL = REGISTRY.register("polished_soul_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BRICKS_WALL = REGISTRY.register("soul_sandstone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("soul_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_SOUL_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("polished_soul_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(POLISHED_SOUL_SANDSTONE.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BRICKS_VERTICAL_SLAB = REGISTRY.register("soul_sandstone_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> SOUL_SANDSTONE_PRESSURE_PLATE = REGISTRY.register("soul_sandstone_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("soul_sandstone_bricks_pressure_plate", RankineStonePressurePlate::new);
-    public static final RegistryObject<Block> SOUL_SANDSTONE_BUTTON = REGISTRY.register("soul_sandstone_button", RankineStoneButton::new);
     public static final RegistryObject<Block> HONEYSTONE = REGISTRY.register("honeystone", () -> new RankineStoneBlock(IGNEOUS_STONE));
     public static final RegistryObject<Block> POLISHED_HONEYSTONE = REGISTRY.register("polished_honeystone", () -> new RankinePolishedStoneBlock(POLISHED_METAMORPHIC_STONE));
     public static final RegistryObject<Block> HONEYSTONE_BRICKS = REGISTRY.register("honeystone_bricks", () -> new RankineStoneBricksBlock(METAMORPHIC_STONE_BRICKS));
     public static final RegistryObject<Block> HONEYSTONE_SLAB = REGISTRY.register("honeystone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(HONEYSTONE.get())));
     public static final RegistryObject<Block> POLISHED_HONEYSTONE_SLAB = REGISTRY.register("polished_honeystone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(POLISHED_HONEYSTONE.get())));
     public static final RegistryObject<Block> HONEYSTONE_BRICKS_SLAB = REGISTRY.register("honeystone_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(HONEYSTONE_BRICKS.get())));
-    public static final RegistryObject<Block> HONEYSTONE_STAIRS = REGISTRY.register("honeystone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(HONEYSTONE.get())));
-    public static final RegistryObject<Block> POLISHED_HONEYSTONE_STAIRS = REGISTRY.register("polished_honeystone_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(POLISHED_HONEYSTONE.get())));
-    public static final RegistryObject<Block> HONEYSTONE_BRICKS_STAIRS = REGISTRY.register("honeystone_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(HONEYSTONE_BRICKS.get())));
+    public static final RegistryObject<Block> HONEYSTONE_STAIRS = REGISTRY.register("honeystone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(HONEYSTONE.get())));
+    public static final RegistryObject<Block> POLISHED_HONEYSTONE_STAIRS = REGISTRY.register("polished_honeystone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(POLISHED_HONEYSTONE.get())));
+    public static final RegistryObject<Block> HONEYSTONE_BRICKS_STAIRS = REGISTRY.register("honeystone_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(HONEYSTONE_BRICKS.get())));
     public static final RegistryObject<Block> HONEYSTONE_WALL = REGISTRY.register("honeystone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(HONEYSTONE.get())));
     public static final RegistryObject<Block> POLISHED_HONEYSTONE_WALL = REGISTRY.register("polished_honeystone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(POLISHED_HONEYSTONE.get())));
     public static final RegistryObject<Block> HONEYSTONE_BRICKS_WALL = REGISTRY.register("honeystone_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(HONEYSTONE_BRICKS.get())));
@@ -1010,51 +998,109 @@ public class RankineBlocks {
     public static final RegistryObject<Block> HONEYSTONE_BRICKS_PRESSURE_PLATE = REGISTRY.register("honeystone_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> HONEYSTONE_BUTTON = REGISTRY.register("honeystone_button", RankineStoneButton::new);
 
+    public static final RegistryObject<Block> SOUL_SANDSTONE = REGISTRY.register("soul_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> SOUL_SANDSTONE_SLAB = REGISTRY.register("soul_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SOUL_SANDSTONE_STAIRS = REGISTRY.register("soul_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SOUL_SANDSTONE_WALL = REGISTRY.register("soul_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SOUL_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("soul_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE = REGISTRY.register("smooth_soul_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_SLAB = REGISTRY.register("smooth_soul_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SMOOTH_SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_STAIRS = REGISTRY.register("smooth_soul_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SMOOTH_SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_WALL = REGISTRY.register("smooth_soul_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SMOOTH_SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_SOUL_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("smooth_soul_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SMOOTH_SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_SOUL_SANDSTONE = REGISTRY.register("cut_soul_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> CUT_SOUL_SANDSTONE_SLAB = REGISTRY.register("cut_soul_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(CUT_SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_SOUL_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("cut_soul_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(CUT_SOUL_SANDSTONE.get())));
+    public static final RegistryObject<Block> CHISELED_SOUL_SANDSTONE = REGISTRY.register("chiseled_soul_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BROWN).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> BLACK_SANDSTONE = REGISTRY.register("black_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> BLACK_SANDSTONE_SLAB = REGISTRY.register("black_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> BLACK_SANDSTONE_STAIRS = REGISTRY.register("black_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> BLACK_SANDSTONE_WALL = REGISTRY.register("black_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> BLACK_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("black_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE = REGISTRY.register("smooth_black_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_SLAB = REGISTRY.register("smooth_black_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SMOOTH_BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_STAIRS = REGISTRY.register("smooth_black_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SMOOTH_BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_WALL = REGISTRY.register("smooth_black_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SMOOTH_BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_BLACK_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("smooth_black_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SMOOTH_BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_BLACK_SANDSTONE = REGISTRY.register("cut_black_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> CUT_BLACK_SANDSTONE_SLAB = REGISTRY.register("cut_black_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(CUT_BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_BLACK_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("cut_black_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(CUT_BLACK_SANDSTONE.get())));
+    public static final RegistryObject<Block> CHISELED_BLACK_SANDSTONE = REGISTRY.register("chiseled_black_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> WHITE_SANDSTONE = REGISTRY.register("white_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> WHITE_SANDSTONE_SLAB = REGISTRY.register("white_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> WHITE_SANDSTONE_STAIRS = REGISTRY.register("white_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> WHITE_SANDSTONE_WALL = REGISTRY.register("white_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> WHITE_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("white_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE = REGISTRY.register("smooth_white_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).setRequiresTool().hardnessAndResistance(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_SLAB = REGISTRY.register("smooth_white_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SMOOTH_WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_STAIRS = REGISTRY.register("smooth_white_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SMOOTH_WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_WALL = REGISTRY.register("smooth_white_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SMOOTH_WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_WHITE_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("smooth_white_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SMOOTH_WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_WHITE_SANDSTONE = REGISTRY.register("cut_white_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> CUT_WHITE_SANDSTONE_SLAB = REGISTRY.register("cut_white_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(CUT_WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_WHITE_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("cut_white_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(CUT_WHITE_SANDSTONE.get())));
+    public static final RegistryObject<Block> CHISELED_WHITE_SANDSTONE = REGISTRY.register("chiseled_white_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> DESERT_SANDSTONE = REGISTRY.register("desert_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> DESERT_SANDSTONE_SLAB = REGISTRY.register("desert_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> DESERT_SANDSTONE_STAIRS = REGISTRY.register("desert_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> DESERT_SANDSTONE_WALL = REGISTRY.register("desert_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> DESERT_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("desert_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE = REGISTRY.register("smooth_desert_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_SLAB = REGISTRY.register("smooth_desert_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(SMOOTH_DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_STAIRS = REGISTRY.register("smooth_desert_sandstone_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(SMOOTH_DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_WALL = REGISTRY.register("smooth_desert_sandstone_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(SMOOTH_DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> SMOOTH_DESERT_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("smooth_desert_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(SMOOTH_DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_DESERT_SANDSTONE = REGISTRY.register("cut_desert_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(0.8F)));
+    public static final RegistryObject<Block> CUT_DESERT_SANDSTONE_SLAB = REGISTRY.register("cut_desert_sandstone_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(CUT_DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> CUT_DESERT_SANDSTONE_VERTICAL_SLAB = REGISTRY.register("cut_desert_sandstone_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(CUT_DESERT_SANDSTONE.get())));
+    public static final RegistryObject<Block> CHISELED_DESERT_SANDSTONE = REGISTRY.register("chiseled_desert_sandstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SAND).setRequiresTool().hardnessAndResistance(0.8F)));
+
+
     //Other Stones
     public static final RegistryObject<Block> GRANITE_BRICKS = REGISTRY.register("granite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final RegistryObject<Block> GRANITE_BRICKS_SLAB = REGISTRY.register("granite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(GRANITE_BRICKS.get())));
-    public static final RegistryObject<Block> GRANITE_BRICKS_STAIRS = REGISTRY.register("granite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(GRANITE_BRICKS.get())));
+    public static final RegistryObject<Block> GRANITE_BRICKS_STAIRS = REGISTRY.register("granite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(GRANITE_BRICKS.get())));
     public static final RegistryObject<Block> GRANITE_BRICKS_WALL = REGISTRY.register("granite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(GRANITE_BRICKS.get())));
     public static final RegistryObject<Block> GRANITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("granite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(GRANITE_BRICKS.get())));
     public static final RegistryObject<Block> GRANITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("granite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> DIORITE_BRICKS = REGISTRY.register("diorite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final RegistryObject<Block> DIORITE_BRICKS_SLAB = REGISTRY.register("diorite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(DIORITE_BRICKS.get())));
-    public static final RegistryObject<Block> DIORITE_BRICKS_STAIRS = REGISTRY.register("diorite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(DIORITE_BRICKS.get())));
+    public static final RegistryObject<Block> DIORITE_BRICKS_STAIRS = REGISTRY.register("diorite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(DIORITE_BRICKS.get())));
     public static final RegistryObject<Block> DIORITE_BRICKS_WALL = REGISTRY.register("diorite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(DIORITE_BRICKS.get())));
     public static final RegistryObject<Block> DIORITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("diorite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(DIORITE_BRICKS.get())));
     public static final RegistryObject<Block> DIORITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("diorite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> ANDESITE_BRICKS = REGISTRY.register("andesite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final RegistryObject<Block> ANDESITE_BRICKS_SLAB = REGISTRY.register("andesite_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ANDESITE_BRICKS.get())));
-    public static final RegistryObject<Block> ANDESITE_BRICKS_STAIRS = REGISTRY.register("andesite_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ANDESITE_BRICKS.get())));
+    public static final RegistryObject<Block> ANDESITE_BRICKS_STAIRS = REGISTRY.register("andesite_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ANDESITE_BRICKS.get())));
     public static final RegistryObject<Block> ANDESITE_BRICKS_WALL = REGISTRY.register("andesite_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ANDESITE_BRICKS.get())));
     public static final RegistryObject<Block> ANDESITE_BRICKS_VERTICAL_SLAB = REGISTRY.register("andesite_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(ANDESITE_BRICKS.get())));
     public static final RegistryObject<Block> ANDESITE_BRICKS_PRESSURE_PLATE = REGISTRY.register("andesite_bricks_pressure_plate", RankineStonePressurePlate::new);
     public static final RegistryObject<Block> BASALT_BRICKS = REGISTRY.register("basalt_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final RegistryObject<Block> BASALT_BRICKS_SLAB = REGISTRY.register("basalt_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(BASALT_BRICKS.get())));
-    public static final RegistryObject<Block> BASALT_BRICKS_STAIRS = REGISTRY.register("basalt_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(BASALT_BRICKS.get())));
+    public static final RegistryObject<Block> BASALT_BRICKS_STAIRS = REGISTRY.register("basalt_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(BASALT_BRICKS.get())));
     public static final RegistryObject<Block> BASALT_BRICKS_WALL = REGISTRY.register("basalt_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(BASALT_BRICKS.get())));
     public static final RegistryObject<Block> BASALT_BRICKS_VERTICAL_SLAB = REGISTRY.register("basalt_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(BASALT_BRICKS.get())));
     public static final RegistryObject<Block> BASALT_BRICKS_PRESSURE_PLATE = REGISTRY.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
 
     public static final RegistryObject<Block> PACKED_SNOW = REGISTRY.register("packed_snow", () -> new Block(AbstractBlock.Properties.create(Material.SNOW_BLOCK).hardnessAndResistance(2.0F).setRequiresTool().harvestTool(ToolType.SHOVEL).sound(SoundType.SNOW)));
     public static final RegistryObject<Block> PACKED_SNOW_SLAB = REGISTRY.register("packed_snow_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
-    public static final RegistryObject<Block> PACKED_SNOW_STAIRS = REGISTRY.register("packed_snow_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(PACKED_SNOW.get())));
+    public static final RegistryObject<Block> PACKED_SNOW_STAIRS = REGISTRY.register("packed_snow_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
     public static final RegistryObject<Block> PACKED_SNOW_WALL = REGISTRY.register("packed_snow_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
     public static final RegistryObject<Block> PACKED_SNOW_VERTICAL_SLAB = REGISTRY.register("packed_snow_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(PACKED_SNOW.get())));
     public static final RegistryObject<Block> ICE_BRICKS = REGISTRY.register("ice_bricks", () -> new Block(AbstractBlock.Properties.create(Material.PACKED_ICE).slipperiness(0.98F).hardnessAndResistance(0.5F).sound(SoundType.GLASS)));
     public static final RegistryObject<Block> ICE_BRICKS_SLAB = REGISTRY.register("ice_bricks_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
-    public static final RegistryObject<Block> ICE_BRICKS_STAIRS = REGISTRY.register("ice_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.from(ICE_BRICKS.get())));
+    public static final RegistryObject<Block> ICE_BRICKS_STAIRS = REGISTRY.register("ice_bricks_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
     public static final RegistryObject<Block> ICE_BRICKS_WALL = REGISTRY.register("ice_bricks_wall", () -> new RankineWallBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
     public static final RegistryObject<Block> ICE_BRICKS_VERTICAL_SLAB = REGISTRY.register("ice_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.from(ICE_BRICKS.get())));
 
     public static final RegistryObject<Block> BRECCIA = REGISTRY.register("breccia", () -> new Block(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> BRECCIA_SLAB = REGISTRY.register("breccia_slab", () -> new RankineSlabBlock(Block.Properties.from(Blocks.COBBLESTONE)));
-    public static final RegistryObject<Block> BRECCIA_STAIRS = REGISTRY.register("breccia_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.from(Blocks.COBBLESTONE)));
+    public static final RegistryObject<Block> BRECCIA_STAIRS = REGISTRY.register("breccia_stairs", () -> new RankineStairsBlock(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> BRECCIA_WALL = REGISTRY.register("breccia_wall", () -> new RankineWallBlock(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> BRECCIA_VERTICAL_SLAB = REGISTRY.register("breccia_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> SKARN = REGISTRY.register("skarn", () -> new Block(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> SKARN_SLAB = REGISTRY.register("skarn_slab", () -> new RankineSlabBlock(Block.Properties.from(Blocks.COBBLESTONE)));
-    public static final RegistryObject<Block> SKARN_STAIRS = REGISTRY.register("skarn_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.from(Blocks.COBBLESTONE)));
+    public static final RegistryObject<Block> SKARN_STAIRS = REGISTRY.register("skarn_stairs", () -> new RankineStairsBlock(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> SKARN_WALL = REGISTRY.register("skarn_wall", () -> new RankineWallBlock(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> SKARN_VERTICAL_SLAB = REGISTRY.register("skarn_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.from(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> PUMICE = REGISTRY.register("pumice", () -> new Block(Block.Properties.from(Blocks.COBBLESTONE)));
@@ -1090,12 +1136,12 @@ public class RankineBlocks {
     public static final RegistryObject<Block> REFRACTORY_BRICKS_SLAB = REGISTRY.register("refractory_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS_SLAB = REGISTRY.register("high_refractory_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_SLAB = REGISTRY.register("ultra_high_refractory_bricks_slab", () -> new RankineSlabBlock(DEF_STONE.harvestLevel(1)));
-    public static final RegistryObject<Block> CLAY_BRICKS_STAIRS = REGISTRY.register("clay_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> FIRE_CLAY_BRICKS_STAIRS = REGISTRY.register("fire_clay_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> KAOLIN_BRICKS_STAIRS = REGISTRY.register("kaolin_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> REFRACTORY_BRICKS_STAIRS = REGISTRY.register("refractory_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(0)));
-    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS_STAIRS = REGISTRY.register("high_refractory_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(1)));
-    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_STAIRS = REGISTRY.register("ultra_high_refractory_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> CLAY_BRICKS_STAIRS = REGISTRY.register("clay_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> FIRE_CLAY_BRICKS_STAIRS = REGISTRY.register("fire_clay_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> KAOLIN_BRICKS_STAIRS = REGISTRY.register("kaolin_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> REFRACTORY_BRICKS_STAIRS = REGISTRY.register("refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> HIGH_REFRACTORY_BRICKS_STAIRS = REGISTRY.register("high_refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> ULTRA_HIGH_REFRACTORY_BRICKS_STAIRS = REGISTRY.register("ultra_high_refractory_bricks_stairs", () -> new RankineStairsBlock(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> CLAY_BRICKS_VERTICAL_SLAB = REGISTRY.register("clay_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> FIRE_CLAY_BRICKS_VERTICAL_SLAB = REGISTRY.register("fire_clay_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
     public static final RegistryObject<Block> KAOLIN_BRICKS_VERTICAL_SLAB = REGISTRY.register("kaolin_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(DEF_STONE.harvestLevel(0)));
@@ -1153,7 +1199,6 @@ public class RankineBlocks {
     public static final RegistryObject<Block> INFESTED_SILTSTONE = REGISTRY.register("infested_siltstone", () -> new SilverfishBlock(SILTSTONE.get(),Block.Properties.from(SILTSTONE.get())));
     public static final RegistryObject<Block> INFESTED_ITACOLUMITE = REGISTRY.register("infested_itacolumite", () -> new SilverfishBlock(ITACOLUMITE.get(),Block.Properties.from(ITACOLUMITE.get())));
     public static final RegistryObject<Block> INFESTED_ARKOSE = REGISTRY.register("infested_arkose", () -> new SilverfishBlock(ARKOSE.get(),Block.Properties.from(ARKOSE.get())));
-    public static final RegistryObject<Block> INFESTED_SOUL_SANDSTONE = REGISTRY.register("infested_soul_sandstone", () -> new SilverfishBlock(SOUL_SANDSTONE.get(),Block.Properties.from(SOUL_SANDSTONE.get())));
     public static final RegistryObject<Block> INFESTED_HONEYSTONE = REGISTRY.register("infested_honeystone", () -> new SilverfishBlock(HONEYSTONE.get(),Block.Properties.from(HONEYSTONE.get())));
     public static final RegistryObject<Block> INFESTED_SKARN = REGISTRY.register("infested_skarn", () -> new SilverfishBlock(SKARN.get(),Block.Properties.from(SKARN.get())));
     public static final RegistryObject<Block> INFESTED_BRECCIA = REGISTRY.register("infested_breccia", () -> new SilverfishBlock(BRECCIA.get(),Block.Properties.from(BRECCIA.get())));
@@ -1166,7 +1211,7 @@ public class RankineBlocks {
 
     public static final RegistryObject<Block> FIBER_BLOCK = REGISTRY.register("fiber_block", () -> new FiberBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> FIBER_BLOCK_SLAB = REGISTRY.register("fiber_block_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
-    public static final RegistryObject<Block> FIBER_BLOCK_STAIRS = REGISTRY.register("fiber_block_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
+    public static final RegistryObject<Block> FIBER_BLOCK_STAIRS = REGISTRY.register("fiber_block_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> FIBER_BLOCK_VERTICAL_SLAB = REGISTRY.register("fiber_block_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> FIBER_BLOCK_WALL = REGISTRY.register("fiber_block_wall", () -> new RankineWallBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> WHITE_FIBER_BLOCK = REGISTRY.register("white_fiber_block", () -> new FiberBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.SNOW).hardnessAndResistance(0.1F).sound(SoundType.CLOTH)));
@@ -1217,10 +1262,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TOURMALINE_GEODE = REGISTRY.register("tourmaline_geode", () -> new GeodeBlock(DEF_STONE.harvestLevel(0)));
 
     public static final RegistryObject<Block> TRAMPOLINE = REGISTRY.register("trampoline", () -> new TrampolineBlock(AbstractBlock.Properties.create(Material.CLAY, MaterialColor.BLACK).slipperiness(0.8F).hardnessAndResistance(1.0F, 2.0F).notSolid().sound(SoundType.SLIME)));
-    public static final RegistryObject<Block> CARBON_DIOXIDE_FUMAROLE = REGISTRY.register("carbon_dioxide_fumarole", () -> new GasVentBlock(GasUtilsEnum.CARBON_DIOXIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
-    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_FUMAROLE = REGISTRY.register("hydrogen_chloride_fumarole", () -> new GasVentBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
-    public static final RegistryObject<Block> HYDROGEN_SULFIDE_FUMAROLE = REGISTRY.register("hydrogen_sulfide_fumarole", () -> new GasVentBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
-    public static final RegistryObject<Block> SULFUR_DIOXIDE_FUMAROLE = REGISTRY.register("sulfur_dioxide_fumarole", () -> new GasVentBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> CARBON_DIOXIDE_FUMAROLE = REGISTRY.register("carbon_dioxide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.CARBON_DIOXIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> HYDROGEN_CHLORIDE_FUMAROLE = REGISTRY.register("hydrogen_chloride_fumarole", () -> new FumaroleBlock(GasUtilsEnum.HYDROGEN_CHLORIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> HYDROGEN_SULFIDE_FUMAROLE = REGISTRY.register("hydrogen_sulfide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.HYDROGEN_SULFIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
+    public static final RegistryObject<Block> SULFUR_DIOXIDE_FUMAROLE = REGISTRY.register("sulfur_dioxide_fumarole", () -> new FumaroleBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F).harvestLevel(1)));
     public static final RegistryObject<Block> HYDROGEN_GAS_BLOCK = REGISTRY.register("hydrogen_gas_block", () -> new GasBlock(GasUtilsEnum.HYDROGEN, AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> HELIUM_GAS_BLOCK = REGISTRY.register("helium_gas_block", () -> new GasBlock(GasUtilsEnum.HELIUM, AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
     public static final RegistryObject<Block> NITROGEN_GAS_BLOCK = REGISTRY.register("nitrogen_gas_block", () -> new GasBlock(GasUtilsEnum.NITROGEN, AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
@@ -1240,7 +1285,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> SULFUR_DIOXIDE_GAS_BLOCK = REGISTRY.register("sulfur_dioxide_gas_block", () -> new GasBlock(GasUtilsEnum.SULFUR_DIOXIDE,AbstractBlock.Properties.create(Material.AIR).doesNotBlockMovement().noDrops().setAir()));
 
     public static final RegistryObject<Block> SOD_BLOCK_SLAB = REGISTRY.register("sod_block_slab", () -> new RankineSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
-    public static final RegistryObject<Block> SOD_BLOCK_STAIRS = REGISTRY.register("sod_block_stairs", () -> new RankineStairsBlock(Block.getStateById(0), AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> SOD_BLOCK_STAIRS = REGISTRY.register("sod_block_stairs", () -> new RankineStairsBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK_VERTICAL_SLAB = REGISTRY.register("sod_block_vertical_slab", () -> new RankineVerticalSlabBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK_WALL = REGISTRY.register("sod_block_wall", () -> new RankineWallBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
     public static final RegistryObject<Block> SOD_BLOCK = REGISTRY.register("sod_block", () -> new Block(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.PLANT)));
@@ -1314,7 +1359,13 @@ public class RankineBlocks {
     //gravel path?
     public static final RegistryObject<Block> ENDER_SHIRO = REGISTRY.register("ender_shiro", () -> new EnderShiroBlock(Block.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(0.8F).sound(SoundType.ROOT).tickRandomly()));
     public static final RegistryObject<Block> TILLED_SOIL = REGISTRY.register("tilled_soil", () -> new TilledSoilBlock(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.DIRT).hardnessAndResistance(0.5F).sound(SoundType.GROUND)));
-    public static final RegistryObject<Block> LIGHTNING_GLASS = REGISTRY.register("lightning_glass", () -> new Block(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS)));
+    public static final RegistryObject<Block> LIGHTNING_GLASS = REGISTRY.register("lightning_glass", () -> new GlassBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> RED_LIGHTNING_GLASS = REGISTRY.register("red_lightning_glass", () -> new GlassBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> SOUL_LIGHTNING_GLASS = REGISTRY.register("soul_lightning_glass", () -> new GlassBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> BLACK_LIGHTNING_GLASS = REGISTRY.register("black_lightning_glass", () -> new GlassBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+    public static final RegistryObject<Block> WHITE_LIGHTNING_GLASS = REGISTRY.register("white_lightning_glass", () -> new GlassBlock(AbstractBlock.Properties.create(Material.GLASS).hardnessAndResistance(0.5F).sound(SoundType.GLASS).notSolid()));
+
+
 
 
     public static final RegistryObject<Block> DARK_GRAVEL = REGISTRY.register("dark_gravel", () -> new GravelBlock(AbstractBlock.Properties.create(Material.SAND, MaterialColor.STONE).hardnessAndResistance(0.6F).sound(SoundType.GROUND)));
@@ -1322,12 +1373,15 @@ public class RankineBlocks {
     public static final RegistryObject<Block> ALLUVIUM = REGISTRY.register("alluvium", () -> new SandBlock(14406560, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> BLACK_SAND = REGISTRY.register("black_sand", () -> new SandBlock(00000000, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> WHITE_SAND = REGISTRY.register("white_sand", () -> new SandBlock(16777215, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> DESERT_SAND = REGISTRY.register("desert_sand", () -> new SandBlock(16777215, AbstractBlock.Properties.create(Material.SAND, MaterialColor.SAND).hardnessAndResistance(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<Block> LEAD_GLASS = REGISTRY.register("lead_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(3.0F, 15.0F).sound(SoundType.GLASS).notSolid().harvestLevel(1)));
     public static final RegistryObject<Block> BOROSILICATE_GLASS = REGISTRY.register("borosilicate_glass", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
-    public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(0)));
+    public static final RegistryObject<Block> COB_LOW = REGISTRY.register("cob_low", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> COB_HIGH = REGISTRY.register("cob_high", () -> new Block(DEF_STONE));
+    public static final RegistryObject<Block> PHOSPHORITE = REGISTRY.register("phosphorite", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> FUMAROLE_DEPOSIT = REGISTRY.register("fumarole_deposit", () -> new FumaroleDepositBlock(DEF_STONE.harvestLevel(3)));
-    public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(2)));
-    public static final RegistryObject<Block> BOG_IRON = REGISTRY.register("bog_iron", () -> new Block(DEF_STONE.harvestLevel(2)));
+    public static final RegistryObject<Block> IRONSTONE = REGISTRY.register("ironstone", () -> new Block(DEF_STONE.harvestLevel(1)));
+    public static final RegistryObject<Block> BOG_IRON = REGISTRY.register("bog_iron", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> PORPHYRY_COPPER = REGISTRY.register("porphyry_copper", () -> new Block(DEF_STONE.harvestLevel(1)));
     public static final RegistryObject<Block> KIMBERLITIC_DIAMOND_ORE = REGISTRY.register("kimberlitic_diamond_ore", () -> new Block(DEF_STONE.harvestLevel(4)));
     public static final RegistryObject<Block> QUICKLIME_BLOCK = REGISTRY.register("quicklime_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
@@ -1341,29 +1395,29 @@ public class RankineBlocks {
     public static final RegistryObject<Block> KOMATIITIC_TUFF = REGISTRY.register("komatiitic_tuff", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(2.0F, 2.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> CONCRETE = REGISTRY.register("concrete", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
     public static final RegistryObject<Block> CONCRETE_SLAB = REGISTRY.register("concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CONCRETE_STAIRS = REGISTRY.register("concrete_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
+    public static final RegistryObject<Block> CONCRETE_STAIRS = REGISTRY.register("concrete_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CONCRETE_VERTICAL_SLAB = REGISTRY.register("concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CONCRETE_WALL = REGISTRY.register("concrete_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CEMENT = REGISTRY.register("cement", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2).harvestLevel(1)));
     public static final RegistryObject<Block> CEMENT_SLAB = REGISTRY.register("cement_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
-    public static final RegistryObject<Block> CEMENT_STAIRS = REGISTRY.register("cement_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
+    public static final RegistryObject<Block> CEMENT_STAIRS = REGISTRY.register("cement_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CEMENT_VERTICAL_SLAB = REGISTRY.register("cement_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CEMENT_WALL = REGISTRY.register("cement_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> CEMENT_POLE = REGISTRY.register("cement_pole", () -> new CementPoleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
 
     public static final RegistryObject<Block> ROMAN_CONCRETE = REGISTRY.register("roman_concrete", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_SLAB = REGISTRY.register("roman_concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_STAIRS = REGISTRY.register("roman_concrete_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_STAIRS = REGISTRY.register("roman_concrete_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_VERTICAL_SLAB = REGISTRY.register("roman_concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_WALL = REGISTRY.register("roman_concrete_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE = REGISTRY.register("polished_roman_concrete", () -> new RankinePolishedStoneBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_SLAB = REGISTRY.register("polished_roman_concrete_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_STAIRS = REGISTRY.register("polished_roman_concrete_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_STAIRS = REGISTRY.register("polished_roman_concrete_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_VERTICAL_SLAB = REGISTRY.register("polished_roman_concrete_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> POLISHED_ROMAN_CONCRETE_WALL = REGISTRY.register("polished_roman_concrete_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS = REGISTRY.register("roman_concrete_bricks", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_SLAB = REGISTRY.register("roman_concrete_bricks_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
-    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_STAIRS = REGISTRY.register("roman_concrete_bricks_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_STAIRS = REGISTRY.register("roman_concrete_bricks_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_VERTICAL_SLAB = REGISTRY.register("roman_concrete_bricks_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1)));
     public static final RegistryObject<Block> ROMAN_CONCRETE_BRICKS_WALL = REGISTRY.register("roman_concrete_bricks_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
     //public static final RegistryObject<Block> QUARRY_BARRIER = REGISTRY.register("quarry_barrier", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).hardnessAndResistance(5.0F, 20.0F).harvestLevel(0).harvestTool(ToolType.PICKAXE)));
@@ -1373,7 +1427,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> PORCELAIN_BLOCK = REGISTRY.register("porcelain_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.0F, 3.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CHECKERED_MARBLE = REGISTRY.register("checkered_marble", () -> new Block(Block.Properties.create(Material.ROCK).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_SLAB = REGISTRY.register("checkered_marble_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
-    public static final RegistryObject<Block> CHECKERED_MARBLE_STAIRS = REGISTRY.register("checkered_marble_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
+    public static final RegistryObject<Block> CHECKERED_MARBLE_STAIRS = REGISTRY.register("checkered_marble_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_VERTICAL_SLAB = REGISTRY.register("checkered_marble_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CHECKERED_MARBLE_WALL = REGISTRY.register("checkered_marble_wall", () -> new RankineWallBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6.0F).harvestLevel(0)));
 
@@ -1414,7 +1468,7 @@ public class RankineBlocks {
     //WOOD BLOCKS
     public static final RegistryObject<Block> BAMBOO_PLANKS = REGISTRY.register("bamboo_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_SLAB = REGISTRY.register("bamboo_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BAMBOO_STAIRS = REGISTRY.register("bamboo_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> BAMBOO_STAIRS = REGISTRY.register("bamboo_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_VERTICAL_SLAB = REGISTRY.register("bamboo_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_FENCE = REGISTRY.register("bamboo_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_FENCE_GATE = REGISTRY.register("bamboo_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1424,7 +1478,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BAMBOO_BUTTON = REGISTRY.register("bamboo_button", RankineWoodenButton::new);
     public static final RegistryObject<Block> BAMBOO_CULMS = REGISTRY.register("bamboo_culms", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_SLAB = REGISTRY.register("bamboo_culms_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BAMBOO_CULMS_STAIRS = REGISTRY.register("bamboo_culms_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> BAMBOO_CULMS_STAIRS = REGISTRY.register("bamboo_culms_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_VERTICAL_SLAB = REGISTRY.register("bamboo_culms_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_FENCE = REGISTRY.register("bamboo_culms_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> BAMBOO_CULMS_FENCE_GATE = REGISTRY.register("bamboo_culms_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1438,7 +1492,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_CEDAR_WOOD = REGISTRY.register("stripped_cedar_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_PLANKS = REGISTRY.register("cedar_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_SLAB = REGISTRY.register("cedar_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CEDAR_STAIRS = REGISTRY.register("cedar_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> CEDAR_STAIRS = REGISTRY.register("cedar_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_VERTICAL_SLAB = REGISTRY.register("cedar_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_FENCE = REGISTRY.register("cedar_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> CEDAR_FENCE_GATE = REGISTRY.register("cedar_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1452,7 +1506,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_PINYON_PINE_WOOD = REGISTRY.register("stripped_pinyon_pine_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_PLANKS = REGISTRY.register("pinyon_pine_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_SLAB = REGISTRY.register("pinyon_pine_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> PINYON_PINE_STAIRS = REGISTRY.register("pinyon_pine_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> PINYON_PINE_STAIRS = REGISTRY.register("pinyon_pine_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_VERTICAL_SLAB = REGISTRY.register("pinyon_pine_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_FENCE = REGISTRY.register("pinyon_pine_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> PINYON_PINE_FENCE_GATE = REGISTRY.register("pinyon_pine_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1466,7 +1520,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_JUNIPER_WOOD = REGISTRY.register("stripped_juniper_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_PLANKS = REGISTRY.register("juniper_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_SLAB = REGISTRY.register("juniper_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> JUNIPER_STAIRS = REGISTRY.register("juniper_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> JUNIPER_STAIRS = REGISTRY.register("juniper_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_VERTICAL_SLAB = REGISTRY.register("juniper_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_FENCE = REGISTRY.register("juniper_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> JUNIPER_FENCE_GATE = REGISTRY.register("juniper_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1480,7 +1534,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_COCONUT_PALM_WOOD = REGISTRY.register("stripped_coconut_palm_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_PLANKS = REGISTRY.register("coconut_palm_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_SLAB = REGISTRY.register("coconut_palm_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> COCONUT_PALM_STAIRS = REGISTRY.register("coconut_palm_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> COCONUT_PALM_STAIRS = REGISTRY.register("coconut_palm_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_VERTICAL_SLAB = REGISTRY.register("coconut_palm_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_FENCE = REGISTRY.register("coconut_palm_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> COCONUT_PALM_FENCE_GATE = REGISTRY.register("coconut_palm_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1494,7 +1548,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_BALSAM_FIR_WOOD = REGISTRY.register("stripped_balsam_fir_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_PLANKS = REGISTRY.register("balsam_fir_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_SLAB = REGISTRY.register("balsam_fir_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BALSAM_FIR_STAIRS = REGISTRY.register("balsam_fir_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> BALSAM_FIR_STAIRS = REGISTRY.register("balsam_fir_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_VERTICAL_SLAB = REGISTRY.register("balsam_fir_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_FENCE = REGISTRY.register("balsam_fir_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> BALSAM_FIR_FENCE_GATE = REGISTRY.register("balsam_fir_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1508,7 +1562,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_MAGNOLIA_WOOD = REGISTRY.register("stripped_magnolia_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_PLANKS = REGISTRY.register("magnolia_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_SLAB = REGISTRY.register("magnolia_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> MAGNOLIA_STAIRS = REGISTRY.register("magnolia_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> MAGNOLIA_STAIRS = REGISTRY.register("magnolia_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_VERTICAL_SLAB = REGISTRY.register("magnolia_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_FENCE = REGISTRY.register("magnolia_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> MAGNOLIA_FENCE_GATE = REGISTRY.register("magnolia_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1522,7 +1576,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_EASTERN_HEMLOCK_WOOD = REGISTRY.register("stripped_eastern_hemlock_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_PLANKS = REGISTRY.register("eastern_hemlock_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_SLAB = REGISTRY.register("eastern_hemlock_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> EASTERN_HEMLOCK_STAIRS = REGISTRY.register("eastern_hemlock_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_STAIRS = REGISTRY.register("eastern_hemlock_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_VERTICAL_SLAB = REGISTRY.register("eastern_hemlock_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_FENCE = REGISTRY.register("eastern_hemlock_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> EASTERN_HEMLOCK_FENCE_GATE = REGISTRY.register("eastern_hemlock_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1536,7 +1590,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_YELLOW_BIRCH_WOOD = REGISTRY.register("stripped_yellow_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_PLANKS = REGISTRY.register("yellow_birch_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_SLAB = REGISTRY.register("yellow_birch_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> YELLOW_BIRCH_STAIRS = REGISTRY.register("yellow_birch_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> YELLOW_BIRCH_STAIRS = REGISTRY.register("yellow_birch_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_VERTICAL_SLAB = REGISTRY.register("yellow_birch_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_FENCE = REGISTRY.register("yellow_birch_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> YELLOW_BIRCH_FENCE_GATE = REGISTRY.register("yellow_birch_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1550,7 +1604,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_BLACK_BIRCH_WOOD = REGISTRY.register("stripped_black_birch_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_PLANKS = REGISTRY.register("black_birch_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_SLAB = REGISTRY.register("black_birch_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BLACK_BIRCH_STAIRS = REGISTRY.register("black_birch_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> BLACK_BIRCH_STAIRS = REGISTRY.register("black_birch_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_VERTICAL_SLAB = REGISTRY.register("black_birch_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_FENCE = REGISTRY.register("black_birch_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_BIRCH_FENCE_GATE = REGISTRY.register("black_birch_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1564,7 +1618,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_MAPLE_WOOD = REGISTRY.register("stripped_maple_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_PLANKS = REGISTRY.register("maple_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_SLAB = REGISTRY.register("maple_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> MAPLE_STAIRS = REGISTRY.register("maple_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> MAPLE_STAIRS = REGISTRY.register("maple_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_VERTICAL_SLAB = REGISTRY.register("maple_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_FENCE = REGISTRY.register("maple_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> MAPLE_FENCE_GATE = REGISTRY.register("maple_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1578,7 +1632,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_SHARINGA_WOOD = REGISTRY.register("stripped_sharinga_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_PLANKS = REGISTRY.register("sharinga_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_SLAB = REGISTRY.register("sharinga_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> SHARINGA_STAIRS = REGISTRY.register("sharinga_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> SHARINGA_STAIRS = REGISTRY.register("sharinga_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_VERTICAL_SLAB = REGISTRY.register("sharinga_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_FENCE = REGISTRY.register("sharinga_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> SHARINGA_FENCE_GATE = REGISTRY.register("sharinga_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1592,7 +1646,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_BLACK_WALNUT_WOOD = REGISTRY.register("stripped_black_walnut_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_PLANKS = REGISTRY.register("black_walnut_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_SLAB = REGISTRY.register("black_walnut_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> BLACK_WALNUT_STAIRS = REGISTRY.register("black_walnut_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> BLACK_WALNUT_STAIRS = REGISTRY.register("black_walnut_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_VERTICAL_SLAB = REGISTRY.register("black_walnut_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_FENCE = REGISTRY.register("black_walnut_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> BLACK_WALNUT_FENCE_GATE = REGISTRY.register("black_walnut_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1606,7 +1660,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_CORK_OAK_WOOD = REGISTRY.register("stripped_cork_oak_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_PLANKS = REGISTRY.register("cork_oak_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_SLAB = REGISTRY.register("cork_oak_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CORK_OAK_STAIRS = REGISTRY.register("cork_oak_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> CORK_OAK_STAIRS = REGISTRY.register("cork_oak_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_VERTICAL_SLAB = REGISTRY.register("cork_oak_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_FENCE = REGISTRY.register("cork_oak_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> CORK_OAK_FENCE_GATE = REGISTRY.register("cork_oak_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1620,7 +1674,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_CINNAMON_WOOD = REGISTRY.register("stripped_cinnamon_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_PLANKS = REGISTRY.register("cinnamon_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_SLAB = REGISTRY.register("cinnamon_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CINNAMON_STAIRS = REGISTRY.register("cinnamon_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> CINNAMON_STAIRS = REGISTRY.register("cinnamon_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_VERTICAL_SLAB = REGISTRY.register("cinnamon_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_FENCE = REGISTRY.register("cinnamon_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> CINNAMON_FENCE_GATE = REGISTRY.register("cinnamon_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1634,7 +1688,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_PETRIFIED_CHORUS_WOOD = REGISTRY.register("stripped_petrified_chorus_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_PLANKS = REGISTRY.register("petrified_chorus_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_SLAB = REGISTRY.register("petrified_chorus_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> PETRIFIED_CHORUS_STAIRS = REGISTRY.register("petrified_chorus_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> PETRIFIED_CHORUS_STAIRS = REGISTRY.register("petrified_chorus_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_VERTICAL_SLAB = REGISTRY.register("petrified_chorus_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_FENCE = REGISTRY.register("petrified_chorus_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> PETRIFIED_CHORUS_FENCE_GATE = REGISTRY.register("petrified_chorus_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1648,7 +1702,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_ERYTHRINA_WOOD = REGISTRY.register("stripped_erythrina_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_PLANKS = REGISTRY.register("erythrina_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_SLAB = REGISTRY.register("erythrina_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> ERYTHRINA_STAIRS = REGISTRY.register("erythrina_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> ERYTHRINA_STAIRS = REGISTRY.register("erythrina_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_VERTICAL_SLAB = REGISTRY.register("erythrina_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_FENCE = REGISTRY.register("erythrina_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> ERYTHRINA_FENCE_GATE = REGISTRY.register("erythrina_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1662,7 +1716,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STRIPPED_CHARRED_WOOD = REGISTRY.register("stripped_charred_wood", () -> new RankineLogBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_PLANKS = REGISTRY.register("charred_planks", () -> new RankinePlanksBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_SLAB = REGISTRY.register("charred_slab", () -> new RankineWoodenSlabBlock(DEF_WOOD));
-    public static final RegistryObject<Block> CHARRED_STAIRS = REGISTRY.register("charred_stairs", () -> new RankineWoodenStairsBlock(Block.getStateById(0), DEF_WOOD));
+    public static final RegistryObject<Block> CHARRED_STAIRS = REGISTRY.register("charred_stairs", () -> new RankineWoodenStairsBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_VERTICAL_SLAB = REGISTRY.register("charred_vertical_slab", () -> new RankineWoodenVerticalSlabBlock(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_FENCE = REGISTRY.register("charred_fence", () -> new RankineWoodenFence(DEF_WOOD));
     public static final RegistryObject<Block> CHARRED_FENCE_GATE = REGISTRY.register("charred_fence_gate", () -> new RankineWoodenFenceGate(DEF_WOOD));
@@ -1671,6 +1725,33 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHARRED_TRAPDOOR = REGISTRY.register("charred_trapdoor", RankineWoodenTrapDoor::new);
     public static final RegistryObject<Block> CHARRED_BUTTON = REGISTRY.register("charred_button", RankineWoodenButton::new);
     public static final RegistryObject<Block> CEDAR_BOOKSHELF = REGISTRY.register("cedar_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
+
+
+    public static final RegistryObject<Block> HOLLOW_OAK_LOG = REGISTRY.register("hollow_oak_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_SPRUCE_LOG = REGISTRY.register("hollow_spruce_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_BIRCH_LOG = REGISTRY.register("hollow_birch_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_JUNGLE_LOG = REGISTRY.register("hollow_jungle_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_ACACIA_LOG = REGISTRY.register("hollow_acacia_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_DARK_OAK_LOG = REGISTRY.register("hollow_dark_oak_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_WARPED_STEM = REGISTRY.register("hollow_warped_stem", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_CRIMSON_STEM = REGISTRY.register("hollow_crimson_stem", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_CEDAR_LOG = REGISTRY.register("hollow_cedar_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_PINYON_PINE_LOG = REGISTRY.register("hollow_pinyon_pine_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_JUNIPER_LOG = REGISTRY.register("hollow_juniper_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_COCONUT_PALM_LOG = REGISTRY.register("hollow_coconut_palm_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_BALSAM_FIR_LOG = REGISTRY.register("hollow_balsam_fir_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_MAGNOLIA_LOG = REGISTRY.register("hollow_magnolia_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_EASTERN_HEMLOCK_LOG = REGISTRY.register("hollow_eastern_hemlock_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_YELLOW_BIRCH_LOG = REGISTRY.register("hollow_yellow_birch_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_BLACK_BIRCH_LOG = REGISTRY.register("hollow_black_birch_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_MAPLE_LOG = REGISTRY.register("hollow_maple_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_SHARINGA_LOG = REGISTRY.register("hollow_sharinga_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_BLACK_WALNUT_LOG = REGISTRY.register("hollow_black_walnut_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_CORK_OAK_LOG = REGISTRY.register("hollow_cork_oak_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_CINNAMON_LOG = REGISTRY.register("hollow_cinnamon_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_PETRIFIED_CHORUS_LOG = REGISTRY.register("hollow_petrified_chorus_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_ERYTHRINA_LOG = REGISTRY.register("hollow_erythrina_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HOLLOW_CHARRED_LOG = REGISTRY.register("hollow_charred_log", () -> new HollowLogBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(1.0F, 1.0F).harvestLevel(0)));
 
     /*
     public static final RegistryObject<Block> BAMBOO_BOOKSHELF = REGISTRY.register("bamboo_bookshelf", () -> new RankineBookshelvesBlock(AbstractBlock.Properties.create(Material.WOOD).hardnessAndResistance(1.5F).sound(SoundType.WOOD)));
@@ -1738,6 +1819,29 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CORK_OAK_LEAVES = REGISTRY.register("cork_oak_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> CINNAMON_LEAVES = REGISTRY.register("cinnamon_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
     public static final RegistryObject<Block> ERYTHRINA_LEAVES = REGISTRY.register("erythrina_leaves", () -> new RankineLeavesBlock(DEF_LEAVES));
+
+
+    public static final RegistryObject<Block> OAK_LEAF_LITTER = REGISTRY.register("oak_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> SPRUCE_LEAF_LITTER = REGISTRY.register("spruce_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> BIRCH_LEAF_LITTER = REGISTRY.register("birch_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> JUNGLE_LEAF_LITTER = REGISTRY.register("jungle_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> ACACIA_LEAF_LITTER = REGISTRY.register("acacia_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> DARK_OAK_LEAF_LITTER = REGISTRY.register("dark_oak_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> CEDAR_LEAF_LITTER = REGISTRY.register("cedar_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> COCONUT_PALM_LEAF_LITTER = REGISTRY.register("coconut_palm_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> PINYON_PINE_LEAF_LITTER = REGISTRY.register("pinyon_pine_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> JUNIPER_LEAF_LITTER = REGISTRY.register("juniper_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> BALSAM_FIR_LEAF_LITTER = REGISTRY.register("balsam_fir_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> MAGNOLIA_LEAF_LITTER = REGISTRY.register("magnolia_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> EASTERN_HEMLOCK_LEAF_LITTER = REGISTRY.register("eastern_hemlock_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> YELLOW_BIRCH_LEAF_LITTER = REGISTRY.register("yellow_birch_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> BLACK_BIRCH_LEAF_LITTER = REGISTRY.register("black_birch_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> MAPLE_LEAF_LITTER = REGISTRY.register("maple_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> SHARINGA_LEAF_LITTER = REGISTRY.register("sharinga_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> BLACK_WALNUT_LEAF_LITTER = REGISTRY.register("black_walnut_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> CORK_OAK_LEAF_LITTER = REGISTRY.register("cork_oak_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> CINNAMON_LEAF_LITTER = REGISTRY.register("cinnamon_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
+    public static final RegistryObject<Block> ERYTHRINA_LEAF_LITTER = REGISTRY.register("erythrina_leaf_litter", () -> new LeafLitterBlock(DEF_LEAVES));
 
     private static final Block.Properties DEF_SAPLING = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
     public static final RegistryObject<Block> CEDAR_SAPLING = REGISTRY.register("cedar_sapling", () -> new RankineSaplingBlock(new CedarTree(), DEF_SAPLING, 3));
@@ -1874,6 +1978,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BAUXITE_BLOCK = REGISTRY.register("bauxite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> SPHALERITE_BLOCK = REGISTRY.register("sphalerite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> MAGNETITE_BLOCK = REGISTRY.register("magnetite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> HEMATITE_BLOCK = REGISTRY.register("hematite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PENTLANDITE_BLOCK = REGISTRY.register("pentlandite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> GALENA_BLOCK = REGISTRY.register("galena_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> GADOLINIUM_MONAZITE_BLOCK = REGISTRY.register("gadolinium_monazite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
@@ -1930,6 +2035,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> CHROMITE_ORE = REGISTRY.register("chromite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.CHROMITE_ORE_HL.get())));
     public static final RegistryObject<Block> PYROLUSITE_ORE = REGISTRY.register("pyrolusite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PYROLUSITE_ORE_HL.get())));
     public static final RegistryObject<Block> MAGNETITE_ORE = REGISTRY.register("magnetite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.MAGNETITE_ORE_HL.get())));
+    public static final RegistryObject<Block> HEMATITE_ORE = REGISTRY.register("hematite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.HEMATITE_ORE_HL.get())));
     public static final RegistryObject<Block> COBALTITE_ORE = REGISTRY.register("cobaltite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.COBALTITE_ORE_HL.get())));
     public static final RegistryObject<Block> PENTLANDITE_ORE = REGISTRY.register("pentlandite_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.PENTLANDITE_ORE_HL.get())));
     public static final RegistryObject<Block> INTERSPINIFEX_ORE = REGISTRY.register("interspinifex_ore", () -> new RankineOreBlock(DEF_ORE.harvestLevel(Config.BLOCK_PROPERTIES.INTERSPINIFEX_ORE_HL.get())));
@@ -2056,7 +2162,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> STAINLESS_STEEL_SHEETMETAL_VERTICAL_SLAB = REGISTRY.register("stainless_steel_sheetmetal_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(3.0F, 10.0F).harvestLevel(0)));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT = REGISTRY.register("cast_iron_support", () -> new Block(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_SLAB = REGISTRY.register("cast_iron_support_slab", () -> new RankineSlabBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).notSolid()));
-    public static final RegistryObject<Block> CAST_IRON_SUPPORT_STAIRS = REGISTRY.register("cast_iron_support_stairs", () -> new RankineStairsBlock(Block.getStateById(0), Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).notSolid()));
+    public static final RegistryObject<Block> CAST_IRON_SUPPORT_STAIRS = REGISTRY.register("cast_iron_support_stairs", () -> new RankineStairsBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_VERTICAL_SLAB = REGISTRY.register("cast_iron_support_vertical_slab", () -> new RankineVerticalSlabBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_SUPPORT_WALL = REGISTRY.register("cast_iron_support_wall", () -> new RankineWallBlock(Block.Properties.create(Material.IRON, MaterialColor.AIR).sound(SoundType.METAL).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0F, 6.0F).notSolid()));
     public static final RegistryObject<Block> CAST_IRON_BARS = REGISTRY.register("cast_iron_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
@@ -2088,7 +2194,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> REACTION_CHAMBER_CORE = REGISTRY.register("reaction_chamber_core", () -> new Block(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> REACTION_CHAMBER_CELL = REGISTRY.register("reaction_chamber_cell", () -> new GlassBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(6.0F, 30.0F).sound(SoundType.GLASS).notSolid().harvestLevel(2)));
 
-    public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> GAS_CONDENSER = REGISTRY.register("gas_condenser", () -> new GasCondenserBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> GAS_VENT = REGISTRY.register("gas_vent", () -> new GasVentBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> CHARCOAL_PIT = REGISTRY.register("charcoal_pit", () -> new CharcoalPitBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TREE_TAP = REGISTRY.register("tree_tap", () -> new TreeTapBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
     public static final RegistryObject<Block> TAP_BARREL = REGISTRY.register("tap_barrel", () -> new TapBarrelBlock(AbstractBlock.Properties.create(Material.WOOD).sound(SoundType.WOOD).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0).notSolid()));
     public static final RegistryObject<Block> TAP_LINE = REGISTRY.register("tap_line", () -> new TapLineBlock(0.125f, AbstractBlock.Properties.create(Material.MISCELLANEOUS).sound(SoundType.CLOTH).setRequiresTool().harvestTool(ToolType.AXE).hardnessAndResistance(0.5F).harvestLevel(0).notSolid()));
@@ -2405,6 +2513,14 @@ public class RankineBlocks {
     @ObjectHolder("rankine:evaporation_tower")
     public static TileEntityType<EvaporationTowerTile> EVAPORATION_TOWER_TILE;
 
+    @ObjectHolder("rankine:gas_condenser")
+    public static ContainerType<GasCondenserContainer> GAS_CONDENSER_CONTAINER;
+
+    @ObjectHolder("rankine:gas_condenser")
+    public static TileEntityType<GasCondenserTile> GAS_CONDENSER_TILE;
+    @ObjectHolder("rankine:gas_vent")
+    public static TileEntityType<GasVentTile> GAS_VENT_TILE;
+
     @ObjectHolder("rankine:crucible")
     public static ContainerType<CrucibleContainer> CRUCIBLE_CONTAINER;
 
@@ -2422,6 +2538,9 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:beehive_oven")
     public static TileEntityType<BeehiveOvenTile> BEEHIVE_OVEN_TILE;
+
+    @ObjectHolder("rankine:distillation_tower")
+    public static TileEntityType<DistillationTowerTile> DISTILLATION_TOWER_TILE;
 
     @ObjectHolder("rankine:fluid_drain")
     public static TileEntityType<FluidDrainTile> FLUID_DRAIN_TILE;

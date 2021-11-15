@@ -34,7 +34,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(RankineTags.Blocks.STONES_ANDESITE).add(RankineBlocks.HORNBLENDE_ANDESITE.get(),Blocks.ANDESITE);
         getOrCreateBuilder(RankineTags.Blocks.STONES_BASALT).add(RankineBlocks.THOLEIITIC_BASALT.get(),Blocks.BASALT);
         getOrCreateBuilder(RankineTags.Blocks.STONES_GRANITE).add(RankineBlocks.GRAY_GRANITE.get(),Blocks.GRANITE);
-        getOrCreateBuilder(RankineTags.Blocks.STONES_SANDSTONE).add(RankineBlocks.ARKOSE.get(), RankineBlocks.ITACOLUMITE.get(), RankineBlocks.SOUL_SANDSTONE.get(),Blocks.SANDSTONE,Blocks.RED_SANDSTONE);
+        getOrCreateBuilder(RankineTags.Blocks.STONES_SANDSTONE).add(RankineBlocks.ARKOSE.get(), RankineBlocks.ITACOLUMITE.get(), RankineBlocks.SOUL_SANDSTONE.get(), RankineBlocks.BLACK_SANDSTONE.get(), RankineBlocks.WHITE_SANDSTONE.get(), RankineBlocks.DESERT_SANDSTONE.get(),Blocks.SANDSTONE,Blocks.RED_SANDSTONE);
         getOrCreateBuilder(RankineTags.Blocks.STONES_PEGMATITE).add(RankineBlocks.PEGMATITE.get());
         getOrCreateBuilder(RankineTags.Blocks.STONES_BRECCIA).add(RankineBlocks.BRECCIA.get());
         getOrCreateBuilder(RankineTags.Blocks.STONES_PERIDOTITE).add(RankineBlocks.PERIDOTITE.get());
@@ -462,7 +462,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(Tags.Blocks.ORES_REDSTONE).add(RankineBlocks.REDSTONE_ORE.get());
         getOrCreateBuilder(Tags.Blocks.ORES_QUARTZ).add(RankineBlocks.NETHER_QUARTZ_ORE.get());
         getOrCreateBuilder(Tags.Blocks.ORES_GOLD).add(RankineBlocks.NETHER_GOLD_ORE.get(),RankineBlocks.GOLD_ORE.get(),RankineBlocks.NATIVE_GOLD_ORE.get());
-        getOrCreateBuilder(Tags.Blocks.ORES_IRON).add(RankineBlocks.IRON_ORE.get(),RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.PYRITE_ORE.get(),RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.TAENITE_ORE.get(),RankineBlocks.TETRATAENITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get());
+        getOrCreateBuilder(Tags.Blocks.ORES_IRON).add(RankineBlocks.IRON_ORE.get(),RankineBlocks.MAGNETITE_ORE.get(),RankineBlocks.HEMATITE_ORE.get(),RankineBlocks.PYRITE_ORE.get(),RankineBlocks.KAMACITE_ORE.get(),RankineBlocks.TAENITE_ORE.get(),RankineBlocks.TETRATAENITE_ORE.get(),RankineBlocks.ANTITAENITE_ORE.get(),RankineBlocks.BOG_IRON.get(),RankineBlocks.IRONSTONE.get());
         getOrCreateBuilder(RankineTags.Blocks.ORES_COPPER).add(RankineBlocks.MALACHITE_ORE.get(),RankineBlocks.CHALCOCITE_ORE.get(),RankineBlocks.PORPHYRY_COPPER.get());
         getOrCreateBuilder(RankineTags.Blocks.ORES_LEAD).add(RankineBlocks.GALENA_ORE.get(),RankineBlocks.NATIVE_LEAD_ORE.get());
         getOrCreateBuilder(RankineTags.Blocks.ORES_SILVER).add(RankineBlocks.ACANTHITE_ORE.get(),RankineBlocks.NATIVE_SILVER_ORE.get());
@@ -542,8 +542,9 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         getOrCreateBuilder(BlockTags.BAMBOO_PLANTABLE_ON).addTags(Tags.Blocks.DIRT,Tags.Blocks.GRAVEL,Tags.Blocks.SAND).add(RankineBlocks.SILT.get());
         getOrCreateBuilder(BlockTags.DRAGON_IMMUNE).addTags(RankineTags.Blocks.PETRIFIED_CHORUS_LOGS,RankineTags.Blocks.CHARRED_LOGS,RankineTags.Blocks.ERYTHRINA_LOGS);
         getOrCreateBuilder(BlockTags.LOGS_THAT_BURN).addTags(RankineTags.Blocks.CEDAR_LOGS,RankineTags.Blocks.PINYON_PINE_LOGS,RankineTags.Blocks.JUNIPER_LOGS,RankineTags.Blocks.COCONUT_PALM_LOGS,RankineTags.Blocks.BALSAM_FIR_LOGS,RankineTags.Blocks.EASTERN_HEMLOCK_LOGS,RankineTags.Blocks.MAPLE_LOGS,RankineTags.Blocks.MAGNOLIA_LOGS,RankineTags.Blocks.SHARINGA_LOGS,RankineTags.Blocks.CORK_OAK_LOGS,RankineTags.Blocks.CINNAMON_LOGS,RankineTags.Blocks.BLACK_BIRCH_LOGS,RankineTags.Blocks.YELLOW_BIRCH_LOGS,RankineTags.Blocks.BLACK_WALNUT_LOGS,RankineTags.Blocks.CHARRED_LOGS,RankineTags.Blocks.ERYTHRINA_LOGS);
+        getOrCreateBuilder(Tags.Blocks.GLASS).add(RankineBlocks.LIGHTNING_GLASS.get(),RankineBlocks.RED_LIGHTNING_GLASS.get(),RankineBlocks.SOUL_LIGHTNING_GLASS.get(),RankineBlocks.BLACK_LIGHTNING_GLASS.get(),RankineBlocks.WHITE_LIGHTNING_GLASS.get());
         getOrCreateBuilder(RankineTags.Blocks.NUGGET_STONES).addTags(RankineTags.Blocks.TUFF,RankineTags.Blocks.BASE_STONE_END,BlockTags.BASE_STONE_NETHER,BlockTags.BASE_STONE_OVERWORLD);
-        getOrCreateBuilder(RankineTags.Blocks.LIGHTNING_VITRIFIED).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,Tags.Blocks.DIRT);
+        getOrCreateBuilder(RankineTags.Blocks.LIGHTNING_VITRIFIED).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,Tags.Blocks.DIRT,Tags.Blocks.GRAVEL);
         getOrCreateBuilder(RankineTags.Blocks.METEORITE_REPLACEABLE).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,Tags.Blocks.DIRT,BlockTags.SAND,RankineTags.Blocks.TERRACOTTA);
         getOrCreateBuilder(RankineTags.Blocks.INTRUSION_PASSABLE).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,RankineTags.Blocks.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL,Blocks.LAVA);
         getOrCreateBuilder(RankineTags.Blocks.FUMAROLE_DEPOSIT).addTags(RankineTags.Blocks.TUFF,Tags.Blocks.STONE,Tags.Blocks.DIRT,Tags.Blocks.SAND,BlockTags.BASE_STONE_OVERWORLD,BlockTags.BASE_STONE_NETHER,RankineTags.Blocks.BASE_STONE_END,RankineTags.Blocks.TERRACOTTA).add(Blocks.SOUL_SAND,Blocks.SOUL_SOIL);

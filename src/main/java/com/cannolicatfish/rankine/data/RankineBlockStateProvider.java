@@ -50,8 +50,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.ALLOY_BLOCKS,
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.SHEETMETALS,
+                RankineLists.SMOOTH_SANDSTONES,
                 RankineLists.GAS_BLOCKS,
                 RankineLists.MINERAL_WOOL,
+                RankineLists.LIGHTNING_GLASSES,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.MINERAL_BLOCKS
             ).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -75,16 +77,28 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block INFESTED_STONE : RankineLists.INFESTED_STONES) {
             simpleBlock(INFESTED_STONE,models().withExistingParent(INFESTED_STONE.getRegistryName().getPath(), getBlockRSL(INFESTED_STONE.getRegistryName().getPath().replace("infested_",""))));
         }
-        for (Block blk : Stream.of(RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block SANDSTONE : RankineLists.SANDSTONES) {
+            String pathName = SANDSTONE.getRegistryName().getPath();
+            simpleBlock(SANDSTONE,models().cubeBottomTop(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName+"_bottom"),getBlockRSL("smooth_"+pathName)));
+        }
+        for (Block SANDSTONE : RankineLists.CUT_SANDSTONES) {
+            String pathName = SANDSTONE.getRegistryName().getPath();
+            simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("cut","smooth"))));
+        }
+        for (Block SANDSTONE : RankineLists.CHISELED_SANDSTONES) {
+            String pathName = SANDSTONE.getRegistryName().getPath();
+            simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("chiseled","smooth"))));
+        }
+        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             verticalSlabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsBlock(blk);
         }
         for (Block blk : RankineLists.POLISHED_STONES) {
@@ -261,6 +275,41 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : RankineLists.FLOWER_POTS) {
             String name = blk.getRegistryName().getPath();
             simpleBlock(blk, models().withExistingParent(name, "block/flower_pot_cross").texture("plant", "block/"+name.replace("potted_","")));
+        }
+        for (Block blk : RankineLists.HOLLOW_LOGS) {
+            String PATH = blk.getRegistryName().getPath();
+            String nameSpace;
+            if (Arrays.asList("hollow_oak_log","hollow_birch_log","hollow_spruce_log","hollow_acacia_log","hollow_jungle_log","hollow_dark_oak_log","hollow_crimson_stem","hollow_warped_stem").contains(PATH)) {
+                nameSpace = "minecraft";
+            } else {
+                nameSpace = "rankine";
+            }
+            ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_hollow_log")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
+            getVariantBuilder(blk)
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+                    .modelForState().modelFile(MODEL).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+                    .modelForState().modelFile(MODEL).rotationX(90).addModel()
+                    .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+                    .modelForState().modelFile(MODEL).rotationX(90).rotationY(90).addModel();
+        }
+        for (Block BLK : RankineLists.LEAF_LITTERS) {
+            String PATH = BLK.getRegistryName().getPath();
+            String nameSpace;
+            if (Arrays.asList("oak_leaf_litter","birch_leaf_litter","spruce_leaf_litter","acacia_leaf_litter","jungle_leaf_litter","dark_oak_leaf_litter").contains(PATH)) {
+                nameSpace = "minecraft";
+            } else {
+                nameSpace = "rankine";
+            }
+            getVariantBuilder(BLK).partialState().modelForState()
+                    .modelFile(models().withExistingParent(PATH, mcLoc("block/block"))
+                            .texture("particle", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
+                            .texture("layer", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
+                            .element().from(0.0f,0.25f,0.0f).to(16.0f,0.25f,16.0f)
+                            .face(Direction.UP).uvs(16, 16, 0,0).texture("#layer").end()
+                            .face(Direction.DOWN).uvs(16, 0, 0, 16).texture("#layer").end()
+                            .end())
+                    .addModel();
         }
         for (Block blk : Stream.of(RankineLists.LOGS, RankineLists.STRIPPED_LOGS).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
@@ -460,6 +509,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe")).addModel();
 
         //simpleBlock(RankineBlocks.LASER_QUARRY.get());
+        directionalBlock(RankineBlocks.GAS_VENT.get(),models().cubeColumnHorizontal(RankineBlocks.GAS_VENT.get().getRegistryName().getPath(),getBlockRSL("gas_vent_end"),getBlockRSL("gas_vent_side")));
+        directionalBlock(RankineBlocks.GAS_CONDENSER.get(),models().orientableVertical(RankineBlocks.GAS_CONDENSER.get().getRegistryName().getPath(),getBlockRSL("gas_condenser_end"),getBlockRSL("gas_condenser_end")));
         simpleBlock(RankineBlocks.RANKINE_BOX.get());
         simpleBlock(RankineBlocks.DISTILLATION_TOWER.get());
         simpleBlock(RankineBlocks.AIR_DISTILLATION_PACKING.get());

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sandstone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:desert_sandstone"
+    }
+  },
+  "result": {
+    "item": "rankine:desert_sandstone_wall",
+    "count": 6
+  }
+}

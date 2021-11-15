@@ -11,6 +11,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -94,13 +96,22 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockPos blockpos = context.getPos();
         BlockState blockstate = context.getWorld().getBlockState(blockpos);
-        BlockState blockstate1;
-        FluidState fluidstate = context.getWorld().getFluidState(blockpos);
         if (blockstate.matchesBlock(this)) {
             return blockstate.with(TYPE, VerticalSlabStates.DOUBLE).with(WATERLOGGED, Boolean.FALSE);
         } else {
-            blockstate1 = getType(context.getWorld(),context.getPos(),context.getPlacementHorizontalFacing());
-            return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+            //blockstate1 = getType(context.getWorld(),context.getPos(),context.getPlacementHorizontalFacing());
+            FluidState fluidstate = context.getWorld().getFluidState(blockpos);
+            BlockState blockstate1 = this.getDefaultState().with(TYPE, VerticalSlabStates.STRAIGHT).with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+            Direction direction = context.getFace();
+            if (direction.getAxis() == Direction.Axis.Y) {
+                Vector3d vec = context.getHitVec().subtract(new Vector3d(blockpos.getX(), blockpos.getY(), blockpos.getZ())).subtract(0.5, 0, 0.5);
+                double angle = Math.atan2(vec.x, vec.z) * -180.0 / Math.PI;
+                blockstate1 = blockstate1.with(HORIZONTAL_FACING, Direction.fromAngle(angle));
+            } else {
+                blockstate1 = blockstate1.with(HORIZONTAL_FACING, direction.getOpposite());
+            }
+
+            return blockstate1;
         }
     }
 
@@ -110,7 +121,7 @@ public class RankineVerticalSlabBlock extends Block implements IWaterLoggable {
         VerticalSlabStates slabtype = state.get(TYPE);
         if (slabtype != VerticalSlabStates.DOUBLE && itemstack.getItem() == this.asItem()) {
             if (useContext.replacingClickedOnBlock()) {
-                return useContext.getFace() == state.get(HORIZONTAL_FACING);
+                return useContext.getFace() == state.get(HORIZONTAL_FACING).getOpposite();
             } else {
                 return true;
             }
