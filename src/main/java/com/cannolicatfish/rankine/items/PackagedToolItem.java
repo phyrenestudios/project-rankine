@@ -25,6 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -43,41 +44,84 @@ public class PackagedToolItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         if (!playerIn.world.isRemote) {
+            playerIn.addItemStackToInventory(genRandomTool(playerIn.getHeldItem(handIn),worldIn));
             playerIn.getHeldItem(handIn).shrink(1);
-            playerIn.addItemStackToInventory(genRandomTool(worldIn));
+
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
 
     }
 
-    public ItemStack genRandomTool(World worldIn){
-        Random random = worldIn.getRandom();
+    public ItemStack genRandomTool(ItemStack stack, World worldIn){
         ItemStack ret;
-        switch(random.nextInt(7))
-        {
-            case 0:
-                ret = new ItemStack(RankineItems.ALLOY_AXE.get());
-                break;
-            case 1:
-                ret = new ItemStack(RankineItems.ALLOY_SHOVEL.get());
-                break;
-            case 2:
-                ret = new ItemStack(RankineItems.ALLOY_HAMMER.get());
-                break;
-            case 3:
-                ret = new ItemStack(RankineItems.ALLOY_SWORD.get());
-                break;
-            case 4:
-                ret = new ItemStack(RankineItems.ALLOY_SPEAR.get());
-                break;
-            case 5:
-            default:
-                ret = new ItemStack(RankineItems.ALLOY_PICKAXE.get());
-                break;
-            case 6:
-                ret = new ItemStack(RankineItems.ALLOY_HOE.get());
-                break;
+        if (stack.hasTag() && !stack.getTag().getString("forceTool").isEmpty()) {
+            String s = stack.getTag().getString("forceTool");
+            switch (s.toUpperCase(Locale.ROOT)) {
+                case "AXE":
+                    ret = new ItemStack(RankineItems.ALLOY_AXE.get());
+                    break;
+                case "SHOVEL":
+                    ret = new ItemStack(RankineItems.ALLOY_SHOVEL.get());
+                    break;
+                case "HAMMER":
+                    ret = new ItemStack(RankineItems.ALLOY_HAMMER.get());
+                    break;
+                case "SWORD":
+                    ret = new ItemStack(RankineItems.ALLOY_SWORD.get());
+                    break;
+                case "SPEAR":
+                    ret = new ItemStack(RankineItems.ALLOY_SPEAR.get());
+                    break;
+                case "PICKAXE":
+                default:
+                    ret = new ItemStack(RankineItems.ALLOY_PICKAXE.get());
+                    break;
+                case "HOE":
+                    ret = new ItemStack(RankineItems.ALLOY_HOE.get());
+                    break;
+                case "KNIFE":
+                    ret = new ItemStack(RankineItems.ALLOY_KNIFE.get());
+                    break;
+                case "CROWBAR":
+                    ret = new ItemStack(RankineItems.ALLOY_CROWBAR.get());
+                    break;
+            }
+        } else {
+            Random random = worldIn.getRandom();
+
+            switch(random.nextInt(9))
+            {
+                case 0:
+                    ret = new ItemStack(RankineItems.ALLOY_AXE.get());
+                    break;
+                case 1:
+                    ret = new ItemStack(RankineItems.ALLOY_SHOVEL.get());
+                    break;
+                case 2:
+                    ret = new ItemStack(RankineItems.ALLOY_HAMMER.get());
+                    break;
+                case 3:
+                    ret = new ItemStack(RankineItems.ALLOY_SWORD.get());
+                    break;
+                case 4:
+                    ret = new ItemStack(RankineItems.ALLOY_SPEAR.get());
+                    break;
+                case 5:
+                default:
+                    ret = new ItemStack(RankineItems.ALLOY_PICKAXE.get());
+                    break;
+                case 6:
+                    ret = new ItemStack(RankineItems.ALLOY_HOE.get());
+                    break;
+                case 7:
+                    ret = new ItemStack(RankineItems.ALLOY_KNIFE.get());
+                    break;
+                case 8:
+                    ret = new ItemStack(RankineItems.ALLOY_CROWBAR.get());
+                    break;
+            }
         }
+
         List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ALLOYING);
         AlloyingRecipe alloy = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList()).get(worldIn.getRandom().nextInt(recipes.size()));
         //System.out.println(alloy.getId());
@@ -91,6 +135,5 @@ public class PackagedToolItem extends Item {
             ((IAlloyTool) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
         }
         return ret;
-
     }
 }

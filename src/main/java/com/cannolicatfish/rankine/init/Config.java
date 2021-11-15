@@ -671,6 +671,7 @@ public class Config {
         public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
         public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
         public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
+        public final ForgeConfigSpec.DoubleValue ROCK_GENERATOR_REMOVAL_CHANCE;
         public final ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
         public final ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
         public final ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
@@ -752,6 +753,8 @@ public class Config {
                             .defineInRange("podzolGrowChance", 0.05D, 0.00D, 1.00D);
                     SAPLING_GROW_CHANCE = b.comment("Chance for a grass block to grow a sapling on a random tick")
                             .defineInRange("saplingGrowChance", 0.01D, 0.00D, 1.00D);
+                    ROCK_GENERATOR_REMOVAL_CHANCE = b.comment("Chance for a mineral block to be removed from any rock generator process.")
+                            .defineInRange("rockGenRemovalChance", 0.01D, 0.00D, 1.00D);
                     IGNEOUS_COBBLE_GEN = b.comment("Change the output of a cobblestone generator and basalt generator to intrusive and extrusive igneous rocks respectively.")
                             .define("igneousGen",true);
                     METAMORPHIC_STONE_GEN = b.comment("Change the output of a stone generator from stone to metamorphic rocks.")

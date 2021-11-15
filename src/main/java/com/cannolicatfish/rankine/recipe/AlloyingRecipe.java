@@ -52,12 +52,13 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
     private final int enchantInterval;
     private final int maxEnchantLevelIn;
     private final boolean localName;
+    private final boolean forceNBT;
 
     public static final AlloyingRecipe.Serializer SERIALIZER = new AlloyingRecipe.Serializer();
 
     public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
                           ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
-                          boolean nameIn, int colorIn) {
+                          boolean nameIn, boolean forceNBTIn, int colorIn) {
         this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
@@ -74,6 +75,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
         this.maxEnchantLevelIn = maxEnchantLevelIn;
         this.color = colorIn;
         this.localName = nameIn;
+        this.forceNBT = forceNBTIn;
     }
 
     public String getGroup() {
@@ -210,7 +212,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             return ItemStack.EMPTY;
         }
         ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.round(sum/10f));
-        if (out.getItem() instanceof IAlloyItem) {
+        if (out.getItem() instanceof IAlloyItem || this.forceNBT) {
             ((IAlloyItem) out.getItem()).createAlloyNBT(out, worldIn, AlloyRecipeHelper.getDirectComposition(percents,symbols), this.id, !this.getLocalName().isEmpty() ? this.getLocalName() : null);
             if (this.getColor() != 16777215) {
                 out.getOrCreateTag().putInt("color",this.getColor());
@@ -478,6 +480,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 c = 16777215;
             }
             boolean n = json.has("genName") && json.get("genName").getAsBoolean();
+            boolean force = json.has("forceNBT") && json.get("forceNBT").getAsBoolean();
 
             String s1 = JSONUtils.getString(json, "result");
             ResourceLocation resourcelocation = new ResourceLocation(s1);
@@ -544,7 +547,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 10;
             int interval = json.has("enchantInterval") ? json.get("enchantInterval").getAsInt() : 5;
             int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 5;
-            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,c);
+            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
         public AlloyingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
@@ -581,6 +584,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             }
 
             boolean n = buffer.readBoolean();
+            boolean force = buffer.readBoolean();
             int c = buffer.readInt();
 
             int size = buffer.readInt();
@@ -594,7 +598,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             int startEnchant = buffer.readInt();
             int interval = buffer.readInt();
             int maxLvl = buffer.readInt();
-            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,c);
+            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
         public void write(PacketBuffer buffer, AlloyingRecipe recipe) {
@@ -648,6 +652,7 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
             }
 
             buffer.writeBoolean(recipe.localName);
+            buffer.writeBoolean(recipe.forceNBT);
             buffer.writeInt(recipe.getColor());
 
             int size = recipe.getEnchantments().size();

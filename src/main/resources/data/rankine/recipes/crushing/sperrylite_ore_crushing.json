@@ -8,12 +8,12 @@
     "chance": 1
   },
   "output2": {
-    "item": "rankine:cooperite",
+    "item": "rankine:osmiridium",
     "chance": 0.75,
     "additional": 0.15
   },
   "output3": {
-    "item": "rankine:osmiridium",
+    "item": "rankine:cooperite",
     "chance": 0.5,
     "additional": 0.2
   },

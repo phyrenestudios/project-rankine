@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:pulp"
+  },
+  "input2": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "result1": {
+    "item": "rankine:alkali_cellulose"
+  }
+}

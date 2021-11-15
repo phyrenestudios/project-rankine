@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:alkali_cellulose"
+  },
+  "input2": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "fluidInput": {
+    "fluid": "rankine:carbon_disulfide"
+  },
+  "result1": {
+    "item": "minecraft:sponge"
+  },
+  "gasInput": {
+    "item": "rankine:nitrogen_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

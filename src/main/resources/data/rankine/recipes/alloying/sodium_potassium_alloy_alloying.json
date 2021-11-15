@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 2,
+  "total": 3,
   "color": 12564673,
   "input1": {
     "element": "rankine:elements/potassium",
@@ -13,6 +13,11 @@
     "min": 0.10,
     "max": 0.60,
     "required": true
+  },
+  "input3": {
+    "element": "rankine:elements/rubidium",
+    "min": 0.0,
+    "max": 0.1
   },
   "result": "rankine:sodium_potassium_alloy_ingot"
 }

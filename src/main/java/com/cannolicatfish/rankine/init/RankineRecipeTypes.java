@@ -78,4 +78,18 @@ public class RankineRecipeTypes {
             return recipe.matches(inv, worldIn) ? Optional.of((TreetappingRecipe) recipe) : Optional.empty();
         }
     };
+
+    public static final IRecipeType<AirDistillationRecipe> AIR_DISTILLATION = new IRecipeType<AirDistillationRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<AirDistillationRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((AirDistillationRecipe) recipe) : Optional.empty();
+        }
+    };
+
+    public static final IRecipeType<MixingRecipe> MIXING = new IRecipeType<MixingRecipe>() {
+        @Override
+        public <C extends IInventory> Optional<MixingRecipe> matches(IRecipe<C> recipe, World worldIn, C inv) {
+            return recipe.matches(inv, worldIn) ? Optional.of((MixingRecipe) recipe) : Optional.empty();
+        }
+    };
 }

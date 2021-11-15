@@ -36,5 +36,6 @@
   },
   "result": "rankine:invar_ingot",
   "durability": 150,
+  "damage": 0.5,
   "heatresist": 0.25
 }

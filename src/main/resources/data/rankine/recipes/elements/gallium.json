@@ -1,10 +1,42 @@
 {
-          "type": "rankine:element",
-          "name": "gallium",
-          "symbol": "Ga",
-          "color": 16777215,
-          "atomic": 31,
-          "potential": 0,
-          "items": ["T#forge:nuggets/gallium","T#forge:ingots/gallium","T#forge:storage_blocks/gallium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "gallium",
+  "symbol": "Ga",
+  "color": 9207455,
+  "atomic": 31,
+  "potential": -0.53,
+  "items": ["T#forge:nuggets/gallium","T#forge:ingots/gallium","T#forge:storage_blocks/gallium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LOG10"],
+    "a": [15],
+    "b": [0],
+    "modifiers": ["ADDITION"],
+    "limit": [1]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LOG10"],
+    "a": [10],
+    "b": [0],
+    "modifiers": ["ADDITION"],
+    "limit": [1]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["QUADRATIC"],
+    "a": [-0.01],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

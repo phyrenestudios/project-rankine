@@ -1,10 +1,74 @@
 {
-          "type": "rankine:element",
-          "name": "scandium",
-          "symbol": "Sc",
-          "color": 16777215,
-          "atomic": 21,
-          "potential": 0,
-          "items": ["T#forge:nuggets/scandium","T#forge:ingots/scandium","T#forge:storage_blocks/scandium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "scandium",
+  "symbol": "Sc",
+  "color": 16777215,
+  "atomic": 21,
+  "potential": 0,
+  "items": ["T#forge:nuggets/scandium","T#forge:ingots/scandium","T#forge:storage_blocks/scandium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.25],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.75]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["MIN"],
+    "limit": [0.75]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.0625],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "harvestlevel": {
+    "breaks": [100],
+    "formulas": ["CONSTANT"],
+    "a": [1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.01],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.008],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

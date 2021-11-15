@@ -1,0 +1,180 @@
+{
+  "type": "rankine:evaporation",
+  "large": false,
+  "total": 30,
+  "cookTime": 1200,
+  "input": {
+    "fluid": "rankine:gray_mud"
+  },
+  "bucket": {
+    "item": "rankine:gray_mud_bucket"
+  },
+  "output1": {
+    "item": "rankine:lanthanum_nugget",
+    "count": 6,
+    "chance": 1.0
+  },
+  "output2": {
+    "item": "rankine:cesium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output3": {
+    "item": "rankine:barium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output4": {
+    "item": "rankine:yttrium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output5": {
+    "item": "rankine:praseodymium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output6": {
+    "item": "rankine:actinium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output7": {
+    "item": "rankine:gadolinium_nugget",
+    "count": 6,
+    "chance": 1.0
+  },
+  "output8": {
+    "item": "rankine:dysprosium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output9": {
+    "item": "rankine:calcium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output10": {
+    "item": "rankine:zirconium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output11": {
+    "item": "rankine:thorium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output12": {
+    "item": "rankine:calcium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output13": {
+    "item": "rankine:arsenic_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output14": {
+    "item": "rankine:titanium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output15": {
+    "item": "rankine:tantalum_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output16": {
+    "item": "rankine:samarium_nugget",
+    "count": 6,
+    "chance": 1.0
+  },
+  "output17": {
+    "item": "rankine:thulium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output18": {
+    "item": "rankine:ytterbium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output19": {
+    "item": "rankine:lutetium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output20": {
+    "item": "rankine:hafnium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output21": {
+    "item": "rankine:plutonium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output22": {
+    "item": "rankine:neodymium_nugget",
+    "count": 6,
+    "chance": 1.0
+  },
+  "output23": {
+    "item": "rankine:holmium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output24": {
+    "item": "rankine:erbium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output25": {
+    "item": "rankine:molybdenum_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output26": {
+    "item": "rankine:uranium_nugget",
+    "min": 2,
+    "max": 6,
+    "weight": 5
+  },
+  "output27": {
+    "item": "rankine:thorite",
+    "weight": 15
+  },
+  "output28": {
+    "item": "rankine:rutile",
+    "weight": 15
+  },
+  "output29": {
+    "item": "rankine:zircon",
+    "weight": 15
+  },
+  "output30": {
+    "item": "minecraft:sand",
+    "weight": 20
+  }
+}

@@ -31,5 +31,10 @@
     "min": 0.0,
     "max": 0.10
   },
+  "input6": {
+    "element": "rankine:elements/cesium",
+    "min": 0.0,
+    "max": 0.10
+  },
   "result": "rankine:galinstan_ingot"
 }

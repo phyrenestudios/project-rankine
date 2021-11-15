@@ -194,4 +194,16 @@ public class AlloyKnifeItem extends KnifeItem implements IAlloyTool, IAlloyNeeds
         return this.defaultAlloyRecipe;
     }
 
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+            String s = IAlloyItem.getAlloyComposition(repair);
+            String r = IAlloyItem.getAlloyComposition(toRepair);
+
+            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
+            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            return !s.isEmpty() && s.equals(r) && s2.equals(r2);
+        }
+        return false;
+    }
 }

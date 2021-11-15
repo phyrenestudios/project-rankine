@@ -1,10 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
-import com.cannolicatfish.rankine.util.alloys.AlloyEnchantmentUtils;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,21 +8,17 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -217,5 +209,18 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool, IAlloyN
     @Override
     public ResourceLocation getDefaultRecipe() {
         return this.defaultAlloyRecipe;
+    }
+
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
+            String s = IAlloyItem.getAlloyComposition(repair);
+            String r = IAlloyItem.getAlloyComposition(toRepair);
+
+            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
+            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            return !s.isEmpty() && s.equals(r) && s2.equals(r2);
+        }
+        return false;
     }
 }

@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 3,
+  "total": 4,
   "tier": 2,
   "color": 3684408,
   "input1": {
@@ -19,6 +19,11 @@
     "element": "rankine:elements/chromium",
     "min": 0.0,
     "max": 0.10
+  },
+  "input4": {
+    "element": "rankine:elements/rubidium",
+    "min": 0.0,
+    "max": 0.1
   },
   "result": "rankine:black_gold_ingot",
   "enchantments": ["minecraft:bane_of_arthropods","rankine:excavate","rankine:foraging","rankine:quake","rankine:quake","minecraft:loyalty","minecraft:bane_of_arthropods","rankine:retreat","rankine:prying","minecraft:blast_protection"],

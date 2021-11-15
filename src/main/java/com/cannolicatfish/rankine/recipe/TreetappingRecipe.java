@@ -54,7 +54,7 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class TreetappingRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeType<?> getType() {
-        return RankineRecipeTypes.BEEHIVE;
+        return RankineRecipeTypes.TREETAPPING;
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {

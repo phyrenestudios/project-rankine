@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:xenotime"
+  },
+  "input2": {
+    "item": "rankine:gwihabaite"
+  },
+  "result1": {
+    "item":"rankine:yttrium_ingot",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:thorium_nugget",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_fluoride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}
