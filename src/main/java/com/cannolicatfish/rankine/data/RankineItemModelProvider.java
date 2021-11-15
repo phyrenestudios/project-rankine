@@ -37,26 +37,25 @@ public class RankineItemModelProvider extends ItemModelProvider {
             basicItem(item);
         }
 
-        for (Block BLOCK : Stream.of(RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.SHEETMETAL_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.SHEETMETAL_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.STONE_VERTICAL_SLABS,RankineLists.POLISHED_STONE_VERTICAL_SLABS,RankineLists.STONE_BRICKS_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS,RankineLists.WOODEN_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.STONE_VERTICAL_SLABS,RankineLists.POLISHED_STONE_VERTICAL_SLABS,RankineLists.STONE_BRICKS_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS,RankineLists.WOODEN_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.MISC_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             verticalSlabParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.STONE_STAIRS,RankineLists.POLISHED_STONE_STAIRS,RankineLists.STONE_BRICKS_STAIRS,RankineLists.WOODEN_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.STONE_STAIRS,RankineLists.POLISHED_STONE_STAIRS,RankineLists.STONE_BRICKS_STAIRS,RankineLists.WOODEN_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
             stairsParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.STONE_WALLS,RankineLists.POLISHED_STONE_WALLS,RankineLists.STONE_BRICKS_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.STONE_WALLS,RankineLists.POLISHED_STONE_WALLS,RankineLists.STONE_BRICKS_WALLS,RankineLists.BRICKS_WALL,RankineLists.SANDSTONE_WALLS,RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             wallParent(BLOCK);
-        }
-
-        for (Block blk : Stream.of(RankineLists.LEAVES, RankineLists.PLANKS, RankineLists.LOGS, RankineLists.STRIPPED_LOGS, RankineLists.WOODS, RankineLists.STRIPPED_WOODS, RankineLists.WOODEN_FENCE_GATES, RankineLists.WOODEN_SLABS, RankineLists.WOODEN_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
-            withExistingParent(name, modLoc("block/" + name));
         }
 
         for (Block BLOCK : Stream.of(
                 RankineLists.STONES,
+                RankineLists.SANDSTONES,
+                RankineLists.SMOOTH_SANDSTONES,
+                RankineLists.CUT_SANDSTONES,
+                RankineLists.CHISELED_SANDSTONES,
                 RankineLists.INFESTED_STONES,
                 RankineLists.STONE_BRICKS,
                 RankineLists.POLISHED_STONES,
@@ -64,6 +63,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
                 RankineLists.ALLOY_BLOCKS,
+                RankineLists.HOLLOW_LOGS,
+                RankineLists.LEAF_LITTERS,
+                RankineLists.WOODS,
                 RankineLists.LOGS,
                 RankineLists.LEAVES,
                 RankineLists.PLANKS,
@@ -85,6 +87,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineLists.ELEMENT_BLOCKS,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.ROTATION_BLOCKS,
+                RankineLists.LIGHTNING_GLASSES,
                 RankineLists.WOODEN_BOOKSHELVES,
                 RankineLists.SHEETMETALS
                 ).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -314,6 +317,8 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block BLK : Arrays.asList(
                 RankineBlocks.BONE_CHAR_BLOCK.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.GAS_CONDENSER.get(),
+                RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.PCF.get(),
                 RankineBlocks.RANKINE_BOX.get(),
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),

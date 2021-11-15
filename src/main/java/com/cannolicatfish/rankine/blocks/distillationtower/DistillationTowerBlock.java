@@ -30,27 +30,8 @@ public class DistillationTowerBlock extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new EvaporationTowerTile();
+        return new DistillationTowerTile();
     }
-
-    @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
-        if (!world.isRemote) {
-            TileEntity tileEntity = world.getTileEntity(pos);
-            if (tileEntity instanceof INamedContainerProvider) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
-            } else {
-                throw new IllegalStateException("Our named container provider is missing!");
-            }
-            return ActionResultType.CONSUME;
-        } else
-        {
-            return ActionResultType.SUCCESS;
-        }
-    }
-
-
-
 
 }
 

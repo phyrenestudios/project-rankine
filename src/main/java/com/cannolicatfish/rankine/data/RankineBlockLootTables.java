@@ -42,6 +42,14 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.STONE_PRESSURE_PLATES,
                 RankineLists.STONE_BRICKS_PRESSURE_PLATES,
                 RankineLists.STONE_BUTTONS,
+                RankineLists.SMOOTH_SANDSTONES,
+                RankineLists.SMOOTH_SANDSTONE_STAIRS,
+                RankineLists.SMOOTH_SANDSTONE_WALLS,
+                RankineLists.CUT_SANDSTONES,
+                RankineLists.CHISELED_SANDSTONES,
+                RankineLists.SANDSTONES,
+                RankineLists.SANDSTONE_STAIRS,
+                RankineLists.SANDSTONE_WALLS,
                 RankineLists.BRICKS,
                 RankineLists.BRICKS_STAIRS,
                 RankineLists.BRICKS_WALL,
@@ -87,6 +95,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.DIAMOND_ANVIL_CELL.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
+                RankineBlocks.GAS_VENT.get(),
                 RankineBlocks.ALNICO_ELECTROMAGNET.get(),
                 RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
@@ -122,6 +131,9 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.STONE_BRICKS_SLABS,
                 RankineLists.SHEETMETAL_SLABS,
                 RankineLists.BRICKS_SLAB,
+                RankineLists.SANDSTONE_SLABS,
+                RankineLists.SMOOTH_SANDSTONE_SLABS,
+                RankineLists.CUT_SANDSTONE_SLABS,
                 RankineLists.MISC_SLABS,
                 RankineLists.WOODEN_SLABS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -134,10 +146,13 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineLists.STONE_BRICKS_VERTICAL_SLABS,
                 RankineLists.SHEETMETAL_VERTICAL_SLABS,
                 RankineLists.BRICKS_VERTICAL_SLAB,
+                RankineLists.SANDSTONE_VERTICAL_SLABS,
+                RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,
+                RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,
                 RankineLists.MISC_VERTICAL_SLABS,
                 RankineLists.WOODEN_VERTICAL_SLABS
         ).flatMap(Collection::stream).collect(Collectors.toList())) {
-            lootTables.put(blk, slabBlockLootTable(blk));
+            lootTables.put(blk, verticalSlabBlockLootTable(blk));
         }
 
         
@@ -191,6 +206,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.RANKINE_BOX.get(), droppingWithName(RankineBlocks.RANKINE_BOX.get()));
         lootTables.put(RankineBlocks.TEMPLATE_TABLE.get(), droppingWithName(RankineBlocks.TEMPLATE_TABLE.get()));
         lootTables.put(RankineBlocks.INDUCTION_FURNACE.get(), droppingWithName(RankineBlocks.INDUCTION_FURNACE.get()));
+        lootTables.put(RankineBlocks.GAS_CONDENSER.get(), droppingWithName(RankineBlocks.GAS_CONDENSER.get()));
 
         for (Block ORE : RankineLists.CRUSHING_ORES) {
             lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));
@@ -203,6 +219,15 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
         for (Block BLK : RankineLists.WOODEN_BOOKSHELVES) {
             lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.BOOK, ConstantRange.of(3)));
+        }
+        for (Block BLK : RankineLists.LIGHTNING_GLASSES) {
+            lootTables.put(BLK, onlyWithSilkTouch(BLK));
+        }
+        for (Block BLK : RankineLists.HOLLOW_LOGS) {
+            lootTables.put(BLK, droppingWithSilkTouchOrRandomly(BLK, Items.STICK, RandomValueRange.of(2.0F, 6.0F)));
+        }
+        for (Block BLK : RankineLists.LEAF_LITTERS) {
+            lootTables.put(BLK, withShears(BLK));
         }
         for (Block LEAF : RankineLists.LEAVES) {
             Block SAPLING = RankineLists.SAPLINGS.get(RankineLists.LEAVES.indexOf(LEAF));

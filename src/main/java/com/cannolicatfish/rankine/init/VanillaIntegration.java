@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.events.RankineEventHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.IItemProvider;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 
 public class VanillaIntegration {
 
+    public static Map<Block, Item> gasCondenserMap = new HashMap<Block, Item>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<Block, Block> pathBlocks_map = new HashMap<Block, Block>();
     public static Map<Block, TilledSoilTypes> hoeables_map = new HashMap<Block, TilledSoilTypes>();
@@ -78,33 +80,53 @@ public class VanillaIntegration {
         hoeables_map.put(RankineBlocks.LOAM.get(), TilledSoilTypes.LOAM);
         hoeables_map.put(RankineBlocks.LOAM_GRASS_PATH.get(), TilledSoilTypes.LOAM);
         hoeables_map.put(RankineBlocks.LOAM_GRASS_BLOCK.get(), TilledSoilTypes.LOAM);
+        hoeables_map.put(RankineBlocks.LOAM_PODZOL.get(), TilledSoilTypes.LOAM);
+        hoeables_map.put(RankineBlocks.LOAM_MYCELIUM.get(), TilledSoilTypes.LOAM);
         hoeables_map.put(RankineBlocks.HUMUS.get(), TilledSoilTypes.HUMUS);
         hoeables_map.put(RankineBlocks.HUMUS_GRASS_PATH.get(), TilledSoilTypes.HUMUS);
         hoeables_map.put(RankineBlocks.HUMUS_GRASS_BLOCK.get(), TilledSoilTypes.HUMUS);
+        hoeables_map.put(RankineBlocks.HUMUS_PODZOL.get(), TilledSoilTypes.HUMUS);
+        hoeables_map.put(RankineBlocks.HUMUS_MYCELIUM.get(), TilledSoilTypes.HUMUS);
         hoeables_map.put(RankineBlocks.CLAY_LOAM.get(), TilledSoilTypes.CLAY_LOAM);
         hoeables_map.put(RankineBlocks.CLAY_LOAM_GRASS_PATH.get(), TilledSoilTypes.CLAY_LOAM);
         hoeables_map.put(RankineBlocks.CLAY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.CLAY_LOAM_PODZOL.get(), TilledSoilTypes.CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.CLAY_LOAM_MYCELIUM.get(), TilledSoilTypes.CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_PODZOL.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_LOAM_MYCELIUM.get(), TilledSoilTypes.SANDY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_PODZOL.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_LOAM_MYCELIUM.get(), TilledSoilTypes.SILTY_CLAY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_LOAM.get(), TilledSoilTypes.SILTY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SILTY_LOAM);
         hoeables_map.put(RankineBlocks.SILTY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SILTY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_LOAM_PODZOL.get(), TilledSoilTypes.SILTY_LOAM);
+        hoeables_map.put(RankineBlocks.SILTY_LOAM_MYCELIUM.get(), TilledSoilTypes.SILTY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_LOAM.get(), TilledSoilTypes.SANDY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_LOAM_GRASS_PATH.get(), TilledSoilTypes.SANDY_LOAM);
         hoeables_map.put(RankineBlocks.SANDY_LOAM_GRASS_BLOCK.get(), TilledSoilTypes.SANDY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_LOAM_PODZOL.get(), TilledSoilTypes.SANDY_LOAM);
+        hoeables_map.put(RankineBlocks.SANDY_LOAM_MYCELIUM.get(), TilledSoilTypes.SANDY_LOAM);
         hoeables_map.put(RankineBlocks.LOAMY_SAND.get(), TilledSoilTypes.LOAMY_SAND);
         hoeables_map.put(RankineBlocks.LOAMY_SAND_GRASS_PATH.get(), TilledSoilTypes.LOAMY_SAND);
         hoeables_map.put(RankineBlocks.LOAMY_SAND_GRASS_BLOCK.get(), TilledSoilTypes.LOAMY_SAND);
+        hoeables_map.put(RankineBlocks.LOAMY_SAND_PODZOL.get(), TilledSoilTypes.LOAMY_SAND);
+        hoeables_map.put(RankineBlocks.LOAMY_SAND_MYCELIUM.get(), TilledSoilTypes.LOAMY_SAND);
         hoeables_map.put(RankineBlocks.SANDY_CLAY.get(), TilledSoilTypes.SANDY_CLAY);
         hoeables_map.put(RankineBlocks.SANDY_CLAY_GRASS_PATH.get(), TilledSoilTypes.SANDY_CLAY);
         hoeables_map.put(RankineBlocks.SANDY_CLAY_GRASS_BLOCK.get(), TilledSoilTypes.SANDY_CLAY);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_PODZOL.get(), TilledSoilTypes.SANDY_CLAY);
+        hoeables_map.put(RankineBlocks.SANDY_CLAY_MYCELIUM.get(), TilledSoilTypes.SANDY_CLAY);
         hoeables_map.put(RankineBlocks.SILTY_CLAY.get(), TilledSoilTypes.SILTY_CLAY);
         hoeables_map.put(RankineBlocks.SILTY_CLAY_GRASS_PATH.get(), TilledSoilTypes.SILTY_CLAY);
         hoeables_map.put(RankineBlocks.SILTY_CLAY_GRASS_BLOCK.get(), TilledSoilTypes.SILTY_CLAY);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_PODZOL.get(), TilledSoilTypes.SILTY_CLAY);
+        hoeables_map.put(RankineBlocks.SILTY_CLAY_MYCELIUM.get(), TilledSoilTypes.SILTY_CLAY);
 
         stripping_map.put(RankineBlocks.CEDAR_LOG.get(), RankineBlocks.STRIPPED_CEDAR_LOG.get());
         stripping_map.put(RankineBlocks.CEDAR_WOOD.get(), RankineBlocks.STRIPPED_CEDAR_WOOD.get());
@@ -164,6 +186,19 @@ public class VanillaIntegration {
         tapFluids_map.put(TreeTapFluids.RESIN, RankineBlocks.RESIN.get().getDefaultState());
         tapFluids_map.put(TreeTapFluids.LATEX, RankineBlocks.LATEX.get().getDefaultState());
 
+
+        gasCondenserMap.put(RankineBlocks.HYDROGEN_GAS_BLOCK.get(), RankineItems.HYDROGEN_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.OXYGEN_GAS_BLOCK.get(), RankineItems.OXYGEN_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.NITROGEN_GAS_BLOCK.get(), RankineItems.NITROGEN_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.HELIUM_GAS_BLOCK.get(), RankineItems.HELIUM_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.CHLORINE_GAS_BLOCK.get(), RankineItems.CHLORINE_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.FLUORINE_GAS_BLOCK.get(), RankineItems.FLUORINE_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.ARGON_GAS_BLOCK.get(), RankineItems.ARGON_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.NEON_GAS_BLOCK.get(), RankineItems.NEON_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.KRYPTON_GAS_BLOCK.get(), RankineItems.KRYPTON_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.RADON_GAS_BLOCK.get(), RankineItems.RADON_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.XENON_GAS_BLOCK.get(), RankineItems.XENON_NUGGET.get());
+        gasCondenserMap.put(RankineBlocks.OGANESSON_GAS_BLOCK.get(), RankineItems.OGANESSON_NUGGET.get());
 
     }
 

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.blocks.plants.LeafLitterBlock;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -45,15 +46,18 @@ public class GrassySoilBlock extends GrassBlock {
             } else {
                 worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
             }
+        } else if (worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock && random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get()) {
+            worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),2);
+            worldIn.removeBlock(pos.up(),false);
         } else {
             if (worldIn.getLight(pos.up()) >= 9) {
                 BlockState blockstate = this.getDefaultState();
                 for(int i = 0; i < 4; ++i) {
                     BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (worldIn.getBlockState(blockpos).matchesBlock(Blocks.DIRT) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockState(blockpos, blockstate.with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
+                        worldIn.setBlockState(blockpos, Blocks.GRASS_BLOCK.getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
                     } else if (RankineLists.SOIL_BLOCKS.contains(worldIn.getBlockState(blockpos).getBlock()) && isSnowyAndNotUnderwater(blockstate, worldIn, blockpos)) {
-                        worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)));
+                        worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)).with(DEAD, blockstate.get(DEAD)));
                     }
                 }
                // Block ceillingBlock = WorldgenUtils.getCeillingBlock(worldIn,pos,20);
@@ -65,9 +69,6 @@ public class GrassySoilBlock extends GrassBlock {
                     BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();
                     worldIn.setBlockState(pos.up(),BLOCK,2);
                 }
-            }
-            if (WorldgenUtils.getCeillingBlock(worldIn,pos,20).matchesBlock(RankineBlocks.CEDAR_LEAVES.get()) && random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get()) {
-                worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),2);
             }
         }
     }

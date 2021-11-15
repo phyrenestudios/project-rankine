@@ -126,10 +126,9 @@ public class RankineOreFeature extends Feature<RankineOreFeatureConfig> {
                                             bitset.set(k2);
                                             blockpos$mutableblockpos.setPos(l1, i2, j2);
                                             Block b = worldIn.getBlockState(blockpos$mutableblockpos).getBlock();
-                                            ResourceLocation rs = b.getRegistryName();
                                             if (config.target.getPredicate().test(worldIn.getBlockState(blockpos$mutableblockpos))) {
                                                 if (config.state.getBlock() instanceof RankineOreBlock) {
-                                                    if (WorldgenUtils.ORE_TEXTURES.contains(rs.toString())) {
+                                                    if (WorldgenUtils.ORE_STONES.contains(b)) {
                                                         worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(b)), 19);
                                                     } else {
                                                         worldIn.setBlockState(blockpos$mutableblockpos, config.state.getBlock().getDefaultState(), 19);

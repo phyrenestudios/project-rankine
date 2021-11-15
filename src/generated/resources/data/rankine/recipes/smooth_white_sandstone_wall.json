@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "smooth_sandstone_wall",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:smooth_white_sandstone"
+    }
+  },
+  "result": {
+    "item": "rankine:smooth_white_sandstone_wall",
+    "count": 6
+  }
+}

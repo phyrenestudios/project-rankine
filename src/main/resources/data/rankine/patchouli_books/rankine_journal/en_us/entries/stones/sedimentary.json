@@ -1,0 +1,32 @@
+{
+  "name": "Sedimentary Stones",
+  "icon": "rankine:limestone",
+  "category": "stones",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Sedimentary stones are ones formed from the compaction and cementing of various sediments. In the world, most of these types of stones are found closer to the surface due to more recent water action. We can speed up the sedimentation process by using an artificial generator."
+    },
+    {
+      "type": "crafting",
+      "recipe": "rankine:sediment_fan",
+      "text": "Usage of the Sediment Fan is illustrated on the next page. JEI can be used to see the associated stone generation recipes."
+    },
+    {
+      "type": "text",
+      "text": ""
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:sandstone",
+      "link_recipe": true,
+      "text": "Found in the traditional locations."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:red_sandstone",
+      "link_recipe": true,
+      "text": "Not found yet."
+    }
+  ]
+}

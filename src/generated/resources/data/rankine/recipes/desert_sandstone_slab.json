@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sandstone_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:desert_sandstone"
+    }
+  },
+  "result": {
+    "item": "rankine:desert_sandstone_slab",
+    "count": 6
+  }
+}

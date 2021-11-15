@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine;
 
 import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
+import com.cannolicatfish.rankine.blocks.distillationtower.DistillationTowerTile;
 import com.cannolicatfish.rankine.blocks.fluiddrain.FluidDrainTile;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleContainer;
 import com.cannolicatfish.rankine.blocks.crucible.CrucibleTile;
@@ -9,6 +10,9 @@ import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerContai
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
+import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserContainer;
+import com.cannolicatfish.rankine.blocks.gascondenser.GasCondenserTile;
+import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherContainer;
 import com.cannolicatfish.rankine.blocks.gyratorycrusher.GyratoryCrusherTile;
@@ -238,15 +242,13 @@ public class ProjectRankine {
         @SubscribeEvent
         public static void onFeatureRegistry(final RegistryEvent.Register<Feature<?>> event) {
             event.getRegistry().register(RankineFeatures.RANKINE_ORE.setRegistryName(ProjectRankine.MODID,"rankine_ore"));
+            event.getRegistry().register(RankineFeatures.LAND_DISK.setRegistryName(ProjectRankine.MODID,"land_disk"));
             event.getRegistry().register(RankineFeatures.METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"meteorite_feature"));
             event.getRegistry().register(RankineFeatures.END_METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"end_meteorite_feature"));
             event.getRegistry().register(RankineFeatures.ANTIMATTER_BLOB_FEATURE.setRegistryName(ProjectRankine.MODID,"antimatter_blob_feature"));
             event.getRegistry().register(RankineFeatures.FUMAROLE_FEATURE.setRegistryName(ProjectRankine.MODID,"fumarole_feature"));
             event.getRegistry().register(RankineFeatures.FLAT_BEDROCK_FEATURE.setRegistryName(ProjectRankine.MODID,"flat_bedrock_feature"));
             event.getRegistry().register(RankineFeatures.INTRUSION.setRegistryName(ProjectRankine.MODID,"intrusion"));
-            event.getRegistry().register(RankineFeatures.NETHER_INTRUSION.setRegistryName(ProjectRankine.MODID,"nether_intrusion"));
-            event.getRegistry().register(RankineFeatures.END_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"end_stone_replacer"));
-            event.getRegistry().register(RankineFeatures.NETHER_STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"nether_stone_replacer"));
             event.getRegistry().register(RankineFeatures.STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"stone_replacer"));
             event.getRegistry().register(RankineFeatures.SOIL_REPLACER.setRegistryName(ProjectRankine.MODID,"soil_replacer"));
             event.getRegistry().register(RankineFeatures.SNOW_REPLACER.setRegistryName(ProjectRankine.MODID,"snow_replacer"));
@@ -286,6 +288,8 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(FusionFurnaceTile::new, RankineBlocks.FUSION_FURNACE.get()).build(null).setRegistryName(ProjectRankine.MODID,"fusion_furnace"));
             event.getRegistry().register(TileEntityType.Builder.create(GyratoryCrusherTile::new, RankineBlocks.GYRATORY_CRUSHER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gyratory_crusher"));
             event.getRegistry().register(TileEntityType.Builder.create(EvaporationTowerTile::new, RankineBlocks.EVAPORATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
+            event.getRegistry().register(TileEntityType.Builder.create(GasCondenserTile::new, RankineBlocks.GAS_CONDENSER.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
+            event.getRegistry().register(TileEntityType.Builder.create(GasVentTile::new, RankineBlocks.GAS_VENT.get()).build(null).setRegistryName(ProjectRankine.MODID,"gas_vent"));
             event.getRegistry().register(TileEntityType.Builder.create(RankineBoxTile::new, RankineBlocks.RANKINE_BOX.get()).build(null).setRegistryName(ProjectRankine.MODID,"rankine_box"));
             //event.getRegistry().register(TileEntityType.Builder.create(LaserQuarryTile::new, RankineBlocks.LASER_QUARRY.get()).build(null).setRegistryName(ProjectRankine.MODID,"laser_quarry"));
             event.getRegistry().register(TileEntityType.Builder.create(AlloyBlockTile::new, RankineBlocks.BRONZE_BLOCK.get()).build(null).setRegistryName(ProjectRankine.MODID,"bronze_alloy_block"));
@@ -294,6 +298,7 @@ public class ProjectRankine {
             event.getRegistry().register(TileEntityType.Builder.create(FluidDrainTile::new, RankineBlocks.TILLED_SOIL.get()).build(null).setRegistryName(ProjectRankine.MODID,"tilled_soil"));
             event.getRegistry().register(TileEntityType.Builder.create(GroundTapTile::new, RankineBlocks.GROUND_TAP.get()).build(null).setRegistryName(ProjectRankine.MODID,"ground_tap"));
             event.getRegistry().register(TileEntityType.Builder.create(BeehiveOvenTile::new, RankineBlocks.BEEHIVE_OVEN_PIT.get()).build(null).setRegistryName(ProjectRankine.MODID,"beehive_oven"));
+            event.getRegistry().register(TileEntityType.Builder.create(DistillationTowerTile::new, RankineBlocks.DISTILLATION_TOWER.get()).build(null).setRegistryName(ProjectRankine.MODID,"distillation_tower"));
         }
 
         @SubscribeEvent
@@ -408,6 +413,11 @@ public class ProjectRankine {
                 BlockPos pos = data.readBlockPos();
                 return new EvaporationTowerContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
             }).setRegistryName(ProjectRankine.MODID,"evaporation_tower"));
+
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new GasCondenserContainer(windowId, ProjectRankine.proxy.getClientWorld(), pos, inv, ProjectRankine.proxy.getClientPlayer());
+            }).setRegistryName(ProjectRankine.MODID,"gas_condenser"));
 
             event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();

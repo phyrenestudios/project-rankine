@@ -31,53 +31,44 @@ public class FumaroleFeature extends Feature<NoFeatureConfig> {
         IChunk chunk = reader.getChunk(pos);
         int randX = chunk.getPos().getXStart() + rand.nextInt(16);
         int randZ = chunk.getPos().getZStart() + rand.nextInt(16);
-
+        int yHeight;
+        Block FUMAROLE;
         if (reader.getBiome(new BlockPos(randX,0,randZ)).getCategory() == Biome.Category.NETHER) {
-            int yHeight = 5;
-            for (int y = yHeight; y<127; ++y) {
-                BlockPos pos1 = new BlockPos(randX, y + 1, randZ);
-                if (reader.getBlockState(pos1).matchesBlock(Blocks.AIR) || reader.getBlockState(pos1).matchesBlock(Blocks.WATER) || reader.getBlockState(pos1).matchesBlock(Blocks.LAVA)) {
+            yHeight = 30;
+            for (int y = yHeight; y<100; ++y) {
+                if (reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
                     yHeight=y;
                     break;
                 }
             }
-            BlockPos POS = new BlockPos(randX, yHeight - 1, randZ);
-            Block FUMAROLE = rand.nextFloat() < 0.5 ? RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get() : RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get();
-            reader.setBlockState(POS, FUMAROLE.getDefaultState(), 2);
-            reader.setBlockState(POS.down(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().east(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().north(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().south(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().west(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-4,-4,-4),POS.add(4,4,4))) {
-                if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<12) {
-                    reader.setBlockState(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(), 2);
-                }
-            }
+            FUMAROLE = rand.nextFloat() < 0.5 ? RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get() : RankineBlocks.HYDROGEN_CHLORIDE_FUMAROLE.get();
         } else {
-            int yHeight = 5;
-            for (int y = yHeight; y<200; ++y) {
-                BlockPos pos1 = new BlockPos(randX, y + 1, randZ);
-                if (reader.getBlockState(pos1).matchesBlock(Blocks.AIR) || reader.getBlockState(pos1).matchesBlock(Blocks.WATER) || reader.getBlockState(pos1).matchesBlock(Blocks.LAVA)) {
+            yHeight = 11;
+            for (int y = yHeight; y<40; ++y) {
+                if (reader.getBlockState(new BlockPos(randX, y + 1, randZ)).matchesBlock(Blocks.AIR)) {
                     yHeight=y;
                     break;
                 }
             }
-            BlockPos POS = new BlockPos(randX, yHeight, randZ);
-            Block FUMAROLE = rand.nextFloat() < 0.5 ? RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get() : RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get();
-            reader.setBlockState(POS, FUMAROLE.getDefaultState(), 2);
-            reader.setBlockState(POS.down(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().east(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().north(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().south(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            reader.setBlockState(POS.down().west(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
-            for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-4,-4,-4),POS.add(4,4,4))) {
-                if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<12) {
-                    reader.setBlockState(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(), 2);
-                }
-            }
+            FUMAROLE = rand.nextFloat() < 0.5 ? RankineBlocks.CARBON_DIOXIDE_FUMAROLE.get() : RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get();
         }
 
+        BlockPos POS = new BlockPos(randX, yHeight, randZ);
+        reader.setBlockState(POS, FUMAROLE.getDefaultState(), 2);
+        reader.setBlockState(POS.east(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
+        reader.setBlockState(POS.north(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
+        reader.setBlockState(POS.south(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
+        reader.setBlockState(POS.west(), Blocks.MAGMA_BLOCK.getDefaultState(), 2);
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-2,-2,-2),POS.add(2,0,2))) {
+            if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<4) {
+                reader.setBlockState(blockpos, RankineBlocks.FUMAROLE_DEPOSIT.get().getDefaultState(), 2);
+            }
+        }
+        for (BlockPos blockpos : BlockPos.getAllInBoxMutable(POS.add(-2,1,-2),POS.add(2,3,2))) {
+            if (reader.getBlockState(blockpos).isIn(RankineTags.Blocks.FUMAROLE_DEPOSIT) && blockpos.distanceSq(POS)<9) {
+                reader.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
+            }
+        }
 
         return true;
     }

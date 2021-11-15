@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "rankine:block/gas_vent_end",
+    "end": "rankine:block/gas_vent_side"
+  }
+}

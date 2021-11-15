@@ -6,13 +6,11 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockBlobFeature;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
@@ -41,7 +39,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         }
 
 
-        if (rand.nextFloat() < Config.MISC.BIG_METEORITE_CHANCE.get().floatValue()) {
+        if (rand.nextFloat() < Config.MISC_WORLDGEN.BIG_METEORITE_CHANCE.get().floatValue()) {
             BlockState TEKTITE;
             float CHANCE2 = rand.nextFloat();
             if (CHANCE2 < 0.25F) {
@@ -82,9 +80,9 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
     }
 
     private void buildMeteor(ISeedReader reader, Random rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
-        int j = Config.MISC.METEORITE_SIZE.get() + rand.nextInt(2);
-        int k = Config.MISC.METEORITE_SIZE.get() + rand.nextInt(2);
-        int l = Config.MISC.METEORITE_SIZE.get() + rand.nextInt(2);
+        int j = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
+        int k = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
+        int l = Config.MISC_WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
         float f = (float)(j + k + l) * 0.333F + 0.75F;
         for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-j, -k, -l), pos.add(j, k, l))) {
             if (blockpos.distanceSq(pos) <= (double)(f * f)) {

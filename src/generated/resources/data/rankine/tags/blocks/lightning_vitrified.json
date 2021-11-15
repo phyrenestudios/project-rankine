@@ -3,6 +3,7 @@
   "values": [
     "#forge:tuff",
     "#forge:stone",
-    "#forge:dirt"
+    "#forge:dirt",
+    "#forge:gravel"
   ]
 }
