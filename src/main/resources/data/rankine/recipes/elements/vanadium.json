@@ -21,7 +21,7 @@
     "a": [0.2],
     "b": [0],
     "modifiers": ["MIN"],
-    "limit": [1]
+    "limit": [2]
   },
   "mininglevel": {
     "breaks": [19,89,100],

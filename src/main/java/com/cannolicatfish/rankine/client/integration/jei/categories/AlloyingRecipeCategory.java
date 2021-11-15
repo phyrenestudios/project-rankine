@@ -38,10 +38,10 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     private final IDrawable icon;
 
     public AlloyingRecipeCategory(IGuiHelper guiHelper) {
-        background = guiHelper.createBlankDrawable(185, 146);
+        background = guiHelper.createBlankDrawable(187, 156);
         localizedName = I18n.format("rankine.jei.alloying");
         overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloying_jei.png"),
-                0, 15, 180, 141);
+                0, 15, 182, 151);
         icon = guiHelper.createDrawableIngredient(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()));
     }
 
@@ -100,14 +100,14 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
         int ymod = -1;
         for (List<ItemStack> o : ingredients.getInputs(VanillaTypes.ITEM)) {
             if (reqIndex.contains(ingredients.getInputs(VanillaTypes.ITEM).indexOf(o))) {
-                recipeLayout.getItemStacks().init(index, true, reqCounter * 18, 39);
+                recipeLayout.getItemStacks().init(index, true, 0, 43 + reqCounter * 18);
                 reqCounter++;
             } else {
-                if (nonReqCounter % 10 == 0) {
+                if (nonReqCounter % 9 == 0) {
                     reducer = nonReqCounter;
                     ymod += 1;
                 }
-                recipeLayout.getItemStacks().init(index, true, (nonReqCounter - reducer) * 18, 58 + (18*ymod));
+                recipeLayout.getItemStacks().init(index, true, 18 + (nonReqCounter - reducer) * 18, 8 + (18*ymod));
                 nonReqCounter++;
             }
             recipeLayout.getItemStacks().set(index, o);
@@ -127,7 +127,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
 
         for (int i = 0; i < ingredients.getOutputs(VanillaTypes.ITEM).size(); i++) {
             List<ItemStack> stacks = ingredients.getOutputs(VanillaTypes.ITEM).get(i);
-            recipeLayout.getItemStacks().init(index + i, false, 19, 10);
+            recipeLayout.getItemStacks().init(index + i, false, 0, 8);
             recipeLayout.getItemStacks().set(index + i, stacks);
         }
     }

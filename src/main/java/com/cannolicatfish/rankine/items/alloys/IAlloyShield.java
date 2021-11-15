@@ -94,7 +94,7 @@ public interface IAlloyShield extends IAlloyItem {
             start = recipe.getMinEnchantability();
             interval = recipe.getEnchantInterval();
             maxLvl = recipe.getMaxEnchantLevelIn();
-            for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack))
+            for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack,worldIn))
             {
                 int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
                 if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {
@@ -102,7 +102,7 @@ public interface IAlloyShield extends IAlloyItem {
                 }
             }
         }
-        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack))
+        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack,worldIn))
         {
             int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
             if (enchLvl > 0 && EnchantmentHelper.getEnchantmentLevel(e,stack) == 0) {

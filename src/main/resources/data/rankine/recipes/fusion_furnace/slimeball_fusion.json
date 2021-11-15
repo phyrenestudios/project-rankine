@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:dry_rubber"
+  },
+  "input2": {
+    "tag": "forge:dyes/green"
+  },
+  "fluidInput": {
+    "fluid": "rankine:resin"
+  },
+  "result1": {
+    "item": "minecraft:slimeball"
+  }
+}

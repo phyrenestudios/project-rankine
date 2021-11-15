@@ -1,0 +1,27 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:thortveitite"
+  },
+  "input2": {
+    "tag": "forge:ingots/calcium"
+  },
+  "result1": {
+    "item":"rankine:scandium_ingot",
+    "count": 1
+  },
+  "result2": {
+    "item":"rankine:yttrium_nugget",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_fluoride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

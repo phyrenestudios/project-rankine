@@ -1,29 +1,18 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
-import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
-import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -33,7 +22,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDyeableArmorItem, IAlloyNeedsRegenerate {
     private final String defaultComposition;
@@ -49,11 +37,13 @@ public class AlloyArmorItem extends DyeableArmorItem implements IAlloyArmor, IDy
         if (isAlloyInit(repair) && isAlloyInit(toRepair) && (repair.getItem().getTags().contains(new ResourceLocation("forge:ingots")) || repair.getItem() == this)) {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
-            return !s.isEmpty() && s.equals(r);
+
+            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
+            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;
     }
-
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         return getDamage(stack) * 1f / this.getAlloyArmorDurability(stack);

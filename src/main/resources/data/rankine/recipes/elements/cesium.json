@@ -1,10 +1,58 @@
 {
-          "type": "rankine:element",
-          "name": "cesium",
-          "symbol": "Cs",
-          "color": 16777215,
-          "atomic": 55,
-          "potential": 0,
-          "items": ["T#forge:nuggets/cesium","T#forge:ingots/cesium","T#forge:storage_blocks/cesium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "cesium",
+  "symbol": "Cs",
+  "color": 16777215,
+  "atomic": 55,
+  "potential": -2.336,
+  "items": ["T#forge:nuggets/cesium","T#forge:ingots/cesium","T#forge:storage_blocks/cesium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.625],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "attackspeed": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.02],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["EXPONENTIAL"],
+    "a": [2],
+    "b": [0],
+    "modifiers": ["MULTIPLIER"],
+    "limit": [0.02]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.16],
+    "b": [0],
+    "modifiers": ["ADDITION"],
+    "limit": [1]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.01],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "heatresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [-0.008],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

@@ -1,22 +1,8 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
-import com.cannolicatfish.rankine.items.tools.HammerItem;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.MilkBucketItem;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvents;
-
-import java.util.Iterator;
 
 public class CleanseEnchantment extends Enchantment {
     public CleanseEnchantment(Enchantment.Rarity p_i46721_1_, EquipmentSlotType... p_i46721_2_) {

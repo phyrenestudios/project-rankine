@@ -1,0 +1,28 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:praseodymium_monazite"
+  },
+  "input2": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:gray_mud"
+  },
+  "result1": {
+    "item": "rankine:praseodymium_ingot"
+  },
+  "result2": {
+    "item": "rankine:potash"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:helium_gas_bottle"
+  }
+}

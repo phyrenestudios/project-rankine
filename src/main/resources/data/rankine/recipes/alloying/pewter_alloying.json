@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 9,
+  "total": 10,
   "color": 11711154,
   "input1": {
     "element": "rankine:elements/tin",
@@ -46,6 +46,11 @@
   },
   "input9": {
     "element": "rankine:elements/cadmium",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input10": {
+    "element": "rankine:elements/cesium",
     "min": 0.0,
     "max": 0.13
   },

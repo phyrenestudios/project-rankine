@@ -198,6 +198,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.HERBICIDE.get());
         basicItem(RankineItems.SYNTHETIC_LEATHER.get());
         basicItem(RankineItems.PULP.get());
+        basicItem(RankineItems.ALKALI_CELLULOSE.get());
         basicItem(RankineItems.DRY_RUBBER.get());
         basicItem(RankineItems.INDIUM_TIN_OXIDE.get());
         basicItem(RankineItems.CADMIUM_TELLURIDE_CELL.get());
@@ -241,6 +242,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.TOTEM_OF_COBBLING.get());
         basicItem(RankineItems.TOTEM_OF_ENDURING.get());
         basicItem(RankineItems.TOTEM_OF_HASTENING.get());
+        basicItem(RankineItems.TOTEM_OF_INFUSING.get());
         basicItem(RankineItems.TOTEM_OF_LEVITATING.get());
         basicItem(RankineItems.TOTEM_OF_PROMISING.get());
         basicItem(RankineItems.TOTEM_OF_REPULSING.get());
@@ -273,8 +275,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.JUGLONE_BUCKET.get());
         basicItem(RankineItems.LIQUID_MERCURY_BUCKET.get());
         basicItem(RankineItems.AQUA_REGIA_BUCKET.get());
+        basicItem(RankineItems.CARBON_DISULFIDE_BUCKET.get());
         basicItem(RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET.get());
         basicItem(RankineItems.HYDROBROMIC_ACID_BUCKET.get());
+        basicItem(RankineItems.GRAY_MUD_BUCKET.get());
         basicItem(RankineItems.RED_MUD_BUCKET.get());
         basicItem(RankineItems.SULFURIC_ACID_BUCKET.get());
         basicItem(RankineItems.COIN.get());
@@ -382,7 +386,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         stairsParent(RankineBlocks.SOD_BLOCK_STAIRS.get());
         wallParent(RankineBlocks.SOD_BLOCK_WALL.get());
         
-        for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItemHandheld(TOOL);
         }
         for (Item ARROW : RankineLists.ARROWS) {

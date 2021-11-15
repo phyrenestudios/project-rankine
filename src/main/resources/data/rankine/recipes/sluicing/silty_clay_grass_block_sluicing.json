@@ -1,6 +1,6 @@
 {
   "type": "rankine:sluicing",
-  "total": 9,
+  "total": 8,
   "input": {
     "item": "rankine:silty_clay_grass_block"
   },

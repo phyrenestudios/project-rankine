@@ -2,17 +2,13 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyArmor;
-import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
 import com.cannolicatfish.rankine.items.tools.HammerItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 

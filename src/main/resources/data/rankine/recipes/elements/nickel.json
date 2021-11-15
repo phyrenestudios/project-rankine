@@ -54,5 +54,13 @@
     "b": [0],
     "modifiers": ["NONE"],
     "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.02],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
   }
 }

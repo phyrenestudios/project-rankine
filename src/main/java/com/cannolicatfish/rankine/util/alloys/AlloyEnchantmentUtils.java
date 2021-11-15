@@ -8,6 +8,9 @@ import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
@@ -19,12 +22,22 @@ import java.util.List;
 
 public class AlloyEnchantmentUtils {
 
-    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack) {
+    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack, World worldIn) {
         List<Enchantment> enchantments = new ArrayList<>();
         List<String> alloyEnchants = recipe.getEnchantments();
         List<String> alloyEnchantTypes = recipe.getEnchantmentTypes();
         for (int i = 0; i < alloyEnchants.size(); i++) {
-            Enchantment en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(alloyEnchants.get(i)));
+            Enchantment en;
+            if (alloyEnchants.get(i).equals("rankine:random")) {
+                List<EnchantmentData> dat = EnchantmentHelper.buildEnchantmentList(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),true);
+                if (!dat.isEmpty()) {
+                    en = dat.get(0).enchantment;
+                } else {
+                    en = Enchantments.UNBREAKING;
+                }
+            } else {
+                en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(alloyEnchants.get(i)));
+            }
             if (en != null && matchesEnchantmentType(en,stack,EnchantmentTypes.valueOf(alloyEnchantTypes.get(i)))) {
                 if (!enchantments.contains(en)) {
                     enchantments.add(en);
@@ -35,7 +48,7 @@ public class AlloyEnchantmentUtils {
         return enchantments;
     }
 
-    public static List<Enchantment> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack) {
+    public static List<Enchantment> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack, World worldIn) {
         List<Enchantment> enchantments = new ArrayList<>();
         List<Float> enchantmentTotals = new ArrayList<>();
         for (int e = 0; e < elements.size(); e++) {
@@ -46,7 +59,17 @@ public class AlloyEnchantmentUtils {
             List<Float> elementEnchantFactors = element.getEnchantmentFactors();
 
             for (int i = 0; i < elementEnchants.size(); i++) {
-                Enchantment en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(elementEnchants.get(i)));
+                Enchantment en;
+                if (elementEnchants.get(i).equals("rankine:random")) {
+                    List<EnchantmentData> dat = EnchantmentHelper.buildEnchantmentList(worldIn.getRandom(),stack,1,true);
+                    if (!dat.isEmpty()) {
+                        en = dat.get(0).enchantment;
+                    } else {
+                        en = Enchantments.UNBREAKING;
+                    }
+                } else {
+                    en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(elementEnchants.get(i)));
+                }
                 if (en != null && matchesEnchantmentType(en,stack,EnchantmentTypes.valueOf(elementEnchantTypes.get(i)))) {
                     if (!enchantments.contains(en)) {
                         enchantments.add(en);

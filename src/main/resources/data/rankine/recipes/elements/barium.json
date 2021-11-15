@@ -20,7 +20,7 @@
     "formulas": ["LINEAR"],
     "a": [0.1],
     "b": [0],
-    "modifiers": ["MAX"],
+    "modifiers": ["MIN"],
     "limit": [1.5]
   },
   "attackspeed": {
@@ -28,7 +28,7 @@
     "formulas": ["LINEAR"],
     "a": [0.1],
     "b": [0],
-    "modifiers": ["MAX"],
+    "modifiers": ["MIN"],
     "limit": [1.5]
   },
   "corrosionresist": {

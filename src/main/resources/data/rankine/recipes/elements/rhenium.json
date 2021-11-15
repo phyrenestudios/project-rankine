@@ -1,10 +1,34 @@
 {
-          "type": "rankine:element",
-          "name": "rhenium",
-          "symbol": "Re",
-          "color": 16777215,
-          "atomic": 75,
-          "potential": 0,
-          "items": ["T#forge:nuggets/rhenium","T#forge:ingots/rhenium","T#forge:storage_blocks/rhenium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "rhenium",
+  "symbol": "Re",
+  "color": 16777215,
+  "atomic": 75,
+  "potential": 0.3,
+  "items": ["T#forge:nuggets/rhenium","T#forge:ingots/rhenium","T#forge:storage_blocks/rhenium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "mininglevel": {
+    "breaks": [5,15,100],
+    "formulas": ["CONSTANT","CONSTANT","CONSTANT"],
+    "a": [0,1,2],
+    "b": [0,0,0],
+    "modifiers": ["NONE","NONE","NONE"],
+    "limit": [0,0,0]
+  },
+  "heatresist": {
+    "breaks": [20,100],
+    "formulas": ["LINEAR","LINEAR"],
+    "a": [0.01,0.008],
+    "b": [0,0.2],
+    "modifiers": ["MIN","MIN"],
+    "limit": [0,1]
+  }
+}

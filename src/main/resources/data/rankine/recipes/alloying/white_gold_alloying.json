@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 9,
+  "total": 10,
   "color": 16777207,
   "input1": {
     "element": "rankine:elements/gold",
@@ -45,6 +45,11 @@
   },
   "input9": {
     "element": "rankine:elements/iridium",
+    "min": 0.0,
+    "max": 0.05
+  },
+  "input10": {
+    "element": "rankine:elements/rubidium",
     "min": 0.0,
     "max": 0.05
   },

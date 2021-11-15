@@ -12,6 +12,9 @@ import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
 import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapBlock;
 import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelContainer;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableBlock;
 import com.cannolicatfish.rankine.blocks.mtt.MaterialTestingTableContainer;
 import com.cannolicatfish.rankine.blocks.plants.*;
@@ -2070,6 +2073,7 @@ public class RankineBlocks {
     public static final RegistryObject<Block> BEEHIVE_OVEN_PIT = REGISTRY.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(REFRACTORY_BRICKS.get(), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(HIGH_REFRACTORY_BRICKS.get(), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> ULTRA_HIGH_BEEHIVE_OVEN_PIT = REGISTRY.register("ultra_high_beehive_oven_pit", () -> new BeehiveOvenPitBlock(ULTRA_HIGH_REFRACTORY_BRICKS.get(), Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0)));
+    public static final RegistryObject<Block> MIXING_BARREL = REGISTRY.register("mixing_barrel", () -> new MixingBarrelBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
     public static final RegistryObject<Block> CRUCIBLE_BLOCK = REGISTRY.register("crucible", () -> new CrucibleBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(2.0F).harvestLevel(0).setLightLevel((p_235418_0_) -> 7)));
     public static final RegistryObject<Block> MATERIAL_TESTING_TABLE = REGISTRY.register("material_testing_table", () -> new MaterialTestingTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
     public static final RegistryObject<Block> TEMPLATE_TABLE = REGISTRY.register("template_table", () -> new TemplateTableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD).harvestTool(ToolType.AXE).hardnessAndResistance(2.0F).harvestLevel(0)));
@@ -2225,8 +2229,10 @@ public class RankineBlocks {
     public static final RegistryObject<Block> RESIN = REGISTRY.register("resin", () -> new FlowingFluidBlock(() -> RankineFluids.RESIN, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> JUGLONE = REGISTRY.register("juglone", () -> new FlowingFluidBlock(() -> RankineFluids.JUGLONE, Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> AQUA_REGIA = REGISTRY.register("aqua_regia", () -> new FlowingFluidBlock(()-> RankineFluids.AQUA_REGIA,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> CARBON_DISULFIDE = REGISTRY.register("carbon_disulfide", () -> new FlowingFluidBlock(()-> RankineFluids.CARBON_DISULFIDE,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> HEXAFLUOROSILICIC_ACID = REGISTRY.register("hexafluorosilicic_acid", () -> new FlowingFluidBlock(()-> RankineFluids.HEXAFLUOROSILICIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> HYDROBROMIC_ACID = REGISTRY.register("hydrobromic_acid", () -> new FlowingFluidBlock(()-> RankineFluids.HYDROBROMIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
+    public static final RegistryObject<Block> GRAY_MUD = REGISTRY.register("gray_mud", () -> new FlowingFluidBlock(()-> RankineFluids.GRAY_MUD,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> RED_MUD = REGISTRY.register("red_mud", () -> new FlowingFluidBlock(()-> RankineFluids.RED_MUD,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
     public static final RegistryObject<Block> SULFURIC_ACID = REGISTRY.register("sulfuric_acid", () -> new FlowingFluidBlock(()-> RankineFluids.SULFURIC_ACID,Block.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0F).noDrops()));
 
@@ -2413,6 +2419,12 @@ public class RankineBlocks {
 
     @ObjectHolder("rankine:crucible")
     public static TileEntityType<CrucibleTile> CRUCIBLE_TILE;
+
+    @ObjectHolder("rankine:mixing_barrel")
+    public static ContainerType<MixingBarrelContainer> MIXING_BARREL_CONTAINER;
+
+    @ObjectHolder("rankine:mixing_barrel")
+    public static TileEntityType<MixingBarrelTile> MIXING_BARREL_TILE;
 
     @ObjectHolder("rankine:template_table")
     public static ContainerType<TemplateTableContainer> TEMPLATE_TABLE_CONTAINER;

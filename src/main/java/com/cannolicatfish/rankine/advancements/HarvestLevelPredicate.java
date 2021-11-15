@@ -1,17 +1,10 @@
 package com.cannolicatfish.rankine.advancements;
 
-import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
-import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtils;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.TieredItem;
-import net.minecraft.nbt.INBT;
 import net.minecraft.util.JSONUtils;
 
 public class HarvestLevelPredicate extends ItemPredicate {

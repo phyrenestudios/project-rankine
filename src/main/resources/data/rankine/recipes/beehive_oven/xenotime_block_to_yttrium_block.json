@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:xenotime_block"
-  },
-  "result": {
-    "block": "rankine:yttrium_block"
-  }
-}

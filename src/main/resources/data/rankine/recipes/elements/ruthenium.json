@@ -1,10 +1,58 @@
 {
-          "type": "rankine:element",
-          "name": "ruthenium",
-          "symbol": "Ru",
-          "color": 16777215,
-          "atomic": 44,
-          "potential": 0,
-          "items": ["T#forge:nuggets/ruthenium","T#forge:ingots/ruthenium","T#forge:storage_blocks/ruthenium"],
-          "values": [1,9,81]
-        }
+  "type": "rankine:element",
+  "name": "ruthenium",
+  "symbol": "Ru",
+  "color": 16777215,
+  "atomic": 44,
+  "potential": 0,
+  "items": ["T#forge:nuggets/ruthenium","T#forge:ingots/ruthenium","T#forge:storage_blocks/ruthenium"],
+  "values": [1,9,81],
+  "durability": {
+    "breaks": [100],
+    "formulas": ["QUADRATIC"],
+    "a": [0.01],
+    "b": [-2],
+    "modifiers": ["ABSOLUTE_VALUE"],
+    "limit": [0]
+  },
+  "damage": {
+    "breaks": [100],
+    "formulas": ["POWER"],
+    "a": [0.5],
+    "b": [0],
+    "modifiers": ["MULTIPLIER"],
+    "limit": [0.0625]
+  },
+  "harvestlevel": {
+    "breaks": [100],
+    "formulas": ["CONSTANT"],
+    "a": [1],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "miningspeed": {
+    "breaks": [100],
+    "formulas": ["POWER"],
+    "a": [0.4],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "enchantability": {
+    "breaks": [100],
+    "formulas": ["CONSTANT"],
+    "a": [4],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  },
+  "corrosionresist": {
+    "breaks": [100],
+    "formulas": ["LINEAR"],
+    "a": [0.005],
+    "b": [0],
+    "modifiers": ["NONE"],
+    "limit": [0]
+  }
+}

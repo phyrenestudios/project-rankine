@@ -206,6 +206,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.GREEN_GOLD_TOOLS,
                 RankineLists.BLACK_GOLD_TOOLS,
                 RankineLists.PURPLE_GOLD_TOOLS,
+                RankineLists.OSMIRIDIUM_TOOLS,
                 RankineLists.AMALGAM_TOOLS,
                 RankineLists.ENDER_AMALGAM_TOOLS,
                 RankineLists.TITANIUM_ALLOY_TOOLS,
@@ -311,6 +312,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.HERBICIDE.get(),
             RankineItems.SYNTHETIC_LEATHER.get(),
             RankineItems.PULP.get(),
+            RankineItems.ALKALI_CELLULOSE.get(),
             RankineItems.DRY_RUBBER.get(),
             RankineItems.INDIUM_TIN_OXIDE.get(),
             RankineItems.CADMIUM_TELLURIDE_CELL.get(),
@@ -354,6 +356,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.TOTEM_OF_COBBLING.get(),
             RankineItems.TOTEM_OF_ENDURING.get(),
             RankineItems.TOTEM_OF_HASTENING.get(),
+            RankineItems.TOTEM_OF_INFUSING.get(),
             RankineItems.TOTEM_OF_LEVITATING.get(),
             RankineItems.TOTEM_OF_PROMISING.get(),
             RankineItems.TOTEM_OF_REPULSING.get(),
@@ -386,8 +389,10 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.JUGLONE_BUCKET.get(),
             RankineItems.LIQUID_MERCURY_BUCKET.get(),
             RankineItems.AQUA_REGIA_BUCKET.get(),
+            RankineItems.CARBON_DISULFIDE_BUCKET.get(),
             RankineItems.HEXAFLUOROSILICIC_ACID_BUCKET.get(),
             RankineItems.HYDROBROMIC_ACID_BUCKET.get(),
+            RankineItems.GRAY_MUD_BUCKET.get(),
             RankineItems.RED_MUD_BUCKET.get(),
             RankineItems.SULFURIC_ACID_BUCKET.get(),
             RankineItems.COIN.get(),
@@ -609,6 +614,7 @@ public class RankineLangProvider extends LanguageProvider {
         add("item.rankine.totem_of_cobbling.tooltip", "Long term stone storage");
         add("item.rankine.totem_of_enduring.tooltip", "Built in body shield");
         add("item.rankine.totem_of_hastening.tooltip", "Efficiency, but in your hands");
+        add("item.rankine.totem_of_infusing.tooltip", "Symbiotic enchanting");
         add("item.rankine.totem_of_imitating.tooltip", "False promises");
         add("item.rankine.totem_of_levitating.tooltip", "For keeping your feet clean");
         add("item.rankine.totem_of_mending.tooltip", "Regenerate your losses");
@@ -619,6 +625,8 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         add("fluid.rankine.aqua_regia", "Aqua Regia");
+        add("fluid.rankine.gray_mud", "Gray Mud");
+        add("fluid.rankine.hexafluorosilicic_acid", "Hydrobromic Acid");
         add("fluid.rankine.hydrobromic_acid", "Hydrobromic Acid");
         add("fluid.rankine.juglone", "Juglone");
         add("fluid.rankine.latex", "Latex");

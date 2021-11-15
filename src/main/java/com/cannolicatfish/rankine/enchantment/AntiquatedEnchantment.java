@@ -1,11 +1,7 @@
 package com.cannolicatfish.rankine.enchantment;
 
 import com.cannolicatfish.rankine.init.RankineEnchantmentTypes;
-import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
-import com.cannolicatfish.rankine.items.tools.HammerItem;
-import com.cannolicatfish.rankine.util.alloys.AlloyUtilsEnum;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
 public class AntiquatedEnchantment extends Enchantment {
