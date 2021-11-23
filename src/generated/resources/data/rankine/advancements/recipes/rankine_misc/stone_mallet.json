@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "rankine:slime_ball_from_rubber"
+      "rankine:stone_mallet"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:dry_rubber"
+            "tag": "forge:cobblestone"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "rankine:slime_ball_from_rubber"
+        "recipe": "rankine:stone_mallet"
       }
     }
   },

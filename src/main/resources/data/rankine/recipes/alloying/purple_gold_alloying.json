@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 5,
+  "total": 6,
   "color": 11836415,
   "input1": {
     "element": "rankine:elements/gold",
@@ -29,7 +29,13 @@
     "min": 0.0,
     "max": 0.07
   },
+  "input6": {
+    "element": "rankine:elements/germanium",
+    "min": 0.0,
+    "max": 0.07
+  },
   "result": "rankine:purple_gold_ingot",
+  "durability": 50,
   "enchantments": ["minecraft:silk_touch","rankine:daze","minecraft:silk_touch","minecraft:silk_touch","minecraft:silk_touch","rankine:impact","minecraft:knockback","rankine:grafting","rankine:retrieval","minecraft:thorns"],
   "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

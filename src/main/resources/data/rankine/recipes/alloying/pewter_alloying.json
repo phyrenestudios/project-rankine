@@ -50,6 +50,16 @@
     "max": 0.13
   },
   "input10": {
+    "element": "rankine:elements/gallium",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input11": {
+    "element": "rankine:elements/indium",
+    "min": 0.0,
+    "max": 0.13
+  },
+  "input12": {
     "element": "rankine:elements/cesium",
     "min": 0.0,
     "max": 0.13

@@ -34,6 +34,7 @@ public class RankineRemappings {
         itemRemappings.put(new ResourceLocation("rankine:bronze_alloy"),RankineItems.BRONZE_INGOT.get());
         itemRemappings.put(new ResourceLocation("rankine:titanium_alloy"),RankineItems.TITANIUM_ALLOY_INGOT.get());
 
+        itemRemappings.put(new ResourceLocation("rankine:stone_hammer"),RankineItems.STONE_MALLET.get());
         return itemRemappings;
     }
 

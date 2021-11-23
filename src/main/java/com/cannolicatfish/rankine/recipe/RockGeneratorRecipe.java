@@ -20,6 +20,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -27,6 +28,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class RockGeneratorRecipe implements IRecipe<IInventory> {
 
@@ -97,6 +99,14 @@ public class RockGeneratorRecipe implements IRecipe<IInventory> {
         return true;
     }
 
+    public BlockPos getRandomInput(Map<BlockPos,Block> map) {
+        for (Map.Entry<BlockPos,Block> b: map.entrySet()) {
+            if (this.ingredient1.test(new ItemStack(b.getValue())) || this.ingredient2.test(new ItemStack(b.getValue()))) {
+                return b.getKey();
+            }
+        }
+        return null;
+    }
     @Override
     public NonNullList<Ingredient> getIngredients() {
         if (this.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {

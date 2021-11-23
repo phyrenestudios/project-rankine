@@ -31,7 +31,7 @@
           "required": true
         },
         "input3": {
-          "element": "rankine:elements/phlogiston",
+          "element": "rankine:compat/elements/phlogiston",
           "min": 0.05,
           "max": 0.15,
           "required": true

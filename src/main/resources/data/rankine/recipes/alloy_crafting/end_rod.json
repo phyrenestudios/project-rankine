@@ -1,0 +1,23 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    " W ",
+    " W ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:popped_chorus_fruit"
+    },
+    "W": {
+      "item": "rankine:alloy_rod",
+      "alloyRecipe": "rankine:alloying/ferrocerium_alloying",
+      "name": "item.rankine.alloy_rod_ferrocerium",
+      "color": 16750232
+    }
+  },
+  "result": {
+    "item": "minecraft:end_rod",
+    "count": 4
+  }
+}

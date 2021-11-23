@@ -930,9 +930,11 @@ public class RankineEventHandler {
         {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
-            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
-                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            Map<BlockPos,Block> posMap = new HashMap<>();
+            for (Direction d : Direction.values()) {
+                posMap.put(pos.offset(d),worldIn.getBlockState(pos.offset(d)).getBlock());
+            }
+            ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
             RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS)) {
                     return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
@@ -943,6 +945,12 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                        BlockPos b = recipe.getRandomInput(posMap);
+                        if (b != null) {
+                            worldIn.removeBlock(b,false);
+                        }
+                    }
                 }
             }
 
@@ -950,9 +958,11 @@ public class RankineEventHandler {
         {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
-            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.up()).getBlock(),worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
-                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock());
-            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            Map<BlockPos,Block> posMap = new HashMap<>();
+            for (Direction d : Direction.values()) {
+                posMap.put(pos.offset(d),worldIn.getBlockState(pos.offset(d)).getBlock());
+            }
+            ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
             RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS)) {
                     return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
@@ -963,6 +973,12 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                        BlockPos b = recipe.getRandomInput(posMap);
+                        if (b != null) {
+                            worldIn.removeBlock(b,false);
+                        }
+                    }
                 }
             } else {
                 event.setNewState(Blocks.BLACKSTONE.getDefaultState());
@@ -970,9 +986,11 @@ public class RankineEventHandler {
         } else if (event.getState() == Blocks.STONE.getDefaultState()) {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
-            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
-                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            Map<BlockPos,Block> posMap = new HashMap<>();
+            for (Direction d : Direction.values()) {
+                posMap.put(pos.offset(d),worldIn.getBlockState(pos.offset(d)).getBlock());
+            }
+            ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
             RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC)) {
                     return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
@@ -983,6 +1001,12 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                        BlockPos b = recipe.getRandomInput(posMap);
+                        if (b != null) {
+                            worldIn.removeBlock(b,false);
+                        }
+                    }
                 }
             } else {
                 event.setNewState(RankineBlocks.SKARN.get().getDefaultState());
@@ -990,9 +1014,11 @@ public class RankineEventHandler {
         } else if (event.getState() == Blocks.OBSIDIAN.getDefaultState()) {
             World worldIn = (World) event.getWorld();
             BlockPos pos = event.getPos();
-            List<Block> adjPos = Arrays.asList(worldIn.getBlockState(pos.south()).getBlock(),worldIn.getBlockState(pos.north()).getBlock(),
-                    worldIn.getBlockState(pos.west()).getBlock(),worldIn.getBlockState(pos.east()).getBlock(),worldIn.getBlockState(pos.down()).getBlock());
-            ItemStack[] items = adjPos.stream().map(ItemStack::new).toArray(ItemStack[]::new);
+            Map<BlockPos,Block> posMap = new HashMap<>();
+            for (Direction d : Direction.values()) {
+                posMap.put(pos.offset(d),worldIn.getBlockState(pos.offset(d)).getBlock());
+            }
+            ItemStack[] items = posMap.values().stream().map(ItemStack::new).toArray(ItemStack[]::new);
             RockGeneratorRecipe recipe = worldIn.getRecipeManager().getRecipesForType(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
                 if (r.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
                     return Util.streamOptional(RankineRecipeTypes.ROCK_GENERATOR.matches(r, worldIn, new Inventory(items)));
@@ -1003,6 +1029,12 @@ public class RankineEventHandler {
                 ItemStack output = recipe.getRecipeOutput();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
                     event.setNewState(((BlockItem) output.getItem()).getBlock().getDefaultState());
+                    if (Config.GENERAL.ROCK_GENERATOR_REMOVAL_CHANCE.get() < worldIn.getRandom().nextFloat()) {
+                        BlockPos b = recipe.getRandomInput(posMap);
+                        if (b != null) {
+                            worldIn.removeBlock(b,false);
+                        }
+                    }
                 }
             }
         }
@@ -2070,6 +2102,19 @@ public class RankineEventHandler {
                             spawnAsEntity(worldIn, pos, new ItemStack(i.getItem(), 1));
                         }
                     }
+                }
+            } else if (offHandItem == RankineItems.TOTEM_OF_SOFTENING.get()) {
+                if ((player.getHeldItemMainhand().isEmpty() && worldIn.getBlockState(pos).canHarvestBlock(worldIn,pos,player) && worldIn.getTileEntity(pos) == null && worldIn.getFluidState(pos).isEmpty()) && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots)
+                {
+                    double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                    double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                    double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
+                    ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(worldIn.getBlockState(pos).getBlock().asItem(), 1));
+                    itementity.setDefaultPickupDelay();
+                    worldIn.addEntity(itementity);
+                    worldIn.removeBlock(pos, false);
+                    SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
+                    worldIn.playSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getBreakSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
                 }
             }
 

@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.GasBlock;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.block.AirBlock;
 import net.minecraft.block.Block;
@@ -47,7 +48,7 @@ public class ShulkerGasVacuumItem extends Item {
                     stack.getTag().putString("gas","");
                     stack.getTag().putInt("color",0);
                 }
-                context.getPlayer().playSound(SoundEvents.ENTITY_PUFFER_FISH_BLOW_OUT,1.0F, 1.0F);
+                context.getPlayer().playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_RELEASE.get(),1.0F, 1.0F);
                 return ActionResultType.SUCCESS;
             }
             return ActionResultType.PASS;
@@ -73,7 +74,7 @@ public class ShulkerGasVacuumItem extends Item {
                 }
                 worldIn.removeBlock(pos,false);
             }
-            playerIn.playSound(SoundEvents.ENTITY_PUFFER_FISH_BLOW_UP,1.0F, 1.0F);
+            playerIn.playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_ABSORB.get(),1.0F, 1.0F);
             return ActionResult.resultSuccess(stack);
         }
 

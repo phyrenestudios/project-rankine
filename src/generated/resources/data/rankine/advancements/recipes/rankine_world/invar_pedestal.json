@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "rankine:invar_ingot"
+            "item": "rankine:cast_iron_ingot"
           }
         ]
       }

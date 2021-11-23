@@ -34,7 +34,6 @@ import java.util.Random;
 
 public class GasBlock extends AirBlock {
 
-    private int ticks = 0;
     private final GasUtilsEnum gas;
 
     public GasBlock(GasUtilsEnum gas, Properties properties) {
@@ -48,16 +47,15 @@ public class GasBlock extends AirBlock {
 
     @Override
     public boolean ticksRandomly(BlockState state) {
-        return Config.GASES.GAS_MOVEMENT.get() || Config.GASES.GAS_DISSIPATION_SPEED.get() > 0;
+        return Config.GASES.GAS_MOVEMENT.get() || Config.GASES.GAS_DISSIPATION.get();
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (Config.GASES.GAS_DISSIPATION_SPEED.get() > 0) {
-            if (ticks >= Config.GASES.GAS_DISSIPATION_SPEED.get()) {
-                worldIn.destroyBlock(pos,false);
-            } else {
-                ticks++;
+        if (Config.GASES.GAS_DISSIPATION.get()) {
+            if (random.nextFloat() < this.gas.getDissipationRate()) {
+                worldIn.setBlockState(pos,Blocks.AIR.getDefaultState(),3);
+                return;
             }
         }
         if (Config.GASES.GAS_MOVEMENT.get()) {
@@ -67,21 +65,16 @@ public class GasBlock extends AirBlock {
                 if (worldIn.getBlockState(pos.down()).getBlock() instanceof GasBlock && this.gas.getDensity() > ((GasBlock)worldIn.getBlockState(pos.down()).getBlock()).gas.getDensity()) {
                     worldIn.setBlockState(pos,worldIn.getBlockState(pos.down()),3);
                     worldIn.setBlockState(pos.down(),this.getDefaultState(),3);
-                    return;
-                }
-
-                if (worldIn.getBlockState(pos.down()).getBlock() instanceof AirBlock && gas.getDensity() > 1) {
+                } else if (worldIn.getBlockState(pos.down()).getBlock() instanceof AirBlock && gas.getDensity() > 1) {
                     worldIn.setBlockState(pos,worldIn.getBlockState(pos.down()),3);
                     worldIn.setBlockState(pos.down(),this.getDefaultState(),3);
-                    return;
-                }
-
-                if (worldIn.getBlockState(pos.up()).getBlock() instanceof AirBlock && !(worldIn.getBlockState(pos.up()).getBlock() instanceof GasBlock) && gas.getDensity() < 1) {
+                } else if (worldIn.getBlockState(pos.up()).getBlock() instanceof AirBlock && !(worldIn.getBlockState(pos.up()).getBlock() instanceof GasBlock) && gas.getDensity() < 1) {
                     worldIn.setBlockState(pos,worldIn.getBlockState(pos.up()),3);
                     if (pos.up().getY() < 95) {
                         worldIn.setBlockState(pos.up(),this.getDefaultState(),3);
                     }
                 }
+
             }
         }
 

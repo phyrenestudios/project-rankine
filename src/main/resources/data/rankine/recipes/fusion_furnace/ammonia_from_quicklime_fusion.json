@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:quicklime"
+  },
+  "input2": {
+    "item": "rankine:quicklime"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "result1": {
+    "item":"rankine:calcite"
+  },
+  "gasInput": {
+    "item": "rankine:nitrogen_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:ammonia_gas_bottle"
+  }
+}

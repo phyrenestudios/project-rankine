@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 10,
+  "total": 11,
   "tier": 2,
   "color": 16777207,
   "input1": {
@@ -54,10 +54,13 @@
     "min": 0.0,
     "max": 0.05
   },
+  "input11": {
+    "element": "rankine:elements/germanium",
+    "min": 0.0,
+    "max": 0.05
+  },
   "result": "rankine:white_gold_ingot",
+  "durability": 50,
   "enchantments": ["minecraft:fortune","rankine:atomize","minecraft:fortune","minecraft:fortune","minecraft:fortune","minecraft:impaling","minecraft:looting","rankine:preparation","rankine:leverage","rankine:guard"],
-  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"],
-  "minEnchantability": 20,
-  "enchantInterval": 5,
-  "maxEnchantLevel": 3
+  "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }

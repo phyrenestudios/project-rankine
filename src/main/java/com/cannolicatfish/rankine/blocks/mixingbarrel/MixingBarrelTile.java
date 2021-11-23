@@ -44,8 +44,8 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         super(MIXING_BARREL_TILE);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
-    private int cookTime;
-    private int cookTimeTotal;
+    private int mixTime;
+    private int mixTimeTotal;
     private int color = 16777215;
     private int redstonePower = 0;
     private final IIntArray furnaceData = new IIntArray(){
@@ -54,9 +54,9 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
             switch(index)
             {
                 case 0:
-                    return MixingBarrelTile.this.cookTime;
+                    return MixingBarrelTile.this.mixTime;
                 case 1:
-                    return MixingBarrelTile.this.cookTimeTotal;
+                    return MixingBarrelTile.this.mixTimeTotal;
                 case 2:
                     return MixingBarrelTile.this.redstonePower;
                 default:
@@ -69,10 +69,10 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
             switch(index)
             {
                 case 0:
-                    MixingBarrelTile.this.cookTime = value;
+                    MixingBarrelTile.this.mixTime = value;
                     break;
                 case 1:
-                    MixingBarrelTile.this.cookTimeTotal = value;
+                    MixingBarrelTile.this.mixTimeTotal = value;
                     break;
                 case 2:
                     MixingBarrelTile.this.redstonePower = value;
@@ -89,16 +89,16 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         super.read(state, nbt);
         this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(nbt,this.items);
-        this.cookTime = nbt.getInt("CookTime");
-        this.cookTimeTotal = nbt.getInt("CookTimeTotal");
+        this.mixTime = nbt.getInt("MixTime");
+        this.mixTimeTotal = nbt.getInt("MixTimeTotal");
         this.color = nbt.getInt("color");
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         super.write(compound);
-        compound.putInt("CookTime", this.cookTime);
-        compound.putInt("CookTimeTotal", this.cookTimeTotal);
+        compound.putInt("MixTime", this.mixTime);
+        compound.putInt("MixTimeTotal", this.mixTimeTotal);
         compound.putInt("color", this.color);
         ItemStackHelper.saveAllItems(compound, this.items);
 
@@ -107,7 +107,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
 
     public void tick() {
         boolean flag = this.isHeated(this.pos,this.world);
-        boolean flag1 = this.isCooking();
+        boolean flag1 = this.isMixing();
         boolean flag2 = false;
 
         if (!this.world.isRemote) {
@@ -115,33 +115,25 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                 this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, false), 3);
             } else if (this.getTileData().getInt("color") != this.color) {
                 this.getTileData().putInt("color",this.color);
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, this.isCooking()), 3);
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, this.isMixing()), 3);
             }
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
-            if ((this.isCooking() && flag) || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
+            if ((this.isMixing() && flag) || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
                 MixingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.MIXING, this, this.world).orElse(null);
                 if (this.canSmelt(irecipe, this)) {
-                    if (this.cookTime == 0) {
-                        this.cookTimeTotal = getCookTime();
+                    if (this.mixTime == 0) {
+                        this.mixTimeTotal = getMixTime();
 
                     }
-                    ++this.cookTime;
-                    if (this.cookTime >= this.cookTimeTotal) {
-                        ItemStack smelting = irecipe.generateResult(this);
+                    ++this.mixTime;
+                    if (this.mixTime >= this.mixTimeTotal) {
+                        ItemStack smelting = irecipe.getMixingResult(this,world);
                         if (this.items.get(4).getCount() > 0) {
                             this.items.get(4).grow(smelting.getCount());
                         } else {
                             this.items.set(4, smelting);
                         }
-
-                        ItemStack extra = irecipe.getSecondaryOutput();
-                        if (this.items.get(5).getCount() > 0) {
-                            this.items.get(5).grow(extra.getCount());
-                        } else {
-                            this.items.set(5, extra);
-                        }
-
-                        this.cookTime = 0;
+                        this.mixTime = 0;
                         inputs[0].shrink(1);
                         inputs[1].shrink(1);
                         inputs[2].shrink(1);
@@ -149,15 +141,15 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
                         return;
                     }
                 } else {
-                    this.cookTime = 0;
+                    this.mixTime = 0;
                 }
-            } else if ((flag) && this.cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if ((flag) && this.mixTime > 0) {
+                this.mixTime = MathHelper.clamp(this.mixTime - 2, 0, this.mixTimeTotal);
             }
 
-            if (flag1 != this.isCooking()) {
+            if (flag1 != this.isMixing()) {
                 flag2 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, this.isCooking()), 3);
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, this.isMixing()), 3);
             }
         }
 
@@ -167,10 +159,10 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
 
     }
 
-    public int getCookTime() {
+    public int getMixTime() {
         MixingRecipe irecipe = this.world.getRecipeManager().getRecipe(RankineRecipeTypes.MIXING, this, this.world).orElse(null);
         if (irecipe != null) {
-            return irecipe.getRecipeCookTime(this);
+            return irecipe.getRecipeMixTime(this);
         } else {
             return 3200;
         }
@@ -193,13 +185,13 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         return false;
     }
 
-    public boolean isCooking()
+    public boolean isMixing()
     {
-        return this.cookTime > 0;
+        return this.mixTime > 0;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static boolean isCooking(MixingBarrelTile te)
+    public static boolean isMixing(MixingBarrelTile te)
     {
         return te.furnaceData.get(0) > 0;
     }
@@ -212,8 +204,7 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         }
         else
         {
-            ItemStack result = recipeIn.generateResult(inv);
-            ItemStack sec = recipeIn.getSecondaryOutput();
+            ItemStack result = recipeIn.getMixingResult(inv,world);
             if(result.isEmpty())
             {
                 return false;
@@ -222,20 +213,19 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
             {
                 ItemStack output = this.items.get(4);
                 ItemStack secondary = this.items.get(5);
-                if(output.isEmpty() && (secondary.isEmpty() || sec.isEmpty())) {
-                    this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+                if(output.isEmpty()) {
+                    this.mixTimeTotal = recipeIn.getRecipeMixTime(inv);
                     return true;
                 }
 
-                if(!output.isItemEqual(result) || !secondary.isItemEqual(sec))
+                if(!output.isItemEqual(result))
                 {
                     return false;
                 }
                 int res = output.getCount() + result.getCount();
-                int res2 = secondary.getCount() + sec.getCount();
-                if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result) && ItemStack.areItemStackTagsEqual(secondary, sec) && ItemStack.areItemsEqual(secondary, sec)) {
-                    this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
-                    return res <= 64 && res2 <= 64 && res <= output.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
+                if (ItemStack.areItemStackTagsEqual(output, result) && ItemStack.areItemsEqual(output, result)) {
+                    this.mixTimeTotal = recipeIn.getRecipeMixTime(inv);
+                    return res <= 64 && res <= output.getMaxStackSize();
                 } else {
                     return false;
                 }
@@ -338,8 +328,8 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
         }
 
         if (index == 0 && !flag) {
-            this.cookTimeTotal = this.getCookTime();
-            this.cookTime = 0;
+            this.mixTimeTotal = this.getMixTime();
+            this.mixTime = 0;
             this.markDirty();
         }
     }

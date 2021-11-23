@@ -101,8 +101,6 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.METAL_TRAPDOORS,
                 RankineLists.METAL_DOORS,
                 RankineLists.METAL_LADDERS,
-                RankineLists.ELEMENT_BLOCKS,
-                RankineLists.ALLOY_BLOCKS,
                 RankineLists.ALLOY_PEDESTALS,
                 RankineLists.ALLOY_POLES,
                 RankineLists.CROPS_SINGLE,
@@ -124,15 +122,20 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.PATH_BLOCKS,
                 RankineLists.NATIVE_ORES,
                 RankineLists.CRUSHING_ORES,
-                RankineLists.SPECIAL_ORES,
-                RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-
-            if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
-                add(blk, "Salt Block (NaCl)");
-            } else if (blk.matchesBlock(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
-                add(blk, "Salt Block (CaCl2)");
-            } else {
+                RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
                 add(blk, parseLangName(blk.getRegistryName().getPath()));
+        }
+
+        for (Block blk : Stream.of(
+                RankineLists.ALLOY_BLOCKS,
+        RankineLists.ELEMENT_BLOCKS,
+        RankineLists.MINERAL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
+            if (blk.matchesBlock(RankineBlocks.SODIUM_CHLORIDE_BLOCK.get())) {
+                add(blk, "Block of Salt (NaCl)");
+            } else if (blk.matchesBlock(RankineBlocks.CALCIUM_CHLORIDE_BLOCK.get())) {
+                add(blk, "Block of Salt (CaCl2)");
+            } else {
+                add(blk, parseLangName("block_of_"+blk.getRegistryName().getPath().replace("_block","")));
             }
         }
 
@@ -207,6 +210,7 @@ public class RankineLangProvider extends LanguageProvider {
                 RankineLists.WOODEN_BOATS,
                 RankineLists.ARROWS,
                 RankineLists.WOODEN_TOOLS,
+                RankineLists.STONE_TOOLS,
                 RankineLists.ALLOY_TOOLS,
                 RankineLists.FLINT_TOOLS,
                 RankineLists.BRONZE_TOOLS,
@@ -340,6 +344,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.GRAPHITE_ELECTRODE.get(),
             RankineItems.HARD_CARBON_ELECTRODE.get(),
             RankineItems.SADDLE_TREE.get(),
+            RankineItems.CANNONBALL.get(),
             RankineItems.PUMICE_SOAP.get(),
             RankineItems.REFRACTORY_BRICK.get(),
             RankineItems.HIGH_REFRACTORY_BRICK.get(),
@@ -433,7 +438,10 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.CRUSHING_HEAD_HL5.get())) {
             add(item, parseLangName(item.getRegistryName().getPath()));
         }
-
+        //Alloy Ingots
+        add("item.rankine.crucible_steel_alloying", "Crucible Steel Ingot");
+        add("item.rankine.steel_alloying", "Tool Steel Ingot");
+        add("item.rankine.maraging_steel_alloying", "Maraging Steel Ingot");
         //Alloy Plates
         add("item.rankine.alloy_plate_bronze", "Bronze Plate");
         add("item.rankine.alloy_plate_brass", "Brass Plate");
@@ -456,6 +464,7 @@ public class RankineLangProvider extends LanguageProvider {
         //Alloy Rods
         add("item.rankine.alloy_rod_steel", "Steel Rod");
         add("item.rankine.alloy_rod_cast_iron", "Cast Iron Rod");
+        add("item.rankine.alloy_rod_ferrocerium", "Ferrocerium Rod");
         //Alloy Wires
         add("item.rankine.alloy_wire_cupronickel", "Cupronickel Wire");
         add("item.rankine.alloy_wire_steel", "Steel Wire");
@@ -470,7 +479,8 @@ public class RankineLangProvider extends LanguageProvider {
         //Death Messages
         add("death.attack.suffocating", "%1$s suffocated in a gas cloud");
         add("death.attack.suffocating.player", "%1$s suffocated in a gas cloud whilst trying to escape %2$s");
-
+        add("death.attack.cannonball", "%1$s was struck by a cannonball");
+        add("death.attack.cannonball.player", "%1$s was struck by a cannonball whilst trying to escape %2$s");
 
 
 
@@ -626,6 +636,23 @@ public class RankineLangProvider extends LanguageProvider {
         add("element.rankine,elements/copper.desc1", "Commonly used in electrical components and early alloys.");
         add("element.rankine,elements/copper.desc2", "Commonly used in electrical components and early alloys.");
 
+        add("item.rankine.acanthite.tooltip0", "Ag2S");
+        add("item.rankine.acanthite.tooltip1", "Used as a source of silver.");
+        add("item.rankine.alumina.tooltip0", "Al2O3");
+        add("item.rankine.alumina.tooltip1", "Used as a source of aluminum.");
+        add("item.rankine.azurite.tooltip0", "Cu3(CO3)2(OH)2");
+        add("item.rankine.azurite.tooltip1", "Used as a source of copper and light blue dye.");
+        add("item.rankine.azurmalachite.tooltip0", "Cu2(CO3)(OH)2+Cu3(CO3)2(OH)2");
+        add("item.rankine.azurmalachite.tooltip1", "Used as a source of copper and cyan dye.");
+        add("item.rankine.baddeleyite.tooltip0", "ZrO2");
+        add("item.rankine.baddeleyite.tooltip1", "Used as a source of zirconia.");
+        add("item.rankine.barite.tooltip0", "BaSO4");
+        add("item.rankine.barite.tooltip1", "Used as a source of barium.");
+        add("item.rankine.bauxite.tooltip0", "Rock sample with high aluminum content.");
+        add("item.rankine.bauxite.tooltip1", "Used as a precursor to alumina.");
+        add("item.rankine.cerium_monazite.tooltip0", "CePO4");
+        add("item.rankine.cerium_monazite.tooltip1", "Used as a source of cerium and other rare-earth elements.");
+
         add("item.rankine.totem_of_adhering.tooltip", "Stuck to the plan");
         add("item.rankine.totem_of_blazing.tooltip", "Burning up inside");
         add("item.rankine.totem_of_cobbling.tooltip", "Long term stone storage");
@@ -642,8 +669,9 @@ public class RankineLangProvider extends LanguageProvider {
 
 
         add("fluid.rankine.aqua_regia", "Aqua Regia");
+        add("fluid.rankine.carbon_disulfide", "Carbon Disulfide");
         add("fluid.rankine.gray_mud", "Gray Mud");
-        add("fluid.rankine.hexafluorosilicic_acid", "Hydrobromic Acid");
+        add("fluid.rankine.hexafluorosilicic_acid", "Hexafluorosilicic Acid");
         add("fluid.rankine.hydrobromic_acid", "Hydrobromic Acid");
         add("fluid.rankine.juglone", "Juglone");
         add("fluid.rankine.latex", "Latex");
@@ -793,7 +821,8 @@ public class RankineLangProvider extends LanguageProvider {
         add("rankine.advancements.challenges.geode_collector.title", "Gifts from the Earth");
         add("rankine.advancements.challenges.geode_collector.description", "Find all of the different types of geodes");
 
-
+        add("rankine.subtitle.shulker_gas_vacuum_absorb", "Shulker Gas Vacuum absorb");
+        add("rankine.subtitle.shulker_gas_vacuum_release", "Shulker Gas Vacuum release");
     }
 
     private String parseLangName(String registryName) {

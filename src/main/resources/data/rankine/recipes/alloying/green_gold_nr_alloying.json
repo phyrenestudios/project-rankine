@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 7,
+  "total": 8,
   "tier": 2,
   "color": 15728547,
   "input1": {
@@ -40,7 +40,13 @@
     "min": 0.0,
     "max": 0.10
   },
+  "input8": {
+    "element": "rankine:elements/germanium",
+    "min": 0.0,
+    "max": 0.10
+  },
   "result": "rankine:green_gold_ingot",
+  "durability": 50,
   "enchantments": ["minecraft:mending"],
   "enchantmentTypes": ["ALL"]
 }

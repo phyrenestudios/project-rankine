@@ -46,6 +46,8 @@ import com.cannolicatfish.rankine.util.POIFixer;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowingFluidBlock;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
@@ -58,6 +60,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.PointOfInterestType;
@@ -106,7 +109,7 @@ public class ProjectRankine {
 
         RankineBlocks.REGISTRY.register(Bus);
         RankineItems.REGISTRY.register(Bus);
-
+        RankineSoundEvents.REGISTRY.register(Bus);
         //Bus.addListener(this::construct);
 
         Bus.addListener(this::LoadComplete);
@@ -175,6 +178,7 @@ public class ProjectRankine {
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_GEAR::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_DUST::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_INGOT::get);
+            event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_NUGGET::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_PLATE::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_ROD::get);
             event.getItemColors().register(new AlloyItemColor(), RankineItems.ALLOY_WIRE::get);
@@ -331,6 +335,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineEntityTypes.MAGNESIUM_ARROW);
             event.getRegistry().register(RankineEntityTypes.ALLOY_ARROW);
             event.getRegistry().register(RankineEntityTypes.REACTIVE_ITEM.setRegistryName(ProjectRankine.MODID,"reactive_item"));
+            event.getRegistry().register(RankineEntityTypes.CANNONBALL.setRegistryName(ProjectRankine.MODID,"cannonball"));
             event.getRegistry().register(RankineEntityTypes.MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.DIAMOND_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"diamond_mantle_golem"));
             event.getRegistry().register(RankineEntityTypes.PERIDOT_MANTLE_GOLEM.setRegistryName(ProjectRankine.MODID,"peridot_mantle_golem"));
@@ -378,6 +383,7 @@ public class ProjectRankine {
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.THORIUM_ARROW,ThoriumArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.MAGNESIUM_ARROW,MagnesiumArrowRenderer.instance);
             RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.ALLOY_ARROW,AlloyArrowRenderer.instance);
+            RenderingRegistry.registerEntityRenderingHandler(RankineEntityTypes.CANNONBALL, CannonballRenderer::new);
         }
         @SubscribeEvent
         public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
@@ -557,6 +563,7 @@ public class ProjectRankine {
                 }
             }
         }
+
 
         @SubscribeEvent
         public static void registerEnchantments(final RegistryEvent.Register<Enchantment> event) {
