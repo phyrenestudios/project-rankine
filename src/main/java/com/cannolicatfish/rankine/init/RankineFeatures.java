@@ -2,6 +2,10 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
 import com.cannolicatfish.rankine.world.gen.feature.*;
+import com.cannolicatfish.rankine.world.gen.feature.ores.DefaultOreVeinFeature;
+import com.cannolicatfish.rankine.world.gen.feature.ores.DiskOreVeinFeature;
+import com.cannolicatfish.rankine.world.gen.feature.ores.RankineOreFeatureConfig;
+import com.cannolicatfish.rankine.world.gen.feature.ores.SphericalOreVeinFeature;
 import com.cannolicatfish.rankine.world.gen.placement.IntrusionPlacement;
 import com.cannolicatfish.rankine.world.gen.placement.RankineDoublePlantPlacer;
 import com.google.common.collect.ImmutableList;
@@ -69,7 +73,7 @@ public class RankineFeatures {
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:flat_bedrock_nether",FLAT_BEDROCK_NETHER);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_alluvium",ORE_ALLUVIUM);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_evaporite",ORE_EVAPORITE);
-        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_intrusion",ORE_INTRUSION);
+        WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:ore_intrusion", INTRUSION_FEATURE);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:stone_gen", STONE_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:soil_gen",SOIL_GEN);
         WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_FEATURE,"rankine:snow_gen",SNOW_GEN);
@@ -283,16 +287,18 @@ public class RankineFeatures {
     public static final BlockClusterFeatureConfig BLUE_MORNING_GLORY_PATCH_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(RankineBlocks.BLUE_MORNING_GLORY.get().getDefaultState()), DoublePlantBlockPlacer.PLACER)).tries(32).whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.DIRT)).preventProjection().build();
 
     // BASE FEATURE/S
-    public static final Feature<RankineOreFeatureConfig> RANKINE_ORE = new RankineOreFeature(RankineOreFeatureConfig.CODEC);
+    public static final Feature<RankineOreFeatureConfig> DEFAULT_ORE = new DefaultOreVeinFeature(RankineOreFeatureConfig.CODEC);
+    public static final Feature<RankineOreFeatureConfig> SPHERE_ORE = new SphericalOreVeinFeature(RankineOreFeatureConfig.CODEC);
+    public static final Feature<RankineOreFeatureConfig> DISK_ORE = new DiskOreVeinFeature(RankineOreFeatureConfig.CODEC);
     public static final Feature<SphereReplaceConfig> LAND_DISK = new LandDiskFeature(SphereReplaceConfig.CODEC);
     public static final Feature<MeteoriteFeatureConfig> METEORITE_FEATURE = new MeteoriteFeature(MeteoriteFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> END_METEORITE_FEATURE = new EndMeteoriteFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> ANTIMATTER_BLOB_FEATURE = new AntimatterFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> FUMAROLE_FEATURE = new FumaroleFeature(NoFeatureConfig.CODEC);
     public static final Feature<ReplacerFeatureConfig> FLAT_BEDROCK_FEATURE = new FlatBedrockFeature(ReplacerFeatureConfig.CODEC);
-    public static final Feature<ReplacerFeatureConfig> INTRUSION = new IntrusionFeature(ReplacerFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> INTRUSION = new IntrusionFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> STONE_REPLACER = new StoneReplacerFeature(NoFeatureConfig.CODEC);
-    public static final Feature<NoFeatureConfig> SOIL_REPLACER = new SoilReplacerFeature(NoFeatureConfig.CODEC);
+    public static final Feature<NoFeatureConfig> WORLD_REPLACER_FEATURE = new WorldReplacerFeature(NoFeatureConfig.CODEC);
     public static final Feature<NoFeatureConfig> SNOW_REPLACER = new SnowyPeaksFeature(NoFeatureConfig.CODEC);
 
     // BASE PLACEMENTS
@@ -302,17 +308,14 @@ public class RankineFeatures {
     // LOCAL_MODIFICATIONS
     public static final ConfiguredFeature<?, ?> METEORITE = METEORITE_FEATURE.withConfiguration(new MeteoriteFeatureConfig(RankineBlocks.METEORITE.get().getDefaultState(), 1))
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(Config.MISC_WORLDGEN.METEORITE_CHANCE.get())));
-    public static final ConfiguredFeature<?, ?> DISK_WHITE_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.WHITE_SAND.get().getDefaultState(), FeatureSpread.create(3, 4), 2, ImmutableList.of(Blocks.SAND.getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+    public static final ConfiguredFeature<?, ?> DISK_WHITE_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.WHITE_SAND.get().getDefaultState(), FeatureSpread.create(5, 4), 2, ImmutableList.of(Blocks.SAND.getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
-    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.BLACK_SAND.get().getDefaultState(), FeatureSpread.create(3, 4), 2, ImmutableList.of(Blocks.SOUL_SOIL.getDefaultState(),Blocks.SOUL_SAND.getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
-            .withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(4)));
+    public static final ConfiguredFeature<?, ?> DISK_BLACK_SAND = LAND_DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.BLACK_SAND.get().getDefaultState(), FeatureSpread.create(4, 4), 2, ImmutableList.of(Blocks.SOUL_SOIL.getDefaultState(),Blocks.SOUL_SAND.getDefaultState())))
+            .withPlacement(Placement.COUNT_MULTILAYER.configure(new FeatureSpreadConfig(1)));
     public static final ConfiguredFeature<?, ?> END_METEORITE = END_METEORITE_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> ANTIMATTER_BLOB = ANTIMATTER_BLOB_FEATURE.withConfiguration(new NoFeatureConfig());
     public static final ConfiguredFeature<?, ?> FUMAROLE = FUMAROLE_FEATURE.withConfiguration(new NoFeatureConfig())
             .withPlacement(Placement.CHANCE.configure(new ChanceConfig(40)));
-
-    //public static final ConfiguredFeature<?, ?> ANIMAL_SPAWNER = new AnimalSpawnerFeature(NoFeatureConfig.CODEC).withConfiguration(new NoFeatureConfig())
-      //      .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
 
     // VEGETAL_DECORATION
     public static final ConfiguredFeature<?, ?> ELDERBERRY_BUSH = Feature.RANDOM_PATCH.withConfiguration(ELDERBERRY_BUSH_PATCH_CONFIG).withPlacement(Features.Placements.PATCH_PLACEMENT);
@@ -371,8 +374,6 @@ public class RankineFeatures {
 
 
     // UNDERGROUND_ORES
-
-
     public static final ConfiguredFeature<?, ?> FLAT_BEDROCK = FLAT_BEDROCK_FEATURE.withConfiguration(
             new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.BEDROCK.getDefaultState(), 0, Config.MISC_WORLDGEN.BEDROCK_LAYERS.get())).withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> FLAT_BEDROCK_NETHER = FLAT_BEDROCK_FEATURE.withConfiguration(
@@ -382,12 +383,12 @@ public class RankineFeatures {
     public static final ConfiguredFeature<?, ?> ORE_EVAPORITE = Feature.DISK.withConfiguration(new SphereReplaceConfig(RankineBlocks.EVAPORITE.get().getDefaultState(), FeatureSpread.create(1, 1), 1,
             Lists.newArrayList(Blocks.STONE.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.CLAY.getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.GRAVEL.getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT);
 
-    public static final ConfiguredFeature<?, ?> ORE_INTRUSION = INTRUSION.withConfiguration(
-            new ReplacerFeatureConfig(Blocks.STONE.getDefaultState(), Blocks.AIR.getDefaultState(), 1, 256)).withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
+    public static final ConfiguredFeature<?, ?> INTRUSION_FEATURE = INTRUSION.withConfiguration(new NoFeatureConfig())
+            .withPlacement(INTRUSION_PLACEMENT.configure(new ChanceConfig(1)));
 
     public static final ConfiguredFeature<?, ?> STONE_GEN = STONE_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-    public static final ConfiguredFeature<?, ?> SOIL_GEN = SOIL_REPLACER.withConfiguration(new NoFeatureConfig())
+    public static final ConfiguredFeature<?, ?> SOIL_GEN = WORLD_REPLACER_FEATURE.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
     public static final ConfiguredFeature<?, ?> SNOW_GEN = SNOW_REPLACER.withConfiguration(new NoFeatureConfig())
             .withPlacement(REPLACER_PLACEMENT.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));

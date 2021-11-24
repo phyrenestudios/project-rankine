@@ -1,19 +1,16 @@
 package com.cannolicatfish.rankine.blocks;
 
-import com.cannolicatfish.rankine.blocks.plants.LeafLitterBlock;
 import com.cannolicatfish.rankine.init.Config;
-import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
-import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.biome.Biome;
@@ -49,6 +46,19 @@ public class GrassySoilBlock extends GrassBlock {
         } else if (worldIn.getBlockState(pos.up()).getBlock() instanceof LeafLitterBlock && random.nextFloat() < Config.GENERAL.PODZOL_GROW_CHANCE.get()) {
             worldIn.setBlockState(pos,RankineLists.PODZOL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(state.getBlock())).getDefaultState(),2);
             worldIn.removeBlock(pos.up(),false);
+        } else if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get()) {
+            Block ceillingBlock = Blocks.AIR;
+            int i = 1;
+            while (i <= 40) {
+                if (!worldIn.isAirBlock(pos.offset(Direction.UP, i)) && !(worldIn.getBlockState(pos.up(i)).isReplaceable(Fluids.WATER))) {
+                    ceillingBlock = worldIn.getBlockState(pos.up(i)).getBlock();
+                    break;
+                }
+                ++i;
+            }
+            if (ceillingBlock instanceof LeavesBlock && !(ceillingBlock instanceof RankineLeavesBlock) && (worldIn.getBlockState(pos.up(i - 1)).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up(i - 1)).matchesBlock(Blocks.AIR))) {
+                worldIn.setBlockState(pos.up(i - 1), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+ceillingBlock.getRegistryName().getPath().toString().replace("leaves", "leaf_litter"))).getDefaultState(), 2);
+            }
         } else {
             if (worldIn.getLight(pos.up()) >= 9) {
                 BlockState blockstate = this.getDefaultState();
@@ -60,10 +70,6 @@ public class GrassySoilBlock extends GrassBlock {
                         worldIn.setBlockState(blockpos, RankineLists.GRASS_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(worldIn.getBlockState(blockpos).getBlock())).getDefaultState().with(SNOWY, worldIn.getBlockState(blockpos.up()).matchesBlock(Blocks.SNOW)).with(DEAD, blockstate.get(DEAD)));
                     }
                 }
-               // Block ceillingBlock = WorldgenUtils.getCeillingBlock(worldIn,pos,20);
-               // if (random.nextFloat() < Config.GENERAL.SAPLING_GROW_CHANCE.get() && (worldIn.getBlockState(pos.up()).isReplaceable(Fluids.WATER) || worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR)) && ceillingBlock instanceof LeavesBlock) {
-                   // worldIn.setBlockState(pos.up(), ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(ceillingBlock.getRegistryName().toString().replace("leaves","sapling"))).getDefaultState(),2);
-                //}
                 if (!state.get(DEAD) && worldIn.getBlockState(pos.up()).matchesBlock(Blocks.AIR) && random.nextFloat() < Config.GENERAL.GRASS_GROW_CHANCE.get()) {
                     Biome BIOME = worldIn.getBiome(pos);
                     BlockState BLOCK = WorldgenUtils.VEGETATION_COLLECTIONS.get(WorldgenUtils.GEN_BIOMES.indexOf(BIOME.getRegistryName())).getRandomElement();

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:cinnamon_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_cinnamon_log",
+    "count": 16
+  }
+}

@@ -13,11 +13,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
@@ -482,6 +482,36 @@ public class RankineRecipesProvider extends RecipeProvider {
         SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(RankineBlocks.METEORITE.get()), RankineBlocks.METEORITE_BRICKS.get(), 1).addCriterion("has_meteorite", hasItem(RankineBlocks.METEORITE.get())).build(consumer, "rankine:meteorite_bricks_from_stonecutting");
         SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(RankineBlocks.FROZEN_METEORITE.get()), RankineBlocks.FROZEN_METEORITE_BRICKS.get(), 1).addCriterion("has_frozen_meteorite", hasItem(RankineBlocks.FROZEN_METEORITE.get())).build(consumer, "rankine:frozen_meteorite_bricks_from_stonecutting");
         SingleItemRecipeBuilder.stonecuttingRecipe(Ingredient.fromItems(RankineBlocks.ENSTATITE_CHONDRITE.get()), RankineBlocks.ENSTATITE_CHONDRITE_BRICKS.get(), 1).addCriterion("has_meteorite", hasItem(RankineBlocks.ENSTATITE_CHONDRITE.get())).build(consumer, "rankine:enstatite_bricks_from_stonecutting");
+
+
+
+
+        for (Block HOLLOW : RankineLists.HOLLOW_LOGS) {
+            String PATH = HOLLOW.getRegistryName().getPath();
+            String nameSpace;
+            if (Arrays.asList("hollow_oak_log","hollow_birch_log","hollow_spruce_log","hollow_acacia_log","hollow_jungle_log","hollow_dark_oak_log","hollow_crimson_stem","hollow_warped_stem").contains(PATH)) {
+                nameSpace = "minecraft";
+            } else {
+                nameSpace = "rankine";
+            }
+            Block LOG = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(nameSpace+":"+PATH.replace("hollow_","")));
+            if (LOG != null) {
+                ShapedRecipeBuilder.shapedRecipe(HOLLOW.asItem(), 16).patternLine("###").patternLine("# #").patternLine("###").key('#', LOG).addCriterion("has_ingredient", hasItem(LOG)).build(consumer);
+            }
+        }
+        for (Block BLK : RankineLists.LEAF_LITTERS) {
+            String PATH = BLK.getRegistryName().getPath();
+            String nameSpace;
+            if (Arrays.asList("hollow_oak_log","hollow_birch_log","hollow_spruce_log","hollow_acacia_log","hollow_jungle_log","hollow_dark_oak_log","hollow_crimson_stem","hollow_warped_stem").contains(PATH)) {
+                nameSpace = "minecraft";
+            } else {
+                nameSpace = "rankine";
+            }
+            Block LEAF = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(nameSpace+":"+PATH.replace("leaves","leaf_litter")));
+            if (LEAF != null) {
+                ShapedRecipeBuilder.shapedRecipe(BLK.asItem(), 1).patternLine("##").key('#', LEAF).addCriterion("has_ingredient", hasItem(LEAF)).build(consumer);
+            }
+        }
 
 
         for (Item MINERAL_ITEM : RankineLists.MINERAL_ITEMS) {

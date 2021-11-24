@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
 import com.cannolicatfish.rankine.blocks.FloodGateBlock;
-import com.cannolicatfish.rankine.blocks.states.TapBarrelFluids;
 import com.cannolicatfish.rankine.blocks.states.TreeTapFluids;
 import com.cannolicatfish.rankine.init.*;
 import net.minecraft.block.*;
@@ -12,7 +11,6 @@ import net.minecraft.item.Items;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -23,7 +21,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -83,7 +80,7 @@ public class TreeTapBlock extends Block {
     @Override
     public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         ticks += 1;
-        if (!worldIn.isRemote() && ticks >= Config.MACHINES.TREE_TAP_SPEED.get() && isTreeAlive(pos,worldIn)) {
+        if (!worldIn.isRemote() && ticks >= 3 && isTreeAlive(pos,worldIn)) {
 
             //checks for other taps
             List<BlockPos> sides = Arrays.asList(pos.up(), pos.down(), pos.north(), pos.south(), pos.west(), pos.east());
@@ -110,6 +107,8 @@ public class TreeTapBlock extends Block {
                         break;
                 }
                 if (log != null) {
+                    //TREE TAPS BROKEN
+                    /*
                     if (log.getTags().contains(new ResourceLocation("rankine:logs_sap")) && Config.MACHINES.TREE_TAP_SAP.get()) {
                         worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.SAP).with(FACING, state.get(FACING)),3);
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_maple_sap")) && Config.MACHINES.TREE_TAP_MAPLE_SAP.get()) {
@@ -125,6 +124,8 @@ public class TreeTapBlock extends Block {
                     } else if (log.getTags().contains(new ResourceLocation("rankine:logs_lava")) && Config.MACHINES.TREE_TAP_LAVA.get()) {
                         worldIn.setBlockState(pos, this.getDefaultState().with(FLUID, TreeTapFluids.LAVA).with(FACING, state.get(FACING)),3);
                     }
+
+                     */
                 }
             }
             ticks = 0;

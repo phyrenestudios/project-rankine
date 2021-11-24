@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#rankine:leaf_litters",
     "#minecraft:small_flowers",
     "#minecraft:tall_flowers",
     "#minecraft:crops",

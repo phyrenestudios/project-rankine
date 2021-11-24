@@ -3,13 +3,12 @@ package com.cannolicatfish.rankine.blocks.plants;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
@@ -29,13 +28,9 @@ public class CornPlantBlock extends TripleCropsBlock {
         return RankineItems.CORN_SEEDS.get();
     }
 
-    public AbstractBlock.OffsetType getOffsetType() {
-        return AbstractBlock.OffsetType.XZ;
-    }
-
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-        if (entityIn instanceof LivingEntity && state.get(AGE) > 1) {
+        if (entityIn instanceof LivingEntity && state.get(AGE) > 2) {
             entityIn.setMotionMultiplier(state, new Vector3d((double)0.95F, 1.0D, (double)0.95F));
         }
     }

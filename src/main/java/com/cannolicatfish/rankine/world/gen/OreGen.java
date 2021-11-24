@@ -4,7 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
-import com.cannolicatfish.rankine.world.gen.feature.RankineOreFeatureConfig;
+import com.cannolicatfish.rankine.world.gen.feature.ores.RankineOreFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,12 +36,12 @@ public class OreGen {
     }
     private static List<AbstractMap.SimpleEntry<ConfiguredFeature<?,?>,List<ResourceLocation>>> getAllOreFeatures() {
         List<AbstractMap.SimpleEntry<ConfiguredFeature<?, ?>, List<ResourceLocation>>> AllOreFeatures = new ArrayList<>();
+        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.SOIL_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
+        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.INTRUSION_FEATURE, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
 
         if (Config.MISC_WORLDGEN.WHITE_SAND_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.DISK_WHITE_SAND, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.BEACH), true))); }
         if (Config.MISC_WORLDGEN.ALLUVIUM_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_ALLUVIUM, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.RIVER), true))); }
         if (Config.MISC_WORLDGEN.EVAPORITE_GEN.get()) { AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_EVAPORITE, WorldgenUtils.getBiomeNamesFromCategory(Arrays.asList(Biome.Category.OCEAN, Biome.Category.BEACH), false))); }
-        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.STONE_GEN, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
-        AllOreFeatures.add(new AbstractMap.SimpleEntry<>(RankineFeatures.ORE_INTRUSION, WorldgenUtils.getBiomeNamesFromCategory(Collections.emptyList(), false)));
 
         return AllOreFeatures;
     }
@@ -76,7 +76,7 @@ public class OreGen {
         return EndFeatures;
     }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void addOreGenFeatures(final BiomeLoadingEvent event) {
         if (event.getName() != null) {
             //---Disable vanilla features---
@@ -123,14 +123,25 @@ public class OreGen {
                     }
                 }
 
+                String type = (String) L.get(2);
                 int minHeight = (int) L.get(3);
                 int maxeight = (int) L.get(4);
                 int size = (int) L.get(5);
-                int count = (int) L.get(6);
-                float chance = (float)  (double) L.get(7);
+                float density = (float) (double) L.get(6);
+                int count = (int) L.get(7);
+                float chance = (float) (double) L.get(8);
+                ConfiguredFeature<?,?> oreFeature;
 
-                ConfiguredFeature<?,?> oreFeature = RankineFeatures.RANKINE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, chance))
+                if (type.equals("sphere")) {
+                    oreFeature = RankineFeatures.SPHERE_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
                         .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
+                } else if (type.equals("disk")) {
+                    oreFeature = RankineFeatures.DISK_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
+                        .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
+                } else {
+                    oreFeature = RankineFeatures.DEFAULT_ORE.withConfiguration(new RankineOreFeatureConfig(RankineOreFeatureConfig.RankineFillerBlockType.ORE_FILLER, oreBlock.getDefaultState(), size, density, chance))
+                            .withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, minHeight, maxeight))).square().count(count);
+                }
 
                 if (inEnd) {
                     END_FEATURES.add(new AbstractMap.SimpleEntry<>(oreFeature, genBiomes));

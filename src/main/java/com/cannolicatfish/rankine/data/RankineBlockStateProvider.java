@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.asphalt.BaseAsphaltBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.*;
+import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelBlock;
 import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankineDoublePlantBlock;
 import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
@@ -89,10 +90,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             String pathName = SANDSTONE.getRegistryName().getPath();
             simpleBlock(SANDSTONE,models().cubeColumn(pathName,blockTexture(SANDSTONE),getBlockRSL(pathName.replace("chiseled","smooth"))));
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.BRICKS_SLAB,RankineLists.MISC_SLABS,RankineLists.SHEETMETAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk);
         }
-        for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block blk : Stream.of(RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.MISC_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             verticalSlabBlock(blk);
         }
         for (Block blk : Stream.of(RankineLists.SMOOTH_SANDSTONE_WALLS,RankineLists.SANDSTONE_WALLS,RankineLists.BRICKS_WALL,RankineLists.MISC_WALLS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -413,7 +414,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
 
-
+        mixingBarrelBlock(RankineBlocks.MIXING_BARREL.get());
         //Soil blocks
         for (Block SOIL : RankineLists.SOIL_BLOCKS) {
             rotationBlock(SOIL);
@@ -460,9 +461,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         paneBlock((PaneBlock) ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine","cast_iron"+"_bars")), new ResourceLocation("rankine","block/"+"cast_iron"+"_bars"), new ResourceLocation("rankine","block/"+"cast_iron"+"_bars"));
 
 
+
+
         for (Block blk : RankineLists.GEODES) {
             geodeBlock(blk);
         }
+        geodeBlock(RankineBlocks.GEODE.get());
+
         for (Block blk : RankineLists.LEDS) {
             onOffBlock(blk);
         }
@@ -530,8 +535,6 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         //simpleBlock(RankineBlocks.LASER_PYLON_TOP.get(), models().cubeBottomTop(RankineBlocks.LASER_PYLON_TOP.get().getRegistryName().getPath(), getRSL("laser_pylon_top"), getRSL("laser_pylon_bottom"), getRSL("stainless_steel_block")));
         onOffBlock(RankineBlocks.CHARCOAL_PIT.get(), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath(), getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top"), getBlockRSL("charcoal_pit_top")), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath()+"_on", getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top_on"), getBlockRSL("charcoal_pit_top_on")));
         onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven")), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven_on")));
-        onOffBlock(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/high_refractory_bricks"), new ResourceLocation("rankine", "block/high_beehive_oven")), models().cubeTop(RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/high_refractory_bricks"), new ResourceLocation("rankine", "block/high_beehive_oven_on")));
-        onOffBlock(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/ultra_high_refractory_bricks"), new ResourceLocation("rankine", "block/ultra_high_beehive_oven")), models().cubeTop(RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/ultra_high_refractory_bricks"), new ResourceLocation("rankine", "block/ultra_high_beehive_oven_on")));
         onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath(), getBlockRSL("alloy_furnace_front"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("alloy_furnace_front_on"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")));
         rotateableMachineBlock(RankineBlocks.INDUCTION_FURNACE.get(), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top")), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top_on")));
         rotateableMachineBlock(RankineBlocks.FUSION_FURNACE.get(), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front"), getBlockRSL("fusion_furnace_top")), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front_on"), getBlockRSL("fusion_furnace_top")));
@@ -617,6 +620,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
 
+
+
+
+
     }
 
     private ResourceLocation getBlockRSL(String textureName) {
@@ -631,6 +638,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         String name = blk.getRegistryName().getPath();
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, mcLoc("block/block")).texture("particle", getBlockRSL(name+"_still"))).addModel();
     }
+
+
+
+
+
+
 
     public void asphaltBlock(Block blk, Float HEIGHT) {
         getVariantBuilder(blk).forAllStates(state -> {
@@ -774,7 +787,20 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
     public void geodeBlock(Block blk) {
         String name = blk.getRegistryName().getPath();
-        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, modLoc("block/template_geode")).texture("face", modLoc("block/"+name))).addModel();
+        ModelFile MODEL;
+        if (blk.matchesBlock(RankineBlocks.GEODE.get())) {
+            MODEL = models().withExistingParent(name, modLoc("block/template_geode"));
+        } else {
+            MODEL = models().withExistingParent(name, modLoc("block/template_cut_geode")).texture("face", modLoc("block/"+name));
+        }
+
+        getVariantBuilder(blk).forAllStatesExcept(state -> {
+            Direction dir = state.get(GeodeBlock.HORIZONTAL_FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(MODEL)
+                    .rotationY(((dir.getHorizontalIndex() + 2) % 4) * 90)
+                    .build();
+        },BlockStateProperties.WATERLOGGED);
     }
     public void pedestalBlock(Block blk) {
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("block/template_pedestal")).texture("all", modLoc("block/"+blk.getRegistryName().getPath().replace("_pedestal","_block")))).addModel();
@@ -973,6 +999,45 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .build();
         });
     }
+
+
+
+    public void mixingBarrelBlock(Block BLOCK) {
+        String NAME = BLOCK.getRegistryName().getPath();
+        getVariantBuilder(BLOCK).forAllStates(state -> {
+            int i = state.get(MixingBarrelBlock.ANGLE);
+            return ConfiguredModel.builder()
+                .modelFile(models().withExistingParent(NAME+((i+3)%4),mcLoc("block/block"))
+                    .texture("particle", getBlockRSL("mixing_barrel_side"))
+                    .texture("side",  getBlockRSL("mixing_barrel_side"))
+                    .texture("top",  getBlockRSL("mixing_barrel_top"))
+                    .texture("base",  getBlockRSL("concrete"))
+                    .element().from(0,0,0).to(16,2,16)
+                        .face(Direction.NORTH).uvs(0,2, 16, 16).texture("#base").cullface(Direction.NORTH).end()
+                        .face(Direction.EAST).uvs(0, 2, 16, 16).texture("#base").cullface(Direction.EAST).end()
+                        .face(Direction.SOUTH).uvs(0, 2, 16, 16).texture("#base").cullface(Direction.SOUTH).end()
+                        .face(Direction.WEST).uvs(0, 2, 16, 16).texture("#base").cullface(Direction.WEST).end()
+                        .face(Direction.UP).uvs(0, 0, 16, 16).texture("#base").end()
+                        .face(Direction.DOWN).uvs(0, 0, 16, 16).texture("#base").cullface(Direction.DOWN).end()
+                        .end()
+                    .element().from(2,2,2).to(14,16,14)
+                        .rotation().origin(8,0,8).axis(Direction.Axis.Y).angle((float) (i*22.5-22.5)).end()
+                        .face(Direction.NORTH).uvs(2,1,14,15).texture("#side").end()
+                        .face(Direction.EAST).uvs(2,1,14,15).texture("#side").end()
+                        .face(Direction.SOUTH).uvs(2,1,14,15).texture("#side").end()
+                        .face(Direction.WEST).uvs(2,1,14,15).texture("#side").end()
+                        .face(Direction.UP).uvs(2, 2, 14, 14).texture("#top").end()
+                        .face(Direction.DOWN).uvs(2, 2, 14, 14).texture("#side").cullface(Direction.DOWN).end()
+                        .end()).build();
+        });
+    }
+
+
+
+
+
+
+
 
 
     public void fancyPolishedBlock(Block block) {

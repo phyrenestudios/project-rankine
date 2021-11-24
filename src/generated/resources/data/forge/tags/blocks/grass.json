@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:grass",
+    "minecraft:fern",
+    "rankine:short_grass",
+    "rankine:yellow_clover",
+    "rankine:white_clover",
+    "rankine:red_clover",
+    "rankine:crimson_clover"
+  ]
+}

@@ -33,14 +33,14 @@ public class RankineItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //food items
-        for (Item item : Stream.of(RankineLists.JAMS,RankineLists.GRAINS,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Item item : Stream.of(RankineLists.JAMS,RankineLists.SEEDS,RankineLists.BREADS,RankineLists.GRAINS,RankineLists.GAS_BOTTLES,RankineLists.MINERAL_ITEMS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(item);
         }
 
-        for (Block BLOCK : Stream.of(RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.SHEETMETAL_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.STONE_SLABS,RankineLists.POLISHED_STONE_SLABS,RankineLists.STONE_BRICKS_SLABS,RankineLists.SHEETMETAL_SLABS,RankineLists.WOODEN_SLABS,RankineLists.BRICKS_SLAB,RankineLists.CUT_SANDSTONE_SLABS,RankineLists.SANDSTONE_SLABS,RankineLists.SMOOTH_SANDSTONE_SLABS,RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabParent(BLOCK);
         }
-        for (Block BLOCK : Stream.of(RankineLists.STONE_VERTICAL_SLABS,RankineLists.POLISHED_STONE_VERTICAL_SLABS,RankineLists.STONE_BRICKS_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS,RankineLists.WOODEN_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.MISC_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
+        for (Block BLOCK : Stream.of(RankineLists.STONE_VERTICAL_SLABS,RankineLists.POLISHED_STONE_VERTICAL_SLABS,RankineLists.STONE_BRICKS_VERTICAL_SLABS,RankineLists.SHEETMETAL_VERTICAL_SLABS,RankineLists.WOODEN_VERTICAL_SLABS,RankineLists.BRICKS_VERTICAL_SLAB,RankineLists.CUT_SANDSTONE_VERTICAL_SLABS,RankineLists.SANDSTONE_VERTICAL_SLABS,RankineLists.SMOOTH_SANDSTONE_VERTICAL_SLABS,RankineLists.MISC_VERTICAL_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             verticalSlabParent(BLOCK);
         }
         for (Block BLOCK : Stream.of(RankineLists.STONE_STAIRS,RankineLists.POLISHED_STONE_STAIRS,RankineLists.STONE_BRICKS_STAIRS,RankineLists.WOODEN_STAIRS,RankineLists.BRICKS_STAIRS,RankineLists.SANDSTONE_STAIRS,RankineLists.SMOOTH_SANDSTONE_STAIRS,RankineLists.MISC_STAIRS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -116,10 +116,18 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.COCONUT.get());
         basicItem(RankineItems.ALOE.get());
         basicItem(RankineItems.RICE.get());
+        basicItem(RankineItems.OATS.get());
+        basicItem(RankineItems.RYE.get());
+        basicItem(RankineItems.SORGHUM.get());
+        basicItem(RankineItems.BARLEY.get());
+        basicItem(RankineItems.MILLET.get());
         basicItem(RankineItems.ASPARAGUS.get());
         basicItem(RankineItems.CORN_EAR.get());
         basicItem(RankineItems.COTTON.get());
         basicItem(RankineItems.JUTE.get());
+        basicItem(RankineItems.TOFU.get());
+        basicItem(RankineItems.SOYBEANS.get());
+        basicItem(RankineItems.SOY_MILK.get());
         basicItem(RankineItems.BLUEBERRIES.get());
         basicItem(RankineItems.CRANBERRIES.get());
         basicItem(RankineItems.POKEBERRIES.get());
@@ -150,16 +158,10 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.PANCAKE_BREAKFAST.get());
         basicItem(RankineItems.PLANT_FIBER.get());
         basicItem(RankineItems.CAMPHOR_BASIL_LEAF.get());
-        basicItem(RankineItems.CAMPHOR_BASIL_SEEDS.get());
-        basicItem(RankineItems.RICE_SEEDS.get());
-        basicItem(RankineItems.ASPARAGUS_SEEDS.get());
-        basicItem(RankineItems.CORN_SEEDS.get());
-        basicItem(RankineItems.COTTON_SEEDS.get());
-        basicItem(RankineItems.JUTE_SEEDS.get());
-        basicItem(RankineItems.FLOWER_SEEDS.get());
         basicItem(RankineItems.CORN_STALK.get());
         basicItemAltTexture(RankineItems.AGED_CHEESE.get(), modLoc("item/aged_cheese_wheel"));
         basicItemAltTexture(RankineItems.UNAGED_CHEESE.get(), modLoc("item/unaged_cheese_wheel"));
+        basicItemAltTexture(RankineItems.GEODE.get(), modLoc("item/geode"));
         basicItemHandheld(RankineItems.DOWSING_ROD.get());
 
         basicItem(RankineItems.VULCANIZED_RUBBER.get());
@@ -199,6 +201,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.ROPE.get());
         basicItem(RankineItems.BLEACH.get());
         basicItem(RankineItems.HERBICIDE.get());
+        basicItem(RankineItems.FERTILIZER.get());
         basicItem(RankineItems.SYNTHETIC_LEATHER.get());
         basicItem(RankineItems.PULP.get());
         basicItem(RankineItems.ALKALI_CELLULOSE.get());
@@ -206,8 +209,6 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.INDIUM_TIN_OXIDE.get());
         basicItem(RankineItems.CADMIUM_TELLURIDE_CELL.get());
         basicItem(RankineItems.SILICON_GERMANIUM_THERMOCOUPLE.get());
-        //basicItem(RankineItems.YAG_ROD.get());
-        basicItem(RankineItems.UNCUT_GEODE.get());
         basicItem(RankineItems.SODIUM_ARC_TUBE.get());
         basicItem(RankineItems.GRAPHITE_ELECTRODE.get());
         basicItem(RankineItems.HARD_CARBON_ELECTRODE.get());
@@ -336,10 +337,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
                 RankineBlocks.REACTION_CHAMBER_CELL.get(),
                 RankineBlocks.REACTION_CHAMBER_CORE.get(),
                 RankineBlocks.FUSION_FURNACE.get(),
+                RankineBlocks.MIXING_BARREL.get(),
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
-                RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.ALLOY_FURNACE.get(),
-                RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.CHARCOAL_PIT.get(),
                 RankineBlocks.GYRATORY_CRUSHER.get(),
                 RankineBlocks.PISTON_CRUSHER.get(),
@@ -427,8 +427,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
 
 
-        //GEODES
-        basicItem(RankineItems.UNCUT_GEODE.get().getRegistryName().getPath());
+        //GEODESw
         for (Block blk : RankineLists.GEODES) {
             String name = blk.getRegistryName().getPath();
             withExistingParent(name, modLoc("block/"+name));

@@ -96,6 +96,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
                 RankineBlocks.BEEHIVE_OVEN_PIT.get(),
                 RankineBlocks.SEDIMENT_FAN.get(),
                 RankineBlocks.GAS_VENT.get(),
+                RankineBlocks.GEODE.get(),
                 RankineBlocks.ALNICO_ELECTROMAGNET.get(),
                 RankineBlocks.RARE_EARTH_ELECTROMAGNET.get(),
                 RankineBlocks.AIR_DISTILLATION_PACKING.get()
@@ -197,6 +198,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.ANTITAENITE_ORE.get(), createBlockLootTable(RankineBlocks.ANTITAENITE_ORE.get()));
         lootTables.put(RankineBlocks.KAMACITE_ORE.get(), createBlockLootTable(RankineBlocks.KAMACITE_ORE.get()));
 
+        lootTables.put(RankineBlocks.MIXING_BARREL.get(), droppingWithName(RankineBlocks.MIXING_BARREL.get()));
         lootTables.put(RankineBlocks.FUSION_FURNACE.get(), droppingWithName(RankineBlocks.FUSION_FURNACE.get()));
         lootTables.put(RankineBlocks.ALLOY_FURNACE.get(), droppingWithName(RankineBlocks.ALLOY_FURNACE.get()));
         lootTables.put(RankineBlocks.PISTON_CRUSHER.get(), droppingWithName(RankineBlocks.PISTON_CRUSHER.get()));
@@ -242,8 +244,14 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         }
 
         lootTables.put(RankineBlocks.RICE_PLANT.get(), singleCrop(RankineBlocks.RICE_PLANT.get(), RankineItems.RICE.get(), RankineItems.RICE_SEEDS.get()));
+        lootTables.put(RankineBlocks.OAT_PLANT.get(), singleCrop(RankineBlocks.OAT_PLANT.get(), RankineItems.OATS.get(), RankineItems.OAT_SEEDS.get()));
+        lootTables.put(RankineBlocks.MILLET_PLANT.get(), singleCrop(RankineBlocks.MILLET_PLANT.get(), RankineItems.MILLET.get(), RankineItems.MILLET_SEEDS.get()));
         lootTables.put(RankineBlocks.CAMPHOR_BASIL_PLANT.get(), singleCrop(RankineBlocks.CAMPHOR_BASIL_PLANT.get(), RankineItems.CAMPHOR_BASIL_SEEDS.get(), RankineItems.CAMPHOR_BASIL_LEAF.get()));
+        lootTables.put(RankineBlocks.SOYBEAN_PLANT.get(), singleCrop(RankineBlocks.SOYBEAN_PLANT.get(), RankineItems.SOYBEANS.get(), RankineItems.SOYBEANS.get()));
         lootTables.put(RankineBlocks.COTTON_PLANT.get(), doubleCrop(RankineBlocks.COTTON_PLANT.get(), RankineItems.COTTON.get(), RankineItems.COTTON_SEEDS.get(), 2));
+        lootTables.put(RankineBlocks.RYE_PLANT.get(), doubleCrop(RankineBlocks.RYE_PLANT.get(), RankineItems.RYE.get(), RankineItems.RYE_SEEDS.get(), 2));
+        lootTables.put(RankineBlocks.BARLEY_PLANT.get(), doubleCrop(RankineBlocks.BARLEY_PLANT.get(), RankineItems.BARLEY.get(), RankineItems.BARLEY_SEEDS.get(), 2));
+        lootTables.put(RankineBlocks.SORGHUM_PLANT.get(), doubleCrop(RankineBlocks.SORGHUM_PLANT.get(), RankineItems.SORGHUM.get(), RankineItems.SORGHUM_SEEDS.get(), 2));
         lootTables.put(RankineBlocks.ASPARAGUS_PLANT.get(), doubleCrop(RankineBlocks.ASPARAGUS_PLANT.get(), RankineItems.ASPARAGUS.get(), RankineItems.ASPARAGUS_SEEDS.get(), 1));
         lootTables.put(RankineBlocks.CORN_PLANT.get(), tripleCrop(RankineBlocks.CORN_PLANT.get(), RankineItems.CORN_EAR.get(), RankineItems.CORN_SEEDS.get(), 2));
         lootTables.put(RankineBlocks.JUTE_PLANT.get(), tripleCrop(RankineBlocks.JUTE_PLANT.get(), RankineItems.JUTE.get(), RankineItems.JUTE_SEEDS.get(), 3));

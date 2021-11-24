@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:warped_stem"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_warped_stem",
+    "count": 16
+  }
+}

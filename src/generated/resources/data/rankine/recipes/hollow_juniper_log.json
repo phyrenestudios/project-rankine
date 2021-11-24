@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:juniper_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_juniper_log",
+    "count": 16
+  }
+}

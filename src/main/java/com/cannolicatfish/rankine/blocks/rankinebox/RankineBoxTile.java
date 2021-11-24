@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.rankinebox;
 
-import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.TransmuterItem;
@@ -35,7 +34,7 @@ public class RankineBoxTile extends TileEntity implements ISidedInventory, ITick
     private static final int[] SLOTS_DOWN = new int[]{3};
     private static final int[] SLOTS_HORIZONTAL = new int[]{0,1,2};
     private int cookTime;
-    private int cookTimeTotal = Config.MACHINES.RANKINE_BOX_SPEED.get();
+    private int cookTimeTotal = 1000;
     private int direction = 0;
     private int powered = 0;
     protected NonNullList<ItemStack> items = NonNullList.withSize(4,ItemStack.EMPTY);

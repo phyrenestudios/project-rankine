@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:eastern_hemlock_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_eastern_hemlock_log",
+    "count": 16
+  }
+}
