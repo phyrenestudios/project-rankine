@@ -544,9 +544,9 @@ public class AlloyingRecipe implements IRecipe<IInventory> {
                 }
             }
 
-            int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 10;
+            int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 20;
             int interval = json.has("enchantInterval") ? json.get("enchantInterval").getAsInt() : 5;
-            int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 5;
+            int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 3;
             return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 

@@ -6,6 +6,7 @@ import com.mojang.datafixers.TypeRewriteRule;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
@@ -44,6 +45,7 @@ public class RankineEntityTypes {
     public static final EntityType<BeaverEntity> BEAVER = EntityType.Builder.create(BeaverEntity::new, EntityClassification.CREATURE).size(1F, 0.4F).build(ProjectRankine.MODID + ":beaver");
     public static final EntityType<RankineBoatEntity> RANKINE_BOAT = EntityType.Builder.<RankineBoatEntity>create(RankineBoatEntity::new, EntityClassification.MISC).size(1.375F, 0.5625F).build(ProjectRankine.MODID + ":rankine_boat");
     public static final EntityType<ReactiveItemEntity> REACTIVE_ITEM = EntityType.Builder.<ReactiveItemEntity>create(ReactiveItemEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(ProjectRankine.MODID + ":reactive_item");
+    public static final EntityType<CannonballEntity> CANNONBALL =  EntityType.Builder.<CannonballEntity>create(CannonballEntity::new, EntityClassification.MISC).size(0.5F, 0.5F).trackingRange(4).updateInterval(4).build(ProjectRankine.MODID + ":cannonball");
 
 
 

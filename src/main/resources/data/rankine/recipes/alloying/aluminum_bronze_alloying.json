@@ -1,6 +1,7 @@
 {
   "type": "rankine:alloying",
   "total": 15,
+  "genName": true,
   "color": 15510384,
   "input1": {
     "element": "rankine:elements/copper",

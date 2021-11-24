@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "forge:ingots/iron"
+  },
+  "input2": {
+    "tag": "forge:sulfur"
+  },
+  "result1": {
+    "item": "rankine:iron_chloride"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:hydrogen_sulfide_gas_bottle"
+  }
+}

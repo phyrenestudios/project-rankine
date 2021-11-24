@@ -1,0 +1,28 @@
+{
+  "shulker_gas_vacuum_absorb": {
+    "subtitle": "rankine.subtitle.shulker_gas_vacuum_absorb",
+    "sounds": [
+      {
+        "name": "minecraft:entity/pufferfish/blow_up1",
+        "volume": 0.45
+      },
+      {
+        "name": "minecraft:entity/pufferfish/blow_up2",
+        "volume": 0.45
+      }
+    ]
+  },
+  "shulker_gas_vacuum_release": {
+    "subtitle": "rankine.subtitle.shulker_gas_vacuum_release",
+    "sounds": [
+      {
+        "name": "minecraft:entity/pufferfish/blow_out1",
+        "volume": 0.7
+      },
+      {
+        "name": "minecraft:entity/pufferfish/blow_out2",
+        "volume": 0.7
+      }
+    ]
+  }
+}

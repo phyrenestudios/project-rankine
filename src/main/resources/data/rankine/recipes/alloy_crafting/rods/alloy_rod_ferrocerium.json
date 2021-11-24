@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "genName": true,
+  "inheritRecipe": "rankine:alloying/ferrocerium_alloying",
+  "color": 16750232,
+  "pattern": [
+    "  I",
+    " I ",
+    "I  "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/ferrocerium"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_rod",
+    "count": 4
+  }
+}

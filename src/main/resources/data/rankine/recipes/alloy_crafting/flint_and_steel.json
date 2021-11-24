@@ -1,0 +1,20 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "RR",
+    "RF"
+  ],
+  "key": {
+    "R": {
+      "item": "rankine:steel_nugget",
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "name": "item.rankine.steel_alloying"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "minecraft:flint_and_steel"
+  }
+}

@@ -31,7 +31,7 @@
           "required": true
         },
         "input3": {
-          "element": "rankine:elements/skyslime",
+          "element": "rankine:compat/elements/skyslime",
           "min": 0.05,
           "max": 0.15,
           "required": true

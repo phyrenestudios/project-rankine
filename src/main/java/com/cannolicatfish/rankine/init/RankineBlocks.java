@@ -1915,6 +1915,9 @@ public class RankineBlocks {
     public static final RegistryObject<Block> TUNGSTEN_HEAVY_ALLOY_BLOCK = REGISTRY.register("tungsten_heavy_alloy_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
     public static final RegistryObject<Block> SODIUM_POTASSIUM_ALLOY_BLOCK = REGISTRY.register("sodium_potassium_alloy_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
 
+    public static final RegistryObject<Block> ALLOY_BLOCK = REGISTRY.register("alloy_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
+
+
     //GEM AND MINERALS
     public static final RegistryObject<Block> LEPIDOLITE_BLOCK = REGISTRY.register("lepidolite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));
     public static final RegistryObject<Block> PYRITE_BLOCK = REGISTRY.register("pyrite_block", () -> new Block(Block.Properties.create(Material.ROCK).sound(SoundType.STONE).setRequiresTool().hardnessAndResistance(2.0F, 5.0F).harvestLevel(0)));

@@ -18,7 +18,7 @@
         "total": 9,
         "color": 16777215,
         "input1": {
-          "element": "rankine:elements/andesite",
+          "element": "rankine:compat/elements/andesite",
           "min": 0.75,
           "max": 0.85,
           "required": true

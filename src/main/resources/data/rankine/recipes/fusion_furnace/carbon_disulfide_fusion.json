@@ -8,6 +8,6 @@
     "tag": "forge:sulfur"
   },
   "fluidOutput": {
-    "item": "rankine:carbon_disulfide"
+    "fluid": "rankine:carbon_disulfide"
   }
 }

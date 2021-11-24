@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -25,42 +26,41 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class MixingRecipe implements IRecipe<IInventory> {
 
     private final NonNullList<Ingredient> recipeItems;
-    private final int cookTime;
-    private final int total;
-    private final String alloyComp;
+    private final int mixTime;
+    private final int ingredientTotal;
+    private final int outputTotal;
     private final NonNullList<Integer> ingredientGroups;
     private final NonNullList<Boolean> required;
     private final NonNullList<Integer> countMod;
-    private final NonNullList<Integer> cookMod;
-    private final NonNullList<List<String>> shiftMod;
-    private final ItemStack recipeOutput;
-    private final ItemStack secondaryOutput;
+    private final NonNullList<Integer> mixTimeMod;
     private final ResourceLocation id;
+    private final NonNullList<ItemStack> recipeOutputs;
+    private final NonNullList<Float> weights;
+    private final NonNullList<Integer> mins;
+    private final NonNullList<Integer> maxes;
 
     public static final MixingRecipe.Serializer SERIALIZER = new MixingRecipe.Serializer();
 
-    public MixingRecipe(ResourceLocation idIn, int cookTimeIn, int totalIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
-                        NonNullList<Integer> cookModIn, NonNullList<List<String>> shiftsIn, ItemStack outputIn, String alloyCompIn, ItemStack secondaryOutputIn) {
+    public MixingRecipe(ResourceLocation idIn, int mixTimeIn, int ingredientTotalIn, int outputTotalIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
+                        NonNullList<Integer> mixTimeModIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
         this.id = idIn;
         this.ingredientGroups = ingredientGroupsIn;
-        this.cookTime = cookTimeIn;
-        this.total = totalIn;
+        this.mixTime = mixTimeIn;
+        this.ingredientTotal = ingredientTotalIn;
+        this.outputTotal = outputTotalIn;
         this.required = requiredIn;
         this.countMod = countModIn;
-        this.cookMod = cookModIn;
-        this.shiftMod = shiftsIn;
+        this.mixTimeMod = mixTimeModIn;
         this.recipeItems = recipeItemsIn;
-        this.alloyComp = alloyCompIn;
-        this.recipeOutput = outputIn;
-        this.secondaryOutput = secondaryOutputIn;
+        this.recipeOutputs = recipeOutputsIn;
+        this.weights = weightsIn;
+        this.mins = minsIn;
+        this.maxes = maxesIn;
     }
 
     public String getGroup() {
@@ -72,23 +72,6 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return this.recipeItems;
     }
 
-    public List<Ingredient> getCondensedIngredients() {
-        List<Ingredient> ingredients = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            List<ItemStack> stacks = new ArrayList<>();
-            for (int s : this.getIndexList(i)) {
-                stacks.addAll(Arrays.asList(this.getIngredients().get(s).getMatchingStacks()));
-            }
-            if (stacks.isEmpty()) {
-                stacks.add(new ItemStack(RankineItems.ELEMENT.get()));
-            }
-            ingredients.add(Ingredient.fromStacks(stacks.toArray(new ItemStack[0])));
-        }
-        for (int s : this.getIndexList(-1)) {
-            ingredients.add(this.getIngredients().get(s));
-        }
-        return ingredients;
-    }
 
     public List<Integer> getIndexList(int val) {
         List<Integer> ret = new ArrayList<>();
@@ -101,10 +84,20 @@ public class MixingRecipe implements IRecipe<IInventory> {
     }
 
 
-    public ItemStack generateResult(IInventory inv) {
-        ItemStack output = this.getPrimaryOutput().copy();
+
+    @Override
+    public boolean matches(IInventory inv, World worldIn) {
+        return !getMixingResult(inv,worldIn).isEmpty();
+    }
+
+    public ItemStack getMixingResult(IInventory inv, World worldIn) {
+        WeightedCollection<ItemStack> col = new WeightedCollection<>();
+        for (int i = 0; i < this.recipeOutputs.size(); i++) {
+            ItemStack curOut = this.recipeOutputs.get(i);
+            col.add(this.weights.get(i),new ItemStack(curOut.getItem(), this.maxes.get(i).equals(this.mins.get(i)) ? this.maxes.get(i) : worldIn.getRandom().nextInt(this.maxes.get(i) - this.mins.get(i)) + this.mins.get(i)));
+        }
+        ItemStack output = col.getRandomElement().copy();
         List<Integer> groupsUsed = new ArrayList<>();
-        List<List<String>> alloyCommands = new ArrayList<>();
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getStackInSlot(s);
             int workingIndex = -1;
@@ -119,69 +112,12 @@ public class MixingRecipe implements IRecipe<IInventory> {
             }
             output.grow(this.getCountMod().get(workingIndex));
             groupsUsed.add(this.getIngredientGroups().get(workingIndex));
-            if (this.getIngredientGroups().get(workingIndex) == -1 || Collections.frequency(groupsUsed,this.getIngredientGroups().get(workingIndex)) <= 1) {
-                alloyCommands.add(this.getShiftMod().get(workingIndex));
-            } else {
+            if (!(this.getIngredientGroups().get(workingIndex) == -1) && !(Collections.frequency(groupsUsed,this.getIngredientGroups().get(workingIndex)) <= 1)) {
                 return ItemStack.EMPTY;
             }
         }
 
-        if (alloyComp.isEmpty()) {
-            return output;
-        } else {
-            AlloyItem.addAlloy(output,new AlloyData(returnAlloyDataMod(alloyCommands)));
-            return output;
-        }
-    }
-
-    public String returnAlloyDataMod(List<List<String>> alloyCommands) {
-        List<String> elements = new ArrayList<>();
-        List<Integer> nums = new ArrayList<>();
-        for (String s : this.getAlloyComp().split("-")) {
-            elements.add(s.replaceAll("[\\d.-]", ""));
-            nums.add(Integer.parseInt(s.replaceAll("[^\\d.-]", "")));
-        }
-        for (List<String> strL : alloyCommands) {
-            int cons = 0;
-            for (String str : strL) {
-                int negative = str.contains("-") ? -1 : 1;
-                String numCheck = str.replaceAll("[^\\d.]", "");
-                int num = 0;
-                if (!numCheck.isEmpty()) {
-                    num = Integer.parseInt(numCheck);
-                }
-                String strCheck = str.replaceAll("[\\d.-]", "");
-                int workingIndex = elements.indexOf(strCheck);
-                if (workingIndex != -1) {
-                    if (num == 0) {
-                        if (cons == 0) {
-                            cons = nums.get(workingIndex);
-                            nums.set(workingIndex, nums.get(workingIndex) + cons * negative);
-                        } else {
-                            nums.set(workingIndex, nums.get(workingIndex) + cons * negative);
-                        }
-                    } else {
-                        nums.set(workingIndex,nums.get(workingIndex) + num * negative);
-                    }
-
-                } else {
-                    if (num > 0) {
-                        nums.add(num);
-                        elements.add(strCheck);
-                    } else {
-                        break;
-                    }
-
-                }
-            }
-        }
-        return AlloyRecipeHelper.getDirectComposition(nums,elements);
-    }
-
-
-    @Override
-    public boolean matches(IInventory inv, World worldIn) {
-        return !generateResult(inv).isEmpty();
+        return output;
     }
 
     @Override
@@ -191,26 +127,15 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        if (alloyComp.isEmpty()) {
-            return this.recipeOutput.copy();
-        } else {
-            ItemStack stack = this.recipeOutput.copy();
-            if (stack.getItem() == RankineItems.STEEL_INGOT.get()) {
-                IAlloyItem.createDirectAlloyNBT(stack,alloyComp,"rankine:alloying/crucible_steel_alloy_alloying","Crucible Steel Ingot");
-            } else {
-                AlloyItem.addAlloy(stack,new AlloyData(alloyComp));
-            }
-
-            return stack;
-        }
+        return ItemStack.EMPTY;
     }
 
-    public int getCookTime() {
-        return cookTime;
+    public int getMixTime() {
+        return mixTime;
     }
 
-    public int getRecipeCookTime(IInventory inv) {
-        int cook = this.getCookTime();
+    public int getRecipeMixTime(IInventory inv) {
+        int mix = this.getMixTime();
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getStackInSlot(s);
             int workingIndex = -1;
@@ -220,21 +145,17 @@ public class MixingRecipe implements IRecipe<IInventory> {
                     break;
                 }
             }
-            cook += this.getCookMod().get(workingIndex);
+            mix += this.getMixMod().get(workingIndex);
         }
-        return cook;
+        return mix;
     }
 
-    public int getTotal() {
-        return total;
+    public int getIngredientTotal() {
+        return ingredientTotal;
     }
 
-    public ItemStack getPrimaryOutput() {
-        return this.recipeOutput.copy();
-    }
-
-    public ItemStack getSecondaryOutput() {
-        return this.secondaryOutput.copy();
+    public int getOutputTotal() {
+        return outputTotal;
     }
 
     public NonNullList<Boolean> getRequired() {
@@ -249,22 +170,35 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return countMod;
     }
 
-    public NonNullList<Integer> getCookMod() {
-        return cookMod;
+    public NonNullList<Integer> getMixMod() {
+        return mixTimeMod;
     }
 
+    public Float getChance(int index) {
+        float in = getWeights().get(index);
+        return (in/getWeights().stream().reduce(0f, Float::sum));
+    }
+
+    public NonNullList<Float> getWeights() {
+        return this.weights;
+    }
+
+    public NonNullList<ItemStack> getOutputs() {
+        return this.recipeOutputs;
+    }
+
+    public NonNullList<Integer> getMins() {
+        return mins;
+    }
+
+    public NonNullList<Integer> getMaxes() {
+        return maxes;
+    }
 
     public NonNullList<Integer> getIngredientGroups() {
         return ingredientGroups;
     }
 
-    public NonNullList<List<String>> getShiftMod() {
-        return shiftMod;
-    }
-
-    public String getAlloyComp() {
-        return alloyComp;
-    }
 
     @Override
     public boolean canFit(int width, int height) {
@@ -308,25 +242,21 @@ public class MixingRecipe implements IRecipe<IInventory> {
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>>  implements IRecipeSerializer<MixingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation("rankine", "mixing");
         public MixingRecipe read(ResourceLocation recipeId, JsonObject json) {
-            int c = json.get("cookTime").getAsInt();
-            int t = json.get("total").getAsInt();
+            int mixT = json.get("mixTime").getAsInt();
+            int ingT = json.get("ingredientTotal").getAsInt();
+            int outT = json.get("outputTotal").getAsInt();
             NonNullList<Boolean> requiredbool = NonNullList.withSize(4,false);
 
-            NonNullList<Ingredient> ingredients = NonNullList.withSize(t,Ingredient.EMPTY);
-            NonNullList<Integer> groups = NonNullList.withSize(t,-1);
-            NonNullList<Integer> countMods = NonNullList.withSize(t,0);
-            NonNullList<Integer> cookMods = NonNullList.withSize(t,0);
-            NonNullList<List<String>> shiftMods = NonNullList.withSize(t, Collections.emptyList());
-
-            ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
-            String alloy = json.has("alloyData") ? json.get("alloyData").getAsString() : "";
-            ItemStack secondary = AlloyCraftingRecipe.deserializeItem(JSONUtils.getJsonObject(json, "secondary"));
+            NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT,Ingredient.EMPTY);
+            NonNullList<Integer> groups = NonNullList.withSize(ingT,-1);
+            NonNullList<Integer> countMods = NonNullList.withSize(ingT,0);
+            NonNullList<Integer> mixTimeMods = NonNullList.withSize(ingT,0);
 
             JsonArray req = JSONUtils.getJsonArray(json,"required");
             for (int i = 0; i < req.size(); i++) {
                 requiredbool.set(i,req.get(i).getAsBoolean());
             }
-            for (int i = 0; i < t; i++) {
+            for (int i = 0; i < ingT; i++) {
                 String input = "input" + (i+1);
                 if (json.has(input)) {
                     JsonObject object = JSONUtils.getJsonObject(json, input);
@@ -337,66 +267,95 @@ public class MixingRecipe implements IRecipe<IInventory> {
                     if (object.has("countMod")) {
                         countMods.set(i,object.get("countMod").getAsInt());
                     }
-                    if (object.has("cookMod")) {
-                        cookMods.set(i,object.get("cookMod").getAsInt());
-                    }
-                    if (object.has("shiftMod")) {
-                        JsonArray smod = JSONUtils.getJsonArray(object,"shiftMod");
-                        List<String> strL = new ArrayList<>();
-                        for (int j = 0; j < smod.size(); j++) {
-                            strL.add(j,smod.get(j).getAsString());
-                        }
-                        shiftMods.set(i,strL);
+                    if (object.has("mixTimeMod")) {
+                        mixTimeMods.set(i,object.get("mixTimeMod").getAsInt());
                     }
                 }
             }
-            return new MixingRecipe(recipeId,c,t,ingredients, groups, requiredbool, countMods, cookMods, shiftMods, itemstack, alloy, secondary);
+
+            NonNullList<ItemStack> stacks = NonNullList.withSize(outT, ItemStack.EMPTY);
+            NonNullList<Float> weights = NonNullList.withSize(outT, 0f);
+            NonNullList<Integer> mins = NonNullList.withSize(outT, 1);
+            NonNullList<Integer> maxes = NonNullList.withSize(outT, 1);
+            for (int i = 0; i < outT; i++) {
+                String output = "output" + (i+1);
+                if (json.has(output)) {
+                    JsonObject object = JSONUtils.getJsonObject(json, output);
+                    stacks.set(i,AlloyCraftingRecipe.deserializeItem(JSONUtils.getJsonObject(json, output)));
+                    if (object.has("weight")){
+                        weights.set(i,object.get("weight").getAsFloat());
+                    } else {
+                        weights.set(i,0f);
+                    }
+
+                    if (object.has("min")){
+                        mins.set(i,object.get("min").getAsInt());
+                    } else {
+                        mins.set(i,1);
+                    }
+
+                    if (object.has("max")){
+                        maxes.set(i,object.get("max").getAsInt());
+                    } else {
+                        maxes.set(i,1);
+                    }
+
+
+                }
+            }
+            return new MixingRecipe(recipeId,mixT,ingT,outT,ingredients, groups, requiredbool, countMods, mixTimeMods, stacks, weights, mins,maxes);
         }
 
         public MixingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-            int c = buffer.readInt();
-            int t = buffer.readInt();
+            int mixT = buffer.readInt();
+            int ingT = buffer.readInt();
+            int resT = buffer.readInt();
             NonNullList<Boolean> req = NonNullList.withSize(4, false);
 
-            NonNullList<Ingredient> ingredients = NonNullList.withSize(t, Ingredient.EMPTY);
-            NonNullList<Integer> groups = NonNullList.withSize(t,-1);
-            NonNullList<Integer> countMods = NonNullList.withSize(t,0);
-            NonNullList<Integer> cookMods = NonNullList.withSize(t,0);
-            NonNullList<List<String>> shiftMods = NonNullList.withSize(t, Collections.emptyList());
+            NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT, Ingredient.EMPTY);
+            NonNullList<Integer> groups = NonNullList.withSize(ingT,-1);
+            NonNullList<Integer> countMods = NonNullList.withSize(ingT,0);
+            NonNullList<Integer> mixTimeMods = NonNullList.withSize(ingT,0);
 
             for (int i = 0; i < 4; i++) {
                 req.set(i,buffer.readBoolean());
             }
 
-            for (int i = 0; i < t; i++) {
+            for (int i = 0; i < ingT; i++) {
                 ingredients.set(i,Ingredient.read(buffer));
                 groups.set(i,buffer.readInt());
                 countMods.set(i,buffer.readInt());
-                cookMods.set(i,buffer.readInt());
-
-
-                int s = buffer.readInt();
-                String[] str = new String[s];
-                if (s > 0) {
-                    for (int j = 0; j < s; j++) {
-                        str[j] = buffer.readString();
-                    }
-                    shiftMods.set(i,Arrays.asList(str));
-                }
-
+                mixTimeMods.set(i,buffer.readInt());
 
             }
 
-            ItemStack stack = buffer.readItemStack();
-            String all = buffer.readString();
-            ItemStack secondary = buffer.readItemStack();
+            NonNullList<ItemStack> stacks = NonNullList.withSize(resT, ItemStack.EMPTY);
+            for(int k = 0; k < stacks.size(); ++k) {
+                stacks.set(k, buffer.readItemStack());
+            }
 
-            return new MixingRecipe(recipeId,c,t,ingredients,groups,req,countMods,cookMods,shiftMods, stack, all, secondary);
+            NonNullList<Float> weights = NonNullList.withSize(resT, 0f);
+            for(int k = 0; k < weights.size(); ++k) {
+                weights.set(k, buffer.readFloat());
+            }
+
+
+            NonNullList<Integer> mins = NonNullList.withSize(resT,1);
+            for(int k = 0; k < mins.size(); ++k) {
+                mins.set(k, buffer.readInt());
+            }
+
+            NonNullList<Integer> maxes = NonNullList.withSize(resT,1);
+            for(int k = 0; k < maxes.size(); ++k) {
+                maxes.set(k, buffer.readInt());
+            }
+
+            return new MixingRecipe(recipeId,mixT,ingT,resT,ingredients, groups, req, countMods, mixTimeMods, stacks, weights, mins,maxes);
         }
 
         public void write(PacketBuffer buffer, MixingRecipe recipe) {
-            buffer.writeInt(recipe.getCookTime());
-            buffer.writeInt(recipe.getTotal());
+            buffer.writeInt(recipe.getMixTime());
+            buffer.writeInt(recipe.getIngredientTotal());
             for (int i = 0; i < 4; i++) {
                 if (i < recipe.getRequired().size()) {
                     buffer.writeBoolean(recipe.getRequired().get(i));
@@ -405,26 +364,54 @@ public class MixingRecipe implements IRecipe<IInventory> {
                 }
             }
 
-            for (int i = 0; i < recipe.getTotal(); i++) {
+            for (int i = 0; i < recipe.getIngredientTotal(); i++) {
                 recipe.getIngredients().get(i).write(buffer);
                 buffer.writeInt(recipe.getIngredientGroups().get(i));
                 buffer.writeInt(recipe.getCountMod().get(i));
-                buffer.writeInt(recipe.getCookMod().get(i));
-
-
-                buffer.writeInt(recipe.getShiftMod().get(i).size());
-                if (recipe.getShiftMod().get(i).size() > 0) {
-                    for (int j=0;j<recipe.getShiftMod().get(i).size();j++) {
-                        buffer.writeString(recipe.getShiftMod().get(i).get(j));
-                    }
-                }
+                buffer.writeInt(recipe.getMixMod().get(i));
 
 
             }
 
-            buffer.writeItemStack(recipe.getPrimaryOutput());
-            buffer.writeString(recipe.getAlloyComp());
-            buffer.writeItemStack(recipe.getSecondaryOutput());
+            int count = 0;
+            for(ItemStack stack : recipe.recipeOutputs) {
+                buffer.writeItemStack(stack);
+                count++;
+            }
+            while (count < recipe.outputTotal) {
+                buffer.writeItemStack(ItemStack.EMPTY);
+                count++;
+            }
+
+            count = 0;
+            for (float chance : recipe.weights) {
+                buffer.writeFloat(chance);
+                count++;
+            }
+            while (count < recipe.outputTotal) {
+                buffer.writeFloat(0f);
+                count++;
+            }
+
+            count = 0;
+            for (int add : recipe.mins) {
+                buffer.writeInt(add);
+                count++;
+            }
+            while (count < recipe.outputTotal) {
+                buffer.writeInt(1);
+                count++;
+            }
+
+            count = 0;
+            for (int add : recipe.maxes) {
+                buffer.writeInt(add);
+                count++;
+            }
+            while (count < recipe.outputTotal) {
+                buffer.writeInt(1);
+                count++;
+            }
 
         }
     }

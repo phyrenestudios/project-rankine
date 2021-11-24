@@ -1,23 +1,24 @@
 {
   "type": "rankine:alloying",
   "tier": 2,
+  "genName": true,
   "total": 9,
   "color": 7634311,
   "input1": {
     "element": "rankine:elements/iron",
-    "min": 0.58,
+    "min": 0.68,
     "max": 0.72,
     "required": true
   },
   "input2": {
     "element": "rankine:elements/nickel",
     "min": 0.17,
-    "max": 0.25,
+    "max": 0.19,
     "required": true
   },
   "input3": {
     "element": "rankine:elements/cobalt",
-    "min": 0.06,
+    "min": 0.08,
     "max": 0.12,
     "required": true
   },
@@ -28,29 +29,34 @@
     "required": true
   },
   "input5": {
-    "element": "rankine:elements/titanium",
-    "min": 0.0,
-    "max": 0.05
+    "element": "rankine:elements/manganese",
+    "min": 0.09,
+    "max": 0.15
   },
   "input6": {
-    "element": "rankine:elements/aluminum",
+    "element": "rankine:elements/titanium",
     "min": 0.0,
-    "max": 0.05
+    "max": 0.02
   },
   "input7": {
-    "element": "rankine:elements/cadmium",
+    "element": "rankine:elements/aluminum",
     "min": 0.0,
-    "max": 0.05
+    "max": 0.02
   },
   "input8": {
-    "element": "rankine:elements/niobium",
+    "element": "rankine:elements/cadmium",
     "min": 0.0,
-    "max": 0.05
+    "max": 0.02
   },
   "input9": {
+    "element": "rankine:elements/niobium",
+    "min": 0.0,
+    "max": 0.02
+  },
+  "input10": {
     "element": "rankine:elements/tellurium",
     "min": 0.0,
-    "max": 0.05
+    "max": 0.02
   },
   "result": "rankine:steel_ingot"
 }

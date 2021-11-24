@@ -31,13 +31,13 @@
           "required": true
         },
         "input3": {
-          "element": "rankine:elements/obsidian",
+          "element": "rankine:compat/elements/obsidian",
           "min": 0.05,
           "max": 0.15,
           "required": true
         },
         "input4": {
-          "element": "rankine:elements/phlogiston",
+          "element": "rankine:compat/elements/phlogiston",
           "min": 0.0,
           "max": 0.1
         },

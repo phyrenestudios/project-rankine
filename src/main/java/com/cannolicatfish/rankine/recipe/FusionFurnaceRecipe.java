@@ -129,7 +129,7 @@ public class FusionFurnaceRecipe implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public ItemStack getGasIn() {

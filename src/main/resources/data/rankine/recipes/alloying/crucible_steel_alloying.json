@@ -1,5 +1,6 @@
 {
   "type": "rankine:alloying",
+  "genName": true,
   "tier": -1,
   "total": 0,
   "color": 7634311,

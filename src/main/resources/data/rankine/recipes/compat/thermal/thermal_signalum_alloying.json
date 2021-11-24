@@ -31,7 +31,7 @@
           "required": true
         },
         "input3": {
-          "element": "rankine:elements/redstone",
+          "element": "rankine:compat/elements/redstone",
           "min": 0.05,
           "max": 0.1,
           "required": true

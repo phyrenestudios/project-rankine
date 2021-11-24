@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "minecraft:nether_wart_block"
+  },
+  "input2": {
+    "item": "rankine:endositum_ingot"
+  },
+  "result1": {
+    "item":"minecraft:warped_wart_block",
+    "count": 1
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

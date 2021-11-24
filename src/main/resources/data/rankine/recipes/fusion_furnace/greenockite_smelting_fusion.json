@@ -1,0 +1,20 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:greenockite"
+  },
+  "input2": {
+    "item": "rankine:greenockite"
+  },
+  "result1": {
+    "item":"rankine:cadmium_ingot",
+    "count": 2
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:sulfur_dioxide_gas_bottle"
+  }
+}

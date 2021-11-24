@@ -2,13 +2,16 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "tag": "forge:fluorite"
+    "tag": "forge:gems/fluorite"
   },
   "fluidInput": {
     "fluid": "rankine:sulfuric_acid"
   },
   "fluidOutput": {
     "fluid": "rankine:hexafluorosilicic_acid"
+  },
+  "result1": {
+    "item": "rankine:gypsum"
   },
   "gasInput": {
     "item": "minecraft:glass_bottle"

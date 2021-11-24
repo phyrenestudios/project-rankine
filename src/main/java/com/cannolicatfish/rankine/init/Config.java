@@ -795,25 +795,22 @@ public class Config {
     }
 
     public static class Gases {
-        public final ForgeConfigSpec.EnumValue<GasUtilsEnum> GAS_VENT_TYPE;
         public final ForgeConfigSpec.BooleanValue GAS_MOVEMENT;
         public final ForgeConfigSpec.BooleanValue ENABLE_GAS_VENTS;
         public final ForgeConfigSpec.BooleanValue GAS_AFFECT_UNDEAD;
-        public final ForgeConfigSpec.IntValue GAS_DISSIPATION_SPEED;
+        public final ForgeConfigSpec.BooleanValue GAS_DISSIPATION;
 
 
         public Gases(ForgeConfigSpec.Builder b) {
             b.comment("Settings for Gases.").push("gases");
             GAS_MOVEMENT = b.comment("If enabled, gases will move on random tick and dissipate at or above y-level 95 (EXPERIMENTAL).")
-                    .define("gasMovement", false);
+                    .define("gasMovement", true);
             GAS_AFFECT_UNDEAD = b.comment("If enabled, gas effects will work against undead mobs.")
                     .define("gasAffectUndead", true);
             ENABLE_GAS_VENTS = b.comment("Enables blocks which emit gases on random tick.")
                     .define("enableGasVents", true);
-            GAS_VENT_TYPE = b.comment("Defines the gas that will be released by the Gas Vent block. Do not use SET and RANDOM, as these will break the block.")
-                    .defineEnum("gasVentType",GasUtilsEnum.FLUORINE);
-            GAS_DISSIPATION_SPEED = b.comment("Defines the number of random ticks until a gas block dissipates. Setting to 0 means it never dissipates.")
-                    .defineInRange("gasDissipationSpeed",8,0,16);
+            GAS_DISSIPATION = b.comment("Enables gas blocks to have a chance to remove themselves on random tick (based on the gas).")
+                    .define("enableGasDissipation", true);
 
             b.pop();
         }

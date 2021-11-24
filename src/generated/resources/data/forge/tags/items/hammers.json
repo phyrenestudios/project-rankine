@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "rankine:wooden_mallet",
+    "rankine:stone_mallet",
     "rankine:pewter_hammer",
     "rankine:alloy_hammer",
     "rankine:bronze_hammer",

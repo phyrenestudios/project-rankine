@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.advancements.ExactCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.HarvestLevelPredicate;
 import com.cannolicatfish.rankine.advancements.IncludesCompositionPredicate;
 import com.cannolicatfish.rankine.advancements.AlloyEnchantabilityPredicate;
+import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.potion.RankinePotions;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
@@ -15,13 +16,17 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.IDispenseItemBehavior;
+import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
@@ -74,7 +79,38 @@ public class RankineRecipes {
         }
     };
 
-    public static void registerPotionRecipes() {
+    private static final IDispenseItemBehavior cannonballItemBehavior = new DefaultDispenseItemBehavior() {
+        /**
+         * Dispense the specified stack, play the dispense sound and spawn particles.
+         */
+        public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+            Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+            IPosition iposition = DispenserBlock.getDispensePosition(source);
+            double d0 = iposition.getX() + (double) ((float) direction.getXOffset() * 0.3F);
+            double d1 = iposition.getY() + (double) ((float) direction.getYOffset() * 0.3F);
+            double d2 = iposition.getZ() + (double) ((float) direction.getZOffset() * 0.3F);
+            World world = source.getWorld();
+            Random random = world.rand;
+            double d3 = random.nextGaussian() * 0.05D + (double) direction.getXOffset();
+            double d4 = random.nextGaussian() * 0.05D + (double) direction.getYOffset();
+            double d5 = random.nextGaussian() * 0.05D + (double) direction.getZOffset();
+            world.addEntity(Util.make(new CannonballEntity(world, d0, d1, d2, d3, d4, d5), (fireball) -> {
+                fireball.setStack(stack);
+            }));
+            stack.shrink(1);
+            return stack;
+        }
+    };
+
+        /**
+         * Play the dispense sound from the specified block.
+         */
+        protected void playDispenseSound(IBlockSource source) {
+            source.getWorld().playEvent(1018, source.getBlockPos(), 0);
+        }
+
+
+        public static void registerPotionRecipes() {
         BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(RankineItems.MERCURY::get), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISON));
         BrewingRecipeRegistry.addRecipe(Ingredient.fromStacks(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.fromItems(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVE_POTION));
 
@@ -95,6 +131,8 @@ public class RankineRecipes {
         DispenserBlock.registerDispenseBehavior(RankineItems.RESIN_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.SAP_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.MAPLE_SAP_BUCKET.get(),bucketItemBehavior);
+
+        DispenserBlock.registerDispenseBehavior(RankineItems.CANNONBALL.get(),cannonballItemBehavior);
     }
 
     public static void registerPredicates() {

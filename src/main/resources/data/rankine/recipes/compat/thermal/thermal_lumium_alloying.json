@@ -31,7 +31,7 @@
           "required": true
         },
         "input3": {
-          "element": "rankine:elements/glowstone",
+          "element": "rankine:compat/elements/glowstone",
           "min": 0.02,
           "max": 0.05,
           "required": true

@@ -11,7 +11,8 @@
   },
   "output1": {
     "item": "rankine:lanthanum_nugget",
-    "count": 6,
+    "min": 2,
+    "max": 6,
     "chance": 1.0
   },
   "output2": {
@@ -46,7 +47,8 @@
   },
   "output7": {
     "item": "rankine:gadolinium_nugget",
-    "count": 6,
+    "min": 2,
+    "max": 6,
     "chance": 1.0
   },
   "output8": {
@@ -99,7 +101,8 @@
   },
   "output16": {
     "item": "rankine:samarium_nugget",
-    "count": 6,
+    "min": 2,
+    "max": 6,
     "chance": 1.0
   },
   "output17": {
@@ -134,7 +137,8 @@
   },
   "output22": {
     "item": "rankine:neodymium_nugget",
-    "count": 6,
+    "min": 2,
+    "max": 6,
     "chance": 1.0
   },
   "output23": {

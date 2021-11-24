@@ -1,6 +1,6 @@
 {
   "type": "rankine:alloying",
-  "total": 5,
+  "total": 6,
   "tier": 2,
   "color": 16756647,
   "input1": {
@@ -30,7 +30,13 @@
     "min": 0.0,
     "max": 0.06
   },
+  "input6": {
+    "element": "rankine:elements/germanium",
+    "min": 0.0,
+    "max": 0.06
+  },
   "result": "rankine:rose_gold_ingot",
+  "durability": 50,
   "enchantments": ["minecraft:efficiency","rankine:swing","minecraft:efficiency","minecraft:efficiency","minecraft:efficiency","rankine:puncture","minecraft:sharpness","rankine:backstab","rankine:swing","minecraft:protection"],
   "enchantmentTypes": ["AXE","HAMMER","HOE","PICKAXE","SHOVEL","SPEAR","SWORD","KNIFE","CROWBAR","ARMOR"]
 }
