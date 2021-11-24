@@ -95,6 +95,12 @@ public class ClientProxy implements IProxy {
 
         addCutoutMipped(RankineLists.GRASS_BLOCKS);
         addCutoutMipped(RankineLists.FLOWER_POTS);
+        addCutoutMipped(RankineLists.CROPS_SINGLE);
+        addCutoutMipped(RankineLists.CROPS_DOUBLE);
+        addCutoutMipped(RankineLists.CROPS_TRIPLE);
+        addCutoutMipped(RankineLists.BUSH_PLANTS);
+        addCutoutMipped(RankineLists.DOUBLE_BUSH_PLANTS);
+        addCutoutMipped(RankineLists.TALL_FLOWERS);
         addCutoutMipped(Arrays.asList(
                 RankineBlocks.CAST_IRON_BARS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT.get(),
@@ -102,32 +108,7 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_VERTICAL_SLAB.get(),
 
-                RankineBlocks.BANANA_YUCCA_BUSH.get(),
-                RankineBlocks.ELDERBERRY_BUSH.get(),
-                RankineBlocks.SNOWBERRY_BUSH.get(),
-                RankineBlocks.BLUEBERRY_BUSH.get(),
-                RankineBlocks.BLACKBERRY_BUSH.get(),
-                RankineBlocks.RASPBERRY_BUSH.get(),
-                RankineBlocks.BLACKBERRY_BUSH.get(),
-                RankineBlocks.CRANBERRY_BUSH.get(),
-                RankineBlocks.POKEBERRY_BUSH.get(),
-                RankineBlocks.STRAWBERRY_BUSH.get(),
-                RankineBlocks.PINEAPPLE_BUSH.get(),
-                RankineBlocks.ALOE_PLANT.get(),
-                RankineBlocks.CAMPHOR_BASIL_PLANT.get(),
-                RankineBlocks.ASPARAGUS_PLANT.get(),
                 RankineBlocks.CORN_STALK.get(),
-                RankineBlocks.CORN_PLANT.get(),
-                RankineBlocks.RICE_PLANT.get(),
-                RankineBlocks.COTTON_PLANT.get(),
-                RankineBlocks.JUTE_PLANT.get(),
-                RankineBlocks.RED_LILY.get(),
-                RankineBlocks.ORANGE_LILY.get(),
-                RankineBlocks.WHITE_LILY.get(),
-                RankineBlocks.BLUE_MORNING_GLORY.get(),
-                RankineBlocks.PURPLE_MORNING_GLORY.get(),
-                RankineBlocks.BLACK_MORNING_GLORY.get(),
-                RankineBlocks.GOLDENROD.get(),
                 RankineBlocks.SHORT_GRASS.get(),
                 RankineBlocks.GWIHABAITE_CRYSTAL.get(),
                 RankineBlocks.STINGING_NETTLE.get(),
@@ -135,8 +116,6 @@ public class ClientProxy implements IProxy {
                 RankineBlocks.CRIMSON_CLOVER.get(),
                 RankineBlocks.WHITE_CLOVER.get(),
                 RankineBlocks.YELLOW_CLOVER.get(),
-
-
 
                 RankineBlocks.CALCITE_BLOCK.get(),
                 RankineBlocks.CALCIUM_SILICATE_BLOCK.get(),

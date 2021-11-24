@@ -1,20 +1,18 @@
 package com.cannolicatfish.rankine.events;
 
-import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
-import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
-import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
-import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
-import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
-import com.cannolicatfish.rankine.compatibility.Patchouli;
-import com.cannolicatfish.rankine.entities.goals.EatGrassGoalModified;
-import com.cannolicatfish.rankine.init.RankineFluids;
-import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.blocks.CharcoalPitBlock;
 import com.cannolicatfish.rankine.blocks.LEDBlock;
 import com.cannolicatfish.rankine.blocks.RankineOreBlock;
 import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenPitBlock;
+import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
+import com.cannolicatfish.rankine.blocks.plants.RankinePlantBlock;
+import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
+import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
+import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
+import com.cannolicatfish.rankine.compatibility.Patchouli;
+import com.cannolicatfish.rankine.entities.goals.EatGrassGoalModified;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.InformationItem;
 import com.cannolicatfish.rankine.items.alloys.*;
@@ -27,7 +25,10 @@ import com.cannolicatfish.rankine.potion.RankineEffects;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
-import com.cannolicatfish.rankine.util.*;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
+import com.cannolicatfish.rankine.util.RankineVillagerTrades;
+import com.cannolicatfish.rankine.util.RockGeneratorUtils;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -41,7 +42,6 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -53,7 +53,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.tags.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -92,7 +93,6 @@ import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import java.text.DecimalFormat;
-import java.util.Random;
 import java.util.*;
 
 import static net.minecraft.block.Block.spawnAsEntity;
@@ -219,12 +219,6 @@ public class RankineEventHandler {
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODOCHROSITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.CHROME_ENSTATITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
             level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.FLUORITE.get(), 3), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            List<Block> geodes = BlockTags.getCollection().get(new ResourceLocation("rankine:geodes")).getAllElements();
-            if (!geodes.isEmpty()) {
-                for (Block geode : geodes) {
-                    level3.add((entity, rand) -> new MerchantOffer(new ItemStack(RankineItems.UNCUT_GEODE.get(), 1), new ItemStack(Items.EMERALD, 5), new ItemStack(geode.asItem(), 1), 3, 20, 0.05f));
-                }
-            }
             level4.addAll(RankineVillagerTrades.returnTagTrades(new ResourceLocation("forge:gems"),RankineItems.OPAL.get(),1,12,16,10,0.05f));
             level5.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1), new ItemStack(Items.EMERALD, 6),12,20,0.05f));
             level5.add(new BasicTrade(20, new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1),12,50,0.05f));
@@ -250,7 +244,6 @@ public class RankineEventHandler {
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.METEORITE.get(), 2),12,10,0.05f));
             level4.add(new BasicTrade(1, new ItemStack(RankineItems.ENSTATITE_CHONDRITE.get(), 2),12,10,0.05f));
             level5.add(new BasicTrade(1, new ItemStack(RankineItems.ROMAN_CONCRETE.get(), 1),24,10,0.05f));
-            level5.add(new BasicTrade(64, new ItemStack(RankineItems.UNCUT_GEODE.get(), 1),1,10,0.05f));
         }
 
         if (Config.GENERAL.VILLAGER_TRADES.get()) {
@@ -1805,9 +1798,7 @@ public class RankineEventHandler {
                         player.getHeldItem(Hand.OFF_HAND).shrink(1);
                     }
                     world.playSound(player, blockpos1, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, new Random().nextFloat() * 0.4F + 0.8F);
-                } else if (world.getBlockState(pos) == RankineBlocks.BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false) ||
-                        world.getBlockState(pos) == RankineBlocks.HIGH_BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false) ||
-                        world.getBlockState(pos) == RankineBlocks.ULTRA_HIGH_BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false)) {
+                } else if (world.getBlockState(pos) == RankineBlocks.BEEHIVE_OVEN_PIT.get().getDefaultState().with(BlockStateProperties.LIT, false)) {
                     if (!world.isRemote()) {
                         world.setBlockState(pos, world.getBlockState(pos).with(BlockStateProperties.LIT, Boolean.TRUE), 2);
                         player.swingArm(Hand.MAIN_HAND);
@@ -2159,7 +2150,7 @@ public class RankineEventHandler {
 
                     //Geodes
                     if (worldIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get() && !worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
-                        spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.UNCUT_GEODE.get(), 1));
+                        spawnAsEntity(worldIn, pos, new ItemStack(RankineItems.GEODE.get(), 1));
                     }
 
                 }//end pick check

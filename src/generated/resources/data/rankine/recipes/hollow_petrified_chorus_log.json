@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:petrified_chorus_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_petrified_chorus_log",
+    "count": 16
+  }
+}

@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.util;
 
-import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -8,15 +7,12 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.elements.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -160,17 +156,13 @@ public final class PeriodicTableUtils {
                 } else if (atom >= 140 && atom <= 218) {
                     up = 50;
                 }
-                if (Config.MACHINES.RANKINE_BOX_UP.get() && up != 0) {
+                if (up != 0) {
                     return getElementbyNumber(atom - up);
                 } else {
                     return Element.NONE;
                 }
             case 4: // RIGHT
-                if (Config.MACHINES.RANKINE_BOX_RIGHT.get()) {
-                    return getElementbyNumber(atom + 1);
-                } else {
-                    return Element.NONE;
-                }
+                return getElementbyNumber(atom + 1);
             case 5: // DOWN
                 int down = 0;
                 if (atom == 1) {
@@ -184,17 +176,13 @@ public final class PeriodicTableUtils {
                 } else if (atom >= 90 && atom <= 168) {
                     down = 50;
                 }
-                if (Config.MACHINES.RANKINE_BOX_DOWN.get() && down != 0) {
+                if (down != 0) {
                     return getElementbyNumber(atom + down);
                 } else {
                     return Element.NONE;
                 }
             case 6: // LEFT
-                if (Config.MACHINES.RANKINE_BOX_LEFT.get()) {
-                    return getElementbyNumber(atom - 1);
-                } else {
-                    return Element.NONE;
-                }
+                return getElementbyNumber(atom - 1);
             default:
                 return Element.NONE;
         }

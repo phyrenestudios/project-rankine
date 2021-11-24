@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:black_walnut_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_black_walnut_log",
+    "count": 16
+  }
+}

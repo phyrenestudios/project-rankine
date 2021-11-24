@@ -1,0 +1,11 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 400,
+  "input": {
+    "item": "rankine:black_walnut_log"
+  },
+  "result": {
+    "fluid": "rankine:juglone",
+    "amount": 200
+  }
+}

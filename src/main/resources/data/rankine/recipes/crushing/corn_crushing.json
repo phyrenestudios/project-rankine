@@ -7,5 +7,15 @@
     "item": "rankine:corn_grain",
     "count": 1,
     "chance": 1.0
+  },
+  "output2": {
+    "item": "rankine:corn_seeds",
+    "count": 1,
+    "chance": 1.0
+  },
+  "output3": {
+    "item": "rankine:corn_seeds",
+    "count": 1,
+    "chance": 0.5
   }
 }

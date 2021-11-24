@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "rankine:block/aquamarine_geode"
+    },
+    "facing=south": {
+      "model": "rankine:block/aquamarine_geode",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rankine:block/aquamarine_geode",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "rankine:block/aquamarine_geode",
+      "y": 90
     }
   }
 }

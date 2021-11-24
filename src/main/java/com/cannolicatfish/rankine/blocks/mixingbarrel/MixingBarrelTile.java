@@ -112,10 +112,8 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
 
         if (!this.world.isRemote) {
             if (!flag1) {
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, false), 3);
             } else if (this.getTileData().getInt("color") != this.color) {
                 this.getTileData().putInt("color",this.color);
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, this.isCooking()), 3);
             }
             ItemStack[] inputs = new ItemStack[]{this.items.get(0), this.items.get(1), this.items.get(2), this.items.get(3)};
             if ((this.isCooking() && flag) || !this.items.get(0).isEmpty() && !this.items.get(1).isEmpty() && !this.items.get(2).isEmpty() && !this.items.get(3).isEmpty()) {
@@ -157,7 +155,6 @@ public class MixingBarrelTile extends TileEntity implements ISidedInventory, ITi
 
             if (flag1 != this.isCooking()) {
                 flag2 = true;
-                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(MixingBarrelBlock.FLUID, this.isCooking()), 3);
             }
         }
 

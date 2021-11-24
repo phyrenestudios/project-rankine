@@ -4,9 +4,10 @@ import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -187,19 +188,33 @@ public class WorldgenUtils {
 
     public static boolean inArea(BlockPos b, double radius, BlockPos... targets) {
         for (BlockPos target : targets) {
-            if (b.distanceSq(target) < Math.pow(radius,2)) {
+            if (b.distanceSq(target) < Math.pow(radius,2)+0.5) {
                 return true;
             }
         }
         return false;
     }
 
+    public static BlockPos averagePos(BlockPos... targets) {
+        int x = 0;
+        int y = 0;
+        int z = 0;
+        for (BlockPos target : targets) {
+            x += target.getX();
+            y += target.getY();
+            z += target.getZ();
+        }
+        return new BlockPos(x/targets.length,y/targets.length,z/targets.length);
+    }
 
-    public static Block getCeillingBlock(World worldIn, BlockPos pos, int height) {
-        for (int i = 1; i<= height; ++i) {
-            if (!worldIn.isAirBlock(pos.up(i)) && !(worldIn.getBlockState(pos.up(i)).getBlock() instanceof BushBlock)) {
-                return worldIn.getBlockState(pos.up(height)).getBlock();
+
+    public static Block getCeillingBlock(World worldIn, BlockPos pos, Direction dir, int height) {
+        int i = 1;
+        while (i<=height) {
+            if (!worldIn.isAirBlock(pos.offset(dir,i)) && !(worldIn.getBlockState(pos.up(i)).isReplaceable(Fluids.WATER))) {
+                return worldIn.getBlockState(pos.up(i)).getBlock();
             }
+            ++i;
         }
         return Blocks.AIR;
     }

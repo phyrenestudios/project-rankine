@@ -1,0 +1,11 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 1600,
+  "input": {
+    "item": "minecraft:crimson_stem"
+  },
+  "result": {
+    "fluid": "minecraft:lava",
+    "amount": 200
+  }
+}

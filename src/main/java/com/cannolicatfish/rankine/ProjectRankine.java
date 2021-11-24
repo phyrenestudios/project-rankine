@@ -241,7 +241,9 @@ public class ProjectRankine {
 
         @SubscribeEvent
         public static void onFeatureRegistry(final RegistryEvent.Register<Feature<?>> event) {
-            event.getRegistry().register(RankineFeatures.RANKINE_ORE.setRegistryName(ProjectRankine.MODID,"rankine_ore"));
+            event.getRegistry().register(RankineFeatures.DEFAULT_ORE.setRegistryName(ProjectRankine.MODID,"default_ore"));
+            event.getRegistry().register(RankineFeatures.SPHERE_ORE.setRegistryName(ProjectRankine.MODID,"sphere_ore"));
+            event.getRegistry().register(RankineFeatures.DISK_ORE.setRegistryName(ProjectRankine.MODID,"disk_ore"));
             event.getRegistry().register(RankineFeatures.LAND_DISK.setRegistryName(ProjectRankine.MODID,"land_disk"));
             event.getRegistry().register(RankineFeatures.METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"meteorite_feature"));
             event.getRegistry().register(RankineFeatures.END_METEORITE_FEATURE.setRegistryName(ProjectRankine.MODID,"end_meteorite_feature"));
@@ -250,7 +252,7 @@ public class ProjectRankine {
             event.getRegistry().register(RankineFeatures.FLAT_BEDROCK_FEATURE.setRegistryName(ProjectRankine.MODID,"flat_bedrock_feature"));
             event.getRegistry().register(RankineFeatures.INTRUSION.setRegistryName(ProjectRankine.MODID,"intrusion"));
             event.getRegistry().register(RankineFeatures.STONE_REPLACER.setRegistryName(ProjectRankine.MODID,"stone_replacer"));
-            event.getRegistry().register(RankineFeatures.SOIL_REPLACER.setRegistryName(ProjectRankine.MODID,"soil_replacer"));
+            event.getRegistry().register(RankineFeatures.WORLD_REPLACER_FEATURE.setRegistryName(ProjectRankine.MODID,"soil_replacer"));
             event.getRegistry().register(RankineFeatures.SNOW_REPLACER.setRegistryName(ProjectRankine.MODID,"snow_replacer"));
 
         }

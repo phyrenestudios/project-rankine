@@ -5,23 +5,20 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.AxeItem;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
 
@@ -78,7 +75,7 @@ public class TreeChoppingEvents {
         if (Config.GENERAL.TREE_CHOPPING.get() && !player.isCreative() && !player.isSneaking() && !worldIn.isRemote && player.getHeldItemMainhand().getItem().isIn(RankineTags.Items.TREE_CHOPPERS) && state.isIn(RankineTags.Blocks.TREE_LOGS)) {
             Set<BlockPos> checkedBlocks = new HashSet<>();
             Set<BlockPos> logs = new HashSet<>();
-            List<BlockPos> leaves = new ArrayList<>();
+            Set<BlockPos> leaves = new HashSet<>();
             Stack<BlockPos> toCheck = new Stack<>();
             boolean alive = false;
             int forceBreak = Config.GENERAL.FORCE_BREAK.get();
@@ -101,10 +98,10 @@ public class TreeChoppingEvents {
                             if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
                                 if (target.getBlock() instanceof LeavesBlock) {
                                     if (!target.get(LeavesBlock.PERSISTENT) /*&& target.get(LeavesBlock.DISTANCE) <= 5*/) {
-                                        leaves.add(leaf);
+                                        leaves.add(leaf.toImmutable());
                                     }
                                 } else {
-                                    leaves.add(leaf);
+                                    leaves.add(leaf.toImmutable());
                                 }
                                 alive = true;
                             }
@@ -126,8 +123,12 @@ public class TreeChoppingEvents {
 
                 }
                 for (BlockPos b : leaves) {
-                    LeavesBlock.spawnDrops(worldIn.getBlockState(b),worldIn,pos);
+                    BlockState LEAF = worldIn.getBlockState(b);
+                    LeavesBlock.spawnDrops(LEAF,worldIn,pos);
                     worldIn.removeBlock(b,false);
+                    if (worldIn.getRandom().nextFloat() < Config.GENERAL.LEAF_LITTER_GEN_TREES.get() && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(LEAF.getBlock().getRegistryName().toString().replace("leaves", "leaf_litter"))) != null) {
+                        worldIn.setBlockState(b, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(LEAF.getBlock().getRegistryName().toString().replace("leaves", "leaf_litter"))).getDefaultState());
+                    }
                 }
                 worldIn.playSound(null,pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS,1.0f,0.8f);
 

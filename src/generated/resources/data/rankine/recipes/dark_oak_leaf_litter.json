@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:dark_oak_leaf_litter"
+    }
+  },
+  "result": {
+    "item": "rankine:dark_oak_leaf_litter"
+  }
+}

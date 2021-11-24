@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dirt",
+    "#forge:gravel",
+    "#forge:sand",
+    "rankine:silt"
+  ]
+}

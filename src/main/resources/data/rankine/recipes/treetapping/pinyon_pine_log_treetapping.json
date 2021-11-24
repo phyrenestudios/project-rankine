@@ -1,0 +1,11 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 400,
+  "input": {
+    "item": "rankine:pinyon_pine_log"
+  },
+  "result": {
+    "fluid": "rankine:resin",
+    "amount": 200
+  }
+}

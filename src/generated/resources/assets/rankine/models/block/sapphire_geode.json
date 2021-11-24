@@ -1,5 +1,5 @@
 {
-  "parent": "rankine:block/template_geode",
+  "parent": "rankine:block/template_cut_geode",
   "textures": {
     "face": "rankine:block/sapphire_geode"
   }

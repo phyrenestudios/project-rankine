@@ -738,6 +738,10 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         for (Item ITEM : RankineLists.GRAINS) {
             getOrCreateBuilder(RankineTags.Items.FLOUR).add(ITEM);
         }
+        for (Item ITEM : RankineLists.BREADS) {
+            getOrCreateBuilder(RankineTags.Items.BREAD).add(ITEM);
+        }
+        getOrCreateBuilder(RankineTags.Items.BREAD).add(Items.BREAD);
 
         getOrCreateBuilder(RankineTags.Items.FELDSPAR).add(RankineItems.ORTHOCLASE_FELDSPAR.get(),RankineItems.ORTHOCLASE_FELDSPAR.get());
         getOrCreateBuilder(RankineTags.Items.SALT).add(RankineItems.SODIUM_CHLORIDE.get(),RankineItems.PINK_SALT.get());
@@ -793,7 +797,6 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.GLAZED_TERRACOTTA, RankineTags.Items.GLAZED_TERRACOTTA);
         copy(RankineTags.Blocks.CONCRETE, RankineTags.Items.CONCRETE);
         copy(RankineTags.Blocks.CONCRETE_POWDER, RankineTags.Items.CONCRETE_POWDER);
-        copy(RankineTags.Blocks.GEODES, RankineTags.Items.GEODES);
         copy(RankineTags.Blocks.LEDS, RankineTags.Items.LEDS);
         copy(RankineTags.Blocks.MINERAL_WOOL, RankineTags.Items.MINERAL_WOOL);
         copy(RankineTags.Blocks.GEODES, RankineTags.Items.GEODES);

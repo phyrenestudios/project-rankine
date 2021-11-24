@@ -19,10 +19,6 @@ public class JutePlantBlock extends TripleCropsBlock {
         return RankineItems.JUTE_SEEDS.get();
     }
 
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
-
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && state.get(AGE) > 2) {

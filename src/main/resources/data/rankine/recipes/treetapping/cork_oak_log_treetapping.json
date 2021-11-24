@@ -1,0 +1,11 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 400,
+  "input": {
+    "item": "rankine:cork_oak_log"
+  },
+  "result": {
+    "fluid": "rankine:sap",
+    "amount": 200
+  }
+}

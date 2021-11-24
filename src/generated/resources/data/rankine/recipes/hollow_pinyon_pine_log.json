@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rankine:pinyon_pine_log"
+    }
+  },
+  "result": {
+    "item": "rankine:hollow_pinyon_pine_log",
+    "count": 16
+  }
+}
