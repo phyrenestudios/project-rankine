@@ -72,6 +72,7 @@ public class JEIRankinePlugin implements IModPlugin {
     @Override
     public void registerRecipes(@Nonnull IRecipeRegistration registry) {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
+        registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMixingRecipes()), MixingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getBeehiveRecipes()), BeehiveOvenRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getSluicingRecipes()), SluicingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getEvaporationRecipes()), EvaporationRecipeCategory.UID);
@@ -134,6 +135,7 @@ public class JEIRankinePlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
+        registry.addRecipeCategories(new MixingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new BeehiveOvenRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CrushingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AlloyingRecipeCategory(guiHelper));
@@ -153,6 +155,7 @@ public class JEIRankinePlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
+        registry.addRecipeCatalyst(new ItemStack(RankineBlocks.MIXING_BARREL.get()), MixingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.ALLOY_FURNACE.get()), AlloyingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.INDUCTION_FURNACE.get()), InductionAlloyingRecipeCategory.UID);
         registry.addRecipeCatalyst(new ItemStack(RankineBlocks.FUSION_FURNACE.get()), FusionFurnaceRecipeCategory.UID);

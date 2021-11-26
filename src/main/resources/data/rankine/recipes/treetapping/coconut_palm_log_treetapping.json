@@ -2,7 +2,7 @@
   "type": "rankine:treetapping",
   "tapTime": 400,
   "input": {
-    "item": "rankine:coconut_palm"
+    "item": "rankine:coconut_palm_log"
   },
   "result": {
     "fluid": "rankine:sap",

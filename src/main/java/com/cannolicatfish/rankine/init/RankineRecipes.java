@@ -131,6 +131,9 @@ public class RankineRecipes {
         DispenserBlock.registerDispenseBehavior(RankineItems.RESIN_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.SAP_BUCKET.get(),bucketItemBehavior);
         DispenserBlock.registerDispenseBehavior(RankineItems.MAPLE_SAP_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.BLACK_LIQUOR_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.GREEN_LIQUOR_BUCKET.get(),bucketItemBehavior);
+        DispenserBlock.registerDispenseBehavior(RankineItems.WHITE_LIQUOR_BUCKET.get(),bucketItemBehavior);
 
         DispenserBlock.registerDispenseBehavior(RankineItems.CANNONBALL.get(),cannonballItemBehavior);
     }

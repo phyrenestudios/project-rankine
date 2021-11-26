@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:quicklime"
+  },
+  "result1": {
+    "item": "rankine:sodium_hydroxide"
+  },
+  "result2": {
+    "item": "rankine:calcite"
+  },
+  "fluidInput": {
+    "fluid": "rankine:green_liquor"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:white_liquor"
+  }
+}

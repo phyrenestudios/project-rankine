@@ -316,6 +316,7 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.BORAX.get(),
             RankineItems.SODIUM_SULFIDE.get(),
             RankineItems.SODIUM_HYDROXIDE.get(),
+            RankineItems.BETA_ALUMINA_SOLID_ELECTROLYTE.get(),
             RankineItems.LITHIUM_COBALT_OXIDE.get(),
             RankineItems.SODIUM_CARBONATE.get(),
             RankineItems.SALTPETER.get(),
@@ -416,6 +417,9 @@ public class RankineLangProvider extends LanguageProvider {
             RankineItems.GRAY_MUD_BUCKET.get(),
             RankineItems.RED_MUD_BUCKET.get(),
             RankineItems.SULFURIC_ACID_BUCKET.get(),
+            RankineItems.BLACK_LIQUOR_BUCKET.get(),
+            RankineItems.GREEN_LIQUOR_BUCKET.get(),
+            RankineItems.WHITE_LIQUOR_BUCKET.get(),
             RankineItems.COIN.get(),
             RankineItems.SILVER_ZINC_BATTERY.get(),
             RankineItems.MAGNESIUM_BATTERY.get(),
@@ -680,6 +684,9 @@ public class RankineLangProvider extends LanguageProvider {
         add("fluid.rankine.resin", "Resin");
         add("fluid.rankine.sap", "Sap");
         add("fluid.rankine.sulfuric_acid", "Sulfuric Acid");
+        add("fluid.rankine.black_liquor", "Black Liquor");
+        add("fluid.rankine.green_liquor", "Green Liquor");
+        add("fluid.rankine.white_liquor", "White Liquor");
 
         add("rankine.advancements.story.root.title", "Project Rankine");
         add("rankine.advancements.story.root.description", "Begin delving into the changed world");

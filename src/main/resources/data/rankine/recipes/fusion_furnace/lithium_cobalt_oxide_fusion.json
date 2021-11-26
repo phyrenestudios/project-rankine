@@ -2,19 +2,19 @@
   "type": "rankine:fusion_furnace",
   "cookTime": 400,
   "input1": {
-    "item": "rankine:lautarite"
+    "tag": "forge:ingots/lithium"
   },
   "input2": {
-    "item": "rankine:sodium_hydroxide"
+    "tag": "forge:ingots/cobalt"
   },
   "result1": {
-    "item": "rankine:iodine"
+    "item": "rankine:lithium_cobalt_oxide"
   },
   "fluidInput": {
     "fluid": "minecraft:water"
   },
   "gasInput": {
-    "item": "rankine:sulfur_dioxide_gas_bottle"
+    "item": "rankine:carbon_dioxide_gas_bottle"
   },
   "gasOutput": {
     "item": "minecraft:glass_bottle"

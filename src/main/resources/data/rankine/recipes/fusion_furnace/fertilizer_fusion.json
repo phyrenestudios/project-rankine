@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:potash"
+  },
+  "input2": {
+    "tag": "forge:phosphorus"
+  },
+  "result1": {
+    "item": "rankine:fertilizer"
+  },
+  "gasInput": {
+    "item": "rankine:ammonia_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

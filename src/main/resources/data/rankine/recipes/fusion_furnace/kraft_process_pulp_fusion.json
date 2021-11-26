@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:sawdust"
+  },
+  "input2": {
+    "item": "rankine:sawdust"
+  },
+  "result1": {
+    "item": "rankine:pulp"
+  },
+  "result2": {
+    "item": "rankine:pulp"
+  },
+  "fluidInput": {
+    "fluid": "rankine:white_liquor"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:black_liquor"
+  }
+}

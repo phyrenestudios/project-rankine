@@ -1,0 +1,29 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 12,
+  "required": [true,true,true,true],
+  "ingredientTotal": 4,
+  "outputTotal": 1,
+  "fluidInput": {
+    "fluid": "minecraft:milk"
+  },
+  "input1": {
+    "item": "minecraft:sugar",
+    "group": 0
+  },
+  "input2": {
+    "tag": "forge:flour",
+    "group": 1
+  },
+  "input3": {
+    "tag": "forge:eggs",
+    "group": 2
+  },
+  "input4": {
+    "tag": "forge:salt",
+    "group": 3
+  },
+  "output1": {
+    "item": "rankine:pancake_batter"
+  }
+}

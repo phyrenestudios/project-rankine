@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  },
+  "fluidInput": {
+    "fluid": "rankine:black_liquor"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:green_liquor"
+  }
+}

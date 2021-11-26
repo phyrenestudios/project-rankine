@@ -72,6 +72,10 @@ public class RankineJEIRecipes {
         return recipeManager.getRecipesForType(RankineRecipeTypes.SLUICING);
     }
 
+    public List<MixingRecipe> getMixingRecipes() {
+        return recipeManager.getRecipesForType(RankineRecipeTypes.MIXING);
+    }
+
     public List<ElementRecipe> getElementRecipes() {
         return recipeManager.getRecipesForType(RankineRecipeTypes.ELEMENT);
     }
