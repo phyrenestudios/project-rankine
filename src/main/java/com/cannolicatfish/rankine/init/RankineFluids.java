@@ -71,4 +71,18 @@ public class RankineFluids {
     @ObjectHolder("rankine:flowing_sulfuric_acid")
     public static FlowingFluid FLOWING_SULFURIC_ACID;
 
+    @ObjectHolder("rankine:black_liquor")
+    public static FlowingFluid BLACK_LIQUOR;
+    @ObjectHolder("rankine:flowing_black_liquor")
+    public static FlowingFluid FLOWING_BLACK_LIQUOR;
+
+    @ObjectHolder("rankine:green_liquor")
+    public static FlowingFluid GREEN_LIQUOR;
+    @ObjectHolder("rankine:flowing_green_liquor")
+    public static FlowingFluid FLOWING_GREEN_LIQUOR;
+
+    @ObjectHolder("rankine:white_liquor")
+    public static FlowingFluid WHITE_LIQUOR;
+    @ObjectHolder("rankine:flowing_white_liquor")
+    public static FlowingFluid FLOWING_WHITE_LIQUOR;
 }

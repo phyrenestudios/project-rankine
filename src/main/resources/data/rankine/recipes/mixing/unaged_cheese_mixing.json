@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "required": [true,true,true,false],
+  "ingredientTotal": 5,
+  "outputTotal": 1,
+  "fluidInput": {
+    "fluid": "minecraft:milk"
+  },
+  "input1": {
+    "tag": "forge:salt",
+    "group": 0
+  },
+  "input2": {
+    "tag": "forge:salt",
+    "group": 1
+  },
+  "input3": {
+    "item": "rankine:stinging_nettle",
+    "group": 2
+  },
+  "input4": {
+    "tag": "forge:salt"
+  },
+  "input5": {
+    "item": "rankine:cranberries"
+  },
+  "output1": {
+    "item": "rankine:unaged_cheese"
+  }
+}

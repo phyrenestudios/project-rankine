@@ -1,16 +1,19 @@
 {
   "type": "rankine:alloy_crafting",
-  "ingredients": [
-    {
+  "pattern": [
+    "RF"
+  ],
+  "key": {
+    "R": {
       "item": "rankine:alloy_rod",
       "alloyRecipe": "rankine:alloying/ferrocerium_alloying",
       "name": "item.rankine.alloy_rod_ferrocerium",
       "color": 16750232
     },
-    {
-      "item": "rankine:steel_ingot"
+    "F": {
+      "tag": "forge:ingots/steel"
     }
-  ],
+  },
   "result": {
     "item": "rankine:spark_lighter"
   }

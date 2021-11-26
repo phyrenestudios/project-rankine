@@ -182,6 +182,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.BORAX.get());
         basicItem(RankineItems.SODIUM_SULFIDE.get());
         basicItem(RankineItems.SODIUM_HYDROXIDE.get());
+        basicItem(RankineItems.BETA_ALUMINA_SOLID_ELECTROLYTE.get());
         basicItem(RankineItems.LITHIUM_COBALT_OXIDE.get());
         basicItem(RankineItems.SODIUM_CARBONATE.get());
         basicItem(RankineItems.SALTPETER.get());
@@ -286,6 +287,9 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItem(RankineItems.GRAY_MUD_BUCKET.get());
         basicItem(RankineItems.RED_MUD_BUCKET.get());
         basicItem(RankineItems.SULFURIC_ACID_BUCKET.get());
+        basicItem(RankineItems.BLACK_LIQUOR_BUCKET.get());
+        basicItem(RankineItems.GREEN_LIQUOR_BUCKET.get());
+        basicItem(RankineItems.WHITE_LIQUOR_BUCKET.get());
         basicItem(RankineItems.COIN.get());
         basicItem(RankineItems.SILVER_ZINC_BATTERY.get());
         basicItem(RankineItems.MAGNESIUM_BATTERY.get());

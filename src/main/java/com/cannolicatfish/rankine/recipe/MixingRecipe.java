@@ -7,6 +7,7 @@ import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
 import com.cannolicatfish.rankine.util.WeightedCollection;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -25,11 +26,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.*;
 
 public class MixingRecipe implements IRecipe<IInventory> {
 
+    private final FluidStack fluid;
     private final NonNullList<Ingredient> recipeItems;
     private final int mixTime;
     private final int ingredientTotal;
@@ -46,9 +49,10 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
     public static final MixingRecipe.Serializer SERIALIZER = new MixingRecipe.Serializer();
 
-    public MixingRecipe(ResourceLocation idIn, int mixTimeIn, int ingredientTotalIn, int outputTotalIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
+    public MixingRecipe(ResourceLocation idIn, int mixTimeIn, int ingredientTotalIn, int outputTotalIn, FluidStack fluidIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
                         NonNullList<Integer> mixTimeModIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> weightsIn, NonNullList<Integer> minsIn, NonNullList<Integer> maxesIn) {
         this.id = idIn;
+        this.fluid = fluidIn;
         this.ingredientGroups = ingredientGroupsIn;
         this.mixTime = mixTimeIn;
         this.ingredientTotal = ingredientTotalIn;
@@ -83,7 +87,9 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return ret;
     }
 
-
+    public FluidStack getFluid() {
+        return fluid;
+    }
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
@@ -195,6 +201,24 @@ public class MixingRecipe implements IRecipe<IInventory> {
         return maxes;
     }
 
+    public List<Ingredient> getCondensedIngredients() {
+        List<Ingredient> ingredients = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            List<ItemStack> stacks = new ArrayList<>();
+            for (int s : this.getIndexList(i)) {
+                stacks.addAll(Arrays.asList(this.getIngredients().get(s).getMatchingStacks()));
+            }
+            if (stacks.isEmpty()) {
+                stacks.add(new ItemStack(RankineItems.ELEMENT.get()));
+            }
+            ingredients.add(Ingredient.fromStacks(stacks.toArray(new ItemStack[0])));
+        }
+        for (int s : this.getIndexList(-1)) {
+            ingredients.add(this.getIngredients().get(s));
+        }
+        return ingredients;
+    }
+
     public NonNullList<Integer> getIngredientGroups() {
         return ingredientGroups;
     }
@@ -245,6 +269,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
             int mixT = json.get("mixTime").getAsInt();
             int ingT = json.get("ingredientTotal").getAsInt();
             int outT = json.get("outputTotal").getAsInt();
+            FluidStack fluidInput = FluidHelper.getFluidStack(JSONUtils.getJsonObject(json, "fluidInput"));
             NonNullList<Boolean> requiredbool = NonNullList.withSize(4,false);
 
             NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT,Ingredient.EMPTY);
@@ -303,13 +328,14 @@ public class MixingRecipe implements IRecipe<IInventory> {
 
                 }
             }
-            return new MixingRecipe(recipeId,mixT,ingT,outT,ingredients, groups, requiredbool, countMods, mixTimeMods, stacks, weights, mins,maxes);
+            return new MixingRecipe(recipeId,mixT,ingT,outT,fluidInput,ingredients, groups, requiredbool, countMods, mixTimeMods, stacks, weights, mins,maxes);
         }
 
         public MixingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
             int mixT = buffer.readInt();
             int ingT = buffer.readInt();
             int resT = buffer.readInt();
+            FluidStack input = buffer.readFluidStack();
             NonNullList<Boolean> req = NonNullList.withSize(4, false);
 
             NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT, Ingredient.EMPTY);
@@ -350,7 +376,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
                 maxes.set(k, buffer.readInt());
             }
 
-            return new MixingRecipe(recipeId,mixT,ingT,resT,ingredients, groups, req, countMods, mixTimeMods, stacks, weights, mins,maxes);
+            return new MixingRecipe(recipeId,mixT,ingT,resT,input,ingredients, groups, req, countMods, mixTimeMods, stacks, weights, mins,maxes);
         }
 
         public void write(PacketBuffer buffer, MixingRecipe recipe) {
@@ -363,7 +389,7 @@ public class MixingRecipe implements IRecipe<IInventory> {
                     buffer.writeBoolean(false);
                 }
             }
-
+            buffer.writeFluidStack(recipe.getFluid());
             for (int i = 0; i < recipe.getIngredientTotal(); i++) {
                 recipe.getIngredients().get(i).write(buffer);
                 buffer.writeInt(recipe.getIngredientGroups().get(i));

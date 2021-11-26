@@ -23,9 +23,9 @@
     "additional": 0.15
   },
   "output5": {
-    "item": "minecraft:quartz",
-    "chance": 0.1,
-    "additional": 0.05
+    "item": "minecraft:iron_nugget",
+    "chance": 0.03,
+    "additional": 0.02
   },
   "output6": {
     "item": "rankine:tourmaline",

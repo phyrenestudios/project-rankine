@@ -9,12 +9,12 @@
     "chance": 1.0
   },
   "output2": {
-    "item": "minecraft:seeds",
+    "item": "minecraft:wheat_seeds",
     "count": 1,
     "chance": 1.0
   },
   "output3": {
-    "item": "minecraft:seeds",
+    "item": "minecraft:wheat_seeds",
     "count": 1,
     "chance": 0.5
   }
