@@ -250,7 +250,7 @@ public class WorldReplacerFeature extends Feature<NoFeatureConfig> {
                     reader.setBlockState(TARGET_POS, StoneBS, 2);
                 }
             } else {
-                if (TARGET_BLOCK.getBlock() instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
+                if (TARGET_BLOCK instanceof RankineOreBlock && TARGET_BS.get(RankineOreBlock.TYPE) == 0 && WorldgenUtils.ORE_STONES.contains(StoneBS.getBlock())) {
                     reader.setBlockState(TARGET_POS, TARGET_BLOCK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(StoneBS.getBlock())), 2);
                 } else if (TARGET_BLOCK.isIn(BlockTags.BASE_STONE_OVERWORLD)) {
                     reader.setBlockState(TARGET_POS, StoneBS, 2);

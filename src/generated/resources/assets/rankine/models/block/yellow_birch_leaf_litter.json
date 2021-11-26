@@ -21,19 +21,15 @@
           "texture": "#layer",
           "uv": [
             16.0,
-            0.0,
-            0.0,
-            16.0
-          ]
-        },
-        "up": {
-          "texture": "#layer",
-          "uv": [
-            16.0,
             16.0,
             0.0,
             0.0
-          ]
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#layer",
+          "tintindex": 0
         }
       }
     }

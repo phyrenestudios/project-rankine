@@ -5,11 +5,11 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 
-public class GrassItemBaseColor implements IItemColor {
+public class LeavesItemBaseColor implements IItemColor {
 
     @Override
     public int getColor(ItemStack stack, int color) {
         BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
-        return new GrassBlockBaseColor().getColor(blockstate, null, null, color);
+        return new LeavesBlockBaseColor().getColor(blockstate, null, null, color);
     }
 }

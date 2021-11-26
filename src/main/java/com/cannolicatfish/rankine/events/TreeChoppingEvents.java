@@ -92,7 +92,7 @@ public class TreeChoppingEvents {
                             logs.add(b.toImmutable());
                         }
                     }
-                    for (BlockPos leaf : BlockPos.getAllInBoxMutable(cp.add(-forceBreak,-forceBreak,-forceBreak), cp.add(forceBreak,forceBreak,forceBreak))) {
+                    for (BlockPos leaf : BlockPos.getAllInBoxMutable(cp.add(-forceBreak,-forceBreak,-forceBreak), cp.add(forceBreak,forceBreak+1,forceBreak))) {
                         if (!leaves.contains(leaf)) {
                             BlockState target = worldIn.getBlockState(leaf.toImmutable());
                             if (target.isIn(RankineTags.Blocks.TREE_LEAVES)) {
@@ -127,7 +127,7 @@ public class TreeChoppingEvents {
                     LeavesBlock.spawnDrops(LEAF,worldIn,pos);
                     worldIn.removeBlock(b,false);
                     if (worldIn.getRandom().nextFloat() < Config.GENERAL.LEAF_LITTER_GEN_TREES.get() && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(LEAF.getBlock().getRegistryName().toString().replace("leaves", "leaf_litter"))) != null) {
-                        worldIn.setBlockState(b, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate(LEAF.getBlock().getRegistryName().toString().replace("leaves", "leaf_litter"))).getDefaultState());
+                        worldIn.setBlockState(b, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryCreate("rankine:"+LEAF.getBlock().getRegistryName().getPath().replace("leaves", "leaf_litter"))).getDefaultState());
                     }
                 }
                 worldIn.playSound(null,pos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS,1.0f,0.8f);
@@ -146,41 +146,6 @@ public class TreeChoppingEvents {
 
         }
     }
-
-
-/*
-    @SubscribeEvent
-    public static void onWorldTick(TickEvent.WorldTickEvent event) {
-        World worldIn = event.world;
-
-        if (!todo.isEmpty() && !worldIn.isRemote) {
-            int toBreak = Math.min(leaves.size()-1, Config.GENERAL.LEAF_DECAY_SPEED.get());
-            //worldIn.playSound(worldIn.getClosestPlayer(leaves.get(0).getX(),leaves.get(0).getY(),leaves.get(0).getZ(),32.0D,true), leaves.get(0), SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            int i = 0;
-            while (i < toBreak) {
-                BlockPos p = leaves.get(0);
-                worldIn.removeBlock(p, false);
-                if (worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && !worldIn.restoringBlockSnapshots) {
-                    for (ItemStack items : Block.getDrops(worldIn.getBlockState(p), (ServerWorld) worldIn, p, null)) {
-                        spawnAsEntity(worldIn, p, new ItemStack(items.getItem(), 1));
-                    }
-                }
-                leaves.remove(p);
-                ++i;
-            }
-
-        }
-
-
-    }
-
-
-
- */
-
-
-
-
 
 
 

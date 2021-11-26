@@ -9,13 +9,29 @@ import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.biome.BiomeColors;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
+
 public class GrassBlockBaseColor implements IBlockColor {
     @Override
-    public int getColor(BlockState state, @Nullable IBlockDisplayReader p_getColor_2_, @Nullable BlockPos pos, int tint) {
+    public int getColor(BlockState state, @Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, int tint) {
         if (state.getBlock() instanceof GrassySoilBlock && state.get(GrassySoilBlock.DEAD)) {
-            return p_getColor_2_ != null && pos != null ? BiomeColors.getGrassColor(p_getColor_2_, pos)+1000 : GrassColors.get(0.5D, 1.0D);
+            return reader != null && pos != null ? returnBlend(BiomeColors.getGrassColor(reader, pos),25) : returnBlend(GrassColors.get(0.5D, 1.0D),25);
         } else {
-            return p_getColor_2_ != null && pos != null ? BiomeColors.getGrassColor(p_getColor_2_, pos) : GrassColors.get(0.5D, 1.0D);
+            return reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5D, 1.0D);
         }
+    }
+
+    private int returnBlend(int color, int shift) {
+        float r = shift;
+        float g = 0;
+        float b = 0;
+        Color col = new Color(color);
+        r += (col.getRed());
+        g += (col.getGreen());
+        b += (col.getBlue());
+        int rgb = Math.round(Math.min(r,255));
+        rgb = (rgb << 8) +  Math.round(g);
+        rgb = (rgb << 8) +  Math.round(b);
+        return rgb;
     }
 }

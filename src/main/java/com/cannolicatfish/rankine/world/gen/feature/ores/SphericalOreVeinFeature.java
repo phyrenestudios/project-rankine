@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.world.gen.feature.ores;
 
+import com.cannolicatfish.rankine.blocks.RankineOreBlock;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
@@ -26,7 +29,12 @@ public class SphericalOreVeinFeature extends Feature<RankineOreFeatureConfig> {
                 float RadiusEffect = (float) (1 - Math.pow(Dist-1,2) / Math.pow(config.size-0.5,2));
                 if (RadiusEffect > 0 && rand.nextFloat() < RadiusEffect) {
                     if (config.target.getPredicate().test(reader.getBlockState(BP))) {
-                        reader.setBlockState(BP, config.state.getBlock().getDefaultState(), 2);
+                        Block BLK = config.state.getBlock();
+                        if (BLK instanceof RankineOreBlock && WorldgenUtils.ORE_STONES.contains(reader.getBlockState(BP).getBlock())) {
+                            reader.setBlockState(BP, BLK.getDefaultState().with(RankineOreBlock.TYPE, WorldgenUtils.ORE_STONES.indexOf(reader.getBlockState(BP).getBlock())), 2);
+                        } else {
+                            reader.setBlockState(BP, BLK.getDefaultState(), 2);
+                        }
                     }
                 }
             }

@@ -307,8 +307,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                             .texture("particle", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
                             .texture("layer", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
                             .element().from(0.0f,0.25f,0.0f).to(16.0f,0.25f,16.0f)
-                            .face(Direction.UP).uvs(16, 16, 0,0).texture("#layer").end()
-                            .face(Direction.DOWN).uvs(16, 0, 0, 16).texture("#layer").end()
+                            .face(Direction.UP).uvs(0, 0, 16,16).tintindex(0).texture("#layer").end()
+                            .face(Direction.DOWN).uvs(16, 16, 0, 0).tintindex(0).texture("#layer").end()
                             .end())
                     .addModel();
         }
